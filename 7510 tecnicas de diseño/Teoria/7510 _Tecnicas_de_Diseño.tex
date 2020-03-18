@@ -34,7 +34,7 @@ Departamento de Computaci\'on
 \vspace{2cm}
 
 
-Este es un modesto aporte para los alumnos de la f\'acultad de ingenier\'ia  de la UBA de las carreras de licenciatura en an\'alsis de sistemas e ingenier\'ia inform\'atica.
+Este trabajo es una recopilacion de resumenes de clase y apuntes de distintas materias de diseño tanto de la UBA como de otras universidades como UTN, para los alumnos de la f\'acultad de ingenier\'ia  de la UBA de las carreras de licenciatura en an\'alsis de sistemas e ingenier\'ia inform\'atica y para todo aquel que se sienta interesado por el diseño de software.
 De ninguna man\'era pretende ser una gu\'ia de estudio, ni remplaza las clases presenciales, el material oficial de la catedra esta disponible en el web site de la m\'ateria.
 \\
 http://materias.fi.uba.ar/7510/
@@ -59,20 +59,77 @@ http://materias.fi.uba.ar/7510/
 
 \tableofcontents
 
-\chapter{Introducción}
-Toda la complejidad de la ingeniería de software surge cuando quien necesita el software ya no es quien lo construye, es decir inicialmente una persona calificada necesitaba usar la computadora para hacer algunos cálculos y demás cuestiones, entonces era el mismo quien desarrollaba el software y era el mismo quien lo usaba.
+\chapter{Introducción al Diseño}
+\section{¿Qué es diseñar?}
+\textbf{diseñar es tomar decisiones sobre los componentes de un sistema}, en particular
 
-Hoy el mundo tiende a la automatización y todos los negocios están en este proceso, en general nos vamos a encontrar en la industria con la problemática de resolver algún problema, y bajo la POO el problema debe ser modelado por entidades es decir conceptos extraídos del dominio del problema.
+\begin{itemize}
+\item encontrar cuáles son esos componentes 
+\item qué responsabilidad tiene cada componente (qué va a hacer, qué no puede resolver, qué va a necesitar que otro le resuelva)
+\item cómo se relaciona cada componente con los demás para formar un sistema
+\item repasamos la definición de un sistema como "conjunto de partes que se relacionan para lograr un objetivo común".
+\end{itemize}
+En el paradigma de objetos, los componentes son objetos, las \textbf{responsabilidades} están definidas por la interfaz del objeto. 
+\\
+Recordamos interfaz vs. implementación; \textbf{interfaz} es lo que le puedo pedir a un objeto que haga (mensaje), \textbf{la implementación} es cómo lo termina resolviendo (método). 
+¿Cómo se relacionan los objetos?, enviándose mensajes. 
+\\
+Pero para eso se tienen que conocer. ¿Y cómo los conozco? Mediante una referencia temporal (variable local, parámetro) o más permanente (variables de instancia o de clase).
 
-Nosotros como analistas no somos expertos en el negocio de quien nos contrata, sin embargo debemos construir software que resuelva problemas de ese modelo de negocio, lo primero que debemos hacer es entender el negocio es decir entender las reglas de negocio que lo gobiernan.
+\section{Diseño de sistemas y diseño de software}
+¿cómo se relacionan entre sí el diseño de sistemas y el diseño de software? ¿qué abarca cada concepto?
+El diseño de software está englobado en el diseño de sistemas, que tiene características más generales. Podemos diseñar: el sistema electoral que determina el ganador de una elección, un sistema de inscripción a la facultad, un sistema que entrega documentos de identidad a los ciudadanos,
+sistemas de control: ascensores, puentes, cámaras de vigilancia, dispensers, brazos robóticos, etc.
+y el software que puede hacer de soporte tecnológico a casi todos los sistemas que mencionamos anteriormente. 
+El diseño de software es particularmente interesante por sus características no tangibles.
+\\
+\\
+Hay algunas ideas erroneas instaladas:
+\begin{itemize}
+\item "Se puede diseñar la funcionalidad sin conocer la tecnología" 
+\item "Si estoy diseñando y tiro una línea de código, dejé de diseñar"
+\item "Diseñar implica saber UML / saber Enterprise Architect / hacer cajitas".
+\item “Se puede programar sin necesidad de diseñar”
+\end{itemize}
 
-Por ejemplo en el caso de un banco, este tendrá una linea de créditos y esta debe tener una serie de requisitos que los interesados deben cumplir,  El dueño de un restaurante debe tener reglas de negocio que dirijan la política de contratación de personal, un Supermercado tendrá reglas que determinen las disposiciones de las mercaderías en góndolas, la rotación de las mismas etc.
+Nuestro pensamiento es que cuando no bajamos a detalle, cuando ignoramos cuestiones esenciales de la tecnología (arquitectura, paradigmas y lenguajes a desarrollar, etc.), cuando nos queremos abstraer de la programación y la consideramos una tarea menor, "operativa", donde no se piensa, estamos "generando una deuda".
+\\
+\\
+Porque si diseñar es tomar decisiones, descartar decisiones técnicas produce un diseño pobre. Y decimos que diseñar no es hacer diagramas, hacer diagramas es documentar las decisiones que tomé en otro momento. Si no hice el diagrama no quiere decir que no diseñé, en todo caso quiere decir que no está documentado.
+\\
+\\
+\textbf{Ejemplo en clase:} el profesor le pide a un alumno que construya una escalera de madera. ¿Qué preguntas se hace el profesor?
+qué cualidades quiero que esa escalera tenga (que sea estable, que sea durable, que se construya rápidamente, qué altura debe tener, cuántos escalones)
+qué materiales debo utilizar (definido por la decisión anterior) y cómo voy a especificarlo
+al pensar alternativas aparecen restricciones (constraints): de tiempo, de costo, de material que el cliente está dispuesto a comprar, de factibilidad técnica (el grado de experiencia del alumno o sus habilidades con determinadas herramientas afectan en la decisión del tipo de escalera que voy a construir), etc.
 
-Así todo negocio es diferente y cuando tenemos que construir software para un negocio determinado nos enfrentamos a varios problemas.
+En conclusión, el profesor no puede hacer su trabajo sin tener un profundo conocimiento del arte de la carpintería, de cómo hacer un corte, de las técnicas disponibles. No se puede separar la teoría de la carpintería de la práctica. Y en toda decisión tenemos que entender los objetivos, priorizarlos, ver los pros y las contras. Entender cada una de nuestras decisiones a cuáles de nuestros objetivos se aplican.
 
-\section{Conocimientos previos}
-Aqui debo poner lo que el alumno deberia conocer
+Como vemos, tomar decisiones sin tener en cuenta el juego de variables que intervienen tiene un costo: en el caso del diseño hay restricciones que impone el usuario, la arquitectura, el paradigma y el lenguaje de programación en el que vamos a implementar y que no es posible soslayar: si estamos haciendo un sistema de reclamos para la municipalidad ¿cómo diseñamos el reclamo de un ciudadano? ¿cómo es posible hacerlo sin saber si el sistema será web o cliente servidor, orientado a objetos o con programación funcional, en un lenguaje que hace chequeo de tipos estático o en otro que no tiene testing automatizado?
 
+
+
+
+
+
+
+
+
+
+
+\section{Guías para comunicar un diseño}
+
+\textbf{¿En qué lenguaje hablamos cuando estamos diseñando?} En general vamos a utilizar Código y UML
+\begin{enumerate}
+\item Código
+Es un buen momento para recordar que el código es una forma totalmente válida para evitar ambigüedades cuando describimos nuestra solución. Bajar a detalle las partes más relevantes nos va a permitir darnos cuenta de que 
+determinado objeto necesite recibir más información o conocer a ciertos objetos
+un objeto deba delegar responsabilidades a otro objeto
+aparezcan nuevas abstracciones que no habíamos pensado originalmente
+etc.
+\item UML (Unified Modeling Language) 
+es un lenguaje o herramienta de comunicación para las personas que permite representar un modelo (una idea) del sistema real. Recordemos que un modelo es una abstracción que lo expresamos a través de los distintos diagramas: el modelo no es el sistema, sino lo que me interesa representar del sistema.
+\end{enumerate}
 
 \chapter{Modelo de dominio}
 Una vez que terminamos la fase de análisis de requerimientos ya sea con casos de uso o historias de usuarios, nos enfrentamos con una tarea compleja y poco clara respecto del siguiente paso en el trabajo ¿como convertir esos requisitos en el sistema funcionando es decir las lineas de código?.
@@ -97,6 +154,13 @@ Grady booch dice que tenemos como herramientas tres mecanismos.
     • PARTICIÓN: Una funcionalidad compleja dividirla en varias 
     • ABSTRACCIÓN: 
     • ESTABLECIMIENTO DE JERARQUÍAS
+\\
+Existen dos aspectos en el desarrollo de un sistema, la aplicación y el negocio, la aplicación es el conjunto de operaciones que los usuarios pueden hacer con el software los requerimientos funcionales y los casos de uso asociados a estos dan el alcance de la aplicación, por otro lado el negocio es un sistema dentro de otro, el negocio tiene un dominio y un mundo a su alrededor.
+\\
+\\
+La aplicación permite realizar operaciones sobre los objetos de un modelo que representa el dominio del problema del cual forma parte este sistema, el modelo de negocio es importante porque los objetos que lo constituyen, a partir de su comportamiento harán que al accionar sobre ellos desde la aplicación se logran resultados válidos, Esto se logra a través de la asignación de las reglas de negocio a dichos objetos los cuales controlan que el negocio evolucione según esas reglas.
+
+
 
 \chapter{Criterios de Buen Diseño SOLID}
 \section{¿Qué es el criterio?} 
