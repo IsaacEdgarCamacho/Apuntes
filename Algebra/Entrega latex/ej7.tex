@@ -1,0 +1,41 @@
+\begin{shaded}
+\textbf{Dada la siguiente especificaci\'on, y el programa, demostrar la correcci\'on del mismo.  } \\
+\begin{align*}
+& \textbf{proc restaYpromedio } (inout \ a: \mathbb{Z}, inout \ b: \mathbb{Z}) \{  \\
+& Pre \{ a=A_0 \wedge b = B_0 \}   \\
+& Post  \begin{Bmatrix} a = A_0 - B_0 \wedge \dfrac{b = (A_0 + B_0 )}{2} \end{Bmatrix} \\
+& \} \\ \\
+& \text{ sea el siguiente programa } \\
+& S1: aux := a \\
+& S2:a := a-b \\
+& S3: b := \dfrac{(aux + b)}{2}
+\end{align*}
+\end{shaded}
+Para probar la corrección de la tripla  $ \{ Pre \} S1;S2;S3\{Pst \}$ 
+alcanza con probar  que la precondición implica la precondición más débil wp(S1, wp(s2,wp(S3,Post))) \\
+
+\begin{align*}
+Pre \{ a=A_0 \wedge b = B_0 \}  &\Rightarrow wp(S1, wp(s2,wp(S3,Post))) \\ \\
+\text{calculamos la precondicion } & \text{ mas debil de la ultima instrucci\'on} \\ \\
+wp \left(S3, Q_{ b = (A_0 + B_0 )/2}^{b} \right)  &\equiv def ((aux + b )/2)  \wedge_L (a = A_0 - B_0) \wedge (aux + b )/2 = (A_0 + B_0 )/2 \\
+&\equiv \underbrace{ def ((aux + b )/2)}_{True}  \wedge_L (a = A_0 - B_0) \wedge (aux + b ) = (A_0 + B_0 ) \\
+E3 &\equiv (a = A_0 - B_0) \wedge (aux + b ) = (A_0 + B_0 ) \\
+\end{align*}
+
+\begin{align*}
+wp (S2, E3)  &\equiv wp ( a= a-b, E3_{a-b}^{a})   \\
+wp ( a= a-b, E3_{a-b}^{a})  &\equiv def (a- b )  \wedge_L (a-b = A_0 - B_0) \wedge (aux + b ) = (A_0 + B_0 ) \\
+&\equiv \underbrace{ def (a- b )}_{True}  \wedge_L (a-b = A_0 - B_0) \wedge (aux + b ) = (A_0 + B_0 ) \\
+E2 &\equiv (a-b = A_0 - B_0) \wedge (aux + b ) = (A_0 + B_0 )\\
+\end{align*}
+
+\begin{align*}
+wp (S1, E2)  &\equiv wp ( aux= a, E2_{a}^{aux})   \\
+&\equiv def (a)  \wedge_L (a-b = A_0 - B_0) \wedge (a + b ) = (A_0 + B_0 ) \\
+&\equiv \underbrace{ def (a)}_{True}  \wedge_L (a-b = A_0 - B_0) \wedge (a + b ) = (A_0 + B_0 ) \\
+E1 &\equiv (a-b = A_0 - B_0) \wedge (a + b ) = (A_0 + B_0 )\\
+\end{align*}
+\textbf{Nos faltaria demostrar la correcci\'on} \\
+\begin{equation}
+\{ a=A_0 \wedge b=B_0 \} \Rightarrow wp(S1.E3) \equiv  (a-b=A_0-B_0) \wedge a+b = A_0+B_0
+\end{equation}
