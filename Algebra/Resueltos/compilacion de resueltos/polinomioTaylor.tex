@@ -1,0 +1,68 @@
+
+P(x) es el polinomio que se acercca a una funcion f(x) en un punto $ x_{0}$ y es de la forma: 
+\[
+ P(x) = C_{0} + C_{1} \cdot (x - x_{0})^{1}+C_{2} \cdot (x - x_{0})^{2} + \cdots + C_{n} \cdot (x - x_{0})^{n}
+\]
+\\
+ La funcion va a ser igual al polinomio mas un resto o error:
+\[
+	f(x)=\underbrace{ P_{n}(x)}_{\text{polinomio grado n}}+ \underbrace{ R_{n}(x) }_{\text{resto asociado a P(x)}}
+\]
+
+Taylor dice que si tomamos infinitos terminos para el polinomio entonces el resto va a tender a cero, es decir que en el infinito tanto P(x) va a ser igual a f(x), pero en la practica no llegamos a tomar infinitos, terminos lo cortamos antes.
+\[  \lim_{n \to \infty}(R_{n}(x))=0  \]
+
+\colorbox{green}{$\sqrt{\frac{x^2}{2}}$}
+
+\begin{shaded}
+\textbf{Ejercicio: }
+Probar usando el principio de inducción que 7 divide a $ 15^{n} + 7$ para todo $n \in \mathbb N $  
+\end{shaded}
+
+Ahora debemos hallar quiene son los $C_{i}$ osea las constantes $ C_{1}, C_{2}, \cdots , C_{n} $ del polinomio de taylor P(x)
+\begin{equation}
+\text{Si pedimos que: } \\
+P(x_{0}=f(x_{0})) \ \text{remplazando en el polinomio todos los } (x - x_{0}) \text{ se anulan }
+\end{equation}
+
+\begin{equation*}
+\begin{split}
+ P(x_{0}) &= C_{0} + C_{1} \cdot (x_{0} - x_{0})^{1}+C_{2} \cdot (x_{0} - x_{0})^{2} + \cdots + C_{n} \cdot (x_{0} - x_{0})^{n} = C_{0} \\
+ P(x_{0}) &= C_{0} \\ \\
+Si \ pedimos \ que \ P'(x_{0}) &= f'(x_{0}) \text{ debemos derivar el polinomio y la funcion} \\
+P'(x_{0}) &= ( C_{0} + C_{1} \cdot (x_{0} - x_{0})^{1}+C_{2} \cdot (x_{0} - x_{0})^{2} + \cdots + C_{n} \cdot (x_{0} - x_{0})^{n} )' \\
+P'(x_{0}) &= 0 + \quad C_{1} \quad + \quad  \quad  C_{2} \cdot 2 \cdot (x - x_{0})^{1} + \cdots \quad  + C_{n} \cdot n \cdot (x - x_{0})^{n-1} \\
+evaluando \ en \ x_{0} \quad P'(x_{0})  &= C_{1} \quad pero \quad \underbrace{ P'(x_{0})  = f'(x_{0}) = C_{1}}_{\text{hallamos a } C_{1}} \\ 
+\\
+Si \ pedimos \ que \ P''(x_{0}) &= f''(x_{0}) \text{ debemos derivar nuevamente el polinomio y la funcion} \\
+P''(x_{0}) &= ( C_{0} + C_{1} \cdot (x_{0} - x_{0})^{1}+C_{2} \cdot (x_{0} - x_{0})^{2} + \cdots + C_{n} \cdot (x_{0} - x_{0})^{n} )'' \\
+P''(x_{0}) &= 0 + \quad 0 \quad + \quad  \quad  C_{2} \cdot 2 \quad + \cdots \quad  + C_{n} \cdot n . (n-1) \cdot (x - x_{0})^{n-2} \\
+evaluando \ en \ x_{0} \quad P''(x_{0})  &= 2.C_{2} \quad pero \quad \underbrace{ P''(x_{0})  = f''(x_{0}) = 2 \cdot C_{2}}_{\text{hallamos a } C_{2}} \\
+despejando \ C_{2} &= \dfrac{f''(x_{0})}{2} \\ \\
+\end{split}
+\end{equation*}
+
+Si seguimos este procedimiento podemos ver que los terminos 
+\begin{equation*}
+\begin{split}
+ C_{0} &= f(x_{0})  \\
+ C_{1} &= f'(x_{0})  \\
+ C_{2} &=    \dfrac{f''(x_{0})}{2} \\ \\
+ C_{3} &=    \dfrac{f'''(x_{0})}{3!} \\ \\
+ C_{4} &=    \dfrac{f''''(x_{0})}{4!} 	\cdots \cdots \cdots \cdots C_{n} =    \dfrac{f^{n}(x_{0})}{n!}
+\end{split}
+\end{equation*}
+Asi llegamos a la formula general 
+\[
+P_{n}(x) \quad = \quad \displaystyle\sum_{i=0}^n C_{i} \cdot (x-x_{0})^{i} \quad =  \quad \displaystyle\sum_{i=0}^n \dfrac{f^{i}(x_{0})}{i!} \cdot (x-x_{0})^{i}
+\]
+\textbf{Ejemplo: } Hallar el polinomio de taylor grado 4 de $f(x)=e^{x}$ en el origen $ P_{4}(x= 0)$ \\
+Los datos que tengo son $ f(x)=e^{x}, \quad x_{0}= 0, \quad n = 4  $
+\begin{equation*}
+\begin{split}
+P_{4}(x) &= f(x_{0}) + f'(x_{0})\cdot (x-x_{0}) + \dfrac{f''(x_{0})}{2!} \cdot (x-x_{0})^{2} + \dfrac{f'''(x_{0})}{3!} \cdot (x-x_{0})^{3} + \dfrac{f''''(x_{0})}{4!} \cdot (x-x_{0})^{4} \\
+P_{4}(0) &= e^{0} + e^{0} \cdot (x-0) + \dfrac{e^{0}}{2!} \cdot (x-0)^{2} + \dfrac{e^{0}}{3!} \cdot (x-0)^{3} + \dfrac{e^{0}}{4!} \cdot (x-0)^{4} \\
+P_{4}(0) &= 1 + x + \dfrac{1}{2} \cdot x^{2} + \dfrac{1}{6} \cdot x^{3} + \dfrac{1}{24} \cdot x^{4} \quad \Rightarrow \quad \text{ Hallamos a } P_{4}(x)\\
+\end{split}
+\end{equation*}
+
