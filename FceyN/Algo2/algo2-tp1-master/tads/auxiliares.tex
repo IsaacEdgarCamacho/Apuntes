@@ -1,0 +1,78 @@
+\newcommand{\renombre}[2]{\tadNombre{TAD #1} es \tadNombre{#2}}
+
+\subsection{Renombres}
+
+	\renombre{Posicion}{Tupla(NatExtendido, NatExtendido)}
+
+	\renombre{Pokemon}{String}
+
+	\renombre{Jugador}{Nat}
+
+\subsection{Extensiones}
+
+	\begin{tad}{\tadNombre{NatExtendido}}
+
+		\tadExporta{\argumento $\div$ \argumento, $\sqrt{\argumento}$}
+
+		\tadExtiende{\tadNombre{Nat}}
+
+		\tadOtrasOperaciones
+
+			\tadOperacion{\argumento $\div$ \argumento}{nat/n, nat/m}{nat}{0 $<$ m}
+
+			\tadOperacion{$\sqrt{\argumento}$}{nat}{nat}{}
+
+			\tadOperacion{encontrarRaiz}{nat/n, nat/m}{nat}{m $\leq$ n}
+
+		\tadAxiomas[\paratodo{nat}{\ a, b}]
+
+			\tadAxioma{a $\div$ b}{\IF a $<$ b THEN 0 ELSE 1 + ((a-b) $\div$ b) FI}
+
+			\tadAxioma{$\sqrt{a}$}{encontrarRaiz(a,a)}
+
+			\tadAxioma{encontrarRaiz(a, b)}{\IF a $<$ b $\times$ b THEN encontrarRaiz(a, pred(b)) ELSE b FI}
+
+	\end{tad}
+
+
+	\begin{tad}{\tadNombre{MulticonjuntoExtendido($\alpha$)}}
+
+		\tadUsa{\tadNombre{Conjunto($\alpha$)}}
+
+		\tadExporta{partes, \argumento $-$ \argumento}
+
+		\tadExtiende{\tadNombre{Multiconjunto($\alpha$)}}
+
+		\tadOtrasOperaciones
+
+			\tadOperacion{partes}{multiconj($\alpha$)}{conj(multiconj($\alpha$))}{}
+
+			\tadOperacion{agregarATodos}{$\alpha$, conj(multiconj($\alpha$))}{conj(multiconj($\alpha$))}{}
+
+			\tadOperacion{\argumento $-$ \argumento}{multiconj($\alpha$), multiconj($\alpha$)}{multiconj($\alpha$)}{}
+
+		\tadAxiomas[\paratodo{$\alpha$}{a}, \paratodo{multiconj($\alpha$)}{\ as, bs}, \paratodo{conj(multiconj($\alpha$))}{\ cas}]
+
+			\tadAxioma{partes(as)}
+			{\IF vacio?(as) THEN
+				Ag($\emptyset$,$\emptyset$)
+			ELSE	
+				agregarATodos(dameUno(as), partes(sinUno(as))) $\cup$ partes(sinUno(as)) 
+			FI}
+
+			\tadAxioma{agregarATodos(a, cas)}
+			{\IF vacio?(cas) THEN
+				$\emptyset$
+			ELSE
+				Ag(Ag(a, dameUno(cas)), agregarATodos(a, sinUno(cas))
+			FI}
+
+
+			\tadAxioma{as $-$ bs}
+			{\IF vacio?(bs) THEN
+				as
+			ELSE
+				(as $-$ \{dameUno(bs)\}) $-$ sinUno(bs)
+			FI}
+
+	\end{tad}

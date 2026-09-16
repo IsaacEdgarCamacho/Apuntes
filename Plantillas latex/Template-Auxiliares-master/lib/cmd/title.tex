@@ -1,0 +1,198 @@
+% Template:     Template Auxiliar LaTeX
+% Documento:    Funciones para insertar títulos
+% Versión:      6.5.5 (15/06/2020)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R. @ppizarror
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo@ppizarror.com
+%
+% Sitio web:    [https://latex.ppizarror.com/auxiliares]
+% Licencia MIT: [https://opensource.org/licenses/MIT]
+
+\pretocmd{\chapter}{
+\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{
+		\addtocounter{templateListings}{\value{lstlisting}}
+		\setcounter{lstlisting}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptioneqn}{chap}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\equationrestart}{chap}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptionfig}{chap}}{
+		\addtocounter{templateFigures}{\value{figure}}
+		\setcounter{figure}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptiontab}{chap}}{
+		\addtocounter{templateTables}{\value{table}}
+		\setcounter{table}{0}
+	}{}
+}{}{}
+\pretocmd{\section}{
+\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{
+		\addtocounter{templateListings}{\value{lstlisting}}
+		\setcounter{lstlisting}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\equationrestart}{sec}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{
+		\addtocounter{templateFigures}{\value{figure}}
+		\setcounter{figure}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{
+		\addtocounter{templateTables}{\value{table}}
+		\setcounter{table}{0}
+	}{}
+	\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
+		\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+	}{
+		\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+	}
+	\def\GLOBALsectionanumenabled{false}
+	\def\GLOBALsubsectionanumenabled{false}
+}{}{}
+\pretocmd{\subsection}{
+\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{
+		\addtocounter{templateListings}{\value{lstlisting}}
+		\setcounter{lstlisting}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptioneqn}{ssec}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\equationrestart}{ssec}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptionfig}{ssec}}{
+		\addtocounter{templateFigures}{\value{figure}}
+		\setcounter{figure}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptiontab}{ssec}}{
+		\addtocounter{templateTables}{\value{table}}
+		\setcounter{table}{0}
+	}{}
+	\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{
+		\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
+	}{
+		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
+			\renewcommand{\thesubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
+		}{
+			\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+		}
+	}
+	\def\GLOBALsubsectionanumenabled{false}
+}{}{}
+\pretocmd{\subsubsection}{
+\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{
+		\addtocounter{templateListings}{\value{lstlisting}}
+		\setcounter{lstlisting}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptioneqn}{sssec}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\equationrestart}{sssec}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptionfig}{sssec}}{
+		\addtocounter{templateFigures}{\value{figure}}
+		\setcounter{figure}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptiontab}{sssec}}{
+		\addtocounter{templateTables}{\value{table}}
+		\setcounter{table}{0}
+	}{}
+	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
+		\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}}
+	}{
+		\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{
+			\ifthenelse{\equal{\showdotaftersnum}{true}}{
+				\renewcommand{\thesubsubsubsection}{\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}
+			}{
+				\renewcommand{\thesubsubsubsection}{\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
+			}
+		}{
+			\ifthenelse{\equal{\showdotaftersnum}{true}}{
+				\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
+					\renewcommand{\thesubsubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}	
+				}{
+					\renewcommand{\thesubsubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}
+				}
+			}{
+				\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
+					\renewcommand{\thesubsubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
+				}{
+					\renewcommand{\thesubsubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
+				}
+			}
+		}
+	}
+}{}{}
+\pretocmd{\subsubsubsection}{
+\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{
+		\addtocounter{templateListings}{\value{lstlisting}}
+		\setcounter{lstlisting}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\equationrestart}{ssssec}}{
+		\addtocounter{templateEquations}{\value{equation}}
+		\setcounter{equation}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{
+		\addtocounter{templateFigures}{\value{figure}}
+		\setcounter{figure}{0}
+	}{}
+\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{
+		\addtocounter{templateTables}{\value{table}}
+		\setcounter{table}{0}
+	}{}
+}{}{}
+\newcommand{\sectionanum}[1]{
+	\emptyvarerr{\sectionanum}{#1}{Titulo no definido}
+	\phantomsection
+	\needspace{3\baselineskip}
+	\section*{#1}
+	\addcontentsline{toc}{section}{#1}
+	\stepcounter{section}
+}
+\newcommand{\subsectionanum}[1]{
+	\emptyvarerr{\subsectionanum}{#1}{Subtitulo no definido}
+	\subsection*{#1}
+	\addcontentsline{toc}{subsection}{#1}
+	\stepcounter{subsection}
+}
+\newcommand{\subsubsectionanum}[1]{
+	\emptyvarerr{\subsubsectionanum}{#1}{Sub-subtitulo no definido}
+	\subsubsection*{#1}
+	\addcontentsline{toc}{subsubsection}{#1}
+	\stepcounter{subsubsection}
+}
+\newcommand{\subsubsubsectionanum}[1]{
+	\emptyvarerr{\subsubsubsectionanum}{#1}{Sub-sub-subtitulo no definido}
+	\subsubsubsection*{#1}
+	\addcontentsline{toc}{subsubsubsection}{#1}
+	\stepcounter{subsubsubsection}
+}
+\newcommand{\changeheadertitle}[1]{
+	\emptyvarerr{\changeheadertitle}{#1}{Titulo no definido}
+	\markboth{#1}{}
+}
+\newcommand{\clearheadertitle}{
+	\markboth{}{}
+}
