@@ -1,0 +1,596 @@
+
+%%%% PROCESAR con PdfLaTeX !!!!!
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,top=2.0cm,bottom=1.8cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% ------------------------------------------------------------
+% PALETA DEL WORD
+% ------------------------------------------------------------
+\definecolor{navy}{HTML}{1B3A6B}
+\definecolor{blue}{HTML}{2563EB}
+\definecolor{lightblue}{HTML}{EBF3FB}
+\definecolor{sectionblue}{HTML}{9FC3E5}
+\definecolor{cornellblue}{HTML}{BFDBFE}
+\definecolor{graybox}{HTML}{F3F4F6}
+\definecolor{greenbox}{HTML}{D1FAE5}
+\definecolor{orange}{HTML}{F5A000}
+\definecolor{textgray}{HTML}{1F2937}
+\definecolor{linegray}{HTML}{CBD5E1}
+
+\color{textgray}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\linespread{1.03}
+
+% ------------------------------------------------------------
+% ENCABEZADO Y PIE
+% ------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{textgray}DERECHO REGISTRAL \quad|\quad Clase 1 \quad|\quad Dr. Sebastian Savenez \quad|\quad 2026}
+\fancyhead[R]{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\color{blue}\rule{\textwidth}{0.4pt}}
+\fancyfoot[R]{\small\color{textgray}Pág. \thepage}
+\setlength{\headheight}{15pt}
+
+% ------------------------------------------------------------
+% ESTILOS
+% ------------------------------------------------------------
+\newcommand{\pagetitle}[1]{%
+  \vspace{3pt}
+  {\fontsize{22}{25}\selectfont\bfseries\color{navy}#1}\par
+  \vspace{10pt}
+  {\color{navy}\rule{\textwidth}{1.3pt}}\par
+  \vspace{18pt}
+}
+
+\newcommand{\blocktitle}[2]{%
+  \vspace{10pt}
+  \begin{tikzpicture}
+    \node[anchor=west, fill=lightblue, minimum width=\dimexpr\textwidth-5pt\relax,
+          inner xsep=18pt, inner ysep=9pt] (box) at (0,0)
+      {\begin{minipage}{0.91\textwidth}
+       {\fontsize{16}{18}\selectfont\bfseries\color{navy}#1}\par
+       \vspace{2pt}
+       {\fontsize{11}{13}\selectfont\itshape\color{textgray}#2}
+      \end{minipage}};
+    \draw[orange,line width=3pt] ($(box.north west)+(0,-0.5pt)$) -- ($(box.south west)+(0,0.5pt)$);
+  \end{tikzpicture}
+  \vspace{5pt}
+}
+
+\newcommand{\subheading}[1]{%
+  \vspace{7pt}
+  {\fontsize{12}{14}\selectfont\bfseries\color{navy}#1}\par
+  \vspace{2pt}
+}
+
+\newcommand{\norma}[2]{%
+  \vspace{5pt}
+  \begin{tikzpicture}
+    \node[anchor=west, fill=greenbox, rounded corners=1pt,
+          minimum width=\dimexpr\textwidth\relax, inner xsep=12pt, inner ysep=8pt] (b) at (0,0)
+      {\begin{minipage}{0.93\textwidth}
+       {\bfseries\color{navy}NORMA: #1}\par\vspace{3pt}
+       #2
+      \end{minipage}};
+  \end{tikzpicture}
+  \vspace{5pt}
+}
+
+\newcommand{\ejemplo}[2]{%
+  \vspace{5pt}
+  \begin{tikzpicture}
+    \node[anchor=west, fill=graybox, rounded corners=1pt,
+          minimum width=\dimexpr\textwidth\relax, inner xsep=12pt, inner ysep=8pt] (b) at (0,0)
+      {\begin{minipage}{0.93\textwidth}
+       {\bfseries\color{blue}EJEMPLO: #1}\par\vspace{3pt}
+       #2
+      \end{minipage}};
+  \end{tikzpicture}
+  \vspace{5pt}
+}
+
+\newcommand{\keyitem}[1]{\item #1}
+
+\newenvironment{wordlist}
+{\begin{itemize}[leftmargin=1.35em,itemsep=2pt,topsep=2pt,parsep=0pt]}
+{\end{itemize}}
+
+% ------------------------------------------------------------
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\thispagestyle{fancy}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[navy] ($(current page.north west)+(1.2cm,-1.2cm)$)
+    rectangle ($(current page.south east)+(-1.2cm,1.2cm)$);
+\end{tikzpicture}
+
+\vspace*{7.0cm}
+\begin{center}
+{\fontsize{30}{34}\selectfont\bfseries\color{white}DERECHO REGISTRAL}\par
+\vspace{10pt}
+{\fontsize{17}{20}\selectfont\color{cornellblue}1° Cuatrimestre 2026}\par
+\vspace{34pt}
+{\color{orange}\rule{0.82\textwidth}{1.2pt}}\par
+\vspace{15pt}
+{\fontsize{22}{25}\selectfont\bfseries\color{orange}CLASE 1}\par
+\vspace{7pt}
+{\fontsize{17}{21}\selectfont\itshape\color{cornellblue}Introducción al Derecho Registral Inmobiliario}\par
+\vspace{16pt}
+{\fontsize{12}{15}\selectfont\color{white}Docente: Dr. Sebastian Savenez}\par
+{\fontsize{12}{15}\selectfont\color{white}Universidad de Buenos Aires \quad|\quad 2026}\par
+\end{center}
+
+\newpage
+
+% ============================================================
+% INDICE: REPRODUCCIÓN VISUAL DEL WORD
+% ============================================================
+\pagetitle{ÍNDICE DE CONTENIDOS}
+
+{\small
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.28}
+\arrayrulecolor{linegray}
+\begin{longtable}{>{\bfseries\color{navy}\raggedright\arraybackslash}p{1.0cm}|>{\raggedright\arraybackslash}p{14.0cm}}
+\cellcolor{lightblue}1. & \textbf{Introducción al Derecho Registral}\\ \hline
+\cellcolor{white} & 1.1 Derecho Registral y su relación con otras ramas del derecho\\ \hline
+\rowcolor{sectionblue}\cellcolor{sectionblue}2. & \textbf{Teoría del título suficiente y modo suficiente (Art. 1892 CCyC)}\\ \hline
+\cellcolor{lightblue} & 2.1 Adquisición derivada por acto entre vivos\\ \hline
+\cellcolor{lightblue} & \textbf{2.2 Requisitos de fondo:} titularidad y capacidad\\ \hline
+\cellcolor{lightblue} & \textbf{2.3 Requisitos de forma:} escritura pública (Art. 1017 inc. A)\\ \hline
+\cellcolor{lightblue} & 2.4 Justo título y título putativo\\ \hline
+\cellcolor{lightblue} & 2.5 Principio Nemo Plus Iuris (Art. 399 CCyC)\\ \hline
+\rowcolor{sectionblue}\cellcolor{sectionblue}3. & \textbf{Modo suficiente: la tradición en inmuebles (Arts. 1923--1925)}\\ \hline
+\cellcolor{lightblue} & 3.1 Actos materiales de entrega y recepción\\ \hline
+\cellcolor{lightblue} & 3.2 Presunción de fecha (Art. 1914 CCyC)\\ \hline
+\rowcolor{sectionblue}\cellcolor{sectionblue}4. & \textbf{Publicidad registral e inscripción declarativa (Art. 1893 CCyC)}\\ \hline
+\cellcolor{lightblue} & 4.1 Terceros interesados y de buena fe\\ \hline
+\cellcolor{lightblue} & 4.2 Terceros desinteresados\\ \hline
+\cellcolor{lightblue} & 4.3 Ejemplos prácticos de oponibilidad\\ \hline
+\rowcolor{sectionblue}\cellcolor{sectionblue}5. & \textbf{Organización de los Registros de la Propiedad Inmueble (RPI)}\\ \hline
+\cellcolor{lightblue} & 5.1 Sistema federal: multiplicidad de registros\\ \hline
+\cellcolor{lightblue} & 5.2 Consejo Federal de Registros de la Propiedad Inmueble\\ \hline
+\cellcolor{lightblue} & 5.3 Registros en el Poder Judicial\\ \hline
+\rowcolor{sectionblue}\cellcolor{sectionblue}6. & \textbf{Clasificación de los RPI}\\ \hline
+\cellcolor{lightblue} & 6.1 Constitutivo vs. Declarativo\\ \hline
+\cellcolor{lightblue} & 6.2 Convalidante vs. No convalidante\\ \hline
+\cellcolor{lightblue} & 6.3 Según materia registrable: hechos, actos, derechos, documentos\\ \hline
+\cellcolor{lightblue} & 6.4 Según técnica: incorporación, transcripción, inscripción\\ \hline
+\rowcolor{sectionblue}\cellcolor{sectionblue}7. & \textbf{Marco normativo}\\ \hline
+\cellcolor{lightblue} & 7.1 Ley 17.801 y normas locales\\ \hline
+\cellcolor{lightblue} & 7.2 Normas administrativas del registro\\ \hline
+\rowcolor{sectionblue}\cellcolor{sectionblue}8. & \textbf{Documentos registrables: Arts. 2 y 3 de la Ley 17.801}\\ \hline
+\cellcolor{lightblue} & 8.1 Inciso A: constitución, transmisión, declaración, modificación, extinción\\ \hline
+\cellcolor{lightblue} & 8.2 Inciso B: medidas cautelares\\ \hline
+\cellcolor{lightblue} & 8.3 Inciso C: otras leyes nacionales y provinciales (federalismo registral)\\ \hline
+\cellcolor{lightblue} & 8.4 Requisito de autenticidad y firma digital\\ \hline
+\rowcolor{navy}\cellcolor{navy}\color{white}9. & \color{white}\bfseries RESUMEN CORNELL\\ \hline
+\end{longtable}
+}
+
+\newpage
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+\pagetitle{CONTENIDO}
+
+\blocktitle{1. INTRODUCCIÓN AL DERECHO REGISTRAL}{Derecho Registral no es un apéndice de Reales}
+
+El Derecho Registral no es simplemente un apéndice de Derechos Reales. Si bien Derechos Reales es una base muy importante y es el umbral de introducción, el Derecho Registral se vincula con el derecho en su totalidad:
+
+\begin{wordlist}
+\item Principios del derecho administrativo.
+\item Derecho constitucional.
+\item Derecho comercial / empresarial.
+\item Derecho civil en todas sus ramas (obligaciones, reales, familia, sucesiones, contratos).
+\end{wordlist}
+
+Para abordar cada inscripción específica es necesario dominar el instituto jurídico sustantivo sobre el cual se ancla el contenido registral.
+
+\blocktitle{2. TEORÍA DEL TÍTULO SUFICIENTE Y MODO SUFICIENTE}{Arts. 1892 y 1893 del Código Civil y Comercial}
+
+Para comenzar el contenido sustancial de la materia, el objeto de estudio en esta primera parte se circunscribe a la materia inmobiliaria: la cosa inmueble.
+
+Como punto de partida resultan relevantes los artículos 225 y 226 del CCyC, relativos a la clasificación de las cosas y a la definición de inmuebles.
+
+\subheading{La dualidad de la palabra ``título''}
+
+En el derecho privado la palabra ``título'' tiene dos acepciones:
+
+\begin{wordlist}
+\item \textbf{Título en sentido amplio o causal:} el título como causa, es decir, un acto jurídico.
+\item \textbf{Título en sentido restringido:} el título como documento, es decir, el instrumento físico o digital.
+\end{wordlist}
+
+Cuando se habla de \textbf{título suficiente}, la expresión involucra el título en sentido amplio y causal. Comprende no solo el instrumento, sino el acto jurídico causal que, para ser suficiente, debe reunir condiciones de fondo y de forma.
+
+\subheading{2.1 Adquisición derivada por acto entre vivos}
+
+El art. 1892 del CCyC, en su primer párrafo, establece que este régimen se aplica a adquisiciones derivadas por acto entre vivos.
+
+Una adquisición derivada es aquella que se produce como consecuencia de un concurso de voluntades: siempre reposa sobre un contrato. Existe un titular anterior que transmite voluntariamente el derecho al actual titular, como ocurre en la compraventa, la donación o la permuta.
+
+Este régimen no aplica a las sucesiones.
+
+\subheading{2.2 Requisitos de fondo del título suficiente}
+
+Son dos:
+
+\begin{wordlist}
+\item \textbf{TITULARIDAD (en el transmitente):} el transmitente debe tener el derecho que pretende transmitir en su patrimonio. Ejemplo: Juan debe ser dueño del inmueble para poder vendérselo a Pedro. Esto proviene del principio \textit{Nemo Plus Iuris}, consagrado en el art. 399 del CCyC.
+\item \textbf{CAPACIDAD (en ambas partes):} debe existir capacidad jurídica y de ejercicio tanto del transmitente como del adquirente. Si un acto jurídico es otorgado por quien no tiene capacidad, el acto es nulo y no puede producir su efecto propio. Si no puede producir su efecto propio, nunca será un título suficiente que sirva de causa a un derecho real.
+\end{wordlist}
+
+\norma{Art. 399 CCyC}{%
+Principio Nemo Plus Iuris: nadie puede transmitir a otro un derecho que no tiene, ni un derecho más extenso que el que tiene.
+}
+
+\subheading{2.3 Requisito de forma del título suficiente en materia inmobiliaria}
+
+La regla general en materia inmobiliaria es que el título portante de un derecho real tiene que estar instrumentado en escritura pública.
+
+\norma{Art. 1017 inc. A CCyC}{%
+Los actos que constituyen, transmiten, declaran, modifican o extinguen derechos reales sobre inmuebles deben ser otorgados por escritura pública. La única excepción prevista en el mismo inciso es la subasta judicial.
+}
+
+La escritura pública es aquel documento notarial autorizado por un notario en ejercicio funcional que contiene uno o más actos jurídicos.
+
+Si falta alguno de los tres requisitos --titularidad, capacidad o forma--, el título no es suficiente sino, en el mejor de los casos, un justo título o un título putativo.
+
+\subheading{2.4 Justo título y título putativo}
+
+\textbf{Justo título:} sucede cuando el título aparentemente es válido porque reúne las condiciones de forma (está instrumentado en escritura pública, incluso inscripta), pero tiene un defecto de fondo: falta titularidad (Juan no era el verdadero dueño) o falta capacidad.
+
+El justo título tiene un defecto de fondo, nunca de forma. El defecto se sanea con prescripción adquisitiva breve de 10 años, con justo título y buena fe.
+
+El boleto de compraventa \textbf{NO} puede ser considerado justo título porque no cumple con el requisito de forma (no está instrumentado en escritura pública), y además porque en el boleto Juan no le vende a Pedro sino que se obliga a venderle en el futuro.
+
+\textbf{Título putativo:} se da generalmente por un error en el objeto. El adquirente creyó que su título era sobre el inmueble que está poseyendo, pero por un error (de lectura en la escritura, de toma de posesión o de catastro) el título es en realidad sobre otro inmueble.
+
+No tiene título sobre lo que posee, lo tiene que generar. Se sanea con prescripción adquisitiva larga de 20 años.
+
+\ejemplo{Título putativo}{%
+El adquirente compró y tomó posesión de un lote, pero por un error catastral su escritura decía matrícula del lote de la vuelta. Cuando 35 años después fue a vender, descubrió que su título era sobre la propiedad lindera. No tiene título sobre lo que posee, debe iniciar usucapión larga.
+}
+
+\norma{Art. 399 CCyC}{%
+Principio Nemo Plus Iuris. Fundamento de la titularidad como requisito de fondo del título suficiente.
+}
+
+\blocktitle{3. MODO SUFICIENTE -- LA TRADICIÓN EN INMUEBLES}{Arts. 1923, 1924, 1925 y 1914 CCyC}
+
+Con título suficiente solo, no se adquiere ningún derecho real en Argentina. Siempre se necesita un modo suficiente.
+
+En materia inmobiliaria, el modo suficiente para los derechos reales ejercidos por la posesión es la \textbf{tradición}. Todos los derechos reales son ejercibles por la posesión, excepto la hipoteca y la servidumbre.
+
+\subheading{3.1 Actos materiales de entrega y recepción}
+
+La tradición requiere actos materiales de entrega y/o de recepción (art. 1923 y ss. del CCyC). No es un acto formal: la ley no exige que se deje constancia escrita de la tradición.
+
+Las meras declaraciones de haberse hecho tradición --aunque consten en la escritura-- sirven entre las partes y sus sucesores, pero no son oponibles frente a terceros (art. 1925 CCyC).
+
+\ejemplo{La entrega de llaves NO es tradición suficiente}{%
+Juan y Pedro firman la escritura en la notaría. Juan le entrega la llave a Pedro. En ese momento Juan \textbf{SIGUE SIENDO EL PROPIETARIO}. La entrega de llaves no constituye tradición suficiente porque no hay un acto material.
+
+Pedro adquirirá el dominio cuando vaya al inmueble y realice algún acto material, por ejemplo, cambiar la cerradura.
+}
+
+El cambio de cerradura es solo un ejemplo: puede ser cualquier otro acto material realizado en el inmueble.
+
+\subheading{3.2 Presunción de fecha del art. 1914 CCyC}
+
+\norma{Art. 1914 CCyC}{%
+Cuando el adquirente tiene título y prueba algún acto posesorio posterior (cualquiera sea), se presume que posee desde la fecha del título, salvo que la otra parte pruebe lo contrario. Es una presunción \textit{iuris tantum}.
+}
+
+Esta presunción facilita la prueba del derecho real en juicio: no hace falta probar exactamente el primer acto posesorio. Con probar que se posee o se poseyó con posterioridad, se goza de la presunción de que esa posesión empezó desde la fecha del título.
+
+\blocktitle{4. PUBLICIDAD REGISTRAL E INSCRIPCIÓN DECLARATIVA}{Art. 1893 CCyC y efectos de la inscripción}
+
+En Argentina, el sistema de transmisión de derechos reales sobre inmuebles nunca fue consensual: siempre se necesita el modo suficiente, es decir, la tradición.
+
+Con título y modo, el adquirente ya es titular del derecho real. Ese derecho real ya es oponible \textit{erga omnes}, es decir, frente a todos los terceros, salvo frente a un grupo específico: los terceros interesados y de buena fe.
+
+La inscripción registral no tiene efecto constitutivo en Argentina (no hace nacer el derecho); tiene efecto declarativo: su función es publicitaria, para optimizar la oponibilidad del derecho haciéndolo oponible también frente al grupo de terceros interesados y de buena fe.
+
+\norma{Art. 1893 CCyC}{%
+La adquisición o transmisión de derechos reales no es oponible a terceros interesados y de buena fe mientras no tenga publicidad suficiente. Se considera publicidad suficiente la inscripción registral o la posesión, según el caso.
+}
+
+\subheading{4.1 Terceros interesados y de buena fe}
+
+El art. 1893 no brinda un concepto, pero la doctrina y jurisprudencia lo han construido de modo uniforme: es todo aquel titular de un derecho, real o personal, que consulta el Registro de la Propiedad y se apoya en lo que el registro le informa para adquirir un derecho real o para trabar una medida cautelar.
+
+\subheading{4.2 Terceros desinteresados}
+
+Un tercero desinteresado es aquel que no es titular de un derecho subjetivo que merezca protección del ordenamiento y que no adquirió ni pretendió adquirir un derecho apoyándose en lo informado por el registro.
+
+\subheading{4.3 Ejemplos prácticos de oponibilidad}
+
+\ejemplo{Caso 1 -- Tercero interesado de buena fe (acreedor embargante)}{%
+Emilia (vendedora) vende a María (compradora). Hay título suficiente y hay tradición. Pero no se inscribe la escritura. El registro sigue mostrando el asiento a nombre de Emilia.
+
+Silvia, acreedora de Emilia, consulta el registro, ve que el inmueble figura a nombre de Emilia y traba un embargo. María \textbf{NO} puede oponer su dominio no inscripto a Silvia, porque Silvia es una tercera interesada y de buena fe: es titular de un derecho personal (crédito) que se apoyó en lo que el registro le informaba para trabar una medida cautelar. El embargo queda bien trabado.
+}
+
+\ejemplo{Caso 2 -- Tercero desinteresado (ocupa sin título)}{%
+Mismo supuesto: Emilia vende a María, hay título y tradición, no hay inscripción. Un año después, Silvia, ocupante sin título, ingresa al inmueble con violencia y desaloja a María.
+
+María puede iniciar acción reivindicatoria a pesar de que su título no está inscripto, porque Silvia es un tercero \textbf{DESINTERESADO}: no es titular de ningún derecho subjetivo que merezca protección del ordenamiento. No adquirió ni pretendió adquirir ningún derecho apoyándose en lo que el registro le informaba.
+}
+
+\blocktitle{5. ORGANIZACIÓN DE LOS REGISTROS DE LA PROPIEDAD INMUEBLE (RPI)}{Sistema federal y multiplicidad de registros}
+
+La función registral es una función pública.
+
+En Argentina no hay un único Registro de la Propiedad Inmueble, porque el sistema federal de gobierno, art. 1° de la Constitución Nacional, determina que el país se divide en 23 provincias y la Ciudad Autónoma de Buenos Aires (24 demarcaciones territoriales).
+
+Siguiendo el mandato de la Ley Nacional Registral Inmobiliaria (Ley 17.801), cada demarcación territorial debe tener al menos un registro.
+
+La mayoría (20 de 24) tienen un solo registro. Excepciones con más de un registro:
+
+\begin{wordlist}
+\item \textbf{Santa Fe:} dos registros (1° circunscripción, sede Santa Fe; 2° circunscripción, sede Rosario). División norte-sur.
+\item \textbf{Chaco:} sede Resistencia y sede Sans España.
+\item \textbf{Mendoza:} cuatro circunscripciones registrales, cuatro registros.
+\item \textbf{Entre Ríos:} los registros funcionan mayoritariamente a nivel municipal: 17 registros en una sola provincia.
+\end{wordlist}
+
+\subheading{5.2 Consejo Federal de Registros de la Propiedad Inmueble}
+
+Órgano que nuclea a los directores de todos los registros del país. Realizan una reunión anual en la que se proponen y aprueban recomendaciones para homogeneizar criterios.
+
+No es una autoridad jerárquica: no puede obligar a ningún registrador a aplicar sus recomendaciones, pero en la práctica tienen mucha fuerza. Generalmente el registro las transforma en normas administrativas locales.
+
+\subheading{5.3 Ubicación institucional: Poder Ejecutivo vs. Poder Judicial}
+
+La mayoría de los RPI están dentro del Poder Ejecutivo local (generalmente Ministerio de Economía).
+
+Cuatro provincias ubican el RPI dentro del Poder Judicial: Mendoza, San Juan, Neuquén y Tierra del Fuego. En esas provincias, el director tiene rango de juez y se exige título de abogado.
+
+\blocktitle{6. CLASIFICACIÓN DE LOS RPI}{Cuatro criterios de clasificación}
+
+\subheading{6.1 Según el efecto que produce la inscripción}
+
+\textbf{Registro constitutivo:} el derecho real nace con la inscripción. La inscripción es el modo suficiente. Sin inscribir, no nace el derecho real.
+
+\textbf{Registro declarativo:} el derecho real se configura extrarregistralmente (con título + modo). La inscripción solo tiene función publicitaria: optimiza la oponibilidad del derecho ya adquirido haciéndolo oponible a terceros interesados y de buena fe.
+
+Los RPI argentinos son \textbf{DECLARATIVOS} (arts. 1893 CCyC y 2° de la Ley 17.801).
+
+\subheading{6.2 Según el efecto saneatorio}
+
+\textbf{Registro convalidante:} la inscripción tiene algún efecto saneatorio de nulidades.
+
+\textbf{Registro no convalidante:} la inscripción no subsana ninguna nulidad. Los RPI argentinos son \textbf{NO CONVALIDANTES}. Un documento o acto nulo no deja de ser nulo por estar inscripto.
+
+Esto surge del art. 4° de la Ley 17.801.
+
+\norma{Art. 4° Ley 17.801}{%
+No convalidación: la inscripción no convalida el título ni subsana los defectos de que adoleciera según las leyes.
+}
+
+\subheading{6.3 Según la materia registrable}
+
+\begin{wordlist}
+\item \textbf{Registro de hechos:} registra hechos jurídicos. Ejemplo: Registro Civil al inscribir un nacimiento.
+\item \textbf{Registro de actos:} el acto sucede en presencia del registrador. Ejemplo: Registro Civil al celebrar un matrimonio.
+\item \textbf{Registro de derechos:} inscribe el derecho en su abstracción. Ejemplo: Dirección Nacional de Derecho de Autor.
+\item \textbf{Registro de documentos:} inscribe el instrumento que contiene al acto. Los RPI argentinos son \textbf{REGISTROS DE DOCUMENTOS}. Lo que se inscribe no es el dominio ni la compraventa, sino la escritura pública que contiene al acto que sirve de causa al nacimiento del derecho.
+\end{wordlist}
+
+\subheading{6.4 Según la técnica de confección del asiento}
+
+\textbf{Registro de incorporación:} el testimonio de la escritura se incorpora físicamente a los tomos del registro y no vuelve al notario. Argentina NO utiliza este sistema.
+
+\textbf{Registro de transcripción:} el registro reproduce todo el contenido de la escritura en el asiento y luego devuelve el documento. Argentina NO utiliza este sistema.
+
+\textbf{Registro de inscripción (Argentina):} el notario envía el documento, ruega la inscripción, y el registro confecciona un asiento que únicamente publicita ciertos datos de interés registral extraídos del documento. El documento no se incorpora ni se transcribe. La escritura matriz queda en el protocolo notarial.
+
+\subheading{Radiografía de los RPI argentinos}
+
+Los RPI argentinos son:
+
+\begin{wordlist}
+\item \textbf{DECLARATIVOS:} el derecho nace extrarregistralmente.
+\item \textbf{NO CONVALIDANTES:} la inscripción no subsana nulidades.
+\item \textbf{DE DOCUMENTOS:} se inscribe el instrumento, no el derecho.
+\item \textbf{DE INSCRIPCIÓN:} el asiento publicita datos extraídos del documento.
+\end{wordlist}
+
+\blocktitle{7. MARCO NORMATIVO}{Ley 17.801 y normas locales}
+
+Pese al sistema federal y la multiplicidad de RPI, existe una sola ley nacional: la Ley 17.801 (Ley Nacional Registral Inmobiliaria), hoy complementaria del Código Civil y Comercial de la Nación.
+
+Establece todos los principios registrales a los cuales deben someterse todos los RPI locales. No es que cada RPI local dicta su norma a su criterio: hay una ley nacional que respetar.
+
+A su vez, cada demarcación territorial tiene su ley registral local, que tiene la función de reglamentar a la ley nacional:
+
+\begin{wordlist}
+\item \textbf{Provincia de Buenos Aires:} Decreto Ley 11.643/63.
+\item \textbf{Ciudad Autónoma de Buenos Aires:} Decreto Ley 2.080/80 (texto ordenado según Decreto 466/99).
+\end{wordlist}
+
+\subheading{7.2 Normas administrativas del registro}
+
+Cada registro, respetando las normas nacionales y locales, dicta sus propias normas administrativas de dos tipos:
+
+\begin{wordlist}
+\item \textbf{Disposiciones Técnico-Registrales (DTR):} el director del registro se dirige a los usuarios externos (notarios, abogados, jueces). Establece criterios de calificación, requisitos para inscripción de documentos específicos, etc.
+\item \textbf{Órdenes de servicio (Provincia de Buenos Aires) / Instrucciones de trabajo (CABA):} el director se dirige a los funcionarios y empleados internos del registro. Generalmente primero se dicta una instrucción de trabajo interna y luego, en forma simultánea o poco después, se dicta la DTR dirigida al usuario externo.
+\end{wordlist}
+
+\blocktitle{8. DOCUMENTOS REGISTRABLES}{Arts. 2 y 3 de la Ley 17.801}
+
+Los RPI son registros de documentos, pero no cualquier documento logra inscripción. Los arts. 2° y 3° de la Ley 17.801 establecen los requisitos de registrabilidad.
+
+\subheading{Art. 2° -- Requisitos de fondo (contenido del documento registrable)}
+
+El art. 2° tiene tres incisos.
+
+\subheading{8.1 Inciso A: actos sobre derechos reales sobre inmuebles}
+
+Documentos que contengan actos que sirvan de causa a la constitución, transmisión, declaración, modificación o extinción de derechos reales sobre inmuebles. Aquí se ubican mayoritariamente los documentos notariales (escrituras públicas).
+
+\begin{wordlist}
+\item \textbf{CONSTITUCIÓN:} el derecho real nace con causa en ese acto. El derecho no existía antes. Se usa generalmente para derechos reales sobre cosa ajena (usufructo, hipoteca, servidumbre, uso) y para la superficie. Ejemplo: escritura de constitución de hipoteca.
+\item \textbf{TRANSMISIÓN:} el derecho real ya existía en un patrimonio y se traslada a otro. Aplica a todos los derechos reales excepto el de habitación (art. 2160 CCyC, único intransmisible). El art. 1906 CCyC establece el principio de transmisibilidad. Ejemplo: escritura de compraventa (transmisión de dominio).
+\item \textbf{DECLARACIÓN:} el instrumento declara un derecho real que ya nació con el cumplimiento de ciertos requisitos previos. Aplica a adquisiciones legales (usucapión: la sentencia declara adquirido el dominio desde que se cumplieron los 20 años de posesión, no desde la sentencia) y a particiones (la escritura de partición de herencia no transmite sino declara; las particiones son declarativas y retroactivas). Ejemplo: escritura de partición de herencia.
+\item \textbf{MODIFICACIÓN:} cambia el contenido del derecho real o su función, pero el derecho sigue en el mismo patrimonio. No hay cambio de titular. Ejemplo: escritura de modificación de reglamento de propiedad horizontal.
+\item \textbf{EXTINCIÓN:} el acto sirve de causa a la conclusión absoluta del derecho real. Ejemplo: escritura de renuncia al usufructo.
+\end{wordlist}
+
+\subheading{8.2 Inciso B: medidas cautelares}
+
+Documentos portantes de embargos, inhibiciones y demás medidas cautelares que impacten en el régimen jurídico de la propiedad de un inmueble. Todos son de origen judicial (oficios, testimonios de embargo, de inhibición general de bienes, de anotación de litis, de medida innovativa, etc.).
+
+\subheading{8.3 Inciso C: los establecidos por otras leyes nacionales o provinciales}
+
+Este inciso permite que leyes especiales nacionales o provinciales habiliten la inscripción de documentos que no caben en los incisos A ni B. Expresa el espíritu federal de la norma: cada legislador local puede moldear el perfil registral de su provincia.
+
+Ejemplos:
+
+\begin{wordlist}
+\item \textbf{Leasing inmobiliario:} inscribible aunque sea un derecho personal, por norma especial.
+\item \textbf{Declaratorias de herederos:} se inscriben en CABA y en Provincia de Buenos Aires, pero no en Córdoba.
+\item \textbf{Boletos de compraventa:} se inscriben en Santa Fe y en algunas provincias, pero no en CABA ni en Provincia de Buenos Aires en su versión común y corriente.
+\end{wordlist}
+
+El DNU 1.017/2024 habilitó la inscripción de ciertos boletos de compraventa específicos (vinculados a subdivisión del suelo, futura propiedad horizontal, superficie o para hacer posible hipotecas sobre objeto futuro) con el objeto de facilitar el acceso a la vivienda.
+
+\subheading{8.4 Art. 3° -- Requisitos de forma: autenticidad del documento registrable}
+
+La regla general es que el documento registrable debe ser un instrumento público (de origen notarial, judicial o administrativo).
+
+El instrumento público, a través de la fe pública de su autorizante, confiere autenticidad a ciertos hechos.
+
+\begin{wordlist}
+\item En una escritura pública quien da fe es el notario.
+\item En un documento judicial quien da fe es el secretario (nunca el juez, quien tiene jurisdicción pero no función fedante).
+\item En una actuación administrativa, el funcionario público correspondiente.
+\end{wordlist}
+
+\textbf{Excepción:} la ley puede habilitar la inscripción de instrumentos privados. En ese caso, el instrumento privado debe tener certificación notarial de firma, porque la certificación no convierte al instrumento en público, pero lo dota de autenticidad de firma y certeza de fecha.
+
+\subheading{Firma digital y digitalización de los RPI}
+
+\norma{Ley 25.506 -- Ley de Firma Digital}{%
+Distingue firma electrónica (concepto amplio: cualquier firma con medios electrónicos) de firma digital (firma electrónica sometida a procesos de certificación por autoridad externa). Solo la firma digital se presume auténtica.
+}
+
+Desde 2017, la Provincia de Buenos Aires inscribe medidas cautelares por documento digital, con cero papel. Para que esto sea posible, se requiere que los juzgados y el registro tengan firma digital.
+
+En la mayoría del país los notarios aún no tienen firma digital, por lo que los documentos notariales siguen siendo en papel. La firma digital garantiza autenticidad y minimiza la posibilidad de documentos apócrifos, que es uno de los grandes riesgos de un registro.
+
+% ============================================================
+% CORNELL
+% ============================================================
+\newpage
+\pagetitle{RESUMEN CORNELL}
+
+\begin{center}
+\small\itshape
+Metodología Cornell: columna izquierda con preguntas clave / conceptos disparadores; columna derecha con la respuesta o desarrollo; al pie, un resumen global.
+\end{center}
+
+\renewcommand{\arraystretch}{1.18}
+\small
+\begin{longtable}{|>{\raggedright\arraybackslash}p{0.28\textwidth}|>{\raggedright\arraybackslash}p{0.65\textwidth}|}
+\hline
+\rowcolor{navy}
+\color{white}\bfseries CONCEPTO / PREGUNTA CLAVE &
+\color{white}\bfseries DESARROLLO / RESPUESTA\\ \hline
+\rowcolor{lightblue}
+\textbf{¿Es el Derecho Registral un apéndice de Derechos Reales?} &
+No. Se vincula con todo el derecho: administrativo, constitucional, comercial y todos los civiles. El operador jurídico necesita dominar el derecho sustantivo de fondo para comprender la inscripción correspondiente.\\ \hline
+\rowcolor{graybox}
+\textbf{¿Qué es el título suficiente? (Art. 1892 CCyC)} &
+Es el acto jurídico causal que, para ser suficiente, reúne: (1) titularidad del transmitente, (2) capacidad de ambas partes, y (3) forma de escritura pública (art. 1017 inc. A CCyC). Si falta alguno de estos requisitos, el título no es suficiente.\\ \hline
+\rowcolor{lightblue}
+\textbf{Principio Nemo Plus Iuris (Art. 399 CCyC)} &
+Nadie puede transmitir a otro un derecho que no tiene, ni un derecho más extenso que el que tiene. Fundamento del requisito de titularidad en el título suficiente.\\ \hline
+\rowcolor{graybox}
+\textbf{¿Cuál es la diferencia entre justo título y título putativo?} &
+Justo título: defecto de FONDO (falta titularidad o capacidad), la forma está bien. Se sanea con usucapión breve (10 años). Título putativo: error en el OBJETO (el título es sobre un inmueble distinto al poseído). Se sanea con usucapión larga (20 años).\\ \hline
+\rowcolor{lightblue}
+\textbf{¿Cómo se hace tradición de un inmueble?} &
+Con actos materiales de entrega y/o recepción (art. 1923 CCyC). No es formal. La entrega de llaves sola NO es tradición. Las declaraciones en la escritura tampoco son oponibles a terceros (art. 1925 CCyC). Ejemplo típico: cambio de cerradura.\\ \hline
+\rowcolor{graybox}
+\textbf{Presunción del art. 1914 CCyC} &
+Si el adquirente tiene título y prueba algún acto posesorio posterior, se presume que posee desde la fecha del título (presunción iuris tantum). Facilita la prueba del derecho real en juicio.\\ \hline
+\rowcolor{lightblue}
+\textbf{Diferencia entre título + modo sin inscripción vs. con inscripción} &
+Con título y modo (sin inscripción): oponible a todos los terceros EXCEPTO a los terceros interesados y de buena fe. Con inscripción: oponible a TODOS los terceros, incluidos los interesados y de buena fe.\\ \hline
+\rowcolor{graybox}
+\textbf{¿Quién es el tercero interesado y de buena fe? (Art. 1893 CCyC)} &
+Todo aquel titular de un derecho (real o personal) que consulta el registro y se apoya en lo que el registro le informa para adquirir un derecho real o trabar una medida cautelar. Ej.: acreedor embargante, comprador posterior inscripto primero.\\ \hline
+\rowcolor{lightblue}
+\textbf{¿Qué tipo de registro son los RPI argentinos? (4 criterios)} &
+1. DECLARATIVOS (la inscripción no crea el derecho). 2. NO CONVALIDANTES (la inscripción no sanea nulidades, art. 4° Ley 17.801). 3. DE DOCUMENTOS (se inscribe el instrumento, no el derecho ni el acto). 4. DE INSCRIPCIÓN (el asiento solo publicita datos de interés registral).\\ \hline
+\rowcolor{graybox}
+\textbf{¿Cuántos RPI hay en Argentina?} &
+Al menos uno por cada demarcación territorial (24). Santa Fe: 2. Chaco: 2. Mendoza: 4. Entre Ríos: 17. El Consejo Federal de Registros homogeneiza criterios mediante recomendaciones (no vinculantes).\\ \hline
+\rowcolor{lightblue}
+\textbf{Ley 17.801 y normas locales} &
+Ley nacional que establece principios para todos los RPI. Cada provincia la reglamenta localmente. PBA: Decreto Ley 11.643/63. CABA: Decreto Ley 2.080/80 (TO Dto. 466/99). Normas administrativas: DTR (para usuarios externos) y Órdenes de servicio / Instrucciones de trabajo (para personal interno).\\ \hline
+\rowcolor{graybox}
+\textbf{Art. 2° Ley 17.801 -- Documentos registrables por su contenido} &
+Inc. A: constitución, transmisión, declaración, modificación o extinción de derechos reales sobre inmuebles (documentos notariales). Inc. B: medidas cautelares (embargo, inhibición, litis, etc.). Inc. C: los habilitados por otras leyes nacionales o provinciales (federalismo registral).\\ \hline
+\rowcolor{lightblue}
+\textbf{Art. 3° Ley 17.801 -- Autenticidad del documento registrable} &
+Regla: instrumento público (notarial, judicial o administrativo). Excepción: instrumento privado con certificación notarial de firma cuando la ley lo permite (certeza de fecha + autenticidad de firma).\\ \hline
+\rowcolor{graybox}
+\textbf{Firma digital (Ley 25.506)} &
+Firma digital $\neq$ firma electrónica. Solo la firma digital (sometida a procesos de certificación) se presume auténtica. PBA inscribe cautelares por documento digital desde 2017. Donde hay firma digital, se minimizan documentos apócrifos.\\ \hline
+\end{longtable}
+
+\vspace{5pt}
+\begin{tikzpicture}
+\node[anchor=west, fill=navy, minimum width=\textwidth, inner xsep=14pt, inner ysep=8pt]
+{\color{white}\bfseries SÍNTESIS GLOBAL};
+\end{tikzpicture}
+
+\vspace{-1pt}
+\begin{tikzpicture}
+\node[anchor=west, fill=lightblue, minimum width=\textwidth, inner xsep=14pt, inner ysep=10pt]
+{\begin{minipage}{0.93\textwidth}
+El Derecho Registral Inmobiliario argentino se organiza a partir de un sistema
+\textbf{DECLARATIVO y NO CONVALIDANTE}: el derecho real se adquiere extrarregistralmente
+mediante título suficiente (acto jurídico con titularidad + capacidad + escritura pública,
+art. 1892 CCyC) y modo suficiente (tradición con actos materiales, art. 1923 CCyC).
+La inscripción registral no crea el derecho, sino que optimiza su oponibilidad frente al grupo
+específico de terceros interesados y de buena fe (art. 1893 CCyC). Los RPI son registros de
+documentos y de inscripción, regulados por la Ley 17.801 (nacional) y las leyes locales.
+El art. 2° de la ley define los documentos registrables por su contenido (constitución,
+transmisión, declaración, modificación y extinción de derechos reales; medidas cautelares;
+y los habilitados por otras leyes). El art. 3° exige autenticidad documental, que como regla
+requiere instrumento público.
+\end{minipage}};
+\end{tikzpicture}
+
+\end{document}
