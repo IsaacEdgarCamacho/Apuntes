@@ -1,0 +1,458 @@
+% ============================================================
+% PLANTILLA GENERICA DE APUNTES UNIVERSITARIOS
+% ============================================================
+% Esta plantilla está pensada para cualquier materia y facultad.
+%
+% Estructura:
+%   1. Portada
+%   2. Índice
+%   3. Capítulos
+%      3.1 Secciones
+%          3.1.1 Subsecciones
+%   4. Apéndices
+%   5. Bibliografía
+%
+% Compilar con:
+%   latexmk -pdf Doc.tex
+%
+% ============================================================
+
+\documentclass[12pt,oneside]{book}
+
+% ------------------------------------------------------------
+% INFORMACION DEL DOCUMENTO
+% ------------------------------------------------------------
+
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Ingeniería}
+\newcommand{\departamento}{Departamento / Carrera}
+\newcommand{\materia}{Nombre de la Materia}
+\newcommand{\titulo}{Apuntes de \materia}
+\newcommand{\autor}{Nombre y Apellido}
+\newcommand{\anio}{\the\year}
+
+% ------------------------------------------------------------
+% PAQUETES
+% ------------------------------------------------------------
+
+% Idioma y codificación
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% Márgenes
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+% Matemática
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% Imágenes
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Tablas
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+% Listas
+\usepackage{enumitem}
+
+% Colores y cajas
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% Encabezados y pies
+\usepackage{fancyhdr}
+
+% Enlaces
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    bookmarks=true
+]{hyperref}
+
+% ------------------------------------------------------------
+% CONFIGURACION
+% ------------------------------------------------------------
+
+% Directorios de imágenes.
+% Podés agregar o quitar directorios según tu proyecto.
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% Profundidad del índice
+\setcounter{tocdepth}{2}
+
+% Párrafos
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% Listas
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+% ------------------------------------------------------------
+% ENCABEZADO Y PIE DE PAGINA
+% ------------------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Las páginas de inicio de capítulo no muestran encabezado
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ------------------------------------------------------------
+% COMANDOS GENERICOS
+% ------------------------------------------------------------
+
+% Valor absoluto
+\newcommand{\abs}[1]{\left|#1\right|}
+
+% Norma
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% Vector
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+% Derivada
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+
+% Derivada parcial
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ------------------------------------------------------------
+% CAJAS PARA APUNTES
+% ------------------------------------------------------------
+
+% ------------------------------------------------------------
+% DEFINICION
+% ------------------------------------------------------------
+
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% IMPORTANTE
+% ------------------------------------------------------------
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% EJEMPLO
+% ------------------------------------------------------------
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% FORMULA / REGLA
+% ------------------------------------------------------------
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% EJERCICIO
+% ------------------------------------------------------------
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% NOTA
+% ------------------------------------------------------------
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+% ------------------------------------------------------------
+% LOGO
+% ------------------------------------------------------------
+% Colocá tu logo en el directorio principal y descomentá
+% la siguiente línea.
+%
+% \includegraphics[width=0.30\textwidth]{logo}
+
+\vspace{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \departamento}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{1.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\end{titlepage}
+
+% ============================================================
+% INDICE
+% ============================================================
+
+\tableofcontents
+
+\clearpage
+
+% ============================================================
+% CAPITULO 1
+% ============================================================
+
+\chapter{Primer tema}
+
+\section{Introducción}
+
+Escribí aquí una introducción general al tema.
+
+\begin{definition}{Concepto}
+Escribí aquí una definición importante.
+\end{definition}
+
+\section{Conceptos fundamentales}
+
+Escribí aquí el contenido correspondiente.
+
+\subsection{Primer concepto}
+
+Contenido.
+
+\subsection{Segundo concepto}
+
+Contenido.
+
+\begin{important}
+Escribí aquí una observación, advertencia o concepto
+especialmente importante.
+\end{important}
+
+\section{Ejemplos}
+
+\begin{example}{Ejemplo introductorio}
+Desarrollá aquí un ejemplo.
+\end{example}
+
+% ============================================================
+% CAPITULO 2
+% ============================================================
+
+\chapter{Segundo tema}
+
+\section{Introducción}
+
+Contenido.
+
+\subsection{Primer concepto}
+
+Contenido.
+
+\subsection{Segundo concepto}
+
+Contenido.
+
+\section{Aplicaciones}
+
+Contenido.
+
+\begin{example}{Aplicación}
+Contenido del ejemplo.
+\end{example}
+
+% ============================================================
+% CAPITULO 3
+% ============================================================
+
+\chapter{Tercer tema}
+
+\section{Desarrollo}
+
+Contenido.
+
+\subsection{Subtema}
+
+Contenido.
+
+\subsubsection{Detalle}
+
+Contenido más específico.
+
+% ============================================================
+% SECCION DE EJERCICIOS
+% ============================================================
+
+\chapter{Ejercicios}
+
+\section{Ejercicios del tema 1}
+
+\begin{exercise}{Ejercicio 1}
+Planteamiento del ejercicio.
+\end{exercise}
+
+\begin{exercise}{Ejercicio 2}
+Planteamiento del ejercicio.
+\end{exercise}
+
+% ============================================================
+% APENDICES
+% ============================================================
+
+\appendix
+
+\chapter{Material complementario}
+
+Contenido adicional, tablas, demostraciones, fórmulas,
+resúmenes, etc.
+
+% ============================================================
+% BIBLIOGRAFIA
+% ============================================================
+
+\begin{thebibliography}{9}
+
+\bibitem{referencia1}
+Autor,
+\textit{Título del libro o recurso},
+Editorial, año.
+
+\bibitem{referencia2}
+Autor,
+\textit{Título del segundo recurso},
+Editorial, año.
+
+\end{thebibliography}
+
+\end{document}
