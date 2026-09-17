@@ -1,0 +1,724 @@
+% =============================================================
+% DOCUMENTCLASS
+% =============================================================
+\documentclass[12pt,oneside]{book}
+
+% =============================================================
+% METADATOS
+% =============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\titulo}{Unidad N.\textordmasculine{}~2: Teoría General de la Prueba}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+% =============================================================
+% PAQUETES
+% =============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =============================================================
+% RUTAS DE IMÁGENES
+% =============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =============================================================
+% CONFIGURACIÓN
+% =============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =============================================================
+% COMANDOS
+% =============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =============================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% =============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =============================================================
+% CONFIGURACIÓN FINAL (ENCABEZADOS Y PIES)
+% =============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =============================================================
+\begin{document}
+
+% =============================================================
+% PORTADA
+% =============================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender la lógica de la prueba es aprender a construir, con método y rigor, el camino hacia la verdad procesal.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil y Comercial'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% =============================================================
+% ÍNDICE
+% =============================================================
+\tableofcontents
+
+% =============================================================
+% CONTENIDO
+% =============================================================
+
+\chapter{Teoría General de la Prueba}
+
+Esta unidad aborda los fundamentos de la teoría general de la prueba en el proceso civil y comercial argentino. Se analizan los conceptos esenciales que permiten responder los interrogantes básicos del sistema probatorio: qué es la prueba, qué se prueba, quién debe probar, cómo se produce la prueba y quién la valora. Se estudia el objeto de la prueba (afirmaciones de hechos), los requisitos que deben cumplir los hechos para ser objeto de prueba, las categorías de hechos exentos de prueba, las reglas de la carga probatoria del artículo 377 del Código Procesal, los momentos de la actividad probatoria y las nociones de negligencia y caducidad de la prueba.
+
+La teoría general de la prueba puede entenderse como el mapa del proceso judicial: así como en un accidente de tránsito cada testigo, cada fotografía y cada informe mecánico sirven para reconstruir lo que ocurrió, en el proceso civil cada medio probatorio tiene un rol, una oportunidad y una valoración precisos. Conocer ese mapa resulta indispensable para litigar con éxito.
+
+\section{¿Qué es la prueba?}
+
+\subsection{El término «prueba»: un concepto multívoco}
+
+La palabra «prueba», en su sentido común y de uso cotidiano, remite a demostrar, comprobar o verificar algo: puede tratarse de una prueba atlética, en el sentido de constatar determinada capacidad física; de la demostración de un nivel intelectual; de la comprobación de la verdad de una afirmación; o de la demostración de la certeza de un hecho.
+
+Incluso dentro del proceso judicial el término conserva su ambigüedad, pues con la palabra «prueba» se alude a distintas circunstancias:
+
+\begin{important}
+\textbf{Usos del vocablo «prueba» en el proceso}
+\begin{enumerate}[label=\arabic*)]
+    \item El \textbf{objeto} que sirve para conocer el hecho.
+    \item La \textbf{actividad probatoria} que se desarrolla según el medio de prueba que se utilice.
+    \item El \textbf{resultado} concreto de esa actividad probatoria.
+\end{enumerate}
+\end{important}
+
+\subsection{La necesidad de probar: el juez como tercero ajeno a los hechos}
+
+Cuando surge un conflicto entre las personas, estas deben acceder, para solucionarlo pacífica y ordenadamente, a quien está investido del poder de resolverlo: el órgano judicial, es decir, el juez natural y competente. El acceso al juez se concreta a través de la interposición de una demanda, mediante la cual se ejerce el derecho de acción; en dicha demanda se introduce una pretensión, que debe tener un fundamento, y los fundamentos de esa pretensión son los hechos que dan origen al reclamo.
+
+Conforme al \textbf{principio dispositivo}, los hechos deben ser traídos a conocimiento del juez por las partes: las partes son las dueñas de los hechos, y el juez, al dictar sentencia, aplicará el derecho a los hechos que las partes le hayan hecho conocer.
+
+De la actitud del demandado al contestar la demanda se derivan consecuencias distintas: si reconoce los hechos, estos quedan exentos de prueba (conforme al viejo adagio ``relevo de prueba''); si los controvierte, esos hechos deben serle demostrados al juez, precisamente porque este es ajeno al conocimiento de los hechos, dado que no intervino en ellos.
+
+\subsection{El juez civil frente al juez penal: diferencias estructurales}
+
+Existe una diferencia estructural entre el sistema procesal civil y el penal, que se resume en el siguiente cuadro:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Juez civil y comercial} & \textbf{Juez penal} \\
+\midrule
+Principio dispositivo: depende de los hechos y pruebas aportados por las partes. & Principio inquisitivo: investiga los hechos más allá de lo que diga el imputado. \\
+No puede utilizar su saber privado como evidencia. & Busca la verdad jurídica objetiva independientemente de lo que digan las partes. \\
+Las partes ofrecen los medios de prueba; el juez es árbitro del proceso. & El juez puede impulsar la investigación de manera autónoma. \\
+\bottomrule
+\end{tabularx}
+\caption{Diferencias estructurales entre el proceso civil y el proceso penal}
+\end{table}
+
+El juez civil no investiga los hechos más allá de lo que las partes le llevan a su conocimiento. Incluso si, por alguna circunstancia, hubiera sido testigo presencial de algunos hechos que luego se le llevan a su conocimiento en un proceso, ese conocimiento particular no podría ser utilizado por él, dado que dicho saber privado es ajeno al que debe obtener a través de los medios de prueba ofrecidos oportunamente por las partes.
+
+\subsection{Definición técnica de la prueba según Falcón}
+
+\begin{definition}{Prueba (Falcón)}
+Falcón define la prueba como \textbf{la demostración en juicio de la ocurrencia de un suceso}. Esta definición alude al resultado de la prueba, es decir, a la demostración, la cual constituye una operación compleja que varía según el medio empleado: no es la misma demostración la que corresponde a la prueba técnica —donde interviene un perito— que la que corresponde a un relato —donde un testigo acredita una situación— ni la que surge de las constancias de un documento.
+
+El «suceso» al que se refiere la demostración es la serie de hechos controvertidos que forma parte del \textit{thema decidendum} —el tema a decidir— de la litis, es decir, de la controversia entre las partes que dio origen al proceso judicial. En consecuencia: \textbf{probar es demostrar en el proceso la ocurrencia de determinados sucesos.}
+\end{definition}
+
+\section{¿Qué se prueba? Objeto de la prueba}
+
+Cuando un hecho sucede, deja una huella, un registro, y provoca una modificación en algún objeto, de modo que puede saberse que ese hecho existió. Por ello se entiende que deben ser objeto de prueba en el proceso los hechos como tales, en la medida en que, una vez sucedidos, pertenecen al pasado y dejan una huella en las personas —en su psiquis— o en las cosas.
+
+\subsection{¿Se prueban hechos o afirmaciones de hechos?}
+
+Este punto fue objeto de debate doctrinario. Alsina, a mediados del siglo anterior, sostenía que se probaban los hechos. Sin embargo, surge una dificultad: si bien el hecho deja una huella en algún registro, el relato que pueda hacerse de ese hecho será más o menos preciso según cómo haya impactado en una persona o en un objeto. El conocimiento acabado del hecho en sí —en el proceso civil, donde rige el principio dispositivo y el juez no puede investigar la verdad jurídica objetiva, sino que debe contentarse con el relato que hagan las partes en los escritos constitutivos— genera un alejamiento de la verdad respecto del hecho en sí.
+
+\begin{important}
+\textbf{Conclusión doctrinaria}
+
+En el proceso civil se prueban \textbf{afirmaciones de las partes relativas a los hechos} —no los hechos en sí mismos—, dado que el hecho histórico ya perteneció al pasado y solo puede reconstruirse a través de las huellas y registros que dejó.
+\end{important}
+
+\subsection{La imagen del «puente»}
+
+Algunos autores, como Niño Zárate, sostenían que la prueba construye un puente entre el hecho histórico y el proceso, para traer el hecho al conocimiento del juez. El juez no ve la realidad, porque esta se encuentra en el pasado, pero puede ver sus huellas: la impronta, el registro o la marca que la ocurrencia del hecho deja en un objeto, en una cosa o en la psiquis de una persona. Consultando la fuente de prueba —cosas o personas— a través del medio de prueba más directo y adecuado, se reconstruye el hecho de interés para el proceso mediante los medios de prueba que establece el código.
+
+\section{Requisitos de los hechos para ser objeto de prueba}
+
+No cualquier hecho traído al conocimiento del juez tiene la calidad necesaria para ser objeto de prueba. Deben reunirse cuatro requisitos.
+
+\subsection{Primer requisito: los hechos deben ser afirmados}
+
+Los hechos deben ser afirmados por las partes en los escritos constitutivos del proceso: la demanda, la contestación de la demanda, la reconvención, la contestación de la reconvención, las excepciones y su contestación, y, en su caso, los incidentes y su respectiva contestación.
+
+La afirmación debe realizarse en forma \textbf{asertiva}, sea positiva o negativa, de modo que la contraparte no tenga duda de que se están afirmando, como fundamento de la pretensión, determinados hechos. Los hechos constituyen la causa de la pretensión.
+
+\subsubsection{Excepciones al deber de afirmar}
+
+\textbf{Excepción A — Hechos secundarios.} Deben afirmarse taxativamente los hechos principales que fundamentan la pretensión, es decir, los que constituyen el antecedente directo de la aplicación de la norma que rige el caso. Existen, además, hechos secundarios, que a su vez prueban a los hechos principales y se descomponen en una serie de afirmaciones menores. Si bien es conveniente incluirlos, su falta de incorporación en detalle no debería dar lugar a objeciones al momento de formular una pregunta o de incorporar un punto de pericia relativo a ese hecho secundario.
+
+\textbf{Excepción B — Hechos constitutivos, modificativos o extintivos sobrevinientes.}
+
+\begin{formula}{Artículo 163, inciso 6.\textordmasculine{}, CPCCN}
+El juez deberá considerar, al momento de dictar sentencia, los hechos constitutivos, modificativos o extintivos del derecho que sucedieron a lo largo del proceso y que estén debidamente probados, aunque no hayan sido afirmados oportunamente en los escritos constitutivos.
+\end{formula}
+
+\begin{example}{Pago posterior a la demanda}
+Se reclama el pago de una suma de dinero y, durante el proceso, se acredita que el demandado le pagó al mandatario del actor, quien contaba con poder suficiente para cobrar. Aunque la sentencia tiene en cuenta las circunstancias existentes al momento de interposición de la demanda, el juez no debe desentenderse de la realidad de los hechos al momento de sentenciar. Si el pago está probado en el expediente, ese hecho —definitorio de la pretensión del actor— debe ser considerado, aunque no haya sido afirmado.
+\end{example}
+
+Los hechos cumplen, en consecuencia, una \textbf{triple función}: son el fundamento de la pretensión, son objeto de prueba y son el fundamento de la sentencia.
+
+\subsection{Segundo requisito: los hechos deben ser conducentes}
+
+No todo hecho afirmado por una parte constituye objeto de prueba; además debe ser \textbf{conducente}, es decir, debe tener peso, relevancia y trascendencia para que se funde en él la sentencia.
+
+Los hechos \textbf{inconducentes} son aquellos que, aun habiendo sido afirmados en los escritos constitutivos, no tienen peso ni conducen a la decisión; puede prescindirse de ellos sin que se altere lo que se resolverá en el proceso.
+
+\subsection{Tercer requisito: los hechos deben ser controvertidos}
+
+No basta con que el hecho sea afirmado y conducente: además debe ser \textbf{controvertido}. La controversia respecto de los hechos se produce cuando se corre traslado de la demanda.
+
+\begin{formula}{Artículo 356, CPCCN — Contestación de la demanda}
+Al contestar la demanda, el demandado tiene la carga de reconocer o negar categóricamente cada uno de los hechos afirmados por el actor. La negativa debe ser expresa y particular respecto de cada hecho. La omisión de hacerlo podrá ser interpretada por el juez como reconocimiento tácito de los mismos.
+\end{formula}
+
+\begin{formula}{Artículo 359, CPCCN — Apertura a prueba}
+Si hubiera hechos controvertidos o hechos no admitidos expresamente por las partes, el juez deberá abrir la causa a prueba, aunque las partes no lo soliciten expresamente. Si la cuestión fuere de puro derecho, dictará sentencia sin sustanciación probatoria.
+\end{formula}
+
+Técnicamente se denomina \textbf{admisión} a la situación en que, respecto de determinados hechos, el demandado guarda silencio o formula una negativa genérica —por ejemplo, cuando niega ``todos y cada uno de los hechos que no sean objeto de especial reconocimiento'' y luego solo contesta algunos en particular—. La admisión comprende, entonces: el silencio, la negativa genérica, las respuestas evasivas y la falta de contestación de la demanda.
+
+\subsection{Cuarto requisito: los hechos deben ser admisibles}
+
+Además de afirmados, conducentes y controvertidos, los hechos deben ser \textbf{admisibles}, es decir, posibles de probar.
+
+\begin{example}{Objeto ilícito}
+Si se pretende reclamar daños y perjuicios por incumplimiento de un contrato con objeto ilícito, no puede probarse ese hecho ilícito, porque la ley lo impide.
+\end{example}
+
+\begin{example}{Restricción de medios probatorios por el código}
+En los juicios de alimentos solo puede producirse prueba informativa y documental para acreditar el caudal económico del alimentante. En el juicio de desalojo por falta de pago y por vencimiento del contrato, el demandado solo puede ofrecer prueba pericial, documental y confesional.
+\end{example}
+
+\subsection{La prueba del hecho negativo}
+
+Corresponde analizar si solo se prueban los hechos positivos o si también es posible probar un hecho negativo alegado como fundamento de una pretensión.
+
+\begin{example}{La casa que no es verde}
+Se reclaman daños y perjuicios porque la casa que fue pintada no es verde, tal como establecía el contrato. Quien afirma ese hecho negativo no puede probarlo en forma directa, pero sí puede hacerlo a través del afirmativo contrario o distinto: puede probarse que la casa fue pintada de rojo, lo cual desvirtúa y demuestra que no se pintó del color adecuado.
+\end{example}
+
+Distinto es el caso del \textbf{hecho negativo indefinido}, que da lugar a la denominada \textbf{prueba diabólica}.
+
+\begin{example}{Hecho negativo indefinido: ``nunca me asesoró''}
+Si el actor alega que la contraparte, obligada por un contrato de asesoramiento, ``nunca lo asesoró'', ese hecho negativo es de prueba diabólica, pues para demostrarlo debería probarse qué hizo la contraparte cada minuto de cada día hasta el momento, lo cual constituye una prueba imposible. Estos hechos se denominan \textbf{hechos indefinidos}: al descomponerse en una serie casi infinita de afirmaciones menores, la parte contraria está en mejor condición para probar, pues le basta demostrar que cumplió con el contrato aunque sea una vez. Cuando la carga probatoria se traslada a la contraria en estos supuestos, se aplica la teoría de la \textbf{carga dinámica de la prueba}.
+\end{example}
+
+\section{Hechos exentos de prueba}
+
+Existe una serie de hechos que, debido al conocimiento que se tiene de ellos, quedan exentos de prueba.
+
+\subsection{Hechos notorios}
+
+Son aquellos que, en relación con determinado lugar y tiempo, resultan conocidos en un sector de la comunidad, de modo que existe uniformidad respecto de cómo y de que efectivamente sucedieron. Quienes los invocan como fundamento de su pretensión quedan eximidos de acreditarlos.
+
+El hecho queda exento de prueba no porque el juez lo conozca particularmente en virtud de su saber privado, sino porque es de público conocimiento en el sector de la sociedad donde se tramita el proceso.
+
+\begin{example}{La cuarentena por COVID-19}
+El hecho de que existan restricciones para transitar y circular durante una cuarentena constituye un hecho notorio en el lugar en que dichas restricciones se aplican. Si cada provincia administra la cuarentena de distinto modo, la particularidad de esa regulación podrá ser notoria en esa provincia y no necesariamente en otra jurisdicción.
+\end{example}
+
+\begin{note}
+Que un hecho sea notorio no releva a la parte de la obligación de afirmarlo ni de explicar cómo se relaciona con la pretensión.
+\end{note}
+
+\subsection{Hechos evidentes}
+
+Los hechos evidentes se distinguen de los notorios en que no son solo locales, sino generalizables y universalizables: no admiten duda en prácticamente ningún lugar.
+
+\begin{example}{El todo es mayor que la parte / la ley de gravedad}
+El principio lógico de que ``el todo es mayor que la parte'' no admite discusión en ningún lugar. Del mismo modo, los efectos de la fuerza de gravedad —que las cosas, al dejarlas caer, caen— constituyen un hecho evidente: quien tira un armario desde un cuarto piso no puede desconocer que caerá sobre el vehículo estacionado abajo. No es necesario probar la ley de gravedad.
+\end{example}
+
+\subsection{Hechos presumidos legalmente}
+
+Otra categoría de hechos exentos de prueba es la de aquellos sujetos a una \textbf{presunción legal}, la cual genera una inversión de la carga de la prueba.
+
+\textbf{Presunciones \textit{iuris tantum}} (admiten prueba en contrario):
+
+\begin{formula}{Artículo 1758, Código Civil y Comercial de la Nación}
+El dueño y el guardián de la cosa son responsables concurrentes del daño causado por las cosas. El dueño o guardián se eximen de responsabilidad acreditando que la cosa fue usada contra su voluntad expresa o presunta.
+\end{formula}
+
+En este supuesto, el actor no es quien debe probar la responsabilidad, pues existe una presunción legal a su favor; será el demandado quien deberá acreditar el eximente, es decir, que la cosa fue usada contra su voluntad.
+
+\textbf{Presunciones \textit{iuris et de iure}} (no admiten prueba en contrario): el legislador establece que, conocido determinado hecho, se tiene por cierto otro hecho, sin admitir prueba en contrario.
+
+\begin{example}{Capacidad a los 18 años}
+Que a los 18 años se adquiere plena capacidad no puede discutirse: si la persona no ha sido declarada incapaz o su capacidad no ha sido restringida por sentencia judicial, se tiene por cierta su plena capacidad. Es una presunción legal que no admite prueba en contrario.
+\end{example}
+
+\subsection{Hechos reconocidos expresamente por las partes}
+
+Si el actor afirma en su demanda la existencia de un hecho y el demandado, al contestar, lo reconoce expresamente, esa confesión es plena y el hecho queda exento de prueba, pues ha sido fijado para el proceso.
+
+\begin{note}
+Se exceptúa el caso del hecho indisponible: cuando la confesión de ambas partes versa sobre un hecho que no puede disponerse en el proceso, igualmente deberá probarse, porque no está permitido disponer de ese hecho en ese sentido.
+\end{note}
+
+\section{Finalidad de la prueba: ¿para qué se prueba?}
+
+A través de la prueba se busca acceder a la verdad material —a la ``verdad verdadera''—, o al menos acercarse lo más posible a ella, con el fin de formar el convencimiento del juez.
+
+En el plano procesal, si bien el norte debe ser alcanzar la verdad jurídica objetiva —conforme lo sostiene la Corte—, debe contentarse con la posibilidad de acceder a la certeza en el mayor grado posible. Se obtiene, así, una \textbf{verdad formal}, basada en las leyes jurídicas que gobiernan la producción de la prueba y que permiten al juez, con un alto grado de probabilidad, formar su convicción respecto de cómo sucedieron los hechos.
+
+El juez debe, a lo largo del proceso, fijar los hechos, a fin de verificar si existe una norma jurídica que los contemple como antecedente de su aplicación y, mediante el proceso de subsunción jurídica, elevarlos a la norma general y abstracta, de la cual se extrae una norma particular que resuelve el caso: la sentencia.
+
+\begin{important}
+La finalidad de la prueba —aunque debería consistir en acceder a la verdad jurídica objetiva— se contenta, en la práctica, con dejar de lado a veces la verdad material y acceder a una convicción fundada en leyes jurídicas que, con un grado de certeza suficiente, permiten al juez fijar los hechos y aplicar las normas correspondientes al dictar sentencia.
+\end{important}
+
+\section{¿Quién debe probar? Las reglas de la carga de la prueba}
+
+\begin{formula}{Artículo 377, CPCCN — Carga de la prueba}
+Incumbe la carga de la prueba a quien afirme la existencia de un hecho controvertido o de un precepto jurídico que el tribunal no tenga el deber de conocer. Cada parte deberá probar el presupuesto de hecho de la norma o normas que invoque como fundamento de su pretensión, defensa o excepción.
+\end{formula}
+
+Estas reglas imponen determinadas actividades en cabeza de las partes y, a la vez, establecen la pauta que debe seguir el juez cuando la prueba producida en el expediente es incierta, incompleta o inexistente.
+
+\subsection{La carga como imperativo del propio interés}
+
+La \textbf{carga} es un imperativo en el interés propio, distinto de la obligación en sentido estricto. La parte tiene la facultad —y, al mismo tiempo, el imperativo— de realizar determinada actividad; si no lo hace, no será obligada a hacerlo ni compelida, pero deberá soportar las consecuencias procesales de su omisión, resultando perjudicada en el proceso.
+
+\subsection{Función de las reglas de la carga: impedir la parálisis del juez}
+
+Las reglas de la carga de la prueba impiden al juez absorber la instancia, es decir, le impiden abstenerse de fallar por falta de elementos suficientes. El juez civil y comercial debe dictar sentencia haciendo lugar a la demanda, en todo o en parte, o rechazándola, precisamente en virtud de esta regla: si no probó el actor lo que debía probar, corresponde rechazar la demanda; si no probó el demandado, corresponde hacer lugar a ella.
+
+\subsection{El principio de adquisición probatoria}
+
+Una vez producida la prueba, no interesa quién la produjo, porque el juez evaluará si de ese medio probatorio puede extraerse una certeza respecto de cómo sucedió un hecho, con independencia de quién lo haya ofrecido. Solamente cuando la prueba es insuficiente, no se produjo o existen dudas, cobra relevancia determinar quién debía probar, a través de las reglas de la carga de la prueba, para hacer pesar las consecuencias de la omisión.
+
+\begin{note}
+Ofrecida la prueba por cada una de las partes y una vez producida, la prueba se adquiere para el proceso; la parte no podría, por ejemplo, desistir de un testigo una vez que este declaró, aun cuando lo hizo en su contra.
+\end{note}
+
+\subsection{Ejemplo práctico: el caso del contrato}
+
+\begin{example}{Distribución de la carga según la actitud del demandado}
+Una parte reclama el pago de una suma por un trabajo realizado conforme a un contrato. Si el demandado niega categóricamente los hechos —afirmando que no se relacionó con el actor y negando la firma del contrato—, el actor deberá probar la existencia del vínculo y de la obligación; el demandado, que solo negó, no tendrá que probar su negativa.
+
+En cambio, si el demandado, al contestar la demanda, reconoce el contrato —por ejemplo, un contrato de locación de obra para construir un banco de plaza— y afirma que ya pagó, el actor queda eximido de probar la existencia de la obligación, pues fue reconocida por el demandado; será entonces el demandado, que afirmó un hecho extintivo de la obligación —el pago—, quien deberá acreditarlo.
+
+Así, en un mismo reclamo, según la actitud que asuma el demandado, la distribución de la carga probatoria puede variar.
+\end{example}
+
+\section{Carga dinámica de la prueba y prueba del derecho}
+
+\subsection{Carga dinámica: el principio del mejor posicionado}
+
+Los hechos negativos indefinidos, cuando trasladan la carga probatoria a la parte contraria por encontrarse esta en mejor condición para probar, corresponden a la teoría de la \textbf{carga dinámica de la prueba}.
+
+\subsection{Prueba del derecho extranjero y de normas no publicadas}
+
+Cuando una parte invoca como fundamento de su pretensión una ordenanza no publicada, que el juez no conoce, corresponde a esa parte probar la existencia de ese precepto jurídico. En cuanto al derecho extranjero, en principio corresponde a la parte que alega su procedencia acreditarlo; sin perjuicio de ello, si no lo hace, el juez puede investigar su existencia y aplicarlo al caso concreto.
+
+La prueba del derecho extranjero puede obtenerse por oficio a las representaciones diplomáticas o consulares, o por consulta a juristas reconocidos y expertos en la materia.
+
+\begin{note}
+Existe un tratado vigente con la República Oriental del Uruguay —el tratado 22.411— que no exime a los dos países signatarios de probar el derecho del respectivo país cuando este es invocado.
+\end{note}
+
+\section{¿Cómo se prueba? Momentos de la actividad probatoria}
+
+La actividad probatoria se desarrolla en tres momentos diferenciados:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} X}
+\toprule
+\textbf{Momento} & \textbf{Descripción} \\
+\midrule
+\textbf{Ofrecimiento} & Las partes expresan a través de qué medios probatorios acreditarán los hechos (en la demanda, contestación y demás escritos constitutivos). \\
+\textbf{Producción} & La prueba se efectiviza dentro del plazo probatorio (cuarenta días desde la audiencia preliminar). El testigo declara, el perito presenta su dictamen, se diligencian los oficios. \\
+\textbf{Valoración} & El juez pondera el peso de cada medio probatorio en su conjunto para formar su convicción, al dictar sentencia, mediante las reglas de la sana crítica (art. 386 CPCCN). Las partes también valoran la prueba en los alegatos. \\
+\bottomrule
+\end{tabularx}
+\caption{Momentos de la actividad probatoria}
+\end{table}
+
+\begin{formula}{Artículo 386, CPCCN — Valoración de la prueba (sana crítica)}
+Salvo disposición legal en contrario, los jueces formarán su convicción respecto de la prueba conforme a las reglas de la sana crítica. No tendrán el deber de expresar en la sentencia la valoración de todas las pruebas producidas, sino únicamente de las que fueren esenciales y decisivas para el fallo.
+\end{formula}
+
+\section{Medios de prueba: clasificación, pertinencia y admisibilidad}
+
+\subsection{Concepto y clasificación de los medios de prueba}
+
+Las pruebas constituyen un concepto jurídico procesal: son instrumentos o herramientas que otorga el proceso para consultar las fuentes de prueba y extraer de ellas la información necesaria para reconstruir el hecho a probar.
+
+Falcón clasifica los medios de prueba en \textbf{previstos} y \textbf{no previstos}. Los previstos son los que se encuentran regulados en el código procesal; los no previstos se utilizan de manera análoga a los previstos, cuando las circunstancias lo permiten y según lo determine el juez en cada caso. Falcón también los clasifica, según la fuente de la cual emergen, en pruebas por documentación, pruebas por declaración y pruebas por información.
+
+\begin{formula}{Artículo 378, CPCCN — Medios de prueba}
+La prueba deberá producirse por los medios previstos expresamente por la ley y por los que el juez disponga a pedido de parte o de oficio, siempre que no afecten la moral, la libertad personal de los litigantes o de terceros, o no estén expresamente prohibidos para el caso. Los medios de prueba no previstos se diligenciarán aplicando por analogía las disposiciones de los que sean semejantes, o, en su defecto, en la forma que establezca el juez.
+\end{formula}
+
+\subsection{Pertinencia de la prueba}
+
+La \textbf{pertinencia} implica que los hechos a probar pertenecen al proceso, lo cual ocurre cuando han sido afirmados, es decir, cuando se ha aseverado la existencia de un hecho —positivo o negativo— como fundamento de una determinada pretensión. Si los hechos a probar no han sido afirmados de este modo, resultan impertinentes, y la prueba que verse sobre ellos debe ser rechazada por el juez.
+
+\subsection{Admisibilidad de la prueba}
+
+La \textbf{admisibilidad} no apunta al hecho, sino al medio de prueba. La prueba resulta inadmisible, por ejemplo, cuando se refiere a hechos cuya prueba está prohibida por la ley, cuando existen razones morales que impiden su admisión —como secretos de Estado o secretos profesionales— o cuando el medio propuesto no es adecuado para el fin que se persigue.
+
+\begin{formula}{Artículo 364, CPCCN — Pertinencia y admisibilidad}
+No podrán producirse pruebas sino sobre hechos que hayan sido articulados por las partes en sus escritos respectivos. No se admitirán las que fueren manifiestamente improcedentes o superfluas o meramente dilatorias.
+\end{formula}
+
+\begin{note}
+El artículo 397 permite exigir que los medios de prueba ofrecidos consulten la fuente original e inmediata, y no que se pretenda suplirla por otros medios.
+\end{note}
+
+\begin{example}{Doble vicio: impertinencia e inadmisibilidad}
+En un juicio civil se ofrece prueba testimonial para demostrar que el demandado no era apto para conducir, hecho que no fue afirmado en la demanda. Esta prueba adolece de dos vicios: por un lado, de \textbf{pertinencia}, en tanto no se afirmó ese hecho en la demanda; y, por otro, de \textbf{admisibilidad}, porque aun si se hubiera afirmado, la prueba testimonial no es idónea para acreditar la aptitud o ineptitud de una persona para manejar, siendo necesaria en su caso una prueba pericial.
+\end{example}
+
+\subsection{El principio \textit{favor probationis}}
+
+En materia probatoria rige el principio de \textit{favor probationis}, conforme al cual, ante la duda sobre abrir la causa a prueba o declarar la cuestión de puro derecho, el juez debe estar a favor de la prueba, abriendo la causa. Ello es así porque de no hacerlo pueden generarse graves perjuicios a la parte; en cambio, si la prueba se produce, a lo sumo no será tenida en cuenta al momento de valorarla, lo cual resulta preferible a haber lesionado el derecho de defensa impidiendo su producción.
+
+\section{Negligencia y caducidad de la prueba}
+
+El plazo de prueba es de cuarenta días y comienza a correr a partir de la audiencia preliminar. Dentro de ese plazo común debe producirse toda la prueba ofrecida por las partes. La falta de actividad necesaria para instar dicha producción puede dar lugar a la \textbf{negligencia} o a la \textbf{caducidad} de la prueba, instituciones distintas que traen consecuencias similares pero tienen un trámite diferente.
+
+\subsection{Negligencia de prueba}
+
+Si la parte que debe producir la prueba incurre en desidia —no realiza la actividad necesaria para instar su producción— y por ese motivo se ocasiona una demora injustificada en el proceso, puede ser acusada de negligencia.
+
+\begin{example}{Prueba informativa no diligenciada}
+Se abre la causa a prueba y se ordena librar un informe a determinada entidad —por ejemplo, el Correo Argentino—. Transcurren los cuarenta días y la parte que debía confeccionar el oficio y diligenciarlo no lo hace.
+\end{example}
+
+La negligencia solo puede acusarse a pedido de parte, nunca de oficio. Acreditada la desidia de la contraria, y previo traslado, se decreta la negligencia; una vez firme, hace perder la prueba, salvo la posibilidad de replantearla en cámara si se trata de un juicio ordinario y se apela la sentencia.
+
+Si, al contestar el traslado, el acusado de negligente acredita la producción de la prueba antes de que venza el plazo para contestar, se rechaza la acusación de negligencia, sin posibilidad de recurrir. Si no lo acredita dentro de ese plazo, se declara la negligencia, resolución que resulta inapelable para el afectado.
+
+\subsection{Caducidad de la prueba}
+
+A diferencia de la negligencia, la \textbf{caducidad} se constata objetivamente: no se evalúa si hubo desidia, culpa o dolo, sino que se verifica si se dan los supuestos que el código establece, para determinadas pruebas, como causales de caducidad.
+
+Constatados esos supuestos, de oficio o a pedido de parte, se declara la caducidad, sin sustanciación ni incidente alguno. Una vez decretada, es inapelable, aunque puede replantearse en cámara si se trata de un juicio ordinario.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Negligencia} & \textbf{Caducidad} \\
+\midrule
+Aspecto subjetivo & Requiere desidia o culpa de la parte & No se evalúa: es puramente objetiva \\
+Aspecto objetivo & Demora injustificada en el proceso & Vencimiento de plazos específicos del código \\
+Iniciativa & Solo a pedido de parte (nunca de oficio) & De oficio o a pedido de parte \\
+Trámite & Se sustancia como incidente, con traslado & No se sustancia; se constata y decreta directamente \\
+Apelabilidad & Inapelable para el afectado & Inapelable una vez decretada \\
+Replanteo & Replanteable en cámara en juicio ordinario & Replanteable en cámara en juicio ordinario \\
+\bottomrule
+\end{tabularx}
+\caption{Negligencia y caducidad de la prueba: comparación}
+\end{table}
+
+\subsection{Ejemplo de caducidad de la prueba informativa}
+
+\begin{formula}{Artículo 402, CPCCN — Caducidad de la prueba informativa}
+Si vencido el plazo que el juez fijare, el informante no contestare, la parte que ofreció el medio probatorio deberá solicitar la reiteración del pedido dentro del quinto día. Vencido ese plazo sin que se haya efectuado dicha solicitud, la prueba caducará de pleno derecho.
+\end{formula}
+
+\begin{example}{Caducidad automática del oficio informativo}
+Si vencido el plazo no se diligencia el oficio a una entidad —por ejemplo, con diez días hábiles procesales para contestar— y, transcurridos esos diez días sin respuesta, la parte no pide la reiteración del oficio dentro de los cinco días siguientes, la prueba informativa caduca automáticamente. No hay traslado ni interesa si existió culpa, negligencia o dolo: solo se constata que el oficio se presentó en determinada fecha, que venció el plazo, y que no se solicitó la reiteración dentro de los cinco días posteriores.
+\end{example}
+
+\subsection{Valoración final: la sana crítica}
+
+La \textbf{sana crítica} es el procedimiento de valoración conforme al cual el juez, libre de errores y vicios, sigue determinadas reglas —sistematizadas en el artículo 386 del código procesal— para determinar cuál de las posiciones asumidas por las partes resulta convincente respecto de cómo sucedieron los hechos, a fin de fijarlos, subsumir la norma que rige el caso y resolver el conflicto mediante la sentencia.
+
+El tema de la prueba es sumamente extenso. Entre los hechos y la prueba gira lo esencial del proceso de conocimiento, dado que en virtud de los hechos el derecho nace, se modifica y se extingue, y los hechos, a su vez, son fuente de la pretensión, fundamento de la pretensión, fuente de prueba y fundamento de la sentencia. Dominar esta materia constituye una herramienta indispensable para llevar adelante con éxito cualquier tipo de reclamo judicial.
+
+% =============================================================
+% CUADRO CORNELL DE REPASO
+% =============================================================
+\section{Cuadro Cornell de repaso}
+
+El siguiente cuadro organiza, conforme al método Cornell, los conceptos clave de la unidad mediante preguntas de recuperación activa, sus respuestas desarrolladas y una síntesis final integradora.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\caption{Cuadro Cornell — Teoría General de la Prueba} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\textit{(Continuación del Cuadro Cornell — Teoría General de la Prueba)}} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué es la prueba?} &
+La prueba es la demostración en juicio de la ocurrencia de un suceso (Falcón). En el proceso puede referirse al objeto, a la actividad probatoria o al resultado concreto de esa actividad. Se trata de un término multívoco. \\
+
+\textbf{¿Qué se prueba en el proceso civil?} &
+Se prueban las afirmaciones de las partes relativas a los hechos, no los hechos en sí mismos, ya que estos pertenecen al pasado y solo pueden reconstruirse mediante sus huellas y registros. \\
+
+\textbf{¿Por qué existe la necesidad de probar?} &
+Porque el juez es un tercero ajeno a los hechos: no los presenció, no puede investigarlos en virtud del principio dispositivo, y no puede usar su saber privado. Las partes son las dueñas de los hechos. \\
+
+\textbf{¿Cuáles son los requisitos de los hechos para ser objeto de prueba?} &
+1) Afirmados (en los escritos constitutivos). 2) Conducentes (relevantes para la decisión). 3) Controvertidos (negados o no admitidos expresamente). 4) Admisibles (posibles de probar y con medios idóneos). \\
+
+\textbf{¿Qué hechos quedan exentos de prueba?} &
+a) Hechos notorios (conocidos en un lugar y tiempo determinado). b) Hechos evidentes (universales, como las leyes lógicas o de gravedad). c) Hechos presumidos legalmente (\textit{iuris tantum} o \textit{iuris et de iure}). d) Hechos reconocidos expresamente por las partes. \\
+
+\textbf{¿Qué es la presunción \textit{iuris tantum}?} &
+Es una presunción legal que admite prueba en contrario. Invierte la carga de la prueba: quien normalmente debía probar queda relevado, y quien debía resistir deberá acreditar los eximentes. Ejemplo: responsabilidad del dueño o guardián por daños causados por la cosa (art. 1758 CCyCN). \\
+
+\textbf{¿Cuál es la finalidad de la prueba?} &
+Formar la convicción del juez respecto de cómo sucedieron los hechos, para que pueda fijarlos y aplicar la norma correspondiente al dictar sentencia. Si bien el norte es la verdad jurídica objetiva, en la práctica se obtiene una verdad formal basada en leyes probatorias. \\
+
+\textbf{¿Quién debe probar? (art. 377 CPCCN)} &
+Cada parte debe probar el presupuesto de hecho de la norma en que funda su pretensión, defensa o excepción. Quien solo niega un hecho positivo afirmado por el contrario no necesita probar esa negativa, salvo que asuma un hecho distinto. \\
+
+\textbf{¿Qué es la carga de la prueba?} &
+Es un imperativo del propio interés: la parte que no cumple con la actividad probatoria no es compelida, pero soporta las consecuencias procesales de su omisión. Las reglas de la carga también impiden al juez abstenerse de fallar por falta de prueba. \\
+
+\textbf{¿Qué es el principio de adquisición?} &
+Una vez producida la prueba, se adquiere para el proceso y está a disposición del juez con independencia de quién la ofreció. La parte no puede desistir de una prueba ya producida, aunque le resulte desfavorable. \\
+
+\textbf{¿Cuáles son los momentos de la prueba?} &
+1) Ofrecimiento (en los escritos constitutivos). 2) Producción (dentro del plazo de prueba, cuarenta días). 3) Valoración (por el juez al sentenciar, mediante la sana crítica del art. 386 CPCCN). \\
+
+\textbf{Pertinencia vs. admisibilidad} &
+Pertinencia: el hecho a probar pertenece al proceso (fue afirmado). Admisibilidad: el medio de prueba es idóneo y legal para ese hecho, y no puede suplirse por otro medio indirecto. \\
+
+\textbf{Negligencia vs. caducidad} &
+Negligencia: exige aspecto subjetivo (desidia) más objetivo (demora); solo a pedido de parte; se sustancia con traslado. Caducidad: puramente objetiva; de oficio o a pedido; sin sustanciación. Ambas son inapelables, pero replanteables en cámara en juicio ordinario. \\
+
+\textbf{¿Qué es la carga dinámica de la prueba?} &
+Teoría según la cual, cuando un hecho negativo es indefinido (prueba diabólica para quien lo alega), la carga probatoria se traslada a la parte que está en mejores condiciones para probar. Ejemplo: incumplimiento continuo de un contrato de asesoramiento. \\
+
+\textbf{¿Qué es el principio \textit{favor probationis}?} &
+Ante la duda, el juez debe estar siempre a favor de la apertura a prueba. Es preferible que se produzca una prueba innecesaria a que se lesione el derecho de defensa impidiendo producir prueba necesaria. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} La teoría general de la prueba es el eje central del proceso de conocimiento civil y comercial. Todo proceso con hechos controvertidos exige que las partes —no el juez— lleven al expediente las afirmaciones de los hechos que fundan sus pretensiones y defensas, y que acrediten el presupuesto de hecho de la norma que invocan (art. 377 CPCCN). El juez, como tercero ajeno a los hechos y sujeto al principio dispositivo, depende de los medios de prueba que las partes ofrezcan y produzcan para reconstruir lo ocurrido y fijar los hechos con el mayor grado posible de certeza, sin acceder a la ``verdad verdadera'' sino a una verdad formal o jurídica.
+
+Para que un hecho pueda ser objeto de prueba debe reunir cuatro condiciones: haber sido afirmado en los escritos constitutivos, ser conducente para la decisión, estar controvertido y ser admisible. Existen categorías de hechos exentos de prueba: los notorios, los evidentes, los presumidos legalmente y los reconocidos por ambas partes. La carga de la prueba se distribuye según el segundo párrafo del art. 377: cada parte prueba el antecedente fáctico de la norma que invoca, distribución que puede alterarse mediante la carga dinámica cuando una parte está en mejor posición para probar.
+
+La actividad probatoria transcurre en tres momentos —ofrecimiento, producción y valoración— y está sujeta a los principios de pertinencia, admisibilidad y \textit{favor probationis}. La inactividad de las partes en la etapa de producción puede generar negligencia o caducidad; ambas hacen perder la prueba, aunque en juicio ordinario cabe el replanteo ante la alzada. La valoración final corresponde al juez al dictar sentencia, mediante las reglas de la sana crítica del art. 386 CPCCN, con el objetivo de formar una convicción razonada y fundada en los medios de prueba producidos.
+} \\
+
+\end{longtable}
+
+\end{document}
