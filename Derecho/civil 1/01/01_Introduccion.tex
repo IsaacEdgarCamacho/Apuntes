@@ -1,0 +1,807 @@
+% ============================================================
+%  DERECHO CIVIL — PARTE GENERAL
+%  Apunte académico de estudio — Clase 1: Introducción
+%  Compilar con: pdflatex (dos pasadas)
+% ============================================================
+
+\documentclass[12pt, a4paper]{report}
+
+% ── Codificación y tipografía ─────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,provide=*]{babel}
+\usepackage{palatino}
+\usepackage{mathpazo}
+\usepackage{microtype}
+
+% ── Geometría de página ───────────────────────────────────────
+\usepackage[
+  top=2.5cm, bottom=2.5cm,
+  left=3cm,  right=2.5cm,
+  headheight=15pt
+]{geometry}
+
+% ── Encabezados y pies de página ─────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Derecho Civil --- Parte General}}
+\fancyhead[R]{\small\textit{Introducción al Derecho Civil}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ── Colores ───────────────────────────────────────────────────
+\usepackage[dvipsnames]{xcolor}
+\definecolor{ColorAcento}    {RGB}{30,  60, 110}
+\definecolor{ColorDefinicion}{RGB}{230, 240, 255}
+\definecolor{ColorImportante}{RGB}{255, 245, 220}
+\definecolor{ColorEjemplo}   {RGB}{240, 250, 240}
+\definecolor{ColorBorde}     {RGB}{100, 130, 180}
+
+% ── Cajas académicas ─────────────────────────────────────────
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{definition}{
+  enhanced, breakable,
+  colback  = ColorDefinicion,
+  colframe = ColorAcento,
+  fonttitle= \bfseries\small,
+  title    = Definici\'{o}n,
+  left=6pt, right=6pt, top=4pt, bottom=4pt,
+  arc=3pt
+}
+
+\newtcolorbox{important}{
+  enhanced, breakable,
+  colback  = ColorImportante,
+  colframe = BurntOrange,
+  fonttitle= \bfseries\small,
+  title    = Importante,
+  left=6pt, right=6pt, top=4pt, bottom=4pt,
+  arc=3pt
+}
+
+\newtcolorbox{example}{
+  enhanced, breakable,
+  colback  = ColorEjemplo,
+  colframe = OliveGreen!70,
+  fonttitle= \bfseries\small,
+  title    = Ejemplo,
+  left=6pt, right=6pt, top=4pt, bottom=4pt,
+  arc=3pt
+}
+
+% ── Tablas ────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% ── Listas ───────────────────────────────────────────────────
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.5em, itemsep=2pt, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.5em, itemsep=2pt, parsep=0pt}
+
+% ── Gráficos ─────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[labelfont=bf, font=small]{caption}
+
+% ── Hipervínculos ─────────────────────────────────────────────
+\usepackage[hidelinks]{hyperref}
+
+% ── Espaciado ─────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ── Formato de títulos ────────────────────────────────────────
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries\color{ColorAcento}}
+  {Cap\'{i}tulo \thechapter}{10pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{20pt}{20pt}
+
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{ColorAcento}}
+  {\thesection}{0.8em}{}
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsection}{0.8em}{}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+% ============================================================
+\begin{document}
+
+% ── PORTADA ──────────────────────────────────────────────────
+\begin{titlepage}
+
+
+  \centering
+  \vspace*{1cm}
+ 
+  \includegraphics[scale=.4]{../img/descarga.jpeg} \\
+  \textbf{\large UNIVERSIDAD DE BUENOS AIRES}
+  \vspace*{1cm}
+
+  {\Large\bfseries\color{ColorAcento} Facultad de Derecho}\par\vspace{0.4cm}
+
+  {\Large\bfseries\color{ColorAcento} Derecho Civil}\par\vspace{0.4cm}
+  {\large Parte General}\par\vspace{1.5cm}
+
+  \textcolor{ColorAcento}{\rule{\linewidth}{1pt}}\par\vspace{0.5cm}
+  {\LARGE\bfseries Clase 1 --- Introducción al Derecho Civil}\par\vspace{0.3cm}
+  {\normalsize\itshape La noción de derecho, la justicia y el encuadre del
+  derecho civil dentro de las ramas del derecho}\par\vspace{0.5cm}
+  \textcolor{ColorAcento}{\rule{\linewidth}{1pt}}\par\vspace{1cm}
+
+
+  {\normalsize\itshape Este material constituye un modesto aporte destinado a los estudiantes de la Facultad de Derecho de la Universidad de Buenos Aires, carrera de Abogacía. Su finalidad es complementar el proceso de aprendizaje y facilitar la organización de los contenidos, pero no pretende constituir una guía de estudio ni sustituir las clases presenciales o el material oficial de la cátedra.
+
+  El material oficial de la asignatura se encuentra disponible en el sitio web de la materia.}\par\vspace{0.5cm}
+
+  {\small Junio de 2021}
+
+
+  \vspace{.5cm}
+
+  \noindent Autor:\,	Isaac Edgar Camacho Ocampo
+ 
+  \noindent Carrera:\,	Abogac\'ia
+
+  \vspace{1cm}
+
+  \vfill
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+% ============================================================
+\chapter{La noción de derecho y de justicia}
+
+\section{Origen etimológico de la palabra derecho}
+
+La palabra \textbf{derecho} tiene su origen en el término latino
+\textbf{\textit{directum}}, que significa ``lo que está alineado, enderezado'':
+aquello contrario a lo torcido, lo que ha sido sujeto a una regla y dirigido
+conforme a ella.
+
+\begin{definition}
+Históricamente, el derecho se asoció también a la voz latina \textbf{\textit{ius}}
+y a la voz griega \textbf{\textit{tó díkaion}}, ambas expresivas de la idea de lo
+\textbf{justo}, entendido como el objeto de la justicia. A lo largo de la
+historia, por una transición conceptual, la palabra \textit{derecho} se identifica
+con la noción de \textit{cosa justa}.
+\end{definition}
+
+\section{La justicia como dar a cada uno lo suyo}
+
+\begin{definition}
+El \textbf{derecho} es lo justo. \textbf{Lo justo} es el objeto de la
+\textbf{justicia}, y la justicia consiste en \textbf{dar a cada uno lo suyo}:
+una relación real de igualdad que vincula personas, cosas y comunidades según
+un criterio de \textbf{bien común}.
+\end{definition}
+
+Los elementos ---personas, cosas y comunidad--- permiten determinar qué es lo
+justo en cada situación. A lo largo de toda la vida jurídica y de las distintas
+ramas del derecho, está siempre en juego esa determinación.
+
+Lo justo puede estar fijado de dos modos:
+
+\begin{itemize}
+  \item Por la \textbf{ley positiva}: en algunos casos, la norma establece
+        directamente qué debe ocurrir.
+  \item Por la \textbf{sentencia judicial}: en otros casos, es el juez quien
+        determina qué es lo justo en el caso concreto.
+\end{itemize}
+
+\begin{example}
+\textbf{Nulidad y restitución de frutos.} Tras una nulidad, la ley determina
+qué es lo justo: el poseedor de buena fe devuelve los frutos desde cierto
+momento, mientras que el poseedor de mala fe los devuelve desde que los
+recibió. La restitución queda regulada por la ley, que establece el criterio
+de justicia para cada caso.
+\end{example}
+
+\begin{example}
+\textbf{Accidente de tránsito.} En un accidente de tránsito, cuando se discute
+el alcance del deber de reparar, es la sentencia judicial la que determina qué
+es lo justo: lo que se debe entre las personas, en torno a los daños, y en el
+marco de la comunidad, con criterio de bien común.
+\end{example}
+
+\section{Opción metodológica: iusnaturalismo}
+
+La concepción del derecho vinculada a la justicia implica una \textbf{opción
+metodológica} que se aparta de dos posiciones alternativas:
+
+\begin{itemize}
+  \item El \textbf{positivismo jurídico}, que reduce el fenómeno jurídico al
+        texto de la ley escrita o a una pura forma procedimental, sin contenido
+        sustantivo.
+  \item El \textbf{sociologismo jurídico}, que identifica al derecho con la
+        percepción de lo que la mayoría desea, sin asegurar su vinculación con
+        la idea de justicia.
+\end{itemize}
+
+La opción adoptada reconoce el valor de la ley positiva, pero sostiene que esta
+debe tener un \textbf{contenido sustantivo vinculado a principios fundamentales}
+accesibles a la \textbf{recta razón} humana.
+
+\begin{definition}
+La concepción clásica entiende que el \textbf{derecho} es un
+\textbf{orden social}, fundado en la \textbf{virtud de la justicia}, que
+ordena las relaciones de \textbf{alteridad} ---relaciones de convivencia entre
+personas--- y cuyo contenido es dar a cada uno lo suyo.
+\end{definition}
+
+\section{Dignidad de la persona y bien común}
+
+De la concepción del derecho vinculada a la justicia se desprenden dos
+\textbf{principios estructurantes} del derecho privado:
+
+\begin{important}
+\begin{enumerate}
+  \item \textbf{Dignidad de la persona humana.} El sujeto del derecho es la
+        persona humana. Según el Digesto del derecho romano, todo el derecho
+        está constituido en orden a la persona humana. La \textbf{dignidad}
+        expresa la excelencia y el valor inherente a la persona: un valor
+        inviolable por el que la persona nunca debe ser tratada como medio,
+        sino siempre como un \textbf{fin en sí misma}.
+
+  \item \textbf{Bien común.} El respeto a la dignidad se complementa con la
+        noción de \textbf{bien común político}: el conjunto de condiciones que
+        permiten que las personas, las familias y las asociaciones logren sus
+        propios fines y participen del bien dado a toda la comunidad.
+\end{enumerate}
+\end{important}
+
+Ambos principios constituyen el telón de fondo del derecho y de la justicia: la
+persona necesita bienes para realizar sus fines, los obtiene en el marco de
+relaciones con los demás, y en esas relaciones debe respetarse la dimensión de
+justicia.
+
+% ============================================================
+\chapter{Derecho objetivo, subjetivo y normativo}
+
+\section{Las tres dimensiones de la palabra derecho}
+
+La palabra \textbf{derecho} es una \textbf{palabra análoga}: posee varios
+significados que guardan relación entre sí. El primer analogado es el concepto
+de \textit{lo justo}; a partir de él, por analogía, se habla también de derecho
+en otros sentidos.
+
+\begin{definition}
+\textbf{Derecho objetivo:} la misma \textbf{cosa justa}, el objeto de la
+justicia. Aquello que se debe dar a la otra persona en una relación de justicia.
+\end{definition}
+
+\begin{definition}
+\textbf{Derecho subjetivo:} la \textbf{prerrogativa o facultad} reconocida a la
+persona para exigir de los demás un determinado comportamiento. Mira al sujeto
+y a su potestad de reclamar.
+\end{definition}
+
+\begin{definition}
+\textbf{Derecho normativo} (o derecho efectivo / vigente): el conjunto de
+\textbf{normas} dispuestas por el legislador en un determinado país. Son las
+disposiciones y reglas dadas para determinar qué es lo justo.
+\end{definition}
+
+La cosa justa (derecho objetivo) a veces está determinada por el derecho
+normativo; otras veces, la ley no la determina directamente y debe establecerla
+la sentencia judicial en el caso concreto.
+
+Además de estos tres sentidos principales, también se denomina \textit{derecho}:
+\begin{itemize}
+  \item La \textbf{sentencia judicial}, en tanto precisa lo justo en el caso
+        concreto.
+  \item La \textbf{ciencia del derecho}: la disciplina que estudia todo lo
+        relacionado con el derecho y la justicia.
+\end{itemize}
+
+\section{Teorías clásicas del derecho subjetivo}
+
+La noción de \textbf{derecho subjetivo} ha dado lugar a numerosas teorías a lo
+largo de la historia. Las principales posiciones clásicas son:
+
+\vspace{6pt}
+\begin{center}
+\begin{tabular}{L{3.5cm} L{10cm}}
+\toprule
+\textbf{Autor} & \textbf{Concepción del derecho subjetivo} \\
+\midrule
+\textbf{Francisco Suárez} \newline (1548--1617) &
+  Facultad moral sobre lo propio: la facultad de exigir aquello que es propio
+  del sujeto. (Escolástica española.) \\
+\addlinespace
+\textbf{F.~C.~von Savigny} \newline (1779--1861) &
+  Poder atribuido a la voluntad. Visión marcadamente individualista que
+  enfatiza la voluntad como elemento esencial del derecho subjetivo. \\
+\addlinespace
+\textbf{Rudolf von Jhering} &
+  Interés jurídicamente protegido con seguridad en el goce. El interés es
+  decisivo, pero falta el elemento de la voluntad y la potestad de reclamar. \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{6pt}
+
+\begin{important}
+La teoría de \textbf{Savigny} presenta el riesgo propio del individualismo:
+al enfatizar la voluntad sin establecer un límite claro, puede dar lugar a
+ejercicios abusivos o arbitrarios del derecho.
+
+La teoría de \textbf{Jhering} señala correctamente que el interés es decisivo
+en materia de derecho, pero el goce en abstracto no puede concretarse en
+ausencia de la voluntad de ejercerlo. Falta el elemento de la voluntad y la
+potestad de reclamar.
+\end{important}
+
+\section{Críticas colectivista y positivista al derecho subjetivo}
+
+Dos corrientes niegan, desde perspectivas opuestas, la existencia o relevancia
+del derecho subjetivo:
+
+\begin{definition}
+\textbf{Posición de León Duguit (escuela colectivista).} El hombre no tiene
+derechos, sino únicamente \textbf{deberes} derivados de su pertenencia a la
+comunidad. Todo individuo tiene una función que cumplir y tareas que ejecutar.
+El fundamento de la regla de derecho no es un derecho subjetivo que el ser
+humano pueda reclamar para sí, sino el deber social de obrar y desenvolver su
+individualidad conforme a esa función, tanto para gobernantes como para
+gobernados.
+\end{definition}
+
+\begin{definition}
+\textbf{Posición de Hans Kelsen (escuela positivista).} La noción de derecho
+subjetivo es \textbf{superflua}, porque lo único que importa es el
+\textbf{derecho normativo}, que establece las obligaciones jurídicas. El derecho
+subjetivo sería la contracara de la obligación: un concepto reflejo de utilidad
+didáctica, pero prescindible desde el punto de vista de la descripción
+científica. Lo que se denomina derecho subjetivo no es más que la conducta
+encuadrada en una norma que, dado cierto presupuesto, adjudica determinadas
+consecuencias jurídicas.
+\end{definition}
+
+Frente a estas posiciones, se reconoce la \textbf{importancia del derecho
+subjetivo} como expresión de la \textbf{dignidad de la persona humana},
+especialmente en lo relativo a los derechos humanos y los derechos fundamentales.
+
+A partir de las teorías clásicas, el \textbf{derecho subjetivo} puede entenderse
+como una \textbf{prerrogativa reconocida a la persona por el ordenamiento
+jurídico} para realizar un comportamiento tendiente a la satisfacción de
+\textbf{intereses humanos}, debiendo ejercerse en conformidad con esa finalidad.
+
+\section{La teoría de John Finnis}
+
+\textbf{John Finnis} (profesor de Oxford) concibe el derecho subjetivo en
+términos de \textbf{exigencia derivada del principio de razonabilidad práctica}.
+Según esta concepción, el derecho subjetivo incluye:
+
+\begin{itemize}
+  \item La \textbf{exigencia positiva o negativa} impuesta sobre otro: exigir
+        un comportamiento determinado o exigir que el otro no interfiera con el
+        propio desarrollo o disfrute de un bien.
+  \item La \textbf{capacidad de reclamar} el cumplimiento de esa exigencia, o
+        la posibilidad de quedar inmune frente a un intento de sometimiento.
+\end{itemize}
+
+\begin{definition}
+\textbf{Razonabilidad práctica (Finnis).} Principio que remite a una
+concepción de \textbf{ley natural}: principios fundamentales superiores al
+ordenamiento positivo, que el ser humano puede conocer a través de la recta
+razón, y a la luz de los cuales es posible valorar el contenido del derecho
+vigente.
+\end{definition}
+
+% ============================================================
+\chapter{Las grandes divisiones del derecho}
+
+\section{La relación jurídica: sujeto, objeto y causa}
+
+Un concepto central para el estudio del derecho civil es el de
+\textbf{relación jurídica}.
+
+\begin{definition}
+La \textbf{relación jurídica} es el \textbf{vínculo jurídico} que se establece
+entre uno o varios \textbf{sujetos}, en torno a un \textbf{objeto determinado},
+y fundamentado en el \textbf{derecho}. Da lugar a consecuencias jurídicas entre
+las partes.
+\end{definition}
+
+\begin{example}
+\textbf{Contrato de mutuo.} Cuando una persona presta dinero a otra, se genera
+una relación jurídica entre dos sujetos (prestamista y prestatario), en torno a
+un objeto (el dinero), y con una causa que es el contrato de mutuo, el cual fija
+las pautas de la relación y obliga a la restitución.
+\end{example}
+
+La relación jurídica se compone de tres \textbf{elementos}:
+
+\subsection{Sujetos (elemento personal)}
+
+Los \textbf{sujetos} son las personas que entablan relaciones jurídicas. El
+Código Civil y Comercial distingue dos clases:
+
+\begin{itemize}
+  \item \textbf{Personas humanas:} todo ser humano, por el solo hecho de serlo,
+        es persona. El término \textit{persona} denota el valor y la excelencia
+        en el ser de quien es capaz de entablar relaciones jurídicas; no es
+        sinónimo de ciudadano, habitante o individuo.
+
+  \item \textbf{Personas jurídicas:} surgen de la asociación de personas humanas
+        para fines útiles, dando lugar a formas de actuación jurídicamente
+        relevantes. El Código distingue:
+        \begin{itemize}
+          \item \textit{Personas jurídicas públicas:} el Estado nacional,
+                provincial y municipal; los Estados extranjeros; los organismos
+                públicos internacionales; la Iglesia Católica; entre otras.
+          \item \textit{Personas jurídicas privadas:} las sociedades, las
+                asociaciones civiles, las fundaciones, las iglesias y entidades
+                religiosas, las cooperativas, el consorcio de propiedad
+                horizontal; entre otras.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Objeto (elemento real)}
+
+El \textbf{objeto} es la \textbf{cosa o bien} sobre el que recae o se proyecta
+la relación jurídica.
+
+\begin{itemize}
+  \item \textbf{Bienes} en general: todos los objetos materiales e inmateriales
+        susceptibles de tener valor, incluyendo ideas, derechos intelectuales,
+        invenciones artísticas y científicas, y derechos creditorios.
+  \item \textbf{Cosas:} objetos materiales susceptibles de tener valor.
+        Se clasifican en \textit{muebles} e \textit{inmuebles}, entre otras
+        categorías.
+\end{itemize}
+
+\subsection{Causa (elemento normativo)}
+
+La \textbf{causa} es el elemento normativo: aquello que da origen a la relación
+jurídica. Puede provenir de:
+
+\begin{itemize}
+  \item \textbf{Hechos de la naturaleza:} por ejemplo, el granizo que arruina
+        una cosecha, generando consecuencias jurídicas.
+  \item \textbf{Hechos ilícitos:} por ejemplo, un accidente de tránsito.
+  \item \textbf{Actos jurídicos:} por ejemplo, un contrato o un testamento.
+\end{itemize}
+
+\begin{important}
+La \textbf{Parte General} del derecho civil no constituye un sistema lógico
+deductivo cerrado. Su función es filosófica e introductoria: fijar los
+contenidos y márgenes fundamentales del derecho privado ---persona, atributos,
+bienes y causa de las relaciones jurídicas--- para comprender cómo surgen las
+relaciones jurídicas y qué las rige.
+\end{important}
+
+\section{Derecho natural y derecho positivo}
+
+\begin{definition}
+El \textbf{derecho natural} está constituido por \textbf{principios
+fundamentales} que corresponden a la naturaleza humana, accesibles al ser humano
+mediante la \textbf{recta razón}, y derivados de las inclinaciones fundamentales
+del ser hacia sus fines propios.
+\end{definition}
+
+Se distinguen tres grandes \textbf{inclinaciones fundamentales} del ser humano,
+de las que se desprenden principios del derecho natural:
+
+\begin{enumerate}
+  \item La inclinación a \textbf{conservar la propia vida}.
+  \item La inclinación a \textbf{transmitir la vida} y todo lo vinculado a la
+        procreación.
+  \item La inclinación a \textbf{buscar el bien según la naturaleza racional} y
+        a organizar la vida conforme a esa búsqueda.
+\end{enumerate}
+
+Estos principios son, con frecuencia, genéricos y requieren
+\textbf{concreciones}. Es allí donde interviene el derecho positivo.
+
+\begin{definition}
+El \textbf{derecho positivo} es aquel \textbf{dispuesto por el legislador} en
+orden al bien común. Comprende todas las normas escritas: la Constitución, los
+tratados, las leyes y los decretos.
+\end{definition}
+
+\vspace{4pt}
+\begin{center}
+\begin{tabular}{L{4.2cm} L{9cm}}
+\toprule
+\textbf{Posición} & \textbf{Tesis fundamental} \\
+\midrule
+\textbf{Positivismo jurídico} &
+  No existe un principio superior al derecho positivo. El derecho es lo que
+  establece la autoridad competente; su justicia se debate en el plano político
+  legislativo. \\
+\addlinespace
+\textbf{Iusnaturalismo} &
+  Existen principios superiores al derecho positivo, accesibles a la recta
+  razón, a la luz de los cuales es posible valorar el contenido y la justicia
+  de la ley vigente. \\
+\addlinespace
+\textbf{Corrientes trans-positivistas} &
+  Reconocen principios o valores superiores a la ley positiva, pero sin
+  identificarlos con la ley natural clásica. Incluyen el neoconstitucionalismo
+  y posiciones consensualistas o procedimentalistas. \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{4pt}
+
+\section{Derecho público y derecho privado}
+
+Dentro del derecho positivo, la división fundamental es la que distingue el
+\textbf{derecho público} del \textbf{derecho privado}.
+
+\begin{definition}
+\textbf{Derecho público:} regula las relaciones en que \textbf{interviene el
+Estado} como comunidad frente a los individuos.
+
+\textbf{Derecho privado:} regula las relaciones \textbf{entre particulares
+entre sí}, sin intervención del Estado en posición de poder.
+\end{definition}
+
+La clasificación de las principales ramas es la siguiente:
+
+\vspace{4pt}
+\begin{center}
+\begin{tabular}{L{5.5cm} L{7.5cm}}
+\toprule
+\textbf{Rama} & \textbf{Ámbito} \\
+\midrule
+Derecho constitucional & Público \\
+Derecho administrativo & Público \\
+Derecho penal & Público \\
+\addlinespace
+Derecho civil & Privado \\
+Derecho comercial & Privado \\
+Derecho del trabajo & Privado (con elementos de derecho público) \\
+\addlinespace
+Derecho procesal & Intersección entre público y privado \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{4pt}
+
+% ============================================================
+\chapter{El derecho civil y su Parte General}
+
+\section{El derecho civil como rama madre del derecho privado}
+
+\begin{definition}
+El \textbf{derecho civil} es la \textbf{rama madre del derecho privado}. Se
+ocupa del \textbf{hombre como sujeto de derecho}, sin distinción de cualidades
+accidentales, y de las \textbf{relaciones jurídicas} ---tanto patrimoniales como
+extrapatrimoniales--- que lo constituyen como sujeto, regulando las instituciones
+básicas y constituyendo el punto de partida de las demás ramas del derecho
+privado.
+\end{definition}
+
+La palabra \textit{civil} proviene del derecho romano: el \textit{ius civile}
+era el derecho de los ciudadanos (\textit{civis}) de la ciudad
+(\textit{civitas}) romana. Tras la caída del Imperio Romano, este derecho
+subsistió en las distintas civilizaciones como derecho de los particulares,
+organizando las relaciones más fundamentales de la persona: obligaciones,
+contratos, derechos reales, familia y sucesiones.
+
+\begin{important}
+El rasgo distintivo del derecho civil frente a otras ramas del derecho privado
+es que \textbf{mira a la persona en cuanto tal}, desprovista de cualidades
+accidentales. Otras ramas la contemplan bajo aspectos específicos:
+\begin{itemize}
+  \item El \textit{derecho comercial} la mira en cuanto comerciante.
+  \item El \textit{derecho laboral} la mira en cuanto trabajador.
+  \item El \textit{derecho societario} la mira en cuanto integrante de una
+        sociedad.
+\end{itemize}
+El derecho civil estudia a la persona humana y sus atributos (existencia,
+nombre, domicilio, estado, capacidad, patrimonio, derechos personalísimos),
+a la persona jurídica, a los bienes y las cosas, y a los hechos y actos
+jurídicos.
+\end{important}
+
+\section{La Parte General en el Código Civil y Comercial argentino}
+
+El contenido del derecho civil se organiza en el \textbf{Código Civil y
+Comercial de la Nación Argentina} a través de seis libros:
+
+\vspace{4pt}
+\begin{center}
+\begin{tabular}{C{1.8cm} L{11.5cm}}
+\toprule
+\textbf{Libro} & \textbf{Contenido} \\
+\midrule
+\textbf{Primero} &
+  \textbf{Parte General.} La persona humana y sus atributos (existencia,
+  nombre, domicilio, estado civil, capacidad, patrimonio, derechos
+  personalísimos y situaciones especiales de capacidad); la persona jurídica y
+  su clasificación; los bienes y las cosas; los hechos y los actos jurídicos
+  como causa de las relaciones jurídicas. \\
+\addlinespace
+\textbf{Segundo} & Relaciones de familia. \\
+\addlinespace
+\textbf{Tercero} &
+  Obligaciones y contratos, incluyendo todo lo relativo a la responsabilidad
+  civil. \\
+\addlinespace
+\textbf{Cuarto} & Derechos reales: derechos de las personas sobre las cosas. \\
+\addlinespace
+\textbf{Quinto} & Sucesiones. \\
+\addlinespace
+\textbf{Sexto} &
+  Disposiciones comunes a los derechos reales y personales: derecho
+  internacional privado, prescripción y otras disposiciones comunes. \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{4pt}
+
+La \textbf{Parte General} (Libro Primero) constituye la introducción filosófica
+y conceptual a todo el derecho privado. No es un sistema lógico deductivo
+cerrado, sino el estudio de los \textbf{elementos de las relaciones jurídicas}
+---sujeto, objeto y causa--- como puerta de entrada conceptual a todas las
+demás ramas del derecho privado.
+
+% ============================================================
+\chapter*{Resumen Cornell --- Repaso integrador}
+\addcontentsline{toc}{chapter}{Resumen Cornell --- Repaso integrador}
+
+\vspace{6pt}
+
+{\small
+\begin{longtable}{|L{5.2cm}|L{9.8cm}|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Preguntas / Palabras clave}} &
+\multicolumn{1}{c|}{\textbf{Notas / Respuestas}} \\
+\hline
+\endfirsthead
+\hline
+\multicolumn{1}{|c|}{\textbf{Preguntas / Palabras clave}} &
+\multicolumn{1}{c|}{\textbf{Notas / Respuestas}} \\
+\hline
+\endhead
+%
+\textbf{¿De dónde proviene la palabra ``derecho'' y qué significa
+originalmente?} &
+Del latín \textit{directum} (``lo alineado, enderezado''): aquello contrario
+a lo torcido. Históricamente también se asoció al latín \textit{ius} y al
+griego \textit{tó díkaion}, ambos vinculados a la idea de lo justo, objeto
+de la justicia. \\
+\hline
+\textbf{¿Qué es lo justo y en qué consiste la justicia?} &
+Lo justo es el objeto de la justicia. La justicia es dar a cada uno lo suyo:
+una relación de igualdad que vincula personas, cosas y comunidades con
+criterio de bien común. Lo justo puede estar fijado por la ley positiva (por
+ejemplo, la restitución tras una nulidad) o determinado por sentencia judicial
+(por ejemplo, el alcance del deber de reparar en un accidente de tránsito). \\
+\hline
+\textbf{¿Por qué la concepción adoptada es iusnaturalista?} &
+Porque sostiene que la ley positiva debe tener un contenido sustantivo
+vinculado a principios fundamentales accesibles a la recta razón. Rechaza
+reducir el derecho a la mera norma escrita (positivismo) o a la percepción
+mayoritaria (sociologismo). \\
+\hline
+\textbf{¿Cuáles son los dos principios estructurantes del derecho privado?} &
+1)~\textbf{Dignidad de la persona humana}: valor inviolable; la persona
+nunca es tratada como medio sino como fin. 2)~\textbf{Bien común}: conjunto
+de condiciones que permiten que personas, familias y asociaciones alcancen
+sus propios fines. \\
+\hline
+\textbf{¿Cuáles son los tres sentidos principales de la palabra ``derecho''?
+¿Qué significa que es una palabra análoga?} &
+\textit{Objetivo}: la cosa justa, objeto de la justicia. \textit{Subjetivo}:
+la prerrogativa o facultad de exigir de otro un comportamiento.
+\textit{Normativo}: el conjunto de normas de la ley positiva vigente. La
+palabra es \textbf{análoga} porque sus sentidos guardan relación con el
+primer analogado (lo justo) y no son independientes entre sí. \\
+\hline
+\textbf{¿Cómo definieron el derecho subjetivo Suárez, Savigny y Jhering?} &
+\textbf{Suárez}: facultad moral de exigir lo propio (escolástica española).
+\textbf{Savigny}: poder atribuido a la voluntad; visión individualista sin
+límite claro, con riesgo de ejercicio abusivo. \textbf{Jhering}: interés
+jurídicamente protegido con seguridad en el goce; omite la voluntad y la
+potestad de reclamar. \\
+\hline
+\textbf{¿Por qué Duguit y Kelsen niegan el derecho subjetivo?} &
+\textbf{Duguit} (colectivismo): el hombre solo tiene deberes sociales según
+su función en la comunidad; no existen derechos que reclamar para sí.
+\textbf{Kelsen} (positivismo): el derecho subjetivo es superfluo; es solo
+el reflejo didáctico de la obligación jurídica; lo que importa es el
+derecho normativo objetivo. \\
+\hline
+\textbf{¿Cómo concibe John Finnis el derecho subjetivo?} &
+Como una exigencia del principio de razonabilidad práctica: impone a otro
+una obligación positiva o negativa (incluyendo no interferir con el propio
+desarrollo o disfrute de un bien), junto con la capacidad de reclamar su
+cumplimiento. Remite, en última instancia, a principios de ley natural
+accesibles por la recta razón. \\
+\hline
+\textbf{¿Qué elementos componen toda relación jurídica?} &
+1)~\textbf{Sujetos} (elemento personal): personas humanas y personas
+jurídicas públicas o privadas. 2)~\textbf{Objeto} (elemento real): bienes
+y cosas, materiales o inmateriales. 3)~\textbf{Causa} (elemento normativo):
+hechos de la naturaleza, hechos ilícitos o actos jurídicos que originan la
+relación. \\
+\hline
+\textbf{¿Qué distingue al derecho natural del derecho positivo?} &
+El \textbf{derecho natural} son principios accesibles a la recta razón,
+derivados de las inclinaciones humanas fundamentales (conservar la vida,
+transmitirla, buscar el bien según la razón). El \textbf{derecho positivo}
+es el dispuesto por el legislador (Constitución, tratados, leyes, decretos)
+para concretar esos principios en orden al bien común. \\
+\hline
+\textbf{¿Cómo se distinguen el derecho público y el derecho privado?} &
+El \textbf{derecho público} regula la relación entre el individuo y el
+Estado como comunidad (constitucional, administrativo, penal). El
+\textbf{derecho privado} regula las relaciones entre particulares (civil,
+comercial, laboral). El derecho procesal se ubica en la intersección de
+ambos. \\
+\hline
+\textbf{¿Por qué el derecho civil es la ``rama madre'' del derecho privado?} &
+Proviene del \textit{ius civile} romano y organizó históricamente las
+relaciones más fundamentales de la persona. A diferencia de otras ramas
+(que miran a la persona como comerciante, trabajador o socio), el derecho
+civil la mira \textbf{en cuanto tal}: sus atributos, sus relaciones
+patrimoniales y extrapatrimoniales, sus bienes y los actos que generan
+relaciones jurídicas. \\
+\hline
+\textbf{¿Qué contiene el Libro Primero del Código Civil y Comercial?} &
+La \textbf{Parte General}: la persona humana y sus atributos (existencia,
+nombre, domicilio, estado civil, capacidad, patrimonio, derechos
+personalísimos); la persona jurídica y su clasificación; los bienes y las
+cosas; y los hechos y actos jurídicos como causa de las relaciones
+jurídicas. \\
+\hline
+\textbf{¿Cuál es la función de la Parte General dentro del derecho privado?} &
+No es un sistema lógico deductivo cerrado. Su función es filosófica e
+introductoria: fijar los contenidos y márgenes fundamentales del derecho
+privado (persona, atributos, bienes y causa) como puerta de entrada
+conceptual a todas las ramas del derecho privado. \\
+\hline
+%
+% ── FILA DE RESUMEN ──────────────────────────────────────────
+\multicolumn{2}{|p{15.1cm}|}{%
+  \vspace{5pt}
+  \textbf{\large SÍNTESIS FINAL}\par\vspace{5pt}
+  El presente apunte recorre, de manera progresiva, el camino que va desde la
+  idea más abstracta de justicia hasta la noción concreta de relación jurídica
+  que estructura la Parte General del derecho civil.\par\vspace{4pt}
+  %
+  Partiendo del origen etimológico de la palabra \textit{derecho}
+  (\textit{directum}, \textit{ius}, \textit{tó díkaion}), se establece que el
+  derecho es, ante todo, lo justo: dar a cada uno lo suyo, en relaciones de
+  alteridad ordenadas hacia el bien común y fundadas en la dignidad de la
+  persona humana.\par\vspace{4pt}
+  %
+  Sobre esa base se distinguen tres sentidos de la palabra \textit{derecho}
+  ---objetivo, subjetivo y normativo--- y se repasan las principales teorías
+  sobre el derecho subjetivo: posiciones clásicas (Suárez, Savigny, Jhering),
+  corrientes que niegan su existencia (Duguit, Kelsen) y la síntesis
+  contemporánea de Finnis, fundada en la razonabilidad práctica.\par\vspace{4pt}
+  %
+  A continuación se introduce el concepto de \textbf{relación jurídica} con sus
+  tres elementos (sujeto, objeto y causa), enmarcado dentro de las grandes
+  divisiones del derecho: natural y positivo, público y privado.\par\vspace{4pt}
+  %
+  Finalmente, se ubica al \textbf{derecho civil} como la rama madre del derecho
+  privado, heredera del \textit{ius civile} romano, que mira a la persona
+  humana en cuanto tal y cuya Parte General ---el Libro Primero del Código Civil
+  y Comercial argentino--- constituye el estudio de la persona, los bienes y la
+  causa de las relaciones jurídicas como introducción a todo el derecho privado.
+  \vspace{5pt}
+} \\
+\hline
+\end{longtable}
+}
+
+\end{document}

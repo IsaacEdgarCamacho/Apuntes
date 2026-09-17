@@ -1,170 +1,663 @@
-\documentclass[11pt, a4paper]{article}
+\documentclass[12pt,oneside]{book}
 
-% ==============================================================================
-% PAQUETES Y CONFIGURACIÓN GENERAL
-% ==============================================================================
-\usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
+% ------------------------------------------------------------
+% INFORMACION DEL DOCUMENTO
+% ------------------------------------------------------------
+
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\departamento}{Derecho Notarial, Registral e Inmobiliario}
+\newcommand{\materia}{Derecho Registral}
+\newcommand{\titulo}{Introducción al Derecho Registral Inmobiliario}
+\newcommand{\autor}{Apunte de Cátedra}
+\newcommand{\anio}{2026}
+
+% ------------------------------------------------------------
+% PAQUETES
+% ------------------------------------------------------------
+
+% Idioma y codificación
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath, amsfonts, amssymb}
-\usepackage{geometry}
-\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
-\usepackage{xcolor}
-\usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage{longtable}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% Márgenes
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+% Matemática
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% Imágenes
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{caption}
-\usepackage{tcolorbox}
-\tcbuselibrary{skins, breakable}
+\usepackage{subcaption}
 
-\usepackage{hyperref}
-\hypersetup{
+% Tablas
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+% Listas
+\usepackage{enumitem}
+
+% Colores y cajas
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% Encabezados y pies
+\usepackage{fancyhdr}
+
+% Enlaces
+\usepackage[
     colorlinks=true,
-    linkcolor=blue!80!black,
-    citecolor=blue!80!black,
-    urlcolor=blue!80!black,
-    pdfencoding=unicode
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    bookmarks=true
+]{hyperref}
+
+% ------------------------------------------------------------
+% CONFIGURACION
+% ------------------------------------------------------------
+
+% Directorios de imágenes
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
 }
 
-% ==============================================================================
-% DEFINICIÓN DE ENTORNOS Y CAJAS EN LA PLANTILLA
-% ==============================================================================
-\newtcolorbox{definition}[1][]{%
+% Profundidad del índice
+\setcounter{tocdepth}{2}
+
+% Párrafos
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% Listas
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+% ------------------------------------------------------------
+% ENCABEZADO Y PIE DE PAGINA
+% ------------------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Las páginas de inicio de capítulo no muestran encabezado
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ------------------------------------------------------------
+% COMANDOS GENERICOS
+% ------------------------------------------------------------
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ------------------------------------------------------------
+% CAJAS PARA APUNTES
+% ------------------------------------------------------------
+
+\newtcolorbox{definition}[1]{
     enhanced,
-    colback=blue!5!white,
-    colframe=blue!75!black,
-    fonttitle=\bfseries,
+    breakable,
     title={Definición: #1},
-    breakable,
-    arc=0mm
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
 }
 
-\newtcolorbox{important}[1][]{%
+\newtcolorbox{important}{
     enhanced,
-    colback=red!5!white,
-    colframe=red!75!black,
-    fonttitle=\bfseries,
-    title={Importante: #1},
     breakable,
-    arc=0mm
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
 }
 
-\newtcolorbox{example}[1][]{%
+\newtcolorbox{example}[1]{
     enhanced,
-    colback=green!5!white,
-    colframe=green!50!black,
-    fonttitle=\bfseries,
+    breakable,
     title={Ejemplo: #1},
-    breakable,
-    arc=0mm
-}
-
-\newtcolorbox{exercise}[1][]{%
-    enhanced,
-    colback=yellow!10!white,
-    colframe=yellow!50!black,
     fonttitle=\bfseries,
-    title={Ejercicio: #1},
-    breakable,
-    arc=0mm
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
 }
 
-% ==============================================================================
-% DATOS DEL DOCUMENTO
-% ==============================================================================
-\title{\textbf{Derecho Registral y Derechos Reales}\\\large Apunte Académico de Estudio}
-\author{\textbf{Material de Estudio Cátedra}}
-\date{\today}
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
 
 \begin{document}
 
-\maketitle
+% ============================================================
+% PORTADA
+% ============================================================
+
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \departamento}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{1.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\end{titlepage}
+
+% ============================================================
+% INDICE
+% ============================================================
+
 \tableofcontents
+
 \clearpage
 
-% ==============================================================================
-% DESARROLLO DEL CONTENIDO ACADÉMICO
-% ==============================================================================
+% ============================================================
+% CAPITULO 1
+% ============================================================
 
-\section{Introducción a los Derechos Reales}
+\chapter{Introducción al Derecho Registral Inmobiliario}
 
-\begin{definition}[Derecho Real]
-Un \textbf{derecho real} es el poder jurídico, de estructura legal, que se ejerce directamente sobre su objeto, en forma autónoma y que atribuye a su titular las facultades de persecución y preferencia, y las demás previstas en el Código Civil y Comercial.
-\end{definition}
+\section{Naturaleza y alcance del Derecho Registral}
 
-El régimen de los derechos reales se caracteriza por el principio de \textbf{orden público} y la regla del \textit{numerus clausus} (número cerrado), fijada por ley.
-
-\subsection{Estructura y Elementos}
+El \textbf{Derecho Registral} no constituye un simple apéndice del Derecho de los Derechos Reales[cite: 1]. Si bien los derechos reales conforman su umbral de introducción y base dogmática fundamental, el Derecho Registral se vincula orgánicamente con la totalidad del ordenamiento jurídico, integrando principios de[cite: 1]:
 
 \begin{itemize}
-    \item \textbf{Sujeto:} El titular del derecho real (persona humana o jurídica).
-    \item \textbf{Objeto:} Cosas individuales y determinadas en el comercio, o bienes en los casos expressamente señalados por la ley.
-    \item \textbf{Relación directa e inmediata:} El titular obtiene la utilidad de la cosa sin necesidad de la intervención de un tercero.
+    \item \textbf{Derecho Administrativo}[cite: 1]
+    \item \textbf{Derecho Constitucional}[cite: 1]
+    \item \textbf{Derecho Comercial y Empresarial}[cite: 1]
+    \item \textbf{Derecho Civil} (en sus diversas ramas: obligaciones, contratos, derecho de familia y sucesiones)[cite: 1]
 \end{itemize}
 
-\begin{important}[Absolutidad y Oponibilidad]
-Los derechos reales son \textbf{absolutos} y oponibles \textit{erga omnes} (frente a todos). De este carácter surge la necesidad insoslayable de la \textbf{publicidad registral} para que sean conocidos y respetados por terceros.
-\end{important}
+El análisis de la inscripción registral presupone la comprensión cabal del \textbf{derecho sustantivo de fondo} que le sirve de causa[cite: 1]. De este modo, la inscripción de institutos específicos (tales como la declaratoria de herederos o las medidas cautelares) exige el dominio previo del régimen jurídico del acto causal[cite: 1].
 
-\section{Publicidad Registral y Sus Principios}
+El objeto de estudio en esta primera etapa se circunscribe de manera exclusiva a las \textbf{cosas inmuebles} (arts. 225 y 226 del Código Civil y Comercial de la Nación - CCyC)[cite: 1].
 
-La \textbf{publicidad registral} es el conjunto de medios dirigidos a hacer saber a la comunidad las situaciones jurídicas relativas a la titularidad y cargas de los bienes inscriptos.
+\section{Teoría del Título Suficiente y Modo Suficiente}
 
-\subsection{Principios Registrales Fundamentales}
+En el sistema jurídico argentino, la adquisición derivada de derechos reales sobre inmuebles por actos entre vivos exige la concurrencia inexcusable de dos elementos sustanciales: el \textbf{título suficiente} y el \textbf{modo suficiente} (art. 1892 CCyC)[cite: 1].
+
+\subsection{Título suficiente}
+
+El término "título" presenta una doble acepción en el derecho privado:
 
 \begin{enumerate}
-    \item \textbf{Principio de Inscripción:} Determina la exigencia de registrar un título para que tenga efectos legales plenamente oponibles.
-    \item \textbf{Principio de Prioridad:} Establece que el acto inscripto en primer lugar prevalece sobre los posteriores. Se expresa mediante el aforismo \textit{prior tempore, potior iure}.
-    \item \textbf{Principio de Tracto Sucesivo:} Exige que la serie de inscripciones mantenga una cadena ininterrumpida de titularidades. El disponente actual debe figurar previamente como titular inscripto.
-    \item \textbf{Principio de Legalidad:} Requiere la calificación o control previo del documento formal por parte del registrador antes de proceder a la toma de razón.
-    \item \textbf{Principio de Rogación:} Los asientos registrales se efectúan siempre a instancia de parte legítima o por orden judicial, nunca de oficio.
+    \item \textbf{Título en sentido amplio o causal}: Constituye el acto jurídico que sirve de causa fuente para la transmisión o constitución del derecho real[cite: 1].
+    \item \textbf{Título en sentido restringido o documental}: Es el instrumento material (físico o digital) en el cual se plasma dicho acto[cite: 1].
 \end{enumerate}
 
-\begin{example}[Aplicación del Principio de Prioridad]
-Si el titular de un inmueble constituye dos hipotecas sobre el mismo bien en distintas fechas, la hipoteca inscripta en primer lugar ostentará prioridad cobratoria frente a la segunda en un eventual procedimiento judicial de ejecución.
-\end{example}
+Al abordar la categoría de \textbf{título suficiente}, la norma refiere al acto jurídico causal que reúne la totalidad de los requisitos de fondo y de forma exigidos por la ley[cite: 1].
 
-\subsection{Efectos de la Inscripción Registral}
+\begin{definition}{Título Suficiente (Art. 1892 CCyC)}
+Es el acto jurídico revestido de las formas establecidas por la ley, que tiene por finalidad transmitir o constituir un derecho real, otorgado por legitimado y capaz[cite: 1].
+\end{definition}
 
-Los efectos de la inscripción registral de derechos reales sobre inmuebles se clasifican en:
+\subsubsection{Ámbito de aplicación}
+El régimen del art. 1892 del CCyC aplica en forma exclusiva a la \textbf{adquisición derivada por acto entre vivos}[cite: 1]. Una adquisición es derivada cuando presupone la transmisión del derecho a partir de un titular anterior en virtud de un concurso de voluntades (v. gr. compraventa, donación, permuta)[cite: 1].
+
+\subsubsection{Requisitos de fondo}
+Para que el título sea suficiente, debe cumplir con dos requisitos de fondo indispensables[cite: 1]:
 
 \begin{itemize}
-    \item \textbf{Efecto Declarativo:} Constituye la regla general del sistema inmobiliario argentino (Ley 17.801). El derecho real nace fuera del registro (mediante título y modo suficientes) y la inscripción se exige exclusivamente a los fines de la \textbf{oponibilidad a terceros interesados de buena fe}.
-    \item \textbf{Efecto Constitutivo:} Caso excepcional en el cual el derecho real nace formalmente con la toma de razón en el registro respectivo (ejemplo: régimen automotor).
+    \item \textbf{Titularidad en el transmitente}: El disponente debe ser titular del derecho real que pretende transmitir[cite: 1]. Este requisito se deriva del principio \textbf{Nemo Plus Iuris} (art. 399 CCyC)[cite: 1].
+    \item \textbf{Capacidad}: Ambas partes (transmitente y adquirente) deben gozar de la capacidad de derecho y de ejercicio requerida para el otorgamiento del acto[cite: 1]. La falta de capacidad acarrea la nulidad del acto, impidiendo la configuración del título suficiente[cite: 1].
 \end{itemize}
 
-\begin{exercise}[Caso Práctico de Análisis]
-Un comprador adquiere un inmueble mediante escritura pública y toma la posesión del bien, pero omite inscribir el título en el Registro de la Propiedad Inmueble. Un acreedor del vendedor traba un embargo sobre dicho inmueble con posterioridad a la compraventa.
+\begin{important}
+\textbf{Principio Nemo Plus Iuris (Art. 399 CCyC)}: Nadie puede transmitir a otro un derecho más extenso o posterior sobre una cosa, que el que tiene sobre ella[cite: 1].
+\end{important}
 
-\textbf{Consigna:} Determine la situación jurídica entre el comprador y el acreedor embargante aplicando los principios de publicidad declarativa y oponibilidad.
-\end{exercise}
+\subsubsection{Requisito de forma}
+En materia inmobiliaria, la regla general exige que el título causal se instrumente mediante \textbf{escritura pública}[cite: 1].
 
-\clearpage
+\begin{formula}{Exigencia de Escritura Pública (Art. 1017 inc. a CCyC)}
+Deben ser otorgados por escritura pública los actos que tengan por objeto la adquisición, modificación o extinción de derechos reales sobre inmuebles[cite: 1]. La única excepción legalmente contemplada es la adquisición efectuada mediante \textbf{subasta judicial}[cite: 1].
+\end{formula}
 
-% ==============================================================================
-% RESUMEN CORNELL — PREGUNTAS Y PISTAS DE REPASO
-% ==============================================================================
+La escritura pública es el documento notarial autorizado por un notario en ejercicio de su función que contiene uno o más actos jurídicos[cite: 1]. No debe confundirse con el concepto genérico de instrumento público[cite: 1].
 
-\section{Resumen Cornell: Preguntas de Repaso}
+\subsection{Justo título y título putativo}
 
-\begin{description}[style=unboxed, leftmargin=0cm, labelindent=0pt]
+La ausencia de cualquiera de los requisitos de fondo o de forma impide la existencia de un título suficiente[cite: 1].
 
-    \item[\textbf{¿Qué es un derecho real y qué facultades atribuye a su titular?}]
-    Es un poder jurídico ejercido de forma directa e inmediata sobre una cosa, que confiere a su titular las facultades de persecución y preferencia, además de ser oponible \textit{erga omnes}.
+\begin{definition}{Justo Título}
+Es el acto jurídico revestido de las formas exigidas por la ley (instrumentado en escritura pública), que carece de algún requisito de fondo, ya sea por falta de titularidad en el transmitente o por incapacidad de las partes[cite: 1]. El justo título presenta un defecto de fondo, nunca de forma[cite: 1].
+\end{definition}
 
-    \item[\textbf{¿Cuál es la diferencia sustancial entre efecto declarativo y constitutivo de la inscripción?}]
-    En la inscripción declarativa el derecho real nace antes de su registro (por título y modo) y la inscripción le otorga oponibilidad frente a terceros. En la constitución registral, el derecho real nace únicamente a partir de su inscripción.
+El justeza del título se subsana mediante la \textbf{prescripción adquisitiva breve} (usucapión decenal), requiriendo diez años de posesión continuada y buena fe[cite: 1].
 
-    \item[\textbf{¿En qué consiste el principio registral de tracto sucesivo?}]
-    Es la exigencia legal de que cada asiento registral derive directamente del titular inscripto antecedente, garantizando un encadenamiento ininterrumpido de transmisiones.
+\begin{note}
+El \textbf{boleto de compraventa} no constituye justo título[cite: 1]. En primer lugar, inobserva la forma impuesta por la ley (escritura pública)[cite: 1]; en segundo lugar, no constituye un acto jurídico de transmisión sino un compromiso de celebrar la escritura traslativa de dominio[cite: 1].
+\end{note}
 
-    \item[\textbf{¿Qué función cumple el principio de legalidad o calificación registral?}]
-    Obliga al registro a verificar formalmente los documentos presentados para constatar que cumplan los requisitos legales antes de autorizar su inscripción o anotación.
+\begin{definition}{Título Putativo}
+Se configura cuando existe un error en el objeto sobre el cual recae el título[cite: 1]. El adquirente posee una cosa creyendo tener título sobre ella, cuando en realidad el instrumento se refiere a una finca distinta (debido a errores de mensura, catastro o redacción)[cite: 1].
+\end{definition}
 
-    \item[\textbf{¿Por qué los derechos reales requieren de la publicidad registral?}]
-    Debido a su carácter absoluto y oponibilidad \textit{erga omnes}, es imprescindible que los terceros puedan conocer la existencia y situación de las cargas o titularidades sobre los bienes.
+El título putativo no genera amparo por prescripción breve; debe subsanarse mediante la \textbf{prescripción adquisitiva larga} de veinte años (usucapión vicenal)[cite: 1].
 
-\end{description}
+\begin{example}{Título Putativo por error catastral}
+Un adquirente toma posesión de un lote de terreno en virtud de un contrato traslativo de dominio[cite: 1]. No obstante, debido a una incongruencia catastral, la escritura pública consigna la nomenclatura del lote colindante[cite: 1]. El adquirente carece de título respecto del inmueble que efectivamente posee, requiriendo iniciar la acción de prescripción adquisitiva veinteañera para consolidar su dominio[cite: 1].
+\end{example}
+
+\section{Modo suficiente: La tradición en inmuebles}
+
+El ordenamiento civil argentino rechaza el sistema puramente consensual para la constitución y transmisión de derechos reales sobre cosas[cite: 1]. El solo título no resulta apto para transferir el derecho real si no concurre el \textbf{modo suficiente}[cite: 1].
+
+En los derechos reales ejercidos por la posesión (la totalidad salvo la hipoteca y las servidumbres), el modo suficiente está constituido por la \textbf{tradición} (arts. 1923 y ss. CCyC)[cite: 1].
+
+\subsection{Actos materiales}
+
+La tradición exige la realización de \textbf{actos materiales} de entrega y/o de recepción de la cosa[cite: 1].
+
+\begin{important}
+Las meras declaraciones contenidas en la escritura pública manifestando haberse realizado la tradición no surten efectos constitutivos respecto de terceros (art. 1925 CCyC)[cite: 1]. Dichas cláusulas poseen únicamente valor probatorio entre las partes contratantes[cite: 1].
+\end{important}
+
+\begin{example}{Insuficiencia del acto formal de entrega de llaves}
+Las partes celebran en la escribanía el acto notarial de compraventa de un departamento y el vendedor efectúa en dicho acto la entrega de las llaves al comprador[cite: 1]. La sola entrega de llaves en el recinto notarial no configura tradición suficiente[cite: 1]. El comprador no adquiere el dominio en dicho instante, sino cuando se traslada al inmueble y ejecuta un acto material de toma de posesión (por ejemplo, tomar ocupación efectiva o sustituir las cerraduras)[cite: 1].
+\end{example}
+
+\subsection{Presunción de fecha (Art. 1914 CCyC)}
+
+\begin{formula}{Presunción de Posesión (Art. 1914 CCyC)}
+Si el adquirente exhibe título suficiente y acredita la realización de actos posesorios en una fecha posterior, se presume \textit{iuris tantum} que la posesión comenzó en la fecha asignada al título[cite: 1].
+\end{formula}
+
+Esta presunción facilita la carga probatoria del derecho real en sede judicial, al eximir de la prueba exacta de la fecha de la tradición efectiva siempre que exista título válido y posesión posterior[cite: 1].
+
+\section{Publicidad registral e inscripción declarativa}
+
+\subsection{Efecto declarativo de la inscripción}
+
+En el Derecho Registral Inmobiliario argentino, la inscripción registral no posee carácter constitutivo[cite: 1]. El derecho real nace y se perfecciona fuera del registro, mediante la conjunción del título suficiente y el modo suficiente[cite: 1].
+
+La inscripción cumple una función primordialmente publicitaria[cite: 1]. Su efecto central consiste en otorgar \textbf{oponibilidad} al derecho real frente a determinada categoría de terceros[cite: 1].
+
+\begin{definition}{Oponibilidad a Terceros (Art. 1893 CCyC)}
+La adquisición o transmisión de derechos reales no es oponible a terceros interesados y de buena fe mientras no tenga publicidad suficiente[cite: 1]. Se considera publicidad suficiente la inscripción registral o la posesión, según el caso[cite: 1].
+\end{definition}
+
+\subsection{Terceros interesados y de buena fe vs. Terceros desinteresados}
+
+\begin{itemize}
+    \item \textbf{Tercero interesado y de buena fe}: Es aquel titular de un derecho subjetivo (real o personal) que consulta las constancias del Registro de la Propiedad Inmueble y actúa sobre la base de la fe pública registral, contratando o trabando cautelares fundado en la información publicitaria[cite: 1].
+    \item \textbf{Tercero desinteresado}: Es aquel sujeto que no posee un derecho subjetivo tutelado sobre la finca o respecto de su titular, ni ha actuado confiando en la publicidad registral[cite: 1].
+\end{itemize}
+
+\begin{example}{Inscripción frente al tercero interesado de buena fe (Acreedor Embargante)}
+El vendedor transmuta el dominio a favor del comprador mediante escritura pública e inmediatez de la tradición real[cite: 1]. No obstante, se omite ingresar el testimonio al Registro[cite: 1]. El titular registral continúa figurando formalmente como dueño[cite: 1]. Un acreedor del vendedor consulta el registro, advierte la titularidad a nombre de su deudor y requiere la traba de un embargo judicial[cite: 1]. El comprador no puede oponer su titularidad no inscripta al acreedor embargante, por ser este un tercero interesado y de buena fe tutelado por la falta de publicidad registral[cite: 1]. El embargo resulta legítimamente trabado[cite: 1].
+\end{example}
+
+\begin{example}{Inscripción frente al tercero desinteresado (Usurpador)}
+Bajo el mismo marco fáctico (escritura y tradición sin inscripción), un intruso despoja al comprador de la posesión del inmueble mediante violencia[cite: 1]. El comprador está legitimado para entablar la acción reivindicatoria contra el usurpador[cite: 1]. El demandado, por ser un tercero desinteresado, no puede fundar su defensa en la falta de inscripción registral del título del actor[cite: 1].
+\end{example}
+
+\section{Organización de los Registros de la Propiedad Inmueble}
+
+\subsection{Sistema federal y demarcaciones territoriales}
+
+En observancia del sistema federal establecido por el artículo 1° de la Constitución Nacional, la función pública registral es resguardada por las provincias y la Ciudad Autónoma de Buenos Aires[cite: 1]. En consecuencia, existen \textbf{24 demarcaciones territoriales registrales} en la República Argentina[cite: 1].
+
+De acuerdo con lo estipulado por la Ley Nacional Registral Inmobiliaria 17.801, cada jurisdicción cuenta con al menos una sede registral[cite: 1]. Mientras la mayoría de las provincias han centralizado la función en un organismo único, existen jurisdicciones con multiplicidad de registros[cite: 1]:
+
+\begin{itemize}
+    \item \textbf{Provincia de Santa Fe}: Se organiza en dos circunscripciones (Primera Circunscripción con sede en Santa Fe y Segunda Circunscripción con sede en Rosario)[cite: 1].
+    \item \textbf{Provincia del Chaco}: Cuenta con sedes registrales en Resistencia y Presidencia Roque Sáenz Peña[cite: 1].
+    \item \textbf{Provincia de Mendoza}: Posee cuatro circunscripciones registrales operativas[cite: 1].
+    \item \textbf{Provincia de Entre Ríos}: Presenta un esquema descentralizado con 17 registros vinculados a las divisiones departamentales[cite: 1].
+\end{itemize}
+
+\subsection{El Consejo Federal de Registros de la Propiedad Inmueble}
+
+El \textbf{Consejo Federal de Registros de la Propiedad Inmueble} constituye el órgano institucional que nuclea a la totalidad de los directores registrales del país[cite: 1]. En sus asambleas anuales emite recomendaciones con el objeto de armonizar los criterios técnico-registrales de las distintas demarcaciones[cite: 1]. Dichas recomendaciones carecen de poder imperativo o jerárquico sobre las autoridades locales, aunque suelen integrarse al ordenamiento administrativo provincial mediante disposiciones locales[cite: 1].
+
+\subsection{Encuadre institucional}
+
+La dependencia institucional de los registros inmobiliarios varía según la jurisdicción local:
+
+\begin{itemize}
+    \item \textbf{Órbita del Poder Ejecutivo}: Representa el sistema adoptado por la amplia mayoría de las provincias (habitualmente bajo la órbita del Ministerio de Gobierno o de Economía)[cite: 1].
+    \item \textbf{Órbita del Poder Judicial}: Adopción presente en las provincias de Mendoza, San Juan, Neuquén y Tierra del Fuego[cite: 1]. En estas demarcaciones, el titular del registro ostenta el rango de magistrado judicial, exigiéndose el título profesional de abogado[cite: 1].
+\end{itemize}
+
+\section{Clasificación de los Registros de la Propiedad Inmueble}
+
+Los Registros de la Propiedad Inmueble se clasifican conforme a cuatro criterios técnico-jurídicos[cite: 1]:
+
+\subsection{Según el efecto de la inscripción}
+
+\begin{itemize}
+    \item \textbf{Registros Constitutivos}: La mutación sustancial del derecho real requiere de la registración para perfeccionarse; la inscripción obra como modo suficiente[cite: 1].
+    \item \textbf{Registros Declarativos}: El derecho real nace con independencia de la registración (extra-registralmente)[cite: 1]. La inscripción opera exclusivamente como vehículo de publicidad para la oponibilidad a terceros interesados[cite: 1].
+\end{itemize}
+
+\subsection{Según el efecto saneatorio}
+
+\begin{itemize}
+    \item \textbf{Registros Convalidantes}: La registración purga los vicios o nulidades de los que adoleciere el documento[cite: 1].
+    \item \textbf{Registros No Convalidantes}: La inscripción no convalida los actos nulos ni subsana sus defectos sustanciales[cite: 1].
+\end{itemize}
+
+\begin{formula}{Principio de No Convalidación (Art. 4° Ley 17.801)}
+La inscripción no convalida el título ni subsana los defectos de que adoleciera según las leyes[cite: 1].
+\end{formula}
+
+\subsection{Según la materia registrable}
+
+\begin{itemize}
+    \item \textbf{Registro de Hechos}: Asienta acontecimientos fácticos con significación jurídica (ej. Registro del Estado Civil y Capacidad de las Personas)[cite: 1].
+    \item \textbf{Registro de Actos}: El acontecimiento jurídico se celebra de manera directa ante el funcionario registral[cite: 1].
+    \item \textbf{Registro de Derechos}: Publicita el derecho real en su concepción jurídica abstracta[cite: 1].
+    \item \textbf{Registro de Documentos}: Registra el título instrumental formal que porta el acto jurídico sustantivo[cite: 1].
+\end{itemize}
+
+\subsection{Según la técnica de confección del asiento}
+
+\begin{itemize}
+    \item \textbf{Técnica de Incorporación}: El instrumento autorizado se agrega físicamente a los protocolos o tomos del registro, sin restitución al matrizador[cite: 1].
+    \item \textbf{Técnica de Transcripción}: El texto integral del documento se copia de manera textual en los libros del organismo[cite: 1].
+    \item \textbf{Técnica de Inscripción}: El documento es presentado para su calificación y ruego[cite: 1]. El registro extrae únicamente los datos de relevancia registral, confeccionando una síntesis en el folio real y devolviendo el matriz original con la respectiva constancia[cite: 1].
+\end{itemize}
+
+\begin{important}
+\textbf{Caracterización del Sistema Registral Inmobiliario Argentino}:
+Los Registros de la Propiedad Inmueble en la Argentina son de carácter \textbf{declarativo}, \textbf{no convalidante}, \textbf{de documentos} y utilizan la técnica de \textbf{inscripción}[cite: 1].
+\end{important}
+
+\section{Marco normativo}
+
+El marco regulatorio del Derecho Registral Inmobiliario argentino se conforma mediante un esquema jerárquico integrado por legislación nacional y normativa local[cite: 1]:
+
+\subsection{Ley Nacional Registral Inmobiliaria N° 17.801}
+
+Constituye el ordenamiento sustantivo complementario del CCyC que estatuye los principios fundamentales de la materia para la totalidad de las jurisdicciones del país[cite: 1].
+
+\subsection{Leyes reglamentarias locales}
+
+Cada demarcación reglamenta los aspectos procedimentales internos dentro de su jurisdicción:
+
+\begin{itemize}
+    \item \textbf{Provincia de Buenos Aires}: Decreto-Ley 11.643/63[cite: 1]. Esta norma, previa temporalmente a la Ley 17.801, sirvió de modelo para la redacción del texto nacional[cite: 1].
+    \item \textbf{Ciudad Autónoma de Buenos Aires}: Decreto-Ley 2.080/80 (Texto Ordenado mediante Decreto 466/99)[cite: 1].
+\end{itemize}
+
+\subsection{Normativa administrativa interna}
+
+Los organismos registrales emiten resoluciones reglamentarias divididas normativamente en[cite: 1]:
+
+\begin{itemize}
+    \item \textbf{Disposiciones Técnico-Registrales (DTR)}: Normas emanadas de la Dirección General dirigidas a los usuarios externos (abogados, escribanos, magistrados) instituyendo criterios de calificación registral e interpretación dogmática[cite: 1].
+    \item \textbf{Órdenes de Servicio e Instrucciones de Trabajo}: Reglamentaciones puramente operativas dirigidas al cuerpo de funcionarios y empleados del propio organismo[cite: 1].
+\end{itemize}
+
+\section{Documentos registrables}
+
+La admisibilidad de los títulos en el Registro de la Propiedad Inmueble viene demarcada taxativamente por los artículos 2° y 3° de la Ley 17.801[cite: 1].
+
+\subsection{Requisitos de fondo por el contenido (Art. 2° Ley 17.801)}
+
+\subsubsection{Inciso A: Actos sobre derechos reales inmobiliarios}
+Documentos que contengan actos que sirvan de causa a la constitución, transmisión, declaración, modificación o extinción de derechos reales sobre inmuebles[cite: 1]:
+
+\begin{itemize}
+    \item \textbf{Constitución}: Nacimiento del derecho real ex novo sobre cosa ajena (usufructo, hipoteca, servidumbre, uso) o derecho de superficie[cite: 1].
+    \item \textbf{Transmisión}: Traslado del derecho real desde el patrimonio del titular disponente hacia el adquirente (compraventa, donación, permuta)[cite: 1]. Aplica a los derechos transmisibles, excluyéndose el derecho real de habitación (art. 2160 CCyC)[cite: 1].
+    \item \textbf{Declaración}: Reconocimiento de un derecho real preexistente originado en un hecho o acto jurídico anterior[cite: 1]. Se constata en la sentencia traslativa de usucapión vicenal o en la partición de herencia, cuyo carácter es declarativo y retroactivo[cite: 1].
+    \item \textbf{Modificación}: Alteración del contenido o ejercicio del derecho sin sustitución de la titularidad (ej. modificación del reglamento de propiedad horizontal)[cite: 1].
+    \item \textbf{Extinción}: Actos que importan la conclusión absoluta del derecho real (ej. instrumento de renuncia expresa al usufructo)[cite: 1].
+\end{itemize}
+
+\subsubsection{Inciso B: Medidas cautelares}
+Documentos de origen judicial (oficios y testimonios) que dispongan la traba de embargo, inhibición general de bienes, anotación de litis, medidas no innovativas o prohibiciones de innovar que afecten inmuebles registrados[cite: 1].
+
+\subsubsection{Inciso C: Oportunidad de leyes especiales (Federalismo registral)}
+Documentos cuya registración sea expresamente habilitada por leyes especiales nacionales o provinciales[cite: 1]. Comprende supuestos tales como la inscripción de contratos de leasing inmobiliario, la registración de declaratorias de herederos en determinadas jurisdicciones (como CABA o Buenos Aires) o la anotación de boletos de compraventa bajo previsiones normativas específicas (ej. ordenamiento de Santa Fe o las disposiciones fijadas por el DNU 1.017/2024 para emprendimientos en construcción o derecho de superficie)[cite: 1].
+
+\subsection{Requisitos de forma y autenticidad (Art. 3° Ley 17.801)}
+
+Como regla de autenticidad formal, el documento registrable debe ostentar el carácter de \textbf{instrumento público} (emanado de notario, magistrado judicial o funcionario administrativo en ejercicio de sus funciones fedantes)[cite: 1].
+
+\begin{note}
+La excepción al principio de instrumento público procede cuando la ley autoriza la registración de \textbf{instrumentos privados}[cite: 1]. En tales supuestos, se exige imperativamente la certificación notarial de firmas a fin de dotar al documento de certeza de fecha y autenticidad de autoría[cite: 1].
+\end{note}
+
+\subsection{Firma digital e informatización (Ley 25.506)}
+
+La implementación de la tecnología digital en los registros exige el empleo de la \textbf{firma digital} regulada por la Ley 25.506[cite: 1]. La firma digital (sometida a un proceso técnico de certificación pública por autoridad de aplicación) goza de presunción legal de autenticidad e integridad, diferenciándose de la firma electrónica común[cite: 1].
+
+Diversas jurisdicciones (tales como la Provincia de Buenos Aires) han implementado el ingreso de medidas cautelares en formato puramente digital, eliminando el soporte papel[cite: 1]. La firma digital minimiza la eventualidad de falsificaciones o el ingreso de documentos apócrifos en los asientos del Registro[cite: 1].
+
+% ============================================================
+% RESUMEN CORNELL
+% ============================================================
+
+\chapter{Resumen Cornell}
+
+\section{Cuadro de Recuperación Activa}
+
+\begin{longtable}{|p{4.5cm}|p{10.5cm}|}
+\hline
+\textbf{PREGUNTAS / PALABRAS CLAVE} & \textbf{NOTAS} \\
+\hline
+\endhead
+
+\textbf{¿El Derecho Registral se agota en los Derechos Reales?} &
+No[cite: 1]. Se vincula con el ordenamiento jurídico integral: administrativo, constitucional, comercial y las distintas ramas del derecho civil (contratos, familia, sucesiones)[cite: 1]. El operador exige el dominio del derecho de fondo para calificar la inscripción[cite: 1]. \\ \hline
+
+\textbf{¿Cuáles son los elementos del título suficiente? (Art. 1892 CCyC)} &
+Es el acto jurídico causal revestido de forma que busca transmitir o constituir un derecho real[cite: 1]. Exige: (1) titularidad en el disponente, (2) capacidad legal en las partes, y (3) instrumentación en escritura pública (art. 1017 inc. a CCyC)[cite: 1]. \\ \hline
+
+\textbf{¿Qué establece el principio Nemo Plus Iuris?} &
+Consagrado en el art. 399 del CCyC, establece que nadie puede transmitir a otro un derecho más extenso o posterior que el que efectivamente ostenta en su patrimonio[cite: 1]. Fundamenta el requisito de titularidad del transmitente[cite: 1]. \\ \hline
+
+\textbf{¿En qué se diferencian el justo título y el título putativo?} &
+El \textbf{justo título} presenta un defecto de fondo (falta de capacidad o de titularidad) pero cumple con la forma sustancial (escritura); se subsana mediante usucapión breve (10 años)[cite: 1]. El \textbf{título putativo} padece de un error sobre el objeto (la escritura indica un inmueble distinto al poseído); exige usucapión larga (20 años)[cite: 1]. \\ \hline
+
+\textbf{¿El boleto de compraventa es justo título?} &
+No[cite: 1]. Carece de la forma impuesta por la ley (escritura pública) y no constituye una transmisión actual del derecho, sino una obligación de hacer una escritura traslativa futura[cite: 1]. \\ \hline
+
+\textbf{¿Cómo se perfecciona el modo suficiente en inmuebles?} &
+Mediante la \textbf{tradición real} integrada por actos materiales de entrega y recepción (art. 1923 CCyC)[cite: 1]. La sola entrega de llaves o las manifestaciones escritas en el instrumento no hacen tradición oponible frente a terceros (art. 1925 CCyC)[cite: 1]. \\ \hline
+
+\textbf{¿Qué estatuye la presunción del art. 1914 CCyC?} &
+Dispone que existiendo título y probándose un acto posesorio posterior, se presume \textit{iuris tantum} que la posesión se inició en la misma fecha asignada al título[cite: 1]. \\ \hline
+
+\textbf{¿Cuál es el efecto de la inscripción registral en Argentina?} &
+Es de carácter \textbf{declarativo}[cite: 1]. El derecho real nace fuera del registro por título y modo[cite: 1]. La registración es indispensable para otorgarle oponibilidad frente a terceros interesados y de buena fe (art. 1893 CCyC)[cite: 1]. \\ \hline
+
+\textbf{¿Quién es el tercero interesado de buena fe?} &
+Es aquel titular de un derecho (real o personal) que consulta la publicidad del Registro de la Propiedad Inmueble y adquiere o traba cautelares fundándose en la fe de las constancias registrales (ej. acreedor embargante)[cite: 1]. \\ \hline
+
+\textbf{¿Cómo se clasifican los RPI argentinos?} &
+Son: (1) \textbf{declarativos} (no crean el derecho), (2) \textbf{no convalidantes} (no subsanan nulidades, art. 4° Ley 17.801), (3) \textbf{de documentos} (inscriben instrumentos) y (4) \textbf{de inscripción} (sintetizan los datos relevantes)[cite: 1]. \\ \hline
+
+\textbf{¿Cómo se estructura la legislación registral en Argentina?} &
+Existe una norma marco unificada (Ley Nacional 17.801) reglamentada por ordenamientos locales en cada una de las 24 demarcaciones provinciales/CABA (ej. Dec-Ley 11.643/63 en PBA; Dec-Ley 2.080/80 en CABA)[cite: 1]. \\ \hline
+
+\textbf{¿Qué documentos se inscriben según la Ley 17.801?} &
+\textbf{Art. 2°}: Inciso A (actos constitutivos, traslativos, declarativos, modificativos y extintivos de derechos reales); Inciso B (medidas cautelares judiciales); Inciso C (documentos admitidos por leyes especiales)[cite: 1]. \textbf{Art. 3°}: Exige instrumento público o instrumento privado con firma certificada[cite: 1]. \\ \hline
+
+\textbf{¿Qué significación jurídica posee la firma digital?} &
+Bajo la Ley 25.506, la firma digital goza de presunción legal de autenticidad e integridad[cite: 1]. Habilita la tramitación digital de cautelares y minimiza el riesgo de falsificación documental[cite: 1]. \\ \hline
+
+\multicolumn{2}{|p{15cm}|}{
+\textbf{RESUMEN} \newline
+El régimen registral inmobiliario argentino reposa sobre un sistema \textbf{declarativo}, \textbf{no convalidante}, \textbf{de documentos} y de \textbf{inscripción}[cite: 1]. La mutación de derechos reales opera fuera del registro mediante la confluencia de \textbf{título suficiente} (acto causal válido con titularidad, capacidad y escritura pública) y \textbf{modo suficiente} (tradición ejecutada mediante actos materiales)[cite: 1]. La inscripción registral (normada por la Ley 17.801 y sus decretos reglamentarios locales) otorga oponibilidad erga omnes frente a los \textbf{terceros interesados y de buena fe}[cite: 1]. Los documentos que acceden al registro deben constar en instrumentos públicos o privados con firma certificada, impulsándose gradualmente la informatización a través de la firma digital[cite: 1].
+} \\ \hline
+\end{longtable}
+
+% ============================================================
+% APENDICES
+% ============================================================
+
+\appendix
+
+\chapter{Esquema normativo básico}
+
+\section{Cuadro comparativo de normas sobre registrabilidad}
+
+\begin{table}[H]
+\centering
+\caption{Requisitos de los documentos registrables según la Ley 17.801}
+\begin{tabular}{llp{7cm}}
+\toprule
+\textbf{Artículo} & \textbf{Requisito} & \textbf{Alcance legal} \\
+\midrule
+Art. 2° inc. a & Contenido sustantivo & Actos traslativos, constitutivos, declarativos, modificativos y extintivos de derechos reales[cite: 1]. \\
+Art. 2° inc. b & Contenido cautelar & Embargos, inhibiciones, anotaciones de litis y medidas no innovativas[cite: 1]. \\
+Art. 2° inc. c & Leyes especiales & Supuestos contemplados por el federalismo registral (leasing, boletos)[cite: 1]. \\
+Art. 3° & Requisito formal & Exigencia de instrumento público o privado con firma notarialmente certificada[cite: 1]. \\
+Art. 4° & Efecto saneatorio & Expreso principio de no convalidación de vicios o nulidades previas[cite: 1]. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% BIBLIOGRAFIA
+% ============================================================
+
+\begin{thebibliography}{9}
+
+\bibitem{savenez}
+Savenez, Sebastián,
+\textit{Teoría y Práctica del Derecho Registral},
+Editorial Dilala, 2025.
+
+\bibitem{andorno}
+Andorno, Luis O.,
+\textit{Ley Nacional Registral Comentada},
+Editorial Amurabi.
+
+\bibitem{ventura}
+Ventura, Gabriel,
+\textit{Ley Registral Comentada},
+Editorial Amurabi.
+
+\bibitem{cornejo}
+Cornejo, Américo,
+\textit{Derecho Registral},
+Editorial Astrea.
+
+\bibitem{villaro}
+Villaro, Felipe,
+\textit{Derecho Registral Inmobiliario},
+Editorial Astrea.
+
+\end{thebibliography}
 
 \end{document}

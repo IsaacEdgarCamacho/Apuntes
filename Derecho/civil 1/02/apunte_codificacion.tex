@@ -1,0 +1,695 @@
+% ============================================================
+% PLANTILLA GENERICA DE APUNTES UNIVERSITARIOS
+% ============================================================
+% Esta plantilla está pensada para cualquier materia y facultad.
+%
+% Estructura:
+%   1. Portada
+%   2. Índice
+%   3. Capítulos
+%      3.1 Secciones
+%          3.1.1 Subsecciones
+%   4. Apéndices
+%   5. Bibliografía
+%
+% Compilar con:
+%   latexmk -pdf Doc.tex
+%
+% ============================================================
+
+\documentclass[12pt,oneside]{book}
+
+% ------------------------------------------------------------
+% INFORMACION DEL DOCUMENTO
+% ------------------------------------------------------------
+
+\newcommand{\universidad}{UNIVERSIDAD DE BUENOS AIRES}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\departamento}{Derecho Civil}
+\newcommand{\materia}{Derecho Civil — Parte General}
+\newcommand{\titulo}{La Codificación del Derecho Civil Argentino}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2021}
+
+% ------------------------------------------------------------
+% PAQUETES
+% ------------------------------------------------------------
+
+% Idioma y codificación
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% Márgenes
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+% Matemática
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% Imágenes
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Tablas
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+% Listas
+\usepackage{enumitem}
+
+% Colores y cajas
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% Encabezados y pies
+\usepackage{fancyhdr}
+
+% Enlaces
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    bookmarks=true
+]{hyperref}
+
+% ------------------------------------------------------------
+% CONFIGURACION
+% ------------------------------------------------------------
+
+% Directorios de imágenes.
+% Podés agregar o quitar directorios según tu proyecto.
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% Profundidad del índice
+\setcounter{tocdepth}{2}
+
+% Párrafos
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% Listas
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+% ------------------------------------------------------------
+% ENCABEZADO Y PIE DE PAGINA
+% ------------------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Las páginas de inicio de capítulo no muestran encabezado
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ------------------------------------------------------------
+% COMANDOS GENERICOS
+% ------------------------------------------------------------
+
+% Valor absoluto
+\newcommand{\abs}[1]{\left|#1\right|}
+
+% Norma
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% Vector
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+% Derivada
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+
+% Derivada parcial
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ------------------------------------------------------------
+% CAJAS PARA APUNTES
+% ------------------------------------------------------------
+
+% ------------------------------------------------------------
+% DEFINICION
+% ------------------------------------------------------------
+
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% IMPORTANTE
+% ------------------------------------------------------------
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% EJEMPLO
+% ------------------------------------------------------------
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% FORMULA / REGLA
+% ------------------------------------------------------------
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% EJERCICIO
+% ------------------------------------------------------------
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% NOTA
+% ------------------------------------------------------------
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% CORNELL — TABLA ESTANDAR (no provista por la plantilla base;
+% se construye con los paquetes ya disponibles: longtable, array,
+% booktabs), respetando el estilo sobrio del resto del documento.
+% ------------------------------------------------------------
+
+\newcolumntype{Q}{>{\raggedright\arraybackslash}p{0.32\textwidth}}
+\newcolumntype{N}{>{\raggedright\arraybackslash}p{0.58\textwidth}}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+\includegraphics[scale=.4]{../img/descarga.jpeg} \\
+\vspace{1cm}
+
+{\large \universidad}
+
+{\large \facultad}
+
+\vspace{0.2cm}
+
+{\large \departamento}
+
+\vspace{2cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{1.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large ste material constituye un modesto aporte destinado a los estudiantes de
+la Facultad de Derecho de la Universidad de Buenos Aires, carrera de Abogacía.
+Su finalidad es complementar el proceso de aprendizaje y facilitar la
+organización de los contenidos, pero no pretende constituir una guía de estudio
+ni sustituir las clases presenciales o el material oficial de la cátedra.
+
+El material oficial de la asignatura se encuentra disponible en el sitio web
+de la materia.}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\end{titlepage}
+
+% ============================================================
+% INDICE
+% ============================================================
+
+\tableofcontents
+
+\clearpage
+
+% ============================================================
+% CAPITULO 1 — LA CODIFICACION COMO FENOMENO
+% ============================================================
+
+\chapter{La Codificación del Derecho Civil}
+
+\section{Introducción}
+
+El estudio del derecho civil supone abordar, en primer lugar, el fenómeno de la \textbf{codificación}. El derecho civil y la codificación son fenómenos inseparables: no puede comprenderse cabalmente el primero sin conocer el segundo.
+
+\section{Concepto y Caracteres de la Codificación}
+
+\begin{definition}{Codificación}
+Codificar es reunir orgánicamente en un cuerpo único todas las normas vigentes sobre una materia determinada del derecho. Un \textbf{código} es un cuerpo sistemático, orgánico y metódico de todas las normas y principios jurídicos relativos a una rama específica del ordenamiento jurídico.
+\end{definition}
+
+Un código presenta tres caracteres fundamentales:
+
+\begin{itemize}
+    \item \textbf{Unitario}: unifica en un solo cuerpo las normas de la materia.
+    \item \textbf{Exclusivo}: no existen normas de la materia por fuera del código; todo lo referido a ella queda comprendido en él.
+    \item \textbf{Sistemático}: posee un orden, una lógica y un método propios, lo que facilita la comprensión del fenómeno jurídico regulado.
+\end{itemize}
+
+\section{Ventajas e Inconvenientes de la Codificación}
+
+La codificación resulta ventajosa porque da unidad y coherencia al sistema legislativo y brinda \textbf{seguridad jurídica}: ante una duda, el código constituye el lugar único donde se espera encontrar la respuesta, lo que facilita el conocimiento del ordenamiento jurídico.
+
+No obstante, presenta también inconvenientes. Pretender que todo el ordenamiento quepa en un único instrumento responde a un cierto racionalismo, pero en la práctica la materia siempre tiende a desbordar el código. Además, un código puede \textbf{cristalizar} un momento histórico determinado; cuando posteriormente resulta necesario introducir reformas, existe el riesgo de que estas alteren el carácter sistemático original y generen incoherencias internas, afectando la unidad, exclusividad y orden que en principio lo caracterizan.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}p{0.45\textwidth}p{0.45\textwidth}@{}}
+\toprule
+\textbf{Ventajas} & \textbf{Inconvenientes} \\
+\midrule
+Unidad y coherencia del sistema legislativo & Pretensión de exhaustividad nunca totalmente alcanzada \\
+Seguridad jurídica: un lugar donde encontrar todo & Cristalización: el derecho puede quedar desactualizado \\
+Facilita el conocimiento del ordenamiento & Las reformas parciales generan incoherencias internas \\
+\bottomrule
+\end{tabular}
+\caption{Ventajas e inconvenientes de la codificación}
+\end{table}
+
+\section{Orígenes Históricos de la Codificación Moderna}
+
+El movimiento codificador se vincula con el pensamiento de la Ilustración y el racionalismo europeo del siglo XVIII. Comienza en Prusia, donde se elabora el \textit{Código General de los Estados Prusianos}, que se hace obligatorio en 1794 como derecho territorial de los estados, sin limitarse a la materia civil.
+
+El código más importante de este movimiento es el \textbf{Código Civil francés de 1804} (Código Napoleón), que instaura el modelo de las codificaciones nacionales y ejerce una influencia decisiva, a inicios del siglo XIX, sobre numerosos países, incluidos los de América Latina.
+
+Los grandes codificadores latinoamericanos son \textbf{Freitas} (Brasil), \textbf{Andrés Bello} (Chile) y \textbf{Vélez Sarsfield} (Argentina). Todos ellos reciben una fuerte influencia del Código Napoleón, aunque se apartan de él en distintos aspectos.
+
+\begin{note}
+La palabra \textit{civil} proviene del latín romano. El derecho civil abreva en toda una tradición jurídica que se remonta al derecho romano; la codificación no implica una ruptura con las instituciones preexistentes, sino que pretende dotarlas de unidad, sistematicidad y exclusividad, en consonancia con el espíritu racionalista e iluminista que confiaba en que la sola razón permitía abarcar y compendiar todo el conocimiento de una rama del derecho.
+\end{note}
+
+% ============================================================
+% CAPITULO 2 — CODIGO CIVIL DE VELEZ SARSFIELD
+% ============================================================
+
+\chapter{El Código Civil Argentino de Vélez Sarsfield}
+
+\section{Contexto Constitucional y Proceso de Elaboración}
+
+La Constitución Nacional contemplaba que fuese el \textbf{Congreso de la Nación} quien dictara el Código Civil para todo el país. Al organizarse el Estado argentino, las provincias delegaron en el Congreso esa potestad, definición de gran importancia porque otorgaba unidad a una nación surgida de guerras fratricidas y fuertes disputas internas, que necesitaba consolidar su identidad y encontrar elementos de cohesión. Esa cohesión debía expresarse, entre otros ámbitos, en las instituciones básicas: la persona, la familia, los contratos, la propiedad y las sucesiones. Las provincias, por su parte, conservaron la potestad de dictar sus propios códigos procesales y organizar sus sistemas judiciales.
+
+Por ley de 1863 se autorizó al Poder Ejecutivo a nombrar una comisión redactora. En 1864, el presidente Mitre encomendó esa tarea a \textbf{Vélez Sarsfield}, jurista cordobés, quien se dedicó a ella durante cinco años y terminó el proyecto en 1869. El presidente Sarmiento lo envió al Congreso, que lo aprobó \textit{``libro cerrado''}, estableciendo por la Ley 340 su entrada en vigencia.
+
+\begin{important}
+\textbf{Ley 340 (1869)}: aprobación del Código Civil de Vélez Sarsfield. Entrada en vigencia: 1.\textsuperscript{o} de enero de 1871.
+\end{important}
+
+\section{Fuentes del Código de Vélez Sarsfield}
+
+El Código de Vélez Sarsfield se nutrió de las siguientes fuentes:
+
+\begin{enumerate}
+    \item[a)] \textbf{Derecho romano}: llega a través de los estudios universitarios del propio Vélez Sarsfield y de la influencia de Savigny en su pensamiento.
+    \item[b)] \textbf{Legislación española y patria}: Vélez Sarsfield no pretendía marcar una ruptura con las formas y leyes del pueblo argentino, por lo que se advierte continuidad de instituciones provenientes de la legislación española.
+    \item[c)] \textbf{Derecho canónico}: influye especialmente en materia de matrimonio, cuyos efectos civiles quedan a cargo de Vélez Sarsfield (situación que cambiaría posteriormente con la ley de matrimonio civil).
+    \item[d)] \textbf{Código Napoleón}: influye de forma directa e indirecta, a través de los distintos comentaristas conocidos por Vélez Sarsfield, señalados en las notas al pie de su código.
+    \item[e)] \textbf{Código chileno de Andrés Bello, Código de Luisiana y Código uruguayo}: también son tenidos en cuenta.
+    \item[f)] \textbf{Proyecto de García Goyena} (España): obra de distintos juristas y proyecto de código español preparado por García Goyena.
+\end{enumerate}
+
+\begin{important}
+La influencia más importante en el Código de Vélez fue la de \textbf{Augusto Teixeira de Freitas}, jurista brasileño, autor de una obra monumental —la \textit{Consolidación de las Leyes} y el \textit{Esbozo del Código Civil}— de la que Vélez Sarsfield tomó instituciones y contenidos. Es considerada la mayor influencia recibida por el Código Civil argentino, especialmente en cuanto a su método.
+\end{important}
+
+\section{Método del Código de Vélez Sarsfield}
+
+El Código de Vélez, sancionado por la Ley 340, se estructuraba en dos títulos preliminares, cuatro libros y un título complementario.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}p{0.30\textwidth}p{0.60\textwidth}@{}}
+\toprule
+\textbf{Parte} & \textbf{Contenido} \\
+\midrule
+Título Preliminar I & De las leyes — teoría general de la ley \\
+Título Preliminar II & Del modo de contar los intervalos del derecho \\
+Libro I & De las personas (personas en general y derechos procedentes de las relaciones de familia) \\
+Libro II & De los derechos personales en las relaciones civiles (obligaciones, hechos y actos jurídicos, contratos) \\
+Libro III & De los derechos reales (vínculos directos entre persona y cosas) \\
+Libro IV & Disposiciones comunes a los derechos reales y personales (sucesiones, privilegios, prescripción) \\
+Título Complementario & Disposiciones de aplicación \\
+\bottomrule
+\end{tabular}
+\caption{Estructura del Código Civil de Vélez Sarsfield (Ley 340)}
+\end{table}
+
+El método del código fue siempre muy valorado por tratar en un único título los hechos y actos jurídicos, y por unificar los derechos reales. El matrimonio, por su parte, no era tratado entre los contratos sino dentro del derecho de familia propiamente dicho, y las sucesiones estaban separadas de las donaciones. Se le criticaba, sin embargo, la ausencia de una \textbf{parte general}.
+
+% ============================================================
+% CAPITULO 3 — PROYECTOS DE REFORMA Y LEY 17.711
+% ============================================================
+
+\chapter{Proyectos de Reforma y la Ley 17.711}
+
+\section{Proyectos de Reforma Anteriores a 1968}
+
+% TODO: los nombres de los integrantes de la comisión de 1936 aparecen
+% registrados de forma imprecisa en las notas originales.
+Hubo distintos proyectos de reforma al Código Civil de Vélez Sarsfield con anterioridad a su primera gran transformación integral.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}p{0.12\textwidth}p{0.30\textwidth}p{0.45\textwidth}@{}}
+\toprule
+\textbf{Año} & \textbf{Proyecto / autor} & \textbf{Características} \\
+\midrule
+1926 & Anteproyecto Bibiloni & Jurista a cargo de la redacción inicial \\
+1936 & Proyecto del 36 & Comisión que tomó como base el trabajo de Bibiloni \\
+1954 & Anteproyecto Llambías & Comisión presidida por Jorge J. Llambías; proyecto completo de reformas \\
+\bottomrule
+\end{tabular}
+\caption{Proyectos de reforma anteriores a la Ley 17.711}
+\end{table}
+
+La concreción de una reforma efectiva se dio cien años después del Código de Vélez, en 1968, a través de la Ley 17.711, sancionada en abril de ese año.
+
+\section{La Ley 17.711 (1968): Primera Reforma Integral}
+
+\begin{important}
+\textbf{Ley 17.711 (1968)}: primera reforma integral del Código Civil argentino. Sancionada en abril de 1968, en vigencia desde el 1.\textsuperscript{o} de julio de 1968.
+\end{important}
+
+La comisión redactora estuvo inicialmente integrada, entre otros, por Fleitas, Semon, Gorda, José Media López Olaciregui, Piensa, Aprobar, Tomar, Tiene Ruiz y Alberto.
+% TODO: la nómina de integrantes de la comisión redactora de la Ley 17.711
+% aparece registrada de forma imprecisa/ambigua en las notas originales.
+Tras distintas renuncias, el proyecto fue finalmente firmado por Martínez Ruiz, Fleitas e Híbrido. \textbf{Borda}, ministro del interior, es considerado el principal autor de esta iniciativa.
+
+La Ley 17.711 constituyó una transformación estructural muy importante, aunque no una derogación completa del código: conservó su estructura general e introdujo reformas en aspectos sustanciales.
+
+\subsection{Institutos Incorporados por la Ley 17.711}
+
+\begin{definition}{Lesión subjetiva (art. 954 CC)}
+Vicio del acto jurídico que permite solicitar la nulidad o modificación del acto cuando una parte, explotando la necesidad, ligereza o inexperiencia de la otra, obtiene una ventaja patrimonial evidentemente desproporcionada. Vélez Sarsfield había rechazado expresamente este instituto en la nota al artículo 943; la Ley 17.711 lo incorporó recogiendo las propuestas del Tercer Congreso de Derecho Civil realizado en Córdoba.
+\end{definition}
+
+\begin{definition}{Teoría de la imprevisión}
+Permite resolver un contrato cuando ocurren circunstancias sobrevinientes que alteran sustancialmente la igualdad entre las prestaciones, tornándolas desproporcionadas para una de las partes. Su finalidad es restablecer la justicia contractual.
+\end{definition}
+
+\begin{definition}{Abuso del derecho}
+Reconoce el carácter funcional de los derechos subjetivos: estos no pueden ejercerse de manera abusiva o contraria a los fines para los cuales fueron reconocidos.
+\end{definition}
+
+\subsection{Otras Reformas Introducidas por la Ley 17.711}
+
+Además de los tres institutos señalados, la Ley 17.711 incorporó el factor moral en el derecho positivo, la protección de la buena fe, la corrección de un individualismo excesivo presente en algunos institutos del Código de Vélez y la incorporación de la equidad —también presente en la lesión subjetiva— como herramienta para corregir situaciones en el caso concreto.
+
+\subsection{Reformas Posteriores y Proyectos de Unificación}
+
+Con posterioridad a la Ley 17.711 se sucedieron distintas reformas: en materia de familia, mediante las leyes 23.264 y 23.515; en materia cambiaria; y en materia de obligaciones, con la cuestión de la convertibilidad.
+
+Luego comenzaron los proyectos de reforma integral orientados a la \textbf{unificación} civil y comercial: en 1987 se conformó una comisión; en 1993 se presentaron el proyecto de la Cámara de Diputados —elaborado por una comisión federal— y un proyecto elaborado por el Poder Ejecutivo; y en 1998 se presentó un nuevo proyecto, elaborado por una comisión designada por el Poder Ejecutivo. Este último ejerció una influencia decisiva sobre el Código Civil y Comercial sancionado en 2014, ya que constituyó la base tomada por la comisión de 2011-2012 para su redacción.
+
+% ============================================================
+% CAPITULO 4 — CODIGO CIVIL Y COMERCIAL DE LA NACION (2014)
+% ============================================================
+
+\chapter{El Código Civil y Comercial de la Nación (2014)}
+
+\section{Comisión Redactora y Elaboración del Anteproyecto}
+
+Los orígenes del Código Civil y Comercial se remontan a una comisión nombrada por decreto del Poder Ejecutivo. En febrero de 2011, el \textbf{Decreto 191/2011} designó una comisión integrada por dos jueces de la Corte Suprema —el juez \textbf{Lorenzetti} y la doctora \textbf{Highton de Nolasco}— y una ex jueza de la Suprema Corte mendocina, la doctora \textbf{Aída Kemelmajer de Carlucci}.
+
+Estos tres juristas convocaron a 33 subcomisiones y a la colaboración de 90 profesores. Se tomó como base el proyecto de 1998. Las subcomisiones no tuvieron demasiado diálogo entre sí, lo que se refleja en algunas inconsistencias internas entre distintos tramos del proyecto; la comisión redactora tuvo la misión de unificar los aportes, contando con la tarea de un coordinador, Federico De Lorenzo, aunque subsisten algunas inconsistencias.
+
+La comisión concluyó su tarea un año después: en marzo presentó al Poder Ejecutivo el anteproyecto de Código Civil y Comercial, que incluye fundamentos que reemplazan a las notas al pie y deroga completamente el Código de Vélez. No se trata, entonces, de una reforma como la Ley 17.711, sino de una derogación del Código de Vélez y su sustitución completa por un nuevo cuerpo normativo. El Poder Ejecutivo tomó tres meses adicionales para realizar sus propios ajustes y elevó el proyecto al Congreso el 8 de junio de 2012.
+
+\section{Trámite Parlamentario}
+
+El proyecto ingresó por el Senado (expediente S-1157/2012). Dada la complejidad de reformar el Código Civil, se conformó una \textbf{comisión bicameral}, integrada por diputados y senadores, que estableció un mecanismo de trabajo con audiencias públicas en todo el país. Participaron particulares, organizaciones no gubernamentales, organizaciones públicas, jueces y abogados, quienes expusieron sus opiniones sobre distintas materias; las audiencias se desarrollaron incluso viajando la comisión bicameral por el país, lo que permitió una expresión federal.
+
+Los temas más debatidos en las audiencias fueron la existencia de la persona, la maternidad subrogada, la propiedad indígena, la regulación de los consumidores, y diversos temas vinculados con la familia, la propiedad, los conjuntos inmobiliarios y otros derechos reales.
+
+La comisión bicameral concluyó el año 2012 sin resultados y el proceso se mantuvo con perfil bajo durante 2013. Hacia octubre-noviembre de ese año se reencauzó: la comisión emitió su dictamen, el plenario del Senado sancionó la media sanción el 27 de noviembre de 2013 y el proyecto pasó a Diputados. En esa cámara, el tratamiento permaneció suspendido hasta que se retomó en septiembre, y en la sesión del 1.\textsuperscript{o} de octubre de 2014 se dio la sanción definitiva. El Poder Ejecutivo promulgó y publicó la norma en el Boletín Oficial el 8 de octubre de 2014.
+
+\begin{important}
+\textbf{Ley 26.994} (sancionada el 1.\textsuperscript{o} de octubre de 2014, promulgada el 8 de octubre de 2014): aprobación del Código Civil y Comercial de la Nación. Entrada en vigencia: 1.\textsuperscript{o} de agosto de 2015 (la Ley 27.077 adelantó la fecha originalmente prevista).
+\end{important}
+
+\section{Método del Código Civil y Comercial: Comparación con el Código de Vélez}
+
+Metodológicamente, el nuevo código cuenta con un \textbf{título preliminar} y \textbf{seis libros}, mientras que el Código de Vélez tenía dos títulos preliminares y cuatro libros más un título complementario. El título preliminar del Código Civil y Comercial se divide en cuatro capítulos: el Capítulo 2 contiene el artículo 6; el Capítulo 3 regula el ejercicio de los derechos —incorporando normas sobre abuso del derecho y buena fe que antes estaban dispersas en el Código de Vélez—; y el Capítulo 4 trata sobre derechos y bienes. Este título preliminar constituye un núcleo de significación que proyecta sus efectos sobre el resto del ordenamiento.
+
+\begin{longtable}{@{}p{0.28\textwidth}p{0.32\textwidth}p{0.32\textwidth}@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Código de Vélez (1871)} & \textbf{Código Civil y Comercial (2014)} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Aspecto} & \textbf{Código de Vélez (1871)} & \textbf{Código Civil y Comercial (2014)} \\
+\midrule
+\endhead
+Títulos preliminares & Dos (leyes y modo de contar intervalos) & Uno, dividido en cuatro capítulos \\
+Libros & Cuatro libros más título complementario & Seis libros \\
+Parte general & No tenía parte general & Libro Primero: Parte General (novedad metodológica) \\
+Personas & Libro I: personas y familia juntos & Separados: Libro I (personas / parte general) y Libro II (familia) \\
+Personas humanas vs. jurídicas & Comenzaba por personas jurídicas & Comienza por personas humanas (Título I) \\
+Sucesiones & En Libro IV (disposiciones comunes) & Libro Quinto (libro propio) \\
+Familia & Dentro del Libro I & Libro Segundo (libro propio) \\
+Notas al pie & Sí (fuentes y fundamentos de Vélez) & Reemplazadas por los Fundamentos del Anteproyecto \\
+Unificación civil-comercial & No (existía un Código de Comercio separado) & Sí (unifica materia civil y comercial) \\
+\bottomrule
+\caption{Comparación metodológica entre el Código de Vélez y el Código Civil y Comercial}
+\end{longtable}
+
+\section{Grandes Líneas del Código Civil y Comercial}
+
+\subsection{En Materia de Persona y Familia}
+
+La \textbf{persona humana} está regulada como un principio fundamental al inicio del Libro Primero. Se deroga la definición de persona que traía el Código de Vélez, por considerarse una noción previa al derecho: toda persona es un ser humano y no podría existir un ser humano que no sea persona. Se otorga centralidad al concepto de \textbf{dignidad}.
+
+Se ratifica que la existencia de la persona comienza desde la concepción, principio ya presente en el Código de Vélez, pero se elimina la referencia al seno materno que este contenía, en atención al problema de los embriones: el nuevo código habla simplemente de \textit{concepción}, sin especificar si es dentro o fuera del seno materno.
+
+\begin{definition}{Comienzo de la existencia de la persona humana (art. 19 CCC)}
+La existencia de la persona humana comienza desde la concepción.
+\end{definition}
+
+Otras novedades en materia de personas incluyen la incorporación del capítulo de \textbf{derechos personalísimos} y una fuerte reforma en materia de capacidad, a la luz de las Convenciones de los Derechos del Niño y de las Personas con Discapacidad, con tendencia hacia la \textbf{autonomía progresiva} de los niños y de las personas con discapacidad, acompañada de medidas de protección.
+
+En materia de familia se advierte una marcada primacía de la autonomía individual: se debilita la institución matrimonial y aparece el \textbf{divorcio exprés}; en el régimen de bienes del matrimonio se habilita una opción de régimen de separación que antes no existía; se incorpora la regulación de la \textbf{unión convivencial}, registrada o no; y en materia de filiación se incorporan las técnicas de reproducción asistida, reguladas bajo la idea de voluntad procreacional, con problemas vinculados al derecho a la identidad. Se excluyó la maternidad subrogada del texto final, aunque había estado inicialmente en el proyecto, lo que dejó abierto un debate judicial en el que distintos jueces han dictado sentencias admitiéndola; conforme a las notas, la maternidad subrogada no está admitida en el ordenamiento argentino.
+
+Se modificó también la denominación de \textit{patria potestad}, que pasó a llamarse \textbf{responsabilidad parental}, y se incorporaron normas sobre los procesos de familia. En materia sucesoria, el cambio más relevante es la reducción de la porción legítima: la de los descendientes pasó de cuatro quintos a dos tercios, y la de los ascendientes, de dos tercios a un medio. Se incorporó, además, la posibilidad de mejorar la porción legítima a favor del heredero con discapacidad.
+
+\begin{longtable}{@{}p{0.28\textwidth}p{0.32\textwidth}p{0.32\textwidth}@{}}
+\toprule
+\textbf{Institución} & \textbf{Código de Vélez} & \textbf{Código Civil y Comercial} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Institución} & \textbf{Código de Vélez} & \textbf{Código Civil y Comercial} \\
+\midrule
+\endhead
+Persona humana & Definida en el código (art. 30) & Concepto previo al derecho; se deroga la definición \\
+Capacidad & Sistema rígido de incapacidades & Autonomía progresiva y apoyos para personas con discapacidad \\
+Derechos personalísimos & Dispersos en el código & Capítulo específico en el Libro I \\
+Matrimonio & Divorcio vincular (Ley 23.515) & Divorcio exprés, sin causales ni plazos \\
+Régimen de bienes & Solo régimen de comunidad & Opción: comunidad o separación de bienes \\
+Unión convivencial & No regulada & Regulada (registrada o no) \\
+Filiación & Natural y matrimonial & Se agrega la filiación por técnicas de reproducción asistida \\
+Maternidad subrogada & No regulada & Excluida del código (debate judicial abierto) \\
+Patria potestad & Patria potestad (art. 264) & Responsabilidad parental \\
+Legítima de descendientes & 4/5 & 2/3 \\
+Legítima de ascendientes & 2/3 & 1/2 \\
+\bottomrule
+\caption{Comparación de institutos de persona y familia entre ambos códigos}
+\end{longtable}
+
+\subsection{En Materia de Derecho Privado Patrimonial}
+
+Se incorpora parcialmente el estatuto del consumidor y se regulan los contratos de consumo, aunque continúa vigente la ley de defensa del consumidor con su regulación específica. En materia de responsabilidad civil se incorpora la \textbf{función preventiva}, conservando la función resarcitoria; no se regula, en cambio, la función punitiva, lo que dio lugar a un debate doctrinario.
+
+Se amplía además la regulación de contratos, incorporando numerosos contratos antes no tipificados como nominados, y se incorporan nuevos derechos reales, como los conjuntos inmobiliarios. Se incorpora también un título específico, en el Libro Sexto, sobre derecho internacional privado.
+
+\begin{important}
+\textbf{Función preventiva de la responsabilidad civil}: antes del Código Civil y Comercial solo existía la función resarcitoria. El nuevo código reconoce expresamente la posibilidad de prevenir el daño antes de que ocurra (arts. 1710 a 1713 CCC).
+\end{important}
+
+% ============================================================
+% RESUMEN CORNELL
+% ============================================================
+
+\chapter*{Resumen Cornell}
+\addcontentsline{toc}{chapter}{Resumen Cornell}
+
+\begin{longtable}{Q|N}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es un código?} &
+Un cuerpo único, sistemático, orgánico y metódico que reúne todas las normas de una rama del derecho. Sus caracteres son: unitario (unifica), exclusivo (no hay normas fuera de él) y sistemático (tiene lógica y método propios). \\
+\midrule
+
+\textbf{¿Qué ventajas tiene la codificación?} &
+Da unidad y coherencia al sistema legislativo, brinda seguridad jurídica (un solo lugar donde encontrar todo) y facilita el conocimiento del ordenamiento. \\
+\midrule
+
+\textbf{¿Qué inconvenientes tiene?} &
+La materia siempre se desborda y el código nunca es exhaustivo. Puede cristalizar el derecho en un momento histórico. Las reformas parciales posteriores pueden generar incoherencias internas. \\
+\midrule
+
+\textbf{¿Cómo surge la codificación moderna?} &
+En el siglo XVIII, con la Ilustración y el racionalismo europeo. Comienza en Prusia (1794). El modelo más influyente es el Código Civil francés (Código Napoleón, 1804), que marcó a toda América Latina. \\
+\midrule
+
+\textbf{¿Por qué el Congreso dicta el Código Civil y no cada provincia?} &
+La Constitución Nacional delegó esa potestad en el Congreso para dar unidad a las provincias argentinas, que provenían de guerras fratricidas y necesitaban cohesión en sus instituciones básicas (persona, familia, contratos, propiedad, sucesiones). \\
+\midrule
+
+\textbf{¿Quién redactó el Código Civil de 1871?} &
+Vélez Sarsfield, jurista cordobés, por encomienda del presidente Mitre en 1864. Trabajó durante cinco años y entregó el proyecto en 1869. Sarmiento lo envió al Congreso, que lo aprobó ``libro cerrado'' por Ley 340, con vigencia desde el 1.\,° de enero de 1871. \\
+\midrule
+
+\textbf{¿Cuál fue la mayor influencia en el Código de Vélez?} &
+Augusto Teixeira de Freitas, jurista brasileño, autor de la \textit{Consolidación de las Leyes} y del \textit{Esbozo del Código Civil}. También influyeron el derecho romano, el Código Napoleón y sus comentaristas, la legislación española y patria, el derecho canónico, y los códigos chileno y uruguayo. \\
+\midrule
+
+\textbf{¿Cuál fue el aporte de la Ley 17.711 (1968)?} &
+Primera reforma integral del Código de Vélez. Incorporó tres institutos clave: lesión subjetiva (art. 954), teoría de la imprevisión y abuso del derecho. También incorporó la buena fe, la equidad, la corrección del individualismo excesivo y el factor moral al derecho positivo. \\
+\midrule
+
+\textbf{¿Quiénes redactaron el Código Civil y Comercial y cómo?} &
+Comisión creada por el Decreto 191/2011, integrada por Lorenzetti, Highton de Nolasco y Kemelmajer de Carlucci. Convocaron a 33 subcomisiones y 90 profesores colaboradores. Tomaron como base el proyecto de 1998. Entregaron el anteproyecto en marzo de 2012; el Poder Ejecutivo lo envió al Congreso en junio de ese año. \\
+\midrule
+
+\textbf{¿Cuándo entró en vigencia el Código Civil y Comercial?} &
+Fue sancionado el 1.\,° de octubre de 2014 y promulgado el 8 de octubre de 2014 (Ley 26.994). Entró en vigencia el 1.\,° de agosto de 2015 (la Ley 27.077 adelantó la fecha originalmente prevista). \\
+\midrule
+
+\textbf{¿Cuál es la novedad metodológica más importante del Código Civil y Comercial?} &
+La incorporación del Libro Primero como Parte General, inexistente en el Código de Vélez. También: un solo título preliminar (antes dos), seis libros (antes cuatro), el Libro Segundo para familia (antes dentro del Libro I) y el Libro Quinto para sucesiones (antes en disposiciones comunes). \\
+\midrule
+
+\textbf{¿Cuáles son los cambios más importantes en materia de personas y familia?} &
+Personas: centralidad de la dignidad, autonomía progresiva, capítulo de derechos personalísimos, nueva regulación de la capacidad. Familia: divorcio exprés, opción de régimen de separación de bienes, regulación de uniones convivenciales, reproducción asistida, responsabilidad parental y reducción de la porción legítima. \\
+\midrule
+
+\textbf{¿Qué novedades hay en materia patrimonial?} &
+Incorporación de la función preventiva de la responsabilidad civil, del estatuto del consumidor y los contratos de consumo, mayor cantidad de contratos tipificados, nuevos derechos reales (conjuntos inmobiliarios) y un Libro Sexto de derecho internacional privado. \\
+\midrule
+
+\multicolumn{2}{p{0.90\textwidth}}{
+\textbf{Resumen:} La codificación —reunión orgánica y sistemática de normas en un cuerpo único— surgió de la Ilustración europea del siglo XVIII y tuvo en el Código Napoleón (1804) su modelo más influyente. Argentina adoptó ese modelo en el Código Civil de 1871, obra de Vélez Sarsfield, quien se nutrió principalmente de Freitas, el derecho romano, la legislación española y el propio Código Napoleón. El método de Vélez fue muy valorado, aunque carecía de parte general. Tras varios proyectos de reforma, la Ley 17.711 (1968) introdujo la primera transformación integral, incorporando la lesión subjetiva, la imprevisión y el abuso del derecho. Finalmente, el Código Civil y Comercial de la Nación —redactado por Lorenzetti, Highton de Nolasco y Kemelmajer de Carlucci sobre la base del proyecto de 1998, sancionado en 2014 y vigente desde el 1.\,° de agosto de 2015— derogó por completo el Código de Vélez e introdujo una parte general, la unificación civil y comercial, la centralidad de la dignidad humana, la autonomía progresiva, el divorcio exprés, las uniones convivenciales, la función preventiva de la responsabilidad civil y el derecho internacional privado codificado, entre otros cambios fundamentales.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

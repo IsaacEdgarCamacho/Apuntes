@@ -1,0 +1,1014 @@
+%==============================================================================
+% APUNTES DE DERECHO PROCESAL CIVIL
+% Documento LaTeX autónomo — Compilable sin dependencias externas
+%==============================================================================
+
+\documentclass[12pt,oneside]{book}
+
+%==============================================================================
+% PAQUETES FUNDAMENTALES
+%==============================================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+%==============================================================================
+% GEOMETRÍA Y MÁRGENES
+%==============================================================================
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+%==============================================================================
+% PAQUETES MATEMÁTICOS
+%==============================================================================
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+%==============================================================================
+% PAQUETES PARA IMÁGENES Y GRÁFICOS
+%==============================================================================
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+%==============================================================================
+% PAQUETES PARA TABLAS
+%==============================================================================
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+%==============================================================================
+% PAQUETES PARA LISTAS
+%==============================================================================
+
+\usepackage{enumitem}
+
+%==============================================================================
+% PAQUETES PARA CAJAS Y COLORES
+%==============================================================================
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+%==============================================================================
+% PAQUETES PARA ENCABEZADOS Y PIES
+%==============================================================================
+
+\usepackage{fancyhdr}
+
+%==============================================================================
+% PAQUETES TIPOGRÁFICOS
+%==============================================================================
+
+\usepackage{ragged2e}
+
+%==============================================================================
+% PAQUETES PARA HIPERVÍNCULOS Y METADATOS
+%==============================================================================
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Apuntes de Derecho Procesal Civil},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================================
+% DEFINICIÓN DE VARIABLES
+%==============================================================================
+
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Licenciatura en Derecho}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{Introducción y Conceptos Fundamentales}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2025}
+
+%==============================================================================
+% COMANDOS MATEMÁTICOS PERSONALIZADOS
+%==============================================================================
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%==============================================================================
+% DEFINICIÓN DE CAJAS ACADÉMICAS
+%==============================================================================
+
+% Caja de Definición
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja Importante
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja de Ejemplo
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja de Fórmula
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja de Ejercicio
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja de Nota
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%==============================================================================
+% RUTAS DE IMÁGENES
+%==============================================================================
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+%==============================================================================
+% ÍNDICE
+%==============================================================================
+
+\setcounter{tocdepth}{2}
+
+%==============================================================================
+% CONFIGURACIÓN DE PÁRRAFOS
+%==============================================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+%==============================================================================
+% CONFIGURACIÓN DE LISTAS
+%==============================================================================
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+%==============================================================================
+% CONTROL DE VIUDAS Y HUÉRFANAS
+%==============================================================================
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+%==============================================================================
+% ENCABEZADOS Y PIES DE PÁGINA
+%==============================================================================
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Estilo para páginas de capítulo
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================================
+% INICIO DEL DOCUMENTO
+%==============================================================================
+
+\begin{document}
+
+%==============================================================================
+% PORTADA
+%==============================================================================
+
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{La comprensión profunda del proceso judicial es el cimiento de la práctica legal competente.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%==============================================================================
+% ÍNDICE
+%==============================================================================
+
+\tableofcontents
+
+\clearpage
+
+%==============================================================================
+% CAPÍTULO 1: INTRODUCCIÓN AL DERECHO PROCESAL CIVIL
+%==============================================================================
+
+\chapter{Introducción al Derecho Procesal Civil}
+
+\section{Concepto e importancia práctica}
+
+El \textbf{Derecho Procesal Civil} constituye el conjunto de normas y principios que rigen el desarrollo del proceso judicial civil. Representa la herramienta fundamental que permite materializar en la práctica la aplicación de las normas de derecho sustancial cuando existe conflicto entre las partes.
+
+El abogado litigante actúa cotidianamente en virtud de esta disciplina: redacta demandas, contesta traslados, ofrece pruebas, participa en audiencias y presenta recursos. Sin el dominio del derecho procesal, el conocimiento del derecho de fondo carece de operatividad práctica.
+
+\subsection{El conflicto jurídico como origen del proceso}
+
+Existe una distinción fundamental entre el derecho sustancial y el derecho procesal:
+
+\begin{itemize}
+    \item El \textbf{derecho sustancial} (derecho de fondo) regula las relaciones ordinarias en la sociedad: contratos, responsabilidad civil, derechos de familia, sucesiones, propiedad, etc.
+    \item El \textbf{derecho procesal} entra en escena cuando el derecho sustancial ya no es operativo entre las partes debido a la existencia de un conflicto.
+\end{itemize}
+
+Cuando surge un conflicto, las normas de fondo dejan de funcionar espontáneamente. Se requiere entonces la intervención de un tercero imparcial: el juez. Con esa intervención nace una nueva relación jurídica regida por el Código Procesal Civil y Comercial.
+
+\begin{example}{Accidente de transporte}
+Una persona sube a un colectivo y celebra, de manera tácita, un contrato de transporte. Durante el trayecto, el vehículo sufre un accidente. El pasajero se golpea la cabeza y requiere una semana de internación hospitalaria. La empresa de transporte se niega a responder por los daños. En este punto, la relación sustancial entre pasajero y empresa se agota. La solución ya no puede encontrarse en el contrato de transporte (que presupone un viaje sin incidentes). Es necesario acudir a la justicia. Surge entonces una nueva relación jurídica: demandante (pasajero), demandado (empresa de transporte) y tercero imparcial (juez). Esta nueva relación se rige por el Código Procesal Civil y Comercial.
+\end{example}
+
+\begin{example}{Producto defectuoso}
+Un consumidor adquiere una heladera que no funciona correctamente. Intenta ejercer su derecho de garantía, pero el local comercial cierra sus puertas sin responder. La relación de consumo quedó insatisfecha porque la empresa incumplió su obligación. El consumidor debe recurrir a la justicia: puede presentar una demanda ante el Tribunal de Consumo (Diagonal Sur 651, 1° piso) o ante la justicia ordinaria. De nuevo, surge el proceso judicial.
+\end{example}
+
+\begin{example}{Accidente laboral}
+Un trabajador manipula una máquina industrial. Una pieza defectuosa se quiebra durante la operación y cae sobre el empleado, quien sufre una conmoción cerebral. La relación laboral anterior al accidente fue sustancial; el siniestro genera un conflicto entre el derecho del trabajador a indemnización y la obligación del empleador. Este conflicto debe resolverse a través del proceso ante la jurisdicción competente (en este caso, la justicia laboral).
+\end{example}
+
+\subsection{La sentencia como norma individual}
+
+Una vez que el juez interviene y analiza el conflicto, dicta una \textbf{sentencia}. Esta sentencia constituye una norma individual: es una ``ley a medida'' que resuelve el caso concreto entre las partes específicas.
+
+A diferencia de una ley general (que rige para todos y se aplica a una categoría de casos), la sentencia es individual (rige solo para las partes y solo para ese caso). Mediante la sentencia, el derecho sustancial vuelve a ser operativo, pero ahora por mandato del órgano jurisdiccional.
+
+Por ejemplo, el juez puede dictar sentencia ordenando: ``La empresa de transporte debe pagar al demandante la suma de \$500.000 en concepto de daño material y daño moral, más intereses''. Esta norma individual hace efectiva la voluntad de la ley sustancial (responsabilidad civil por incumplimiento de contrato).
+
+%==============================================================================
+% CAPÍTULO 2: AUTONOMÍA E UNIDAD DEL DERECHO PROCESAL
+%==============================================================================
+
+\chapter{Autonomía e Unidad del Derecho Procesal}
+
+\section{Carácter autónomo}
+
+El Derecho Procesal Civil constituye una rama autónoma del derecho. Posee:
+
+\begin{itemize}
+    \item Código propio: el Código Procesal Civil y Comercial de la Nación.
+    \item Doctrina especializada: autores dedicados exclusivamente a la disciplina.
+    \item Principios propios que no se derivan del derecho de fondo.
+    \item Instituciones y conceptos peculiares (demanda, contestación, prueba, sentencia, recursos).
+\end{itemize}
+
+\section{Unidad del Derecho Procesal}
+
+A pesar de la existencia de múltiples especialidades, el Derecho Procesal es \textbf{uno solo}. Todas sus ramas se asientan sobre un mismo ``pedestal básico'': las nociones de \textbf{jurisdicción}, \textbf{acción/pretensión} y \textbf{proceso}.
+
+\subsection{Especialidades del Derecho Procesal}
+
+El Derecho Procesal se especializa según la materia, pero mantiene la unidad conceptual:
+
+\begin{definition}{Derecho Procesal Penal}
+Rama que rige el proceso en materia penal. Incluye figuras específicas como el ministerio público en su rol de demandante, la prisión preventiva como medida cautelar, y recursos peculiares como la nulidad, la casación y la inconstitucionalidad.
+\end{definition}
+
+\begin{definition}{Derecho Procesal Laboral}
+Especialidad que regula los procesos laborales. Se caracteriza por incorporar el \textbf{principio protectorio}: en caso de duda en la interpretación de una norma procesal laboral, se resuelve a favor del trabajador. Este principio busca equilibrar la asimetría de poder entre empleado y empleador.
+\end{definition}
+
+\begin{definition}{Derecho Procesal Constitucional}
+Rama que estudia los procesos vinculados con derechos constitucionales: amparo, acción declarativa de inconstitucionalidad y recurso extraordinario.
+\end{definition}
+
+\begin{definition}{Derecho Procesal Administrativo}
+Especialidad que regula el control jurisdiccional de actos dictados por la Administración Pública. Permite impugnar ante los juzgados las decisiones administrativas.
+\end{definition}
+
+%==============================================================================
+% CAPÍTULO 3: FUENTES DEL DERECHO PROCESAL
+%==============================================================================
+
+\chapter{Fuentes del Derecho Procesal}
+
+Las fuentes del Derecho Procesal son los actos jurídicos de los cuales emana la normativa procesal. Se ordenan jerárquicamente de la siguiente manera:
+
+\section{Constitución Nacional}
+
+La \textbf{Constitución Nacional} es la fuente primaria. En particular:
+
+\begin{itemize}
+    \item Artículo 18: garantiza el derecho a un ``juez natural'' competente. Ninguna persona puede ser juzgada por comisiones especiales o tribunales extraordinarios.
+    \item Parte Orgánica: establece la estructura del Poder Judicial y sus competencias (artículos 108 a 117).
+\end{itemize}
+
+\section{Tratados Internacionales de Derechos Humanos}
+
+El artículo 75, incisos 22, 23 y 24 de la Constitución Nacional equipara jerárquicamente a los tratados internacionales de derechos humanos con la Constitución. Estos tratados incluyen:
+
+\begin{itemize}
+    \item Declaración Americana de Derechos y Deberes del Hombre.
+    \item Declaración Universal de Derechos Humanos.
+    \item Convención Americana sobre Derechos Humanos.
+    \item Pacto Internacional de Derechos Civiles y Políticos.
+    \item Pacto Internacional de Derechos Económicos, Sociales y Culturales.
+    \item Convención sobre la Eliminación de Todas las Formas de Discriminación Racial.
+    \item Convención sobre la Eliminación de Todas las Formas de Discriminación contra la Mujer.
+    \item Convención contra la Tortura y Otros Tratos o Penas Crueles, Inhumanos o Degradantes.
+\end{itemize}
+
+\begin{note}
+La Corte Suprema de Justicia de la Nación estableció en el caso \textit{Ekmekdjian c/ Sofovich} que los derechos consagrados en tratados internacionales no requieren una ley reglamentaria interna para ser operativos. Pueden invocarse directamente ante los tribunales.
+\end{note}
+
+\section{Leyes nacionales y provinciales}
+
+La normativa procesal proviene de:
+
+\begin{itemize}
+    \item Leyes nacionales: el Código Procesal Civil y Comercial de la Nación sancionado en 1967, leyes complementarias.
+    \item Leyes provinciales: cada provincia tiene competencia para regular los procesos que se sustancian en su territorio, respetando el piso mínimo establecido por la Constitución.
+\end{itemize}
+
+\section{Decretos}
+
+Los Decretos constituyen fuente del Derecho Procesal. Merecen especial atención los \textbf{Decretos de Necesidad y Urgencia} (DNU).
+
+\begin{definition}{Decreto de Necesidad y Urgencia}
+Acto dictado por el Presidente de la República en circunstancias de necesidad y urgencia que no admiten los trámites legislativos ordinarios. Posee rango de ley pero debe someterse a control parlamentario.
+\end{definition}
+
+La \textbf{Ley 26.122} establece el mecanismo de control parlamentario de los DNU mediante la Comisión Bicameral. Si el Congreso no deroga el decreto dentro de determinado plazo, queda aprobado con rango de ley.
+
+\begin{example}{DNU durante la pandemia de COVID-19}
+Durante la pandemia, el Poder Ejecutivo dictó múltiples DNU que suspendieron lanzamientos y ejecutorios en procesos laborales. Estos decretos incidieron directamente en el Derecho Procesal Laboral, modificando temporalmente los plazos y las consecuencias del incumplimiento de obligaciones laborales.
+\end{example}
+
+\section{Jurisprudencia}
+
+Los fallos de los tribunales constituyen fuente de Derecho Procesal. La jurisprudencia de la Corte Suprema de Justicia de la Nación es especialmente influyente: establece criterios de interpretación normativa que los inferiores tribunales tienden a seguir, aunque no estén formalmente obligados por un sistema de precedentes vinculantes.
+
+\section{Doctrina}
+
+La doctrina, entendida como las obras y análisis de autores especializados, constituye una fuente del Derecho Procesal. A través de estudios monográficos, artículos científicos y tratados, los doctrinarios contribuyen a la interpretación y evolución de la disciplina.
+
+\subsection{Dinámica especial de la norma procesal}
+
+La norma procesal posee una dinámica particular: ante una misma situación fáctica, la aplicación de la norma puede producir diversos resultados, todos regulados por el Código Procesal.
+
+\begin{example}{Opciones del demandado ante la notificación de demanda}
+Una vez que se traba la litis (notificación de la demanda), el demandado puede:
+\begin{itemize}
+    \item Comparecer y contestar la demanda: ofrece su versión de los hechos y sus defensas.
+    \item Comparecer sin contestar: reconoce la demanda o se desiste de hacer uso de su derecho.
+    \item No comparecer: incurre en rebeldía, con consecuencias procesales distintas.
+\end{itemize}
+Cada opción genera consecuencias procesales diferentes, todas previstas y reguladas por el Código Procesal Civil y Comercial.
+\end{example}
+
+%==============================================================================
+% CAPÍTULO 4: RESEÑA HISTÓRICA DEL DERECHO PROCESAL
+%==============================================================================
+
+\chapter{Reseña Histórica del Derecho Procesal}
+
+\section{El proceso en el derecho romano}
+
+El Derecho Procesal hunde sus raíces en el proceso oral romano. La historia romana distingue dos etapas procesales:
+
+\begin{itemize}
+    \item \textbf{In iure}: la fase ante el magistrado (magistratus), quien realizaba actos de organización del proceso.
+    \item \textbf{Apud iudicem}: la fase ante el juez o árbitro (iudex) elegido de común acuerdo por las partes para decidir la controversia.
+\end{itemize}
+
+Este sistema Romano proporcionó el andamiaje conceptual básico del derecho procesal moderno.
+
+\section{Influencia del derecho germánico y Edad Media}
+
+Con las invasiones bárbaras y el colapso del Imperio Romano, el derecho romano fue absorbido e influenciado por el derecho germánico. Este último introducía un elemento sobrenatural en la resolución de conflictos: las \textbf{pruebas de ordalías}.
+
+\begin{definition}{Pruebas de Ordalía}
+Método germánico de resolución de conflictos basado en la creencia de que la divinidad revelaría la verdad mediante pruebas físicas. Ejemplos:
+\begin{itemize}
+    \item Prueba del fuego: el imputado debía caminar sobre brasas ardientes; si a los dos días no mostraba lesiones, era considerado inocente.
+    \item Prueba del agua: el acusado era arrojado encadenado al agua; si sobrevivía, se presumía su inocencia.
+\end{itemize}
+\end{definition}
+
+Durante la Edad Media, la fuerte influencia de la Iglesia generó el llamado ``derecho común'', que fusionaba elementos del derecho romano con la doctrina eclesiástica. Este derecho común llegó a Argentina principalmente a través de España, con las Leyes de Enjuiciamiento Civil de 1855 y 1881.
+
+\section{Diversidad de sistemas procesales en el mundo}
+
+La historia y la antropología revelan la multiplicidad de sistemas procesales desarrollados por distintas culturas:
+
+\begin{example}{Sistema de la tribu Azande (norte de África)}
+Este pueblo africano utilizaba un método de determinación de culpabilidad basado en la administración de un veneno a un pollo. Se inoculaba doble dosis de veneno al animal; dependiendo de si el pollo moría o sobrevivía, se determinaba la culpabilidad del acusado. El resultado era interpretado como manifestación de la voluntad de los espíritus.
+\end{example}
+
+\subsection{Comparativa de sistemas procesales contemporáneos}
+
+En el mundo contemporáneo coexisten diferentes sistemas procesales:
+
+\begin{definition}{Sistema Anglosajón (Common Law)}
+Característico de Inglaterra, Estados Unidos, Canadá y otros países de tradición anglosajona. Se fundamenta en:
+\begin{itemize}
+    \item El jurado como institución central.
+    \item Valor preponderante de la prueba testimonial sobre la documental.
+    \item Énfasis en la oralidad y el debate entre abogados.
+    \item Creación de jurisprudencia vinculante (precedentes).
+\end{itemize}
+\end{definition}
+
+\begin{definition}{Sistema Continental (Civil Law)}
+Característico de Europa continental, América Latina (incluyendo Argentina) y otras regiones. Se fundamenta en:
+\begin{itemize}
+    \item Preponderancia de la prueba documental y del expediente escrito.
+    \item Valor menor de la prueba testimonial.
+    \item Prevalencia del derecho codificado sobre la jurisprudencia.
+    \item Juez como protagonista activo en la investigación de los hechos.
+\end{itemize}
+\end{definition}
+
+\section{El Código Procesal Civil y Comercial de 1967}
+
+El Código Procesal Civil y Comercial argentino fue sancionado en 1967. Desde su entrada en vigor, ha sufrido múltiples modificaciones. El código recibió fuerte influencia del derecho procesal italiano, que aportó principios y estructuras que caracterizan al procedimiento actual.
+
+El sistema argentino de 1967 constituyó un avance significativo en la profesionalización del derecho procesal. Sin embargo, en épocas recientes se han introducido reformas tendientes a incorporar elementos de oralidad y digitalización del procedimiento, aunque el sistema mantiene su carácter fundamentalmente escrito.
+
+%==============================================================================
+% CAPÍTULO 5: EL PEDESTAL BÁSICO DEL DERECHO PROCESAL
+%==============================================================================
+
+\chapter{El Pedestal Básico del Derecho Procesal}
+
+El Derecho Procesal se sustenta sobre tres nociones fundamentales, presentes en todas sus ramas especializa­das:
+
+\begin{enumerate}
+    \item \textbf{Jurisdicción}: la potestad de decir el derecho.
+    \item \textbf{Acción/Pretensión}: el derecho de petición ante la jurisdicción.
+    \item \textbf{Proceso}: la nueva relación jurídica que surge del conflicto.
+\end{enumerate}
+
+\section{Jurisdicción}
+
+\subsection{Definición y funcionalidad}
+
+El término \textbf{jurisdicción} proviene del latín \textit{iuris dictio}: ``decir el derecho''. Constituye la potestad que tiene el Poder Judicial de resolver los conflictos mediante la emisión de una norma individual (la sentencia).
+
+La jurisdicción es:
+
+\begin{itemize}
+    \item Una función constitucional del Poder Judicial.
+    \item Una potestad privativa de este poder (con matices administrativos).
+    \item Esencial para la vigencia del estado de derecho.
+\end{itemize}
+
+\subsection{Distinción entre jurisdicción y competencia}
+
+Existe una confusión frecuente entre los términos ``jurisdicción'' y ``competencia''. Ambos son distintos:
+
+\begin{definition}{Jurisdicción}
+Función constitucional del Poder Judicial. Es de raigambre constitucional y pertenece al orden de las funciones del Estado. La jurisdicción es única; existe una sola jurisdicción civil (aunque pueda dividirse en competencias).
+\end{definition}
+
+\begin{definition}{Competencia}
+Organización del trabajo de los tribunales establecida por el legislador (no por el constituyente). La competencia delimita el ámbito específico de actuación de cada tribunal y puede determinarse según:
+\begin{itemize}
+    \item \textbf{Territorio}: un juzgado que actúa en determinada circunscripción geográfica.
+    \item \textbf{Materia}: juez civil, penal, laboral, de seguridad social, comercial, de familia, etc.
+    \item \textbf{Turno}: asignación de casos según orden de distribución.
+    \item \textbf{Grado}: competencia originaria (primera instancia) o competencia apelada (segunda instancia y superior).
+\end{itemize}
+\end{definition}
+
+\begin{example}{Competencia originaria y apelada de la Corte Suprema}
+El artículo 117 de la Constitución Nacional atribuye a la Corte Suprema competencia originaria y exclusiva para conocer de ciertos asuntos (ej: causas que afecten a un representante diplomático). El artículo 116 le atribuye competencia apelada para conocer de recursos extraordinarios. Ambas son formas de ejercer la jurisdicción, pero con diferentes grados de competencia.
+\end{example}
+
+\subsection{Momentos de la jurisdicción}
+
+La doctrina procesal distingue cinco momentos sucesivos en el ejercicio de la jurisdicción. Cada uno representa una faceta de la potestad jurisdiccional:
+
+\begin{definition}{Notio}
+La facultad de conocer el problema. Se ejerce cuando el juez toma conocimiento formal de la demanda y de los hechos que la originan. Es el momento inicial de la intervención judicial.
+\end{definition}
+
+\begin{definition}{Vocatio}
+La facultad de convocar a las partes al proceso. Constituye la potestad del juez de citar o intimar a las partes para que comparezcan ante la jurisdicción. Sin esta facultad, el proceso no podría sustanciarse.
+\end{definition}
+
+\begin{definition}{Coertio}
+El poder de coerción. Permite al juez aplicar sanciones y usar la fuerza para asegurar el desarrollo ordenado del proceso. Ejemplos:
+\begin{itemize}
+    \item Si un testigo convocado no comparece, el juez puede ordenar su captura por la fuerza pública.
+    \item El juez puede imponer multas a quien incumple órdenes procesales.
+    \item Puede decretarse el desalojo coercitivo de un inmueble.
+\end{itemize}
+\end{definition}
+
+\begin{definition}{Iudicium}
+El momento máximo: la sentencia. Constituye la emisión de la norma individual que decide la controversia. Es el pico de la función jurisdiccional: en este momento, el juez ``dice el derecho'' en forma definitiva (sujeto a recursos, pero vinculante entre las partes).
+\end{definition}
+
+\begin{definition}{Executio}
+La potestad de ejecutar lo decidido. Si el condenado no cumple voluntariamente la sentencia, el juez posee la facultad de usar la fuerza para hacerla efectiva.
+\end{definition}
+
+\begin{example}{Ejecutio en materia de escrituración}
+Si un juez condena al demandado a escriturar un inmueble y el condenado se rehúsa, el juez puede nombrar un escribano para que suscriba la escritura en nombre del demandado. La sentencia se ejecuta coactivamente.
+\end{example}
+
+\subsection{Imperio versus Jurisdicción}
+
+Existe una confusión frecuente entre ``imperio'' y ``jurisdicción''. Ambos conceptos deben diferenciarse claramente.
+
+\begin{definition}{Imperio}
+Potestad de usar la fuerza pública para hacer cumplir las decisiones. NO es exclusiva del Poder Judicial:
+\begin{itemize}
+    \item El Poder Ejecutivo posee imperio: puede detener personas, usar fuerzas de seguridad, etc.
+    \item El Poder Legislativo posee imperio: puede sancionar a sus miembros, rescindir sus mandatos, etc.
+\end{itemize}
+El imperio es compartido por los tres poderes del Estado.
+\end{definition}
+
+\begin{definition}{Jurisdicción (iuris dictio)}
+Potestad de ``decir el derecho''. Es privativa del Poder Judicial (con matices respecto de procedimientos administrativos que deben ser susceptibles de control jurisdiccional). Solamente el Poder Judicial puede dictar sentencias con eficacia de cosa juzgada.
+\end{definition}
+
+\begin{important}
+La confusión entre imperio y jurisdicción lleva a errores conceptuales graves. No todo uso de la fuerza es jurisdicción, ni toda jurisdicción requiere imperio inmediato. Un árbitro tiene jurisdicción pero no imperio.
+\end{important}
+
+\subsection{Jurisdicción en ámbitos no judiciales}
+
+La jurisdicción aparece en contextos fuera del Poder Judicial stricto sensu. A continuación se presentan los casos más relevantes.
+
+\subsubsection{Jurisdicción administrativa}
+
+La Administración Pública, en ciertos ámbitos, ejerce funciones que presentan caracteres jurisdiccionales:
+
+\begin{example}{Poderes de la AFIP}
+La Administración Federal de Ingresos Públicos (AFIP) puede intimar contribuyentes, tramitar procedimientos administrativos tributarios y aplicar sanciones (multas, clausuras). Sin embargo, esta actuación administrativa es válida únicamente si el afectado conserva el derecho de acceder al control del Poder Judicial.
+\end{example}
+
+La Corte Suprema de Justicia de la Nación estableció en el fallo \textit{Fernández Arias c/ Poggio} (Fallos 247:646) que todo procedimiento administrativo debe habilitar la revisión judicial de sus decisiones. Esta exigencia asegura que la garantía constitucional del ``juez natural'' no sea vulnerada.
+
+\subsubsection{Jurisdicción eclesiástica}
+
+Las instituciones religiosas, en particular la Iglesia Católica, ejercen funciones jurisdiccionales dentro de su ámbito territorial y material:
+
+\begin{definition}{Sacra Rota Romana}
+Tribunal de la Iglesia Católica competente para tramitar la nulidad de matrimonios canónicos. Ejerce una jurisdicción acotada al ámbito eclesiástico y a las personas que se someten voluntariamente a ella.
+\end{definition}
+
+\subsubsection{Jurisdicción de entes reguladores}
+
+En el contexto de la privatización de empresas públicas en Argentina durante los años 1990, se crearon entes reguladores con cierta potestad decisoria:
+
+\begin{example}{Entes reguladores y jurisdicción primaria}
+Organismos como la Comisión Nacional de Regulación del Transporte (CNRT) o la Comisión Nacional de Regulación de Telecomunicaciones (CNRT) ejercen una ``jurisdicción primaria'' (según terminología de doctrina americana): pueden tramitar procedimientos y aplicar sanciones administrativas. Sin embargo, no pueden dictar sentencias de condena con indemnización de daños punitivos. La CSJN lo estableció en el caso \textit{Ángel Estrada y Cía.}.
+\end{example}
+
+\subsubsection{Jurisdicción arbitral}
+
+\begin{definition}{Arbitraje}
+Procedimiento por el cual dos o más partes, mediante un acuerdo voluntario, delegan la resolución de su controversia a uno o más terceros (árbitros) en lugar de acudir ante los juzgados ordinarios.
+\end{definition}
+
+Los árbitros son jueces privados elegidos voluntariamente por las partes. Poseen \textbf{jurisdicción}, ya que las partes se han sometido a su decisión. Sin embargo, \textbf{NO poseen imperio}: para ejecutar sus laudos (sentencias arbitrales), deben recurrir a la jurisdicción oficial (los juzgados del Estado).
+
+\begin{example}{Ejecución de laudo arbitral}
+Si un árbitro condena al demandado al pago de una suma de dinero y el demandado no paga voluntariamente, el acreedor debe iniciar un proceso de ejecución ante un juzgado ordinario para hacer efectivo el laudo.
+\end{example}
+
+\section{Acción y Pretensión}
+
+\subsection{Concepto de acción}
+
+En sentido amplio, la \textbf{acción} es el derecho constitucional de petición ante cualquier autoridad. El artículo 14 de la Constitución Nacional reconoce el derecho de los ciudadanos a peticionar. La acción es, en este sentido, un concepto abstracto y general.
+
+Las personas pueden peticionan ante:
+\begin{itemize}
+    \item El Poder Legislativo (para solicitar que se dicte una ley).
+    \item El Poder Ejecutivo (para solicitar un acto administrativo).
+    \item El Poder Judicial (para que resuelva un conflicto).
+    \item Instituciones privadas.
+\end{itemize}
+
+Todos estos ejercicios constituyen formas del derecho de acción en sentido amplio.
+
+\subsection{La polémica Windscheid-Muther: hito fundacional}
+
+La separación teórica entre la \textbf{acción} y el \textbf{derecho de fondo} constituye el hito fundacional del Derecho Procesal como disciplina autónoma. Este debate fue iniciado en 1856 por los procesalistas alemanes Windscheid y Muther.
+
+\begin{definition}{Polémica Windscheid-Muther (1856)}
+Antes de esta controversia, la doctrina romana confundía la \textit{actio} con el derecho sustancial. Se creía que solo quien era acreedor podía demandar; la demanda presupuestaba la existencia del derecho de fondo. Windscheid y Muther demostraron que la acción es \textbf{independiente} del derecho sustancial: se puede accionar incluso cuando la persona no tiene razón en el fondo del asunto. La acción es el derecho a ser oído en juicio.
+\end{definition}
+
+Esta separación fue profundizada por Oskar von Bülow en 1868, quien desarrolló la tesis de que el proceso constituye una nueva relación jurídica distinta de la que le dio origen. Chiovenda (1913, Universidad de Bolonia) completó estos desarrollos, consolidando la autonomía científica del Derecho Procesal.
+
+\begin{important}
+Esta separación teórica fue revolucionaria: permitió concebir el Derecho Procesal como una disciplina con principios propios, no como un simple complemento del derecho de fondo.
+\end{important}
+
+\subsection{Acción en sentido abstracto y concreto}
+
+\begin{definition}{Acción en sentido abstracto}
+Derecho genérico de toda persona a acceder a la jurisdicción. Es una facultad que existe independientemente de que se tenga o no razón en el fondo.
+\end{definition}
+
+\begin{definition}{Acción en sentido concreto (Pretensión)}
+Cuando la acción se ejerce en concreto ante la jurisdicción, dirigida contra una persona determinada, se denomina \textbf{pretensión}. La pretensión presupone ya un conflicto específico y una persona contra quien dirigirse.
+\end{definition}
+
+\subsection{La pretensión}
+
+\begin{definition}{Pretensión}
+Manifestación de voluntad dirigida al Poder Judicial, formulada por el actor contra el demandado, con el objeto de que la jurisdicción ordene que se cumpla determinada conducta. La pretensión es el objeto del proceso: lo que el actor solicita al juez.
+\end{definition}
+
+La pretensión genera el \textbf{triángulo procesal}:
+
+\begin{itemize}
+    \item \textbf{Actor} (quien pretende ante la jurisdicción).
+    \item \textbf{Juez} (tercero imparcial que decide).
+    \item \textbf{Demandado} (contra quien se formula la pretensión y quien tiene derecho de contestar).
+\end{itemize}
+
+\subsection{La demanda}
+
+\begin{definition}{Demanda}
+Acto procesal formal mediante el cual se inicia un proceso. Constituye el vehículo mediante el cual se ejerce la pretensión. La demanda contiene la pretensión: es el escrito en el cual el actor expone sus hechos, sus fundamentos legales y lo que pide al juez.
+\end{definition}
+
+\subsubsection{Ejemplos de pretensiones}
+
+Las siguientes son pretensiones comunes en procesos civiles:
+
+\begin{example}{Pretensión de cobro por daño y perjuicio}
+Actor: pasajero lesionado en accidente de colectivo. Pretensión: que se condene a la empresa de transporte al pago de indemnización por daño material (gastos hospitalarios) y daño moral (sufrimiento).
+\end{example}
+
+\begin{example}{Pretensión de divorcio}
+Actrices o actores: cónyuge solicitante. Pretensión: que se disuelva el vínculo matrimonial y se regulen cuestiones accesorias (régimen de tenencia de menores, cuota alimentaria, división de bienes).
+\end{example}
+
+\begin{example}{Pretensión de indemnización por despido}
+Actor: trabajador despedido. Pretensión: que se condene al empleador al pago de indemnización por despido injustificado.
+\end{example}
+
+\begin{example}{Pretensión de rendición de cuentas}
+Actor: socio en una sociedad comercial. Pretensión: que el gerente o administrador rinda cuentas de su gestión.
+\end{example}
+
+\begin{example}{Pretensión de desalojo}
+Actor: propietario o inquilino con causa de terminación. Pretensión: que se ordene la desocupación del inmueble y se restituya la posesión.
+\end{example}
+
+\section{Proceso}
+
+\subsection{Concepto y nueva relación jurídica}
+
+\begin{definition}{Proceso}
+Nueva relación jurídica que surge cuando el conflicto es llevado ante la jurisdicción. El proceso se desarrolla bajo las reglas del Código Procesal Civil y Comercial (no bajo las reglas del derecho sustancial). Concluye con la sentencia.
+\end{definition}
+
+La tesis de la ``nueva relación jurídica'' fue desarrollada por Oskar von Bülow en 1868. Bülow observó que cuando una pretensión es presentada ante la jurisdicción, surge una nueva relación jurídica completamente distinta de la que le dio origen. Ejemplo:
+
+\begin{itemize}
+    \item \textbf{Relación sustancial original}: contrato de transporte entre pasajero y empresa.
+    \item \textbf{Nueva relación procesal}: demandante–juez–demandado, regulada por el Código Procesal.
+\end{itemize}
+
+\subsection{El proceso como sistema}
+
+Más allá de la concepción tradicional del proceso como una relación jurídica entre tres sujetos (actor, juez, demandado), es fructífero concebirlo como un \textbf{sistema} en el sentido de la Teoría General de Sistemas de Ludwig von Bertalanffy.
+
+\begin{definition}{Sistema (Von Bertalanffy)}
+Conjunto de partes interrelacionadas que funcionan de manera integrada para lograr un objetivo común. Un sistema es mayor que la suma de sus partes: la integración genera propiedades emergentes.
+\end{definition}
+
+Ejemplos de sistemas:
+\begin{itemize}
+    \item El cuerpo humano: integra el sistema nervioso, óseo, muscular, cardiovascular, respiratorio, digestivo, etc.
+    \item Una computadora: integra circuitos, procesador, memoria, disco duro, periféricos, etc.
+    \item Una organización: integra departamentos, procesos, recursos humanos, tecnología, etc.
+\end{itemize}
+
+\subsubsection{Componentes del proceso como sistema}
+
+El proceso como sistema integra los siguientes componentes:
+
+\begin{definition}{Insumos}
+Recursos que alimentan el sistema:
+\begin{itemize}
+    \item Actores (demandante y demandado).
+    \item Juez y personal judicial.
+    \item Empleados y funcionarios judiciales.
+    \item Tecnología (sistemas informáticos, escritorios, etc.).
+    \item Infraestructura (edificios de tribunales).
+    \item Recursos económicos.
+    \item Insumos instrumentales (papel, expedientes, sistemas telemáticos).
+\end{itemize}
+\end{definition}
+
+\begin{definition}{Procesador}
+Conjunto de etapas y operaciones mediante las cuales los insumos se transforman:
+\begin{enumerate}
+    \item \textbf{Etapa introductoria}: presentación de demanda y contestación de demanda. Las partes exponen sus pretensiones y defensas.
+    \item \textbf{Etapa probatoria}: ofrecimiento de prueba, admisión de prueba y producción de prueba. Se recaudan los elementos de convicción.
+    \item \textbf{Etapa conclusional}: alegatos de bien probado. Las partes presentan sus consideraciones finales.
+    \item \textbf{Sentencia}: el juez dicta resolución.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{Resultado}
+Producto final del sistema: la \textbf{sentencia}, norma individual que resuelve el conflicto entre las partes.
+\end{definition}
+
+\subsubsection{Retroalimentación y recursos procesales}
+
+Todo sistema requiere un mecanismo de \textbf{retroalimentación} que controle la calidad del resultado y permita introducir correcciones:
+
+\begin{definition}{Retroalimentación}
+Mecanismo de control que compara el resultado actual con los objetivos del sistema y permite ajustes para mejorar el funcionamiento. En biología, ejemplos: la regulación de la temperatura corporal, la homeostasis. En tecnología: los sistemas de corrección automática.
+\end{definition}
+
+En el proceso judicial, la retroalimentación se materializa a través de los \textbf{recursos procesales}:
+
+\begin{definition}{Recurso Procesal}
+Remedio legal que permite a una de las partes atacar una decisión judicial (usualmente una sentencia) que considera injusta. Ejemplos: apelación, casación, recurso extraordinario.
+\end{definition}
+
+\begin{example}{Mecanismo de retroalimentación en el proceso}
+Supongamos que un juez de primera instancia condena al demandado. La Cámara de Apelaciones revoca la sentencia, considerando que el juez aplicó incorrectamente la ley o valoró mal los hechos. A través de este proceso de retroalimentación, el juez recibe información sobre su error. En un caso futuro similar, aplicará el criterio rectificado. Asimismo, la parte que perdió (si tiene otro caso análogo) replanteará su estrategia litigante basándose en la experiencia anterior. El sistema se mejora a sí mismo.
+\end{example}
+
+%==============================================================================
+% CAPÍTULO 6: DIVISIÓN DE PODERES Y FUNCIÓN JURISDICCIONAL
+%==============================================================================
+
+\chapter{División de Poderes y Función Jurisdiccional}
+
+El poder del Estado es, en su esencia, uno solo: reside en el pueblo, que es el soberano. Sin embargo, ese poder se organiza funcionalmente en tres departamentos o poderes con funciones diferenciadas:
+
+\begin{itemize}
+    \item \textbf{Poder Legislativo}: dicta las leyes.
+    \item \textbf{Poder Ejecutivo}: administra y ejecuta las leyes.
+    \item \textbf{Poder Judicial}: dirime conflictos haciendo actuar la voluntad de la ley.
+\end{itemize}
+
+\section{Entrecruzamiento de funciones}
+
+Aunque la teoría de Montesquieu establece una división clara, en la práctica las funciones se entrelazan:
+
+\begin{itemize}
+    \item El \textbf{Poder Ejecutivo} legisla mediante Decretos de Necesidad y Urgencia.
+    \item El \textbf{Poder Legislativo} ejerce funciones administrativas (gestión de recursos, contrataciones) e incluso jurisdiccionales (enjuiciamiento de sus miembros conforme al Reglamento de la Cámara).
+    \item El \textbf{Poder Judicial} legisla indirectamente cuando la Corte Suprema de Justicia dicta acordadas (resoluciones administrativas) de aplicación obligatoria (ej: acordada sobre notificación electrónica, formato de cédulas procesales).
+\end{itemize}
+
+\section{La función jurisdiccional en sentido estricto}
+
+A pesar de este entrecruzamiento, cuando se habla de jurisdicción en sentido estricto se alude a la función esencial del Poder Judicial: la resolución de conflictos mediante sentencias que expresan la voluntad de la ley en el caso concreto.
+
+%==============================================================================
+% CAPÍTULO 7: TABLA DE REPASO CORNELL
+%==============================================================================
+
+\chapter{Tabla de Repaso Cornell}
+
+A continuación se presenta un cuadro de repaso según el método Cornell. Este método divide la página en tres secciones: preguntas clave, respuestas detalladas y resumen final. Su propósito es facilitar el autorrepaso mediante preguntas que recuperan activamente el conocimiento.
+
+\section{Cuadro Cornell: Conceptos Fundamentales del Derecho Procesal Civil}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es el Derecho Procesal Civil y para qué sirve?} &
+Conjunto de normas que rigen el desarrollo del proceso judicial cuando existe conflicto entre partes. Permite materializar en la práctica la aplicación del derecho sustancial. Es la herramienta fundamental del abogado litigante: mediante ella redacta demandas, contesta traslados, ofrece pruebas, participa en audiencias y presenta recursos. \\
+
+\textbf{¿Cuándo aparece el proceso judicial?} &
+Aparece cuando la relación sustancial entre las partes se agota o se quiebra por la existencia de un conflicto. En ese momento, el derecho de fondo deja de ser operativo espontáneamente entre ellas y se requiere la intervención de un tercero imparcial (el juez) para resolverlo. Surge entonces una nueva relación jurídica regida por el Código Procesal. \\
+
+\textbf{¿Qué es la sentencia y cuál es su función?} &
+La sentencia es la resolución judicial que decide el conflicto. Constituye una norma individual (``ley a medida'') que hace operativa la voluntad de la ley sustancial en el caso concreto. Mediante la sentencia, el juez ``dice el derecho'' (iuris dictio). Es la conclusión del proceso. \\
+
+\textbf{¿El Derecho Procesal es una disciplina unitaria o múltiple?} &
+Es una. Aunque existen especialidades (Derecho Procesal Penal, Laboral, Constitucional, Administrativo), todas se asienta sobre un mismo pedestal básico: jurisdicción, acción/pretensión y proceso. Las especialidades se diferencian por el tipo de conflicto que tratan, pero comparten los mismos principios fundamentales. \\
+
+\textbf{¿Cuáles son las fuentes del Derecho Procesal?} &
+Las fuentes jerárquicas son: (1) Constitución Nacional (art. 18, parte orgánica); (2) Tratados Internacionales de Derechos Humanos (equiparados a la CN por art. 75 incs. 22, 23, 24); (3) Leyes nacionales y provinciales (incluyendo el Código Procesal Civil y Comercial de 1967); (4) Decretos (incluyendo DNU, sujetos a control parlamentario por Ley 26.122); (5) Jurisprudencia (especialmente CSJN); (6) Doctrina (obras de autores especializados). \\
+
+\textbf{¿Qué es la jurisdicción?} &
+Potestad privativa del Poder Judicial de ``decir el derecho'' (iuris dictio). Función constitucional mediante la cual el juez resuelve conflictos mediante una norma individual (sentencia). Es esencial para la vigencia del estado de derecho. Implica la capacidad de conocer un conflicto, convocar a las partes, imponer medidas coercitivas, dictar sentencia y ejecutarla. \\
+
+\textbf{¿Cómo se distingue jurisdicción de competencia?} &
+Jurisdicción es una función constitucional (única, estatal). Competencia es la organización del trabajo de los tribunales, establecida por el legislador. La competencia determina qué juez específico es competente, según territorio (circunscripción), materia (civil, penal, laboral, etc.), turno o grado (originaria, apelada, casatoria). La jurisdicción existe; la competencia se asigna. \\
+
+\textbf{¿Cuáles son los cinco momentos de la jurisdicción?} &
+(1) \textbf{Notio}: facultad de conocer el conflicto. El juez toma conocimiento de la demanda y los hechos. (2) \textbf{Vocatio}: facultad de convocar a las partes. El juez cita a las partes a juicio. (3) \textbf{Coertio}: poder de coerción. El juez sanciona incumplimientos procesales, ordena comparecencias forzosas. (4) \textbf{Iudicium}: la sentencia. El juez dicta la resolución que decide el conflicto. (5) \textbf{Executio}: potestad de ejecutar la sentencia. Si el condenado no cumple voluntariamente, el juez usa la fuerza pública. \\
+
+\textbf{¿Cómo se diferencia imperio de jurisdicción?} &
+Imperio es la potestad de usar la fuerza pública. NO es exclusivo del Poder Judicial: el Poder Ejecutivo (fuerzas de seguridad), el Poder Legislativo (sanciones a miembros) también lo poseen. Jurisdicción es la potestad de ``decir el derecho'', privativa del Poder Judicial. La confusión entre ambos es frecuente pero conceptualmente grave. \\
+
+\textbf{¿Tiene imperio la jurisdicción arbitral?} &
+No. Los árbitros poseen jurisdicción (las partes los eligieron voluntariamente como jueces privados), pero carecen de imperio. Para ejecutar sus laudos (sentencias arbitrales), necesitan recurrir a la jurisdicción oficial (juzgados del Estado). El laudo es una resolución válida pero requiere de la fuerza estatal para hacerse efectivo. \\
+
+\textbf{¿Qué fue la polémica Windscheid-Muther de 1856?} &
+Debate que separó la acción del derecho sustancial. Demostró que se puede accionar ante los tribunales incluso sin tener razón en el fondo: la acción es independiente del derecho material. Fue el hito fundacional del Derecho Procesal como ciencia autónoma. Bülow (1868) y Chiovenda (1913) completaron esta tesis, consolidando la autonomía del derecho procesal. \\
+
+\textbf{¿Qué es la acción en sentido abstracto?} &
+Derecho genérico y constitucional de toda persona a peticionan ante cualquier autoridad (art. 14 CN). Es una facultad universal e independiente de que se tenga o no razón en el fondo. Abarca peticiones ante el Poder Legislativo, Ejecutivo, Judicial, etc. \\
+
+\textbf{¿Qué es la acción en sentido concreto o pretensión?} &
+Manifestación de voluntad dirigida al Poder Judicial, formulada por el actor contra un demandado específico, con el objeto de que se ordene determinada conducta. Es la concreción de la acción abstracta en un conflicto específico. Genera el triángulo procesal: actor–juez–demandado. \\
+
+\textbf{¿Qué es la demanda?} &
+Acto procesal formal mediante el cual se inicia un proceso. Es el escrito mediante el cual el actor ejerce su pretensión: expone hechos, fundamentos legales y pide al juez una determinada condena o resolución. La demanda contiene la pretensión. \\
+
+\textbf{¿Qué es el proceso?} &
+Nueva relación jurídica que surge cuando el conflicto es llevado ante la jurisdicción. Se desarrolla bajo las reglas del Código Procesal Civil y Comercial, no bajo el derecho sustancial. Incluye actos de las partes, del juez y del personal judicial. Concluye con la sentencia. Es regida por principios propios del derecho procesal. \\
+
+\textbf{¿Cómo se concibe el proceso como sistema?} &
+Como un conjunto integrado de partes interrelacionadas que persiguen un objetivo común (la sentencia justa). Incluye: (1) \textbf{Insumos}: partes, juez, personal, tecnología, edificio, recursos; (2) \textbf{Procesador}: etapas del proceso (introductoria, probatoria, conclusional); (3) \textbf{Resultado}: la sentencia; (4) \textbf{Retroalimentación}: recursos procesales que corrigen errores. \\
+
+\textbf{¿Cuáles son las etapas del proceso?} &
+(1) \textbf{Etapa introductoria}: demanda y contestación de demanda. Fijación de las pretensiones. (2) \textbf{Etapa probatoria}: ofrecimiento, admisión y producción de prueba. Recaudación de elementos de convicción. (3) \textbf{Etapa conclusional}: alegatos de bien probado. Consideraciones finales de las partes. (4) \textbf{Sentencia}: resolución judicial que decide el conflicto. \\
+
+\textbf{¿Qué es la retroalimentación en el proceso?} &
+Mecanismo de control que permite al sistema corregir errores y mejorarse a sí mismo. Se materializa a través de los recursos procesales (apelación, casación, recurso extraordinario). Cuando un tribunal superior revoca la sentencia de un inferior, el sistema se ajusta: los jueces aprenden la norma o valoración correcta; las partes replantean sus estrategias futuras. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El Derecho Procesal Civil es la herramienta que permite al abogado actuar en la práctica. Surge del conflicto que no puede resolverse espontáneamente entre las partes. Su núcleo conceptual reposa en tres nociones: \textbf{Jurisdicción} (potestad del juez de decir el derecho, con cinco momentos: notio, vocatio, coertio, iudicium, executio), \textbf{Pretensión} (demanda del actor ante el juez para que ordene algo al demandado), y \textbf{Proceso} (nueva relación jurídica regulada por normas propias). El proceso es un sistema integrado por insumos, etapas de procesamiento, un resultado (la sentencia) y mecanismos de retroalimentación (recursos). La sentencia es la norma individual que resuelve el conflicto y hace operativa la voluntad del derecho sustancial.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%==============================================================================
+% BIBLIOGRAFÍA
+%==============================================================================
+
+\begin{thebibliography}{99}
+
+\bibitem{palacio} Palacio, L. E. (1977). \textit{Manual de Derecho Procesal Civil}. Editorial Abeledo-Perrot.
+
+\bibitem{falcon} Falcón, E. (2004). \textit{Derecho Procesal Civil y Comercial}. Editorial Astrea.
+
+\bibitem{arazi} Arazi, R. (2007). \textit{La Prueba en el Proceso Civil}. Editorial Rubinzal-Culzoni.
+
+\bibitem{rojas} Rojas, J. A. (2024). \textit{Nociones Básicas del Derecho Procesal Civil}. (En prensa).
+
+\bibitem{codigo} Código Procesal Civil y Comercial de la Nación. (1967). Vigente con modificaciones. Editorial ``Gordita'' (con leyes complementarias).
+
+\end{thebibliography}
+
+%==============================================================================
+% FIN DEL DOCUMENTO
+%==============================================================================
+
+\end{document}

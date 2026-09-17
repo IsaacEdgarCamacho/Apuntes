@@ -1,0 +1,703 @@
+% ============================================================
+% PLANTILLA GENERICA DE APUNTES UNIVERSITARIOS
+% ============================================================
+% Esta plantilla está pensada para cualquier materia y facultad.
+%
+% Estructura:
+%   1. Portada
+%   2. Índice
+%   3. Capítulos
+%      3.1 Secciones
+%          3.1.1 Subsecciones
+%   4. Apéndices
+%   5. Bibliografía
+%
+% Compilar con:
+%   latexmk -pdf Doc.tex
+%
+% ============================================================
+
+\documentclass[12pt,oneside]{book}
+
+% ------------------------------------------------------------
+% INFORMACION DEL DOCUMENTO
+% ------------------------------------------------------------
+
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\departamento}{Abogacía}
+\newcommand{\materia}{Derecho Civil}
+\newcommand{\titulo}{Constitucionalización del Derecho Privado y el Título Preliminar del Código Civil y Comercial}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2021}
+
+% Datos variables adicionales de la portada (no definidos en la
+% plantilla original; se agregan para reflejar los datos del Word)
+\newcommand{\parte}{Introducción --- Parte General}
+\newcommand{\numeroclase}{Clase 3}
+\newcommand{\fechaclase}{Junio de 2021}
+
+% ------------------------------------------------------------
+% PAQUETES
+% ------------------------------------------------------------
+
+% Idioma y codificación
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% Márgenes
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+% Matemática
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% Imágenes
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Tablas
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+% Listas
+\usepackage{enumitem}
+
+% Colores y cajas
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% Encabezados y pies
+\usepackage{fancyhdr}
+
+% Enlaces
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    bookmarks=true
+]{hyperref}
+
+% ------------------------------------------------------------
+% CONFIGURACION
+% ------------------------------------------------------------
+
+% Directorios de imágenes.
+% Podés agregar o quitar directorios según tu proyecto.
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% Profundidad del índice
+\setcounter{tocdepth}{2}
+
+% Párrafos
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% Listas
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+% ------------------------------------------------------------
+% ENCABEZADO Y PIE DE PAGINA
+% ------------------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Las páginas de inicio de capítulo no muestran encabezado
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ------------------------------------------------------------
+% COMANDOS GENERICOS
+% ------------------------------------------------------------
+
+% Valor absoluto
+\newcommand{\abs}[1]{\left|#1\right|}
+
+% Norma
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% Vector
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+% Derivada
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+
+% Derivada parcial
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ------------------------------------------------------------
+% CAJAS PARA APUNTES
+% ------------------------------------------------------------
+
+% ------------------------------------------------------------
+% DEFINICION
+% ------------------------------------------------------------
+
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% IMPORTANTE
+% ------------------------------------------------------------
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% EJEMPLO
+% ------------------------------------------------------------
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% FORMULA / REGLA
+% ------------------------------------------------------------
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% EJERCICIO
+% ------------------------------------------------------------
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% NOTA
+% ------------------------------------------------------------
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+% ------------------------------------------------------------
+% LOGO
+% ------------------------------------------------------------
+% Colocá tu logo en el directorio principal y descomentá
+% la siguiente línea.
+%
+% \includegraphics[width=0.30\textwidth]{logo}
+
+\vspace{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \departamento}
+
+\vspace{1cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\end{center}
+
+\begin{flushright}
+
+    \vspace{0.8cm}
+
+    {\large \parte}
+
+    \vspace{0.2cm}
+
+    {\large \numeroclase}
+
+    \vspace{1cm}
+
+    \rule{0.70\textwidth}{0.5pt}
+
+    \vspace{0.5cm}
+
+    {\large Apuntes de estudio}
+
+    \vspace{0.5cm}
+
+    \rule{0.70\textwidth}{0.5pt}
+
+    \vspace{1cm}
+
+    {\normalsize \textit{Temas tratados: constitucionalización del derecho privado; las tres vías de constitucionalización; ventajas y riesgos de la constitucionalización; el Título Preliminar del Código Civil y Comercial; la unificación de la materia civil y comercial; y los principios fundamentales del derecho civil.}}
+
+    \vfill
+\end{flushright}
+
+    {\large \fechaclase}
+
+    \vspace{0.3cm}
+
+    {\large \autor}
+
+    \vspace{0.3cm}
+
+
+
+\end{titlepage}
+
+% ============================================================
+% INDICE
+% ============================================================
+
+\tableofcontents
+
+\clearpage
+
+% ============================================================
+% CAPITULO 1
+% ============================================================
+
+\chapter{Constitucionalización del Derecho Privado y el Título Preliminar del Código Civil y Comercial}
+
+\section{Constitucionalización del derecho privado}
+
+\subsection{¿Qué significa constitucionalizar el derecho privado?}
+
+La constitucionalización del derecho privado remite a la influencia que ejercen la Constitución Nacional y los tratados de derechos humanos sobre el derecho privado. El tema adquiere particular relevancia a partir de la reforma constitucional de 1994, que incorporó con jerarquía constitucional los tratados internacionales de derechos humanos. Esta jerarquización proyecta efectos de distinto tipo sobre todas las ramas jurídicas, incluida la del derecho civil.
+
+\begin{definition}{Constitucionalización del derecho privado}
+Influencia que ejercen la Constitución Nacional y los tratados de derechos humanos —con jerarquía constitucional desde la reforma de 1994 (art.\ 75 inc.\ 22 CN)— sobre el derecho privado, proyectando efectos sobre todas las ramas jurídicas, incluida la del derecho civil.
+\end{definition}
+
+\subsection{Las tres vías de constitucionalización (según Corral Talciani)}
+
+Corral Talciani explica que la constitucionalización opera a través de tres vías:
+
+\begin{itemize}
+    \item la vía reformadora;
+    \item la vía hermenéutica;
+    \item la vía de aplicación directa.
+\end{itemize}
+
+\subsubsection{La vía reformadora}
+
+A partir de los tratados de derechos humanos y de sus disposiciones se generan cambios en el ámbito legislativo.
+
+\begin{example}{Vía reformadora}
+En 2008 Argentina ratificó la Convención sobre los Derechos de las Personas con Discapacidad, cuyo artículo 12 establece una serie de exigencias en torno a la regulación jurídica de la capacidad de ejercicio y de la capacidad jurídica en general. La recepción de este tratado llevó a que en 2010 se sancionara una ley que modificó parcialmente el Código Civil de Vélez Sarsfield en lo referido a las sentencias en materia de capacidad de ejercicio. De modo similar, la Convención sobre los Derechos del Niño —con principios como el interés superior del niño y el derecho del niño a ser oído— fue generando cambios legislativos sucesivos hasta la sanción del Código Civil y Comercial, que resulta muy sensible a este tema y recepta las indicaciones de dicha convención y de otras convenciones en materia de derechos humanos.
+\end{example}
+
+\subsubsection{La vía hermenéutica}
+
+La vía hermenéutica refiere al modo de interpretar la ley: los principios y los tratados de derechos humanos operan como criterio para determinar su alcance y como pauta al momento de juzgar.
+
+\begin{formula}{Artículo 2\textordmasculine{} CCyC --- Interpretación}
+La ley debe ser interpretada teniendo en cuenta sus palabras, sus finalidades, las leyes análogas, las disposiciones que surgen de los tratados sobre derechos humanos, los principios y los valores jurídicos, de modo coherente con todo el ordenamiento.
+\end{formula}
+
+Este artículo recoge en el texto del código la importancia de los tratados de derechos humanos como guía interpretativa, reflejando así la vía hermenéutica de constitucionalización.
+
+\subsubsection{La vía de aplicación directa}
+
+En algunos casos se verifica una aplicación directa de los tratados de derechos humanos y de los principios constitucionales. La Constitución de 1994 incorporó, por ejemplo, normas sobre el consumidor y sobre hábeas data. Estas normas se aplican generalmente a través de legislación específica —la Ley de Defensa del Consumidor, en el primer caso, y la Ley de Protección de Datos Personales, en el segundo—, pero en ciertos casos puede producirse una aplicación directa de la norma constitucional. Esta situación es más excepcional, porque el texto constitucional suele aparecer mediado por la legislación y por la tarea propia del Poder Legislativo; sin embargo, puede darse el caso en que se apele directamente a un principio constitucional, como la dignidad.
+
+\begin{example}{Caso emblemático (2019)}
+La Corte Suprema argentina recurrió al principio de la dignidad y al derecho a la vida para modificar, en favor de una persona con discapacidad, el orden en que se cobran los créditos en el régimen de privilegios de la quiebra (Ley de Concursos y Quiebras). Se trató de un caso de aplicación directa de un principio constitucional para modificar una ley, situación reconocida como excepcional.
+\end{example}
+
+\section{Ventajas y riesgos de la constitucionalización}
+
+\subsection{Ventajas de la constitucionalización}
+
+Siguiendo a Corral Talciani, la constitucionalización ha traído importantes ventajas para el derecho privado:
+
+\begin{longtable}{|p{0.28\textwidth}|p{0.35\textwidth}|p{0.29\textwidth}|}
+\hline
+\textbf{Ventaja} & \textbf{Descripción} & \textbf{Reflejo en el CCyC} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Ventaja} & \textbf{Descripción} & \textbf{Reflejo en el CCyC} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+Centralidad de la persona y su dignidad & Se coloca a la persona humana en el centro del ordenamiento jurídico, resaltando su dignidad. & Art.\ 51 (dignidad de la persona humana), art.\ 19 (inicio de la existencia), art.\ 57 (protección del embrión) \\
+\hline
+Re-materialización del derecho & Incorporación de contenidos sustanciales frente a la idea de un derecho meramente procedimental o formal. & Todo el Título Preliminar y los artículos de la parte general sobre persona y familia \\
+\hline
+Rehabilitación de la dimensión práctica o valorativa & Se recupera la importancia de la argumentación y de los principios en la tarea de juzgar. & Art.\ 2 (interpretación), art.\ 3 (deber de decidir de modo razonablemente fundado) \\
+\hline
+La Constitución como fuente del derecho & La Constitución, sus principios y sus valores se transforman en una fuente del derecho aplicable. & Art.\ 1 (fuentes del derecho: Constitución y tratados junto a la ley) \\
+\hline
+\end{longtable}
+
+\subsection{Riesgos de la constitucionalización}
+
+Desde la filosofía jurídica, quienes sostienen una posición iusnaturalista entienden que existe el riesgo de pasar de un positivismo legalista a un positivismo constitucionalista, perdiendo la dimensión de los principios superiores al orden jurídico que iluminan e inciden en la valoración del ordenamiento. Se trata de un debate profundo sobre el rol del juez y sobre la jurisprudencia como fuente: en qué medida el juez crea el derecho o lo aplica, y cuál es su tarea ante un caso concreto cuando existe una ley que regula esa situación.
+
+\begin{longtable}{|p{0.32\textwidth}|p{0.58\textwidth}|}
+\hline
+\textbf{Riesgo} & \textbf{Descripción} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Riesgo} & \textbf{Descripción} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+Pérdida de especificidad del derecho civil & La expansión del derecho constitucional puede afectar las metodologías propias de las otras ramas. El derecho civil tiene principios jurídicos sectoriales propios —como las reglas para calcular una indemnización por daños y perjuicios— que pueden perderse cuando todo se constitucionaliza. \\
+\hline
+Positivismo judicial & El juez que, al aplicar la Constitución, se aparta excesivamente de la finalidad de la ley estaría determinando qué es lo obligatorio, alterando la división de poderes y erosionando la construcción republicana. \\
+\hline
+Inseguridad jurídica & Si en las relaciones civiles no se supiera a qué atenerse —cómo serán los derechos y las obligaciones de cada parte—, la enorme inseguridad jurídica resultante paralizaría la vida económica y social, generaría mayores costos y crearía problemas nuevos. \\
+\hline
+Desborde de fuentes del derecho & Por la pérdida de relevancia de la ley, aparecen como fuentes los fallos de tribunales internacionales, recomendaciones y convenciones de otros sistemas jurídicos, lo que genera dificultad para determinar cuál es el derecho aplicable ante una situación determinada. \\
+\hline
+Relativismo filosófico & A veces se sostiene que las posiciones de constitucionalización del derecho privado solo son admisibles en el marco de una construcción filosófica relativista. Sin embargo, desde el iusnaturalismo se sostiene que es posible conocer —a partir de la racionalidad humana— principios fundamentales: que la vida es un bien y que quitarle la vida a una persona es un mal. \\
+\hline
+\end{longtable}
+
+\section{El Título Preliminar del Código Civil y Comercial}
+
+\subsection{Importancia del Título Preliminar en el proceso de constitucionalización}
+
+El Código Civil y Comercial revela la importancia del Título Preliminar en el proceso de constitucionalización: su artículo 1 señala la relevancia de la Constitución y de los tratados internacionales de derechos humanos como pautas para resolver los casos regidos por el código.
+
+\begin{note}
+La Constitución puede compararse con la estructura de un edificio: define dónde pueden ir las paredes y cuánto peso pueden soportar. El Código Civil y Comercial es el interior del edificio —habitaciones, puertas, contratos, familia, herencias—, cuyo diseño debe respetar esa estructura madre. El Título Preliminar es el plano que explica cómo leer todo el edificio: qué fuentes son válidas, cómo interpretar las normas y qué principios prevalecen.
+\end{note}
+
+\subsection{Estructura del Título Preliminar}
+
+El Título Preliminar del Código Civil y Comercial se divide en cuatro capítulos y consta de 18 artículos. En la elevación del proyecto del código se señala que estos artículos proyectan sus efectos sobre los seis libros que componen el resto del Código Civil y Comercial.
+
+\begin{longtable}{|p{0.08\textwidth}|p{0.22\textwidth}|p{0.42\textwidth}|p{0.18\textwidth}|}
+\hline
+\textbf{Cap.} & \textbf{Título} & \textbf{Contenido principal} & \textbf{Artículos} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Cap.} & \textbf{Título} & \textbf{Contenido principal} & \textbf{Artículos} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+1 & El derecho & Fuentes y aplicación. Distinción entre derecho y ley. & Arts.\ 1, 2 y 3 \\
+\hline
+2 & La ley & Ámbito de vigencia temporal y espacial. Efectos de la ley en relación al tiempo. & Arts.\ 4 a 8 \\
+\hline
+3 & Ejercicio de los derechos & Principio del abuso del derecho y principio de buena fe. & Arts.\ 9 a 14 \\
+\hline
+4 & Derechos y bienes & Clasificación de bienes jurídicos, cosas, patrimonio, cuerpo humano. & Arts.\ 15 a 18 \\
+\hline
+\end{longtable}
+
+\begin{important}
+El Título Preliminar cumple la función de ofrecer un núcleo de significaciones generales para todo el código: en torno a él se encuentran los principios fundamentales que influyen sobre el resto de los libros que lo componen.
+\end{important}
+
+\subsection{La distinción entre derecho y ley}
+
+Es significativo que en los fundamentos de elaboración del proyecto se haya distinguido entre «derecho» y «ley», señalando que el derecho es más que la ley. El contenido del capítulo primero —que comprende los tres primeros artículos— permite advertir que:
+
+\begin{itemize}
+    \item el artículo 1 trata las fuentes del derecho (Constitución, tratados, ley, costumbre);
+    \item el artículo 2 trata la interpretación de la ley;
+    \item el artículo 3 establece que en todo caso debe emitirse una decisión razonablemente fundada.
+\end{itemize}
+
+\begin{formula}{Artículo 1\textordmasculine{} CCyC --- Fuentes y aplicación}
+Los casos que este Código rige deben ser resueltos según las leyes que resulten aplicables, conforme con la Constitución Nacional y los tratados de derechos humanos en los que la República sea parte. A tal efecto, se tendrá en cuenta la finalidad de la norma. Los usos, prácticas y costumbres son vinculantes cuando las leyes o los interesados se refieren a ellos o en situaciones no regladas legalmente, siempre que no sean contrarios a derecho.
+\end{formula}
+
+La importancia de «el derecho», entendido como una noción que supera a la ley, se encuentra enfatizada en el Título Preliminar, aunque en la práctica la ley sigue siendo la principal de las fuentes, tal como se aprecia en el capítulo 2 del mismo título.
+
+\section{Unificación de la materia civil y comercial}
+
+\subsection{Antecedentes y alcance de la unificación}
+
+En la Argentina existieron distintas iniciativas de unificación de la materia civil y comercial. El Código Civil y Comercial concreta finalmente esta unificación, aunque —según los autores que han estudiado el tema— se trata de una unificación parcial. Se incorporan al código unificado la teoría general de las condiciones y los contratos, con sus instituciones comunes, y ciertos temas en materia de actos jurídicos y de contabilidad y registros contables.
+
+\subsection{Materias que permanecen fuera del CCyC}
+
+Ciertos temas quedan fuera del código y continúan siendo regulados por sus propias leyes especiales:
+
+\begin{itemize}
+    \item las sociedades comerciales (Ley General de Sociedades);
+    \item las quiebras y concursos (Ley de Concursos y Quiebras);
+    \item la defensa de la competencia;
+    \item la empresa como institución y el empresario, que no están incluidos ni regulados específicamente en el CCyC.
+\end{itemize}
+
+Tampoco existe en el CCyC una definición de la materia comercial. Cabe recordar que quedó derogado el Código de Comercio, que contenía un artículo específico sobre el acto de comercio y las definiciones de acto de comercio y de comerciante.
+
+\subsection{Contenido comercial incorporado al CCyC}
+
+El contenido de origen comercial incorporado al CCyC incluye:
+
+\begin{itemize}
+    \item la contabilidad y la rendición de cuentas;
+    \item toda la teoría de la representación (arts.\ 358 y siguientes);
+    \item la parte especial de contratos, con numerosos contratos comerciales típicos;
+    \item las relaciones de consumo;
+    \item las reglas de interpretación de contratos que antes se encontraban en el Código de Comercio, ahora incorporadas al CCyC en la parte de contratos;
+    \item el valor de los usos y las costumbres, con una mayor presencia como fuente en distintos artículos, especialmente en materia de contratos;
+    \item los títulos de crédito.
+\end{itemize}
+
+\section{Principios fundamentales del derecho civil}
+
+\subsection{La justicia como principio central}
+
+El derecho civil tiene como tema de fondo la justicia, entendida como la virtud que ordena la relación con los demás y que puede formularse como «dar a cada uno lo suyo».
+
+\begin{definition}{Justicia conmutativa}
+Justicia propia de las relaciones entre particulares, que busca la igualdad en los intercambios y la reciprocidad. Es el campo en el que se mueve el derecho civil, en lo que se ha llamado la reciprocidad de los cambios.
+\end{definition}
+
+\begin{longtable}{|p{0.24\textwidth}|p{0.42\textwidth}|p{0.24\textwidth}|}
+\hline
+\textbf{Tipo de justicia} & \textbf{Descripción} & \textbf{Campo de aplicación} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Tipo de justicia} & \textbf{Descripción} & \textbf{Campo de aplicación} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+Justicia legal & Del individuo hacia el todo: obliga a los miembros de la comunidad hacia el bien común. & Derecho público / constitucional \\
+\hline
+Justicia distributiva & Del todo hacia la parte: distribución de cargas y beneficios desde la comunidad hacia los individuos. & Derecho administrativo / tributario \\
+\hline
+Justicia conmutativa & Entre las partes: busca la igualdad en los intercambios, la reciprocidad. Es la justicia propia de las relaciones entre particulares. & Derecho civil / contratos / daños \\
+\hline
+\end{longtable}
+
+En el centro del derecho civil está la persona humana, con su dignidad resaltada en el artículo 51 del CCyC. La persona se encuentra protegida desde la concepción hasta la muerte natural: el artículo 19 señala el inicio de la existencia de la persona, conforme a los tratados de derechos humanos.
+
+\begin{formula}{Artículo 51 CCyC --- Inviolabilidad de la persona humana}
+La persona humana es inviolable y en cualquier circunstancia tiene derecho al reconocimiento y respeto de su dignidad.
+\end{formula}
+
+\begin{formula}{Artículo 19 CCyC --- Comienzo de la existencia}
+La existencia de la persona humana comienza con la concepción.
+\end{formula}
+
+El derecho civil, como toda regulación jurídica, busca además el bien común político y sirve a la realización de un bien que trasciende los bienes individuales: el conjunto de condiciones que permite que las personas, las familias y las sociedades alcancen su perfección, participando de un bien común.
+
+\subsection{El principio de buena fe}
+
+Un principio fundamental del derecho civil es la buena fe: los derechos deben ser ejercidos de buena fe.
+
+\begin{formula}{Artículo 9\textordmasculine{} CCyC --- Principio de buena fe}
+Los derechos deben ser ejercidos de buena fe.
+\end{formula}
+
+Este principio se incorpora en el Título Preliminar y proyecta sus efectos sobre todo el código. La buena fe presenta dos grandes dimensiones:
+
+\begin{longtable}{|p{0.18\textwidth}|p{0.38\textwidth}|p{0.34\textwidth}|}
+\hline
+\textbf{Dimensión} & \textbf{Descripción} & \textbf{Ejemplo} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Dimensión} & \textbf{Descripción} & \textbf{Ejemplo} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+Buena fe objetiva & Conformidad con ciertas reglas; un obrar conforme a estándares objetivos de comportamiento. & El poseedor es de buena fe cuando no conoce —ni puede conocer— que carece de derecho; por ejemplo, quien compra algo que tenía un vicio en la cadena de transmisión sin saberlo. \\
+\hline
+Buena fe subjetiva & Deber de lealtad; se vincula con el modo en que las partes ejecutan y desenvuelven los contratos: con honestidad, sin ocultar ni retener información relevante. & Deber de honestidad entre contratantes durante las negociaciones y la ejecución del contrato; una parte no puede retener información que la otra necesita para tomar decisiones. \\
+\hline
+\end{longtable}
+
+\subsection{El principio de equidad}
+
+Otro principio central del derecho civil es la equidad, vinculada con la justicia en el caso concreto: constituye, según la formulación aristotélica, la clásica «rectificación de lo justo legal en el caso concreto». La noción de equidad ya se encontraba en la Ley 17.711 y en el Código Civil anterior; en el Código Civil y Comercial vigente se la encuentra especialmente en los artículos 332 y 1742.
+
+\begin{formula}{Artículo 332 CCyC --- Lesión}
+Puede demandarse la nulidad o la modificación de los actos jurídicos cuando una de las partes, explotando la necesidad, debilidad síquica o inexperiencia de la otra, obtuviera por medio de ellos una ventaja patrimonial evidentemente desproporcionada y sin justificación.
+% TODO: contenido incompleto en las notas originales; el texto de la fuente
+% presenta un fragmento omitido antes de la referencia a la apreciación
+% subjetiva de las circunstancias por parte del juez.
+El juez debe apreciar subjetivamente las circunstancias y los jueces pueden hacer reajustes equitativos cuando se presenta una situación desproporcionada, buscando la corrección de la situación injusta que se presenta en el caso concreto.
+\end{formula}
+
+\begin{formula}{Artículo 1742 CCyC --- Atenuación de la responsabilidad}
+El juez, al fijar la indemnización, puede atenuarla si es equitativo en función del patrimonio del deudor, la situación personal de la víctima y las circunstancias del hecho. Esta facultad no es aplicable en caso de dolo del responsable.
+\end{formula}
+
+En ambos casos, los jueces pueden efectuar rectificaciones o reajustes equitativos, procurando la corrección de la situación injusta que se presenta en el caso concreto.
+
+% ============================================================
+% RESUMEN CORNELL
+% ============================================================
+
+\chapter{Resumen Cornell}
+
+\begin{longtable}{|p{0.35\textwidth}|p{0.53\textwidth}|}
+\hline
+\textbf{Pregunta / concepto clave} & \textbf{Notas / respuesta / explicación} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Pregunta / concepto clave} & \textbf{Notas / respuesta / explicación} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+
+\textbf{¿Qué es la constitucionalización del derecho privado?} & Es la influencia que la Constitución Nacional y los tratados de derechos humanos ejercen sobre el derecho privado. Se intensificó con la reforma constitucional de 1994, que otorgó jerarquía constitucional a los tratados internacionales de derechos humanos (art.\ 75 inc.\ 22 CN). \\
+\hline
+
+\textbf{¿Cuáles son las tres vías de constitucionalización según Corral Talciani?} & 1) Vía reformadora: los tratados generan cambios legislativos (por ejemplo, la reforma sobre capacidad jurídica de 2010 a partir de la Convención sobre Discapacidad). 2) Vía hermenéutica: los principios y tratados sirven para interpretar la ley (art.\ 2 CCyC). 3) Vía de aplicación directa: excepcionalmente se aplica un principio constitucional directamente a un caso (por ejemplo, la dignidad en materia de quiebras, 2019). \\
+\hline
+
+\textbf{¿Qué ventajas trajo la constitucionalización?} & Centralidad de la persona y su dignidad, re-materialización del derecho (contenidos sustanciales sobre forma), rehabilitación de la argumentación y de los principios en la interpretación, y la incorporación de la Constitución como fuente formal del derecho (art.\ 1 CCyC). \\
+\hline
+
+\textbf{¿Cuáles son los riesgos de la constitucionalización?} & Pérdida de especificidad del derecho civil, positivismo judicial (el juez se aparta excesivamente de la ley), inseguridad jurídica, desborde de las fuentes del derecho (fallos internacionales, recomendaciones, etc.) y el riesgo de caer en un relativismo filosófico. \\
+\hline
+
+\textbf{¿Qué es el Título Preliminar y cuál es su función?} & Son los 18 artículos iniciales del CCyC, organizados en cuatro capítulos (el derecho, la ley, el ejercicio de los derechos, los derechos y los bienes). Su función es ofrecer un núcleo de significaciones generales que proyecta sus efectos sobre todos los libros del código. \\
+\hline
+
+\textbf{¿Qué unificó el CCyC y qué quedó fuera?} & Unificó la teoría general de los contratos, los actos jurídicos, la contabilidad y la representación. Quedaron fuera las sociedades, las quiebras y la defensa de la competencia. No hay definición de «materia comercial» ni de «acto de comercio» en el código unificado. \\
+\hline
+
+\textbf{¿Cuál es el campo de la justicia propio del derecho civil?} & El derecho civil opera en el campo de la justicia conmutativa: la que busca la igualdad en los intercambios entre particulares, la reciprocidad. Se distingue de la justicia legal (del individuo hacia el todo) y de la justicia distributiva (del todo hacia la parte). \\
+\hline
+
+\textbf{¿Cuáles son las dos dimensiones de la buena fe?} & La buena fe objetiva implica actuar conforme a reglas y estándares de conducta (por ejemplo, el poseedor de buena fe que no conoce ni puede conocer su falta de derecho). La buena fe subjetiva implica un deber de lealtad y honestidad en la ejecución de los contratos, sin ocultar información relevante. \\
+\hline
+
+\textbf{¿Qué es la equidad y cómo la aplican los jueces?} & La equidad es la rectificación de lo justo legal en el caso concreto: ajustar la norma general a las particularidades del caso para evitar una solución injusta. Los arts.\ 332 (lesión) y 1742 (atenuación de la indemnización) habilitan a los jueces a hacer reajustes equitativos cuando la aplicación mecánica de la ley produciría un resultado desproporcionado. \\
+\hline
+
+\multicolumn{2}{|p{0.90\textwidth}|}{
+\vspace{0.2em}
+\textbf{Síntesis integradora:} La reforma constitucional argentina de 1994 transformó el modo en que debe leerse, interpretarse y aplicarse el Código Civil y Comercial. La constitucionalización opera por tres vías —reforma legislativa, hermenéutica y aplicación directa— y, aunque trae ventajas indudables (centralidad de la persona, re-materialización del derecho, la Constitución como fuente), también encierra riesgos: pérdida de especificidad del derecho civil, positivismo judicial e inseguridad jurídica. El Título Preliminar del CCyC (18 artículos, aprobado en 2014 y vigente desde 2015) es la clave de bóveda de este proceso: fija las fuentes del derecho, los criterios de interpretación y los principios fundamentales —buena fe, dignidad, equidad— que proyectan sus efectos sobre los seis libros restantes del código. En cuanto a la unificación civil y comercial, el CCyC integró contratos, representación y relaciones de consumo, pero dejó fuera a las sociedades, las quiebras y la empresa como institución. Finalmente, los principios de justicia conmutativa, buena fe (objetiva y subjetiva) y equidad son las columnas vertebrales del derecho civil: determinan cómo se ejercen los derechos, cómo se interpretan los contratos y cómo los jueces corrigen las situaciones injustas en el caso concreto.
+\vspace{0.3em}
+} \\
+\hline
+
+\end{longtable}
+
+\end{document}
