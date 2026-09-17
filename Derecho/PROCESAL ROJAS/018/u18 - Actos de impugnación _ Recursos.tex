@@ -1,0 +1,919 @@
+% ============================================================================
+% DOCUMENTO LAtex: APUNTES DE DERECHO PROCESAL CIVIL
+% Unidad 19: Actos de Impugnación y Recursos
+% Método Cornell integrado
+% ============================================================================
+
+\documentclass[12pt,oneside]{book}
+
+% ============================================================================
+% CONFIGURACIÓN DE CODIFICACIÓN Y LENGUAJE
+% ============================================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% ============================================================================
+% MÁRGENES Y GEOMETRÍA
+% ============================================================================
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+% ============================================================================
+% PAQUETES MATEMÁTICOS Y TÉCNICOS
+% ============================================================================
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% ============================================================================
+% PAQUETES PARA IMÁGENES Y GRÁFICOS
+% ============================================================================
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% ============================================================================
+% PAQUETES PARA TABLAS
+% ============================================================================
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% ============================================================================
+% PAQUETES PARA LISTAS
+% ============================================================================
+
+\usepackage{enumitem}
+
+% ============================================================================
+% PAQUETES PARA COLORES Y CAJAS
+% ============================================================================
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% ============================================================================
+% PAQUETES PARA ENCABEZADOS Y PIES DE PÁGINA
+% ============================================================================
+
+\usepackage{fancyhdr}
+
+% ============================================================================
+% TIPOGRAFÍA Y ESPACIADO
+% ============================================================================
+
+\usepackage{ragged2e}
+
+% ============================================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================================
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Apuntes de Derecho Procesal Civil --- Unidad 19: Actos de Impugnación y Recursos},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================================
+% DEFINICIÓN DE METADATOS DEL DOCUMENTO
+% ============================================================================
+
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{Actos de Impugnación y Recursos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024/2025}
+
+% ============================================================================
+% CONFIGURACIÓN DE PÁRRAFOS
+% ============================================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% ============================================================================
+% CONFIGURACIÓN DE LISTAS
+% ============================================================================
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+% ============================================================================
+% CONTROL DE VIUDAS Y HUÉRFANAS
+% ============================================================================
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================================
+% RUTAS DE IMÁGENES
+% ============================================================================
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================================
+% CONFIGURACIÓN DE ÍNDICE
+% ============================================================================
+
+\setcounter{tocdepth}{2}
+
+% ============================================================================
+% ENCABEZADOS Y PIES DE PÁGINA
+% ============================================================================
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================================
+% COMANDOS MATEMÁTICOS PERSONALIZADOS
+% ============================================================================
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================================
+% DEFINICIÓN DE CAJAS ACADÉMICAS
+% ============================================================================
+
+% Caja de Definición
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja de Importante
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja de Ejemplo
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja de Fórmula / Regla
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja de Ejercicio
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Caja de Nota
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================================
+% INICIO DEL DOCUMENTO
+% ============================================================================
+
+\begin{document}
+
+% ============================================================================
+% PORTADA
+% ============================================================================
+
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.3cm}
+
+{\large Facultad de Derecho}
+
+\vspace{2.5cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1.2cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{El error es inherente a la naturaleza humana; los mecanismos de impugnación existen para corregirlo.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ============================================================================
+% ÍNDICE
+% ============================================================================
+
+\clearpage
+\tableofcontents
+
+% ============================================================================
+% CAPÍTULO 1: INTRODUCCIÓN A LOS ACTOS DE IMPUGNACIÓN
+% ============================================================================
+
+\chapter{Introducción a los Actos de Impugnación}
+
+\section{Género y especie: impugnación y recursos}
+
+Los actos de impugnación y recursos guardan una relación de género a especie. Los recursos constituyen un tipo específico de acto de impugnación. Sin embargo, existen otros tipos de actos de impugnación que no son recursos en sentido estricto, tales como el incidente de nulidad, la acción autónoma de revisión de cosa juzgada y el juicio ordinario posterior, entre otros. A lo largo de esta unidad se analizarán las distintas clasificaciones que permiten comprender esta arquitectura procesal.
+
+\section{Etimología de la palabra impugnación}
+
+La palabra \textbf{impugnación} proviene del latín \textit{pugnus}, que significa puño. Este vocablo derivó en varias palabras que aluden a la lucha de mano, al enfrentamiento físico. Ejemplos de ello son la palabra \textit{pugilato} (un enfrentamiento con los puños) y \textit{púgil} (el boxeador).
+
+Aplicando este origen etimológico al proceso judicial, la impugnación implica la noción de combate, lucha, ataque. En el contexto procesal, se refiere a todo mecanismo que ataca o combate un procedimiento viciado o una decisión equivocada desde la perspectiva del impugnante. La idea fundamental es que \textbf{impugnar significa atacar o combatir cualquier acto procesal o procedimiento que lesione el interés de una parte o de un tercero}.
+
+\section{Fundamento: el error humano}
+
+El ordenamiento procesal contempla mecanismos de impugnación porque reconoce una verdad fundamental: \textbf{el error es inherente a la condición humana}. Los jueces se equivocan. Las partes, en ciertos actos procesales que impulsan, pueden cometer irregularidades y realizarlos de manera que no cumple adecuadamente con las formas exigidas por la ley.
+
+Estos errores —tanto los de procedimiento como los de interpretación de la ley— son inevitables. Sin embargo, el ordenamiento no los deja sin remedio. Los actos de impugnación constituyen el mecanismo mediante el cual se busca mitigar los defectos y deficiencias que puedan existir en un proceso o en una resolución judicial.
+
+El procesalista italiano Francesco Carnelutti expresaba que \textbf{``la amenaza del error pende como espada de Damocles en el proceso''}. Refería así a la leyenda de Damocles, quien tenía sobre su cabeza una espada afilada suspendida de una crin de caballo, lista para caer en cualquier momento. Esta imagen captura la esencia del fundamento clásico de toda la teoría de la impugnación.
+
+\section{Definición de actos procesales de impugnación}
+
+Siguiendo la definición propuesta por Palacio y otros autores de reconocida autoridad, puede formularse la siguiente:
+
+\begin{definition}{Actos Procesales de Impugnación}
+Los actos procesales de impugnación son aquellos que están dirigidos directa e inmediatamente a provocar la modificación o sustitución total o parcial de una resolución judicial, en el mismo proceso en el que ella fue dictada.
+\end{definition}
+
+Esta definición comprende tanto los recursos en sentido estricto como otros medios que, sin ser recursos típicos, cumplen función impugnativa dentro del proceso.
+
+% ============================================================================
+% CAPÍTULO 2: CLASIFICACIÓN DE LOS ACTOS DE IMPUGNACIÓN
+% ============================================================================
+
+\chapter{Clasificación de los Actos de Impugnación}
+
+\section{Nota metodológica preliminar}
+
+Debe aclararse desde el inicio que existen diversas clasificaciones posibles de los actos de impugnación. No hay clasificaciones verdaderas o falsas, buenas o malas en términos absolutos. Toda clasificación constituye una manera de comprender, abarcar y categorizar distintos conceptos. La utilidad de una clasificación radica en su capacidad de mejorar la comprensión de los institutos que pretende ordenar.
+
+\section{Primera clasificación: incidente de nulidad, recursos y otros medios}
+
+La primera clasificación distingue tres grandes grupos de actos de impugnación:
+
+\subsection{Incidente de nulidad}
+
+Regulado en los artículos 169 a 174 del Código Procesal Civil y Comercial de la Nación (CPCCN), el incidente de nulidad se orienta a la corrección de vicios que afectan los elementos esenciales del procedimiento. Ejemplos típicos incluyen la notificación defectuosa del traslado de demanda en domicilio incorrecto.
+
+\subsection{Recursos procesales}
+
+En el proceso ordinario habitual, los recursos más frecuentes son:
+
+\begin{itemize}
+    \item \textbf{Aclaratoria} (art. 166 CPCCN)
+    \item \textbf{Revocatoria} o reposición (arts. 238-241 CPCCN)
+    \item \textbf{Apelación} (arts. 242 ss. CPCCN)
+    \item \textbf{Queja} por apelación denegada
+\end{itemize}
+
+Adicionalmente, el sistema procesal reconoce:
+
+\begin{itemize}
+    \item Recurso extraordinario federal
+    \item Apelación ordinaria ante la Corte Suprema
+    \item Recurso de inaplicabilidad de ley
+\end{itemize}
+
+\subsection{Otros medios de impugnación}
+
+Si bien menos frecuentes, el sistema contempla otros mecanismos:
+
+\subsubsection{Replanteo de prueba ante la alzada}
+
+Cuando el juez de primera instancia deniega ciertos medios de prueba, el litigante puede impugnar esa denegatoria en la etapa de revisión de la sentencia. Si la impugnación es adecuada, puede replantear la prueba y producirla ante el tribunal de alzada.
+
+\subsubsection{Acción autónoma de revisión de cosa juzgada}
+
+Una vez que la sentencia pasa en autoridad de cosa juzgada, excepcionalmente ---y de modo sumamente restrictivo--- la jurisprudencia ha abierto la posibilidad de revisar lo decidido cuando existen circunstancias excepcionales. Ejemplo paradigmático es el caso de juicios de filiación, donde con el advenimiento de la prueba de ADN se permitió la revisión de sentencias previamente firmes que no contaban con ese medio de prueba.
+
+\subsubsection{Nulidad del laudo arbitral}
+
+Prevista por los artículos 767 a 771 del CPCCN, para casos de laudo arbitral o laudo de amigables componedores.
+
+\subsubsection{Juicio ordinario posterior al juicio ejecutivo}
+
+Permite revisar, en un proceso de conocimiento pleno, una sentencia dictada en juicio ejecutivo, en el que el acotado marco procedimental no permitió ejercer en plenitud las defensas disponibles.
+
+\section{Segunda clasificación: remedios y recursos}
+
+La doctrina establece también una distinción entre remedios y recursos:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{REMEDIOS} & \textbf{RECURSOS (STRICTO SENSU)} \\
+\midrule
+Orientados a reparar errores procedimentales (vicios \textit{in procedendo}) & Apuntan a que un tribunal jerárquicamente superior reexamine el acto impugnado \\
+Resueltos por el mismo juez que los dictó & Se atacan vicios en la decisión judicial (vicios \textit{in iudicando}): interpretación de la ley o de los hechos \\
+Incluyen: incidente de nulidad, acción autónoma de revisión de cosa juzgada, juicio ordinario posterior, aclaratoria* y revocatoria* & Incluyen: apelación, queja, recurso extraordinario federal, apelación ordinaria ante la Corte, inaplicabilidad de ley \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+La aclaratoria y la revocatoria presentan aspectos que, técnicamente en doctrina, podrían involucrarlas dentro de la categoría de remedios, aunque el Código las trate y denomine como ``recursos''. Desde una perspectiva técnicamente más adecuada, deberían clasificarse dentro de los remedios.
+\end{note}
+
+% ============================================================================
+% CAPÍTULO 3: REQUISITOS COMUNES DE TODOS LOS RECURSOS
+% ============================================================================
+
+\chapter{Requisitos Comunes de Todos los Recursos}
+
+Independientemente de su tipo específico, todos los recursos comparten tres requisitos comunes que deben concurrir para que el planteo recursivo sea procedente.
+
+\section{Legitimación}
+
+En principio, las partes del proceso ---actor y demandado--- son los primeros legitimados para deducir un planteo recursivo. Sin embargo, la legitimación se extiende a otros sujetos:
+
+\begin{itemize}
+    \item \textbf{Terceros intervinientes}, ya sea por intervención voluntaria u obligada.
+    \item \textbf{Ministerios públicos} que intervengan en el caso: el fiscal en cuestiones en donde está comprometido el orden público; el defensor de menores en casos en donde hay niños, niñas o adolescentes en el proceso.
+    \item \textbf{Personas ajenas al proceso} que se ven afectadas en un interés legítimo ante una decisión o actuación procesal. Ejemplos incluyen auxiliares de la justicia, tales como peritos, cuando se regulan sus honorarios, o reparticiones públicas y empresas privadas que incumplen mandatos judicales y sufren multas como consecuencia.
+\end{itemize}
+
+\section{El agravio, gravamen o perjuicio}
+
+Este requisito es fundamental. Los términos \textbf{agravio}, \textbf{gravamen} y \textbf{perjuicio} son sinónimos utilizados indistintamente en doctrina y jurisprudencia.
+
+\begin{definition}{Agravio}
+El agravio existe cuando, en virtud de lo decidido, existe una insatisfacción total o parcial de cualquiera de las pretensiones que han sido planteadas. O eventualmente, si quien está afectado es la parte que se defiende en el proceso, el rechazo de las defensas que han sido opuestas.
+\end{definition}
+
+Aquel a quien la decisión judicial le provoca una derrota frente a los postulados sostenidos en sus presentaciones ---sea que su postulado apunte a satisfacer una pretensión, sea que su postulado sea oponer una defensa--- experimenta el perjuicio que genera el agravio. Sin agravio, no existe legitimación para recurrir.
+
+\section{El plazo perentorio}
+
+En todos los recursos existe un plazo para plantearlo, y ese plazo es siempre \textbf{perentorio}. Es decir, es fatal, improrrogable.
+
+\begin{important}
+El ejercicio del derecho a recurrir debe ser planteado dentro del plazo establecido por el código. Si se deja pasar ese plazo sin el planteo recursivo, se pierde definitivamente la posibilidad futura de formular ese planteo.
+\end{important}
+
+% ============================================================================
+% CAPÍTULO 4: ADMISIBILIDAD Y FUNDABILIDAD DE LOS RECURSOS
+% ============================================================================
+
+\chapter{Admisibilidad y Fundabilidad de los Recursos}
+
+Todos los recursos presentan dos dimensiones de análisis que deben examinarse en orden: primero la admisibilidad, luego la fundabilidad.
+
+\section{Admisibilidad}
+
+La \textbf{admisibilidad} de un recurso alude a toda la cuestión formal requerida para el planteo impugnativo. Comprende:
+
+\begin{itemize}
+    \item El plazo en que debe ser presentado.
+    \item Los recaudos formales: si debe ser por escrito, si puede ser verbalmente.
+    \item Qué debe contener ese escrito.
+    \item Si es escrito, si debe ser fundado o si es simplemente el planteo recursivo el que debe ser contenido en el escrito.
+    \item Contra qué actos procede el recurso y contra cuáles no.
+\end{itemize}
+
+En síntesis, la admisibilidad comprende todo lo que tiene que ver con el aspecto formal del recurso. Es de alguna manera lo que debe analizarse antes de pasar al examen de la sustancia, de lo medular de un planteo recursivo.
+
+\section{Fundabilidad}
+
+La \textbf{fundabilidad}, en cambio, apunta al fondo de la cuestión, al aspecto sustancial de la impugnación. Comprende:
+
+\begin{itemize}
+    \item La motivación que lleva al sujeto a formular su planteo.
+    \item La crítica concreta que se hace a la decisión del juez.
+    \item El vicio que se señala en algún tipo de actuación procesal.
+    \item Los agravios, gravámenes o perjuicios que provoca el acto impugnado.
+    \item De qué manera afecta ese acto a la persona que plantea el recurso.
+    \item De qué manera se siente perjudicada por lo decidido.
+\end{itemize}
+
+\section{Orden de análisis}
+
+El análisis de fundabilidad viene después del análisis de admisibilidad. Ello es lógico: lo primero que se analiza es lo formal. Si procede formalmente contra determinado acto un recurso, si se planteó a tiempo, en término, y si se planteó de la forma adecuada según lo establece el código, eso es la admisibilidad.
+
+Sólo después, se examina la fundabilidad: si tiene razón o no la persona en la cuestión que está criticando y en los motivos que le causan el perjuicio o el agravio, por el cual se alza contra la decisión o la actuación judicial.
+
+% ============================================================================
+% CAPÍTULO 5: LA GARANTÍA DE LA DOBLE INSTANCIA
+% ============================================================================
+
+\chapter{La Garantía de la Doble Instancia}
+
+\section{Planteo de la cuestión}
+
+¿Existe en nuestro ordenamiento una garantía procesal, amparada por la Constitución Nacional, de que en todo proceso existirá la doble instancia? Es decir, ¿la posibilidad de que por las vías recursivas toda decisión pueda ser revisada por un órgano diferente de aquél que dictó esa resolución?
+
+\section{Perspectiva histórica}
+
+La doble instancia posee antecedentes muy antiguos. Desde la Edad Media, y aún antes, desde la época del Imperio Romano, es posible observar esta posibilidad de recurrir las decisiones de jueces inferiores ante órganos creados especialmente para revisar tales decisiones. En el Imperio Romano, se acudía ante órganos creados por el emperador; en épocas monárquicas, ante funcionarios de jerarquía delegados por los reyes.
+
+En nuestro sistema nacional, desde tiempos de la colonia, era reconocida la posibilidad de recurrir a la Audiencia ---la instancia superior a las decisiones que tomaban los jueces de primera instancia.
+
+\section{La Constitución Nacional de 1853 y la ausencia de garantía expresa}
+
+Sin embargo, en el año 1853, nuestra Constitución Nacional no introduce como garantía del debido proceso la doble instancia. A pesar de que otros aspectos muy claros están presentes en el artículo 18, la doble instancia no figura como garantía constitucional en nuestro ordenamiento.
+
+\begin{important}
+La Constitución Nacional no dice nada de la doble instancia, ni siquiera en cuestiones penales ---donde podría esperarse mayor protección---, ni mucho menos en cuestiones no penales, es decir, en cuestiones civiles.
+\end{important}
+
+\section{El Pacto de San José de Costa Rica y la reforma constitucional de 1994}
+
+Es recién con la Convención Americana de Derechos Humanos ---el Pacto de San José de Costa Rica--- que aparece en nuestro ordenamiento una norma que específicamente prevé el derecho de recurrir del fallo ante juez o tribunal superior. Esta incorporación se produjo a raíz de la reforma constitucional del año 1994, mediante lo establecido por el artículo 75, inciso 22, que otorga jerarquía constitucional a los tratados internacionales de derechos humanos.
+
+El artículo 8º, inciso 2º, apartado h del Pacto de San José de Costa Rica establece el derecho de recurrir del fallo ante juez o tribunal superior. Cabe notar que este inciso se refiere específicamente a las personas inculpadas de un delito, por lo que la garantía está claramente enmarcada en el ámbito penal.
+
+\section{El caso Giroldi (Corte Suprema de Justicia de la Nación)}
+
+Así lo ha entendido la Corte Suprema tiempo después en el precedente Giroldi, en donde claramente considera que esta incorporación de la Convención Americana de Derechos Humanos a nuestra Constitución Nacional conformaba una garantía que integraba nuestro ordenamiento constitucional y, por ende, debía ser respetada con rango constitucional la doble instancia ---o más precisamente, la \textbf{doble conforme}--- en materia penal. En materia penal se habla más que de doble instancia, de doble conforme, para que la decisión condenatoria adquiera validez desde el plano de esta garantía.
+
+\section{Materia no penal: ausencia de garantía constitucional}
+
+Sistemáticamente, la Corte Suprema ha sostenido que la garantía de la doble instancia \textbf{no tiene jerarquía constitucional en materia no penal}. En materia no penal no hay garantía constitucional de doble instancia, salvo cuando las leyes específicamente lo establecen.
+
+El Código Procesal Civil y Comercial de la Nación establece en su artículo 242 un recaudo de admisibilidad del recurso de apelación vinculado con la cuantía: el monto discutido en el proceso debe superar cierta suma de dinero. Toda discusión por una cuestión de menor cuantía ---salvo que se trate de cuestiones arancelarias u honorarios--- no admite apelación. Ello significa que se priva de la doble instancia a quienes discuten montos menores. Sin embargo, la Corte ha sostenido que este tipo de limitaciones establecidas por el legislador ---vinculadas con la cuantía--- son absolutamente razonables y no violan ninguna pauta propia del debido proceso, precisamente porque en materia no penal no existe garantía constitucional de doble instancia.
+
+% ============================================================================
+% CAPÍTULO 6: LÍMITES DEL CONOCIMIENTO DEL TRIBUNAL DE ALZADA
+% ============================================================================
+
+\chapter{Límites del Conocimiento del Tribunal de Alzada}
+
+Los tribunales de segunda instancia ---cámaras de apelación, tribunales de alzada--- sólo son competentes para intervenir por vía de revisión de las decisiones de un juez de primera instancia. No tienen competencia originaria. Esta revisión no es plena, sino que se encuentra limitada por varios principios.
+
+\section{Primer límite: los escritos constitutivos del proceso}
+
+Al igual que el juez de primera instancia, el tribunal de alzada está limitado por el \textbf{principio de congruencia}, que lo obliga a mantenerse dentro del marco de lo que las partes han postulado en los escritos constitutivos del proceso, es decir, la pretensión y la defensa.
+
+El artículo 277 del CPCCN establece que ante los jueces de segunda instancia no se pueden introducir nuevas pretensiones o defensas no sometidas al conocimiento del juez de primera instancia. Las pretensiones, postulaciones y defensas que se dedujeron ante el juez de primera instancia son las que pueden reeditar ante el tribunal, con ampliación de fundamentos, pero no se puede venir con nuevos tópicos no planteados en primera instancia.
+
+\subsection{Excepciones al límite de los escritos constitutivos}
+
+Existen excepciones a este límite fundamental:
+
+\subsubsection{Hechos sobrevinientes}
+
+El artículo 163, inciso 6º, segunda parte, del CPCCN autoriza al tribunal de segunda instancia (así como al de primera instancia) a hacer mérito de los hechos constitutivos, modificativos o extintivos de las pretensiones, producidos durante la sustanciación del juicio y debidamente probados.
+
+Esto incluye:
+
+\begin{enumerate}
+    \item \textbf{Hechos posteriores a la sentencia de primera instancia}: por haber ocurrido con posterioridad, obviamente no pudieron haber sido planteados ante el juez de primera instancia. El artículo 277 del CPCCN los admite expresamente.
+\end{enumerate}
+
+\subsubsection{Principio iura novit curia}
+
+El tribunal puede también conocer cuestiones de derecho no planteadas por las partes, en virtud del principio \textit{iura novit curia} (el juez conoce el derecho).
+
+\section{Segundo límite: los agravios expresados y sus contestaciones}
+
+Además del límite de los escritos constitutivos, el tribunal de alzada está acotado por los propios recursos planteados por las partes. Los agravios planteados por las partes son los que marcan ese límite de actuación.
+
+\begin{formula}{Doble limitación del tribunal de alzada}
+El tribunal de segunda instancia no puede: (1) ir más allá de los escritos constitutivos del proceso (pretensiones y defensas de primera instancia), y (2) ir más allá de los agravios expresados en los recursos deducidos.
+\end{formula}
+
+\section{Principio de reformatio in peius}
+
+Este principio tiene íntima relación con los límites del tribunal de alzada. El \textbf{principio de reformatio in peius} establece que la sentencia de segunda instancia jamás va a poder empeorar la situación del único apelante.
+
+\begin{example}{Caso de accidente de tránsito}
+En un juicio de accidente de tránsito, el juez de primera instancia fija una indemnización de 500.000 pesos en favor del actor. La parte demandada no apela porque considera la suma razonable (o incluso baja). El actor sí apela, porque considera baja la indemnización.
+
+El recurso llega a la cámara. El tribunal de segunda instancia advierte que, a su criterio, la indemnización fue excesiva: el actor merecía mucho menos. Sin embargo, como el único apelante es el actor ---la parte demandada consintió la sentencia---, el tribunal de alzada no puede bajar la indemnización.
+
+No existe agravio de la demandada que permita reducirla. A lo sumo el tribunal podrá confirmar la sentencia o aumentar la indemnización en favor del actor.
+
+Conclusión: cuando se apela y se es el único apelante, nunca se puede perder. O se gana más, o se sigue con lo mismo que dio el juez de primera instancia.
+\end{example}
+
+% ============================================================================
+% CAPÍTULO 7: EL RECURSO INDIFERENTE
+% ============================================================================
+
+\chapter{El Recurso Indiferente}
+
+\section{Advertencia preliminar}
+
+El denominado ``recurso indiferente'' no se encuentra tipificado en el Código Procesal Civil y Comercial de la Nación. Efectivamente, no está legislado en el ordenamiento argentino; no tiene recepción legal formal. Algunos autores se refieren a este instituto tomándolo del derecho alemán, en donde la estructura recursiva es bien distinta de la argentina.
+
+\section{Concepto y características}
+
+La característica central del recurso indiferente es que el tribunal deja de lado los recaudos de admisibilidad que tienen todos nuestros planteos impugnativos ---plazo, forma, características, tipo de resolución a la que atacan, etc.--- dejando de lado todos esos requisitos de admisibilidad en pos de garantizar ciertos derechos fundamentales que están siendo conculcados por alguna decisión judicial.
+
+De alguna manera, el tribunal de segunda instancia deja de lado los recaudos formales de admisibilidad y pasa a conocer y resolver el fondo del asunto, lo sustancial, sin cortapisas ni trabazones de índole formal.
+
+\begin{definition}{Recurso Indiferente}
+El recurso indiferente es aquél que, sin ser el que la ley prescribe expresamente para el caso, o que siéndolo se han omitido elementos formales, produce no obstante los mismos efectos respecto de la posibilidad ---procedibilidad--- de la vía recursiva que el recurso correctamente articulado.
+\end{definition}
+
+\section{Casos de recepción jurisprudencial}
+
+El recurso indiferente cuenta con sustento en precedentes de la Corte Suprema de Justicia de la Nación.
+
+\subsection{Caso YPF (CSJN)}
+
+El caso que le dio andamiaje en el ordenamiento argentino fue fallado por la Corte Suprema y se conoce como el caso YPF. En el ámbito provincial, se había desestimado el planteo que hacía una persona en verdadero estado de vulnerabilidad, que tenía el beneficio de una pensión derivada de su situación de discapacidad. Por defectos en la manera en que realizó los planteos y dedujo los recursos en sede provincial, había sido rechazada la posibilidad de revisar y acoger la pretensión. La Corte, dejando de lado esas cuestiones formales, admitió la viabilidad del planteo.
+
+\subsection{Caso Tejida (CSJN, 2018)}
+
+En este precedente de marzo de 2018, la Corte sostuvo que, dada la índole peculiar de ciertas pretensiones, compete a los jueces la búsqueda de soluciones que se avengan a éstas. Para lo cual deben encauzar los trámites por vías expeditivas a fin de evitar que la incorrecta utilización de las formas pueda conducir a la frustración de derechos tutelados constitucionalmente, cuya suspensión a las resultas de nuevos trámites es inadmisible.
+
+% ============================================================================
+% CAPÍTULO 8: EL RECURSO DE ACLARATORIA
+% ============================================================================
+
+\chapter{El Recurso de Aclaratoria}
+
+\section{Concepto}
+
+Siguiendo a Palacio y la doctrina científica, puede definirse la aclaratoria de la siguiente manera:
+
+\begin{definition}{Recurso de Aclaratoria}
+La aclaratoria es un remedio que se concede a las partes para obtener que el mismo juez o tribunal que dictó una resolución subsane las deficiencias materiales o conceptuales que contenga, o le integre de conformidad con las peticiones oportunamente formuladas.
+\end{definition}
+
+\section{Supuestos que habilitan la aclaratoria}
+
+La aclaratoria procede cuando concurren determinadas circunstancias. A modo enumerativo, pueden mencionarse:
+
+\begin{itemize}
+    \item \textbf{Errores materiales}: confundir el nombre de las partes (escribir ``parte actora'' cuando se quería decir ``parte demandada''); discordancia entre cifras en guarismos y en letras; errores aritméticos en sumas o cálculos.
+    
+    \item \textbf{Errores de copia o transcripción}: párrafos ``pegados'' de otra resolución, especialmente al armar resoluciones con procesadores de texto. Hoy son menos frecuentes que en la época de las máquinas de escribir.
+    
+    \item \textbf{Contradicción entre considerandos y parte resolutiva}: los considerandos fundamentan la concesión de un rubro pero la parte resolutiva lo omite; o viceversa.
+    
+    \item \textbf{Conceptos oscuros}: discordancia entre la idea que se quiso expresar y las palabras utilizadas, que tornan necesaria una aclaración. Siempre que ello no implique una modificación sustancial de lo decidido.
+    
+    \item \textbf{Omisión de tratar pretensiones deducidas}: el juez no trató en la resolución alguna de las pretensiones debatidas en el proceso. La aclaratoria es la oportunidad para ampliar y completar la resolución.
+\end{itemize}
+
+\section{Características procesales de la aclaratoria}
+
+\subsection{Plazo}
+
+La parte tiene \textbf{tres (3) días} para plantear la aclaratoria, contados desde la notificación de la sentencia o resolución que se pretende aclarar.
+
+En el caso de aclaratoria contra sentencia de segunda instancia, el plazo es de \textbf{cinco (5) días}.
+
+Si se trata de una providencia no notificada por cédula, los tres días comienzan a correr desde el martes o viernes posterior al dictado, conforme a la notificación por ministerio de la ley.
+
+\subsection{Forma}
+
+Es planteada \textbf{por escrito}. La fundamentación se hace en el mismo escrito de interposición.
+
+\subsection{Sustanciación}
+
+La aclaratoria es resuelta por el juez \textbf{sin traslado previo a la otra parte}, es decir, sin sustanciación. El Código Procesal así lo establece en el artículo 166.
+
+\subsection{Relación con el recurso de apelación}
+
+Un aspecto importante a considerar es que \textbf{la aclaratoria no interrumpe el plazo para apelar}.
+
+\begin{important}
+La apelación debe ser interpuesta autónomamente dentro del quinto día, sin perjuicio de la aclaratoria que se planteó. Lo conveniente es plantear la aclaratoria y, antes del quinto día, plantear la apelación. Si la aclaratoria suple los defectos y torna innecesaria la apelación posterior, se podrá desistir del recurso de apelación eventualmente.
+
+Sin embargo, no puede perderse la apelación por el hecho de haber planteado una aclaratoria. No cabe la apelación subsidiaria de ese planteo: es aclaratoria o apelación, pero no las dos cosas juntas. El único recurso que admite la apelación en subsidio es la revocatoria.
+\end{important}
+
+% ============================================================================
+% CAPÍTULO 9: EL RECURSO DE REPOSICIÓN O REVOCATORIA
+% ============================================================================
+
+\chapter{El Recurso de Reposición o Revocatoria}
+
+\section{Concepto}
+
+El \textbf{recurso de revocatoria} o \textbf{reposición} puede definirse de la siguiente forma:
+
+\begin{definition}{Recurso de Reposición o Revocatoria}
+La revocatoria es el remedio procesal tendiente a que el mismo juez o tribunal que dictó una resolución subsanen los agravios que ella ocasiona, por \textit{contrario imperio}. Es decir, se le pide al juez o al tribunal que dictó una resolución que la modifique, que la cambie, que la revise, porque esa resolución causa perjuicios y esos perjuicios justifican que el juez corrija esa decisión y la modifique en favor de quien hace el planteo.
+\end{definition}
+
+\section{Recaudos de admisibilidad}
+
+\subsection{Tipo de resolución atacable}
+
+Procede únicamente contra \textbf{providencias simples}. Es inadmisible contra sentencias interlocutorias o sentencias definitivas.
+
+Debe aclararse que \textbf{procede contra providencias simples, causen o no causen gravamen irreparable}. El Código, en el artículo 238, establece este recaudo. Se sostiene que el gravamen irreparable está marcado como aquél que no puede ser suplido por lo que se decida en la sentencia. Es aquella providencia que no puede ser corregida durante el curso del proceso o con la sentencia. Una vez que se adopta esa decisión ---aunque sea en una providencia simple--- marca un cambio de rumbo tal que no hay vuelta para atrás.
+
+\begin{example}{Contestación de demanda tenida por no presentada}
+La providencia simple por la cual se tiene por no contestado el traslado de la demanda en término, por considerarse extemporánea la contestación, es una providencia simple que, si no se corrige por vía de revocatoria, deja al demandado sin posibilidad de defensa. Eso es irreparable desde el plano de la defensa. Por ello causa gravamen irreparable y es susceptible tanto de revocatoria como de apelación.
+
+En cambio, una providencia que ordena agregar copia de un escrito antes de correr traslado puede no causar gravamen irreparable ---la cuestión se soluciona presentando la copia---, pero aun así es admisible la revocatoria.
+\end{example}
+
+\subsection{Jueces ante quienes procede}
+
+La revocatoria procede contra decisiones de:
+
+\begin{itemize}
+    \item \textbf{Jueces de primera instancia}.
+    
+    \item \textbf{Presidente de una cámara de apelación}, en lo concerniente a providencias simples de mero trámite adoptadas durante la sustanciación del juicio en segunda instancia, con anterioridad al dictado de la sentencia de alzada.
+\end{itemize}
+
+Cuando la revocatoria se plantea contra una providencia del presidente de la cámara, quien resuelve es el \textbf{tribunal en pleno} ---los tres jueces---. Esas decisiones del tribunal en pleno hacen ejecutoria: no pueden ser recurridas.
+
+\subsection{Providencias simples que causen o no causen gravamen irreparable}
+
+Como se mencionó anteriormente, el artículo 238 del CPCCN indica que procede contra providencias simples, causen o no causen gravamen irreparable. Esta característica diferencia la revocatoria de otros recursos, tales como la apelación, que exige como requisito que la providencia cause gravamen irreparable.
+
+\section{Plazo}
+
+El plazo para plantear la revocatoria es de \textbf{tres (3) días}} desde la notificación de la providencia que se pretende impugnar. Esta notificación puede realizarse por ministerio de la ley o de manera electrónica, conforme al artículo 135 del CPCCN.
+
+\begin{important}
+Existe una excepción importante: si la decisión fue adoptada en una audiencia, la revocatoria debe plantearse en el mismo acto de la audiencia, verbalmente. No puede presentarse días después.
+\end{important}
+
+\section{Forma de interposición y fundamentación}
+
+La revocatoria se interpone por escrito ---en la mayoría de los casos--- o verbalmente ---si la providencia fue adoptada en audiencia---. El recurso se funda en el mismo escrito o en el mismo acto de su interposición. Se exponen los fundamentos, los agravios y los motivos que llevan a criticar el acto cuya modificación se pretende.
+
+\section{Trámite y resolución}
+
+El procedimiento es el siguiente:
+
+Si la decisión atacada ha sido el resultado de una petición formulada por la otra parte, cuando se plantea la revocatoria el juez debe oír a esa otra parte previamente, antes de resolver. Debe correrse traslado del planteo de revocatoria a la parte que había pedido la decisión que ahora se impugna.
+
+Si la decisión no había sido originada en la petición de una de las partes, sino que era una providencia dictada por el juez de oficio, no es necesario correr traslado del planteo de revocatoria a la otra parte.
+
+\section{Efectos: la ejecutoria y sus excepciones}
+
+Lo que el juez decida respecto de la revocatoria hace \textbf{ejecutoria}. Significa que queda firme lo decidido y resulta ejecutable. No es impugnable por vía de otro recurso.
+
+\subsection{Excepciones a la ejecutoria}
+
+Existen excepciones a este efecto general:
+
+\subsubsection{Revocatoria con apelación subsidiaria}
+
+Si la revocatoria fue planteada con apelación subsidiaria: si el juez rechaza la revocatoria, no hace ejecutoria porque queda pendiente el recurso de apelación interpuesto en subsidio.
+
+\subsubsection{Revocatoria admitida}
+
+Si el juez admite la revocatoria, esa decisión de admisión puede ser apelada por la contraparte.
+
+% ============================================================================
+% CAPÍTULO 10: EL INCIDENTE DE NULIDAD
+% ============================================================================
+
+\chapter{El Incidente de Nulidad}
+
+\section{Concepto}
+
+Se denomina \textbf{incidente de nulidad} al remedio procesal que apunta a la privación de efectos imputada a los actos del proceso que adolecen de algún vicio en sus elementos esenciales y que, por ende, carecen de aptitud para cumplir el fin a que están destinados.
+
+Si bien el incidente de nulidad no está clasificado dentro de los recursos ni fue visto al estudiar los actos procesales, resulta fundamental en el proceso.
+
+\section{Principio general: conservación de los actos procesales}
+
+Un principio fundamental rige el sistema de actos procesales: \textbf{el proceso tiende a que los actos procesales cumplidos sean válidos}. El principio general que rige en los actos procesales es el de \textbf{conservación de los actos procesales}: se reputan por válidos, salvo que se reúnan los criterios específicos que habilitan la declaración de nulidad de un acto.
+
+\section{Los cinco principios que rigen las nulidades procesales}
+
+El Código Procesal Civil y Comercial de la Nación establece, en los artículos 169 a 174, cinco principios fundamentales que rigen las nulidades procesales. Estos principios configuran un sistema coherente cuyo propósito es garantizar la efectividad del proceso sin sacrificar la seguridad jurídica.
+
+\subsection{Principio de especificidad (Art. 169, primer párrafo, CPCCN)}
+
+Para que exista nulidad tiene que haber una irregularidad formal, una contradicción a una norma, que en caso de no haber sido observada, apareje la nulidad. Tiene que haber una pauta formal que haya sido vulnerada.
+
+\begin{important}
+Si en el proceso no se violó ninguna norma formal, no se daría este principio de especificidad, que es necesario para que haya nulidad. Ningún acto procesal será declarado nulo si la ley no prevé expresamente esa sanción.
+\end{important}
+
+\subsection{Principio de finalidad o conservación (Art. 169, segundo párrafo, CPCCN)}
+
+El acto viciado debe carecer de los requisitos indispensables para obtener su finalidad. Más allá de que pudo existir una irregularidad, existen hipótesis en las que puede haber alguna irregularidad del acto cumplido y que es atacado, pero pese a esa irregularidad, puede ser que el acto haya cumplido su finalidad.
+
+\begin{important}
+En caso de que el acto haya cumplido la finalidad a la que estaba destinado, prevalece la validez de ese acto. Si el acto no obstante su irregularidad ha cumplido su fin, no procede la declaración de nulidad.
+\end{important}
+
+\begin{example}{Emplazado anoticiado de manera irregular pero con conocimiento real}
+Una persona se muda de domicilio pero mantiene contacto con quien vive allí. La cédula de traslado de la demanda llega al domicilio anterior. La persona que recibe la cédula le avisa al demandado, quien toma conocimiento pleno.
+
+Si el demandado no hace nada al respecto y deja transcurrir el plazo de cinco días, el acto queda saneado y ya no procede el incidente de nulidad. El acto irregular cumplió su finalidad ---el emplazado supo que era demandado--- y fue convalidado.
+\end{example}
+
+\subsection{Principio de subsanación (Art. 170 y 172 CPCCN)}
+
+La nulidad es improcedente si el acto viciado fue convalidado, fue purgado, fue conocido por quien la invoca y no hizo ningún planteo.
+
+\begin{formula}{Subsanación por silencio}
+Se presume que el acto ha sido convalidado si no se promueve el incidente de nulidad dentro del quinto día de conocido.
+\end{formula}
+
+\subsection{Principio de trascendencia (Art. 172 CPCCN)}
+
+El principio de trascendencia establece que quien plantea el incidente debe invocar y demostrar un perjuicio cierto del que se derive su interés en formular el planteo, dimensionando las defensas que no ha podido oponer como consecuencia del acto viciado.
+
+\begin{important}
+La nulidad debe dejar desnuda ante el juez una situación de indefensión de quien la invoca.
+\end{important}
+
+El mecanismo de las nulidades apunta a garantizar la defensa, no la regularidad de los actos o el cumplimiento de un formalismo. \textbf{No existe la nulidad por la mera forma. Si hay indefensión, hay nulidad. Si no hay indefensión, no hay nulidad.}
+
+\subsection{Principio de protección (Art. 171 CPCCN)}
+
+Este es, quizás, el principio más fundamental del sistema de nulidades procesales:
+
+\begin{important}
+Nadie puede invocar la nulidad cuando fue partícipe, fue gestor de la nulidad que invoca. No puede venir el actor a plantear la nulidad del traslado de la demanda al domicilio que yo mismo denuncié y en donde postulé que se hiciera la notificación del traslado.
+\end{important}
+
+\section{Ejemplo típico: nulidad del traslado de la demanda}
+
+La notificación del traslado de la demanda está dotada, en virtud del artículo 339 del CPCCN, de una serie de recaudos que hacen a la garantía del derecho de defensa. Es un acto procesal trascendental. Si este acto, por algún vicio o defecto, no cumple su propósito ---si el demandado no se entera de que fue emplazado a comparecer a un proceso---, el proceso sigue adelante sin que él pueda ejercer su defensa.
+
+El incidente de nulidad es el mecanismo que permite atacar ese acto irregular y, en su caso, obtener la nulidad del proceso o la continuación de este desde el punto donde se produjo el vicio.
+
+% ============================================================================
+% CAPÍTULO 11: MÉTODO CORNELL DE ESTUDIO
+% ============================================================================
+
+\chapter{Método Cornell de Estudio}
+
+A continuación se presenta el método Cornell correspondiente a los contenidos desarrollados en esta unidad. Esta herramienta de estudio permite la recuperación activa del conocimiento y la síntesis de los conceptos centrales.
+
+\section{Tabla Cornell}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / Palabras clave} & \textbf{Notas / Respuestas} \\
+\midrule
+
+\textbf{¿Qué es un acto de impugnación y cuál es la diferencia con un recurso?} & Los actos de impugnación son el género: todo mecanismo procesal dirigido a atacar un acto o procedimiento que lesione el interés de las partes o terceros. Los recursos son una especie dentro de ese género. Otros tipos son el incidente de nulidad, la acción autónoma de revisión de cosa juzgada, el juicio ordinario posterior, etc. Los recursos son los más frecuentes. \\
+
+\textbf{¿Por qué existen los mecanismos de impugnación en el proceso?} & Porque el error es inherente a la condición humana. Los jueces y las partes pueden equivocarse. Carnelutti decía que ``la amenaza del error pende como espada de Damocles en el proceso''. La impugnación existe para mitigar esas deficiencias y ofrecer correcciones. \\
+
+\textbf{¿Cuál es la diferencia entre vicio in procedendo y vicio in iudicando?} & El vicio in procedendo es un defecto en el procedimiento (p. ej., notificación irregular). Se ataca por incidentes de nulidad o remedios. El vicio in iudicando es un error en la decisión judicial (interpretación de la ley o de los hechos). Se ataca por recursos en sentido estricto, ante un tribunal superior. \\
+
+\textbf{¿Quiénes tienen legitimación para recurrir?} & Las partes (actor y demandado), los terceros intervinientes (voluntarios u obligados), los ministerios públicos (fiscal, defensor de menores) y aun personas ajenas al proceso si un interés legítimo propio resulta afectado (p. ej., peritos cuyos honorarios son regulados, o empresas sancionadas por incumplimiento de mandatos judicales). \\
+
+\textbf{¿Qué es el agravio o gravamen?} & Es la insatisfacción total o parcial del postulado esgrimido en el proceso (pretensión o defensa). Sin agravio no hay legitimación para recurrir. También se denomina ``gravamen'' o ``perjuicio''. El rechazo de la pretensión para el actor, o el rechazo de las defensas para el demandado, constituyen el agravio que habilita el recurso. \\
+
+\textbf{¿Cuál es la diferencia entre admisibilidad y fundabilidad de un recurso?} & La admisibilidad se refiere al aspecto formal: plazo, forma de presentación, tipo de resolución recurrible, etc. Se analiza primero. La fundabilidad se refiere al fondo: si los agravios son válidos, si la crítica a la decisión judicial es correcta. Se analiza después de superado el juicio de admisibilidad. \\
+
+\textbf{¿Existe en Argentina una garantía constitucional de doble instancia en materia civil?} & No. En materia no penal, la Corte Suprema sostiene consistentemente que no existe garantía constitucional de doble instancia. En materia penal sí existe, desde la incorporación del Pacto de San José de Costa Rica (art. 8º inc. 2º ap. h) a la Constitución vía art. 75 inc. 22 CN, ratificada por el caso Giroldi. \\
+
+\textbf{¿Qué es el principio de reformatio in peius?} & Prohíbe que el tribunal de segunda instancia empeore la situación del único apelante. Si sólo apeló el actor (por considerar baja la indemnización) y la demandada consintió la sentencia, el tribunal de alzada no puede bajar la indemnización: a lo sumo la confirma o la aumenta. \\
+
+\textbf{¿Qué es el recurso indiferente?} & Es una categoría doctrinal (no tipificada en el CPCCN) que habilita a los tribunales a dejar de lado los requisitos formales de admisibilidad para garantizar derechos fundamentales gravemente afectados. Se aplica excepcionalmente. Tiene sustento en los casos ``YPF'' y ``Tejida'' de la CSJN. \\
+
+\textbf{¿Para qué sirve el recurso de aclaratoria y cuándo no procede?} & Sirve para que el mismo juez corrija errores materiales (nombres, sumas, cálculos), aclare conceptos oscuros o integre la resolución cuando omitió tratar alguna pretensión. No procede para modificar sustancialmente lo decidido: para eso existen la revocatoria o la apelación. \\
+
+\textbf{¿Contra qué tipo de resoluciones procede la revocatoria?} & Sólo contra providencias simples, independientemente de que causen o no gravamen irreparable (art. 238 CPCCN). No procede contra sentencias interlocutorias ni definitivas. La apelación, en cambio, exige que la providencia simple cause gravamen irreparable para ser admisible. \\
+
+\textbf{¿Cuáles son los cinco principios de las nulidades procesales?} & (1) Especificidad (art. 169, 1er párr.): debe haber una norma formal vulnerada. (2) Finalidad (art. 169, 2do párr.): si el acto cumplió su fin, no hay nulidad. (3) Subsanación (art. 170): si el acto fue convalidado (no se plantea en 5 días), no procede. (4) Trascendencia (art. 172): debe existir indefensión real; sin indefensión, no hay nulidad. (5) Protección (art. 171): quien generó el vicio no puede invocarlo. \\
+
+\textbf{¿Cuál es la máxima fundamental del sistema de nulidades procesales?} & Si hay indefensión, hay nulidad. Si no hay indefensión, no hay nulidad. El mecanismo de las nulidades apunta a garantizar la defensa, no la regularidad de los actos o el cumplimiento de un formalismo puro. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} La Unidad 19 desarrolla la Teoría General de la Impugnación, que constituye el sistema mediante el cual el ordenamiento procesal civil argentino permite atacar las decisiones judiciales erróneas o los actos procesales viciados. El fundamento último es la falibilidad humana: los jueces y las partes pueden equivocarse, y ese error requiere mecanismos de corrección. El género es el acto de impugnación (que abarca el incidente de nulidad, los recursos y otros medios atípicos); la especie más frecuente son los recursos. La doctrina diferencia remedios (resueltos por el mismo juez, orientados a vicios procedimentales) y recursos en sentido estricto (sometidos a un tribunal superior, dirigidos a vicios en la decisión). Todo recurso requiere tres presupuestos comunes: legitimación, agravio y plazo perentorio; y presenta dos dimensiones: la admisibilidad formal y la fundabilidad sustancial. La garantía de la doble instancia existe sólo en materia penal con rango constitucional (CADH, art. 75 inc. 22 CN), no en materia civil. El tribunal de alzada tiene una doble limitación: los escritos constitutivos y los agravios expresados, y no puede perjudicar al único apelante (reformatio in peius). El recurso indiferente es una construcción jurisprudencial excepcional para casos en que las formas frustrarían derechos fundamentales. La aclaratoria corrige errores formales o integra omisiones sin alterar la esencia de lo decidido. La revocatoria permite que el mismo juez revea providencias simples. Finalmente, el incidente de nulidad ataca vicios procedimentales y exige los cinco principios: especificidad, finalidad, subsanación, trascendencia y protección, siendo este último la clave: sin indefensión real, no hay nulidad.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================================
+% FIN DEL DOCUMENTO
+% ============================================================================
+
+\end{document}

@@ -1,0 +1,793 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{Unidad 24 --- Sistemas Cautelares}
+\newcommand{\subtitulo}{Primera Clase: Introducción al Sistema Cautelar}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2025}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.3cm}
+
+{\large \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el sistema es el primer paso para dominar su correcta aplicación profesional.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+\chapter{Fundamentos y clasificación de los sistemas cautelares}
+
+Los sistemas cautelares constituyen un conjunto integrado de herramientas jurídicas cuyo propósito es neutralizar los efectos del transcurso del tiempo en el proceso judicial. De modo análogo a como una intervención de primeros auxilios se aplica antes de que el paciente llegue al quirófano, la cautela permite a la jurisdicción actuar de forma inmediata y provisoria, evitando que el daño se consolide antes de que se dicte la sentencia definitiva. El desarrollo de la presente unidad se construye sobre esa premisa central.
+
+\section*{Temas abordados}
+\addcontentsline{toc}{section}{Temas abordados}
+\begin{itemize}
+    \item La actuación de la ley en el proceso con carácter conservatorio o asegurativo.
+    \item Los distintos tipos de sistemas cautelares.
+    \item Los presupuestos de las medidas cautelares tradicionales.
+    \item La distinción entre cautela y condena.
+\end{itemize}
+
+\begin{note}
+El estudio de los sistemas cautelares se desarrolla a lo largo de tres clases, dada su importancia y extensión. El esquema siguiente resume los quince temas centrales, agrupados en cuatro bloques temáticos, que estructuran su tratamiento.
+\end{note}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.10\textwidth}
+    >{\raggedright\arraybackslash}p{0.35\textwidth}
+    >{\raggedright\arraybackslash}p{0.42\textwidth}
+}
+\caption{Esquema general de la unidad} \\
+\toprule
+\textbf{N.\textdegree} & \textbf{Tema} & \textbf{Palabras clave} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{N.\textdegree} & \textbf{Tema} & \textbf{Palabras clave} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{3}{l}{\textit{Bloque I --- Fundamentos conceptuales}} \\
+1 & Actuación de la ley en el proceso & conocer, ejecutar, conservar \\
+2 & El poder cautelar & tiempo, tutela, respuesta efectiva \\
+3 & Cautela vs.\ condena & provisoriedad, definitividad, diferencias \\
+\multicolumn{3}{l}{\textit{Bloque II --- Clasificación de los sistemas}} \\
+4 & Ámbito normal y excepcional & sistemas, subsistemas, código procesal \\
+5 & Sistemas asegurativos probatorios & prueba anticipada, art.\ 326 \\
+6 & Sistemas precautorios tradicionales & embargo, secuestro, sentencia efectiva \\
+7 & Sistemas asegurativos garantizadores & contracautela, fianza, arts.\ 509 y 555 \\
+8 & Sistemas asegurativos genéricos & inhibición, prohibición de innovar, arts.\ 228 y 230 \\
+\multicolumn{3}{l}{\textit{Bloque III --- Ámbito excepcional}} \\
+9 & Tutela anticipada & adelanto jurisdiccional, daño inminente, provisorio \\
+10 & Sistemas protectores & violencia familiar, personas, guarda \\
+\multicolumn{3}{l}{\textit{Bloque IV --- Presupuestos y caracteres}} \\
+11 & Presupuestos sustanciales & verosimilitud, peligro en la demora \\
+12 & La contracautela & real, personal, juratoria, vasos comunicantes \\
+13 & Presupuestos procesales --- art.\ 195 & escrito, derecho, medida, fundamento \\
+14 & Caracteres de las medidas cautelares & provisoriedad, modificabilidad, arts.\ 202--207 \\
+15 & Clasificación sobre bienes, entes y personas & embargo, interventor, guarda, violencia familiar \\
+\end{longtable}
+
+\section{La actuación de la ley en el proceso}
+
+\subsection{Los tres modos de actuación de la ley}
+
+La jurisdicción actúa en el proceso a través de distintas etapas, denominadas momentos jurisdiccionales. Pueden diferenciarse tres modalidades de actuación de la ley en el proceso.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Modo de actuación} & \textbf{Cuándo ocurre} & \textbf{En qué etapa} \\
+\midrule
+Para \textbf{conocer} & Cuando la jurisdicción conoce los hechos & Etapa introductoria (escritos postulatorios), probatoria (producción de prueba), alegatos \\
+Para \textbf{ejecutar} & Cuando el juez ejecuta la sentencia & Luego de la sentencia firme y consentida (ejecutoriada) \\
+Para \textbf{conservar / asegurar} & Antes o durante el proceso, ante urgencia & En cualquier momento en que se requiera una respuesta inmediata \\
+\bottomrule
+\end{tabularx}
+\caption{Modos de actuación de la ley en el proceso}
+\end{table}
+
+La actuación de la ley con carácter conservatorio es la que resulta relevante para el estudio de los sistemas cautelares. Esta actuación abarca tanto la función conservativa como la innovativa:
+
+\begin{itemize}
+    \item \textbf{Conservar para mantener} un determinado statu quo: el riesgo proviene de que se altere la situación existente.
+    \item \textbf{Conservar alterando}: el riesgo proviene de que se mantenga una determinada situación o statu quo, y es precisamente esa conservación la que genera el daño.
+\end{itemize}
+
+\subsection{El poder cautelar}
+
+El iter procesal insume necesariamente tiempo. Si se transcurre la totalidad del proceso hasta la sentencia, es probable que situaciones vigentes, o que requieran una respuesta rápida, inmediata y efectiva, queden sin solución oportuna. Los sistemas cautelares surgen para dar respuesta a esas situaciones.
+
+\begin{definition}{Poder cautelar}
+Es la respuesta efectiva e inmediata que se brinda en el marco de un proceso judicial prudente, con el fin de respetar la tutela judicial efectiva con relación a los derechos discutidos en ese proceso.
+\end{definition}
+
+Sus objetivos son:
+\begin{enumerate}
+    \item Contrarrestar los efectos negativos del transcurso del tiempo en el proceso judicial.
+    \item Respetar la tutela judicial efectiva de los derechos discutidos.
+    \item Mantener la igualdad de las partes en el proceso.
+\end{enumerate}
+
+\begin{example}{Camacho Acosta (CSJN)}
+Fallo de la Corte Suprema de Justicia de la Nación vinculado a la prohibición de innovar. Un trabajador pierde el antebrazo y necesita una prótesis. La prótesis exige una respuesta inmediata de la jurisdicción: no puede esperarse a la sentencia definitiva para decidir si correspondía otorgarla. La jurisdicción debe anticipar esa decisión a fin de resguardar la salud y el derecho de la persona a contar con la prótesis. Constituye el ejemplo paradigmático de la necesidad de las medidas cautelares.
+\end{example}
+
+Otros supuestos frecuentes en los que se requieren sistemas cautelares son:
+\begin{itemize}
+    \item La protección de una persona.
+    \item La conservación de una prueba para el proceso.
+    \item Mantener el giro comercial de una empresa.
+    \item La aplicación de una norma inconstitucional a un caso concreto, mediante la solicitud de una medida cautelar que suspenda sus efectos mientras tramita el proceso.
+\end{itemize}
+
+\subsection{Cautela versus condena}
+
+Cautela y condena son términos distintos. El término cautelar deriva de ``cauto'', quien observa con cuidado, y también de ``caución'', vinculado a ``precaver'' y a lo ``precavido''. Estos términos remiten a la idea de prevención y de conservación de una determinada situación de hecho o de derecho en un caso concreto.
+
+\begin{important}
+Cuando se habla de cautela, se está en un ámbito \textbf{provisorio}, que nada tiene que ver con la condena, la cual se da únicamente en la sentencia, luego de transitar todas las etapas del proceso.
+\end{important}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Cautela} & \textbf{Condena} \\
+\midrule
+Provisoria & Definitiva \\
+Anterior a la sentencia & Es la sentencia definitiva \\
+Basada en verosimilitud del derecho & Basada en certeza jurídica plena \\
+Puede modificarse o levantarse & No puede modificarse (cosa juzgada) \\
+Tramita inaudita parte & Con plena bilateralidad \\
+Requiere contracautela & No requiere contracautela \\
+Sujeta a caducidad & No caduca \\
+Instrumental, accesoria & Principal, autónoma \\
+\bottomrule
+\end{tabularx}
+\caption{Diferencias entre cautela y condena}
+\end{table}
+
+La sentencia de mérito constituye el máximo momento de la jurisdicción: fijar los hechos del proceso, elevarlos a las normas abstractas y crear la norma individual para el caso concreto, luego del conocimiento del juez, de los hechos, de la producción de la prueba y de los alegatos. Ese proceso previo a la sentencia es ajeno a la cautela, que se sustenta en un nivel de conocimiento inferior, fundado en la verosimilitud del derecho.
+
+\section{Clasificación de los sistemas cautelares}
+
+\subsection{El tratamiento como sistema}
+
+Los institutos cautelares se estudian como un sistema porque, al recorrer el Código Procesal Civil y Comercial, se advierte que la ley actúa con carácter conservativo o asegurativo en distintos lugares y con distintas modalidades. Agrupar esas manifestaciones en subsistemas permite comprenderlas en su conjunto, distinguir sus finalidades y aplicarlas correctamente dentro del sistema-código procesal.
+
+\begin{note}
+El material original refiere seis gráficos de sistemas cautelares disponibles en el sitio del docente (www.jorgeaRojas.com.ar), sección ``Actividad Docente / Material de Trabajo'', que acompañan las tres clases dedicadas a esta unidad.
+\end{note}
+
+\subsection{Ámbito normal y ámbito excepcional}
+
+Los sistemas cautelares se clasifican en dos grandes ámbitos.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.25\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Ámbito} & \textbf{Tipo de sistema} \\
+\midrule
+Normal & Sistemas asegurativos probatorios \\
+Normal & Sistemas precautorios tradicionales \\
+Normal & Sistemas asegurativos garantizadores \\
+Normal & Sistemas asegurativos genéricos \\
+Excepcional & Tutela anticipada \\
+Excepcional & Sistemas protectores \\
+\bottomrule
+\end{tabularx}
+\caption{Clasificación de los sistemas cautelares por ámbito}
+\end{table}
+
+\subsection{Sistemas asegurativos probatorios}
+
+Estos sistemas propenden a la mayor eficacia del proceso. Su finalidad es resguardar fuentes de prueba que pueden perderse con el transcurso del tiempo.
+
+\begin{formula}{Artículo 326 --- CPCCN}
+Regula la prueba anticipada. Es allí donde se encuentra normado el sistema asegurativo probatorio. La ley actúa en el proceso con carácter asegurativo o conservatorio, permitiendo adelantar el momento en el cual se produce una prueba que, de no producirse en ese momento, se perdería al aguardar la etapa probatoria ordinaria del proceso.
+\end{formula}
+
+Si en la etapa probatoria ordinaria se pierde una prueba por no haberse permitido su adelantamiento, la parte que contaba con esa prueba pierde la posibilidad de acreditar el fundamento de su pretensión, lo que afecta la igualdad de las partes en el proceso.
+
+\subsection{Sistemas precautorios tradicionales}
+
+Agrupan las medidas cautelares clásicas: el embargo, la anotación de litis, el secuestro, entre otras.
+
+\begin{important}
+La finalidad de estos sistemas es resguardar el efectivo cumplimiento de la sentencia. Si no se traba un embargo para hacer efectiva la sentencia, esa sentencia solamente servirá para ``colgarse en un cuadro'', porque no podrá ejecutarse.
+\end{important}
+
+Apuntan fundamentalmente a resguardar bienes, a diferencia del sistema asegurativo probatorio.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.35\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Sistema} & \textbf{Finalidad} \\
+\midrule
+Asegurativo probatorio & Propender a la mayor eficacia del proceso (resguardar prueba) \\
+Precautorio tradicional & Resguardar el efectivo cumplimiento de la sentencia (resguardar bienes) \\
+\bottomrule
+\end{tabularx}
+\caption{Diferencia de finalidades entre sistemas}
+\end{table}
+
+\subsection{Sistemas asegurativos garantizadores}
+
+Estos sistemas garantizan a la parte contraria, es decir, a quien puede resultar afectada por la medida cautelar, frente a la posibilidad de que dicha medida sea revocada o no reconocida en la sentencia. El instrumento central es la contracautela: si la jurisdicción dicta una medida y luego se acredita que no fue correctamente dictada, este sistema resguarda los daños y perjuicios que pueda ocasionar al afectado.
+
+\begin{formula}{Artículo 509 --- CPCCN (Fianza para ejecutar)}
+Exige una fianza para poder seguir avanzando con la ejecución, a fin de resguardar los derechos de la parte contraria en caso de que la sentencia sea revocada.
+\end{formula}
+
+\begin{formula}{Artículo 555 --- CPCCN (Juicio ejecutivo)}
+También exige fianza para ejecutar, por las mismas razones que el artículo 509: resguardar a quien soportó la resolución contraria en caso de reversión del proceso.
+\end{formula}
+
+\subsection{Sistemas asegurativos genéricos}
+
+\begin{formula}{Artículo 228 --- CPCCN: Inhibición general de bienes}
+Es una medida residual que se otorga cuando no existen bienes para embargar. Pertenece al sistema asegurativo genérico dentro del ámbito normal de los sistemas cautelares.
+\end{formula}
+
+\begin{formula}{Artículo 230 --- CPCCN: Prohibición de innovar}
+Medida que permite el acceso a la tutela anticipada (ámbito excepcional) y que presenta dos facetas: la medida de no innovar y la medida innovativa.
+\end{formula}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.24\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Faceta} & \textbf{Cuándo se aplica} & \textbf{Qué se pide} \\
+\midrule
+Medida de no innovar & Cuando el perjuicio proviene de la modificación del statu quo & Que no se innove; que se conserve la situación existente \\
+Medida innovativa & Cuando el perjuicio proviene de mantener el statu quo & Que se innove; que se modifique la situación para evitar el daño irreparable \\
+\bottomrule
+\end{tabularx}
+\caption{Facetas de la prohibición de innovar}
+\end{table}
+
+En ambos casos la medida cumple una función conservativa: la modalidad innovativa se solicita precisamente cuando mantener el statu quo generaría un daño irreparable que exige una respuesta inmediata.
+
+\begin{formula}{Artículo 232 --- CPCCN: Medida cautelar genérica o innominada}
+Contempla la posibilidad de peticionar medidas cautelares no previstas específicamente en la ley, cuando las circunstancias del caso lo requieren.
+\end{formula}
+
+\begin{note}
+El material menciona asimismo la cautelar autónoma, proveniente del ámbito del contencioso-administrativo.
+\end{note}
+
+\subsection{Ámbito excepcional: tutela anticipada y sistemas protectores}
+
+\begin{definition}{Tutela anticipada}
+Pronunciamiento jurisdiccional de carácter provisorio a través del cual se adelanta, en todo o en parte, aquello que debió ser objeto de la sentencia de mérito, a fin de evitar un daño actual o inminente, o una situación afligente. A diferencia de las cautelares ordinarias, puede recaer sobre el mismo objeto de la sentencia definitiva.
+\end{definition}
+
+Los sistemas protectores, junto con el desarrollo particularizado de la tutela anticipada, corresponden al tratamiento de la tercera clase de esta unidad.
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+\chapter{Medidas cautelares tradicionales y sus presupuestos}
+
+\section{Concepto de medidas cautelares}
+
+\begin{definition}{Medidas cautelares}
+Son actos procesales del órgano jurisdiccional, adoptados en el curso de un proceso o previos a él, para:
+\begin{itemize}
+    \item Asegurar bienes o pruebas.
+    \item Mantener una determinada situación de hecho.
+    \item Brindar seguridad o protección a una persona.
+\end{itemize}
+En todos los casos implican un anticipo provisorio, que no es definitivo, y que constituye uno de sus caracteres esenciales.
+\end{definition}
+
+\section{Presupuestos de las medidas cautelares}
+
+Las medidas cautelares tienen presupuestos propios que determinan su procedencia, distinguidos en sustanciales y procesales.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.25\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo de presupuesto} & \textbf{Contenido} \\
+\midrule
+Sustanciales & Verosimilitud en el derecho + peligro en la demora; como consecuencia, la contracautela \\
+Procesales & Enumerados en el art.\ 195 CPCCN: derecho a asegurar, medida solicitada, disposición legal aplicable, requisitos específicos de la medida \\
+\bottomrule
+\end{tabularx}
+\caption{Tipos de presupuestos de las medidas cautelares}
+\end{table}
+
+\subsection{Presupuestos sustanciales}
+
+\subsubsection{Verosimilitud en el derecho (fumus boni iuris)}
+
+\begin{definition}{Fumus boni iuris}
+El adagio latino fumus boni iuris se traduce como el ``humo de buen derecho''. Se trata de un juicio de valor que realiza la jurisdicción, en el cual lo que aparenta es que la pretensión va a tener un buen resultado en la sentencia. Frente a esa apariencia y a ese juicio de valor sobre el derecho invocado por quien peticiona la medida, el juez considera dado el presupuesto sustancial para admitir la cautelar solicitada.
+\end{definition}
+
+\begin{important}
+La verosimilitud del derecho no es certeza. Es un conocimiento inferior, provisional, que se basa en la apariencia de que la pretensión del peticionante es jurídicamente fundada. La certeza plena se exige solo para la sentencia definitiva.
+\end{important}
+
+\subsubsection{Peligro en la demora}
+
+\begin{definition}{Peligro en la demora}
+Consiste en el temor fundado de que, con el transcurso del tiempo que insume un proceso judicial, el derecho invocado se torne estéril, es decir, de que no pueda dictarse una sentencia eficaz. Se configura cuando existe un riesgo fundado de que, de no decretarse la cautelar, la sentencia que en su momento se dicte resulte ineficaz o de cumplimiento imposible.
+\end{definition}
+
+\subsubsection{La contracautela: funcionamiento como vasos comunicantes}
+
+\begin{definition}{Contracautela}
+Garantía que debe otorgar quien pide la medida, para responder por los daños y perjuicios y las costas que pueda generar si la medida resulta luego rechazada en la acción de fondo o revocada por un tribunal superior.
+\end{definition}
+
+\begin{important}
+La contracautela funciona como vasos comunicantes: a mayor verosimilitud en el derecho y mayor peligro en la demora, menor será la contracautela exigida; y, a la inversa, a menor verosimilitud en el derecho y menor peligro en la demora, mayor será la contracautela exigida.
+\end{important}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.16\textwidth}
+    >{\raggedright\arraybackslash}p{0.35\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo} & \textbf{En qué consiste} & \textbf{Ejemplo} \\
+\midrule
+Real & Garantía sobre bienes concretos & Depósito en dinero, hipoteca sobre un bien, embargo sobre un inmueble \\
+Personal & Fianza otorgada por una persona con reconocida capacidad económica & Fianza de un tercero solvente \\
+Juratoria & Juramento del peticionante de responder por los daños & Supuestos de máxima verosimilitud en el derecho; es la caución menos exigente \\
+\bottomrule
+\end{tabularx}
+\caption{Tipos de contracautela}
+\end{table}
+
+\subsection{Presupuestos procesales --- Artículo 195 CPCCN}
+
+\begin{formula}{Artículo 195 --- CPCCN: Oportunidad y presupuesto}
+Las providencias cautelares podrán ser solicitadas antes o después de deducida la demanda, a menos que de la ley resultare que ésta debe entablarse previamente. El escrito deberá expresar: el derecho que se pretende asegurar, la medida que se pide, la disposición de la ley en que se funde, y el cumplimiento de los requisitos que correspondan en particular a la medida requerida.
+\end{formula}
+
+Los cuatro presupuestos procesales que enumera el artículo 195 son:
+\begin{enumerate}
+    \item El derecho que se pretende asegurar.
+    \item La medida que se pide (embargo, inhibición, secuestro, etc.).
+    \item La disposición legal en que se funda.
+    \item El cumplimiento de los requisitos que correspondan en particular a la medida requerida.
+\end{enumerate}
+
+\section{Caracteres particulares de las medidas cautelares}
+
+\subsection{Provisoriedad --- Artículo 202 CPCCN}
+
+\begin{formula}{Artículo 202 --- CPCCN: Provisoriedad}
+Las medidas cautelares son provisorias. Subsistirán mientras duren las circunstancias que las determinaron. En cualquier momento en que éstas cesaren, se podrá requerir su levantamiento.
+\end{formula}
+
+Esta característica diferencia esencialmente a la cautela de la sentencia: cuando cambian las circunstancias que dieron origen al dictado de la medida cautelar, ésta puede modificarse o levantarse. La sentencia, en cambio, pone fin al proceso y no puede alterarse.
+
+\subsection{Modificabilidad --- Artículo 203 CPCCN}
+
+\begin{formula}{Artículo 203 --- CPCCN: Modificación}
+El afectado por una medida cautelar puede pedir su sustitución por otra que le resulte menos gravosa, ofreciendo bienes que resulten igualmente suficientes. También puede peticionarse la ampliación o mejora de la medida.
+\end{formula}
+
+\begin{example}{Sustitución de embargo}
+Si se traba un embargo sobre un inmueble determinado y este genera un daño innecesario al afectado, éste puede ofrecer otro bien en embargo que resulte igualmente suficiente al embargado, a fin de sustituir la medida y evitar el daño que le genera la originalmente dictada.
+\end{example}
+
+\subsection{Facultades del juez --- Artículo 204 CPCCN}
+
+\begin{formula}{Artículo 204 --- CPCCN: Facultades del juez}
+El juez, para evitar perjuicios o gravámenes innecesarios al titular de los bienes, podrá disponer una medida precautoria distinta de la solicitada, o limitarla, teniendo en cuenta la importancia del derecho que se intentare proteger.
+\end{formula}
+
+El juez posee plenas facultades para modificar o limitar la medida cautelar solicitada, resguardando siempre el derecho que se intenta proteger. También en este punto se distingue la cautelar de la sentencia definitiva.
+
+\subsection{Caducidad --- Artículo 207 CPCCN}
+
+\begin{formula}{Artículo 207 --- CPCCN: Caducidad de las medidas cautelares}
+Cuando las medidas cautelares se hayan peticionado antes del inicio del proceso principal, a los 10 días siguientes de su traba (o de su inscripción registral o notificación, según corresponda), debe promoverse la demanda. La inhibición general de bienes y el embargo se extinguen a los 5 años desde la fecha de inscripción en el registro respectivo. Para evitar la extinción, debe pedirse la reinscripción de la medida antes del vencimiento de ese plazo, lo que genera un nuevo período de 5 años.
+\end{formula}
+
+El mecanismo de reinscripción opera del siguiente modo: antes de que venzan los 5 años de la inscripción original, se solicita la reinscripción; el oficio correspondiente se libra y se inscribe en el registro, generando un nuevo plazo de 5 años contado desde esa nueva inscripción.
+
+\subsection{Tramitación inaudita parte y recursos --- Artículo 198 CPCCN}
+
+\begin{formula}{Artículo 198 --- CPCCN: Cumplimiento de la medida y recursos}
+Las medidas precautorias se decretarán y cumplirán sin audiencia de la otra parte (inaudita parte). Ningún incidente planteado por el destinatario de la medida podrá detener su cumplimiento. Si el afectado no hubiese tomado conocimiento de las medidas con motivo de su ejecución, se les notificarán personalmente o por cédula dentro de los 3 días. Quien hubiese obtenido la medida será responsable de los perjuicios que generare la demora en notificarla. La providencia que admitiere o denegare una medida cautelar será recurrible por vía de reposición; también será admisible la apelación subsidiaria o directa. El recurso de apelación, en caso de admitirse la medida, será concedido con efecto devolutivo (no suspensivo).
+\end{formula}
+
+La tramitación inaudita parte constituye, junto con la ausencia de bilateralidad previa, otro rasgo que distingue a la cautela de la condena. Es obligación de quien obtuvo la medida notificarla dentro del plazo de 3 días de trabada, bajo responsabilidad por los perjuicios que genere la demora.
+
+\begin{important}
+El recurso de apelación en materia cautelar se concede con efecto devolutivo (no suspensivo). Esto significa que la vigencia de la medida cautelar continúa mientras se sustancia el recurso. Aquí radica la importancia de la contracautela: si el tribunal superior revoca la resolución, la contracautela permite responder por los daños generados durante el tiempo en que la medida estuvo vigente (art.\ 199 CPCCN).
+\end{important}
+
+\section{Clasificación de las medidas cautelares según su objeto}
+
+Con fines didácticos, las medidas cautelares pueden clasificarse según el objeto sobre el que recaen.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Objeto} & \textbf{Grado / tipo} & \textbf{Medida específica} \\
+\midrule
+Bienes & Individualización del bien & Inventario / anotación de litis \\
+Bienes & Indisposición del bien & Embargo / prohibición de contratar \\
+Bienes & Desapoderamiento del bien & Secuestro / interventor recaudador \\
+Entes ideales (empresas/sociedades) & Interferencia simple & Veedores, interventores informativos \\
+Entes ideales (empresas/sociedades) & Intervención compleja & Administración judicial de la sociedad \\
+Personas & Sistema genérico / residual & Guarda de personas (art.\ 234 CPCCN) \\
+Personas & Protección específica & Protección contra violencia familiar (Ley 24.417) \\
+\bottomrule
+\end{tabularx}
+\caption{Clasificación de las medidas cautelares según su objeto}
+\end{table}
+
+\begin{note}
+Esta clasificación es meramente didáctica; el detalle particularizado de cada medida corresponde a la clase siguiente de la unidad.
+\end{note}
+
+\begin{formula}{Artículo 234 --- CPCCN: Guarda de personas}
+Regula la guarda de personas como medida cautelar residual sobre personas. Se aplica cuando las circunstancias del caso lo requieren.
+\end{formula}
+
+\begin{formula}{Ley 24.417 --- Protección contra la Violencia Familiar}
+Ley de aplicación en el ámbito de Capital Federal que prevé medidas cautelares específicas de protección para personas en situación de violencia doméstica.
+\end{formula}
+
+Con este desarrollo se completa el estudio introductorio de los sistemas cautelares; el tratamiento particularizado de cada medida cautelar en concreto corresponde a la clase siguiente de la unidad.
+
+% ============================================================
+% CAPÍTULO 3 --- CORNELL
+% ============================================================
+\chapter{Cuadro Cornell --- Repaso integrador}
+
+A continuación se presenta una síntesis estructurada del contenido de la unidad en formato Cornell, con preguntas disparadoras, respuestas explicativas y una síntesis final integradora.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.58\textwidth}
+}
+\caption{Cuadro Cornell --- Sistemas cautelares (Unidad 24)} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Por qué se estudian los sistemas cautelares como un ``sistema''?} &
+Porque en distintos lugares del Código Procesal se verifican manifestaciones en las que la ley actúa con carácter conservatorio o asegurativo. Agruparlas en subsistemas permite comprenderlas en su conjunto, distinguir sus finalidades y aplicarlas correctamente. \\
+
+\textbf{¿Cuáles son los tres modos en que la ley actúa en el proceso?} &
+1) Para conocer (en las etapas introductoria, probatoria y de alegatos). 2) Para ejecutar (cuando hay sentencia firme y consentida). 3) Para conservar / asegurar (actuación cautelar, objeto de esta unidad). \\
+
+\textbf{¿Qué es el poder cautelar y cuál es su finalidad?} &
+Es la respuesta efectiva e inmediata que da la jurisdicción dentro del proceso para contrarrestar los efectos negativos del transcurso del tiempo, garantizar la igualdad de las partes y respetar la tutela judicial efectiva. \\
+
+\textbf{¿En qué se diferencia la cautela de la condena?} &
+La cautela es provisoria, se basa en verosimilitud (no certeza), puede modificarse, tramita inaudita parte y requiere contracautela. La condena es definitiva, requiere plena certeza, se dicta luego de todo el proceso y hace cosa juzgada. \\
+
+\textbf{¿Cuáles son los sistemas del ámbito normal?} &
+1) Asegurativos probatorios (resguardan prueba, art.\ 326). 2) Precautorios tradicionales (resguardan el cumplimiento de la sentencia: embargo, secuestro, etc.). 3) Asegurativos garantizadores (contracautela, arts.\ 509 y 555). 4) Asegurativos genéricos (inhibición general de bienes, art.\ 228; prohibición de innovar, art.\ 230; medida innominada, art.\ 232). \\
+
+\textbf{¿Qué es la tutela anticipada y por qué es excepcional?} &
+Es un pronunciamiento jurisdiccional provisorio que adelanta, en todo o en parte, lo que debería ser objeto de la sentencia de mérito. Es excepcional porque recae sobre el mismo objeto de la sentencia definitiva, a diferencia de las cautelares ordinarias. \\
+
+\textbf{¿Qué es el fumus boni iuris?} &
+Es el ``humo de buen derecho'': la apariencia de que la pretensión del peticionante tiene fundamento jurídico suficiente. No exige certeza plena, sino un juicio de verosimilitud que habilita el dictado de la cautelar. \\
+
+\textbf{¿Cómo funciona la contracautela como vasos comunicantes?} &
+A mayor verosimilitud en el derecho y mayor peligro en la demora, menor será la contracautela exigida. A menor verosimilitud y menor peligro, mayor será la exigencia de contracautela. Los tres elementos se relacionan inversamente. \\
+
+\textbf{¿Cuáles son los presupuestos procesales del art.\ 195 CPCCN?} &
+El escrito de petición debe indicar: 1) el derecho que se pretende asegurar; 2) la medida que se pide; 3) la disposición legal en que se funda; 4) el cumplimiento de los requisitos específicos de la medida solicitada. \\
+
+\textbf{¿Qué establece el art.\ 207 CPCCN sobre la caducidad?} &
+Si la cautelar se obtuvo antes de iniciar el proceso principal, la demanda debe deducirse dentro de los 10 días de trabada la medida. El embargo y la inhibición general caducan a los 5 años de su inscripción registral, salvo que se solicite la reinscripción antes del vencimiento. \\
+
+\textbf{¿Cuáles son las dos facetas de la prohibición de innovar (art.\ 230)?} &
+1) Medida de no innovar: cuando el perjuicio proviene de modificar el statu quo (se pide conservar la situación). 2) Medida innovativa: cuando el perjuicio proviene de mantener el statu quo (se pide modificarlo para evitar el daño irreparable). \\
+
+\textbf{¿Cómo se clasifican las medidas cautelares según el objeto?} &
+Sobre bienes (individualización: inventario/anotación de litis; indisposición: embargo/prohibición de contratar; desapoderamiento: secuestro/interventor recaudador). Sobre entes ideales (desde interferencia simple hasta administración). Sobre personas (guarda, art.\ 234; violencia familiar, Ley 24.417). \\
+
+\midrule
+\multicolumn{2}{p{0.90\textwidth}}{
+\textbf{Resumen:} Los sistemas cautelares constituyen el conjunto de herramientas mediante las cuales la ley actúa en el proceso con carácter conservatorio o asegurativo, con el propósito de neutralizar los efectos negativos del tiempo procesal y garantizar la tutela judicial efectiva. Se clasifican en un ámbito normal --- que comprende los sistemas asegurativos probatorios, los precautorios tradicionales, los garantizadores y los genéricos --- y un ámbito excepcional --- integrado por la tutela anticipada y los sistemas protectores. Las medidas cautelares no constituyen condena, sino decisiones de carácter provisorio fundadas en la verosimilitud del derecho (fumus boni iuris) y el peligro en la demora, sujetas a la prestación de una contracautela que opera en forma inversamente proporcional a la intensidad de aquellos presupuestos. Sus caracteres --- provisoriedad, modificabilidad, tramitación inaudita parte y efecto devolutivo del recurso de apelación --- las distinguen radicalmente de la sentencia definitiva. Comprender esta distinción entre cautela y condena, y dominar la clasificación sistémica propuesta, resulta esencial para el correcto ejercicio de la profesión y la defensa de los derechos del justiciable.
+} \\
+\bottomrule
+
+\end{longtable}
+
+\end{document}
