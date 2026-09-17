@@ -1,0 +1,722 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  DOCUMENTO:  Apuntes de Derecho Procesal Civil — El Escrito Judicial
+%  AUTOR:      Isaac Edgar Camacho Ocampo
+%  CLASE:      book, 12pt, oneside
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,oneside]{book}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% CODIFICACIÓN Y LENGUA
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% MÁRGENES
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% MATEMÁTICA (incluida por plantilla estándar)
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% IMÁGENES
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\graphicspath{{./img/}{./graficos/}{./figuras/}}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% TABLAS
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% LISTAS
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage{enumitem}
+
+\setlist[itemize]{topsep=0.3em, itemsep=0.2em}
+\setlist[enumerate]{topsep=0.3em, itemsep=0.2em}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% COLORES Y CAJAS
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ENCABEZADOS
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% TIPOGRAFÍA
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage{ragged2e}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% CONTROL DE PÁRRAFOS
+%%─────────────────────────────────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% HIPERVÍNCULOS Y METADATOS PDF
+%%─────────────────────────────────────────────────────────────────────────────
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Apuntes de Derecho Procesal Civil},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% METADATOS DEL DOCUMENTO
+%%─────────────────────────────────────────────────────────────────────────────
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{}
+\newcommand{\carrera}{Abogacía}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{El Escrito Judicial}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ENCABEZADOS Y PIES DE PÁGINA
+%%─────────────────────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% COMANDOS MATEMÁTICOS
+%%─────────────────────────────────────────────────────────────────────────────
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% CAJAS ACADÉMICAS
+%%─────────────────────────────────────────────────────────────────────────────
+
+% Definición
+\newtcolorbox{definition}[1]{
+    enhanced, breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Importante
+\newtcolorbox{important}{
+    enhanced, breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Ejemplo
+\newtcolorbox{example}[1]{
+    enhanced, breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Fórmula / Regla
+\newtcolorbox{formula}[1]{
+    enhanced, breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Ejercicio
+\newtcolorbox{exercise}[1]{
+    enhanced, breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Nota
+\newtcolorbox{note}{
+    enhanced, breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ÍNDICE
+%%─────────────────────────────────────────────────────────────────────────────
+\setcounter{tocdepth}{2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% INICIO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% PORTADA
+%%─────────────────────────────────────────────────────────────────────────────
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.4cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el procedimiento es el primer paso para ejercer el derecho con rigor y eficacia.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'', no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ÍNDICE
+%%─────────────────────────────────────────────────────────────────────────────
+\tableofcontents
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CAPÍTULO 1 — CLASIFICACIÓN DE LOS ACTOS PROCESALES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Clasificación de los Actos Procesales}
+
+El \textbf{escrito judicial} constituye la herramienta habitual de comunicación del abogado con el tribunal durante el desarrollo de un proceso ya iniciado. A través de él, el profesional peticiona, impulsa y documenta los actos que componen el litigio.
+
+Los actos procesales pueden clasificarse en tres categorías principales. Cabe señalar que las clasificaciones son herramientas didácticas y no verdades absolutas: su utilidad depende de la finalidad pedagógica que se persiga.
+
+\section{Actos de Postulación}
+
+Los actos de postulación son los referidos al ejercicio del \textbf{ius postulandi}, es decir, el derecho de postulación que tiene la parte. Son los actos principales del proceso: aquellos que propenden a la consecución de la sentencia de mérito.
+
+\begin{table}[H]
+\centering
+\caption{Ejemplos de actos de postulación}
+\begin{tabularx}{\textwidth}{>{\bfseries}lX}
+\toprule
+Acto procesal & Descripción \\
+\midrule
+Demanda & Acto que inicia el proceso por primera vez ante el tribunal. \\
+Contestación de demanda & Respuesta formal de la parte demandada al proceso iniciado. \\
+Alegato & Escrito final de cada parte en el que se evalúa la prueba producida. \\
+Recurso & Impugnación de una resolución judicial ante una instancia superior. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Actos de Comunicación}
+
+Los actos de comunicación son aquellos mediante los cuales se da a conocer a las partes y al tribunal el contenido de los actos procesales. La comunicación en el proceso se realiza por escrito. En el contexto actual, ese escrito se presenta físicamente en el tribunal y también se digitaliza para que la contraparte lo conozca.
+
+Cuando se peticiona algo que puede repercutir en la otra parte, el juez le corre traslado para escucharla, preservando así el equilibrio entre ambas partes.
+
+Los mecanismos de comunicación más habituales son:
+
+\begin{itemize}
+    \item Notificaciones (personales, por cédula, electrónicas).
+    \item Cédulas.
+    \item Oficios (dirigidos a entidades privadas o públicas).
+    \item Exhortos (comunicaciones entre tribunales de distintas jurisdicciones).
+\end{itemize}
+
+\section{Actos de Obtención o Petición}
+
+Los actos de obtención son los pedidos que el abogado le formula a la jurisdicción para desarrollar el proceso. El juez puede hacer lugar o no a la petición. A través de estos actos, el profesional impulsa el desarrollo del proceso.
+
+\begin{example}{Solicitud de libramiento de oficio}
+El abogado le solicita al juez que libre un oficio de pedido de informes dirigido a una entidad. El juez provee el escrito haciendo lugar o denegando la petición.
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CAPÍTULO 2 — ESTRUCTURA FORMAL DEL ESCRITO JUDICIAL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Estructura Formal del Escrito Judicial}
+
+El escrito judicial posee una estructura formal compuesta por partes que deben respetarse para garantizar la validez de la presentación y la claridad de la comunicación con el tribunal. A continuación se desarrolla cada una de ellas en el orden en que aparecen en el documento.
+
+\section{Suma o Sumario (Título del Escrito)}
+
+La primera parte del escrito es la \textbf{suma} o \textbf{sumario}, que funciona como el título del documento. En ella el abogado sintetiza la petición que formula. Se coloca en el ángulo superior del escrito; la posición exacta (izquierda, centro o derecha) no es lo determinante, sino que sea consistente a lo largo del tiempo para permitir identificar rápidamente las presentaciones dentro del expediente.
+
+\begin{example}{Ejemplos de suma o sumario}
+\begin{itemize}
+    \item \textit{Líbrese oficio}
+    \item \textit{Agréguese partida}
+    \item \textit{Solicítese aclaración al perito}
+    \item \textit{Denúnciese hecho nuevo}
+\end{itemize}
+\end{example}
+
+\begin{note}
+La consistencia en la ubicación del sumario a lo largo del tiempo permite al profesional identificar con mayor rapidez sus propias presentaciones cuando necesita consultarlas dentro del expediente.
+\end{note}
+
+\section{Destinatario}
+
+A continuación del sumario se indica a quién va dirigido el escrito. En la mayoría de los casos es el \textbf{juez de primera instancia}, pero puede dirigirse también a la \textbf{Cámara de Apelaciones} o a la \textbf{Corte Suprema de Justicia}, según la instancia en que se encuentre el proceso. En cada caso debe identificarse correctamente al destinatario.
+
+\section{Encabezamiento}
+
+El encabezamiento contiene todos los datos de quien se presenta. El contenido y la forma varían según el tipo de actuación del abogado:
+
+\begin{table}[H]
+\centering
+\caption{Diferencia entre patrocinio y representación en el encabezamiento}
+\begin{tabularx}{\textwidth}{>{\bfseries}lX}
+\toprule
+Modalidad & Características en el encabezamiento \\
+\midrule
+Patrocinio letrado (art.\ 56 CPCCN) &
+El cliente actúa por su propio derecho. El encabezamiento se redacta en su nombre (primera o tercera persona). Firman ambos: el cliente a la derecha, el letrado patrocinante a la izquierda. \\
+\addlinespace
+Representación con poder &
+El abogado actúa en nombre y representación del cliente, invocando el poder notarial otorgado. El encabezamiento se redacta en nombre del apoderado. Solo firma el abogado. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Los datos que deben constar obligatoriamente en el encabezamiento incluyen:
+
+\begin{itemize}
+    \item Nombre y apellido de quien se presenta y carácter en que lo hace (por su propio derecho o como apoderado).
+    \item Nombre completo del letrado patrocinante o apoderado.
+    \item Matrícula del abogado: Tomo y Folio del Colegio Público de Abogados de la Capital Federal (CPACF) u organismo equivalente.
+    \item Categoría fiscal (monotributista o responsable inscripto en IVA) y número de CUIT.
+    \item Domicilio constituido para el proceso (domicilio procesal).
+    \item Domicilio electrónico (número de CUIT o CUIL).
+\end{itemize}
+
+\begin{important}
+En cada escrito, el abogado debe repetir todos sus datos de registración y matriculación. Esta obligación de reiteración garantiza la identificación del profesional en cada presentación individual.
+\end{important}
+
+El escrito puede redactarse en primera o en tercera persona, pero una vez elegido el estilo debe mantenerse coherente en todo el documento.
+
+\subsection{Domicilio Procesal Constituido (Domicilio \textit{Ad Litem})}
+
+El \textbf{domicilio constituido para el proceso} se denomina \textit{domicilio ad litem} o domicilio procesal. Es el domicilio especialmente denunciado para recibir las notificaciones que se cursen durante el proceso.
+
+\begin{definition}{Domicilio procesal (ad litem)}
+Es el domicilio especialmente constituido por las partes para el proceso judicial. Es siempre el domicilio del abogado, dado que allí se reciben las notificaciones procesales. No puede haber dos domicilios constituidos separados para la parte y el letrado; en general se denuncia un único domicilio constituido que los comprende a ambos.
+\end{definition}
+
+\begin{important}
+El domicilio constituido debe estar dentro del \textbf{radio de actuación territorial del tribunal} (ámbito de competencia territorial). Si el proceso tramita ante un juzgado de la Ciudad de Buenos Aires, el domicilio constituido debe estar en la Ciudad de Buenos Aires. Si tramita en San Isidro, Morón, San Martín o Quilmes, el domicilio constituido debe encontrarse en la correspondiente jurisdicción.
+\end{important}
+
+\subsection{Domicilio Electrónico}
+
+Con el avance de la digitalización del proceso judicial, se incorporó la obligatoriedad del domicilio electrónico. El identificador utilizado es el \textbf{CUIT o CUIL} del abogado.
+
+\begin{definition}{Domicilio electrónico}
+Domicilio constituido en formato digital, identificado mediante el número de CUIT o CUIL del profesional, utilizado para recibir notificaciones electrónicas en el marco del expediente digital.
+\end{definition}
+
+\begin{important}
+La \textbf{Ley 26.685} creó el llamado expediente electrónico y sentó las bases para el desarrollo de las notificaciones electrónicas en el proceso judicial. A partir de ella, la Corte Suprema de Justicia comenzó a desarrollar el sistema de notificaciones electrónicas, haciendo obligatorio contar con un domicilio electrónico en cada presentación.
+\end{important}
+
+\subsection{Tipos de Domicilio: Distinción Conceptual}
+
+El apunte menciona la necesidad de distinguir entre los distintos tipos de domicilio que pueden aparecer en el proceso:
+
+\begin{itemize}
+    \item Domicilio real
+    \item Domicilio legal
+    \item Domicilio especial
+    \item Domicilio social
+    \item Domicilio procesal (ad litem)
+\end{itemize}
+
+% TODO: el apunte anuncia que en una futura clase sobre la estructura de la demanda se desarrollarán con mayor precisión las diferencias entre estos tipos de domicilio.
+
+\section{Identificación de los Autos (Carátula)}
+
+Luego del encabezamiento se indica en qué expediente (\textit{autos}) se está dejando el escrito. Esta identificación es fundamental para que el personal de mesa de entrada del juzgado sepa en qué expediente incorporar la presentación.
+
+\begin{definition}{Autos}
+Término forense que designa al expediente o proceso judicial. Proviene de los usos forenses históricos. Las resoluciones del juez suelen comenzar con la expresión ``\textit{autos y vistos}'', equivalente a ``visto el expediente, resuelvo tal cosa''.
+\end{definition}
+
+La identificación de los autos en el escrito se denomina \textbf{carátula} e indica:
+\begin{itemize}
+    \item Nombre y apellido de la parte actora.
+    \item Nombre y apellido de la parte demandada.
+    \item Objeto del proceso (tipo de juicio).
+\end{itemize}
+
+En la práctica forense se utiliza la abreviatura ``c/'' (barra) en lugar de la preposición ``contra'', para atenuar la dureza de la expresión. Asimismo, se utiliza ``s/'' (barra) para indicar el objeto del proceso.
+
+\begin{example}{Carátulas habituales}
+\begin{itemize}
+    \item \textit{Pérez, Juan Alberto c/ García, Pedro s/ Ordinario --- Daños y Perjuicios}
+    \item \textit{García, Ana María c/ Pérez, Juan Alberto s/ Alimentos}
+\end{itemize}
+\end{example}
+
+\begin{note}
+El término ``\textbf{fojas}'' (abreviado ``fs.'') es otro uso forense habitual que designa las hojas del expediente. Proviene del español antiguo y se mantiene incorporado a la práctica profesional.
+\end{note}
+
+\section{Cierre del Encabezamiento}
+
+Luego de la identificación de los autos se cierra el encabezamiento con una fórmula formal que introduce el cuerpo del escrito.
+
+\begin{formula}{Cierres de encabezamiento según persona gramatical}
+\begin{itemize}
+    \item En primera persona: \textit{``\ldots en los autos caratulados `Pérez, Juan Alberto c/ García, Pedro s/ Ordinario', a Vuestra Señoría \textbf{digo}:''}
+    \item En tercera persona: \textit{``\ldots a Vuestra Señoría \textbf{dice}:''}
+\end{itemize}
+\end{formula}
+
+\section{Objeto de la Petición}
+
+El objeto o cuerpo principal del escrito es donde se formula concretamente el pedido al juez. Debe ser claro y preciso.
+
+Cuando la petición es más compleja, el objeto puede extenderse con un \textbf{petitorio}, que enumera ordenadamente cada uno de los pedidos que se formulan al tribunal.
+
+\begin{example}{Objeto simple}
+\textit{``Vengo a solicitar que se libre el oficio dirigido a XX Sociedad Anónima, cuyo plazo de contestación venció sin que haya sido respondido.''}
+\end{example}
+
+\begin{example}{Petitorio enumerado}
+\textit{``Solicito a Vuestra Señoría:}\\
+\textit{Primero: que se agregue la documentación acompañada.}\\
+\textit{Segundo: que se tenga presente el hecho nuevo denunciado y que, si se corre traslado del mismo, se dé lugar al hecho nuevo denunciado.''}
+\end{example}
+
+\section{Cierre Formal y Fórmulas de Estilo}
+
+El cierre del escrito utiliza fórmulas propias de los usos forenses. Las más habituales son:
+
+\begin{table}[H]
+\centering
+\caption{Fórmulas de cierre habituales en el escrito judicial}
+\begin{tabularx}{\textwidth}{X}
+\toprule
+\textit{``Proveer de conformidad será justicia.''} \\
+\textit{``Solicito se provea, así la justicia.''} \\
+\textit{``Será justicia que se provea.''} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Todas estas fórmulas expresan el pedido al tribunal de que haga lugar a la petición.
+
+\section{Firmas}
+
+Luego de la fórmula de cierre se colocan las firmas:
+
+\begin{itemize}
+    \item En el caso de \textbf{patrocinio letrado}: firma la parte a la derecha y el letrado patrocinante a la izquierda.
+    \item En el caso de \textbf{representación con poder}: solo firma el abogado apoderado.
+\end{itemize}
+
+\section{El Cargo}
+
+El cargo es la constancia que coloca el tribunal cuando el abogado deja el escrito en mesa de entrada.
+
+\begin{definition}{Cargo}
+Constancia que el tribunal estampa sobre el escrito al momento de su recepción. Indica: fecha de presentación, hora de presentación, si fue presentado con copias o sin copias, y lleva la firma del letrado. Acredita fehacientemente el momento en que el escrito ingresó al expediente.
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CAPÍTULO 3 — EL AUTO DE DESPACHO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{El Auto de Despacho}
+
+Una vez que el abogado deja el escrito en la mesa de entrada del tribunal, el personal lo incorpora al expediente. Posteriormente, un empleado proyecta una resolución para que el juez o el secretario la firme. Esa resolución se denomina \textbf{auto de despacho}.
+
+\begin{definition}{Auto de despacho}
+Resolución del tribunal que provee el escrito presentado. Puede hacer lugar a lo pedido o rechazarlo. Se redacta generalmente en la parte posterior del escrito o en una foja separada. En los autos de mero trámite, puede ser firmado por el secretario; cuando implica comunicación con otros tribunales, requiere la firma del juez.
+\end{definition}
+
+\begin{example}{Auto de despacho — caso práctico}
+\textit{``Buenos Aires, 10 de marzo de 2009. Atendiendo al objeto de la petición, líbrese el oficio solicitado. Firmado: Fernández, Secretario.''}
+\end{example}
+
+A través de un acto de petición (el escrito), el abogado impulsa el desarrollo del proceso, y el auto de despacho es la respuesta institucional del tribunal a esa petición.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CAPÍTULO 4 — LA CARÁTULA DEL EXPEDIENTE Y EL SORTEO DE JUZGADO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{La Carátula del Expediente y el Sorteo de Juzgado}
+
+Al momento de iniciarse el proceso, el profesional concurre a la Cámara de Apelaciones y sortea el juzgado por vía de sistema informático. El sistema emite una hoja que indicará, entre otros datos:
+
+\begin{itemize}
+    \item Nombre de la parte actora y de la parte demandada.
+    \item Objeto del proceso (tipo de juicio).
+    \item Número de juzgado asignado.
+\end{itemize}
+
+\begin{example}{Carátula generada por sistema}
+\textit{Pérez, Juan Alberto c/ García, Pedro s/ Ordinario --- Daños y Perjuicios --- Juzgado N.º 25}
+\end{example}
+
+Esa hoja generada por el sistema es la \textbf{carátula del proceso} y encabeza la totalidad de la documentación de la demanda. Con ella se lleva el escrito de demanda al juzgado sorteado, donde comienza a armarse el expediente físico.
+
+\begin{note}
+Dentro del expediente, la documentación acompañante se incorpora al inicio y el escrito de demanda (que el tribunal retiene para trabajarlo y despachar) se ubica al final.
+\end{note}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CAPÍTULO 5 — PATROCINIO LETRADO Y REPRESENTACIÓN CON PODER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Patrocinio Letrado y Representación con Poder}
+
+\section{Patrocinio Letrado (art.\ 56 CPCCN)}
+
+\begin{definition}{Patrocinio letrado}
+Modalidad de actuación procesal en la cual el cliente actúa por su propio derecho, mientras que el abogado interviene como letrado patrocinante. El abogado dirige estratégicamente el proceso sin representar formalmente al cliente. El artículo 56 del Código Procesal Civil y Comercial de la Nación (CPCCN) establece la \textbf{obligatoriedad} del patrocinio letrado.
+\end{definition}
+
+En el patrocinio letrado:
+\begin{itemize}
+    \item El escrito se redacta en nombre del cliente (primera o tercera persona).
+    \item \textbf{Firman ambos}: el cliente a la derecha, el letrado patrocinante a la izquierda.
+    \item El domicilio constituido suele ser el del estudio del abogado.
+\end{itemize}
+
+\section{Representación con Poder}
+
+\begin{definition}{Representación con poder (apoderado)}
+Modalidad de actuación procesal en la cual el abogado actúa en nombre y representación del cliente, sobre la base de un mandato notarial (poder). El apoderado comparece en lugar del cliente, invocando el poder otorgado.
+\end{definition}
+
+En la representación con poder:
+\begin{itemize}
+    \item El escrito se redacta en nombre del abogado, invocando la representación.
+    \item Solo firma el abogado apoderado.
+    \item No es necesaria la firma del cliente en cada escrito.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CAPÍTULO 6 — EJEMPLO PRÁCTICO INTEGRADOR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Ejemplo Práctico Integrador}
+
+\begin{example}{Caso: Pérez, Juan Alberto c/ García, Pedro s/ Ordinario --- Daños y Perjuicios}
+A continuación se reproduce el modelo de escrito judicial desarrollado durante la clase. Se trata de un acto de petición en el cual se solicita el libramiento de un oficio dirigido a la firma XX S.A., cuyo plazo de contestación venció sin que haya sido respondido.
+
+\bigskip
+
+\begin{center}
+\textbf{LÍBRESE OFICIO}
+\end{center}
+
+\medskip
+
+\textbf{Señor Juez:}
+
+\medskip
+
+\textit{Juan Alberto Pérez, por su propio derecho, con domicilio procesal constituido junto a su letrado patrocinante, Dr.\ Jorge A.\ Rojas, CPACF Tomo \underline{\hspace{1cm}} Folio \underline{\hspace{1cm}}, Responsable Inscripto en IVA N.º \underline{\hspace{1.5cm}}, en la calle \underline{\hspace{3cm}} N.º \underline{\hspace{0.8cm}} piso \underline{\hspace{0.5cm}} of.\ \underline{\hspace{0.5cm}}, Ciudad de Buenos Aires, y domicilio electrónico N.º (CUIT) \underline{\hspace{2.5cm}},}
+
+\medskip
+
+\textit{en los autos caratulados \textbf{``Pérez, Juan Alberto c/ García, Pedro s/ Ordinario''},}
+
+\medskip
+
+\textbf{a Vuestra Señoría digo:}
+
+\medskip
+
+\textit{Que vengo a solicitar se libre el oficio dirigido a XX Sociedad Anónima, toda vez que ha vencido el plazo para su contestación y no fue respondido.}
+
+\medskip
+
+\textit{Proveer de conformidad será justicia.}
+
+\medskip
+
+\begin{tabular}{p{0.4\textwidth}p{0.4\textwidth}}
+Dr.\ Jorge A.\ Rojas & Juan Alberto Pérez \\
+\textit{Letrado patrocinante} & \textit{Por su propio derecho} \\
+(firma izquierda) & (firma derecha)
+\end{tabular}
+
+\medskip
+\hrule
+\smallskip
+\textbf{CARGO:} \textit{(completado por el tribunal: fecha, hora, copias presentadas, firma del letrado)}
+
+\medskip
+\hrule
+\smallskip
+\textbf{AUTO DE DESPACHO:}
+
+\textit{Buenos Aires, 10 de marzo de 2009. Atendiendo al objeto de la petición, líbrese el oficio solicitado. Firmado: Fernández, Secretario.}
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CAPÍTULO 7 — CUADRO CORNELL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Repaso Integrador --- Método Cornell}
+
+\begin{table}[H]
+\centering
+\caption{Cuadro Cornell: El Escrito Judicial}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es el escrito judicial?} &
+Instrumento formal mediante el cual el abogado se comunica con el tribunal durante el desarrollo de un proceso ya iniciado. Es la herramienta cotidiana de comunicación en el litigio. \\[6pt]
+
+\textbf{¿Cuáles son los tres tipos de actos procesales?} &
+(1) Actos de \textbf{postulación}: propenden a la sentencia de mérito (demanda, contestación, alegatos, recursos). (2) Actos de \textbf{comunicación}: dan a conocer los actos procesales a las partes (notificaciones, cédulas, oficios, exhortos). (3) Actos de \textbf{obtención o petición}: pedidos que el abogado formula al juez para impulsar el proceso. \\[6pt]
+
+\textbf{¿Qué es la suma o sumario?} &
+Título del escrito judicial, ubicado en el ángulo superior del documento. Sintetiza la petición formulada (ej.: ``Líbrese oficio'', ``Agréguese partida'', ``Denúnciese hecho nuevo''). Su consistencia a lo largo del tiempo permite identificar rápidamente las propias presentaciones dentro del expediente. \\[6pt]
+
+\textbf{¿Qué datos contiene el encabezamiento?} &
+Nombre y carácter del presentante; nombre, matrícula (Tomo y Folio, CPACF) y categoría fiscal del letrado; domicilio procesal constituido; domicilio electrónico (CUIT/CUIL). El estilo (primera o tercera persona) debe ser coherente en todo el escrito. \\[6pt]
+
+\textbf{¿Qué es el domicilio procesal o \textit{ad litem}?} &
+Domicilio especialmente constituido para el proceso, siempre en la sede del abogado. Es donde se reciben las notificaciones. Debe encontrarse dentro del radio de actuación territorial del tribunal. Puede ser físico y/o electrónico. \\[6pt]
+
+\textbf{¿Qué establece la Ley 26.685?} &
+Crea el expediente electrónico y sienta las bases del sistema de notificaciones electrónicas. A partir de ella se exige el domicilio electrónico, identificado mediante el CUIT o CUIL del abogado. \\[6pt]
+
+\textbf{¿Qué diferencia hay entre patrocinio y representación con poder?} &
+En el \textbf{patrocinio} (art.\ 56 CPCCN), el cliente actúa por su propio derecho y el abogado lo dirige; firman ambos. En la \textbf{representación con poder}, el abogado actúa en nombre del cliente mediante mandato notarial; solo firma el apoderado. \\[6pt]
+
+\textbf{¿Qué son los ``autos'' en lenguaje forense?} &
+Término forense que designa el expediente o proceso judicial. Se utiliza en expresiones como ``en los autos caratulados\ldots'' o ``autos y vistos'' (en las resoluciones del juez). La carátula identifica el expediente con los nombres de las partes y el objeto del proceso. \\[6pt]
+
+\textbf{¿Cuál es la estructura completa del escrito judicial?} &
+(1) Suma o sumario (título). (2) Destinatario. (3) Encabezamiento con datos del presentante y el letrado. (4) Domicilio procesal (físico y electrónico). (5) Identificación de los autos (carátula). (6) Cierre del encabezamiento (``a Vuestra Señoría digo:''). (7) Objeto de la petición / petitorio. (8) Fórmula de cierre. (9) Firmas. (10) Cargo. \\[6pt]
+
+\textbf{¿Qué es el cargo?} &
+Constancia estampada por el tribunal al recibir el escrito. Indica: fecha, hora de presentación, si se presentó con o sin copias, y firma del letrado. Acredita fehacientemente el ingreso de la presentación al expediente. \\[6pt]
+
+\textbf{¿Qué es el auto de despacho?} &
+Resolución del tribunal que provee el escrito presentado. En autos de mero trámite puede firmarlo el secretario; cuando implica comunicación con otros tribunales, requiere la firma del juez. Puede hacer lugar o no a la petición. \\[6pt]
+
+\textbf{¿Cómo se forma la carátula del expediente?} &
+Al iniciarse el proceso, se sortea el juzgado en la Cámara de Apelaciones mediante un sistema informático. El sistema emite una hoja con el nombre de las partes, el objeto del proceso y el juzgado asignado. Esa hoja es la carátula del expediente. \\[6pt]
+
+\textbf{¿Qué fórmulas de cierre se usan en el escrito?} &
+Las más habituales son: ``\textit{Proveer de conformidad será justicia}'', ``\textit{Solicito se provea, así la justicia}'' y ``\textit{Será justicia que se provea}''. Todas expresan el pedido al juez de que haga lugar a la petición. \\[6pt]
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{%
+\textbf{Resumen:}
+El escrito judicial es el instrumento central de la actividad del abogado litigante. Los actos procesales se clasifican en actos de postulación (orientados a la sentencia), de comunicación (notificaciones y traslados) y de obtención o petición (pedidos al juez para impulsar el proceso). El escrito posee una estructura formal precisa: suma o sumario, destinatario, encabezamiento con datos del presentante y del letrado (incluyendo matrícula, categoría fiscal, domicilio procesal físico y electrónico), identificación de los autos, objeto de la petición, petitorio, fórmula de cierre, firmas y cargo. La distinción entre patrocinio letrado (art.\ 56 CPCCN) y representación con poder determina quién firma el escrito y cómo se redacta el encabezamiento. El domicilio procesal debe estar dentro del radio territorial del tribunal y, desde la Ley 26.685, debe incluir también un domicilio electrónico. Una vez presentado el escrito, el tribunal lo provee mediante un auto de despacho, haciendo lugar o denegando la petición. La carátula del expediente es generada por sorteo al iniciarse el proceso e identifica el juicio durante toda su tramitación.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}
