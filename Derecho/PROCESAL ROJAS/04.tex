@@ -1,0 +1,918 @@
+\documentclass[12pt,oneside]{book}
+
+% =========================================================
+% METADATOS
+% =========================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\catedra}{Cátedra Dr. Jorge Rojas}
+\newcommand{\docenteclase}{Dra. María Eugenia Gómez}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\titulo}{Los Sujetos Procesales}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% =========================================================
+% PAQUETES
+% =========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,provide=*]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =========================================================
+% CONFIGURACIÓN GENERAL
+% =========================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =========================================================
+% ENCABEZADOS Y PIES
+% =========================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =========================================================
+% COMANDOS MATEMÁTICOS
+% =========================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =========================================================
+% COMANDO PARA CITAS NORMATIVAS
+% =========================================================
+\newcommand{\norma}[1]{%
+\par\noindent\textbf{Norma:} \textit{#1}\par\smallskip
+}
+
+% =========================================================
+% CAJAS ACADÉMICAS
+% =========================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =========================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% =========================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =========================================================
+% DOCUMENTO
+% =========================================================
+\begin{document}
+
+% ---------------------------------------------------------
+% PORTADA
+% ---------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.6cm}
+
+{\normalsize \catedra}
+
+\vspace{0.2cm}
+
+{\normalsize Clase dictada por \docenteclase}
+
+\vspace{2.5cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.9cm}
+
+\textit{Comprender quiénes intervienen en el proceso es el primer paso para comprender el proceso mismo.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil y Comercial'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------------------------------------------------
+% ÍNDICE
+% ---------------------------------------------------------
+\tableofcontents
+\clearpage
+
+% ===========================================================================
+\chapter{El proceso judicial como sistema}
+% ===========================================================================
+
+El proceso judicial es una de las vías para resolver un conflicto, aunque existen también otros métodos alternativos —como el arbitraje, la mediación y la negociación— que son igualmente objeto de estudio del Derecho Procesal.
+
+\begin{definition}{Proceso judicial}
+El proceso judicial es un sistema: un conjunto de actos y elementos que se interrelacionan, que regulan la actividad de la jurisdicción y de las partes, con un objetivo final: la resolución de un conflicto. Esa resolución la dicta el juez en ejercicio de su jurisdicción.
+\end{definition}
+
+La jurisdicción es una función que reposa en el Poder Judicial. Los jueces ejercen dicha función jurisdiccional en distintos momentos:
+
+\begin{itemize}
+    \item \textbf{Notio y Coertio}: cuando el juez conoce a través de los escritos de inicio o de las partes, y cuando convoca a la otra parte o a terceros e integra la litis.
+    \item \textbf{Executio}: la posibilidad de ejecutar sus decisiones para que se cumplan.
+    \item \textbf{Iudicium}: el momento máximo de la función jurisdiccional, cuando el juez fija los hechos del proceso, los eleva al plexo normativo sustancial y crea una norma individual —la sentencia— mediante la cual resuelve el conflicto.
+\end{itemize}
+
+\section{El debido proceso legal}
+
+Para que la sentencia sea válida debe haber transitado un debido proceso legal, el cual presenta dos vertientes:
+
+\begin{itemize}
+    \item \textbf{Vertiente formal (adjetiva)}: haber cumplido con todas las formas establecidas por el legislador, sin violar derechos consagrados en la Constitución y en los Tratados Internacionales de Derechos Humanos con jerarquía constitucional.
+    \item \textbf{Vertiente sustancial (razonabilidad)}: la sentencia no puede ser arbitraria; al aplicar las normas al caso concreto no debe violarse ningún derecho, principio o garantía constitucional.
+\end{itemize}
+
+\begin{note}
+Todos los jueces ejercen la misma función jurisdiccional, pero dentro de las reglas de competencia creadas por el legislador (por materia, grado y territorio). La jurisdicción y la competencia son, por lo tanto, conceptos distintos.
+\end{note}
+
+\section{Etapas del proceso ordinario (proceso de conocimiento)}
+
+El proceso ordinario está estructurado en las siguientes etapas:
+
+\begin{enumerate}
+    \item Mediación previa obligatoria (salvo excepciones de la Ley de Mediación).
+    \item \textbf{Etapa introductoria}: se promueve la demanda (pretensión del actor) y se corre traslado al demandado para que la conteste. En esta etapa se invocan hechos y se ofrecen pruebas.
+    \item Audiencia preliminar (art. 360 CPCCN): el juez intenta que las partes arriben a un acuerdo conciliatorio.
+    \item \textbf{Etapa probatoria}: se produce la prueba necesaria para acreditar los hechos controvertidos.
+    \item \textbf{Etapa conclusional}: el juez dicta la sentencia (iudicium).
+    \item \textbf{Etapa recursiva}: las partes pueden impugnar la sentencia, principalmente mediante el recurso de apelación ante la Cámara.
+    \item \textbf{Etapa de ejecución (eventual)}: cuando el condenado no cumple voluntariamente la obligación de dar o de hacer, se ejecuta forzadamente.
+\end{enumerate}
+
+\norma{Art. 360 CPCCN --- Audiencia preliminar}
+
+\section{Clasificación de los intervinientes procesales}
+
+Los intervinientes en el proceso judicial se clasifican en tres tipos:
+
+\begin{itemize}
+    \item Órganos de la jurisdicción (juez y sus auxiliares).
+    \item Las partes (actor y demandado) y sus colaboradores (abogados, consultores técnicos).
+    \item Terceros intervinientes procesales.
+\end{itemize}
+
+% ---------------------------------------------------------
+% CORNELL — CAPÍTULO 1
+% ---------------------------------------------------------
+\section*{Repaso Cornell del capítulo}
+\addcontentsline{toc}{section}{Repaso Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuáles son las etapas del proceso ordinario?} &
+Mediación previa obligatoria, etapa introductoria (demanda y contestación), audiencia preliminar (art. 360 CPCCN), etapa probatoria, etapa conclusional (sentencia), etapa recursiva (apelación) y, eventualmente, etapa de ejecución forzada. \\
+
+\textbf{¿Qué diferencia hay entre jurisdicción y competencia?} &
+Todos los jueces ejercen la misma función jurisdiccional, pero cada uno lo hace dentro de las reglas de competencia fijadas por el legislador según materia, grado y territorio. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} El proceso es un sistema estructurado en etapas (introductoria, probatoria, conclusional, recursiva y eventual ejecución). La sentencia debe ser formal y sustancialmente válida, y los intervinientes se clasifican en órganos de la jurisdicción, partes y terceros.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ===========================================================================
+\chapter{Órganos de la jurisdicción}
+% ===========================================================================
+
+\section{El juez como sujeto procesal principal}
+
+El juez es, por excelencia, el sujeto procesal. Es el magistrado que, investido del poder jurisdiccional del Estado, resuelve el conflicto conforme a las reglas de la competencia (materia, grado, territorio).
+
+El legislador organizó la competencia respetando el principio del juez natural. El juez natural es aquel que es:
+
+\begin{itemize}
+    \item \textbf{Imparcial}: no tiene interés personal en el resultado.
+    \item \textbf{Impartial}: no es parte del conflicto.
+    \item \textbf{Independiente}: no está subordinado a ninguna de las partes.
+\end{itemize}
+
+\subsection{Organización judicial en la Ciudad de Buenos Aires}
+
+Dentro de la justicia ordinaria en la Ciudad de Buenos Aires se encuentran:
+
+\begin{itemize}
+    \item Jueces nacionales de primera instancia en lo Civil.
+    \item Jueces nacionales de primera instancia en lo Comercial.
+    \item Jueces nacionales en lo Civil y Comercial Federal (justicia federal).
+    \item Jueces nacionales del Trabajo.
+\end{itemize}
+
+En segunda instancia intervienen los jueces de las Cámaras (Cámara Civil y Cámara Comercial de la Nación), integradas por salas de tres jueces cada una (tribunales colegiados).
+
+Por encima, la Corte Suprema de Justicia de la Nación entiende en: (a) competencia originaria (art. 117 CN), o (b) cuando hay derecho federal en juego. Existe también la vía del recurso extraordinario federal por sentencia arbitraria, que permite el acceso a la Corte incluso en supuestos de derecho común.
+
+\norma{Art. 75 inc. 12 CN --- Atribuciones del Congreso / Derecho común vs. derecho federal}
+\norma{Art. 117 CN --- Competencia originaria de la Corte Suprema}
+
+\subsection{Asignación de jueces por sorteo}
+
+El juez que interviene en cada proceso se asigna por sorteo, tanto en primera instancia como en las salas de Cámara. La primera vez que el expediente se eleva a la Cámara se sortea la sala interviniente, y por el principio de prevención esa misma sala continúa interviniendo en todos los recursos de apelación ulteriores del mismo expediente.
+
+\section{Sistema de recusaciones}
+
+La recusación es la facultad que tienen las partes de excluir al juez que interviene en el proceso y solicitar la designación de otro en su reemplazo, para preservar el principio del juez natural.
+
+\subsection{Recusación sin causa (art. 14 CPCCN)}
+
+La recusación sin causa permite excluir al juez sin expresar ningún fundamento. Sus características son:
+
+\begin{itemize}
+    \item Puede ejercerla el actor en la demanda (primera presentación) o el demandado en su primera presentación.
+    \item Respecto de jueces de Cámara: puede ejercerse al día siguiente de notificada la primera resolución que dicte la sala.
+    \item \textbf{Límite cuantitativo}: solo puede ejercerse por única vez en primera instancia y por única vez en Cámara.
+    \item \textbf{Límite procesal}: no procede en juicios ejecutivos, procesos de desalojo ni procesos sumarísimos.
+\end{itemize}
+
+\norma{Art. 14 CPCCN --- Recusación sin causa}
+
+\subsection{Recusación con causa (arts. 17 y 30 CPCCN)}
+
+La recusación con causa requiere invocar y demostrar alguna de las causales taxativamente enumeradas en el art. 17 CPCCN. Algunas causales ejemplificativas son:
+
+\begin{itemize}
+    \item Parentesco entre el juez y alguna de las partes.
+    \item Enemistad u odio entre el juez y alguna de las partes.
+    \item Estado de trato familiar o frecuente con alguna de las partes.
+\end{itemize}
+
+Esta recusación puede plantearse en las mismas oportunidades que la recusación sin causa, y también cuando la causa sea sobreviniente: si el hecho que la motiva es posterior o llegó a conocimiento de la parte con posterioridad, puede plantearse dentro de los cinco días desde que tomó conocimiento.
+
+\begin{important}
+El art. 30 CPCCN establece, además, el deber de excusación: el mismo juez que advierte una causal del art. 17 debe excusarse de oficio. La recusación con causa la resuelve la Cámara cuando el recusado es juez de primera instancia, o el mismo tribunal (sin el juez recusado) cuando se trata de un miembro de Cámara o de la Corte.
+\end{important}
+
+\norma{Art. 17 CPCCN --- Causales de recusación con causa}
+\norma{Art. 30 CPCCN --- Deber de excusación del juez}
+
+\section{Deberes y facultades del juez (arts. 34 a 37 CPCCN)}
+
+Como todo funcionario público, el juez tiene derechos (estabilidad en el empleo, intangibilidad de las remuneraciones) y también deberes y facultades regulados en los arts. 34 a 37 CPCCN:
+
+\textbf{Art. 34 --- Deberes generales del juez:}
+\begin{itemize}
+    \item Dictar resoluciones dentro de los plazos legales (providencias simples: en el plazo correspondiente; sentencia definitiva: en el plazo que fija el Código).
+    \item Asistir personalmente a la audiencia preliminar del art. 360 CPCCN (acto indelegable, en aplicación del principio de inmediación).
+\end{itemize}
+
+\textbf{Art. 35 --- Potestades disciplinarias:}
+\begin{itemize}
+    \item Excluir de una audiencia a quien perturbe su desarrollo.
+    \item Aplicar las sanciones previstas por el Código.
+\end{itemize}
+
+\textbf{Art. 36 --- Facultades ordenatorias e instructorias:}
+\begin{itemize}
+    \item Convocar a las partes a una audiencia en su despacho en cualquier etapa del proceso para intentar un acuerdo conciliatorio.
+    \item Dictar medidas de mejor proveer: medidas destinadas a esclarecer la verdad de los hechos controvertidos sin afectar el derecho de defensa ni suplir la negligencia de las partes. Incluye la posibilidad de convocar a testigos y peritos para pedirles explicaciones o aclaraciones sobre sus declaraciones o dictámenes.
+\end{itemize}
+
+\textbf{Art. 37 --- Sanciones conminatorias}: el juez puede aplicar sanciones pecuniarias progresivas a las partes o a terceros para compelerlos a cumplir sus decisiones (astreintes).
+
+\norma{Arts. 34, 35, 36 y 37 CPCCN --- Deberes y facultades del juez}
+
+\section{Nombramiento y remoción de los jueces}
+
+\textbf{Nombramiento de jueces de la Corte Suprema}: corresponde al Presidente de la Nación con acuerdo de dos tercios del Senado presentes en sesión pública (art. 99 inc. 4 CN).
+
+\textbf{Nombramiento del resto de los jueces}: también corresponde al Presidente con acuerdo de dos tercios del Senado, pero previamente el Consejo de la Magistratura —órgano dependiente del Poder Judicial— eleva una terna vinculante surgida de un concurso público de oposición y antecedentes. El Consejo se renueva cada cuatro años y está integrado por miembros de los tres poderes, abogados de la matrícula y académicos de reconocido prestigio.
+
+\textbf{Remoción}: las causales son las del art. 53 CN (comisión de delito o mal desempeño en sus funciones).
+
+\begin{itemize}
+    \item Jueces de la Corte Suprema: acusación ante el Senado a través de la Cámara de Diputados (juicio político).
+    \item Resto de los jueces: Jurado de Enjuiciamiento, integrado por miembros del Poder Legislativo, del Poder Judicial y por abogados de la matrícula.
+\end{itemize}
+
+\norma{Arts. 53 y 99 inc. 4 CN --- Nombramiento y remoción de magistrados}
+
+\section{Auxiliares y organismos de la jurisdicción}
+
+\subsection{Auxiliares del juez dentro del juzgado}
+
+Además del juez, existen empleados jerárquicos en cada juzgado o sala de Cámara: el \textbf{Secretario} y el \textbf{Prosecretario}, regulados en los arts. 38 y 39 CPCCN. Si bien no están investidos de la función jurisdiccional, dictan determinadas resoluciones que expresamente les asigna el Código. Esto resulta relevante para los recursos, ya que los mecanismos impugnativos difieren según quién firmó la resolución: si la firmó el secretario/prosecretario o si la firmó el juez.
+
+\norma{Arts. 38 y 39 CPCCN --- Deberes del secretario y prosecretario}
+
+\subsection{Otras oficinas y organismos auxiliares}
+
+\begin{itemize}
+    \item \textbf{Cuerpo Médico Forense}: emite dictámenes médicos a solicitud de los magistrados.
+    \item \textbf{Cuerpos Interdisciplinarios}: formados por asistentes sociales, psicopedagogos y psicólogos; trabajan fundamentalmente con los jueces de familia.
+    \item \textbf{Oficina de Mandamientos y Notificaciones}: los oficiales notificadores llevan las cédulas de notificación a los domicilios de las partes; los oficiales de justicia cumplen mandas judiciales (por ejemplo, desocupación de inmuebles en procesos de desalojo, traba de embargos sobre maquinaria empresarial).
+\end{itemize}
+
+\subsection{El Ministerio Público}
+
+El Ministerio Público es un auxiliar de la jurisdicción que se estructura en tres ramas:
+
+\begin{itemize}
+    \item \textbf{Ministerio Público Fiscal}: vela por la legalidad del proceso. El juez le da intervención en cuestiones de orden público (por ejemplo, cuando se discute la competencia del tribunal o cuando se plantea la inconstitucionalidad de una norma). El fiscal emite un dictamen expresando su opinión sobre la cuestión.
+    \item \textbf{Defensor de Menores e Incapaces}: interviene en todo proceso en el que haya menores o incapaces, de modo paralelo a la representación legal que ya ejercen sus padres o curador. Al defensor también se le corre vista en los distintos estadios del proceso para que ejerza los actos procesales que considere necesarios.
+    \item \textbf{Defensor de Pobres y Ausentes}: interviene cuando hay ausentes en el proceso, o cuando las personas carecen de recursos para acceder a una defensa particular, a fin de garantizar su derecho de defensa.
+\end{itemize}
+
+% ---------------------------------------------------------
+% CORNELL — CAPÍTULO 2
+% ---------------------------------------------------------
+\section*{Repaso Cornell del capítulo}
+\addcontentsline{toc}{section}{Repaso Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Quién nombra y quién remueve a los jueces?} &
+El Presidente de la Nación los nombra con acuerdo de dos tercios del Senado (previa terna vinculante del Consejo de la Magistratura para los jueces que no son de la Corte). La remoción se hace por juicio político ante el Senado (jueces de la Corte) o por Jurado de Enjuiciamiento (resto de los jueces), por las causales del art. 53 CN. \\
+
+\textbf{¿Qué diferencia hay entre primera y segunda instancia en cuanto a la organización?} &
+En primera instancia actúan jueces individuales (civiles, comerciales, civiles y comerciales federales, del trabajo); en segunda instancia actúan las Cámaras, integradas por salas de tres jueces (tribunales colegiados), sobre las cuales, en determinados supuestos, puede intervenir la Corte Suprema. \\
+
+\textbf{¿Cuántas veces puede recusarse sin causa?} &
+Por única vez en primera instancia y por única vez en Cámara; no procede en juicios ejecutivos, procesos de desalojo ni sumarísimos. \\
+
+\textbf{¿Quién resuelve la recusación con causa?} &
+La Cámara, cuando el recusado es juez de primera instancia; o el mismo tribunal, sin el juez recusado, cuando se trata de un miembro de Cámara o de la Corte. \\
+
+\textbf{¿En qué casos interviene el fiscal en un proceso civil?} &
+En cuestiones de orden público, por ejemplo cuando se discute la competencia del tribunal o se plantea la inconstitucionalidad de una norma, emitiendo un dictamen sobre la cuestión. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} El órgano jurisdiccional está compuesto por los jueces (primera instancia, Cámaras, Corte Suprema) y sus auxiliares (secretario, prosecretario, cuerpo médico forense, cuerpos interdisciplinarios, oficina de mandamientos y notificaciones) y por el Ministerio Público (fiscal, defensor de menores e incapaces, defensor de pobres y ausentes).
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ===========================================================================
+\chapter{Las partes y sus colaboradores}
+% ===========================================================================
+
+\section{Concepto de parte: actor y demandado}
+
+Al hablar de partes se piensa en una relación bipolar: actor y demandado. Las partes son siempre dos, con independencia de la multiplicidad de personas que integren cada polo.
+
+\begin{itemize}
+    \item \textbf{Actor} (sujeto activo): ejerce la pretensión y da inicio al proceso judicial, poniendo en actividad a la jurisdicción, para que al dictarse la sentencia se reconozca su derecho sustancial.
+    \item \textbf{Demandado} (sujeto pasivo): aquel a quien va dirigida la pretensión del actor y respecto del cual se pretende que la satisfaga.
+\end{itemize}
+
+Las partes pueden ser personas humanas (físicas) o personas jurídicas. Las personas jurídicas —tanto de derecho público (v.gr., el Estado Nacional) como de derecho privado (v.gr., sociedades comerciales)— deben actuar a través de sus representantes legales (presidente del directorio en una SA; socio gerente en una SRL).
+
+\section{La reconvención}
+
+En la etapa introductoria, al contestar la demanda, el demandado puede a su vez reconvenir (contrademandar) al actor, siempre que haya identidad de objeto (mismo hecho generador) e identidad de sujetos. En ese caso ambos adquieren la doble calidad de actor y de demandado:
+
+\begin{itemize}
+    \item El actor originario pasa a ser actor-reconvenido.
+    \item El demandado originario pasa a ser demandado-reconviniente.
+\end{itemize}
+
+Las partes siguen siendo dos, cada una con doble calidad.
+
+\norma{Art. 56 CPCCN --- Obligatoriedad de la asistencia letrada}
+
+\begin{note}
+El art. 56 CPCCN establece que en todas las actuaciones del proceso es obligatorio que las partes actúen con asistencia de un letrado. Los escritos deben llevar la firma de la parte y del abogado que la patrocina. La alternativa es que la parte actúe a través de un abogado apoderado.
+\end{note}
+
+\section{Capacidad, legitimación y representación}
+
+Es indispensable distinguir estos tres conceptos.
+
+\begin{definition}{Capacidad civil}
+Aptitud para ser titular de determinados derechos y obligaciones (Código Civil y Comercial), y para ejercer a lo largo del proceso los deberes, cargas y facultades que impone el Código Procesal. La regla es la capacidad; sus excepciones son (art. 24 CCyC):
+\begin{itemize}
+    \item Personas por nacer.
+    \item Menores de edad.
+    \item Personas declaradas incapaces por sentencia judicial.
+\end{itemize}
+Estos incapaces deben presentarse en el proceso a través de sus representantes legales, cuya representación debe acreditarse con la documentación correspondiente.
+\end{definition}
+
+\begin{definition}{Legitimación en la causa}
+Ser titular de la relación jurídica sustancial que existía antes del proceso y en virtud de la cual se da inicio al juicio. La legitimación puede ser activa (el actor es el titular del derecho reclamado) o pasiva (el demandado es el titular de la obligación que se le reclama).
+\end{definition}
+
+\begin{important}
+La falta de legitimación no invalida la calidad de parte —las partes serán partes durante todo el proceso— pero sí influye en el resultado: el juez reconocerá o rechazará la pretensión en la sentencia en función de si existe o no esa legitimación.
+\end{important}
+
+\begin{example}{Falta de legitimación activa}
+Una persona que solicita prestado un vehículo y sufre un accidente por culpa de un tercero (que infringió el semáforo en rojo) promueve una demanda por daños materiales al vehículo. Esa persona será tenida como parte actora, pero quien está legitimado para reclamar la indemnización es el propietario del vehículo (titular de la relación jurídica sustancial), no el conductor circunstancial.
+\end{example}
+
+\begin{example}{Falta de legitimación pasiva}
+Un trabajador despedido promueve demanda por indemnización contra varias empresas, pero una de ellas nunca revistió la calidad de empleador (nunca fue titular del contrato de trabajo). Esa empresa será parte del proceso, pero no tiene legitimación pasiva porque no era titular de la relación jurídica sustancial (el contrato laboral).
+\end{example}
+
+\begin{definition}{Legitimación en el proceso (representación)}
+Hay partes que no tienen legitimación procesal para estar por sí en el proceso y deben hacerlo a través de representantes. La representación puede ser:
+\begin{itemize}
+    \item \textbf{Legal}: impuesta por la ley. Ejemplo: el menor de edad actúa a través de sus padres (se acredita con partida de nacimiento); el incapaz actúa a través de su curador (se acredita con testimonio de la sentencia que restringió la capacidad y designó curador).
+    \item \textbf{Convencional}: acordada voluntariamente. La parte puede otorgar poder a un abogado para que la represente en el proceso.
+\end{itemize}
+\end{definition}
+
+\norma{Art. 24 CCyC --- Personas incapaces}
+\norma{Arts. 152 y 153 CCyC --- Domicilio de personas jurídicas}
+
+\subsection{Poder, mandato y representación}
+
+Tres conceptos distintos que deben diferenciarse:
+
+\begin{itemize}
+    \item \textbf{Poder}: el instrumento (generalmente escritura pública ante escribano) mediante el cual el poderdante otorga al abogado la facultad de representarlo en el proceso. En su otorgamiento solo intervienen el poderdante y el escribano; el apoderado no está presente en ese acto.
+    \item \textbf{Mandato}: el contrato (regulado a partir del art. 1319 CCyC y siguientes) que rige la relación entre el cliente y su abogado. En este acto sí está presente el apoderado. Puede haber mandato sin representación.
+    \item \textbf{Representación}: puede existir con mandato (cuando el mandante otorgó al mandatario la facultad de representarlo) o sin mandato (ejemplo: la representación de un hijo menor por sus padres, que no tiene base contractual).
+\end{itemize}
+
+\norma{Art. 1319 y ss. CCyC --- Contrato de mandato}
+\norma{Art. 56 CPCCN --- Obligatoriedad de la asistencia letrada}
+
+\section{Excepciones previas: falta de personería y falta de legitimación (art. 347 CPCCN)}
+
+En la etapa introductoria, la parte que advierta alguno de estos defectos puede oponerlos como excepciones previas:
+
+\begin{itemize}
+    \item \textbf{Inciso 2.\textsuperscript{o} — Falta de personería}: cuando la parte no tiene capacidad civil para estar en el proceso por sí misma, o cuando la representación invocada no está correctamente acreditada.
+    \item \textbf{Inciso 3.\textsuperscript{o} — Falta de legitimación}: cuando el actor no es el titular de la relación jurídica sustancial (falta de legitimación activa) o cuando el demandado tampoco lo es (falta de legitimación pasiva).
+\end{itemize}
+
+La falta de legitimación puede resolverse en la etapa introductoria o diferirse al momento de dictar sentencia si su resolución requiere producción de prueba. En este último caso, las partes mantienen su calidad durante todo el proceso, y la excepción solo influirá en el momento del pronunciamiento.
+
+\norma{Art. 347 CPCCN --- Excepciones previas (incisos 2 y 3)}
+
+\section{Domicilio real y domicilio procesal (art. 40 CPCCN)}
+
+En su primera presentación —tanto el actor en la demanda como el demandado— deben:
+
+\begin{itemize}
+    \item \textbf{Denunciar su domicilio real}: lugar de residencia habitual (personas físicas) o sede social registrada —arts. 73, 152 y 153 CCyC— (personas jurídicas). En el domicilio real se practican las notificaciones que expresamente dispone el Código (por ejemplo, el traslado de la demanda, o la citación a absolver posiciones en la prueba confesional).
+    \item \textbf{Constituir un domicilio procesal} (también llamado legal o ad litem): domicilio dentro del radio territorial del juzgado interviniente. Si el proceso tramita en un juzgado civil ordinario de la CABA, el domicilio debe constituirse dentro de la Ciudad de Buenos Aires; si tramita en el Departamento Judicial de Lomas de Zamora, dentro de dicho Departamento, etc.
+\end{itemize}
+
+\begin{important}
+La consecuencia de no constituir el domicilio procesal es gravísima: todas las notificaciones que deberían cursarse a ese domicilio quedarán automáticamente notificadas por ministerio de la ley los días martes o viernes siguientes a la fecha de la resolución (art. 133 CPCCN), sin necesidad de cédula.
+\end{important}
+
+\textbf{Notificaciones electrónicas}: por normas complementarias se implementaron las notificaciones electrónicas. Las cédulas que se dirigen a los domicilios constituidos ya no se realizan en papel sino de modo electrónico, a través del domicilio electrónico vinculado a la matrícula de cada abogado en el Colegio correspondiente. Las notificaciones al domicilio real siguen siendo en papel.
+
+\norma{Art. 40 CPCCN --- Domicilio procesal}
+\norma{Art. 73 CCyC --- Domicilio de las personas físicas}
+\norma{Arts. 152 y 153 CCyC --- Domicilio de las personas jurídicas}
+\norma{Art. 133 CPCCN --- Notificación por ministerio de la ley}
+
+% ---------------------------------------------------------
+% CORNELL — CAPÍTULO 3
+% ---------------------------------------------------------
+\section*{Repaso Cornell del capítulo}
+\addcontentsline{toc}{section}{Repaso Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuántas partes hay siempre en un proceso?} &
+Siempre dos: actor y demandado, con independencia de la multiplicidad de sujetos que integren cada polo (por ejemplo, en un litisconsorcio). \\
+
+\textbf{¿Qué es la reconvención?} &
+La contrademanda que el demandado plantea contra el actor al contestar la demanda, cuando existe identidad de objeto e identidad de sujetos; ambos adquieren doble calidad (actor-reconvenido y demandado-reconviniente). \\
+
+\textbf{¿Puede ser parte alguien sin legitimación?} &
+Sí: la falta de legitimación no quita la calidad de parte durante todo el proceso; solo incide en que el juez reconozca o rechace la pretensión en la sentencia. \\
+
+\textbf{¿Cuándo se resuelve la excepción de falta de legitimación?} &
+Puede resolverse en la etapa introductoria o diferirse al momento de la sentencia si su resolución requiere producción de prueba. \\
+
+\textbf{¿Qué pasa si no se constituye domicilio procesal?} &
+Las notificaciones que debían cursarse allí quedan automáticamente notificadas por ministerio de la ley los martes o viernes siguientes a la resolución (art. 133 CPCCN), sin necesidad de cédula. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} Las partes (siempre dos) requieren capacidad para actuar, legitimación sustancial para que su pretensión prospere y, en su caso, representación para actuar en el proceso. Deben denunciar domicilio real y constituir domicilio procesal, bajo apercibimiento de notificación ficta por ministerio de la ley.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ===========================================================================
+\chapter{Sistemas, cargas y litis consorcio}
+% ===========================================================================
+
+\section{Principios y sistemas procesales}
+
+Los principios son presupuestos jurídico-políticos fundantes del ordenamiento procesal, establecidos en la Constitución y en los Tratados Internacionales de Derechos Humanos con jerarquía constitucional. Tienen una sola cara (por ejemplo, principio de igualdad, principio de legalidad).
+
+Los sistemas, en cambio, son creados por el legislador a través del Código Procesal. Presentan una doble cara, y el legislador puede elegir entre sistemas opuestos sin violar ningún principio constitucional.
+
+\begin{definition}{Sistema de preclusión}
+El proceso está dividido en etapas y siempre avanza, nunca retrocede (salvo planteo de nulidad de algún acto). Las facultades o cargas no ejercidas en una etapa no pueden ejercerse en la etapa posterior. Es el sistema adoptado por el CPCCN en materia civil y comercial.
+\end{definition}
+
+\begin{note}
+Sistema alternativo no elegido por el CPCCN: el \textbf{sistema de unicidad}, en el que existe un único período en el que pueden ejercerse todas las facultades y cargas, sin cierre de etapas.
+\end{note}
+
+\begin{definition}{Sistema dispositivo}
+En el proceso civil y comercial son las partes quienes tienen a cargo el impulso del proceso. La inactividad procesal puede conducir a la caducidad de la instancia.
+\end{definition}
+
+\begin{note}
+El \textbf{sistema de oficiosidad}, propio del proceso laboral, es el opuesto al dispositivo: el impulso lo lleva la jurisdicción, lo que explica que en el proceso laboral no exista la figura de la caducidad de instancia.
+\end{note}
+
+\section{Cargas, deberes y obligaciones procesales}
+
+\begin{definition}{Carga procesal}
+Facultad que tiene la parte de realizar determinados actos en ciertos momentos del proceso. Se la llama ``imperativo del propio interés'' porque su no ejercicio no trae aparejada ninguna sanción; a lo sumo puede generar un beneficio para el otro litigante.
+\end{definition}
+
+\begin{example}{Carga procesal}
+El demandado puede optar por no contestar la demanda dentro del plazo de 15 días en el proceso ordinario. No hay sanción por ello. Sin embargo, el no ejercicio de esa carga genera un beneficio al actor: el juez tendrá una cierta presunción de verdad respecto de los hechos invocados por el actor, porque el demandado no los negó ni dio su propia versión.
+\end{example}
+
+\begin{definition}{Deber procesal}
+Imperativo impuesto por la ley cuyo incumplimiento sí trae aparejada una sanción.
+\end{definition}
+
+\begin{example}{Deber procesal}
+El testigo debidamente notificado tiene el deber de comparecer, declarar y decir la verdad. Si no comparece puede ser sancionado con multa; si no dice la verdad incurre en el delito de falso testimonio. Del mismo modo, el juez tiene el deber de dictar sentencia en el plazo legal; el incumplimiento puede dar lugar a sanciones.
+\end{example}
+
+\textbf{Obligación}: término propio del Derecho Privado. Supone la existencia de un vínculo jurídico en el cual el deudor se ve compelido a cumplir una prestación respecto de su acreedor, bajo apercibimiento de ser ejecutado.
+
+\section{Litis consorcio}
+
+El litisconsorcio se presenta cuando hay multiplicidad de actores o de demandados. ``Litis'' significa ``juicio''; ``consorcio'' alude a un conjunto de personas con un interés común. Existen dos tipos regulados en el Código Procesal.
+
+\begin{definition}{Litis consorcio necesario (obligatorio)}
+Es necesaria la integración de todos los litisconsortes para que la sentencia que se dicte sea útil y eficaz. Si la litis no se integra correctamente con todos los sujetos necesarios, el juez puede denegar el avance del proceso hasta que se complete esa integración (de oficio o a pedido de parte).
+\end{definition}
+
+\begin{example}{Litis consorcio necesario}
+Cuatro personas son condóminos de un inmueble (25\% cada una). Uno de ellos quiere vender y promueve un proceso de división de condominio solo contra dos de los condóminos que están ocupando el inmueble, omitiendo al cuarto copropietario. Para que la sentencia de división sea útil y oponible a todos, es indispensable integrar la litis con todos los condóminos. El juez puede —de oficio o a pedido de parte— dar intervención al litisconsorte ausente.
+\end{example}
+
+\begin{definition}{Litis consorcio facultativo o voluntario}
+Se da cuando varias partes pueden reunirse como actores o como demandados en razón de una conexidad en la pretensión: existe un hecho o título único que permite que todas tengan la calidad de actores o de demandados dentro del mismo proceso. No es obligatorio; las partes pueden optar por promover procesos separados.
+\end{definition}
+
+\begin{example}{Litis consorcio facultativo}
+Un conductor embiste a tres vehículos en un accidente de tránsito, generando daños materiales y lesiones a sus ocupantes. Hay un único hecho generador y una conexión clara entre las pretensiones de todos los damnificados (todos reclaman indemnización por daños y perjuicios causados por el mismo accidente). Pueden todos promover un único proceso en calidad de actores, o pueden iniciar procesos separados.
+\end{example}
+
+\subsection{Acumulación de procesos}
+
+Si los damnificados del ejemplo anterior optaron por promover procesos separados (tres expedientes distintos discutiendo la responsabilidad del mismo hecho), procede la acumulación de procesos: todos tramitan ante un mismo juez para evitar sentencias contradictorias.
+
+El juez ante quien se acumulan es el que previno, es decir, aquel en cuyo proceso se notificó primero la demanda al accionado. Los otros procesos se remiten a ese juzgado para continuar su trámite, y se dictará una única sentencia para todos, evitando el escándalo jurídico de pronunciamientos contradictorios sobre el mismo hecho.
+
+\begin{note}
+Excepción: si los procesos se encuentran en etapas muy avanzadas y distintas, puede denegarse la acumulación para evitar la demora injustificada en alguno de ellos.
+\end{note}
+
+% ---------------------------------------------------------
+% CORNELL — CAPÍTULO 4
+% ---------------------------------------------------------
+\section*{Repaso Cornell del capítulo}
+\addcontentsline{toc}{section}{Repaso Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué consecuencias tiene la caducidad de instancia?} &
+Deriva de la inactividad procesal en el sistema dispositivo; obliga a reiniciar el proceso (si la acción no prescribió), ya que la caducidad no interrumpe la prescripción. \\
+
+\textbf{¿Por qué no existe caducidad en el proceso laboral?} &
+Porque el proceso laboral sigue el sistema de oficiosidad, en el que el impulso del proceso está a cargo de la jurisdicción y no de las partes. \\
+
+\textbf{¿Cuál es la diferencia entre una carga y un deber?} &
+La carga es un ``imperativo del propio interés'' cuyo no ejercicio no genera sanción, aunque puede beneficiar al adversario; el deber es un imperativo legal cuyo incumplimiento sí trae aparejada una sanción. \\
+
+\textbf{¿Cuándo es obligatorio el litis consorcio?} &
+Cuando la sentencia solo puede ser útil y eficaz si intervienen todos los litisconsortes necesarios (litis consorcio necesario); en el facultativo, las partes pueden optar por unirse o litigar por separado. \\
+
+\textbf{¿Cuál es el criterio para acumular procesos?} &
+Los procesos separados sobre un mismo hecho se acumulan ante el juez que previno, es decir, aquel en cuyo proceso se notificó primero la demanda, salvo que se encuentren en etapas muy avanzadas y distintas. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} El proceso civil y comercial es dispositivo (lo impulsan las partes) y preclusivo (avanza por etapas). Las cargas no ejercidas no se sancionan pero pueden perjudicar a quien las omite; los deberes sí tienen sanción. El litisconsorcio necesario exige la integración de todos los sujetos; el facultativo es una opción de las partes, y los procesos conexos se acumulan ante el juez que previno.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ===========================================================================
+\chapter{Proceso colectivo y terceros intervinientes}
+% ===========================================================================
+
+\section{El proceso colectivo}
+
+El proceso colectivo no debe confundirse con el litisconsorcio. En el litisconsorcio cada parte tiene un derecho subjetivo individual dentro de una relación jurídica sustancial determinada, y todas las partes son individualizables.
+
+En el proceso colectivo, en cambio, existe un hecho generador común que puede afectar a un número indeterminado e indefinido de personas. La regulación no se encuentra en el CPCCN ni en ninguna ley específica; debe buscarse en la Constitución Nacional y en los precedentes de la Corte Suprema.
+
+\textbf{Base constitucional:}
+\begin{itemize}
+    \item Art. 41 CN: derecho a un medio ambiente sano.
+    \item Art. 42 CN: derechos de usuarios y consumidores.
+    \item Art. 43, 2.\textsuperscript{o} párrafo, CN: legitima a interponer la acción de amparo contra cualquier forma de discriminación y en lo relativo a los derechos que protegen al ambiente, a la competencia, al usuario, al consumidor, así como a los derechos de incidencia colectiva en general, al afectado, al defensor del pueblo y a las asociaciones que propendan a esos fines.
+\end{itemize}
+
+\norma{Arts. 41, 42 y 43 CN --- Derechos de incidencia colectiva}
+
+A partir de los precedentes de la Corte Suprema se reconocen tres tipos de derechos:
+
+\begin{itemize}
+    \item \textbf{Derechos subjetivos individuales}: propios de los procesos ordinarios y del litisconsorcio; los titulares son identificables y determinables.
+    \item \textbf{Derechos difusos o de incidencia colectiva}: un hecho generador afecta a un número indefinido e indeterminable de personas mediante la lesión de un bien colectivo indivisible (por ejemplo, el medio ambiente).
+    \item \textbf{Derechos individuales homogéneos}: el mismo hecho generador afecta a una cantidad numerosa pero determinable de personas, y cada una puede ser resarcida de modo individual según el perjuicio concreto sufrido. Se los denomina ``homogéneos'' por la causa común.
+\end{itemize}
+
+\begin{example}{Derechos individuales homogéneos}
+Un proceso colectivo iniciado por todos los usuarios afectados por un aumento arbitrario en la tarifa de un servicio público domiciliario. Cada usuario tiene un perjuicio individual y cuantificable, pero todos comparten el mismo hecho generador. El art. 43 CN habilita constitucionalmente este proceso colectivo.
+\end{example}
+
+\section{Terceros intervinientes}
+
+Los terceros propiamente dichos son aquellos que intervienen en el proceso vinculados a él por un interés propio. Se diferencian de quienes participan sin interés propio (peritos, testigos), que no son ``terceros procesales'' en sentido estricto.
+
+La intervención de terceros puede ser:
+
+\begin{itemize}
+    \item \textbf{Obligada} (arts. 94 y 96 CPCCN): las partes citan al tercero a tomar intervención en el proceso.
+    \item \textbf{Voluntaria} (arts. 90 y 91 CPCCN): el tercero se presenta espontáneamente. A su vez puede ser: (a) litis consorcial, o (b) adhesiva.
+\end{itemize}
+
+\norma{Arts. 90, 91, 94 y 96 CPCCN --- Terceros intervinientes}
+
+\subsection{Intervención obligada de terceros (arts. 94 y 96 CPCCN)}
+
+Las partes pueden citar a un tercero en la etapa introductoria demostrando: (1) que la controversia del proceso es común a ese tercero, y (2) que la sentencia que se dicte puede alcanzarlo. El pedido se sustancia con traslado a la otra parte y lo resuelve el juez.
+
+\begin{example}{Intervención obligada}
+El acreedor demanda solamente al fiador (y no al deudor principal) por el cobro de una deuda. El fiador puede citar como tercero al deudor principal, ya que la controversia les es común y la sentencia lo podría alcanzar (pues el fiador podría luego ejercer una acción de repetición contra el deudor por las sumas que abonó al acreedor).
+\end{example}
+
+\begin{example}{Intervención obligada — citación en garantía}
+El actor demanda al demandado por daños y perjuicios, y ese demandado tiene un seguro que podría cubrir las sumas reclamadas. El demandado puede citar en garantía a su aseguradora conforme la Ley de Seguros. El art. 96 CPCCN aclara que la sentencia puede ejecutarse contra ese tercero como si fuera parte, salvo que el tercero invoque defensas que exceden el marco de debate del proceso.
+\end{example}
+
+\subsection{Intervención voluntaria: litis consorcial (arts. 90 y 91 CPCCN)}
+
+El tercero que voluntariamente se presenta como litisconsorte debe demostrar que, desde el punto de vista del derecho sustancial, estaba legitimado para ser actor o demandado en ese proceso (es decir, que tiene o tenía el mismo derecho sustancial que alguna de las partes). Una vez admitido, puede ejercer las mismas facultades que quien fue parte desde el inicio del proceso.
+
+\begin{example}{Tercero litisconsorcial (impugnación de asamblea)}
+Un socio de una sociedad comercial inicia proceso para impugnar la validez de una asamblea de accionistas. Cualquier otro socio puede presentarse voluntariamente como tercero litisconsorte, porque puede demostrar que tiene el mismo derecho sustancial (su calidad de socio con interés en la validez de la asamblea) que el socio actor.
+\end{example}
+
+\begin{example}{Tercero litisconsorcial (consorcio de copropietarios)}
+En un consorcio de copropietarios, un copropietario demanda al consorcio reclamando la reparación de alguna parte común. Otro copropietario puede también presentarse como tercero litisconsorte porque también está legitimado sustancialmente para reclamar la misma reparación contra el consorcio.
+\end{example}
+
+\subsection{Intervención voluntaria adhesiva (art. 90 CPCCN)}
+
+En la intervención adhesiva, el tercero no tiene un rol autónomo. Acredita sumariamente que tiene un interés propio conexo con las pretensiones discutidas en el proceso, adhiere a alguna de las partes y queda limitado por la actividad que ejerza esa parte. La sentencia no lo alcanza directamente.
+
+\begin{example}{Intervención adhesiva}
+Un acreedor puede presentarse como tercero adhesivo en los procesos que tenga su deudor, porque tiene un interés propio y conexo: si el deudor pierde el proceso y su patrimonio se ve afectado, podría perjudicarse la posibilidad de cobrar su crédito. Su actuación queda limitada; no tiene iniciativa autónoma y la sentencia no le alcanza directamente.
+\end{example}
+
+% ---------------------------------------------------------
+% CORNELL — CAPÍTULO 5
+% ---------------------------------------------------------
+\section*{Repaso Cornell del capítulo}
+\addcontentsline{toc}{section}{Repaso Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuál es la diferencia entre litisconsorcio y proceso colectivo?} &
+En el litisconsorcio cada parte tiene un derecho subjetivo individual dentro de una relación jurídica determinada y todas son individualizables; en el proceso colectivo existe un hecho generador común que afecta a un número indeterminado e indefinido de personas, sin regulación específica en el CPCCN. \\
+
+\textbf{¿Qué son los derechos individuales homogéneos?} &
+Aquellos en los que el mismo hecho generador afecta a una cantidad numerosa pero determinable de personas, cada una resarcible individualmente según su perjuicio concreto, unidas por una causa común. \\
+
+\textbf{¿Cuándo puede ejecutarse la sentencia contra un tercero?} &
+En la intervención obligada (art. 96 CPCCN), la sentencia puede ejecutarse contra el tercero citado como si fuera parte, salvo que este invoque defensas que exceden el marco de debate del proceso. \\
+
+\textbf{¿Qué diferencia hay entre intervención litisconsorcial y adhesiva?} &
+El tercero litisconsorcial acredita legitimación sustancial propia y, una vez admitido, tiene un rol autónomo con las mismas facultades que una parte originaria; el tercero adhesivo solo acredita un interés propio conexo, no tiene rol autónomo y la sentencia no lo alcanza directamente. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} El proceso colectivo protege derechos difusos (bien indivisible) o individuales homogéneos (causa común, resarcimiento individual), con base en los arts. 41 a 43 CN. Los terceros intervienen por interés propio, de modo obligado (citados por las partes, con posible ejecución de sentencia en su contra) o voluntario (litisconsorcial, con rol autónomo, o adhesivo, con rol limitado y sin ser alcanzados directamente por la sentencia).
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}
