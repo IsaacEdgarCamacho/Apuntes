@@ -1,0 +1,561 @@
+\documentclass[12pt,oneside]{book}
+
+% ======================================================
+% PAQUETES
+% ======================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ======================================================
+% METADATOS DEL DOCUMENTO (obtenidos del apunte original)
+% ======================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{La Audiencia Preliminar en el Proceso Civil Ordinario}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+% ======================================================
+% RUTAS DE IMÁGENES
+% ======================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ======================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ======================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ======================================================
+% CONFIGURACIÓN GENERAL
+% ======================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ======================================================
+% ENCABEZADOS Y PIES DE PÁGINA
+% ======================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ======================================================
+% COMANDOS MATEMÁTICOS
+% ======================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ======================================================
+% CAJAS ACADÉMICAS
+% ======================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ======================================================
+% DOCUMENTO
+% ======================================================
+\begin{document}
+
+% ------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------
+\tableofcontents
+
+% ======================================================
+% BLOQUE I — CONTEXTO HISTÓRICO Y CULTURAL
+% ======================================================
+\chapter{Contexto histórico y cultural de la oralidad procesal}
+
+\section{Antecedentes históricos de la oralidad en el proceso civil argentino}
+
+La presente unidad temática aborda la audiencia preliminar como el acto procesal que articula la etapa introductoria del proceso ordinario —demanda, contestación, reconvención, excepciones— con la etapa probatoria.
+
+\begin{definition}{Audiencia preliminar}
+La audiencia preliminar es el acto procesal que media entre la etapa introductoria y la etapa probatoria del proceso ordinario.
+\end{definition}
+
+No en todos los procesos existe necesariamente una etapa de prueba: la necesidad de producirla depende de si existen hechos alegados que hayan sido controvertidos por las partes y que resulten conducentes para resolver el conflicto.
+
+\subsection{La deuda pendiente con la oralidad}
+
+La implementación de la oralidad en el proceso civil, comercial y laboral —a diferencia del proceso penal— \textit{“tuvo una demora de muchos años en su implementación y distintos intentos fallidos”}. El sistema actual es predominantemente escrito; la oralidad se limita a lo que se denomina \textbf{“oralidad actuada”}: cuando un testigo declara, un empleado toma nota y labra un acta que se incorpora al expediente.
+
+\begin{note}
+Esa forma de trabajo \textit{“no se ajusta a la realidad de los desarrollos tecnológicos actuales”}, dado que hoy cualquier cámara —incluso la de un teléfono celular— puede registrar una declaración testimonial.
+\end{note}
+
+\subsection{Cronología de los intentos de reforma}
+
+Los hitos históricos más relevantes en la incorporación de la oralidad al proceso civil argentino son los siguientes:
+
+\begin{itemize}
+    \item \textbf{1924--1926}: el procesalista Jofre, en la Universidad de Buenos Aires, elaboró el primer proyecto de proceso por audiencias. Este antecedente es el origen de la expresión “100 años de demora”.
+    \item \textbf{1993}: primera implementación de la audiencia preliminar. Duró solo un año: la resistencia de los jueces a celebrarla determinó su derogación.
+    \item \textbf{1995}: incorporación de una audiencia que debía ser tomada por el juez.
+    \item \textbf{1996 en adelante}: se desarrolla lo que hoy constituye la audiencia preliminar, incorporada al Código Procesal Civil y Comercial de la Nación (CPCCN) con distintas variantes.
+\end{itemize}
+
+\section{Comparación: Código Nacional y Código de la Provincia de Buenos Aires}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Código Nacional (CPCCN)} & \textbf{Código Provincia de Buenos Aires} \\
+\midrule
+Tiene la audiencia preliminar legislada desde 1996 (más de 25 años). Sin embargo, en la práctica muchos jueces no la toman o la delegan. &
+No incorporó la audiencia preliminar a su código. Sin embargo, mediante el Protocolo de Oralidad del Ministerio de Justicia, muchos jueces y abogados la implementan con éxito en la práctica. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+Paradoja central: donde la norma existe hace más de 25 años, la práctica es pobre; donde no existe la norma, la práctica avanza gracias a la voluntad de los operadores.
+\end{important}
+
+\section{El condicionamiento cultural como verdadera barrera}
+
+El principal obstáculo para la implementación efectiva de la oralidad no es jurídico sino cultural: \textit{“un condicionamiento cultural que es la verdadera dificultad que deberíamos haber sobrepasado”}.
+
+Esto implica repensar la formación universitaria. Como ejemplo comparativo, se cita la experiencia de universidades de Perú, donde los estudiantes de derecho reciben —además de formación jurídica— clases de teatro, oratoria y escritura. En la Facultad de Derecho argentina, esas habilidades no son prioritarias en el currículo, lo que genera una brecha para los abogados que deberán litigar en un sistema oral.
+
+% ======================================================
+% BLOQUE II — LA AUDIENCIA PRELIMINAR
+% ======================================================
+\chapter{La audiencia preliminar}
+
+\section{Concepto y finalidad de la audiencia preliminar}
+
+El propósito central de la audiencia preliminar es simplificar un proceso que, tal como está estructurado, tiende a generar una carga de alegaciones y de prueba que supera la necesidad real del conflicto. La razón estructural de ese exceso de ofrecimiento probatorio radica en la lógica del proceso ordinario: el actor debe ofrecer toda la prueba en la demanda, antes de conocer qué hechos va a negar el demandado.
+
+Este mecanismo genera la siguiente dinámica:
+
+\begin{itemize}
+    \item El actor no sabe cuáles hechos admitirá y cuáles negará el demandado al contestar la demanda.
+    \item Para cubrirse, ofrece más prueba de la que en definitiva necesitará, incluso sobre hechos que el demandado podría terminar admitiendo.
+    \item La audiencia preliminar permite depurar ese exceso: descartar la prueba superflua y concentrar el proceso en los hechos realmente controvertidos.
+\end{itemize}
+
+\begin{formula}{Artículo 331 --- CPCCN}
+El actor puede modificar la demanda solo hasta que el primer demandado sea notificado. Una vez notificado, la demanda no puede ser ampliada ni modificada en sus elementos sustanciales (hechos, prueba, pretensión).
+\end{formula}
+
+\section{El artículo 360 del CPCCN y la obligatoriedad de la audiencia}
+
+\begin{formula}{Artículo 360 --- CPCCN (texto aplicable)}
+El juez tomará la audiencia preliminar con carácter indelegable. En ella deberá:
+\begin{enumerate}[label=\arabic*\textordmasculine)]
+    \item Invitar a las partes a una conciliación o a encontrar otra forma de solución del conflicto;
+    \item Recibir la declaración de las partes en posiciones;
+    \item Fijar los hechos articulados que sean conducentes a la decisión del juicio;
+    \item Decidir la apertura a prueba;
+    \item Ordenar los medios de prueba conducentes;
+    \item Declarar la cuestión de puro derecho, si correspondiere.
+\end{enumerate}
+\end{formula}
+
+El código establece la presencia del juez con carácter \textbf{indelegable}. La redacción original de 1995 imponía la sanción de \textit{“bajo pena de nulidad”}. En 2001 esa formulación se modificó: se sustituyó la nulidad por el carácter indelegable y se habilitó a cualquiera de las partes a dejar constancia en el libro de asistencia del tribunal del incumplimiento del juez, retirarse sin consecuencias y, en ese momento, no sufrir ninguna sanción.
+
+\section{Problemas prácticos: la resistencia judicial y su contexto}
+
+En la práctica del fuero civil nacional: \textit{“No tengo noticia en estos 25 años que se haya declarado la nulidad de ninguna audiencia preliminar por la ausencia del juez y mucho menos de que un juez hubiera sido sancionado por no haberse presentado a tomar la audiencia preliminar”}. En promedio, los jueces toman a lo sumo la mitad de las audiencias; hay jueces que las toman todas y jueces que toman muy pocas.
+
+\subsection{¿Por qué los abogados no controlan el cumplimiento?}
+
+La explicación práctica del problema del control es la siguiente: un abogado que, ante la ausencia del juez, solicita el libro de asistencia del tribunal para dejar constancia de la falta, difícilmente esté dispuesto a hacerlo, pues \textit{“no va a querer tener de enemigo al juez que todavía no ha fallado sobre su caso”}. El control, en consecuencia, debería ejercerlo el Consejo de la Magistratura, y no los propios abogados.
+
+\subsection{La solución virtuosa: estadísticas y competencia sana}
+
+En la provincia de Buenos Aires, lo que resultó eficaz fue mostrar a los operadores las estadísticas de resultados comparando los casos en que el juez está presente en la audiencia con aquellos en los cuales no está presente. Esa exposición de resultados generó \textit{“un círculo virtuoso, una sana competencia entre aquellos jueces que toman mayores compromisos con la actividad”}.
+
+\begin{important}
+El beneficio mayor de la oralidad no es la celeridad sino la \textbf{calidad del servicio}: la prueba obtenida con la intervención directa del juez es de mayor valor que la producida ante un empleado.
+\end{important}
+
+% ======================================================
+% BLOQUE III — LOS INCISOS DEL ARTÍCULO 360
+% ======================================================
+\chapter{Los incisos del artículo 360 en detalle}
+
+\section{Inciso 1 --- Conciliación}
+
+El primer acto que prevé la audiencia es invitar a las partes a conciliar el conflicto. Esto requiere que el juez \textit{“haya leído el caso y trabaje con la teoría del conflicto para ver de qué manera puede darles distintas fórmulas o posibilidades”}. Si las partes llegan a un acuerdo, el juez lo homologa; ese acuerdo vale como sentencia y puede ejecutarse si se incumple.
+
+\begin{note}
+\textit{“Un mal acuerdo es mejor que un buen juicio”}: dicho común entre abogados que grafica la lógica del sistema, en tanto un acuerdo pronto beneficia a las partes y al sistema.
+\end{note}
+
+\section{Inciso 2 --- Reenvío a mediación prejudicial}
+
+Una reforma posterior incorporó la posibilidad de que el juez, en la audiencia, reenvíe el conflicto a la mediación prejudicial. Se cuestiona con firmeza su utilidad práctica: \textit{“no veo que esto resulte útil para la tarea sino que más bien lo que está haciendo lo que haría es demorar el avance del juicio hacia una solución”}, en tanto implica volver al primer casillero del proceso.
+
+\begin{note}
+El único antecedente conocido terminó con la Cámara revocando la decisión del juez. Podría tener sentido únicamente en conflictos de extrema complejidad.
+\end{note}
+
+\section{Inciso 3 --- Fijación de hechos conducentes}
+
+Si no hay acuerdo, el proceso continúa. El siguiente paso es que el juez fije los hechos articulados que sean conducentes para resolver la controversia.
+
+\begin{definition}{Hecho controvertido y hecho conducente}
+\begin{itemize}
+    \item \textbf{Hecho controvertido}: hecho alegado por el actor que ha sido negado por el demandado.
+    \item \textbf{Hecho conducente}: además de controvertido, es un hecho cuyo conocimiento es necesario para resolver el conflicto.
+\end{itemize}
+\textbf{Solo los hechos articulados, controvertidos y conducentes son objeto de prueba.}
+\end{definition}
+
+La audiencia preliminar permite descartar toda prueba ofrecida sobre hechos no controvertidos o no conducentes, simplificando radicalmente el proceso.
+
+\subsection{Declaración de puro derecho --- artículo 359}
+
+Si no existen hechos controvertidos y conducentes que acreditar, el conflicto es de \textbf{“puro derecho”}: la discusión versa exclusivamente sobre la interpretación del derecho positivo, o bien los hechos no han sido desconocidos. En ese caso no se produce prueba alguna y la causa pasa directamente a sentencia.
+
+\begin{formula}{Artículo 359 --- CPCCN}
+Si no hubiere hechos controvertidos, el juez declarará la causa de puro derecho y, firme que esté esta resolución, llamará autos para sentencia. Podrá hacerlo antes de la audiencia preliminar, en ella misma (conforme inc. 6\textordmasculine{} del art. 360) o en cualquier otro momento del proceso cuando resulte evidente.
+\end{formula}
+
+\section{Inciso 4 --- Prueba confesional en la audiencia}
+
+El código prevé que en la propia audiencia preliminar las partes absuelvan posiciones (prueba confesional). Se critica la ubicación de esta prueba dentro de la secuencia procesal: \textit{“la parte viene más nerviosa porque sabe que es posible que tenga que responder a afirmaciones de la parte contraria y que la intenten que confiese y no está tan concentrada en la posibilidad de llegar a un acuerdo”}. Además, la prueba confesional se produce antes de que se hayan clarificado los hechos definitivamente negados, lo que resta sentido práctico al acto.
+
+\begin{important}
+Crítica formulada: la prueba confesional debería ubicarse al final del proceso —en la audiencia de prueba— como última prueba, cuando ya se han producido todos los demás medios y se espera que la parte confiese sobre los hechos que aún no fueron acreditados.
+\end{important}
+
+La ubicación de esta prueba al inicio de la audiencia responde a una finalidad práctica del legislador: asegurar la comparecencia personal de las partes, ya que si no asisten pueden quedar confesas de las posiciones ofrecidas por la parte contraria.
+
+\section{Inciso 5 --- Ordenamiento de los medios de prueba}
+
+Fijados los hechos conducentes, el juez ordena la producción de los medios de prueba que resulten admisibles y pertinentes, es decir, aquellos \textit{“necesarios y útiles para probar un hecho controvertido y conducente”}. El código exige que el juez concentre la prueba testimonial en un solo acto, con el fin de acortar los plazos de la etapa probatoria.
+
+\begin{note}
+Sin audiencia de prueba —que todavía no existe en el ámbito nacional— los actos de producción de prueba se realizan por impulso de cada parte, lo que insume un tiempo considerable del proceso.
+\end{note}
+
+\section{Inciso 6 --- Declaración de puro derecho en la audiencia}
+
+El último inciso del art. 360 autoriza al juez a declarar la cuestión de puro derecho en la propia audiencia, una vez agotada la instancia conciliatoria. Si el juez ya prevé esta declaración, la secuencia lógica es: intentar la conciliación y, si no hay acuerdo, declarar el carácter de puro derecho, omitiendo la etapa probatoria y ordenando el pase a sentencia.
+
+% ======================================================
+% BLOQUE IV — HECHOS EXIMIDOS DE PRUEBA
+% ======================================================
+\chapter{Hechos eximidos de prueba}
+
+Se desarrollan a continuación las categorías de hechos que no necesitan ser probados dentro del proceso.
+
+\section{Hechos reconocidos}
+
+El hecho admitido por el demandado en su contestación queda exento de prueba. Sobre un hecho no controvertido no hay necesidad de producir ningún medio probatorio.
+
+\section{Hechos presumidos legalmente}
+
+Hay hechos respecto de los cuales la ley establece una presunción. En esos casos, la mera negativa del demandado no es suficiente: o bien es el propio demandado quien debe probar el hecho contrario, o bien se invierte la carga de la prueba.
+
+\begin{example}{Escritura pública}
+Si un hecho consta en un acta notarial, el instrumento tiene “fe de conocimiento”. Para desvirtuar su contenido no basta con desconocerlo: el demandado debe redargüirlo de falso y asumir la carga de probar que lo asentado por el escribano es falso.
+\end{example}
+
+\begin{example}{Mayoría de edad}
+La plena capacidad jurídica a los 18 años se presume legalmente. No es necesario probarla. Sí deberá probarse la incapacidad, ya sea transitoria o por merma de facultades, quien tenga interés en invocarla.
+\end{example}
+
+\section{Hechos notorios y hechos evidentes}
+
+Los \textbf{hechos notorios} son aquellos conocidos por todos, que no requieren prueba.
+
+\begin{example}{Hecho notorio}
+No debería ser probado que el mundo está atravesando actualmente una pandemia o que el presidente de la Argentina es el doctor Alberto Fernández.
+\end{example}
+
+Los \textbf{hechos evidentes} son aquellos que se conocen por la simple percepción.
+
+% TODO: contenido incompleto o ambiguo en las notas originales — el propio material reconoce dificultad para distinguir con precisión los hechos evidentes de los hechos notorios.
+
+\begin{example}{Hechos evidentes}
+\begin{itemize}
+    \item El agua está mojada.
+    \item A 100 grados el agua se evapora.
+    \item Las reglas físicas con aceptación científica y universal.
+\end{itemize}
+\end{example}
+
+\section{Hechos imposibles y máximas de experiencia}
+
+Los \textbf{hechos imposibles} no requieren ningún tipo de prueba porque su acaecimiento es materialmente impensable.
+
+\begin{example}{El chancho volador}
+Si el actor alega que sufrió un daño porque un chancho pasó volando sobre su cabeza y lo distrajo, ese hecho es imposible: los chanchos no vuelan. Ningún medio de prueba es necesario para descartarlo.
+\end{example}
+
+\begin{example}{Superman}
+Si se invoca a Superman como autor de algún daño, tampoco hay prueba que producir: no está comprobada la existencia de un ser proveniente de otro planeta que viva entre nosotros.
+\end{example}
+
+Las \textbf{máximas de experiencia} son reglas que el juzgador extrae de la observación del curso ordinario de las cosas.
+
+\begin{example}{Máxima de experiencia}
+Si una persona se arroja de un piso décimo, lo más probable es que muera al tocar el suelo. Eso no hay que probarlo: es una máxima de experiencia.
+\end{example}
+
+\section{La ley y el derecho extranjero}
+
+La ley no necesita ser probada: se presume conocida por todos. La única excepción opera cuando una parte alega la existencia de una \textbf{ley extranjera}. En ese caso —si el juez así lo dispone— la parte interesada puede ser requerida a acreditar la existencia y contenido de dicha ley, respecto de la cual no rige la presunción de conocimiento.
+
+% ======================================================
+% REPASO — MÉTODO CORNELL
+% ======================================================
+\chapter{Repaso general: cuadro Cornell}
+
+El siguiente cuadro reúne, siguiendo el método Cornell, las preguntas y conceptos clave desarrollados a lo largo de la unidad temática, con su correspondiente desarrollo y la síntesis final del tema.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.60\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es la audiencia preliminar?} &
+Es el acto procesal, previsto en el art. 360 del CPCCN, que media entre la etapa introductoria y la probatoria. Su función principal es simplificar el proceso: depurar la prueba ofrecida, fijar los hechos conducentes, intentar conciliar y, si corresponde, declarar la cuestión de puro derecho. \\
+\addlinespace
+
+\textbf{¿Por qué el actor ofrece más prueba de la necesaria?} &
+Porque en la estructura del proceso ordinario el actor desconoce, al momento de presentar la demanda, qué hechos admitirá y cuáles negará el demandado. Para cubrirse, ofrece prueba incluso sobre hechos que podría no necesitar probar. La audiencia preliminar permite descartar ese exceso. \\
+\addlinespace
+
+\textbf{¿Qué hecho es conducente y controvertido?} &
+Conducente: necesario para resolver el conflicto. Controvertido: alegado por el actor y negado por el demandado. Solo los hechos que reúnen ambas condiciones son objeto de prueba. \\
+\addlinespace
+
+\textbf{¿Por qué la presencia del juez es indelegable?} &
+Porque solo el juez —quien leerá el expediente, valorará la prueba y dictará sentencia— puede gestionar con autoridad la audiencia: proponer fórmulas conciliatorias, evaluar la pertinencia de la prueba y decidir qué hechos deben probarse. Delegar en un empleado priva de sentido al acto. \\
+\addlinespace
+
+\textbf{¿Qué consecuencias tiene la ausencia del juez?} &
+En la práctica, ninguna relevante: en 25 años no se registra nulidad alguna por este motivo ni sanción a jueces. Los abogados no tienen incentivos para denunciarlo porque el mismo juez resolverá su causa. El control debería corresponder al Consejo de la Magistratura. \\
+\addlinespace
+
+\textbf{¿Qué hechos están eximidos de prueba?} &
+Hechos reconocidos por el demandado, presumidos legalmente, notorios, evidentes, imposibles, las máximas de experiencia y la propia ley. La ley extranjera sí puede exigir acreditación cuando el juez lo dispone. \\
+\addlinespace
+
+\textbf{¿Cuál es el verdadero beneficio de la oralidad?} &
+No es principalmente la celeridad, sino la calidad del servicio de justicia: la prueba obtenida con la intervención directa del juez es más valiosa y produce decisiones más justas. \\
+\addlinespace
+
+\textbf{¿Qué significa declarar la cuestión de puro derecho?} &
+Que no hay hechos conducentes y controvertidos que probar: o bien la discusión es jurídica pura, o bien los hechos fueron admitidos. El proceso pasa directamente a sentencia sin etapa probatoria. Puede declararse antes de la audiencia (art. 359) o en ella misma (art. 360, inc. 6\textordmasculine). \\
+
+\midrule
+\multicolumn{2}{p{0.90\textwidth}}{
+\textbf{Resumen:} La audiencia preliminar es el eje sobre el que pivota la transformación del proceso civil ordinario hacia un sistema más eficaz y de mayor calidad. Prevista en el artículo 360 del CPCCN, este acto —que el juez debe tomar en forma personal e indelegable— concentra funciones esenciales: intenta conciliar el conflicto, depura la prueba superflua fijando los hechos realmente conducentes y controvertidos, ordena los medios de prueba admisibles y, si corresponde, declara la cuestión de puro derecho. A pesar de que la norma lleva más de veinticinco años vigente, su aplicación práctica enfrenta una resistencia cultural que supera lo jurídico: la experiencia de la provincia de Buenos Aires demuestra que mostrar resultados concretos y generar una competencia virtuosa entre operadores es más eficaz que la amenaza de sanciones. El horizonte próximo —del que ya deben prepararse los futuros abogados— es un proceso por audiencias completo: una audiencia preliminar y una audiencia de prueba, donde el juez esté presente en todo el desarrollo del litigio, elevando la calidad del servicio de justicia como objetivo central.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}
