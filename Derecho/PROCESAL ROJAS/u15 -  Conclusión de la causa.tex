@@ -1,0 +1,796 @@
+% =============================================================================
+% DOCUMENTCLASS
+% =============================================================================
+\documentclass[12pt,oneside]{book}
+
+% =============================================================================
+% METADATOS
+% =============================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{}
+\newcommand{\carrera}{Cátedra de Derecho Procesal Civil y Comercial}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{Apuntes de Derecho Procesal Civil}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2020}
+
+% =============================================================================
+% PAQUETES
+% =============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =============================================================================
+% RUTAS DE IMÁGENES
+% =============================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =============================================================================
+% CONFIGURACIÓN DE ÍNDICE
+% =============================================================================
+\setcounter{tocdepth}{2}
+
+% =============================================================================
+% CONFIGURACIÓN DE PÁRRAFOS
+% =============================================================================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% =============================================================================
+% CONFIGURACIÓN DE LISTAS
+% =============================================================================
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+% =============================================================================
+% CONTROL DE VIUDAS Y HUÉRFANAS
+% =============================================================================
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =============================================================================
+% ENCABEZADOS Y PIES
+% =============================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =============================================================================
+% COMANDOS MATEMÁTICOS
+% =============================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =============================================================================
+% CAJAS ACADÉMICAS
+% =============================================================================
+
+% Definición
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Importante
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Ejemplo
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Fórmula / Regla
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Ejercicio
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Nota
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Artículo legal
+\newtcolorbox{articulo}[1]{
+    enhanced,
+    breakable,
+    title={#1},
+    fonttitle=\bfseries\small,
+    colback=gray!4,
+    colframe=gray!55!black,
+    boxrule=0.7pt,
+    arc=2mm
+}
+
+% =============================================================================
+% INICIO DEL DOCUMENTO
+% =============================================================================
+\begin{document}
+
+% =============================================================================
+% PORTADA
+% =============================================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.3cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE Conclusión de la causa: Alegatos, Etapa Conclusional y Valoración de la Prueba}
+
+\vspace{0.8cm}
+
+\textit{Comprender el proceso es el primer paso para defender los derechos con rigor y convicción.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio\ $\cdot$ Modalidad Virtual}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% =============================================================================
+% ÍNDICE
+% =============================================================================
+\tableofcontents
+\newpage
+
+% =============================================================================
+% CAPÍTULO 1: LOS ALEGATOS
+% =============================================================================
+\chapter{Los Alegatos}
+
+\section{Concepto y naturaleza jurídica}
+
+\begin{definition}{Alegato}
+El alegato es un acto procesal en virtud del cual se concluye con la etapa probatoria y mediante el cual las partes se expresan respecto del mérito de la prueba producida en el expediente. En este acto, cada parte analiza las pruebas producidas para arribar a una conclusión y trata de formar la convicción del juez.
+\end{definition}
+
+El alegato presenta dos características fundamentales que definen su naturaleza jurídica:
+
+\textbf{A) Es escrito.} El Código Procesal Civil y Comercial de la Nación (CPCCN) es fundamentalmente un código escrito. La mayoría de los actos son escritos, con algunas implementaciones de oralidad en las audiencias (preliminar, confesional, testimonial) y eventualmente audiencias conciliatorias (art. 36 CPCCN). Por ello, el alegato reviste la forma de acto procesal escrito.
+
+\textbf{B) Es facultativo.} No constituye una carga ni un deber. No trae aparejada sanción ni consecuencia alguna para la parte que no lo presente. La distinción es relevante: el \textit{deber} es aquel que trae aparejada una sanción; la \textit{carga} es el imperativo del propio interés que, si bien no trae sanción, puede traer una consecuencia (como la declaración de rebeldía por no contestar la demanda). En el caso del alegato, no existe ninguna consecuencia por su omisión.
+
+\section{Utilidad del alegato}
+
+Aunque su presentación sea facultativa, el alegato cumple una doble utilidad:
+
+\textbf{A) Formar la convicción del juez.} La finalidad inmediata es demostrarle al juez que lo invocado en los escritos introductorios quedó acreditado de determinado modo. El actor buscará demostrar por qué resulta viable hacer lugar a su pretensión; el demandado, por qué debe rechazarse la demanda y la pretensión invocada por el actor.
+
+\textbf{B) Base para la expresión de agravios en apelación.} Cuando se interpone un recurso de apelación contra la sentencia de primera instancia, debe fundarse a través de un escrito denominado ``expresión de agravios'', que consiste en una crítica concreta y razonada de la sentencia impugnada. Si ya se efectuó en el alegato la propia valoración de la prueba producida y se arribó a una conclusión, ese alegato puede servir de base para atacar la sentencia en la que se considera que se incurrió en un error al fijar los hechos o al valorar la prueba.
+
+\section{Procesos donde el alegato está excluido}
+
+El legislador excluyó la facultad de alegar en determinados procesos, por razones vinculadas a sus características o extensión:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Proceso} & \textbf{Razón de la exclusión} \\
+\midrule
+Proceso sumarísimo & Mucho menos extenso que el ordinario; no tiene sentido alegar. \\
+\addlinespace
+Juicio ejecutivo & No hay valoración de prueba general; la única prueba se vincula a las excepciones. \\
+\addlinespace
+Proceso sucesorio & Proceso voluntario; no corresponde el alegato. \\
+\addlinespace
+Proceso voluntario en general & Por sus particularidades, el legislador lo excluyó expresamente. \\
+\bottomrule
+\end{tabularx}
+\caption{Procesos donde el alegato está excluido}
+\end{table}
+
+\section{Regulación legal: artículo 482 CPCCN}
+
+El alegato se encuentra regulado en el artículo 482 del CPCCN, denominado ``Agregación de pruebas -- Alegatos''. Dicho artículo regula la agregación de los cuadernos de prueba al expediente principal y establece los plazos para retirar el expediente en préstamo y para presentar los alegatos.
+
+\begin{note}
+Actualmente el sistema de cuadernos de prueba prácticamente no existe debido a la digitalización del expediente. Toda la prueba se produce dentro del expediente digital.
+\end{note}
+
+\subsection{Procedimiento para llegar a la etapa de alegatos}
+
+Una vez producida toda la prueba —o decretada la negligencia o caducidad de alguna de ellas—, cualquiera de las partes puede peticionar la clausura de la etapa probatoria y solicitar que se pongan los autos para alegar. El juez dicta entonces una resolución que clausura la etapa probatoria y pone los autos en Secretaría para alegar en los términos del artículo 482 CPCCN. En esa resolución se fija el orden en que cada parte retirará el expediente en préstamo (por ejemplo: primero la actora, luego el demandado, luego la citada en garantía).
+
+\subsection{Plazos: individual y común}
+
+El artículo 482 CPCCN establece dos plazos diferenciados:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.18\textwidth}
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}p{0.18\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo} & \textbf{Finalidad} & \textbf{Duración} & \textbf{Particularidades} \\
+\midrule
+Plazo individual & Retirar en préstamo el expediente & 6 días por parte & Comienza a correr desde que la resolución queda firme y notificada. El orden lo fija el juez: actor $\to$ demandado $\to$ citada en garantía. \\
+\addlinespace
+Plazo común & Presentar el escrito del alegato & 6 días $\times$ N.° de partes & Vence el mismo día para todos. Se computa multiplicando 6 días por el número de partes (si actúan con la misma representación, cuentan como una). \\
+\bottomrule
+\end{tabularx}
+\caption{Plazos del artículo 482 CPCCN}
+\end{table}
+
+\begin{example}{Cómputo del plazo común}
+\begin{itemize}
+    \item Actor + demandado = 2 partes $\times$ 6 días = \textbf{12 días} de plazo común para alegar.
+    \item Tres partes: 3 $\times$ 6 = \textbf{18 días}.
+    \item Si el demandado y la citada en garantía tienen el mismo abogado, cuentan como una sola parte.
+\end{itemize}
+\end{example}
+
+\subsection{Consecuencia por no devolver el expediente en término}
+
+Si la parte que retiró el expediente en préstamo no lo devuelve dentro de los 6 días, sin necesidad de intimación previa, se tiene por no presentado el alegato.
+
+\begin{important}
+Para la devolución del expediente no rige el plazo de gracia de las dos primeras horas, porque no se trata de presentar un escrito sino de devolver el expediente. El expediente debe ser devuelto estrictamente dentro de los seis días.
+\end{important}
+
+\subsection{Cómputo del plazo: firmeza de la resolución}
+
+Los plazos comienzan a correr luego de que la resolución de clausura quede firme (notificada y no impugnada). El plazo varía según el funcionario que la haya suscripto:
+
+\begin{itemize}
+    \item Si la firma el \textbf{juez}: la resolución queda firme a los 5 días de notificada.
+    \item Si la firma el \textbf{secretario o prosecretario}: el mecanismo de impugnación es el del art. 38 ter CPCCN, y el plazo es de 3 días.
+\end{itemize}
+
+\section{Contenido estructural del alegato}
+
+No existe en la ley un artículo que regule expresamente el contenido del alegato, a diferencia de la demanda (art. 330 CPCCN) o la contestación (art. 356 CPCCN). La doctrina, en particular el libro \textit{Cómo se hace un alegato} de Rojas y Falcón (Ed. Abeledo Perrot), enseña de manera teórico-práctica la estructura correcta.
+
+La estructura recomendada es la siguiente:
+
+\begin{enumerate}
+    \item \textbf{Suma o sumario} (``Presenta alegato''), encabezado y datos del expediente.
+    \item \textbf{Descripción y relato de los hechos}: cuáles invocó el actor en la demanda, cuál versión dio el demandado al contestar, y qué hechos quedaron controvertidos (por ejemplo, cuál de los rodados violó la luz del semáforo).
+    \item \textbf{Análisis estático de las pruebas}: se analiza una por una la prueba producida, marcando lo favorable y atacando la prueba de la contraria (por ejemplo, cuestionando la idoneidad de testigos comprendidos en las generales de la ley por ser amigos o empleados de la otra parte).
+    \item \textbf{Análisis dinámico}: síntesis de qué hechos quedaron acreditados con qué prueba, para formar convicción en el juez.
+    \item \textbf{Conclusión y firma}.
+\end{enumerate}
+
+En cuanto al contenido de derecho, existen dos corrientes doctrinarias:
+\begin{itemize}
+    \item \textbf{Corriente restrictiva}: el alegato debe referirse exclusivamente a hechos y prueba.
+    \item \textbf{Corriente amplia}: puede incluir argumentaciones jurídicas, dado el principio \textit{iura novit curia}, en virtud del cual el juez conoce el derecho y puede apartarse del invocado por las partes.
+\end{itemize}
+
+\section{El alegato y la implementación de la oralidad}
+
+Existe un anteproyecto de nuevo Código Procesal en el Congreso que regula el proceso ordinario como un proceso por audiencias, incorporando mayor oralidad. Su estructura contempla:
+
+\begin{enumerate}
+    \item \textbf{Primera etapa escrita}: demanda, contestación.
+    \item \textbf{Audiencia preliminar}: el juez ordena la producción de la prueba escrita (pericial, informes) y fija la audiencia de vista de causa.
+    \item \textbf{Audiencia de vista de causa}: se produce toda la prueba no escrita (testigos, partes, peritos que explican su dictamen). Una vez terminada la prueba oral, cada parte dispone de \textbf{20 minutos} para alegar oralmente.
+\end{enumerate}
+
+La finalidad del alegato es la misma en ambos sistemas: comunicarse con el juez, demostrar cómo la prueba acredita los hechos invocados y persuadirlo para que al dictar sentencia haga viable la pretensión. Lo que cambia es la forma —de escrita a oral—, lo cual permite una mayor inmediación con la jurisdicción. El alegato oral requerirá el dominio de técnicas de litigación oral y un estudio más detenido del expediente antes de la audiencia, dado que deberán considerarse también las pruebas producidas ese mismo día.
+
+% =============================================================================
+% CAPÍTULO 2: LA ETAPA CONCLUSIONAL
+% =============================================================================
+\chapter{La Etapa Conclusional --- Autos para Sentencia}
+
+\section{Concepto}
+
+Así como el proceso se inicia con la promoción de la demanda, en algún momento tiene que finalizar. En líneas generales, finaliza con el dictado de la sentencia en la etapa conclusional del proceso. Este es el momento de máximo de la jurisdicción: el juez crea la norma individual para el caso, que es la sentencia, en función de los hechos que tuvo por ciertos y de la aplicación de las normas abstractas al caso concreto.
+
+No obstante, puede ocurrir que no se llegue a esta etapa conclusional si el proceso termina antes por \textbf{modos anormales}: acuerdo conciliatorio, transacción, desistimiento del proceso por el actor, allanamiento del demandado, o caducidad de instancia (art. 310 CPCCN).
+
+\section{Vías de acceso a la etapa conclusional}
+
+No siempre se llega a la etapa conclusional por el mismo camino. Existen distintas vías de acceso:
+
+\subsection{Vía normal: luego de la etapa probatoria y los alegatos}
+
+Producida la prueba, clausurada la etapa probatoria y vencido el plazo para alegar —hayan presentado o no los alegatos las partes—, se entra directamente en la etapa conclusional.
+
+\subsection{Cuestión de puro derecho (art. 359, párr. 1.°, CPCCN)}
+
+\begin{articulo}{Art. 359, párr. 1.°, CPCCN}
+Contestado el traslado de la demanda o la reconvención, vencidos los plazos para hacerlo, resueltas las excepciones: si la cuestión pudiera ser resuelta como de puro derecho así se decidirá, y firme que se encuentre la providencia se llamará autos para sentencia.
+\end{articulo}
+
+Esta vía procede cuando no hay hechos controvertidos, sino que el debate se refiere únicamente a cuáles son las normas aplicables al caso. En ese supuesto, finalizada la etapa introductoria y antes de la audiencia preliminar, el juez declara que la cuestión es de puro derecho y llama autos para sentencia.
+
+\subsection{Supuestos en la audiencia preliminar (arts. 360 inc. 6 y 361--362 CPCCN)}
+
+En la audiencia preliminar también puede resolverse como de puro derecho en los siguientes casos:
+
+\begin{itemize}
+    \item Las partes reconocen recíprocamente en el acto de la audiencia los hechos que antes eran controvertidos según los escritos de demanda y contestación, con lo que ya no hay hechos controvertidos que requieran prueba.
+    \item Una de las partes se opuso a la apertura a prueba y el juez hace lugar a esa oposición.
+    \item Las partes desisten de todas las pruebas ofrecidas (por ejemplo, porque entienden que con la prueba documental acompañada es suficiente).
+    \item Ya se realizó prueba anticipada (art. 326 CPCCN) y el juez entiende que con esa prueba es suficiente.
+\end{itemize}
+
+\section{El auto para sentencia}
+
+La resolución que da inicio a la etapa conclusional es el \textbf{auto para sentencia}. Esta resolución puede dictarla el juez de oficio o a petición de parte (mediante un escrito solicitando que el expediente pase a dictado de sentencia).
+
+\subsection{Efectos del auto para sentencia}
+
+El auto para sentencia produce los siguientes efectos:
+
+\begin{enumerate}
+    \item \textbf{Cierre del debate}: las partes ya no pueden realizar ningún acto procesal, presentar escritos ni introducir nuevos documentos. Toda la actividad queda clausurada.
+    \item \textbf{Límite para documentos nuevos}: se vincula con el art. 335 CPCCN (documentos de fecha posterior). Solo podían acompañarse hasta que el expediente tuviera auto para sentencia. Una segunda oportunidad se presenta ante la Cámara (art. 260 CPCCN) cuando el expediente se eleva para resolver el recurso de apelación.
+    \item \textbf{Improcedencia de la caducidad de instancia}: una vez dictado el auto para sentencia, ya no corre el plazo de caducidad de instancia (art. 310 CPCCN), porque las partes no pueden realizar ninguna actividad procesal.
+\end{enumerate}
+
+\begin{articulo}{Art. 313, inc. 4, CPCCN}
+Es improcedente la caducidad de instancia si se hubiese llamado autos para sentencia, salvo si se dispusiese prueba de oficio, cuando la producción dependiera de la actividad de las partes.
+\end{articulo}
+
+\subsection{Excepción: medidas para mejor proveer (art. 36, inc. 4, CPCCN)}
+
+El juez puede de oficio dejar sin efecto el auto para sentencia para dictar \textbf{medidas para mejor proveer}: diligencias necesarias para esclarecer la verdad de los hechos controvertidos, siempre que no afecten el derecho de defensa de las partes y no suplan la negligencia u omisiones de las partes.
+
+\begin{example}{Medidas para mejor proveer}
+\begin{itemize}
+    \item En un juicio de mala praxis donde la parte actora no ofreció prueba pericial médica, el juez \textbf{no puede} ordenar, como medida para mejor proveer, la realización de un dictamen pericial médico (supondría suplir la negligencia de la parte).
+    \item En un accidente de tránsito, si hay un dictamen pericial médico que resulta oscuro en algunas cuestiones, el juez \textbf{sí puede} dejar sin efecto el auto para sentencia y fijar una audiencia convocando a las partes y al perito para que brinden aclaraciones.
+    \item En un accidente de tránsito donde se discute el funcionamiento de un semáforo, el juez puede librar un oficio a la municipalidad correspondiente para que informe si el semáforo de determinada intersección funcionaba o estaba fuera de servicio el día del accidente.
+\end{itemize}
+\end{example}
+
+\begin{important}
+Si el juez ordena la medida pero deja la diligencia a cargo de las partes (por ejemplo, que la parte impulse el diligenciamiento del oficio), \textbf{vuelve a computarse el plazo de caducidad de instancia} mientras no se conteste el oficio y la parte peticione que el expediente regrese a sentencia.
+\end{important}
+
+\subsection{Excepción: cambio de juez}
+
+Si el juez que intervenía se jubila o toma licencia y quien dictará sentencia es otro magistrado, se deja sin efecto el auto para sentencia para notificar a las partes quién es el nuevo juez y permitirles que ejerzan, si corresponde, la recusación con causa. Una vez vencido el plazo sin cuestionamientos, el expediente vuelve a estar en estado de sentencia.
+
+\section{Plazos para dictar sentencia y notificación}
+
+Una vez dictado el auto para sentencia, comienza a correr para el juez el plazo para dictar sentencia:
+
+\begin{itemize}
+    \item \textbf{Primera instancia} (proceso ordinario): \textbf{40 días}.
+    \item \textbf{Cámara} (tribunal colegiado): \textbf{60 días} desde que la sala dicta su propio auto para sentencia (por ser tres jueces que deben votar).
+\end{itemize}
+
+La sentencia debe ser notificada de oficio por el juzgado o tribunal a todas las partes del proceso (actor, demandado, terceros, citadas en garantía) y a los profesionales a quienes se hayan regulado honorarios. Se notifica la \textbf{parte dispositiva} (la decisión final, también denominada ``fallo'').
+
+\begin{note}
+Excepción respecto del demandado rebelde: aunque durante el proceso las notificaciones al rebelde se realizan por ministerio de ley, la sentencia sí debe notificársele. Esta cédula se dirige al domicilio real denunciado y es en formato papel, no electrónico. Su confección suele quedar a cargo de la parte actora.
+\end{note}
+
+\section{Morosidad judicial (arts. 167 y 168 CPCCN)}
+
+El código prevé consecuencias para el juez que no dicta sentencia en los plazos establecidos. Se distinguen dos supuestos:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.40\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Supuesto de morosidad} & \textbf{Consecuencia} \\
+\midrule
+Demora en providencias simples o interlocutorias & Pesará negativamente en la calificación del juez (mal desempeño de funciones). No hay multa. \\
+\addlinespace
+Demora en el dictado de la sentencia definitiva & El juez puede ser sancionado con una multa de hasta el 15\% de su remuneración básica, y/o el expediente puede ser remitido a otro juez para que dicte sentencia. \\
+\bottomrule
+\end{tabularx}
+\caption{Consecuencias de la morosidad judicial}
+\end{table}
+
+Si el juez advierte que no va a poder dictar sentencia en término, debe presentar una nota a su superior (la Cámara, si es juez de primera instancia; la Corte, si es integrante de una sala de Cámara) con diez días de anticipación, explicando los motivos. Si esos motivos son atendibles, se les concederá una prórroga o se evitará la multa y, de corresponder, se determinará si es más idóneo que la sentencia la dicte otro juez.
+
+% =============================================================================
+% CUADRO CORNELL - CAPÍTULO 1 Y 2
+% =============================================================================
+\section*{Cuadro Cornell --- Alegatos y Etapa Conclusional}
+\addcontentsline{toc}{section}{Cuadro Cornell --- Alegatos y Etapa Conclusional}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es el alegato y cuál es su función principal?} &
+Acto procesal (escrito u oral) mediante el cual las partes analizan la prueba producida en la etapa probatoria y procuran formar la convicción del juez. Tiene dos utilidades centrales: (1) demostrar al juez que los hechos invocados quedaron acreditados para obtener una sentencia favorable; y (2) sentar las bases para la expresión de agravios en el recurso de apelación, permitiendo atacar los errores en los que pueda incurrir el juez al valorar la prueba. \\
+\addlinespace
+
+\textbf{¿Es obligatorio presentar el alegato?} &
+No. Es un acto facultativo: no constituye ni una carga ni un deber. No presenta el alegato quien no quiere, sin consecuencia alguna (no hay rebeldía ni sanción). Su omisión solo perjudica en la medida en que el juez carezca de los argumentos de esa parte al momento de valorar la prueba. \\
+\addlinespace
+
+\textbf{¿En qué procesos no se puede alegar?} &
+El alegato está excluido en: (a) proceso sumarísimo; (b) juicio ejecutivo (no hay prueba general que valorar); (c) proceso sucesorio; (d) procesos voluntarios en general. \\
+\addlinespace
+
+\textbf{Art. 482 CPCCN: ¿cuáles son los dos plazos y cómo se computan?} &
+Plazo \textbf{individual} (retiro del expediente en préstamo): 6 días por parte, en el orden fijado por el juez (actor $\to$ demandado $\to$ citada en garantía). Plazo \textbf{común} (presentar el alegato): 6 días multiplicados por el número de partes, vence el mismo día para todos. Si dos partes tienen la misma representación, cuentan como una. La sanción por no devolver el expediente en término es que se tiene por no presentado el alegato; no rige el plazo de gracia de las dos primeras horas. \\
+\addlinespace
+
+\textbf{¿Cuándo comienzan a correr los plazos del art. 482 CPCCN?} &
+Luego de que la resolución de clausura quede firme: si la firmó el juez $\to$ 5 días desde la notificación; si la firmó el secretario/prosecretario $\to$ 3 días (art. 38 ter CPCCN). Recién una vez firme la resolución corren el plazo individual y el plazo común. \\
+\addlinespace
+
+\textbf{¿Cuál es la estructura recomendada de un alegato?} &
+1.° Suma/encabezado. 2.° Relato de los hechos invocados y cuáles quedaron controvertidos. 3.° Análisis estático de cada prueba producida (propia y de la contraria), con posibilidad de atacar la idoneidad de testigos. 4.° Análisis dinámico: qué hechos quedaron acreditados con qué prueba. 5.° Conclusión y firma. \\
+\addlinespace
+
+\textbf{¿Qué implica el alegato oral según el anteproyecto?} &
+En el proceso por audiencias, luego de la audiencia de vista de causa (donde se produce toda la prueba oral), cada parte tiene 20 minutos para alegar verbalmente. Esto requiere el dominio de técnicas de litigación oral y el análisis detenido del expediente antes de la audiencia, ya que deberán considerarse también las pruebas producidas ese mismo día. \\
+\addlinespace
+
+\textbf{¿Qué es la etapa conclusional y a través de qué vías se accede a ella?} &
+Es la etapa en que el juez dicta la sentencia (norma individual). Se accede por: (1) vía normal: luego de la etapa probatoria y vencido el plazo para alegar; (2) cuestión de puro derecho (art. 359, párr. 1.°): cuando no hay hechos controvertidos; (3) supuestos del art. 360 inc. 6, 361 y 362: reconocimiento recíproco de hechos en audiencia, oposición a la apertura a prueba, desistimiento de la prueba o prueba anticipada suficiente. \\
+\addlinespace
+
+\textbf{¿Qué es el auto para sentencia y qué efectos produce?} &
+Es la resolución que da inicio a la etapa conclusional. Produce: (a) cierre del debate (no más escritos ni documentos nuevos); (b) improcedencia de la caducidad de instancia (art. 313 inc. 4); (c) inicio del plazo para que el juez dicte sentencia (40 días en primera instancia; 60 días en Cámara). El juez puede dejarlo sin efecto para dictar medidas para mejor proveer (art. 36 inc. 4) o ante el cambio de magistrado. \\
+\addlinespace
+
+\textbf{¿Qué son las medidas para mejor proveer?} &
+Diligencias ordenadas de oficio por el juez (art. 36 inc. 4 CPCCN) para esclarecer la verdad de los hechos controvertidos, siempre que no afecten el derecho de defensa ni suplan la negligencia de las partes. Ejemplos: convocar al perito para aclarar un dictamen oscuro; librar oficio a la municipalidad para informar si un semáforo funcionaba. Si la diligencia queda a cargo de las partes, vuelve a correr la caducidad de instancia. \\
+\addlinespace
+
+\textbf{¿Cuáles son las consecuencias de la morosidad judicial en el dictado de sentencia?} &
+Si el juez no dicta sentencia en el plazo establecido (40 días en primera instancia, 60 en Cámara), puede ser sancionado con una multa de hasta el 15\% de su remuneración básica, y/o el expediente puede ser remitido a otro juez. Si advierte que no podrá cumplir el plazo, debe notificar a su superior con 10 días de anticipación; si los motivos son atendibles, puede obtenerse una prórroga. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El alegato —acto procesal escrito y facultativo regulado en el art. 482 CPCCN— cierra la etapa probatoria y permite a cada parte presentar al juez su análisis de la prueba producida. Los plazos son: individual (6 días por parte para retirar el expediente en préstamo, en el orden fijado por el juez) y común (6 días multiplicados por el número de partes para presentar el alegato), que comienzan a correr luego de que quede firme la resolución de clausura. Una vez vencido el plazo para alegar, el proceso entra en la etapa conclusional, materializada mediante el auto para sentencia: resolución que cierra el debate, hace improcedente la caducidad de instancia y activa el plazo del juez para dictar sentencia (40 días en primera instancia, 60 en Cámara). A esta etapa puede arribarse también directamente desde la etapa introductoria si la cuestión es de puro derecho o por distintos supuestos vinculados a la audiencia preliminar.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =============================================================================
+% CAPÍTULO 3: SISTEMAS DE VALORACIÓN DE LA PRUEBA
+% =============================================================================
+\chapter{Sistemas de Valoración de la Prueba}
+
+\section{Concepto de valoración de la prueba}
+
+\begin{definition}{Valoración de la prueba}
+Valorar la prueba significa apreciarla. En sentido figurado, es ponerle un precio. Ha llegado el momento en el cual el juez valora la prueba producida en la etapa probatoria, y aquí cobra vida e importancia la \textbf{inmediación}.
+\end{definition}
+
+La \textbf{inmediación} implica que el juez tuvo contacto directo con la producción de la prueba. No es lo mismo que el testigo haya declarado ante un funcionario del juzgado que lo transcribió en un acta, a que el testigo haya declarado en presencia del juez, con declaración filmada que el juez puede reproducir al dictar sentencia. La inmediación permite una sentencia más eficaz porque el juez aprecia de mejor modo la prueba.
+
+\section{Sistemas de apreciación de la prueba (según Falcón)}
+
+El autor Falcón clasifica los sistemas de valoración de la prueba en cuatro categorías:
+
+\subsection{Sistema de apreciación prohibida o excluida}
+
+\textbf{Apreciación prohibida}: refiere a los casos en que el legislador estableció normativamente la prohibición de ciertos medios de prueba. Ejemplo: el art. 427 CPCCN establece quiénes no pueden ser testigos (parientes ascendientes, descendientes). Si declararan, el juez no puede apreciar esa declaración.
+
+\textbf{Apreciación excluida}: refiere a la facultad del juez (art. 386, párr. 2.°, CPCCN) de no estar obligado a ponderar una por una todas las pruebas, sino que puede excluir aquellas que no considere trascendentes y detenerse en las que resulten más eficientes para formar su convicción.
+
+\subsection{Sistema de la prueba tasada o prueba legal}
+
+En este sistema, el legislador establece de antemano qué valor debe asignársele a cada prueba. Tiene un origen histórico, vinculado a la desconfianza en la formación del juez.
+
+\begin{example}{Prueba tasada}
+Una regla tasada podría ser: ``un hecho solo puede probarse con dos o más testigos; un solo testigo constituye semiplena prueba''.
+\end{example}
+
+Este sistema puede dar más certezas, pero a su vez mayor injusticia, porque el valor de cada prueba puede variar en función de los hechos del caso concreto. Prácticamente, aplicado de modo único y aislado, ya no se utiliza.
+
+\subsection{Sistema de apreciación no tasada o libre convicción}
+
+Dentro de este sistema existe un espectro:
+\begin{itemize}
+    \item En un extremo: la \textbf{apreciación arbitraria}, donde el juez valora la prueba sin seguir ningún tipo de regla.
+    \item En el otro extremo: la \textbf{libre convicción}, donde el juez valora la prueba siguiendo las reglas de la lógica, la experiencia y la intuición (entendida como sentido común).
+\end{itemize}
+
+\subsection{Sistema de apreciación conjunta}
+
+No es un sistema puro. En él se aplican, según la prueba de que se trate, criterios de los distintos sistemas anteriores: a veces la prueba tasada, a veces la prohibida o excluida, a veces la libre convicción.
+
+\section{La sana crítica: el sistema del código (art. 386 CPCCN)}
+
+\begin{articulo}{Art. 386 CPCCN}
+Salvo disposición legal en contrario, los jueces formarán su convicción respecto de la prueba de conformidad con las reglas de la sana crítica. No tendrán el deber de expresar en la sentencia la valoración de todas las pruebas producidas, sino únicamente las que fueren esenciales y decisivas para el fallo de la causa.
+\end{articulo}
+
+\begin{definition}{Sana crítica}
+Sistema de apreciación de la prueba, científico, basado en las reglas de la experiencia y la lógica. También se lo define como el conjunto de reglas que permiten esclarecer la verdad al momento de dictar sentencia, siempre librado de todo vicio y error.
+\end{definition}
+
+La sana crítica es el sistema adoptado por el legislador en el CPCCN. Si el juez comete un error al valorar la prueba o al fijar los hechos, la sentencia podrá ser objeto de recurso de apelación, para que la Cámara subsane ese error.
+
+\section{Las reglas de la sana crítica según Falcón}
+
+Falcón enumera ocho reglas que el juez debe seguir al momento de dictar sentencia:
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.12\textwidth} >{\raggedright\arraybackslash}p{0.26\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Regla} & \textbf{Denominación} & \textbf{Desarrollo} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Regla} & \textbf{Denominación} & \textbf{Desarrollo} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{Regla 1} & Solo se prueban los hechos afirmados & El juez al dictar sentencia no puede tener en cuenta hechos que no sean los afirmados por las partes. Los hechos no afirmados no existen. Está vinculado con el principio de congruencia. \\
+\addlinespace
+
+\textbf{Regla 2} & Los hechos a probar deben ser controvertidos & Solo los hechos afirmados y además controvertidos determinan el ámbito probatorio. El juez valorará la prueba producida para acreditar esos hechos. \\
+\addlinespace
+
+\textbf{Regla 3} & Primero debe aplicarse la prueba tasada (si existe) & Si hay alguna norma que le da cierto valor a determinada prueba, el juez debe aplicarla primero. Ejemplo: art. 579 CCyCN --- en un juicio de filiación, la negativa del supuesto progenitor a realizarse la prueba genética se considera indicio grave en su contra. \\
+\addlinespace
+
+\textbf{Regla 4} & Análisis estático de cada medio probatorio & El juez analiza individualmente todos los medios de prueba producidos para ver cuál es más fiable. El código no establece un orden de valor, pero la doctrina entiende que, en principio: 1.° documental $\to$ 2.° informativa $\to$ 3.° confesional $\to$ 4.° pericial $\to$ 5.° testimonial. \\
+\addlinespace
+
+\textbf{Regla 5} & Análisis dinámico y en conjunto de la prueba & Una vez analizada cada prueba estáticamente, el juez realiza un análisis conjunto a la luz de los hechos del caso. Este análisis puede llevar a dar mayor valor a un medio probatorio distinto del orden estático. Ejemplo: en un accidente de tránsito, la declaración de un testigo presencial puede tener más valor que una exposición policial que no aclara cómo ocurrió el hecho. \\
+\addlinespace
+
+\textbf{Regla 6} & Presunciones judiciales y conducta de las partes & Para obtener la amalgama que estructura el relato de manera coordinada, el juez puede utilizar presunciones judiciales y considerar la conducta desarrollada por las partes a lo largo del proceso (art. 163 inc. 5 CPCCN). \\
+\addlinespace
+
+\textbf{Regla 7} & En caso de duda: carga probatoria & En caso de duda al momento de valorar la prueba, el juez debe tener por no acreditado el hecho y aplicar las reglas de la carga de la prueba (art. 377 CPCCN): quién tenía la carga de probar ese hecho y si produjo o no la prueba. \\
+\addlinespace
+
+\textbf{Regla 8} & Todo debe volcarse por escrito en la sentencia & Toda la actividad valorativa debe expresarse por escrito en la sentencia, explicando los fundamentos, argumentos y los pasos seguidos para fijar ciertos hechos y para obtener la certeza en el pronunciamiento. La convicción no solo tiene que alcanzarse en el magistrado, sino también transmitirse a terceros. Por eso la importancia de la construcción de la sentencia. \\
+
+\end{longtable}
+
+\section{Ejemplos de sentencias reales (accidente de tránsito)}
+
+\subsection{Ejemplo 1: Sentencia con valoración de testigos presenciales}
+
+La estructura de la sentencia se organiza en tres partes:
+
+\textbf{A) Resultandos (descripción lineal objetiva).} El juez relata cronológicamente todo lo que consta en el expediente: la demanda, la contestación, la intervención de la aseguradora, la audiencia preliminar, la clausura del período probatorio, los alegatos presentados y el llamado a autos para sentencia.
+
+\textbf{B) Considerandos (análisis y valoración de la prueba).} El juez aplica las reglas de la sana crítica. En el ejemplo, el juez debía determinar si se probó la ocurrencia del hecho, cuya carga recaía sobre la parte actora (art. 377 CPCCN). La actora ofreció y produjo las testimoniales de testigos que declararon en presencia del juez en el marco de un proyecto de procesos orales. Ambos testigos brindaron versión concreta de lo acontecido, señalaron dónde se encontraban y qué observaron (estaban en un balcón cuando se produjo el accidente). El juez valoró:
+
+\begin{itemize}
+    \item Que no detectó, al momento de la declaración, ningún elemento que hiciera dudar de su veracidad.
+    \item Que el registro fílmico le permitió repasar los testimonios y mantener la misma impresión.
+    \item Que las declaraciones no fueron impugnadas por la otra parte.
+\end{itemize}
+
+\textbf{C) Parte dispositiva o fallo.} El juez tuvo por acreditada la materialidad del hecho. A continuación, determinó quién era el responsable y analizó los rubros indemnizatorios reclamados a la luz de la prueba producida, para fijar la procedencia de cada uno y los montos.
+
+\subsection{Ejemplo 2: Sentencia con impugnación de testigo (concubina del demandado)}
+
+En otra sentencia, el juez explicita que aplica la sana crítica (art. 386 CPCCN) y aclara que los jueces no están obligados a ponderar una por una todas las pruebas.
+
+En el caso, el demandado ofreció una testigo cuya declaración fue impugnada por la parte actora, dado que durante la audiencia la testigo reconoció ser concubina del demandado y estar esperando un hijo suyo.
+
+\begin{note}
+El CPCCN excluye expresamente como testigo al cónyuge, no a la concubina. Sin embargo, la relación quedó evidenciada durante la audiencia mediante las preguntas formuladas para acreditar los datos personales de la testigo.
+\end{note}
+
+El juez resolvió que, si bien no rige la regla de que el testigo único es un testigo nulo, el hecho de que la testigo fuera concubina del demandado obligaba a examinar su declaración con el mayor rigor. Ante la ausencia de otros elementos probatorios que precisaran o corroboraran lo que ella declaró, y habiendo sido su testimonio atacado a través de la impugnación, no podía tenerse en cuenta su declaración.
+
+Este razonamiento constituye un \textbf{análisis dinámico}: el juez se aparta de esa declaración no solo por la relación de la testigo con el demandado, sino también porque no existen otros elementos probatorios que corroboren su versión, por lo que resulta insuficiente para formar convicción sobre lo ocurrido.
+
+% =============================================================================
+% CUADRO CORNELL - CAPÍTULO 3
+% =============================================================================
+\section*{Cuadro Cornell --- Sistemas de Valoración de la Prueba}
+\addcontentsline{toc}{section}{Cuadro Cornell --- Sistemas de Valoración de la Prueba}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué significa valorar la prueba y qué importancia tiene la inmediación?} &
+Valorar la prueba es apreciarla: el juez le asigna valor a la prueba producida en la etapa probatoria. La inmediación (contacto directo del juez con la producción de la prueba) permite una valoración más eficaz, porque el juez aprecia directamente la calidad de los testimonios, puede reproducir declaraciones filmadas, etc. \\
+\addlinespace
+
+\textbf{¿Cuáles son los 4 sistemas de valoración de la prueba según Falcón?} &
+1) Prohibida o excluida: el legislador prohíbe ciertos medios (prohibida) o el juez puede excluir los no trascendentes (excluida, art. 386 párr. 2.°). 2) Tasada o legal: la ley predetermina el valor de cada prueba; hoy casi no se usa en forma pura. 3) Libre convicción: sin reglas (arbitraria) o con reglas de lógica y experiencia. 4) Conjunta: mezcla de los anteriores según la prueba de que se trate. \\
+\addlinespace
+
+\textbf{¿Qué es la sana crítica y cuál es su base legal?} &
+Es el sistema adoptado por el CPCCN (art. 386). Sistema científico de apreciación de la prueba basado en las reglas de la lógica, la experiencia y el sentido común (intuición). Permite al juez esclarecer la verdad al dictar sentencia, libre de todo vicio y error. Los jueces no están obligados a valorar todas las pruebas producidas, solo las esenciales y decisivas. \\
+\addlinespace
+
+\textbf{¿Cuáles son las 8 reglas de la sana crítica según Falcón?} &
+1) Solo se prueban los hechos afirmados. 2) Esos hechos deben ser además controvertidos. 3) Primero se aplica la prueba tasada (si existe). 4) Análisis estático de cada medio probatorio (orden doctrinario de fiabilidad: documental $\to$ informativa $\to$ confesional $\to$ pericial $\to$ testimonial). 5) Análisis dinámico y conjunto (puede variar el orden según el caso). 6) Uso de presunciones judiciales y conducta de las partes (art. 163 inc. 5). 7) En caso de duda, aplicar la carga probatoria (art. 377). 8) Todo debe volcarse por escrito en la sentencia con fundamentos. \\
+\addlinespace
+
+\textbf{¿Por qué el análisis dinámico puede alterar el orden de fiabilidad de la prueba?} &
+Porque el valor de una prueba depende de los hechos del caso concreto. Ejemplo: aunque doctrinariamente la documental está sobre la testimonial, en un accidente de tránsito donde lo controvertido es cómo ocurrió el hecho, la declaración de un testigo presencial que vio la colisión tendrá más valor que una exposición policial que no aclara los detalles de la ocurrencia del accidente. \\
+\addlinespace
+
+\textbf{¿Cómo se aplican las reglas de la sana crítica en los ejemplos de sentencias reales?} &
+Ejemplo 1 (testigos presenciales): el juez acredita el hecho con la testimonial de testigos que declararon ante él (inmediación), cuya declaración no fue impugnada y fue considerada creíble al reproducirse el registro fílmico. Ejemplo 2 (concubina del demandado): el juez excluye la declaración de la concubina del demandado aplicando el mayor rigor que su relación impone y, ante la falta de otros elementos corroborantes, concluye que esa declaración resulta insuficiente para formar convicción. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} Al momento de dictar sentencia, el juez valorará la prueba conforme el sistema de la sana crítica (art. 386 CPCCN): sistema científico basado en la lógica, la experiencia y el sentido común que, según Falcón, se articula en ocho reglas que van desde tomar en cuenta solo los hechos afirmados y controvertidos, pasando por el análisis estático y dinámico de la prueba, hasta la exigencia de volcar por escrito y con fundamentos toda la actividad valorativa en la sentencia. Falcón clasifica los sistemas de valoración en cuatro categorías: prohibida/excluida, tasada, libre convicción y conjunta; el CPCCN adopta la sana crítica, que parte del esquema de libre convicción regulada por la lógica y la experiencia. Dos sentencias reales de accidentes de tránsito ilustran cómo estas reglas cobran vida: en un caso el juez acredita el hecho con la testimonial de testigos presenciales, aplicando la inmediación y el análisis dinámico que le otorga mayor valor a esa prueba sobre la exposición policial; en el otro, descarta la declaración de la concubina del demandado por falta de corroboración y aplicando el rigor que impone su relación con una de las partes.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =============================================================================
+% FIN DEL DOCUMENTO
+% =============================================================================
+\end{document}
