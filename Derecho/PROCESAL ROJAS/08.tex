@@ -1,0 +1,807 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\titulo}{Notificaciones, Actitud del Demandado y Excepciones Previas}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender cada etapa del proceso es el camino más seguro hacia una defensa técnica sólida.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil y Comercial'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ============================================================
+% ÍNDICE
+% ============================================================
+\tableofcontents
+
+% ============================================================
+% PRESENTACIÓN DE LA UNIDAD TEMÁTICA
+% ============================================================
+\chapter*{Presentación de la unidad temática}
+\addcontentsline{toc}{chapter}{Presentación de la unidad temática}
+
+Esta unidad temática abarca el proceso judicial desde la notificación de la demanda hasta las excepciones previas. Se desarrollan los tipos de notificaciones (ministerio legis, por cédula, por edictos), la traba de la litis, las actitudes del demandado frente a la demanda \textemdash{}omisivas y positivas\textemdash{}, la rebeldía, la contestación, la reconvención, el allanamiento, y el sistema completo de excepciones de previo y especial pronunciamiento, diferenciando impedimentos procesales, excepciones propiamente dichas y defensas previas.
+
+El hilo conductor de la unidad sigue la lógica de una causa judicial real: primero se notifica al demandado, luego el demandado decide qué actitud adoptar frente al proceso y, finalmente, si el demandado ataca el proceso, la pretensión o el derecho troncal, aparecen las excepciones previas. Es el camino que recorre toda causa ordinaria desde su inicio.
+
+\chapter{Inicio del proceso y notificación de la demanda}
+\chaptermark{Inicio del proceso y notificación}
+
+\section{Relación entre acción, pretensión y demanda}
+
+El desarrollo de esta unidad parte de una cadena conceptual que va de lo más abstracto a lo más concreto: la acción, la pretensión y la demanda.
+
+\begin{definition}{Acción}
+La acción es una facultad abstracta: el derecho que tiene el justiciable de peticionar ante la autoridad. Este derecho excede el ámbito del derecho procesal y se sitúa en el derecho constitucional, en tanto se encuentra consagrado en el artículo 14 de la Constitución Nacional como un derecho político.
+\end{definition}
+
+\begin{definition}{Artículo 14 --- Constitución Nacional}
+Todos los habitantes de la Nación gozan de los siguientes derechos: [\ldots] de peticionar a las autoridades [\ldots] conforme a las leyes que reglamenten su ejercicio. Esta norma constituye el fundamento constitucional de la acción procesal, entendida como el derecho de petición ante la autoridad judicial.
+\end{definition}
+
+Cuando esa acción se ejerce ante la autoridad judicial de manera concreta, se transforma en una \textbf{pretensión}.
+
+\begin{definition}{Pretensión}
+La pretensión es una declaración de voluntad que formula una parte, dirigida a la jurisdicción, para que resuelva un conflicto suscitado entre dos partes. En ella se corporiza el objeto del proceso, es decir, el conflicto que se pretende resolver.
+\end{definition}
+
+\begin{definition}{Demanda}
+La demanda es el acto procesal que contiene la pretensión. Existe entre ambas una relación de continente (la demanda) y contenido (la pretensión). Se trata de un acto procesal de postulación: su ejercicio, cumpliendo determinados requisitos formales, pone en marcha la maquinaria judicial y tiene por efecto iniciar un proceso.
+\end{definition}
+
+\section{El despacho judicial y sus requisitos}
+
+Una vez presentada la demanda ante el juzgado sorteado, este debe leerla, revisarla y proveerla. Proveer la demanda significa dictar una resolución, también llamada auto. Todo despacho judicial debe reunir determinados requisitos formales: lugar, fecha y firma. El contenido de esa resolución es lo que da inicio al proceso.
+
+El despacho que provee la demanda presenta un doble contenido:
+
+\begin{itemize}
+    \item \textbf{Desde el punto de vista procesal:} el juez tiene por presentado al actor como parte, tiene por constituido el domicilio denunciado y ordena correr traslado de la demanda al demandado.
+    \item \textbf{Desde el punto de vista sustancial:} se refiere a lo que se reclama en el fondo del asunto.
+\end{itemize}
+
+\section{El traslado de la demanda y el principio de igualdad}
+
+Correr traslado de la demanda constituye la manifestación concreta del principio de igualdad, consagrado en la Constitución Nacional, según el cual todas las personas son iguales ante la ley. La igualdad no significa un tratamiento uniforme abstracto, sino que se materializa dentro del proceso a través de los sistemas procesales, entendidos como las formas metódicas mediante las cuales los principios \textemdash{}presupuestos políticos fijados por el constituyente\textemdash{} cobran vida dentro de un ordenamiento procesal determinado.
+
+\begin{important}
+Al ordenar el traslado de la demanda, el juez notifica al demandado para que este quede a derecho. Correr traslado de la demanda significa comunicarle al demandado que se le ha iniciado un juicio, a fin de que comparezca al proceso y ofrezca su versión de los hechos invocados como fundamento de la pretensión.
+\end{important}
+
+\section{Tipos de notificaciones}
+
+El Código Procesal regula distintos mecanismos de notificación de las resoluciones judiciales, según el tipo de acto de que se trate.
+
+\subsection{Notificación ministerio legis (por nota)}
+
+\begin{definition}{Artículo 133 --- CPCCN}
+Las resoluciones judiciales quedarán notificadas en todas las instancias los días martes y viernes, o el siguiente día hábil si alguno de ellos fuere feriado. La parte que tuviere su expediente en secretaría durante esos días estará notificada aunque no concurra al juzgado.
+\end{definition}
+
+Esta forma de notificación se conoce como notificación \textbf{ministerio legis} o notificación por ministerio de la ley, denominada en los usos forenses \textbf{notificación por nota}. El mecanismo práctico consiste en concurrir al juzgado los días martes o viernes para consultar el expediente; si no hay novedad, se deja constancia en el libro de asistencia del juzgado, lo que produce la notificación automática y hace nacer los plazos para impugnar lo decidido.
+
+\subsection{Notificación tácita}
+
+\begin{definition}{Notificación tácita}
+Se produce cuando la parte toma conocimiento efectivo de lo resuelto, aunque no medie notificación formal. Por ejemplo, si el letrado concurre al juzgado, toma nota del despacho del juez que ordena correr traslado de la demanda, y prepara la cédula correspondiente, se considera tácitamente notificado de dicho despacho, en tanto tomó conocimiento efectivo de su contenido.
+\end{definition}
+
+\subsection{Notificación por cédula (artículo 135 CPCCN)}
+
+\begin{definition}{Artículo 135 --- CPCCN}
+Sólo serán notificadas personalmente o por cédula las siguientes resoluciones: [\ldots] 1°) La que dispone el traslado de la demanda [\ldots] (entre otras resoluciones expresamente enumeradas por la ley).
+\end{definition}
+
+La cédula no debe confundirse con el documento de identidad: se trata de un formulario estructurado, previsto por disposición de la Corte o del reglamento, mediante el cual se le hace saber a la otra parte la iniciación del proceso. El circuito de la cédula puede describirse en los siguientes pasos:
+
+\begin{enumerate}
+    \item El abogado de la parte actora concurre al juzgado, copia el auto del juez y prepara la cédula.
+    \item La cédula, junto con copias de la demanda y de la documentación, se presenta en el juzgado.
+    \item Internamente, la cédula es remitida a la Oficina de Mandamientos y Notificaciones.
+    \item Dicha oficina distribuye las cédulas entre los oficiales notificadores, según las zonas en que se encuentra dividida la Ciudad de Buenos Aires.
+    \item El oficial notificador concurre al domicilio denunciado y deja la cédula a la persona correspondiente.
+\end{enumerate}
+
+\begin{note}
+Cuando el oficial notificador no logra notificar al demandado, devuelve la cédula dejando constancia de esa circunstancia. Frente a ello, la parte interesada debe presentar un escrito titulado ``Denuncia nuevo domicilio'', dirigido al juez, denunciando el nuevo domicilio del demandado.
+\end{note}
+
+\subsection{Notificación por edictos y radiodifusión (artículo 145 CPCCN)}
+
+\begin{definition}{Artículo 145 --- CPCCN}
+Cuando se tratare de personas inciertas o cuyo domicilio se ignorare, la notificación se hará por edictos publicados por dos días en el Boletín Oficial y en un diario de los de mayor circulación en el lugar del último domicilio del citado, si fuere conocido, o en el de la capital de la provincia, o en la Capital Federal en su caso.
+\end{definition}
+
+Para solicitar al juez la notificación por edictos, la parte interesada debe declarar bajo juramento que realizó todas las gestiones a su alcance para notificar al demandado en el domicilio consignado en la demanda, y que dichas gestiones resultaron infructuosas.
+
+El Código Procesal también prevé la notificación por radiodifusión o televisión, aunque se trata de un mecanismo de uso muy infrecuente debido a sus costos, por lo que la notificación por edictos resulta la vía habitual.
+
+\subsection{Nulidad de la notificación (artículo 149 CPCCN)}
+
+\begin{definition}{Artículo 149 --- CPCCN}
+La nulidad de la notificación se rige por los principios de convalidación y de trascendencia, consagrados en los artículos 172 y 173 del Código Procesal.
+\end{definition}
+
+\begin{definition}{Artículo 172 --- Principio de convalidación}
+No se podrá pedir la nulidad de una notificación en tanto y en cuanto, a partir de la propia conducta de quien la invoca, se haya convalidado lo actuado en el proceso.
+\end{definition}
+
+\begin{definition}{Artículo 173 --- Principio de trascendencia}
+No se podrá impugnar la nulidad de una notificación en tanto y en cuanto no se demuestre el perjuicio que la notificación viciada le causó a la parte. Si la notificación produjo sus efectos y no causó perjuicio, no habrá lugar a la nulidad.
+\end{definition}
+
+Una notificación viciada, errónea o defectuosa puede afectar el cumplimiento de los actos procesales que el demandado hubiera podido desarrollar. La nulidad se declara en tanto y en cuanto se vea afectado el derecho de defensa en juicio del demandado. El mecanismo para plantearla es el incidente de nulidad, entendido como un pequeño proceso dentro del proceso principal, vinculado a este por relaciones de subordinación y coordinación.
+
+\begin{important}
+Principio clásico del derecho: ``Pas de nullité sans grief'' \textemdash{} No hay nulidad sin perjuicio. Cada vez que se plantea una nulidad, debe señalarse cuál es el perjuicio concreto que sufrió la parte.
+\end{important}
+
+\section{Traba de la litis: citación y emplazamiento}
+
+Existe un error conceptual frecuente \textemdash{}sostenido desde la época de Alsina, en los años 40 y 50 del siglo pasado\textemdash{} según el cual la traba de la litis se produciría con la contestación de la demanda. Frente a esta posición, corresponde señalar el criterio siguiente:
+
+\begin{formula}{Traba de la litis}
+La traba de la litis se produce con la \textbf{notificación} del traslado de la demanda, y no con la contestación. Cuando el demandado es notificado del auto que ordenó el traslado de la demanda, nacen en su cabeza dos cargas:
+\begin{enumerate}
+    \item la \textbf{citación}: el llamado a comparecer y estar a derecho;
+    \item el \textbf{emplazamiento}: el plazo para contestar la demanda (generalmente quince días en el proceso ordinario).
+\end{enumerate}
+\end{formula}
+
+La razón por la cual se sostiene que la litis queda trabada en ese momento radica en que allí nacen en cabeza del demandado las dos cargas mencionadas, y en que el propio código estructura un régimen de rebeldía que no podría existir sin ese punto de partida.
+
+\begin{note}
+Desde un punto de vista sustancial, existe también la postura según la cual la litis queda trabada con la contestación de la demanda, en el sentido de que en ese momento queda enmarcado el objeto del litigio: hay una pretensión ejercida por la parte actora y una defensa que la resiste de parte de la demandada.
+\end{note}
+
+\section{Cuadro Cornell: notificaciones y traba de la litis}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuál es la diferencia entre acción, pretensión y demanda?} &
+La acción es la facultad abstracta de peticionar ante la autoridad (art. 14 CN). La pretensión es su concreción: la declaración de voluntad dirigida a la jurisdicción para que resuelva un conflicto entre dos partes. La demanda es el acto procesal que contiene la pretensión, en relación de continente y contenido. \\
+
+\textbf{¿Qué es el traslado de la demanda y por qué se ordena?} &
+Es la orden del juez para notificar al demandado de que existe un proceso en su contra, a fin de que comparezca y lo conteste. Constituye la expresión práctica del principio de igualdad de las partes ante la jurisdicción. \\
+
+\textbf{¿Cuáles son los tipos de notificaciones en el proceso civil?} &
+1) Ministerio legis (por nota): automática los martes y viernes. 2) Tácita: por toma de conocimiento efectivo. 3) Por cédula: para actos específicos del art. 135 CPCCN. 4) Por edictos (art. 145): demandado incierto o de domicilio desconocido. 5) Por radiodifusión o televisión: de uso muy infrecuente. \\
+
+\textbf{¿Qué ocurre si la notificación es defectuosa?} &
+Puede declararse nula si afecta el derecho de defensa del demandado, conforme a los principios de convalidación (art. 172) y trascendencia (art. 173: ``pas de nullité sans grief''). Se plantea mediante un incidente de nulidad. \\
+
+\textbf{¿Cuándo se traba la litis?} &
+Con la notificación del traslado de la demanda, no con la contestación. Desde ese momento nacen en cabeza del demandado la citación y el emplazamiento, y se habilita el régimen de rebeldía. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El proceso se inicia con el despacho judicial que ordena el traslado de la demanda, expresión concreta del principio de igualdad de las partes. Ese traslado debe notificarse al demandado por alguno de los mecanismos previstos en el código (ministerio legis, tácita, por cédula, por edictos o por radiodifusión), notificación cuya nulidad solo procede si afecta el derecho de defensa. Es precisamente esa notificación, y no la contestación, la que traba la litis, haciendo nacer en cabeza del demandado la citación y el emplazamiento.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\chapter{Actitud del demandado frente a la demanda}
+\chaptermark{Actitud del demandado}
+
+\section{Posturas omisivas y positivas: clasificación general}
+
+Una vez notificado el traslado de la demanda, nacen en cabeza del demandado dos cargas: la citación (comparecer y estar a derecho) y el emplazamiento (observar el plazo para contestar la demanda). Frente a ellas, el demandado puede adoptar dos grandes tipos de posturas.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{X X}
+\toprule
+\textbf{Posturas omisivas} & \textbf{Posturas positivas} \\
+\midrule
+Rebeldía: no comparece ni contesta. &
+Contestar la demanda. \\
+Comparece pero no contesta (pierde el derecho). &
+Reconvenir (contrademandar). \\
+ & Allanarse a la demanda. \\
+ & Oponer excepciones previas. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{La rebeldía}
+
+\begin{definition}{Rebeldía}
+Es la posición en la que se coloca el demandado cuando no observa ninguna de las cargas: desoye el llamado a la jurisdicción y no cumple con el emplazamiento. A pedido de la parte actora, el juez puede declararlo rebelde, lo que puede acarrear consecuencias negativas para el demandado en el proceso.
+\end{definition}
+
+% TODO: contenido incompleto o ambiguo en las notas originales — el apunte no desarrolla la distinción entre rebeldía y contumacia, y remite a otros sistemas procesales no abordados en la clase.
+
+Existe también un supuesto intermedio: el demandado que comparece pero no contesta la demanda. En este caso no hay rebeldía, porque compareció, pero pierde el derecho a contestar por aplicación del principio de preclusión.
+
+\begin{definition}{Preclusión}
+Sistema procesal según el cual los actos procesales permiten desarrollar el proceso siempre hacia adelante y nunca hacia atrás. Si el demandado tenía un plazo de quince días para contestar la demanda y no lo hizo, pierde automáticamente el derecho para hacerlo, aunque continúa presente en el proceso.
+\end{definition}
+
+\section{Contestación de la demanda y reconvención}
+
+La postura positiva más completa es la contestación de la demanda. Al contestar, el demandado puede:
+
+\begin{itemize}
+    \item negar los hechos invocados por el actor;
+    \item agregar documentos nuevos;
+    \item invocar hechos distintos o dar una versión diferente de los hechos;
+    \item reconvenir (contrademandar).
+\end{itemize}
+
+\begin{definition}{Reconvención}
+Reconvenir significa contrademandar. Por el principio de economía procesal, quien reconviene asume el rol de actor respecto de su reconvención, y quien era actor asume el rol de demandado respecto de ella, debiendo contestarla. Para que proceda la reconvención debe tratarse de la misma relación jurídica, de modo de evitar la sustanciación de dos procesos distintos.
+\end{definition}
+
+\section{El allanamiento}
+
+\begin{definition}{Allanamiento}
+El allanamiento implica que la parte demandada se somete a cumplir la pretensión sostenida por la parte actora, sin debatir en el proceso. Esto no significa necesariamente que reconozca todos los hechos y derechos invocados, pero sí que renuncia a discutirlos judicialmente. Si el allanamiento es total, el proceso pierde sentido y termina automáticamente.
+\end{definition}
+
+\section{Excepciones previas: introducción y marco normativo}
+
+Las excepciones de previo y especial pronunciamiento son mecanismos defensivos que reciben el nombre de excepciones, cuentan con un trámite previo y requieren un pronunciamiento especial para permitir la continuación del proceso. La denominación agrupada de estos mecanismos responde a una decisión del codificador, que aglutinó en tres artículos \textemdash{}346, 347 y 348 del Código Procesal\textemdash{} un conjunto de defensas con nombre propio que habilitan un trámite previo.
+
+\begin{definition}{Artículos 346, 347 y 348 --- CPCCN}
+Artículo 346: oportunidad para deducir excepciones; las excepciones se deducen junto con la contestación de demanda. Artículo 347: excepciones admisibles (incompetencia, falta de personería, falta de legitimación manifiesta, litispendencia, defecto legal, cosa juzgada, transacción, conciliación, desistimiento del derecho, prescripción, arraigo). Artículo 348: suspensión del plazo para contestar la demanda en los casos de falta de personería, defecto legal y arraigo.
+\end{definition}
+
+\section{Clasificación de las excepciones: Palacio y la propuesta del docente}
+
+Palacio distingue, entre las excepciones de previo y especial pronunciamiento, las excepciones \textbf{dilatorias} y las excepciones \textbf{perentorias}: las primeras dilatan el trámite del proceso porque requieren un trámite previo hasta ser resueltas; las segundas lo culminan y lo terminan definitivamente. Las clasificaciones no son verdaderas ni falsas en sí mismas, sino más o menos útiles según el criterio desde el que se las analice.
+
+A partir de ello, se propone una clasificación alternativa de las excepciones según su objeto de ataque:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}p{0.24\textwidth}
+    X
+}
+\toprule
+\textbf{Categoría} & \textbf{Qué se ataca} & \textbf{Ejemplos} \\
+\midrule
+Impedimentos procesales & La constitución válida del proceso & Incompetencia, falta de personería, litispendencia, defecto legal, arraigo \\
+Excepciones propiamente dichas & La pretensión ejercida por el actor & Prescripción (puro derecho), falta de legitimación manifiesta, defensas temporarias \\
+Defensas previas & El derecho troncal (sustancial) del actor & Cosa juzgada, transacción, conciliación, desistimiento \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell: actitud del demandado}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuáles son las posturas omisivas del demandado?} &
+La rebeldía: el demandado no comparece ni contesta ninguna de las dos cargas, y el juez, a pedido del actor, puede declararlo rebelde. Segundo supuesto: comparece pero no contesta dentro del plazo, y pierde el derecho a hacerlo por el principio de preclusión, aunque permanece presente en el proceso. \\
+
+\textbf{¿Cuáles son las posturas positivas del demandado?} &
+Contestar la demanda (negar hechos, aportar documentos, dar versión alternativa), reconvenir (exige conexidad con la misma relación jurídica), allanarse (someterse a la pretensión del actor, lo que termina el proceso) u oponer excepciones previas (atacar el proceso, la pretensión o el derecho troncal). \\
+
+\textbf{¿Cuál es la diferencia entre impedimentos procesales, excepciones propiamente dichas y defensas previas?} &
+Los impedimentos procesales atacan la constitución válida del proceso (arts. 346-348). Las excepciones propiamente dichas suponen un proceso válidamente constituido pero una pretensión que no puede ejercerse (prescripción, falta de legitimación, defensas temporarias). Las defensas previas suponen proceso y pretensión válidos, pero un derecho troncal ya extinguido (cosa juzgada, transacción, conciliación, desistimiento). \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} Frente al traslado de la demanda, el demandado puede adoptar posturas omisivas (rebeldía o comparecencia sin contestación) o positivas (contestación, reconvención, allanamiento u oposición de excepciones previas). El sistema de excepciones de previo y especial pronunciamiento, regulado en los artículos 346 a 348 del Código Procesal, admite una clasificación tripartita según su objeto de ataque: impedimentos procesales, excepciones propiamente dichas y defensas previas.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\chapter{Impedimentos procesales: los presupuestos procesales}
+\chaptermark{Impedimentos procesales}
+
+\section{Teoría de los presupuestos procesales (Von Bülow, 1868)}
+
+\begin{definition}{Teoría de los presupuestos procesales}
+En 1868, Von Bülow formuló la teoría de los presupuestos procesales, interpretando al proceso como una relación jurídica nueva y distinta de la relación jurídica sustancial que vinculaba a las partes y que originó el conflicto. Esta nueva relación se rige por la aparición de un tercero \textemdash{}el juez\textemdash{} llamado a dirimir el conflicto.
+\end{definition}
+
+Para que el proceso esté válidamente constituido deben reunirse determinados presupuestos procesales. El código los recoge en sentido negativo, denominándolos excepciones previas:
+
+\begin{formula}{Presupuestos procesales y su expresión negativa}
+\begin{itemize}
+    \item Juez competente $\rightarrow$ excepción de \textbf{incompetencia}.
+    \item Demanda clara y precisa $\rightarrow$ excepción de \textbf{defecto legal}.
+    \item No existe otro proceso igual $\rightarrow$ excepción de \textbf{litispendencia}.
+    \item Representación suficiente $\rightarrow$ excepción de \textbf{falta de personería}.
+    \item Domicilio o bienes en el país $\rightarrow$ excepción de \textbf{arraigo} (art. 348).
+\end{itemize}
+\end{formula}
+
+\section{Excepción de incompetencia}
+
+Mediante la excepción de incompetencia, el demandado sostiene que el juez interviniente no es competente para conocer en el proceso. Existen dos vías para plantear la incompetencia:
+
+\begin{itemize}
+    \item \textbf{Inhibitoria:} se plantea ante el juez que el demandado considera competente, pidiéndole que asuma el caso y requiera al otro juez que se inhiba.
+    \item \textbf{Declinatoria:} se plantea por vía de excepción previa al contestar la demanda, solicitando al juez interviniente que decline su jurisdicción.
+\end{itemize}
+
+\begin{note}
+Ambas vías son excluyentes entre sí: no pueden plantearse simultáneamente.
+\end{note}
+
+\section{Excepción de defecto legal}
+
+\begin{definition}{Excepción de defecto legal}
+Se plantea cuando la demanda no es clara y no permite determinar con precisión qué es lo que se reclama, de modo que el proceso no puede continuar sin que se subsane esa falta de claridad.
+\end{definition}
+
+\section{Excepción de litispendencia}
+
+\begin{definition}{Excepción de litispendencia}
+Procede cuando existe otro proceso iniciado con anterioridad por el mismo objeto, la misma causa y las mismas partes. Mediante esta excepción se busca paralizar el segundo proceso, que se acumulará al primero, evitando la tramitación de dos procesos iguales.
+\end{definition}
+
+\section{Excepción de falta de personería}
+
+\begin{definition}{Excepción de falta de personería}
+Se plantea cuando quien interviene en representación de una parte \textemdash{}y notificó la demanda\textemdash{} carece de la representatividad que invoca. La voz \emph{persona} proviene del teatro griego, donde los actores usaban máscaras y se ``personificaban'' en un determinado personaje; de allí deriva la voz \emph{personero}, quien actúa en nombre y representación de otro.
+\end{definition}
+
+La acreditación de la personería varía según el sujeto de que se trate:
+
+\begin{itemize}
+    \item \textbf{Asociación civil:} acreditar el cargo y el acta que autoriza la representación.
+    \item \textbf{Consorcio:} acreditar el carácter de administrador.
+    \item \textbf{Persona física:} presentar el poder (mandato) que autoriza a actuar en su nombre.
+    \item \textbf{Representación de un menor de edad:} acreditar la filiación mediante la partida de nacimiento.
+\end{itemize}
+
+\begin{example}{Falta de personería: representación de un menor}
+Un menor de edad rompe el vidrio del vecino. Para iniciar el proceso, el padre actúa en nombre y representación del menor, ya que este carece de capacidad procesal para estar en el proceso por sí mismo. El padre justifica su representación mediante la partida de nacimiento, que acredita la filiación y la representación legal.
+\end{example}
+
+La falta de representación puede ser advertida por el juez incluso al momento de dictar sentencia, en cuyo caso corresponde disponer que la cuestión sea subsanada, ya que no podría desarrollarse íntegramente un proceso y dictarse sentencia respecto de alguien que no se encuentra debidamente representado.
+
+\section{Excepción de arraigo}
+
+\begin{definition}{Excepción de arraigo}
+Prevista en los artículos 346 y 348 del Código Procesal, habilita a cuestionar la posibilidad de iniciar el proceso cuando el actor está domiciliado en el extranjero, el conflicto tramita en el país, y el actor carece de bienes o domicilio en el territorio nacional.
+\end{definition}
+
+\begin{note}
+El Código Civil y Comercial de la Nación restringió notablemente la aplicación de la excepción de arraigo, que perdió gran parte de su virtualidad práctica y quedó limitada a algunos casos puntuales.
+\end{note}
+
+\begin{definition}{Artículo 2600 --- Código Civil y Comercial de la Nación}
+No puede imponerse al demandado domiciliado o residente habitualmente en la República la carga de constituir caución de arraigo. La excepción de arraigo queda prácticamente sin efecto en muchos supuestos a raíz de las disposiciones del Código Civil y Comercial de la Nación.
+\end{definition}
+
+\section{Cuadro Cornell: impedimentos procesales}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué son los presupuestos procesales y cómo se expresan negativamente en el código?} &
+Son los requisitos para que el proceso esté válidamente constituido (Von Bülow, 1868). El código los recoge en sentido negativo como excepciones: juez competente $\rightarrow$ incompetencia; demanda clara $\rightarrow$ defecto legal; no haber otro proceso igual $\rightarrow$ litispendencia; representación suficiente $\rightarrow$ falta de personería; domicilio o bienes en el país $\rightarrow$ arraigo (art. 348). \\
+
+\textbf{¿Cuáles son las dos vías para plantear la incompetencia?} &
+La inhibitoria, planteada ante el juez que se considera competente, y la declinatoria, planteada por vía de excepción previa al contestar la demanda. Son opciones excluyentes entre sí. \\
+
+\textbf{¿Qué acredita la personería según el sujeto interviniente?} &
+La asociación civil acredita cargo y acta; el consorcio, el carácter de administrador; la persona física, el poder o mandato; y en la representación de un menor, la partida de nacimiento que acredita filiación y representación legal. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} Los impedimentos procesales atacan la constitución válida del proceso y se corresponden, en sentido negativo, con los presupuestos procesales formulados por Von Bülow: competencia del juez, claridad de la demanda, inexistencia de otro proceso igual, representación suficiente y domicilio o bienes en el país. Cada uno de estos presupuestos, cuando falta, habilita la excepción previa correspondiente (incompetencia, defecto legal, litispendencia, falta de personería o arraigo).
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\chapter{Excepciones propiamente dichas y defensas previas}
+\chaptermark{Excepciones y defensas previas}
+
+\section{Distinción fundamental frente a los impedimentos procesales}
+
+\begin{important}
+A diferencia de los impedimentos procesales, en esta categoría se parte de la premisa de que el proceso está válidamente constituido: no existe ningún impedimento procesal. Sin embargo, frente a los hechos invocados por la parte actora, se oponen hechos con una finalidad impeditiva o extintiva de la pretensión, de modo que esta, aun estando el proceso válidamente constituido, no puede ejercerse.
+\end{important}
+
+\section{Prescripción liberatoria}
+
+\begin{definition}{Prescripción liberatoria}
+Supone que el derecho troncal eventualmente le asiste a la parte actora, pero esta no puede ejercerlo porque, con el transcurso del tiempo, se produjo la prescripción liberatoria: la demanda no se inició dentro del plazo que correspondía.
+\end{definition}
+
+\begin{example}{Prescripción liberatoria en el ámbito laboral}
+Un trabajador fue despedido hace cuatro años y recién en ese momento inicia un reclamo laboral. La ley laboral establece que los reclamos de carácter indemnizatorio deben realizarse dentro del plazo de dos años. La empresa demandada plantea la excepción de prescripción, ya que quedó liberada de la responsabilidad de pagar la indemnización, en tanto el trabajador no ejerció su derecho de acción dentro del plazo legal.
+\end{example}
+
+Esta excepción puede tramitar como de puro derecho \textemdash{}cuando no requiere mayor entidad probatoria para ser acreditada\textemdash{}, en cuyo caso el proceso concluye de inmediato. Si no pudiera tramitar como de puro derecho, por tener vinculación directa con el fondo de la cuestión, el juez difiere su pronunciamiento para el momento de dictar sentencia definitiva, en la cual se analiza esta excepción en primer término, antes de ingresar al fondo del asunto.
+
+\section{Falta de legitimación manifiesta}
+
+\begin{definition}{Falta de legitimación manifiesta}
+El demandado señala que no está legitimado para actuar pasivamente, por no formar parte de la relación jurídica invocada por el actor, sino que dicha relación corresponde a otra persona.
+\end{definition}
+
+El tratamiento de esta excepción es similar al de la prescripción:
+
+\begin{itemize}
+    \item Si es \textbf{manifiesta} (no requiere mayor entidad probatoria), el juez la resuelve de inmediato y el proceso se extingue.
+    \item Si \textbf{no es manifiesta}, el juez difiere el pronunciamiento para el momento de dictar sentencia definitiva.
+\end{itemize}
+
+\section{Defensas temporarias (artículo 347, inciso 8, CPCCN)}
+
+Las defensas temporarias se diferencian de las anteriores en que no atacan la constitución válida del proceso ni la pretensión, sino que señalan que, momentáneamente, no puede ejercerse la pretensión hasta que se cumplan determinadas condiciones previas.
+
+\begin{definition}{Artículo 347, inciso 8 --- CPCCN (defensas temporarias)}
+Son defensas previas admisibles [\ldots] las defensas temporarias consagradas en las leyes generales, como la excepción de incumplimiento contractual, los días de llanto y luto (art. 2289 CCyCN), el beneficio de excusión (art. 1583 CCyCN), las condenaciones del ejecutivo (art. 553 CPCCN) y las condenaciones del posesorio (art. 2272 CCyCN).
+\end{definition}
+
+\begin{itemize}
+    \item \textbf{Beneficio de excusión (art. 1583 CCyCN):} no pueden ejecutarse los bienes de una persona si primero no se ejecutan los del deudor principal. Así, no corresponde ejecutar al fiador que no renunció al beneficio de excusión sin antes ejecutar al deudor principal.
+    \item \textbf{Condenaciones del posesorio (art. 2272 CCyCN):} no puede iniciarse la acción real si antes no se cumplieron las condenaciones impuestas en la acción posesoria.
+    \item \textbf{Días de llanto y luto (art. 2289 CCyCN):} no puede reclamarse a los herederos de una sucesión lo que adeudaba el causante hasta que no transcurra el período de llanto y luto establecido por la ley.
+    \item \textbf{Condenaciones del ejecutivo (art. 553 CPCCN):} en el juicio ejecutivo, si el demandado, tras perder, pretende iniciar un juicio ordinario posterior para discutir la causa de la obligación, primero debe cumplir con las condenaciones del ejecutivo.
+\end{itemize}
+
+\section{Defensas previas: cosa juzgada, transacción, conciliación y desistimiento}
+
+\begin{important}
+En esta última categoría no se ataca ni el proceso ni la pretensión (la acción ejercida), sino el derecho troncal que la parte pretende ejercer a través de su pretensión, en tanto ese derecho dejó de existir.
+\end{important}
+
+\begin{itemize}
+    \item \textbf{Cosa juzgada:} el derecho invocado ya fue juzgado en otro proceso mediante sentencia firme, por lo que no puede volver a reclamarse lo mismo.
+    \item \textbf{Transacción:} las partes llegaron a un acuerdo extrajudicial por el cual quedaron compuestos los derechos de ambas, renunciando a cualquier reclamo futuro vinculado a dicho acuerdo.
+    \item \textbf{Conciliación:} el acuerdo fue alcanzado judicialmente ante el juez, en una mediación o en el ámbito laboral; el proceso termina de modo anormal a través de ese acuerdo homologado.
+    \item \textbf{Desistimiento del derecho:} la parte, más allá de sus intereses económicos, se aparta del derecho que tenía para reclamar, lo que puede realizarse en el proceso o extrajudicialmente.
+\end{itemize}
+
+\section{Forma de deducir las excepciones y efectos prácticos}
+
+\begin{definition}{Artículo 346 (última parte) --- CPCCN}
+Las excepciones de falta de personería, defecto legal y arraigo suspenden el plazo para contestar la demanda. Las demás excepciones deben oponerse junto con la contestación de la demanda dentro del plazo de quince días.
+\end{definition}
+
+Las excepciones deben deducirse en un solo escrito, dentro del plazo para contestar la demanda. Solo tres de ellas suspenden ese plazo: la falta de personería, el defecto legal y el arraigo.
+
+\begin{note}
+En puridad, el defecto legal debería ser la única excepción que suspende el plazo para contestar la demanda, en tanto es la única en la que, al no saberse con precisión qué se reclama, resulta imposible contestar. Si la excepción de defecto legal se rechazara una vez vencidos los quince días, quedaría sin plazo disponible para contestar.
+
+Consejo práctico: puede plantearse la excepción de defecto legal en los primeros días del traslado, solicitando la suspensión del proceso hasta su resolución, a fin de disponer de más tiempo para contestar la demanda una vez resuelta la excepción, sea esta favorable (el juez ordena corregir la demanda y corre un nuevo traslado) o desfavorable (subsisten los días del plazo original que no corrieron).
+\end{note}
+
+Los efectos posibles de las excepciones una vez resueltas son los siguientes:
+
+\begin{itemize}
+    \item \textbf{Extinción del proceso:} cuando la excepción prospera y el vicio es insanable (incompetencia de distinta jurisdicción, prescripción de puro derecho, cosa juzgada, entre otros).
+    \item \textbf{Remisión del expediente:} en los casos de incompetencia dentro de la misma jurisdicción, el juez eleva las actuaciones al juez competente.
+    \item \textbf{Subsanación y continuación:} cuando el defecto puede corregirse (defecto legal, falta de personería), el juez ordena subsanarlo bajo apercibimiento.
+    \item \textbf{Diferimiento:} cuando la excepción no puede tramitar como de puro derecho, el juez difiere su pronunciamiento para la sentencia definitiva.
+\end{itemize}
+
+\section{Cuadro Cornell: excepciones propiamente dichas y defensas previas}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es la prescripción liberatoria y cómo se tramita?} &
+Es la extinción del derecho a accionar por el transcurso del tiempo sin ejercerlo. Si puede tramitar como de puro derecho, el juez resuelve de inmediato y el proceso se extingue; si requiere prueba, el juez difiere su pronunciamiento para la sentencia definitiva, donde la analiza antes de entrar al fondo. \\
+
+\textbf{¿Cuáles son las defensas temporarias del artículo 347, inciso 8, CPCCN?} &
+Beneficio de excusión (art. 1583 CCyCN), condenaciones del posesorio (art. 2272 CCyCN), días de llanto y luto (art. 2289 CCyCN) y condenaciones del ejecutivo (art. 553 CPCCN). No extinguen el proceso, pero impiden su desarrollo hasta que se cumplan las condiciones previas. \\
+
+\textbf{¿Cómo se deducen las excepciones y cuáles suspenden el plazo para contestar?} &
+Deben deducirse en un solo escrito dentro del plazo para contestar la demanda (art. 346). Solo tres suspenden ese plazo: falta de personería, defecto legal y arraigo. El defecto legal es la más razonable de las tres, porque sin conocer qué se reclama resulta imposible contestar. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} Cuando el proceso está válidamente constituido, el demandado puede oponer excepciones dirigidas contra la pretensión (prescripción, falta de legitimación manifiesta, defensas temporarias) o contra el derecho troncal del actor (cosa juzgada, transacción, conciliación, desistimiento). Todas deben deducirse en un solo escrito dentro del plazo para contestar la demanda, y solo la falta de personería, el defecto legal y el arraigo suspenden dicho plazo.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\chapter{Síntesis general de la unidad}
+\chaptermark{Síntesis general}
+
+Esta unidad recorre el itinerario completo de una causa judicial ordinaria desde el momento posterior al inicio de la demanda. El punto de partida es el despacho judicial que ordena el traslado de la demanda, instrumento que materializa el principio constitucional de igualdad de las partes ante la jurisdicción. La notificación de ese traslado \textemdash{}que puede producirse por ministerio de la ley, de forma tácita, por cédula, por edictos o por radiodifusión\textemdash{} es el hecho que traba la litis: desde ese instante nacen en cabeza del demandado dos cargas esenciales, la citación y el emplazamiento.
+
+Frente a ellas, el demandado puede adoptar posturas omisivas (rebeldía, inacción) o positivas (contestación, reconvención, allanamiento, excepciones). El cuerpo central de la unidad se dedica al sistema de excepciones de previo y especial pronunciamiento, clasificado en tres grandes categorías según su objeto de ataque:
+
+\begin{itemize}
+    \item los \textbf{impedimentos procesales} (que atacan la constitución válida del proceso: incompetencia, defecto legal, litispendencia, falta de personería, arraigo);
+    \item las \textbf{excepciones propiamente dichas} (que atacan el ejercicio de la pretensión porque el derecho no puede reclamarse: prescripción, falta de legitimación, defensas temporarias);
+    \item las \textbf{defensas previas} (que atacan el derecho troncal sustancial porque ya fue resuelto o extinguido: cosa juzgada, transacción, conciliación, desistimiento).
+\end{itemize}
+
+Esta clasificación tripartita se propone como superadora de la distinción clásica de Palacio entre excepciones dilatorias y perentorias, y permite comprender con precisión qué se ataca en cada caso y cuáles son los efectos procesales esperables. La unidad cierra con consideraciones estratégicas sobre la deducción de las excepciones y los efectos suspensivos del plazo para contestar la demanda.
+
+\end{document}
