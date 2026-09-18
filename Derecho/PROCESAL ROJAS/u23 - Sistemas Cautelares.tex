@@ -1,0 +1,749 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\catedra}{Cátedra de Derecho Procesal Civil y Comercial}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\titulo}{Sistemas Cautelares --- Parte III}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2020}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Norma: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ---------------- PORTADA ----------------
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \catedra}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el porqué de cada instituto procesal es el primer paso para dominar su aplicación práctica.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil y Comercial'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------- ÍNDICE ----------------
+\tableofcontents
+
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+\chapter[Revisión General y Fundamentos]{Revisión General y Fundamentos de los Sistemas Cautelares}
+
+\section{Concepto Introductorio}
+
+Los sistemas cautelares constituyen herramientas procesales que permiten al juez \textbf{conservar} el estado de las cosas mientras dura el proceso, evitando que la sentencia llegue tarde o resulte inútil. Puede pensarse el proceso judicial como una carrera en la que los sistemas cautelares funcionan como los cercos que impiden que alguna de las partes modifique el camino antes de que el árbitro --el juez-- declare quién tiene razón.
+
+\section{Ubicación en el Programa}
+
+La presente unidad corresponde a la tercera y última clase teórica dedicada a los sistemas cautelares. En las clases previas de la cátedra se abordaron, en primer lugar, la parte general de los sistemas cautelares --qué son, su tratamiento como sistema, los distintos tipos creados por el legislador, los presupuestos sustanciales y procesales para peticionar y obtener una medida cautelar, su trámite, las facultades del juez, los derechos del demandado y las características propias de las resoluciones dictadas en materia cautelar-- y, en segundo lugar, los \textbf{sistemas precautorios tradicionales}: embargo, inventario, anotación de litis, secuestro y demás medidas de ese sistema, reguladas en el Código Procesal.
+
+En la presente clase corresponde estudiar:
+\begin{itemize}
+    \item El \textbf{sistema asegurativo genérico} (cuarto sistema dentro del ámbito normal).
+    \item El \textbf{ámbito excepcional} de los sistemas cautelares.
+    \item La \textbf{tutela anticipada}.
+\end{itemize}
+
+\section{Las Tres Finalidades del Proceso según Calamandrei}
+
+\begin{important}
+Calamandrei sostenía que la ley actúa en el proceso de tres modos: para que el juez \textbf{conozca}, para que el juez \textbf{ejecute}, y para que el juez \textbf{conserve}.
+\end{important}
+
+Estas tres finalidades pueden explicarse del siguiente modo:
+\begin{itemize}
+    \item \textbf{El juez conoce}: en la etapa introductoria y probatoria del proceso.
+    \item \textbf{El juez ejecuta}: sus decisiones, para que sean cumplidas, esencialmente en la etapa de ejecución.
+    \item \textbf{El juez conserva}: cuando la ley actúa para asegurar, proteger y preservar --es este el ámbito propio de los sistemas cautelares.
+\end{itemize}
+
+Conservar puede consistir tanto en mantener como en alterar una determinada situación de hecho o de derecho. La opción entre mantener o alterar depende de dónde provenga el perjuicio: se ordenará mantener una situación cuando el perjuicio provenga de alterarla, o, a la inversa, se ordenará alterarla cuando el perjuicio provenga de mantenerla.
+
+\section{Fundamento de los Sistemas Cautelares: El Tiempo en el Proceso}
+
+Todo proceso judicial demora tiempo y, a lo largo de él, pueden presentarse situaciones de urgencia respecto de algunos de los justiciables que requieren una tutela inmediata y efectiva. Si se esperara únicamente al dictado de la sentencia, podría generarse un perjuicio irreparable, o podría llegarse a una sentencia estéril, de cumplimiento imposible por tardía.
+
+\begin{important}
+El legislador crea los sistemas cautelares para contrarrestar el efecto que el tiempo genera en el proceso --lo que Calamandrei denominaba el ``ordinario iter procesal''-- y para mantener la igualdad de las partes ante la jurisdicción.
+\end{important}
+
+A través de los sistemas cautelares se pretende, entonces, mantener la igualdad de las partes ante la jurisdicción, dar respuesta a situaciones que requieren de determinada urgencia y tutela judicial efectiva, y evitar que la sentencia que se dicte en el proceso resulte estéril por tardía.
+
+\section{Clasificación General de los Sistemas Cautelares}
+
+Los sistemas cautelares se clasifican en dos grandes ámbitos, según exista o no superposición entre la pretensión cautelar y la pretensión sustancial del proceso.
+
+\begin{table}[H]
+\centering
+\caption{Clasificación general de los sistemas cautelares}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.32\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Ámbito} & \textbf{Sistemas} & \textbf{Característica principal} \\
+\midrule
+Normal (típico) & Asegurativo probatorio, asegurativo garantizador, precautorio tradicional, asegurativo genérico & Regulados en la ley; la pretensión cautelar NO coincide con la pretensión sustancial \\
+Excepcional & Tutela anticipada & La pretensión cautelar se superpone total o parcialmente con la pretensión sustancial \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El sistema asegurativo en materia probatoria es el que el legislador creó a través de la producción de prueba anticipada, regulada en el artículo 326 del Código Procesal Civil y Comercial de la Nación (CPCC).
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+\chapter[Sistema Asegurativo Genérico]{El Sistema Asegurativo Genérico (Ámbito Normal)}
+
+Dentro del sistema asegurativo genérico existen cuatro medidas:
+
+\begin{enumerate}
+    \item Inhibición general de bienes (Art. 228 CPCC).
+    \item Medida cautelar genérica (Art. 232 CPCC).
+    \item Prohibición de innovar --incluye faceta innovativa y no innovativa-- (Art. 230 CPCC).
+    \item Cautela autónoma (creación pretoriana, luego regulada por la Ley 26.854).
+\end{enumerate}
+
+\section{Carácter Residual y Presupuestos Comunes}
+
+\begin{important}
+\textbf{Carácter residual o subsidiario}: las medidas del sistema asegurativo genérico sólo prosperan cuando las medidas cautelares del sistema precautorio tradicional (embargo, secuestro, etc.) no resultan aptas para la situación de hecho y de derecho que se pretende proteger en el caso concreto.
+\end{important}
+
+Tanto para las medidas del sistema precautorio tradicional como para las del sistema asegurativo genérico es necesario acreditar los siguientes presupuestos:
+
+\begin{table}[H]
+\centering
+\caption{Presupuestos comunes a las medidas cautelares}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Presupuesto} & \textbf{Descripción} \\
+\midrule
+Verosimilitud en el derecho & Apariencia o posible existencia del derecho invocado. No se exige certeza --que sólo se requiere para la sentencia-- sino probabilidad. \\
+Peligro en la demora & Riesgo de que, si la tutela no se otorga inmediatamente, se produzca un perjuicio inminente o irreparable. \\
+Contracautela & Garantía que ofrece quien peticiona la medida, para responder por los eventuales daños y perjuicios que la traba incorrecta pudiera ocasionar al afectado. \\
+Presupuestos procesales del Art. 195 CPCC & Requisitos formales y de competencia exigidos por el código. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+Lo que se decide en materia cautelar tiene \textbf{carácter provisorio}: puede modificarse a lo largo del proceso --dejarse sin efecto, reducirse o ampliarse-- según varíen las circunstancias de hecho y de derecho que le dieron origen. No debe confundirse con el carácter definitivo de lo resuelto en la sentencia.
+\end{note}
+
+\section{Inhibición General de Bienes (Art. 228 CPCC)}
+
+\begin{formula}{Artículo 228, Código Procesal Civil y Comercial de la Nación}
+Inhibición general de bienes. En todos los casos en que habiendo lugar a embargo éste no pudiere hacerse efectivo por no conocerse bienes del deudor, o por no cubrir éstos el importe del crédito reclamado, podrá solicitarse contra aquél la inhibición general de enajenar y gravar bienes, la que se deberá dejar sin efecto siempre que presentare a embargo bienes suficientes o diere caución bastante. El que solicitare la inhibición deberá expresar el nombre, apellido y domicilio del deudor, así como todo otro dato que pueda individualizar al inhibido, sin perjuicio de los demás requisitos que impongan las leyes. La inhibición sólo producirá efecto desde la fecha de su anotación salvo para los casos en que el dominio se hubiere transmitido con anterioridad, de acuerdo con lo dispuesto en la legislación general. No concederá preferencia sobre las anotadas con posterioridad.
+\end{formula}
+
+\subsection{Definición y Finalidad}
+
+\begin{definition}{Inhibición general de bienes}
+Medida cautelar genérica regulada en el artículo 228 CPCC mediante la cual se pretende que el demandado --el afectado por la medida-- no venda ni grave bienes que formen parte de su patrimonio.
+\end{definition}
+
+\subsection{Carácter Residual: Cuándo Procede}
+
+La inhibición general de bienes \textbf{no es autónoma ni principal} como el embargo: es residual. Procede en los mismos casos en que procede el embargo, pero únicamente cuando se den los siguientes supuestos:
+
+\begin{itemize}
+    \item \textbf{Supuesto 1}: no existen bienes para embargar (el deudor no tiene bienes identificados).
+    \item \textbf{Supuesto 2}: existen bienes para embargar, pero no resultan suficientes para responder o garantizar el crédito que se pretende asegurar.
+\end{itemize}
+
+\begin{example}{Aplicación de la inhibición residual}
+Si se pretende asegurar una suma equivalente a un millón de pesos y sólo pudo embargarse en una cuenta bancaria la suma de quinientos mil pesos, sin que existan otros bienes para embargar, la inhibición general de bienes puede solicitarse junto con el embargo, de manera residual, para cubrir el saldo no garantizado por los bienes ya embargados.
+\end{example}
+
+\subsection{Diferencias con el Embargo}
+
+\begin{table}[H]
+\centering
+\caption{Inhibición general de bienes vs. embargo}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.20\textwidth} >{\raggedright\arraybackslash}p{0.38\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Embargo} & \textbf{Inhibición general de bienes} \\
+\midrule
+Determinación & Determinado: recae sobre un bien identificado y particular & Indeterminado: afecta a todos los bienes presentes y futuros del patrimonio del deudor \\
+Tipo de bienes & Todo tipo de bienes: muebles, inmuebles, registrables, no registrables & Sólo bienes registrables, porque debe inscribirse para producir efectos \\
+Preferencia temporal & El primer embargante tiene derecho de preferencia sobre los posteriores & No existe derecho de preferencia; no rige el principio de prioridad temporal \\
+Habilita ejecución forzada & Sí: permite avanzar hacia el remate y cobro del crédito & No: no habilita la ejecución forzada, porque no hay bienes identificados de los que cobrar \\
+Extinción & Cinco años desde la inscripción & Cinco años desde la inscripción (igual que el embargo) \\
+Caducidad si es previa al proceso & Diez días para iniciar el proceso principal & Diez días para iniciar el proceso principal (igual que el embargo) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Alcance Temporal y Efectos}
+
+La medida produce efectos desde su inscripción en adelante. Puede ocurrir que se desconozcan bienes actuales del deudor, o que este no posea bienes al momento de trabarse la inhibición, en cuyo caso los bienes que ingresen posteriormente a su patrimonio también quedarán alcanzados.
+
+Tanto el embargo como la inhibición se extinguen a los cinco años de su inscripción. Si se pretende mantener la vigencia de la medida, debe peticionarse al juez la reinscripción antes de su vencimiento, para evitar su extinción.
+
+\subsection{Procedimiento}
+
+\begin{enumerate}
+    \item Se peticiona que se dicte la inhibición general de bienes en determinados registros, acreditando los presupuestos cautelares.
+    \item El juez ordena y decreta la inhibición, identificando al demandado por nombre completo y número de documento nacional de identidad.
+    \item El letrado confecciona un oficio dirigido al registro correspondiente (por ejemplo, el Registro de la Propiedad Inmueble), que se deja en el juzgado para su revisión y firma.
+    \item El letrado diligencia el oficio ingresándolo al registro para que se inscriba la inhibición.
+\end{enumerate}
+
+Suele solicitarse, además, informes en los registros pertinentes para determinar qué bienes posee el demandado --identificado por su nombre y su documento nacional de identidad-- en el Registro de la Propiedad Inmueble de la Ciudad de Buenos Aires, en el de la Provincia de Buenos Aires, o en el Registro de la Propiedad Automotor, de alcance nacional.
+
+\subsection{Cese de la Inhibición}
+
+La inhibición puede levantarse antes de los cinco años en los siguientes casos:
+
+\begin{enumerate}
+    \item Si el deudor ofrece un bien a embargo, que sea suficiente para garantizar el crédito.
+    \item Si el deudor ofrece una garantía suficiente, cuando se trate de una medida cautelar.
+\end{enumerate}
+
+El pedido de levantamiento o sustitución formulado por el deudor debe correrse en traslado al acreedor, y el juez resuelve en función de si el bien ofrecido a embargo resulta suficiente para garantizar el crédito reclamado.
+
+\section{Medida Cautelar Genérica o Innominada (Art. 232 CPCC)}
+
+\begin{formula}{Artículo 232, Código Procesal Civil y Comercial de la Nación}
+Fuera de los casos previstos en los artículos precedentes, quien tuviere motivos para temer que durante el tiempo anterior al reconocimiento judicial de su derecho, éste pudiera sufrir un perjuicio inminente o irreparable, podrá solicitar las medidas urgentes que, según las circunstancias, fuesen más aptas para asegurar provisionalmente el cumplimiento de la sentencia.
+\end{formula}
+
+\subsection{Definición y Alcance}
+
+\begin{definition}{Medida cautelar genérica o innominada}
+Medida que habilita a quien tuviera motivos para temer un perjuicio inminente o irreparable --antes del reconocimiento judicial de su derecho-- a solicitar las medidas urgentes que, según las circunstancias, resulten más aptas para asegurar provisionalmente el cumplimiento de la sentencia. Se denomina ``genérica'' o ``innominada'' porque habilita a la jurisdicción a dictar cualquier medida, ya sea aislada o en complemento de las tradicionales, que mejor responda a las situaciones de hecho y de derecho que se pretenden asegurar antes del dictado de la sentencia.
+\end{definition}
+
+\begin{important}
+La medida cautelar genérica rige para asegurar y cautelar cualquier tipo de bienes, personas o derechos. Es la que más amplía las posibilidades de peticionar una medida cautelar, cuando todas las reguladas anteriormente no resultan adecuadas ni suficientes.
+\end{important}
+
+\section{Prohibición de Innovar (Art. 230 CPCC)}
+
+\subsection{La Prohibición de Innovar como Medida Cautelar Matriz}
+
+Si bien parte de la doctrina considera al embargo como la medida cautelar ``madre'' de las demás, puede sostenerse en cambio que el sistema cautelar matriz es la prohibición de innovar, en tanto permite cautelar y asegurar no sólo bienes, sino también personas y derechos, según los hechos del caso concreto.
+
+\begin{formula}{Artículo 230, Código Procesal Civil y Comercial de la Nación}
+Podrá decretarse la prohibición de innovar en toda clase de juicios siempre que:
+\begin{enumerate}
+    \item El derecho resulte verosímil.
+    \item Existiere peligro de que si se mantuviera o alterara, en su caso, la situación de hecho o de derecho, la modificación pudiera influir en la sentencia o convirtiera su ejecución en ineficaz.
+    \item La cautela no pudiere obtenerse por medio de otra medida precautoria.
+\end{enumerate}
+\end{formula}
+
+\subsection{Las Dos Facetas de la Prohibición de Innovar}
+
+El inciso segundo del artículo 230 revela dos facetas de esta medida:
+
+\begin{table}[H]
+\centering
+\caption{Facetas de la prohibición de innovar}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.16\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Faceta} & \textbf{Denominación} & \textbf{Cuándo procede} & \textbf{Qué ordena el juez} \\
+\midrule
+Innovativa & Medida innovativa & El perjuicio proviene de mantener el statu quo existente & Ordena alterar la situación de hecho o de derecho \\
+No innovativa & Medida de no innovar & El perjuicio proviene de alterar el statu quo existente & Ordena mantener la situación de hecho o de derecho \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Ambas facetas --innovativa y de no innovar-- constituyen aspectos de una misma medida, la prohibición de innovar, tal como surge de su regulación en el artículo 230 CPCC.
+
+\subsection{Los Dos Ámbitos en los que Opera la Prohibición de Innovar}
+
+Además de sus dos facetas, la prohibición de innovar puede operar en dos ámbitos distintos:
+
+\begin{enumerate}
+    \item \textbf{Ámbito normal}: cuando la pretensión cautelar no se superpone con la pretensión sustancial del proceso principal.
+    \item \textbf{Ámbito excepcional}: cuando la pretensión cautelar se superpone total o parcialmente con la pretensión sustancial --esto es lo que configura la \textbf{tutela anticipada}, desarrollada en el Capítulo 3.
+\end{enumerate}
+
+\section{Cautela Autónoma}
+
+La cautela autónoma constituye la cuarta medida del sistema asegurativo genérico, junto con la inhibición general de bienes, la medida cautelar genérica y la prohibición de innovar. Se trata de una medida propia del derecho administrativo y de la justicia contencioso-administrativa.
+
+\subsection{Ubicación en el Sistema y Origen}
+
+Esta medida no está regulada en el Código Procesal Civil y Comercial de la Nación, sino que se vincula con el ámbito del derecho administrativo y de la justicia en lo contencioso-administrativo. Originariamente carecía de regulación: fue una creación pretoriana jurisprudencial, que luego tuvo una regulación legal cuestionable.
+
+\subsection{En qué Consiste la Cautela Autónoma}
+
+\begin{definition}{Cautela autónoma}
+Petición que el justiciable dirige al juez para que suspenda los efectos de un acto administrativo hasta tanto se haya resuelto el recurso administrativo interpuesto contra ese acto --recurso que, a su vez, habilitó la instancia judicial una vez agotada la vía administrativa.
+\end{definition}
+
+\subsection{El Artículo 12 de la Ley 19.549: La Presunción de Legitimidad}
+
+\begin{formula}{Artículo 12, Ley 19.549 (Procedimiento Administrativo)}
+El acto administrativo goza de presunción de legitimidad; su fuerza ejecutoria faculta a la Administración a ponerlo en práctica por sus propios medios, salvo que la ley o la naturaleza del acto exigieren la intervención judicial, e impide que los recursos que interpongan los administrados suspendan su ejecución y efectos, salvo que una norma expresa establezca lo contrario. Sin embargo, la Administración podrá, de oficio o a pedido de parte y mediante resolución fundada, suspender la ejecución por razones de interés público, o para evitar perjuicios graves al interesado.
+\end{formula}
+
+Por gozar de presunción de legitimidad, el acto administrativo puede ser ejecutado por la Administración aun cuando el administrado haya interpuesto un recurso en su contra, pues dicho recurso carece --por regla-- de efecto suspensivo. Esto puede generar un daño o perjuicio irreparable en el administrado, por ejemplo cuando el acto ordena abonar una suma o multa de importancia trascendente. Frente a ello, el administrado puede recurrir a la justicia y peticionar la cautela autónoma, solicitando que se suspendan los efectos del acto administrativo hasta tanto se resuelva el recurso interpuesto.
+
+\subsection{Por qué se Denomina ``Autónoma''}
+
+Se denomina autónoma porque es independiente respecto del procedimiento administrativo al cual accede: no existe un proceso judicial principal en curso, sino que la cautela resulta instrumental y accesoria, en tanto se vincula con la suspensión de los efectos de un acto administrativo.
+
+\subsection{Creación Pretoriana y Trámite Original}
+
+Originalmente se promovían acciones de amparo para obtener este tipo de cautela, hasta que la Corte resolvió que el amparo no era la vía idónea, dando lugar a la creación de la cautela autónoma. El trámite original se desarrolló dentro de los alcances del artículo 230 CPCC (prohibición de innovar), exigiéndose los presupuestos de verosimilitud del derecho y peligro en la demora, con un carácter más excepcional que el de las medidas ordinarias, en razón de la presunción de legitimidad que ampara al acto administrativo.
+
+\subsection{La Ley 26.854: Medidas Cautelares contra el Estado}
+
+Cuando la parte demandada es el Estado, no rige el régimen general de medidas cautelares estudiado hasta aquí, sino la Ley 26.854, que regula cuestiones particulares para el supuesto de que el justiciable pretenda una medida cautelar contra el Estado.
+
+\begin{formula}{Artículo 13, Ley 26.854 --- Suspensión de Efectos de un Acto Estatal}
+Regula la cautela autónoma en el fuero contencioso-administrativo. Para peticionar la suspensión de los efectos de un acto estatal ya no basta la verosimilitud del derecho y el peligro en la demora. Se exige: (1) acreditar sumariamente perjuicios graves que impliquen imposible reparación posterior; (2) que el trámite sea bilateralizado, debiendo el juez convocar previamente a la entidad estatal a presentar un informe; (3) que el administrado haya solicitado previamente en sede administrativa la suspensión del acto, habilitándose la vía judicial sólo ante la negativa o el silencio guardado por el plazo de cinco días.
+\end{formula}
+
+A diferencia del trámite \emph{inaudita parte} propio de las medidas cautelares comunes, el artículo 4 de la Ley 26.854 establece que toda medida cautelar peticionada contra el Estado exige que, previo a resolver, el juez convoque a la entidad estatal, la cual debe presentar un informe pormenorizado de la cuestión planteada. Asimismo, el administrado debe haber peticionado previamente en sede administrativa la suspensión de los efectos del acto, y sólo ante la negativa o el silencio de la Administración por el plazo de cinco días queda habilitada la vía judicial para requerir la cautela autónoma.
+
+\begin{note}
+Esta regulación, al igual que la relativa a la tutela anticipada desarrollada en el Capítulo 4, ha sido cuestionada por imponer requisitos que dificultan el acceso a la tutela cautelar frente al Estado.
+\end{note}
+
+% ============================================================
+% CAPÍTULO 3
+% ============================================================
+\chapter[Ámbito Excepcional: Tutela Anticipada]{Ámbito Excepcional: La Tutela Anticipada}
+
+\section{Qué Determina el Ámbito Excepcional}
+
+El ámbito excepcional se configura cuando, a través de la petición y concesión de una cautela, se adelanta en todo o en parte aquello que luego será decidido en la sentencia de mérito. Es decir, cuando la pretensión cautelar se superpone total o parcialmente con la pretensión sustancial --la invocada en la demanda-- que constituye el objeto del proceso.
+
+\begin{definition}{Tutela anticipada}
+Sistema cautelar en virtud del cual la jurisdicción dicta una medida para proteger y asegurar anticipadamente --de modo provisorio-- total o parcialmente, aquello que después se decidirá de modo definitivo al dictarse sentencia.
+\end{definition}
+
+Lo que caracteriza al ámbito excepcional es, entonces, la superposición total o parcial de la pretensión cautelar con la pretensión sustancial: lo que se peticiona o concede a través de la medida cautelar coincide, en todo o en parte, con lo que se peticiona en la demanda y se pretende que se reconozca al dictarse sentencia.
+
+\section{¿El Juez Estaría Prejuzgando? Clave Teórica}
+
+Cabe preguntarse si, al adelantar el contenido de la futura sentencia, el juez no estaría prejuzgando. La clave reside en no confundir el carácter provisorio de lo decidido cautelarmente con el carácter definitivo de lo decidido en la sentencia.
+
+La superposición es admisible porque la tutela anticipada es provisoria: para otorgarla, el juez sólo exige que se acredite verosimilitud en el derecho y peligro en la demora o urgencia. Posteriormente, a lo largo del proceso --con la defensa del afectado por la medida y la producción de pruebas--, al dictar sentencia el juez puede resolver en el mismo sentido, pero ya con carácter definitivo, o en sentido contrario, dejando sin efecto lo concedido provisionalmente.
+
+\begin{table}[H]
+\centering
+\caption{Tutela anticipada: momento provisorio vs. sentencia definitiva}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.20\textwidth} >{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}p{0.26\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Momento} & \textbf{Decisión} & \textbf{Estándar de prueba} & \textbf{Carácter} \\
+\midrule
+Al otorgar la tutela anticipada & Protege provisionalmente lo que será luego objeto de sentencia & Verosimilitud en el derecho + peligro en la demora & Provisorio: puede modificarse \\
+Al dictar sentencia definitiva & Decide con pleno conocimiento del caso & Certeza, basada en prueba producida & Definitivo: cosa juzgada \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Vías de Materialización de la Tutela Anticipada}
+
+La tutela anticipada se presenta a través de dos vías principales:
+
+\begin{itemize}
+    \item \textbf{Vía A --- Sistemas cautelares}: a través de la prohibición de innovar (Art. 230 CPCC), la medida cautelar genérica (Art. 232 CPCC) o cualquier otra medida cautelar. El juez actúa dentro del ámbito excepcional en razón de la superposición de pretensiones.
+    \item \textbf{Vía B --- Subsistemas creados expresamente por el legislador}: normas sustanciales o procesales que regulan explícitamente la anticipación de la tutela para situaciones específicas.
+\end{itemize}
+
+\section{Ejemplos de Vías Legales Específicas}
+
+\begin{example}{Alimentos provisorios --- Art. 544 CCyC}
+\begin{formula}{Artículo 544, Código Civil y Comercial de la Nación}
+Desde el principio de la causa o en el transcurso de ella el juez puede decretar la prestación de alimentos provisionales.
+\end{formula}
+
+En un juicio de alimentos en el cual se reclama una cuota alimentaria a favor de hijos menores cuyo progenitor no abona suma alguna en tal concepto, la demora del proceso podría dejar a los menores, durante años, sin ninguna cuota a su favor. El legislador creó, por ello, el sistema de tutela anticipada dispuesto en el artículo 544 CCyC, denominado alimentos provisorios, que permite al juez fijar, de modo provisional, un alimento a lo largo del proceso.
+
+Esta pretensión es similar --o igual-- a la pretensión sustancial que el juez debe decidir al dictar sentencia; sin embargo, resulta válida porque los alimentos provisionales fijados a pedido de parte son provisorios. Al dictar sentencia, el juez podrá fijar un alimento similar, mayor o menor al fijado provisionalmente, a la luz de las pruebas producidas, o incluso rechazar la demanda.
+\end{example}
+
+\begin{example}{Entrega anticipada del inmueble en desalojo --- Art. 680 bis CPCC}
+\begin{formula}{Artículo 680 bis, Código Procesal Civil y Comercial de la Nación}
+En los casos en que la acción de desalojo se dirija contra el intruso, en cualquier estado del juicio, después de trabada la litis, el juez puede imponer la inmediata entrega del inmueble, si el derecho invocado fuere verosímil, previa caución brindada por el actor por los eventuales daños y perjuicios que se pudieran irrogar.
+\end{formula}
+
+La pretensión sustancial principal, en un proceso de desalojo, es la desocupación y entrega del inmueble. El artículo 680 bis habilita que se adelante cautelarmente aquello que también constituye el objeto de la sentencia de mérito --la desocupación y entrega anticipada del inmueble--, exigiendo verosimilitud en el derecho y una contracautela para responder por los eventuales daños y perjuicios que pudiera sufrir el demandado si, al dictarse sentencia, se resolviera en contrario.
+\end{example}
+
+\section{Jurisprudencia de la Corte Suprema}
+
+\subsection{Fallo Camacho Acosta --- CSJN 320:1633 --- Fase Innovativa}
+
+\begin{example}{Caso Camacho Acosta (CSJN 320:1633)}
+\textbf{Hechos del caso:} un trabajador sufrió, a raíz de un accidente laboral, la amputación de su brazo izquierdo. Al no encontrarse vigente ninguna póliza de aseguradora de riesgos del trabajo, promovió contra la empresa un juicio de daños y perjuicios reclamando los daños derivados del accidente.
+
+\textbf{La pretensión cautelar:} el actor necesitaba colocarse una prótesis con cercanía temporal a la amputación, pues de esperar al dictado de la sentencia corría el riesgo de que la prótesis ya no pudiera colocarse por rechazo anatómico, además de que su ausencia dificultaba su reinserción laboral. Peticionó una medida innovativa dentro del artículo 230 CPCC: que se le otorgara el dinero necesario para adquirir la prótesis.
+
+\textbf{Superposición de pretensiones:} el otorgamiento del dinero para la prótesis se superponía parcialmente con la pretensión sustancial del proceso --la indemnización integral--, lo que ubica el caso dentro del ámbito excepcional (tutela anticipada).
+
+\textbf{Resolución:} tanto el juez de primera instancia como la Sala J de la Cámara Civil rechazaron el pedido. Al llegar el expediente a la Corte por vía del recurso extraordinario, la CSJN hizo lugar a la medida innovativa, reconociendo la tutela anticipada y exigiendo la reunión de los presupuestos de verosimilitud en el derecho, peligro en la demora y contracautela.
+\end{example}
+
+Lo único que agrega la Corte respecto de la tutela anticipada es la exigencia de una \textbf{mayor prudencia} de los jueces al valorar los presupuestos y los hechos del caso concreto, quedando librada a su interpretación la posibilidad de otorgar o no la tutela.
+
+\begin{important}
+\textbf{Inversión del contradictorio}: en la tutela anticipada, primero se protege y luego se conoce. La jurisdicción tutela primero para evitar el daño irreparable, y sólo después se desarrolla la etapa del contradictorio y la decisión definitiva --con certeza-- al dictar sentencia.
+\end{important}
+
+\subsection{Fallo Clarín --- CSJN 333:1885 --- Fase No Innovativa}
+
+\begin{example}{Caso Clarín (CSJN 333:1885)}
+\textbf{Contexto --- Ley 26.522 (Ley de Medios):} esta norma perseguía evitar la monopolización de los medios de comunicación y telecomunicaciones, obligando a las empresas con gran cantidad de licencias a desinvertir y vender parte de ellas. Esto afectaba de modo relevante al Grupo Clarín, que debía iniciar, dentro del plazo legal, un proceso de desinversión.
+
+\textbf{El proceso principal:} el Grupo Clarín planteó un proceso en el que discutió la constitucionalidad de los artículos 41 y 161 de la ley, que lo obligaban a desinvertir.
+
+\textbf{La pretensión cautelar --- prohibición de no innovar:} solicitó una tutela anticipada dentro de los alcances del artículo 230 CPCC, en su faceta de no innovar: que no se le aplicara la ley ni se alterara la situación existente hasta que se resolviera la pretensión sustancial sobre la constitucionalidad de los artículos cuestionados.
+
+\textbf{Resolución y enseñanza del fallo:} la CSJN hizo lugar a la prohibición de innovar en su faceta no innovativa, y la ley no se aplicó mientras duró el proceso. Sin embargo, al dictar sentencia definitiva, la Corte resolvió que los artículos 41 y 161 eran constitucionales --decisión contraria a lo protegido cautelarmente--, lo cual demuestra el carácter provisorio de la tutela anticipada.
+\end{example}
+
+Este caso permite observar dos cuestiones: por un lado, el funcionamiento de la faceta de no innovar de la prohibición de innovar; por otro, el carácter provisorio de este tipo de medidas, en tanto la sentencia definitiva --dictada una vez producido el conocimiento pleno a lo largo del proceso-- resolvió en sentido contrario a lo tutelado cautelarmente.
+
+% ============================================================
+% CAPÍTULO 4
+% ============================================================
+\chapter[Debate Doctrinario sobre la Tutela Anticipada]{Debate Doctrinario sobre la Regulación de la Tutela Anticipada}
+
+\section{Regulación Independiente en las Provincias}
+
+Parte de la doctrina entiende que la tutela anticipada no constituye un sistema cautelar y que no resulta adecuado que cobre vida a través de la prohibición de innovar del artículo 230 CPCC, por lo que correspondería regular el instituto de manera expresa y distinta de las medidas cautelares, en tanto adelantar total o parcialmente, de modo provisorio, lo que será objeto de la sentencia de mérito constituiría un instituto diferente.
+
+Esta posición llevó a varias provincias --entre ellas San Luis, San Juan y Chaco-- a regular la tutela anticipada de modo independiente en sus códigos procesales, exigiendo requisitos más rigurosos que los previstos por la doctrina de la Corte Suprema --verosimilitud en el derecho, peligro en la demora, contracautela y mayor prudencia del juez--, lo cual, según se sostiene, dificulta innecesariamente el acceso del justiciable a este tipo de tutela.
+
+\section{El Proyecto de Reforma: Artículo 403}
+
+El proyecto de reforma del Código Procesal Civil y Comercial de la Nación regula en su artículo 403 la denominada ``tutela anticipada de urgencia'', con requisitos notablemente más exigentes que los del régimen actual.
+
+\begin{table}[H]
+\centering
+\caption{Régimen actual (CSJN --- Camacho Acosta) vs. Proyecto Art. 403}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}p{0.36\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Requisito} & \textbf{Régimen actual (CSJN --- Camacho Acosta)} & \textbf{Proyecto Art. 403} \\
+\midrule
+Presupuesto temporal & Peligro en la demora & Urgencia (estándar más elevado) \\
+Tipo de perjuicio & Perjuicio inminente o irreparable & Frustración del derecho más daño irreparable \\
+Prueba del derecho & Verosimilitud (probabilidad) & Debe ofrecerse prueba que acredite la probabilidad del derecho \\
+Contracautela & Sí & Sí \\
+Materias alcanzadas & Cualquier tipo de derecho & Sólo prestaciones dinerarias (limitación grave) \\
+Trámite & \emph{Inaudita parte}: el afectado se defiende después & Con audiencia previa: primero se cita al demandado, luego se resuelve \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Se advierte una limitación relevante en cuanto a la restricción de la tutela a cuestiones dinerarias, lo que dejaría sin adecuada protección a situaciones vinculadas con otros derechos fundamentales. Asimismo, el trámite con audiencia previa puede insumir un tiempo considerable --meses, según los casos-- en función de la necesidad de notificar al demandado, lo cual resulta contrario a la urgencia que este tipo de tutela procura satisfacer.
+
+\section{Reflexión sobre Progresividad y Tutela Judicial Efectiva}
+
+Se cuestiona que estas regulaciones --tanto las provinciales como el proyecto de reforma-- avancen contra principios reconocidos en los tratados de derechos humanos con jerarquía constitucional, pese a tratarse de un instituto que funciona adecuadamente como medida cautelar bajo la doctrina de la Corte, con carácter provisorio, posibilidad de defensa del afectado y exigencia de contracautela.
+
+Los principios constitucionales que se consideran vulnerados por este tipo de regulaciones son:
+
+\begin{itemize}
+    \item \textbf{Tutela judicial efectiva}: consagrada en los tratados internacionales de derechos humanos con jerarquía constitucional.
+    \item \textbf{Principio pro homine}: exige estarse siempre a la interpretación más favorable a la persona.
+    \item \textbf{Principio de progresividad}: una vez que los justiciables adquieren un determinado nivel de protección, el legislador no puede regular de modo regresivo en su contra.
+\end{itemize}
+
+\begin{important}
+Las regulaciones que imponen a la tutela anticipada requisitos agravados --tanto en el ámbito provincial como en el proyecto de reforma-- podrían ser tachadas de inconstitucionales e inconvencionales, por apartarse de los principios de tutela judicial efectiva y de progresividad.
+\end{important}
+
+% TODO: el apunte original no precisa el estado parlamentario actual del proyecto de reforma del CPCC ni la fecha exacta de su artículo 403; se conserva la información tal como fue transmitida en clase.
+
+% ============================================================
+% CAPÍTULO 5
+% ============================================================
+\chapter{Cuadro Cornell de Repaso}
+
+Las siguientes notas sintetizan, en formato Cornell, los conceptos fundamentales desarrollados en la presente unidad, facilitando el repaso y el estudio activo.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el carácter residual o subsidiario del sistema asegurativo genérico?} &
+Las medidas del sistema asegurativo genérico (inhibición de bienes, medida cautelar genérica, prohibición de innovar) sólo proceden cuando las medidas del sistema precautorio tradicional (embargo, secuestro, etc.) no resultan aptas o suficientes para proteger la situación del caso concreto. No son autónomas: son de última instancia dentro del ámbito normal. \\
+
+\textbf{¿Cuándo procede la inhibición general de bienes y en qué se diferencia del embargo?} &
+Procede cuando: (1) no hay bienes para embargar, o (2) los bienes embargados no alcanzan para cubrir el crédito. A diferencia del embargo, es indeterminada (afecta todos los bienes presentes y futuros), alcanza sólo bienes registrables, no otorga preferencia temporal, no habilita la ejecución forzada y se extingue a los cinco años. \\
+
+\textbf{¿Qué es la medida cautelar genérica o innominada?} &
+Es la medida del Art. 232 CPCC que habilita al juez a ordenar cualquier medida cautelar --aislada o complementaria de las tradicionales-- que mejor responda a las circunstancias del caso, cuando ninguna de las medidas reguladas anteriormente resulte adecuada y suficiente. Permite proteger bienes, personas y derechos de cualquier tipo. \\
+
+\textbf{¿Cuáles son las dos facetas de la prohibición de innovar?} &
+Faceta innovativa: el perjuicio proviene de mantener el statu quo, entonces el juez ordena alterarlo. Faceta no innovativa: el perjuicio proviene de alterar el statu quo, entonces el juez ordena mantenerlo. Ambas facetas están reguladas en el inciso 2 del artículo 230 CPCC. \\
+
+\textbf{¿Qué define al ámbito excepcional de los sistemas cautelares?} &
+Se da cuando la pretensión cautelar se superpone total o parcialmente con la pretensión sustancial (el objeto del proceso principal). Esto distingue al ámbito excepcional del normal, donde ambas pretensiones son distintas. La superposición es posible porque la decisión cautelar es provisoria, no definitiva. \\
+
+\textbf{¿Qué es la tutela anticipada y cómo se diferencia de las medidas cautelares del ámbito normal?} &
+Es el sistema cautelar en virtud del cual se adelanta provisionalmente, en todo o en parte, aquello que será el objeto de la sentencia de mérito. Se diferencia del ámbito normal en que en este caso la pretensión cautelar coincide con la pretensión sustancial. Su carácter provisorio distingue la tutela anticipada de la condena definitiva. \\
+
+\textbf{¿Cuáles son las vías de materialización de la tutela anticipada?} &
+(1) Vías legales específicas creadas por el legislador: alimentos provisorios (Art. 544 CCyC), entrega anticipada del inmueble en desalojo (Art. 680 bis CPCC). (2) Vías cautelares: a través de la prohibición de innovar (Art. 230) o medida cautelar genérica (Art. 232), dentro del ámbito excepcional. \\
+
+\textbf{¿Qué establece el fallo Camacho Acosta (CSJN 320:1633)?} &
+La Corte hizo lugar a una medida innovativa (Art. 230 CPCC) como tutela anticipada: se ordenó anticipar el dinero para la prótesis al trabajador accidentado, cuyo brazo amputado requería colocación urgente. Estableció que para la tutela anticipada rigen los mismos presupuestos cautelares (verosimilitud, peligro, contracautela) más mayor prudencia del juez. \\
+
+\textbf{¿Qué establece el fallo Clarín (CSJN 333:1885) y qué demuestra sobre el carácter provisorio?} &
+La Corte hizo lugar a la prohibición de no innovar (faceta no innovativa del Art. 230): no se aplicó la Ley de Medios al Grupo Clarín mientras duró el proceso. Sin embargo, en la sentencia definitiva la Corte declaró los artículos constitucionales --decisión contraria a la tutela cautelar otorgada. Esto demuestra claramente el carácter provisorio de la tutela anticipada. \\
+
+\textbf{¿Qué es la cautela autónoma y en qué contexto surge?} &
+Es una medida propia del derecho administrativo por la cual el administrado peticiona al juez que suspenda los efectos de un acto administrativo hasta que se resuelva el recurso interpuesto. Surgió como creación pretoriana jurisprudencial (antes vía amparo), porque el Art. 12 de la Ley 19.549 establece que los recursos no suspenden los actos administrativos, pudiendo generar perjuicios irreparables. \\
+
+\textbf{¿Cuáles son las críticas a la regulación de la tutela anticipada en provincias y en el proyecto de reforma?} &
+Se critica que: (1) agregan requisitos numerosos y rígidos que entorpecen el acceso a la tutela; (2) limitan el objeto a prestaciones dinerarias; (3) exigen audiencia previa con el demandado antes de otorgar la medida, lo que puede demorar meses. Esto vulnera la tutela judicial efectiva, el principio pro homine y el principio de progresividad, tornando posiblemente inconstitucionales e inconvencionales tales regulaciones. \\
+
+\textbf{¿Cuál es la diferencia entre cautelar y condena?} &
+Cuando el juez otorga una tutela anticipada de modo provisorio hay cautela. Cuando el juez decide en la sentencia definitiva sobre esa misma pretensión hay condena. La cautela es provisoria, la condena es definitiva con autoridad de cosa juzgada. \\
+
+\midrule
+
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:}
+La clase expone el cierre del bloque de Sistemas Cautelares. En el ámbito normal, los sistemas asegurativos genéricos --inhibición general de bienes (Art. 228), medida cautelar genérica (Art. 232) y prohibición de innovar (Art. 230)-- tienen carácter residual y subsidiario: sólo proceden cuando las medidas tradicionales (embargo, secuestro, etc.) resultan insuficientes. La inhibición opera sobre bienes registrables de modo indeterminado; la medida cautelar genérica habilita cualquier tutela adaptada al caso; y la prohibición de innovar presenta dos facetas --innovativa y no innovativa-- según dónde provenga el perjuicio. El ámbito excepcional se configura cuando la pretensión cautelar se superpone total o parcialmente con la pretensión sustancial del proceso: esto es la tutela anticipada. Su carácter provisorio --a diferencia del definitivo de la sentencia-- la distingue del prejuzgamiento y la legitima constitucionalmente. Se materializa tanto a través de vías legales específicas (alimentos provisorios, desalojo anticipado) como de medidas cautelares en su faceta excepcional, según doctrina de la CSJN (Camacho Acosta: faceta innovativa; Clarín: faceta no innovativa). La cautela autónoma --cuarta medida del sistema asegurativo genérico-- permite al administrado peticionar la suspensión judicial de los efectos de un acto administrativo mientras tramita el recurso. Su régimen fue alterado por la Ley 26.854, que bilateraliza el trámite y exige perjuicios graves e irreparables. Tanto esta regulación como los proyectos que regulan la tutela anticipada con requisitos agravados son criticados por vulnerar el principio de tutela judicial efectiva, el pro homine y la progresividad, pudiendo ser tachados de inconstitucionales e inconvencionales.
+} \\
+
+\bottomrule
+\end{longtable}
+
+\end{document}
