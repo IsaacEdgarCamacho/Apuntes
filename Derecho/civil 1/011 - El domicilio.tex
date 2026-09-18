@@ -1,0 +1,736 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Civil --- Parte General}
+\newcommand{\titulo}{Atributos de la Persona Humana: El Domicilio, Asiento Jurídico de la Persona}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL (hyperref al final)
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ---------------- PORTADA ----------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender la estructura de un concepto jurídico es el primer paso para poder aplicarlo con precisión en la práctica profesional.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------- ÍNDICE ----------------
+\tableofcontents
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+
+\chapter{El domicilio como concepto jurídico}
+
+Este primer bloque introduce el domicilio como atributo de la persona humana, precisa su ubicación normativa y lo distingue de dos nociones con las que suele confundirse: el domicilio en sentido constitucional y la simple residencia.
+
+\section{Concepto y finalidad del domicilio}
+
+El domicilio constituye un concepto jurídico civil específico, que no debe confundirse con el domicilio que figura en el documento nacional de identidad (DNI). Se trata de un atributo de la persona que permite ubicarla para los efectos jurídicos correspondientes.
+
+\begin{definition}{Domicilio}
+El domicilio es el asiento jurídico de la persona: el lugar donde, a los efectos jurídicos correspondientes, se considera que se encuentra una persona.
+\end{definition}
+
+\begin{important}
+El domicilio civil no debe confundirse con el domicilio registrado en el DNI. Este último constituye una forma de registración, mientras que el domicilio, como concepto jurídico, depende de reglas propias del derecho civil.
+\end{important}
+
+El domicilio resulta relevante para distintos efectos jurídicos:
+
+\begin{itemize}
+    \item \textbf{Determinar la ley aplicable} a una determinada situación: por ejemplo, la ley aplicable a un inmueble es la ley del territorio donde este se encuentra.
+    \item \textbf{Determinar la jurisdicción del juez competente}: por ejemplo, en una sucesión, es competente el juez del lugar del último domicilio que tenía la persona fallecida.
+    \item \textbf{Practicar válidamente las notificaciones} a una persona.
+    \item \textbf{Determinar el lugar de cumplimiento de las obligaciones}: por ejemplo, en un préstamo de dinero, si la persona es la acreedora, el deudor deberá devolverle el dinero en su domicilio.
+\end{itemize}
+
+\section{Ubicación normativa}
+
+El domicilio está regulado en el Libro Primero del Código Civil y Comercial de la Nación (Parte General), Título Primero (La persona humana), Capítulo Quinto (El domicilio), artículos 73 a 78.
+
+\begin{note}
+Código Civil y Comercial de la Nación --- Libro Primero, Parte General, Título Primero (La persona humana), Capítulo Quinto (El domicilio), artículos 73 a 78.
+\end{note}
+
+\section{Domicilio civil y domicilio constitucional}
+
+Corresponde distinguir el concepto de domicilio que se estudia en derecho civil de otro concepto, más amplio, correspondiente al ámbito constitucional.
+
+Cuando la Constitución se refiere a la inviolabilidad del domicilio, en realidad está protegiendo la vida privada, la vivienda, y la imposibilidad de realizar allanamientos sin orden judicial, junto con toda una serie de recaudos vinculados a la concepción política constitucional.
+
+\begin{important}
+El domicilio civil es un concepto distinto del domicilio constitucional. El primero sirve a los fines de las relaciones jurídicas --- cumplimiento de obligaciones, ley aplicable, competencia judicial y notificaciones ---, mientras que el segundo protege la inviolabilidad de la vivienda y la vida privada frente a injerencias como los allanamientos sin orden judicial.
+\end{important}
+
+El domicilio civil es un concepto que surge de la ley: a veces coincide con la residencia real de la persona, y otras veces la ley lo asigna en función de una determinada función que la persona desempeña en una situación dada. Esta distinción se desarrolla en los tipos de domicilio estudiados más adelante.
+
+\section{Domicilio y residencia}
+
+Corresponde distinguir el domicilio de la residencia. La residencia es el lugar donde, en los hechos, se encuentra una persona, y puede ser habitual o actual.
+
+\begin{example}{Residencia actual u habitación}
+Una persona que se va de vacaciones y habita transitoriamente una casa en Mar del Plata tiene allí su residencia actual (también llamada habitación), aunque su domicilio continúe estando en la ciudad donde habitualmente reside. La residencia actual no implica, por sí sola, un cambio de domicilio.
+\end{example}
+
+La residencia actual puede o no significar un cambio de domicilio: la residencia es un concepto de hecho, que puede o no coincidir con el domicilio jurídico.
+
+\subsection*{Cuadro Cornell --- Bloque I}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es el domicilio?} &
+El asiento jurídico de la persona: el lugar donde, a los efectos jurídicos correspondientes, se considera que se encuentra una persona. Es un atributo de la persona humana que permite localizarla. \\
+
+\textbf{¿Dónde está regulado el domicilio?} &
+En el Código Civil y Comercial, Libro Primero, Parte General, Título Primero, Capítulo Quinto, artículos 73 a 78. \\
+
+\textbf{¿Para qué sirve jurídicamente el domicilio?} &
+Para determinar la ley aplicable a una situación, la jurisdicción del juez competente (por ejemplo, en una sucesión), el lugar válido para las notificaciones, y el lugar de cumplimiento de las obligaciones. \\
+
+\textbf{¿En qué se diferencia el domicilio civil del domicilio constitucional?} &
+El domicilio constitucional protege la inviolabilidad de la vivienda y la vida privada (por ejemplo, frente a allanamientos sin orden judicial). El domicilio civil, en cambio, es el concepto que determina la ley aplicable, la competencia, las notificaciones y el cumplimiento de obligaciones. \\
+
+\textbf{¿En qué se diferencia el domicilio de la residencia?} &
+La residencia es un concepto de hecho: el lugar donde efectivamente se encuentra una persona, que puede ser habitual o actual (también llamada habitación). Puede o no coincidir con el domicilio jurídico. \\
+
+\midrule
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El domicilio es el asiento jurídico de la persona, regulado en los artículos 73 a 78 del Código Civil y Comercial. Se distingue del domicilio constitucional --- vinculado a la inviolabilidad de la vivienda --- y de la residencia, que es un concepto meramente fáctico.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{Clasificación del domicilio: general y especial}
+
+El domicilio admite una primera gran clasificación entre dos categorías: el domicilio general y el domicilio especial.
+
+\section{Domicilio general y domicilio especial}
+
+\begin{definition}{Domicilio general}
+El domicilio general rige para la generalidad de las relaciones jurídicas o situaciones jurídicas de una persona. Debe ser uno solo, y puede ser real o legal.
+\end{definition}
+
+\begin{definition}{Domicilio especial}
+El domicilio especial tiene efectos para una o algunas relaciones jurídicas particulares determinadas. Una persona puede tener varios domicilios especiales.
+\end{definition}
+
+Dentro del domicilio general, corresponde distinguir el domicilio real del domicilio legal:
+
+\begin{itemize}
+    \item El \textbf{domicilio real} es el domicilio que la persona elige, y donde tiene el asiento jurídico de su familia y sus negocios.
+    \item El \textbf{domicilio legal} es aquel que la ley le asigna a la persona en ciertos casos.
+\end{itemize}
+
+\begin{important}
+No es correcto identificar el ``domicilio legal'' con el domicilio que figura en el DNI. Normalmente, toda persona tiene un domicilio real, que es el que ella elige por ser un domicilio voluntario. Solo en circunstancias particulares, previstas expresamente por la ley, corresponde asignarle un domicilio legal.
+\end{important}
+
+\begin{example}{Múltiples domicilios especiales}
+Una persona puede celebrar un contrato de préstamo de dinero fijando un domicilio determinado, y al día siguiente celebrar otro préstamo fijando un domicilio distinto, y así sucesivamente, pues puede constituir tantos domicilios especiales como quiera. Sin embargo, esta multiplicidad puede complicar en la práctica la administración de los distintos efectos jurídicos, ya que cada contraparte enviará sus notificaciones o pagos al domicilio fijado en su respectivo contrato.
+\end{example}
+
+La diferencia central entre ambos tipos radica en su alcance y en su número: el domicilio general rige para la generalidad de las relaciones jurídicas, se subdivide entre real y legal, y es único; el domicilio especial rige para relaciones jurídicas determinadas, y pueden existir varios de manera simultánea.
+
+\section{Caracteres del domicilio general}
+
+El domicilio general presenta dos caracteres esenciales.
+
+\begin{important}
+El domicilio general es \textbf{necesario}: ninguna persona puede carecer de él. El domicilio general es \textbf{único}: no se puede tener más de uno, pues ello generaría confusión respecto de dónde ubicar a la persona a todos los efectos jurídicos.
+\end{important}
+
+El domicilio general no necesariamente coincide con el domicilio que figura en el DNI, que constituye únicamente una forma de registración, y no debe confundirse con el domicilio como concepto estrictamente civil.
+
+\section{Tipos de domicilio especial}
+
+Dentro del domicilio especial se distinguen los siguientes tipos, que se desarrollan en profundidad en el Capítulo 4:
+
+\begin{itemize}
+    \item Domicilio para los contratos, de carácter convencional.
+    \item Domicilio para el proceso, de carácter procesal.
+    \item Domicilio para los fines profesionales, previsto en el artículo 73, segundo párrafo: por ejemplo, si una persona es abogada, su domicilio especial es el lugar donde tiene su estudio.
+\end{itemize}
+
+Mientras pueden existir muchos domicilios especiales, el domicilio general es siempre único.
+
+\subsection*{Cuadro Cornell --- Bloque II}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuáles son las dos grandes clases de domicilio?} &
+Domicilio general (rige para la generalidad de las relaciones jurídicas de la persona, es único, y puede ser real o legal) y domicilio especial (rige para una o algunas relaciones jurídicas determinadas; puede haber varios). \\
+
+\textbf{¿Por qué el domicilio general es necesario y único?} &
+Es necesario porque ninguna persona puede carecer de él. Es único porque, si una persona tuviera más de un domicilio general, se generaría confusión sobre dónde ubicarla a todos los efectos jurídicos. \\
+
+\textbf{¿Qué tipos de domicilio especial existen?} &
+El domicilio convencional o de elección (pactado en un contrato), el domicilio procesal (constituido en un juicio, incluido el domicilio electrónico) y el domicilio profesional (para las obligaciones derivadas del ejercicio de una profesión liberal). \\
+
+\midrule
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El domicilio general es único y necesario, y se subdivide en real o legal; el domicilio especial, en cambio, puede ser múltiple y comprende el convencional, el procesal y el profesional.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{Domicilio real y domicilio legal}
+
+Este bloque desarrolla en detalle los dos tipos de domicilio general: el domicilio real y el domicilio legal.
+
+\section{El domicilio real: definición}
+
+El domicilio real está regulado en el artículo 73 del Código Civil y Comercial.
+
+\begin{definition}{Domicilio real (art. 73, primer párrafo, CCyC)}
+El domicilio real es el lugar donde la persona tiene el lugar de su residencia habitual.
+\end{definition}
+
+El artículo 73 contempla, en realidad, dos supuestos distintos: el primer párrafo regula el domicilio real propiamente dicho, mientras que el segundo párrafo regula un supuesto de domicilio especial (el domicilio profesional), que se desarrolla en el Capítulo 4.
+
+\section{Caracteres del domicilio real}
+
+El domicilio real es voluntario: depende de la persona constituirlo, mantenerlo, exigirlo o modificarlo, en virtud del principio de libre elección del domicilio.
+
+\begin{important}
+La facultad de cambiar de domicilio no puede ser coartada por contrato ni por una imposición de última voluntad (por ejemplo, en un testamento).
+\end{important}
+
+\begin{example}{Imposibilidad de coartar el cambio de domicilio}
+Unos padres le ofrecen a su hijo o hija una casa como regalo de casamiento, bajo la condición de que nunca se mude de allí. Esa condición no puede disponerse válidamente, porque no es posible obligar a una persona a no cambiar nunca su domicilio.
+\end{example}
+
+\section{Elementos del domicilio real: corpus y ánimo}
+
+El domicilio real se compone de dos elementos: uno material u objetivo, denominado corpus, y uno intencional o subjetivo, denominado ánimo.
+
+\begin{definition}{Corpus}
+Es la residencia efectiva en un lugar, es decir, la materialidad de estar viviendo en un lugar determinado.
+\end{definition}
+
+\begin{definition}{Ánimo}
+Es la intención de permanecer en un lugar y de constituir allí el domicilio. Es el elemento subjetivo, intencional, por el cual la persona quiere estar en ese lugar.
+\end{definition}
+
+\begin{example}{El estudiante de otra provincia}
+Una persona proveniente de Santa Rosa que se traslada a la ciudad de Buenos Aires para cursar una carrera universitaria reside allí transitoriamente, pero sin intención de cambiar su domicilio de origen. A los fines jurídicos, esa persona conserva su domicilio real en Santa Rosa, aun cuando su residencia actual (habitación) se encuentre en Buenos Aires.
+\end{example}
+
+\section{Constitución y extinción del domicilio real}
+
+El domicilio real se constituye cuando concurren el corpus y el ánimo, es decir, cuando la persona vive en un lugar determinado con la intención de hacer de ese lugar su residencia habitual.
+
+\begin{formula}{Permanencia y cambio del domicilio real (art. 77, CCyC)}
+El domicilio real se mantiene mientras subsista alguno de sus dos elementos (corpus o ánimo). El cambio de domicilio se produce instantáneamente por el hecho de trasladar la residencia de un lugar a otro con ánimo de permanecer en ella.
+\end{formula}
+
+\begin{note}
+El domicilio se mantiene mientras subsista uno de los dos elementos: una persona puede mudarse físicamente sin cambiar todavía su ánimo, conservando corpus en el lugar nuevo pero ánimo de regresar al domicilio anterior. Para que se produzca efectivamente el cambio de domicilio se requieren ambos elementos, ánimo y corpus, de manera conjunta.
+\end{note}
+
+El domicilio real se extingue por la constitución de un nuevo domicilio, o bien porque se impone sobre la persona un domicilio legal, según lo que establece la legislación.
+
+\section{El domicilio legal: concepto y caracteres}
+
+El domicilio legal, a diferencia del domicilio real, es forzoso: la ley se lo impone a la persona.
+
+\begin{important}
+Las excepciones que dan lugar al domicilio legal se interpretan de manera restrictiva, sin que resulte aplicable la analogía para crear nuevos supuestos no previstos por la ley.
+\end{important}
+
+\begin{itemize}
+    \item El domicilio legal es \textbf{forzoso}: lo impone la ley, a diferencia del domicilio real, que es voluntario.
+    \item Las causales de domicilio legal se interpretan de manera \textbf{restrictiva}; no es aplicable la analogía para crear nuevos supuestos no previstos por la ley.
+    \item El domicilio legal es \textbf{excepcional}: en principio, toda persona tiene domicilio real, salvo que encuadre en alguno de los supuestos legales.
+    \item El domicilio legal es \textbf{único}, por ser una especie de domicilio general.
+\end{itemize}
+
+\section{Definición legal y naturaleza de la presunción}
+
+\begin{definition}{Domicilio legal (art. 74, CCyC)}
+El domicilio legal es el lugar donde la ley presume, sin admitir prueba en contra, que la persona reside de manera permanente para el ejercicio de sus derechos y el cumplimiento de sus obligaciones.
+\end{definition}
+
+\begin{note}
+La ley presume, sin admitir prueba en contrario, la existencia del domicilio legal cuando se configura alguno de los casos que ella misma contempla. Se trata de una presunción \textit{iuris et de iure}: una presunción que se impone a la persona y que no le permite demostrar lo contrario.
+\end{note}
+
+\section{Los cuatro supuestos de domicilio legal}
+
+Conforme al artículo 74, existen cuatro supuestos en los que la ley impone un domicilio legal.
+
+\begin{formula}{Supuestos de domicilio legal (art. 74, CCyC)}
+\begin{itemize}
+    \item Los funcionarios públicos tienen su domicilio en el lugar donde deben cumplir sus funciones, sea que las cumplan de manera permanente, periódica o por comisión.
+    \item Los militares en servicio activo tienen su domicilio en el lugar en que están prestando servicio.
+    \item Los transeúntes o las personas que no tienen domicilio conocido tienen su domicilio en el lugar de su residencia actual.
+    \item Las personas incapaces tienen su domicilio en el domicilio de su representante.
+\end{itemize}
+\end{formula}
+
+\begin{example}{Los cuatro supuestos aplicados}
+\textbf{Funcionarios públicos}: un ministro de la Corte Suprema o un ministro del Poder Ejecutivo tiene domicilio en el lugar donde cumple sus funciones.
+
+\textbf{Militares}: la regla se aplica a los militares en servicio activo, quienes tienen su domicilio en el lugar donde prestan ese servicio.
+
+\textbf{Transeúntes}: comprende a las personas cuya profesión o manera de vida implica traslados constantes, o a personas en situación de calle, quienes tienen su domicilio en el lugar de su residencia actual. Un ejemplo habitual es el de los integrantes de un circo, cuyo domicilio coincide con el lugar donde se encuentren residiendo en cada momento.
+
+\textbf{Personas incapaces}: por ejemplo, los menores de edad tienen su domicilio en el domicilio de su representante. Así, si un menor tiene un derecho en una sucesión, las notificaciones e intimaciones correspondientes se dirigirán al domicilio de sus representantes.
+\end{example}
+
+\begin{note}
+Los supuestos de domicilio legal son, en total, cuatro, sin que corresponda extender esta lista por analogía. El régimen anterior contemplaba un caso adicional, referido a las personas que trabajaban en la casa de otros (el servicio doméstico agregado a la casa de sus empleadores), pero ese supuesto fue eliminado del Código actual.
+\end{note}
+
+Para los fines del derecho civil, toda persona tiene, en principio, un domicilio real; pero si se configura alguno de estos cuatro supuestos, la ley le impone un domicilio legal, sin admitir prueba en contrario.
+
+\subsection*{Cuadro Cornell --- Bloque III}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿El domicilio coincide siempre con el que figura en el DNI?} &
+No necesariamente. El domicilio que figura en el DNI es solo una forma de registración; el domicilio real, como concepto jurídico civil, depende de la residencia habitual y la intención de la persona (corpus y ánimo), no del dato registrado en el documento. \\
+
+\textbf{¿Qué es el domicilio real?} &
+Es el domicilio voluntario: el lugar donde la persona tiene su residencia habitual, y donde tiene el asiento jurídico de su familia y sus negocios. La persona puede constituirlo, mantenerlo y modificarlo libremente. \\
+
+\textbf{¿Puede limitarse contractualmente la libertad de cambiar de domicilio?} &
+No. La facultad de cambiar de domicilio no puede ser coartada por contrato ni por una disposición de última voluntad (por ejemplo, un testamento que condicione una donación a no mudarse). \\
+
+\textbf{¿Cuáles son los elementos del domicilio real?} &
+El corpus (elemento material: la residencia efectiva en un lugar) y el ánimo (elemento intencional: la voluntad de permanecer y constituir allí el domicilio). Ambos deben concurrir para que se constituya el domicilio real. \\
+
+\textbf{¿Qué pasa si alguien reside transitoriamente en otra ciudad, como un estudiante universitario?} &
+Conserva su domicilio real de origen si no tuvo la intención (ánimo) de cambiarlo, aunque tenga su residencia actual (habitación) en la nueva ciudad mientras estudia. \\
+
+\textbf{¿Cuándo se extingue el domicilio real?} &
+Por la constitución de un nuevo domicilio (cuando concurren corpus y ánimo en otro lugar) o porque la ley le impone a la persona un domicilio legal. \\
+
+\textbf{¿Qué es el domicilio legal?} &
+El domicilio forzoso que la ley impone a la persona en ciertos casos taxativos, mediante una presunción que no admite prueba en contrario (presunción \textit{iuris et de iure}). \\
+
+\textbf{¿Cuáles son los cuatro supuestos de domicilio legal?} &
+Los funcionarios públicos (domicilio en el lugar donde cumplen sus funciones), los militares en servicio activo (donde prestan servicio), los transeúntes o personas sin domicilio conocido (en su residencia actual) y las personas incapaces (en el domicilio de su representante). \\
+
+\midrule
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El domicilio real es voluntario y se constituye por la concurrencia de corpus y ánimo; no puede limitarse contractualmente. El domicilio legal, en cambio, es forzoso, excepcional y único, y solo se configura en los cuatro supuestos taxativos previstos por el artículo 74.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{Domicilio especial, efectos y domicilio desconocido}
+
+Este último bloque desarrolla en profundidad los distintos tipos de domicilio especial, los efectos jurídicos generales del domicilio y las reglas aplicables cuando este se ignora o se discute.
+
+\section{Domicilio especial convencional o de elección}
+
+El domicilio especial convencional es el que eligen las partes de un contrato para el ejercicio de los derechos y obligaciones que de él emanan. La doctrina coincide en denominarlo domicilio convencional o de elección.
+
+\begin{example}{La cláusula de domicilio en un contrato}
+Es habitual que, en el encabezado de un contrato, se identifique a cada parte junto con un domicilio determinado, estableciéndose que las partes constituyen domicilio, a los efectos de ese contrato, en los lugares indicados, donde serán válidas todas las notificaciones. Si surge una discusión derivada de ese contrato, la notificación enviada a ese domicilio pactado tendrá efecto, aunque la persona se haya mudado y alegue que ya no vive allí.
+\end{example}
+
+\begin{definition}{Domicilio especial convencional}
+El domicilio especial convencional es el que las partes de un contrato eligen para el ejercicio de los derechos y obligaciones derivados de él. Las notificaciones enviadas a ese domicilio son válidas, aunque la persona ya no resida allí, salvo que se modifique el contrato o se notifique y acepte el cambio de domicilio.
+\end{definition}
+
+\begin{important}
+El fundamento de esta regla reside en la fuerza vinculante de los contratos: si en el contrato existe un acuerdo por el cual las partes se obligan a respetar como válidas las notificaciones enviadas al domicilio pactado, ello debe respetarse mientras no se modifique el contrato. Por esa razón, si una parte desea cambiar el domicilio especial pactado, deberá modificar el contrato, o bien notificar a la otra parte y lograr que esta acepte la modificación.
+\end{important}
+
+\section{Domicilio procesal}
+
+El domicilio procesal, también llamado domicilio \textit{ad litem}, presenta en la actualidad una modalidad electrónica, utilizada a través del sistema de notificaciones del Poder Judicial, que coincide con el número de CUIT del profesional interviniente, quien recibe allí muchas de sus notificaciones por correo electrónico.
+
+\begin{example}{El domicilio constituido en distintos procesos}
+Un abogado puede tener como cliente a una persona que vive en un domicilio determinado, pero que, para los fines de un proceso judicial concreto, constituye domicilio en el estudio de dicho abogado. Si la misma persona tiene otro abogado en un juicio distinto, tendrá en ese otro proceso un domicilio especial diferente, correspondiente al estudio de ese segundo profesional. Como consecuencia, según el juicio de que se trate, las notificaciones se dirigirán a uno u otro domicilio procesal.
+\end{example}
+
+Además del domicilio electrónico, existe el denominado domicilio constituido, que generalmente coincide con el domicilio del propio abogado interviniente en el proceso.
+
+\section{Domicilio profesional}
+
+El segundo párrafo del artículo 73 regula el domicilio profesional o comercial.
+
+\begin{definition}{Domicilio profesional (art. 73, segundo párrafo, CCyC)}
+La persona que ejerce actividad profesional o económica tiene su domicilio en el lugar donde la desempeña, para el cumplimiento de las obligaciones emergentes de dicha actividad.
+\end{definition}
+
+Esta regla comprende a las profesiones liberales: el contador, el abogado, el ingeniero, el psicólogo, el psiquiatra, el médico. Todas estas profesiones tienen domicilio, a los fines de las obligaciones derivadas de su actividad profesional, en el lugar donde se desempeñan.
+
+\begin{example}{El abogado con un problema de familia}
+Si un abogado o una abogada tiene un problema vinculado, por ejemplo, al régimen de cuidado de sus propios hijos, no será notificado en el lugar donde ejerce su profesión, sino en su domicilio real, que es el lugar donde efectivamente vive, dado que ese problema no está vinculado con su actividad profesional.
+\end{example}
+
+\begin{important}
+El artículo 73 contempla dos supuestos distintos: el primer párrafo regula el domicilio real, mientras que el segundo párrafo regula un tipo de domicilio especial, el profesional. Se trata de dos instituciones jurídicas distintas, aunque reguladas en el mismo artículo, por lo que corresponde leer con atención ambos párrafos para no confundirlas.
+\end{important}
+
+\section{Domicilio desconocido}
+
+El artículo 76 del Código regula qué sucede cuando se ignora el domicilio de una persona.
+
+\begin{definition}{Domicilio desconocido (art. 76, CCyC)}
+La persona cuyo domicilio no es conocido lo tiene en el lugar donde se encuentra; y si este también se ignora, en su último domicilio conocido.
+\end{definition}
+
+Esta regla resulta relevante en el ejercicio profesional, ya que con frecuencia no se conoce inicialmente el lugar donde ubicar a una persona, especialmente cuando se trata de un deudor que procura evitar ser identificado o ubicado. En ese contexto adquiere relevancia el domicilio registrado, por ejemplo, en el DNI o en los trámites electorales.
+
+\begin{example}{El deudor que no aparece}
+Cuando no se conoce el domicilio de un deudor y las cédulas de notificación enviadas al último domicilio conocido son rechazadas, corresponde solicitar un oficio al Registro de las Personas para que informe el último domicilio conocido, y notificar allí. Esta posibilidad está habilitada precisamente por el artículo 76: si no se conoce con certeza el domicilio actual de una persona, la notificación puede enviarse válidamente a su último domicilio conocido.
+\end{example}
+
+Frente a una notificación practicada en el último domicilio conocido, la persona afectada puede alegar que ya no vivía allí y solicitar que se declare inválida la notificación y las actuaciones derivadas de ella. En tal caso, se abrirá un proceso para determinar si efectivamente esa persona ya no residía allí, o si, por el contrario, quien notificó conocía el verdadero domicilio y de todas formas dirigió la notificación a un lugar donde sabía que la persona no vivía.
+
+\begin{important}
+Distribución de la carga de la prueba: si quien recibió la notificación afirma que no conocía el verdadero domicilio del destinatario, se aplica el artículo 76, y corresponde a la otra parte demostrar que hubo mala fe de quien notificó. Si esta no logra demostrarlo, se considera debidamente notificado conforme a las reglas del artículo 76.
+\end{important}
+
+\begin{note}
+Si una persona se muda y una notificación judicial llega a un domicilio donde ya no vive, en principio esa notificación no surte efectos, pues para producirlos debe llegar efectivamente al lugar donde la persona vive. No obstante, esto constituye uno de los grandes problemas prácticos que enfrentan los profesionales al intentar ubicar a los deudores, dado que algunas personas actúan de mala fe para evitar ser notificadas. Cuando se han intentado distintos domicilios sin éxito, se procura notificar en el domicilio que figure en el DNI, y si tampoco resulta posible, se notifica bajo responsabilidad de la parte actora, como forma de continuar válidamente con el proceso.
+\end{note}
+
+\section{Efectos jurídicos del domicilio}
+
+El artículo 78 establece los efectos jurídicos generales del domicilio.
+
+\begin{definition}{Efectos del domicilio (art. 78, CCyC)}
+El domicilio determina la competencia de las autoridades en las relaciones jurídicas. Allí debe notificarse a la persona, intimarla, demandarla o requerirla extrajudicialmente, sin perjuicio de lo dispuesto en leyes especiales.
+\end{definition}
+
+Esta regla incluye también la elección de domicilio respecto de la prueba de la competencia: si una persona constituye un domicilio determinado en un contrato, ello produce efectos también frente a la competencia del juez ante el que podrá ser demandada.
+
+\section{Precisiones adicionales}
+
+Las siguientes precisiones complementan el desarrollo normativo anterior y permiten resolver situaciones particulares vinculadas con el domicilio.
+
+\begin{note}
+\textbf{Domicilio de las personas privadas de su libertad.} El domicilio especial no equivale al domicilio de una persona detenida. La situación de las personas privadas de su libertad depende de la situación concreta: en principio tendrán el domicilio donde residen actualmente, aunque esta cuestión se rige más bien por las reglas del sistema penitenciario y de ejecución de la pena que por las normas del domicilio civil. Cuando el traslado al lugar de detención se produjo en contra de la voluntad de la persona, no se configuran, en rigor, los elementos de corpus y ánimo propios del domicilio real, por ausencia de una voluntad libre de constituir allí su residencia.
+\end{note}
+
+\begin{note}
+\textbf{Ciudadanos argentinos residentes en el exterior.} Para el ámbito de las relaciones jurídicas civiles, un ciudadano argentino puede trasladar su domicilio al exterior, en cuyo caso, para la ley argentina y a sus efectos, esa persona deja de tener domicilio en la Argentina. Por ejemplo, si el último domicilio de una persona fallecida estaba en el exterior, la sucesión deberá tramitarse en ese país. Esta materia se vincula, además, con el derecho internacional privado, donde el domicilio constituye uno de los puntos de conexión relevantes entre distintos ordenamientos.
+\end{note}
+
+\begin{note}
+\textbf{Domicilio procesal constituido y cambio de domicilio.} Cuando en un proceso se ha constituido domicilio (por ejemplo, en el estudio del abogado que representa a una de las partes), las notificaciones por cédula continuarán dirigiéndose a ese domicilio mientras no se informe en el expediente un cambio, momento en el cual se constituye un nuevo domicilio procesal válido para ese proceso. Distinto es el caso de una notificación --- como una carta documento --- enviada antes de que se haya constituido domicilio en un proceso: si esa notificación se dirige a un lugar donde la persona ya no vive, en principio no surte efectos, porque para producirlos debe llegar efectivamente al lugar donde la persona reside.
+\end{note}
+
+\subsection*{Cuadro Cornell --- Bloque IV}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Son válidas las notificaciones a un domicilio contractual aunque la persona ya no viva allí?} &
+Sí. Si se pactó un domicilio especial en un contrato, las notificaciones allí enviadas son válidas aunque la persona se haya mudado, salvo que se modifique el contrato o se notifique y acepte el cambio de domicilio, en virtud de la fuerza vinculante de los contratos. \\
+
+\textbf{¿Qué ocurre si un profesional tiene un problema personal ajeno a su actividad?} &
+Se lo notifica en su domicilio real, no en su domicilio profesional, ya que este último solo rige para las obligaciones emergentes de la actividad profesional. \\
+
+\textbf{¿Qué dice el artículo 76 sobre el domicilio desconocido?} &
+Que la persona cuyo domicilio no es conocido lo tiene en el lugar donde se encuentra, y si esto también se ignora, en su último domicilio conocido. Esto habilita a notificar válidamente en ese último domicilio. \\
+
+\textbf{¿Qué sucede si se notifica de mala fe a un domicilio donde la persona ya no vive, sabiéndolo?} &
+La notificación puede declararse inválida; la parte que alega haber actuado de buena fe (ignorando el verdadero domicilio) puede ampararse en el artículo 76, pero corresponde a la otra parte demostrar la mala fe de quien notificó. \\
+
+\textbf{¿Qué efectos jurídicos produce el domicilio según el artículo 78?} &
+Determina la competencia de las autoridades judiciales: allí debe notificarse, intimarse, demandarse o requerirse extrajudicialmente a la persona, sin perjuicio de lo dispuesto en leyes especiales. \\
+
+\textbf{¿Qué ocurre si un ciudadano argentino traslada su domicilio al exterior?} &
+Para la ley argentina y sus efectos, esa persona deja de tener domicilio en la Argentina; por ejemplo, su sucesión deberá tramitarse en el país donde tenía su último domicilio. \\
+
+\midrule
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El domicilio especial comprende el convencional, el procesal y el profesional, cada uno con reglas propias de validez de notificaciones. El domicilio desconocido se resuelve mediante el último domicilio conocido (art. 76), y el domicilio produce, conforme al artículo 78, efectos generales sobre la competencia y las notificaciones.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter*{Síntesis final}
+\addcontentsline{toc}{chapter}{Síntesis final}
+
+El domicilio constituye un atributo de la persona humana, regulado en los artículos 73 a 78 del Código Civil y Comercial, y se define como el asiento jurídico de la persona: el lugar donde se la localiza a los efectos de la ley aplicable, la competencia judicial, las notificaciones y el cumplimiento de las obligaciones. Este concepto se diferencia con precisión del domicilio constitucional, vinculado a la inviolabilidad de la vivienda, y de la simple residencia, que es un concepto de hecho que no siempre coincide con el domicilio jurídico.
+
+Sobre esa base se presenta la clasificación central de la materia: el domicilio general, único y aplicable a la generalidad de las relaciones jurídicas de una persona --- que puede ser real (voluntario, constituido por la concurrencia de corpus y ánimo) o legal (forzoso, impuesto por la ley en cuatro supuestos taxativos: funcionarios públicos, militares en servicio activo, transeúntes y personas incapaces) --- frente al domicilio especial, que puede ser múltiple y que rige solo para relaciones jurídicas determinadas, distinguiéndose el domicilio convencional o contractual, el domicilio procesal y el domicilio profesional.
+
+Finalmente, se estudiaron las reglas aplicables cuando el domicilio se ignora, conforme al artículo 76 (notificación válida en el último domicilio conocido) y los efectos jurídicos generales del domicilio según el artículo 78. En definitiva, el domicilio, lejos de reducirse al dato que figura en el DNI, constituye una herramienta jurídica dinámica y multifacética, cuyo correcto manejo resulta indispensable en la práctica profesional: desde la redacción de cláusulas contractuales hasta la localización de un deudor remiso, pasando por la determinación de la competencia judicial en cualquier proceso.
+
+\end{document}
