@@ -1,0 +1,598 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS (datos identificados en el apunte original)
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Civil --- Introducción, Parte General}
+\newcommand{\materiacorta}{Derecho Civil}
+\newcommand{\titulo}{La Persona Humana en el Derecho Civil y Comercial}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024 / 2025}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materiacorta}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender qué es una persona para el derecho es el primer paso para ejercerlo con conciencia y responsabilidad.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% INTRODUCCIÓN
+% ------------------------------------------------------------
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
+
+La persona humana constituye el centro del derecho civil. Como señala una máxima del derecho romano recogida en el Digesto:
+
+\begin{quote}
+\textit{``Todo el derecho está constituido en razón del hombre.''}
+\end{quote}
+
+Comprender el concepto jurídico de persona humana es el punto de partida de toda práctica profesional en derecho. Cada vez que un abogado redacta un contrato, representa a un cliente, interpreta una norma o litiga en juicio, está operando sobre la categoría de persona. Sin entender qué significa ser persona para el derecho --y por qué esa categoría es previa al propio sistema normativo--, no es posible comprender ninguna institución jurídica posterior.
+
+El concepto de dignidad humana y el reconocimiento de la personalidad no son abstracciones académicas: son las razones por las que el derecho protege la vida, el nombre, el honor, la libertad y el patrimonio de las personas. Entender esto permite no solo aplicar normas, sino fundamentarlas y defenderlas.
+
+Estos apuntes recorren el tema de lo más abstracto a lo más concreto: primero se aborda qué es una persona desde la filosofía y la etimología, luego por qué el derecho la reconoce a partir de los tratados internacionales de derechos humanos y la dignidad, y finalmente cómo el Código Civil y Comercial argentino la regula en sus normas positivas.
+
+% ==============================================================
+\chapter{Fundamentos filosóficos y etimológicos de la persona}
+% ==============================================================
+
+\section{El origen etimológico de \emph{persona}}
+
+La palabra \emph{persona} se usaba en la antigüedad para designar la máscara en el teatro que representaba al personaje. Con el tiempo, esa palabra dejó de designar la máscara y comenzó a identificarse con el mismo ser humano que la usaba.
+
+La máscara, en latín, cumplía una función técnica: permitía que la voz del actor sonara más alto (\emph{per-sonare}). Era el término que designaba tanto el objeto --la máscara-- como el rol o estatus que ese personaje representaba dentro de la obra.
+
+Ese sentido de rol y estatus se trasladó luego al campo de la filosofía.
+
+\section{La definición filosófica de persona: Boecio}
+
+La definición clásica de persona fue elaborada por Boecio y es la más influyente en la tradición filosófica y jurídica occidental.
+
+\begin{definition}{Persona, según Boecio}
+\textit{``Persona es la sustancia individual de naturaleza racional.''}
+
+\begin{itemize}
+    \item \textbf{Sustancia}: indica que no es un accidente; es un ser que existe por sí mismo.
+    \item \textbf{Individual}: es indivisible, único y uno. Cada persona es irrepetible y no tiene copia.
+    \item \textbf{De naturaleza racional}: tiene una esencia que implica la capacidad del raciocinio. Esto no significa que en todo momento ejerza efectivamente esa capacidad, sino que esa es su naturaleza.
+\end{itemize}
+\end{definition}
+
+\section{El ser humano como ser en relación: dimensión jurídica}
+
+Los seres humanos son seres en relación: no están solos en la vida. Vienen a la existencia en una comunidad --la familia, el barrio, la ciudad, la provincia, el país, el mundo-- y eso hace que tengan vínculos de \textbf{alteridad} con los demás.
+
+De esa dimensión relacional se derivan tres consecuencias jurídicas fundamentales:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{0.28\textwidth} X}
+\toprule
+\textbf{Consecuencia} & \textbf{Explicación} \\
+\midrule
+La justicia & Siempre que hay relaciones de alteridad, hay relaciones de justicia. La justicia consiste en dar a cada uno lo suyo. \\
+Los contratos & El ser humano tiene dominio de sí, es capaz de hacer compromisos o pactos vinculantes. Esto funda el orden contractual. \\
+La norma jurídica & Se le pueden imponer normas porque tiene racionalidad. Reconoce que hay autoridades que deben velar por el bien común. La ley es ``una ordenación de la razón en orden al bien común, dictada por quien tiene el cuidado de la comunidad''. \\
+\bottomrule
+\end{tabularx}
+\caption{Consecuencias jurídicas de la dimensión relacional de la persona}
+\end{table}
+
+La palabra \emph{personas} --a diferencia de términos como \emph{ciudadano}, \emph{individuo} o \emph{habitante}-- contiene una significación especial: expresa un \textbf{valor y una dignidad}, y a su vez una dimensión jurídica. Decir ``personas'' es decir que hay seres que se proyectan hacia los demás, que no solo son individuales sino también relacionales.
+
+\section{La imposibilidad de distinguir entre ser humano y persona humana}
+
+\begin{important}
+En el derecho no es posible --ni legítimo-- distinguir entre ser humano y persona humana.
+
+\textbf{Todo ser humano es persona.}
+
+La personalidad no es una creación artificial del legislador, sino un dato de la naturaleza que la ley positiva reconoce.
+\end{important}
+
+Sobre este punto, se cita al profesor Borda:
+
+\begin{quote}
+\textit{``La persona no nace porque el derecho objetivo le atribuye la capacidad para adquirir derechos y contraer obligaciones, sino que le reconoce esa capacidad.''}
+\end{quote}
+
+Y se agrega: nadie recibe la personalidad como una concesión al nacer; se es persona por el solo hecho de existir.
+
+\begin{example}{El absurdo de los criterios arbitrarios de personalidad}
+Imaginemos que el derecho dijera: ``son personas los seres humanos que usan anteojos, y los que no usan anteojos no son personas''. Quien no usa anteojos no sería persona. Pero ¿cómo se establecería un criterio para determinar qué ser humano es persona y cuál no? Eso sería completamente arbitrario.
+
+Todo ser humano es persona. Esto resulta fundamental de comprender.
+\end{example}
+
+También es relevante la elección de la expresión \textbf{reconoce} --en contraposición a \emph{adjudica} o \emph{concede}--: cuando el derecho dice que ``reconoce'' la personalidad, está admitiendo que esa personalidad es anterior al propio ordenamiento jurídico.
+
+% ==============================================================
+\chapter{La persona en los tratados internacionales de derechos humanos}
+% ==============================================================
+
+\section{La Declaración Universal de Derechos Humanos (1948)}
+
+La Declaración Universal nació como reacción global ante el drama del Holocausto y de la Segunda Guerra Mundial. Ante la constatación de que un gobierno había impuesto la degradación de ciertos seres humanos a los que no consideraba personas y los exterminaba, la comunidad internacional reaccionó afirmando que ningún Estado puede ser quien adjudique la personalidad.
+
+\begin{important}
+\textbf{Declaración Universal de Derechos Humanos (1948), artículo 6:}
+
+\textit{``Todo ser humano tiene derecho, en todas partes, al reconocimiento de su personalidad jurídica.''}
+
+\textbf{Declaración Universal de Derechos Humanos (1948), artículo 1:}
+
+\textit{``Todos los seres humanos nacen libres e iguales en dignidad y en derechos.''}
+\end{important}
+
+Se destaca la importancia de la palabra \textbf{reconocer} en el texto de la Declaración. A diferencia de una licencia de conducir --que el Estado adjudica cuando se reúnen requisitos--, la personalidad jurídica no requiere cumplir ningún requisito: se reconoce por el solo hecho de ser humano.
+
+\section{El Pacto de San José de Costa Rica}
+
+\begin{formula}{Pacto de San José de Costa Rica --- Convención Americana de Derechos Humanos, art. 1.2}
+\textit{``Para los efectos de esta Convención, persona es todo ser humano.''}
+\end{formula}
+
+Lo mismo se encuentra en la Declaración Americana de Derechos y Deberes del Hombre y en el Pacto Internacional de Derechos Civiles y Políticos.
+
+\begin{note}
+En el sistema de derechos humanos hay un punto de partida: todo ser humano es persona.
+
+Esto influye directamente en la codificación argentina, porque el Código Civil y Comercial (art. 1) debe respetar los tratados de derechos humanos. Por lo tanto, el código no puede decir ``son personas solo tales y tales seres humanos''. Todo ser humano es persona.
+\end{note}
+
+\section{La dignidad humana: concepto y dimensiones}
+
+La palabra \textbf{dignidad} es central en el sistema de derechos humanos y aparece en el artículo 51 del Código Civil y Comercial. Pueden identificarse tres formas de comprenderla:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{0.20\textwidth} >{\raggedright\arraybackslash}p{0.32\textwidth} X}
+\toprule
+\textbf{Dimensión} & \textbf{Definición} & \textbf{Ejemplo} \\
+\midrule
+Funcional / del cargo & Respeto por la función que una persona desempeña en la sociedad & El presidente de la Nación merece respeto por su cargo, no por ser ``más'' como ser humano \\
+Moral / de la conducta & Respeto por las acciones virtuosas o rechazo de las conductas indignas & Los médicos que se expusieron durante la pandemia actuaron con dignidad; quienes lucraron con la crisis, de manera indigna \\
+Ontológica \textit{(la más importante para el derecho)} & Merecimiento de respeto por el solo hecho de ser humano, independientemente de cualquier cualidad o conducta & La tienen por igual la persona condenada por el delito más grave y la persona más honesta que se pueda conocer \\
+\bottomrule
+\end{tabularx}
+\caption{Dimensiones de la dignidad humana}
+\end{table}
+
+\begin{important}
+El concepto de dignidad que se toma sobre todo es el de la \textbf{dignidad ontológica}: un merecimiento de respeto por el solo hecho de ser humano, una excelencia en el ser.
+\end{important}
+
+% ==============================================================
+\chapter{La persona humana en el Código Civil y Comercial}
+% ==============================================================
+
+\section{Estructura del Código Civil y Comercial (Ley 26.994)}
+
+El Código Civil y Comercial (Ley 26.994) tiene un Título Preliminar con cuatro capítulos: el derecho, la ley, el ejercicio de los derechos, y los derechos y los bienes. Luego viene el Libro Primero, que comienza con el Título I dedicado a la persona humana y el Título II a la persona jurídica. El Título III trata los bienes; luego vienen los hechos y actos jurídicos y la transmisión de los derechos.
+
+\section{Cambios metodológicos: comparación entre Vélez y el nuevo Código}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{0.22\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Código de Vélez (Ley 340)} & \textbf{Código Civil y Comercial (Ley 26.994)} \\
+\midrule
+Terminología & Persona física / de existencia visible & Persona humana \\
+Definición de persona & Art. 30: ``entes susceptibles de adquirir derechos y contraer obligaciones'' & No incluye definición (se reconoce, no se define) \\
+Orden en el libro & Primero personas jurídicas, luego personas físicas & Primero persona humana (Título I), luego persona jurídica (Título II) \\
+Definición de persona física & Art. 51: ``entes con signos de humanidad sin distinción de cualidades o accidentes'' & Eliminada; se da por supuesta \\
+Marco de referencia & Derecho positivo nacional & Tratados internacionales de DDHH integrados al bloque constitucional \\
+\bottomrule
+\end{tabularx}
+\caption{Comparación metodológica entre el Código de Vélez y el Código Civil y Comercial}
+\end{table}
+
+\begin{important}
+Esto es toda una definición: el nuevo código coloca, de principio, en el centro del derecho civil y comercial, a la persona humana.
+\end{important}
+
+\section{El artículo 51 del Código de Vélez Sársfield (texto derogado)}
+
+\begin{note}
+\textbf{Artículo 51 --- Código Civil de Vélez Sársfield:}
+
+\textit{``Personas físicas o de existencia visible son todos los entes que presenten signos característicos de humanidad sin distinción de cualidades o accidentes.''}
+\end{note}
+
+Vélez quería decir que todo ser humano es persona. Incluía ``sin distinción de cualidades o accidentes'' porque en el derecho romano se discutía si era persona alguien que nacía con una malformación muy severa --a quienes se llamaba ``monstruosos'' o ``prodigiosos''-- o si la viabilidad era un requisito. Vélez sostenía que no importa si se nace con alguna malformación o discapacidad: todo ser humano, sin importar cualidades o accidentes, es persona física.
+
+\section{El artículo 30 del Código de Vélez Sársfield (texto derogado)}
+
+\begin{note}
+\textbf{Artículo 30 --- Código Civil de Vélez Sársfield (derogado):}
+
+\textit{``Personas son todos los entes susceptibles de adquirir derechos y contraer obligaciones.''}
+\end{note}
+
+Esta definición era útil para englobar bajo el término ``persona'' tanto a la persona humana como a las personas jurídicas, que son los sujetos colectivos que surgen de la asociatividad de las personas. El nuevo código la eliminó porque considera que el concepto de persona es anterior al derecho positivo. El derecho no tiene por qué definir quiénes son personas: son personas todos los seres humanos. Al existir los tratados de derechos humanos, el código no necesita definir quién es persona y quién no.
+
+Los fundamentos del código siguen en este punto al Proyecto de 1998, elaborado por una comisión encabezada, entre otros, por los doctores Alterini, Alegría, Highton de Nolasco y Méndez Costa, quienes habían adoptado la misma postura: el ser humano no es definido por el derecho como persona, sino que el derecho reconoce la personalidad.
+
+\section{El inicio de la existencia}
+
+El código finalmente sancionado por el Congreso se apartó de la intención primera de la comisión redactora. La comisión había propuesto inicialmente que hay dos momentos en que empieza la existencia: la concepción y la implantación.
+
+% TODO: contenido incompleto o ambiguo en las notas originales --- el apunte no detalla las razones del debate parlamentario que eliminó la implantación como criterio; solo señala el resultado.
+
+Ese criterio de la implantación fue eliminado en el debate parlamentario y quedó solo la concepción como punto de inicio de la existencia de la persona humana.
+
+\section{Artículo 51 del Código Civil y Comercial vigente}
+
+\begin{formula}{Artículo 51 --- Código Civil y Comercial (Ley 26.994)}
+\textit{``La persona humana es inviolable y en cualquier circunstancia tiene derecho al reconocimiento y respeto de su dignidad.''}
+\end{formula}
+
+% ==============================================================
+\chapter{Preguntas de los estudiantes y debates actuales}
+% ==============================================================
+
+\section{Persona física vs. persona no física}
+
+\textbf{Pregunta del estudiante:} ¿Qué sería persona no física?
+
+\textbf{Respuesta:} Era una forma de designar a la persona humana. En el Código de Vélez se llamaba persona física o de existencia visible, por oposición a las personas jurídicas o de existencia ideal, que son los entes colectivos: una asociación civil, una sociedad, el Estado, una iglesia, una fundación. Esa era la distinción en el código anterior.
+
+\section{¿Podría un robot ser considerado persona?}
+
+\textbf{Pregunta del estudiante:} ¿Podría un robot ser considerado persona con el Código de Vélez?
+
+\textbf{Respuesta:} El Código de Vélez asociaba la personalidad con la capacidad de adquirir derechos y contraer obligaciones. Si el derecho quisiera otorgar personalidad a algo distinto al ser humano, eventualmente podría hacerlo, pero deben tenerse en cuenta dos observaciones: primero, no había robots en la época de Vélez; segundo, la discusión sobre robots y otras formas de personas no humanas es muy amplia.
+
+Existe un trabajo del profesor Carlos Muñiz --jefe de trabajos prácticos de la cátedra y profesor titular en otra casa de estudios-- en el que sostiene que el término persona se vincula centralmente con el ser humano, porque la personalidad es un concepto históricamente asociado al ser humano y marca ese respeto, esa línea.
+
+Los animales merecen ciertamente un respeto, pero no tienen la posibilidad de entablar relaciones jurídicas al modo como lo hacen los humanos. Por eso quedan fuera de la consideración de ``persona'', sin que eso signifique que no haya que adoptar medidas para su protección. Existe un proyecto de reforma del Código Civil y Comercial que habla de la posibilidad de nominar a los animales como ``seres sintientes'' para darles un estatuto especial y regular su protección jurídica.
+
+El término persona, en tanto involucra una dignidad vinculada al dominio de sí, no sería fácilmente trasladable a un robot. Hoy, para los fines jurídicos, el robot está controlado por alguien: hay un programador detrás que es un ser humano que se hace cargo. Si se desarrollara un robot que celebrara contratos por sí mismo y tuviera cierta posibilidad de decidir, habría que analizar si la analogía se da con las personas jurídicas, pero siempre habría una persona humana o un grupo de personas jurídicas detrás.
+
+\begin{note}
+Por el momento, el ser persona tiene que ver con la posibilidad de entablar relaciones jurídicas, al menos desde la perspectiva civil. Esto no significa que a otros seres vivos --en este caso los animales-- no se les merezca un respeto muy grande, ni que no existan delitos por maltrato animal y disposiciones en ese sentido.
+\end{note}
+
+\section{Persona jurídica como persona moral}
+
+\textbf{Pregunta del estudiante:} ¿La persona jurídica sería persona moral?
+
+\textbf{Respuesta:} Sí, también se la suele llamar persona moral o persona colectiva. En el Código de Vélez la categoría general ``persona'' se dividía en persona física o de existencia visible y persona jurídica o de existencia ideal. En el nuevo código se simplifica: personas humanas y personas jurídicas. Las personas humanas son los seres humanos; las personas jurídicas son las organizaciones, las fundaciones.
+
+Una persona jurídica es una organización que tiene personalidad jurídica, para lo cual hay que tramitar una autorización o la ley se la concede. No cualquier asociación de personas es persona jurídica: para serlo, tiene que darse uno de los tipos que la ley reconoce (arts. 141 y siguientes, especialmente las formas privadas de los arts. 147 y 148). Si se asume una forma societaria, será una sociedad anónima o de responsabilidad limitada; si asume una forma sin fines de lucro, será una fundación o una asociación civil; puede ser también una entidad religiosa. La Iglesia Católica tiene personería jurídica pública porque la Constitución le da un estatuto especial (art. 2). El Estado, los Estados extranjeros y las organizaciones internacionales como la ONU también son personas jurídicas.
+
+\section{¿Honor y dignidad son lo mismo?}
+
+\textbf{Pregunta del estudiante:} ¿Derecho al honor y dignidad es lo mismo?
+
+\textbf{Respuesta:} No exactamente. La dignidad es un concepto más amplio; el honor tiene que ver con la reputación, con la fama de una persona. El honor tiene dos dimensiones: la personal (la honra) y la social (la fama). El honor se relaciona con una dimensión de la dignidad, pero la dignidad es el fundamento de todos los derechos humanos. Del reconocimiento de la dignidad pueden derivarse el derecho a la vida, el derecho al honor y el derecho a la libertad. La dignidad es el fundamento, y los distintos derechos humanos son exigencias jurídicas que emergen de ese reconocimiento.
+
+% ==============================================================
+\chapter{Cuadro Cornell: repaso general}
+% ==============================================================
+
+El siguiente cuadro reúne, siguiendo el método Cornell, las preguntas clave que permiten repasar activamente los contenidos desarrollados en los capítulos anteriores.
+
+\begin{longtable}{
+    >{\bfseries\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.60\textwidth}
+}
+\caption{Cuadro Cornell --- La persona humana en el derecho civil y comercial} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\tablename\ \thetable{} --- continuación} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+¿Qué significa etimológicamente \emph{persona}? &
+Viene del latín: era la máscara que usaban los actores en el teatro antiguo para amplificar la voz. Luego pasó a designar el rol que el actor representaba y, finalmente, al ser humano mismo que lo encarnaba. \\
+
+¿Cuál es la definición filosófica de persona? &
+La definición de Boecio: ``sustancia individual de naturaleza racional''. Sustancia = ser que existe por sí mismo. Individual = único e irrepetible. Naturaleza racional = capaz de raciocinar (no necesariamente de modo activo en todo momento). \\
+
+¿Por qué la persona tiene dimensión jurídica? &
+Porque es un ser en relación: vive en comunidad, con vínculos de alteridad. De esa relacionalidad emergen la justicia, los contratos y la sujeción a normas. Donde hay relaciones de alteridad, hay relaciones de justicia. \\
+
+¿Por qué \emph{persona} y no \emph{ciudadano} o \emph{individuo}? &
+Porque la palabra ``persona'' porta una carga de valor, dignidad y proyección hacia los demás que los otros términos no tienen. Implica tanto la individualidad como la relacionalidad del ser humano. \\
+
+¿Todo ser humano es persona? &
+Sí, sin excepción. No es posible en el derecho distinguir entre ser humano y persona humana. La personalidad no es una creación del legislador: es un dato de la naturaleza que el derecho reconoce (no adjudica ni concede). \\
+
+¿Qué importancia tiene el verbo \emph{reconocer}? &
+Es central: ``reconocer'' la personalidad significa admitir que existe antes de que el derecho la nombre. A diferencia de una licencia (que se adjudica si se cumplen requisitos), la personalidad no depende de ningún requisito estatal. \\
+
+¿Cómo impactó el Holocausto en el derecho? &
+Generó la Declaración Universal de DDHH (1948), reacción global a la negación de personalidad a millones de seres humanos. La Declaración afirma que todo ser humano tiene derecho a ser reconocido como persona en todas partes. \\
+
+¿Qué dice el Pacto de San José de Costa Rica sobre la persona? &
+``Persona es todo ser humano.'' No puede haber un ser humano que no sea persona según el sistema interamericano. Lo mismo establece el Pacto Internacional de Derechos Civiles y Políticos. \\
+
+¿Qué es la dignidad ontológica? &
+El merecimiento de respeto por el solo hecho de ser humano, con independencia de la conducta, el cargo o cualquier otra cualidad. La tienen por igual todos los seres humanos: desde quien comete el delito más grave hasta la persona más honesta. \\
+
+¿Cómo cambia el Código Civil y Comercial la estructura anterior? &
+En el Código de Vélez, el libro primero comenzaba con las personas jurídicas. El nuevo código empieza con la persona humana (Título I) y luego la persona jurídica (Título II), lo que expresa una definición de valores: la persona humana es el centro. \\
+
+¿Por qué el nuevo código no define \emph{persona}? &
+Porque el concepto de persona es anterior al derecho positivo. El código, al estar sujeto a los tratados de DDHH, no puede pretender definir quién es persona: todo ser humano lo es. Definirlo implicaría un poder que el Estado no tiene. \\
+
+¿Diferencia entre persona humana y persona jurídica? &
+La persona humana es el ser humano individual. La persona jurídica es una organización (asociación civil, sociedad, fundación, Estado, etc.) a la que la ley reconoce o concede personería jurídica cuando reúne los tipos y requisitos legales. \\
+
+¿Puede un robot ser persona? &
+Hoy no. El concepto jurídico de persona implica una dignidad vinculada al dominio de sí. Los robots actuales son controlados por humanos. A futuro, si la inteligencia artificial evolucionara, podría analizarse una analogía con la persona jurídica, pero siempre habría una persona humana o jurídica detrás. \\
+
+¿Diferencia entre dignidad y honor? &
+La dignidad es el fundamento de todos los derechos humanos, válido para todo ser humano. El honor es una dimensión de esa dignidad que refiere a la reputación y la fama de una persona, con dos aspectos: la honra (personal) y la fama (social). \\
+
+\midrule
+\multicolumn{2}{p{0.90\textwidth}}{
+\textbf{Resumen:} Estos apuntes introducen la categoría más fundamental del derecho civil: la persona humana. El punto de partida es filosófico --la definición de Boecio y la dimensión relacional del ser humano-- y se consolida a través de los tratados internacionales de derechos humanos, que establecen que todo ser humano es persona por el solo hecho de serlo, sin que ningún Estado pueda adjudicar o negar esa condición. El Código Civil y Comercial argentino (Ley 26.994) recoge este principio: elimina las definiciones de persona que traía el Código de Vélez, cambia la terminología de ``persona física'' a ``persona humana'', ubica a la persona humana al inicio de su estructura (Título I del Libro Primero) y consagra en el artículo 51 su inviolabilidad y el derecho al reconocimiento de su dignidad. La dignidad, en su dimensión ontológica, es el fundamento de todos los derechos: la tiene todo ser humano por igual, con independencia de su conducta o condición.
+} \\
+
+\end{longtable}
+
+\end{document}

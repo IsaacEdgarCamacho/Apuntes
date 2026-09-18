@@ -1,0 +1,631 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Civil --- Parte General}
+\newcommand{\titulo}{El Comienzo de la Existencia de la Persona}
+\newcommand{\subtitulo}{La Persona por Nacer en el Derecho Civil Argentino}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% NOTA: los archivos de idioma de babel para español (spanish.ldf) no están
+% disponibles en el entorno de compilación utilizado para verificar este
+% documento. Se configuran manualmente las cadenas de texto en español para
+% garantizar la compilación autónoma; si el entorno final cuenta con
+% texlive-lang-spanish, puede sustituirse este bloque por:
+% \usepackage[spanish,provide=*]{babel}
+\renewcommand{\contentsname}{Índice general}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\chaptername}{Capítulo}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL (hyperref al final del preámbulo)
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ---------------- PORTADA ----------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.4cm}
+
+{\large \textit{\subtitulo}}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------- ÍNDICE ----------------
+\tableofcontents
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+
+\chapter{El Comienzo de la Existencia de la Persona: la Persona por Nacer en el Derecho Civil Argentino}
+
+\section{Introducción: la dimensión civil del comienzo de la existencia}
+
+La cuestión del comienzo de la existencia de la persona posee múltiples dimensiones: biológicas, filosóficas, morales y jurídicas. Dentro del campo jurídico, el problema se vincula con debates como el del aborto o el de la fecundación \textit{in vitro}, pero el desarrollo que sigue se concentra exclusivamente en la \textbf{dimensión civil} del asunto, dejando de lado las repercusiones propias del derecho penal u otras ramas.
+
+\section{Los orígenes: la tradición jurídica romana}
+
+\subsection{El principio \textit{nasciturus pro iam nato habetur}}
+
+La tradición jurídica romana acuñó una fórmula latina --- \textit{nasciturus pro iam nato habetur} (también transcripta como \textit{nasciturus proyam nato}, según la pronunciación de la locución) --- que constituye el antecedente histórico más remoto de la protección jurídica del concebido.
+
+\begin{definition}{Nasciturus pro iam nato habetur}
+El que está concebido o está por nacer se lo tiene como si ya hubiera nacido. Es decir: al \textit{nasciturus} (el que está por nacer) se lo equipara jurídicamente al nacido. Para los romanos, quien está por nacer tiene la expectativa de recibir derechos como si ya hubiese nacido.
+\end{definition}
+
+\subsection{Aplicaciones prácticas en el derecho romano}
+
+El principio romano se materializó históricamente en dos aplicaciones principales.
+
+\begin{example}{Herencia del hijo concebido antes de la muerte del padre}
+Ante la situación de un padre que fallece mientras su hijo está concebido pero aún no ha nacido, el derecho romano concluyó que ese hijo hereda igualmente, aunque nazca después de la muerte del causante. Se consideró injusto excluirlo, dado que ya era hijo del causante por haber sido concebido antes de su muerte; teniendo en cuenta que puede haber hasta nueve meses de diferencia entre la concepción y el nacimiento, resultaba lógico reconocerle la calidad de heredero. Se aplicó así el principio de que el concebido se tiene por nacido.
+\end{example}
+
+\begin{example}{Estatus de libertad del hijo de una mujer que cae en esclavitud}
+Cuando una mujer concebía siendo libre y luego caía en esclavitud, el momento de la concepción --- y no el del nacimiento --- determinaba el estatus de libertad del hijo: este nacía libre por haber sido concebido siendo su madre libre, con independencia de la condición de esclavitud sobrevenida.
+\end{example}
+
+La idea de que el concebido se equipara al nacido está presente, desde el derecho romano, en numerosas legislaciones posteriores, que fueron recogiendo este principio a través del tiempo.
+
+\section{Recepción en el Código Civil argentino de Vélez Sársfield (1871)}
+
+\subsection{Artículo 70: comienzo de la existencia desde la concepción}
+
+El principio romano llega hasta el Código Civil argentino, aprobado en 1869 y vigente desde 1871. Vélez Sársfield lo recoge en los artículos 70 y 63.
+
+\begin{definition}{Artículo 70 del Código Civil de Vélez Sársfield (texto histórico)}
+Desde la concepción en el seno materno comienza la existencia de la persona física.
+\end{definition}
+
+Vélez Sársfield recoge la tradición romanista y así lo explica en la nota al artículo. Sin embargo, lleva la solución a su máxima expresión: mientras otros códigos --- como el chileno --- disponen que la persona existe desde que nace, aunque el concebido se equipare al nacido a los efectos de su protección, Vélez optó por una fórmula distinta y más amplia: declarar directamente que la persona existe desde la concepción.
+
+\subsection{La influencia de Freitas y la categoría de ``persona por nacer''}
+
+La categoría de ``persona por nacer'' proviene del jurista brasileño Augusto Teixeira de Freitas, autor de un \textit{Esbozo de Código} y de una \textit{Consolidación de Leyes}. Vélez Sársfield recoge esta idea y la traslada al Código Civil argentino.
+
+\begin{definition}{Artículo 63 del Código Civil de Vélez Sársfield (texto histórico)}
+Son personas por nacer las que, no habiendo nacido, están concebidas en el seno materno.
+\end{definition}
+
+El Código de Vélez adoptó así la tradición romanista según la cual la persona por nacer se equipara al nacido, denominando a esa etapa ``persona por nacer'', y estableciendo que la calidad de persona comienza desde la concepción en el seno materno.
+
+\section{La reforma constitucional de 1994 y los tratados de derechos humanos}
+
+En 1994 la Constitución Nacional es reformada y se incorporan tratados de derechos humanos que refuerzan la protección jurídica del concebido.
+
+\subsection{Artículo 75, inciso 23, de la Constitución Nacional}
+
+\begin{formula}{Art. 75 inc. 23 CN --- régimen de seguridad social especial}
+El Congreso tiene potestad para dictar un régimen de seguridad social especial e integral en protección de la madre y el niño, desde el embarazo.
+\end{formula}
+
+La expresión ``desde el embarazo'' pone de manifiesto que existe una etapa del niño prenatal a la que la Constitución reconoce protección.
+
+\subsection{Ley 23.849 --- ratificación de la Convención sobre los Derechos del Niño}
+
+\begin{formula}{Ley 23.849 --- declaración interpretativa (con valor de reserva)}
+Para la Argentina, niño es todo ser humano desde la concepción hasta los 18 años. Esta declaración integra las condiciones de vigencia de la Convención y, por lo tanto, constituye texto constitucional a los fines de interpretar el comienzo de la existencia de la persona.
+\end{formula}
+
+\subsection{Pacto de San José de Costa Rica (Convención Americana sobre Derechos Humanos)}
+
+\begin{formula}{Art. 4 del Pacto de San José de Costa Rica --- derecho a la vida}
+Todo ser humano tiene derecho a la vida, en general, a partir del momento de la concepción. De la interpretación conjunta de sus disposiciones se desprende que persona es todo ser humano.
+\end{formula}
+
+\subsection{Pacto Internacional de Derechos Civiles y Políticos}
+
+\begin{formula}{Pacto de Derechos Civiles y Políticos}
+Prohíbe la aplicación de la pena de muerte a mujeres embarazadas, lo que implica un reconocimiento implícito de la personalidad del no nacido.
+\end{formula}
+
+\section{El Código Civil y Comercial de la Nación (2015)}
+
+\subsection{El proceso de elaboración y el debate sobre los embriones}
+
+El Código Civil y Comercial de la Nación fue aprobado mediante la Ley 26.994, con entrada en vigencia en agosto de 2015. Resulta relevante distinguir el texto del proyecto original elevado por el Poder Ejecutivo del texto finalmente sancionado por el Congreso.
+
+\begin{important}
+El proyecto original establecía que la existencia de la persona humana comenzaba con la concepción en el seno materno y que, en el caso de las técnicas de reproducción humana asistida, comenzaba con la implantación del embrión en la mujer. Es decir, preveía \textbf{dos momentos distintos} para el inicio de la existencia según el embrión estuviera dentro o fuera del seno materno: el mismo embrión sería persona dentro del cuerpo de la mujer, pero no lo sería mientras se encontrara fuera de él. Esta solución generó un intenso debate en la Comisión Bicameral que trató el proyecto.
+\end{important}
+
+\subsection{Artículo 19 CCyC --- texto definitivo}
+
+\begin{definition}{Artículo 19 del Código Civil y Comercial de la Nación (Ley 26.994)}
+La existencia de la persona humana comienza con la concepción.
+\end{definition}
+
+En el texto sancionado se eliminó la expresión ``en el seno materno'' que contenía el Código anterior. La existencia de la persona humana comienza con la concepción, sin otra precisión. La postura que ubica el comienzo de la existencia en el nacimiento resultó minoritaria en el derecho argentino y no tuvo mayor presencia en el debate legislativo; de hecho, no existió ningún proyecto de ley en tal sentido.
+
+\begin{important}
+El problema abierto por el artículo 19 no es si el concebido es o no persona por nacer --- esa tradición se mantiene sin discusión ---, sino qué ocurre con los \textbf{embriones no implantados}, es decir, los generados \textit{in vitro}, fuera del seno materno, mientras no son transferidos. Ese es el principal problema interpretativo que deja abierto el artículo 19.
+\end{important}
+
+\section{El debate actual: ¿concepción equivale a fecundación o a implantación?}
+
+Este es el debate central en torno al artículo 19 del CCyC.
+
+\subsection{Primera postura: concepción equivale a fecundación}
+
+Esta postura identifica la concepción con la fecundación, es decir, con el momento en que se unen el óvulo y el espermatozoide y se forma una nueva unidad --- un nuevo organismo individual, denominado cigoto --- que luego se divide y se desarrolla.
+
+\begin{note}
+Sostienen esta postura la Cámara Federal de Salta (en diversas sentencias), la Suprema Corte de Mendoza, las Jornadas de Derecho Civil de 2003, el artículo 17 del CCyC (que protege el cuerpo humano desde la fecundación) y profesores como Sambrizzi y Ambrosi.
+\end{note}
+
+\subsection{Segunda postura: concepción equivale a implantación (fallo Artavia Murillo)}
+
+La segunda postura encuentra fundamento en el fallo \textit{Artavia Murillo} de la Corte Interamericana de Derechos Humanos.
+
+\begin{example}{Caso Artavia Murillo y otros c. Costa Rica (CIDH, noviembre de 2012)}
+Los reclamantes eran matrimonios que, por situaciones de infertilidad y sin recurrir a gametos de terceros, solicitaron a la Corte Interamericana el acceso a la fecundación \textit{in vitro}. Costa Rica no permitía dicho acceso porque consideraba que ponía en riesgo a embriones humanos y que, en el sistema interamericano, ``concepción'' equivalía al momento de la fecundación. La Corte Interamericana entendió que Costa Rica se había extralimitado al interpretar el concepto de ``concepción'', y sostuvo que, para esas circunstancias, dicho concepto debía equipararse a ``implantación''. Condenó a Costa Rica y estableció que la concepción debe interpretarse como implantación.
+\end{example}
+
+Esta postura es defendida también por profesores como Marisa Herrera y Andrés Gil Domínguez.
+
+\subsection{Consideraciones críticas sobre la aplicabilidad del fallo Artavia Murillo}
+
+Frente al fallo \textit{Artavia Murillo}, corresponde señalar que su contexto es distinto al argentino: en Costa Rica la fecundación \textit{in vitro} estaba totalmente prohibida, mientras que en la Argentina no existe esa prohibición. Además, las sentencias de la Corte Interamericana son obligatorias únicamente para las partes del litigio; para los demás países constituyen una pauta de interpretación --- no un texto vinculante --- de la que se puede apartar mediante una argumentación fundada, en el marco del control de convencionalidad.
+
+\begin{important}
+Interpretar que ``concepción'' equivale a ``implantación'' resulta, según esta postura crítica, contrario al principio \textit{pro homine}, dado que la palabra ``concepción'' remite semánticamente al inicio de algo. A ello se agrega que el artículo 1 del Código Civil y Comercial excluyó deliberadamente a la jurisprudencia como fuente del derecho, lo cual también incide en la manera de interpretar el artículo 19.
+\end{important}
+
+\subsection{El artículo 17 del CCyC y la protección del cuerpo humano}
+
+\begin{formula}{Artículo 17 del Código Civil y Comercial --- derechos sobre el cuerpo humano}
+Existe una protección del cuerpo humano desde el momento en que este se inicia, que es la fecundación. El cuerpo es entendido como el soporte de la persona. El cuerpo se forma cuando se fusionan el óvulo y el espermatozoide: surge así un nuevo cuerpo --- distinto al del padre y al de los propios gametos ---, aunque la fusión se produzca \textit{in vitro}. En ese momento aparece una nueva unidad que únicamente requiere desarrollo.
+\end{formula}
+
+\section{La época de la concepción --- artículo 20 del CCyC}
+
+El artículo 20 retoma el contenido de los artículos 76 y 77 del Código anterior.
+
+\begin{formula}{Artículo 20 del Código Civil y Comercial de la Nación}
+Época de la concepción es el lapso entre el máximo y el mínimo fijados para la duración del embarazo. Se presume, excepto prueba en contrario, que el máximo de tiempo del embarazo es de trescientos días y el mínimo de ciento ochenta, excluyendo el día del nacimiento. Este plazo se cuenta retroactivamente desde el día de ese nacimiento.
+\end{formula}
+
+Esta disposición proviene de una larga tradición legislativa y fue recogida de otras legislaciones; el máximo y el mínimo de duración del embarazo se fijan para resolver situaciones concretas, principalmente vinculadas a la determinación de la paternidad y a conflictos sucesorios.
+
+\begin{example}{El soldado en guerra}
+Un soldado, casado, parte a una guerra el primero de enero del año 2020 y regresa un año y medio después, el 30 de junio de 2021. Al llegar, su esposa le presenta a un hijo nacido en mayo de 2021. Contando nueve meses hacia atrás desde el nacimiento, la concepción habría ocurrido mientras el soldado se encontraba en la guerra, por lo que los tiempos no coinciden y no podría reconocerse la paternidad. Antes de existir pruebas genéticas, este cálculo --- la ``época de la concepción'' --- era la principal herramienta para determinar la paternidad.
+\end{example}
+
+\begin{example}{El heredero inventado}
+Fallece una persona el primero de octubre de 2020, sin hijos, y sus padres inician la sucesión. Se presenta entonces una mujer que dice tener un hijo concebido por el fallecido, nacido el 31 de diciembre de 2020. Contando retroactivamente 300 días desde esa fecha de nacimiento, se llega a una época en la que el causante ya había fallecido, por lo que la concepción no pudo haberse producido con él. En consecuencia, no puede presumirse a ese hijo como heredero; el ordenamiento cuenta así con una herramienta para descartar un heredero ficticio, sin perjuicio de que la presunción admite prueba biológica en contrario.
+\end{example}
+
+\begin{note}
+El nuevo Código eliminó los antiguos artículos 65, 66, 67, 68 y 78 del Código de Vélez, referidos a la postergación de compromisos y a los controles admitidos durante el embarazo.
+\end{note}
+
+\section{El nacimiento con vida --- artículo 21 del CCyC}
+
+El artículo 21 subsume el contenido de los antiguos artículos 71, 72, 73, 74 y 75, y regula la condición del nacimiento con vida.
+
+\begin{formula}{Artículo 21 del Código Civil y Comercial de la Nación}
+Los derechos y obligaciones del concebido o implantado en la mujer quedan irrevocablemente adquiridos si nace con vida. Si no nace con vida, se considera que la persona nunca existió. El nacimiento con vida se presume.
+\end{formula}
+
+Esta condición ya existía en el Código anterior y no implica que el concebido sea ``menos persona''; su finalidad histórica es evitar fraudes.
+
+\begin{example}{El heredero simulado por embarazo ficticio}
+Fallece un hombre sin descendencia y se presenta una mujer que dice estar embarazada de él. No pueden practicarse estudios genéticos a la mujer embarazada sin su consentimiento, por tratarse ya de una persona con derechos propios; el embarazo puede acreditarse mediante su simple declaración. Si el hijo por nacer falleciera durante el embarazo, la mujer heredaría a ese hijo y excluiría a los padres del causante. Por ello, la condición del nacimiento con vida --- según la cual, si el hijo nace sin vida se considera que nunca existió --- evita este tipo de conflictos sucesorios simulados.
+\end{example}
+
+Ante la duda sobre si una persona nació con vida, el Código presume que así fue; quien sostenga lo contrario debe probarlo, por ejemplo, mediante evidencia sobre la expansión pulmonar, el llanto del recién nacido o el corte del cordón umbilical.
+
+\section{El régimen jurídico de la persona por nacer en el CCyC}
+
+\subsection{Artículo 24 --- incapacidad de ejercicio y capacidad de derecho}
+
+\begin{formula}{Artículo 24 del CCyC --- personas incapaces de ejercicio}
+Las personas por nacer son incapaces de ejercicio. Pero son capaces de derecho.
+\end{formula}
+
+La persona por nacer no tiene capacidad para actuar por sí misma (incapacidad de ejercicio), pero sí puede ser titular de derechos y adquirirlos (capacidad de derecho), razón por la cual necesita ser representada.
+
+\subsection{Artículo 101 --- representación por los padres}
+
+\begin{formula}{Artículo 101 del CCyC --- representantes}
+Los representantes de las personas por nacer son sus padres, de la misma manera en que representan a la persona ya nacida que es menor de edad.
+\end{formula}
+
+\subsection{Artículo 2279 --- vocación hereditaria}
+
+\begin{formula}{Artículo 2279 del CCyC --- personas que pueden suceder}
+Pueden ser herederas las personas concebidas que nazcan con vida. Lo mismo las concebidas mediante técnicas de fecundación \textit{in vitro}, en la medida en que se cumpla el requisito del artículo 561 relativo al consentimiento.
+\end{formula}
+
+La persona por nacer puede heredar bienes --- un departamento, un campo, un automóvil ---, aunque estos no se inscriben a su nombre hasta que nazca con vida, a fin de evitar conflictos sucesorios.
+
+\subsection{Artículo 57 --- prohibición de modificación genética}
+
+\begin{formula}{Artículo 57 del CCyC --- prácticas prohibidas}
+Se prohíben las prácticas destinadas a modificar genéticamente el embrión cuando la alteración se transmita a su descendencia.
+\end{formula}
+
+Esta disposición reconoce al embrión plenamente como persona, lo que resulta relevante para la interpretación del término ``concepción'' en el artículo 19.
+
+\subsection{Artículo 592 --- determinación prenatal de la filiación}
+
+\begin{formula}{Artículo 592 del CCyC --- determinación de la filiación}
+Puede imponerse preventivamente la filiación del hijo por nacer.
+\end{formula}
+
+\subsection{Artículo 574 --- reconocimiento prenatal}
+
+\begin{formula}{Artículo 574 del CCyC --- reconocimiento prenatal}
+Puede reconocerse prenatalmente al hijo por nacer.
+\end{formula}
+
+\subsection{Derecho a alimentos desde la concepción}
+
+\begin{formula}{Derecho a alimentos del hijo por nacer}
+El hijo por nacer tiene derecho a alimentos. La mujer embarazada puede reclamar alimentos al progenitor. Los alimentos consisten en una suma de dinero destinada al mantenimiento y la crianza de los hijos. Este derecho comienza con la concepción.
+\end{formula}
+
+\section{Cuadro comparativo: evolución del reconocimiento de la persona}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.28\textwidth}}
+\toprule
+\textbf{Sistema / norma} & \textbf{¿Qué establece?} & \textbf{¿Desde cuándo hay persona?} \\
+\midrule
+Derecho romano & \textit{Nasciturus pro iam nato habetur} & Desde la concepción (para efectos específicos) \\
+Código de Vélez (art. 70) & Existencia desde la concepción en el seno materno & Desde la concepción en el seno materno \\
+Código Civil chileno & El concebido se equipara al nacido & Desde el nacimiento (con protección prenatal) \\
+Art. 75 inc. 23 CN (1994) & Seguridad social especial desde el embarazo & Reconoce al niño prenatal constitucionalmente \\
+Ley 23.849 (CDN con reserva) & Niño: todo ser humano desde la concepción hasta los 18 años & Desde la concepción \\
+Pacto de San José (art. 4) & Derecho a la vida, en general, desde la concepción & Desde la concepción (con matiz ``en general'') \\
+Art. 19 CCyC (2015) & ``La existencia de la persona humana comienza con la concepción'' & Desde la concepción (debate: fecundación o implantación) \\
+Fallo Artavia Murillo (CIDH, 2012) & Concepción = implantación, para el sistema interamericano & Desde la implantación (pauta interpretativa para la Argentina) \\
+\bottomrule
+\end{tabularx}
+\caption{Evolución normativa del reconocimiento jurídico de la persona por nacer}
+\end{table}
+
+\section{Precisiones adicionales sobre el debate y su aplicación}
+
+\subsection{Sobre el fallo Artavia Murillo y su aplicabilidad en la Argentina}
+
+La Corte Interamericana condenó a Costa Rica porque ese país prohibía totalmente la fecundación \textit{in vitro}; de no haber existido tal prohibición en la Argentina, el caso hubiera sido más equiparable. En cambio, en los precedentes de la Cámara Federal de Salta se discutieron cuestiones distintas --- de cobertura y de diagnóstico genético preimplantatorio --- que el fallo \textit{Artavia Murillo} no había abordado, por lo que no corresponde trasladar mecánicamente sus conclusiones a circunstancias diferentes.
+
+\begin{important}
+Aunque la Corte Suprema argentina ha señalado que los pronunciamientos de la Corte Interamericana constituyen una pauta de interpretación, es posible apartarse de ellos cuando el ordenamiento jurídico, las circunstancias o el contexto sean distintos. Emplear \textit{Artavia Murillo} --- un caso referido a la creación de embriones mediante fecundación asistida --- para autorizar la destrucción de embriones ya existentes implica trasladar sus conclusiones a una circunstancia diferente de la que fue objeto del litigio.
+\end{important}
+
+\subsection{Sobre el valor del fallo Artavia Murillo como pauta y no como ley}
+
+El fallo \textit{Artavia Murillo} es una sentencia, no una ley; la norma vigente sigue empleando el término ``concepción'', y lo que se discute es cómo interpretarlo. La Corte Interamericana posee autoridad jurisdiccional, pero no es un órgano legislativo, y sus pronunciamientos tienen valor para el caso concreto sometido a su jurisdicción.
+
+\subsection{Sobre la inseminación artificial post mortem}
+
+El proyecto original del Código Civil y Comercial contemplaba inicialmente la inseminación artificial post mortem, pero esa previsión fue finalmente eliminada del texto sancionado, entre otras razones, por los problemas éticos que plantea. Corresponde distinguir este supuesto del caso en que el embrión ya existe: si el embrión ya existe, existe también una persona --- según esta postura --- y la cuestión pasa a ser la de garantizar su derecho a la vida.
+
+\subsection{El caso Píparo}
+
+\begin{example}{Caso Píparo}
+Se trata de una salidera bancaria en la que se dispara contra una mujer embarazada. Como consecuencia del disparo, el hijo por nacer nace y fallece poco después de nacer. Al haber nacido con vida --- aunque brevemente --- y fallecido luego, el hecho fue calificado como homicidio y no meramente como una lesión a la madre. El caso ilustra, en el plano penal, las consecuencias de la aplicación del artículo 21 del CCyC, aunque dicha calificación excede el ámbito civil.
+\end{example}
+
+\subsection{Sobre qué significa ``nacer con vida''}
+
+Nacer con vida implica quedar completamente separado de la madre. El Código anterior admitía la prueba de este hecho por amplitud de medios; el Código vigente simplifica la cuestión al presumir que se nace con vida, de modo que quien sostenga que el nacido lo hizo sin vida debe aportar la prueba correspondiente --- por ejemplo, si los pulmones llegaron a expandirse, si alguien escuchó llorar al recién nacido, o si se cortó el cordón umbilical---. Esta discusión también tiene repercusiones en el ámbito penal: si el niño muere dentro del útero, la figura aplicable es la de aborto; si muere fuera de él, la de homicidio. A los fines civiles, la cuestión es relevante centralmente en materia sucesoria.
+
+\subsection{Sobre los embriones sobrantes en la fecundación \textit{in vitro}}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+El destino de los embriones sobrantes de la fecundación \textit{in vitro} constituye un problema abierto que las notas originales no desarrollan en profundidad. Se señala que la solución más habitual consiste en procurar no generar embriones congelados, y que, una vez generados, no existe una solución éticamente indiscutida; se afirma, sin mayor desarrollo, que la destrucción de embriones no constituye una solución adecuada.
+
+\section{Recapitulación final}
+
+Existe una tradición jurídica --- iniciada en el derecho romano --- que reconoce a la concepción como el momento a partir del cual se producen efectos jurídicos: el concebido se equipara al nacido. Esa tradición fue receptada por el Código de Vélez Sársfield bajo la categoría de ``persona por nacer'', estableciendo que la existencia de la persona comienza en el seno materno. La reforma constitucional de 1994 incorporó tratados que reforzaron esa protección, reconociendo el comienzo de la existencia desde la concepción. El Código Civil y Comercial ratificó este criterio en su artículo 19 y dejó abierta una discusión: si ``concepción'' equivale a ``implantación'' o a ``fecundación'', cuestión estrechamente vinculada con el estatus de los embriones \textit{in vitro}.
+
+El régimen jurídico argentino reconoce, además, que la persona por nacer puede heredar, puede recibir bienes y ser titular de derechos --- aunque no puede ejercerlos por sí misma, siendo representada por sus padres ---, tiene derecho a alimentos, puede ser reconocida prenatalmente, y se encuentra protegida frente a la manipulación genética. Se trata, en definitiva, de un conjunto de disposiciones que regulan integralmente a la persona por nacer dentro del ordenamiento jurídico argentino.
+
+% ============================================================
+% CUADRO CORNELL
+% ============================================================
+
+\section*{Cuadro Cornell --- Repaso del capítulo}
+\addcontentsline{toc}{section}{Cuadro Cornell --- Repaso del capítulo}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{continúa en la página siguiente}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué es el principio \textit{nasciturus pro iam nato habetur}?} &
+Principio romano según el cual el que está concebido o por nacer se lo tiene como si ya hubiera nacido. Tuvo dos aplicaciones principales: proteger la herencia del hijo concebido antes de la muerte del padre, y garantizar la libertad del hijo de una mujer concebida siendo libre, aunque la madre cayera en esclavitud antes del nacimiento. \\
+
+\textbf{¿Qué establecía el Código de Vélez sobre la persona por nacer?} &
+El artículo 70 disponía que la existencia de la persona física comienza desde la concepción en el seno materno. El artículo 63 definía como personas por nacer a las que, no habiendo nacido, están concebidas en el seno materno. Vélez adoptó la solución más amplia: declarar persona al concebido, en lugar de solo equipararlo al nacido, como hacían otros códigos (por ejemplo, el chileno). \\
+
+\textbf{¿Qué aportó la reforma constitucional de 1994?} &
+Incorporó tratados internacionales con jerarquía constitucional. El artículo 75 inc. 23 CN reconoció al niño desde el embarazo. La Ley 23.849, al ratificar la Convención sobre los Derechos del Niño, formuló una declaración interpretativa con valor de reserva: para la Argentina, ``niño'' es todo ser humano desde la concepción hasta los 18 años. El Pacto de San José de Costa Rica (art. 4) protege el derecho a la vida desde la concepción, en general. \\
+
+\textbf{¿Qué establece el artículo 19 del CCyC y cuál es su debate central?} &
+Establece que ``la existencia de la persona humana comienza con la concepción''. Se eliminó la expresión ``en el seno materno'' del proyecto original, que también preveía la implantación como inicio para las técnicas de reproducción humana asistida. El debate central es si ``concepción'' equivale a ``fecundación'' (unión de óvulo y espermatozoide, formación del cigoto) o a ``implantación'' (inserción del embrión en el útero). \\
+
+\textbf{¿Qué es el fallo Artavia Murillo y cómo debe interpretarse su alcance?} &
+Fallo de 2012 de la Corte Interamericana de Derechos Humanos que condenó a Costa Rica por prohibir la fecundación \textit{in vitro}, e interpretó que ``concepción'', a los efectos del art. 4 del Pacto de San José, equivale a implantación. Su contexto --- la prohibición total de la fecundación \textit{in vitro} en Costa Rica --- difiere del argentino. Sus sentencias son obligatorias solo para las partes del litigio; para los demás Estados constituyen una pauta de interpretación de la que puede apartarse fundadamente. \\
+
+\textbf{¿Qué establece el artículo 20 CCyC sobre la época de la concepción?} &
+Presume que la concepción ocurrió entre un máximo de 300 días y un mínimo de 180 días antes del nacimiento, contados retroactivamente y excluyendo el día del nacimiento; ese lapso de 120 días se denomina ``época de la concepción''. Es una presunción \textit{iuris tantum} (admite prueba en contrario, como la prueba genética). Su finalidad histórica fue determinar la paternidad y resolver conflictos sucesorios ante la ausencia de pruebas biológicas. \\
+
+\textbf{¿Qué significa ``nacer con vida'' según el artículo 21 CCyC?} &
+Los derechos transmitidos al concebido quedan irrevocablemente adquiridos si el nacimiento ocurre con vida; si nace sin vida, se considera que la persona nunca existió a los efectos patrimoniales y sucesorios. Es una ficción jurídica destinada a evitar fraudes. El Código presume que se nace con vida; quien sostenga lo contrario debe probarlo. \\
+
+\textbf{¿Cuál es la capacidad jurídica de la persona por nacer?} &
+Es incapaz de ejercicio (no puede actuar por sí misma) pero capaz de derecho (puede ser titular de derechos y adquirirlos). Puede heredar, recibir bienes y ser titular de derechos patrimoniales. Sus representantes son sus padres (art. 101 CCyC). Puede recibir alimentos desde la concepción, ser reconocida prenatalmente (art. 574 CCyC) y tener su filiación determinada judicialmente (art. 592 CCyC). \\
+
+\textbf{¿Qué protección otorga el artículo 57 CCyC a los embriones?} &
+Prohíbe las prácticas destinadas a producir alteraciones genéticas del embrión que se transmitan a su descendencia. Al incluir al embrión dentro de esta protección, la norma lo reconoce implícitamente como persona, lo que refuerza la interpretación de que ``concepción'', en el artículo 19, equivale a fecundación, incluso cuando esta ocurre \textit{in vitro}. \\
+
+\textbf{¿Qué es el caso Píparo?} &
+Caso en el que una mujer embarazada, víctima de una salidera bancaria, recibió un disparo; el hijo por nacer nació con vida y falleció poco después. Se consideró que había nacido con vida y luego muerto, por lo que el hecho fue calificado como homicidio. Ilustra la aplicación del artículo 21 CCyC: el nacimiento con vida --- aunque brevísimo --- da lugar a la personalidad jurídica. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep}}{
+\textbf{Resumen:} el ordenamiento jurídico argentino reconoce la personalidad desde la concepción con notable coherencia histórica: desde el principio romano \textit{nasciturus pro iam nato habetur} hasta el artículo 19 del Código Civil y Comercial. El Código de Vélez Sársfield adoptó esta tradición romanista siguiendo al jurista Freitas, y la reforma constitucional de 1994 la reforzó mediante tratados internacionales. El debate contemporáneo gira en torno al significado de ``concepción'': la postura mayoritaria en la Argentina la identifica con la fecundación, mientras que el fallo Artavia Murillo de la CIDH la equipara a la implantación. El régimen de la persona por nacer contempla capacidad de derecho, representación por los padres, derechos hereditarios condicionados al nacimiento con vida, derecho a alimentos desde la concepción, reconocimiento prenatal y protección frente a la manipulación genética.
+} \\
+
+\end{longtable}
+
+\end{document}
