@@ -1,0 +1,785 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS DEL DOCUMENTO
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\materia}{Derecho Civil — Parte General}
+\newcommand{\titulo}{El Orden Público en el Derecho Civil}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% ENCABEZADOS Y PIES DE PÁGINA
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil (Parte General)'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% PRESENTACIÓN DEL TEMA
+% ------------------------------------------------------------
+\chapter*{Presentación del tema}
+\addcontentsline{toc}{chapter}{Presentación del tema}
+
+Los presentes apuntes corresponden a una clase teórica virtual dedicada al estudio del orden público en el derecho civil, dentro de la unidad correspondiente de la materia Derecho Civil (Parte General). A continuación se enumeran los temas desarrollados en la clase y se presenta la relación general entre ellos.
+
+\begin{important}
+El orden público es uno de los conceptos más transversales del derecho civil: aparece cada vez que una persona firma un contrato, alquila una vivienda, hereda un bien, se casa, se divorcia o negocia en otro país. Comprenderlo permite a un futuro profesional (abogado, escribano, contador, empresario o simplemente un ciudadano que firma contratos) saber cuándo un acuerdo es válido y cuándo puede ser declarado nulo por afectar principios que la sociedad considera indisponibles. En la práctica profesional, dominar esta noción evita redactar contratos inválidos, permite asesorar correctamente sobre cláusulas abusivas o leoninas, anticipar conflictos en alquileres, sucesiones internacionales y matrimonios celebrados en el extranjero, y argumentar con fundamento ante un juez por qué una cláusula debe (o no debe) producir efectos. Por eso este tema no es solo teoría de examen: es una herramienta de análisis que se usa todos los días en el ejercicio profesional del derecho y en cualquier negociación de la vida civil.
+\end{important}
+
+\textbf{Temas desarrollados en esta clase:}
+
+\begin{itemize}
+    \item Las teorías sobre el orden público y su evolución.
+    \item La diferencia entre leyes imperativas (indisponibles) y leyes supletorias.
+    \item El orden público como límite a la autonomía de la voluntad (arts. 958, 12 y 279 CCyC).
+    \item La nulidad de los actos contrarios al orden público (arts. 1004, 1014, 386 y 960 CCyC).
+    \item El fraude a la ley (art. 12, segunda parte, CCyC).
+    \item El orden público frente a la aplicación de la ley extranjera (art. 2600 CCyC).
+    \item El orden público y los efectos de la ley en el tiempo (art. 7 CCyC).
+\end{itemize}
+
+Todos los bloques de esta clase giran alrededor de una misma idea: la libertad de contratar tiene un límite. Es como las reglas de tránsito de una ciudad: cada conductor (cada persona) es libre de elegir su destino y su camino, pero no puede saltarse un semáforo en rojo porque eso pone en riesgo a toda la comunidad. El orden público funciona igual: las personas son libres de pactar lo que quieran (autonomía de la voluntad), pero no pueden pasar por encima de ciertos principios básicos de la sociedad (el ``semáforo en rojo'' del derecho), ya sea dentro del país, frente a una ley extranjera, o a lo largo del tiempo.
+
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+\chapter{Introducción y teorías sobre el orden público}
+
+\section{Punto de partida: la libertad de contratar}
+
+Dentro del derecho civil, las personas son libres para hacer contratos, convenciones y acuerdos. Este principio básico es la capacidad de autonomía, que el derecho civil clásicamente denomina \textbf{autonomía de la voluntad}, y que se identifica con la libertad personal consagrada en la Constitución Nacional.
+
+A partir de este principio de libertad, en el derecho civil —siguiendo al derecho francés— existe una noción que limita los contratos: el \textbf{orden público}. No es posible celebrar una convención si esta tiene por finalidad, o aunque no se lo proponga, afecta de hecho, al orden público.
+
+\begin{quote}
+\itshape
+``Si nosotros nos planteamos qué es el orden público, la pregunta que tenemos por delante es si, cuando dentro del derecho civil las personas son libres básicamente para hacer contratos, para hacer convenciones, para hacer acuerdos... ahora bien, en el derecho civil... nosotros encontramos que hay una noción que es el orden público, que viene a limitar los contratos.''
+\end{quote}
+
+El orden público no debe confundirse con el orden en la vía pública (por ejemplo, una persona sancionada por incumplir una cuarentena). Se trata, en cambio, de un conjunto de principios fundamentales vinculados a la manera en que una sociedad se organiza, que limitan lo que las partes pueden pactar. Existen, además, otros límites, como las leyes imperativas, que las partes no pueden dejar de lado, y que no necesariamente coinciden con el orden público.
+
+\begin{formula}{Artículo 19 — Constitución Nacional}
+``Nadie puede ser privado de lo que la ley no prohíbe ni obligado a lo que la ley no manda.''
+\end{formula}
+
+\section{Teorías sobre el orden público}
+
+A lo largo del tiempo se intentó explicar qué es el orden público mediante distintas teorías:
+
+\begin{itemize}
+    \item \textbf{Identificación con el derecho público}: algunos autores identificaron el orden público con el derecho público. Esta identificación resulta inexacta, porque también existen normas de orden público dentro del derecho privado.
+    \item \textbf{Identificación con el interés general}: otra teoría identifica el orden público con las normas que preservan el interés general. Se trata de una aproximación más precisa, pero igualmente imperfecta, ya que existen muchas normas de interés general que no son de orden público.
+    \item \textbf{Identificación con la intuición del intérprete}: para esta postura, el orden público se identifica con lo que el juez debe decidir. Esta teoría no explica qué es el orden público, sino solamente quién decide sobre él.
+    \item \textbf{Identificación con la voluntad del legislador}: según esta teoría, el legislador determina cuándo algo es de orden público. Sin embargo, la Corte Suprema ha dicho que una ley no es necesariamente de orden público solo porque el legislador lo diga, sino que depende de los principios fundamentales en juego.
+    \item \textbf{Teoría de Bordas (leyes imperativas)}: para Bordas, el orden público se identifica con las leyes imperativas.
+\end{itemize}
+
+\subsection{Leyes imperativas y leyes supletorias}
+
+Para comprender la teoría de Bordas resulta indispensable distinguir entre dos tipos de leyes:
+
+\begin{quote}
+\itshape
+``La ley imperativa es una ley que el nuevo código llama también indisponible, que es una ley que las partes no pueden dejar de lado sin que eso conlleve un quebrantamiento, y si no, sería nula.''
+\end{quote}
+
+\begin{example}{Alquiler de vivienda por seis meses}
+``Si nosotros queremos alquilar una casa, el Código Civil y Comercial dice imperativamente que el contrato para vivienda no puede ser menor de dos años. Imagínense que yo quiero, en estos tiempos de incertidumbre, poner en alquiler mi casa; hay una persona muy necesitada y yo le digo: bueno, está bien, te lo alquilo, pero por seis meses. La ley me prohíbe hacer eso. Entonces yo soy libre de contratar con esa persona o no, de proponer el valor que quiera, pero en cuanto al plazo mínimo del alquiler hay una ley imperativa que obliga a que sea de al menos dos años.''
+\end{example}
+
+En cambio, las \textbf{leyes supletorias} son aquellas que las partes pueden dejar de lado mediante acuerdo:
+
+\begin{quote}
+\itshape
+``El Código dice que el locatario puede subalquilar, salvo disposición en contrario en el contrato. Las partes pueden acordar otras cosas: por ejemplo, podrían decir que el inquilino puede subalquilar siempre que le pida permiso primero al locador, o que el inquilino no puede subalquilar, punto. Eso es lo que se llama una ley supletoria.''
+\end{quote}
+
+\begin{table}[H]
+\centering
+\caption{Leyes imperativas y leyes supletorias}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Leyes imperativas (indisponibles)} & \textbf{Leyes supletorias} \\
+\midrule
+Las partes NO pueden dejar de lado lo dispuesto por la ley. Si lo hacen, el acto puede ser nulo. &
+Las partes SÍ pueden dejar de lado lo dispuesto por la ley, acordando algo distinto. \\
+\addlinespace
+Ejemplo: el contrato de alquiler de vivienda no puede celebrarse por un plazo menor a dos años. &
+Ejemplo: el Código dice que el locatario puede subalquilar salvo disposición en contrario; las partes pueden acordar otra cosa. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Género y especie: la crítica a la teoría de Bordas}
+
+Bordas sostenía que toda ley imperativa es de orden público y que todo orden público es imperativo. Sin embargo, esto no es así: los autores actuales (se cita a Borda, Llambías, Rivera, Tobías y Alterini, entre otros) coinciden en general en que:
+
+\begin{quote}
+\itshape
+``La ley imperativa es como el género, y las leyes de orden público son una especie: no todas las leyes imperativas son de orden público, pero sí todas las leyes de orden público son imperativas.''
+\end{quote}
+
+\begin{example}{Los tres prenombres}
+``El Código Civil dice que si nosotros tenemos un hijo, no le podemos poner más de tres prenombres. Si yo no lo puedo llamar con cinco nombres de pila, eso es una ley imperativa. Voy al registro y digo: quiero anotar a mi hijo con cinco nombres porque soy fanático de Estudiantes, y quiero ponerle Juan Sebastián, y después Alejandro por Sabella, y después Carlos por Bilardo, y después Osvaldo por Suárez. El empleado me dice: señora, usted tiene un límite de tres nombres. Entonces solo voy a poder poner Juan Sebastián Alejandro. Esto es una ley imperativa, pero no necesariamente de orden público, sino que hace a la forma de organización social: que alguien tenga tres nombres, cuatro o uno solo, es por ley, pero no compromete principios esenciales de la sociedad.''
+\end{example}
+
+Con este ejemplo queda demostrado que una ley puede ser imperativa (obligatoria, indisponible para las partes) sin que ello implique necesariamente que se trate de una norma de orden público.
+
+\subsection{Definición mayoritaria del orden público y sus caracteres}
+
+La mayoría de los autores —y de algún modo también el propio código— adoptan la siguiente postura respecto del orden público:
+
+\begin{definition}{Orden público}
+``Un conjunto de principios esenciales de orden político, jurídico, económico, moral y religioso, sobre los cuales se sustenta la organización social, y la persistencia de la misma en el tiempo.''
+\end{definition}
+
+Se trata de un concepto amplio e indeterminado, que no puede encontrarse listado en ningún buscador, y que además va cambiando con el tiempo:
+
+\begin{quote}
+\itshape
+``Esto es justamente una de las características de los conceptos: un conjunto de principios que ustedes no van a encontrar en un buscador que les diga todo lo que es el orden público en Argentina, porque se va mostrando, va cambiando en el tiempo.''
+\end{quote}
+
+El propio legislador, en ocasiones, aclara expresamente que una ley es de orden público —como ocurre, por ejemplo, en la Ley de Defensa del Consumidor— para enfatizar que no puede ser dejada de lado por los particulares.
+
+Citando a Borda, pueden señalarse dos características del orden público, compartidas también por otros autores:
+
+\begin{itemize}
+    \item \textbf{Es eminentemente particular de cada país}: lo que es de orden público en un país puede no serlo en otro.
+    \item \textbf{Es mutable}: puede ir cambiando con el tiempo.
+\end{itemize}
+
+Esta última característica se vincula con el derecho internacional privado, tema que se desarrolla más adelante en la clase.
+
+\subsection*{Cuadro Cornell — Capítulo 1}
+\addcontentsline{toc}{subsection}{Cuadro Cornell — Capítulo 1}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué límites tiene la libertad de contratar?} &
+Las personas son libres para hacer contratos, convenciones y acuerdos (autonomía de la voluntad), pero esa libertad encuentra un límite en el orden público: no puede celebrarse una convención que tenga por finalidad, o que de hecho afecte, al orden público. Existen también otros límites, como las leyes imperativas, que no siempre coinciden con el orden público. \\
+
+\textbf{¿Qué teorías explican el orden público?} &
+Se identificó al orden público con el derecho público (inexacto, porque también hay normas de orden público en el derecho privado); con el interés general (más preciso, pero imperfecto); con la intuición del intérprete (explica quién decide, no qué es); con la voluntad del legislador (la Corte Suprema aclaró que no basta con que el legislador lo diga); y, según Bordas, con las leyes imperativas (criticado porque no toda ley imperativa es de orden público). \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El orden público limita la libertad de contratar y no se confunde con el orden en la vía pública. Las leyes imperativas (indisponibles) no pueden dejarse de lado por las partes, a diferencia de las supletorias. Toda ley de orden público es imperativa, pero no toda ley imperativa es de orden público (relación de género y especie). La definición mayoritaria lo describe como un conjunto de principios esenciales —políticos, jurídicos, económicos, morales y religiosos— que sustentan la organización social, con dos caracteres centrales: es particular de cada país y es mutable en el tiempo.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+\chapter{Aplicación del orden público: tres grandes supuestos}
+
+Una vez expuestas las teorías, corresponde analizar cómo se aplica la noción de orden público. Pueden identificarse tres grandes supuestos o casos:
+
+\begin{itemize}
+    \item \textbf{Orden público y autonomía de la voluntad}: en qué medida el orden público regula la autonomía de la voluntad.
+    \item \textbf{Orden público y aplicabilidad de la ley extranjera}: en qué medida el orden público constituye un límite para que se aplique en el país la ley extranjera.
+    \item \textbf{Orden público y efectos de la ley en el tiempo}.
+\end{itemize}
+
+\section{Orden público y autonomía de la voluntad}
+
+Las personas son libres para contratar, conforme al artículo 958 del Código Civil y Comercial.
+
+\begin{formula}{Artículo 958 — Código Civil y Comercial}
+``Libertad de contratación. Las partes son libres para celebrar un contrato y determinar su contenido, dentro de los límites impuestos por la ley, el orden público, la moral y las buenas costumbres.''
+\end{formula}
+
+\begin{quote}
+\itshape
+``Son libres para celebrar un contrato, determinar su contenido; sea, celebrar un contrato significa cuando quieran, con quien quieran, y para determinar su contenido, dentro de los límites... acá vienen la cuestión: impuestos por la ley, el orden público, la moral y las buenas costumbres.''
+\end{quote}
+
+\begin{example}{La compraventa de órganos}
+``Viene una persona y me dice: estoy muy desesperado, vos estás necesitando un riñón, te vendo mi riñón. Muy bien, señores, está prohibido por la ley la compraventa de órganos. Entonces, eso es así: por más que yo quiera hacer un contrato de compraventa de mi riñón, tengo un límite impuesto, en este caso, por la ley, y también por la moral y las buenas costumbres, que nos dice que vender órganos es algo que afecta a un sentido moral.''
+\end{example}
+
+El orden público es un límite distinto de la ley misma: el artículo 958 agrega, además de la ley, el orden público, la moral y las buenas costumbres, señalando principios que van más allá de lo que la ley dice expresamente. En ocasiones, no obstante, ambos límites se conjugan: la ley misma puede declarar que cierta materia es de orden público (por ejemplo, en el derecho del consumidor).
+
+\subsection{El artículo 12 del Código Civil y Comercial}
+
+El artículo 958 se vincula con el artículo 12 del título preliminar, norma que proviene del Código Civil francés y que ya estaba presente en el Código de Vélez:
+
+\begin{formula}{Artículo 12 (primera parte) — Código Civil y Comercial}
+``Las convenciones particulares no pueden dejar sin efecto las leyes en cuya observancia está interesado el orden público.''
+\end{formula}
+
+Las convenciones (es decir, los acuerdos entre particulares) no pueden derogar ni dejar sin efecto las leyes de orden público. Como dato histórico, la redacción anterior también aludía a la moral y las buenas costumbres, mención que se quitó en el nuevo texto; se trataría de una omisión involuntaria, dado que el concepto de buenas costumbres subsiste todavía en el artículo 958.
+
+En concordancia con esta idea, otras normas del código reiteran la misma lógica:
+
+\begin{formula}{Artículo 279 — Código Civil y Comercial (objeto del acto jurídico)}
+El objeto del acto jurídico no debe ser un hecho imposible o prohibido por la ley, contrario a la moral, a las buenas costumbres, al orden público o lesivo de los derechos ajenos o de la dignidad humana.
+\end{formula}
+
+El acto jurídico es el acto de personas humanas, realizado en forma voluntaria, con un fin lícito e inmediato de producir consecuencias jurídicas; y el objeto de ese acto no puede ser contrario al orden público.
+
+\begin{note}
+\textbf{Pregunta de Pereira Santi:} ¿el artículo 12 se refiere a que hay leyes que se rompen y no afectan el orden público?
+
+\textbf{Respuesta:} el artículo 12 se refiere a que los particulares no pueden dejar sin efecto las leyes de orden público, que es algo más intenso que las leyes imperativas comunes. Las partes sí pueden apartarse de las leyes supletorias, pero tampoco pueden apartarse de las leyes imperativas en general (aunque esto último no está dicho expresamente en el artículo, está sobreentendido).
+\end{note}
+
+\subsection{La nulidad de los actos contrarios al orden público}
+
+Existen normas concordantes con la idea de que el orden público limita la autonomía de la voluntad y produce, además, la nulidad de los actos que lo contrarían:
+
+\begin{formula}{Artículo 1004 — Código Civil y Comercial (objeto de los contratos)}
+No pueden ser objeto de los contratos los hechos que son imposibles o están prohibidos por las leyes, son contrarios a la moral, al orden público, a la dignidad de la persona humana, o lesivos de los derechos ajenos.
+\end{formula}
+
+El artículo 279 corresponde al Libro Primero (Parte General, dedicado a los actos jurídicos como categoría general), mientras que el artículo 1004 corresponde al Libro Tercero, dedicado específicamente a los contratos. Los actos jurídicos son el género y el contrato es una especie de acto jurídico.
+
+\begin{formula}{Artículo 1014 — Código Civil y Comercial (causa)}
+Es nulo el contrato cuando... su causa es contraria a la moral, al orden público o a las buenas costumbres.
+\end{formula}
+
+\begin{formula}{Artículo 386 — Código Civil y Comercial (nulidad absoluta)}
+Son de nulidad absoluta los actos que contravienen el orden público, la moral o las buenas costumbres.
+\end{formula}
+
+\begin{quote}
+\itshape
+``La nulidad es una sanción que consiste en privar de sus efectos propios a un acto, por la existencia de un vicio al momento de su celebración. Si ese acto jurídico es contrario al orden público, va a ser de nulidad absoluta, y absoluta significa que no puede ser confirmado, es imprescriptible, puede ser declarada de oficio si es manifiesta, y una serie de consecuencias que luego estudiaremos.''
+\end{quote}
+
+\subsection{Las facultades del juez para modificar el contrato}
+
+El nuevo código introdujo una novedad que no existía en el régimen anterior:
+
+\begin{formula}{Artículo 960 — Código Civil y Comercial}
+Los jueces no tienen facultades para modificar las estipulaciones de los contratos, excepto que sea a pedido de una de las partes cuando lo autoriza la ley, o de oficio cuando se afecta, de modo manifiesto, el orden público.
+\end{formula}
+
+\begin{quote}
+\itshape
+``Fíjense que acá el código le da una facultad extraordinaria, muy importante, a los jueces, para modificar un contrato si está afectado al orden público... esto realmente es una atribución muy fuerte para los jueces, que no estaba en el código anterior.''
+\end{quote}
+
+\section{El fraude a la ley}
+
+La segunda parte del artículo 12 regula el fraude a la ley:
+
+\begin{formula}{Artículo 12 (segunda parte) — Código Civil y Comercial}
+El acto respecto del cual se invoque el amparo de un texto legal, que persiga un resultado sustancialmente análogo al prohibido por una norma imperativa, se considera otorgado en fraude a la ley. En ese caso, el acto debe someterse a la norma imperativa que se trata de eludir.
+\end{formula}
+
+\begin{example}{El alquiler ``turístico''}
+``Hay una norma que prohíbe hacer un contrato de alquiler de vivienda por menos de dos años. Yo invoco otra norma, por ejemplo, la norma que permite contratos temporarios por turismo, y hago pasar como turismo lo que en realidad es un alquiler para vivienda. Le contrato a alguien que está desesperado por mi casa, pero por seis meses, y le digo que es para turismo. El Código me permite alquilar para turismo, pero yo en realidad estoy haciendo trampa, porque estoy tratando de sortear la prohibición de no alquilar por menos de dos años. Imagínense que, en este tiempo de inflación, si yo alquilo a un valor y dentro de dos años la inflación fue del cincuenta por ciento, perdí mucha plata, y por eso trato de hacer contratos más cortos; pero al hacerlo, estoy violando la ley, aunque aparentemente no, porque estoy invocando que esto es para turismo. Este es un típico ejemplo de fraude a la ley: es un acto respecto del cual se invoca el amparo de un texto legal que persigue un resultado sustancialmente análogo al prohibido por la norma imperativa. En este caso, mi alquiler debe sujetarse a la norma imperativa que se trata de eludir; el contrato se considera como que dura dos años, a pesar de que se lo puso como alquiler turístico.''
+\end{example}
+
+\begin{note}
+\textbf{Pregunta de Daniel:} ¿el fraude puede ser cometido por las dos partes?
+
+\textbf{Respuesta:} el fraude a la ley, en el derecho civil, no se analiza como un delito que deba perseguirse penalmente. Se da cuando, por ejemplo, una persona alquila por seis meses bajo la apariencia de turismo y luego, al querer desalojarla, el inquilino invoca que el contrato debe regirse por la ley de alquileres con el plazo mínimo de dos años. El fraude puede ser cometido por ambas partes en connivencia, en cuyo caso el juez impone igualmente el orden público, o puede haber sido cometido por una sola de las partes.
+\end{note}
+
+\section{La renuncia general a las leyes}
+
+Existe una última norma vinculada a la autonomía de la voluntad:
+
+\begin{formula}{Artículo 13 — Código Civil y Comercial}
+Está prohibida la renuncia general de las leyes. Los efectos de la ley pueden ser renunciados en el caso particular, excepto que el ordenamiento jurídico lo prohíba.
+\end{formula}
+
+Este texto guarda similitud con la idea del artículo 19 de la Constitución Nacional, y subyace en él la idea de que una renuncia general a la ley compromete, en general, el orden público. Se trata de un supuesto de renuncia a la ley, ubicado en el Título Preliminar, que se vincula —aunque sin mencionarlo expresamente— con el orden público.
+
+\subsection*{Cuadro Cornell — Capítulo 2}
+\addcontentsline{toc}{subsection}{Cuadro Cornell — Capítulo 2}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué límites impone el artículo 958?} &
+El artículo 958 consagra la libertad de contratación dentro de los límites impuestos por la ley, el orden público, la moral y las buenas costumbres (ejemplo: la prohibición de la compraventa de órganos). \\
+
+\textbf{¿Puede un contrato dejar sin efecto una ley de orden público?} &
+No. El artículo 12 (primera parte) establece que las convenciones particulares no pueden dejar sin efecto las leyes de orden público. El artículo 279 agrega que el objeto del acto jurídico no puede ser contrario al orden público. \\
+
+\textbf{¿Qué sanción recibe el acto contrario al orden público?} &
+La nulidad absoluta (arts. 1004, 1014 y 386 CCyC): no puede confirmarse, es imprescriptible y puede ser declarada de oficio si es manifiesta. Además, el artículo 960 faculta al juez a modificar de oficio un contrato cuando se afecta de modo manifiesto el orden público. \\
+
+\textbf{¿Qué es el fraude a la ley?} &
+Es el acto por el cual se invoca el amparo de un texto legal para perseguir un resultado sustancialmente análogo al prohibido por una norma imperativa (art. 12, segunda parte). El acto debe someterse a la norma imperativa que se trata de eludir; puede ser cometido por una o por ambas partes. \\
+
+\textbf{¿Se puede renunciar a una ley?} &
+No de manera general (art. 13): está prohibida la renuncia general a las leyes, aunque sí puede renunciarse a sus efectos en el caso particular, salvo que el ordenamiento jurídico lo prohíba. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} La autonomía de la voluntad (art. 958) tiene como límites la ley, el orden público, la moral y las buenas costumbres. Las convenciones particulares no pueden dejar sin efecto las leyes de orden público (art. 12) ni tener un objeto contrario a él (art. 279). Los actos contrarios al orden público son de nulidad absoluta (arts. 1004, 1014 y 386) y el juez puede modificar de oficio un contrato afectado (art. 960). El fraude a la ley (art. 12, segunda parte) consiste en eludir una norma imperativa mediante la invocación de otra norma. La renuncia general a las leyes está prohibida (art. 13).
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+% CAPÍTULO 3
+% ============================================================
+\chapter{Orden público, ley extranjera y efectos de la ley en el tiempo}
+
+\section{Orden público y ley extranjera}
+
+El segundo gran supuesto de aplicación del orden público parte del principio de territorialidad de las leyes:
+
+\begin{formula}{Artículo 4 — Código Civil y Comercial}
+Las leyes son obligatorias para todos los que habitan el territorio de la República Argentina.
+\end{formula}
+
+A partir de este principio, surge la pregunta de si es posible invocar la aplicación de una ley extranjera en nuestro país. Por las reglas del derecho internacional privado, esto puede ocurrir en determinadas circunstancias:
+
+\begin{example}{Matrimonio con bienes en España}
+``Supongamos que tenemos un matrimonio que está casado en la Argentina, pero tiene bienes que están regidos por la ley española, y entonces, al hacer un divorcio en la Argentina, tenemos que traer a colación la ley española, porque compraron el bien en España. Entonces el juez argentino aplica la ley española. Les parecerá raro, pero esto ocurre; esto se lo van a estudiar en derecho internacional privado, un tema típico de esa área.''
+\end{example}
+
+En esos casos en que la ley extranjera pudiera resultar aplicable, el orden público impone un límite:
+
+\begin{formula}{Artículo 2600 — Código Civil y Comercial}
+Las disposiciones de derecho extranjero aplicables deben ser excluidas cuando conducen a soluciones incompatibles con los principios fundamentales de orden público que inspiran el ordenamiento jurídico argentino.
+\end{formula}
+
+Esta norma tiene su antecedente en el código anterior (artículo 14), que hablaba de límites a la aplicación de la ley extranjera sin mencionar expresamente al orden público, refiriéndose en cambio al derecho público y otras cuestiones. El actual artículo 2600 es más claro: una ley extranjera no puede aplicarse cuando es incompatible con los principios de orden público que inspiran el ordenamiento jurídico.
+
+\begin{example}{Hijos matrimoniales y extramatrimoniales}
+``Imagínense que en un país `X' todavía subsisten diferencias entre los hijos matrimoniales y extramatrimoniales. Unas personas que llegan de ese país se instalan en la Argentina; tienen un hijo matrimonial y uno extramatrimonial, y para los fines de la herencia, el extramatrimonial no hereda. (En nuestro país, desde 1985, la herencia es igualitaria entre hijos matrimoniales y extramatrimoniales). Entonces, nuestros jueces dirían: usted me quiere invocar, para la sucesión, una ley donde se distingue al hijo matrimonial como único heredero y al extramatrimonial no; no, no se aplica esa ley extranjera porque viola el orden público nacional, ya que en el orden público argentino los hijos son todos iguales. Por disposición del artículo 2600, el juez debe excluir esa ley y resolver el problema por el derecho argentino.''
+\end{example}
+
+\begin{note}
+\textbf{Pregunta de Yanina:} ¿el divorcio realizado en el exterior por una pareja casada en la Argentina tiene validez en la Argentina?
+
+\textbf{Respuesta:} sí, pero hay que analizar la cuestión conforme al derecho internacional privado: cuando una pareja se casa en la Argentina, se va a otro país y se divorcia allí, dependerá de la ley de ese otro país. Normalmente se analiza primero la validez del matrimonio celebrado en el extranjero (según la ley del lugar de celebración) y luego la disolución del vínculo, que puede regularse por la ley local del divorcio o por la ley de la celebración, según el caso. Lo mismo ocurre a la inversa: un matrimonio celebrado en el extranjero que luego se divorcia en la Argentina. Como ejemplo extremo de este análisis, puede mencionarse el caso de matrimonios forzados de niñas, que en algunos países todavía se permiten: si una persona se casa con una niña de doce años en su país de origen y luego viene a la Argentina, nuestro ordenamiento no permite inscribir ese matrimonio, porque viola el principio de orden público según el cual el matrimonio de niños está prohibido (en principio, solo es posible con dispensa judicial para menores de 16 años, o con autorización de los padres entre los 16 y los 18).
+\end{note}
+
+\begin{note}
+\textbf{Pregunta de Dolores Agostina:} ¿siempre prevalecen las normas de derecho internacional?
+
+\textbf{Respuesta:} no siempre es así: existe lo que se denomina ``punto de conexión'', que es el criterio que determina cuál es la ley aplicable a un caso. Incluso puede ocurrir que el juez competente sea de un país y el derecho aplicable sea el de otro: puede haber un juez argentino que aplique derecho extranjero, o un juez extranjero que aplique derecho argentino. Se trata de un tema complejo que se estudia específicamente en derecho internacional privado.
+\end{note}
+
+\section{Orden público y efectos de la ley con relación al tiempo}
+
+Este punto ya había sido tratado brevemente en una clase anterior. Conviene repasar la evolución normativa:
+
+\begin{formula}{Artículo 5 — Código Civil (Vélez Sarsfield, según ley 340)}
+Ninguna persona puede tener derechos irrevocablemente adquiridos contra una ley de orden público.
+\end{formula}
+
+Conforme a este texto original, las leyes de orden público constituían una excepción al principio de irretroactividad: podían aplicarse retroactivamente, incluso contra derechos adquiridos. Esta solución se modificó en 1968 (mediante la reforma identificada como ley 17.711, que sustituyó el artículo por el entonces artículo 3), y la solución actual, contenida en el artículo 7 del Código Civil y Comercial, es distinta:
+
+\begin{formula}{Artículo 7 — Código Civil y Comercial}
+A partir de su entrada en vigencia, las leyes se aplican a las consecuencias de las relaciones y situaciones jurídicas existentes. Las leyes no son retroactivas, sean o no de orden público, excepto disposición en contrario.
+\end{formula}
+
+\begin{quote}
+\itshape
+``Dice que las leyes no son retroactivas, sean o no de orden público; entonces acá puedo ver que el carácter de orden público de la ley dejó de ser decisivo en relación a la retroactividad. Antes, la ley decía que la de orden público se podía aplicar retroactivamente contra derechos adquiridos; ahora esto ya cambió: aunque la ley diga que es de orden público, no importa, el principio es que no es retroactiva, salvo que la propia ley diga que es retroactiva. Esto puede pasar sea una ley de orden público o no.''
+\end{quote}
+
+El carácter de orden público de una ley ya no resulta decisivo en relación con su irretroactividad: habrá leyes de orden público que sean imperativas, y leyes que no son de orden público, y en ambos casos la regla general sigue siendo la misma: la irretroactividad, salvo disposición expresa en contrario.
+
+\subsection*{Cuadro Cornell — Capítulo 3}
+\addcontentsline{toc}{subsection}{Cuadro Cornell — Capítulo 3}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuándo se excluye la aplicación de la ley extranjera?} &
+Conforme al artículo 2600 CCyC, las disposiciones de derecho extranjero deben excluirse cuando conducen a soluciones incompatibles con los principios fundamentales de orden público que inspiran el ordenamiento jurídico argentino (por ejemplo, una ley que discrimine entre hijos matrimoniales y extramatrimoniales). \\
+
+\textbf{¿El orden público hace retroactiva una ley?} &
+Ya no. En el Código de Vélez (art. 5), una ley de orden público podía aplicarse retroactivamente contra derechos adquiridos. Desde la reforma de la ley 17.711 (1968) y en el artículo 7 del CCyC vigente, las leyes no son retroactivas sean o no de orden público, salvo disposición expresa en contrario. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El orden público opera como límite frente a la ley extranjera: una norma extranjera aplicable según las reglas del derecho internacional privado se excluye si viola los principios fundamentales del orden público argentino (art. 2600). En cambio, en materia de efectos de la ley en el tiempo, el carácter de orden público de una ley dejó de ser decisivo para determinar su retroactividad: la regla general, desde 1968 y en el artículo 7 vigente, es la irretroactividad, sea o no la ley de orden público, salvo que ella misma disponga lo contrario.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+% CAPÍTULO 4
+% ============================================================
+\chapter{Preguntas y respuestas de la clase}
+
+Sobre el cierre de la clase, se respondieron diversas consultas formuladas por los estudiantes a través del chat, que permiten profundizar y aclarar los conceptos desarrollados.
+
+\begin{note}
+\textbf{Pregunta de Martín:} ¿cómo sabemos cuáles leyes son de orden público y cuáles no?
+
+\textbf{Respuesta:} este es ``el gran tema'': a veces la ley dice expresamente que es de orden público (como ocurre, por ejemplo, en la Ley de Defensa del Consumidor); otras veces la ley no lo dice, y entonces hay que analizar si la norma protege los principios fundamentales del funcionamiento de la sociedad. Es un ``tema difícil'', y en definitiva será el juez quien, en cada caso concreto, determine si algo es o no de orden público. Como ejemplo de actualidad, se mencionó la discusión en torno a las normas sobre la forma de pago en dólares, en un contexto de mayor intervencionismo estatal: se discute si el orden público puede imponerse allí o si los particulares pueden acordar libremente, y este tipo de discusiones, sin una respuesta única, terminan siendo resueltas por los jueces.
+\end{note}
+
+\begin{note}
+\textbf{Pregunta de Nicolás:} ¿qué se entiende por leyes indisponibles?
+
+\textbf{Respuesta:} una ley indisponible es una ley imperativa: una ley que las partes no pueden dejar de lado. Retomando el ejemplo del alquiler de vivienda: la ley establece que el contrato debe durar como mínimo dos años; si alguien quisiera alquilar por solo seis meses y la otra parte aceptara, el contrato igualmente se entiende celebrado por dos años (sin perjuicio de que, a los seis meses, el inquilino pueda eventualmente ejercer la facultad de rescindir, que es una cuestión distinta). El plazo mínimo es indisponible: las partes no pueden pactar en contrario.
+\end{note}
+
+\begin{note}
+\textbf{Pregunta de Maite:} ¿la opinión pública se relaciona con el derecho público?
+
+\textbf{Respuesta:} deben distinguirse tres conceptos que suelen confundirse: la opinión pública, el derecho público y el orden público. La opinión pública es un concepto sociológico, de la comunicación, sin implicancias jurídicas. El derecho público es el derecho que regula al Estado y a los particulares en su relación con él. El orden público, en cambio, es un conjunto de principios que inspiran a una sociedad y que limitan lo que las partes pueden disponer; es un concepto propio del derecho privado, vinculado a la limitación de la autonomía de la voluntad.
+\end{note}
+
+\begin{note}
+\textbf{Pregunta (sin identificar):} cuando la ley no explica, ¿queda todo en la subjetividad del juez, como ocurre con la moral y las buenas costumbres?
+
+\textbf{Respuesta:} no se trata de pura subjetividad: todo juez, conforme al artículo 3 del Código Civil y Comercial, debe dar una decisión razonable y fundada. Cuando el juez invoca la moral, las buenas costumbres o el orden público, debe explicar por qué, en esa situación concreta, se trata de un supuesto de orden público.
+\end{note}
+
+\begin{note}
+\textbf{Pregunta de Agustina:} en cuanto al orden público y el efecto de la ley en el tiempo, ¿no fue determinante en el código originario?
+
+\textbf{Respuesta:} en el régimen originario una ley de orden público podía ser retroactiva; con el cambio introducido en 1968 y mantenido en el código actual, una ley puede ser retroactiva sea o no de orden público, según lo disponga la propia ley. Por eso, el carácter de orden público dejó de ser relevante a estos fines.
+\end{note}
+
+\begin{note}
+\textbf{Pregunta (sin identificar):} ¿el orden público varía según el tiempo y la sociedad, como en el caso del aislamiento (la cuarentena)?
+
+\textbf{Respuesta:} evidentemente, a veces las leyes siguen diciendo que son de orden público, pero la valoración social puede cambiar. En principio, se debe tomar como de orden público lo que la ley así califica, pero será el juez, llegado el momento, quien determine si esa calificación se mantiene vigente. De todos modos, probablemente se trate de una ley imperativa que los jueces deben aplicar (o, en su caso, declarar inconstitucional), ya que los jueces no pueden dejar de aplicar las leyes imperativas ni las partes apartarse de ellas. Si el tema fuera tan relevante como para requerir un cambio, probablemente el Congreso ya lo hubiera modificado, tal como ocurrió históricamente con la reforma de la ley 17.711 en los años sesenta y con los cambios en materia de familia en los años ochenta, que modificaron también la noción de imperatividad y de orden público.
+\end{note}
+
+\begin{note}
+\textbf{Pregunta (sin identificar):} ¿qué es la nulidad absoluta y la nulidad relativa?
+
+\textbf{Respuesta:} el acto jurídico, según el artículo 259 del Código Civil y Comercial, es el acto voluntario y lícito que tiene por fin inmediato producir efectos jurídicos, y que puede hacer nacer, modificar o extinguir relaciones o situaciones jurídicas; es un concepto amplio que engloba también a los contratos (son actos jurídicos, por ejemplo, un testamento o un matrimonio). La nulidad, en cambio, es un concepto vinculado a la ineficacia de un acto: el acto debería producir efectos, pero si es nulo, no los produce, por tener un defecto o vicio al momento de su celebración. La \textbf{nulidad absoluta} se da cuando el acto contraría el orden público: no puede confirmarse, no prescribe y el juez puede declararla de oficio. La \textbf{nulidad relativa}, en cambio, protege un interés particular, por lo que el acto puede eventualmente ser confirmado, ya que no está en juego el orden público ni el interés general.
+\end{note}
+
+\begin{note}
+\textbf{Pregunta de Lucas:} ¿la ley 17.711 hizo cambios importantes en materia de orden público?
+
+\textbf{Respuesta:} esa reforma hizo cambios importantes, principalmente, en lo relativo a los efectos de la ley con relación al tiempo (según se explicó al tratar el artículo 7). En los otros dos supuestos —autonomía de la voluntad y ley extranjera— no hubo mayores cambios, y por ello esos temas no se estudiaron en esta clase con perspectiva histórica, sino únicamente conforme al derecho vigente.
+\end{note}
+
+\begin{note}
+\textbf{Pregunta (sin identificar):} ¿los contratos leoninos son contrarios al orden público?
+
+\textbf{Respuesta:} un contrato leonino no es necesariamente lo mismo que un contrato contrario al orden público, aunque ambos temas pueden cruzarse. El contrato leonino es aquel en el que se abusa de la posición de una de las partes, generando una situación muy desventajosa para ella; esto se vincula, más propiamente, con el vicio de lesión, regulado en el artículo 332 del Código Civil y Comercial, que se estudiará en una clase específica más adelante. Puede haber casos en los que se entrecrucen cuestiones de lesión, abuso de derecho y orden público, pero conceptualmente son figuras distintas.
+\end{note}
+
+El objetivo de la clase fue explicar la noción de orden público: por qué es importante, cuáles son las teorías que la explican, y los tres grandes supuestos de aplicación estudiados (autonomía de la voluntad, ley extranjera y efectos de la ley en el tiempo).
+
+\subsection*{Cuadro Cornell — Capítulo 4}
+\addcontentsline{toc}{subsection}{Cuadro Cornell — Capítulo 4}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cómo se sabe si una ley es de orden público?} &
+No hay un listado cerrado: a veces la ley lo dice expresamente (Ley de Defensa del Consumidor); otras veces debe analizarse si protege los principios fundamentales de la sociedad. En definitiva, es el juez quien lo determina en cada caso concreto, con decisión razonable y fundada (art. 3 CCyC), sin que ello implique pura subjetividad. \\
+
+\textbf{¿En qué se diferencian opinión pública, derecho público y orden público?} &
+La opinión pública es un concepto sociológico sin implicancias jurídicas; el derecho público regula al Estado y su relación con los particulares; el orden público es un conjunto de principios que limitan la autonomía de la voluntad, propio del derecho privado. \\
+
+\textbf{¿Qué diferencia hay entre nulidad absoluta y relativa?} &
+La nulidad absoluta protege el orden público: no puede confirmarse, no prescribe y puede declararse de oficio. La nulidad relativa protege un interés particular y el acto puede confirmarse, porque no está en juego el orden público ni el interés general. \\
+
+\textbf{¿Los contratos leoninos son contrarios al orden público?} &
+No necesariamente son lo mismo, aunque pueden cruzarse: el contrato leonino se vincula más propiamente con el vicio de lesión (art. 332 CCyC), una figura conceptualmente distinta del orden público. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} La determinación de qué es de orden público no responde a una fórmula cerrada, sino que exige, en cada caso, analizar si están en juego los principios fundamentales de la sociedad, con decisión final del juez. Es necesario distinguir el orden público de nociones próximas pero distintas: la opinión pública, el derecho público, la nulidad relativa y el contrato leonino (vicio de lesión). El carácter de orden público de una ley dejó de ser decisivo para su retroactividad desde la reforma de 1968.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}
