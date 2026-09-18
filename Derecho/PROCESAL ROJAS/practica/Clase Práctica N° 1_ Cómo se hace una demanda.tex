@@ -1,0 +1,808 @@
+% =====================================================================
+% DOCUMENTCLASS
+% =====================================================================
+\documentclass[12pt,oneside]{book}
+
+% =====================================================================
+% METADATOS (obtenidos del apunte original)
+% =====================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\catedra}{Cátedra del Dr. Rojas}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{Clase Práctica N.\textsuperscript{o} 1: Estructura y Confección de la Demanda}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2020}
+
+% =====================================================================
+% PAQUETES
+% =====================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% =====================================================================
+% RUTAS DE IMÁGENES
+% =====================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =====================================================================
+% CONFIGURACIÓN GENERAL
+% =====================================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =====================================================================
+% COMANDOS MATEMÁTICOS
+% =====================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =====================================================================
+% CAJAS ACADÉMICAS
+% =====================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =====================================================================
+% ENCABEZADOS Y PIES
+% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =====================================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% =====================================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =====================================================================
+% DOCUMENT
+% =====================================================================
+\begin{document}
+
+% ---------------------------------------------------------------------
+% PORTADA
+% ---------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \catedra}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender la estructura de una demanda es el primer paso para convertir la teoría procesal en práctica profesional.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------------------------------------------------------------
+% ÍNDICE
+% ---------------------------------------------------------------------
+\tableofcontents
+
+% =====================================================================
+% CAPÍTULO 1 — MODALIDAD DE TRABAJO PRÁCTICO
+% =====================================================================
+\chapter{Modalidad de trabajo práctico}
+
+Esta clase práctica virtual introduce a los estudiantes en la confección del escrito de demanda dentro del proceso civil ordinario argentino. Antes de abordar el contenido sustancial, se establecen las pautas de trabajo que regirán el desarrollo de las clases prácticas del cuatrimestre.
+
+\section{Contexto: readecuación por cuarentena}
+
+La cátedra combina el dictado de clases teóricas con clases prácticas orientadas a la confección de un expediente completo, mediante la técnica del \textit{role play}. La propuesta original contemplaba recrear situaciones de entrevista entre el abogado y el cliente, así como simular una audiencia confesional y una audiencia testimonial. Como consecuencia de la cuarentena, resultó necesario readecuar esta modalidad de trabajo, reemplazando las instancias presenciales por su equivalente remoto.
+
+\begin{note}
+La consulta con el cliente, originalmente prevista en forma presencial, se readecuó a la modalidad remota, conservando su función dentro del proceso de aprendizaje.
+\end{note}
+
+\section{Objetivos de las clases prácticas}
+
+El propósito central de las clases prácticas es que los estudiantes lleven a la práctica los conocimientos teóricos adquiridos a lo largo del cuatrimestre, elaborando a partir de ellos los trabajos prácticos que se presentarán en grupos, favoreciendo el trabajo colaborativo y el intercambio de ideas entre los integrantes de cada equipo.
+
+\section{Modalidad de entrega}
+
+La mecánica de trabajo remoto establecida por la cátedra comprende las siguientes pautas:
+
+\begin{itemize}
+    \item Los trabajos prácticos se remiten en forma electrónica.
+    \item Los docentes los corrigen y devuelven con observaciones.
+    \item Los estudiantes realizan las correcciones marcadas.
+    \item El canal de intercambio se publica en el Facebook de cada comisión y en el campus virtual.
+    \item Los escritos se envían en formato \textbf{Word} (.doc o .docx).
+    \item La documentación adicional indicada en cada clase práctica se envía en formato \textbf{PDF} o \textbf{JPG}.
+    \item En el primer envío se incluye una carátula con el nombre de cada integrante y sus datos personales.
+\end{itemize}
+
+Esta modalidad se mantiene uniforme para la entrega de todos los trabajos prácticos del cuatrimestre.
+
+\section{Entrega final presencial}
+
+Cuando se retomen los encuentros presenciales, los estudiantes deberán entregar todos los trabajos prácticos realizados durante el cuatrimestre, ya corregidos y con las correcciones efectuadas, ordenados cronológicamente en una carpeta a modo de expediente.
+
+\begin{important}
+Las entregas virtuales deben efectuarse en la fecha publicada por la cátedra. La puntualidad en cada entrega resulta necesaria para permitir las revisiones correspondientes.
+\end{important}
+
+% =====================================================================
+% CAPÍTULO 2 — ETAPA PREVIA A LA REDACCIÓN DE LA DEMANDA
+% =====================================================================
+\chapter{Etapa previa a la redacción de la demanda}
+
+\section{La entrevista con el cliente}
+
+Antes de sentarse a redactar la demanda, el abogado siempre parte de una entrevista con el cliente, quien consulta porque tiene un conflicto que no puede solucionar por sí mismo. En esa entrevista, el cliente relata todos los hechos que dan origen a la situación conflictiva.
+
+\begin{important}
+Una demanda no es una novela: el abogado no inventa los hechos, sino que estos surgen siempre de la entrevista con el cliente que consulta por un conflicto concreto.
+\end{important}
+
+\section{Selección de hechos: relevantes vs. hechos basura}
+
+El cliente no tiene conocimiento de qué hechos poseen relevancia jurídica ni cuáles resultan necesarios para obtener una sentencia favorable. Es el abogado quien, luego de la entrevista, discrimina los hechos conducentes de aquellos superfluos, denominados en la práctica \textbf{``hechos basura''}.
+
+\begin{definition}{Hechos basura}
+Son aquellos hechos relatados por el cliente que carecen de relevancia jurídica para la pretensión que se pretende hacer valer en juicio y que, por lo tanto, deben descartarse al momento de redactar la demanda.
+\end{definition}
+
+\begin{important}
+El dueño de los hechos es el abogado. Es él quien decide, luego de la entrevista, qué hechos incluye en la demanda y cuáles descarta.
+\end{important}
+
+\section{Determinación de la prueba}
+
+Una vez identificados los hechos relevantes, el abogado debe definir cómo probará aquellos hechos que alegará en la demanda, ya que el que alega un hecho debe probarlo. Recién entonces se está en condiciones de confeccionar el escrito de demanda.
+
+\section{La demanda como escrito de postulación}
+
+La demanda es un escrito de postulación que da origen al proceso y que, como presentación formal, debe cumplir tanto recaudos formales como sustanciales.
+
+\begin{formula}{Recaudos formales de la demanda — normas aplicables}
+\begin{itemize}
+    \item \textbf{Art. 115 CPCCN} — Idioma nacional y firma de letrado.
+    \item \textbf{Art. 46 RJPN} — Recaudos generales de los escritos judiciales.
+    \item \textbf{Art. 47 RJPN} — Encabezamiento de los escritos.
+    \item \textbf{Art. 330 CPCCN} — Requisitos sustanciales de la demanda.
+\end{itemize}
+\end{formula}
+
+% TODO: contenido incompleto o ambiguo en las notas originales — se menciona la página \texttt{www.jorgerojasabogado.com.ar} como fuente de un modelo de estructura de demanda, sin mayor precisión sobre su contenido.
+
+% =====================================================================
+% CAPÍTULO 3 — ESTRUCTURA BÁSICA DE LA DEMANDA
+% =====================================================================
+\chapter{Estructura básica de la demanda}
+
+\section{Sumario (o Suma)}
+
+\begin{definition}{Sumario}
+El sumario es el título del escrito judicial. En él se sintetiza la petición que se formula. Se ubica en la parte superior izquierda del escrito y cumple la función de índice, permitiendo una búsqueda más rápida entre todos los instrumentos que obran en el expediente, dado que, a diferencia de los libros, los expedientes no cuentan con un índice general.
+\end{definition}
+
+El sumario se utiliza en todos los escritos judiciales, no solo en la demanda.
+
+\begin{example}{Sumario para el caso práctico — accidente de tránsito}
+\begin{itemize}
+    \item ``PROMUEVE DEMANDA DE DAÑOS Y PERJUICIOS''
+    \item o bien: ``INICIA DEMANDA DE DAÑOS Y PERJUICIOS''
+\end{itemize}
+\end{example}
+
+\begin{note}
+En la Provincia de Buenos Aires el sumario es más amplio: exige datos adicionales como el nombre y domicilio del actor, el nombre y domicilio del demandado, el monto reclamado y la documentación acompañada.
+\end{note}
+
+\section{Destinatario}
+
+En esta sección se indica ante quién se promueve la demanda.
+
+\begin{example}{Fórmula del destinatario}
+\begin{itemize}
+    \item ``SEÑOR JUEZ''
+    \item o bien: ``SEÑOR JUEZ NACIONAL EN LO CIVIL''
+\end{itemize}
+\end{example}
+
+\section{Encabezamiento (Art. 47 RJPN)}
+
+El encabezamiento está regulado en el art.\ 47 del Reglamento para la Justicia Nacional. En él se plasman todos los datos de quien se presenta. Se distinguen dos supuestos:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Actuación por derecho propio con patrocinio letrado}: el cliente firma la demanda y el abogado actúa como patrocinante.
+    \item \textbf{Actuación como apoderado}: el cliente otorga un poder para que el abogado actúe en su nombre y representación.
+\end{enumerate}
+
+\begin{example}{Encabezamiento — abogado apoderado}
+\begin{enumerate}
+    \item Nombre completo del abogado.
+    \item Datos de matriculación (Tomo y Folio) en el Colegio Público de Abogados de la Capital Federal.
+    \item Datos fiscales (CUIT, inscripción AFIP).
+    \item Carácter en que se presenta: APODERADO/A.
+    \item Domicilio procesal (\textit{ad litem}): domicilio del estudio jurídico.
+    \item Domicilio electrónico: CUIT del abogado.
+    \item Fórmula de cierre: ``A Vuestra Señoría me presento y respetuosamente digo:''
+\end{enumerate}
+\end{example}
+
+\begin{important}
+En la primera presentación deben constituirse ambos domicilios —el procesal y el electrónico—, porque a partir de ese momento las notificaciones llegarán, en general, al domicilio constituido. En los escritos posteriores no se vuelve a constituir domicilio, sino que se menciona que se mantiene el domicilio ya constituido.
+\end{important}
+
+\section{Personería}
+
+En este capítulo el abogado denuncia los datos de la parte actora y acredita el carácter en que actúa.
+
+Si la parte actora es una \textbf{persona humana}, debe indicarse:
+\begin{itemize}
+    \item Nombre completo.
+    \item Documento Nacional de Identidad.
+\end{itemize}
+
+\begin{formula}{Art. 73 CCyCN — Domicilio real}
+El domicilio real de las personas humanas es el lugar de su residencia habitual.
+\end{formula}
+
+Si la parte actora es una \textbf{persona jurídica} (sociedad), debe indicarse:
+\begin{itemize}
+    \item Razón social.
+    \item Número de CUIT.
+    \item Domicilio legal: domicilio inscripto ante la Inspección General de Justicia (IGJ).
+\end{itemize}
+
+En este capítulo también se manifiesta que el mandato invocado se encuentra vigente, se acompaña fotocopia firmada del poder dando fe de su fidelidad, y se declara que se intervendrá en nombre y representación del cliente.
+
+\section{Objeto}
+
+En el capítulo del objeto se consigna la pretensión concreta: lo que se pretende que se resuelva en la sentencia. Incluye:
+
+\begin{itemize}
+    \item La identificación del demandado o demandados, con sus datos completos y domicilio.
+    \item El monto reclamado (que se desarrolla en el capítulo de liquidación).
+    \item La frase práctica: ``o lo que en más o en menos resulte de la prueba a rendirse en autos''.
+    \item La solicitud de aplicación de intereses.
+    \item Las costas del proceso (honorarios incluidos).
+\end{itemize}
+
+\begin{formula}{Art. 330 inc. 3 CPCCN — El objeto de la demanda}
+La demanda deberá expresar: la cosa demandada, designándola con exactitud.
+\end{formula}
+
+\begin{important}
+El juez no puede condenar más allá de lo peticionado. La frase ``o lo que en más o en menos resulte de la prueba a rendirse en autos'' deja abierta la posibilidad de que el juez condene por un importe distinto si así surge de la prueba producida en el pleito.
+\end{important}
+
+La demanda debe notificarse a la contraria mediante el traslado que ordena el juez; por ello es necesario individualizar a los demandados —denunciando su domicilio— para que puedan ejercer su derecho de defensa en juicio.
+
+\begin{table}[H]
+\centering
+\caption{Tipos de domicilio del demandado según su naturaleza}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Tipo de demandado} & \textbf{Tipo de domicilio} & \textbf{Norma aplicable} \\
+\midrule
+Persona humana & Domicilio real & Art. 73 CCyCN \\
+Persona jurídica & Domicilio legal & Inscripto en IGJ \\
+Contrato de locación & Domicilio especial & Art. 75 CCyCN \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Hechos}
+
+Este es uno de los capítulos más importantes de la demanda. En el proceso ordinario rige el \textbf{principio de sustanciación}: los hechos deben relatarse en forma clara y cronológica, a diferencia del proceso ejecutivo, donde rige el principio de individualización.
+
+\begin{important}
+El que alega un hecho debe probarlo; por ello es necesario analizar, antes de redactar, cómo se probará cada hecho que se afirme en la demanda. El dueño de los hechos es el abogado, quien decide qué hechos incluye en la demanda y cuáles no.
+\end{important}
+
+La demanda, como cualquier narración, tiene inicio, desarrollo (nudo) y desenlace o conclusión. Los hechos se narran de forma afirmativa, con oraciones precisas y cortas, comenzando por las circunstancias de tiempo y lugar que dan origen al reclamo, de modo que quien lee pueda situar la escena como si observara una fotografía.
+
+\begin{example}{Inicio del capítulo de hechos — caso práctico}
+``Con fecha 14 de enero de 2020, siendo aproximadamente las 14:45 horas, la señora Marcela Díaz se encontraba junto a su esposo Lisandro López en el interior del automóvil marca Chevrolet 400, modelo 72, patente RC ACERO 19\ldots''
+
+A continuación se desarrollan cronológicamente:
+\begin{itemize}
+    \item La mecánica del accidente (nudo del relato).
+    \item Las consecuencias del hecho (desarrollo).
+    \item La atribución de responsabilidad al demandado y el pedido de condena (desenlace).
+\end{itemize}
+\end{example}
+
+\section{Derecho}
+
+En este capítulo se invoca el derecho en que el accionante funda su reclamo: normas, doctrina y jurisprudencia aplicables al caso.
+
+\begin{note}
+Si bien rige el principio del \textit{iura novit curia} —el juez conoce el derecho—, igualmente se menciona el derecho, la doctrina y la jurisprudencia aplicables, en tanto es necesario convencer al juez de la postura sostenida, fundamentando el derecho que asiste al cliente.
+\end{note}
+
+% =====================================================================
+% CAPÍTULO 4 — MEDIOS PROBATORIOS
+% =====================================================================
+\chapter{Medios probatorios}
+
+La prueba debe ofrecerse en su totalidad en una sola oportunidad: en la demanda. El código prevé diferentes medios de prueba, que se desarrollan a continuación.
+
+\section{Prueba documental}
+
+La prueba documental no solo debe ofrecerse, sino también acompañarse. Para ofrecerla correctamente es necesario individualizarla, es decir, identificarla con precisión.
+
+\begin{example}{Ofrecimiento de prueba documental}
+Si se ofrece como prueba documental el presupuesto del arreglo del vehículo, debe mencionarse:
+\begin{itemize}
+    \item Nombre del taller mecánico.
+    \item Fecha de emisión del presupuesto.
+\end{itemize}
+\end{example}
+
+Si la prueba no está en poder de la parte actora —porque la tiene la contraparte o un tercero—, debe igualmente individualizarse e indicar dónde se encuentra o en poder de quién.
+
+\section{Prueba informativa}
+
+Se ofrece para traer al proceso información que se encuentra en un registro o archivo de una entidad pública o privada. El instrumento de comunicación utilizado en la práctica se denomina \textbf{oficio}. Al solicitar al juez el libramiento del oficio, debe indicarse el nombre de la entidad y la información exacta que se requiere.
+
+\begin{example}{Ofrecimiento de prueba informativa}
+``Se libre oficio al Taller Mecánico `Más Regla Tuti S.L.' para que informe si el presupuesto que se acompaña es auténtico.''
+\end{example}
+
+\begin{note}
+Si el demandado desconoce el presupuesto acompañado como documental y no se ofrece prueba informativa para determinar su autenticidad, el documento no quedará probado.
+\end{note}
+
+\section{Prueba confesional}
+
+Se ofrece citando a la parte demandada a absolver posiciones.
+
+\begin{example}{Ofrecimiento de prueba confesional}
+``Se cite a la demandada a absolver posiciones a tenor del pliego que oportunamente se adjuntará, bajo apercibimiento de ley.''
+\end{example}
+
+\begin{note}
+Si el absolvente está correctamente notificado y no concurre a la audiencia, fictamente se tendrá la confesión por prestada.
+\end{note}
+
+\begin{important}
+La prueba confesional es de ofrecimiento obligatorio en los trabajos prácticos de la cátedra.
+\end{important}
+
+\section{Prueba testimonial}
+
+Se ofrece solicitando al juez que cite a prestar declaración a los testigos, indicando:
+
+\begin{itemize}
+    \item Nombre completo del testigo.
+    \item Profesión.
+    \item Domicilio.
+    \item Los extremos o fines que se quieren probar con su declaración (art.\ 333 CPCCN).
+\end{itemize}
+
+\begin{formula}{Art. 333 CPCCN — Prueba testimonial: extremos a probar}
+Al ofrecer la prueba testimonial se indicará qué extremos se quieren probar con la declaración de cada testigo.
+\end{formula}
+
+\begin{example}{Ofrecimiento de prueba testimonial}
+``\ldots para que relate cómo ocurrió el accidente, en su carácter de testigo presencial del hecho.''
+\end{example}
+
+\begin{important}
+La prueba testimonial es de ofrecimiento obligatorio en los trabajos prácticos de la cátedra.
+\end{important}
+
+\section{Prueba pericial}
+
+Al ofrecer la prueba pericial se debe:
+
+\begin{itemize}
+    \item Designar el tipo de profesión y, en su caso, la especialidad del perito.
+    \item Pedir al juez que designe el perito.
+    \item Enunciar los puntos de pericia (cuestionario al perito).
+\end{itemize}
+
+\begin{example}{Ofrecimiento de prueba pericial mecánica}
+``Se designe perito mecánico para que oportunamente emita el dictamen pericial.''
+
+Puntos de pericia (ejemplo):
+\begin{enumerate}
+    \item Si es fácticamente posible que el accidente hubiera ocurrido de la forma descripta en la demanda.
+\end{enumerate}
+% TODO: contenido incompleto o ambiguo en las notas originales — el listado de puntos de pericia se interrumpe con la indicación ``continuar con los puntos que resulten necesarios según el caso'', sin desarrollarlos.
+\end{example}
+
+% =====================================================================
+% CAPÍTULO 5 — PETITORIO
+% =====================================================================
+\chapter{Petitorio}
+
+El petitorio es el capítulo que resume en forma clara y concreta todo lo que se le pide al juez, incluyendo aspectos procesales y sustanciales.
+
+\begin{important}
+La demanda es, fundamentalmente, un acto de petición; el petitorio es el capítulo que resume en forma clara y concreta lo que se le pide al juez.
+\end{important}
+
+\begin{example}{Fórmula de apertura del petitorio}
+``Por todo lo expuesto, a Vuestra Señoría solicito:'' \\
+o bien: ``A Sus Señorías solicito:''
+\end{example}
+
+Los puntos habituales del petitorio son los siguientes:
+
+\begin{description}
+    \item[Punto 1] Que se tenga a la parte por presentada en el carácter invocado (apoderado o patrocinante); que se tenga por denunciado el domicilio real del cliente; y por constituidos los domicilios procesal y electrónico.
+    \item[Punto 2] Que se tenga por promovida la demanda y se corra traslado a la contraria.
+    \item[Punto 3] En relación con la prueba: que se tenga por acompañada la prueba documental; por ofrecida la restante; y que en el momento procesal oportuno (apertura a prueba) se provea su producción.
+    \item[Punto 4] La petición sustancial: que oportunamente se dicte sentencia condenando al demandado al pago de los rubros reclamados, con más intereses y costas.
+\end{description}
+
+\begin{example}{Fórmula de traslado de la demanda}
+``Se tenga por iniciada la demanda y se corra traslado de la misma por el término y bajo apercibimiento de ley.''
+\end{example}
+
+\begin{important}
+No debe omitirse la inclusión de las costas, ya que los honorarios del abogado por su labor profesional integran la condena en costas que eventualmente disponga la sentencia.
+\end{important}
+
+El escrito se cierra con la fórmula de uso forense:
+
+\begin{example}{Fórmula de cierre del escrito}
+``Proveer de conformidad será justicia.''
+\end{example}
+
+Respecto de la firma:
+\begin{itemize}
+    \item Si el abogado actúa como \textbf{apoderado}: firma a la derecha, con sello aclaratorio (Tomo y Folio).
+    \item Si el abogado actúa como \textbf{patrocinante}: el cliente firma a la derecha y el abogado a la izquierda.
+\end{itemize}
+
+% =====================================================================
+% CAPÍTULO 6 — CAPÍTULOS ADICIONALES DE LA DEMANDA
+% =====================================================================
+\chapter{Capítulos adicionales de la demanda}
+
+Además de la estructura básica, al confeccionar el escrito se incorporan otros capítulos, que se detallan a continuación.
+
+\section{Competencia}
+
+En este capítulo se plasman los fundamentos por los cuales se sostiene que el tribunal resulta competente para entender en el caso.
+
+\section{Rubros indemnizatorios}
+
+Se detallan los rubros a reclamar: daño material, daño moral y cualquier otro que corresponda según el caso. Cada equipo debe evaluar cuáles rubros va a peticionar.
+
+\section{Liquidación}
+
+En este capítulo se estima el importe de cada uno de los rubros reclamados. La sumatoria de dichos importes conforma el monto total reclamado, que se consigna en el capítulo del objeto.
+
+\section{Reserva del caso federal}
+
+Se introduce la cuestión federal para el eventual supuesto de recurrir ante la Corte Suprema de Justicia de la Nación, en caso de violación de derechos y garantías constitucionales.
+
+\section{Autorización de personas}
+
+Es frecuente dejar constancia de las personas autorizadas para impulsar las actuaciones, realizar desgloses y diligenciamientos, es decir, trámites vinculados con el proceso.
+
+\section{Mediación previa obligatoria}
+
+\begin{definition}{Mediación previa obligatoria}
+Es una instancia de resolución alternativa de conflictos que debe agotarse antes de iniciar el proceso judicial. Su cumplimiento constituye un requisito de admisibilidad de la demanda: si no se acredita el cierre de dicha etapa mediante el formulario correspondiente, el juez no admitirá la demanda.
+\end{definition}
+
+\section{Tasa de justicia}
+
+Se manifiesta y acredita el pago de la tasa de justicia.
+
+\begin{formula}{Ley 23.898 — Tasa de justicia}
+Regula el monto y la liquidación de la tasa de justicia.
+\end{formula}
+
+\begin{note}
+Quienes no cuenten con medios para solventar los gastos judiciales pueden iniciar el Beneficio de Litigar sin Gastos.
+\end{note}
+
+% =====================================================================
+% CAPÍTULO 7 — PRESENTACIÓN DE LA DEMANDA
+% =====================================================================
+\chapter{Presentación de la demanda}
+
+\section{Documentación que integra la demanda}
+
+Además del escrito, la demanda se integra con los siguientes documentos:
+
+\begin{enumerate}
+    \item Bono del Colegio Público de Abogados de la Capital Federal (derecho fijo que se adquiere en el Colegio; su falta de presentación hace que el juzgado intime a agregarlo).
+    \item Formulario de cierre de la instancia de mediación obligatoria previa.
+    \item Formulario de pago de la tasa de justicia, debidamente abonada.
+    \item Copia del poder (si el abogado actúa como apoderado), firmada y certificada.
+    \item Prueba documental ofrecida y acompañada en la demanda.
+    \item Planilla de incorporación de datos.
+\end{enumerate}
+
+\section{Impresión del escrito}
+
+Los escritos judiciales se imprimen a doble faz, sin dejar páginas en blanco. Es importante respetar la sangría y los márgenes, ya que los escritos se agregan al expediente cosiéndolos y, si no se respetan los márgenes, el reverso del escrito no puede leerse íntegramente.
+
+\begin{note}
+Los expedientes se agregan y folian, es decir, llevan una numeración correlativa que evita la pérdida de algún documento.
+\end{note}
+
+\section{Inicio de la demanda ante la Cámara}
+
+Para iniciar la demanda se debe:
+
+\begin{enumerate}
+    \item Completar la planilla de incorporación de datos.
+    \item Presentar la planilla junto con el escrito de demanda y toda la documentación en la Cámara correspondiente (en el caso práctico, la Cámara Civil) a los efectos del sorteo del juzgado.
+    \item Recibir de la Cámara, una vez sorteado el juzgado, la carátula del expediente.
+\end{enumerate}
+
+\begin{note}
+La carátula del expediente contiene: datos de la parte actora, objeto del pleito, monto de la demanda, número de juzgado, domicilio, nombre del juez y número de expediente.
+\end{note}
+
+\section{Presentación en el juzgado}
+
+Con la carátula ya asignada, el abogado se presenta en la mesa de entradas del juzgado con la demanda, la documentación y la carátula. El personal del juzgado recibe la demanda y coloca el cargo.
+
+\begin{definition}{Cargo}
+Es el comprobante o constancia de presentación del escrito. En él figura: fecha de presentación, hora de presentación, si el escrito lleva firma de letrado y si se acompañan copias.
+\end{definition}
+
+\begin{note}
+Es habitual llevar una copia de la demanda y solicitar al personal del juzgado que la selle, a modo de constancia para el estudio jurídico.
+\end{note}
+
+\section{El expediente electrónico}
+
+Una vez que el expediente se encuentra cargado en el sistema —dado que en la actualidad se trabaja con expediente electrónico—, el abogado debe subir digitalmente la demanda, completando así el circuito que va desde la confección del escrito hasta su presentación ante el órgano jurisdiccional.
+
+% =====================================================================
+% CORNELL — REPASO FINAL
+% =====================================================================
+\chapter{Repaso Cornell: estructura de la demanda civil}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}p{0.60\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{l}{\small\itshape (continúa de la página anterior)} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\small\itshape continúa en la página siguiente} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+
+\textbf{¿Por qué el abogado es el ``dueño de los hechos''?} &
+El abogado es quien conoce qué hechos tienen relevancia jurídica para obtener una sentencia favorable. El cliente relata todo lo que vivió, pero es el letrado quien filtra y selecciona los hechos conducentes para la demanda, descartando los ``hechos basura'' (superfluos o inútiles). Esta función de selección es exclusiva del abogado. \\
+
+\textbf{¿Qué es el sumario y cuál es su función?} &
+El sumario o suma es el título del escrito judicial. Sintetiza la petición que se formula (por ejemplo, ``Promueve demanda de daños y perjuicios''). Su función es actuar como índice de búsqueda rápida dentro del expediente, ya que los expedientes judiciales no tienen un índice general como los libros. \\
+
+\textbf{¿Qué diferencia hay entre actuar como patrocinante y como apoderado?} &
+Patrocinante: el cliente actúa por derecho propio y firma la demanda; el abogado solo presta asistencia letrada y firma a la izquierda. Apoderado: el cliente otorga un poder (mandato) para que el abogado actúe en su nombre y representación; el abogado firma solo a la derecha con sello aclaratorio (Tomo y Folio). \\
+
+\textbf{¿Qué domicilios se deben constituir en la primera presentación?} &
+En la primera presentación deben constituirse dos domicilios: 1) el domicilio procesal (\textit{ad litem}), generalmente el del estudio jurídico del abogado, y 2) el domicilio electrónico, el CUIT del abogado. A partir de esa presentación, las notificaciones llegarán al domicilio constituido; en escritos posteriores solo se menciona que se mantiene el domicilio ya constituido. \\
+
+\textbf{¿Por qué se agrega la frase ``o lo que en más o en menos resulte de la prueba''?} &
+Porque el juez no puede condenar más allá de lo peticionado (principio de congruencia). Al incluir esa frase se deja abierta la posibilidad de que, si la prueba arroja un monto mayor, el juez pueda condenar por ese importe mayor. También se tiene en cuenta que el proceso puede demorar y los valores pueden variar. \\
+
+\textbf{¿Cuál es la diferencia entre prueba documental y prueba informativa?} &
+Prueba documental: el documento ya está en poder del abogado o de la parte; se acompaña y se individualiza al momento de presentar la demanda. Prueba informativa: la información está en poder de un tercero (entidad pública o privada); se pide al juez que libre un oficio a esa entidad para que informe al proceso. Ejemplo: oficio al taller para acreditar la autenticidad de un presupuesto. \\
+
+\textbf{¿Qué información debe identificarse al ofrecer prueba testimonial?} &
+Conforme al art.\ 333 CPCCN, deben indicarse: nombre completo del testigo, profesión, domicilio y, crucialmente, los extremos o fines que se quieren probar con su declaración. Este último requisito es esencial: no basta con listar testigos, sino que hay que explicar para qué sirve cada uno. \\
+
+\textbf{¿Qué es el cargo y para qué sirve?} &
+El cargo es el comprobante de presentación del escrito en el juzgado. Lo coloca el personal de la mesa de entradas e indica: fecha, hora, firma de letrado y si se acompañaron copias. Es importante pedir una copia sellada para el estudio como constancia de que la demanda fue presentada. \\
+
+\textbf{¿Cuál es la diferencia entre domicilio real, legal y especial?} &
+Domicilio real (art.\ 73 CCyCN): lugar de residencia habitual de la persona humana. Domicilio legal: domicilio inscripto ante la IGJ para las personas jurídicas. Domicilio especial (art.\ 75 CCyCN): domicilio fijado en un contrato para los efectos de ese contrato (por ejemplo, en el contrato de locación). \\
+
+\textbf{¿Qué es la mediación previa obligatoria y por qué es un requisito de admisibilidad?} &
+La mediación previa obligatoria es una instancia de resolución alternativa de conflictos que debe agotarse antes de iniciar el proceso judicial. Su cumplimiento es un requisito de admisibilidad de la demanda: si no se acredita el cierre de esa etapa (con el formulario correspondiente), el juez no admitirá la demanda. \\
+
+\midrule
+
+\multicolumn{2}{p{0.90\textwidth}}{
+\textbf{Resumen:} La demanda civil es el resultado de un proceso intelectual que comienza con la escucha activa del cliente y termina con la presentación de un instrumento formal ante el órgano jurisdiccional. El abogado cumple un rol de filtro: extrae de la narración del cliente únicamente los hechos con relevancia jurídica, decide cómo probarlos y los vuelca en un escrito estructurado que sigue un orden preciso. Esa estructura —sumario, destinatario, encabezamiento, personería, objeto, hechos, derecho, pruebas y petitorio— es funcional: cada capítulo responde a una necesidad del proceso (presentarse, identificar a las partes, fijar la pretensión, narrar los hechos, fundar jurídicamente el reclamo, ofrecer los medios probatorios y concretar lo pedido). A esa estructura básica se suman capítulos adicionales que hacen a la completitud de la demanda: competencia, rubros indemnizatorios, liquidación, reserva del caso federal, acreditación de la mediación previa obligatoria y pago de la tasa de justicia. El proceso finaliza con la presentación física y electrónica ante el juzgado sorteado, obteniendo el cargo como constancia. Dominar esta estructura constituye el punto de partida de la práctica profesional forense.
+} \\
+
+\end{longtable}
+
+\end{document}
