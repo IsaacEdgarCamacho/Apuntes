@@ -1,0 +1,1018 @@
+% =====================================================================
+% Apuntes de Derecho Civil — Patrimonio, Bienes y Cosas
+% Documento autónomo. Compilar con pdflatex (dos pasadas para el índice).
+% =====================================================================
+\documentclass[12pt,oneside]{book}
+
+% ---------------------------------------------------------------------
+% METADATOS
+% ---------------------------------------------------------------------
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Civil}
+\newcommand{\subtitulomateria}{Introducción al Derecho Privado}
+\newcommand{\titulo}{Patrimonio, Bienes y Cosas}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ---------------------------------------------------------------------
+% PAQUETES
+% ---------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ---------------------------------------------------------------------
+% CONFIGURACIÓN
+% ---------------------------------------------------------------------
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlength{\emergencystretch}{2em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ---------------------------------------------------------------------
+% ENCABEZADOS Y PIES
+% ---------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------------------------------------------------------------------
+% COMANDOS
+% ---------------------------------------------------------------------
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Tipos de columna para tablas
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{B}[1]{>{\bfseries\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% Entorno para tablas académicas (tipografía reducida e interlineado de celdas)
+\newenvironment{tabla}{%
+    \par\medskip\begingroup\small\renewcommand{\arraystretch}{1.3}\noindent\ignorespaces
+}{%
+    \par\endgroup\medskip
+}
+
+% Columnas del cuadro Cornell (columna izquierda estrecha, columna derecha amplia)
+\newcolumntype{Q}{>{\raggedright\arraybackslash}p{0.26\textwidth}}
+\newcolumntype{Z}{>{\raggedright\arraybackslash}p{0.68\textwidth}}
+\newcolumntype{V}{>{\raggedright\arraybackslash}p{\dimexpr0.94\textwidth+2\tabcolsep+\arrayrulewidth\relax}}
+
+% Formato general del cuadro Cornell (tipografía reducida y mayor aire vertical en las celdas)
+\newcommand{\cornellinicio}{\begingroup\small\renewcommand{\arraystretch}{1.4}}
+\newcommand{\cornellfin}{\endgroup}
+
+\newcommand{\cornellpregunta}[2]{\textbf{#1} & #2 \\ \hline}
+\newcommand{\cornellresumen}[1]{\rowcolor{blue!5}\multicolumn{2}{|V|}{\textbf{Resumen:} #1} \\ \hline}
+
+% ---------------------------------------------------------------------
+% ENTORNOS / CAJAS
+% ---------------------------------------------------------------------
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Transcripción de disposiciones normativas citadas en el apunte
+\newtcolorbox{norma}[1]{
+    enhanced,
+    breakable,
+    frame hidden,
+    borderline west={2.5pt}{0pt}{blue!50!black},
+    colback=gray!6,
+    boxrule=0pt,
+    arc=0pt,
+    left=8pt,
+    right=6pt,
+    before upper={\textbf{\upshape #1}\par\smallskip\itshape}
+}
+
+% =====================================================================
+\begin{document}
+% =====================================================================
+
+% ---------------------------------------------------------------------
+% PORTADA
+% ---------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{0.3cm}
+
+{\large \subtitulomateria}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender cada concepto es el primer paso para dominarlo.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------------------------------------------------------------
+% ÍNDICE
+% ---------------------------------------------------------------------
+\frontmatter
+\tableofcontents
+\mainmatter
+
+% =====================================================================
+% CAPÍTULO 1 — EL PATRIMONIO
+% =====================================================================
+\chapter{El patrimonio}
+
+\section{Planteo general de la unidad}
+
+Esta unidad conecta dos preguntas fundamentales del Derecho Privado: \textbf{¿quién responde?} y \textbf{¿con qué responde?} El patrimonio es el puente entre ambas: es el atributo que le da contenido económico a la persona jurídica y, al mismo tiempo, la garantía sobre la que los acreedores ejecutarán sus créditos. Entender qué son los bienes y las cosas ---y cómo se clasifican--- es entender de qué está hecho ese patrimonio.
+
+\begin{note}
+\textbf{Relevancia práctica.} Estas nociones constituyen la base de la práctica profesional jurídica cotidiana:
+\begin{itemize}
+    \item Al redactar una escritura de compraventa, es necesario distinguir si el bien es mueble o inmueble para determinar la forma requerida (escritura pública o simple contrato).
+    \item Al asesorar a un cliente endeudado, permite determinar qué bienes puede conservar por ser inembargables.
+    \item En un litigio, permite identificar qué acciones utilizar para recuperar el patrimonio de un deudor que intenta eludir a sus acreedores.
+\end{itemize}
+El patrimonio como garantía es el concepto central del crédito: no se presta dinero ni se celebra un contrato sin entender sobre qué responde el deudor.
+\end{note}
+
+\section{El patrimonio como atributo de la personalidad}
+
+En esta unidad confluyen dos aspectos distintos y complementarios. El primero es el estudio del \textbf{patrimonio como atributo de la personalidad}. Existen distintas posturas: algunas señalan que el patrimonio es un atributo de la personalidad y otras no lo entienden así. Se adopta aquí ---junto con el profesor Lozano Roy--- la posición que entiende el patrimonio como atributo de la personalidad.
+
+La materia aborda el patrimonio desde dos planos:
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.4cm}YY}
+\toprule
+Perspectiva & \textbf{Qué estudia} & \textbf{Dónde se ubica} \\
+\midrule
+Atributo de la personalidad & El patrimonio como cualidad inherente al sujeto de derecho & Dentro del estudio del sujeto de la relación jurídica \\
+Objeto de la relación jurídica & Los bienes y cosas que conforman el patrimonio & Dentro del estudio del objeto de la relación jurídica \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+La materia recorre tres grandes ejes: el \textbf{sujeto} (persona humana y jurídica), el \textbf{objeto} (bienes y cosas) y la \textbf{causa} de la relación jurídica. El patrimonio aparece en los dos primeros ejes: como atributo del sujeto y como continente de los objetos.
+
+\begin{norma}{Artículo 15 CCCN --- Titularidad de derechos individuales}
+Las personas son titulares de los derechos individuales sobre los bienes que integran su patrimonio conforme a lo que se establece en este Código.
+\end{norma}
+
+\section{El patrimonio como garantía común de los acreedores}
+
+El artículo 242 constituye el núcleo funcional del patrimonio:
+
+\begin{norma}{Artículo 242 CCCN --- Garantía común}
+Todos los bienes del deudor están afectados al cumplimiento de sus obligaciones y constituyen la garantía común de sus acreedores, con excepción de aquellos que este Código o leyes especiales declaran inembargables e inejecutables.
+\end{norma}
+
+\begin{example}{La deuda de un millón de pesos}
+Supóngase que una persona debe un millón de pesos. El acreedor la intima a pagar y el deudor no paga. El acreedor no puede limitarse a solicitar cortésmente el pago: en algún momento deberá ejecutar compulsivamente al deudor.
+
+Si el deudor no entrega voluntariamente el dinero, no realiza una transferencia bancaria ni cumple de ninguna manera la obligación, el acreedor se cobra \textbf{ejecutando su patrimonio}. Si el deudor tiene un auto a su nombre y un departamento, el acreedor traba embargo sobre esos bienes y, si el deudor no paga, los ejecuta judicialmente; con el producido de los bienes se cobra.
+\end{example}
+
+\section{El patrimonio como universalidad de derecho}
+
+\begin{definition}{Patrimonio (universalidad de derecho)}
+Según la teoría clásica ---Llambías y otros autores---, el patrimonio es una \textbf{universalidad de derecho}: un conjunto de bienes y deudas que conforman una unidad porque la ley se la otorga, con independencia de su contenido concreto en cada momento.
+\end{definition}
+
+Se destacan dos notas esenciales:
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.0cm}YY}
+\toprule
+Nota & \textbf{Descripción} & \textbf{Consecuencia práctica} \\
+\midrule
+Unicidad & Cada persona tiene un solo patrimonio & No puede fragmentarlo a voluntad, salvo casos legales \\
+Mutabilidad del contenido & Los bienes entran y salen, pero el patrimonio subsiste & Los acreedores se cobran sobre los bienes actuales, no sobre los que existían al contraer la deuda \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+Los acreedores pueden cobrarse con los bienes actuales del deudor. El hecho de que el deudor haya vendido un departamento no implica que los acreedores hayan perdido su garantía: la garantía es el \textbf{patrimonio como tal}, con independencia de su contenido. Esto indica también que, si el contenido del patrimonio de la persona va cambiando con el tiempo, sigue siendo su patrimonio.
+
+\subsection{Los patrimonios especiales}
+
+El Código Civil y Comercial reconoce la existencia de patrimonios especiales, disipando la ambigüedad que existía en el código anterior. Son universalidades autónomas que conviven con el patrimonio general:
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{4.6cm}Y}
+\toprule
+Tipo de patrimonio especial & \textbf{Descripción} \\
+\midrule
+Fondo de comercio & Conjunto de bienes afectados a una explotación comercial \\
+Masa de la quiebra & Bienes del fallido afectados al proceso concursal \\
+Masa hereditaria & Bienes del causante antes de la partición \\
+Herencia del presunto fallecido & Patrimonio sujeto a prenotación durante el período legal \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\section{Cuadro Cornell: El patrimonio}
+
+\cornellinicio
+\begin{longtable}{|Q|Z|}
+\hline
+\rowcolor{gray!15}\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{gray!15}\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\ \hline
+\endhead
+
+\cornellpregunta{¿Qué es el patrimonio y por qué se dice que es una universalidad de derecho?}{%
+Es una universalidad de derecho: el conjunto de bienes (activo) y deudas (pasivo) de una persona, al que el ordenamiento jurídico le otorga unidad. Es una unidad porque la ley se la otorga, con independencia de su contenido concreto en cada momento (teoría clásica: Llambías y otros autores). En la materia se lo entiende, junto con el profesor Lozano Roy, como atributo de la personalidad.}
+
+\cornellpregunta{¿Cuáles son las notas esenciales del patrimonio?}{%
+\textbf{Unicidad:} cada persona tiene un solo patrimonio, que no puede fragmentar a voluntad salvo casos legales.
+
+\textbf{Mutabilidad del contenido:} los bienes entran y salen, pero el patrimonio subsiste; por eso los acreedores se cobran sobre los bienes actuales y no sobre los que existían al contraer la deuda.}
+
+\cornellpregunta{¿Puede existir más de un patrimonio para una misma persona?}{%
+Cada persona tiene un solo patrimonio (unicidad), salvo casos legales. El CCCN reconoce patrimonios especiales, universalidades autónomas que conviven con el patrimonio general: fondo de comercio, masa de la quiebra, masa hereditaria y herencia del presunto fallecido.}
+
+\cornellpregunta{¿Por qué se dice que el patrimonio es la garantía común de los acreedores?}{%
+Porque todos los bienes del deudor responden por sus obligaciones (Arts. 242 y 743 CCCN). Si el deudor no paga voluntariamente, el acreedor puede ejecutar compulsivamente los bienes que integran su patrimonio, con excepción de los declarados inembargables.}
+
+\cornellpregunta{¿Desde qué perspectivas se estudia el patrimonio?}{%
+Como atributo de la personalidad (dentro del estudio del sujeto de la relación jurídica) y como conjunto de los bienes y cosas que lo conforman (dentro del estudio del objeto de la relación jurídica). Los tres ejes de la materia son el sujeto, el objeto y la causa; el patrimonio aparece en los dos primeros.}
+
+\cornellresumen{El patrimonio es una universalidad de derecho ---conjunto de bienes y deudas--- y un atributo de la personalidad. Es único y de contenido cambiante, aunque el CCCN admite patrimonios especiales. Es la garantía común de los acreedores (Art. 242 CCCN): todos los bienes del deudor responden por sus obligaciones, salvo los declarados inembargables e inejecutables, y el acreedor puede cobrarse ejecutándolos cuando el deudor no paga voluntariamente.}
+
+\end{longtable}
+\cornellfin
+
+% =====================================================================
+% CAPÍTULO 2 — CLASIFICACIÓN DE LOS DERECHOS
+% =====================================================================
+\chapter{Clasificación de los derechos}
+
+\section{Derechos patrimoniales y extrapatrimoniales}
+
+La gran clasificación de los derechos distingue los que componen el patrimonio de los que quedan fuera de él:
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{4.0cm}YY}
+\toprule
+Categoría & \textbf{Subcategorías} & \textbf{Caracteres} \\
+\midrule
+Extrapatrimoniales & Derechos personalísimos; derechos de familia & Sin contenido económico directo; ligados a la persona o al vínculo familiar \\
+Patrimoniales --- Reales & Dominio, condominio, usufructo, uso, habitación, servidumbre, hipoteca, prenda & Relación directa entre la persona y la cosa; oponibles \textit{erga omnes} \\
+Patrimoniales --- Personales & Obligaciones y contratos & Relación entre acreedor y deudor respecto de una prestación \\
+Patrimoniales --- Intelectuales & Obras científicas, literarias, artísticas, invenciones, software & Recaen sobre creaciones inmateriales \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\section{Los derechos reales}
+
+\begin{definition}{Derechos reales}
+Los derechos reales son aquellos que conceden un \textbf{señorío inmediato sobre una cosa}: existe una relación directa de la persona con la cosa.
+\end{definition}
+
+El derecho real por antonomasia es el \textbf{dominio}, que es el derecho más perfecto y confiere el uso y goce de una cosa. Técnicamente, en el Código Civil y Comercial ---cuya tradición proviene de los romanos---, el \textit{dominus} es el señor de una \textit{res}; por eso estos derechos son «reales»: el término viene del latín \textit{res}, que significa «cosa».
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{4.4cm}P{4.2cm}Y}
+\toprule
+Tipo & \textbf{Ejemplos} & \textbf{Nota} \\
+\midrule
+Sobre cosa propia --- plenos & Dominio & El más amplio: uso, goce y disposición \\
+Sobre cosa propia --- limitados & Condominio & Dos o más titulares sobre la misma cosa \\
+Sobre cosa ajena --- de disfrute & Usufructo, uso, habitación, servidumbre & El titular goza de la cosa de otro \\
+Sobre cosa ajena --- de garantía & Hipoteca (inmuebles), prenda (muebles) & Garantizan el cumplimiento de una obligación \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\section{Los derechos personales}
+
+\begin{important}
+No deben confundirse los derechos \textbf{personales} con los derechos \textbf{personalísimos}.
+\end{important}
+
+Los derechos se llaman «personales» porque confieren prerrogativas para exigir de \textbf{otro} una determinada prestación: la relación no es directa entre una cosa y su dueño, sino entre un acreedor y un deudor en torno a una prestación. Estos derechos se plasman fundamentalmente en obligaciones y contratos.
+% TODO: contenido incompleto o ambiguo en las notas originales (la frase original sobre el sujeto que «se plasma fundamentalmente en obligaciones y contratos» resulta ininteligible; se conservó únicamente la referencia a obligaciones y contratos, que coincide con el cuadro de clasificación)
+
+\section{Los derechos intelectuales}
+
+\begin{definition}{Derechos intelectuales}
+Los derechos intelectuales confieren un \textbf{derecho de explotación, de uso y de goce sobre una obra intelectual}: una obra científica, la creación de una invención, la obra literaria o artística, el software.
+\end{definition}
+
+Se trata de distintos tipos de creaciones que tienen un campo de inmaterialidad, porque no son una casa, un auto o una computadora, sino obras intelectuales.
+
+\section{Cuadro Cornell: Clasificación de los derechos}
+
+\cornellinicio
+\begin{longtable}{|Q|Z|}
+\hline
+\rowcolor{gray!15}\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{gray!15}\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\ \hline
+\endhead
+
+\cornellpregunta{¿Cómo se clasifican los derechos según su relación con el patrimonio?}{%
+\textbf{Extrapatrimoniales} (personalísimos y de familia): sin contenido económico directo, ligados a la persona o al vínculo familiar; quedan fuera del patrimonio.
+
+\textbf{Patrimoniales:} reales, personales e intelectuales.}
+
+\cornellpregunta{¿Qué son los derechos reales y cuál es el derecho real por antonomasia?}{%
+Conceden un señorío inmediato sobre una cosa: hay una relación directa de la persona con la cosa, y son oponibles \textit{erga omnes}. El derecho real por antonomasia es el dominio, el derecho más perfecto, que confiere el uso y goce de una cosa. Se los llama «reales» por el latín \textit{res} (cosa).}
+
+\cornellpregunta{¿Qué diferencia hay entre ser dueño de una cosa y tener un derecho sobre ella?}{%
+El dominio es un derecho real sobre cosa propia, pleno y el más amplio (uso, goce y disposición). Los derechos reales sobre cosa ajena son de disfrute (usufructo, uso, habitación, servidumbre: el titular goza de la cosa de otro) o de garantía (hipoteca sobre inmuebles, prenda sobre muebles). El condominio es un derecho sobre cosa propia limitado: dos o más titulares sobre la misma cosa.}
+
+\cornellpregunta{¿Por qué se llaman «personales» los derechos personales si no son personalísimos?}{%
+Porque confieren prerrogativas para exigir de otro una determinada prestación: la relación no es entre una cosa y su dueño, sino entre un acreedor y un deudor en torno a una prestación. Se plasman en obligaciones y contratos. No deben confundirse con los derechos personalísimos, que son extrapatrimoniales.}
+
+\cornellpregunta{¿Qué son los derechos intelectuales?}{%
+Derechos de explotación, de uso y de goce sobre una obra intelectual (obra científica, invención, obra literaria o artística, software). Recaen sobre creaciones con un campo de inmaterialidad.}
+
+\cornellresumen{Los derechos se clasifican en extrapatrimoniales (personalísimos y de familia, sin contenido económico directo) y patrimoniales (reales, personales e intelectuales). Los derechos reales otorgan un señorío inmediato sobre una cosa y son oponibles \textit{erga omnes}; el dominio es el derecho real por antonomasia. Los derechos personales confieren la facultad de exigir de otro una prestación y se plasman en obligaciones y contratos; no deben confundirse con los personalísimos. Los derechos intelectuales recaen sobre creaciones inmateriales.}
+
+\end{longtable}
+\cornellfin
+
+% =====================================================================
+% CAPÍTULO 3 — BIENES Y COSAS
+% =====================================================================
+\chapter{Bienes y cosas}
+
+\section{Distinción entre bienes y cosas}
+
+\begin{norma}{Artículo 16 CCCN --- Bienes y cosas}
+Los derechos referidos en el primer párrafo del artículo 15 pueden recaer sobre bienes susceptibles de valor económico. Los bienes materiales se llaman cosas. Las disposiciones referentes a las cosas son aplicables a la energía y a las fuerzas naturales susceptibles de ser puestas al servicio del hombre.
+\end{norma}
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.4cm}YY}
+\toprule
+Concepto & \textbf{Definición} & \textbf{Ejemplos} \\
+\midrule
+Bien (sentido amplio) & Todo objeto susceptible de valor económico, material o inmaterial & Un crédito, un derecho de autor, una casa, dinero \\
+Cosa & Objeto material susceptible de valor económico & Casa, auto, computadora, ganado \\
+Bien inmaterial & Bien sin corporalidad física & Un crédito, una marca, un derecho de usufructo \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\section{Muebles e inmuebles}
+
+La distinción entre cosas inmuebles y cosas muebles es la clasificación más importante de las cosas en el Código.
+
+\subsection{Inmuebles}
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{2.8cm}YY}
+\toprule
+Tipo de inmueble & \textbf{Descripción} & \textbf{Ejemplos} \\
+\midrule
+Por naturaleza & Fijados al suelo de manera natural o que se encuentran bajo él sin hecho del hombre & El suelo, los minerales, los árboles arraigados \\
+Por accesión & Cosas muebles inmovilizadas por su adhesión física al suelo con carácter perdurable & Paredes, pisos, ventanas, puertas, techos de un edificio \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\begin{example}{Límite de la accesión}
+Los pisos, las paredes, las ventanas, las puertas y los techos de una casa están compuestos por cosas que eran muebles pero que fueron incorporadas y fijadas al piso con carácter perdurable, por lo que se convierten en inmuebles. La ventana es separable, pero es parte del inmueble.
+
+En cambio, una biblioteca colocada en un departamento no es parte del inmueble aunque esté puesta con carácter permanente, porque está afectada a la actividad de su titular: si se vende el departamento, se lo vende sin la biblioteca, salvo que se trate de un placar construido directamente e incorporado con las paredes.
+\end{example}
+
+\subsection{Cosas muebles}
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.8cm}YY}
+\toprule
+Tipo de cosa mueble & \textbf{Descripción} & \textbf{Ejemplos} \\
+\midrule
+Por desplazamiento propio (semovientes) & Se mueven por sí mismas & Ganado \\
+Por fuerza externa & Se desplazan mediante fuerza humana o mecánica & Muebles del hogar, electrodomésticos \\
+Locomóviles & Vehículos con propulsión propia & Automóviles, motos, camiones, aeronaves \\
+Muebles registrables & Muebles que por su importancia la ley manda registrar & Automotores, buques, aeronaves \\
+Muebles no registrables & Sin obligación de registro & La mayoría de los objetos cotidianos \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\subsection{Importancia práctica de la distinción entre muebles e inmuebles}
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.4cm}YY}
+\toprule
+Aspecto jurídico & \textbf{Cosas inmuebles} & \textbf{Cosas muebles} \\
+\midrule
+Forma de transmisión & Escritura pública obligatoria & Mayor libertad de formas \\
+Ley aplicable (DIPr) & Ley del territorio donde está el bien & Ley del domicilio del propietario \\
+Prescripción adquisitiva & 20 años (10 con justo título y buena fe) & Plazo más corto; sin registro: posesión vale título \\
+Garantías reales & Hipoteca & Prenda \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\section{Cosas divisibles e indivisibles}
+
+\begin{definition}{Cosas divisibles}
+Son divisibles las cosas que pueden dividirse en porciones reales sin ser destruidas, y cada una de las cuales forma un todo homogéneo y análogo tanto a las otras partes como a la cosa original.
+\end{definition}
+
+\begin{example}{División de una cosa}
+Si deben hacerse, a partir de diez quintales de soja, dos entregas de cinco quintales, la cosa es perfectamente divisible: cada parte es un todo homogéneo. En cambio, si se divide un auto, no quedan dos autos: queda un auto destruido.
+\end{example}
+
+La divisibilidad tiene un límite legal: la división no puede tornar antieconómico el uso y aprovechamiento de la cosa.
+
+\begin{example}{División de un lote}
+Dividir un lote de diez metros por diez en pequeños lotes de un metro cuadrado sería absolutamente inconveniente y antieconómico.
+\end{example}
+
+Por eso la reglamentación en materia de inmuebles fija unidades mínimas ---en algunos lugares, de 866 metros cuadrados---. Las autoridades locales (municipios o provincias) tienen las potestades para reglamentar las divisiones en materia de inmuebles.
+
+\section{Cosas principales y accesorias}
+
+\begin{definition}{Cosas principales y accesorias}
+Son \textbf{principales} las cosas que pueden existir por sí mismas; \textbf{accesorias}, aquellas cuya existencia y naturaleza son determinadas por otra de la cual dependen o están adheridas.
+\end{definition}
+
+El régimen jurídico de la cosa accesoria es el de la principal.
+
+\begin{example}{El cuadro y su marco}
+Sea un cuadro compuesto por la tela, la pintura y un marco: el marco es accesorio con relación a la tela y a la pintura, y el régimen jurídico aplicable es el de la principal. Pero si se trata de una lámina que se compra en cualquier kiosco y se la coloca en un marco enormemente valioso de oro, lo principal pasa a ser el marco, y la lámina colocada en él resulta absolutamente accesoria.
+\end{example}
+
+\begin{norma}{Artículo 230 CCCN --- Criterio residual}
+Si no es posible determinar la relación de principalidad y accesoriedad entre las cosas, se considera principal la de mayor valor. Si los valores son iguales, no hay cosa principal ni accesoria.
+\end{norma}
+
+\section{Cosas consumibles y no consumibles; fungibles y no fungibles}
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.0cm}YYY}
+\toprule
+Clasificación & \textbf{Definición} & \textbf{Ejemplos} & \textbf{Importancia} \\
+\midrule
+Consumibles & Su existencia termina con el primer uso & Alimentos, combustible & Relevante en obligaciones de restitución \\
+No consumibles & No dejan de existir por el uso habitual & Muebles, ropa (se deterioran, pero subsisten) & Base de contratos de uso y préstamo \\
+Fungibles & Un individuo equivale a otro de la misma especie; pueden sustituirse & Toneladas de trigo de igual calidad, billetes & Admite sustitución en el cumplimiento \\
+No fungibles & No pueden sustituirse por otro individuo & Cuadro de artista reconocido, botella de vino numerada & Incumplimiento si se entrega cosa distinta \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+Las obras artísticas no son fungibles; las cosas producidas industrialmente, por lo general, sí lo son.
+
+\section{Frutos y productos}
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.2cm}YYY}
+\toprule
+Categoría & \textbf{Definición} & \textbf{Renovación} & \textbf{Ejemplos} \\
+\midrule
+Frutos naturales & Producidos espontáneamente por la naturaleza & Se renuevan periódicamente & Manzanas de un árbol \\
+Frutos industriales & Producidos con intervención humana (agricultura, industria) & Se renuevan con la actividad & Cosechas, producción fabril \\
+Frutos civiles & Rentas producidas por el bien a través de actos jurídicos & Se renuevan periódicamente & Alquileres, intereses del dinero prestado \\
+Productos & Objetos no renovables que al separarse alteran o disminuyen la sustancia & No se renuevan & Minerales extraídos de una cantera \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\begin{example}{Producto y fruto}
+Si se extrae cobre de una cantera, se trata de un \textbf{producto}: la cantera no volverá a producir ese mineral sino en dos millones de años, de modo que se extraen productos y se disminuye el valor de la cosa. En cambio, las manzanas de un árbol se renuevan: son un \textbf{fruto}.
+\end{example}
+
+Esta distinción adquiere importancia cuando debe restituirse algo con sus frutos y sus productos.
+
+\begin{example}{Restitución de una casa por un poseedor de mala fe}
+Quien recibe una casa y es de mala fe debe restituirla con las rentas: si la casa producía un alquiler mensual de veinte mil pesos, debe devolver la casa con las rentas que hubiese producido durante esos años.
+\end{example}
+
+Los artículos 1935 y 1936 CCCN (y el artículo 234, sobre bienes fuera del comercio) regulan los deberes de restitución de frutos y productos según la buena o mala fe del poseedor.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se explica por qué el Art. 234 se menciona junto a los Arts. 1935 y 1936; se conservó la referencia tal como figura)
+
+\section{Bienes según las personas}
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{2.9cm}P{1.7cm}YY}
+\toprule
+Categoría & \textbf{Artículo CCCN} & \textbf{Caracteres} & \textbf{Ejemplos} \\
+\midrule
+Dominio público del Estado & Art. 235 & Inalienables, inembargables, imprescriptibles; uso de todos & Ríos, lagos, playas, plazas, calles \\
+Dominio privado del Estado & Art. 236 & El Estado es titular como particular; pueden enajenarse & Inmueble fiscal no afectado a uso público \\
+Bienes de los particulares & Art. 238 & Todos los bienes no enumerados en los artículos anteriores & Cualquier bien en manos de un privado \\
+Bienes fuera del comercio & Art. 234 & Prohibida su enajenación por ley o por acto jurídico & Bienes de uso cultual, bienes embargados \\
+Bienes de incidencia colectiva & Art. 240 & Interés colectivo en su protección; no apropiables individualmente & Ecosistema, fauna, biodiversidad, agua, valores culturales \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\subsection{Bienes de incidencia colectiva}
+
+\begin{definition}{Bienes de incidencia colectiva}
+Son bienes que no son estrictamente individuales, sino que corresponden de forma homogénea a un conjunto de personas o a la comunidad como tal. Por ejemplo: el ecosistema, la flora, la fauna, la biodiversidad, el agua y los valores culturales.
+\end{definition}
+
+\section{Cuadro Cornell: Bienes y cosas}
+
+\cornellinicio
+\begin{longtable}{|Q|Z|}
+\hline
+\rowcolor{gray!15}\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{gray!15}\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\ \hline
+\endhead
+
+\cornellpregunta{¿Qué diferencia hay entre un bien y una cosa?}{%
+Todo bien es un objeto susceptible de valor económico (material o inmaterial). Una cosa es un bien material (objeto corporal). Todos los objetos inmateriales con valor económico son bienes, pero no cosas (Art. 16 CCCN).}
+
+\cornellpregunta{¿Cuál es la clasificación más importante de las cosas?}{%
+Muebles e inmuebles. Los inmuebles pueden ser por naturaleza (el suelo y lo adherido orgánicamente) o por accesión (cosas muebles incorporadas con carácter perdurable). Los muebles pueden desplazarse por sí mismos (semovientes) o por fuerza externa; algunos son registrables (automotores).}
+
+\cornellpregunta{¿Por qué importa distinguir muebles de inmuebles?}{%
+Define la ley aplicable (en DIPr), el plazo de prescripción adquisitiva (20/10 años para inmuebles \textit{vs.} plazos menores para muebles), la forma de transmisión (escritura pública para inmuebles) y el tipo de garantía real (hipoteca \textit{vs.} prenda).}
+
+\cornellpregunta{¿Cuándo una cosa es divisible?}{%
+Cuando puede dividirse en porciones reales sin ser destruida y cada porción forma un todo homogéneo y análogo a las otras partes y a la cosa original (diez quintales de soja en dos entregas de cinco; un auto no es divisible: dividido queda destruido). Límite: la división no puede tornar antieconómico el uso y aprovechamiento; en inmuebles, las autoridades locales fijan unidades mínimas.}
+
+\cornellpregunta{¿Cuándo una cosa es principal o accesoria?}{%
+Es principal la que puede existir por sí sola; accesoria, la que depende de otra. El régimen jurídico sigue a lo principal. Si no se puede determinar cuál es principal, prevalece la de mayor valor (Art. 230 CCCN); si los valores son iguales, no hay cosa principal ni accesoria.}
+
+\cornellpregunta{¿Qué diferencia hay entre cosas consumibles y no consumibles, y entre fungibles y no fungibles?}{%
+\textbf{Consumibles:} su existencia termina con el primer uso (alimentos, combustible). \textbf{No consumibles:} no dejan de existir por el uso habitual.
+
+\textbf{Fungibles:} un individuo equivale a otro de la misma especie y pueden sustituirse, lo que admite sustitución en el cumplimiento (trigo de igual calidad, billetes). \textbf{No fungibles:} no pueden sustituirse; entregar una cosa distinta es incumplimiento (cuadro de artista reconocido).}
+
+\cornellpregunta{¿Qué diferencia a un fruto de un producto?}{%
+El fruto se produce de modo renovable sin alterar ni disminuir la sustancia de la cosa (manzanas, intereses, alquileres). El producto es no renovable y su separación altera o disminuye la sustancia (minerales extraídos de una cantera).}
+
+\cornellpregunta{¿Por qué importa distinguir entre frutos y productos?}{%
+Interesa cuando debe restituirse algo con sus frutos y productos: los Arts. 1935 y 1936 CCCN regulan los deberes de restitución según la buena o mala fe del poseedor. Quien recibe una casa de mala fe debe restituirla con las rentas que hubiese producido.}
+
+\cornellpregunta{¿Cómo se clasifican los bienes según las personas?}{%
+\begin{itemize}[nosep,leftmargin=1.2em]
+\item \textbf{Dominio público del Estado} (Art. 235): inalienables, inembargables, imprescriptibles; uso de todos.
+\item \textbf{Dominio privado del Estado} (Art. 236): el Estado es titular como particular; pueden enajenarse.
+\item \textbf{Bienes de los particulares} (Art. 238): los no enumerados en los artículos anteriores.
+\item \textbf{Bienes fuera del comercio} (Art. 234): prohibida su enajenación por ley o por acto jurídico.
+\item \textbf{Bienes de incidencia colectiva} (Art. 240): interés colectivo en su protección; no apropiables individualmente.
+\end{itemize}}
+
+\cornellpregunta{¿Qué son los bienes de incidencia colectiva?}{%
+Bienes no estrictamente individuales, que corresponden de forma homogénea a un conjunto de personas o a la comunidad como tal (ecosistema, flora, fauna, biodiversidad, agua, valores culturales).}
+
+\cornellresumen{Todo bien es un objeto susceptible de valor económico; las cosas son los bienes materiales (Art. 16 CCCN). Las cosas se clasifican en muebles e inmuebles (la distinción más importante), divisibles e indivisibles, principales y accesorias, consumibles y no consumibles, fungibles y no fungibles, y se distingue entre frutos y productos. Según las personas, los bienes pueden ser del dominio público o privado del Estado, de los particulares, fuera del comercio o de incidencia colectiva. Cada clasificación tiene consecuencias jurídicas precisas.}
+
+\end{longtable}
+\cornellfin
+
+% =====================================================================
+% CAPÍTULO 4 — GARANTÍA PATRIMONIAL, ACREEDORES Y ACCIONES
+% =====================================================================
+\chapter{Garantía patrimonial, acreedores y acciones}
+
+\section{El patrimonio como garantía: repaso y profundización}
+
+El artículo 743 precisa cuáles son los bienes que constituyen la garantía:
+
+\begin{norma}{Artículo 743 CCCN --- Bienes que constituyen la garantía}
+Son bienes del deudor sujetos a ejecución todos los que integran su patrimonio a la fecha de la sentencia o en el que se hubiese determinado, y los que adquiera hasta la extinción de la obligación. El acreedor puede exigir la venta judicial de los bienes del deudor, pero sólo en la medida necesaria para satisfacer su crédito. Todos los acreedores pueden ejecutar estos bienes en posición igualitaria, excepto que exista una causa legal de preferencia.
+\end{norma}
+
+\section{Tipos de acreedores y preferencias de cobro}
+
+Cuando hay concurrencia de acreedores ---especialmente en situaciones de insolvencia--- el orden de cobro no es necesariamente igualitario.
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{2.7cm}YYY}
+\toprule
+Tipo de acreedor & \textbf{Fuente de preferencia} & \textbf{Alcance} & \textbf{Ejemplo} \\
+\midrule
+Con privilegio especial & La ley & Sobre determinados bienes & Acreedor laboral sobre maquinarias del empleador en quiebra \\
+Con privilegio general & La ley & Sobre la generalidad del patrimonio & Créditos del fisco en algunos supuestos \\
+Con garantía real & Autonomía de la voluntad (contrato) & Sobre el bien gravado & Hipotecario que ejecuta el inmueble hipotecado \\
+Quirografario (común) & Ninguna preferencia & Sobre el remanente, en igualdad & Acreedor sin ninguna garantía \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\begin{example}{Concurrencia de acreedores}
+Supóngase que el deudor debe 10.000 dólares a un acreedor, 20.000 a otro y 30.000 a un tercero. Tiene un único bien: un departamento valuado en 50.000 dólares.
+
+\textbf{Escenario A (todos quirografarios).} El pasivo total es de 60.000 y el activo de 50.000: hay insolvencia. Cada acreedor cobrará proporcionalmente sobre los 50.000.
+
+\textbf{Escenario B (uno tiene hipoteca por 50.000).} El acreedor hipotecario ejecuta primero el departamento, cobra sus 50.000 y los otros dos no cobran nada, porque el bien con garantía real tiene preferencia.
+\end{example}
+% TODO: contenido incompleto o ambiguo en las notas originales (en el escenario B la hipoteca es «por 50.000», pero las deudas individuales planteadas son de 10.000, 20.000 y 30.000; se conservó el planteo tal como figura)
+
+\section{Bienes inembargables (Art. 744 CCCN)}
+
+Razones humanitarias justifican la exclusión de ciertos bienes de la garantía común.
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{P{8.4cm}Y}
+\toprule
+\textbf{Bien inembargable} & \textbf{Fundamento} \\
+\midrule
+Ropa, muebles e inmuebles de uso indispensable del deudor, cónyuge, conviviente e hijos & Necesidades básicas del hogar \\
+Instrumentos necesarios para ejercer la profesión, arte u oficio & Sin ellos, la persona no tendría manera de sobrevivir \\
+Sepulcros afectados a su destino (salvo que la deuda sea por su construcción o reparación) & Respeto a la memoria de los difuntos \\
+Bienes afectados a cualquier religión reconocida por el Estado (templos, objetos de culto) & Libertad religiosa \\
+Derechos de usufructo, uso y habitación (en los términos del Código) & Carácter personalísimo de estos derechos \\
+Indemnizaciones por daño moral o lesiones a la integridad psicofísica & Compensación de daños personalísimos \\
+Indemnizaciones por alimentos al cónyuge, conviviente e hijos en caso de homicidio & Protección de la familia del fallecido \\
+Otros declarados inembargables por leyes especiales (por ejemplo, el salario mínimo vital y móvil) & Sustento mínimo para la vida \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\begin{important}
+El telón de fondo de todas estas exclusiones es proteger la dignidad humana en sus dimensiones más fundamentales.
+\end{important}
+
+\section{La protección de la vivienda (Arts. 244 y ss. CCCN)}
+
+El Código Civil y Comercial reemplazó la denominación «bien de familia» (Ley 14.394) por el concepto de «protección de la vivienda».
+
+\begin{norma}{Artículo 244 CCCN --- Afectación}
+Puede afectarse al régimen previsto en este Capítulo, un inmueble destinado a vivienda, por su totalidad o hasta una parte de su valor. Esta protección no excluye la concurrencia de otros acreedores.
+\end{norma}
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.4cm}Y}
+\toprule
+Aspecto & \textbf{Régimen} \\
+\midrule
+Requisito & Inscripción en el Registro de la Propiedad Inmueble (trámite sencillo) \\
+Efecto & El inmueble queda inembargable frente a las deudas posteriores a la inscripción \\
+Deudas anteriores & Los acreedores con deudas anteriores no se ven afectados \\
+Límite cuantitativo & Puede afectarse la totalidad o solo parte del valor \\
+Límite de unidades & No puede afectarse más de un inmueble \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\section{Acciones de los acreedores}
+
+\subsection{Medidas preventivas}
+
+Antes de llegar a la ejecución, los acreedores disponen de medidas preventivas para conservar la garantía:
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.4cm}YY}
+\toprule
+Medida & \textbf{Descripción} & \textbf{Ejemplo} \\
+\midrule
+Embargo preventivo & Afecta un bien determinado para que no salga del patrimonio del deudor & Trabar embargo sobre la casa del deudor que está por venderla antes de obtener sentencia \\
+Inhibición general de bienes & Impide al deudor enajenar cualquier bien cuando no se conocen bienes concretos & Anotar en el registro una inhibición general cuando el deudor no tiene bienes identificables \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+Los deudores pueden plantearse la estrategia de sacar bienes de su patrimonio y transformarlos en dinero en efectivo, de tal manera que los acreedores, cuando vengan a cobrar, no encuentren bienes a su nombre. Estas medidas sirven para contrarrestar esa estrategia.
+
+\subsection{Acción directa (Art. 736 y ss. CCCN)}
+% TODO: contenido incompleto o ambiguo en las notas originales (el índice del apunte menciona «Art. 737 y 739 CCCN» para las acciones directa y subrogatoria; el desarrollo cita «Art. 736 y ss.» para la acción directa y «Art. 739» para la subrogatoria)
+
+\begin{definition}{Acción directa}
+Es la acción que se le da al acreedor para \textbf{cobrar lo que un tercero debe a su deudor}, hasta el importe del propio crédito.
+\end{definition}
+
+Sus caracteres son los siguientes:
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.6cm}Y}
+\toprule
+Carácter & \textbf{Descripción} \\
+\midrule
+Propia & El acreedor la ejerce por derecho propio \\
+Exclusiva & En beneficio exclusivo del acreedor que la ejerce, no de todos \\
+Excepcional & Solo procede en los casos expresamente previstos por la ley \\
+Restrictiva & De interpretación restrictiva \\
+Presupone homogeneidad & Los créditos deben ser de la misma naturaleza (por ejemplo, dinerarios) \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\begin{example}{Acción directa con créditos homogéneos}
+Supóngase que se prestó dinero a una persona y que esta, a su vez, se lo prestó a una tercera. Los créditos son homogéneos, porque el propio dinero del acreedor pasó de uno a otro. El acreedor va directamente contra el deudor de su deudor y le ejecuta la deuda, pero solo hasta el importe de su crédito: si prestó doscientos mil pesos a su deudor y este le prestó a otro trescientos mil, puede reclamarle al tercero doscientos mil; los cien mil restantes se los reclamará su deudor.
+\end{example}
+
+\subsection{Acción subrogatoria (Art. 739 CCCN)}
+
+\begin{definition}{Acción subrogatoria}
+El acreedor ocupa el lugar de su deudor y ejerce un derecho que le es propio a este, cuando el deudor está inactivo y esa omisión perjudica el cobro del crédito.
+\end{definition}
+
+\begin{example}{La cochera heredada}
+Supóngase que se prestaron doscientos mil pesos a una persona. Esta tiene un familiar que fallece y le deja en herencia una cochera que vale cuatrocientos mil pesos. El deudor, considerando que el acreedor se quedaría con la cochera apenas la tuviera, decide no iniciar la sucesión y permanece inactivo.
+
+El acreedor, que advierte que su deudor está inactivo y tiene la posibilidad de exigir judicialmente un crédito, y que esa inactividad lo perjudica, se subroga: ocupa su lugar e inicia la sucesión. La cochera ingresa al patrimonio del deudor y el acreedor traba embargo sobre ese bien para cobrarse. Pero aquí no tiene ningún privilegio especial: cualquier otro acreedor embargante tendrá también preferencia.
+\end{example}
+
+\subsubsection{Comparación entre la acción directa y la acción subrogatoria}
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{3.4cm}YY}
+\toprule
+Criterio & \textbf{Acción directa} & \textbf{Acción subrogatoria} \\
+\midrule
+Nombre en el que se actúa & Nombre propio del acreedor & Nombre del deudor (subrogación) \\
+Beneficiario & Solo el acreedor que la ejerce & Todos los acreedores del deudor \\
+Privilegio & Sí: cobra directamente hasta su crédito & No: el bien ingresa al patrimonio; todos pueden ejecutarlo \\
+Presupuesto & Créditos homogéneos y caso legal expreso & Inactividad del deudor que perjudica la acreencia \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+\begin{important}
+La acción subrogatoria, a diferencia de la acción directa, no otorga ningún privilegio y beneficia a todos los acreedores.
+\end{important}
+
+\subsubsection{Derechos excluidos de la acción subrogatoria}
+
+No se pueden subrogar derechos vinculados con la personalidad ni de ejercicio absolutamente discrecional por el titular (Arts. 741--742 CCCN). Como ejemplo se menciona el reconocimiento de un hijo o las cuestiones de puro ejercicio de la voluntad familiar.
+
+\subsection{Acción de simulación y acción revocatoria (inoponibilidad)}
+% TODO: contenido incompleto o ambiguo en las notas originales (el índice del apunte asocia esta sección con «nulidad relativa», concepto que no se desarrolla en el cuerpo de las notas)
+
+\begin{tabla}
+\begin{tabularx}{\textwidth}{B{2.6cm}P{3.2cm}YY}
+\toprule
+Acción & \textbf{Denominación en el CCCN} & \textbf{Presupuesto} & \textbf{Efecto} \\
+\midrule
+De simulación & Nulidad por simulación & El deudor aparenta sacar bienes pero los conserva (por ejemplo, venta ficticia al hermano/a sin contraprestación) & Nulidad del acto; la cosa vuelve al patrimonio del deudor \\
+Revocatoria / pauliana & Inoponibilidad (CCCN) & El deudor vende realmente su bien a un cómplice para defraudar a sus acreedores & El acto es válido entre partes pero inoponible al acreedor; puede ejecutar el bien \\
+\bottomrule
+\end{tabularx}
+\end{tabla}
+
+Ambas acciones se distinguen mediante casos paralelos.
+
+\begin{example}{Simulación}
+El deudor llama a su hermana y le dice «simulemos que te vendo mi casa». La hermana no tiene dinero ni bienes, pero aparece como compradora. Cuando el acreedor va a ejecutar al deudor, la casa no está a su nombre. El acreedor alega que el acto fue simulado; el juez decreta la nulidad, las cosas vuelven al estado anterior y el acreedor puede cobrarse.
+\end{example}
+
+\begin{example}{Inoponibilidad}
+El deudor vende efectivamente su casa ---el dinero ingresa a su patrimonio---, pero el acreedor demuestra que el comprador era cómplice del deudor. Al revocar la venta, esta no se anula: es inoponible al acreedor defraudado, que ejecuta el bien como si la venta no hubiera existido. El adquirente cómplice pierde el bien, pero tiene acción para cobrarse contra el deudor originario.
+\end{example}
+
+\section{Cuadro Cornell: Garantía, acreedores y acciones}
+
+\cornellinicio
+\begin{longtable}{|Q|Z|}
+\hline
+\rowcolor{gray!15}\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{gray!15}\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\ \hline
+\endhead
+
+\cornellpregunta{¿Qué bienes del deudor están sujetos a ejecución?}{%
+Según el Art. 743 CCCN, todos los que integran su patrimonio a la fecha de la sentencia (o en el que se hubiese determinado) y los que adquiera hasta la extinción de la obligación. El acreedor puede exigir la venta judicial solo en la medida necesaria para satisfacer su crédito, y todos los acreedores ejecutan en posición igualitaria salvo causa legal de preferencia.}
+
+\cornellpregunta{¿Qué tipos de acreedores existen y cómo afecta eso al cobro?}{%
+Con privilegio especial (sobre determinados bienes, por ejemplo el laboral), con privilegio general (sobre todo el patrimonio), con garantía real (hipoteca o prenda, elegida voluntariamente) y quirografarios (sin preferencia, cobran en igualdad sobre el remanente). En caso de insolvencia, cobran en ese orden.
+% TODO: contenido incompleto o ambiguo en las notas originales (el orden de cobro «en ese orden» figura solo en el cuadro Cornell del apunte; el desarrollo no precisa la prelación entre las distintas preferencias)
+}
+
+\cornellpregunta{¿Qué bienes son inembargables? (Art. 744 CCCN)}{%
+Ropa y muebles indispensables del hogar, instrumentos del oficio o profesión, sepulcros (salvo deuda de construcción), bienes de culto, ciertos derechos de usufructo, uso y habitación, indemnizaciones por lesiones o daño moral, alimentos por homicidio, y los declarados así por leyes especiales (salario mínimo). El fundamento común es proteger la dignidad humana en sus dimensiones más fundamentales.}
+
+\cornellpregunta{¿Cómo se protege la vivienda frente a las deudas?}{%
+Inscribiendo el inmueble en el Registro de la Propiedad Inmueble (Arts. 244 y ss. CCCN). Desde la inscripción, las deudas posteriores no pueden ejecutarlo. Solo se protege un inmueble, en su totalidad o hasta una parte de su valor. Las deudas anteriores a la inscripción no se ven afectadas.}
+
+\cornellpregunta{¿Qué medidas preventivas tienen los acreedores antes de la ejecución?}{%
+\textbf{Embargo preventivo:} afecta un bien determinado para que no salga del patrimonio del deudor. \textbf{Inhibición general de bienes:} impide al deudor enajenar cualquier bien cuando no se conocen bienes concretos. Sirven para contrarrestar la estrategia del deudor de convertir sus bienes en dinero en efectivo para que los acreedores no encuentren bienes a su nombre.}
+
+\cornellpregunta{¿Qué es la acción directa?}{%
+Permite al acreedor cobrar directamente lo que un tercero le debe a su deudor (Art. 736 CCCN). La ejerce en nombre propio, solo lo beneficia a él y opera hasta el límite de su crédito. Requiere homogeneidad de créditos y un caso legal expreso.}
+
+\cornellpregunta{¿Qué es la acción subrogatoria?}{%
+El acreedor ocupa el lugar de su deudor inactivo y ejerce los derechos patrimoniales de este en su nombre (Art. 739 CCCN). El bien recuperado ingresa al patrimonio del deudor y beneficia a todos los acreedores, no solo al subrogante.}
+
+\cornellpregunta{¿Qué diferencias hay entre la acción directa y la acción subrogatoria?}{%
+\begin{itemize}[nosep,leftmargin=1.2em]
+\item \textbf{Directa:} se actúa en nombre propio; beneficia solo al acreedor que la ejerce; con privilegio (cobra directamente hasta su crédito); requiere créditos homogéneos y caso legal expreso.
+\item \textbf{Subrogatoria:} se actúa en nombre del deudor; beneficia a todos los acreedores; sin privilegio (el bien ingresa al patrimonio y todos pueden ejecutarlo); requiere inactividad del deudor que perjudique la acreencia.
+\end{itemize}}
+
+\cornellpregunta{¿Qué derechos no pueden ejercerse mediante la acción subrogatoria?}{%
+Los derechos vinculados con la personalidad y los de ejercicio absolutamente discrecional por el titular (Arts. 741--742 CCCN); por ejemplo, el reconocimiento de un hijo o cuestiones de puro ejercicio de la voluntad familiar.}
+
+\cornellpregunta{¿Qué diferencia hay entre la acción de simulación y la de inoponibilidad?}{%
+En la simulación el acto es ficticio (el deudor aparenta vender pero conserva el bien); el efecto es la nulidad. En la inoponibilidad (acción revocatoria o pauliana) el acto es real pero fraudulento: el acreedor lo hace inoponible a sí mismo y puede ejecutar el bien aunque el tercero lo haya adquirido realmente.}
+
+\cornellresumen{Los bienes del deudor responden por sus obligaciones y los acreedores los ejecutan en posición igualitaria salvo causa legal de preferencia (Art. 743 CCCN). Los acreedores pueden tener privilegio especial, privilegio general, garantía real o ser quirografarios. La garantía tiene límites: los bienes inembargables (Art. 744) y la protección de la vivienda (Art. 244). Para conservar y recuperar la garantía, los acreedores cuentan con medidas preventivas (embargo preventivo, inhibición general de bienes) y con las acciones directa, subrogatoria, de simulación y de inoponibilidad.}
+
+\end{longtable}
+\cornellfin
+
+% =====================================================================
+% CAPÍTULO 5 — SÍNTESIS GENERAL DE LA UNIDAD
+% =====================================================================
+\chapter{Síntesis general de la unidad}
+
+\section{Cierre de la unidad}
+
+La unidad recorrió el patrimonio, el patrimonio como garantía, los distintos tipos de acreedores y los distintos tipos de acciones de los acreedores. Desde el patrimonio como garantía existe la posibilidad de ejercer acciones; asimismo, hay bienes que quedan excluidos de ella, y que el Código enuncia en los artículos 744 y 244.
+
+\section{Síntesis final}
+
+Esta unidad construyó la arquitectura conceptual sobre la que descansa buena parte del Derecho Privado argentino. El patrimonio es el puente entre la persona y el mercado: como atributo de la personalidad, le da contenido económico al sujeto; como garantía común (Art. 242 CCCN), le da sustento a todo el sistema crediticio.
+
+Para entender de qué está hecho ese patrimonio, el Código clasifica los bienes y cosas según múltiples criterios ---muebles e inmuebles, fungibles y no fungibles, divisibles e indivisibles, principales y accesorias, frutos y productos---, cada uno con consecuencias jurídicas precisas que atraviesan el Derecho Real, Obligacional, Contractual, de Familia y de Sucesiones.
+
+El sistema de protección articula dos tensiones: la del acreedor, que necesita ejecutar el patrimonio para cobrar, y la del deudor, que no puede ser reducido a la indigencia. Esta tensión se resuelve mediante los bienes inembargables y la protección de la vivienda.
+
+Finalmente, las acciones directa, subrogatoria, de simulación y de inoponibilidad son los instrumentos procesales que permiten al acreedor conservar y recuperar la garantía frente a estrategias de vaciamiento patrimonial.
+
+\end{document}

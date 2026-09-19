@@ -1,0 +1,834 @@
+% =========================================================================
+% DOCUMENTCLASS
+% =========================================================================
+\documentclass[12pt,oneside]{book}
+
+% =========================================================================
+% METADATOS
+% =========================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Civil --- Parte General}
+\newcommand{\titulo}{Restricciones a la Capacidad de las Personas}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% =========================================================================
+% PAQUETES
+% =========================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\babelprovide[import, main]{spanish}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =========================================================================
+% RUTAS DE IMÁGENES
+% =========================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =========================================================================
+% CONFIGURACIÓN
+% =========================================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =========================================================================
+% ENCABEZADOS Y PIES
+% =========================================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =========================================================================
+% COMANDOS MATEMÁTICOS
+% =========================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =========================================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% =========================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Entorno auxiliar para el cuadro Cornell (columna angosta / columna ancha)
+\newcommand{\cornellhead}{%
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+}
+
+% =========================================================================
+% DOCUMENT
+% =========================================================================
+\begin{document}
+
+% -------------------------------------------------------------------------
+% PORTADA
+% -------------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large Cátedra de Derecho Civil, Parte General}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el porqué de una norma es el primer paso para poder aplicarla algún día con criterio y responsabilidad.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil - Parte General'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------------
+% ÍNDICE
+% -------------------------------------------------------------------------
+\tableofcontents
+
+% =========================================================================
+% CAPÍTULO 1
+% =========================================================================
+\chapter{Marco convencional y antecedentes}
+\label{ch:bloque1}
+
+\section{Presentación del tema}
+
+Estos apuntes reconstruyen el sistema de restricciones a la capacidad de las personas regulado en el Código Civil y Comercial argentino. Se aborda el contexto constitucional que ofrece la Convención sobre los Derechos de las Personas con Discapacidad (CDPD) y su artículo 12, los tres tipos de restricción que regula el código --capacidad restringida, incapacidad e inhabilitación por prodigalidad--, el procedimiento judicial que las rodea --legitimación, medidas cautelares, entrevista personal, dictamen interdisciplinario, sentencia, registro y revisión-- y el sistema de apoyos que reemplaza, como criterio general, a la antigua representación absoluta.
+
+Quien ejerza la abogacía --en un estudio, en un juzgado, en el Ministerio Público o en cualquier área que involucre contratos, sucesiones, salud o familia-- tarde o temprano se encontrará con una persona cuya capacidad está restringida, o con la necesidad de evaluar si conviene promover esa restricción para proteger a alguien. Comprender este sistema permite redactar contratos que no terminen siendo nulos, asesorar correctamente a una familia que enfrenta el deterioro cognitivo de un mayor, intervenir con criterio en un proceso de determinación de la capacidad y, sobre todo, evitar dos errores opuestos: privar de autonomía a quien todavía puede decidir por sí mismo, o desproteger a quien necesita un apoyo real.
+
+Estas reglas tampoco son ajenas a la vida cotidiana de las familias: un padre, una madre, un abuelo o un hermano pueden necesitar, en algún momento, ser acompañados con un apoyo para tomar decisiones. Entender este sistema ayuda a saber qué pedir, qué esperar de un juez y, fundamentalmente, cómo acompañar a esa persona sin sustituir su voluntad.
+
+\begin{note}
+El sistema puede organizarse en cuatro bloques que se relacionan entre sí. El primero explica por qué existe una convención internacional que exige no apartar a la persona de la toma de decisiones, sino acompañarla mediante apoyos. El segundo distingue qué tipo de restricción corresponde a cada situación: una restricción limitada para quien conserva gran parte de su autonomía (capacidad restringida), una restricción más intensa para quien no puede en absoluto interaccionar con su entorno (incapacidad), o una limitación específica para quien administra sus bienes de manera perjudicial para su familia (inhabilitación por prodigalidad). El tercero regula el procedimiento judicial que debe seguirse, con las garantías correspondientes, para decidir si corresponde imponer una restricción y de qué alcance. El cuarto explica qué sucede cuando una persona actúa en contra de lo dispuesto por la sentencia, cómo se recupera la plena capacidad y cómo funciona, en concreto, el sistema de apoyos que reemplaza a la antigua representación absoluta.
+\end{note}
+
+El docente recuerda que, al regular la capacidad jurídica, se distingue entre capacidad de derecho y capacidad de ejercicio. Dentro de la capacidad de ejercicio, la regla siempre fue la capacidad, pero existen algunos casos de incapaces: las personas por nacer, las personas menores de edad --que van teniendo una capacidad progresiva-- y todo el universo de situaciones en que se presenta alguna discapacidad por razones de salud mental. Es en este último campo donde se ubica el tema desarrollado en estos apuntes: la Sección Tercera, Capítulo Segundo, Título Primero, Libro Primero del Código Civil y Comercial, que trata las restricciones a la capacidad.
+
+\section{La Convención sobre los Derechos de las Personas con Discapacidad (CDPD)}
+
+Para entender el tema es necesario tener presente el contexto de la Convención sobre los Derechos de las Personas con Discapacidad. Esta convención es del año 2006; la Argentina la ratifica en 2008 mediante la Ley 26.378.
+
+\begin{important}
+\textbf{Artículo 75, inciso 22 --- Constitución Nacional.} La jerarquía constitucional de ciertos tratados internacionales de derechos humanos se otorga mediante el procedimiento previsto en esta norma. En 2014, por este procedimiento, la CDPD obtuvo jerarquía constitucional, equiparándose a la primera parte de la Constitución Nacional (declaraciones, derechos y garantías).
+\end{important}
+
+En 2014 se le dio jerarquía constitucional: la Convención pasó a tener la misma jerarquía que la primera parte de la Constitución --las declaraciones, derechos y garantías--, incorporándose como uno de los tratados de derechos humanos con jerarquía constitucional.
+
+\subsection{El artículo 12 de la CDPD: igual reconocimiento como persona ante la ley}
+
+El artículo clave de la Convención para este tema es el \textbf{artículo 12}, titulado ``Igual reconocimiento como persona ante la ley''. La Convención parte de reafirmar que las personas con discapacidad son seres humanos que deben gozar de igualdad de condiciones y ser incorporadas e incluidas en la comunidad y en la sociedad, lo que supone superar barreras.
+
+La discapacidad surge, según la Convención, de la interacción entre una deficiencia --que puede ser física, psíquica, sensorial o motriz-- y una barrera que impide la plena incorporación de la persona. Esta idea de barreras que deben eliminarse resulta especialmente clara en la dimensión arquitectónica: las rampas obligatorias en las construcciones o la adaptación de los colectivos con rampa son un modo de superar la barrera que representa, por ejemplo, una escalera.
+
+Junto con la noción de barreras a eliminar, la Convención introduce dos nociones fundamentales: los \textbf{apoyos} y los \textbf{ajustes razonables}.
+
+\begin{definition}{Apoyo (noción convencional)}
+El apoyo consiste en brindar la ayuda necesaria para que la persona con discapacidad pueda integrarse por sí misma. Resulta fundamental en materia del ejercicio de la capacidad jurídica.
+\end{definition}
+
+\begin{definition}{Ajuste razonable}
+Los ajustes razonables son las adaptaciones del procedimiento que permiten la plena integración y participación de la persona. Se encuentran, en el Código Civil y Comercial, en los artículos 35 y 36, referidos al proceso judicial vinculado con la capacidad. Por ejemplo, si se debe tomar una audiencia y la persona es sordomuda, corresponde disponer de un traductor de lenguaje de señas para que pueda entender lo que sucede y participar.
+\end{definition}
+
+\begin{important}
+\textbf{Artículo 12, inciso 1 --- CDPD.} Las personas con discapacidad tienen derecho al reconocimiento de su personalidad jurídica.
+\end{important}
+
+\begin{important}
+\textbf{Artículo 12, inciso 2 --- CDPD.} Las personas con discapacidad tienen capacidad jurídica en igualdad de condiciones con los demás en todos los aspectos de la vida.
+\end{important}
+
+Sobre el alcance de la expresión ``capacidad jurídica'' en este inciso existen dos posturas: quienes entienden que se refiere solo a la capacidad de derecho (ser titular de derechos) y quienes sostienen que comprende ambas dimensiones --capacidad de derecho y capacidad de ejercicio--. Agustina Palacios y Francisco Bariffi son referentes argentinos en el estudio de la Convención; Palacios sostiene, en un capítulo de libro sobre el tema, que el concepto de capacidad jurídica del artículo 12, inciso 2, comprende tanto la capacidad de derecho como la de ejercicio, es decir, que corresponde partir de un principio de capacidad. El propio Comité de los Derechos de las Personas con Discapacidad, creado por la Convención, sostiene la misma interpretación.
+
+\begin{important}
+\textbf{Artículo 12, inciso 3 --- CDPD.} Los Estados que han suscripto esta Convención deben garantizarle a las personas con discapacidad los apoyos necesarios para el ejercicio de su capacidad jurídica.
+\end{important}
+
+La palabra ``apoyo'' constituye un concepto clave del sistema del nuevo código. Se trata de un concepto amplio, que involucra un conjunto de medidas: por ejemplo, una persona con discapacidad visual puede utilizar apoyos informáticos o perros guía. En el contexto de estos apuntes, la referencia es más específica: apoyos para el ejercicio de la capacidad jurídica, es decir, apoyos para la toma de decisiones.
+
+\begin{example}{Apoyo para la venta de un inmueble}
+Una persona con discapacidad mental que es dueña de un inmueble y quiere venderlo puede recibir del juez la designación de un apoyo que la asesore y preste su conformidad, a fin de evitar que alguien se aproveche de la situación y le compre el bien muy por debajo de su valor. La decisión de vender sigue siendo de la persona; el apoyo la asiste en la toma de esa decisión.
+\end{example}
+
+\begin{important}
+\textbf{Artículo 12, inciso 4 --- CDPD (salvaguardias).} Los Estados deben asegurar que las medidas relativas al ejercicio de la capacidad jurídica respeten los derechos, la voluntad y las preferencias de la persona; que estén libres de conflicto de intereses e influencia indebida; que sean proporcionales y adaptadas a las circunstancias de la persona; que se apliquen en el plazo más corto posible; y que estén sujetas a exámenes periódicos por parte de una autoridad u órgano judicial competente, independiente e imparcial.
+\end{important}
+
+Las salvaguardias deben ser adecuadas y efectivas, y la medida que adopte un juez debe ajustarse a la persona concreta. En primer lugar, deben respetarse los derechos, la voluntad y las preferencias de la persona; a diferencia de la Convención de los Derechos del Niño, aquí no aparece la noción de ``interés superior'', sino la de respeto de la voluntad y las preferencias.
+
+\begin{example}{Respeto de la voluntad y las preferencias}
+Una persona dueña de un campo prefiere sembrar soja porque le gusta esa tarea. Si el apoyo designado considera más conveniente destinar el campo al ganado por rendir más, de todos modos debe respetar los derechos, la voluntad y las preferencias de la persona titular del campo.
+\end{example}
+
+Debe evitarse, además, todo conflicto de intereses o influencia indebida.
+
+\begin{definition}{Conflicto de intereses e influencia indebida}
+El conflicto de intereses es un concepto más objetivo: existe, por ejemplo, cuando quien es designado apoyo de una persona es, a la vez, quien le alquila un inmueble que administra o sobre el que debe decidir. La influencia indebida es más difícil de determinar, porque supone cierta manipulación de la voluntad de la persona, como puede ocurrir cuando quien ejerce una influencia decisiva convive con ella.
+\end{definition}
+
+\subsection{El Comité de la CDPD y el modelo de apoyo a la decisión}
+
+Una observación general del Comité de Naciones Unidas sobre los Derechos de las Personas con Discapacidad, del año 2014, señala que los Estados deben reemplazar los regímenes basados en la sustitución de decisiones --lo que habitualmente se conoce como representación, en la cual otra persona sucede a la titular en su lugar-- por regímenes basados en el apoyo, de modo que la persona pueda decidir por sí misma. Esto es precisamente lo que instrumenta el nuevo código.
+
+En definitiva, existe un delicado equilibrio entre autonomía y protección: la Convención tiende a enfatizar la autonomía, pero también prevé protecciones, de modo que corresponde articular ambos objetivos.
+
+\section{El régimen del Código Civil derogado: incapaces e inhabilitados}
+
+El código anterior, en su artículo 141, se refería a los incapaces. Eran declaradas incapaces de hecho las personas que, por demencia --también llamadas insanas--, padecieran una enfermedad mental que no les permitía administrar su persona ni sus bienes. Existían también los inhabilitados.
+
+En su configuración posterior a la Ley 17.711, es decir, en la configuración inmediatamente anterior a la entrada en vigencia del nuevo código, el ordenamiento contemplaba dos figuras.
+
+\subsection{Figura 1: los incapaces de hecho declarados judicialmente}
+
+También llamados insanos o interdictos, eran personas declaradas incapaces de hecho por la concurrencia de dos factores: uno biológico (la presencia de una enfermedad mental) y uno jurídico (la ineptitud para administrar su persona o sus bienes). Se les designaba un curador y eran, básicamente, incapaces.
+
+\subsection{Figura 2: los inhabilitados (artículo 152 bis)}
+
+El inhabilitado, en cambio, partía de un principio de capacidad y se le nombraba, por sentencia judicial, un curador con funciones delimitadas por esa sentencia. Se preveían tres supuestos:
+
+\begin{itemize}
+\item \textbf{Embriaguez habitual o uso de estupefacientes}, cuando exponían al otorgamiento de actos perjudiciales para el patrimonio o la persona --por ejemplo, alguien con alcoholismo que puede aprovecharse y vender bienes a bajo precio o regalarlos.
+\item \textbf{Disminución de facultades} que no llegara al supuesto de incapacidad del artículo 141, pero en la cual el juez estimara que podía producirse un daño a la persona o a su patrimonio.
+\item \textbf{Prodigalidad}: quienes, por la prodigalidad en los actos de administración y disposición de sus bienes, exponían a su familia a la pérdida del patrimonio. Este supuesto solo procedía si la persona tenía familia y había dilapidado ya parte de sus bienes; es el caso típico de la persona con ludopatía.
+\end{itemize}
+
+\begin{note}
+En el sistema del código anterior existían, en síntesis, dos grandes esquemas: el incapaz de hecho, totalmente incapaz y sujeto a curador, y el inhabilitado, capaz pero con restricciones puntuales, también sujeto a curador. En el inhabilitado la regla era la capacidad, con una excepción limitada a los tres supuestos mencionados.
+\end{note}
+
+\section{La Ley de Salud Mental 26.657 y el artículo 152 ter}
+
+Dos años después de que Argentina aprobara la Convención, en 2010, se sancionó la Ley de Salud Mental (Ley 26.657), que incorporó al código anterior un artículo 152 ter con tres precisiones para el dictado de la sentencia de incapacidad o inhabilitación.
+
+\begin{important}
+\textbf{Artículo 152 ter --- Código Civil (texto incorporado por Ley 26.657).} Para declarar la incapacidad o la inhabilitación se requiere un examen de facultativos conformado por evaluaciones interdisciplinarias. La sentencia no podrá extenderse por más de tres años. La sentencia debe especificar las funciones y actos que se limitan.
+\end{important}
+
+Esta reforma constituyó un primer intento --parcial y no del todo coherente con el resto del sistema-- de recoger los principios de la Convención, ya que la figura de la incapacidad y su regla general seguían existiendo. Sin embargo, la exigencia de que la sentencia especificara qué funciones y actos se limitaban anticipaba una idea central del nuevo código: que la regla es la capacidad y que corresponde precisar qué es lo que no puede hacerse. Pese a ello, en la práctica muchos jueces continuaron dictando sentencias que declaraban a la persona ``incapaz para todos los actos de la vida civil''.
+
+\section{Cuadro Cornell --- Bloque 1}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\cornellhead
+
+\textbf{¿Por qué la CDPD cambió el paradigma de la capacidad jurídica?} &
+Porque, a través de su artículo 12, reconoce la personalidad jurídica de las personas con discapacidad y su capacidad jurídica en igualdad de condiciones, reemplazando el modelo de sustitución de decisiones (representación) por un modelo de apoyo a la toma de decisiones, que promueve la autonomía y respeta la voluntad y las preferencias de la persona. \\
+
+\textbf{¿Qué diferencia hay entre un apoyo y un ajuste razonable?} &
+El apoyo es la ayuda que permite a la persona con discapacidad ejercer su capacidad jurídica y tomar decisiones por sí misma. El ajuste razonable es la adaptación del procedimiento judicial (por ejemplo, un intérprete de lengua de señas) que garantiza la accesibilidad y la participación efectiva de la persona en el proceso. \\
+
+\textbf{¿Cómo regulaba la capacidad el Código Civil derogado?} &
+Mediante dos figuras: los incapaces de hecho (declarados por un factor biológico y uno jurídico, con curador) y los inhabilitados del artículo 152 bis (embriaguez o toxicomanía, disminución de facultades, o prodigalidad), que partían de la capacidad con restricciones puntuales y también tenían curador. \\
+
+\textbf{¿Qué cambios introdujo la Ley 26.657 antes del nuevo código?} &
+Incorporó el artículo 152 ter, que exigió examen interdisciplinario para declarar incapacidad o inhabilitación, fijó un plazo máximo de tres años para la sentencia y obligó a especificar las funciones y actos limitados, anticipando el principio de que la regla es la capacidad. \\
+
+\midrule
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} La CDPD, con jerarquía constitucional desde 2014, impone un modelo social de la discapacidad basado en apoyos y ajustes razonables, en reemplazo de la sustitución de la voluntad. El Código Civil derogado, incluso tras la reforma de la Ley 26.657, mantenía la incapacidad y la inhabilitación como ejes del sistema, con curadores en ambos casos; este es el punto de partida que el nuevo Código Civil y Comercial viene a transformar.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================================
+% CAPÍTULO 2
+% =========================================================================
+\chapter{Tipos de restricciones a la capacidad en el Código Civil y Comercial}
+\label{ch:bloque2}
+
+El nuevo Código Civil y Comercial regula el tema a partir de un concepto general de restricciones a la capacidad y de reglas generales aplicables a todos los supuestos.
+
+\section{Reglas generales del artículo 31}
+
+\begin{important}
+\textbf{Artículo 31 --- Código Civil y Comercial (reglas generales).} La capacidad de ejercicio se presume, incluso cuando la persona se encuentra internada. Las limitaciones a la capacidad son de carácter excepcional y se imponen siempre en beneficio de la persona. La intervención estatal tiene carácter interdisciplinario, tanto en el tratamiento como en el proceso judicial. La persona tiene derecho a recibir información a través de medios y tecnologías adecuadas. La persona tiene derecho a participar en el proceso judicial con asistencia letrada, que debe ser proporcionada por el Estado si carece de ella. Deben priorizarse las alternativas terapéuticas menos restrictivas de los derechos y libertades.
+\end{important}
+
+La regla general es la capacidad: se presume incluso cuando la persona está internada. Por ello, la internación en un establecimiento psiquiátrico no implica necesariamente una restricción a la capacidad; puede haber internación sin restricción, restricción sin internación, o ambas situaciones combinadas.
+
+Las limitaciones a la capacidad son excepcionales y se imponen en beneficio de la persona. En materia de salud mental se parte de que todas las personas son capaces, y la sentencia judicial cumple un rol central porque delimita con precisión qué actos y funciones se limitan.
+
+La intervención estatal debe ser interdisciplinaria. Las disciplinas que habitualmente intervienen son la psiquiatría, la psicología y el trabajo social: la psiquiatría, por tratarse de una especialidad médica, permite diagnosticar y prescribir tratamiento; la psicología aporta la comprensión de los dinamismos psíquicos y el bienestar integral; el trabajo social aporta información sobre el entorno de la persona, dado que la intensidad de la restricción puede variar según cuente o no con una red de contención familiar y social.
+
+\section{Personas con capacidad restringida (artículo 32, primer párrafo)}
+
+\begin{important}
+\textbf{Artículo 32, primer párrafo --- Código Civil y Comercial.} El juez puede restringir la capacidad para determinados actos de una persona mayor de trece años que padece una adicción o alteración mental permanente o prolongada de suficiente gravedad, siempre que estime que del ejercicio de su plena capacidad puede resultar un daño a su persona o a sus bienes.
+\end{important}
+
+La persona con capacidad restringida constituye el supuesto base del sistema. Se requiere, en primer lugar, sentencia judicial de restricción de la capacidad, en tanto la Convención establece que toda medida que afecte la capacidad de ejercicio debe ser dictada por una autoridad judicial independiente.
+
+\subsection{Requisitos del artículo 32}
+
+\begin{enumerate}
+\item \textbf{Ser mayor de trece años.} Entre los 13 y los 18 años la regla es la incapacidad de ejercicio con capacidad progresiva; la sentencia dictada en esa etapa restringirá aquello vinculado con las atribuciones propias de un adolescente. Antes de los 13 años, el artículo 261 del código presume que la persona carece de discernimiento para los actos lícitos, por lo que no es necesaria una restricción judicial.
+\item \textbf{Requisito intrínseco o biológico}: presencia de una adicción o de una alteración mental permanente o prolongada, de suficiente gravedad. El código no precisa el término ``adicción''; la doctrina tiende a interpretarlo a la luz del artículo 4 de la Ley de Salud Mental, que define la adicción como el consumo problemático de drogas, legales o ilegales. Una afición intrascendente --como cierta afición a una serie de televisión-- carece de la gravedad necesaria para justificar la limitación de la capacidad. La ``alteración mental permanente o prolongada'', también de suficiente gravedad, refiere a una situación en la que la persona está afectada en su funcionamiento o en sus capacidades mentales, a los fines de un proceso judicial civil, y no debe confundirse con el certificado de discapacidad, que es un concepto distinto.
+\item \textbf{Requisito extrínseco}: que del ejercicio de la plena capacidad pueda resultar un daño a la persona o a sus bienes. El código no contempla el daño a terceros; si existiera riesgo de daño a terceros, correspondería otra regulación --la de la responsabilidad civil-- y, eventualmente, un supuesto de internación si el riesgo fuera cierto e inminente.
+\end{enumerate}
+
+\subsection{Régimen de las personas con capacidad restringida}
+
+Las personas con capacidad restringida son, como regla, capaces; la sentencia limita únicamente los actos y funciones específicamente indicados, debe ser proporcional y ajustada a la situación concreta de la persona. Se les designa un \textbf{apoyo} --y no un curador--, cuya modalidad de actuación fija el juez: puede tratarse de un apoyo cuyo consentimiento deba concurrir junto con el de la persona, o de un apoyo de consejo. El artículo 101, inciso b, admite también el apoyo con funciones de representación, supuesto que la doctrina considera excepcional y que debe estar especialmente fundado, para no convertirse en una curatela con otro nombre.
+
+\begin{example}{Apoyo con función de asistencia en la venta de un inmueble}
+Si a una persona con una adicción se le designa un apoyo con funciones de asistencia para la venta de su inmueble, al momento de celebrarse la escritura concurren el escribano, la persona con capacidad restringida y el apoyo, y ambos firman en el ámbito de su respectiva intervención.
+\end{example}
+
+\section{Personas incapaces (artículo 32, último párrafo)}
+
+\begin{important}
+\textbf{Artículo 32, último párrafo --- Código Civil y Comercial.} Excepcionalmente, cuando la persona se encuentre absolutamente imposibilitada de interaccionar con su entorno y expresar su voluntad por cualquier modo, medio o formato adecuado, y el sistema de apoyos resulte ineficaz, el juez puede declarar la incapacidad y designar un curador.
+\end{important}
+
+La incapacidad constituye un supuesto excepcional, no la regla. Según se señala en estos apuntes, un análisis de las sentencias dictadas por la Cámara Nacional de Apelaciones en lo Civil durante los dos primeros años de vigencia del código mostró que los casos de capacidad restringida eran ampliamente mayoritarios frente a los de incapacidad, que resultaron poco frecuentes.
+
+% TODO: contenido incompleto o ambiguo en las notas originales: no se identifican en el apunte los datos completos (autores, publicación) de la investigación referida sobre la Cámara Nacional de Apelaciones en lo Civil.
+
+Se trata de casos muy severos: la persona no puede en absoluto entablar una relación con su entorno ni expresar su voluntad por ningún modo, medio o formato adecuado, y además el sistema de apoyos resulta ineficaz para asistirla. De no designarse un representante en estos supuestos extremos, la persona quedaría, en los términos del apunte, como un ``muerto civil'', sin posibilidad de que se protejan sus derechos --por ejemplo, para participar en la asamblea de una sociedad anónima o para administrar bienes en caso de encontrarse en coma.
+
+\subsection{Régimen de las personas incapaces}
+
+La sentencia también debe establecer qué actos y funciones se limitan, aunque la limitación será mayor que en la capacidad restringida. Se designa un \textbf{curador} con funciones de representación, a diferencia del supuesto anterior, en el que se designaban apoyos. En el nuevo código, la figura del curador queda restringida a este supuesto excepcional del artículo 32, último párrafo.
+
+\section{Inhabilitados por prodigalidad (artículo 48)}
+
+\begin{important}
+\textbf{Artículo 48 --- Código Civil y Comercial.} Pueden ser inhabilitados quienes por la prodigalidad en la gestión de sus bienes expongan a su cónyuge, conviviente o hijos menores de edad o con discapacidad a la pérdida del patrimonio. A estos inhabilitados se les designarán apoyos. Solo podrán otorgar los actos de disposición entre vivos previstos en la sentencia con la conformidad del apoyo. De ser necesario, el juez puede ampliar la nómina de actos que requieren la conformidad del apoyo.
+\end{important}
+
+La denominación de ``inhabilitados'' proviene del código anterior, pero en el nuevo código queda restringida exclusivamente al supuesto de prodigalidad; los otros dos supuestos que antes contemplaba el artículo 152 bis --embriaguez o toxicomanía, y disminución de facultades-- pasan a encuadrarse en la capacidad restringida.
+
+\begin{definition}{Pródigo}
+Pródigo es quien derrocha sus bienes --no debe confundirse con ``prodigio'', que designa a alguien extraordinario en sus capacidades--. La figura no protege solo a la persona pródiga, sino también a su familia frente al riesgo de pérdida del patrimonio.
+\end{definition}
+
+A diferencia del régimen anterior, que exigía la dilapidación efectiva de una parte del patrimonio, el artículo 48 no requiere que la dilapidación ya se haya producido: basta con que se ponga en riesgo la posibilidad de dilapidar el patrimonio.
+
+\subsection{Régimen de los inhabilitados}
+
+Las personas inhabilitadas son, como regla, capaces, pero tienen limitada la posibilidad de realizar actos de disposición de bienes --aquellos que impliquen enajenarlos-- y los demás actos que fije la sentencia. Se les designan apoyos.
+
+\begin{example}{El pródigo y la protección del patrimonio familiar}
+Ante una persona que dilapida bienes jugando en el casino, la familia puede iniciar la acción de inhabilitación; la sentencia puede disponer, por ejemplo, que para vender su automóvil o sus bienes registrables, o para hipotecar, necesite el consentimiento de su cónyuge. De ese modo se preserva el patrimonio familiar. Si la persona no tuviera familia, no podría ser declarada inhabilitada en estos términos.
+\end{example}
+
+\section{Cuadro Cornell --- Bloque 2}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\cornellhead
+
+\textbf{¿Cuándo puede un juez restringir la capacidad de una persona?} &
+Cuando la persona es mayor de trece años, padece una adicción o una alteración mental permanente o prolongada de suficiente gravedad, y del ejercicio de su plena capacidad puede resultar un daño a su persona o a sus bienes (art. 32, primer párrafo). \\
+
+\textbf{¿Por qué la incapacidad es hoy un supuesto excepcional?} &
+Porque solo procede cuando la persona está absolutamente imposibilitada de interaccionar con su entorno, no puede expresar su voluntad por ningún modo, medio o formato adecuado, y el sistema de apoyos resulta ineficaz; en la práctica, los casos de capacidad restringida resultan mucho más frecuentes que los de incapacidad. \\
+
+\textbf{¿Qué protege realmente la inhabilitación por prodigalidad?} &
+Protege al cónyuge, conviviente o hijos menores o con discapacidad frente al riesgo de pérdida del patrimonio familiar por la mala gestión de los bienes de la persona pródiga, limitando sus actos de disposición y exigiendo la conformidad de un apoyo. \\
+
+\midrule
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El Código Civil y Comercial distingue tres figuras según la intensidad de la limitación: la capacidad restringida (la regla, con apoyos), la incapacidad (excepcional, con curador) y la inhabilitación por prodigalidad (protección patrimonial familiar, con apoyos). En todos los casos rige el principio general de capacidad del artículo 31.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================================
+% CAPÍTULO 3
+% =========================================================================
+\chapter{Aspectos procesales}
+\label{ch:bloque3}
+
+El Código Civil y Comercial incorpora normas de tipo procesal. Aunque se trata de un código de fondo --y los códigos de procedimiento corresponden a las provincias y a la Nación, cada una para su propio fuero--, el código incluye normas procesales que apuntan a dar una regulación común a una materia que afecta directamente la capacidad de una persona.
+
+\section{Juez competente y legitimados activos}
+
+\subsection{Juez competente (artículo 36)}
+
+El juez competente para intervenir en un proceso de determinación de la capacidad es el del domicilio o el del lugar de internación de la persona. La jurisprudencia tiende a aplicar un principio de inmediatez: si la persona tiene domicilio en un lugar pero está internada en otro, suele resultar competente el juez más cercano al lugar de la internación.
+
+\subsection{Legitimados activos (artículo 33)}
+
+\begin{important}
+\textbf{Artículo 33 --- Código Civil y Comercial (legitimados para solicitar la declaración).} Están legitimados para solicitar la declaración de incapacidad y de capacidad restringida: a) el propio interesado; b) el cónyuge no separado de hecho y el conviviente mientras la convivencia no haya cesado; c) los parientes dentro del cuarto grado y, si fuera por afinidad, dentro del segundo grado; d) el Ministerio Público.
+\end{important}
+
+Una novedad del nuevo código es que el propio interesado puede iniciar el proceso; el código anterior no lo contemplaba. Esto cobra sentido, por ejemplo, cuando una persona a la que se le diagnosticó una enfermedad de deterioro cognitivo desea anticiparse y solicitar su propia restricción de la capacidad, proponiendo a alguien de su confianza como apoyo.
+
+También puede solicitarlo el cónyuge, mientras no esté separado de hecho ni divorciado, y el conviviente. En torno al alcance del término ``conviviente'' existe cierta ambigüedad en el código, que la doctrina discute: si abarca a toda persona que convive o solo a quienes tienen una unión convivencial registrada; la interpretación parecería ser amplia.
+
+Los parientes legitimados son los que se encuentran dentro del cuarto grado --quienes tendrían vocación hereditaria en caso de fallecimiento-- y, si el parentesco es por afinidad, hasta el segundo grado. El código anterior admitía como legitimado a cualquier vecino cuando la persona era considerada ``furiosa'' (peligrosa); esa posibilidad fue eliminada. Actualmente, quien no encuadre en los supuestos legitimados debe acudir al Ministerio Público (regulado en el artículo 103 del Código Civil y Comercial), que evaluará la situación y, en su caso, se presentará ante el juez para iniciar el proceso.
+
+\section{Medidas cautelares y entrevista personal}
+
+\subsection{Medidas cautelares (artículo 34)}
+
+\begin{important}
+\textbf{Artículo 34 --- Código Civil y Comercial (medidas cautelares).} Durante el proceso, el juez puede ordenar medidas de restricción al ejercicio de la capacidad, con el fin de garantizar los derechos personales y patrimoniales de la persona. El juez debe determinar con precisión para qué actos se disponen estas medidas y designar los apoyos necesarios, o excepcionalmente el curador para el caso de los incapaces.
+\end{important}
+
+Durante el trámite del proceso la persona es, en principio, capaz; sin embargo, el juez puede disponer restricciones cautelares, siempre de manera excepcional y justificada, respetando los principios generales del artículo 31 y de la Convención, para atender situaciones de urgencia --por ejemplo, la designación de un apoyo para decisiones referidas a un inmueble o a un fondo de inversión mientras la persona atraviesa un problema de salud mental.
+
+\subsection{Entrevista personal (artículo 35)}
+
+\begin{important}
+\textbf{Artículo 35 --- Código Civil y Comercial (entrevista personal).} El juez debe garantizar la inmediatez con el interesado durante el proceso y entrevistarlo personalmente, antes de dictar resolución alguna. Debe asegurar la accesibilidad y los ajustes razonables del procedimiento de acuerdo a la situación de aquel. El Ministerio Público y, al menos, un letrado que preste asistencia al interesado durante el proceso deben estar presentes en las audiencias.
+\end{important}
+
+Si bien la entrevista personal ya era una práctica habitual en algunos fueros desde hace décadas, el nuevo código la establece como exigencia general: antes de adoptar una decisión tan significativa, el juez debe conocer personalmente a la persona involucrada, garantizando accesibilidad y ajustes razonables.
+
+\section{La persona como parte y asistencia letrada}
+
+\begin{important}
+\textbf{Artículo 36 --- Código Civil y Comercial.} La persona en cuyo interés se lleva adelante el proceso es parte y puede aportar todas las pruebas que hacen a su defensa. Interpuesta la solicitud de declaración de incapacidad o de restricción a la capacidad ante el juez, éste debe nombrar un abogado que lo represente, si la persona afectada no tuviera letrado propio. En el caso de personas incapaces, también es necesaria la presencia del Ministerio Público.
+\end{important}
+
+El artículo 36 enfatiza que la persona interesada no puede quedar ausente de su propio proceso, situación que en ocasiones ocurría en el pasado. La persona reviste calidad de parte y tiene derecho a aportar pruebas; si carece de abogado propio, el Estado --normalmente a través del Ministerio Público-- debe proveerle uno, cuya función es específicamente la representación judicial, distinta de la del apoyo o de la del curador.
+
+\section{Dictamen interdisciplinario y contenido de la sentencia}
+
+\subsection{Artículo 37: el dictamen interdisciplinario}
+
+\begin{important}
+\textbf{Artículo 37 --- Código Civil y Comercial (dictamen e informe interdisciplinario).} Para la declaración de incapacidad o de capacidad restringida es necesario el dictamen de un equipo interdisciplinario. El dictamen debe contener: 1) diagnóstico y pronóstico; 2) época en que se manifestó la situación; 3) recursos personales, familiares y sociales existentes; 4) régimen aconsejable para la protección y asistencia del interesado, con la mayor autonomía posible. Estos puntos deben reflejarse en la sentencia.
+\end{important}
+
+La Convención no exige literalmente un análisis interdisciplinario, pero de su espíritu se desprende que el examen no debe limitarse a lo médico, sino integrar distintos saberes. La interdisciplina implica que las disciplinas involucradas --psiquiatría, psicología y trabajo social-- alcancen un conocimiento común, dentro de los límites de sus respectivas competencias profesionales.
+
+% TODO: contenido incompleto o ambiguo en las notas originales: no queda resuelto en el apunte si el dictamen interdisciplinario debe ser conjunto (un único informe integrado) o secuencial (informes individuales de cada disciplina).
+
+El equipo interdisciplinario debe expedirse sobre el diagnóstico y pronóstico --distinguiendo, por ejemplo, una crisis psiquiátrica aguda de una situación permanente o de un deterioro cognitivo severo--; la época en que se manifestó la situación, relevante para la eventual anulación de actos anteriores conforme al artículo 45; los recursos personales, familiares y sociales existentes, que permiten conocer la red de apoyo natural de la persona; y el régimen aconsejable para la protección, asistencia y promoción de la mayor autonomía posible.
+
+\subsection{Artículo 38: el contenido de la sentencia}
+
+\begin{important}
+\textbf{Artículo 38 --- Código Civil y Comercial (alcance de la sentencia).} La sentencia debe determinar la extensión y alcance de la restricción y especificar las funciones y actos que se limitan, procurando que la afectación de la autonomía personal sea la menor posible. Asimismo, designa una o más personas de apoyo o curadores según el caso, y señala las condiciones de validez de los actos específicos sujetos a la restricción indicando si la persona debe actuar con la asistencia o representación del apoyo o curador.
+\end{important}
+
+El artículo 38 concreta la personalización que exige la Convención: a diferencia del artículo 152 ter del código anterior, que resultaba desajustado respecto del resto del ordenamiento, en el nuevo código todo el sistema parte de la capacidad, y la sentencia se limita a precisar qué actos y funciones se restringen y con qué modalidad de apoyo.
+
+\section{Registro, revisión, internación y traslados}
+
+\subsection{Registro (artículo 39)}
+
+La sentencia debe registrarse en el Registro de Estado Civil, anotándose al margen del acta de nacimiento. A partir de la inscripción se producen efectos frente a terceros: los actos posteriores a la inscripción que sean contrarios a lo dispuesto por la sentencia son nulos. Cuando se levanta la restricción, corresponde cancelar la anotación mediante oficio al Registro Civil.
+
+Este registro plantea una tensión entre la protección de la intimidad --por tratarse de un dato altamente sensible-- y la necesidad de dar publicidad suficiente, ya que quienes contratan deben poder conocer si su interlocutor tiene alguna restricción a la capacidad.
+
+\subsection{Revisión (artículo 40)}
+
+\begin{important}
+\textbf{Artículo 40 --- Código Civil y Comercial (revisión).} La sentencia debe ser revisada por el juez en un plazo no superior a tres años, sobre la base de nuevos dictámenes interdisciplinarios y mediando la audiencia personal con el interesado. Puede ser revisada en cualquier momento a instancia del interesado. El Ministerio Público debe fiscalizar el cumplimiento efectivo de la revisión periódica establecida e instarla, si corresponde.
+\end{important}
+
+La revisión puede solicitarse en cualquier momento, pero no puede dejar de producirse por más de tres años. Corresponde un nuevo dictamen interdisciplinario, una nueva audiencia y una nueva sentencia; el Ministerio Público debe fiscalizar que el juez cumpla con esta obligación y, en su caso, instarla.
+
+\subsection{Internación (artículo 41) y traslados (artículo 42)}
+
+\begin{important}
+\textbf{Artículo 41 --- Código Civil y Comercial (internación).} La internación sin consentimiento de una persona, tenga o no restringida su capacidad, procede solo si se cumplen los recaudos previstos en la legislación especial y se cumplen los requisitos de esta sección. En particular, la internación involuntaria solo es procedente cuando a criterio del equipo de salud mediare situación de riesgo cierto e inminente para la persona o para terceros.
+\end{important}
+
+No es posible internar a una persona contra su voluntad si no existe riesgo cierto e inminente de un daño de entidad para ella o para terceros. Este estándar, proveniente de la Ley de Salud Mental y ratificado por el nuevo código, busca evitar los abusos que en el pasado llevaron a internar a personas por carecer de vivienda o por resultar molestas; la internación involuntaria debe ser breve, acotada, orientada a la recuperación en un contexto de crisis y a la posterior reintegración, con supervisión periódica, debido proceso, control judicial y defensa --entre otros mecanismos, la Unidad de Letrados del artículo 22 de la Ley de Salud Mental, encargada de velar por los derechos de las personas internadas por razones de salud mental.
+
+\section{Cuadro Cornell --- Bloque 3}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\cornellhead
+
+\textbf{¿Quién puede iniciar un proceso de restricción de la capacidad?} &
+El propio interesado, el cónyuge o conviviente no separado de hecho, los parientes dentro del cuarto grado (segundo grado por afinidad) y el Ministerio Público (art. 33). \\
+
+\textbf{¿Por qué el juez debe entrevistar personalmente al interesado?} &
+Porque el artículo 35 exige inmediatez y entrevista personal antes de dictar cualquier resolución, garantizando accesibilidad y ajustes razonables, de modo que el juez conozca directamente a la persona antes de restringir su capacidad. \\
+
+\textbf{¿Qué garantiza que la persona no quede ausente de su propio proceso?} &
+El artículo 36, que le reconoce calidad de parte, derecho a aportar pruebas y derecho a contar con un abogado --provisto por el Estado si no tuviera uno propio-- que la asista específicamente en el proceso judicial. \\
+
+\textbf{¿Qué cuatro aspectos debe abordar toda sentencia?} &
+Según el artículo 37, el dictamen y la sentencia deben contener: diagnóstico y pronóstico; época en que se manifestó la situación; recursos personales, familiares y sociales existentes; y régimen aconsejable para la protección y promoción de la mayor autonomía posible. \\
+
+\textbf{¿Cuándo es legítimo internar a una persona contra su voluntad?} &
+Solo ante riesgo cierto e inminente de daño para la persona o para terceros, fundado en evaluación interdisciplinaria, con control judicial inmediato, asistencia letrada y revisión periódica (art. 41). \\
+
+\midrule
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El proceso de determinación de la capacidad está atravesado por garantías procesales: legitimación amplia pero acotada, medidas cautelares excepcionales, entrevista personal obligatoria, calidad de parte del interesado con asistencia letrada, dictamen interdisciplinario con contenido mínimo obligatorio, registro con efectos frente a terceros, revisión periódica no mayor a tres años, e internación involuntaria limitada al riesgo cierto e inminente.
+} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================================
+% CAPÍTULO 4
+% =========================================================================
+\chapter{Validez de los actos y sistema de apoyos}
+\label{ch:bloque4}
+
+\section{Nulidad de los actos posteriores y anteriores a la sentencia}
+
+\subsection{Actos posteriores a la inscripción (artículo 44)}
+
+\begin{important}
+\textbf{Artículo 44 --- Código Civil y Comercial (actos posteriores a la sentencia).} Son nulos los actos de la persona incapaz o con capacidad restringida que contrarían lo dispuesto en la sentencia realizada con posterioridad a su inscripción en el Registro de Estado Civil y Capacidad de las Personas.
+\end{important}
+
+Si una persona sujeta a una sentencia que restringe su capacidad realiza un acto prohibido por esa sentencia, el acto es nulo. La nulidad es la sanción civil que deja sin efecto el acto y retrotrae la situación al estado anterior: si se entregó un inmueble, debe restituirse; si se entregó dinero, debe restituirse.
+
+\begin{example}{Venta de un inmueble contraria a la sentencia}
+Una persona con discapacidad mental que vive de la renta de varias cocheras tiene una sentencia que exige el apoyo de un hermano o hermana para vender inmuebles. Si, sin ese apoyo, vende un inmueble y el escribano no advierte la restricción, el acto es nulo: la venta no produce efectos y las partes deben restituirse lo entregado.
+\end{example}
+
+Se trata de una nulidad relativa. Para que proceda, el acto debe ser posterior a la inscripción de la sentencia y contrario a lo que ella dispone. Si la sentencia solo restringe, por ejemplo, la venta de inmuebles, el consentimiento que la misma persona preste para una intervención quirúrgica --materia no alcanzada por la sentencia-- es perfectamente válido.
+
+\subsection{Actos anteriores a la sentencia (artículo 45)}
+
+\begin{important}
+\textbf{Artículo 45 --- Código Civil y Comercial (actos anteriores a la sentencia).} Los actos anteriores a la inscripción de la sentencia pueden ser declarados nulos, si perjudican a la persona incapaz o con capacidad restringida, y se cumple alguno de los siguientes requisitos: a) la enfermedad mental era ostensible al momento de la celebración del acto; b) quien contrató con ella era de mala fe; c) el acto fue a título gratuito.
+\end{important}
+
+Estos actos son, en principio, válidos, pero pueden anularse si concurre alguno de los requisitos del artículo 45. El dictamen interdisciplinario del artículo 37, al establecer la época en que se manifestó la situación, permite determinar si existían causales al momento de celebrarse el acto anterior.
+
+\begin{example}{Contratante de mala fe}
+Un profesional de la salud que atiende a una persona con capacidad restringida y, conociendo su situación, le compra un inmueble a bajo precio, actúa de mala fe. Si, en cambio, el acto fue a título gratuito, no existe perjuicio patrimonial porque la persona no recibió contraprestación alguna.
+\end{example}
+
+\section{Cese de las restricciones (artículo 47)}
+
+\begin{important}
+\textbf{Artículo 47 --- Código Civil y Comercial (cese de la incapacidad y de las restricciones a la capacidad).} El cese de la incapacidad o de la restricción a la capacidad debe decretarse por el juez que la declaró, previo examen de un equipo interdisciplinario integrado conforme a las pautas del artículo 37, que dictamine sobre el restablecimiento de la persona. Si el restablecimiento es total, el juez deja sin efecto la sentencia. Si el restablecimiento es parcial o el interesado solicita expresamente la revisión, el juez puede ampliar la nómina de actos que la persona puede realizar por sí o con la asistencia o representación de los apoyos designados.
+\end{important}
+
+Además de la revisión obligatoria del artículo 40, el interesado puede solicitar en cualquier momento el cese de la restricción, mediante el mismo procedimiento: un nuevo examen interdisciplinario conforme al artículo 37 (diagnóstico, pronóstico, época, recursos personales, familiares y sociales, y régimen aconsejable).
+
+\section{El sistema de apoyos (artículo 43) y conclusiones}
+
+\begin{important}
+\textbf{Artículo 43 --- Código Civil y Comercial (concepto de apoyo).} Se entiende por apoyo cualquier medida de carácter judicial o extrajudicial que facilite a la persona la toma de decisiones para dirigir su persona, administrar sus bienes y celebrar actos jurídicos en general. Las medidas de apoyo tienen como función la de promover la autonomía y facilitar la comunicación, la comprensión y la manifestación de voluntad de la persona para el ejercicio de sus derechos. El interesado puede proponer al juez la designación de una o más personas de su confianza para que le presten apoyo. El juez debe evaluar los alcances de la designación y procurar la protección de la persona respecto de eventuales conflictos de intereses o influencia indebida. La resolución debe establecer la condición y la calidad de las medidas de apoyo y, de ser necesario, ser inscripta en el Registro de Estado Civil y Capacidad de las Personas.
+\end{important}
+
+El código toma de la Convención la noción de apoyo como cualquier medida judicial o extrajudicial que facilite la toma de decisiones. El apoyo judicial es el que se designa en la sentencia; el apoyo extrajudicial resulta más difícil de precisar, porque toda persona recibe apoyos informales de quienes la rodean, sin que ello implique control judicial. La cuestión se presenta cuando el apoyo adquiere relevancia jurídica.
+
+\begin{example}{Apoyo extrajudicial sin relevancia jurídica}
+Durante una situación de aislamiento, un vecino que hace las compras de una persona mayor que no puede salir --recibiendo el dinero, comprando y entregando la mercadería-- presta un apoyo de hecho que no requiere control judicial, en la medida en que no involucre actos como vender un inmueble, comprar un automóvil o hipotecar una propiedad.
+\end{example}
+
+\subsection{Salvaguardias: conflicto de intereses e influencia indebida}
+
+Para designar apoyos, el juez debe valorar la eventual existencia de conflicto de intereses e influencia indebida, dos mecanismos de salvaguarda previstos por la Convención para evitar abusos. El conflicto de intereses es más objetivo --por ejemplo, cuando quien administra un inmueble como apoyo es, a la vez, quien lo alquila--; la influencia indebida es más difícil de probar, porque supone cierta manipulación de la voluntad, situación que puede presentarse, por ejemplo, cuando una persona mayor con discapacidad mental convive con uno de sus hijos y los demás hijos consideran que existe manipulación.
+
+\subsection{Criterio de actuación de los apoyos}
+
+El criterio de actuación de los apoyos es el respeto de la voluntad y las preferencias de la persona, principio que surge directamente del artículo 12 de la Convención. El apoyo puede ser propuesto por la propia persona interesada. La posibilidad de que una persona jurídica actúe como apoyo se encuentra en discusión doctrinaria y no consta en el apunte que exista jurisprudencia que la haya admitido respecto de la institución donde se encuentra internada una persona.
+
+% TODO: contenido incompleto o ambiguo en las notas originales: la posibilidad de que una persona jurídica sea designada apoyo queda planteada como debate abierto, sin resolución expresa en el material.
+
+\subsection{Conclusiones generales}
+
+El nuevo código se adapta a la Convención mediante conceptos y terminología propios de ella --apoyos, ajustes razonables, accesibilidad, autonomía, recursos personales y familiares--. Ratifica el criterio de la Ley de Salud Mental según el cual la regla es la capacidad y las limitaciones son excepcionales, por actos y funciones concretos. El sistema general es el de apoyos; se reconoce ampliamente el derecho de la persona a participar en el proceso y a ser escuchada; la sentencia debe revisarse periódicamente; y se consolida el criterio de intervención interdisciplinaria.
+
+Subsiste, sin embargo, la cuestión de la incapacidad y de los supuestos de sustitución de la voluntad, en tanto se discute si esas formas de representación respetan plenamente la Convención. Según se señala en el apunte, la doctrina mayoritaria entiende que no la vulneran, por tratarse de situaciones absolutamente excepcionales en las que la persona no puede expresarse de ningún modo y en las que, de no designarse representante, quedaría sin protección jurídica alguna. A ello se suma que la persona conserva el derecho a participar y puede dejar directivas anticipadas --instituto recibido de manera limitada en el artículo 139, que permite a una persona señalar anticipadamente quién podría ser su curador ante la eventual pérdida de conciencia.
+
+\section{Cuadro comparativo: régimen anterior y régimen vigente}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}p{0.36\textwidth}
+    >{\raggedright\arraybackslash}p{0.36\textwidth}
+}
+\toprule
+\textbf{Situación} & \textbf{Código Civil derogado} & \textbf{Código Civil y Comercial vigente} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Situación} & \textbf{Código Civil derogado} & \textbf{Código Civil y Comercial vigente} \\
+\midrule
+\endhead
+
+\textbf{Regla general} & Incapacidad como eje del sistema; el inhabilitado era la excepción acotada a tres casos. & La capacidad es la regla; toda restricción es excepcional y se impone en beneficio de la persona (art. 31). \\[0.4em]
+
+\textbf{Figura de protección} & Curador con función de representación, para incapaces e inhabilitados. & Apoyos para personas con capacidad restringida e inhabilitados; curador solo para incapaces (art. 32, último párrafo). \\[0.4em]
+
+\textbf{Intervención profesional} & Evaluación médica (luego interdisciplinaria, desde el art. 152 ter de 2010). & Dictamen interdisciplinario obligatorio: psiquiatría, psicología y trabajo social (art. 37). \\[0.4em]
+
+\textbf{Duración de la sentencia} & Sin plazo, hasta el art. 152 ter (2010), que fijó un máximo de tres años. & Revisión obligatoria cada tres años como máximo, o antes a pedido del interesado (art. 40). \\[0.4em]
+
+\textbf{Voz de la persona} & No estaba prevista la entrevista personal obligatoria ni la condición de parte. & Entrevista personal obligatoria (art. 35) y la persona es parte del proceso (art. 36). \\[0.4em]
+
+\textbf{Sistema de apoyos} & No existía el sistema de apoyos; solo representación a través del curador. & Sistema de apoyos como regla; respeto de la voluntad y preferencias de la persona (art. 43). \\
+\bottomrule
+\end{longtable}
+
+% =========================================================================
+% CORNELL DE REPASO GENERAL (comprensivo, aportado por el propio apunte)
+% =========================================================================
+\chapter{Cuadro Cornell de repaso general}
+\label{ch:cornell-general}
+
+Este cuadro de repaso reúne las preguntas y conceptos clave desarrollados a lo largo de los cuatro bloques, pensado para el estudio activo previo a un examen.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Pregunta / concepto clave} & \textbf{Notas / respuesta / explicación} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Pregunta / concepto clave} & \textbf{Notas / respuesta / explicación} \\
+\midrule
+\endhead
+
+\textbf{¿Qué jerarquía tiene la CDPD en Argentina?} &
+Fue ratificada en 2008 (Ley 26.378) y en 2014 obtuvo jerarquía constitucional mediante el procedimiento del artículo 75, inciso 22, de la Constitución Nacional, equiparándose a la primera parte de la Constitución. \\[0.4em]
+
+\textbf{¿Qué establece el artículo 12 de la CDPD?} &
+Reconoce la personalidad jurídica de las personas con discapacidad, su derecho a la capacidad jurídica en igualdad de condiciones, la obligación estatal de garantizar apoyos para el ejercicio de esa capacidad y la exigencia de salvaguardias que respeten la voluntad, evitando conflictos de intereses e influencia indebida. \\[0.4em]
+
+\textbf{¿Cuáles son las reglas generales del artículo 31 del CCyC?} &
+La capacidad se presume, incluso en caso de internación; las restricciones son excepcionales y en beneficio de la persona; la intervención es interdisciplinaria; hay derecho a información accesible y a asistencia letrada gratuita; y deben priorizarse las alternativas menos restrictivas. \\[0.4em]
+
+\textbf{¿Cuáles son los tres tipos de restricción a la capacidad del CCyC?} &
+Personas con capacidad restringida (art. 32, primer párrafo, la regla), personas incapaces (art. 32, último párrafo, supuesto excepcional) e inhabilitados por prodigalidad (art. 48). \\[0.4em]
+
+\textbf{¿Qué requisitos exige el artículo 32 para restringir la capacidad?} &
+Persona mayor de trece años; adicción o alteración mental permanente o prolongada de suficiente gravedad; y que el ejercicio de la plena capacidad pueda causarle un daño a su persona o a sus bienes. \\[0.4em]
+
+\textbf{¿Cuándo corresponde declarar la incapacidad?} &
+Solo cuando la persona esté absolutamente imposibilitada de interaccionar con su entorno, no pueda expresar su voluntad por ningún modo, medio o formato adecuado, y el sistema de apoyos resulte ineficaz. Se designa entonces un curador con funciones de representación. \\[0.4em]
+
+\textbf{¿Qué protege la inhabilitación por prodigalidad?} &
+Protege al cónyuge, conviviente o hijos menores o con discapacidad frente al riesgo de pérdida del patrimonio por la mala gestión de los bienes; limita los actos de disposición y exige la conformidad del apoyo para ciertos actos. \\[0.4em]
+
+\textbf{¿Quiénes están legitimados para pedir la restricción de la capacidad?} &
+El propio interesado, el cónyuge o conviviente no separado de hecho, los parientes dentro del cuarto grado (segundo grado por afinidad) y el Ministerio Público (art. 33). \\[0.4em]
+
+\textbf{¿Qué exige la entrevista personal del artículo 35?} &
+Que el juez garantice la inmediatez con el interesado y lo entreviste personalmente antes de dictar cualquier resolución, asegurando accesibilidad y ajustes razonables del procedimiento. \\[0.4em]
+
+\textbf{¿Qué cuatro puntos debe contener el dictamen y reflejar la sentencia según el artículo 37?} &
+1) Diagnóstico y pronóstico; 2) época en que se manifestó la situación; 3) recursos personales, familiares y sociales existentes; 4) régimen de protección y promoción de la mayor autonomía posible, sobre la base del dictamen interdisciplinario. \\[0.4em]
+
+\textbf{¿Cuándo es válida una internación involuntaria?} &
+Solo ante riesgo cierto e inminente de daño para la persona o para terceros, fundada en evaluación interdisciplinaria, con control judicial inmediato, asistencia letrada y revisión periódica (art. 41). \\[0.4em]
+
+\textbf{¿Qué efectos produce un acto contrario a la sentencia?} &
+Si es posterior a la inscripción de la sentencia, el acto es nulo (art. 44); si es anterior, puede anularse si la enfermedad era ostensible, hubo mala fe del contratante, o el acto fue a título gratuito (art. 45). \\[0.4em]
+
+\textbf{¿Qué es un apoyo según el artículo 43?} &
+Cualquier medida judicial o extrajudicial que facilite a la persona la toma de decisiones para dirigir su vida, administrar sus bienes y celebrar actos jurídicos, promoviendo su autonomía y respetando su voluntad y preferencias. \\[0.4em]
+
+\textbf{¿Qué diferencia hay entre conflicto de intereses e influencia indebida?} &
+El conflicto de intereses es objetivo y visible (el apoyo que administra un inmueble que él mismo alquila); la influencia indebida es más sutil y difícil de probar, porque supone una manipulación de la voluntad de la persona. \\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Síntesis final:} El Código Civil y Comercial argentino adapta el sistema de restricciones a la capacidad al modelo social de la discapacidad consagrado en la Convención sobre los Derechos de las Personas con Discapacidad (CDPD). Parte de un principio general de capacidad y reserva la restricción para casos excepcionales, debidamente fundados en un dictamen interdisciplinario y resueltos por sentencia judicial personalizada. Reconoce tres figuras --capacidad restringida, incapacidad e inhabilitación por prodigalidad-- que se diferencian por la intensidad de la limitación y por la naturaleza de la figura de protección: el apoyo, que asiste sin sustituir la voluntad, o el curador, reservado a los casos más extremos de imposibilidad absoluta de interacción. Todo el procedimiento está atravesado por garantías procesales --entrevista personal, calidad de parte, asistencia letrada, revisión periódica-- que buscan que la persona nunca quede ausente de las decisiones que la afectan. Finalmente, el sistema de apoyos del artículo 43, con sus salvaguardias contra el conflicto de intereses y la influencia indebida, condensa el espíritu de toda la reforma: acompañar para que la persona pueda decidir por sí misma, y proteger solo en la medida estrictamente necesaria.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}
