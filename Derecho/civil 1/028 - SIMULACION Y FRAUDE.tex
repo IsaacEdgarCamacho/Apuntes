@@ -1,0 +1,767 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS DEL DOCUMENTO
+% ============================================================
+\newcommand{\universidad}{Universidad Argentina}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Cátedra de Derecho Civil --- Parte General}
+\newcommand{\materia}{Derecho Civil}
+\newcommand{\titulo}{La Simulación y el Fraude como Vicios de los Actos Jurídicos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% ENCABEZADOS Y PIES DE PÁGINA
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ---------------------------------------------------------
+% PORTADA
+% ---------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Distinguir la apariencia de la realidad jurídica es el primer paso para comprender la lógica que protege a los terceros de buena fe.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------------------------------------------------
+% ÍNDICE
+% ---------------------------------------------------------
+\tableofcontents
+
+% ---------------------------------------------------------
+% INTRODUCCIÓN
+% ---------------------------------------------------------
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
+
+Los contenidos de esta unidad se organizan en dos grandes bloques, unidos por una misma idea: tanto la simulación como el fraude son vicios de los actos jurídicos que hacen que un acto, pese a existir, no produzca todos sus efectos normales. La diferencia entre ambos puede describirse como la que existe entre una fachada falsa y una casa vaciada por dentro: en la simulación se construye una fachada --un acto aparente-- que oculta o no oculta nada real, y por eso se ataca con la nulidad; en el fraude la casa es real, pero el deudor la vació de bienes para no pagarles a sus acreedores, y por eso se ataca con la inoponibilidad y no con la nulidad.
+
+\section*{Temas tratados}
+\addcontentsline{toc}{section}{Temas tratados}
+
+\begin{itemize}
+    \item La simulación: concepto, clases (absoluta/relativa, lícita/ilícita), prueba, acción entre partes y de terceros, efectos y prescripción.
+    \item El fraude: concepto, la acción de inoponibilidad, requisitos de procedencia, efectos frente a terceros y prescripción.
+\end{itemize}
+
+\section*{Utilidad profesional y personal}
+\addcontentsline{toc}{section}{Utilidad profesional y personal}
+
+Estos dos vicios explican por qué un acto que parece perfecto en el papel puede terminar siendo anulado o simplemente ignorado por la ley frente a ciertas personas. Para cualquier abogado --litigante, asesor de empresas, escribano o juez-- identificar una simulación (por ejemplo, una venta que en realidad esconde una donación para perjudicar herederos) o un fraude (un deudor que vacía su patrimonio para no pagar) constituye una herramienta central de la práctica profesional: de estos institutos depende poder recuperar un bien familiar, cobrar una deuda, defender a un cliente acusado de haber ``prestado su nombre'', o asesorar correctamente antes de firmar un contrato para no quedar involucrado, sin saberlo, en un acto simulado o fraudulento.
+
+También resulta útil en la vida personal: son temas que aparecen en sucesiones familiares, en préstamos entre parientes, en la compra de bienes a nombre de terceros o en cualquier situación donde alguien pueda intentar aprovecharse de un acuerdo informal. Entender la diferencia entre lo lícito y lo ilícito, y saber qué prueba se necesita para desarmar un acto aparente, protege el propio patrimonio y el de la familia.
+
+% ===========================================================
+% CAPÍTULO 1 --- LA SIMULACIÓN
+% ===========================================================
+\chapter[La simulación]{La simulación como vicio de los actos jurídicos}
+
+\section{Concepto y noción general}
+
+La simulación es un vicio especial de los actos jurídicos, porque supone una situación en la que las partes acuerdan una declaración de voluntad o un acto jurídico que, o bien no es real, o bien es aparente y encubre otro acto verdadero.
+
+La simulación puede tener fines lícitos o ilícitos, según las circunstancias en las que las personas involucradas la lleven a cabo.
+
+\begin{example}{Simulación ilícita entre herederos}
+Un padre o una madre --viudo o viuda-- tiene tres hijos y quiere beneficiar en realidad a uno de ellos, su hijo favorito, simulando venderle su única casa. Los otros dos hijos no se enteran del verdadero propósito del acto.
+
+Cuando fallece la persona y los herederos inician la sucesión, se encuentran con que la casa figura vendida, pero el hijo que aparece como comprador en realidad no tenía fondos, pues atravesaba una situación económica muy mala. Ante la pregunta de los demás hermanos, queda claro que el acto tuvo que haber sido simulado: en apariencia se le vendió la casa, pero en realidad se la estaban regalando, de modo que se trató de una donación.
+
+Frente a esto, se ataca el acto para que se declare su nulidad y se lo considere una donación, de modo que la porción de la legítima hereditaria que corresponde a los demás herederos reingrese al acervo hereditario. Este es un ejemplo de simulación \textbf{ilícita}, porque perjudica a terceros --en este caso, a los otros coherederos.
+\end{example}
+
+\begin{example}{Simulación lícita: el auto a nombre del hermano}
+Una persona que se muda al exterior por tiempo indeterminado acuerda con su hermano poner el automóvil a su nombre, simulando una venta, para que este lo utilice mientras dure la ausencia, con el compromiso de restituirlo a su regreso.
+
+La titularidad del auto queda simulada: el hermano actúa todo el tiempo como si el auto fuera suyo, y cuando la persona regresa y lo reclama, se produce la necesidad de volver las cosas al estado anterior.
+\end{example}
+
+\section{Definición doctrinaria y ubicación metodológica}
+
+La doctrina define la simulación como la situación en la que dos personas, o una de ellas y un tercero que aparentemente no interviene en el acto, se ponen de acuerdo para declarar que celebran actos jurídicos que en realidad no se han propuesto llevar a cabo, o para aparentar un acto distinto, ocultando el acto verdadero bajo la apariencia de otro que declaran haber realizado.
+
+\begin{definition}{Simulación}
+Habrá simulación cuando dos personas, o una de ellas y un tercero que aparentemente no interviene en el acto, se ponen de acuerdo para declarar que celebran actos jurídicos que en realidad no se han propuesto llevar a cabo, o para aparentar un acto distinto, ocultando el acto verdadero bajo la apariencia de otro que declaran haber realizado.
+\end{definition}
+
+A partir de esta definición surgen los dos grandes tipos de simulación: la \textbf{absoluta}, cuando no hay nada de real, y la \textbf{relativa}, cuando la simulación encubre otro acto.
+
+Metodológicamente, el tema se ubica en la Sección Segunda del Capítulo 6, ``De los vicios de los actos jurídicos'', del Título Cuarto (``Hechos y actos jurídicos'') del Libro Primero, Parte General, del Código Civil y Comercial (CCyC).
+
+\section{Definición legal de la simulación}
+
+La definición legal que trae el Código Civil y Comercial viene prácticamente igual a la que traía el código anterior en su artículo 955.
+
+\begin{formula}{Definición legal de la simulación}
+``La simulación tiene lugar cuando se encubre el carácter jurídico de un acto con la apariencia de otro, o cuando el acto contiene cláusulas que no son sinceras, o fechas que no son verdaderas, o cuando por el acto se constituyen o transmiten derechos a personas interpuestas que no son aquellas para quienes en realidad se constituyen o transmiten.''
+\end{formula}
+
+\section{Simulación absoluta y simulación relativa}
+
+Dentro de esta clasificación se distingue, por un lado, la simulación absoluta y, por otro, la simulación relativa.
+
+\subsection{Simulación absoluta}
+
+Es absoluta cuando el acto nada tiene de verdadero.
+
+\begin{example}{Simulación absoluta}
+Una madre simula venderle un bien a un hijo para eludir a sus acreedores. Lo ``vende'', pero sigue viviendo allí: no hay ninguna transferencia de dinero, no hay nada real. El bien sigue siendo de ella; lo único que hace es aparentar haberlo puesto a nombre de su hijo. Esto constituye una simulación absoluta.
+\end{example}
+
+\subsection{Simulación relativa}
+
+Es relativa aquella en que el acto aparente encubre a otro real y verdadero.
+
+\begin{formula}{Art. 334 CCyC}
+``Si el acto simulado encubre a otro real, este es plenamente eficaz, siempre que concurran los requisitos propios de esa categoría de acto, y no sea ilícito ni perjudique a un tercero.''
+\end{formula}
+
+\begin{example}{Simulación relativa}
+Se simula una compraventa, pero en realidad se trata de una donación, sin que esto perjudique a terceros ni sea ilícito. Será una donación hecha por determinados fines, que aparentemente se hizo como compraventa, pero en realidad es una donación.
+\end{example}
+
+El artículo 334 deja a salvo el acto encubierto: el acto aparente se anula y queda subsistente el acto encubierto, plenamente eficaz.
+
+\section{Simulación lícita e ilícita}
+
+La otra clasificación relevante distingue entre simulación lícita e ilícita: la simulación \textbf{lícita} es aquella que no perjudica a terceros ni viola la ley; la simulación \textbf{ilícita} es aquella que perjudica a terceros o viola la ley.
+
+Retomando los ejemplos ya expuestos: el caso del deudor que simula vender un bien para que sus acreedores no puedan ejecutarlo es ilícito, porque los perjudica. En cambio, el caso de la persona que pone el auto a nombre de su hermano, sin perjudicar a nadie ni hacer nada contrario a la ley --simplemente porque resulta más práctico, ya que el hermano lo va a usar y asume todas las responsabilidades del caso, con el compromiso de devolverlo--, constituye una simulación lícita.
+
+\section{Naturaleza de la sanción: nulidad relativa}
+
+La simulación da lugar a la nulidad, y se trata de una nulidad de tipo \textbf{relativa}, porque está establecida en beneficio de las partes.
+
+Entre los vicios que se tratan en el Título Cuarto del Código --error, dolo, violencia (vicios de la voluntad), vicios de los actos voluntarios, lesión y simulación-- todos dan lugar a la nulidad. El fraude es el único vicio de ese título que da lugar a la inoponibilidad.
+
+Algunos autores sostenían que, ante una simulación, se estaba frente a un acto inexistente, pero esta postura no encuentra eco en el Código Civil y Comercial, que siempre refiere a la nulidad del acto.
+
+\begin{important}
+Si al leer algún apunte o algún autor se encuentra una referencia a la inexistencia del acto simulado, en realidad esto no tiene asidero: la inexistencia es una categoría de ineficacia reconocida en otros países, pero en el derecho argentino no está reconocida, salvo en algún supuesto muy específico. Por lo tanto, al hablar de simulación siempre corresponde hablar de nulidad.
+\end{important}
+
+\section{La acción de simulación entre las partes}
+
+La acción de simulación puede ser ejercida por las partes entre sí, o por terceros.
+
+\begin{example}{Acción entre las partes}
+Una persona regresa de un viaje y reclama a su hermano la restitución del auto que le había puesto a su nombre de manera simulada, comprometiéndose este a devolvérselo a su regreso. El hermano desconoce que el acto haya sido simulado y sostiene que el auto es suyo.
+
+Frente a ese desconocimiento, la persona debe iniciar una acción de simulación contra su hermano ante el juez, solicitando que se declare la nulidad del acto simulado, para que las cosas vuelvan al estado anterior. Este es un ejemplo de acción entre las propias partes.
+\end{example}
+
+\subsection{Procedencia de la acción entre partes}
+
+\begin{formula}{Art. 335 CCyC (primer párrafo)}
+``Los que otorgan un acto simulado ilícito, o que perjudica a terceros, no pueden ejercer acción alguna el uno contra el otro sobre la simulación, excepto que las partes no puedan obtener beneficio alguno de las resultas del acto practicado con la simulación.''
+\end{formula}
+
+Si la simulación es ilícita, la acción entre las partes no procede, por regla, salvo que ninguna de ellas pueda obtener un beneficio de la simulación. En cambio, en la simulación lícita no está presente este requisito, y la acción procede siempre.
+
+\begin{example}{Excepción a la regla}
+Una persona simuló vender su casa para eludir a sus acreedores y, luego, gracias a una herencia de un pariente lejano, obtiene dinero suficiente para pagarles. Con esa disponibilidad, inicia una acción de simulación contra el adquirente simulado de su casa, para recuperar la propiedad. Aunque la simulación fue ilícita, al dejar sin efecto el acto simulado no obtiene ningún beneficio indebido, porque ya pagó a los acreedores: estos no perdieron nada, no fueron perjudicados. Por eso, en este caso, la acción entre partes puede proceder.
+\end{example}
+
+\subsection{La prueba entre las partes: el contradocumento}
+
+Entre las partes, la simulación debe probarse a través del \textbf{contradocumento}. El contradocumento es el instrumento donde consta la verdadera intención de las partes: si la simulación es una declaración de voluntad aparente que encubre otro acto real, o que no tenía nada de real, en el contradocumento se plasma la voluntad real, y las partes dejan en claro que se trató de un acto simulado. Durante la simulación se redacta también un contradocumento, justamente para que, ante la necesidad de probar que el acto es simulado, la parte interesada pueda exhibirlo.
+
+En la redacción originaria de Vélez, de 1871 (vigente desde 1869), no había posibilidad de eximirse de presentar el contradocumento. Luego, la jurisprudencia fue incorporando excepciones, y en el período 1968/1969 la Ley 17.711 incorporó un párrafo al código anterior que estableció la posibilidad de prescindir del contradocumento. Esta solución fue receptada por el nuevo Código en el artículo 335, que agrega, respecto del código anterior, la exigencia de justificar las razones por las cuales el contradocumento no existe o no puede ser presentado.
+
+\begin{formula}{Art. 335 CCyC (segundo párrafo)}
+``La simulación alegada por las partes debe probarse mediante el respectivo contradocumento. Puede prescindirse de él cuando la parte justifica las razones por las cuales no existe o no puede ser presentado y median circunstancias que hacen inequívoca la simulación.''
+\end{formula}
+
+\begin{example}{Prescindencia del contradocumento}
+Dos hermanos, por la cercanía y confianza entre ellos, no consideraron necesario escribir un contradocumento, o bien este se destruyó --por ejemplo, en un incendio-- y no puede ser presentado. En ese caso deben acreditarse circunstancias que hagan inequívoca la simulación: por ejemplo, demostrar que el hermano titular registral tenía bienes que en realidad seguía usando el otro hermano --el departamento, el automóvil--, de modo de dar al juez la convicción inequívoca de que efectivamente se está ante un acto simulado.
+\end{example}
+
+Complementariamente, el artículo 1028 del código anterior establecía que el contradocumento particular que altere lo expresado en un instrumento público puede invocarse entre las partes, pero no es oponible respecto de terceros.
+
+\begin{important}
+Si el acto simulado se instrumentó por escritura pública, puede utilizarse un contradocumento simplemente particular, es decir, que no sea escritura pública. Aunque la escritura pública tiene mayor fuerza probatoria que el instrumento particular, el contradocumento particular puede ser invocado entre las partes si tiene firma, ya que esta le da mayor certeza. Frente a terceros, en cambio, es inoponible. Si no tiene firma, habrá que probar las circunstancias que hacen inequívoca la simulación.
+\end{important}
+
+\section{La acción de simulación ejercida por terceros}
+
+\subsection{Procedencia}
+
+La acción ejercida por terceros procede cuando la simulación es ilícita. El tercero no tendría ningún interés en atacar una simulación lícita; la razón de su acción reside, precisamente, en la existencia de una simulación ilícita.
+
+\begin{formula}{Art. 336 CCyC}
+``Los terceros cuyos derechos o intereses legítimos son afectados por el acto simulado pueden demandar su nulidad.''
+\end{formula}
+
+Esta norma habilita a los terceros a iniciar una demanda de nulidad; se trata, nuevamente, de una demanda de nulidad, y no de inexistencia ni de inoponibilidad.
+
+\subsection{La prueba por indicios}
+
+Según el artículo 336, el tercero puede acreditar la simulación por cualquier medio de prueba: no se le exige el contradocumento, ya que este lo tienen las partes que hicieron el acto simulado, y no el tercero.
+
+Ante la imposibilidad de recurrir al contradocumento, el tercero recurre a indicios. La doctrina, con aportes de distintos autores especializados en el tema, reúne una enumeración de indicios:
+
+\begin{itemize}
+    \item Carencia de medios económicos del adquirente para haber podido pagar el precio.
+    \item El parentesco muy próximo, o la amistad íntima, entre las partes del acto.
+    \item La ausencia de ejecución material del acto o contrato (por ejemplo, el vendedor que sigue viviendo en el inmueble ``vendido'').
+    \item La venta de la cosa a una sociedad anónima en la que el propio enajenante o sus parientes son accionistas.
+    \item La venta de un bien que el vendedor necesita para su sustento (por ejemplo, el auto con el cual trabaja y se traslada).
+    \item El precio vil, es decir, un precio muy bajo en relación con el valor real de la cosa.
+    \item La ausencia de incorporación del bien en las declaraciones impositivas (no haberlo denunciado ante la AFIP).
+    \item Los pagos anticipados: pagar por anticipado todo el precio antes de la escrituración resulta sospechoso.
+    \item La retroventa: es poco habitual que alguien compre algo con la posibilidad de que se lo revendan a él mismo.
+    \item Que la enajenación no sea útil ni necesaria: no había ninguna necesidad real de vender.
+\end{itemize}
+
+Estos son indicios surgidos de la jurisprudencia, que el tercero que alega una simulación debe reunir para convencer a un juez de que lo sucedido no es real, sino que encubre otro acto, o que directamente no tiene nada de real.
+
+\section{Efectos de la simulación frente a terceros}
+
+La simulación ilícita que perjudica a un tercero provoca la nulidad del acto; si el acto simulado encubre a otro real, este es plenamente eficaz si concurren los requisitos propios de su categoría, y no es ilícito ni perjudica a terceros. En las simulaciones relativas por cláusulas simuladas, si es posible distinguir y separar la cláusula falsa de las demás, esta pierde valor, pero el acto sigue siendo válido en lo restante, por el principio de conservación de los actos.
+
+\begin{formula}{Art. 337 CCyC}
+``La simulación no puede oponerse a los acreedores del adquirente simulado que de buena fe hayan ejecutado los bienes comprendidos en el acto. La acción del tercero contra los subadquirentes solo procede si adquirió por título gratuito, o si es cómplice en la simulación. El subadquirente de mala fe y quien contrató de mala fe con el deudor responden solidariamente por los daños causados al tercero que ejerció la acción, si los derechos se transmitieron a un adquirente de buena fe y a título oneroso, o de otro modo se hizo imposible su recaudo.''
+\end{formula}
+
+\begin{example}{Efectos frente a terceros y subadquirentes}
+Una persona simula venderle el auto a su hermano; este, a su vez, tiene sus propios acreedores, que ejecutan el auto de buena fe, sin saber nada de la simulación. En ese caso quedan protegidos, pues la lógica siempre es proteger al de buena fe y a título oneroso.
+
+Si el hermano, a su vez, transmitió el auto a un subadquirente, la acción contra este solo procede si adquirió a título gratuito, o si fue cómplice de la simulación. Si el subadquirente es de buena fe y a título oneroso --por ejemplo, compró el vehículo mediante un aviso, sin conocer la simulación-- queda protegido. Si, en cambio, el hermano se puso de acuerdo con esa otra persona y le vendió el auto sabiendo todo, la acción procede, aunque la complicidad resulta muy difícil de demostrar.
+
+El subadquirente de mala fe y el deudor responden por los daños: procede una acción de daños junto con la nulidad, dirigida contra el subadquirente de mala fe. En cambio, si el subadquirente es de buena fe pero a título gratuito --por ejemplo, si el bien fue donado a una institución de beneficencia-- no responde por los daños, sino en la medida en que se haya enriquecido, debiendo restituir en esa medida.
+\end{example}
+
+La regla general que atraviesa este tema es que siempre se protege a quien actuó de buena fe y a título oneroso; quien actuó de mala fe responde por los daños, y quien actuó de buena fe pero a título gratuito responde solo en la medida de su enriquecimiento. Se trata de un principio fundamental en todo el tema de los actos jurídicos dentro del sistema de derecho civil argentino.
+
+\section{Prescripción de la acción de simulación}
+
+\begin{formula}{Art. 2563, inc. b, CCyC}
+El plazo de prescripción de dos años se computa, en la acción de simulación ejercida por parte, ``desde que, requerida una de ellas, se negó a dejar sin efecto el acto simulado''; y en la acción de simulación que ejerce un tercero, desde que conoció o pudo conocer el vicio del acto jurídico.
+\end{formula}
+
+La acción entre partes no comienza a correr desde que se celebró el acto simulado, sino desde que una de ellas desconoce, en los hechos, la simulación.
+
+\begin{example}{Cómputo del plazo entre partes}
+Una persona regresa de España, reclama el auto y su hermano le dice que el auto es suyo. Aunque hayan pasado varios años desde su partida, el plazo de prescripción empieza a correr recién cuando regresa y el hermano se niega a devolvérselo, y no desde el momento de la partida.
+\end{example}
+
+La acción ejercida por un tercero prescribe a los dos años desde que este conoció o pudo conocer el vicio del acto jurídico.
+
+% -----------------------------------------------------------
+% CORNELL --- CAPÍTULO 1
+% -----------------------------------------------------------
+\section*{Repaso Cornell: la simulación}
+\addcontentsline{toc}{section}{Repaso Cornell: la simulación}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es la simulación?} &
+Un vicio en el que las partes acuerdan una declaración de voluntad que no es real, o que es aparente y encubre otro acto. Puede tener fines lícitos (por ejemplo, poner un auto a nombre de un hermano) o ilícitos (por ejemplo, simular una venta para perjudicar a coherederos). \\
+
+\textbf{¿Simulación absoluta o relativa?} &
+Absoluta: el acto no tiene nada de real (por ejemplo, una madre que ``vende'' un bien pero sigue siendo suya). Relativa: el acto aparente encubre a otro real y válido (art. 334 CCyC), que subsiste plenamente eficaz si no es ilícito ni perjudica a terceros. \\
+
+\textbf{¿Simulación lícita o ilícita?} &
+Lícita: no perjudica a terceros ni viola la ley. Ilícita: perjudica a terceros o viola la ley (por ejemplo, vender bienes para eludir acreedores). \\
+
+\textbf{¿Qué sanción tiene la simulación?} &
+La nulidad, de carácter relativo (no la inexistencia, categoría que el Código Civil y Comercial no reconoce para estos casos). \\
+
+\textbf{¿Cómo se prueba entre las partes?} &
+Mediante el contradocumento (art. 335 CCyC); puede prescindirse de él si se justifican las razones de su ausencia y median circunstancias que hacen inequívoca la simulación. \\
+
+\textbf{¿Cómo prueba un tercero?} &
+Por cualquier medio de prueba (art. 336 CCyC), típicamente a través de indicios: falta de medios económicos del comprador, parentesco cercano, precio vil, ausencia de ejecución material del contrato, pagos anticipados, retroventa, entre otros. \\
+
+\textbf{¿Quién queda protegido frente a terceros?} &
+Los acreedores de buena fe del adquirente simulado que hayan ejecutado bienes (art. 337 CCyC). Los subadquirentes de mala fe o a título gratuito responden; los de buena fe y título oneroso quedan protegidos. \\
+
+\textbf{¿Cuándo prescribe la acción de simulación?} &
+A los dos años (art. 2563 inc. b CCyC): entre partes, desde que una de ellas se negó a dejar sin efecto el acto; por terceros, desde que conocieron o pudieron conocer el vicio. \\
+
+\midrule
+
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} La simulación y el fraude son los dos últimos vicios de los actos jurídicos estudiados en esta unidad, y ambos responden a la misma preocupación: qué hacer cuando un acto jurídico, sin ser lo que aparenta, afecta a personas ajenas a él. En la simulación, las partes se ponen de acuerdo para declarar algo que no es real o que oculta otro acto; según perjudique o no a terceros o viole la ley, será ilícita o lícita, y siempre se sanciona con la nulidad relativa del acto ostensible, probándose entre las partes mediante contradocumento y, por los terceros, mediante cualquier indicio idóneo.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ===========================================================
+% CAPÍTULO 2 --- EL FRAUDE
+% ===========================================================
+\chapter[El fraude]{El fraude como vicio de los actos jurídicos}
+
+\section{Introducción y distinción con el fraude penal}
+
+La palabra ``fraude'' no debe confundirse con el delito de fraude, si bien puede darse que la misma conducta configure, a la vez, un fraude civil y un delito. En esta unidad se consideran los aspectos civiles del fraude, vinculados con la garantía del patrimonio a favor de los acreedores.
+
+En la concepción integral del derecho civil y del Código Civil y Comercial, el patrimonio opera como garantía de los acreedores. Por eso, si un deudor enajena bienes para sustraerlos de sus acreedores, comete un fraude: elude, por así decirlo, la acción de sus acreedores. El código da una respuesta a esta conducta a través de determinadas disposiciones.
+
+\section{Definición doctrinaria}
+
+\begin{definition}{Fraude}
+El fraude tiene lugar cuando una persona, en forma intencional, se desapodera de bienes o poderes para colocarse en una situación de insolvencia y eludir de esta manera la acción de sus acreedores.
+\end{definition}
+
+La insolvencia expresa una situación en la que el pasivo supera al activo, y en la que, por lo tanto, el deudor no tiene bienes suficientes para hacer frente a sus deudas.
+
+\begin{example}{Insolvencia y dinero en efectivo}
+Un deudor vende su casa para evitar que se la ejecuten. Si conserva el dinero de la venta en efectivo --en una caja fuerte, en un bolso, o de cualquier otra forma-- resulta muy difícil de embargar, salvo que en algún mandamiento se logre identificarlo. Así, la persona aparece como sin bienes, pero los acreedores pueden descubrir que hubo un acto de enajenación y atacarlo.
+\end{example}
+
+\section{La inoponibilidad como consecuencia del fraude}
+
+El fraude no da lugar a una nulidad, sino a la \textbf{inoponibilidad}. La acción que corresponde al fraude se denomina acción de inoponibilidad en el nuevo Código; históricamente se la conocía como acción pauliana o acción revocatoria, nombre que usaba el código de Vélez. El nuevo Código, siguiendo lo que ya aceptaba la mayoría de la doctrina antes de su entrada en vigencia, habla directamente de inoponibilidad.
+
+El acto es válido entre las partes, pero inoponible: tiene una ineficacia relativa. Esta ineficacia consiste en que el acto no produce efectos respecto de ciertas personas determinadas, que son los acreedores defraudados que inician la acción. Frente a ellos, el acto se comporta como si no se hubiera celebrado, es decir, es inoponible; pero frente a las propias partes, y frente a cualquier otra persona que no sea el acreedor accionante, el acto sigue siendo válido.
+
+\begin{important}
+El concepto de inoponibilidad --y no de nulidad-- es fundamental para diferenciar al fraude de los demás vicios de los actos jurídicos.
+\end{important}
+
+\section{La acción de inoponibilidad}
+
+Metodológicamente, el fraude está tratado en la Sección Tercera del Capítulo 6 (``De los vicios de los actos jurídicos''), del Título Cuarto, del Libro Primero, Parte General.
+
+\begin{formula}{Art. 338 CCyC}
+``Todo acreedor puede solicitar la declaración de inoponibilidad de los actos celebrados por su deudor en fraude de sus derechos, y de las renuncias al ejercicio de derechos o facultades con los que hubiese podido mejorar o evitado empeorar su estado de fortuna.''
+\end{formula}
+
+El acreedor puede pedir la declaración de inoponibilidad tanto de los actos hechos en fraude, como de las renuncias hechas para eludir la acción de los acreedores.
+
+\begin{example}{Renuncia en fraude a los acreedores}
+Quien renuncia a cobrar una indemnización o un crédito perjudica a sus acreedores, porque estos se ven afectados por esa renuncia. Los acreedores pueden alegar que esa renuncia fue hecha en fraude a sus derechos.
+\end{example}
+
+\begin{note}
+Esta inoponibilidad, como supuesto de ineficacia relativa, debe complementarse con los artículos 396 y 397 del Código, que regulan la inoponibilidad en general y que se estudian al abordar las ineficacias.
+\end{note}
+
+\section{Requisitos de procedencia de la acción}
+
+\subsection{Crédito de causa anterior al acto impugnado}
+
+El primer requisito es que el crédito sea de causa anterior al acto impugnado, salvo que el deudor haya actuado con el propósito de defraudar a futuros acreedores.
+
+\begin{example}{Crédito anterior al acto impugnado}
+Un deudor tiene una deuda desde el 1 de enero de 2018; a partir de esa fecha, su acreedor tiene la expectativa de que todo su patrimonio constituye la garantía del crédito. El acreedor no podría impugnar un acto realizado en 2017, porque en ese momento no existía la deuda. Si al 1 de enero de 2018 el deudor tenía un departamento y un auto, y durante 2018 enajena el departamento y se vuelve insolvente --porque además el auto se destruye en un choque--, el acreedor puede atacar la venta del departamento, porque su crédito es anterior (enero de 2018) y la venta es posterior (mayo). En cambio, si antes tenía además una cochera que vendió durante 2017, el acreedor no puede atacar esa venta, porque su crédito es posterior a ella, salvo que demuestre que la venta se hizo a sabiendas, para defraudar a los futuros acreedores.
+
+Este sería el caso de un deudor que tiene varios inmuebles y, mientras un acreedor tramita un crédito que tarda varios meses en salir, vende todos sus inmuebles; cuando el crédito finalmente se otorga, el deudor ya no tiene nada, pero lo hizo a sabiendas, en fraude de los futuros acreedores.
+\end{example}
+
+\subsection{Que el acto haya causado o agravado la insolvencia}
+
+El segundo requisito es que el acto haya causado o agravado la insolvencia.
+
+\begin{example}{Insolvencia causada o agravada}
+Un deudor que tiene cinco departamentos y vende uno, conservando otros cuatro con los cuales puede responder perfectamente, no incurre en fraude: este supone una situación de incapacidad e impotencia para atender los créditos.
+\end{example}
+
+\subsection{La complicidad del adquirente a título oneroso}
+
+El tercer requisito exige distinguir según el acto haya sido a título oneroso o a título gratuito. Si es a título oneroso, debe probarse que quien contrató con el deudor conocía, o debía conocer, que el acto provocaba o agravaba la insolvencia, es decir, que fue cómplice porque conocía la situación. Si el acto fue a título gratuito, no se exige este requisito de complicidad, y la acción procede siempre, porque no hay nadie que se haya enriquecido en perjuicio de acreedores que quedaron desprovistos del bien.
+
+\begin{example}{Complicidad del adquirente}
+Un contador que conoce perfectamente la situación contable de su cliente le compra un departamento: en ese caso corresponde analizar si conocía o debía conocer el estado de insolvencia del vendedor. La complicidad es, en la práctica, difícil de probar.
+\end{example}
+
+\section{Efectos de la acción de inoponibilidad}
+
+El acto es válido entre las partes, pero sus efectos son inoponibles al acreedor defraudado que obtiene la sentencia a su favor. A diferencia de la nulidad, que vuelve las cosas al estado anterior, en el fraude el acto sigue siendo válido entre las partes; lo único que ocurre es que, al ejecutarse la cosa, el acreedor cobra su crédito, y el excedente queda para quien había adquirido el bien.
+
+\begin{example}{Efectos de la inoponibilidad}
+Una persona vende un departamento a un pariente cercano en fraude de sus acreedores. Se prueba el fraude; la deuda era de 40.000 dólares y el departamento vale 100.000. Se ejecuta el bien, se obtienen 100.000 dólares: los acreedores cobran su parte, que son 40.000, y los 60.000 restantes no son de ellos, sino de quien había adquirido el inmueble, que se queda con ese excedente. El adquirente tiene, a su vez, un reclamo contra el deudor por lo que pagó, aunque probablemente no tenga de dónde cobrarse.
+
+Esta es una diferencia importante entre el fraude y la simulación: en la simulación, si se declara la nulidad, las cosas vuelven al estado anterior; en el fraude, si al ejecutar la cosa hay un excedente, este se entrega a quien había adquirido la cosa, porque el acto vale entre las partes.
+\end{example}
+
+\section{El desinterés del adquirente}
+
+\begin{formula}{Art. 341 CCyC}
+El adquirente puede desinteresar a los acreedores que promovieron la acción, ofreciendo una garantía suficiente, o pagando directamente el crédito de quienes se hubiesen presentado.
+\end{formula}
+
+\begin{example}{Desinterés del adquirente}
+Un adquirente que se encuentra muy conforme con el departamento adquirido --por su cercanía al trabajo y al colegio de sus hijos-- y a quien se le inicia la acción por haber sido cómplice, ofrece una garantía o paga directamente a los acreedores. En ese caso, la acción de inoponibilidad se detiene, porque los acreedores quedan desinteresados.
+\end{example}
+
+\section{Extensión de la inoponibilidad}
+
+\begin{formula}{Art. 342 CCyC}
+La declaración de inoponibilidad beneficia solo a los acreedores que promovieron la acción, y hasta el importe de sus respectivos créditos.
+\end{formula}
+
+Solo el acreedor que promueve la acción se beneficia con ella; si existen otros acreedores que no la iniciaron, no pueden beneficiarse. Retomando el ejemplo anterior: si el acreedor accionante tiene un crédito de 40.000 dólares y el departamento vale 100.000, se beneficia solo con los 40.000; los 60.000 restantes quedan para quien hubiera adquirido la cosa.
+
+\section{Efectos frente a subadquirentes}
+
+Este punto resulta muy similar al analizado para la simulación. Si el adquirente tiene, a su vez, sus propios acreedores, que embargan y ejecutan de buena fe, estos quedan protegidos: en el fraude, tampoco puede oponérsele al acreedor de buena fe que haya ejecutado los bienes comprendidos en el acto.
+
+Si existe un subadquirente, corresponde analizar si es o no cómplice del fraude, y si adquirió a título oneroso o gratuito. Si es de mala fe, o si adquirió a título gratuito, en cualquiera de los dos casos procede la acción. Si el subadquirente es de buena fe y a título oneroso, queda protegido, y la acción se dirige, en forma de daños y perjuicios, contra el cómplice y el deudor que celebró el acto en fraude.
+
+El criterio para determinar la complicidad es si el sujeto conocía el estado de insolvencia y que el acto lo agravaba. Se aplica también la regla de la responsabilidad solidaria por daños y perjuicios para quien actuó de mala fe, mientras que quien actuó de buena fe y a título gratuito responde solo en la medida de su enriquecimiento, es decir, de lo que deba restituir al acreedor defraudado.
+
+\section{Prescripción de la acción de inoponibilidad}
+
+El plazo de prescripción es de dos años, y se cuenta desde que el acreedor conoció o pudo conocer el vicio del acto jurídico.
+
+\begin{important}
+Con el Código de Vélez, la lesión prescribía a los cinco años y el fraude al año; el nuevo Código bajó el plazo de la lesión a dos años y elevó el del fraude también a dos años, unificando así el plazo de prescripción de todos los vicios: error, dolo, violencia, lesión, simulación y fraude prescriben, todos, a los dos años, aunque cambia el momento desde el cual comienza a correr ese plazo en cada caso.
+\end{important}
+
+A diferencia de la simulación y de los demás vicios, en el caso del fraude no se trata de una acción de nulidad, sino de una acción de inoponibilidad.
+
+% -----------------------------------------------------------
+% CORNELL --- CAPÍTULO 2
+% -----------------------------------------------------------
+\section*{Repaso Cornell: el fraude}
+\addcontentsline{toc}{section}{Repaso Cornell: el fraude}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es el fraude como vicio civil?} &
+El acto por el cual el deudor, en forma intencional, se desapodera de bienes para colocarse en insolvencia y eludir a sus acreedores. No debe confundirse con el delito penal de fraude. \\
+
+\textbf{¿Qué sanción tiene el fraude?} &
+La inoponibilidad (ineficacia relativa), no la nulidad: el acto es válido entre las partes, pero no produce efectos frente al acreedor defraudado que obtuvo la sentencia a su favor (art. 338 CCyC). \\
+
+\textbf{¿Qué requisitos exige la acción de inoponibilidad?} &
+1) Crédito de causa anterior al acto (salvo fraude a futuros acreedores); 2) que el acto haya causado o agravado la insolvencia; 3) si es a título oneroso, que el adquirente conociera o debiera conocer ese estado (complicidad). \\
+
+\textbf{¿Qué ocurre si hay un excedente al ejecutar el bien?} &
+El excedente queda para el adquirente, no para el acreedor: a diferencia de la nulidad, el fraude no retrotrae el acto por completo, solo lo hace inoponible en la medida del crédito (arts. 341 y 342 CCyC). \\
+
+\textbf{¿Cómo se desinteresa el adquirente?} &
+Ofreciendo garantía suficiente o pagando directamente a los acreedores que promovieron la acción (art. 341 CCyC), lo que detiene la acción. \\
+
+\textbf{¿Cuándo prescribe la acción de inoponibilidad?} &
+A los dos años desde que el acreedor conoció o pudo conocer el vicio del acto (antes, con el Código de Vélez, era un año). \\
+
+\midrule
+
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} En el fraude, a diferencia de la simulación, el acto es plenamente real: el deudor efectivamente enajena un bien, pero lo hace para colocarse en insolvencia y eludir a sus acreedores; por eso la sanción no es la nulidad, sino la inoponibilidad, que deja vigente el acto entre las partes y solo lo desconoce frente al acreedor que promovió la acción, protegiendo siempre al adquirente de buena fe y a título oneroso.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ===========================================================
+% CAPÍTULO 3 --- SÍNTESIS COMPARATIVA
+% ===========================================================
+\chapter[Síntesis comparativa]{Comparación entre simulación, fraude y acción subrogatoria}
+
+Para cerrar el estudio de los vicios de los actos jurídicos, corresponde comparar la acción de simulación, la acción por fraude y la acción subrogatoria (esta última no es, en rigor, un vicio, pero guarda cierto parentesco con las anteriores).
+
+\begin{table}[H]
+\centering
+\caption{Simulación, fraude y acción subrogatoria}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.20\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Criterio} & \textbf{Simulación} & \textbf{Fraude} & \textbf{Acción subrogatoria} \\
+\midrule
+¿A quién beneficia? & A todos los acreedores (vuelve el bien al patrimonio del deudor) & Solo al acreedor que la ejerce & A todos los acreedores \\
+\addlinespace
+¿En nombre de quién se ejerce? & En derecho propio del acreedor & En derecho propio del acreedor & Por el derecho del deudor (por ejemplo, cobrar una herencia) \\
+\addlinespace
+¿Requiere insolvencia del deudor? & No la requiere & Sí la requiere & No la requiere; requiere inacción del deudor \\
+\addlinespace
+Acción que persigue & La nulidad del acto & La inoponibilidad del acto & El fin propio del derecho que se ejerce (por ejemplo, la herencia) \\
+\addlinespace
+¿Quién puede ejercerla? & Cualquier persona con interés (por ejemplo, herederos entre sí) & El acreedor con interés & El acreedor con interés \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Con esta comparación se cierra el estudio de los vicios de los actos jurídicos. Lo que sigue en las próximas unidades son los supuestos de ineficacia y, sobre todo, el estudio de la nulidad como el gran supuesto de ineficacia civil.
+
+% -----------------------------------------------------------
+% CORNELL --- CAPÍTULO 3
+% -----------------------------------------------------------
+\section*{Repaso Cornell: síntesis comparativa}
+\addcontentsline{toc}{section}{Repaso Cornell: síntesis comparativa}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿En qué se diferencian simulación, fraude y acción subrogatoria?} &
+La simulación persigue la nulidad y beneficia a todos los acreedores; el fraude persigue la inoponibilidad, beneficia solo al acreedor accionante y requiere insolvencia; la acción subrogatoria no es un vicio, se ejerce por el derecho del deudor, no requiere insolvencia sino inacción, y beneficia a todos los acreedores. \\
+
+\midrule
+
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} Ambas figuras, junto con la acción subrogatoria, integran el sistema de protección del patrimonio como garantía común de los acreedores, y sientan las bases conceptuales --nulidad, inoponibilidad, buena y mala fe, título oneroso y gratuito-- que se retomarán al estudiar, en las próximas unidades, la nulidad como el gran supuesto general de ineficacia de los actos jurídicos.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}
