@@ -1,0 +1,879 @@
+% =====================================================================
+% DOCUMENTCLASS
+% =====================================================================
+\documentclass[12pt,oneside]{book}
+
+% =====================================================================
+% METADATOS
+% =====================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Civil -- Parte General}
+\newcommand{\titulo}{Hechos y Actos Jurídicos \\[0.25cm] Actos Voluntarios e Involuntarios \\[0.25cm] Imputabilidad}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% =====================================================================
+% PAQUETES
+% =====================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Hechos y Actos Jurídicos. Actos Voluntarios e Involuntarios. Imputabilidad},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =====================================================================
+% RUTAS DE IMÁGENES
+% =====================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =====================================================================
+% CONFIGURACIÓN
+% =====================================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =====================================================================
+% ENCABEZADOS Y PIES
+% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =====================================================================
+% COMANDOS MATEMÁTICOS
+% =====================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =====================================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% =====================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =====================================================================
+% DOCUMENTO
+% =====================================================================
+\begin{document}
+
+% ---------------------------------------------------------------------
+% PORTADA
+% ---------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{1.4cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil -- Parte General'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------------------------------------------------------------
+% ÍNDICE
+% ---------------------------------------------------------------------
+\tableofcontents
+
+% =====================================================================
+% CAPÍTULO 1
+% =====================================================================
+\chapter{Fundamentos de los Hechos y Actos Jurídicos}
+
+\begin{note}
+La unidad temática desarrollada aborda el tercer elemento de la relación jurídica: la causa, es decir, el origen del cual emergen las relaciones jurídicas. El recorrido conceptual parte de la clasificación general de los hechos jurídicos, avanza hacia la distinción entre hechos voluntarios e involuntarios (discernimiento, intención y libertad) y culmina con el estudio de la imputabilidad, es decir, de las consecuencias que se atribuyen a quien realiza un acto voluntario, así como del tratamiento excepcional que reciben los actos involuntarios a través del principio de equidad.
+\end{note}
+
+\section{Introducción: la causa como tercer elemento de la relación jurídica}
+
+La teoría de los hechos y actos jurídicos constituye el tercer elemento de la relación jurídica, luego de haberse estudiado el sujeto y el objeto. Mientras el sujeto es quien entabla la relación y el objeto es la materia sobre la que ésta recae, la causa explica cómo surgen las relaciones jurídicas.
+
+\begin{table}[H]
+\centering
+\caption{Elementos de la relación jurídica}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Elemento} & \textbf{Definición} & \textbf{Contenido} \\
+\midrule
+Sujeto & Quien entabla la relación & Persona humana o jurídica \\
+Objeto & Materia sobre la que recae la relación & Bienes y cosas \\
+Causa & De dónde surge la relación jurídica & \textbf{Hechos y actos jurídicos} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Esta teoría proyecta efectos sobre el conjunto del derecho civil y comercial, en la medida en que toda disciplina jurídica se ocupa, en definitiva, de hechos que dan origen a relaciones y situaciones jurídicas.
+
+\section{Programa del curso}
+
+El desarrollo de la materia, a partir de la teoría de los hechos y actos jurídicos, comprende los siguientes contenidos:
+
+\begin{enumerate}
+    \item Hechos y actos jurídicos: voluntarios e involuntarios.
+    \item Condiciones del acto voluntario (discernimiento, intención, libertad) e imputabilidad.
+    \item Acto jurídico o negocio jurídico.
+    \item Elementos del negocio jurídico.
+    \item Efectos del negocio jurídico.
+    \item Formas del negocio jurídico.
+    \item Vicios que pueden afectar a los actos voluntarios y los negocios jurídicos.
+    \item Ineficacia de los actos.
+    \item Extinción: desde el nacimiento hasta la extinción de las relaciones jurídicas.
+\end{enumerate}
+
+\section{Ubicación metodológica en el Código Civil y Comercial}
+
+En el Código de Vélez, los hechos y actos jurídicos se regulaban en el Libro Segundo, Sección Segunda, dedicada a los derechos personales. El artículo 896 marcaba el inicio de la regulación de los hechos jurídicos, distanciada de los derechos reales y de otras áreas del código.
+
+\begin{table}[H]
+\centering
+\caption{Cambio metodológico: Código de Vélez frente al CCCN}
+\begin{tabularx}{\textwidth}{X X}
+\toprule
+\textbf{Código de Vélez (anterior)} & \textbf{CCCN actual} \\
+\midrule
+Libro Segundo -- Derechos personales & Libro Primero -- Parte General (metodológicamente más correcto) \\
+Art. 896: iniciaba los hechos jurídicos & Desarrolla la teoría en nueve capítulos integrados a la parte general \\
+Distanciado de los derechos reales y otras áreas & Integra la Parte General y fue bien recibido por la doctrina \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El Código Civil y Comercial de la Nación (CCCN) desarrolla la teoría en nueve capítulos: disposiciones generales, los vicios (error, dolo, violencia), los actos jurídicos propiamente dichos, los vicios de los actos, las modalidades, la representación y la ineficacia. Este cambio metodológico constituye un acierto del nuevo Código, en la medida en que integra la parte general del derecho civil.
+
+\section{Definición de hecho jurídico en el CCCN}
+
+\begin{definition}{Art. 257 CCCN -- Hecho jurídico}
+El hecho jurídico es el acontecimiento que, conforme al ordenamiento jurídico, produce el nacimiento, modificación y extinción de relaciones o situaciones jurídicas.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Comparación entre el art. 257 CCCN y el art. 896 del Código de Vélez}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspecto} & \textbf{CCCN (Art. 257)} & \textbf{Código de Vélez (Art. 896)} \\
+\midrule
+Término clave & Produce (certeza) & Susceptible de producir (posibilidad) \\
+Referencia al orden jurídico & Sí: ``conforme al ordenamiento jurídico'' & No hacía esta referencia expresa \\
+Efectos abarcados & Relaciones o situaciones jurídicas & Derechos u obligaciones solamente \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El CCCN incorpora la expresión ``conforme al ordenamiento jurídico'', señalando que es el ordenamiento jurídico el que genera estas consecuencias. Esta afirmación no debe entenderse exclusivamente desde una visión positivista, como si únicamente el ordenamiento jurídico las generase, pues existe al respecto un debate doctrinario abierto.
+
+El reemplazo del término ``susceptible de producir'' por ``produce'' resulta más preciso, en tanto al derecho le interesan los acontecimientos que efectivamente producen consecuencias jurídicas.
+
+\begin{example}{El hecho jurídico frente al acontecimiento cotidiano}
+Tomar un vaso de agua no constituye un hecho jurídico. Arrojarlo por la ventana y dañar a un transeúnte sí lo es, en tanto genera una consecuencia jurídica relevante para el ordenamiento.
+\end{example}
+
+\section{Clasificación general de los hechos jurídicos}
+
+El cuadro general de clasificación de los hechos jurídicos resulta central para el desarrollo de la materia.
+
+\begin{table}[H]
+\centering
+\caption{Hechos jurídicos: clasificación general}
+\begin{tabularx}{\textwidth}{X X}
+\toprule
+\textbf{Hechos de la naturaleza} & \textbf{Hechos humanos} \\
+\midrule
+Granizo, terremoto, aluvión. Relevan por sus efectos, no por su origen. &
+\textbf{Involuntarios}: sin discernimiento, intención o libertad. \\
+\cmidrule(l){2-2}
+ & \textbf{Voluntarios} (con discernimiento, intención y libertad): \\
+ & \quad -- \textbf{Lícitos}: simples actos lícitos / actos jurídicos \\
+ & \quad -- \textbf{Ilícitos}: delitos (con dolo) / cuasidelitos (con culpa) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Hechos voluntarios e involuntarios: importancia de la distinción}
+
+\begin{example}{Caso del ataque epiléptico en la estación de subte}
+Una persona sufre un ataque de epilepsia en una estación de subte y se desvanece, golpeando a otra persona, que a su vez golpea a una tercera que casi cae a las vías del tren.
+
+Conclusión jurídica: el hecho se origina de manera involuntaria. No hubo voluntad de empujar; la persona sufrió un ataque de epilepsia y se desvaneció. Desde el punto de vista jurídico, este hecho es tratado de manera diferente al supuesto en que existe voluntad, pues quienes tienen dominio de sus actos se hacen cargo de ellos, existiendo mayor responsabilidad cuando media voluntad.
+\end{example}
+
+\section{Actos ilícitos: dolo y culpa}
+
+Los actos ilícitos son los prohibidos por la ley que generan daños. A diferencia del derecho penal, donde los delitos se encuentran tipificados, en el derecho civil los ilícitos comprenden todos los actos que causan un daño, presumiéndose que dicho daño es siempre antijurídico.
+
+\begin{table}[H]
+\centering
+\caption{Delito civil y cuasidelito civil}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Figura} & \textbf{Definición} \\
+\midrule
+Delito civil & Acto ilícito cometido con dolo (intención de dañar o manifiesta indiferencia por los intereses ajenos) \\
+Cuasidelito civil & Acto ilícito cometido con culpa (negligencia, imprudencia o impericia, sin intención de dañar) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+Los términos ``delito civil'' y ``cuasidelito civil'' no aparecen literalmente en el texto del CCCN. Se trata de una clasificación histórica elaborada por la doctrina.
+
+Cabe señalar, asimismo, una crítica metodológica: los actos ilícitos se encuentran regulados en el Libro Tercero del CCCN (Derechos Personales -- Responsabilidad Civil), cuando, al menos en sus elementos centrales, deberían haberse tratado en el Libro Primero, junto a la teoría general de los hechos jurídicos.
+\end{note}
+
+\begin{definition}{Art. 1724 CCCN -- Factores subjetivos de atribución (dolo y culpa)}
+El dolo se configura por la producción de un daño de manera intencional o con manifiesta indiferencia por los intereses ajenos.
+
+La culpa consiste en la omisión de la diligencia debida según la naturaleza de la obligación y las circunstancias de las personas, el tiempo y el lugar. Comprende la imprudencia, la negligencia y la impericia en el arte o profesión.
+\end{definition}
+
+El CCCN amplía la noción clásica romanista del dolo (intención de dañar), incorporando también la ``manifiesta indiferencia''.
+
+\begin{example}{Caso del conductor que ignora a la anciana}
+Un conductor circula a 120 km/h y advierte que una anciana cruza correctamente con el semáforo en verde para peatones. Pese a verla, no realiza ningún intento de esquivarla ni de frenar, y la mata.
+
+Análisis: no puede determinarse con certeza que el conductor haya querido matarla con premeditación, pero sí mostró una ``manifiesta indiferencia'' ante los intereses ajenos. Por lo tanto, se configura el dolo por indiferencia, que el CCCN incorpora expresamente.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Formas de culpa}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Forma de culpa} & \textbf{Definición} \\
+\midrule
+Negligencia & Torpeza, falta de cuidado o diligencia debida. Ej.: un médico que no se lava las manos antes de una intervención. \\
+Imprudencia & Realizar algo osado que no correspondía, asumiendo un riesgo innecesario sin intención de dañar. \\
+Impericia & Falta de conocimientos técnicos propios de la profesión u oficio. Ej.: un médico que interviene sin los conocimientos necesarios. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Actos lícitos: simples actos lícitos y actos jurídicos}
+
+\begin{definition}{Art. 258 CCCN -- Simple acto lícito}
+La acción voluntaria no prohibida por la ley, de la que resulta alguna adquisición, modificación o extinción de relaciones o situaciones jurídicas.
+\end{definition}
+
+\begin{definition}{Art. 259 CCCN -- Acto jurídico}
+El acto jurídico es el acto voluntario lícito que tiene por fin inmediato la adquisición, modificación o extinción de relaciones o situaciones jurídicas.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Simple acto lícito frente a acto jurídico}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Criterio} & \textbf{Simple acto lícito (Art. 258)} & \textbf{Acto jurídico (Art. 259)} \\
+\midrule
+Voluntad & Sí, voluntario & Sí, voluntario \\
+Licitud & Sí, no prohibido por la ley & Sí, lícito \\
+Fin inmediato & No busca producir consecuencias jurídicas directamente & Sí: fin inmediato de producir consecuencias jurídicas \\
+Ejemplo & Pasear por la calle (puede derivar en consecuencias jurídicas imprevistas) & Contrato de mutuo (préstamo de dinero con plazo e interés pactados) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{El contrato de mutuo como acto jurídico}
+En un contrato de mutuo, una persona decide prestarle dinero a otra, fijando el plazo y, eventualmente, una tasa de interés. Todo ello se establece en un contrato firmado por personas humanas que resuelven voluntariamente realizar un acto lícito --prestarse dinero-- con el fin inmediato de generar una relación jurídica.
+\end{example}
+
+% =====================================================================
+% CAPÍTULO 2
+% =====================================================================
+\chapter{Teoría del Acto Voluntario}
+
+\section{Las condiciones del acto voluntario}
+
+\begin{definition}{Art. 260 CCCN -- Acto voluntario}
+El acto voluntario es el ejecutado con discernimiento, intención y libertad, que se manifiesta por un hecho exterior.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Condiciones del acto voluntario}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Condición} & \textbf{Tipo} & \textbf{Descripción} \\
+\midrule
+Discernimiento & Interna & Aptitud para diferenciar lo bueno de lo malo, lo verdadero de lo falso, lo justo de lo injusto y sus consecuencias \\
+Intención & Interna & Propósito de llevar a cabo un acto determinado, de manera consciente y dirigida a ese fin \\
+Libertad & Interna & Posibilidad de actuar de acuerdo a la propia conveniencia, deseo y convicción, sin coacción \\
+Exteriorización & Externa & Manifestación visible del acto: expresa (oral, escrita, signos inequívocos) o tácita \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El discernimiento}
+
+El discernimiento es la aptitud para diferenciar lo bueno de lo malo, lo verdadero de lo falso, lo justo de lo injusto y sus consecuencias. Se trata de una comprensión genérica, una capacidad o aptitud para comprender lo que está sucediendo.
+
+\begin{table}[H]
+\centering
+\caption{Causas obstativas del discernimiento (Art. 261 CCCN)}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Causa} & \textbf{Detalle} \\
+\midrule
+Privación de razón (permanente o transitoria) & Ej.: golpe en la cabeza que genera un estado de inconsciencia durante el cual se realizó un acto perjudicial. No requiere sentencia judicial de incapacidad. \\
+Menor de diez (10) años -- para actos ilícitos & El código presume que antes de esa edad no hay discernimiento para comprender lo injusto y sus consecuencias. \\
+Menor de trece (13) años -- para actos lícitos & Para los actos lícitos se exige mayor madurez cognitiva; la edad mínima es superior. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+El discernimiento no debe confundirse con la capacidad. La capacidad es un concepto jurídico integral que se refiere a la aptitud para entablar relaciones jurídicas, mientras que el discernimiento es un componente del acto voluntario. Puede haber discernimiento sin capacidad: es el caso de las personas menores de edad.
+\end{important}
+
+\begin{example}{Discernimiento sin capacidad jurídica}
+Un niño de diez años puede tener discernimiento suficiente para un acto lícito, pero no necesariamente capacidad jurídica para celebrar ese acto.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Discernimiento frente a capacidad jurídica}
+\begin{tabularx}{\textwidth}{X X}
+\toprule
+\textbf{Discernimiento (Art. 261 CCCN)} & \textbf{Capacidad jurídica} \\
+\midrule
+Elemento del acto voluntario. Se evalúa en cada caso concreto. No depende de sentencia judicial. & Concepto jurídico integral. Puede requerir sentencia judicial. Se adquiere con la mayoría de edad (18 años). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{La intención y sus vicios: error y dolo}
+
+La intención es el propósito de llevar a cabo un acto determinado con consciencia. Mientras el discernimiento es la característica general que puede estar presente o no en cada acto, la intención es el propósito de realizar ese acto concreto, preciso y específico.
+
+\begin{table}[H]
+\centering
+\caption{Vicios de la intención}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Vicio} & \textbf{Definición} & \textbf{Ejemplo} \\
+\midrule
+Error & Ignorancia o falso conocimiento de la realidad que vicia la voluntad & Creer que se vende una casa cuando la otra parte entiende que es una donación. Error sobre la naturaleza del acto. \\
+Dolo (vicio de la voluntad) & Maniobra engañosa por la que se induce a la otra parte a celebrar el acto & Alquilar una propiedad mostrando fotos falsas; al llegar, la casa está en mal estado y lejos de la playa. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La palabra ``dolo'' posee al menos dos significados en el derecho civil: (1) como intención de dañar, elemento subjetivo de la responsabilidad civil, y (2) como maniobra engañosa que vicia la voluntad.
+
+El error puede recaer sobre los objetos, las personas, las causas o las cualidades de la cosa, dando lugar a distintas circunstancias que se estudian al tratar los vicios de la voluntad.
+
+Respecto del dolo como vicio, la cuestión central consiste en determinar cuándo el engaño tiene entidad suficiente para afectar la intención, es decir, cuándo puede afirmarse que el acto no se habría realizado de no mediar el engaño.
+
+\section{La libertad y el vicio de violencia}
+
+La libertad es la posibilidad de llevar a cabo el acto de acuerdo con la propia conveniencia, deseo y convicción.
+
+\begin{table}[H]
+\centering
+\caption{Formas de violencia como causa obstativa de la libertad}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Forma de violencia} & \textbf{Definición} \\
+\midrule
+Fuerza física irresistible & Uso de la fuerza física de manera irresistible sobre el sujeto para que realice el acto. Ej.: torturar a alguien para que firme. \\
+Intimidación (violencia moral) & Amenaza de sufrir un mal grave e inminente que no puede contrarrestarse, y que lleva a la persona a realizar el acto sin libertad real. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Es posible comprender, querer y realizar un acto con esa intención, y sin embargo no ser suficientemente libre por encontrarse la persona bajo amenaza. Un acto realizado bajo amenaza no es, por tanto, un acto voluntario.
+
+\section{La exteriorización de la voluntad}
+
+La voluntad debe exteriorizarse para ser considerada tal. Esto puede ocurrir de manera expresa o tácita.
+
+\begin{table}[H]
+\centering
+\caption{Modalidades de exteriorización de la voluntad}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Modalidad} & \textbf{Descripción} & \textbf{Ejemplo} \\
+\midrule
+Expresa oral & La voluntad se comunica verbalmente & Pactar verbalmente un préstamo \\
+Expresa escrita & Instrumentada en documento público o privado & Contrato firmado; escritura pública \\
+Signos inequívocos & Gestos que no admiten otra interpretación & Hacer el gesto de pedir un café en un bar \\
+Ejecución de hecho material & Realización de un acto que revela la voluntad & Girar dinero como pago de una deuda \\
+Tácita & Se infiere de conductas que permiten conocer con certidumbre la voluntad & Serie de actos que evidencian aceptación de una oferta \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{definition}{Art. 264 CCCN -- Límite a la voluntad tácita}
+Si la ley o la convención exigen que la voluntad sea expresa, no puede suplirse con una expresión tácita.
+\end{definition}
+
+Un ejemplo de esta regla es el consentimiento exigido para los actos de disposición de derechos, respecto de los cuales la ley exige que sea expreso, no pudiendo interpretarse un consentimiento tácito en ese contexto.
+
+\section{El silencio como (no) manifestación de voluntad}
+
+\begin{definition}{Art. 263 CCCN -- El silencio como manifestación de voluntad}
+El silencio opuesto a actos o a una interrogación no es considerado como una manifestación de voluntad conforme al acto o la interrogación, excepto en los casos en que haya un deber de expedirse que puede resultar de la ley o de la voluntad de las partes.
+\end{definition}
+
+En el derecho civil y comercial, el silencio no constituye, en principio, una manifestación de voluntad: quien calla no otorga.
+
+\begin{example}{El silencio frente a una oferta no solicitada}
+Si una persona recibe un mensaje de texto que indica ``te has ganado un auto; a partir de mañana se descuentan \$20.000 de tu tarjeta de crédito durante 60 meses, salvo que contestes que no lo querés en 24 horas'', y guarda silencio, ese silencio no puede considerarse aceptación. De lo contrario, sería necesario responder permanentemente a las publicidades para aclarar que no se las desea.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Excepciones: cuándo el silencio sí es manifestación de voluntad}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Excepción} & \textbf{Descripción} \\
+\midrule
+Deber legal de expedirse & La ley obliga a pronunciarse. Ej.: intimación para reconocer o desconocer la firma de un instrumento. Si se guarda silencio, se tiene por reconocida. \\
+Deber convencional de expedirse & Las partes acordaron que el silencio implica determinada manifestación. Ej.: contrato que establece que se renueva automáticamente si la parte no comunica lo contrario con un mes de anticipación. \\
+Relaciones entre declaraciones precedentes & Cuando una serie de declaraciones anteriores llevaron razonablemente a la otra parte a esperar una determinada respuesta, y el silencio posterior confirma esa dirección. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =====================================================================
+% CAPÍTULO 3
+% =====================================================================
+\chapter{Imputabilidad de los Actos Voluntarios}
+
+\section{El deber de reparar: fundamento y presupuestos}
+
+Quienes realizan un acto voluntario deben hacerse cargo de sus consecuencias, en virtud de la relación de causalidad existente entre la acción y el resultado. La cuestión central consiste en determinar hasta dónde se extiende esa responsabilidad.
+
+\begin{definition}{Art. 1716 CCCN -- Deber de reparar}
+La violación del deber de no dañar a otro, o el incumplimiento de una obligación, da lugar a la reparación del daño causado, conforme con las disposiciones de este Código.
+\end{definition}
+
+\begin{definition}{Art. 1717 CCCN -- Antijuridicidad}
+Cualquier acción u omisión que causa un daño a otro es antijurídica si no está justificada.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Presupuestos de la responsabilidad civil}
+\begin{tabularx}{\textwidth}{c l X}
+\toprule
+\textbf{N.\textdegree{}} & \textbf{Presupuesto} & \textbf{Descripción} \\
+\midrule
+1 & Daño & Debe existir un daño efectivo a una persona o a su patrimonio. \\
+2 & Antijuridicidad & El daño debe ser antijurídico (se presume siempre, salvo causa de justificación -- Art. 1718). \\
+3 & Factor de atribución & Subjetivo: dolo o culpa (Art. 1724). Objetivo: la ley establece que se responde independientemente de dolo o culpa (ej.: art. 1757 -- responsabilidad por cosas y actividades riesgosas). \\
+4 & Relación de causalidad & El acto voluntario debe ser la causa adecuada del daño producido (nexo causal adecuado). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Concausalidad: auto que choca a motociclista sin casco}
+Un auto choca a una moto cuyo conductor no lleva casco. El accidente le provoca una lesión cerebral severa, agravada precisamente por la falta de casco.
+
+Análisis: quien chocó a la moto tiene una parte fundamental en la causación del daño, pues sin el choque el motociclista no se habría caído. Pero la negligencia del conductor que no llevaba casco también incide en el resultado dañoso, ya que con casco se habrían evitado o reducido las consecuencias. Esto no exime al conductor del auto de responder, pero obliga a analizar cómo incidió cada causa (concausalidad).
+\end{example}
+
+\section{Tipos de consecuencias: inmediatas, mediatas y casuales}
+
+\begin{table}[H]
+\centering
+\caption{Clasificación de las consecuencias del acto}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Tipo} & \textbf{Definición} & \textbf{Ejemplo (choque de auto)} \\
+\midrule
+Inmediatas & Las que acostumbran suceder según el curso normal y ordinario de las cosas (Art. 1726 CCCN). & Auto choca a persona $\rightarrow$ fractura de cadera. Resultado directo del impacto. \\
+Mediatas & Resultan de la conexión del hecho con un acontecimiento distinto (Art. 1726 CCCN). & Internación $\rightarrow$ pérdida de ingresos como carpintero durante 20 días. \\
+Casuales & No pueden ser previstas, o resultan de circunstancias extraordinarias (Art. 1727 CCCN). & Pérdida de ingresos $\rightarrow$ depresión $\rightarrow$ divorcio $\rightarrow$ hijos con adicciones. Imprevisibles. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{formula}{Arts. 1726 y 1727 CCCN -- ¿Por cuáles consecuencias se responde?}
+Se reparan las consecuencias inmediatas y las mediatas previsibles. No se responde por las consecuencias casuales (mediatas no previsibles).
+\end{formula}
+
+\section{El criterio de previsibilidad y la graduación de la responsabilidad}
+
+\begin{definition}{Art. 1725 CCCN -- Valoración de la conducta}
+Cuanto mayor sea el deber de obrar con prudencia y pleno conocimiento de las cosas, mayor es la diligencia exigible al agente y la valoración de la previsibilidad de las consecuencias.
+\end{definition}
+
+Cuanto mayor es lo que una persona conoce, y cuanto mayor es su deber de conocer y obrar con prudencia, mayor es la diligencia que se le exige y, en consecuencia, mayor es también la valoración de la previsibilidad de las consecuencias por las que deberá responder.
+
+\begin{table}[H]
+\centering
+\caption{Graduación de la diligencia exigible según la situación}
+\begin{tabularx}{\textwidth}{X X}
+\toprule
+\textbf{Situación} & \textbf{Exigencia de diligencia} \\
+\midrule
+Profesional de la salud tratando un paciente & Alta: se le exige la diligencia propia de su especialidad y el estándar de cuidado de la comunidad médica. \\
+Trabajador en planta con material nuclear o contaminante & Muy alta: el riesgo elevado implica mayor previsibilidad exigida. \\
+Trabajador en tareas de bajo riesgo & Estándar ordinario de diligencia. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La condición especial o la facultad intelectual particular del agente no se toma en cuenta a los fines de esta graduación, a menos que haya sido específicamente contemplada en un contrato.
+
+\section{El caso fortuito y la fuerza mayor como eximentes}
+
+\begin{definition}{Art. 1730 CCCN -- Caso fortuito y fuerza mayor}
+Se considera caso fortuito o fuerza mayor al hecho que no ha podido ser previsto, o que, habiendo sido previsto, no ha podido ser evitado. El caso fortuito o fuerza mayor exime de responsabilidad, excepto disposición en contrario.
+\end{definition}
+
+\begin{important}
+Cuando algo no puede ser previsto, el supuesto excede el ámbito de lo voluntario y se enmarca dentro del caso fortuito o la fuerza mayor. Se trata de un principio clásico del derecho civil: cuando algo no es voluntario, no se responde.
+\end{important}
+
+% =====================================================================
+% CAPÍTULO 4
+% =====================================================================
+\chapter{Responsabilidad por Actos Involuntarios}
+
+\section{Regla general: no responsabilidad por actos involuntarios}
+
+Los actos involuntarios, a diferencia de los voluntarios, no generan responsabilidad en principio. Ello obedece a que, si el agente no obró con discernimiento, intención y libertad, no puede imputársele el deber de responder por las consecuencias del hecho.
+
+\begin{important}
+En principio, los actos involuntarios no generan responsabilidad, salvo las excepciones expresamente previstas por el ordenamiento.
+\end{important}
+
+El antiguo artículo 907 del Código de Vélez establecía que en ningún caso se respondía por los actos involuntarios.
+
+\section{La evolución: el principio de equidad}
+
+A partir, especialmente, de la jurisprudencia francesa, comenzó a abrirse camino la idea de que la regla de no responsabilidad por actos involuntarios podía resultar injusta en determinados casos.
+
+\begin{example}{El caso que motivó la incorporación de la equidad}
+Una persona privada de la razón por una enfermedad mental, con un gran patrimonio, causa un daño enorme a una persona muy pobre con familia numerosa.
+
+Dilema: desde el punto de vista teórico, el hecho es involuntario y no puede imputarse. Pero cabe preguntarse si es justo que una persona muy rica, cuya conducta involuntaria arruina a una familia pobre, no repare absolutamente nada. Aquí aparece el concepto de equidad.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Dos concepciones de equidad}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Concepción} & \textbf{Contenido} \\
+\midrule
+Equidad romana / igualitaria & Buscar que las personas tengan lo indispensable para la vida; igualdad material o distributiva. \\
+Epieikeia aristotélica (equidad correctiva) & Rectificación de lo justo legal en el caso concreto. Cuando la aplicación estricta de la ley conduce a un resultado manifiestamente injusto, el juez puede apartarse de ella y disponer algo distinto para ese caso. Esta es la concepción que opera en el artículo 1750 CCCN. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El artículo 1750 del CCCN: régimen vigente}
+
+\begin{definition}{Art. 1750 CCCN -- Daños causados por actos involuntarios}
+El autor de un daño causado por un acto involuntario responde por razones de equidad. Se aplica lo dispuesto en el artículo 1742. El acto realizado por quien sufre fuerza irresistible no genera responsabilidad para su autor, sin perjuicio de la que corresponde a título personal a quien ejerce esa fuerza.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Evolución normativa: del art. 907 (mod. 1968) al art. 1750 CCCN}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Aspecto} & \textbf{Anterior (Art. 907 mod. 1968)} & \textbf{CCCN (Art. 1750)} \\
+\midrule
+Regla general & Nunca se respondía & El autor responde por razones de equidad \\
+Facultad judicial & ``Los jueces podrán disponer'' & Texto más imperativo; el autor ``responde'' \\
+Quantum & Patrimonio del autor y situación de la víctima & Se remite al art. 1742 (atenuación) \\
+Debate doctrinario & Incorporado en 1968, debatido desde entonces & Jornadas Nacionales de Derecho Civil (Santa Fe): ¿es posible una indemnización de cero? \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+Constituye una cuestión doctrinaria debatida si el juez podría considerar que la equidad implica no establecer ninguna indemnización, frente a la posición de otros autores que sostienen que siempre debe establecerse alguna. La mayoría de la doctrina se inclina por esta última posición, aunque se trata de un debate abierto en el que se ha señalado que podría el juez, por razones de equidad, no fijar indemnización alguna.
+
+Se menciona al Dr. Juan Carlos Palmero, jurista cordobés, como el autor que más ha profundizado este tema en Argentina, con una publicación específica sobre el daño involuntario.
+\end{note}
+
+\section{Criterios de la equidad para la atenuación (Art. 1742 CCCN)}
+
+\begin{definition}{Art. 1742 CCCN -- Atenuación de la responsabilidad}
+El juez, al fijar la indemnización, puede atenuarla si es equitativo en función del patrimonio del deudor, la situación personal de la víctima y las circunstancias del hecho. Esta facultad no es aplicable en caso de dolo del responsable.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Factores para la determinación de la indemnización equitativa}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Factor} & \textbf{Descripción} \\
+\midrule
+Patrimonio del causante del daño & ¿Cuánta capacidad económica tiene quien causó el daño involuntario? \\
+Situación personal de la víctima & ¿Cuáles son las circunstancias de la persona que sufrió el daño? \\
+Circunstancias del hecho & El contexto particular del caso concreto que rodea al evento dañoso. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El juez debe considerar estos factores, pudiendo apartarse de la regla general por razones de equidad y disponer el monto de la indemnización, llegando incluso a la posibilidad de que no exista indemnización, según una posición doctrinaria minoritaria; la mayoría de los autores sostiene, en cambio, que siempre corresponde otorgar algún tipo de indemnización.
+
+Con el desarrollo de la imputabilidad de los actos voluntarios y del régimen de los actos involuntarios queda cerrada la presentación general de la teoría de los hechos y actos jurídicos.
+
+% =====================================================================
+% CORNELL
+% =====================================================================
+\chapter*{Cuadro Cornell de Repaso General}
+\addcontentsline{toc}{chapter}{Cuadro Cornell de Repaso General}
+
+\textit{Hechos y Actos Jurídicos · Actos Voluntarios · Imputabilidad}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.60\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{l}{\textit{Cuadro Cornell de Repaso General (continuación)}} \\
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué es un hecho jurídico según el CCCN?} &
+El hecho jurídico es el acontecimiento que, conforme al ordenamiento jurídico, produce el nacimiento, modificación y extinción de relaciones o situaciones jurídicas (Art. 257 CCCN). El CCCN mejoró la redacción anterior: usa ``produce'' en lugar de ``susceptible de producir'', y habla de ``relaciones o situaciones jurídicas'' en lugar de solo ``derechos u obligaciones''. \\
+
+\textbf{¿Cómo se clasifican los hechos jurídicos?} &
+Hechos de la naturaleza (sin intervención humana: granizo, terremoto, aluvión) y hechos humanos (con intervención de la voluntad). Los humanos se subclasifican en voluntarios (con discernimiento, intención y libertad) e involuntarios. \\
+
+\textbf{¿Cuándo un acto humano es voluntario?} &
+Cuando reúne tres condiciones internas --discernimiento (aptitud para distinguir lo bueno de lo malo), intención (propósito dirigido al acto concreto) y libertad (ausencia de coacción)-- y se exterioriza (Art. 260 CCCN). \\
+
+\textbf{¿Qué son las causas obstativas y cuáles corresponden a cada condición?} &
+Son los vicios o impedimentos que eliminan cada condición. Discernimiento: privación de razón, minoría de edad (menor de 10 años para actos ilícitos; menor de 13 para actos lícitos). Intención: error y dolo. Libertad: violencia (fuerza o intimidación). \\
+
+\textbf{¿En qué se diferencia el acto jurídico del simple acto lícito?} &
+Ambos son voluntarios y lícitos. La diferencia radica en el fin inmediato: el acto jurídico tiene por fin inmediato producir consecuencias jurídicas (Art. 259 CCCN); el simple acto lícito no busca ese resultado directamente, aunque puede producirlo (Art. 258 CCCN). \\
+
+\textbf{¿Cuáles son los dos significados del ``dolo'' en el Derecho Civil?} &
+(1) Como factor de atribución: intención de dañar o manifiesta indiferencia por los intereses ajenos (Art. 1724 CCCN). (2) Como vicio de la voluntad: maniobra engañosa que induce a la otra parte a celebrar un acto que de otro modo no habría realizado. \\
+
+\textbf{¿Qué diferencia al dolo de la culpa como factores de atribución?} &
+Dolo: el agente produce el daño de manera intencional o con manifiesta indiferencia. Culpa: omisión de la diligencia debida, sin intención de dañar. Se subdivide en negligencia (torpeza), imprudencia (temeridad) e impericia (falta de conocimiento técnico). \\
+
+\textbf{¿Cuándo el silencio es manifestación de voluntad?} &
+En principio no lo es (Art. 263 CCCN). Excepcionalmente sí, cuando: (a) la ley obliga a expedirse; (b) las partes pactaron que el silencio implica determinada consecuencia; o (c) existe una serie de declaraciones precedentes que permiten inferir el sentido del silencio. \\
+
+\textbf{¿Cuáles son los cuatro presupuestos de la responsabilidad civil?} &
+1) Daño (efectivo). 2) Antijuridicidad (se presume, salvo causa de justificación -- Art. 1717). 3) Factor de atribución (subjetivo: dolo/culpa; objetivo: la ley). 4) Relación de causalidad adecuada entre el acto y el daño. \\
+
+\textbf{¿Por cuáles consecuencias responde el agente?} &
+Por las consecuencias inmediatas (curso natural y ordinario -- Art. 1726) y las mediatas previsibles. No se responde por las casuales (mediatas imprevisibles -- Art. 1727). El caso fortuito --imprevisto o inevitable-- exime de responsabilidad (Art. 1730). \\
+
+\textbf{¿Qué pasa con los actos involuntarios y el deber de reparar?} &
+En principio no generan responsabilidad. Pero el Art. 1750 CCCN establece que el autor de un daño involuntario responde por razones de equidad. El juez pondera el patrimonio del causante, la situación de la víctima y las circunstancias del hecho (remisión al Art. 1742). Quien actúa bajo fuerza irresistible no responde; sí responde quien ejerció esa fuerza. \\
+
+\textbf{¿Qué es la equidad en este contexto?} &
+En su sentido aristotélico (epieikeia): la rectificación de lo justo legal cuando la aplicación estricta de la norma conduce a un resultado manifiestamente injusto en el caso concreto. Permite al juez apartarse de la regla general de no responsabilidad por actos involuntarios para establecer (o no) una indemnización justa. \\
+
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\vspace{0.2em}
+\textbf{Resumen:}
+La clase desarrolló la teoría de los hechos y actos jurídicos como tercer elemento de la relación jurídica, es decir, la fuente de donde emergen derechos y obligaciones. El punto de partida es la clasificación general: hechos de la naturaleza y hechos humanos; dentro de los humanos, voluntarios e involuntarios según concurran discernimiento, intención y libertad. Los actos voluntarios se dividen en lícitos --simples actos lícitos y actos jurídicos (Art. 259 CCCN), cuyo elemento diferenciador es el fin inmediato de producir consecuencias jurídicas-- e ilícitos --delitos (con dolo) y cuasidelitos (con culpa)--. La exteriorización de la voluntad puede ser expresa o tácita; el silencio, como regla general, no es manifestación de voluntad salvo excepciones legales o convencionales. La segunda parte abordó la imputabilidad: el deber de reparar (Arts. 1716-1717 CCCN) nace cuando confluyen cuatro presupuestos --daño, antijuridicidad, factor de atribución y nexo causal adecuado--. Las consecuencias inmediatas y mediatas previsibles son reparables; las casuales no. El caso fortuito exime de responsabilidad (Art. 1730). Finalmente, los actos involuntarios, si bien no generan responsabilidad en principio, pueden dar lugar a una indemnización por equidad en virtud del Art. 1750 CCCN, aplicando los criterios de atenuación del Art. 1742: patrimonio del causante, situación personal de la víctima y circunstancias del hecho. Esta tensión entre la regla de la no responsabilidad y la equidad como válvula correctora constituye uno de los debates doctrinarios más actuales del derecho civil argentino.
+\vspace{0.2em}
+} \\
+
+\end{longtable}
+
+\end{document}
