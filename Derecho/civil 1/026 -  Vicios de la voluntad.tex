@@ -1,0 +1,792 @@
+% ============================================================
+%  CLASE DEL DOCUMENTO
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+%  METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{}
+\newcommand{\carrera}{Derecho Civil --- Parte General}
+\newcommand{\materia}{Vicios de la Voluntad}
+\newcommand{\titulo}{Error · Dolo · Violencia}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+%  PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\materia\ --- \titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+%  RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+%  ÍNDICE
+% ============================================================
+\setcounter{tocdepth}{2}
+
+% ============================================================
+%  CONFIGURACIÓN DE PÁRRAFOS
+% ============================================================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% ============================================================
+%  CONFIGURACIÓN DE LISTAS
+% ============================================================
+\setlist[itemize]{topsep=0.3em, itemsep=0.2em}
+\setlist[enumerate]{topsep=0.3em, itemsep=0.2em}
+
+% ============================================================
+%  CONTROL DE VIUDAS Y HUÉRFANAS
+% ============================================================
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+%  ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+%  COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+%  CAJAS ACADÉMICAS
+% ============================================================
+
+% Definición
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Importante
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Ejemplo
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Fórmula / Regla
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Ejercicio
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Nota
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Artículo del CCyCN
+\newtcolorbox{articulo}[1]{
+    enhanced,
+    breakable,
+    title={#1},
+    fonttitle=\bfseries\small,
+    colback=gray!3,
+    colframe=gray!60!black,
+    boxrule=0.6pt,
+    arc=1.5mm,
+    left=4pt, right=4pt, top=3pt, bottom=3pt
+}
+
+% ============================================================
+%  INICIO DEL DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.6cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los vicios de la voluntad es el primer paso para defender la libertad en cada acto jurídico.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil --- Parte General'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ============================================================
+%  ÍNDICE
+% ============================================================
+\frontmatter
+\tableofcontents
+\clearpage
+
+% ============================================================
+%  CONTENIDO PRINCIPAL
+% ============================================================
+\mainmatter
+
+% ============================================================
+\chapter{Fundamentos y método del Código Civil y Comercial}
+% ============================================================
+
+\section{Introducción: ¿vicios de la voluntad o del consentimiento?}
+
+La doctrina ha discutido si estos institutos debían denominarse \textbf{vicios de la voluntad} o \textbf{vicios del consentimiento}. La mayoría de los juristas argentinos, al igual que el propio Código, se inclina por la primera denominación, señalando que es conceptualmente más amplia que la segunda.
+
+La razón es de fondo: hablar de vicios del consentimiento los reduciría a defectos propios de los contratos ---un tipo específico de acto jurídico---, mientras que los vicios de la voluntad afectan a todo acto voluntario.
+
+\begin{articulo}{Art. 260 CCyCN --- Acto voluntario}
+Son requisitos del acto voluntario: discernimiento, intención y libertad (condiciones internas) y manifestación de la voluntad (condición externa). Los vicios afectan a alguno de esos elementos.
+\end{articulo}
+
+\begin{articulo}{Art. 261 CCyCN --- Acto involuntario}
+Determina cuándo falta el discernimiento como condición interna del acto voluntario.
+\end{articulo}
+
+Los actos voluntarios son aquellos que presentan tres condiciones internas: \textbf{discernimiento, intención y libertad}, y una condición externa que es la \textbf{manifestación de la voluntad}. Los vicios afectan alguno de estos elementos. El estudio de los vicios constituye una introducción al régimen de las \textbf{ineficacias}: la posibilidad de que el acto no produzca efectos jurídicos por la presencia de un defecto en su celebración.
+
+Las preguntas centrales que guían este estudio son:
+\begin{itemize}
+    \item Bajo qué circunstancias un acto voluntario puede ser anulado por la presencia de un defecto en su celebración.
+    \item Cómo se afecta la intención y cómo se afecta la libertad como elementos internos.
+    \item Qué requisitos deben reunir los vicios para que pueda declararse la nulidad.
+    \item Qué consecuencias jurídicas se siguen de la presencia de un vicio.
+\end{itemize}
+
+\section{Método del Código Civil y Comercial}
+
+Desde el punto de vista metodológico, los capítulos 2 a 4 del Título Cuarto del CCyCN organizan los vicios comenzando en el artículo 265 con el error. El Código distingue dos grandes grupos bajo el término común de «vicios»:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Vicios de la voluntad} & \textbf{Vicios propios de los actos jurídicos} \\
+\midrule
+Error (Arts. 265--270) & Lesión \\
+Dolo (Arts. 271--275) & Simulación \\
+Violencia (Arts. 276--278) & Fraude \\
+\bottomrule
+\end{tabularx}
+\caption{Clasificación de los vicios en el CCyCN}
+\end{table}
+
+Los primeros ---error, dolo y violencia--- afectan los elementos internos del acto voluntario. Los segundos ---lesión, simulación y fraude--- tienen un tratamiento posterior en el Código y son propios de los actos jurídicos.
+
+% ============================================================
+\chapter{El error como vicio de la voluntad (Arts.~265--270)}
+% ============================================================
+
+\section{Concepto y clasificación del error de hecho}
+
+El error afecta la \textbf{intención} como elemento interno del acto voluntario. La doctrina trata conjuntamente dos supuestos: la \textbf{ignorancia} ---la falta de conocimiento sobre algún elemento del acto--- y el \textbf{error propiamente dicho} ---un falso conocimiento---. Jurídicamente ambos se tratan como un único supuesto.
+
+La primera gran distinción es entre el error de derecho y el error de hecho:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Error de derecho} & \textbf{Error de hecho} \\
+\midrule
+Falso conocimiento de la normativa legal aplicable a una relación o situación jurídica. & Recae sobre los elementos fácticos del acto o circunstancias del mismo. \\[6pt]
+Regulado en el Art. 8 CCyCN: la ignorancia de la ley no sirve de excusa para su incumplimiento. & Regulado en los Arts. 265 a 270 CCyCN. \\[6pt]
+No puede invocarse como vicio. La ley se presume conocida por todos. & Es el que puede dar lugar a la nulidad del acto, con los requisitos del caso. \\
+\bottomrule
+\end{tabularx}
+\caption{Error de derecho versus error de hecho}
+\end{table}
+
+\begin{articulo}{Art. 8 CCyCN --- Principio de inexcusabilidad}
+La ignorancia de las leyes no sirve de excusa para su cumplimiento, si la excepción no está autorizada por el ordenamiento jurídico.
+\end{articulo}
+
+Dentro del error de hecho, la clasificación fundamental es:
+
+\begin{itemize}
+    \item \textbf{Error esencial}: recae sobre un elemento esencial del acto. Puede causar la nulidad si además es reconocible.
+    \item \textbf{Error incidental}: recae sobre elementos secundarios que no son determinantes de la voluntad. No causa nulidad.
+\end{itemize}
+
+La fórmula es: cuando el error es \textbf{esencial Y reconocible}, causa la nulidad del acto (si es bilateral o unilateral de aceptación).
+
+\section{El error reconocible --- Art. 266}
+
+El CCyCN introduce un requisito que no estaba en el Código de Vélez: la \textbf{reconocibilidad}. En el Código anterior se exigía que el error fuera esencial y \textbf{excusable}. El nuevo Código reemplaza la excusabilidad por la reconocibilidad.
+
+\begin{articulo}{Art. 266 CCyCN --- Error reconocible}
+El error es reconocible cuando el destinatario de la declaración lo pudo conocer según la naturaleza del acto, las circunstancias de persona, tiempo y lugar.
+\end{articulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Código de Vélez} & \textbf{CCyCN (vigente)} \\
+\midrule
+Error esencial + excusable. & Error esencial + reconocible. \\[4pt]
+Miraba al sujeto que erraba: ¿tenía razón para equivocarse? & Mira al destinatario: ¿pudo darse cuenta del error ajeno? \\[4pt]
+Requisito subjetivo centrado en quien declara. & Requisito objetivo centrado en quien recibe la declaración. \\
+\bottomrule
+\end{tabularx}
+\caption{Cambio de requisito: Código de Vélez versus CCyCN}
+\end{table}
+
+La excusabilidad del Código de Vélez miraba al sujeto que emitía la declaración: que hubiera tenido alguna razón objetiva para errar. Ese criterio fue abandonado por el nuevo Código, siguiendo el modelo del derecho italiano.
+
+El error es reconocible cuando el destinatario de la declaración no pudo \textit{no conocer} el error, según la naturaleza del acto o las circunstancias de persona, tiempo y lugar. Existe así una expectativa de que la declaración viciada por un error esencial debió haber sido advertida por la parte destinataria.
+
+Si el destinatario no advierte el error siendo que cualquiera lo hubiera advertido ---pero tampoco actúa con malicia (porque si actúa con malicia incurriría en dolo)---, debe admitir que el acto sea anulado. La consecuencia de que el error sea reconocible es la nulidad relativa del acto.
+
+\section{El error esencial --- supuestos del Art. 267}
+
+\begin{articulo}{Art. 267 CCyCN --- Supuestos de error esencial}
+El error de hecho es esencial cuando recae sobre: (a) la naturaleza del acto; (b) el objeto sobre un bien o un hecho diverso o de distinta especie, o una calidad, extensión o suma diversa; (c) la cualidad sustancial del bien que haya sido determinante de la voluntad; (d) los motivos personales relevantes que hayan sido incorporados expresa o tácitamente al acto; (e) la persona con la cual se celebró o a la cual se refiere el acto, si ella fue determinante para su celebración.
+\end{articulo}
+
+\subsection{Inciso a) --- Error sobre la naturaleza del acto}
+
+Es el error sobre el \textbf{tipo de acto} que, conforme al ordenamiento jurídico, cada parte cree celebrar.
+
+\begin{example}{Error sobre la naturaleza del acto}
+A le dice a B: «Me das ese cuadro». A interpreta que B está haciendo una donación; B interpreta que está realizando un comodato (préstamo gratuito). Hay un error sobre la naturaleza del acto: uno pensó que era una donación y el otro que era un préstamo. Consecuencia: nulidad relativa, si el error es reconocible y esencial.
+\end{example}
+
+\subsection{Inciso b) --- Error sobre el objeto}
+
+Es el error sobre un \textbf{bien o un hecho diverso o de distinta especie}, o sobre una calidad, extensión o suma diversa.
+
+\begin{example}{Error sobre el objeto --- distintas especies}
+A cree estar comprando un caballo pura sangre para competencias; B interpreta que A está comprando un caballo de carga para trabajo en el campo. El objeto del acto ---el caballo--- no es el mismo en la mente de ambas partes. Si el error es reconocible, da lugar a la nulidad.
+\end{example}
+
+\begin{example}{Error sobre el objeto --- calidad}
+A cree estar comprando un vino de excelente calidad y en realidad es un vino de calidad inferior. Si la otra parte debería haberse dado cuenta del error (reconocibilidad), el acto puede ser anulado.
+\end{example}
+
+\subsection{Inciso c) --- Error sobre la cualidad sustancial del bien}
+
+Este supuesto presenta un factor \textbf{objetivo} y uno \textbf{subjetivo}: por un lado, la cualidad debe ser sustancial al bien (factor objetivo); por otro lado, debe haber sido determinante de la voluntad según la apreciación común a las circunstancias del caso (factor subjetivo).
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Código de Vélez} & \textbf{CCyCN (vigente)} \\
+\midrule
+Utilizaba el criterio de la cualidad sustancial sin la palabra «sustancial» en ciertos pasajes, generando debate. & Incorpora la palabra «sustancial» y la conjuga con el requisito de que haya sido «determinante de la voluntad». \\[4pt]
+Discusión entre criterio objetivo y subjetivo de la cualidad. & Combina ambos factores: objetivo (cualidad sustancial del bien) + subjetivo (determinante de la voluntad según apreciación común). \\
+\bottomrule
+\end{tabularx}
+\caption{Debate histórico sobre la cualidad sustancial}
+\end{table}
+
+\begin{example}{Error sobre la cualidad sustancial}
+A está comprando una notebook y necesita que tenga buena memoria RAM porque va a trabajar con edición de videos. Esto es una cualidad sustancial de la computadora (factor objetivo), y además ha sido determinante para su voluntad de contratar (factor subjetivo). Si se le entrega una computadora sin esa capacidad y el error era reconocible, puede dar lugar a la anulabilidad del acto.
+\end{example}
+
+\subsection{Inciso d) --- Error sobre los motivos}
+
+Este inciso se vincula con la causa de los actos jurídicos (Art. 281 CCyCN). El error puede recaer sobre los \textbf{motivos personales relevantes} que hayan sido incorporados expresa o tácitamente al acto.
+
+\begin{example}{Error sobre los motivos}
+A quiere hacer una donación a una persona pensando que esa persona le salvó la vida. En realidad no es la misma persona. El motivo ---la gratitud hacia quien le salvó la vida--- fue incorporado al acto y es esencial. Si el error es reconocible, puede anularse la donación.
+\end{example}
+
+\subsection{Inciso e) --- Error sobre la persona}
+
+El error sobre la persona solo causa nulidad cuando la identidad de la persona fue \textbf{determinante para la celebración del acto}. Si no es determinante, es un error incidental y no produce nulidad.
+
+\begin{example}{Error sobre la persona}
+A quiere contratar a un pintor famoso para que le haga un retrato de su madre. Existe un homónimo ---alguien con el mismo nombre--- y A contrata al homónimo creyendo que es el pintor famoso. Hay un error esencial sobre la persona: era determinante quién era el pintor, el homónimo debería haberse dado cuenta de que no era el artista buscado, y el acto puede anularse.
+\end{example}
+
+\section{Error de cálculo --- Art. 268}
+
+\begin{articulo}{Art. 268 CCyCN --- Error de cálculo}
+El error de cálculo no da lugar a la nulidad del acto, sino solamente a su rectificación, excepto que sea determinante del consentimiento.
+\end{articulo}
+
+El error de cálculo no da lugar a la nulidad sino únicamente a una \textbf{rectificación}, dado que se trata de un error aritmético que no fue determinante del consentimiento.
+
+\begin{example}{Error de cálculo}
+Las partes pactan vender 40 kg de mercadería a \$100 por kg. Queda claro el valor unitario y la cantidad. Al realizar la multiplicación en el contrato, escriben mal el precio total. Eso es simplemente un error aritmético que se corrige (rectifica) pero no da lugar a la nulidad.
+\end{example}
+
+\section{Subsistencia del acto y nulidad relativa --- Art. 269}
+
+\begin{articulo}{Art. 269 CCyCN --- Subsistencia del acto}
+La parte que incurre en error no puede solicitar la nulidad del acto si la otra ofrece ejecutarlo con las modalidades y el contenido que aquella entendió celebrar.
+\end{articulo}
+
+El artículo 269 le concede a la parte destinataria de la declaración la posibilidad de \textbf{ofrecer ejecutar el acto con las modalidades y el contenido que la parte en error pretendió} que se celebrara.
+
+\begin{example}{Subsistencia del acto}
+A le dice a B: «Me das tu auto». B lo interpreta como préstamo; A como donación. A alega error y busca anular el acto. B puede decir: «Bueno, celebremos el acto bajo la modalidad del préstamo (comodato): te presto el auto». Si eso le conviene a A, se salva la nulidad. Esto responde al principio general de conservación de los actos.
+\end{example}
+
+\begin{important}
+El principio de conservación de los actos es un principio general del derecho civil: se tiende a interpretar que los actos deben ser conservados, preservando el valor de los negocios jurídicos.
+\end{important}
+
+\section{Error en la declaración --- Art. 270}
+
+Las disposiciones sobre el error se aplican tanto a la declaración de voluntad en sí como a su \textbf{transmisión}. Pueden presentarse problemas cuando quien transmite la voluntad es un \textbf{mandatario} (con representación) o simplemente un \textbf{mensajero}. En general, se aplican todas las disposiciones sobre error esencial y reconocible.
+
+\section{Consecuencias del error: nulidad relativa y prescripción}
+
+La sanción que se sigue de la presencia del error es la \textbf{nulidad relativa} del acto, regulada en el Art. 388 CCyCN y susceptible de confirmación.
+
+\begin{articulo}{Arts. 2562 y 2563 CCyCN --- Prescripción}
+El plazo de prescripción para la acción de nulidad por vicios del consentimiento es de \textbf{dos años}. Comienza a correr desde que el error se conoció o pudo ser conocido.
+\end{articulo}
+
+% ============================================================
+\chapter{El dolo como vicio de la voluntad (Arts.~271--275)}
+% ============================================================
+
+\section{Las acepciones del dolo en el derecho civil}
+
+La palabra «dolo» tiene múltiples significados en el CCyCN. Es fundamental no confundirlos:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Acepción} & \textbf{Definición y referencia} \\
+\midrule
+1) Elemento del acto ilícito & Intención de dañar o manifiesta indiferencia por los intereses ajenos (Art. 1724 CCyCN). Componente del factor subjetivo de atribución de responsabilidad. \\[4pt]
+2) Inejecución deliberada de obligación & Incumplimiento voluntario de una obligación. Figuraba en el Código de Vélez; el nuevo CCyCN no lo define con la misma fórmula. \\[4pt]
+3) Vicio de la voluntad \emph{(el que se estudia aquí)} & Maniobra engañosa realizada para determinar a una persona a celebrar un acto que no tenía intención de celebrar, o a celebrarlo en condiciones más desventajosas. \\
+\bottomrule
+\end{tabularx}
+\caption{Las tres acepciones del dolo en el CCyCN}
+\end{table}
+
+Lo que tienen en común todas estas acepciones es una suerte de \textbf{conciencia de antijuridicidad}: el dolo siempre expresa una cierta conciencia de que se está actuando de modo contrario al derecho, intencionadamente causando un perjuicio o una situación prohibida.
+
+\section{Concepto: acción y omisión dolosa --- Art. 271}
+
+\begin{articulo}{Art. 271 CCyCN --- Acción y omisión dolosa}
+Acción dolosa es toda aserción de lo falso, disimulación de lo verdadero, cualquier artificio, astucia o maquinación que se emplee para la celebración del acto. La omisión dolosa causa los mismos efectos que la acción dolosa, cuando el acto no se habría realizado sin la reticencia u ocultación.
+\end{articulo}
+
+La incorporación de la \textbf{omisión dolosa} es una novedad bien recibida por la doctrina. Significa que la maniobra engañosa puede realizarse tanto a través de acciones como de omisiones: ocultar información o ser reticente al proporcionarla puede inducir a la otra parte a celebrar un acto que afecta sus intereses y configura, por tanto, el concepto de engaño.
+
+Las formas que puede tomar la maniobra engañosa son:
+\begin{itemize}
+    \item \textbf{Aseverar lo falso}: afirmar algo que se sabe incorrecto.
+    \item \textbf{Disimular lo verdadero}: ocultar la realidad.
+    \item \textbf{Cualquier artificio, astucia o maquinación}: no es una mentira casual; tiene que ser una maniobra con entidad engañosa.
+    \item \textbf{Omisión dolosa}: silencio o reticencia que induce al otro a celebrar el acto en condiciones perjudiciales.
+\end{itemize}
+
+\begin{note}
+En el fondo de estas conductas hay un \textbf{deber de buena fe} entre las partes: un deber de lealtad y de informar. En el derecho del consumidor estos principios son especialmente relevantes: la publicidad engañosa y la omisión de información relevante son manifestaciones colaterales del problema del dolo que pueden tener regulación específica.
+\end{note}
+
+\section{Dolo esencial --- requisitos del Art. 272}
+
+\begin{articulo}{Art. 272 CCyCN --- Dolo esencial}
+El dolo es esencial y causa la nulidad del acto si es grave, si es determinante de la voluntad, si causa un daño importante y si no ha habido dolo por ambas partes.
+\end{articulo}
+
+Para que el dolo cause la nulidad del acto deben reunirse los cuatro requisitos siguientes:
+
+\subsection*{a) Gravedad}
+
+La gravedad es una característica de la maniobra engañosa en sí misma. Para que el dolo sea grave debe tener \textbf{entidad para engañar}: no debe ser una maniobra burda que cualquier persona advertiría a primera vista. El parámetro es el de la persona razonablemente precavida que toma las precauciones comunes. La gravedad de la maniobra es un requisito distinto del daño importante.
+
+\subsection*{b) Determinante de la voluntad}
+
+El dolo debe haber sido \textbf{determinante de la voluntad}. Este requisito es fundamental para distinguirlo del dolo incidental: si sin el engaño la persona igualmente hubiera celebrado el acto, no se configura dolo esencial.
+
+\subsection*{c) Daño importante}
+
+Debe haberse causado un daño: una afectación de un interés o de un derecho de la parte que es víctima del acto.
+
+\subsection*{d) No dolo de ambas partes}
+
+No debe haber habido dolo recíproco, es decir, de ambas partes. Un principio fundamental del derecho es que \textbf{nadie puede alegar su propia torpeza}: si ambas partes se engañaban mutuamente, ninguna puede pedir la nulidad.
+
+\section{Dolo incidental --- Art. 273}
+
+\begin{articulo}{Art. 273 CCyCN --- Dolo incidental}
+El dolo incidental no es determinante de la voluntad: la parte igualmente habría celebrado el acto, aunque en condiciones distintas. No causa la nulidad del acto, pero sí puede generar una indemnización de daños y perjuicios.
+\end{articulo}
+
+\begin{example}{Dolo incidental}
+A está comprando un terreno. La otra parte realiza una maniobra para hacerle creer que el terreno tiene cierta habilitación que en realidad no tiene. Pero A de todos modos iba a comprar ese terreno. El engaño le ha provocado un perjuicio ---por ejemplo, pagó más de lo que debía---, pero no fue determinante de que celebrara el acto. En ese caso, el dolo incidental solo puede dar lugar a una acción de daños y perjuicios, pero no a la nulidad.
+\end{example}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Dolo esencial} & \textbf{Dolo incidental} \\
+\midrule
+Es determinante de la voluntad: sin el engaño, el acto no se hubiera celebrado. & No es determinante: la parte igualmente hubiera celebrado el acto. \\[4pt]
+Reúne los requisitos del Art. 272: grave, determinante, daño importante, sin dolo recíproco. & El engaño existe pero no alcanza los requisitos del Art. 272 en cuanto a su incidencia en la voluntad. \\[4pt]
+Consecuencia: nulidad relativa del acto + daños y perjuicios. & Consecuencia: solo daños y perjuicios (si se prueban). Sin nulidad. \\
+\bottomrule
+\end{tabularx}
+\caption{Dolo esencial versus dolo incidental}
+\end{table}
+
+\section{Dolo de tercero --- Art. 274}
+
+\begin{articulo}{Art. 274 CCyCN --- Dolo de tercero}
+El dolo de un tercero causa la nulidad del acto si es esencial. Si el dolo de un tercero es incidental, solo da lugar a daños y perjuicios. La parte que conoció o debió conocer el dolo del tercero responde solidariamente con éste por los daños causados.
+\end{articulo}
+
+El dolo de tercero es aquel cometido por alguien distinto de la parte con la cual se está contratando. Las reglas son simétricas al dolo de la propia parte:
+
+\begin{itemize}
+    \item Si el tercero reúne los requisitos del Art. 272 (dolo esencial): causa la nulidad.
+    \item Si el dolo del tercero reúne los requisitos del Art. 273 (dolo incidental): solo genera responsabilidad por daños y perjuicios.
+\end{itemize}
+
+Si la parte contratante tuvo \textbf{conocimiento del dolo del tercero} y no lo comunicó, responde \textbf{solidariamente} por todos los daños causados. La responsabilidad solidaria implica que responde por el total de la deuda, no solo por su parte proporcional.
+
+\section{Consecuencias del dolo: nulidad y daños --- Art. 275}
+
+\begin{articulo}{Art. 275 CCyCN --- Responsabilidad por daños}
+El autor del dolo esencial o incidental debe reparar el daño causado. Cuando el dolo sea del tercero, también responde la parte que al tiempo de la celebración del acto tuvo conocimiento del dolo del tercero.
+\end{articulo}
+
+Las consecuencias del dolo esencial son:
+
+\begin{enumerate}
+    \item \textbf{Nulidad relativa del acto} (Art. 388 CCyCN). Al ser relativa, está dispuesta en beneficio de la parte afectada y es susceptible de confirmación.
+    \item \textbf{Acción de daños y perjuicios} en virtud del Art. 275.
+    \item \textbf{Prescripción de dos años} desde el momento en que se conoció o pudo ser conocido el dolo (Arts. 2562 y 2563 CCyCN).
+\end{enumerate}
+
+% ============================================================
+\chapter{La violencia como vicio de la voluntad (Arts.~276--278)}
+% ============================================================
+
+\section{Concepto de violencia: fuerza e intimidación}
+
+La violencia es una \textbf{coerción grave de tipo físico o moral} que se ejerce sobre una persona para determinarla a realizar un acto en contra de su voluntad. Es un vicio que afecta la \textbf{libertad} como elemento interno del acto voluntario: la posibilidad de autodeterminarse y tomar decisiones sin coerciones injustas.
+
+La violencia adopta dos grandes formas:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Fuerza (Art. 276, primera parte)} & \textbf{Intimidación (Art. 276, segunda parte)} \\
+\midrule
+Violencia física irresistible. & Amenazas que generan el temor de sufrir un mal grave e inminente. \\[4pt]
+Ejemplo: torturas físicas para que alguien firme un contrato. & Ejemplo: «Si no me vendés tu casa, voy a hacerte daño a vos o a tu familia». \\[4pt]
+La coerción es de tipo corporal y directa. & La coerción opera a través del temor generado por las amenazas. \\
+\bottomrule
+\end{tabularx}
+\caption{Formas de la violencia}
+\end{table}
+
+\begin{example}{Fuerza física irresistible}
+A es torturado físicamente para que firme la escritura de venta de su casa. Aparece todo en regla: hay una escritura firmada, inscripta en el Registro de la Propiedad. Pero ese acto está viciado por fuerza física irresistible. Se inicia un juicio de nulidad para volver la situación al estado anterior a la celebración del acto. Este hecho también puede configurar delitos penales, pero aquí se analiza la dimensión civil.
+\end{example}
+
+\section{Requisitos de la intimidación --- Art. 276}
+
+\begin{articulo}{Art. 276 CCyCN --- Fuerza e intimidación}
+La fuerza irresistible y las amenazas que generan el temor de sufrir un mal grave e inminente que no se puedan contrarrestar o evitar en la persona o bienes de la parte o de un tercero, causan la nulidad del acto. La relevancia de las amenazas debe ser juzgada teniendo en cuenta la situación del amenazado y las demás circunstancias del caso.
+\end{articulo}
+
+\subsection*{a) Las amenazas deben ser injustas}
+
+Las amenazas que configuran el vicio son \textbf{amenazas injustas}. El ejercicio legítimo de un derecho no constituye una amenaza en este sentido. Si una persona le debe dinero a otra y le dice «si no me pagás, voy a iniciar un juicio», no le está amenazando en el sentido jurídicamente relevante: está ejerciendo su derecho. Una amenaza ilícita sería, en cambio: «si no me vendés tu casa, te voy a romper la tuya».
+
+\subsection*{b) El temor se mide según las circunstancias del amenazado}
+
+La relevancia de las amenazas ha de ser juzgada teniendo en cuenta la \textbf{situación del amenazado y las demás circunstancias del caso}. No hay un estándar único: la misma amenaza puede configurar intimidación para una persona pero no para otra, según sus capacidades y contexto.
+
+\begin{example}{Medición del temor según las circunstancias}
+Si alguien con millones de seguidores en redes sociales amenaza con publicar que una persona es delincuente, eso puede generar un temor fundado a sufrir un daño grave a la reputación. El contexto (quién amenaza, con qué medios, a quién) determina la relevancia de la amenaza.
+\end{example}
+
+\subsection*{c) El mal debe ser grave e inminente}
+
+\textbf{Grave}: el mal debe tener entidad suficiente. Puede ser un mal sobre la persona (integridad física, moral o espiritual) o sobre los bienes.
+
+\textbf{Inminente}: significa que el mal va a ocurrir y que no puede ser contrarrestado ni evitado. El término «evitar» fue agregado por el nuevo Código; no figuraba en el anterior.
+
+\subsection*{d) El mal puede recaer sobre la parte o un tercero}
+
+En el Código de Vélez se enumeraban taxativamente las personas sobre quienes podía recaer la amenaza: cónyuge, ascendientes o descendientes. Esta enumeración generó una disputa: ¿era taxativa o ejemplificativa? La doctrina mayoritaria la interpretaba como ejemplificativa.
+
+El nuevo Código resuelve el problema directamente indicando: \textbf{sobre la parte o un tercero}. Puede ser un familiar, un amigo, o incluso alguien que no se conoce tanto, pero cuya situación genera el temor suficiente.
+
+\section{Violencia de tercero y responsabilidad solidaria --- Art. 278}
+
+Al igual que en el dolo, la violencia puede provenir de la propia parte o de un tercero. En ambos casos da lugar a la nulidad del acto. La diferencia relevante es la \textbf{responsabilidad de la parte cómplice}.
+
+\begin{articulo}{Art. 278 CCyCN --- Responsabilidad por daños causados por violencia}
+El autor de la fuerza irresistible y de las amenazas debe reparar los daños causados. La parte que al tiempo de la celebración del acto tuvo conocimiento de la fuerza o de las amenazas responde solidariamente con el autor por los daños.
+\end{articulo}
+
+\begin{example}{Violencia de tercero --- complicidad de la parte}
+Un tercero amenaza a A para que le venda su casa a B. A le vende la casa a B (que es la parte contratante), pero la amenaza vino del tercero. Si B tuvo conocimiento de la fuerza o de la intimidación ejercida por el tercero, responde solidariamente por todos los daños y perjuicios: responde por el total, no solo por su parte proporcional.
+\end{example}
+
+\section{El temor reverencial}
+
+El \textbf{temor reverencial} es el respeto o sumisión de una persona hacia sus superiores (por ejemplo, de un militar hacia un oficial superior). El temor reverencial \textbf{no es causa de nulidad}.
+
+Para configurar el vicio de violencia deben existir amenazas concretas: la sola presencia de personas con autoridad no produce una situación de afectación de la libertad. El temor a una figura de autoridad, por sí solo, es temor reverencial y no causa nulidad. Este criterio se mantiene tanto en el Código de Vélez como en el nuevo CCyCN.
+
+\begin{note}
+Si el superior jerárquico realiza amenazas concretas que reúnen los requisitos de los Arts. 276 y siguientes, sí puede configurarse el vicio de violencia y dar lugar tanto a la nulidad como a los daños y perjuicios.
+\end{note}
+
+\section{Consecuencias de la violencia: nulidad y prescripción}
+
+Las consecuencias de la violencia son análogas a las del dolo y el error:
+
+\begin{enumerate}
+    \item \textbf{Nulidad relativa del acto}. Al ser relativa, la parte afectada puede confirmar el acto si así lo desea.
+    \item \textbf{Acción de daños y perjuicios} (Art. 278 CCyCN).
+\end{enumerate}
+
+La prescripción también es de \textbf{dos años} (Arts. 2562 y 2563 CCyCN), pero existe una diferencia crucial respecto del error y el dolo: el plazo comienza a correr desde el momento en que \textbf{cesa la violencia}, no desde que se conoció el vicio.
+
+\begin{articulo}{Diferencia en el inicio del plazo de prescripción}
+Error: desde que se conoció o pudo ser conocido el error.\\
+Dolo: desde que se conoció o pudo ser conocido el dolo.\\
+Violencia: desde que cesa la violencia (Arts. 2562 y 2563 CCyCN).
+\end{articulo}
+
+\begin{example}{Inicio del plazo desde el cese de la violencia}
+A es secuestrado durante un año y medio. Durante ese tiempo, bajo torturas, firma un contrato vendiendo su casa. Después lo liberan. Desde el momento en que cesa la violencia ---desde que recobra la libertad--- comienza a correr el plazo de dos años para iniciar la acción de nulidad. Mientras dura la coerción, la persona no puede libremente ejercer su derecho a pedir la nulidad.
+\end{example}
+
+% ============================================================
+\chapter{Cuadro Cornell --- Vicios de la Voluntad}
+% ============================================================
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Por qué se prefiere hablar de «vicios de la voluntad» y no de «vicios del consentimiento»?} &
+Porque hablar de vicios del consentimiento los limitaría a los contratos (un tipo específico de acto jurídico). Los vicios de la voluntad, en cambio, afectan a todo acto voluntario. El CCyCN adopta esta denominación más amplia. \\[6pt]
+
+\textbf{¿Cuáles son los elementos internos del acto voluntario y qué vicio afecta a cada uno?} &
+Los tres elementos internos son discernimiento, intención y libertad (Art. 260 CCyCN). La \textbf{intención} es afectada por el error y el dolo; la \textbf{libertad} es afectada por la violencia (fuerza o intimidación). \\[6pt]
+
+\textbf{¿Qué diferencia hay entre error esencial y error incidental?} &
+El error esencial recae sobre un elemento esencial del acto (naturaleza, objeto, cualidad sustancial, motivos determinantes, persona). El error incidental recae sobre elementos secundarios no determinantes de la voluntad. Solo el error esencial ---y reconocible--- puede causar la nulidad. \\[6pt]
+
+\textbf{¿Qué significa que un error sea «reconocible» (Art. 266)?} &
+Que el destinatario de la declaración pudo conocer el error según la naturaleza del acto y las circunstancias de persona, tiempo y lugar. Es un criterio objetivo centrado en el destinatario, que reemplaza la «excusabilidad» del Código de Vélez (criterio subjetivo centrado en quien erraba). \\[6pt]
+
+\textbf{¿Qué sucede si el destinatario ofrece cumplir el acto según lo que el otro quiso? (Art. 269)} &
+Se evita la nulidad del acto. La parte en error no puede solicitar la nulidad si el destinatario ofrece ejecutar el acto con las modalidades y el contenido que aquella pretendió celebrar. Esto responde al principio de conservación de los actos. \\[6pt]
+
+\textbf{¿Qué es el dolo como vicio de la voluntad? (Art. 271)} &
+Una maniobra engañosa: toda aserción de lo falso, disimulación de lo verdadero, cualquier artificio, astucia o maquinación para inducir a una persona a celebrar un acto. La omisión dolosa (reticencia u ocultación) tiene los mismos efectos que la acción dolosa cuando el acto no se habría realizado sin ella. \\[6pt]
+
+\textbf{¿Cuáles son los requisitos del dolo esencial? (Art. 272)} &
+Para causar la nulidad, el dolo debe ser: (1) \textbf{grave} ---con entidad para engañar---; (2) \textbf{determinante de la voluntad} ---sin el engaño, el acto no se hubiera celebrado---; (3) causante de un \textbf{daño importante}; (4) \textbf{unilateral} ---no haber habido dolo de ambas partes---. \\[6pt]
+
+\textbf{¿Qué diferencia al dolo incidental del dolo esencial? (Art. 273)} &
+El dolo incidental no es determinante de la voluntad: la parte igualmente hubiera celebrado el acto. No causa la nulidad, pero sí puede dar lugar a una indemnización por daños y perjuicios si se prueban. \\[6pt]
+
+\textbf{¿Puede el dolo cometido por un tercero causar la nulidad? (Art. 274)} &
+Sí. El dolo de tercero causa la nulidad si es esencial, y solo daños y perjuicios si es incidental. Si la parte contratante tuvo conocimiento del dolo del tercero, responde solidariamente por todos los daños. \\[6pt]
+
+\textbf{¿Cuáles son las dos formas de la violencia? (Art. 276)} &
+\textbf{Fuerza}: coerción física irresistible. \textbf{Intimidación}: amenazas injustas que generan el temor de sufrir un mal grave e inminente que no puede contrarrestarse ni evitarse, sobre la persona o bienes de la parte o de un tercero. \\[6pt]
+
+\textbf{¿Cómo se mide si las amenazas son relevantes como intimidación?} &
+Se juzga teniendo en cuenta la situación del amenazado y las demás circunstancias del caso. No hay un estándar único: la misma amenaza puede configurar intimidación para una persona pero no para otra, según sus capacidades y contexto. \\[6pt]
+
+\textbf{¿Qué es el temor reverencial y tiene efectos jurídicos?} &
+Es el respeto o sumisión de una persona hacia su superior jerárquico (por ejemplo, un militar ante un oficial superior). El temor reverencial solo, sin amenazas concretas, no es causa de nulidad. Solo cuando se suman amenazas reales que reúnen los requisitos del Art. 276 puede configurarse el vicio de violencia. \\[6pt]
+
+\textbf{¿Desde cuándo corre el plazo de prescripción para cada vicio?} &
+En todos los casos el plazo es de dos años (Arts. 2562 y 2563 CCyCN). La diferencia está en el punto de inicio: \textbf{error y dolo}: desde que se conoció o pudo ser conocido el vicio. \textbf{Violencia}: desde que cesa la violencia. \\[6pt]
+
+\textbf{¿Cuál es el tipo de nulidad que producen los vicios de la voluntad?} &
+Todos los vicios de la voluntad (error, dolo, violencia) producen \textbf{nulidad relativa} (Art. 388 CCyCN). Eso significa que está dispuesta en beneficio de la parte afectada, puede ser confirmada por ella y prescribe a los dos años. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{%
+\textbf{Resumen:} Los vicios de la voluntad son defectos que afectan los elementos internos del acto voluntario ---intención y libertad--- y que, cuando reúnen los requisitos que establece el CCyCN, producen la nulidad relativa del acto. El \textbf{error} (Arts. 265--270) afecta la intención por una falsa o errónea representación de la realidad: para causar la nulidad debe ser esencial ---recaer sobre la naturaleza del acto, el objeto, la cualidad sustancial, los motivos determinantes o la persona--- y reconocible por el destinatario, criterio que el nuevo Código tomó del derecho italiano en reemplazo de la excusabilidad del Código de Vélez. El \textbf{dolo} (Arts. 271--275) afecta la intención mediante una maniobra engañosa ---acción u omisión--- que para producir la nulidad debe ser grave, determinante de la voluntad, causante de un daño importante y unilateral; si no es determinante, solo genera daños y perjuicios (dolo incidental). La \textbf{violencia} (Arts. 276--278) afecta la libertad mediante fuerza física irresistible o intimidación a través de amenazas injustas que generan el temor de sufrir un mal grave e inminente; la relevancia de las amenazas se mide según las circunstancias del amenazado. En los tres vicios, la consecuencia es la nulidad relativa del acto ---confirmable por la parte afectada--- y la posibilidad de reclamar daños y perjuicios. El plazo de prescripción es de dos años en todos los casos: para el error y el dolo, desde que se conoció o pudo conocerse el vicio; para la violencia, desde que cesa la coerción.%
+} \\
+
+\bottomrule
+\end{tabularx}
+\caption{Cuadro Cornell --- Vicios de la Voluntad (Error, Dolo y Violencia)}
+\end{table}
+
+\end{document}

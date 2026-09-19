@@ -1,0 +1,1168 @@
+%==============================================================================
+% DOCUMENTCLASS
+%==============================================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================================
+% METADATOS
+%==============================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\catedra}{Cátedra de Derecho Civil --- Parte General}
+\newcommand{\materia}{Derecho Civil}
+\newcommand{\titulo}{Extinción de las Relaciones Jurídicas, Prescripción y Caducidad}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================================
+% PAQUETES
+%==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================================
+% CONFIGURACIÓN
+%==============================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+%==============================================================================
+% COMANDOS
+%==============================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Anchos de las columnas del cuadro Cornell
+\newlength{\cornellL}
+\newlength{\cornellR}
+\AtBeginDocument{%
+    \setlength{\cornellL}{0.27\textwidth}%
+    \setlength{\cornellR}{0.63\textwidth}%
+}
+
+%==============================================================================
+% ENTORNOS / CAJAS
+%==============================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Cita de texto normativo (sobria, con barra lateral)
+\newtcolorbox{articulo}[1]{
+    enhanced,
+    breakable,
+    colback=white,
+    colframe=white,
+    frame hidden,
+    boxrule=0pt,
+    sharp corners,
+    borderline west={2pt}{0pt}{gray!60},
+    left=10pt,
+    top=3pt,
+    bottom=3pt,
+    before upper={\textbf{#1.}\ \itshape}
+}
+
+%==============================================================================
+% CONFIGURACIÓN FINAL
+%==============================================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================================
+% DOCUMENT
+%==============================================================================
+\begin{document}
+
+%------------------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{0.2cm}
+
+{\normalsize \catedra}
+
+\vspace{2.5cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender cada concepto es el primer paso para convertir el estudio en conocimiento duradero.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%------------------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------------------
+\tableofcontents
+
+%------------------------------------------------------------------------------
+% CONTENIDO
+%------------------------------------------------------------------------------
+
+%==============================================================================
+\chapter[Introducción a la extinción de las relaciones jurídicas]{Introducción: el cierre del ciclo de la relación jurídica}
+%==============================================================================
+
+\section{Objeto del tema}
+
+El estudio de la parte general del derecho civil comprende el sujeto, el objeto y la causa de las relaciones jurídicas. Dentro de la causa se ubican los \textbf{hechos jurídicos}, que dan inicio a las relaciones y producen consecuencias jurídicas. Del mismo modo en que existen hechos y actos que dan nacimiento a una relación jurídica, existen también hechos y actos que, en algún momento, la \textbf{extinguen}. Ese es el objeto de este material.
+
+\begin{note}
+El desarrollo del tema es introductorio: la extinción de las obligaciones se trata con mayor profundidad en \textbf{Obligaciones}, y la extinción de los contratos, en \textbf{Contratos}.
+\end{note}
+
+En materia de hechos jurídicos extintivos se sigue la doctrina de Antonio Aguiar Anzorena, identificado en el apunte como uno de los maestros del docente en el derecho civil.
+
+\section{Relevancia práctica}
+
+La prescripción y la caducidad suelen ubicarse al final de los programas y, por esa razón, no siempre llegan a estudiarse con detenimiento. Sin embargo, tienen una relevancia decisiva en el ejercicio profesional: todo abogado recibirá clientes con una deuda para cobrar, y lo primero que deberá verificar es si la acción sigue vigente o ya prescribió, porque de ello depende toda la estrategia del caso.
+
+Conocer cuándo un contrato puede resolverse, rescindirse o revocarse permite asesorar con precisión en negociaciones, redactar cláusulas de salida seguras y anticipar riesgos. Esta lógica es útil también en la vida cotidiana: saber que las deudas y los reclamos tienen plazos permite tomar decisiones a tiempo (enviar un reclamo antes de que se pierda el derecho, comprender por qué una obligación antigua ya no puede exigirse judicialmente, o entender los efectos de un arrepentimiento en una seña).
+
+\section{Las tres vías de extinción}
+
+Un contrato de alquiler ilustra los tres bloques temáticos.
+
+\begin{example}{El contrato de alquiler}
+El contrato nace como relación jurídica. Mientras existe, puede extinguirse:
+\begin{itemize}
+    \item por un \textbf{hecho ajeno a la voluntad} de las partes, por ejemplo si fallece el inquilino y era el único con derecho a habitar el inmueble (\textbf{hechos extintivos});
+    \item por un \textbf{acto de voluntad} de las partes, como cuando el inquilino paga todos los meses hasta el final o decide rescindir el contrato antes de tiempo (\textbf{actos extintivos});
+    \item por el \textbf{transcurso del tiempo}: si el propietario nunca reclama una deuda de alquileres atrasados, la acción para cobrarla puede prescribir, y si no ejerce ciertos derechos puntuales dentro del plazo que fija la ley, esos derechos caducan (\textbf{prescripción y caducidad}).
+\end{itemize}
+\end{example}
+
+Los tres bloques constituyen las tres formas en que el derecho explica el final de una misma historia: la de una relación jurídica que nace, vive y en algún momento se apaga.
+
+\section{Enumeración de la doctrina seguida}
+
+\textbf{Hechos jurídicos extintivos:}
+\begin{itemize}
+    \item la muerte;
+    \item la imposibilidad (sobrevenida);
+    \item la confusión;
+    \item la compensación;
+    \item la caducidad.
+\end{itemize}
+
+\textbf{Actos jurídicos extintivos:}
+\begin{itemize}
+    \item el pago;
+    \item la dación en pago;
+    \item la novación;
+    \item la transacción;
+    \item la renuncia a los derechos;
+    \item la remisión de deuda;
+    \item y, como los tres principales: la resolución, la rescisión y la revocación.
+\end{itemize}
+
+\section{Mapa de contenidos}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Unidad} & \textbf{Tema} & \textbf{Cuestión central} \\
+\midrule
+\multicolumn{3}{l}{\textit{Hechos jurídicos extintivos}} \\
+1 & La muerte y la imposibilidad sobrevenida & ¿Qué hechos extinguen una relación jurídica sin que medie un acto de voluntad? \\
+2 & Confusión, compensación y caducidad (introducción) & ¿Qué ocurre cuando las calidades de acreedor y deudor se reúnen en una misma persona? \\
+\midrule
+\multicolumn{3}{l}{\textit{Actos jurídicos extintivos}} \\
+3 & Pago, dación en pago y novación & ¿Cómo se extingue voluntariamente una obligación mediante su cumplimiento o su reemplazo? \\
+4 & Transacción, renuncia y remisión de deuda & ¿Cómo ponen fin las partes a un conflicto sin necesidad de un juez? \\
+5 & Resolución, rescisión y revocación & ¿Qué diferencia a un contrato que se extingue hacia atrás de uno que se extingue hacia el futuro? \\
+\midrule
+\multicolumn{3}{l}{\textit{Prescripción y caducidad}} \\
+6 & Prescripción adquisitiva y extintiva & ¿Cómo opera el paso del tiempo sobre la adquisición y la pérdida de derechos? \\
+7 & Suspensión e interrupción del cómputo & ¿Qué hechos detienen o reinician el conteo del plazo de prescripción? \\
+8 & La dispensa y los plazos de prescripción & ¿Puede un juez habilitar una acción aunque el plazo ya se haya cumplido? \\
+9 & La caducidad en profundidad & ¿Por qué la caducidad es más rígida que la prescripción? \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%==============================================================================
+\chapter[Hechos jurídicos extintivos]{Hechos jurídicos extintivos}
+%==============================================================================
+
+%------------------------------------------------------------------------------
+\section{La muerte como hecho extintivo}
+%------------------------------------------------------------------------------
+
+La muerte produce la extinción de la persona: finaliza la existencia de la persona humana. Como consecuencia, muchas relaciones jurídicas se extinguen, especialmente los \textbf{derechos extrapatrimoniales}.
+
+También se extinguen con la muerte algunos derechos patrimoniales, como el \textbf{usufructo}: es un derecho que se constituye de por vida y, por lo tanto, se extingue con la muerte de su titular, sin transmitirse a los herederos.
+
+\begin{important}
+\textbf{El usufructo como excepción a la regla.} En materia de derechos patrimoniales, la regla general es que, a la muerte de una persona, su patrimonio se transmite a los herederos, quienes pueden ser instituidos por testamento o por disposición de la ley, existiendo algunos herederos forzosos con derecho a una porción legítima. Sin embargo, esta regla de la transmisión no rige en todos los casos: en algunos supuestos la muerte extingue directamente la relación jurídica, sin transmitirla a nadie. Uno de ellos es el usufructo.
+\end{important}
+
+%------------------------------------------------------------------------------
+\section{La imposibilidad sobrevenida}
+%------------------------------------------------------------------------------
+
+El segundo hecho extintivo es la \textbf{imposibilidad}. Debe tratarse de una imposibilidad \textbf{sobreviniente} y no inicial: si la imposibilidad existiera desde el comienzo, el acto jurídico no podría formarse válidamente, porque su objeto sería imposible.
+
+\begin{articulo}{Artículo 279 del Código Civil y Comercial}
+Los actos jurídicos no pueden tener por objeto un hecho imposible.
+\end{articulo}
+
+El fundamento de esta regla se expresa en el adagio latino según el cual \textit{a lo imposible nadie está obligado}: lo imposible no puede exigirse.
+
+La imposibilidad sobrevenida, en cambio, se produce una vez que la relación jurídica ya comenzó. Se ubica en el título de las obligaciones del Código Civil y Comercial, en el Libro Tercero.
+
+\begin{articulo}{Artículo 955 del Código Civil y Comercial}
+La imposibilidad sobrevenida, objetiva, absoluta y definitiva de la prestación, producida por caso fortuito o fuerza mayor, extingue la obligación, sin responsabilidad.
+\end{articulo}
+
+Se trata, entonces, de una extinción \textbf{sin responsabilidad}, siempre que la imposibilidad sea absolutamente imprevisible (caso fortuito o fuerza mayor). En cambio, si la obligación se vuelve imposible de cumplir por causas imputables al deudor (por ejemplo, si el deudor no pagó por su propia culpa), el deudor debe responder igualmente.
+
+%------------------------------------------------------------------------------
+\section{La confusión}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Confusión}
+Hecho extintivo que consiste en que la calidad de \textbf{acreedor} y la de \textbf{deudor} se reúnen en una misma persona y en un mismo patrimonio.
+\end{definition}
+
+\begin{articulo}{Artículos 931 y 932 del Código Civil y Comercial}
+Regulan la extinción de la obligación por confusión, cuando las calidades de acreedor y de deudor se reúnen en una misma persona y en un mismo patrimonio.
+\end{articulo}
+
+\begin{example}{Juana y su tía}
+Juana le presta 20.000 dólares a su tía. La tía fallece y Juana es su única heredera. Al heredar, Juana ocupa el lugar de su tía y se convierte, al mismo tiempo, en acreedora y deudora de la misma deuda, porque la tía le debía a ella. La obligación queda confundida y se extingue por confusión.
+\end{example}
+
+La confusión extingue la obligación en la proporción en que efectivamente se produce.
+
+%------------------------------------------------------------------------------
+\section{La compensación}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Compensación}
+Tiene lugar cuando dos personas reúnen, recíprocamente, la calidad de acreedor y de deudor la una de la otra. Sus créditos se compensan hasta el monto de la menor deuda.
+\end{definition}
+
+\begin{example}{Compensación de créditos recíprocos}
+Si yo te debo 10.000 y vos me debés 20.000, a partir de ese momento se compensan: vos me debés 10.000, porque 20.000 menos 10.000 es 10.000. Se extinguen ambas deudas, con fuerza de pago, hasta el monto de la menor, y desde el momento en que ambas obligaciones comenzaron a coexistir en condiciones de ser compensables.
+\end{example}
+
+Se trata de un \textit{hecho} extintivo y no de un acto porque esta situación puede producirse automáticamente, sin que medie una declaración de voluntad expresa de las partes: en ese caso, la compensación opera \textbf{de pleno derecho}.
+
+%------------------------------------------------------------------------------
+\section{La caducidad (introducción)}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Caducidad}
+Pérdida de un derecho por no ejercitarlo en el plazo fijado por la ley. Siempre tiene \textbf{fuente legal}.
+\end{definition}
+
+Este instituto se retoma en profundidad junto con la prescripción (véase el capítulo~\ref{cap:prescripcion}). Desde ahora cabe señalar que la caducidad extingue el derecho no ejercido y que, a diferencia de la prescripción, \textbf{no se suspende ni se interrumpe}. Existen algunos supuestos, establecidos por la ley, en los que no corre la caducidad.
+
+\begin{important}
+No debe confundirse la \textbf{caducidad}, que extingue el derecho no ejercido, con la \textbf{prescripción liberatoria o extintiva}, que extingue la acción.
+\end{important}
+
+La caducidad rige para algunos derechos muy puntuales respecto de los cuales el Código o las leyes especiales establecen que, transcurrido cierto tiempo (generalmente plazos cortos) sin que se ejerza el derecho, este caduca.
+
+\begin{example}{La compensación económica en el divorcio}
+El derecho a exigir la compensación económica luego de un divorcio está regulado en los artículos 441 y 442 del Código Civil y Comercial. Conforme al artículo 442, la acción para reclamarla caduca a los seis meses de haberse dictado la sentencia de divorcio.
+\end{example}
+
+\begin{articulo}{Artículo 442 del Código Civil y Comercial}
+La acción para reclamar la compensación económica caduca a los seis meses de haberse dictado la sentencia de divorcio.
+\end{articulo}
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell: hechos jurídicos extintivos}
+%------------------------------------------------------------------------------
+
+{\renewcommand{\arraystretch}{1.2}
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellL}
+    >{\raggedright\arraybackslash}p{\cornellR}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué hechos extinguen relaciones jurídicas sin mediar un acto de voluntad?} &
+La muerte, la imposibilidad sobrevenida, la confusión, la compensación y la caducidad. \\
+\addlinespace
+
+\textbf{¿Por qué el usufructo se extingue con la muerte de su titular?} &
+Porque es un derecho constituido de por vida y no se transmite a los herederos, aunque la regla general sea que el patrimonio sí se transmite. \\
+\addlinespace
+
+\textbf{¿Qué distingue a la imposibilidad sobrevenida de la imposibilidad inicial?} &
+La inicial impide que el acto se forme válidamente, porque el objeto sería imposible (art.~279 CCyC). La sobrevenida ocurre luego de nacida la obligación; si es objetiva, absoluta y definitiva, producida por caso fortuito o fuerza mayor, extingue la obligación sin responsabilidad del deudor (art.~955 CCyC). Si se debe a causas imputables al deudor, este responde igualmente. \\
+\addlinespace
+
+\textbf{¿Qué es la confusión?} &
+La reunión de las calidades de acreedor y deudor en una misma persona y en un mismo patrimonio (arts.~931 y 932 CCyC), como en el caso de Juana, que hereda a su tía acreedora. \\
+\addlinespace
+
+\textbf{¿Qué es la compensación y por qué es un hecho extintivo?} &
+La extinción recíproca de créditos entre dos personas que son acreedoras y deudoras entre sí, hasta el monto de la menor deuda. Es un hecho porque puede operar de pleno derecho, sin declaración de voluntad de las partes. \\
+\addlinespace
+
+\textbf{¿Qué es la caducidad y en qué se diferencia de la prescripción?} &
+La pérdida de un derecho por no ejercerlo dentro del plazo fijado por la ley; siempre tiene fuente legal. Extingue el derecho no ejercido, mientras que la prescripción extintiva extingue la acción. No se suspende ni se interrumpe. Ejemplo: art.~442 CCyC (seis meses desde la sentencia de divorcio). \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\cornellL+\cornellR+2\tabcolsep\relax}}{%
+\textbf{Resumen:} los hechos extintivos operan sin necesidad de un acto de voluntad: la muerte (que extingue derechos extrapatrimoniales y algunos patrimoniales, como el usufructo), la imposibilidad sobrevenida (sin responsabilidad si obedece a caso fortuito o fuerza mayor), la confusión (acreedor y deudor en una misma persona), la compensación (créditos recíprocos hasta el monto de la menor deuda) y la caducidad (pérdida del derecho no ejercido en el plazo legal).} \\
+\bottomrule
+\end{longtable}}
+
+%==============================================================================
+\chapter[Actos jurídicos extintivos]{Actos jurídicos extintivos}
+%==============================================================================
+
+Los actos jurídicos extintivos son aquellos que suponen una \textbf{declaración de voluntad} dirigida a poner fin a la relación jurídica.
+
+%------------------------------------------------------------------------------
+\section{El pago}
+%------------------------------------------------------------------------------
+
+El acto extintivo de una obligación por excelencia es el pago.
+
+\begin{definition}{Pago}
+Cumplimiento de la prestación que constituye el objeto de la obligación.
+\end{definition}
+
+\begin{important}
+No debe asociarse el pago sólo con la entrega de dinero en efectivo: \textbf{pagar es cumplir con la obligación}.
+\end{important}
+
+\begin{example}{El pago no es sólo entregar dinero}
+Si yo te presto una cosa mueble y vos te comprometés a darme plata a cambio, cuando yo te entrego la cosa pactada estoy pagando, porque cumplo mi obligación; y cuando vos me entregás el dinero, vos también estás pagando. Del mismo modo, si a una persona la contratan para hacer una asesoría de servicios jurídicos, esa persona paga cuando cumple con la prestación de hacer esa asesoría.
+\end{example}
+
+%------------------------------------------------------------------------------
+\section{La dación en pago}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Dación en pago}
+Acto extintivo en el cual el acreedor acepta voluntariamente, en pago, una prestación diversa de la debida.
+\end{definition}
+
+\begin{example}{Cambiar un servicio por dinero}
+Me comprometo a prestar servicios jurídicos pero, por un problema, no puedo hacerlo. En lugar de esa prestación, ofrezco dinero al acreedor y este lo acepta en pago de la deuda original. Eso es una dación en pago.
+\end{example}
+
+%------------------------------------------------------------------------------
+\section{La novación}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Novación}
+Extinción de una obligación por la creación de otra nueva, destinada a reemplazarla. Aparece una cierta modificación y la nueva obligación sustituye a la anterior.
+\end{definition}
+
+\begin{example}{Reemplazo del objeto de la obligación}
+Yo debía entregar una cosa determinada y, mediante novación, pactamos que ahora debo entregar otra cosa distinta. Se extingue la primera obligación y aparece la segunda en su reemplazo.
+\end{example}
+
+%------------------------------------------------------------------------------
+\section{La transacción}
+%------------------------------------------------------------------------------
+
+La transacción es un \textbf{contrato}. Con ella ya se sale de los artículos ubicados en la parte de las obligaciones (en torno al número 900) para pasar a la parte de contratos especiales, dentro del mismo Libro Tercero, en torno al artículo 1641. Su ubicación como contrato es una novedad del Código actual.
+
+La palabra «transar» tiene en derecho civil y comercial un alcance muy específico: significa poner fin a obligaciones dudosas o litigiosas.
+
+\begin{definition}{Transacción}
+Contrato por el cual las partes, haciéndose concesiones recíprocas, extinguen obligaciones dudosas o litigiosas.
+\end{definition}
+
+\begin{example}{El accidente de tránsito}
+Ante un litigio (por ejemplo, un accidente de tránsito) una de las partes reclama una indemnización de 200.000 pesos y la otra ofrece una suma sensiblemente menor. Quien le pone fin a ese litigio, habitualmente, es un juez, que determina qué es lo justo. Pero si las partes desean ponerle fin anticipadamente y llegan a un acuerdo (una de ellas dice «yo reconozco mi responsabilidad, te voy a pagar cien mil pesos» y la otra acepta), están haciendo una transacción. La transacción implica ceder en parte el propio derecho: quien reclamaba 200.000 termina recibiendo 100.000.
+\end{example}
+
+En la práctica profesional, un abogado necesita contar con \textbf{poder especial} de su cliente para hacer una transacción en su nombre, y existen ciertos contratos que no admiten transacción. Estas cuestiones están reguladas en detalle en el Código y se profundizan en Obligaciones y en Contratos.
+
+%------------------------------------------------------------------------------
+\section{La renuncia}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Renuncia}
+Acto jurídico extintivo que consiste en la abdicación de un derecho.
+\end{definition}
+
+\begin{articulo}{Artículo 944 del Código Civil y Comercial}
+Toda persona puede renunciar a los derechos conferidos por la ley cuando la renuncia no está prohibida y sólo afecta intereses privados. No se admite la renuncia anticipada de las defensas que pueden hacerse valer en juicio.
+\end{articulo}
+
+\begin{example}{Renunciar a cobrar una deuda}
+«Te renuncio a cobrarte esa deuda que tengo». Es una liberalidad: en el fondo se está regalando algo, y sigue siendo un acto a título gratuito. Por ello puede ser eventualmente impugnado si hubiera acreedores interesados en que esa deuda sí se cobre.
+\end{example}
+
+%------------------------------------------------------------------------------
+\section{La remisión de deuda}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Remisión de deuda}
+Acto jurídico que se produce cuando el acreedor entrega voluntariamente al deudor el título en el que consta la deuda (por ejemplo, un pagaré).
+\end{definition}
+
+%------------------------------------------------------------------------------
+\section{La resolución}
+%------------------------------------------------------------------------------
+
+La resolución, la rescisión y la revocación son los tres institutos principales con los que se cierra el estudio de los actos jurídicos extintivos.
+
+\begin{definition}{Resolución}
+Extinción de los efectos de la relación jurídica que se produce cuando ocurre un acontecimiento que, conforme a previsiones legales precisas o a pactos de las partes, provoca dicha extinción.
+\end{definition}
+
+\begin{important}
+En derecho civil, «resolución» tiene un alcance técnico: no significa resolver un problema en el sentido de encontrarle una solución, sino \textbf{ponerle fin}. En general, la resolución pone fin de manera \textbf{retroactiva}: opera hacia atrás, hacia el momento de origen de las actuaciones. Este efecto se denomina, en latín, \textit{ex tunc}.
+\end{important}
+
+\subsection{La cláusula resolutoria (o pacto comisorio)}
+
+Es una cláusula de un contrato por la cual las partes tienen la potestad de resolverlo, es decir, de ponerle fin, en caso de que la otra parte no cumpla. Puede ser \textbf{expresa} (pactada explícitamente) o \textbf{implícita} (presente en todos los contratos bilaterales, aunque nada se haya pactado). También se la conoce como \textbf{pacto comisorio}, expreso o implícito.
+
+\begin{articulo}{Artículo 1087 del Código Civil y Comercial}
+Todo contrato bilateral tiene implícita la facultad de resolver las obligaciones emergentes de él en caso de incumplimiento de una de las partes.
+\end{articulo}
+
+Los artículos 1086, 1088 y 1089 del Código precisan los requisitos y el modo en que debe ejercerse esta facultad; el apunte no profundiza en esos detalles.
+
+\begin{example}{El pintor que no cumplió el día pactado}
+Se pacta que un pintor venga a pintar una casa el primero de enero. El pintor se toma diez días de vacaciones y recién el diez de enero pretende que se lo acepte igual. El dueño de la casa le dice «usted incumplió porque no vino el día que habíamos pactado» y resuelve el contrato, debiendo notificarlo conforme a los requisitos correspondientes.
+\end{example}
+
+\begin{example}{El catering que llega tarde}
+Se contrata un servicio de catering para un casamiento el día viernes y el proveedor pretende entregar las cosas recién el domingo. El cliente responde: «usted incumplió, yo no le voy a pagar». El proveedor incumplió su parte y, por lo tanto, el cliente tampoco cumple la suya: se resuelve el contrato.
+\end{example}
+
+\subsection{La señal o arras}
+
+La señal (también llamada arras) es una suma de dinero que se entrega al inicio de un contrato y que puede tener dos alcances distintos:
+
+\begin{itemize}
+    \item \textbf{Facultad de arrepentirse:} debe pactarse expresamente. Quien entregó la señal puede luego arrepentirse y poner fin al contrato (cláusula de arrepentimiento).
+    \item \textbf{Función confirmatoria del acto:} es el alcance que se le atribuye si no se pactó nada distinto. Quien entregó la señal debe cumplir todo el contrato igualmente.
+\end{itemize}
+
+\begin{important}
+Es muy importante ver cómo se pactó la entrega de la seña, porque de ello depende si el contrato queda firme o si existe la posibilidad de arrepentirse.
+\end{important}
+
+\begin{articulo}{Artículo 1059 del Código Civil y Comercial}
+Regula la señal o arras: su función confirmatoria y, si así fue pactado expresamente, la facultad de arrepentimiento.
+\end{articulo}
+
+\subsection{La condición resolutoria}
+
+Es una cláusula que subordina la resolución (es decir, la extinción) de una relación jurídica a un \textbf{hecho futuro e incierto}.
+
+\subsection{La frustración de la finalidad}
+
+El Código Civil y Comercial incorpora, como causal de resolución, la frustración definitiva de la finalidad del contrato: cuando el contrato se frustra en su finalidad, la parte perjudicada puede declarar su resolución, siempre que medie una causa extraordinaria en las circunstancias.
+
+\begin{articulo}{Artículo 1090 del Código Civil y Comercial}
+Regula la frustración definitiva de la finalidad del contrato como causal de resolución, cuando obedece a una alteración extraordinaria de las circunstancias existentes al momento de su celebración.
+\end{articulo}
+
+\begin{example}{La pandemia y el casamiento frustrado}
+Alguien debía entregar algo el diez de abril porque iba a celebrarse un casamiento, y este finalmente no se realizó porque se prohibieron todas las reuniones de personas. Se frustró la finalidad del contrato y la parte perjudicada puede poner fin al acto invocando esa frustración.
+\end{example}
+
+\subsection{La teoría de la imprevisión}
+
+La teoría de la imprevisión tiene como antecedente el artículo 1198 del Código de Vélez, que no contenía originalmente este instituto: fue incorporado por la reforma de la ley 17.711. Se aplica cuando la prestación a cargo de una de las partes se torna \textbf{excesivamente onerosa} por una alteración extraordinaria de las circunstancias existentes al momento de la celebración del contrato, producida por una causa sobreviniente.
+
+Esta figura se compara con la lesión, que también supone una desproporción entre las prestaciones, aunque se trata de institutos distintos: en la imprevisión, la alteración de las bases del contrato produce una desproporción que torna excesivamente onerosa la posición de una de las partes.
+
+\begin{articulo}{Artículo 1091 del Código Civil y Comercial}
+Autoriza, ante la excesiva onerosidad sobreviniente de la prestación, la resolución total o parcial del contrato, o su adecuación.
+\end{articulo}
+
+\begin{note}
+La figura tuvo su apogeo periódicamente en Argentina con los cambios en el dólar y la hiperinflación. Sin embargo, se advierte que la inflación en Argentina «ya no es algo previsible», por lo que el instituto va teniendo, con el tiempo, situaciones de aplicación cada vez más acotadas, porque siempre debe tratarse de algo realmente imprevisible.
+\end{note}
+
+\subsection{Efectos generales de la resolución}
+
+La resolución opera, generalmente, en forma \textbf{retroactiva} (\textit{ex tunc}).
+
+\begin{articulo}{Artículo 1079 del Código Civil y Comercial}
+Salvo disposición legal en contrario, la resolución produce efectos retroactivos, con excepción de las prestaciones cumplidas que quedan firmes en cuanto resulten equivalentes.
+\end{articulo}
+
+Si ya se han cumplido determinadas prestaciones y quedaron firmes, la resolución no las alcanza. En esto se diferencia de las dos figuras siguientes (rescisión y revocación), que operan hacia el futuro.
+
+%------------------------------------------------------------------------------
+\section{La rescisión}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Rescisión}
+Forma de extinción que opera a futuro: no tiene efectos retroactivos. Puede ser bilateral o unilateral, en los casos autorizados por la ley.
+\end{definition}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte cita nuevamente el artículo 1079 para los efectos de la rescisión, tras haberlo citado para los efectos de la resolución)
+\begin{articulo}{Artículo 1079 del Código Civil y Comercial (efectos de la extinción por declaración de una de las partes)}
+La rescisión opera a futuro. Excepto estipulación en contrario, sólo produce efectos para el futuro y no afecta el derecho de terceros.
+\end{articulo}
+
+\begin{example}{Rescisión bilateral: un contrato de servicios jurídicos}
+Se trata, generalmente, de contratos de tracto sucesivo: por ejemplo, un contrato de servicios jurídicos que se viene pagando todos los meses. Un día, ambas partes deciden rescindirlo de común acuerdo. Eso es una rescisión bilateral.
+\end{example}
+
+\begin{example}{Rescisión unilateral: el contrato de alquiler}
+El contrato puede extinguirse total o parcialmente por la sola declaración de una de las partes, en los casos en que el propio contrato o la ley le otorgan esa facultad. El ejemplo típico es el contrato de alquiler, que puede ser rescindido por el inquilino con cierto preaviso, a partir de los seis meses de celebrado el contrato: la ley concede unilateralmente al locatario la potestad de rescindir.
+\end{example}
+
+%------------------------------------------------------------------------------
+\section{La revocación}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Revocación}
+Acto jurídico unilateral mediante el cual una de las partes deja sin efecto la relación por su exclusiva voluntad. Al igual que la rescisión, es unilateral y produce efectos a futuro: no es retroactiva.
+\end{definition}
+
+\begin{example}{El mandato revocado}
+Se contrata a un abogado para que actúe en nombre de una persona (mandato). En un momento se produce un quiebre de la confianza, o simplemente existe la voluntad de no continuar con esa representación, y se revoca el mandato. Todo lo que el abogado hizo en nombre del mandante hasta ese momento es válido, porque tenía mandato vigente; pero desde el día en que se revoca, ya no tiene mandato para actuar en su nombre.
+\end{example}
+
+\begin{example}{El testamento revocado}
+Una persona otorga un testamento válido. Mientras vive, puede revocarlo y otorgar otro nuevo, quedando revocado el anterior.
+\end{example}
+
+\subsection{Cuadro comparativo: resolución, rescisión y revocación}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{3.0cm}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Criterio} & \textbf{Resolución} & \textbf{Rescisión / Revocación} \\
+\midrule
+Efectos en el tiempo & Retroactivos (\textit{ex tunc}) & Hacia el futuro (\textit{ex nunc}) \\
+\addlinespace
+Origen típico & Incumplimiento, condición, frustración de la finalidad, imprevisión & Acuerdo de partes o facultad legal / contractual unilateral \\
+\addlinespace
+Partes involucradas & Puede requerir declaración de la parte cumplidora & Rescisión: bilateral o unilateral. Revocación: unilateral \\
+\addlinespace
+Prestaciones ya cumplidas & En principio quedan sin efecto, salvo equivalencia & Quedan firmes; no se retrotraen \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell: actos jurídicos extintivos}
+%------------------------------------------------------------------------------
+
+{\renewcommand{\arraystretch}{1.2}
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellL}
+    >{\raggedright\arraybackslash}p{\cornellR}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuál es el acto extintivo por excelencia?} &
+El pago: el cumplimiento de la prestación que constituye el objeto de la obligación. No se limita a la entrega de dinero: pagar es cumplir con la obligación. \\
+\addlinespace
+
+\textbf{¿Qué diferencia a la dación en pago de la novación?} &
+En la dación en pago el acreedor acepta voluntariamente una prestación distinta de la debida. En la novación nace una obligación nueva que reemplaza y extingue a la anterior. \\
+\addlinespace
+
+\textbf{¿Qué es la transacción?} &
+Un contrato (ubicado en torno al art.~1641 CCyC) por el cual las partes, mediante concesiones recíprocas, extinguen obligaciones dudosas o litigiosas, evitando o poniendo fin a un litigio. El abogado necesita poder especial de su cliente para transar. \\
+\addlinespace
+
+\textbf{¿Qué diferencia a la renuncia de la remisión de deuda?} &
+La renuncia es la abdicación de un derecho conferido por la ley, cuando no está prohibida y sólo afecta intereses privados (art.~944 CCyC); puede ser una liberalidad a título gratuito. La remisión de deuda es la entrega voluntaria, por el acreedor, del título en el que consta la deuda. \\
+\addlinespace
+
+\textbf{¿Qué efecto tiene la resolución sobre la relación jurídica?} &
+Un efecto retroactivo (\textit{ex tunc}), salvo las prestaciones ya cumplidas que resulten equivalentes y queden firmes (art.~1079 CCyC). \\
+\addlinespace
+
+\textbf{¿Qué formas o causas puede adoptar la resolución?} &
+La cláusula resolutoria o pacto comisorio (expreso o implícito, art.~1087 CCyC), la señal o arras (art.~1059 CCyC), la condición resolutoria, la frustración de la finalidad (art.~1090 CCyC) y la teoría de la imprevisión (art.~1091 CCyC). \\
+\addlinespace
+
+\textbf{¿Cómo influye la forma en que se pactó la señal?} &
+Si se pactó expresamente como facultad de arrepentirse, quien la entregó puede poner fin al contrato. Si no se pactó nada distinto, es confirmatoria del acto y quien la entregó debe cumplir todo el contrato. \\
+\addlinespace
+
+\textbf{¿Cuándo se aplica la teoría de la imprevisión?} &
+Cuando la prestación de una de las partes se torna excesivamente onerosa por una alteración extraordinaria de las circunstancias existentes al celebrarse el contrato, producida por una causa sobreviniente e imprevisible. \\
+\addlinespace
+
+\textbf{¿Qué diferencia a la rescisión y a la revocación de la resolución?} &
+Ambas operan hacia el futuro (\textit{ex nunc}), sin efecto retroactivo. La rescisión puede ser bilateral o unilateral; la revocación es unilateral (ejemplos: mandato, testamento). \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\cornellL+\cornellR+2\tabcolsep\relax}}{%
+\textbf{Resumen:} los actos extintivos requieren una declaración de voluntad. El pago cumple la obligación; la dación en pago la satisface con una prestación distinta; la novación la reemplaza por otra nueva; la transacción pone fin a obligaciones dudosas o litigiosas mediante concesiones recíprocas; la renuncia abdica un derecho y la remisión entrega el título de la deuda. La resolución opera hacia atrás (\textit{ex tunc}); la rescisión y la revocación, hacia el futuro.} \\
+\bottomrule
+\end{longtable}}
+
+%==============================================================================
+\chapter[Prescripción y caducidad]{Prescripción y caducidad}\label{cap:prescripcion}
+%==============================================================================
+
+%------------------------------------------------------------------------------
+\section{Importancia de la prescripción en la práctica}
+%------------------------------------------------------------------------------
+
+La prescripción es un instituto de enorme importancia que, por ubicarse generalmente al final de los programas, nunca llega a verse bien; sin embargo, tiene una relevancia decisiva en la vida profesional del abogado.
+
+\begin{example}{El cliente que llega con una deuda vieja}
+Un cliente llega con una deuda y pregunta: «¿yo tengo derecho a cobrar esto? Hace tiempo que pasó, alguna vez le mandé un mensajito para reclamarla». El abogado pregunta cuánto tiempo pasó y a veces la respuesta es «como cinco años». Ahí hay que advertir que pueden quedar apenas tres días antes de que la deuda prescriba, y actuar con urgencia. Por eso, lo primero que hay que revisar al recibir a un cliente son las \textbf{fechas}.
+\end{example}
+
+El fundamento de la prescripción es que existe la expectativa de que los derechos se ejerzan en un tiempo oportuno: no se puede vivir con la indeterminación de que en cualquier momento alguien venga a reclamar algo pasado un tiempo indefinido. La inacción hace presumir, por ley, que decayó el interés en ejercer el derecho. Si una persona tiene una deuda a su favor y pasan veinte años sin reclamarla, ya no parece tener tanto interés en cobrarla, y esto hace que la deuda (más precisamente, la acción para reclamarla) prescriba.
+
+%------------------------------------------------------------------------------
+\section{Prescripción adquisitiva y prescripción extintiva}
+%------------------------------------------------------------------------------
+
+\begin{definition}{Prescripción}
+Instituto jurídico en virtud del cual el transcurso del tiempo opera la adquisición de un derecho, o la extinción de la acción por la inacción del titular del derecho.
+\end{definition}
+
+La prescripción está tratada en el Libro Sexto, Título Primero del Código Civil y Comercial, que reúne las disposiciones comunes a los derechos reales y personales. Tiene dos grandes formas, la \textbf{adquisitiva} y la \textbf{extintiva o liberatoria}, que comparten algunos elementos comunes (sobre todo, la idea del transcurso del tiempo unida a una cierta inacción) pero presentan muchas diferencias entre sí y persiguen finalidades distintas. El énfasis de este material está en la prescripción extintiva o liberatoria.
+
+\subsection{La prescripción adquisitiva (usucapión)}
+
+\begin{definition}{Prescripción adquisitiva (usucapión)}
+Modo por el cual, mediante la posesión de una cosa reunidas ciertas condiciones, se puede adquirir el dominio, ante el manifiesto desinterés del propietario en la atención, cuidado y vigilancia del bien.
+\end{definition}
+
+Está regulada en el Libro Cuarto, sobre Derechos Reales, y se profundiza en esa materia.
+
+\begin{definition}{Posesión}
+Relación real: la que se tiene directamente con la cosa en los hechos, es decir, el \textit{corpus} (la detentación material de algo), unida al \textit{animus domini} (el ánimo de comportarse como dueño de la cosa, sin reconocer en ningún otro un derecho superior).
+\end{definition}
+
+\begin{articulo}{Artículos 1898 y 1899 del Código Civil y Comercial}
+Para la prescripción adquisitiva de inmuebles, el plazo común es de veinte años de posesión continua e ininterrumpida, sea de buena o de mala fe. Existe un plazo más corto de diez años cuando el poseedor cuenta con justo título y buena fe.
+\end{articulo}
+
+Para las cosas muebles rigen plazos distintos: si la cosa fue hurtada o perdida, el plazo de prescripción adquisitiva es de dos años; si se trata de una cosa mueble registrable, el plazo es de diez años.
+
+\begin{example}{El automóvil poseído por más de diez años}
+Una persona recibió un automóvil del titular registral o de un funcionario autorizado, de buena fe, y lo posee durante más de diez años sin que conste a su nombre en el registro de la propiedad. Esa persona pasa a tener la propiedad del bien; para ello debe promover un juicio de prescripción adquisitiva (usucapión), que es un modo de adquirir el dominio.
+\end{example}
+
+\subsection{La prescripción extintiva o liberatoria}
+
+\begin{definition}{Prescripción extintiva o liberatoria}
+Extingue la acción por la cual una persona puede reclamar un derecho, por el transcurso del tiempo fijado por la ley y la inacción del titular. Consiste en la falta de ejercicio, en el tiempo, de las acciones tendientes a reclamar los derechos, lo que determina la imposibilidad práctica de ejercerlos en el futuro por el transcurso de los plazos legales.
+\end{definition}
+
+\begin{important}
+La prescripción extintiva extingue la \textbf{acción}, y no el derecho, porque puede ocurrir que finalmente se pague una deuda ya prescripta.
+\end{important}
+
+\begin{example}{El amigo que paga una deuda de veinte años}
+Una persona le prestó dinero a un amigo hace mucho tiempo y nunca se lo reclamó; pasaron veinte años. Un día se encuentran y el amigo le cuenta que está pasando una mala situación económica. El otro le dice: «hace veinte años me prestaste esta plata, tomá, te pago lo que te debía», y le paga. Tiempo después, ese amigo fallece y sus herederos preguntan si, por haber pagado una deuda prescripta, corresponde la devolución. La respuesta es que no: no se pagó algo que no se debía. La deuda existía; lo que se había extinguido era solamente la acción para reclamarla judicialmente.
+\end{example}
+
+\begin{articulo}{Artículo 2538 del Código Civil y Comercial}
+El pago espontáneo de una obligación prescripta no es repetible.
+\end{articulo}
+
+«Repetible» significa que puede pedirse el reembolso de lo pagado; por lo tanto, lo pagado espontáneamente no puede reclamarse. En el Código Civil anterior, esta situación se llamaba «obligación natural». El nuevo Código evita expresamente ese nombre y utiliza la expresión «pago espontáneo», pero en los hechos sigue siendo la misma idea: una obligación que tiene fundamento en la idea natural de justicia (dar a cada uno lo suyo). La deuda existe; lo que ocurre es que prescribió y ya no es exigible judicialmente. La acción que acompaña al derecho se extingue y el derecho queda desprovisto de acción, pero sigue siendo un derecho que existía.
+
+Consecuencia práctica: cuando la contraparte intenta hacer valer un derecho ya prescripto, el abogado debe oponer la \textbf{excepción de prescripción}, defensa procesal por la cual se señala al juez que esa acción está prescripta y por qué motivos.
+
+\subsection{Reglas generales sobre la prescripción}
+
+Las normas de prescripción son \textbf{imperativas}: no pueden ser modificadas por las partes. No se puede pactar, por ejemplo, que una deuda sea imprescriptible.
+
+\begin{articulo}{Artículo 2533 del Código Civil y Comercial}
+Las normas relativas a la prescripción no pueden ser modificadas por convención de las partes.
+\end{articulo}
+
+La prescripción opera a favor y en contra de todas las personas, salvo disposición legal en contrario. En las obligaciones con sujetos múltiples (varios acreedores o varios deudores) cualquier acreedor puede oponer la prescripción, aunque el obligado no la invoque, y esta puede también renunciarse. % TODO: contenido incompleto o ambiguo en las notas originales (no se precisa quién puede oponer la prescripción en las obligaciones con sujetos múltiples)
+
+La renuncia a la prescripción sólo puede hacerse una vez que la prescripción ya se ganó: la persona a cuyo favor corrió el plazo puede renunciar a invocarla, de modo similar a la renuncia como acto extintivo. La prescripción puede ser invocada en todos los casos, salvo en los supuestos en que la ley indique expresamente lo contrario.
+
+%------------------------------------------------------------------------------
+\section{Suspensión e interrupción del cómputo de la prescripción}
+%------------------------------------------------------------------------------
+
+Es muy importante distinguir dos categorías de hechos que pueden incidir sobre el cómputo del plazo de prescripción: los \textbf{hechos suspensivos} y los \textbf{hechos interruptivos}.
+
+\subsection{La suspensión}
+
+\begin{definition}{Suspensión del cómputo}
+Detiene el conteo del tiempo mientras dura la causa suspensiva, pero aprovecha (conserva) el período ya transcurrido antes de que la suspensión comenzara.
+\end{definition}
+
+\begin{articulo}{Artículo 2539 del Código Civil y Comercial}
+La suspensión de la prescripción detiene el cómputo del tiempo por el lapso que dura, pero aprovecha el período transcurrido hasta que ella comenzó.
+\end{articulo}
+
+\begin{example}{Cómo se cuenta un plazo suspendido}
+El plazo de prescripción empieza a correr el 1 de enero de 2017 y el 30 de junio de 2017 ocurre un hecho suspensivo que dura un año: el cómputo se detiene ese día. El tramo ya corrido (del 1 de enero al 30 de junio de 2017) es válido y se conserva. Cuando, un año después, el 30 de junio de 2018, se reanuda el cómputo, se sigue contando desde el sexto mes en adelante, sin perder el tiempo ya corrido.
+\end{example}
+
+\textbf{Supuestos de suspensión}
+
+\begin{itemize}
+    \item \textbf{Interpelación fehaciente.} Es el acto típico del abogado que recibe un caso y reclama la deuda al deudor (o al poseedor) de manera extrajudicial, mediante carta documento o acta notarial, con fuerza probatoria hacia terceros. Suspende el cómputo \textbf{por una sola vez y por seis meses}.
+\end{itemize}
+
+\begin{articulo}{Artículo 2541 del Código Civil y Comercial}
+La interpelación fehaciente hecha por el titular del derecho contra el deudor o el poseedor suspende la prescripción por seis meses, por una sola vez.
+\end{articulo}
+
+\begin{itemize}
+    \item \textbf{Pedido de mediación.} Suspende el cómputo durante todo el tiempo que dura el trámite de mediación y hasta veinte días después de que se labra el acta de cierre, momento en el cual se reanuda el cómputo del plazo.
+\end{itemize}
+
+\begin{articulo}{Artículo 2542 del Código Civil y Comercial}
+El curso de la prescripción se suspende desde la expedición por medio fehaciente de la solicitud de mediación, hasta veinte días contados desde el momento en que el acta que da por concluido el procedimiento se encuentre a disposición de las partes.
+\end{articulo}
+
+\begin{itemize}
+    \item \textbf{Otros supuestos especiales.} Se trata de vínculos de confianza en los que los conflictos de interés dificultan ejercer acciones entre sí. Están suspendidas las acciones:
+    \begin{itemize}
+        \item entre cónyuges, mientras dura el matrimonio, para no sumar un motivo más a las disputas conyugales;
+        \item entre convivientes en unión convivencial;
+        \item entre las personas con capacidad restringida y sus representantes, apoyos o tutores, mientras dura la responsabilidad parental, la tutela o la curatela;
+        \item entre las personas jurídicas y sus administradores;
+        \item a favor y en contra de los herederos, mientras dure la respectiva situación.
+    \end{itemize}
+\end{itemize}
+
+\begin{articulo}{Artículo 2543 del Código Civil y Comercial}
+Enumera los supuestos especiales de suspensión de la prescripción entre cónyuges, convivientes, personas con capacidad restringida y sus representantes o apoyos, personas jurídicas y sus administradores, y a favor y en contra de los herederos.
+\end{articulo}
+
+\subsection{La interrupción}
+
+\begin{definition}{Interrupción del cómputo}
+A diferencia de la suspensión, tiene por no sucedido el lapso que la precede e inicia un nuevo plazo. Es decir, invalida todo el tiempo ya transcurrido.
+\end{definition}
+
+\begin{example}{Cómo se cuenta un plazo interrumpido}
+La prescripción empezó a correr el 1 de enero de 2017 y el 30 de junio de 2017 ocurre un hecho interruptivo que dura un año. Cuando finaliza ese hecho, el cómputo empieza de cero: no se aprovecha nada del tiempo ya transcurrido. Esto es lo que distingue, en la práctica, a la interrupción de la suspensión.
+\end{example}
+
+\textbf{Supuestos de interrupción}
+
+\begin{itemize}
+    \item \textbf{Reconocimiento de deuda.} Cuando la persona obligada firma un documento en el que reconoce la deuda.
+\end{itemize}
+
+\begin{articulo}{Artículo 2545 del Código Civil y Comercial}
+El curso de la prescripción se interrumpe por el reconocimiento que el deudor o poseedor efectúa del derecho de aquel contra quien prescribe.
+\end{articulo}
+
+\begin{itemize}
+    \item \textbf{Petición judicial.} Se interrumpe la prescripción por toda petición del titular del derecho ante la autoridad judicial que traduzca la intención de no abandonar el derecho.
+\end{itemize}
+
+\begin{articulo}{Artículo 2546 del Código Civil y Comercial}
+La petición judicial interrumpe la prescripción, aunque sea defectuosa, realizada por quien no es capaz o ante un tribunal incompetente, y aunque se presente dentro del plazo de gracia previsto en el ordenamiento procesal.
+\end{articulo}
+
+La redacción del nuevo Código es muy amplia para describir este supuesto: \textbf{no se exige necesariamente una demanda} en sentido estricto, sino cualquier petición que traduzca la intención de no abandonar el derecho; puede bastar, por ejemplo, una verificación de crédito en un proceso sucesorio. Interrumpir resulta más beneficioso para el acreedor que suspender, porque invalida todo el tiempo transcurrido y hace que se cuente todo de nuevo.
+
+Sobre el plazo de gracia: los plazos procesales vencen a las 24 horas, pero como los tribunales dejan de funcionar antes, se habilitan las dos primeras horas hábiles del día siguiente para presentar el escrito dentro de ese plazo, lo que se conoce habitualmente como «las dos primeras».
+
+\begin{itemize}
+    \item \textbf{Solicitud de arbitraje.} Equivale, en los hechos, a interponer una demanda o a un reconocimiento de deuda, y también interrumpe el cómputo de la prescripción.
+\end{itemize}
+
+\begin{articulo}{Artículo 2548 del Código Civil y Comercial}
+La solicitud de arbitraje interrumpe la prescripción.
+\end{articulo}
+
+\subsection{Cuadro comparativo: suspensión e interrupción}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{3.3cm}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Criterio} & \textbf{Suspensión} & \textbf{Interrupción} \\
+\midrule
+Tiempo ya transcurrido & Se conserva (se aprovecha) & Se invalida por completo \\
+\addlinespace
+Reinicio del cómputo & Continúa sumando desde donde se detuvo & Empieza de cero \\
+\addlinespace
+Supuestos & Interpelación fehaciente, mediación, causas entre cónyuges y convivientes, entre otras & Reconocimiento de deuda, petición judicial, solicitud de arbitraje \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%------------------------------------------------------------------------------
+\section{La dispensa y los plazos de prescripción}
+%------------------------------------------------------------------------------
+
+\subsection{La dispensa}
+
+\begin{definition}{Dispensa}
+Tercer supuesto, distinto de la suspensión y de la interrupción. A diferencia de ambas, ocurre una vez que la prescripción ya se cumplió, cuando por alguna circunstancia extraordinaria era imposible ejercer la acción en el momento en que finalizaba el plazo.
+\end{definition}
+
+En el Código anterior este supuesto se trataba como un caso de suspensión. El nuevo Código lo clarifica y lo llama \textbf{dispensa}: la doctrina ya interpretaba que se trataba de un supuesto de dispensa, y ahora se lo ubica claramente como tal.
+
+\begin{articulo}{Artículo 2550 del Código Civil y Comercial}
+El juez puede dispensar de la prescripción ya cumplida al titular de la acción, si dificultades de hecho o maniobras dolosas le obstaculizaron temporalmente el ejercicio de la acción, y si el titular hace valer sus derechos dentro de los seis meses siguientes a la cesación de los obstáculos.
+\end{articulo}
+
+\begin{example}{La persona postrada en un hospital}
+Se debe recurrir ante un juez y explicarle, por ejemplo: «yo estaba en cama, totalmente postrado, al momento en que prescribía esta acción, y me era imposible ejercerla». Si el juez entiende que existieron esas circunstancias extraordinarias, concede una dispensa que permite iniciar la acción dentro de los seis meses siguientes. Apenas la persona sale del hospital, inicia la demanda y pide la dispensa de la prescripción.
+\end{example}
+
+La dispensa se aplica también a personas incapaces sin representante: por ejemplo, un niño de cinco años, sin representantes, que tenía que cobrar ciertas deudas; en ese caso se espera a que existan representantes que puedan actuar en su nombre.
+
+\begin{important}
+La diferencia central con la suspensión y la interrupción es que la dispensa se \textbf{tramita ante un juez} y recae sobre una prescripción ya cumplida.
+\end{important}
+
+\subsection{Los plazos de prescripción}
+
+Se han visto distintos plazos de prescripción a lo largo de las clases. Por ejemplo, la acción por vicios tiene un plazo de prescripción de dos años. El plazo genérico es de cinco años.
+
+\begin{articulo}{Artículo 2560 del Código Civil y Comercial}
+El plazo de la prescripción es de cinco años, excepto que esté previsto uno diferente en la legislación local.
+\end{articulo}
+
+A partir de los artículos siguientes, el Código regula distintos plazos especiales, desde más largos hasta más cortos, según el tipo de acción de que se trate.
+
+En general, el cómputo del plazo corre desde el día en que la prestación es \textbf{exigible}, salvo distintas excepciones:
+\begin{itemize}
+    \item en el caso de la violencia, el plazo comienza a correr desde que cesa la violencia;
+    \item en la simulación entre las partes, el plazo corre desde que una de ellas desconoce el carácter simulado del acto.
+\end{itemize}
+
+\begin{important}
+Es un tema importantísimo, porque es la fecha a partir de la cual se cuenta todo.
+\end{important}
+
+%------------------------------------------------------------------------------
+\section{La caducidad en profundidad}
+%------------------------------------------------------------------------------
+
+La caducidad es también una forma de operar del transcurso del tiempo, pero produce la extinción de un \textbf{derecho no ejercido}, no de la acción, como ocurre en la prescripción.
+
+Los plazos de caducidad están fijados específicamente por la ley: no todos los derechos tienen un plazo de caducidad, sino solamente aquellos respecto de los cuales la ley expresamente lo determina. El ejemplo ya visto es el del artículo 442 sobre la compensación económica en materia de divorcio, cuya acción caduca a los seis meses de dictada la sentencia.
+
+\begin{articulo}{Artículo 2567 del Código Civil y Comercial (régimen general de caducidad)}
+Los plazos de caducidad no se suspenden ni se interrumpen, excepto disposición legal en contrario.
+\end{articulo}
+
+La caducidad no admite suspensión ni interrupción y, en general, sus plazos son más cortos que los de la prescripción.
+
+Hay actos que impiden que se produzca la caducidad: el cumplimiento del acto previsto por la ley, la realización del acto jurídico correspondiente, o el reconocimiento del derecho por parte de quien podría beneficiarse de la caducidad.
+
+Al igual que la prescripción, las normas sobre caducidad establecidas por la ley son, en general, \textbf{imperativas}: las partes no pueden renunciarla ni alterarla por disposición contractual cuando la caducidad proviene de la ley (sí es disponible cuando surge de la voluntad de las partes). % TODO: contenido incompleto o ambiguo en las notas originales (la caducidad se presenta como de fuente siempre legal en la introducción, pero aquí se menciona una caducidad que surge de la voluntad de las partes)
+
+Cuando concurren, sobre un mismo supuesto, normas de caducidad y de prescripción, \textbf{priman las de caducidad}, y para lo no regulado se aplican, supletoriamente, las normas relativas a la prescripción.
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell: prescripción y caducidad}
+%------------------------------------------------------------------------------
+
+{\renewcommand{\arraystretch}{1.2}
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellL}
+    >{\raggedright\arraybackslash}p{\cornellR}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es la prescripción?} &
+El instituto por el cual el transcurso del tiempo opera la adquisición de un derecho (prescripción adquisitiva) o la extinción de la acción por inacción del titular (prescripción extintiva o liberatoria). Se trata en el Libro Sexto, Título Primero del CCyC. \\
+\addlinespace
+
+\textbf{¿Qué diferencia hay entre prescripción adquisitiva y extintiva?} &
+La adquisitiva otorga el dominio por la posesión de una cosa (para inmuebles: veinte años, o diez con justo título y buena fe). La extintiva extingue la acción para reclamar un derecho, no el derecho en sí mismo. \\
+\addlinespace
+
+\textbf{¿Puede pagarse válidamente una deuda ya prescripta?} &
+Sí. El pago espontáneo de una obligación prescripta no es repetible (art.~2538 CCyC): el derecho existía y sólo se había extinguido la acción para exigirlo judicialmente. Si se intenta reclamar un derecho prescripto, debe oponerse la excepción de prescripción. \\
+\addlinespace
+
+\textbf{¿Pueden las partes modificar las normas de prescripción?} &
+No. Son imperativas y no pueden modificarse por convención de las partes (art.~2533 CCyC). La renuncia a la prescripción sólo puede hacerse una vez que esta ya se ganó. \\
+\addlinespace
+
+\textbf{¿Qué diferencia a la suspensión de la interrupción del cómputo?} &
+La suspensión detiene el cómputo pero conserva el tiempo ya transcurrido (art.~2539 CCyC); la interrupción invalida todo lo transcurrido y reinicia el plazo desde cero. \\
+\addlinespace
+
+\textbf{¿Qué hechos suspenden la prescripción?} &
+La interpelación fehaciente (seis meses, una sola vez, art.~2541 CCyC), el pedido de mediación (hasta veinte días después del acta de cierre, art.~2542 CCyC) y ciertas situaciones entre cónyuges, convivientes, personas con capacidad restringida y sus representantes, personas jurídicas y sus administradores, y herederos (art.~2543 CCyC). \\
+\addlinespace
+
+\textbf{¿Qué hechos interrumpen la prescripción?} &
+El reconocimiento de deuda (art.~2545 CCyC), la petición judicial, interpretada en sentido amplio y aun si es defectuosa (art.~2546 CCyC), y la solicitud de arbitraje (art.~2548 CCyC). \\
+\addlinespace
+
+\textbf{¿Qué es la dispensa de la prescripción?} &
+Una autorización judicial para ejercer la acción dentro de los seis meses siguientes a la cesación de los obstáculos, pese a que el plazo de prescripción ya se cumplió, cuando existió una imposibilidad de hecho justificada (por ejemplo, una internación) (art.~2550 CCyC). \\
+\addlinespace
+
+\textbf{¿Cuál es el plazo genérico de prescripción y desde cuándo se cuenta?} &
+Cinco años (art.~2560 CCyC), salvo que esté previsto uno diferente; existen plazos especiales, más largos y más cortos. En general se cuenta desde que la prestación es exigible, con excepciones (violencia, simulación entre las partes). \\
+\addlinespace
+
+\textbf{¿Por qué la caducidad es más rígida que la prescripción?} &
+Porque no admite suspensión ni interrupción (art.~2567 CCyC), sus plazos suelen ser más breves y extingue el derecho no ejercido, no sólo la acción. Cuando concurren normas de caducidad y de prescripción, priman las de caducidad. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\cornellL+\cornellR+2\tabcolsep\relax}}{%
+\textbf{Resumen:} el transcurso del tiempo puede hacer adquirir un derecho (prescripción adquisitiva) o extinguir la acción por la inacción del titular (prescripción extintiva), que deja subsistente un derecho sin acción. El cómputo puede detenerse (suspensión, que conserva el tiempo corrido), reiniciarse (interrupción, que lo invalida) o ser habilitado judicialmente una vez cumplido el plazo (dispensa). La caducidad extingue el derecho no ejercido en el plazo legal, de manera más rígida e imperativa.} \\
+\bottomrule
+\end{longtable}}
+
+%==============================================================================
+\chapter[Síntesis final]{Síntesis final}
+%==============================================================================
+
+El tema recorre el cierre del ciclo de vida de las relaciones jurídicas: cómo terminan, después de haber nacido y desarrollado sus efectos. Ese final puede producirse:
+
+\begin{itemize}
+    \item por \textbf{hechos ajenos a la voluntad} de las partes: la muerte, la imposibilidad sobrevenida, la confusión o la compensación;
+    \item por \textbf{actos jurídicos} mediante los cuales las partes deciden ponerle fin a la relación: el pago y la dación en pago, que la cumplen; la novación, que la reemplaza; la transacción y la renuncia, que ceden derechos; la remisión, que perdona una deuda; y la resolución, la rescisión y la revocación, que la dejan sin efecto, hacia atrás o hacia adelante según el caso;
+    \item por el simple \textbf{transcurso del tiempo}, que castiga la inacción del titular de un derecho a través de la prescripción (que extingue la acción, pero no siempre el derecho) y de la caducidad (que extingue directamente el derecho no ejercido, de manera más rígida e imperativa).
+\end{itemize}
+
+El hilo conductor es la idea de que ningún derecho puede sostenerse en una incertidumbre indefinida: el ordenamiento jurídico necesita fijar, tarde o temprano, un punto final, ya sea porque los hechos de la vida lo imponen, porque las partes lo deciden o porque el tiempo, por sí solo, se encarga de hacerlo. Comprender estas reglas, y sobre todo los plazos y las causales de suspensión, interrupción y dispensa de la prescripción, es una de las herramientas de mayor relevancia práctica en el ejercicio cotidiano de la abogacía.
+
+\end{document}

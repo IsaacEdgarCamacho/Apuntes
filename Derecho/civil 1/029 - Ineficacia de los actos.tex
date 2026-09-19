@@ -1,0 +1,1348 @@
+%==============================================================
+% APUNTES DE ESTUDIO --- INEFICACIA DE LOS ACTOS JURÍDICOS
+% Documento autónomo: no requiere plantillas ni archivos externos.
+% Compilar con pdfLaTeX (dos pasadas para índice y referencias).
+%==============================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================
+% METADATOS
+%==============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\materia}{Derecho Civil --- Parte General}
+\newcommand{\titulo}{Ineficacia de los Actos Jurídicos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================
+% PAQUETES
+%==============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================
+% CONFIGURACIÓN
+%==============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+\setlength{\emergencystretch}{3em}
+
+%==============================================================
+% COMANDOS
+%==============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Columnas del cuadro Cornell: izquierda estrecha, derecha amplia
+\newcolumntype{Q}{>{\raggedright\arraybackslash}p{0.25\textwidth}}
+\newcolumntype{W}{>{\raggedright\arraybackslash}p{0.68\textwidth}}
+
+% Encabezado, fila (pregunta / respuesta) y resumen del cuadro Cornell
+\newcommand{\cornellhead}{%
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+}
+\newcommand{\cornellrow}[2]{\textbf{#1} & #2 \\[1.3em]}
+\newcommand{\cornellresumen}[1]{%
+    \midrule
+    \multicolumn{2}{@{}p{\dimexpr0.93\textwidth+2\tabcolsep\relax}@{}}{%
+        \textbf{Resumen:} #1} \\
+}
+
+%==============================================================
+% ENTORNOS / CAJAS
+%==============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Transcripción de textos normativos (artículos de códigos y leyes)
+\newtcolorbox{articulo}[1]{
+    enhanced,
+    breakable,
+    frame hidden,
+    sharp corners,
+    colback=blue!2,
+    borderline west={2.5pt}{0pt}{blue!50!black},
+    left=8pt,
+    right=6pt,
+    top=4pt,
+    bottom=4pt,
+    before upper={\textbf{#1}\par\smallskip}
+}
+
+%==============================================================
+% CONFIGURACIÓN FINAL
+%==============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+
+%==============================================================
+\begin{document}
+%==============================================================
+
+%--------------------------------------------------------------
+% PORTADA
+%--------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es el mejor modo de convertir ideas en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de «\materia» no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%--------------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------------
+\frontmatter
+\tableofcontents
+\mainmatter
+
+%==============================================================
+% PRESENTACIÓN GENERAL
+%==============================================================
+\chapter*{Presentación general}
+\markboth{Presentación general}{}
+\addcontentsline{toc}{chapter}{Presentación general}
+
+\section*{Objeto del tema}
+
+Este material desarrolla el régimen de la \textbf{ineficacia de los actos jurídicos} en el Código Civil y Comercial de la Nación (CCCN): qué ocurre cuando un acto no produce los efectos que se esperaban. Se estudian el concepto y las clasificaciones de la nulidad (absoluta y relativa, total y parcial, manifiesta y no manifiesta), sus efectos entre las partes y frente a terceros, la confirmación del acto viciado y la inoponibilidad.
+
+En síntesis: cuándo un contrato, un testamento o cualquier otro acto jurídico deja de tener valor, quién puede reclamarlo, qué se restituye y cómo se puede sanear el defecto.
+
+\section*{Utilidad del tema}
+
+La nulidad es una de las herramientas que más se utilizan en la práctica profesional del derecho: aparece cada vez que hay que revisar un contrato antes de firmarlo, litigar para anular un acto perjudicial, defender a un cliente frente a un reclamo de nulidad o asesorar sobre cómo sanear un vicio para no perder un negocio ya cerrado. Distinguir nulidad absoluta de relativa define, por ejemplo, si un cliente todavía puede reclamar o si el plazo ya prescribió; entender los efectos frente a terceros define si conviene comprar un inmueble con antecedentes dudosos.
+
+Más allá de lo profesional, el tema es útil para la vida cotidiana: saber cuándo un contrato de alquiler, una compra o un boleto de compraventa puede caerse, y qué se recupera si eso ocurre, es una herramienta práctica para tomar mejores decisiones y proteger los propios intereses.
+
+\section*{Relación entre los capítulos}
+
+Puede pensarse el acto jurídico como un edificio.
+
+\begin{itemize}
+    \item Los \textbf{capítulos 1 a 3} estudian los cimientos: qué falla estructural puede tener el acto y cómo se clasifica esa falla (ineficacia, nulidad y sus tipos).
+    \item Los \textbf{capítulos 4 y 5} estudian qué ocurre una vez detectada la falla: quién debe reparar qué entre las partes y hasta dónde llega esa reparación cuando el edificio ya tiene «vecinos», es decir, terceros que confiaron en él.
+    \item Los \textbf{capítulos 6 y 7} estudian las dos salidas posibles: reforzar los cimientos para que el edificio se mantenga en pie (\textbf{confirmación}), o aceptar que, aunque el edificio siga en pie, sencillamente no le sirve a un vecino en particular (\textbf{inoponibilidad}).
+\end{itemize}
+
+%==============================================================
+% CAPÍTULO 1
+%==============================================================
+\chapter[Introducción a la ineficacia]{Introducción a la ineficacia de los actos jurídicos}
+
+\section{Presentación del tema}
+
+La \textbf{ineficacia} es un concepto que se refiere a la producción de efectos. El acto jurídico se define como un acto voluntario, lícito, que tiene por fin inmediato la adquisición, modificación, transferencia o extinción de relaciones o situaciones jurídicas, o de derechos u obligaciones. Es decir, el acto jurídico tiene por fin inmediato producir efectos jurídicos.
+
+De allí surgen los interrogantes que abarca el título general de «ineficacia»: qué ocurre cuando el acto no produce efectos, en qué casos, bajo qué circunstancias y con qué alcance, y qué efectos tiene el no tener efectos.
+
+La ineficacia es un concepto amplio dentro del cual el estudio se concentra centralmente en la \textbf{nulidad}, que es la principal de las categorías de ineficacia en sentido amplio.
+
+\section{Ineficacia e invalidez}
+
+La palabra «ineficacia» se entiende en dos sentidos:
+
+\begin{itemize}
+    \item \textbf{Sentido amplio:} todo supuesto en que el acto no produce efectos. Engloba la invalidez y la ineficacia en sentido estricto.
+    \item \textbf{Sentido estricto:} los supuestos en que la falta de efectos no proviene de un problema estructural del acto. Se presenta como ineficacia simple, sobreviniente y relativa.
+\end{itemize}
+
+\begin{definition}{Invalidez}
+Supuesto en que el acto presenta un \textbf{problema estructural}, es decir, algún defecto en uno de sus elementos; su principal supuesto es la \textbf{nulidad}. El acto es inválido porque presenta ese defecto.
+\end{definition}
+
+La ineficacia en sentido estricto, en cambio, \textbf{no afecta la estructura} del acto, sino sus \textbf{funciones}.
+
+Este material considera solamente una parte de estas ineficacias, porque otras ya fueron tratadas a lo largo del curso.
+
+\section{Ineficacias en sentido estricto}
+
+Dentro de la ineficacia en sentido amplio se distinguen tres tipos de ineficacia en sentido estricto.
+
+\subsection{Ineficacia simple}
+
+El acto es válido, pero no produce efecto por una situación ajena a su estructura.
+
+\begin{example}{testamento}
+Un testamento otorgado en determinada fecha no es eficaz hasta el momento de la muerte del testador. No es eficaz porque no se ha dado la condición para que lo sea, que sería la muerte. Otro supuesto es el acto subordinado a una condición o plazo suspensivo.
+\end{example}
+
+\subsection{Ineficacia sobreviniente}
+
+El acto es válido y eficaz desde el origen, pero circunstancias sobrevinientes le hacen perder esa eficacia.
+
+\begin{example}{causal de resolución}
+Aparece una causal de resolución: una de las partes incumple el contrato y la otra tiene derecho a resolverlo, es decir, a finalizarlo.
+\end{example}
+
+\subsection{Ineficacia relativa}
+
+El acto es válido, pero no produce efecto respecto de determinadas personas, esto es, respecto de terceros. Es el caso de la \textbf{inoponibilidad} correspondiente al fraude, que se estudia en el capítulo~\ref{cap:inoponibilidad}.
+
+Recapitulando: la ineficacia simple se estudió al tratar las condiciones o plazos; la ineficacia sobreviniente se estudiará en los últimos encuentros, referidos a la extinción; y la ineficacia relativa es aquella en que el acto es válido pero no produce efectos respecto de determinados terceros.
+
+\section{Método: ubicación de la ineficacia en el Código Civil y Comercial}
+
+A diferencia del código anterior, que no traía un título de ineficacias, el CCCN tiene un capítulo dedicado a ella: el \textbf{Capítulo 9}, dentro del Título Cuarto («Hechos y actos jurídicos») del Libro Primero, Parte General. Luego de tratar los distintos elementos del acto, las modalidades, los vicios, la representación y la forma, aparece un capítulo sobre ineficacia. Este capítulo engloba la nulidad y la inoponibilidad, es decir, un supuesto de invalidez y un supuesto de ineficacia relativa.
+
+Existe, por lo tanto, un cambio metodológico con relación al código anterior:
+
+\begin{itemize}
+    \item La materia se trasladó al Libro Primero; en el Código de Vélez estaba ubicada en el Libro Segundo.
+    \item Se abordan en conjunto, en un mismo capítulo, la nulidad y la inoponibilidad, algo que no hacía el Código de Vélez, que sólo trataba las nulidades.
+    \item No se abordan en este capítulo las ineficacias simples ni las sobrevinientes, que están tratadas en otros lugares del Código: las simples, en la parte de modalidades; las sobrevinientes, por ejemplo, en la parte de contratos.
+\end{itemize}
+
+El artículo con el que se abre este Capítulo 9 es el artículo 382.
+
+\begin{articulo}{Art. 382 CCCN --- Categorías de ineficacia}
+«Los actos jurídicos pueden ser ineficaces en razón de su nulidad o de su inoponibilidad respecto de determinadas personas.»
+\end{articulo}
+
+Metodológicamente, entonces, el Código trata las ineficacias en un único capítulo, que contiene unas disposiciones generales, la nulidad y la inoponibilidad. El mayor desarrollo corresponde a la nulidad, que es el eje principal de estudio y el supuesto de invalidez del acto; la inoponibilidad tiene un desarrollo más acotado y se da cuando el acto no produce efectos respecto de ciertas personas. Como se vio al estudiar el fraude, el acto es válido entre las partes, pero es inoponible al acreedor defraudado.
+
+\section{El debate sobre la inexistencia del acto jurídico}
+\label{sec:inexistencia}
+
+Junto con la inoponibilidad y la nulidad, mencionadas en el artículo 382, suele discutirse la cuestión de la \textbf{inexistencia}. Algunos autores en Argentina sostuvieron, durante un tiempo (postura hoy muy retirada), que en algunos casos un acto podía tener tal grado de defecto, tal falla estructural en sus elementos, que careciera de uno de ellos, y que el acto fuera directamente inexistente.
+
+\subsection*{Origen de la teoría}
+
+El origen de la teoría de la inexistencia se encuentra en Francia, no estrictamente en el código sino en un comentarista: Aubry y Rau. Saleilles elabora luego una teoría de la inexistencia que es comentada y continúa el debate durante mucho tiempo, también en Argentina. Básicamente, la inexistencia sería una categoría de la pura lógica: un acto que no tiene sujeto, objeto, forma o causa no puede existir como tal, porque carece de uno de los elementos que lo configuran como acto.
+
+\subsection*{Situación en el derecho positivo}
+
+El derecho positivo (el CCCN actual, y tampoco el código anterior) no contempla la inexistencia como un supuesto de ineficacia. Algunos autores han sostenido que en ciertos casos de simulación absoluta, o en algunos casos de error obstáculo (por ejemplo, Borda), el acto sería inexistente. La crítica es que el código, tanto el anterior como el actual, establece claramente que en esos supuestos se está ante un caso de nulidad y no de inexistencia; por lo tanto, hablar de inexistencia es inexacto respecto de lo que dispone el CCCN.
+
+\begin{important}
+La mayoría de la doctrina coincide en que la inexistencia \textbf{no está receptada} por el CCCN. El artículo 382 prevé como ineficacias únicamente la \textbf{nulidad} y la \textbf{inoponibilidad}: evidentemente no se incorporó la inexistencia.
+\end{important}
+
+\subsection*{El único caso: el artículo 392}
+
+El único supuesto sería el del artículo 392 (véase la sección~\ref{sec:art392}), que no protege al adquirente de buena fe a título oneroso cuando en el acto inicial por el cual se produjo una transmisión de derechos no intervino el verdadero titular del bien. Son supuestos muy específicos: por ejemplo, una connivencia entre un escribano y alguien que quiere hacer un negocio disponiendo de la propiedad de otra persona, haciéndose pasar por ella, sin que el verdadero dueño haya intervenido nunca en el acto. En ese caso el artículo 392 protege al verdadero dueño; por eso se dice que ese acto es «inexistente».
+
+Las diferencias entre inexistencia y nulidad serían las siguientes: la nulidad prescribe, la inexistencia no; la nulidad no puede ser opuesta al acreedor del subadquirente de buena fe a título oneroso, la inexistencia sí. Este sería, entonces, el único supuesto de los que históricamente se han mencionado como inexistencia que hoy tiene recepción específica en la letra del Código. Sin embargo, la ley no habla de «inexistencia», sino de una nulidad que no produce efectos, lo que genera una cierta ambivalencia.
+
+\clearpage
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}QW@{}}
+\cornellhead \endfirsthead
+\cornellhead \endhead
+\bottomrule \endfoot
+
+\cornellrow{¿Qué es la ineficacia de un acto jurídico y en qué sentidos se entiende?}{Concepto que se refiere a la producción de efectos: qué ocurre cuando un acto, que tiene por fin inmediato producir efectos jurídicos, no los produce. En sentido amplio es todo supuesto en que el acto no produce efectos y engloba la invalidez y la ineficacia en sentido estricto. El estudio se concentra en la nulidad, principal categoría de ineficacia en sentido amplio.}
+
+\cornellrow{¿Cuál es la diferencia entre invalidez e ineficacia en sentido estricto?}{La invalidez (cuyo principal supuesto es la nulidad) supone un problema estructural del acto, es decir, un defecto en alguno de sus elementos. La ineficacia en sentido estricto no afecta la estructura sino las funciones del acto.}
+
+\cornellrow{¿Qué tipos de ineficacia existen en sentido estricto?}{\textbf{Simple:} acto válido que no produce efecto por una situación ajena a su estructura (por ejemplo, el testamento antes de la muerte, o el acto sujeto a condición o plazo suspensivo). \textbf{Sobreviniente:} acto válido y eficaz que pierde su eficacia por circunstancias posteriores (por ejemplo, una causal de resolución por incumplimiento). \textbf{Relativa:} acto válido que no produce efecto respecto de determinadas personas (por ejemplo, la inoponibilidad por fraude).}
+
+\cornellrow{¿Dónde regula el Código la ineficacia?}{En el Capítulo 9 del Título Cuarto (Hechos y actos jurídicos) del Libro Primero, que abarca nulidad e inoponibilidad (art.~382 CCCN). El Código de Vélez ubicaba la materia en el Libro Segundo y sólo trataba las nulidades. Las ineficacias simples se tratan en modalidades; las sobrevinientes, por ejemplo, en contratos.}
+
+\cornellrow{¿Existe la inexistencia como categoría en el Código?}{No: la mayoría de la doctrina coincide en que no está receptada, ya que el art.~382 sólo prevé nulidad e inoponibilidad. Su origen está en Francia (Aubry y Rau; Saleilles). El único supuesto con recepción específica es el art.~392: no se protege al subadquirente de buena fe a título oneroso cuando en el acto inicial no intervino el verdadero titular del bien.}
+
+\cornellresumen{La ineficacia comprende todo supuesto en que el acto no produce efectos. Se distingue la invalidez (problema estructural, principalmente la nulidad) de la ineficacia en sentido estricto (simple, sobreviniente y relativa). El CCCN regula nulidad e inoponibilidad en el Capítulo 9 (art.~382) y no recepta la inexistencia como categoría, salvo la particular situación del art.~392.}
+
+\end{longtable}
+
+%==============================================================
+% CAPÍTULO 2
+%==============================================================
+\chapter[Concepto de nulidad]{Concepto de nulidad y disposiciones generales}
+
+\section{Concepto de nulidad}
+
+La nulidad es el eje del tema. Su concepto es muy importante y su definición presenta algunas controversias en torno a su alcance.
+
+\begin{definition}{Nulidad}
+Sanción legal que priva a un acto jurídico de sus efectos propios, como consecuencia de la existencia de un vicio concomitante con la celebración del acto.
+\end{definition}
+
+De la definición se desprenden sus componentes:
+
+\begin{itemize}
+    \item \textbf{Es una sanción.} Sobre este punto hay discusión: hay quien sostiene que no es una sanción en sentido propio, porque no se está necesariamente ante un actuar ilícito. Otra postura afirma que sí lo es, en función de que es la consecuencia del incumplimiento del presupuesto de la norma: toda norma tiene un presupuesto y una consecuencia, y si no se presenta el presupuesto (si hay un vicio) se sigue la sanción, que es la nulidad. Refuerza la idea de sanción que muchas veces el Código emplea la expresión «bajo pena de nulidad». Esta exposición adopta la postura de que la nulidad es una sanción, aunque existe discusión doctrinaria.
+    \item \textbf{Tiene origen en la ley.} No es una sanción que se le ocurra al juez, y las partes no pueden establecer sin más que un acto tiene un defecto: debe originarse en la ley. Esto se vincula con el tema de las nulidades implícitas (sección~\ref{sec:implicitas}).
+    \item \textbf{Supone un defecto o vicio originario, concomitante con la celebración del acto.} El defecto debe existir en el momento de la celebración; si fuera posterior, se estaría ante una ineficacia sobreviniente.
+    \item \textbf{El vicio recae en alguno de los elementos del acto} (sus requisitos de validez): el sujeto (por ejemplo, la capacidad), el objeto (por ejemplo, objeto ilícito), la forma (por ejemplo, un testamento que debe revestir una cierta forma y no la cumple) o la causa (por ejemplo, una causa ilícita).
+    \item \textbf{Consecuencia:} priva al acto de sus \textbf{efectos propios}.
+\end{itemize}
+
+\begin{important}
+La nulidad se mide \textbf{siempre en el momento de la celebración}: todos los defectos, para dar lugar a la nulidad, deben ser originarios, es decir, existir desde el inicio del acto. Esto diferencia a la nulidad, como invalidez o ineficacia originaria, de la ineficacia sobreviniente.
+\end{important}
+
+\begin{example}{objeto imposible}
+Si el acto tiene un objeto imposible, es nulo por el artículo~279, porque el objeto no puede consistir en un hecho imposible. Pero si el hecho es posible en el momento de la celebración y después se torna imposible, esa imposibilidad sobreviniente habilita a finalizar el acto, a darlo por terminado: es un supuesto de ineficacia sobreviniente. No hay nulidad.
+\end{example}
+
+En el caso de la lesión, como requisito de la acción se requiere que la desproporción subsista al momento de la demanda. Ese es un requisito de la acción; los defectos deben estar presentes en el momento del acto, y en la lesión ese defecto puede sufrir variantes.
+
+\subsection*{Los efectos propios del acto}
+
+El acto nulo no produce sus efectos propios. Por eso el efecto propio de la nulidad es que las cosas vuelvan al estado anterior.
+
+\begin{example}{compraventa}
+El efecto propio de una compraventa es la traslación del dominio: el vendedor traslada el dominio y el comprador paga el precio. Si el acto es nulo, el vendedor no traslada el dominio y debe restituir el dinero recibido.
+\end{example}
+
+Esto no impide que se produzcan algunos efectos que no son propios del acto: por ejemplo, que deba pagarse daños y perjuicios, que deban restituirse las cosas recibidas, o que el acto produzca eventualmente los efectos de otro acto por conversión.
+
+\section{Las nulidades implícitas en el Código Civil y Comercial}
+\label{sec:implicitas}
+
+Las nulidades tienen origen en la ley, lo que conduce a un problema histórico: el de las \textbf{nulidades implícitas}. Era una cuestión abierta en el Código de Vélez, que traía un artículo según el cual los jueces no pueden declarar otra nulidad de los actos jurídicos que las que en ese código se establecen. La fuente de Vélez era el «Esboço» de Freitas; pero Freitas decía que los jueces no pueden declarar otra nulidad de los actos jurídicos que las que en el código \textbf{expresamente} se establezcan. Vélez Sarsfield eliminó deliberadamente la expresión «expresamente».
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el texto transcripto se atribuye al art. 18, pero luego se mencionan los antiguos arts. 1037 y 18 con contenidos distintos)
+\begin{articulo}{Art. 18 (antiguo Código Civil, redacción de Vélez Sarsfield)}
+«Los jueces no pueden declarar otra nulidad de los actos jurídicos que las que en este código se establecen.» (Sin la palabra «expresamente» que traía la fuente de Freitas.)
+\end{articulo}
+
+\begin{note}
+En los apuntes originales, el texto transcripto se atribuye al art.~18 del antiguo Código Civil. Más adelante, al referirse a las normas que el nuevo Código no reemplazó por otras similares, se mencionan los antiguos arts.~1037 y 18, y al art.~18 se le atribuye otro contenido (los actos prohibidos por las leyes son de ningún valor, si la ley no designa otro efecto para el caso de contravención). Se conserva la atribución numérica tal como figura en las notas.
+\end{note}
+
+Esto dio lugar a una corriente doctrinaria muy importante, sostenida mayoritariamente, según la cual podían declararse tanto las nulidades expresas como las implícitas. Se señalaba, para reforzar esto, que el artículo 18 del código anterior establecía que los actos prohibidos por las leyes son de ningún valor, si la ley no designa otro efecto para el caso de contravención: si se contraviene un acto que está prohibido por la ley, o que tiene un defecto, la consecuencia es que no tiene ningún valor, es decir, la nulidad. La doctrina, y se menciona a Llambías, entendió que el código no impedía que los jueces dispusieran nulidades implícitas.
+
+En el nuevo Código, los artículos que reemplazaban al 1037 y al 18 no fueron sustituidos por normas similares. De hecho, en el proyecto de reforma del CCCN presentado en 2018, en el cual una comisión presidida por el doctor Rivera proponía el retorno de un artículo similar al 18. En la doctrina se entiende que las nulidades pueden encontrarse en forma expresa o implícita.
+
+\begin{important}
+El juez \textbf{no puede inventar nulidades}: el límite es siempre la ley, porque el intérprete se mueve en los términos que la ley le da y debe respetarla como fuente principal. La nulidad que se declare debe estar realmente, indudablemente, implícita en la ley; por ejemplo, cuando el objeto está prohibido, algo que surge implícito de la ley.
+\end{important}
+
+\section{Articulación de la nulidad por vía de acción o de excepción}
+
+Entre las disposiciones generales, el artículo 383 establece que la nulidad puede argüirse por vía de acción o de excepción, y que en todos los casos debe sustanciarse.
+
+\begin{articulo}{Art. 383 CCCN --- Articulación}
+«La nulidad puede argüirse por vía de acción u oponerse como excepción. En todos los casos debe sustanciarse.»
+\end{articulo}
+
+\begin{example}{menor de edad que vende un cuadro}
+Una persona menor de edad, de doce años, hereda un cuadro famoso y decide venderlo: lo publica en una página web de ventas y lo vende muy mal. Los compradores pretenden hacer valer el acto e intiman a que se entregue el cuadro. Los padres se presentan diciendo que la venta fue nula porque se hizo sin participación de los representantes legales. Es una nulidad que se hace valer \textbf{por vía de excepción}: la excepción es una defensa (término técnico que indica una defensa procesal) que se opone cuando una parte intenta hacer cumplir el acto.
+
+También puede hacerse valer \textbf{por vía de acción}: si el menor entregó el cuadro y los padres se enteran e inician una acción de nulidad, pueden lograr la restitución del cuadro como efecto de la condena.
+\end{example}
+
+La exigencia de que en todos los casos deba \textbf{sustanciarse} es una novedad del Código. Sustanciar indica que debe producirse prueba, que debe ofrecerse a todas las partes la posibilidad de defensa y que debe haber contradicción (argumentos de una parte y réplicas de la otra), porque es una defensa de fondo, que debe ser invocada y será resuelta en el momento de la sentencia definitiva.
+
+El Código no dice nada sobre un punto: la posibilidad de oponer la excepción de nulidad es \textbf{imprescriptible}. En general la doctrina (tanto Rivera como Bueres) sostiene que es así. Si la persona menor de edad que vendió el cuadro no hace nada y la otra parte acciona para el cumplimiento, la excepción de nulidad es imprescriptible. Del mismo modo, frente a un acto de objeto ilícito o con un defecto de este tipo, siempre existe la posibilidad de oponer la defensa por vía de excepción.
+
+\section{Conversión del acto jurídico}
+\label{sec:conversion}
+
+El acto nulo puede convertirse en otro válido cuyos requisitos esenciales satisfaga, si el fin práctico perseguido por las partes permite suponer que ellas lo habrían querido si hubiesen previsto la nulidad.
+
+\begin{articulo}{Art. 384 CCCN --- Conversión}
+«El acto nulo puede convertirse en otro diferente válido cuyos requisitos esenciales satisfaga, si el fin práctico perseguido por las partes permite suponer que ellas lo habrían querido si hubiesen previsto la nulidad.»
+\end{articulo}
+
+El acto jurídico viciado es, en principio, inválido y por lo tanto no produce efectos; pero si reúne los requisitos de otro acto, se convierte en ese otro acto. Esto se vincula con el \textbf{principio de conservación de los actos jurídicos}, principio general del derecho civil en estos aspectos: la idea de que la nulidad debe ser una \textbf{última ratio}, un recurso extremo, y de que siempre debe procurarse hacer valer los actos jurídicos (lo que se retoma al estudiar las nulidades parciales y totales, sección~\ref{sec:totalparcial}).
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se anuncian dos variantes de la conversión según la doctrina, pero sólo se desarrolla la variante subjetiva)
+La doctrina menciona dos variantes de la conversión (Tobías). La \textbf{variante subjetiva} tiene en cuenta la finalidad de las partes: qué fin perseguían.
+
+\begin{example}{boleto de compraventa}
+El boleto de compraventa de un inmueble no es válido para producir el efecto de compraventa, pero sí produce el efecto de la obligación de escriturar, que es el fin práctico que las partes perseguían; entonces el acto jurídico se convierte.
+\end{example}
+
+\section{El acto jurídico indirecto}
+
+El acto jurídico indirecto es un supuesto especial: el acto celebrado para obtener un resultado que es propio de los efectos de otro acto es válido, si no se otorga para eludir una prohibición de la ley o para perjudicar a un tercero.
+
+\begin{articulo}{Art. 385 CCCN --- Actos indirectos}
+«Un acto jurídico celebrado para obtener un resultado que es propio de los efectos de otro acto, es válido, si no se otorga para eludir una prohibición de la ley o para perjudicar a un tercero.»
+\end{articulo}
+
+En el acto indirecto se persigue un resultado a través de otro acto: se usa una técnica para obtener un resultado que es propio de los efectos de otro.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la redacción del ejemplo de donación y dación en pago es confusa)
+\begin{example}{donación y dación en pago}
+Se realiza una donación con la finalidad de dar en pago una deuda anterior. Si la dación en pago es el acto jurídico que permite obtener el resultado del otro acto realizado (la donación), pero en realidad se estaba dando en pago por el cumplimiento de una obligación, se trata de un supuesto especial dentro de las normas de ineficacia, útil para entender la lógica de funcionamiento de la eficacia de los actos.
+\end{example}
+
+Con esto se cierra la primera parte del tema: el concepto de ineficacia, su clasificación, su significación y, entre las ineficacias, el supuesto de invalidez más importante, la nulidad: su concepto, sus elementos y las disposiciones generales (artículos 382 a 385). Los capítulos siguientes tratan la clasificación de las nulidades, sus efectos, la confirmación y la inoponibilidad.
+
+\clearpage
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}QW@{}}
+\cornellhead \endfirsthead
+\cornellhead \endhead
+\bottomrule \endfoot
+
+\cornellrow{¿Qué es la nulidad?}{Sanción legal que priva a un acto jurídico de sus efectos propios como consecuencia de la existencia de un vicio concomitante con la celebración del acto. El vicio debe recaer en el sujeto, el objeto, la forma o la causa, y debe ser originario, es decir, estar presente en el momento de la celebración; si es posterior, se trata de ineficacia sobreviniente. El efecto propio de la nulidad es que las cosas vuelvan al estado anterior.}
+
+\cornellrow{¿Puede haber nulidades no escritas en la ley?}{Sí, según la doctrina, las nulidades pueden encontrarse en forma expresa o implícita. La cuestión estaba abierta ya en el Código de Vélez, que eliminó la palabra «expresamente» de su fuente (Freitas). El juez no puede inventar nulidades: la nulidad declarada debe estar indudablemente implícita en la ley.}
+
+\cornellrow{¿Cómo se hace valer la nulidad en un juicio?}{Por vía de acción o por vía de excepción (art.~383 CCCN). En todos los casos debe sustanciarse: debe producirse prueba y garantizarse la contradicción, porque es una defensa de fondo que se resuelve en la sentencia definitiva. La doctrina sostiene que la excepción de nulidad es imprescriptible.}
+
+\cornellrow{¿Puede un acto nulo transformarse en otro válido?}{Sí, por conversión (art.~384 CCCN): el acto nulo puede convertirse en otro diferente válido cuyos requisitos esenciales satisfaga, si el fin práctico perseguido por las partes permite suponer que lo habrían querido de haber previsto la nulidad. Responde al principio de conservación de los actos jurídicos. Ejemplo: el boleto de compraventa de inmueble no produce el efecto de compraventa, pero sí la obligación de escriturar.}
+
+\cornellrow{¿Qué es un acto jurídico indirecto?}{Es el acto celebrado para obtener un resultado propio de los efectos de otro acto. Es válido si no se otorga para eludir una prohibición de la ley o para perjudicar a un tercero (art.~385 CCCN).}
+
+\cornellresumen{La nulidad es una sanción legal originada en la ley que priva al acto de sus efectos propios por un vicio originario en alguno de sus elementos. Puede articularse por acción o excepción (art.~383), debe sustanciarse y las nulidades pueden ser expresas o implícitas, sin que el juez pueda inventarlas. Por el principio de conservación, el acto nulo puede convertirse en otro válido (art.~384), y el acto indirecto es válido salvo que eluda una prohibición legal o perjudique a un tercero (art.~385).}
+
+\end{longtable}
+
+%==============================================================
+% CAPÍTULO 3
+%==============================================================
+\chapter[Clasificación de las nulidades]{Clasificación de las nulidades}
+
+\section{Las cuatro clasificaciones}
+
+Las nulidades tienen cuatro grandes clasificaciones en el Código Civil y Comercial:
+
+\begin{enumerate}
+    \item \textbf{Nulidad absoluta y relativa.}
+    \item \textbf{Nulidad total y parcial.} Ambas clasificaciones están presentes, con sus respectivas secciones, en el Capítulo 9 del Título Cuarto del Libro Primero.
+    \item \textbf{Nulidad manifiesta y no manifiesta.} Está presente a lo largo del Código, aunque no con una sección propia.
+    \item \textbf{Actos nulos y anulables.} Categoría que no fue receptada por el CCCN, pero que sí estaba en el código anterior y que, sin embargo, de alguna manera subsiste en algún lugar (sección~\ref{sec:nulosanulables}).
+\end{enumerate}
+
+\section{Nulidad absoluta y relativa: criterio de distinción}
+
+El criterio de distinción es el siguiente: son de \textbf{nulidad absoluta} los actos que contravienen el orden público, la moral o las buenas costumbres; son de \textbf{nulidad relativa} los actos a los cuales la ley impone esta sanción sólo en protección del interés de ciertas personas.
+
+\begin{articulo}{Art. 386 CCCN --- Criterio de distinción}
+«Son de nulidad absoluta los actos que contravienen el orden público, la moral o las buenas costumbres. Son de nulidad relativa los actos a los cuales la ley impone esta sanción sólo en protección del interés de ciertas personas.»
+\end{articulo}
+
+El criterio se apoya, sobre todo en su segundo punto, en que la nulidad relativa protege el interés de ciertas personas.
+
+\begin{example}{nulidad relativa: menor de edad}
+Una persona menor de edad, de doce años, hereda un cuadro famoso y lo vende, sin participación de sus padres o representantes legales. La protección que la ley da por no tener capacidad de ejercicio, y por lo tanto por una falla del sujeto, está puesta en interés del menor de edad; por eso es una nulidad relativa. Si el interés del menor sale fortalecido (por ejemplo, el cuadro valía cinco mil dólares y lo vendió a siete mil, en un momento del mercado en que los cuadros estaban muy deprimidos), los padres pueden enterarse y confirmar el acto. Si fuera nulidad absoluta, los padres no podrían confirmar, porque estaría en juego un interés general; como el interés en juego es relativo y queda protegido, la nulidad es relativa.
+\end{example}
+
+La nulidad relativa puede ser confirmada, pero, como está puesta en beneficio de una de las partes, no puede ser invocada de oficio. La nulidad absoluta, en cambio, afecta el interés general, el orden público, la moral y las buenas costumbres, y por lo tanto es mayor el rigor de la sanción: no se puede confirmar.
+
+\begin{example}{nulidad absoluta: venta de órganos}
+Un acto de objeto ilícito, como la venta de un órgano (por ejemplo, un riñón), es claramente contrario a la moral y es de nulidad absoluta. Ni aunque convenga al mejor interés del vendedor y del receptor se podría confirmar ese acto, porque afecta el interés general y no se protege un interés particular. La venta de órganos se prohíbe por ser un objeto contrario a la ley y a la moral.
+\end{example}
+
+\section{Nulidad absoluta y relativa: casos}
+
+El Código no contiene una enumeración de qué casos corresponden a una u otra clase de nulidad. La doctrina, en general, ubica los supuestos de la siguiente manera.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la enumeración de casos de nulidad relativa y la mención de la simulación cuando está afectado el objeto)
+\textbf{Son de nulidad relativa:}
+\begin{itemize}
+    \item la falta de capacidad de ejercicio del sujeto;
+    \item los vicios de la voluntad que afectan la intención: error, dolo y violencia;
+    \item la falta de discernimiento, porque también falla el sujeto;
+    \item la lesión, que protege contra la explotación;
+    \item la simulación relativa (cuando está afectado el objeto), porque estas figuras están puestas en beneficio de la parte.
+\end{itemize}
+
+\begin{example}{simulación lícita}
+Se simula un acto con un hermano: se simula que se le vende un auto, cuando en realidad no se le vende, sin violar la ley ni perjudicar a terceros. Es una simulación lícita, relativa: el acto puede ser confirmado, puede prescribir y puede estar puesta en beneficio de quien la realizó, pero el acto es nulo porque es simulado.
+\end{example}
+
+\textbf{Son de nulidad absoluta:}
+\begin{itemize}
+    \item las incapacidades de derecho, por ejemplo las inhabilidades para contratar del artículo~1002 (el juez respecto de los bienes que están en litigio en su juzgado, o el funcionario que tiene a su cargo la administración de esos bienes, en cuanto contrata sobre ellos);
+    \item los supuestos de objeto ilícito o contrario al orden público, a la moral y a las buenas costumbres;
+    \item los de causa ilícita;
+    \item las violaciones a la forma en general.
+\end{itemize}
+
+Los defectos en el objeto, en la causa y en la forma son, en general, de nulidad absoluta, en la medida en que sean contrarios a la moral, ilícitos o con algún tipo de afectación del orden público.
+
+\begin{articulo}{Art. 1002 CCCN --- Inhabilidades especiales}
+Prohíbe contratar, entre otros, al juez respecto de bienes relacionados con procesos en que interviene, y a los funcionarios públicos respecto de bienes confiados a su administración.
+\end{articulo}
+
+\section{Nulidad absoluta y relativa: consecuencias}
+
+Las consecuencias de cada tipo de nulidad están reguladas en los artículos 387 y 388.
+
+\begin{articulo}{Art. 387 CCCN --- Nulidad absoluta, consecuencias}
+«La nulidad absoluta puede declararse por el juez, aun sin mediar petición de parte, si es manifiesta en el momento de dictar sentencia. Puede alegarse por el Ministerio Público y por cualquier interesado, excepto por la parte que invocó la nulidad si conocía el vicio o debía conocerlo. No puede sanearse por la confirmación del acto ni por la prescripción.»
+\end{articulo}
+
+\begin{articulo}{Art. 388 CCCN --- Nulidad relativa, consecuencias}
+«La nulidad relativa sólo puede declararse a instancia de las personas en cuyo beneficio se establece. Excepcionalmente puede invocarla la otra parte, si es de buena fe y ha experimentado un perjuicio importante. Puede sanearse por la confirmación del acto y por la prescripción de la acción. La parte que obró con ausencia de capacidad de ejercicio para el acto no puede alegarla si obró con dolo.»
+\end{articulo}
+
+\subsection{Declaración de oficio}
+
+La \textbf{nulidad absoluta} puede ser declarada por el juez aun sin petición de parte, si es manifiesta en el momento de dictar sentencia.
+
+\begin{example}{venta de influencias}
+Un político vende influencias a una empresa que va a favorecer sus intereses, y la empresa no le paga; el político demanda a la empresa (en la práctica nadie lo plantea tan abiertamente, sino de manera subrepticia, pero en el fondo es una venta de influencias). La empresa contesta la demanda y el juez advierte que se trata de una venta de influencias y anula el acto de oficio. Ninguna de las partes pidió la nulidad, pero el juez, detectando la situación, la declara de oficio. Se trata del campo civil; la solución penal, que podría darse por otra vía por tratarse eventualmente de un delito, es un aspecto aparte.
+\end{example}
+
+La \textbf{nulidad relativa} no puede ser declarada de oficio por el juez, porque está en juego el interés de las partes y son ellas quienes deben alegarla: si la parte no reclama esta nulidad, el juez no puede intervenir.
+
+\subsection{Legitimación}
+
+La nulidad absoluta puede alegarse por el Ministerio Público o por cualquier interesado, porque está en juego el interés general. La excepción es la parte que fue causante del acto de objeto inmoral: no puede invocarse la propia torpeza.
+
+La nulidad relativa, en cambio, sólo puede ser pedida por la parte en cuyo beneficio se establece. La regla admite dos excepciones:
+
+\begin{itemize}
+    \item \textbf{La otra parte} puede alegarla excepcionalmente, si es de buena fe y ha experimentado un perjuicio importante.
+    \item \textbf{La parte que obró con ausencia de capacidad de ejercicio} no puede alegarla si obró con dolo (por ejemplo, ocultando la falta de capacidad).
+\end{itemize}
+
+\begin{example}{legitimación excepcional de la otra parte}
+El comprador del cuadro, un galerista famoso, se da cuenta de buena fe de que compró un cuadro a un menor y, como no quiere perjudicar su reputación, inicia una acción de buena fe, sosteniendo que está de acuerdo con que el acto fue nulo y que además le está perjudicando porque afecta su reputación.
+\end{example}
+
+Se trata de dos excepciones al principio: la parte de mala fe (que obró con dolo) no puede pedir la nulidad, y, en sentido inverso, la otra parte, que en principio no puede pedirla, sí puede hacerlo si obró de buena fe y experimentó un perjuicio. Ambas son una novedad respecto del código anterior, que no las contenía.
+
+\subsection{Confirmación y prescripción}
+
+\textbf{Confirmación.} La nulidad absoluta no puede confirmarse; la relativa sí. La confirmación es otro acto jurídico por el cual las partes sanean el vicio, para lo cual se necesita voluntad de confirmar, que se haya subsanado el vicio y que se respete la misma forma (véase el capítulo~\ref{cap:confirmacion}). Esto se relaciona con el criterio de distinción: la nulidad relativa protege el interés particular.
+
+\textbf{Prescripción.} La nulidad absoluta no puede sanearse por prescripción; la nulidad relativa sí prescribe: si no se ejerce la acción durante un determinado tiempo, esta prescribe. La nulidad absoluta es imprescriptible.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la explicación del ejemplo del testamento presenta una redacción confusa)
+\begin{example}{vicio de forma en un testamento}
+Un vicio de forma en un testamento hace que ese testamento sea inválido para siempre: no puede ratificarse ni confirmarse por el paso del tiempo, porque la nulidad no prescribe.
+\end{example}
+
+\subsection*{Cuadro comparativo}
+
+\begin{table}[H]
+\centering
+\caption{Nulidad absoluta y nulidad relativa}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.19\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Criterio} & \textbf{Nulidad absoluta} & \textbf{Nulidad relativa} \\
+\midrule
+Fundamento & Contraviene el orden público, la moral o las buenas costumbres & Protege el interés de ciertas personas determinadas \\
+\addlinespace
+Declaración de oficio & Puede declararla el juez de oficio, si es manifiesta & No puede declararse de oficio \\
+\addlinespace
+Legitimados & Ministerio Público o cualquier interesado (salvo quien invocó su propia torpeza) & Sólo la parte en cuyo beneficio se establece (excepcionalmente, la otra parte de buena fe y con perjuicio importante) \\
+\addlinespace
+Confirmación & No puede confirmarse & Puede confirmarse \\
+\addlinespace
+Prescripción & Imprescriptible & Prescriptible \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Nulidad total y parcial}
+\label{sec:totalparcial}
+
+La nulidad total y parcial es la segunda clasificación que aparece explícitamente en el Código, en el artículo 389, un único artículo que contiene ambos supuestos, con una definición y las consecuencias.
+
+\begin{articulo}{Art. 389 CCCN --- Nulidad total y parcial}
+«Nulidad total es la que se extiende a todo el acto. Nulidad parcial es la que afecta a una o varias de sus disposiciones. La nulidad de una disposición no afecta a las otras disposiciones válidas, si son separables. Si no son separables porque el acto no puede subsistir sin cumplir su finalidad, se declara la nulidad total. En la nulidad parcial, en caso de ser necesario, el juez debe integrar el acto de acuerdo a su naturaleza y los intereses que razonablemente puedan considerarse perseguidos por las partes.»
+\end{articulo}
+
+\begin{important}
+Es habitual confundir «total» con «absoluta» y «parcial» con «relativa»: hay cierta familiaridad entre las palabras, pero son clasificaciones que deben distinguirse claramente. Lo «total» o «parcial» hace a lo que abarca la totalidad de las cláusulas de un acto.
+\end{important}
+
+A veces los actos son muy complejos y tienen muchas disposiciones. Que una parte sea nula (porque el objeto es inmoral, porque está prohibido por la ley, porque es un hecho imposible o por alguna de las razones ya vistas) puede ser una situación separable: se puede separar esa cláusula del resto del acto, y entonces hay \textbf{nulidad parcial}, porque afecta a una o varias de las disposiciones. Cuando es imposible separar y la nulidad afecta a todo el acto, se trata de \textbf{nulidad total}.
+
+El \textbf{criterio decisivo} es la \textbf{separabilidad} de las disposiciones: si no se pueden separar, la nulidad es total (ante la duda, se considera total); si se pueden separar, se opta por la parcial. Esto se vincula con el principio de conservación de los actos (sección~\ref{sec:conversion}).
+
+\subsection*{La integración por el juez y sus críticas}
+
+El Código agrega una atribución del juez que ha recibido críticas de la doctrina, especialmente de Rivera, quien en el proyecto de reforma de 2018 propone eliminar este párrafo. En la nulidad parcial, aquella que afecta alguna cláusula, el juez debe \textbf{integrar el acto}: esto significa incorporar nuevas cláusulas para reemplazar las que se cayeron, considerando la naturaleza del acto y lo que razonablemente pudo haber sido perseguido por las partes.
+
+Las críticas señaladas son las siguientes: las partes podrían ponerse de acuerdo para redactar lo que falta, y el juez no debería inmiscuirse en declarar y redactar el contenido de un acto; si las disposiciones son separables, no se afecta a las otras y el acto puede cumplirse perfectamente, y a lo sumo las partes, en ejercicio de la libertad de contratación (una libertad básica de autonomía), podrán determinar con qué alcance quieren renegociar o pactar lo que salió del contrato. Se critica así que el artículo 389 otorgue al juez la atribución de integrar el acto de acuerdo con su naturaleza y con los intereses perseguidos por las partes, es decir, de interpretar cuál es la naturaleza del acto y cuáles son esos intereses.
+
+Esta atribución del juez no estaba en el código anterior: es una novedad.
+
+\section{Nulidad manifiesta y no manifiesta}
+
+La nulidad manifiesta y no manifiesta no se encuentra como categoría en una sección específica del Código, pero está presente. Se vio en el artículo 387: la nulidad absoluta puede declararse por el juez aun sin petición de parte, «si es manifiesta en el momento de dictar sentencia».
+
+«Manifiesto» es algo \textbf{ostensible}, algo que salta a la vista sin necesidad de demasiada investigación. El carácter manifiesto se vincula con la ostensibilidad del vicio:
+
+\begin{itemize}
+    \item si el vicio es evidente a simple vista, es una \textbf{nulidad manifiesta};
+    \item si hace falta indagar de alguna manera, es una \textbf{nulidad no manifiesta}.
+\end{itemize}
+
+Esta clasificación está presente a lo largo del articulado del Código, si bien no tiene un tratamiento sistemático; es elaborada por la doctrina.
+
+\section{Actos nulos y anulables}
+\label{sec:nulosanulables}
+
+La última clasificación es la de actos nulos y anulables, que estaba en el Código de Vélez. Tenía relevancia práctica: según el acto fuera nulo o anulable, había distintos efectos, especialmente en materia de nulidad respecto de terceros.
+
+\begin{itemize}
+    \item Era \textbf{nulo} cuando el vicio era rígido, uniforme, inflexible, no susceptible de grados y que no requiere investigación judicial. Ejemplo: el acto de una persona menor de edad de doce años que hace un contrato de importancia; no tiene capacidad para hacerlo, y sólo hay que investigar que tenga esa edad y que no haya intervenido nadie para suplir su capacidad; queda claramente establecido y ese acto es nulo.
+    \item Era \textbf{anulable} cuando era susceptible de ser anulado: se presumía que era válido y había que ver si realmente había un vicio. Es un vicio flexible, susceptible de grados, que requiere una investigación judicial. El caso típico, en los vicios de la voluntad, es el error o el dolo: hay que investigar si hubo error, y el error es susceptible de grados (puede ser más o menos error); lo mismo el dolo.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Actos nulos y anulables en el Código de Vélez}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Criterio} & \textbf{Acto nulo} & \textbf{Acto anulable} \\
+\midrule
+Naturaleza del vicio & Rígido, uniforme, inflexible, no susceptible de grados & Flexible, susceptible de grados \\
+\addlinespace
+Investigación judicial & No la requiere & La requiere \\
+\addlinespace
+Ejemplo & Contrato de importancia celebrado por un menor de doce años & Error o dolo como vicios de la voluntad \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+La clasificación de Vélez (nulos y anulables) es \textbf{independiente} de la de nulidad absoluta y relativa: el acto del menor de doce años podía ser de nulidad absoluta o de nulidad relativa. No deben confundirse las clasificaciones.
+\end{important}
+
+\subsection*{Su eliminación en el Código Civil y Comercial}
+
+El CCCN elimina esta distinción. Algunos doctrinarios critican esa eliminación, por motivos que se consideran válidos.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el argumento sobre la valoración del vicio se transcribe con una enumeración confusa: «profesión, descripción, orden moral, seguridad, orden jurídico, orden público»)
+La crítica sostiene que es importante la valoración del vicio, es decir, saber si un acto es nulo por sí o es anulable (profesión, descripción, orden moral, seguridad, orden jurídico, orden público). Sin embargo, a los efectos prácticos casi no existe ya diferencia entre nulo y anulable, y esto fue lo que primó en el Código para sostener la eliminación de la categoría.
+
+Sin embargo, la idea todavía está presente de alguna manera, y dos supuestos permiten entreverla:
+
+\begin{itemize}
+    \item \textbf{Restricción de la capacidad.} Cuando hay una sentencia de restricción de la capacidad (por ejemplo, por una alteración mental), el juez puede establecer que, para vender su inmueble, la persona debe contar con el apoyo de su hermano. Se impone una restricción, hay una sentencia y se inscribe. Los actos posteriores a la sentencia son nulos si no se cumple con lo que ella dispone (el apoyo). Los actos anteriores a la sentencia pueden ser anulados, dice el Código, cuando la situación sea manifiesta, cuando haya mala fe o cuando sean a título gratuito. Esa posibilidad de ser anulado torna a ese acto «anulable» en el fondo, aunque el Código no lo diga expresamente.
+    \item \textbf{Responsabilidad parental.} Los actos de los progenitores en representación de sus hijos se declaran nulos si perjudican al hijo: nuevamente el acto en principio parece válido, pero puede ser declarado nulo si perjudica al hijo.
+\end{itemize}
+
+De todos modos, la categoría de «acto nulo y anulable» no está presente en el Código; son discusiones más doctrinarias, y habrá que ver en cada caso cómo se da la realidad judicial.
+
+Con esto concluye el estudio de la clasificación de la nulidad: nulidad absoluta y relativa (criterio de distinción, casos y consecuencias); nulidad total y parcial (que depende de que las cláusulas sean o no separables, y de la potestad del juez de integrar el acto); nulidad manifiesta y no manifiesta; y actos nulos y anulables, distinción del Código de Vélez que no está en el nuevo Código.
+
+\clearpage
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}QW@{}}
+\cornellhead \endfirsthead
+\cornellhead \endhead
+\bottomrule \endfoot
+
+\cornellrow{¿Cómo se clasifican las nulidades?}{En cuatro clasificaciones: absoluta y relativa; total y parcial; manifiesta y no manifiesta; y actos nulos y anulables. Las dos primeras tienen sección propia en el Capítulo 9; la tercera está presente a lo largo del Código; la cuarta no fue receptada por el CCCN aunque, de algún modo, subsiste.}
+
+\cornellrow{¿Qué distingue a la nulidad absoluta de la relativa?}{La absoluta se da en los actos que contravienen el orden público, la moral o las buenas costumbres; la relativa, en los actos a los que la ley impone esa sanción sólo en protección del interés de ciertas personas (art.~386 CCCN). Son de nulidad relativa, por ejemplo, la falta de capacidad de ejercicio, los vicios de la voluntad, la lesión y la simulación relativa; son de nulidad absoluta, por ejemplo, las incapacidades de derecho, el objeto o la causa ilícitos y las violaciones a la forma.}
+
+\cornellrow{¿Qué consecuencias trae cada tipo de nulidad?}{La absoluta puede declararse de oficio si es manifiesta, la alega el Ministerio Público o cualquier interesado (salvo quien invoca su propia torpeza), no puede confirmarse ni prescribe (art.~387). La relativa sólo se declara a instancia de la persona en cuyo beneficio se establece (excepcionalmente, la otra parte de buena fe con perjuicio importante), puede confirmarse y prescribe; quien obró con dolo ocultando su falta de capacidad no puede alegarla (art.~388).}
+
+\cornellrow{¿Cuándo la nulidad afecta a todo el acto?}{Cuando las disposiciones no son separables porque el acto no puede subsistir sin cumplir su finalidad: nulidad total. Si son separables, la nulidad es parcial y no afecta a las otras disposiciones válidas; en ese caso el juez debe integrar el acto según su naturaleza y los intereses razonablemente perseguidos por las partes (art.~389), atribución criticada por la doctrina. No debe confundirse total/parcial con absoluta/relativa.}
+
+\cornellrow{¿Qué significa que una nulidad sea manifiesta?}{Que el vicio es ostensible, evidente a simple vista, sin necesidad de mayor investigación. Si hace falta indagar, la nulidad es no manifiesta. Es una clasificación elaborada por la doctrina, presente a lo largo del articulado (por ejemplo, en el art.~387).}
+
+\cornellrow{¿Sigue vigente la distinción entre acto nulo y anulable?}{No está en el CCCN, que la eliminó; era propia del Código de Vélez (nulo: vicio rígido y sin necesidad de investigación; anulable: vicio flexible, susceptible de grados, que requiere investigación judicial). La idea subsiste implícitamente en las normas sobre restricción de la capacidad y sobre responsabilidad parental, donde ciertos actos pueden ser anulados según las circunstancias.}
+
+\cornellresumen{Las nulidades se clasifican en absoluta y relativa (según se proteja el interés general o el de ciertas personas, con consecuencias distintas en declaración de oficio, legitimación, confirmación y prescripción), total y parcial (según la separabilidad de las disposiciones), manifiesta y no manifiesta (según la ostensibilidad del vicio) y, en el Código de Vélez, nulos y anulables, categoría eliminada por el CCCN.}
+
+\end{longtable}
+
+%==============================================================
+% CAPÍTULO 4
+%==============================================================
+\chapter[Efectos entre las partes]{Efectos de la nulidad entre las partes}
+
+\section{La regla general del artículo 390}
+
+La nulidad es la sanción legal que priva al acto jurídico de sus efectos propios por la existencia de un vicio concomitante al momento de la celebración. Lo propio de la nulidad es esa privación de efectos propios del acto. Es una sanción típicamente civil, es decir, se está en el campo del derecho civil.
+
+Se distinguen los efectos \textbf{entre las partes} de los efectos \textbf{frente a terceros}. Entre las partes, la nulidad produce que las cosas vuelvan al estado anterior; los efectos frente a terceros se estudian en el capítulo siguiente.
+
+\begin{example}{efectos entre las partes}
+Una persona vende su casa a raíz de una maniobra engañosa que configura dolo. La otra parte le dice que en el terreno donde está ubicada su casa se va a construir una cárcel; el vendedor, creyendo que habrá inseguridad, se apura a vender, cuando en realidad no había ningún proyecto, y logra que venda más barato, con un perjuicio real. Hubo un engaño, dolo, que da lugar a la nulidad. El vendedor inicia la acción y busca volver las cosas al estado anterior: debe restituir lo recibido (supongamos que la casa valía cien mil dólares y le pagaron sesenta mil) y la otra parte debe restituir el inmueble. El juez dicta la sentencia y las cosas vuelven al estado anterior: el vendedor restituye el dinero y el comprador restituye el inmueble.
+\end{example}
+
+La nulidad también puede producir efectos respecto de terceros: si el comprador transfiere a su vez el inmueble a un tercero, ese tercero es un \textbf{subadquirente} respecto del primer acto. La pregunta es hasta qué punto la nulidad declarada del primer acto afecta al subadquirente (capítulo~\ref{cap:terceros}).
+
+Los efectos entre las partes tienen una regla general en el artículo 390 del Código. El nuevo Código soluciona en este punto una discusión que existía en el Código de Vélez en torno a los artículos 1053 y 1054, de redacción muy criticada: distinguían según el acto fuera bilateral o unilateral y, aunque remitían a la buena o mala fe, el artículo 1054 hacía una diferencia respecto de ciertos actos que en los hechos desdibujaba las reglas de la buena o mala fe, lo que dio lugar a muchas interpretaciones. El nuevo Código lo soluciona estableciendo una regla general.
+
+\begin{articulo}{Art. 390 CCCN --- Efectos de la nulidad entre las partes}
+«La nulidad pronunciada por los jueces vuelve las cosas al mismo estado en que se hallaban antes del acto declarado nulo y obliga a las partes a restituirse mutuamente lo que han recibido. Estas restituciones se rigen por las disposiciones relativas a la buena o mala fe según sea el caso, de acuerdo a lo dispuesto en las normas del Capítulo 3 del Título II del Libro Cuarto.»
+\end{articulo}
+
+Del artículo 390 se desprenden tres aspectos:
+
+\begin{enumerate}
+    \item \textbf{La nulidad vuelve las cosas al estado anterior.} Al tener como principal finalidad evitar que el acto produzca sus efectos propios, es un principio general y bastante lógico.
+    \item \textbf{Obliga a las partes a restituirse mutuamente lo que han recibido.} Quien recibió dinero debe devolverlo, y a su vez puede reclamar que le restituyan la propiedad del inmueble. Además puede reclamar daños y perjuicios (sección~\ref{sec:responsabilidad}), pero en principio reclama lo que debe restituirse.
+    \item \textbf{Las restituciones se rigen por las disposiciones relativas a la buena o mala fe.} El artículo 390 remite al Libro Cuarto (derechos reales), Título II (posesión), Capítulo 3, que establece los deberes de restitución, de buena o mala fe, en relación con los frutos, los productos, las mejoras y la destrucción de la cosa (artículos 1932 y siguientes).
+\end{enumerate}
+
+La obligación de restituir opera en la medida en que el acto haya sido ejecutado: si nunca se entregó nada (la casa no fue entregada y la otra parte no entregó el dinero) y el acto se declara nulo, no habrá nada que restituir. Si el acto nunca fue ejecutado, no podrá ejecutarse, e incluso la nulidad se hará valer como una excepción.
+
+\section{Buena fe, mala fe y posesión viciosa}
+
+Las normas a las que remite el Código suponen considerar, en primer lugar, si la posesión es de buena fe, de mala fe o viciosa (un tipo agravado de mala fe); y, en segundo lugar, qué sucede con los frutos, los productos, la destrucción de la cosa y las mejoras.
+
+\subsection*{Buena fe}
+
+La buena fe está definida en el artículo 1918 y tiene dos aspectos: uno \textbf{objetivo}, que tiene que ver con el comportamiento leal entre las partes; y uno \textbf{subjetivo}: el sujeto de la relación posesoria es de buena fe si no conoce ni puede conocer que carece de derecho, es decir, cuando por un error de hecho esencial y excusable está persuadido de su legitimidad.
+
+\begin{articulo}{Art. 1918 CCCN --- Buena fe}
+«El sujeto de la relación de poder es de buena fe si no conoce ni puede conocer que carece de derecho, es decir, cuando por un error de hecho esencial y excusable está persuadido de su legitimidad.»
+\end{articulo}
+
+Aplicado al ejemplo del dolo: quien recibe el dinero por haber sido engañado lo recibe de buena fe; en cambio, quien engaña no tiene buena fe, porque sabe que mintió (hizo un engaño sobre la existencia de una supuesta obra que iba a desvalorizar la propiedad) para lograr que se contratara. Eso es dolo, un vicio de la voluntad que afecta a la intención.
+
+\subsection*{Mala fe}
+
+\begin{definition}{Mala fe}
+Se define por contrasentido: es de mala fe quien conoció o pudo conocer que carecía de derecho.
+\end{definition}
+
+\subsection*{Presunción de buena fe}
+
+\begin{articulo}{Art. 1919 CCCN --- Presunción de buena fe}
+«La relación de poder se presume de buena fe, a menos que exista prueba en contrario. La mala fe se presume en los siguientes casos: cuando el título es de nulidad manifiesta; cuando se adquiere de persona que habitualmente no hace tradición de esa clase de cosas y carece de medios para adquirirlas; cuando recae sobre ganado marcado o señalado, si el diseño fue registrado por otra persona.»
+\end{articulo}
+
+Siempre se presume la buena fe: se es inocente hasta que se pruebe lo contrario. Sin embargo, esta presunción se revierte, y se presume la mala fe, en los casos que establece el artículo 1919:
+
+\begin{itemize}
+    \item cuando hay una \textbf{nulidad manifiesta}, es decir, si es evidente que el título es nulo;
+    \item cuando se adquiere de una persona que habitualmente no hace tradición de esa clase de cosas y carece de medios para adquirirlas (por ejemplo, alguien que aparece vendiendo una cosa muy valiosa, de la cual habitualmente no se dedica a vender, y que además no tiene dinero suficiente para haberla adquirido);
+    \item cuando recae sobre \textbf{ganado marcado o señalado}: por la importancia del ganado en el país, tiene una protección especial, las marcas y señales, y esto hace presumir la mala fe.
+\end{itemize}
+
+\subsection*{Posesión viciosa}
+
+\begin{definition}{Posesión viciosa}
+Tipo agravado de mala fe, relevante en el artículo referido a la destrucción de la cosa. La posesión es viciosa cuando se trata de cosas muebles adquiridas por hurto, estafa o abuso de confianza; o cuando, tratándose de inmuebles, la posesión se obtuvo por violencia, clandestinidad o abuso de confianza.
+\end{definition}
+
+Estos son aspectos muy particulares que no hacen al estudio de este tema; se estudian en detalle en Derechos Reales.
+
+\section{Frutos y productos}
+
+Los frutos y los productos tienen regulaciones distintas.
+
+\begin{definition}{Fruto}
+Cosa que otra cosa produce de manera regular y periódica, sin disminución de su sustancia.
+\end{definition}
+
+\begin{definition}{Producto}
+Cosa que se extrae de otra con disminución o alteración de su sustancia.
+\end{definition}
+
+El Código distingue entre:
+
+\begin{itemize}
+    \item \textbf{Frutos percibidos:} los que han sido separados del objeto, por ejemplo los frutos de un árbol, o un fruto civil como los intereses, si están devengados y cobrados.
+    \item \textbf{Frutos pendientes:} los todavía no percibidos; por ejemplo, los devengados y no cobrados.
+\end{itemize}
+
+\begin{articulo}{Art. 1935 CCCN --- Frutos y productos}
+«La buena fe del poseedor debe existir en cada hecho de percepción de frutos. El poseedor de buena fe hace suyos los frutos percibidos y los naturales devengados no percibidos. El de mala fe debe restituir los percibidos y los que por su culpa dejó de percibir. Sea de buena o mala fe, debe restituir los productos que haya obtenido de la cosa. Los frutos pendientes corresponden a quien tiene derecho a la restitución de la cosa.»
+\end{articulo}
+
+La buena fe del poseedor debe existir en cada hecho de percepción: es una regla general. De allí resulta:
+
+\begin{itemize}
+    \item \textbf{Poseedor de buena fe:} hace suyos los frutos percibidos y los naturales devengados no percibidos; debe frutos desde que cesa la buena fe. No debe devolver, por ejemplo, los frutos del dinero, porque se supone que de buena fe los fue percibiendo y consumiendo. Debe sólo desde que se inicia la demanda, porque ahí deja de estar de buena fe y debe ponerse a disposición de la otra parte respecto de la suma recibida.
+    \item \textbf{Poseedor de mala fe:} debe restituir todos los frutos percibidos y los que por su culpa dejó de percibir, desde el origen; es más gravoso. Debe intereses desde el momento mismo en que recibió la cosa.
+\end{itemize}
+
+\begin{example}{restitución con frutos}
+Quien recibió el inmueble de mala fe debe la renta de ese inmueble desde el momento en que lo recibió. Si pasaron dos años, el inmueble debe devolverse con los frutos de esos dos años.
+\end{example}
+
+Los \textbf{frutos pendientes} van con la restitución de la cosa. Los \textbf{productos}, en cambio, deben restituirse siempre, haya habido buena o mala fe: quien los extrajo debe restituirlos, y rige después lo estudiado sobre obligaciones de dar cosas para restituir, que tiene una regulación específica en el Código.
+
+\section{Destrucción de la cosa}
+
+La destrucción de la cosa en poder de quien debe restituir plantea la duda de si debe indemnizarla quien es de buena fe, y también quien es de mala fe. Se resuelve en el artículo 1936.
+
+\begin{articulo}{Art. 1936 CCCN --- Responsabilidad por destrucción de la cosa}
+«El poseedor de buena fe no responde de la destrucción total o parcial de la cosa sino hasta la concurrencia del provecho subsistente. El de mala fe responde de la destrucción de la cosa, excepto que se hubiera producido igualmente de estar la cosa en poder de quien tiene derecho a su restitución. El que es de mala fe y posee de forma viciosa responde en todos los casos, aunque la destrucción se hubiera producido igualmente de estar la cosa en poder de quien tiene derecho a su restitución.»
+\end{articulo}
+
+\begin{table}[H]
+\centering
+\caption{Responsabilidad por la destrucción de la cosa (art.~1936 CCCN)}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.25\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Poseedor} & \textbf{Responsabilidad} \\
+\midrule
+De buena fe & En principio no responde, salvo por el provecho subsistente \\
+\addlinespace
+De mala fe & Responde, salvo que la destrucción se hubiera producido igualmente de estar la cosa en poder de quien tiene derecho a la restitución \\
+\addlinespace
+De mala fe con posesión viciosa & Responde siempre, aunque la destrucción se hubiera producido igualmente de estar la cosa en poder de quien tiene derecho a la restitución \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{destrucción parcial de una isla}
+Se trata de una isla en el Tigre y un aluvión destruye la isla en un cincuenta por ciento. Lo que queda subsistente debe ser restituido; el resto no, porque el poseedor era de buena fe.
+\end{example}
+
+\section{Mejoras}
+
+Las mejoras son lo que tiene mayores condimentos y mayor discusión; siempre hay que ver en tribunales cómo se realiza la valoración. El Código sistematiza en el artículo 1934 qué se entiende por mejora: hay cuatro tipos.
+
+\begin{articulo}{Art. 1934 CCCN --- Casos de mejoras}
+Define mejora de mero mantenimiento, mejora necesaria, mejora útil y mejora suntuaria.
+\end{articulo}
+
+\begin{itemize}
+    \item \textbf{Mejora de mero mantenimiento:} reparación de deterioros menores originados por el uso ordinario de la cosa. Por ejemplo, la reparación de una canilla que pierde: cosas muy menores, que se originan porque se usan ordinariamente. Aunque se conserven todos los comprobantes, estas mejoras no se pueden reclamar.
+    \item \textbf{Mejora necesaria:} de más entidad, es aquella cuya realización es indispensable para la conservación de la cosa. Por ejemplo, colocar una nueva capa de impermeabilizante en el techo para mantener la correcta conservación de la cosa y evitar humedades: no es de mero mantenimiento, sino necesaria.
+    \item \textbf{Mejora útil:} la que agrega un valor que beneficia a cualquier sujeto de la relación. Por ejemplo, se construye un ambiente más en una casa que tenía ochenta metros cuadrados y ahora tiene cien: mientras se tuvo la cosa, que ahora debe restituirse, se la mejoró ampliándola. No era de mero mantenimiento ni suntuaria.
+    \item \textbf{Mejora suntuaria:} de mero lujo, recreo o provecho exclusivo de quien la hizo. Por ejemplo, un jacuzzi exterior con un deck en la casa que ahora debe restituirse: es algo de lujo, de provecho exclusivo para quien lo hizo, no algo que todo el mundo quiera tener.
+\end{itemize}
+
+Cada tipo de mejora recibe una solución distinta, que el Código resuelve en el artículo 1938.
+
+\begin{articulo}{Art. 1938 CCCN --- Indemnización y pago de mejoras}
+No se pueden reclamar las mejoras de mero mantenimiento ni las suntuarias (aunque estas últimas pueden retirarse si no dañan la cosa); las mejoras necesarias se pueden reclamar, salvo que el poseedor sea de mala fe y hubiera obrado con culpa; las mejoras útiles se pueden reclamar hasta el mayor valor adquirido por la cosa; los acrecentamientos originados por hechos de la naturaleza no son indemnizables.
+\end{articulo}
+
+\begin{itemize}
+    \item \textbf{No se pueden reclamar} ni las de mero mantenimiento ni las suntuarias. Las suntuarias sí pueden retirarse si no dañan la cosa: no se puede pedir que se indemnice lo pagado por ellas, pero si no se daña la cosa, pueden retirarse (por ejemplo, llevarse el jacuzzi).
+    \item \textbf{Las necesarias se pueden reclamar,} salvo que el poseedor sea de mala fe y haya obrado con culpa (es decir, haya sido negligente).
+    \item \textbf{Las útiles se pueden reclamar,} pero en la medida del mayor valor adquirido por la cosa. La medida no es el gasto realizado: si se construyó una nueva ala de la casa, agregando veinte metros cuadrados, y para hacerlo se gastaron cinco mil dólares, no se reclama eso sino lo que haya aumentado el valor de la cosa (quizás aumentó más, quizás menos); se puede reclamar hasta el mayor valor adquirido por la cosa.
+    \item \textbf{Los acrecentamientos originados por hechos de la naturaleza no son indemnizables:} por ejemplo, si un aluvión agrega terreno a una isla en el Tigre, eso no genera que el poseedor pueda reclamar una indemnización.
+\end{itemize}
+
+\subsection*{Cuadro comparativo}
+
+\begin{table}[H]
+\centering
+\caption{Tipos de mejoras (arts.~1934 y 1938 CCCN)}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.19\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo de mejora} & \textbf{Definición} & \textbf{¿Se puede reclamar?} \\
+\midrule
+Mero mantenimiento & Reparación de deterioros menores por uso ordinario & No \\
+\addlinespace
+Necesaria & Indispensable para la conservación de la cosa & Sí, salvo mala fe y culpa del poseedor \\
+\addlinespace
+Útil & Agrega valor que beneficia a cualquier sujeto & Sí, hasta el mayor valor adquirido por la cosa \\
+\addlinespace
+Suntuaria & De mero lujo, recreo o provecho exclusivo & No se indemniza; puede retirarse si no daña la cosa \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Con esto se recapitulan todos los supuestos a los que remite el artículo 390: la nulidad produce, en principio, la vuelta de las cosas al estado anterior y la obligación de restituirse, y la restitución se rige por las reglas de los artículos 1934, 1935, 1936 y 1938, según sea de buena o mala fe, en cuanto a frutos, productos, destrucción de la cosa y mejoras.
+
+\section{Nulidad y responsabilidad civil}
+\label{sec:responsabilidad}
+
+El segundo aspecto que trata el Código, en el artículo 391, es que el acto jurídico nulo, aunque no produzca los efectos del acto válido, puede dar lugar a las consecuencias de los hechos en general y a la reparación.
+
+\begin{articulo}{Art. 391 CCCN --- Hechos ilícitos}
+«Los actos jurídicos nulos, aunque no produzcan los efectos de los actos válidos, dan lugar a las consecuencias de los hechos en general y a las reparaciones que correspondan.»
+\end{articulo}
+
+El hecho de que el acto sea nulo hace que las cosas vuelvan al estado anterior y que haya obligación de restituir; pero, además, es un hecho que puede configurar un ilícito. Por ejemplo, en el caso del dolo, la parte perjudicada puede además reclamar daños y perjuicios, si los hubo.
+
+\begin{example}{daños derivados del dolo}
+Vender la casa y trasladarse generó un daño muy grande, no sólo moral sino también económico: hubo que hacer una mudanza, se gastó más dinero, se debió pagar un depósito de muebles por un tiempo y se perdieron oportunidades de hacer negocios. El título del reclamo es el hecho de que, aunque el acto nulo no produzca sus efectos propios, sí configura un hecho ilícito, conforme al artículo 391.
+\end{example}
+
+Con esto concluye el estudio de los efectos de la nulidad entre las partes.
+
+\clearpage
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}QW@{}}
+\cornellhead \endfirsthead
+\cornellhead \endhead
+\bottomrule \endfoot
+
+\cornellrow{¿Qué efectos produce la nulidad entre las partes?}{Según el art.~390 CCCN, la nulidad pronunciada por los jueces vuelve las cosas al mismo estado en que se hallaban antes del acto y obliga a las partes a restituirse mutuamente lo recibido, según las reglas de buena o mala fe del Libro Cuarto (arts.~1932 y ss.). Sólo hay restitución en la medida en que el acto haya sido ejecutado.}
+
+\cornellrow{¿Cómo se definen la buena fe y la mala fe?}{Es de buena fe quien no conoce ni puede conocer que carece de derecho, porque por un error de hecho esencial y excusable está persuadido de su legitimidad (art.~1918). Es de mala fe quien conoció o pudo conocer que carecía de derecho. La buena fe se presume, salvo en los casos del art.~1919 (título de nulidad manifiesta, adquisición de quien habitualmente no hace tradición de esa clase de cosas y carece de medios para adquirirlas, ganado marcado o señalado cuyo diseño fue registrado por otra persona). La posesión viciosa es un tipo agravado de mala fe.}
+
+\cornellrow{¿Quién se queda con los frutos de la cosa?}{El poseedor de buena fe hace suyos los frutos percibidos y los naturales devengados no percibidos; el de mala fe debe restituir los percibidos y los que por su culpa dejó de percibir. Los frutos pendientes corresponden a quien tiene derecho a la restitución. Los productos deben restituirse siempre, sea de buena o mala fe (art.~1935).}
+
+\cornellrow{¿Quién responde si la cosa se destruye?}{El poseedor de buena fe responde sólo hasta el provecho subsistente. El de mala fe responde, salvo que la destrucción se hubiera producido igualmente en poder de quien tiene derecho a la restitución. El de mala fe con posesión viciosa responde en todos los casos (art.~1936).}
+
+\cornellrow{¿Qué mejoras se pueden reclamar al restituir?}{Las de mero mantenimiento no. Las necesarias sí, salvo que el poseedor sea de mala fe y haya obrado con culpa. Las útiles, hasta el mayor valor adquirido por la cosa. Las suntuarias no se indemnizan, pero pueden retirarse si no dañan la cosa. Los acrecentamientos por hechos de la naturaleza no son indemnizables (arts.~1934 y 1938).}
+
+\cornellrow{¿Puede reclamarse una indemnización además de la nulidad?}{Sí: el acto nulo, aunque no produzca los efectos del acto válido, da lugar a las consecuencias de los hechos en general y a las reparaciones que correspondan (art.~391). Por ejemplo, en el dolo puede reclamarse daños y perjuicios si los hubo.}
+
+\cornellresumen{Entre las partes, la nulidad vuelve las cosas al estado anterior y obliga a restituirse lo recibido (art.~390). Las restituciones se rigen por la buena o mala fe del poseedor, que incide en los frutos, los productos, la destrucción de la cosa y las mejoras (arts.~1918, 1919 y 1934 a 1938). Además, el acto nulo puede dar lugar a reparación de daños como hecho ilícito (art.~391).}
+
+\end{longtable}
+
+%==============================================================
+% CAPÍTULO 5
+%==============================================================
+\chapter[Efectos respecto de terceros]{Efectos de la nulidad respecto de terceros}
+\label{cap:terceros}
+
+\section{El problema del subadquirente}
+
+Supóngase una compraventa de un inmueble en la que el vendedor fue objeto de una maniobra engañosa: le hicieron creer que se iba a instalar una cárcel en la zona y, para evitar esa situación, vendió a un valor más barato. Como consecuencia del dolo en que incurrió el comprador, el vendedor inicia la acción de nulidad.
+
+¿Qué ocurre si el comprador, a su vez, transfirió el inmueble a otra persona? Al pretender hacer valer la nulidad, la cuestión ya no consiste sólo en alcanzar al comprador (la otra parte), sino que se extiende a un tercero, respecto del cual se transmitió el acto: sus \textbf{subadquirentes}. El subadquirente puede ser de buena o de mala fe, y a título oneroso o gratuito.
+
+Este es un tema clásico: el \textbf{problema del subadquirente} cuando el acto originario ha sido nulo, que se plantea como el problema del efecto de la nulidad respecto de terceros.
+
+\section{Antecedentes en el Código de Vélez}
+
+En su redacción original, el Código de Vélez establecía una regla según la cual todos los derechos reales y personales transmitidos a terceros sobre un inmueble, por una persona que hubiese llegado a ser propietario en virtud de un acto anulado, quedaban sin ningún valor y podían ser reclamados directamente del poseedor.
+
+\begin{articulo}{Art. 1051 (redacción original, Código de Vélez)}
+«Todos los derechos reales o personales transmitidos a terceros sobre un inmueble por una persona que ha llegado a ser propietario en virtud de un acto anulado, quedan sin ningún valor, y pueden ser reclamados directamente del poseedor actual.»
+\end{articulo}
+
+La regla permitía ir contra el subadquirente de un inmueble. Su fundamento era una aplicación de la regla de que nadie puede transmitir un derecho mejor que el que tiene: si el derecho transmitido estaba viciado por dolo y el comprador lo transmite a otro, no puede transmitirlo mejor que el que él tiene; quien lo recibe recibe una transmisión viciada por dolo.
+
+Esto llevaba a una cierta inseguridad: quien compra algo no sabe si en la cadena de transmisiones hubo en algún momento un acto con un vicio, y podría verse en la dificultad de que se le inicie una acción para que restituya lo que ha recibido, porque el artículo decía que los derechos podían ser reclamados directamente del poseedor. El tercero que compró se vería desposeído de la cosa. Esto planteaba una serie de inquietudes y problemas.
+
+Esta regla se aplicaba a los inmuebles; los muebles tenían otro régimen (artículos 3270 y 2412), según el cual, en materia de muebles, si había habido fraude, la posesión valía título.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se afirma que el antiguo art. 1051 protegía al subadquirente de buena fe y a título oneroso, lo que no se concilia con el texto original transcripto)
+El antiguo artículo 1051 protegía al subadquirente de buena fe y a título oneroso, también cuando la enajenación había sido hecha por un heredero aparente: también quedaba protegido el adquirente de buena fe y a título oneroso.
+
+\subsection*{El debate entre Llambías y Alsina Atienza}
+
+Se dio un debate cuyos dos principales expositores fueron Llambías y Alsina Atienza. Hubo una tesis, sostenida sobre todo por Llambías, basada en el artículo 1046, que establecía que los actos anulables son válidos mientras no sean anulados.
+
+\begin{articulo}{Art. 1046 (Código de Vélez)}
+«Los actos anulables se reputan válidos mientras no sean anulados; y sólo se tendrán por nulos desde el día de la sentencia que los anulase.»
+\end{articulo}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (las posiciones de Llambías y de Alsina Atienza se exponen de modo confuso)
+Según esta tesis, si el acto es anulable no se aplicaría la regla del 1051, porque este se refería a «actos anulados». Para Llambías, detrás de esto estaba la idea de que, si el acto todavía no había sido anulado (era anulable), quien tenía la cosa podía venderla a un tercero, y ese tercero quedaba protegido por aplicación del 1046. En cambio, si el acto se anula, la nulidad vuelve las cosas al estado anterior, y entonces era necesario afectar también a ese adquirente de buena fe: allí estaba la discusión.
+
+Alsina Atienza daba este argumento: la protección se aplicaba a los actos anulables mientras no hubiesen sido anulados, y siempre que el adquirente fuera de buena fe. Su fundamento central estaba en la validez que conservaba el acto anulable.
+
+Se trata de la categoría de nulos y anulables que el CCCN hizo desaparecer (sección~\ref{sec:nulosanulables}); se recurre aquí al código anterior para ver cómo había sido la discusión.
+
+\section{La reforma de la ley 17.711}
+
+Con la ley 17.711 se modifica esta situación y gana la tesis de Alsina Atienza, que incluso es superada. La norma establece que todos los derechos reales o personales transmitidos a terceros sobre un inmueble, por una persona que ha llegado a ser propietario en virtud de un acto nulo, quedan sin ningún valor y pueden ser reclamados directamente del poseedor actual; hasta allí, la regla es igual. Pero aparece una excepción: quedan a salvo los derechos de los terceros adquirentes de buena fe a título oneroso, \textbf{sea el acto nulo o anulable}. Ya no importa si el acto era nulo o anulable: en todos los casos queda protegido el adquirente de buena fe a título oneroso.
+
+\begin{articulo}{Art. 1051 CC (texto según ley 17.711)}
+«Todos los derechos reales o personales transmitidos a terceros sobre un inmueble por una persona que ha llegado a ser propietario en virtud del acto anulado, quedan sin ningún valor, y pueden ser reclamados directamente del poseedor actual, salvo los derechos de los terceros adquirentes de buena fe a título oneroso, sea el acto nulo o anulable.»
+\end{articulo}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la descripción del texto anterior del art. 1051 dice «conservan la posesión actual», lo que no coincide con el texto original transcripto)
+La ley 17.711 zanja la cuestión modificando el anterior artículo 1051 mediante la salvedad de los derechos de los terceros adquirentes de buena fe a título oneroso, sea el acto nulo o anulable. Con lo cual ni siquiera se entra en la discusión entre Llambías y Alsina Atienza sobre el acto anulable que todavía es válido hasta que es anulado. En los hechos, era un supuesto donde la nulidad no era oponible al tercero adquirente de buena fe a título oneroso, que quedaba protegido ya fuera el acto nulo o anulable.
+
+\subsection*{La continuidad del criterio en el Código Civil y Comercial}
+
+El nuevo Código ratifica este criterio y elimina además la categoría de acto nulo y anulable, con lo cual también deja de tener lugar la discusión entre Alsina Atienza y Llambías.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (no se aclara el sentido de la frase sobre el artículo referido a la presunta validez del acto anulable)
+El artículo sobre la presunta validez del acto anulable queda incorporado.
+
+También \textbf{extiende la protección a las cosas muebles registrables}. La protección de los terceros de buena fe y a título oneroso rige tanto para los derechos reales como para los personales que se hayan transmitido.
+
+\begin{example}{derechos personales transmitidos a un tercero}
+Se vende una casa en el marco de una maniobra engañosa y se produce el dolo; el comprador decide alquilarla y transmite así un derecho personal a otra persona, que es de buena fe y a título oneroso. Cuando el vendedor engañado logra la restitución, debe respetar ese contrato de alquiler celebrado con un tercero de buena fe.
+\end{example}
+
+\section{La solución del Código Civil y Comercial (artículo 392)}
+\label{sec:art392}
+
+El nuevo Código introduce una \textbf{excepción}: cuando en el acto originario no intervino el titular del derecho. En estos casos, el subadquirente de buena fe a título oneroso no queda protegido: no puede ampararse en su buena fe y en su título oneroso si la actuación se hizo sin intervención del titular del derecho.
+
+\begin{articulo}{Art. 392 CCCN --- Efectos de la nulidad respecto de terceros}
+Protege al subadquirente de buena fe y a título oneroso, salvo que el acto se hubiera realizado sin intervención del titular del derecho.
+\end{articulo}
+
+Esta situación se conoce como «escrituración sin dominio» o «venta \textit{a non domino}». Se da cuando ha habido falsificación de firma, o una connivencia entre un escribano y una de las partes que se hizo pasar por el firmante. Esto ha ocurrido en el país: han existido situaciones de estafas en las que el verdadero dueño nunca intervino en el acto. En ese caso, el verdadero dueño puede reclamar la cosa aun del subadquirente de buena fe a título oneroso. Es un supuesto en el que se cede el principio de protección del tercero de buena fe a título oneroso.
+
+Como se vio en la sección~\ref{sec:inexistencia}, este supuesto podría dar lugar a lo que se llamaría «inexistencia»; otros sostienen que no. En todo caso, es una solución consagrada por la ley: no intervino el titular y, entonces, se reclama aun del subadquirente de buena fe a título oneroso.
+
+Con esto concluye el estudio de los efectos respecto de terceros de buena fe y a título oneroso.
+
+\clearpage
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}QW@{}}
+\cornellhead \endfirsthead
+\cornellhead \endhead
+\bottomrule \endfoot
+
+\cornellrow{¿Afecta la nulidad a quien compró después?}{Es el problema del subadquirente: si el comprador transmitió el bien a un tercero (de buena o mala fe, a título oneroso o gratuito), debe determinarse hasta dónde alcanza la nulidad del acto originario. El CCCN protege al subadquirente de buena fe y a título oneroso, salvo que en el acto originario no haya intervenido el titular del derecho.}
+
+\cornellrow{¿Cómo resolvía este problema el código anterior?}{El art.~1051 original establecía que los derechos reales o personales transmitidos a terceros sobre un inmueble por quien llegó a ser propietario en virtud de un acto anulado quedaban sin valor y podían reclamarse del poseedor actual, con fundamento en que nadie puede transmitir un derecho mejor que el que tiene. Hubo un debate entre Llambías y Alsina Atienza en torno al art.~1046 (los actos anulables son válidos mientras no sean anulados).}
+
+\cornellrow{¿Qué cambió la ley 17.711?}{Ganó la tesis de Alsina Atienza y se agregó la salvedad de los derechos de los terceros adquirentes de buena fe a título oneroso, sea el acto nulo o anulable, de modo que ya no importa esa distinción.}
+
+\cornellrow{¿Cómo protege hoy el Código al tercero de buena fe?}{El CCCN ratifica el criterio, elimina la categoría de acto nulo y anulable y extiende la protección a las cosas muebles registrables, tanto para derechos reales como personales. La excepción (art.~392) es cuando en el acto originario no intervino el titular del derecho («venta \textit{a non domino}»): el verdadero dueño puede reclamar aun del subadquirente de buena fe a título oneroso.}
+
+\cornellresumen{La nulidad plantea el problema de los subadquirentes. El Código de Vélez lo resolvía con el art.~1051 y con un debate doctrinario sobre nulos y anulables; la ley 17.711 protegió al adquirente de buena fe a título oneroso en todos los casos; el CCCN ratifica ese criterio y lo extiende a muebles registrables, con la excepción del art.~392 cuando no intervino el verdadero titular.}
+
+\end{longtable}
+
+%==============================================================
+% CAPÍTULO 6
+%==============================================================
+\chapter[Confirmación]{Confirmación}
+\label{cap:confirmacion}
+
+\section{Concepto de confirmación}
+
+\begin{definition}{Confirmación}
+Acto jurídico que tiene por finalidad sanear el vicio del que adolecía un acto precedente afectado de nulidad relativa.
+\end{definition}
+
+\begin{example}{menor de edad que vende bien un cuadro}
+Una persona menor de edad vende un cuadro famoso, pero lo vende muy bien. Sus padres se enteran y le preguntan qué hizo con el cuadro, cuánto valía (cien mil pesos) y en cuánto lo vendió (ciento cuarenta mil pesos). Al tratarse de un buen negocio, deciden confirmar el acto.
+\end{example}
+
+¿Por qué es posible? Porque la nulidad relativa protege el interés particular: el ordenamiento jurídico no tiene interés en que siempre se declare la nulidad, sino que, como protege un interés particular, si ese interés no se ve perjudicado y se sanea el vicio, lógicamente el acto puede confirmarse.
+
+\section{Requisitos de la confirmación}
+
+El artículo 393 establece cuándo hay confirmación. El acto de confirmación no requiere la conformidad de la otra parte: es una declaración unilateral que plantea directamente la parte en cuyo beneficio se ha establecido el supuesto de nulidad relativa.
+
+\begin{articulo}{Art. 393 CCCN --- Requisitos de la confirmación}
+«Hay confirmación cuando la parte que puede articular la nulidad relativa manifiesta expresa o tácitamente su voluntad de tener al acto por válido, después de haber desaparecido la causa de nulidad. El acto de confirmación no requiere la conformidad de la otra parte.»
+\end{articulo}
+
+Los requisitos son los siguientes:
+
+\begin{enumerate}
+    \item Debe tratarse de un acto de \textbf{nulidad relativa}.
+    \item Debe haber \textbf{desaparecido la causa de la nulidad}, y no existir una nueva causal de nulidad.
+    \item Debe manifestarse, en forma expresa o tácita, la \textbf{voluntad de confirmar} el acto.
+    \item Si se hace de forma expresa, debe realizarse en un instrumento que reúna las \textbf{mismas exigencias formales} que el acto que se confirma; además, el instrumento debe contener la mención precisa de la causa de la nulidad, de su desaparición y de la voluntad de confirmar el acto. Hay que explicitar que se está confirmando, salvo que sea tácita.
+\end{enumerate}
+
+\section{Clases de confirmación}
+
+Existen dos clases de confirmación: la expresa y la tácita.
+
+\subsection*{Confirmación expresa}
+
+Se da cuando las partes manifiestan la voluntad de confirmar y se cumplen los requisitos anteriores: precisar cuál es la causa de nulidad que ha desaparecido y la voluntad de confirmar, además del requisito de forma. Si el acto era formal, se requiere la misma forma exigida para el acto que se sanea; esta igualdad de formas tiene por finalidad dar cumplimiento a las exigencias sobre las solemnidades del acto.
+
+\begin{articulo}{Art. 394 CCCN --- Forma}
+«Si la confirmación es expresa, el instrumento en que ella conste debe reunir las formas exigidas para el acto que se sanea. La confirmación expresa debe contener la sustancia del acto que se quiere confirmar, el vicio de que adolecía y la manifestación de la intención de repararlo.»
+\end{articulo}
+
+\subsection*{Confirmación tácita}
+
+Está dada por el \textbf{cumplimiento total o parcial del acto} nulo, realizado con conocimiento de la causa de nulidad, o por otro acto del cual resulte inequívocamente la voluntad de sanear el vicio del acto, siempre que esa voluntad inequívoca pueda deducirse del cumplimiento por otros actos. Para que sea confirmación tácita, además, debe haber desaparecido la causa de nulidad.
+
+\begin{example}{confirmación tácita}
+Si el menor de edad que vendió el cuadro tiene padres, y estos ejecutan y entregan el cuadro y reciben el dinero, se está confirmando el acto. En cambio, si quien entrega el cuadro es la propia persona menor de edad, no hay confirmación, porque no se ha saneado el vicio: quien hace el pago y cumple la obligación es el menor, no sus representantes.
+\end{example}
+
+\section{Efectos de la confirmación}
+
+El efecto de la confirmación es que \textbf{retrotrae los efectos a la fecha en que se celebró el acto} y lo deja vigente. Así como la nulidad tiene por efecto volver las cosas al estado anterior, la confirmación vuelve las cosas a la vigencia del acto, y el acto que debía ejecutarse se ejecuta conforme a lo que las partes entendieron. En el caso de las disposiciones de última voluntad, opera desde la muerte del causante.
+
+\begin{articulo}{Art. 395 CCCN --- Efecto retroactivo}
+«La confirmación del acto entre vivos originalmente nulo tiene efecto retroactivo a la fecha en que se celebró el acto. El de disposición de última voluntad opera desde la muerte del causante. La retroactividad no perjudica los derechos de terceros de buena fe.»
+\end{articulo}
+
+Lo que no se puede afectar son los derechos de \textbf{terceros de buena fe}: por ejemplo, quienes hubieran embargado, o tenido expectativas sobre uno de los actos, y no conocían la situación de confirmación, dada por supuesta la situación de nulidad.
+
+La confirmación es, en definitiva, un acto jurídico por el cual se sanea el vicio del que adolecía otro acto afectado de nulidad relativa. Se aplica solamente a los casos de nulidad relativa, porque en ella la nulidad está puesta en beneficio de los particulares y la confirmación permite dejar subsistente el acto. Tiene dos clases, expresa y tácita, y la expresa debe cumplir con la forma del acto que se quiere confirmar. Además, debe haberse saneado el vicio, no debe haber otro vicio, debe haber desaparecido la causa de nulidad y debe haber voluntad de confirmar.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la explicación del fin inmediato y del efecto retroactivo en el cierre del tema está redactada de forma confusa)
+La confirmación tiene por fin inmediato dejar subsistente el acto; y aunque no lo tuviera en su momento, el fin inmediato se anuda al inicio, lo que produce un efecto retroactivo.
+
+\clearpage
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}QW@{}}
+\cornellhead \endfirsthead
+\cornellhead \endhead
+\bottomrule \endfoot
+
+\cornellrow{¿Qué es confirmar un acto viciado?}{Es otro acto jurídico mediante el cual se sanea el vicio del que adolece un acto afectado de nulidad relativa. Es posible porque la nulidad relativa protege un interés particular: si ese interés no se ve perjudicado y se sanea el vicio, el acto puede confirmarse. Se aplica sólo a la nulidad relativa.}
+
+\cornellrow{¿Qué requisitos exige la confirmación?}{Que se trate de un acto de nulidad relativa; que haya desaparecido la causa de nulidad y no exista una nueva; y que se manifieste, expresa o tácitamente, la voluntad de confirmar (art.~393 CCCN). No requiere la conformidad de la otra parte: es una declaración unilateral de quien puede articular la nulidad.}
+
+\cornellrow{¿De qué formas se puede confirmar un acto?}{De forma expresa: en un instrumento que reúna las formas exigidas para el acto que se sanea y que contenga la sustancia del acto, el vicio de que adolecía y la manifestación de la intención de repararlo (art.~394). De forma tácita: por el cumplimiento total o parcial del acto realizado con conocimiento de la causa de nulidad, o por otro acto del que resulte inequívocamente la voluntad de sanear el vicio.}
+
+\cornellrow{¿Qué efectos produce confirmar un acto nulo?}{Retroactividad a la fecha en que se celebró el acto entre vivos; en las disposiciones de última voluntad, opera desde la muerte del causante. La retroactividad no perjudica los derechos de terceros de buena fe (art.~395).}
+
+\cornellresumen{La confirmación es un acto jurídico que sanea el vicio de un acto afectado de nulidad relativa, una vez desaparecida la causa de la nulidad. Puede ser expresa (con la forma del acto y mención del vicio y de la intención de repararlo) o tácita (por cumplimiento). Retrotrae sus efectos a la fecha del acto sin perjudicar a terceros de buena fe (arts.~393 a 395).}
+
+\end{longtable}
+
+%==============================================================
+% CAPÍTULO 7
+%==============================================================
+\chapter[Inoponibilidad]{Inoponibilidad}
+\label{cap:inoponibilidad}
+
+\section{Ubicación metodológica}
+
+La inoponibilidad se encuentra, metodológicamente, en el Capítulo 9 de las ineficacias, con el que cierra el Título Cuarto, que es el título de los actos jurídicos: el Capítulo 9, «Ineficacia», tiene como última sección la referida a la inoponibilidad.
+
+Como ya se vio, la inoponibilidad es un supuesto de \textbf{ineficacia relativa}: el acto es válido entre las partes, pero no produce efectos respecto de personas determinadas. El caso típico es el fraude, que no da lugar a la nulidad sino a la inoponibilidad: el acto es inoponible, no tiene efecto respecto de terceros.
+
+\section{El efecto de la inoponibilidad (artículo 396)}
+
+\begin{articulo}{Art. 396 CCCN --- Efecto}
+«El acto inoponible no tiene efecto con respecto a terceros, excepto en los casos previstos por la ley.»
+\end{articulo}
+
+La última frase del artículo 396 (la salvedad «excepto en los casos que la ley lo disponga») resulta un poco difícil de comprender, porque, si el acto es inoponible, no tiene efecto; es una frase que requiere lectura atenta.
+
+La inoponibilidad, dice el Código, puede hacerse valer en cualquier momento, sin perjuicio del derecho de la otra parte a oponer la prescripción o la caducidad.
+
+\begin{articulo}{Art. 397 CCCN --- Oportunidad para invocarla}
+«La parte interesada puede hacer valer la inoponibilidad en cualquier momento, sin perjuicio del derecho de la otra parte a oponer la prescripción o la caducidad.»
+\end{articulo}
+
+Es decir, la inoponibilidad puede hacerse valer en cualquier momento, y puede existir, en el medio, un supuesto de prescripción o caducidad.
+
+\section{Relación con el fraude}
+
+La inoponibilidad es un supuesto de ineficacia relativa, ya estudiado con el fraude. Los requisitos del fraude, en la acción revocatoria, son:
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el crédito debe ser anterior «a la fecha», sin precisar de qué fecha)
+\begin{itemize}
+    \item un crédito anterior a la fecha;
+    \item insolvencia;
+    \item complicidad del adquirente.
+\end{itemize}
+
+El acto vale entre las partes, pero no produce efectos respecto del acreedor defraudado, que es quien puede alegar que ese acto no le es oponible.
+
+Con esto se cierran los supuestos de ineficacia y todo lo referido a la significación de la ineficacia: cuándo los actos no producen efectos. Lo que queda por estudiar es la cuestión de la extinción de las relaciones jurídicas.
+
+\clearpage
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}QW@{}}
+\cornellhead \endfirsthead
+\cornellhead \endhead
+\bottomrule \endfoot
+
+\cornellrow{¿Dónde se ubica la inoponibilidad en el Código?}{En el Capítulo 9 (Ineficacia) del Título Cuarto, como su última sección. Es un supuesto de ineficacia relativa: el acto es válido entre las partes pero no produce efectos respecto de personas determinadas.}
+
+\cornellrow{¿Qué efecto tiene un acto inoponible?}{No tiene efecto con respecto a terceros, excepto en los casos previstos por la ley (art.~396 CCCN). Puede hacerse valer en cualquier momento, sin perjuicio del derecho de la otra parte a oponer la prescripción o la caducidad (art.~397).}
+
+\cornellrow{¿Cómo se vincula la inoponibilidad con el fraude?}{El fraude da lugar a la inoponibilidad y no a la nulidad. Sus requisitos, en la acción revocatoria, son un crédito anterior, insolvencia y complicidad del adquirente. El acto vale entre las partes pero no produce efectos respecto del acreedor defraudado.}
+
+\cornellresumen{La inoponibilidad es una ineficacia relativa regulada en el Capítulo 9: el acto es válido entre las partes pero no produce efectos respecto de ciertos terceros (arts.~396 y 397). El caso típico es el fraude, frente al acreedor defraudado.}
+
+\end{longtable}
+
+%==============================================================
+% SÍNTESIS FINAL
+%==============================================================
+\chapter*{Síntesis final}
+\markboth{Síntesis final}{}
+\addcontentsline{toc}{chapter}{Síntesis final}
+
+Este material recorre, de manera integral, el capítulo de ineficacia de los actos jurídicos del Código Civil y Comercial. Partiendo de la distinción entre ineficacia en sentido amplio e invalidez, el desarrollo se concentra en la \textbf{nulidad} como su principal categoría: su concepto de sanción legal, sus cuatro clasificaciones (absoluta y relativa, total y parcial, manifiesta y no manifiesta, y el debate sobre los actos nulos y anulables) y sus efectos, tanto entre las partes (restitución según buena o mala fe) como frente a terceros, donde el Código protege al subadquirente de buena fe y a título oneroso salvo en los casos de «venta \textit{a non domino}».
+
+Cierra el recorrido con las dos vías de salida frente a un acto viciado de nulidad relativa: sanearlo mediante la \textbf{confirmación}, o bien reconocer que, siendo válido, resulta \textbf{inoponible} frente a determinadas personas.
+
+En conjunto, estos contenidos brindan el marco conceptual necesario para evaluar, en la práctica profesional, cuándo un acto puede caerse, quién puede reclamarlo, qué debe restituirse y cómo puede subsanarse.
+
+\end{document}

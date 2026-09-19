@@ -1,0 +1,835 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Civil --- Parte General}
+\newcommand{\titulo}{Efectos de los Actos Jurídicos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2025}
+% La carrera no figura en las notas originales, por lo que no se consigna.
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL (ENCABEZADOS Y PIES)
+% ============================================================
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{La constancia en el estudio convierte la comprensión en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+\chapter[Principios generales]{Principios generales de los efectos del acto jurídico}
+
+\section{Introducción: los efectos del acto jurídico}
+
+El estudio de los efectos del acto jurídico se organiza como un sistema concéntrico. El núcleo es el principio \textbf{\textit{nemo plus iuris}} (nadie transmite más de lo que tiene), que luego se proyecta hacia las partes, sus representantes, los sucesores y, finalmente, los terceros. Puede pensarse como las ondas que produce una piedra en el agua: el acto jurídico es la piedra, y cada onda alcanza a un grupo diferente de personas con reglas propias.
+
+\begin{definition}{Acto jurídico}
+Acto \textbf{voluntario lícito} que tiene por fin inmediato producir el \textbf{nacimiento, la modificación, la transferencia o la extinción} de relaciones e instituciones jurídicas.
+\end{definition}
+
+Por definición, entonces, el acto jurídico busca producir efectos jurídicos. La cuestión central consiste en determinar \textbf{a quiénes abarcan esos efectos}. Los interrogantes que estructuran el tema son los siguientes:
+
+\begin{itemize}
+    \item ¿Los efectos abarcan a las partes?
+    \item ¿Cómo están abarcados los sucesores?
+    \item ¿Cómo están abarcados los acreedores?
+    \item ¿Quiénes son representantes?
+    \item ¿Qué reglas rigen estos efectos de los actos jurídicos?
+\end{itemize}
+
+\subsection{Importancia práctica}
+
+Estos conceptos constituyen el fundamento de cada operación jurídica que realiza un abogado o una abogada. Se proyectan, por ejemplo, en las siguientes situaciones:
+
+\begin{itemize}
+    \item \textbf{Redacción de un contrato de compraventa:} es necesario saber si el cliente puede transmitir válidamente el derecho que pretende vender (\textit{nemo plus iuris}).
+    \item \textbf{Otorgamiento o recepción de un poder notarial:} debe determinarse si el representante actuó dentro de sus facultades.
+    \item \textbf{Asesoramiento a herederos:} se distingue qué obligaciones del causante los alcanzan y cuáles se extinguen.
+    \item \textbf{Cobro de un crédito impago:} se elige entre la acción directa —para cobrar directamente— y la acción subrogatoria —para ingresar bienes al patrimonio del deudor—.
+\end{itemize}
+
+No se trata de temas abstractos: son herramientas cotidianas de la abogacía en materia contractual, sucesoria y ejecutiva.
+
+\section{Nemo plus iuris (Art.~399 CCCN)}
+
+\subsection{La transmisibilidad de los derechos como regla general}
+
+Los derechos son \textbf{transmisibles}, salvo estipulación válida de las partes o prohibición legal. Sobre esta base se establece la regla central que organiza todo el tema: \textbf{nadie puede transmitir un derecho mejor que el que tiene}.
+
+Esta regla ya se encontraba en el Código anterior, en el art.~3270: nadie puede transmitir a otro un derecho mejor o más extenso que el que tiene, salvo las excepciones legalmente dispuestas. Proviene del Derecho Romano y en algunos libros se la designa como \textit{nemo plus iuris}, por sus primeras palabras. Ya estaba presente en el Digesto.
+
+\begin{formula}{Art.~399 CCCN --- Regla general (\textit{nemo plus iuris})}
+Nadie puede transmitir a otro un derecho mejor o más extenso que el que tiene, sin perjuicio de las excepciones legalmente dispuestas.
+\end{formula}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (las notas indican "en 398 estamos en el Título Quinto del Libro Primero" al ubicar el art. 399; se conserva la ubicación por Título y Libro, sin precisar el número de artículo)
+\begin{note}
+El \textit{nemo plus iuris} se encuentra en el art.~399, hacia el final del Libro Primero del Código Civil y Comercial de la Nación, dentro del Título Quinto, denominado «Transmisión de los derechos». Esto se relaciona con el estudio de los efectos del acto: quien transmite derechos no puede transmitirlos de un modo mejor que el que tiene.
+\end{note}
+
+\begin{example}{el inquilino que no puede vender}
+Quien es inquilino de un inmueble no puede venderlo, porque no puede transmitir un derecho mejor que el que tiene. Su derecho sobre el inmueble es simplemente el uso y goce en los términos de un contrato de locación, y no el derecho en los términos del dominio del dueño de la cosa. Esto constituye claramente un \textbf{límite a la transmisibilidad de los derechos}.
+\end{example}
+
+\subsection{Caso práctico: Juan, Verónica y Daniela}
+
+El principio se ilustra con un caso que involucra a tres personas.
+
+\begin{example}{transmisión de propiedad viciada por intimidación}
+Juan ejerce violencia (intimidación) sobre Verónica y logra que ella le transfiera su propiedad bajo amenazas. Juan aparece como propietario, pero su título está viciado por intimidación. Luego, Juan le vende el inmueble a Daniela.
+
+\smallskip
+\textbf{Pregunta:} ¿Daniela recibió la propiedad con el vicio o sin él?
+
+\smallskip
+Conforme al \textit{nemo plus iuris}, Juan transmite el derecho con el mismo alcance que lo tiene, es decir, con el vicio. Por lo tanto, Daniela, como sucesora, recibiría un derecho afectado por ese vicio de intimidación.
+\end{example}
+
+\section[Excepciones al nemo plus iuris]{Excepciones al \textit{nemo plus iuris}}
+
+El mismo caso plantea una \textbf{excepción crucial} al principio general: es necesario determinar si Daniela es o no de buena fe. Pueden presentarse, así, excepciones al \textit{nemo plus iuris}.
+
+\subsection{Adquirente de buena fe y a título oneroso (Art.~392 CCCN)}
+
+Una de esas excepciones se encuentra en el art.~392. Si Daniela es de \textbf{buena fe} y a \textbf{título oneroso}, adquiere la propiedad, y quien sale perdiendo es Verónica —quien transmitió bajo intimidación—, porque Daniela se convierte en adquirente de buena fe a título oneroso. \textbf{Quien es de buena fe queda protegido.}
+
+\begin{formula}{Art.~392 CCCN --- Efectos respecto de terceros en casos de nulidad}
+El subadquirente de buena fe y a título oneroso queda a salvo de cualquier acción de nulidad que afecte el antecedente de su título, así como de los actos de los que fueran parte terceros de buena fe, con anterioridad a la inscripción de la sentencia que no fueren supuestos de restricciones a la capacidad, simulación o fraude.
+\end{formula}
+
+\subsection{Otros supuestos de protección de terceros}
+
+Los supuestos en que los terceros quedan protegidos frente al principio general son los siguientes:
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la enumeración original menciona dos veces los "cambios en los poderes que no son oponibles" y los formula de manera imprecisa;
+%  además, el texto del art. 392 transcripto excluye supuestos de simulación o fraude, mientras que la enumeración los incluye entre los supuestos de protección de terceros)
+\begin{itemize}
+    \item los \textbf{cambios en los poderes que no son oponibles}, según dependa de la posibilidad o no de hacerlos conocer a los terceros (cuestión vinculada con la protección de los terceros y la confirmación);
+    \item el \textbf{poseedor de buena fe de cosas muebles}, que queda protegido;
+    \item los supuestos de \textbf{simulación} (Art.~337);
+    \item los supuestos de \textbf{fraude} (Art.~340).
+\end{itemize}
+
+\section{Cuadro Cornell: principios generales}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué busca producir el acto jurídico y cuál es la cuestión central sobre sus efectos?} &
+El acto jurídico es un acto voluntario lícito cuyo fin inmediato es producir el nacimiento, la modificación, la transferencia o la extinción de relaciones e instituciones jurídicas; por definición, busca producir efectos jurídicos. La cuestión central es a quiénes abarcan esos efectos: las partes, los sucesores, los acreedores y los representantes, y qué reglas los rigen. \\
+
+\midrule
+
+\textbf{¿Qué es el \textit{nemo plus iuris}?} &
+Regla del art.~399 CCCN: nadie puede transmitir a otro un derecho mejor o más extenso que el que tiene, sin perjuicio de las excepciones legalmente dispuestas. Proviene del Derecho Romano (estaba ya en el Digesto) y se encontraba en el Código anterior (art.~3270). Se ubica en el Título Quinto del Libro Primero, «Transmisión de los derechos». Es un principio cardinal del derecho privado. Los derechos son transmisibles, salvo estipulación válida de las partes o prohibición legal. \\
+
+\midrule
+
+\textbf{¿Cómo opera el \textit{nemo plus iuris} en el caso de Juan, Verónica y Daniela?} &
+Juan obtuvo la propiedad de Verónica mediante intimidación y luego se la vendió a Daniela. Juan transmite el derecho con el mismo alcance que lo tiene, es decir, con el vicio; por lo tanto, Daniela, como sucesora, recibe un derecho afectado por ese vicio, salvo que sea adquirente de buena fe y a título oneroso (art.~392 CCCN). \\
+
+\midrule
+
+\textbf{¿Cuándo queda protegido el adquirente frente al \textit{nemo plus iuris}?} &
+Según el art.~392 CCCN, el subadquirente de buena fe y a título oneroso queda a salvo de cualquier acción de nulidad que afecte el antecedente de su título; en el caso, Daniela adquiere y quien pierde es Verónica. También quedan protegidos el poseedor de buena fe de cosas muebles, los terceros en los supuestos de simulación (art.~337) y de fraude (art.~340), y los cambios en los poderes que no son oponibles a terceros. \\
+
+\midrule
+
+\textbf{¿Por qué un inquilino no puede vender el inmueble que alquila?} &
+Porque no puede transmitir un derecho mejor que el que tiene: su derecho es solo al uso y goce en los términos de un contrato de locación, y no en los términos del dominio del dueño de la cosa. Es un límite a la transmisibilidad de los derechos. \\
+
+\midrule
+
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:}
+El acto jurídico busca producir efectos, y el primer principio para determinar su alcance es el \textit{nemo plus iuris} (art.~399 CCCN): nadie transmite un derecho mejor o más extenso que el que tiene, de modo que el adquirente recibe el derecho con sus vicios. La excepción estudiada es la del adquirente de buena fe y a título oneroso (art.~392 CCCN), a la que se suman otros supuestos de protección de terceros.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+\chapter[Partes y efecto relativo]{Las partes y el efecto relativo de los actos jurídicos}
+
+\section{Efecto relativo de los actos jurídicos (Art.~1021 CCCN)}
+
+El segundo gran marco teórico es el efecto relativo. Los actos jurídicos producen efectos entre las partes que los celebran; es decir, tienen un \textbf{efecto relativo}: sus efectos afectan a las partes que celebran el acto.
+
+\begin{formula}{Art.~1021 CCCN --- Regla general (efecto relativo)}
+El contrato solo tiene efectos entre las partes contratantes; no lo tiene con respecto a terceros, excepto en los casos previstos por la ley.
+\end{formula}
+
+Nadie puede verse afectado ni beneficiado por un acto del que no fue parte. Los actos jurídicos tienen valor entre las partes; como regla general, así lo establece el art.~1021.
+
+\section{Definición de parte (Art.~1023 CCCN)}
+
+La noción de «parte» resulta decisiva para determinar quién queda alcanzado por los efectos del acto. Esto conduce a considerar cuál es la definición de «parte», que se encuentra en el art.~1023.
+
+\begin{definition}{Parte}
+\textbf{Parte} es quien concurre a un acto ejerciendo prerrogativas jurídicas propias.
+
+\smallskip
+\textbf{Art.~1023 CCCN --- Parte del contrato.} Se considera parte del contrato a quien:
+\begin{enumerate}[label=\alph*)]
+    \item lo otorga a nombre propio, aunque lo haga en interés ajeno;
+    \item es representado por un otorgante que actúa en su nombre o en su interés;
+    \item manifiesta la voluntad contractual, aunque sea transmitida por un corredor o por un agente sin representación.
+\end{enumerate}
+\end{definition}
+
+\subsection{Distinción entre parte y representante}
+
+Quien actúa en nombre propio, o por medio de un representante que actúa en su nombre, es la parte, aunque en el acto conste que concurre el señor Fulanito de Tal en representación de Menganito de Tal. En ese caso, la parte es el \textbf{representado} (Menganito de Tal). El \textbf{representante} no ejerce una prerrogativa jurídica propia, sino la de otro.
+
+\section{Cuadro Cornell: partes y efecto relativo}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuál es el efecto relativo de los actos jurídicos?} &
+Los contratos solo producen efectos entre las partes (art.~1021 CCCN); no los producen respecto de terceros, excepto en los casos previstos por la ley. Un tercero ni puede beneficiarse ni perjudicarse por un acto en el que no intervino, salvo excepciones legales (estipulación a favor de tercero, acciones directa y subrogatoria). \\
+
+\midrule
+
+\textbf{¿Quién es «parte» en un acto jurídico?} &
+Quien concurre al acto ejerciendo prerrogativas jurídicas propias (art.~1023 CCCN). Se considera parte a quien: a) otorga el contrato a nombre propio, aunque lo haga en interés ajeno; b) es representado por un otorgante que actúa en su nombre o en su interés; c) manifiesta la voluntad contractual, aunque sea transmitida por un corredor o por un agente sin representación. \\
+
+\midrule
+
+\textbf{¿Es parte el representante?} &
+No. El representante no ejerce una prerrogativa jurídica propia, sino la de otro: actúa en nombre del representado, quien sí es la parte, aunque en el acto conste que concurre otra persona en su representación. El mandante de un poder, por ejemplo, es la parte aunque no esté presente. \\
+
+\midrule
+
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:}
+Los actos jurídicos tienen efecto relativo: producen efectos entre las partes y, como regla, no alcanzan a terceros (art.~1021 CCCN). Es parte quien concurre ejerciendo prerrogativas jurídicas propias (art.~1023 CCCN); por eso, cuando hay representación, la parte es el representado y no el representante.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+% CAPÍTULO 3
+% ============================================================
+\chapter{Representación}
+
+El Código regula, en el Título Cuarto del Libro Primero, todo lo relativo a la representación. Esta materia es muy importante para la vida de los abogados, ya que generalmente quienes ejercen la profesión cumplen funciones de representación, dadas por poderes o por distintos mecanismos.
+
+\section{Tipos de representación (Art.~358 CCCN)}
+
+El art.~358 del CCCN clasifica la representación en tres tipos:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash\bfseries}p{2.4cm}
+    >{\raggedright\arraybackslash}p{4.4cm}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo} & \textbf{Origen} & \textbf{Ejemplo} \\
+\midrule
+Voluntaria & Acto jurídico (poder notarial) & Juana le otorga poder a Daniela para celebrar un contrato de mutuo en su nombre. \\
+\addlinespace
+Legal & Regla de derecho (la ley) & Padres que representan a sus hijos menores (Art.~101 CCCN); tutores; curadores. \\
+\addlinespace
+Orgánica & Estatuto de persona jurídica & El presidente de una sociedad que firma contratos porque el estatuto le atribuye esa función. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Representación voluntaria (Arts.~362--381 CCCN)}
+
+Los arts.~362 a 381 regulan la forma, la capacidad, los vicios, la actuación y la extinción de la representación voluntaria. En cuanto a la capacidad:
+
+\begin{itemize}
+    \item \textbf{Representante:} basta con el \textbf{discernimiento}. Puede serlo desde que tiene discernimiento para los actos lícitos, a los trece años.
+    \item \textbf{Representado:} se requiere capacidad para otorgar el poder; debe ser una persona capaz.
+\end{itemize}
+
+\section{Facultades expresas (Art.~375 CCCN)}
+
+El art.~375 es de máxima relevancia práctica: regula los casos en que se requieren \textbf{facultades expresas}. Quien, como abogado, vaya a realizar alguno de estos actos de mayor relevancia necesita lo que se denomina un \textbf{poder especial} de su representado.
+
+\begin{formula}{Art.~375 CCCN --- Facultades expresas}
+Las facultades para ciertos actos deben ser expresas. Entre ellos:
+\begin{itemize}
+    \item reconocer hijos;
+    \item aceptar herencias;
+    \item contraer matrimonio;
+    \item hacer donaciones;
+    \item avalar;
+    \item constituir hipotecas;
+    \item otorgar testamentos;
+    \item transar;
+    \item comprometer en árbitros;
+    \item y otros actos de especial trascendencia.
+\end{itemize}
+\end{formula}
+
+\section{Cuadro Cornell: representación}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué tipos de representación existen y cuál es el origen de cada una?} &
+Arts.~358 y ss. CCCN. 1) \textbf{Voluntaria}: surge de un acto jurídico (poder notarial). 2) \textbf{Legal}: surge de la ley (padres respecto de hijos menores, tutores, curadores). 3) \textbf{Orgánica}: surge del estatuto de una persona jurídica (presidente de una sociedad). \\
+
+\midrule
+
+\textbf{¿Qué capacidad se requiere en la representación voluntaria?} &
+Arts.~362 a 381 CCCN. Para el representante basta con el discernimiento, que se tiene desde los trece años para los actos lícitos. Para otorgar el poder se requiere capacidad en el representado, que debe ser una persona capaz. \\
+
+\midrule
+
+\textbf{¿Cuándo se requieren facultades expresas y qué se necesita en esos casos?} &
+Art.~375 CCCN: las facultades para ciertos actos deben ser expresas, y para ellos se necesita un poder especial del representado. Entre esos actos: reconocer hijos, aceptar herencias, contraer matrimonio, hacer donaciones, avalar, constituir hipotecas, otorgar testamentos, transar, comprometer en árbitros y otros actos de especial trascendencia. \\
+
+\midrule
+
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:}
+La representación puede ser voluntaria (nace de un acto jurídico), legal (nace de la ley) u orgánica (nace del estatuto de una persona jurídica). En la representación voluntaria basta el discernimiento para el representante, mientras que el representado debe ser capaz para otorgar el poder. Para los actos de mayor relevancia enumerados en el art.~375 CCCN se requieren facultades expresas, es decir, un poder especial.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+% CAPÍTULO 4
+% ============================================================
+\chapter{Sucesores}
+
+A un acto concurren las partes con sus representantes. Después se encuentran los \textbf{sucesores}, que son aquellos que reciben un derecho. El sucesor puede ser \textbf{universal} o \textbf{singular}.
+
+\section{Sucesor universal}
+
+\begin{definition}{Sucesor universal}
+Es quien recibe \textbf{todo o una parte indivisa del patrimonio} de otro.
+\end{definition}
+
+Quien sucede a su padre porque este falleció se convierte en su sucesor universal. Y aunque sean dos herederos, ambos son universales porque tienen \textbf{vocación al todo}.
+
+\begin{example}{sucesión entre dos hermanos}
+Supongamos que el padre tiene un departamento, una cochera, un auto y dinero en efectivo. Los dos hermanos tienen vocación al todo: sin testamento, cada uno al 50\,\%. No es que cada uno tenga el 50\,\% del dinero más el 50\,\% del auto: cada uno tiene vocación al todo.
+
+\smallskip
+Después, en la partición, si uno se queda con el departamento y el otro con todos los demás bienes, en ese momento cada uno se convierte en sucesor singular de lo que recibió.
+\end{example}
+
+\begin{formula}{Art.~1024 CCCN --- Efectos respecto de los sucesores universales}
+Los efectos del contrato se extienden activa y pasivamente a los sucesores universales, a no ser que las obligaciones que de él nacen sean inherentes a la persona, o que la transmisión sea incompatible con la naturaleza de la obligación, o esté prohibida por una cláusula del contrato o la ley.
+\end{formula}
+
+Los límites de la transmisión a los sucesores universales se ilustran con el siguiente ejemplo.
+
+\begin{example}{obligación inherente a la persona (pintor famoso)}
+Supongamos que se contrata a un pintor famoso —con nombre propio, por sus condiciones artísticas— para que realice un retrato. Si el pintor fallece, su sucesor no puede venir a cumplir el contrato, porque se trata de una obligación inherente a la persona del artista.
+\end{example}
+
+Tampoco se transmiten las obligaciones de derecho de familia, ni se transmite el usufructo o el contrato de uso y habitación.
+
+\section{Sucesor singular}
+
+\begin{definition}{Sucesor singular}
+Es quien recibe un \textbf{derecho determinado} (por ejemplo, un inmueble o un auto); es decir, quien sigue un bien determinado.
+\end{definition}
+
+\begin{important}
+Los sucesores singulares, por regla, \textbf{no se ven afectados} por los actos jurídicos de la parte de quien reciben el bien, y se asimilan a los terceros completamente extraños. La excepción está dada por:
+\begin{itemize}
+    \item los actos jurídicos que son \textbf{antecedentes del derecho transmitido};
+    \item las \textbf{obligaciones que pesan sobre la cosa};
+    \item los \textbf{derechos accesorios del objeto}.
+\end{itemize}
+\end{important}
+
+\begin{example}{inmueble con contrato de locación}
+Quien hereda un inmueble sujeto a un contrato de locación recibe el inmueble con el contrato de locación, aunque sea sucesor singular, porque sigue un bien determinado.
+\end{example}
+
+\begin{example}{auto con prenda}
+Quien hereda un auto sujeto a una prenda hereda el auto con la prenda: la prenda lo afecta. Esa es la consecuencia de ser sucesor singular.
+\end{example}
+
+\section{Cuadro Cornell: sucesores}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué son los sucesores universales?} &
+Quienes reciben la totalidad o una parte indivisa del patrimonio de otra persona (art.~1024 CCCN): herederos \textit{ab intestato} o testamentarios. Aunque sean varios herederos, todos son universales porque tienen vocación al todo. \\
+
+\midrule
+
+\textbf{¿Se extienden los efectos del contrato a los sucesores universales y cuáles son los límites?} &
+Sí: los efectos del contrato se extienden activa y pasivamente a los sucesores universales (art.~1024 CCCN), salvo que las obligaciones sean inherentes a la persona, que la transmisión sea incompatible con la naturaleza de la obligación, o que esté prohibida por una cláusula del contrato o la ley. \\
+
+\midrule
+
+\textbf{¿Qué ejemplos de obligaciones o derechos no se transmiten a los sucesores universales?} &
+La obligación de un pintor famoso contratado por sus condiciones artísticas para realizar un retrato (obligación inherente a la persona: si fallece, su sucesor no puede cumplir el contrato); las obligaciones de derecho de familia; el usufructo o el contrato de uso y habitación. \\
+
+\midrule
+
+\textbf{¿Qué son los sucesores singulares y qué los afecta?} &
+Quienes reciben un derecho determinado (un inmueble, un auto). Se asimilan a terceros respecto de los actos del causante, pero los afectan: los antecedentes del derecho transmitido, las obligaciones y cargas que pesan sobre la cosa y los derechos accesorios del objeto (por ejemplo, la prenda sobre un auto heredado, o la locación de un inmueble heredado). \\
+
+\midrule
+
+\textbf{¿Cuándo un sucesor universal se convierte en singular?} &
+En la partición: si, por ejemplo, de los bienes del padre un hermano se queda con el departamento y el otro con los demás bienes, cada uno se convierte en sucesor singular de lo que recibió. \\
+
+\midrule
+
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:}
+Los sucesores universales reciben todo o una parte indivisa del patrimonio y ocupan el lugar del causante: los efectos del contrato se les extienden activa y pasivamente, salvo obligaciones inherentes a la persona, incompatibles con la naturaleza de la obligación o vedadas por el contrato o la ley (art.~1024 CCCN). Los sucesores singulares siguen un bien determinado: por regla no se ven afectados por los actos de la parte de quien lo reciben, salvo por los antecedentes del derecho transmitido, las obligaciones que pesan sobre la cosa y los derechos accesorios del objeto.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+% CAPÍTULO 5
+% ============================================================
+\chapter[Terceros y acciones]{Los terceros y las acciones a su disposición}
+
+\section{Situación de los terceros}
+
+Los terceros no pueden ni beneficiarse ni perjudicarse por los contratos, salvo que exista disposición legal o que así se haya convenido entre las partes. Por regla, los terceros son \textbf{ajenos} y no pueden verse afectados por las disposiciones de un acto en el que no fueron parte.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la expresión "tanto en tales asistencias" del ejemplo original es imprecisa; se conserva tal como figura)
+\begin{example}{estipulación a favor de un tercero}
+Supongamos que se establece una estipulación a favor de un tercero: «yo le voy a dar plata para que vos le des a Fulanito de Tal tanto en tales asistencias». Esto es una estipulación a favor de un tercero y es perfectamente válido.
+\end{example}
+
+\section{Acciones a disposición de los terceros}
+
+\subsection{Acción directa (Arts.~736--737 CCCN)}
+
+El tercero puede tener una \textbf{acción directa} para cobrar créditos de su deudor hasta el importe del propio crédito, y esto procede cuando los créditos son \textbf{homogéneos}.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (en el ejemplo original la denominación "acción de delegación directa" difiere de la denominación "acción directa" utilizada en el resto del apunte; se conserva tal como figura)
+\begin{example}{acción directa contra el deudor de mi deudor}
+Supongamos que el acreedor le presta dinero a A, y A, a su vez, se lo presta a B. Entonces el deudor del deudor (B) debe la misma suma que el acreedor prestó. El acreedor puede ir directamente contra el deudor de su deudor. Esto se llama, en las notas, «acción de delegación directa».
+\end{example}
+
+\begin{definition}{Acción directa (Art.~736 CCCN)}
+La acción directa es la que compete al acreedor para percibir lo que un tercero debe a su deudor, en la medida del propio crédito. El acreedor la ejerce por derecho propio y en su exclusivo beneficio. Tiene carácter excepcional, es de interpretación restrictiva, y solo procede en los casos expresamente previstos por la ley.
+\end{definition}
+
+\begin{formula}{Art.~737 CCCN --- Requisitos de la acción directa}
+\begin{itemize}
+    \item Existencia de un crédito exigible del acreedor contra su propio deudor.
+    \item Existencia de una deuda correlativa exigible del tercero demandado a favor del deudor.
+    \item Homogeneidad de ambos créditos entre sí.
+    \item Ninguno de los dos créditos debe estar embargado ni ser indisponible.
+    \item El deudor debe ser notificado de la demanda.
+\end{itemize}
+\end{formula}
+
+En la acción directa resulta directamente beneficiado el acreedor que actúa directamente sobre el deudor del deudor.
+
+\subsection{Acción subrogatoria (Arts.~739--740 CCCN)}
+
+La \textbf{acción subrogatoria} procede cuando el deudor, por inacción, no ejerce un crédito o un derecho al cual tiene derecho, y esa inacción perjudica al acreedor. En este caso, el acreedor se \textbf{subroga} —ocupa el lugar de su deudor— y ejerce acciones que están a nombre del deudor.
+
+\begin{formula}{Arts.~739 y 740 CCCN --- Acción subrogatoria}
+\textbf{Art.~739.} El acreedor de un crédito cierto, exigible o no, puede ejercer judicialmente los derechos patrimoniales de su deudor si este es remiso en hacerlo y esa omisión afecta el cobro de su acreencia. El acreedor no goza de preferencia alguna sobre los bienes obtenidos por ese medio.
+
+\smallskip
+\textbf{Art.~740.} Los derechos y acciones del deudor excluidos de la subrogación son los inherentes a su persona, los no patrimoniales, los patrimoniales no susceptibles de ejecución forzada y los excluidos por disposición legal.
+\end{formula}
+
+El crédito o la acción ingresan así al patrimonio del deudor. En la acción subrogatoria, esto beneficia a \textbf{todos los acreedores}; en cambio, en la acción directa resulta directamente beneficiado \textbf{solo el acreedor que actúa}. Estas dos acciones son importantes de conocer.
+
+\subsection{Comparación entre la acción directa y la acción subrogatoria}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash\bfseries}p{2.6cm}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Aspecto} & \textbf{Acción directa (Arts.~736--737)} & \textbf{Acción subrogatoria (Arts.~739--740)} \\
+\midrule
+Requisito central & Créditos homogéneos entre acreedor, deudor y deudor del deudor. & Inacción del deudor que perjudica al acreedor. \\
+\addlinespace
+¿Quién ejerce? & El acreedor por derecho propio, en su nombre. & El acreedor en nombre del deudor (se subroga). \\
+\addlinespace
+¿Quién se beneficia? & Solo el acreedor que la ejerce. & Todos los acreedores (ingresa al patrimonio del deudor). \\
+\addlinespace
+Límite & Hasta el importe del propio crédito. & Todo lo que recupere ingresa al patrimonio del deudor. \\
+\addlinespace
+Normas & Arts.~736 y 737 CCCN & Arts.~739 y 740 CCCN \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Cuadro Cornell: terceros y acciones}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Puede un contrato obligar o beneficiar a un tercero?} &
+Por regla, no: los terceros son ajenos y no pueden ni beneficiarse ni perjudicarse por los contratos, salvo disposición legal o que se haya convenido entre las partes. Por ejemplo, es perfectamente válida una estipulación a favor de un tercero. \\
+
+\midrule
+
+\textbf{¿Qué es la acción directa y qué requisitos tiene?} &
+Permite al acreedor cobrar lo que un tercero debe a su deudor, actuando directamente contra el deudor de su deudor, hasta el importe de su propio crédito (arts.~736--737 CCCN). La ejerce por derecho propio y en su exclusivo beneficio; es excepcional y de interpretación restrictiva. Requisitos: crédito exigible del acreedor contra su deudor; deuda correlativa exigible del tercero a favor del deudor; homogeneidad de ambos créditos; ningún crédito embargado ni indisponible; notificación de la demanda al deudor. \\
+
+\midrule
+
+\textbf{¿Qué es la acción subrogatoria y qué derechos quedan excluidos?} &
+El acreedor de un crédito cierto, exigible o no, ocupa el lugar de su deudor remiso y ejerce judicialmente los derechos patrimoniales que este no ejerce, cuando esa omisión afecta el cobro de su acreencia (arts.~739--740 CCCN). El acreedor no goza de preferencia sobre los bienes obtenidos. Quedan excluidos los derechos inherentes a la persona del deudor, los no patrimoniales, los patrimoniales no susceptibles de ejecución forzada y los excluidos por disposición legal. \\
+
+\midrule
+
+\textbf{¿En qué se diferencian la acción directa y la subrogatoria?} &
+Directa: exige créditos homogéneos; el acreedor actúa por derecho propio, en su nombre; beneficia solo al acreedor que la ejerce; se limita al importe de su crédito. Subrogatoria: exige la inacción del deudor que perjudica al acreedor; el acreedor actúa en nombre del deudor; lo recuperado ingresa al patrimonio del deudor y beneficia a todos los acreedores. \\
+
+\midrule
+
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:}
+Los terceros, por regla, son ajenos al acto y no pueden beneficiarse ni perjudicarse por él, salvo disposición legal o convenio. Excepcionalmente, un acreedor puede actuar mediante la acción directa, que cobra contra el deudor del deudor y solo beneficia a quien la ejerce (arts.~736--737 CCCN), o mediante la acción subrogatoria, que ejerce en nombre del deudor inactivo y beneficia a todos los acreedores (arts.~739--740 CCCN).
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+% CAPÍTULO 6
+% ============================================================
+\chapter[Síntesis general]{Síntesis general de la clase}
+
+Los efectos del acto jurídico se rigen por dos principios estructurantes: el \textbf{\textit{nemo plus iuris}} (nadie puede transmitir un derecho mejor que el que tiene, Art.~399 CCCN) y el \textbf{efecto relativo} (los actos solo producen efectos entre las partes, Art.~1021 CCCN).
+
+A partir de estos ejes, el sistema regula quiénes resultan alcanzados:
+
+\begin{itemize}
+    \item las \textbf{partes};
+    \item sus \textbf{representantes} (voluntarios, legales u orgánicos);
+    \item los \textbf{sucesores universales}, que ocupan el mismo lugar que el causante en todos los derechos y obligaciones transmisibles;
+    \item los \textbf{sucesores singulares}, que solo reciben los antecedentes del derecho transmitido, las cargas sobre la cosa y sus accesorios.
+\end{itemize}
+
+Los \textbf{terceros}, en principio ajenos, pueden excepcionalmente actuar mediante la \textbf{acción directa} (Arts.~736--737 CCCN) o la \textbf{acción subrogatoria} (Arts.~739--740 CCCN).
+
+Estas instituciones son herramientas cotidianas de la práctica jurídica: delimitan quiénes quedan obligados por los contratos, cómo se transmiten los bienes en una sucesión y de qué modo un acreedor puede cobrar su crédito cuando el deudor es negligente.
+
+\end{document}
