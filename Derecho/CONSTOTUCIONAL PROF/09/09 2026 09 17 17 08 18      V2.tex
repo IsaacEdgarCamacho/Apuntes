@@ -1,0 +1,954 @@
+% =========================================================================
+% DOCUMENTCLASS
+% =========================================================================
+\documentclass[12pt,oneside]{book}
+
+% =========================================================================
+% PAQUETES
+% =========================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+
+\usepackage{ragged2e}
+
+% =========================================================================
+% RUTAS DE IMÁGENES
+% =========================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =========================================================================
+% METADATOS DEL DOCUMENTO
+% =========================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Abogacía}
+\newcommand{\materia}{Derecho Constitucional}
+\newcommand{\titulo}{Libertad de Expresión, Libertad Religiosa y Derechos Políticos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% =========================================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% =========================================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =========================================================================
+% CONFIGURACIÓN GENERAL
+% =========================================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =========================================================================
+% ENCABEZADOS Y PIES
+% =========================================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =========================================================================
+% COMANDOS MATEMÁTICOS
+% =========================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =========================================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% =========================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =========================================================================
+% DOCUMENT
+% =========================================================================
+\begin{document}
+
+% -------------------------------------------------------------------------
+% PORTADA
+% -------------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Constitucional'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------------
+% ÍNDICE
+% -------------------------------------------------------------------------
+\tableofcontents
+
+% =========================================================================
+% CONTENIDO
+% =========================================================================
+
+\chapter*{Presentación de la clase}
+\addcontentsline{toc}{chapter}{Presentación de la clase}
+
+Esta clase aborda tres grandes bloques del derecho constitucional argentino: los límites de la responsabilidad civil de los medios de comunicación frente a la libertad de expresión, mediante las doctrinas de la Real Malicia y Campillay; la articulación entre el sostenimiento constitucional del culto católico y la libertad religiosa, incluyendo el concepto de categorías sospechosas y su aplicación en un fallo sobre educación religiosa obligatoria; y los derechos políticos, con especial atención a los partidos políticos, el derecho al voto y los sistemas electorales.
+
+\section*{¿Para qué sirve esta clase?}
+\addcontentsline{toc}{section}{¿Para qué sirve esta clase?}
+
+\textbf{¿Para qué sirve?} Permite comprender cómo los tribunales equilibran derechos en tensión —libertad de expresión versus honor y reputación; sostenimiento del culto versus libertad e igualdad religiosa; autonomía provincial versus derechos fundamentales— y qué estándares probatorios y argumentativos se exigen en cada caso.
+
+\textbf{¿Dónde podría utilizarse este contenido?}
+\begin{itemize}
+    \item En el litigio de daños y perjuicios contra medios de comunicación o periodistas.
+    \item En el análisis de constitucionalidad de normas que distinguen por religión, nacionalidad, género u otros criterios sensibles (categorías sospechosas).
+    \item En el asesoramiento a partidos políticos sobre requisitos legales de constitución y subsistencia.
+    \item En el contencioso electoral, incluyendo cuestiones vinculadas al derecho al voto.
+\end{itemize}
+
+\textbf{¿Por qué es importante?} El contenido conecta con el derecho civil (responsabilidad por daños), el derecho administrativo (presunción de legitimidad de los actos estatales y su inversión frente a categorías sospechosas) y el derecho electoral, mostrando la interdisciplinariedad propia del ejercicio profesional.
+
+\textbf{¿Qué habilita aprender después?} Estos conceptos son base para profundizar en el control de constitucionalidad, la protección de minorías religiosas y culturales, y el estudio comparado de los sistemas electorales y de partidos.
+
+\section*{Mapa estructural de la clase}
+\addcontentsline{toc}{section}{Mapa estructural de la clase}
+
+La clase avanza como una cadena de tensiones entre libertades individuales y potestades del Estado: primero la tensión entre la libertad de expresión y la reputación de las personas; luego, entre la libertad religiosa y el sostenimiento estatal de un culto; y finalmente, entre la autonomía de la voluntad política de los ciudadanos y la organización institucional del sistema electoral. Así como una balanza necesita dos platillos para mostrar equilibrio, cada bloque presenta un derecho individual en un platillo y un interés o potestad estatal en el otro, y estudia cómo la jurisprudencia fija el punto de equilibrio.
+
+\begin{note}
+La transcripción original de la clase contenía marcas de tiempo, muletillas e interrupciones propias del habla espontánea, que fueron eliminadas cuando no aportaban contenido. El desarrollo argumental del docente se conserva en su orden original. Las intervenciones de los y las estudiantes se identifican como ``Alumno/a'', sin que se consignen datos que permitan individualizarlos más allá del nombre de pila utilizado en clase, cuando este resulta audible.
+\end{note}
+
+% =========================================================================
+% UNIDAD 1
+% =========================================================================
+\chapter[Libertad de expresión y responsabilidad de los medios]{Libertad de expresión y responsabilidad de los medios de comunicación}
+
+\begin{note}
+\textbf{Pregunta guía del capítulo:} ¿Cuándo debe responder un medio de comunicación por informar sobre una persona pública? \textit{Ejes: doble dimensión, Real Malicia, Campillay, daño reputacional.}
+\end{note}
+
+\section{La doble dimensión de la libertad de expresión}
+
+La libertad de expresión es un derecho esencial que, conforme lo sostiene la Corte Interamericana de Derechos Humanos, tiene una \textbf{doble dimensión}: por un lado, la de quien detenta una voz, una opinión política o personal, y la posibilidad de expresarla en condiciones de libertad y de no discriminación, con un plexo legal que libere de morigeraciones a los medios de prensa en su capacidad de transmitir ideas, pensamientos e información.
+
+Esa doble dimensión tiene dos anclajes: desde el punto de vista de los sujetos que ejercen la libertad de expresión, y como un bien jurídico que debe tutelarse para que exista un verdadero mercado de ideas, con libre circulación, sin censura previa y sin mecanismos de silenciamiento.
+
+\begin{definition}{Doble dimensión de la libertad de expresión}
+\textbf{Dimensión individual:} derecho de cada persona a expresar y difundir su pensamiento y opiniones. \textbf{Dimensión social o colectiva:} derecho de la sociedad a recibir información y opiniones, entendida como condición para el funcionamiento del sistema democrático.
+\end{definition}
+
+La Corte reconoce, por lo tanto, tanto el libre desenvolvimiento de los medios de prensa como la necesidad de evitar normas o dispositivos que generen, de forma indirecta, autocensura en los sujetos que deben concurrir libremente a ese mercado de ideas. Se trata de uno de los pilares de la democracia: esta se basa tanto en la libertad de expresión como en la libre transferencia de ideas, especialmente políticas, y también en la función de la prensa como dispositivo de denuncia.
+
+\begin{formula}{Pacto de San José de Costa Rica}
+En el marco del Pacto de San José de Costa Rica y del ámbito interamericano de derechos, los países deben concebir la libertad de expresión como uno de los pilares del sistema democrático. La Carta Democrática que activa la intervención y denuncia de la OEA tiene, como uno de sus elementos reconocibles para examinar si un sistema político es virtuoso o adhiere a los postulados democráticos, precisamente el análisis de cómo está la libertad de expresión en ese país y cómo se regula.
+\end{formula}
+
+\section{La doctrina de la Real Malicia}
+
+Existen dos grandes teorías desarrolladas por la jurisprudencia en relación con la protección de los medios de prensa en la divulgación y transmisión de ideas. La primera está fincada en el derecho norteamericano, en jurisprudencia de la Corte estadounidense que fue extrapolada y adoptada por la Corte argentina y seguida por los tribunales inferiores: la \textbf{doctrina de la Real Malicia}.
+
+La doctrina de la Real Malicia parte de un distingo entre dos paradigmas de sujetos: uno común y otro con relevancia pública, por su desarrollo e intervención en el ámbito público. Respecto de estos últimos, la teoría sostiene que deben soportar, por parte de la población y de los medios de prensa, una mayor exposición dentro de su ámbito de reserva —el umbral marcado por el artículo 19—, si bien siempre se mantiene, para la información personalísima del sujeto y de su grupo familiar, un ámbito de reserva de menor proyección por su participación pública.
+
+\begin{formula}{Artículo 19 de la Constitución Nacional}
+El artículo 19 marca el umbral del principio de reserva, que protege un ámbito de intimidad incluso respecto de personas públicas, aunque con una proyección menor que en el caso de sujetos privados.
+\end{formula}
+
+La teoría sostiene que la eventual responsabilidad de los medios de comunicación y de los periodistas por informaciones referidas a personas públicas solo puede configurarse si se acredita que la información era falsa, y que —esto es lo que innova esta teoría— quien la comunicó sabía que era falsa. Es decir, debe demostrarse el conocimiento previo de la falsedad y, aun así, la decisión de avanzar con la difusión de esa información.
+
+Solo en la medida en que se acredite ese extremo —el conocimiento previo de la falsedad y, pese a ello, la decisión de difundirla— los medios deberían responder, en general, con una indemnización pecuniaria que derive del daño reputacional o de los daños directos producto de esa información falaz. Se requiere, entonces, un estándar de exigencia mucho mayor, porque debe probarse ese conocimiento previo de la no veracidad de la información.
+
+\begin{definition}{Doctrina de la Real Malicia (actual malice)}
+\textbf{Origen:} jurisprudencia de la Corte de los Estados Unidos, extrapolada y adoptada por la Corte Suprema argentina. \textbf{Contenido:} cuando la información se refiere a una persona pública, los medios de comunicación solo responden por daños si se demuestra que la información era falsa y que el emisor conocía esa falsedad al momento de difundirla (dolo o, cuanto menos, una negligencia grave en el chequeo de la veracidad).
+\end{definition}
+
+Es cierto también que la doctrina de la Real Malicia se ha ido aplicando en Estados Unidos de forma más amplia que en aquellos casos en que quien demanda al medio es un político o un funcionario de alto rango: con el tiempo se han flexibilizado los presupuestos y hoy se aplica igualmente a personas que, sin detentar una función pública, tienen un conocimiento vasto por parte de la población, es decir, son personajes públicos en esos casos.
+
+Por lo tanto, la idea es siempre la reparación posterior frente a una demanda en la que debe acreditarse judicialmente ese daño y, esencialmente, la existencia de una información inexacta o falaz de la cual se desprendan los perjuicios para quien los invoca.
+
+\section{La doctrina Campillay}
+
+Un desarrollo ya propio y exclusivo del derecho argentino, que la Corte ha trabajado en diversos fallos donde también se analiza la responsabilidad civil derivada de la divulgación de información, es la denominada \textbf{doctrina Campillay}, que prevé dispositivos mediante los cuales, con un ejercicio prudente de la libertad de información, los medios pueden asegurarse la no posibilidad de ser considerados responsables por la circulación de información falaz.
+
+Las salvaguardas que deberían cumplir los medios para evitar este tipo de condenas son esencialmente tres:
+
+\begin{enumerate}
+    \item la omisión de la identidad del sujeto del que se trate; en ese caso no habría posibilidad de responder por indemnización;
+    \item la cita de la fuente: una cita expresa, clara e identificable, a fin de que el medio no genere una apropiación de la divulgación de esa idea;
+    \item la utilización del modo potencial, que lleva a un claro concepto de duda sobre lo que se plantea, es decir, que la información no se asevera sino que se presenta de modo conjetural.
+\end{enumerate}
+
+\begin{definition}{Doctrina Campillay --- tres presupuestos}
+1) Omisión de la identidad del sujeto involucrado. 2) Cita expresa, clara e identificable de la fuente de la información. 3) Utilización del modo potencial o condicional, de manera que la información se presente como conjetura y no como afirmación categórica. Cumplido alguno de estos presupuestos, el medio de comunicación podría evitar la responsabilidad por la divulgación de información.
+\end{definition}
+
+Son dos creaciones jurisprudenciales que se han ido afianzando con el tiempo y que resultan necesarias a la hora de evaluar una eventual responsabilidad de los medios de comunicación en el país.
+
+\section{Estándar general de responsabilidad de los medios}
+
+En la generalidad de los casos, la posibilidad de declarar la responsabilidad de los medios debe derivar de la posibilidad de acreditar la falsedad de lo que se informa; a priori, debe existir un nexo causal con un daño cierto —reputacional o directo— que genere algún perjuicio adicional, siempre reconocible y demostrable por quien invoca la acción judicial de responsabilidad.
+
+Por lo tanto, el sistema, bajo estas directivas, se afianza siempre en un paradigma de libertad y libre circulación de ideas, opiniones y manifestaciones en los medios de comunicación, y solo genera el deber de responder ante casos estrictamente acreditados, en los que además es el accionante quien debe demostrar los perjuicios incurridos, con estas salvedades cuando se trata de medios de comunicación y de personas que tienen una dimensión pública.
+
+\begin{important}
+Muchas veces la complejidad pasa por discriminar entre lo que es estrictamente una \textbf{persona pública por su desempeño profesional} (por ejemplo, un funcionario) y una \textbf{persona conocida públicamente}, que no es exactamente lo mismo. Discriminar entre ambas categorías suele ser el punto de mayor complejidad al aplicar estas doctrinas.
+\end{important}
+
+\begin{table}[H]
+\centering
+\caption{Comparación entre Real Malicia y Campillay}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Doctrina} & \textbf{Origen} & \textbf{Presupuesto central} & \textbf{Efecto} \\
+\midrule
+Real Malicia & Jurisprudencia de EE.\,UU., adoptada por la CSJN & Falsedad de la información + conocimiento previo de esa falsedad por parte del medio & Habilita la responsabilidad civil del medio frente a personas públicas \\
+\addlinespace
+Campillay & Jurisprudencia propia de la Corte argentina & Omisión de identidad / cita de la fuente / uso del modo potencial & Exime de responsabilidad al medio que cumple alguno de estos recaudos \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================================
+% UNIDAD 2
+% =========================================================================
+\chapter{Libertad religiosa y sostenimiento del culto}
+
+\begin{note}
+\textbf{Pregunta guía del capítulo:} ¿Cómo se compatibilizan el sostenimiento del culto católico y la libertad religiosa? \textit{Ejes: Iglesia como persona jurídica, neutralidad, categorías sospechosas.}
+\end{note}
+
+\section{La Iglesia como persona jurídica de derecho público}
+
+La libertad religiosa entra también dentro de la idea del umbral de la zona de reserva: las personas deben ser libres de profesar su religión con total libertad. El país tiene una larga tradición de respeto por la libertad de cultos y por la convivencia pacífica entre las distintas religiones, aunque esa idea ha ido mutando desde una adhesión más profunda al culto católico.
+
+En las primeras décadas de la vida institucional argentina, cuando se fue gestando la fisonomía de las instituciones civiles y de derecho público, y luego de sancionada la Constitución, se estableció en el Código Civil que la Iglesia es una persona jurídica de derecho público. Por lo tanto, goza de determinados privilegios, entre ellos la inmunidad de los bienes afectados estrictamente a profesar el culto católico, así como también otras religiones registradas ante la Secretaría de Culto, que gozan igualmente de la inembargabilidad de los bienes afectados al culto religioso.
+
+\begin{definition}{La Iglesia Católica como persona jurídica de derecho público}
+El Código Civil reconoció a la Iglesia Católica como persona jurídica de derecho público, lo que conlleva privilegios tales como la inmunidad e inembargabilidad de los bienes afectados al culto.
+\end{definition}
+
+Originalmente se exigía que el presidente profesara la religión católica —requisito que fue derogado— y existía el sostenimiento del culto católico apostólico.
+
+\begin{formula}{Reforma constitucional de 1994}
+La reforma de 1994 eliminó el requisito de que el presidente de la Nación profesara la religión católica apostólica romana para el ejercicio de la presidencia de la Nación, manteniendo el estatus de la Iglesia Católica como persona jurídica de derecho público.
+\end{formula}
+
+Las relaciones con la Santa Sede están reguladas bajo un concordato de gran antigüedad, que establece también una dimensión de la Iglesia como un estado extranjero que no puede ser demandado sin una determinada citación previa, y con condiciones de inmunidad para la mayoría de sus representantes diplomáticos dentro del país.
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+Se hace referencia a un ``concordato de gran antigüedad'' con la Santa Sede sin precisar su denominación, fecha o contenido exacto. Se recomienda verificar la identificación precisa del instrumento (posible Concordato de 1966 y normativa concordataria vigente) antes de utilizarlo como referencia de estudio.
+\end{important}
+
+A partir, sobre todo, de la reforma de 1994, la idea del sostenimiento del culto católico debe conjugarse inevitablemente con una férrea libertad y con el concepto de no discriminación entre los distintos credos religiosos reconocidos y profesados en el país.
+
+\section{Categorías sospechosas}
+
+¿Dónde está entonces la verdadera regulación constitucional de estos dos conceptos: por un lado, el sostenimiento preferente del culto católico, y por otro, la total libertad en la aplicación de las distintas políticas, a punto tal de que cualquier norma que haga prevalecer un tipo de religión sobre otra resulta reputada como una legislación con un velo de sospecha en torno a su carácter discriminatorio? Son las denominadas \textbf{categorías sospechosas}: aquellas que, preliminarmente, tendrían que tener una fundamentación muy rigurosa y bien lograda para lesionar los derechos que están en juego. Se trata de derechos de una sensibilidad tal que, salvo que haya una fundamentación muy especial, la norma resulta discriminatoria y lesiva.
+
+Las categorías sospechosas son aquellas regulaciones que basan diferencias en rasgos que hacen a características particulares de las personas, es decir, regulaciones basadas en distinciones fundadas en la edad, la nacionalidad, la religión, el origen o el género, entre otras. En la jurisprudencia actual de la Corte, desde hace ya varios años, todas estas regulaciones entran en ese ``cono de sospecha'', lo cual acarrea una consecuencia muy importante en materia de derecho administrativo y de derecho constitucional.
+
+\begin{definition}{Categorías sospechosas}
+Regulaciones que establecen diferencias basadas en rasgos como edad, nacionalidad, religión, origen o género. La jurisprudencia de la Corte las somete a un escrutinio más estricto, invirtiendo la presunción de legitimidad de la norma.
+\end{definition}
+
+Todas las normas emanadas de competencias originarias, mediante procedimientos legítimos por parte del organismo emisor —el Congreso de la Nación, en el ámbito nacional— se presumen legítimas y, por ende, plenamente aplicables. Cuando una ley ha sido sancionada por el Congreso con las mayorías requeridas, habiendo superado las instancias básicas para su sanción legítima, se toma a priori que esa ley se presume legítima; por lo tanto, quien quiera invocar su invalidez o inconstitucionalidad debe demostrarlo.
+
+Lo que hace la categoría sospechosa es invertir esa carga: en las normas basadas en estos criterios de distinción ya no hay una presunción de legitimidad —como prevé la ley de procedimientos administrativos para las leyes sancionadas en apego a derecho—, sino que, a priori, debe inferirse una posibilidad de invalidez, siendo en todo caso el Estado quien, en juicio, debe demostrar la legitimidad y razonabilidad de la norma.
+
+\begin{important}
+\textbf{Inversión de la carga de la prueba.} Frente a una categoría sospechosa, se invierte la presunción de legitimidad habitual de los actos y leyes del Estado: la norma se presume, a priori, potencialmente inválida, y es el Estado quien debe demostrar en juicio su legitimidad y razonabilidad.
+\end{important}
+
+Hay un fallo, uno de los más conocidos para establecer esta idea de categorías sospechosas, correspondiente a una persona nacida en Alemania que impugnó un concurso para el Poder Judicial, para el acceso a cargos de secretario en los tribunales nacionales y federales.
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+El nombre del fallo fue pronunciado en la grabación como ``Gotchau'' / ``Cocha'', sin que se consigne con precisión su grafía ni su carátula completa. Podría tratarse del precedente ``Gottschau, Evelyn Patrizia c/ Consejo de la Magistratura de la Ciudad Autónoma de Buenos Aires'' (Corte Suprema de Justicia de la Nación, 2006), que trató la exigencia de nacionalidad argentina para acceder al cargo de secretario judicial como categoría sospechosa. Se recomienda verificar la carátula, el tribunal y la fecha exactos antes de citarlo en un examen o trabajo.
+\end{important}
+
+La norma exigía que, para ser secretario, se debía ser ciudadano argentino, nativo o naturalizado. Esta persona impugnó la exigencia entendiendo que existía una irrazonabilidad y una categoría sospechosa no basada en razones legítimas, por cuanto el cargo de secretario de un juzgado —integrante del Poder Judicial— no ameritaba necesariamente exigir la nacionalidad argentina como condición de elegibilidad en los concursos del Consejo de la Magistratura.
+
+Esta persona, nacida en Alemania, se había presentado y había sido desestimada, por lo que impugnó la norma invocando la categoría sospechosa y la ilegitimidad por falta de razonabilidad en la exigencia de nacionalidad para un cargo de secretario judicial. La Corte hizo lugar al planteo, entendiendo que, por la entidad del cargo, no se trataba de un requisito razonable, y que correspondía partir de la presunción de ilegitimidad de la norma, sin que el Estado hubiera demostrado su legitimidad a lo largo del proceso.
+
+\begin{example}{Fallo sobre exigencia de nacionalidad para cargo de secretario judicial}
+\textbf{Situación inicial:} una persona nacida en Alemania se presentó a un concurso para acceder al cargo de secretario en el Poder Judicial (Consejo de la Magistratura).
+
+\textbf{Problema:} la norma exigía ser ciudadano argentino, nativo o naturalizado, requisito que la postulante consideró irrazonable y discriminatorio.
+
+\textbf{Razonamiento de la Corte:} la exigencia de nacionalidad constituye una categoría sospechosa; por lo tanto, la norma no se presume legítima sino que corresponde al Estado demostrar su razonabilidad, lo que no ocurrió en el caso.
+
+\textbf{Conclusión:} la Corte hizo lugar al planteo, por entender que el requisito de nacionalidad no resultaba razonable para el cargo de secretario judicial.
+\end{example}
+
+Cabe hacer foco, en definitiva, en la compatibilización entre el sostenimiento del culto católico y el carácter preferente de la Iglesia como sujeto de derecho público, por un lado, y la obligación del Estado de apegarse a un régimen normativo que asegure estrictamente la libertad religiosa y la no discriminación, por el otro.
+
+% =========================================================================
+% UNIDAD 3
+% =========================================================================
+\chapter[Educación religiosa en Salta]{El caso de la educación religiosa en la provincia de Salta}
+
+\begin{note}
+\textbf{Pregunta guía del capítulo:} ¿Puede el Estado imponer una asignatura de religión de facto confesional en la escuela pública? \textit{Ejes: discriminación indirecta, neutralidad estatal, educación inicial.}
+\end{note}
+
+\section{Los hechos del caso}
+
+Un ejemplo reciente fue una demanda iniciada en Salta por la educación inicial obligatoria en esa provincia, en cuyo marco se impartía catequesis, es decir, un curso de religión católica.
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+Existen dudas sobre la carátula exacta del fallo. Se menciona ``Castillo, Viviana y otros c/ Provincia [de Salta] s/ Amparo'', con intervención de la Asociación de Derechos Civiles (ADC). Antes de citar el precedente en una evaluación, se recomienda verificar la carátula oficial, el tribunal y la fecha exactos de la sentencia de la Corte Suprema de Justicia de la Nación referida a la educación religiosa obligatoria en la provincia de Salta.
+\end{important}
+
+Hubo numerosos colectivos de damnificados y también amicus curiae —juristas reconocidos y asociaciones, así como credos de diferentes religiones— que argumentaron a favor y en contra de la regulación. El caso llegó a la Corte Suprema por apelación, luego de que la Corte de Justicia de la provincia de Salta dictara un fallo favorable a la legalidad de la norma, rechazando la impugnación de la ADC.
+
+\section{El planteo de la asociación demandante}
+
+La asociación sostenía que, bajo la apariencia de una asignatura obligatoria de educación inicial denominada ``religión a secas'', sin indicar ningún credo en especial, se generaba en los hechos una discriminación, porque esa clase terminaba siendo, en la práctica, producto de que la religión mayoritaria —la que contaba con medios para desplegar profesores— era la católica.
+
+No se trataba, entonces, de una materia en la que se diera un panorama de historia de las religiones o una comparación entre distintas religiones a lo largo de la historia del país o de la humanidad. Los hechos probados en el juicio mostraban que era, en la práctica, la posición preeminente de la Iglesia Católica la que se traducía en clases de catequesis, generando situaciones complejas para los alumnos que manifestaban su intención de no concurrir.
+
+Aunque el dispositivo se consideraba constitucional porque, en teoría, quien indicaba su religión y aclaraba que no quería asistir quedaba liberado de concurrir, en los hechos se demostró en el juicio que esos alumnos no eran reemplazados por materias alternativas activas. Como solo la Iglesia Católica tenía medios para desplegar profesores en las escuelas, no existían alternativas, y lo que debía ser una asignatura de ``religión a secas'' terminaba monopolizado por clases de religión católica.
+
+\begin{important}
+\textbf{Discriminación indirecta.} Lo relevante del caso no era la existencia formal de una opción de exención, sino su ineficacia práctica: los alumnos exentos no recibían una materia alternativa y quedaban, en los hechos, relegados o discriminados frente a la mayoría.
+\end{important}
+
+Esto resultaba inequitativo, y planteaba situaciones en las que determinados menores, en un ámbito formativo muy importante de su personalidad, se veían aislados y, en algún punto, discriminados por no asistir a la clase mayoritaria.
+
+\section{La decisión de la Corte}
+
+Bajo estos postulados, la Corte consideró que el proceso había sido muy claro en demostrar esta circunstancia: no se trataba de una mera clase de historia comparada de las religiones, sino de una asignatura que en los hechos privilegiaba el dictado de los postulados de la religión católica, generando además una situación de discriminación respecto de los alumnos cuyos padres firmaban la exención.
+
+Lo que a priori resultaba una ley razonable, orientada a mostrar la fisonomía y los postulados de todas las religiones, terminaba siendo, en los hechos, una clase inequívocamente del credo mayoritario, el católico apostólico romano.
+
+La Corte, con un voto dividido, resolvió por tres votos contra uno que el sistema, tal como estaba implementado, era violatorio de la libertad religiosa, porque establecía preferencias y evidenciaba una suerte de segregación hacia los alumnos que optaban por no cursar la clase de religión, sin ofrecerles una verdadera alternativa educativa. El juez Rosatti votó a favor de la legalidad y constitucionalidad de la ley.
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+Se identifica al juez que votó en disidencia como ``Rosati''. Se recomienda verificar la grafía correcta (Rosatti) y confirmar la composición exacta del tribunal y el sentido preciso de cada voto en el fallo original antes de utilizarlo como cita de examen.
+\end{important}
+
+En el juicio se acreditó también que los alumnos que no asistían a la clase eran muy pocos, porque nadie quería evidenciar que profesaba otra religión: existía cierta vergüenza u ocultamiento de esa condición minoritaria. Además, esos alumnos no contaban con ninguna clase de reemplazo: deambulaban por los pasillos durante ese horario, que no representaba una clase ganada para ellos. Este conjunto de hechos acreditados determinó que la Corte, por mayoría, estableciera que la ley resultaba contraria a la libertad de expresión y de religión, y establecía fuertes diferencias entre sujetos basadas en el tipo de religión que profesaban.
+
+Se declaró, por lo tanto, la invalidez constitucional de la ley que establecía la materia de religión obligatoria en la educación inicial.
+
+\section{El argumento de la autonomía provincial}
+
+Había quienes invocaban —y esto lo hacía la propia provincia— que Salta tenía un fuerte arraigo cultural católico y que, siendo la educación inicial una competencia eminentemente provincial, correspondía a las provincias asegurar el dictado de esas clases; sostenían que no correspondía a la Corte Suprema avasallar la autonomía provincial para dictar normas sobre el dictado de la educación inicial. Pese a este argumento, por tres votos contra uno, la Corte declaró la inconstitucionalidad de la norma, en virtud de los hechos descriptos.
+
+\begin{table}[H]
+\centering
+\caption{Argumentos y resultado del caso de educación religiosa en Salta}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{3.8cm}X}
+\toprule
+\textbf{Argumento} & \textbf{Sostenido por} & \textbf{Resultado en el fallo} \\
+\midrule
+Autonomía provincial en materia de educación inicial & Provincia de Salta & No fue suficiente para justificar la norma; primó la protección de la libertad religiosa \\
+\addlinespace
+Discriminación indirecta hacia alumnos no católicos & Asociación de Derechos Civiles (ADC) y otros demandantes & Fue acogido por la mayoría de la Corte (3 a 1) \\
+\addlinespace
+Legalidad y constitucionalidad de la norma & Voto en disidencia (juez Rosatti, según lo señalado en clase) & Voto minoritario, no prevaleció \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Síntesis del caso}
+
+El sostenimiento del culto católico apostólico romano no puede verse reflejado en la aplicación de políticas públicas preferentes hacia una determinada religión; en la aplicación de las políticas públicas debe primar un concepto de neutralidad e imparcialidad frente a los distintos credos religiosos.
+
+Siguiendo la idea de categorías sospechosas, sería igualmente una categoría irrazonable y cuestionable, por ejemplo, exigir que los profesores de derecho de una universidad deban profesar el catolicismo para poder dictar clases, con el argumento de que ciertos imperativos morales estarían anidados en una herencia cultural hispano-católica. Una norma con esa desproporción, discriminatoria respecto de los no católicos, sería reprochable y probablemente sería, con relativa rapidez, tildada de inconstitucional.
+
+\begin{definition}{Neutralidad estatal en materia religiosa}
+El sostenimiento del culto católico se reduce a los aspectos institucionales de configuración de la Iglesia Católica como persona jurídica de derecho público, pero no puede trasladarse a preferencias expresas en la opción religiosa de las personas. La profesión de la religión queda relegada al ámbito de reserva del artículo 19 de la Constitución Nacional.
+\end{definition}
+
+% =========================================================================
+% UNIDAD 4
+% =========================================================================
+\chapter{Libertad religiosa en casos particulares}
+
+\begin{note}
+\textbf{Pregunta guía del capítulo:} ¿Hasta dónde llega el derecho a decidir conforme a las propias convicciones religiosas? \textit{Ejes: testigos de Jehová, transfusiones, homeschooling, comunidades menonitas.}
+\end{note}
+
+\section{Testigos de Jehová y transfusiones de sangre}
+
+Los límites a la libertad de culto se plantean, por ejemplo, cuando se pone en riesgo la salud. Existen varios casos de testigos de Jehová que, por no aceptar la transfusión de sangre, han llevado la cuestión a los tribunales; uno de ellos, muy resonante, fue el de una persona que había sido víctima de un disparo y contaba con un documento en el que dejaba constancia de que no aceptaba transfusiones, caso en el cual la Corte terminó dándole la razón.
+
+En los casos en que la familia o el Ministerio Público intentaron autorizar la transfusión en contra de la voluntad religiosa de personas que adhieren al credo de los testigos de Jehová, la Corte ha aceptado que se está dentro del ámbito del derecho de reserva, íntimamente relacionado con la libertad religiosa, y que, no estando en juego la afectación de terceros, sino estrictamente una cuestión de salud personal, debe prevalecer la opción que marca el credo religioso de la persona.
+
+La Corte ha aceptado, por lo tanto, esa negativa, entendiendo que no cabe suplirla razonablemente —ni siquiera por parte de familiares allegados—, en la medida en que exista una voluntad inequívoca de no someterse a ese tipo de transfusiones.
+
+\begin{example}{Negativa a recibir transfusiones de sangre por motivos religiosos}
+\textbf{Situación:} personas que profesan el credo de los testigos de Jehová manifiestan su voluntad de no recibir transfusiones de sangre.
+
+\textbf{Conflicto:} familiares o el Ministerio Público intentaron, en algunos casos, autorizar la transfusión en contra de esa voluntad.
+
+\textbf{Criterio de la Corte:} la negativa queda amparada por el principio de reserva y la libertad religiosa, siempre que se trate de una decisión personal, inequívoca y expresada en condiciones de lucidez y libre discernimiento, sin afectación de terceros.
+
+\textbf{Conclusión:} no puede obligarse a la persona a someterse al tratamiento, y esa voluntad no puede ser suplida por familiares.
+\end{example}
+
+\begin{important}
+Se plantea como una cuestión abierta el supuesto en que la persona afectada no está consciente y son terceros quienes deciden en su nombre, especialmente cuando está en juego la vida de un menor. No se ofrece en la clase una respuesta unívoca para ese supuesto; se remite al criterio general de decisión personal, inequívoca y lúcida.
+% TODO: contenido incompleto o ambiguo en las notas originales
+\end{important}
+
+En esos casos, si bien algunos precedentes ya tienen varios años y están algo desactualizados, la jurisprudencia siempre ha hecho lugar a esa opción en la medida en que se trate de una decisión personal de quien está afectado en su salud, y que sea inequívoca: una opción real, sin turbaciones de ningún tipo. La Corte ha entendido que la decisión entra dentro de la esfera personal del principio de reserva y que, por más que haya un pedido de familiares, no puede ser suplida; debe ser expresa y manifestada en una situación de lucidez y libre discernimiento.
+
+\section{Educación en el hogar (homeschooling)}
+
+Un ejemplo de norma que puede encuadrarse en la idea de categoría sospechosa es el de la educación en el hogar: la Ley Federal de Educación y la Constitución establecen que todo ciudadano es libre de enseñar y de aprender, pero no dicen que ello deba ser en una institución.
+
+\begin{formula}{Libertad de enseñar y aprender}
+Se hace referencia a que la Constitución reconoce que todo ciudadano es libre de enseñar y de aprender, en alusión al contenido del artículo 14 de la Constitución Nacional, y se menciona además la Ley Federal de Educación.
+\end{formula}
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+La referencia a ``la Ley Federal de Educación'' no precisa si se trata de la Ley 24.195 (derogada) o de la Ley de Educación Nacional 26.206, actualmente vigente. Se recomienda verificar la norma exacta aplicable a la educación en el hogar en la legislación argentina vigente.
+\end{important}
+
+En las últimas reformas se buscó incorporar regulación sobre este punto. La cuestión sería que la familia sea responsable, sin dejar al niño a la deriva, pero tampoco reducir todo al tema de la socialización, que no tiene que ver con tener a los chicos de la misma edad sentados varias horas en un aula cuando el niño necesita moverse.
+
+Existe un ejemplo interesante, llevado a un plano no ya de opción individual sino ligado también con la religión y la cultura: el de las comunidades menonitas, que han tenido roces con distintos gobiernos, sobre todo en Sudamérica, porque no querían enviar a sus hijos a los sistemas de educación básica provinciales.
+
+\section{Comunidades menonitas}
+
+Existe un fallo conocido de la justicia en Uruguay en el cual se reconoció el derecho de las familias menonitas a no enviar a sus hijos a las escuelas de nivel inicial, en la medida en que se subsanara con clases impartidas con un contenido y material acordado con la comunidad.
+
+En Argentina existe una solución parecida: los chicos concurren a establecimientos propios de la comunidad. Se entendió que existe un derecho a esa opción, sin obligación de concurrir a los establecimientos provinciales de educación inicial. En Argentina se llegó a un acuerdo con las comunidades, especialmente con una comunidad importante en La Pampa, permitiéndoles mantener la educación básica por sus propios medios, acreditando que se impartían determinados contenidos básicos de cumplimiento obligatorio en el país.
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+Se menciona ``un famoso fallo de la justicia en Uruguay'' sobre comunidades menonitas y un acuerdo con una comunidad menonita en la provincia de La Pampa (Argentina), sin identificar la carátula, el tribunal o la fecha de dichos precedentes. Se recomienda verificar estas referencias antes de utilizarlas como cita jurisprudencial.
+\end{important}
+
+Esto fue también motivo de un caso más grande y famoso en los Estados Unidos, donde se entendió esa opción, respecto de la Primera Enmienda de libertad religiosa, como un derecho también de las comunidades menonitas, en tanto consecuencia de su opción religiosa, amparada por dicha enmienda.
+
+\begin{formula}{Primera Enmienda de la Constitución de los Estados Unidos}
+Se menciona como fundamento, en un caso estadounidense, del derecho de las comunidades menonitas a no enviar a sus hijos a los colegios ordinarios, por tratarse de una consecuencia de su libertad religiosa.
+\end{formula}
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+Se alude a ``un caso más grande y famoso en los Estados Unidos'' vinculado a la Primera Enmienda y a comunidades religiosas que se niegan a enviar a sus hijos a la educación formal, sin identificar el nombre del precedente. Podría tratarse del caso Wisconsin v. Yoder (1972), referido a comunidades amish, pero esta identificación no surge de la fuente y debe verificarse antes de citarla.
+\end{important}
+
+\section{Servicio militar obligatorio y objeción religiosa}
+
+Algo similar ocurría con determinadas religiones que impedían, por ejemplo, portar armas, en relación con el cumplimiento del servicio militar obligatorio, donde hubo quienes aceptaban esa posibilidad —algo también discutible—. Ese tipo de políticas públicas, orientadas a generar cohesión social y un sentimiento de pertenencia, resultan menos sensibles hoy en día que en la historia de la República Argentina, un país con una enorme afluencia de inmigrantes, donde el servicio militar obligatorio no era solo una prestación en defensa del país, sino que conllevaba también políticas de sanidad: para muchos ciudadanos, la revisión médica al ingresar al servicio militar era la primera y única oportunidad, durante mucho tiempo, de recibir atención médica y ser controlados.
+
+\begin{definition}{El principio de reserva como hilo conductor}
+El principio de reserva (artículo 19 de la Constitución Nacional) constituye el eje común que atraviesa los casos analizados: transfusiones de sangre, educación en el hogar, comunidades menonitas y objeción religiosa al servicio militar.
+\end{definition}
+
+% =========================================================================
+% UNIDAD 5
+% =========================================================================
+\chapter{Derechos políticos y partidos políticos}
+
+\begin{note}
+\textbf{Pregunta guía del capítulo:} ¿Por qué el partido político es la vía obligada para acceder a un cargo electivo? \textit{Ejes: representación, monopolio partidario, requisitos legales.}
+\end{note}
+
+\section{Concepto de derechos políticos}
+
+Los derechos políticos son un campo muy vasto de actuación, pero esencialmente se trata de aquella rama que muchas veces se entiende como justicia electoral: establece el modo en que los ciudadanos se desenvuelven en cuanto a su capacidad de ejercer la representación política y, en definitiva, asegurar los postulados de un Estado democrático, aquel en que los pueblos no deliberan ni gobiernan sino a través de sus representantes.
+
+Lo esencial en los derechos políticos es el derecho al voto, desde el aspecto pasivo de la ciudadanía, y también desde un concepto activo de intervención política: la posibilidad de ser candidato en los diversos cargos elegibles.
+
+\section{Los partidos políticos como institución fundamental}
+
+La Constitución establece que los partidos políticos son un concepto fundamental, una institución fundamental del sistema democrático, porque no se concibe la posibilidad de presentarse a cargos electivos sino a través de la representación política que invocan y ejercen los partidos políticos en todo el territorio.
+
+Los partidos políticos son instituciones clave de la representación política, porque solo a través de ese vehículo es posible obtener una postulación.
+
+\begin{formula}{Ley de Partidos Políticos}
+Regulación del ámbito federal que establece los postulados esenciales que deben cumplir las asociaciones para ser reconocidas como partidos políticos (identificada en clase genéricamente como ``ley de partidos políticos'', sin número de norma).
+% TODO: contenido incompleto o ambiguo en las notas originales
+\end{formula}
+
+Los partidos políticos son asociaciones que deben cumplir determinados requisitos para ser reconocidos como tales. En primer término, deben tener una estructura organizativa que asegure una representación democrática y una elección periódica de sus representantes. Deben tener también un estatuto constitutivo que vele por los principios del sistema representativo y democrático, y que permita un funcionamiento virtuoso del partido.
+
+\begin{table}[H]
+\centering
+\caption{Requisitos legales de los partidos políticos}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.5cm}X}
+\toprule
+\textbf{Requisito legal} & \textbf{Contenido según lo explicado en clase} \\
+\midrule
+Estructura organizativa & Debe asegurar representación democrática interna y elección periódica de representantes \\
+\addlinespace
+Estatuto constitutivo & Debe velar por los principios del sistema representativo y democrático \\
+\addlinespace
+Piso de afiliados & Al menos el 4\% del padrón de cada distrito \\
+\addlinespace
+Piso de votos por elección & Al menos el 2\% del padrón electoral en cada elección \\
+\addlinespace
+Consecuencia del incumplimiento & Pérdida de la personería jurídica si no se alcanza el 2\% del padrón en, al menos, dos elecciones consecutivas \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+En cuanto al piso de representación, la ley establece que el partido debe tener un conjunto de afiliados que, cuanto menos, alcance el 4\% del padrón de cada distrito. Es decir, los partidos políticos tienen legitimidad tanto desde el origen —por su constitución, el estatuto y todos los requisitos— como por la representación que acreditan a través del número de afiliados. Además, necesitan una representación del 2\% del padrón electoral en cada elección.
+
+Aquel partido político que no alcanza ese piso del 2\% del padrón electoral en, al menos, dos elecciones consecutivas, en algún punto pierde la personería jurídica: pierde la representación como tal por un período, hasta que vuelve a contar con los requisitos para una reinserción como entidad política legitimada.
+
+Existe además toda una justicia electoral que, en segunda instancia, cuenta con cámaras especializadas que resuelven las apelaciones contra los fallos de los jueces electorales de primera instancia.
+
+La representación política es clave en estos aspectos, porque los partidos políticos son los vehículos que permiten concretar la postulación para un cargo electivo y el ejercicio de la representación política. Están sujetos a numerosas regulaciones en cuanto a la rendición de gastos, el origen de los fondos, el monitoreo de sus afiliados y la propia composición de las listas, donde, por ejemplo, existe una ley de equidad de género que establece la necesidad de que los candidatos se intercalen entre géneros —hombre y mujer— en las diversas listas oficializadas.
+
+\begin{formula}{Ley de equidad de género (paridad)}
+Norma que exige que las candidaturas se intercalen entre géneros en las listas oficializadas por los partidos políticos.
+\end{formula}
+
+\begin{definition}{Monopolio de la representación política}
+La Constitución y la Ley de Partidos Políticos configuran a los partidos como el vehículo obligado —una suerte de monopolio— para el acceso a cargos electivos: sin pertenecer a un partido político, no es posible presentarse válidamente como candidato.
+\end{definition}
+
+% =========================================================================
+% UNIDAD 6
+% =========================================================================
+\chapter{Derecho al voto y sistemas electorales}
+
+\begin{note}
+\textbf{Pregunta guía del capítulo:} ¿Cómo se traduce la voluntad popular en representación política? \textit{Ejes: voto secreto y universal, personas detenidas, sistemas proporcional y uninominal, ley de lemas.}
+\end{note}
+
+\section{El derecho al voto}
+
+Desde el aspecto pasivo, lo esencial es el derecho al voto, regulado en el Código Electoral, que resulta esencial para asegurar la legitimidad de los actos eleccionarios.
+
+\begin{formula}{Código Electoral Nacional}
+Norma que regula el derecho al voto y numerosas disposiciones sobre el carácter secreto y universal del sufragio.
+\end{formula}
+
+Existen numerosas disposiciones que establecen el carácter secreto y universal del derecho al voto, que han llevado a la justicia, en precedentes judiciales, a diversas decisiones, como aquella que anuló la norma que a priori impedía el voto de las personas detenidas y no condenadas.
+
+Actualmente, la legislación electoral establece que solo pueden perder el derecho al voto aquellas personas que están sometidas a una condena privativa de la libertad por delito doloso, y que estén cumpliendo esa condena sin ningún recurso judicial pendiente. Solo entonces, en función de una condena firme y en cumplimiento, pueden ser desapoderadas del derecho al voto.
+
+La norma que había sido impugnada respecto de personas detenidas era violatoria del principio de inocencia: si se trata de un proceso penal que todavía no ha concluido, que mantiene alguna vía de impugnación —aunque sea inerte en el tiempo—, toda decisión que conduzca a vedar el ejercicio del derecho al voto sería violatoria de dicho principio.
+
+\begin{definition}{Voto de personas detenidas sin condena firme}
+Solo pierden el derecho al voto las personas condenadas, por sentencia firme y en cumplimiento de la condena, por delito doloso. Impedir el voto a personas detenidas sin condena firme vulnera el principio de inocencia.
+\end{definition}
+
+\section{Sistemas y fórmulas electorales}
+
+Existen distintas fórmulas electorales y distintos mecanismos de ejercicio de la representación política. El sistema actualmente usado en la mayoría de las circunscripciones es el sistema proporcional (D'Hondt), donde hay una prevalencia de las mayorías, pero atemperada por una representación que también otorga lugar a las fuerzas minoritarias. Es el sistema más usado dentro del país.
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+El sistema proporcional fue mencionado en la clase con una expresión que suena como ``sistema don't'', muy probablemente en referencia al sistema D'Hondt de reparto proporcional de bancas. Se recomienda verificar la denominación exacta y su mecánica de aplicación en la normativa electoral vigente.
+\end{important}
+
+En oposición a este sistema está el sistema uninominal de distrito único (\textit{single-member district}): una compartimentación muy intensa de distintas jurisdicciones dentro de un mismo radio —por ejemplo, dentro de una misma provincia— en la que solo se elige un representante por cada circunscripción. En su momento, en la Argentina se intentó poner en funcionamiento este sistema; algunos sostienen que se intentaba socavar la aptitud electoral que en ese momento tenía el peronismo, el justicialismo, aunque no ha durado mucho en el país.
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+La afirmación de que el sistema de distrito único se intentó implementar en Argentina con la intención de afectar la aptitud electoral del peronismo constituye una interpretación histórica mencionada en clase (``algunos dicen''), no un hecho normativo verificado. Se recomienda contrastar esta referencia con fuentes históricas y normativas antes de reproducirla como afirmación de examen.
+\end{important}
+
+En general, el sistema norteamericano es más proclive al sistema de jurisdicción única: en lugar de una proporción territorial de acuerdo con listas votadas, en cada jurisdicción se vota un solo candidato, y quien gana la elección —por dos votos o por un millón— designa al ganador en esa jurisdicción; en definitiva, se aplica la primera lista más votada.
+
+\begin{table}[H]
+\centering
+\caption{Sistemas electorales comparados}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.6cm}>{\raggedright\arraybackslash}p{4.8cm}X}
+\toprule
+\textbf{Sistema} & \textbf{Mecánica} & \textbf{Efecto sobre la representación} \\
+\midrule
+Sistema proporcional (mencionado en clase, D'Hondt) & Reparto de bancas proporcional a los votos obtenidos por cada lista en la circunscripción & Prevalecen las mayorías pero se otorga lugar también a las fuerzas minoritarias \\
+\addlinespace
+Sistema uninominal de distrito único & Compartimentación en distritos pequeños; se elige un solo representante por circunscripción & Tiende a favorecer a la primera minoría o mayoría de cada distrito, con menor representación de minorías \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{La ley de lemas}
+
+Existen también variantes vinculadas con la dinámica del cómputo de votos; un ejemplo es la ley de lemas. Existe un fallo, bastante escueto, dictado por la Corte hace unos años; la Corte ha optado por entender que no es, a priori, un sistema ilegítimo.
+
+\begin{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+Se refiere ``un fallo bastante escueto'' de la Corte sobre la ley de lemas, sin identificar su carátula ni su fecha exacta. Se recomienda verificar la referencia jurisprudencial precisa antes de utilizarla en una evaluación.
+\end{important}
+
+La ley de lemas es un sistema en el cual un mismo partido político puede presentar varias listas, y estas acumulan sus votos entre sí; resulta elegida la lista que tenga más votos dentro de su propia interna, pero todos los votos de las distintas listas de esa jurisdicción se computan para la fuerza política coincidente.
+
+Algunos postulan que se trata de una forma compleja de elección, que puede invitar a confusiones, y la han cuestionado en algunos casos. Respecto de la jurisprudencia de la Corte, solo hay un precedente relevante, que fue diferente: entendió que la provincia tenía derecho a establecer la ley de lemas tal como la había sancionado.
+
+\begin{definition}{Ley de lemas}
+Sistema que permite a un mismo partido presentar varias listas (sublemas), cuyos votos se acumulan para el lema (partido); resulta elegida la lista más votada dentro de esa suma total de votos del partido.
+\end{definition}
+
+% =========================================================================
+% SÍNTESIS Y REPASO
+% =========================================================================
+\chapter{Síntesis y repaso}
+
+\section{Cuadro general de doctrinas y fallos mencionados}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}p{7.3cm}}
+\caption{Cuadro general de doctrinas y fallos mencionados} \\
+\toprule
+\textbf{Tema} & \textbf{Institución / doctrina / fallo mencionado} & \textbf{Idea central} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Tema} & \textbf{Institución / doctrina / fallo mencionado} & \textbf{Idea central} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+Libertad de expresión & Real Malicia & Responsabilidad del medio solo si conocía la falsedad de la información sobre una persona pública \\
+\addlinespace
+Libertad de expresión & Campillay & Exención de responsabilidad por omisión de identidad, cita de fuente o uso del modo potencial \\
+\addlinespace
+Libertad religiosa & Categoría sospechosa --- fallo sobre nacionalidad para cargo de secretario judicial & Inversión de la presunción de legitimidad frente a distinciones basadas en rasgos sensibles \\
+\addlinespace
+Libertad religiosa & Educación religiosa obligatoria en Salta (Castillo, Viviana y otros, según lo indicado en clase) & Inconstitucionalidad de la educación religiosa obligatoria de facto confesional, por 3 votos a 1 \\
+\addlinespace
+Libertad religiosa & Transfusiones de sangre --- testigos de Jehová & Prevalece la voluntad religiosa inequívoca de la persona afectada en su salud \\
+\addlinespace
+Libertad religiosa & Comunidades menonitas (fallo mencionado de Uruguay) & Reconocimiento del derecho a la educación comunitaria alternativa \\
+\addlinespace
+Derechos políticos & Ley de Partidos Políticos & Requisitos de afiliados (4\%) y de votos (2\%) para mantener la personería jurídica \\
+\addlinespace
+Derechos políticos & Voto de personas detenidas sin condena firme & Solo pierde el voto quien tiene condena firme y en cumplimiento por delito doloso \\
+\addlinespace
+Derechos políticos & Ley de lemas & La Corte no la considera, a priori, ilegítima \\
+\end{longtable}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{4.4cm}
+    >{\raggedright\arraybackslash}p{9.6cm}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+\endlastfoot
+
+\textbf{¿Qué es la doctrina de la Real Malicia?} &
+Doctrina de origen en la jurisprudencia de EE.\,UU., adoptada por la CSJN, según la cual los medios de comunicación solo responden por informar sobre personas públicas si se demuestra que la información era falsa y que el medio conocía esa falsedad al momento de difundirla. \\
+
+\addlinespace
+\textbf{¿Cuáles son los tres presupuestos de la doctrina Campillay?} &
+1) Omisión de la identidad del sujeto. 2) Cita expresa y clara de la fuente. 3) Uso del modo potencial o condicional al informar. \\
+
+\addlinespace
+\textbf{¿Qué es una categoría sospechosa?} &
+Una distinción normativa basada en rasgos como edad, nacionalidad, religión, origen o género, que invierte la presunción de legitimidad de la norma: el Estado debe demostrar su razonabilidad. \\
+
+\addlinespace
+\textbf{¿Cómo se resolvió el caso de educación religiosa en Salta?} &
+La Corte, por 3 votos contra 1, declaró inconstitucional la asignatura de religión obligatoria en la educación inicial, por generar discriminación indirecta hacia los alumnos no católicos, al no ofrecer una alternativa educativa real. \\
+
+\addlinespace
+\textbf{¿Qué rige la negativa a transfusiones de sangre por motivos religiosos?} &
+El principio de reserva (art.\ 19 CN) y la libertad religiosa amparan la negativa, siempre que sea una decisión personal, inequívoca y expresada con lucidez y libre discernimiento. \\
+
+\addlinespace
+\textbf{¿Por qué los partidos políticos tienen un ``monopolio'' de la representación?} &
+Porque, conforme a la Constitución y a la Ley de Partidos Políticos, no es posible presentarse a un cargo electivo sino a través de un partido político. \\
+
+\addlinespace
+\textbf{¿Qué requisitos exige la ley a los partidos políticos?} &
+Estructura organizativa democrática, estatuto constitutivo, un piso de afiliados de al menos 4\% del padrón por distrito, y al menos 2\% del padrón electoral en cada elección (bajo riesgo de pérdida de personería tras dos elecciones consecutivas por debajo de ese piso). \\
+
+\addlinespace
+\textbf{¿Quiénes pueden perder el derecho al voto?} &
+Solo las personas condenadas por sentencia firme y en cumplimiento de una condena privativa de la libertad por delito doloso, sin recursos judiciales pendientes. \\
+
+\addlinespace
+\textbf{¿Qué es la ley de lemas?} &
+Un sistema en el que un mismo partido presenta varias listas cuyos votos se acumulan; resulta elegida la lista más votada dentro de esa suma total. \\
+
+\midrule
+
+\multicolumn{2}{p{14cm}}{
+\textbf{Resumen:}
+La clase desarrolla tres ejes articulados por una misma lógica constitucional: la tensión entre derechos individuales y potestades o intereses del Estado, resuelta a través de estándares que la Corte fue construyendo caso por caso. En materia de libertad de expresión, las doctrinas de la Real Malicia y Campillay limitan la responsabilidad de los medios frente a personas públicas, exigiendo estándares probatorios estrictos o el cumplimiento de recaudos formales. En materia de libertad religiosa, el sostenimiento constitucional del culto católico convive con la exigencia de neutralidad estatal, reforzada por la doctrina de las categorías sospechosas, que invierte la carga de la prueba cuando una norma distingue por religión u otros rasgos sensibles; esta lógica se proyecta en el fallo sobre educación religiosa en Salta y en los casos de transfusiones de sangre, educación en el hogar y comunidades menonitas, todos ellos anclados en el principio de reserva del artículo 19 de la Constitución Nacional. Finalmente, en materia de derechos políticos, los partidos políticos aparecen como el vehículo institucional obligado para el ejercicio de la representación, sujeto a requisitos legales de organización y de representatividad, mientras que el derecho al voto se articula con garantías como el principio de inocencia y conviven distintos sistemas de traducción de votos en representación, como el sistema proporcional, el sistema uninominal y la ley de lemas.
+} \\
+
+\bottomrule
+\end{longtable}
+
+\section{Preguntas de repaso activo}
+
+Las siguientes preguntas están organizadas en cinco niveles de dificultad creciente. Se recomienda intentar responderlas sin volver al texto antes de verificar la respuesta.
+
+\subsection*{Nivel 1 --- Reconocimiento}
+\addcontentsline{toc}{subsection}{Nivel 1 --- Reconocimiento}
+
+\begin{exercise}{¿Qué es la doctrina de la Real Malicia?}
+Es la doctrina, de origen norteamericano y adoptada por la CSJN, según la cual los medios de comunicación responden por informar sobre personas públicas solo si se prueba que la información era falsa y que el medio conocía esa falsedad.
+\end{exercise}
+
+\begin{exercise}{¿Cuáles son los tres presupuestos de la doctrina Campillay?}
+Omisión de la identidad del sujeto, cita expresa de la fuente y utilización del modo potencial o condicional.
+\end{exercise}
+
+\begin{exercise}{¿Qué es una categoría sospechosa?}
+Una distinción normativa basada en rasgos como edad, nacionalidad, religión, origen o género, que la jurisprudencia somete a un escrutinio más estricto.
+\end{exercise}
+
+\begin{exercise}{¿Qué porcentaje mínimo de afiliados exige la ley a un partido político por distrito?}
+Al menos el 4\% del padrón de cada distrito, según lo explicado en clase.
+\end{exercise}
+
+\subsection*{Nivel 2 --- Comprensión}
+\addcontentsline{toc}{subsection}{Nivel 2 --- Comprensión}
+
+\begin{exercise}{¿Por qué la doctrina de la Real Malicia exige un estándar probatorio más alto que la simple prueba de la falsedad de la información?}
+Porque, respecto de personas públicas, no basta con probar que la información era falsa: debe probarse además que el medio conocía esa falsedad al momento de difundirla, protegiendo así la libre circulación de ideas sobre asuntos de interés público.
+\end{exercise}
+
+\begin{exercise}{¿Por qué la Corte consideró discriminatoria la educación religiosa obligatoria en Salta, si formalmente existía una opción de exención?}
+Porque en los hechos esa exención no se traducía en una alternativa educativa real: los alumnos exentos no recibían otra materia y quedaban expuestos a una situación de segregación frente a la mayoría que sí cursaba la clase de religión católica.
+\end{exercise}
+
+\begin{exercise}{¿Cómo se relaciona el principio de reserva del artículo 19 de la Constitución Nacional con la libertad religiosa?}
+El principio de reserva protege el ámbito de las acciones privadas de las personas que no ofenden al orden ni a la moral pública ni perjudican a terceros; la libertad religiosa, incluyendo decisiones como la negativa a transfusiones de sangre, queda amparada dentro de ese ámbito.
+\end{exercise}
+
+\subsection*{Nivel 3 --- Aplicación}
+\addcontentsline{toc}{subsection}{Nivel 3 --- Aplicación}
+
+\begin{exercise}{Un medio publica una noticia falsa sobre un funcionario sin verificar la fuente, pero sin saber que era falsa: ¿respondería civilmente bajo la doctrina de la Real Malicia?}
+En principio no, porque la doctrina de la Real Malicia exige, además de la falsedad, el conocimiento previo de esa falsedad por parte del medio; la sola negligencia en la verificación, según lo explicado en clase, podría no alcanzar ese estándar, salvo que se configure una negligencia grave asimilable a ese conocimiento.
+\end{exercise}
+
+\begin{exercise}{Si una provincia dicta una norma que exige practicar una religión determinada para acceder a un cargo docente universitario, ¿qué tratamiento constitucional recibiría?}
+Sería tratada como una categoría sospechosa: se invertiría la presunción de legitimidad y la provincia debería demostrar la razonabilidad de la exigencia, lo cual, según el ejemplo dado en clase, resultaría muy difícil de justificar.
+\end{exercise}
+
+\subsection*{Nivel 4 --- Diferenciación}
+\addcontentsline{toc}{subsection}{Nivel 4 --- Diferenciación}
+
+\begin{exercise}{¿Cuál es la diferencia entre la doctrina de la Real Malicia y la doctrina Campillay?}
+La Real Malicia exige probar la falsedad de la información y el conocimiento previo de esa falsedad por parte del medio; Campillay, en cambio, ofrece recaudos formales (omisión de identidad, cita de fuente, modo potencial) que, de cumplirse, eximen de responsabilidad sin necesidad de analizar el conocimiento subjetivo del medio sobre la falsedad.
+\end{exercise}
+
+\begin{exercise}{¿Cuál es la diferencia entre el sistema electoral proporcional y el sistema uninominal de distrito único?}
+El sistema proporcional reparte bancas según el porcentaje de votos obtenido por cada lista, dando lugar también a fuerzas minoritarias; el sistema uninominal de distrito único elige un solo representante por circunscripción, favoreciendo a quien obtenga más votos en cada distrito, sin proporcionalidad interna.
+\end{exercise}
+
+\subsection*{Nivel 5 --- Integración}
+\addcontentsline{toc}{subsection}{Nivel 5 --- Integración}
+
+\begin{exercise}{¿Cómo se relacionan los principales bloques temáticos de esta clase?}
+Todos los bloques giran en torno a la tensión entre derechos individuales (expresarse libremente, profesar una religión, elegir y ser elegido) y potestades o intereses del Estado (proteger la reputación, sostener un culto, organizar el sistema electoral). En cada bloque, la jurisprudencia —Real Malicia y Campillay en materia de prensa; categorías sospechosas y neutralidad estatal en materia religiosa; requisitos legales de los partidos y garantías del voto en materia electoral— traza el punto de equilibrio entre esos intereses en tensión, con el principio de reserva del artículo 19 de la Constitución Nacional como hilo conductor explícito entre varios de los casos analizados.
+\end{exercise}
+
+\section{Síntesis general}
+
+La clase parte de la libertad de expresión y su doble dimensión (individual y social), para adentrarse en los límites de la responsabilidad de los medios de comunicación frente a personas públicas, a través de las doctrinas de la Real Malicia y Campillay. Desde allí, avanza hacia la libertad religiosa, examinando cómo el sostenimiento constitucional del culto católico convive con la exigencia de neutralidad estatal y con la doctrina de las categorías sospechosas, ilustrada con el fallo sobre educación religiosa obligatoria en Salta y con casos de transfusiones de sangre, educación en el hogar y comunidades menonitas, todos ellos vinculados al principio de reserva del artículo 19 de la Constitución Nacional. Finalmente, la clase se traslada al campo de los derechos políticos, abordando el rol institucional de los partidos políticos, los requisitos legales para su subsistencia, las garantías del derecho al voto —incluida su vinculación con el principio de inocencia— y los distintos sistemas de traducción de votos en representación política.
+
+Este recorrido permite observar un patrón común: en cada bloque, un derecho individual entra en tensión con una potestad, un interés o una organización estatal, y la jurisprudencia construye estándares —probatorios, de razonabilidad o de neutralidad— para resolver esa tensión caso por caso, más que mediante reglas absolutas.
+
+\begin{important}
+\textbf{Recordatorio sobre fidelidad del documento.} Este apunte fue elaborado exclusivamente a partir de la transcripción de la clase. Los fragmentos marcados como advertencias de verificación señalan nombres de fallos, normas o citas que fueron expresados con dudas o de forma imprecisa en la fuente original, y que deben confirmarse con fuentes oficiales antes de utilizarse en una evaluación.
+\end{important}
+
+\end{document}

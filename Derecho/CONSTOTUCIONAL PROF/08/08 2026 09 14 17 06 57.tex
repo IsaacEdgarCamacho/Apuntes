@@ -1,0 +1,869 @@
+\documentclass[12pt,oneside]{book}
+
+% =========================================================
+% METADATOS DEL DOCUMENTO
+% =========================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Constitucional Profundizado}
+\newcommand{\titulo}{Sistemas políticos y principio de reserva (art.\ 19 de la Constitución Nacional)}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% =========================================================
+% PAQUETES
+% =========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\renewcommand{\arraystretch}{1.25}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% =========================================================
+% RUTAS DE IMÁGENES
+% =========================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =========================================================
+% CONFIGURACIÓN GENERAL
+% =========================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =========================================================
+% ENCABEZADOS Y PIES DE PÁGINA
+% =========================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =========================================================
+% COMANDOS MATEMÁTICOS
+% =========================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =========================================================
+% CAJAS ACADÉMICAS
+% =========================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Entorno sobrio para la cita de artículos constitucionales
+% (no se implementa como tcolorbox para evitar el exceso de cajas)
+\newenvironment{normacitada}[1]{%
+    \medskip
+    \noindent\textbf{#1}\par\smallskip
+    \begin{quote}\itshape
+}{%
+    \end{quote}
+    \medskip
+}
+
+% =========================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% =========================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+\begin{document}
+
+% =========================================================
+% PORTADA
+% =========================================================
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los fundamentos del sistema constitucional es el primer paso para razonar, y no solo memorizar, el derecho.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Constitucional Profundizado'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% =========================================================
+% ÍNDICE
+% =========================================================
+\tableofcontents
+
+% =========================================================
+% PRESENTACIÓN
+% =========================================================
+\chapter*{Presentación de estos apuntes}
+\addcontentsline{toc}{chapter}{Presentación de estos apuntes}
+
+Estos apuntes reúnen dos ejes que integran el primer término evaluativo de la materia. El primero es el de los \textbf{sistemas políticos}: cómo está organizado el sistema constitucional argentino (representativo, republicano y federal), qué prohibiciones y mecanismos limitan a cada poder, en qué se diferencia del sistema parlamentario y qué rol cumplen los partidos políticos. El segundo es el \textbf{principio de reserva del artículo 19}: el ámbito de las acciones privadas que el Estado no puede regular, ilustrado con fallos y doctrinas.
+
+En síntesis, el desarrollo recorre:
+
+\begin{itemize}
+\item \textbf{Sistema constitucional vs.\ parlamentario:} división de poderes, decretos de necesidad y urgencia (DNU), delegación legislativa, art.\ 29, voto de censura, disolución del parlamento y juicio político.
+\item \textbf{Partidos políticos:} requisitos, estatuto, autoridades y transparencia de fondos.
+\item \textbf{Artículo 19 y libertad de prensa:} los casos \emph{Bazterrica}, la doctrina \emph{Roe v.\ Wade}, \emph{Ponzetti de Balbín}, la doctrina de la real malicia, la doctrina \emph{Campillay} y el caso \emph{Sejean}.
+\end{itemize}
+
+\begin{important}
+Esta materia es la base del razonamiento con el que un abogado evalúa si una norma o un acto del Estado es válido, y hasta dónde puede llegar el poder frente a un cliente.
+
+\begin{itemize}
+\item \textbf{Litigio contra el Estado:} saber cuándo un DNU, una delegación legislativa o una retención pueden impugnarse (caso \emph{Camaronera Patagónica}) es la materia prima de los planteos de inconstitucionalidad.
+\item \textbf{Defensa penal y de familia:} el art.\ 19 fundamenta argumentos como la tenencia para consumo personal (\emph{Bazterrica}) o la libertad de volver a casarse (\emph{Sejean}).
+\item \textbf{Daños, honor e imagen:} la real malicia, \emph{Campillay} y \emph{Ponzetti de Balbín} definen cuándo un medio responde por informar y cuándo se invadió la intimidad.
+\item \textbf{Derecho electoral:} constitución, estatuto y transparencia de fondos de un partido político.
+\item \textbf{Argumentación:} ponderar derechos en tensión (libertad frente a protección de terceros) es una habilidad que se emplea en escritos, audiencias y dictámenes.
+\end{itemize}
+\end{important}
+
+\textbf{Ruta de estudio sugerida:} (1) recorrer cada capítulo en el orden propuesto; (2) al final del documento, tapar la columna derecha del cuadro Cornell e intentar responder cada pregunta de memoria antes de verificar la respuesta. Recuperar la información de memoria y repasarla en sesiones espaciadas consolida el aprendizaje mejor que releer.
+
+% =========================================================
+% CAPÍTULO 1 · PUNTO DE PARTIDA
+% =========================================================
+\chapter[Punto de partida]{Punto de partida: terminología del sistema político}
+
+\section{Sistemas políticos y principio de reserva: agenda de la unidad}
+
+El programa de la materia articula, en esta etapa, dos grandes puntos: por un lado, los \textbf{sistemas políticos}, es decir, el sistema constitucional argentino y su comparación con el sistema parlamentario; por otro lado, el \textbf{principio de reserva} (art.\ 19 de la Constitución Nacional) y sus distintos ámbitos de aplicación, entre ellos temáticas como la muerte asistida o la interrupción del embarazo.
+
+\section{¿Congreso Nacional o Parlamento?}
+
+En el uso corriente del lenguaje jurídico y político actual es frecuente escuchar a legisladores y comunicadores referirse a ``el Parlamento'' cuando, en rigor, corresponde hablar del \textbf{Congreso Nacional} o del \textbf{Poder Legislativo}. Esta identificación es incorrecta por dos razones.
+
+En primer lugar, es la propia Constitución la que determina cómo se denomina al órgano deliberativo y legislativo: la Constitución utiliza, de forma indistinta, las expresiones Congreso Nacional o Poder Legislativo. En segundo lugar, y de modo más sustancial, el sistema parlamentario y el sistema constitucional argentino son \textbf{sistemas políticos distintos}, con diferencias marcadas entre sí. Emplear ``Parlamento'' como sinónimo de ``Congreso Nacional'' oscurece esa diferencia.
+
+\begin{definition}{Congreso Nacional / Poder Legislativo}
+Denominaciones que la Constitución Nacional utiliza indistintamente para referirse al órgano deliberativo y legislativo del sistema constitucional argentino. Se distinguen del ``Parlamento'', que es la denominación propia de un sistema político distinto: el sistema parlamentario.
+\end{definition}
+
+% =========================================================
+% CAPÍTULO 2 · EL SISTEMA CONSTITUCIONAL ARGENTINO
+% =========================================================
+\chapter{El sistema constitucional argentino}
+
+\section{Forma de gobierno: representativo, republicano y federal}
+
+El sistema constitucional argentino reposa sobre tres rasgos fundamentales.
+
+\begin{itemize}
+\item \textbf{Representativo:} nadie delibera ni gobierna sino a través de sus representantes.
+\item \textbf{Republicano:} existe una clara distinción y diferenciación de poderes, con cometidos y competencias específicas, bajo un esquema de \emph{mutuo freno y contrapeso}.
+\item \textbf{Federal:} el armado político reposa en las provincias originarias, que conservan todo el poder no delegado al gobierno federal y cuentan con determinados ámbitos de autonomía.
+\end{itemize}
+
+\begin{normacitada}{Artículo 1 de la Constitución Nacional}
+La Nación Argentina adopta para su gobierno la forma representativa republicana federal, según lo establece la presente Constitución.
+\end{normacitada}
+
+\begin{normacitada}{Artículo 22 (primera oración) de la Constitución Nacional}
+El pueblo no delibera ni gobierna, sino por medio de sus representantes y autoridades creadas por esta Constitución.
+\end{normacitada}
+
+\begin{normacitada}{Artículo 121 de la Constitución Nacional}
+Las provincias conservan todo el poder no delegado por esta Constitución al Gobierno federal, y el que expresamente se hayan reservado por pactos especiales al tiempo de su incorporación.
+\end{normacitada}
+
+El sistema parlamentario, en contraste, es un sistema político relativamente reciente, con importante desarrollo en el derecho europeo continental —los sistemas italiano y español son sistemas parlamentarios—, aunque con rasgos distintivos en el caso inglés. Los puntos cardinales del sistema constitucional argentino, frente a los cuales se contrastará luego el sistema parlamentario, pueden resumirse en la existencia de tres poderes —ejecutivo, legislativo y judicial— con competencias distribuidas entre centros de poder distintos.
+
+\section{División de poderes e incompatibilidad de cargos}
+
+El Estado argentino distribuye sus cometidos y competencias entre tres centros de poder distintos, encarnados por funcionarios diferentes. Un principio elemental de este esquema es la \textbf{prohibición de simultaneidad de cargos}: el presidente, el vicepresidente, los ministros y el jefe de gabinete no pueden tener participación simultánea en el Poder Legislativo ni en el Poder Judicial. De manera análoga, los gobernadores no pueden ocupar cargos en los poderes federales, lo que expresa una prohibición entre el gobierno provincial y el gobierno federal.
+
+\subsection{El Poder Ejecutivo y los actos de naturaleza judicial}
+
+Una prohibición particularmente explícita, de redacción original de la Constitución, es la que veda al Poder Ejecutivo el ejercicio de funciones judiciales.
+
+\begin{normacitada}{Artículo 109 de la Constitución Nacional}
+En ningún caso el Presidente de la Nación puede ejercer funciones judiciales, arrogarse el conocimiento de causas pendientes o restablecer las fenecidas.
+\end{normacitada}
+
+La única competencia de raíz judicial que conserva el Poder Ejecutivo es la facultad de dictar \textbf{indultos}, sujeta a un procedimiento constitucionalmente prefijado.
+
+\begin{normacitada}{Artículo 99, inciso 5, de la Constitución Nacional}
+Puede indultar o conmutar las penas por delitos sujetos a la jurisdicción federal, previo informe del tribunal correspondiente, excepto en los casos de acusación por la Cámara de Diputados.
+\end{normacitada}
+
+\begin{important}
+La incompatibilidad de cargos y la prohibición de que el Ejecutivo ejerza funciones judiciales son piezas centrales de la división de poderes. La única competencia de raíz judicial que conserva el Ejecutivo es el indulto, sujeto a un procedimiento constitucional prefijado.
+\end{important}
+
+\section{Decretos del Ejecutivo: DNU y decretos delegados}
+
+Los actos de naturaleza legislativa dictados por el Poder Ejecutivo son, como principio general, insanablemente nulos. La Constitución admite, sin embargo, dos excepciones: los decretos de necesidad y urgencia y los decretos delegados.
+
+\subsection{Decretos de necesidad y urgencia (DNU)}
+
+Los DNU tienen naturaleza legislativa, pero están sujetos a un régimen muy estricto para su dictado, con materias expresamente vedadas.
+
+\begin{normacitada}{Artículo 99, inciso 3 (extracto), de la Constitución Nacional}
+El Poder Ejecutivo no podrá en ningún caso bajo pena de nulidad absoluta e insanable, emitir disposiciones de carácter legislativo. Solamente cuando circunstancias excepcionales hicieran imposible seguir los trámites ordinarios previstos por esta Constitución para la sanción de las leyes, y no se trate de normas que regulen materia penal, tributaria, electoral o el régimen de los partidos políticos, podrá dictar decretos por razones de necesidad y urgencia [\ldots]
+\end{normacitada}
+
+Las materias expresamente prohibidas para los DNU son, entonces, la materia electoral —incluido el régimen de los partidos políticos— y la materia tributaria (fiscal) y penal, en atención a la tipicidad de los delitos.
+
+\subsection{Decretos delegados}
+
+A diferencia de los DNU, los decretos delegados exigen que preexista una \textbf{ley delegante}: un marco jurídico que otorgue certeza en dos aspectos, temático y temporal. El Poder Legislativo puede delegar en el Ejecutivo, pero únicamente en materias determinadas y con carácter restrictivo, y siempre dentro de un plazo limitado.
+
+\begin{normacitada}{Artículo 76 de la Constitución Nacional}
+Se prohíbe la delegación legislativa en el Poder Ejecutivo, salvo en materias determinadas de administración o de emergencia pública, con plazo fijado para su ejercicio y dentro de las bases de la delegación que el Congreso establezca.
+\end{normacitada}
+
+\begin{table}[H]
+\centering
+\caption{DNU y decretos delegados: cuadro comparativo}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Decreto de necesidad y urgencia (DNU)} & \textbf{Decreto delegado} \\
+\midrule
+\textbf{Naturaleza} & Tiene naturaleza legislativa. & Tiene una raíz legislativa. \\
+\textbf{Condición previa} & Régimen muy estricto para su dictado; no requiere ley delegante previa. & Debe preexistir una ley delegante: un marco jurídico que otorga certeza. \\
+\textbf{Límites} & Materias expresamente prohibidas: electoral, tributaria (fiscal), penal y régimen de partidos políticos. & Materias muy determinadas, conferidas taxativamente, y con plazo para su ejercicio. \\
+\textbf{Regla general} & Excepción al principio de que el Ejecutivo no puede dictar normas. & Excepción autorizada por el Congreso mediante ley de delegación (art.\ 76). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Límites al Poder Judicial y al Poder Legislativo: el artículo 29}
+
+\subsection{Límites para el Poder Judicial}
+
+El Poder Judicial tampoco puede desarrollar conductas que impliquen un reemplazo de los funcionarios administrativos o una actividad estrictamente legislativa. El control de constitucionalidad tiene, ciertamente, implicancias en el campo normativo —cuando se declara la inconstitucionalidad de una norma, esta deja de considerarse vigente y aplicable—, pero cualquier avance de las competencias jurisdiccionales que pretenda legislar o reemplazar a la administración configura un exceso, una conducta ilegítima por parte del Poder Judicial.
+
+\subsection{Límites para el Poder Legislativo}
+
+Rige también, para el Poder Legislativo, el principio de no intromisión en los otros poderes del Estado. La Constitución es, en este sentido, el gran modelo de otorgamiento y deslinde de competencias, tanto entre los tres poderes del Estado como entre el poder federal y el poder provincial, con una norma de interpretación —denominada \emph{norma de cerramiento}— según la cual todo el poder no delegado al gobierno federal permanece en las provincias.
+
+\subsection{La cláusula de las facultades extraordinarias}
+
+El Poder Legislativo tiene, además, una prohibición expresa heredada de la época del rosismo: no puede conceder al Poder Ejecutivo Nacional, ni las legislaturas provinciales a los gobernadores, facultades extraordinarias ni la suma del poder público.
+
+\begin{normacitada}{Artículo 29 de la Constitución Nacional}
+El Congreso no puede conceder al Ejecutivo Nacional, ni las Legislaturas provinciales a los gobernadores de provincia, facultades extraordinarias, ni la suma del poder público, ni otorgarles sumisiones o supremacías por las que la vida, el honor o las fortunas de los argentinos queden a merced de gobiernos o persona alguna. Actos de esta naturaleza llevan consigo una nulidad insanable, y sujetarán a los que los formulen, consientan o firmen, a la responsabilidad y pena de los infames traidores a la patria.
+\end{normacitada}
+
+Esta cláusula tiene su raíz histórica en la gestión de Juan Manuel de Rosas como gobernador, quien contó con facultades extraordinarias para manejar, de forma monopólica, las relaciones exteriores de las Provincias Unidas del Río de la Plata. El artículo 29 ha resistido el paso del tiempo porque constituye una verdadera declaración política contra la posibilidad de que el Congreso otorgue, en la expresión utilizada en clase, ``cheques en blanco'' a otros poderes del Estado, especialmente al Poder Ejecutivo.
+
+\begin{note}
+% TODO: contenido incompleto o ambiguo en las notas originales
+El docente vinculó el artículo 29 con la denominada ``generación del 80''. Cabe dejar constancia de que el artículo 29 integra el texto constitucional originario de 1853, sancionado tras la caída de Rosas, y no la etapa de la generación del 80, que es posterior. Se conserva la referencia tal como fue expuesta en la clase.
+\end{note}
+
+Como muestra este recorrido, la Constitución no solo distribuye competencias entre los distintos artículos, sino que busca de manera insistente establecer límites claros para que cada poder del Estado permanezca delimitado, zanjando cualquier intromisión de unos poderes hacia otros. Se trata de un régimen representativo, en la medida en que los tres poderes del Estado —más allá de que en algunos casos existan elecciones directas y en otros, como el de los jueces, designaciones indirectas a través del Consejo de la Magistratura o del Congreso de la Nación— son representantes de la voluntad popular.
+
+\section{Federalismo y coparticipación}
+
+En relación con el reparto de competencias entre Nación y provincias, la Constitución reconoce a las provincias el dominio originario de los recursos naturales existentes en su territorio.
+
+\begin{normacitada}{Artículo 124 (última oración) de la Constitución Nacional}
+Corresponde a las provincias el dominio originario de los recursos naturales existentes en su territorio.
+\end{normacitada}
+
+Se planteó en clase si, siendo el sistema argentino representativo, republicano y federal, y correspondiendo a cada provincia el dominio originario de sus recursos naturales, no resultaría inconstitucional que el régimen de coparticipación federal condicionara la decisión provincial sobre tales recursos. El docente señaló que, si bien cada provincia tiene una titularidad originaria sobre sus recursos, el modo en que estos son explotados genera la intervención de otros niveles de gobierno; la explicación se orientó luego hacia el origen histórico del artículo 29 en el contexto de la época de Rosas, sin agotar la respuesta específica sobre la coparticipación.
+
+\begin{note}
+% TODO: contenido incompleto o ambiguo en las notas originales
+La pregunta sobre si el régimen de coparticipación resulta compatible con el dominio originario provincial de los recursos naturales quedó sin una respuesta completa en la clase: la explicación del docente se reencauzó hacia el origen histórico del art.\ 29.
+\end{note}
+
+\section{Vasos comunicantes entre poderes}
+
+El reparto primario de competencias entre la Nación y las provincias, y entre los distintos poderes del Estado, busca una \textbf{racionalización del poder}: una compartimentación orientada al equilibrio, con determinados mecanismos excepcionales —los llamados \emph{puntos de fuga}— por los cuales se generan \textbf{vasos comunicantes} entre un poder y otro.
+
+El DNU constituye un vaso comunicante por el cual el Poder Ejecutivo se introduce en funciones legislativas. En menor medida, también puede considerarse un vaso comunicante la sanción de un indulto, en tanto implica una intromisión regulada en facultades jurisdiccionales. En sentido inverso, las leyes de delegación legislativa son un vaso comunicante por el cual el Congreso otorga al Poder Ejecutivo determinadas funciones normativas, aunque con límites temáticos y temporales muy estrictos.
+
+\begin{table}[H]
+\centering
+\caption{Vasos comunicantes entre poderes}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}p{0.24\textwidth} X}
+\toprule
+\textbf{Mecanismo} & \textbf{Poder que interviene} & \textbf{Ámbito ajeno al que accede} & \textbf{Control / límite} \\
+\midrule
+DNU & Ejecutivo & Función legislativa & Régimen muy estricto; materias prohibidas. \\
+Indulto & Ejecutivo & Función jurisdiccional & Intromisión regulada; procedimiento constitucionalmente prefijado. \\
+Ley de delegación & Congreso (hacia el Ejecutivo) & Función normativa del Ejecutivo & Límites temáticos y temporales muy estrictos (art.\ 76). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Camaronera Patagónica (CSJN, 2014)}
+En \emph{Camaronera Patagónica} la Corte Suprema declaró la inconstitucionalidad de las normas que fijaban retenciones a las exportaciones —entre ellas, a las exportaciones de soja y sus derivados—, en tanto se trataba de normas del Código Aduanero que otorgaban al Ejecutivo la competencia para fijar dichas retenciones sin haber determinado un límite temporal. La Corte entendió que esa delegación sin plazo incurría en una inconstitucionalidad, por violentar la división de poderes.
+\end{example}
+
+% =========================================================
+% CAPÍTULO 3 · SISTEMA PARLAMENTARIO Y COMPARACIÓN
+% =========================================================
+\chapter[El sistema parlamentario]{El sistema parlamentario y su comparación con el sistema argentino}
+
+\section{Rasgos del sistema parlamentario}
+
+En el sistema parlamentario, a diferencia del sistema constitucional argentino, \textbf{los miembros del Ejecutivo son miembros del Parlamento}. Los límites entre los poderes del Estado resultan, en consecuencia, mucho más difusos: son parlamentarios quienes, mediante la mayoría agravada que prevé el Parlamento para formar gobierno, asumen también funciones ejecutivas. Los primeros ministros y los miembros de los gobiernos parlamentarios no dejan, entonces, de ser miembros del Parlamento.
+
+\subsection{Flexibilidad frente a estabilidad}
+
+El sistema parlamentario es, en algún sentido, un régimen más \textbf{flexible} o, con una connotación negativa, más \textbf{inestable}. En el régimen constitucional argentino, de división de poderes, la alternancia está fijada por la periódica convocatoria a elecciones con calendario preestablecido: cada dos años hay una elección de medio término para la renovación parcial de autoridades, o una elección completa que incluye al Ejecutivo, siempre en plazos preestablecidos que las partes no pueden disponer.
+
+En el sistema parlamentario, en cambio, los límites son más difusos y el régimen reposa en gran medida en \textbf{alianzas políticas} que duran lo que dura su capacidad de aunar criterios y conformar gobierno.
+
+\begin{important}
+En el sistema parlamentario los miembros del Ejecutivo son miembros del Parlamento y los límites entre poderes son más difusos. En el sistema argentino, la alternancia depende de un calendario electoral preestablecido que las partes no pueden disponer.
+\end{important}
+
+\section{Voto de censura, disolución del parlamento y juicio político}
+
+El sistema parlamentario dispone de dos grandes mecanismos de autorregulación mediante los cuales un poder puede autolimitar al otro.
+
+\subsection{Primer mecanismo: el voto de censura}
+
+El Parlamento —unicameral o bicameral, con predominancia habitual de una de las cámaras cuando es bicameral— puede, mediante una mayoría agravada (generalmente de dos tercios de sus miembros), dictar un \textbf{voto de censura}: ordenar al Poder Ejecutivo que cese y que se llame a elecciones dentro de un período de tiempo determinado. Según el régimen, el propio Parlamento puede designar la nueva autoridad, o bien convocarse a elección, existiendo en cualquier caso un período de incertidumbre hasta que emerge una nueva forma política legitimada por el voto.
+
+\subsection{Segundo mecanismo: la disolución del parlamento}
+
+El Ejecutivo —cuyo primer ministro es, generalmente, parlamentario— puede, a su vez, \textbf{disolver el Parlamento} mediante un acto de gobierno, ordenando la formación de un nuevo Parlamento y convocando a elecciones. Este mecanismo se utiliza especialmente en períodos de enfrentamiento político y de imposibilidad fáctica de llegar a acuerdos.
+
+Ambos poderes conservan, entonces, una suerte de \emph{llave maestra} para poner en jaque la continuidad del otro, siempre bajo un dispositivo que reposa en la legitimación democrática: se fuerza el recambio para que emerja una nueva fuerza política con renovado apoyo de los votantes y, por lo tanto, con mayor legitimación.
+
+\subsection{Lo que no ocurre en el sistema argentino}
+
+En el sistema constitucional argentino —federal y de tres poderes separados, con un calendario electoral determinado con antelación— no existe la posibilidad de disolver el Congreso ni de dictar un voto de censura al Ejecutivo. El mecanismo análogo es el \textbf{juicio político} (\emph{impeachment}), en el que la Cámara de Diputados actúa como cámara acusadora y la Cámara de Senadores resuelve.
+
+\begin{normacitada}{Artículo 53 (primera parte) de la Constitución Nacional}
+Sólo ella [la Cámara de Diputados] ejerce el derecho de acusar ante el Senado al presidente, vicepresidente, al jefe de gabinete de ministros, a los ministros y a los miembros de la Corte Suprema, en las causas de responsabilidad que se intenten contra ellos, por mal desempeño o por delito en el ejercicio de sus funciones; o por crímenes comunes [\ldots]
+\end{normacitada}
+
+\begin{normacitada}{Artículo 59 (extracto) de la Constitución Nacional}
+Al Senado corresponde juzgar en juicio público a los acusados por la Cámara de Diputados [\ldots] Ninguno será declarado culpable sino a mayoría de los dos tercios de los miembros presentes.
+\end{normacitada}
+
+Los sujetos susceptibles de remoción por juicio político son, entonces, los integrantes del Poder Ejecutivo —presidente, vicepresidente, jefe de gabinete y ministros— y los miembros de la Corte Suprema de Justicia. A diferencia del sistema parlamentario, el juicio político no funciona como un mecanismo flexible de renovación de autoridades, sino como una verdadera \textbf{ruptura}: el sistema constitucional argentino no cuenta con mecanismos flexibles para conformar nuevas mayorías, sino con calendarios eleccionarios preestablecidos.
+
+\section{Flexibilidad, inestabilidad y sistemas de partidos}
+
+Como regla general —aunque existan experiencias que la contradigan—, los regímenes parlamentarios son \textbf{más flexibles}, con respuestas más inmediatas a las crisis políticas, pero tienden a ser \textbf{más inestables} en el tiempo. Son, por ello, más proclives a la idea de \textbf{coaliciones gobernantes}: mayorías alcanzadas por un conglomerado de partidos y uniones políticas que no son tan tradicionales como en el sistema constitucional argentino.
+
+El sistema argentino es, en este punto, más cercano al sistema norteamericano: un sistema de división republicana de los tres poderes del Estado, con un típico sistema político \textbf{bipartidista} (tradicionalmente, republicanos y demócratas en los Estados Unidos), frente a los sistemas parlamentarios, más proclives a mayorías coyunturales conformadas por alianzas políticas de menor duración.
+
+\begin{table}[H]
+\centering
+\caption{Sistema constitucional argentino frente al sistema parlamentario}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Sistema constitucional argentino} & \textbf{Sistema parlamentario} \\
+\midrule
+Estructura de poderes & Tres poderes separados (Ejecutivo, Legislativo y Judicial); federal. & Límites difusos: los miembros del ejecutivo son miembros del parlamento. \\
+Simultaneidad de cargos & No se permite; hay incompatibilidades expresas. & Los primeros ministros y ministros siguen siendo parlamentarios. \\
+Alternancia / elecciones & Calendario preestablecido; las partes no pueden disponer de los tiempos electorales. & Reposa en alianzas políticas que duran lo que dura el poder de aunar criterios y formar gobierno. \\
+Control entre poderes & Juicio político (Diputados acusan, Senado resuelve): funciona como ruptura. & Voto de censura del parlamento (mayoría agravada, generalmente dos tercios) y disolución del parlamento por el ejecutivo. \\
+Estabilidad / flexibilidad & Más estable y rígido; sin mecanismos flexibles para conformar nuevas mayorías. & Más flexible, con respuestas más inmediatas a las crisis, pero más inestable. \\
+Sistema de partidos & Más propio de sistemas bipartidistas y de partidos tradicionales (como Estados Unidos). & Más proclive a coaliciones gobernantes y mayorías coyunturales. \\
+Ejemplos citados & Argentina; el sistema norteamericano es casi igual en este punto. & Sistemas italiano y español; el sistema inglés, con rasgos distintivos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================
+% CAPÍTULO 4 · PARTIDOS POLÍTICOS
+% =========================================================
+\chapter{Partidos políticos}
+
+\section{Régimen legal de los partidos políticos}
+
+Los partidos políticos son \textbf{órganos necesarios del sistema democrático}. En el sistema argentino cuentan con una regulación específica —la ley de partidos políticos— que establece que todo lo atinente a su funcionamiento será resuelto, en caso de conflicto, por la justicia electoral.
+
+\begin{normacitada}{Artículo 38 (extracto) de la Constitución Nacional}
+Los partidos políticos son instituciones fundamentales del sistema democrático. Su creación y el ejercicio de sus actividades son libres dentro del respeto a esta Constitución, la que garantiza su organización y funcionamiento democráticos, la representación de las minorías, la competencia para la postulación de candidatos a cargos públicos electivos, el acceso a la información pública y la difusión de sus ideas. [\ldots] Los partidos políticos deberán dar publicidad del origen y destino de sus fondos y patrimonio.
+\end{normacitada}
+
+Dado que nadie delibera ni gobierna sino a través de sus representantes, los partidos políticos son los vehículos necesarios para la representación política. La ley exige, entre otros requisitos, un número mínimo de afiliados, un estatuto validado por la justicia electoral y renovaciones periódicas de sus autoridades, bajo apercibimiento de pérdida de su estatus de partido político. Para alcanzar presencia nacional, un partido debe contar con presencia en al menos cinco distritos o provincias.
+
+\begin{note}
+% TODO: contenido incompleto o ambiguo en las notas originales
+El docente se refirió a un tope de afiliados equivalente al ``4\,\%'' del padrón local. La Ley Orgánica de los Partidos Políticos (Ley 23.298) exige, en rigor, una adhesión mínima equivalente al cuatro por mil (4\textperthousand) de los inscriptos en el padrón del distrito, con un máximo de 4.000 adhesiones. Se conserva la formulación tal como fue expuesta en clase, dejando constancia de esta precisión.
+\end{note}
+
+\begin{important}
+Requisitos de un partido político, según lo expuesto en clase:
+\begin{enumerate}[label=\alph*)]
+\item Número de afiliados.
+\item Estatuto validado por la justicia electoral.
+\item Renovación periódica de autoridades (de lo contrario, puede perder su estatus).
+\item Para alcance nacional: presencia en al menos cinco distritos o provincias.
+\item Organización con patrimonio y con autoridades elegidas y periódicamente renovadas.
+\end{enumerate}
+\end{important}
+
+\section{Naturaleza jurídica y transparencia del patrimonio}
+
+Los partidos políticos deben contar con un patrimonio regulado por la justicia electoral. A la hora de presentar candidaturas en procesos electorales, deben además acreditar el origen de los fondos aplicados a los gastos de campaña, sometiéndose al control de la justicia electoral. Este último punto ha sido señalado como un déficit relativamente frecuente de los partidos políticos argentinos, que no siempre cuentan con una declaración actualizada de los montos y los gastos electorales.
+
+Los partidos políticos cuentan con \textbf{personería jurídica} y con representantes legales y autoridades elegidas. Funcionan, en algún sentido, como una asociación, aunque sin finalidad de lucro, orientada a ejercer la representación política de los ciudadanos; no constituyen, en consecuencia, una simple asociación en el sentido genérico del término, sino un sujeto de derecho con un estatus propio.
+
+\begin{definition}{El ``ABC'' de los partidos políticos}
+Según lo expuesto en clase, la regulación de los partidos políticos se estructura en torno a tres elementos:
+\begin{enumerate}
+\item \textbf{Estatuto}, previamente aprobado, con régimen de funcionamiento interno y estructura.
+\item \textbf{Autoridades} y sistema de elección de las autoridades, renovadas periódicamente.
+\item \textbf{Transparencia} de su patrimonio y de sus recursos electorales, con acreditación del origen de los fondos ante la justicia electoral.
+\end{enumerate}
+Funcionan, en algún punto, como una asociación sin fines de lucro, con personería jurídica, orientada a la representación política de los ciudadanos.
+\end{definition}
+
+% =========================================================
+% CAPÍTULO 5 · PRINCIPIO DE RESERVA: ARTÍCULO 19
+% =========================================================
+\chapter[Principio de reserva]{Principio de reserva: el artículo 19}
+
+\section{El artículo 19 y su alcance}
+
+El artículo 19 de la Constitución Nacional consagra el denominado \textbf{principio de reserva}. Se trata de un artículo de redacción originaria, no modificada, que reserva las acciones privadas de los hombres —en la medida en que no ofendan el orden y la moral pública ni perjudiquen a terceros— a la esfera exenta de la autoridad de los magistrados.
+
+\begin{normacitada}{Artículo 19 de la Constitución Nacional}
+Las acciones privadas de los hombres que de ningún modo ofendan al orden y a la moral pública, ni perjudiquen a un tercero, están sólo reservadas a Dios, y exentas de la autoridad de los magistrados. Ningún habitante de la Nación será obligado a hacer lo que no manda la ley, ni privado de lo que ella no prohíbe.
+\end{normacitada}
+
+\begin{definition}{Principio de reserva (art.\ 19)}
+Ámbito de la conducta humana vedado a la regulación normativa: las acciones privadas que no ofenden el orden ni la moral pública ni perjudican a terceros. El Congreso no puede regular conductas que no exteriorizan una afectación de terceros. El punto más complejo de esta garantía consiste en determinar dónde está la veda normativa y cuál es el verdadero umbral en el que las normas no pueden entrometerse.
+\end{definition}
+
+Entre los campos de aplicación de este principio se destacan el de la no punición penal —dónde puede haber tipificación de conductas y cuándo el legislador debe abstenerse por tratarse de materia reservada—, la interrupción del embarazo, el consumo de estupefacientes y la muerte asistida.
+
+\section{Consumo personal de estupefacientes: el caso \emph{Bazterrica}}
+
+\begin{example}{Bazterrica (CSJN, 1986)}
+El fallo \emph{Bazterrica}, dictado por la nueva integración de la Corte Suprema al inicio de la etapa democrática de los años ochenta, estableció que la tenencia de estupefacientes —en el caso, marihuana— para consumo personal, sin que la cantidad permitiera presumir a priori que excedía ese consumo interno y sin haberse verificado una afectación de terceros, se encontraba despenalizada: el legislador no podía entrometerse en esos actos privados. Es el ejemplo típico dado en el ámbito del consumo personal de estupefacientes.
+\end{example}
+
+\begin{definition}{Doctrina del caso Bazterrica}
+La tenencia de estupefacientes para consumo personal, sin cantidad que exceda a priori ese consumo interno y sin afectación de terceros, es una acción privada amparada por el art.\ 19: el legislador no puede entrometerse.
+\end{definition}
+
+\section{Interrupción del embarazo y muerte asistida}
+
+\subsection{La doctrina \emph{Roe v.\ Wade}}
+
+Durante muchos años estuvo vigente en los Estados Unidos la doctrina \emph{Roe v.\ Wade}, un fallo de la Corte que, ante la ausencia de norma federal explícita, ordenó el modo en que el Estado podía regular la interrupción del embarazo, en función del estado de gestación y del concepto de \textbf{viabilidad} del feto.
+
+\begin{table}[H]
+\centering
+\caption{Doctrina \emph{Roe v.\ Wade}: esquema por trimestres}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} X X}
+\toprule
+\textbf{Etapa del embarazo} & \textbf{Criterio expuesto} & \textbf{Intervención del Estado} \\
+\midrule
+Primer trimestre & Dependencia biológica del no nacido respecto de la madre (soporte vital). & No es un ámbito objeto de punición ni de regulación estatal. \\
+Segundo trimestre & Ante determinadas causales, terapéuticas y determinadas acciones. & Puede convalidarse la no penalización de la interrupción. \\
+Tercer trimestre & Clara tendencia referida a la viabilidad del no nacido. & Restricción fuerte: solo autorizada y despenalizada en caso de peligro de vida de la madre. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+La doctrina de \emph{Roe v.\ Wade} (Corte Suprema de los Estados Unidos, 1973) fue la que estuvo vigente durante décadas, según lo expuesto en clase, hasta la modificación jurisprudencial introducida por la actual composición de la Corte, de sesgo conservador, con las últimas designaciones del expresidente Donald Trump.
+\end{note}
+
+\subsection{La muerte asistida y síntesis del artículo 19}
+
+La muerte asistida constituye otro campo de aplicación del principio de reserva, con características propias. En términos generales, el artículo 19 establece un principio de no regulación en la medida en que no exista una exteriorización de la conducta privada que afecte a terceros o a la moral pública —entendida esta como el ámbito en el que el derecho debe intervenir porque existen intereses y derechos de terceros en juego—. Cuando la conducta permanece bajo el concepto de reserva, rige la deferencia hacia la actitud individual del sujeto y su responsabilidad personal.
+
+% =========================================================
+% CAPÍTULO 6 · INTIMIDAD Y LIBERTAD DE PRENSA
+% =========================================================
+\chapter{Intimidad y libertad de prensa}
+
+\section{\emph{Ponzetti de Balbín}: intimidad frente a prensa}
+
+\begin{example}{Ponzetti de Balbín c.\ Editorial Atlántida (CSJN, 1984)}
+En este caso, la viuda de Ricardo Balbín demandó porque se había publicado una fotografía tomada a Balbín en su lecho de enfermo, conectado a asistencia médica en terapia intensiva. La Corte se cuidó de establecer que en este caso no estaba en juego la libertad de prensa, porque la información sobre el estado de salud de Balbín ya era conocida y había sido divulgada por la prensa. Lo que la Corte entendió es que la fotografía no agregaba nada al interés social existente sobre esta figura pública.
+
+El concepto de \textbf{figura pública} resulta central: en la medida en que una persona, por sus características —especialmente vinculadas con su actividad—, detenta ese carácter, existe un umbral más amplio de la libertad de prensa. Cuanto más pública es la figura de una persona, mayor es la necesidad de la población de conocer información sobre ella, y esa persona debe tolerar una mayor injerencia en su vida.
+
+Sin embargo, aun siendo Balbín un político prominente, la imagen no agregaba nada al interés público en conocer información de calidad y veraz sobre su estado. No estaba en juego, entonces, la libertad de prensa, sino que la intromisión en la esfera de reserva de su personalidad —captada en un ámbito privado, en terapia intensiva— configuró un exceso y una intromisión ilegítima en su privacidad. La Corte convalidó, por ello, una indemnización a la familia por parte del medio de prensa que había publicado la imagen en primera plana.
+\end{example}
+
+\begin{important}
+La libertad de prensa es conciliable con la responsabilidad por su ejercicio irregular. Aun tratándose de una figura pública, la fotografía captada subrepticiamente en un ámbito privado (terapia intensiva) no aportaba nada al interés público y constituyó una intromisión ilegítima en la privacidad, indemnizable.
+\end{important}
+
+\section{Doble dimensión de la libertad de prensa}
+
+La libertad de prensa presenta \textbf{dos grandes dimensiones}. Por un lado, la propia libertad de los medios de comunicación para ejercer plenamente la transmisión de información sin estar condicionados por eventuales responsabilidades ulteriores. Por otro lado, desde la óptica de la sociedad como receptora de información, existe la necesidad de un acceso irrestricto a un \emph{mercado de opiniones} y de información libre, que permita a cada persona escoger y difundir sus propias conclusiones.
+
+\begin{normacitada}{Artículo 14 (extracto) de la Constitución Nacional}
+Todos los habitantes de la Nación gozan de los siguientes derechos conforme a las leyes que reglamenten su ejercicio; a saber: [\ldots] de publicar sus ideas por la prensa sin censura previa; [\ldots]
+\end{normacitada}
+
+\begin{table}[H]
+\centering
+\caption{La doble dimensión de la libertad de prensa}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} X}
+\toprule
+\textbf{Dimensión} & \textbf{Sujeto} & \textbf{Contenido} \\
+\midrule
+Dimensión de los medios & Medios de prensa & Libertad de transmitir información sin estar condicionados por eventuales responsabilidades ulteriores. \\
+Dimensión de la sociedad & Sociedad como receptora & Acceso irrestricto a un ``mercado de opiniones'' y de información libre para escoger y difundir las propias conclusiones y pensamientos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+A partir de la distinción entre figuras públicas y no públicas, en los Estados Unidos, mediante el fallo \emph{New York Times v.\ Sullivan}, se desarrolló la doctrina de la \textbf{real malicia}.
+
+\section{Doctrina de la real malicia}
+
+Existe una tensión clásica entre la libertad de prensa y el derecho al honor y a una información veraz. El punto de partida es que \textbf{no hay censura previa}: todo el régimen argentino de respeto a la libertad de prensa se basa en la irrestricta defensa de la difusión de la información, actuándose eventualmente sobre sus consecuencias ilegítimas y sus daños, nunca sobre su publicación previa.
+
+Bajo este postulado, cuando se trata de personas con trascendencia pública —sujetas, por ello, a un escrutinio más intenso—, se aplica la doctrina de la real malicia: el medio de comunicación solo responde por una información errónea o falaz en la medida en que quien demanda pueda demostrar que la inexactitud era conocida de antemano por el medio y que, con dolo o con culpa grave por no chequear las fuentes, el medio publicó la información de todos modos.
+
+\begin{definition}{Doctrina de la real malicia (\emph{New York Times v.\ Sullivan}, EE.\ UU., 1964)}
+\textbf{Ámbito:} personas públicas (cargo público, responsabilidades públicas, relevancia social, conocimiento masivo).
+
+\textbf{Regla:} el medio solo responde por información inexacta si el demandante prueba que conocía de antemano la falsedad y aun así la publicó (dolo o culpa grave por no chequear las fuentes).
+
+\textbf{Carga de la prueba:} recae en quien demanda.
+
+\textbf{Base:} no hay censura previa; solo responsabilidad posterior.
+\end{definition}
+
+\section{Doctrina \emph{Campillay}}
+
+La doctrina \emph{Campillay}, de construcción propia del derecho argentino, establece tres dispositivos —indistintos entre sí— por los cuales un medio de comunicación puede difundir información sin incurrir en responsabilidad en caso de que resulte inexacta.
+
+\begin{definition}{Doctrina Campillay (CSJN, 1986): tres supuestos indistintos}
+\begin{enumerate}
+\item \textbf{Cita de la fuente.} Debe ser una cita concreta y de buena fe: no una mera alusión vaga a quién pudo haber dicho la noticia, sino de dónde proviene la fuente de la información.
+\item \textbf{Omisión de la identidad} de la persona sobre la cual se informa, de modo tal que la gente no pueda ubicar quién es y no haya un daño a su reputación ni a su honor.
+\item \textbf{Modo potencial.} La información se difunde en modo potencial, sin aseverar el carácter inexcusable o indudable de la información.
+\end{enumerate}
+Con que se concrete fehacientemente uno de estos presupuestos, no hay responsabilidad del medio.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Real malicia y doctrina Campillay: cuadro comparativo}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Real malicia} & \textbf{Doctrina Campillay} \\
+\midrule
+Origen & Jurisprudencia de la Corte de los Estados Unidos (\emph{New York Times v.\ Sullivan}), aceptada por la Corte argentina. & Creación propia del derecho argentino (fallo Campillay de la Corte Suprema). \\
+Sujeto protegido / ámbito & Personas públicas, sujetas a escrutinio más intenso. & Medios de comunicación que difunden información que puede resultar inexacta. \\
+Cuándo no hay responsabilidad & Salvo que el demandante pruebe que el medio conocía la falsedad (dolo) o actuó con culpa grave por no chequear las fuentes. & Si se cumple cualquiera de tres supuestos: cita de la fuente, omisión de la identidad o uso del modo potencial. \\
+Carga de la prueba & Recae en la persona pública que demanda. & El medio se exonera con que se concrete fehacientemente uno de los presupuestos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================
+% CAPÍTULO 7 · OTROS ÁMBITOS DEL ARTÍCULO 19 Y CIERRE
+% =========================================================
+\chapter[Otros ámbitos del art.\ 19 y cierre]{Otros ámbitos del artículo 19 y cierre de la unidad}
+
+\section{Aptitud nupcial y derecho a equivocarse: el caso \emph{Sejean}}
+
+\begin{example}{Sejean (CSJN, 1986)}
+Hasta la reforma —tardía— introducida en los años ochenta, las personas divorciadas podían disolver su vínculo matrimonial, pero no recuperaban la aptitud nupcial: no podían generar un nuevo vínculo matrimonial con la estabilidad y los derechos y obligaciones que de él emergen.
+
+En el fallo \emph{Sejean}, con distintos votos, se destaca especialmente el del doctor Petracchi, que introduce la célebre expresión \emph{el derecho a poder equivocarse}. La Corte estableció, por vía pretoriana, el derecho a recuperar la aptitud nupcial con el divorcio, es decir, la posibilidad de establecer un vínculo matrimonial con una pareja futura.
+
+La Corte señaló que todo el derecho de familia se sustenta en la preservación y la certidumbre sobre el alcance de los derechos, por lo que la cuestión no era solo de privacidad, sino también de dotar de certeza y seguridad a los derechos que nacen de vínculos afectivos duraderos. La prohibición de recuperar la aptitud nupcial constituía una limitación irrestricta del ámbito de libertad personal, sin que existieran derechos de terceros en contradicción; por el contrario, resultaba conveniente para la sociedad que esas personas pudieran forjar nuevamente lazos afectivos y jurídicos duraderos.
+\end{example}
+
+\begin{important}
+Impedir a los divorciados recuperar la aptitud nupcial era una limitación irrestricta de la libertad personal sin derechos de terceros en contradicción; además, a la sociedad le convenía que forjaran nuevos lazos afectivos y jurídicos duraderos. Frase célebre del voto del Dr.\ Petracchi: \emph{el derecho a poder equivocarse}.
+\end{important}
+
+\begin{note}
+% TODO: contenido incompleto o ambiguo en las notas originales
+La ``reforma tardía de los años 80'' a la que se alude en clase es la que introdujo el divorcio vincular (Ley 23.515, de 1987), posterior al fallo Sejean (1986).
+\end{note}
+
+\emph{Bazterrica} y \emph{Sejean} constituyen, junto con \emph{Roe v.\ Wade}, los ejemplos jurisprudenciales centrales con los que se analizó en clase el alcance del artículo 19: en el primer caso, para despenalizar el consumo de estupefacientes con carácter estrictamente personal; en el segundo, para reconocer el derecho a recuperar la aptitud nupcial.
+
+\section{Repaso y guía de evaluación}
+
+La clase concluyó con la organización de la evaluación del primer término: la clase siguiente sería una clase de repaso, y el docente anunció el envío, por el portal de la materia, del material y de la guía de evaluación con los temas comprendidos en el primer examen parcial.
+
+\section{Imputabilidad penal juvenil y Convención de los Derechos del Niño}
+
+Se planteó en clase si una eventual baja de la edad de imputabilidad penal podría generar planteos de inconstitucionalidad frente a la Convención de los Derechos del Niño, que considera niño a toda persona hasta los 18 años.
+
+\begin{note}
+El punto que sigue corresponde a una opinión personal manifestada por el docente, y no a una doctrina o jurisprudencia consolidada; se transcribe con ese carácter.
+\end{note}
+
+Según lo expuesto por el docente, la posibilidad de una responsabilidad penal de menores de edad no debe entenderse necesariamente como una igualación de las condiciones de detención y resocialización respecto de las personas adultas: en la medida en que existan ámbitos diferenciados y adaptados a las características propias de la minoridad, no habría, por esa sola circunstancia, una violación constitucional. El límite que fija la Convención de los Derechos del Niño no implicaría \emph{per se} una prohibición de la baja de la imputabilidad; sí podría configurar un régimen ilegítimo si se demostrara que dicha baja conlleva un tratamiento igualitario, en ámbitos comunes, entre personas menores de edad y personas adultas.
+
+\begin{important}
+Opinión personal del docente: poder responder penalmente no implica un tratamiento igual al de un adulto. La Convención de los Derechos del Niño no impide \emph{per se} la baja de la imputabilidad, pero podría haber una seria objeción constitucional si el régimen implica iguales condiciones de detención, de juzgamiento y de resocialización que las de los adultos.
+\end{important}
+
+% =========================================================
+% CORNELL · RESUMEN Y REPASO FINAL
+% =========================================================
+\chapter{Cuadro Cornell: repaso final}
+
+\section{Cómo usar este cuadro}
+
+Tapá la columna derecha y respondé cada pregunta de memoria antes de verificar. Repasar en sesiones espaciadas, recuperando la información sin releer el desarrollo completo, consolida el aprendizaje de manera más eficaz que la relectura simple.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.60\textwidth}
+}
+\caption{Cuadro Cornell: sistemas políticos y principio de reserva} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\textit{(continúa de la página anterior)}} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{(continúa en la página siguiente)}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{1. ¿Por qué se prefiere ``Congreso Nacional'' o ``Poder Legislativo'' y no ``Parlamento''?} &
+Porque la propia Constitución denomina al órgano deliberativo legislativo, indistintamente, Congreso Nacional o Poder Legislativo. ``Parlamento'' corresponde al régimen parlamentario, un sistema político distinto con diferencias marcadas. \\
+
+\textbf{2. ¿Qué significa que el sistema argentino sea representativo, republicano y federal?} &
+\textbf{Representativo:} nadie delibera ni gobierna sino a través de sus representantes. \textbf{Republicano:} hay distinción de poderes con competencias específicas y un sistema de mutuo freno y contrapeso. \textbf{Federal:} las provincias conservan todo el poder no delegado al gobierno federal y tienen ámbitos de autonomía. \\
+
+\textbf{3. ¿Cómo evita la Constitución la acumulación de funciones?} &
+Asigna competencias a tres centros de poder, prohíbe la simultaneidad de cargos (incluso entre gobierno provincial y federal) y veda al Ejecutivo los actos judiciales (art.\ 109). Su única competencia de raíz judicial es el indulto, con procedimiento prefijado. \\
+
+\textbf{4. ¿En qué se diferencian los DNU de los decretos delegados?} &
+\textbf{DNU:} naturaleza legislativa, régimen muy estricto y materias prohibidas (electoral, tributaria, penal, partidos políticos). \textbf{Delegados:} exigen una ley delegante previa, materias determinadas y plazo para su ejercicio (art.\ 76). \\
+
+\textbf{5. ¿Qué prohíbe el art.\ 29 y por qué se mantiene vigente?} &
+Prohíbe que el Congreso conceda al Ejecutivo, o las legislaturas a los gobernadores, facultades extraordinarias o la suma del poder público: evita los ``cheques en blanco''. Tiene raíz en la experiencia de Rosas y resistió el paso del tiempo por su valor de declaración política. \\
+
+\textbf{6. ¿Qué son los ``vasos comunicantes'' entre poderes? Dar un ejemplo jurisprudencial.} &
+Mecanismos excepcionales y regulados por los que un poder interviene en el ámbito de otro: DNU, indulto y leyes de delegación. En \emph{Camaronera Patagónica} la Corte declaró inconstitucionales las normas que permitían al Ejecutivo fijar retenciones a las exportaciones sin límite temporal. \\
+
+\textbf{7. ¿En qué se diferencia el sistema parlamentario del argentino?} &
+En el parlamentario los miembros del ejecutivo son miembros del parlamento y los límites entre poderes son difusos; se apoya en alianzas y coaliciones. En el argentino hay tres poderes separados, calendario electoral preestablecido y bipartidismo tradicional, como en Estados Unidos. \\
+
+\textbf{8. ¿Qué son el voto de censura y la disolución del parlamento? ¿Qué existe en Argentina?} &
+\textbf{Voto de censura:} el parlamento, por mayoría agravada (generalmente dos tercios), ordena cesar al ejecutivo y llamar a elecciones. \textbf{Disolución:} el ejecutivo disuelve el parlamento y convoca elecciones. En Argentina no existen; solo el \textbf{juicio político} (Diputados acusan, Senado resuelve) para presidente, vicepresidente, jefe de gabinete, ministros y jueces de la Corte. \\
+
+\textbf{9. ¿Por qué se dice que los sistemas parlamentarios son flexibles pero inestables?} &
+Porque cuentan con mecanismos de renovación (``oxigenación'') que responden rápido a las crisis, pero dependen del apoyo del parlamento y de alianzas coyunturales, por lo que los liderazgos cambian con facilidad. \\
+
+\textbf{10. ¿Qué requisitos debe cumplir un partido político?} &
+Número de afiliados, estatuto validado por la justicia electoral, renovación periódica de autoridades y, para alcance nacional, presencia en al menos cinco distritos. Debe tener organización, patrimonio y autoridades elegidas. \\
+
+\textbf{11. ¿Qué naturaleza jurídica y qué transparencia se exigen a los partidos?} &
+Tienen personería jurídica y funcionan como asociación sin fines de lucro para ejercer la representación política. Deben acreditar el origen de los fondos de campaña ante la justicia electoral. Se resume en el ABC: estatuto, autoridades y transparencia patrimonial. \\
+
+\textbf{12. ¿Qué establece el art.\ 19 (principio de reserva)?} &
+Las acciones privadas que no ofenden el orden ni la moral pública ni perjudican a terceros están exentas de la autoridad de los magistrados; nadie está obligado a hacer lo que la ley no manda ni privado de lo que no prohíbe. Marca el umbral que las normas no pueden cruzar. \\
+
+\textbf{13. ¿Qué resolvieron \emph{Bazterrica} y \emph{Roe v.\ Wade} en relación con el art.\ 19?} &
+\emph{Bazterrica}: la tenencia de estupefacientes para consumo personal, sin afectar a terceros, no puede ser penada. \emph{Roe v.\ Wade}: ante la falta de ley federal, la Corte estadounidense fijó un esquema por trimestres según la viabilidad, doctrina luego modificada por la actual composición de la Corte. \\
+
+\textbf{14. ¿Qué resolvió el fallo \emph{Ponzetti de Balbín}?} &
+La foto tomada a Balbín en terapia intensiva, publicada en tapa, fue una intromisión ilegítima en su intimidad. Aunque era figura pública, la imagen no aportaba nada al interés público; no estaba en juego la libertad de prensa y correspondió indemnizar. \\
+
+\textbf{15. ¿Qué es la doctrina de la real malicia?} &
+Regla de \emph{New York Times v.\ Sullivan}: la persona pública solo obtiene indemnización de un medio si prueba que este conocía de antemano la falsedad y aun así publicó (dolo o culpa grave por no chequear las fuentes). Se apoya en que no hay censura previa, solo responsabilidad posterior. \\
+
+\textbf{16. ¿Cuáles son los tres supuestos de la doctrina \emph{Campillay}?} &
+El medio no responde si (1) cita concretamente y de buena fe la fuente, (2) omite la identidad de la persona o (3) informa en modo potencial. Basta con uno. Es creación propia del derecho argentino. \\
+
+\textbf{17. ¿Qué resolvió el caso \emph{Sejean} y qué frase célebre lo acompaña?} &
+Reconoció, por vía pretoriana, el derecho a recuperar la aptitud nupcial tras el divorcio, porque prohibirlo limitaba la libertad personal sin afectar a terceros. El voto del Dr.\ Petracchi habla del ``derecho a poder equivocarse''. \\
+
+\textbf{18. ¿La baja de la imputabilidad penal choca con la Convención de los Derechos del Niño?} &
+Según el docente (opinión personal), no necesariamente: la Convención no implica \emph{per se} una despenalización. Sí habría objeción constitucional seria si el régimen implicara iguales condiciones de detención, juzgamiento y resocialización que para adultos. \\
+
+\midrule
+\multicolumn{2}{p{0.90\textwidth}}{
+\textbf{Resumen:} La clase articuló dos grandes ejes. En primer lugar, mostró que el sistema constitucional argentino —representativo, republicano y federal— se sostiene en un reparto de competencias entre los tres poderes y entre Nación y provincias, protegido por prohibiciones expresas: la incompatibilidad de cargos, la veda de funciones judiciales al Ejecutivo, el régimen estricto de los DNU y de los decretos delegados (art.\ 76) y la prohibición de facultades extraordinarias (art.\ 29). Los llamados ``vasos comunicantes'' son excepciones reguladas, y el caso \emph{Camaronera Patagónica} muestra cómo la justicia controla su desborde. Frente a ello, el sistema parlamentario confunde los límites entre poderes y ofrece herramientas flexibles (voto de censura y disolución del parlamento), a costa de mayor inestabilidad y dependencia de coaliciones, mientras que el sistema argentino tiene un calendario electoral fijo y el juicio político como ruptura excepcional; en ese marco, los partidos políticos son vehículos necesarios de la representación, con estatuto, autoridades y transparencia patrimonial. En segundo lugar, el artículo 19 delimita un ámbito de acciones privadas que el Estado no puede regular mientras no afecten el orden, la moral pública ni a terceros. Sus fronteras se trazaron con \emph{Bazterrica}, con la doctrina \emph{Roe v.\ Wade} y con \emph{Sejean}; en materia de prensa, \emph{Ponzetti de Balbín}, la real malicia y la doctrina \emph{Campillay} concilian la libertad de expresión, sin censura previa, con la responsabilidad posterior y la protección de la intimidad y el honor. La clase cerró con la organización del primer parcial y una reflexión sobre la imputabilidad penal juvenil, que reafirma la idea central: todo poder y toda restricción de derechos requieren fundamento constitucional y respeto por el ámbito de libertad individual.
+} \\
+
+\end{longtable}
+
+\end{document}

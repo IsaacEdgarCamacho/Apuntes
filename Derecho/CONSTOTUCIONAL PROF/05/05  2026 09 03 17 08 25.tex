@@ -1,0 +1,971 @@
+%==============================================================================
+% APUNTES DE DERECHO CONSTITUCIONAL
+% Documento autónomo: no requiere plantilla, .sty ni .cls externos.
+% Compilar con: pdflatex (dos pasadas para índice y referencias cruzadas).
+%==============================================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================================
+% METADATOS
+%==============================================================================
+% La universidad no figura en las notas originales: se utiliza el valor por defecto.
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\ciclo}{Ciclo Superior}
+\newcommand{\materia}{Derecho Constitucional}
+\newcommand{\titulo}{El Recurso Extraordinario Federal, la Cuestión Federal y el Control de Constitucionalidad}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================================
+% PAQUETES
+%==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================================
+% CONFIGURACIÓN
+%==============================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+%==============================================================================
+% COMANDOS
+%==============================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Anchos de las columnas del cuadro Cornell (columna izquierda estrecha)
+\newlength{\cornellleft}
+\newlength{\cornellright}
+\newlength{\cornellfull}
+\AtBeginDocument{%
+    \setlength{\cornellleft}{0.27\textwidth}%
+    \setlength{\cornellright}{\dimexpr0.73\textwidth-4\tabcolsep\relax}%
+    \setlength{\cornellfull}{\dimexpr\textwidth-2\tabcolsep\relax}%
+}
+
+\newcommand{\cornellheader}{%
+    \toprule
+    \rowcolor{blue!8}
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+}
+
+\newcommand{\cornellsep}{%
+    \arrayrulecolor{gray!50}\midrule[0.3pt]\arrayrulecolor{black}%
+}
+
+%==============================================================================
+% ENTORNOS / CAJAS
+%==============================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Cita liviana para el texto de normas y jurisprudencia citadas en las notas
+\newtcolorbox{norma}[1]{
+    enhanced,
+    breakable,
+    sharp corners,
+    colback=gray!4,
+    colframe=gray!4,
+    boxrule=0pt,
+    borderline west={2.5pt}{0pt}{gray!60},
+    left=8pt,
+    before upper={\textbf{#1.}\ }
+}
+
+%==============================================================================
+% CONFIGURACIÓN FINAL (encabezados y pies)
+%==============================================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================================
+% DOCUMENTO
+%==============================================================================
+\begin{document}
+
+%------------------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \ciclo}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es construir, paso a paso, la capacidad de comprender.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de «\materia» no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%------------------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------------------
+\tableofcontents
+
+%------------------------------------------------------------------------------
+% INTRODUCCIÓN
+%------------------------------------------------------------------------------
+\chapter*{Introducción}
+\phantomsection
+\addcontentsline{toc}{chapter}{Introducción}
+\markboth{Introducción}{Introducción}
+
+\section*{Presentación del tema}
+
+Estos apuntes profundizan el estudio del \textbf{recurso extraordinario federal}, centrándose en su requisito más sustantivo: la existencia de una \textbf{cuestión federal}. Se desarrolla la distinción entre cuestión federal simple y compleja (directa e indirecta), con ejemplos trabajados sobre casos de dominio público: la ley de PASO, la libertad de prensa, los tributos confiscatorios, las reelecciones indefinidas y el financiamiento universitario, entre otros.
+
+Luego se aborda el trámite recursivo: la concesión o denegación del recurso extraordinario, el recurso de queja por denegación, la figura excepcional del \textit{per saltum} y el control de constitucionalidad de oficio conforme a la doctrina actual de la Corte Suprema. El desarrollo cierra con el estudio de la medida cautelar y sus tres presupuestos clásicos: verosimilitud del derecho, peligro en la demora y contracautela.
+
+\section*{Itinerario del desarrollo}
+
+El desarrollo puede pensarse como el trayecto de un caso judicial que aspira a llegar a la Corte Suprema:
+
+\begin{itemize}
+    \item \textbf{Capítulo 1 — El recurso extraordinario y la cuestión federal.} Primero hay que verificar que la «llave de entrada» esté completa: los requisitos del recurso extraordinario y la existencia de una cuestión federal.
+    \item \textbf{Capítulo 2 — Trámite recursivo y vías de excepción.} Luego hay que saber qué hacer si esa llave es rechazada, o si el caso es tan urgente que amerita saltar controles.
+    \item \textbf{Capítulo 3 — Control de constitucionalidad y tutela cautelar.} Incluso sin que nadie lo pida, el propio juez puede advertir un problema constitucional y actuar; y mientras el caso se resuelve, puede ser necesario proteger el derecho en juego para que la sentencia no llegue tarde.
+\end{itemize}
+
+Es, en definitiva, el mismo recorrido que hace una persona que reclama por un derecho vulnerado: identifica el problema, sortea los obstáculos procesales y busca protección mientras espera la resolución final.
+
+\section*{Relevancia del tema}
+
+El manejo técnico de la cuestión federal y del recurso extraordinario es una de las herramientas más determinantes en el litigio de alto impacto: distingue al abogado que puede llevar un caso desde un juzgado de primera instancia hasta la Corte Suprema. Comprender cuándo existe una cuestión federal simple o compleja, cómo se argumenta la colisión normativa y cómo tramitar correctamente un recurso de queja o solicitar una medida cautelar resulta indispensable en litigios de derecho público, laboral, de salud, tributario, electoral y de derechos humanos. Estas destrezas no son solo procesales: exigen capacidad argumentativa para persuadir a un tribunal de que existe (o no) una afectación constitucional.
+
+Más allá del ejercicio profesional, estos contenidos entrenan una forma de pensar transferible a la vida cotidiana: identificar cuándo dos normas, reglas o principios están en conflicto, sopesar cuál debe prevalecer y con qué fundamento, y advertir que ciertas decisiones (como una medida cautelar) exigen actuar rápido para evitar un daño irreversible, aun sin tener certeza total. Aportan, además, una noción cívica valiosa: los límites del poder, la importancia de la división de poderes y la alternancia republicana, y el rol de un Poder Judicial que puede —incluso de oficio— proteger derechos frente al poder político de turno.
+
+%==============================================================================
+% CAPÍTULO 1
+%==============================================================================
+\chapter[Recurso extraordinario y cuestión federal]{El Recurso Extraordinario y la Cuestión Federal}
+
+Como se explicó anteriormente, el recurso extraordinario federal es un instrumento procesal vinculado con los artículos 116 y 117 de la Constitución Nacional, con la doctrina de la sentencia arbitraria y con los requisitos que esta exige. A partir de ese marco se avanza en profundidad sobre uno de los aspectos centrales del recurso: la \textbf{cuestión federal}.
+
+%------------------------------------------------------------------------------
+\section{Repaso: los requisitos del recurso extraordinario federal}
+\label{sec:requisitos}
+
+Para abordar el recurso extraordinario con mayor facilidad, conviene dividir sus requisitos en tres grandes categorías:
+
+\begin{itemize}
+    \item \textbf{Requisitos comunes:} son los presupuestos generales de cualquier recurso procesal (existencia de un proceso judicial, gravamen, interés, entre otros).
+    \item \textbf{Requisitos formales:} se vinculan con las formalidades de interposición del recurso, entre ellas las previstas en la Acordada 4/2007 de la Corte Suprema (extensión máxima, tipografía, plazos de interposición).
+    \item \textbf{Requisitos propios:} son los exigidos específicamente por el artículo 14 de la Ley 48 para el recurso extraordinario federal, y son los que le dan su fisonomía particular.
+\end{itemize}
+
+Entre los requisitos propios, uno de los más importantes es que el recurso se dirija contra una \textbf{sentencia definitiva}, o similar o asimilable a una sentencia definitiva.
+
+\begin{important}
+El corazón de los requisitos del recurso extraordinario está en la existencia de una \textbf{cuestión federal}. El recurso procede contra sentencias definitivas o asimilables, pero, desde lo conceptual, el recurso extraordinario procede siempre que haya una cuestión federal.
+\end{important}
+
+Más allá del requisito de sentencia definitiva, lo verdaderamente distintivo del recurso extraordinario es, por lo tanto, la existencia de una cuestión federal. Sobre ese eje se despliega el resto del desarrollo temático.
+
+%------------------------------------------------------------------------------
+\section{La cuestión federal simple}
+\label{sec:simple}
+
+\begin{definition}{Cuestión federal}
+Conflicto en el que está en tela de juicio la interpretación, o una eventual colisión, que involucra una norma federal.
+\end{definition}
+
+Existen dos grandes ramas de cuestión federal: la \textbf{simple} y la \textbf{compleja}. La simple es la interpretación intrínseca de la norma, es decir, desentrañar su real alcance; la compleja ya implica una colisión entre dos o más normas.
+
+\begin{definition}{Cuestión federal simple}
+Es aquella controversia jurídica en la que el conflicto refiere exclusivamente a la \textbf{interpretación de una norma federal} —la Constitución, una ley del Congreso o un tratado internacional— sin que exista colisión con otra norma. No hay pugna entre dos normas: se trata de desentrañar el verdadero alcance y sentido de una norma federal (su hermenéutica, su definición jurídica).
+\end{definition}
+
+La cuestión federal simple es el «corazón, lo sustantivo» del recurso extraordinario como requisito propio, y resulta algo muy particular de esta vía recursiva. Se contrapone a la cuestión federal compleja, que se desarrolla en la sección~\ref{sec:compleja}.
+
+\begin{example}{Ley de PASO}
+Se plantea el análisis de si la ley de las PASO (Primarias Abiertas, Simultáneas y Obligatorias) implicaba la exclusión del ejercicio de derechos políticos de partidos que no alcanzaran una representación suficiente, por establecer un piso mínimo de votos que podía impedir el debido ejercicio de esos derechos.
+\end{example}
+
+Antes de resolver el ejemplo, cabe un punto metodológico que atraviesa todo el tema:
+
+\begin{important}
+No todo es tan compartimentado. Puede haber cuestiones que incluyan en parte una controversia sobre desentrañar el alcance de la norma y en parte esa denominada colisión normativa.
+\end{important}
+
+Retomando el ejemplo, este caso no configura una cuestión federal simple, sino \textbf{compleja indirecta}: lo que está en juego es una eventual colisión entre la ley de las PASO y la ley de partidos políticos, dos normas inferiores, ninguna de ellas la Constitución. El ejemplo se retoma con mayor detalle en la sección~\ref{sec:compleja}.
+
+%------------------------------------------------------------------------------
+\section{La cuestión federal compleja: directa e indirecta}
+\label{sec:compleja}
+
+\begin{definition}{Cuestión federal compleja}
+Es aquella en la que no se controvierte tanto el concepto y la interpretación de una norma, sino el \textbf{conflicto de esa norma contra otro tipo de norma o acto}. Hay en pugna dos o más normas, una de ellas federal.
+\end{definition}
+
+Dentro de la cuestión federal compleja existe una subdivisión determinante, según cuáles sean las normas en pugna:
+
+\begin{definition}{Cuestión federal compleja directa e indirecta}
+\textbf{Compleja directa:} la colisión enfrenta a la Constitución con otra norma o acto de rango inferior; la controversia incluye, por lo tanto, a la Constitución.
+
+\textbf{Compleja indirecta:} la controversia jurídica supone la colisión entre dos o más normas, pero ninguna de ellas es la Constitución, sino normas inferiores.
+
+En ambos casos hay siempre dos o más normas en conflicto; lo que cambia es si una de ellas es, o no, la propia Constitución.
+\end{definition}
+
+Aplicado el esquema a la ley de PASO: podría estar en colisión la ley de las PASO con la ley de partidos políticos. La cuestión es \textbf{compleja}, porque son dos normas, e \textbf{indirecta}, porque ninguna de ellas es la Constitución, sino dos normas inferiores.
+
+Además, la distinción entre estos tipos de cuestión federal no debe entenderse como una serie de categorías puras y excluyentes: todo depende también de la capacidad de argumentar, de cómo se plantea el inconveniente y contra qué se plantea la invalidez de la norma.
+
+\subsection{Ejemplo trabajado: libertad de expresión y ley provincial}
+
+Se propone el caso de una ley provincial que restringiera la libertad de expresión o de prensa: una norma que prohíba algún tipo de expresión o publicación y una persona que publique una crítica al gobierno o a cuestiones políticas, de modo que esté en duda el alcance de esa normativa provincial en relación con la libertad de expresión que consagra la Constitución.
+
+\begin{norma}{Artículo 14 de la Constitución Nacional (libertad de expresión)}
+«Todos los habitantes de la Nación gozan de los siguientes derechos conforme a las leyes que reglamenten su ejercicio; a saber: (\ldots) de publicar sus ideas por la prensa sin censura previa (\ldots)». A ello se suma el \textbf{artículo 32}, que dispone que el Congreso federal no dictará leyes que restrinjan la libertad de imprenta ni establezcan sobre ella la jurisdicción federal.
+\end{norma}
+
+Conceptualizando la situación, hay una colisión entre el artículo de la Constitución que prevé que no se limitará la libertad de prensa y la norma provincial que establece la conducta prohibida. Se trata, entonces, de un conflicto entre la Constitución y una norma provincial: una cuestión federal \textbf{compleja} y \textbf{directa}.
+
+\begin{important}
+\textbf{¿A favor de qué norma falló la sentencia?} Para que exista cuestión federal impugnable por recurso extraordinario, la decisión judicial recurrida debe ser \textbf{contraria al derecho federal invocado}. Si en la disputa entre la Constitución y la norma provincial la sentencia hace valer la norma provincial y declara su inconstitucionalidad, no hay cuestión federal: la decisión judicial ha hecho valer la preeminencia del derecho federal sobre el local y queda incólume la supremacía de la ley federal. En cambio, si la sentencia da validez a la norma local y es contraria al derecho federal invocado (en el ejemplo, la libertad de prensa), procede el recurso extraordinario.
+\end{important}
+
+\subsection{Ejemplo: tributo confiscatorio y derecho de propiedad}
+
+Se propone una ley tributaria dictada por el Congreso con alícuotas muy elevadas, que pudiera colisionar con el derecho de propiedad.
+
+\begin{norma}{Artículo 17 de la Constitución Nacional (derecho de propiedad)}
+«La propiedad es inviolable, y ningún habitante de la Nación puede ser privado de ella, sino en virtud de sentencia fundada en ley. La expropiación por causa de utilidad pública, debe ser calificada por ley y previamente indemnizada (\ldots)».
+\end{norma}
+
+Se tendría aquí una cuestión federal compleja, dada por la colisión entre la norma tributaria y el artículo 17 —el derecho de propiedad— y por la doctrina de la Corte respecto de una eventual confiscatoriedad tributaria.
+
+La \textbf{propiedad} comprende todas las posesiones más allá del propio cuerpo, en cuanto bienes susceptibles de valor pecuniario. Incluye también derechos de apreciación pecuniaria no físicos, como los derechos de propiedad intelectual. La Corte ha desarrollado que, de la mano del derecho de propiedad, está la \textbf{prohibición de confiscación}: no puede existir un tributo que agravie en sustancia la propiedad.
+
+En algunos casos la Corte cuantifica ese límite en el \textbf{33\,\%}; sin embargo, esto no ha sido siempre así y no es un criterio totalmente uniforme, pues existen diversos casos. Conforme a este parámetro, configuraría el supuesto un tributo enormemente elevado que llegara a generar una quita de más del 33\,\% de la propiedad. El caso se califica como cuestión federal \textbf{compleja directa}, por la colisión entre la norma tributaria y el artículo 17 de la Constitución Nacional.
+
+%------------------------------------------------------------------------------
+\section{Casos de aplicación práctica}
+\label{sec:casos}
+
+Para consolidar la distinción entre cuestión federal simple y compleja se analizan distintos casos, algunos ficticios y otros extraídos de la realidad jurisprudencial y del debate público.
+
+\subsection{Plan Médico Obligatorio y ley de discapacidad}
+
+Se plantea el caso de una obra social que maneja numerosos amparos, en los que puede discutirse la interpretación entre lo que no se dice en el Plan Médico Obligatorio y lo que establece una ley específica sobre la materia, como una ley de discapacidad o de enfermedades poco frecuentes.
+
+El supuesto se reconduce a una situación habitual en la práctica: una norma inferior que no reconoce una prestación que la ley de discapacidad prevé como prestación básica. Esa norma inferior resulta contraria a la ley de discapacidad; hay, entonces, una norma inferior que puede colisionar con una norma de naturaleza federal.
+
+\begin{norma}{Artículo 75, inciso 22, de la Constitución Nacional (tratados y sectores vulnerables)}
+Los tratados internacionales de derechos humanos allí enumerados (entre ellos la Convención sobre los Derechos de las Personas con Discapacidad) tienen jerarquía constitucional y emplazan a los Estados a generar el máximo grado de satisfacción para el uso y goce de los derechos de los sectores vulnerables.
+\end{norma}
+
+Existe una enorme batería de disposiciones de tratados internacionales en relación con grupos vulnerables, sumada a la propia ley de discapacidad, con las que la ley inferior podría estar en colisión. Se trata también de una cuestión federal \textbf{compleja}, que en este caso podría ser, en algún punto, indirecta o directa, porque hay colisiones tanto con tratados de raíz constitucional como con la ley federal inferior.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se define si la cuestión es directa o indirecta)
+
+Muchas veces las cuestiones exceden los compartimentos que se utilizan para simplificar y para adquirir gimnasia en la comprensión de los conceptos. Muchos conflictos tienen algo de colisión con la Constitución y con normas inferiores, y también algo de cuestión federal simple, porque refieren a la interpretación de la ley y también a su posible colisión con otras normas. En ello tiene mucho que ver la forma en que los abogados argumentan las eventuales inconstitucionalidades.
+
+\subsection{Reelecciones indefinidas en una provincia: cuestión federal simple}
+
+Como ejemplo más certero de cuestión federal simple se recuerda un caso vinculado con la inconstitucionalidad de una situación de reelecciones sucesivas de un mismo gobernador provincial.
+
+La Corte ponderó el grado de interpretación jurídica que cabe concebir en el concepto de \textbf{sistema republicano} y de \textbf{alternancia de poderes}, y analizó la real extensión de esos principios. Examinó la dimensión que tiene, en el constitucionalismo moderno, el concepto de republicanismo y de alternancia de poderes, y entendió que, en ese caso particular, la gran cantidad de períodos sucesivos que llevaba el gobernador en el cargo había generado una \textbf{inconstitucionalidad sobreviniente}, a partir del análisis intrínseco del concepto de estado democrático con división de poderes y de forma republicana.
+
+Se trata de una cuestión federal simple que, aunque excede el análisis de un solo artículo, constituye un análisis sobre la propia naturaleza republicana de la Constitución.
+
+\subsection{Ley de financiamiento universitario}
+
+Se analiza el caso de la ley de financiamiento universitario. Según lo expuesto, la ley todavía no se aplica: el Gobierno nacional argumenta que rompe el equilibrio fiscal y por ello no la aplica, y habría presentado un recurso extraordinario. Las notas no precisan lo sucedido después.
+% TODO: contenido incompleto o ambiguo en las notas originales (se desconoce el desenlace del caso)
+
+El caso muestra que un mismo asunto puede contener, a la vez, elementos de cuestión federal simple y compleja:
+
+\begin{itemize}
+    \item En principio, la controversia puede referir a la propia naturaleza de la ley de financiamiento universitario, a cómo se interpreta y cómo se aplica para su vigencia. En ese punto podría ser una \textbf{cuestión federal simple} referida a la ley de financiamiento.
+    \item Luego, es probable que en la demanda se haya invocado que se violentaba el concepto de autonomía universitaria, con lo cual el campo se traslada a la Constitución Nacional.
+\end{itemize}
+
+\begin{norma}{Artículo 75, inciso 19, de la Constitución Nacional (autonomía universitaria)}
+Corresponde al Congreso sancionar leyes de organización y de base de la educación que aseguren la responsabilidad indelegable del Estado, la participación de la familia y la sociedad, la autonomía y autarquía de las universidades nacionales.
+\end{norma}
+
+Ese socavamiento presupuestario, esa presupuestación por debajo de lo previsto en la ley, constituía una conducta que atentaba contra la educación superior y contra la idea de autonomía y autarquía universitaria, porque no aseguraba esos postulados. Hay, entonces, un poco de ambas cosas: la cuestión federal simple referida a la norma presupuestaria y también la cuestión federal compleja referida a cómo esa conducta va afectando otros postulados constitucionales.
+
+\subsection{Libertad de circulación y derecho de protesta}
+
+Se plantea si la interpretación del alcance de la libertad de circulación frente al derecho de protesta —que puede estar contemplado en tratados incorporados por el artículo 75, inciso 22— podría ser una cuestión simple.
+
+El caso permite mostrar un supuesto de cuestión federal compleja directa «pura», en el que ambas normas en colisión están en el mismo nivel de la pirámide normativa. Hay dos postulados constitucionales: la libertad de manifestar, la libertad de expresión, y la libertad de circulación dentro del territorio. La cuestión es \textbf{compleja}, porque hay dos principios constitucionales en pugna, y es \textbf{directa} porque se está en un mismo escalón de la pirámide, en la parte superior, que es la interpretación de la Constitución: no es la Constitución frente a una norma inferior.
+
+Aun cuando se trate de dos artículos o dos normas dentro del bloque de constitucionalidad, la cuestión sigue siendo compleja y no simple. La complejidad reside en que hay una contradicción entre dos postulados de la misma Constitución.
+
+\subsection{Cuadro comparativo de los tipos de cuestión federal}
+
+\begin{table}[H]
+\centering
+\caption{Tipos de cuestión federal y ejemplos trabajados}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.19\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo de cuestión federal} &
+\textbf{¿Qué normas están en pugna?} &
+\textbf{Ejemplo trabajado} \\
+\midrule
+Simple &
+Una sola norma federal, cuyo alcance o interpretación se discute (sin colisión con otra). &
+Reelecciones indefinidas y sistema republicano (Formosa). \\
+\addlinespace
+Compleja directa &
+La Constitución Nacional frente a una norma o acto de rango inferior. &
+Tributo confiscatorio (art.~17 CN); ley provincial frente a libertad de prensa (arts.~14 y 32 CN). \\
+\addlinespace
+Compleja directa «pura» &
+Dos normas o principios de la propia Constitución, en el mismo nivel jerárquico. &
+Libertad de circulación frente a derecho de protesta. \\
+\addlinespace
+Compleja indirecta &
+Dos o más normas inferiores entre sí, sin que la Constitución esté directamente en pugna. &
+Ley de PASO frente a ley de partidos políticos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{¿Es obligatorio clasificar la cuestión federal?}
+
+Cabe preguntarse si estas clasificaciones deben detallarse de modo que el recurso tenga un encuadre en función de si la cuestión es simple o compleja, o si se trata meramente de una cuestión clasificatoria; es decir, si hace falta detallarla como un requisito.
+
+Hay quienes, por una cuestión profesional, realizan esa identificación para encorsetar y facilitar el análisis que debe hacer el tribunal cuando resuelve si hay una cuestión federal y, por lo tanto, si concede el extraordinario. Hay quienes realizan esa distinción como una forma de sustentar aún más la idea de que se está frente a una cuestión federal real, pero no es una condición absoluta.
+
+\begin{important}
+\textbf{Conclusión metodológica.} No es un requisito intrínseco clasificar la cuestión federal como simple, compleja, directa o indirecta para que proceda el recurso extraordinario. Lo que sí resulta indispensable es \textbf{demostrar cuál es el derecho federal que está siendo vulnerado}. Etiquetar el tipo de cuestión federal puede ayudar a que el tribunal visualice con mayor claridad la configuración del caso, pero es una herramienta argumentativa, no una condición de admisibilidad.
+\end{important}
+
+\begin{exercise}{Identificación de una cuestión federal en un caso de dominio público}
+Formar grupos de hasta cuatro o cinco integrantes. Elegir una cuestión federal de dominio público, extraída de casos con relevancia en los medios masivos de comunicación y en el debate público. Identificar dónde está la cuestión federal en el caso elegido y qué tipo de cuestión federal es (simple o compleja, directa o indirecta). Preparar una breve exposición grupal de cinco minutos, que incluya una postura u opinión propia sobre la controversia jurídica elegida y su decisión de fondo.
+\end{exercise}
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellleft}
+    >{\raggedright\arraybackslash}p{\cornellright}
+}
+\cornellheader
+\endfirsthead
+\cornellheader
+\endhead
+
+\textbf{¿Cuáles son los tres tipos de requisitos del recurso extraordinario federal?} &
+Requisitos \textbf{comunes} (presupuestos generales de cualquier recurso procesal: existencia de un proceso judicial, gravamen, interés), requisitos \textbf{formales} (formalidades de interposición, entre ellas la Acordada 4/2007) y requisitos \textbf{propios} (los exigidos por el artículo 14 de la Ley 48, que dan su fisonomía particular al recurso). \\
+\cornellsep
+
+\textbf{¿Cuál es el «corazón» de los requisitos del recurso extraordinario?} &
+La existencia de una \textbf{cuestión federal}. El recurso procede contra sentencias definitivas o asimilables, pero desde lo conceptual procede siempre que haya una cuestión federal. \\
+\cornellsep
+
+\textbf{¿Qué es una cuestión federal simple?} &
+Es la controversia jurídica en la que se discute exclusivamente la interpretación o el verdadero alcance de una norma federal (Constitución, ley del Congreso o tratado internacional), sin que exista colisión con otra norma. \\
+\cornellsep
+
+\textbf{¿Qué es una cuestión federal compleja, y cuándo es directa o indirecta?} &
+Es compleja cuando hay colisión entre dos o más normas, una de ellas federal. Es \textbf{directa} cuando la colisión enfrenta a la Constitución con una norma o acto inferior; es \textbf{indirecta} cuando la colisión se da entre dos o más normas inferiores, sin que la Constitución esté directamente en pugna. \\
+\cornellsep
+
+\textbf{¿Cómo se clasificaron los casos trabajados?} &
+Reelecciones indefinidas y sistema republicano: simple. Tributo confiscatorio (art.~17 CN) y ley provincial frente a libertad de prensa (arts.~14 y 32 CN): compleja directa. Libertad de circulación frente a derecho de protesta: compleja directa «pura». Ley de PASO frente a ley de partidos políticos: compleja indirecta. En el caso de la ley de financiamiento universitario se identificaron elementos de ambas clases. \\
+\cornellsep
+
+\textbf{¿Cuándo hay cuestión federal impugnable si una norma federal colisiona con una local?} &
+Cuando la decisión judicial recurrida es contraria al derecho federal invocado. Si la sentencia hace valer el derecho federal sobre el local, no hay inconveniente y no hay cuestión federal impugnable. \\
+\cornellsep
+
+\textbf{¿Qué límite cuantitativo aplicó la Corte en algunos casos para la confiscatoriedad tributaria?} &
+En algunos casos cuantificó el límite en el 33\,\%, aunque no ha sido siempre así ni es un criterio totalmente uniforme. \\
+\cornellsep
+
+\textbf{¿Es obligatorio clasificar el tipo de cuestión federal para que proceda el recurso?} &
+No. Lo esencial es demostrar cuál es el derecho federal vulnerado; clasificar el tipo de cuestión federal es una herramienta argumentativa que puede ayudar al tribunal, pero no una condición de admisibilidad. \\
+\midrule
+
+\rowcolor{gray!8}
+\multicolumn{2}{p{\cornellfull}}{\textbf{Resumen:} el recurso extraordinario federal gira en torno a la existencia de una cuestión federal. Esta es \textbf{simple} cuando se debate la interpretación de una norma federal, y \textbf{compleja} cuando hay colisión entre normas; en este último caso es \textbf{directa} si interviene la Constitución e \textbf{indirecta} si la colisión es entre normas inferiores. Las categorías no son puras: dependen también de la argumentación. Clasificar la cuestión no es un requisito de admisibilidad; lo indispensable es demostrar el derecho federal vulnerado y que la sentencia le sea contraria.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================================
+% CAPÍTULO 2
+%==============================================================================
+\chapter[Trámite recursivo y vías de excepción]{Trámite Recursivo y Vías de Excepción}
+
+Concluido el desarrollo de la cuestión federal, corresponde abordar un punto de enorme relevancia práctica: qué ocurre una vez interpuesto el recurso extraordinario y qué remedios existen si el tribunal lo rechaza.
+
+%------------------------------------------------------------------------------
+\section{Concesión, denegación y recurso de queja}
+\label{sec:queja}
+
+\subsection{Ante qué tribunal se interpone el recurso extraordinario}
+
+El recurso extraordinario se interpone ante el \textbf{Tribunal Superior de la Causa}, conforme a la jurisprudencia de la Corte:
+
+\begin{itemize}
+    \item en el caso de las provincias, la Corte Suprema o la Suprema Corte de cada provincia;
+    \item en el plano federal, la Cámara Federal;
+    \item en el plano de la Ciudad, el Tribunal Superior de Justicia.
+\end{itemize}
+
+Se interpone siempre ante el mismo tribunal que dictó el acto que se impugna, cumpliendo con los requisitos formales que exige la normativa vigente.
+
+\begin{norma}{Acordada 4/2007 de la Corte Suprema de Justicia de la Nación (formalidades del escrito)}
+Reglamenta los requisitos formales del recurso extraordinario federal: extensión máxima de cuarenta (40) páginas de veintiséis (26) renglones cada una, carátula con determinados datos, tipografía y demás recaudos formales para su presentación.
+\end{norma}
+
+Más que recordar el número de la acordada, resulta relevante tener presente el cumplimiento de las formalidades.
+
+\subsection{Trámite: interposición, traslado y resolución}
+
+El recurso extraordinario se interpone dentro de los \textbf{diez (10) días}. Se da traslado a la contraparte para que conteste el recurso, contestación que también debe deducirse dentro de los \textbf{diez (10) días}. Luego el Tribunal Superior (corte provincial o Cámara Federal) está en condiciones de resolver, y debe resolver \textbf{exclusivamente si concede o no} el recurso extraordinario.
+
+\begin{important}
+\textbf{Efectos de la concesión y del rechazo.} Si el tribunal concede el recurso extraordinario, la concesión tiene, en principio, \textbf{efecto suspensivo} sobre la ejecución de la sentencia. Se exceptúa el plano federal cuando existen sentencias plenarias coincidentes, en cuyo caso la parte puede ejecutar la sentencia fijando —o siéndole fijada— una contracautela.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se precisa qué parte ejecuta ni cómo se fija la contracautela)
+
+Si el tribunal rechaza el recurso extraordinario, no hay efecto suspensivo, porque no hay recurso concedido: la sentencia queda en condiciones de ejecutarse.
+\end{important}
+
+\subsection{El recurso de queja por recurso extraordinario denegado}
+
+Frente al rechazo del recurso extraordinario, la parte que pretende insistir cuenta con un remedio procesal específico.
+
+\begin{definition}{Recurso de queja por recurso extraordinario denegado}
+Recurso que la parte que interpuso el recurso extraordinario presenta, si quiere insistir, frente al rechazo de este. Se interpone directamente ante la Corte Suprema.
+\end{definition}
+
+\begin{norma}{Plazo del recurso de queja (Código Procesal Civil y Comercial de la Nación)}
+El recurso de queja por denegación del recurso extraordinario se interpone directamente ante la Corte Suprema dentro del plazo de cinco (5) días contados desde la notificación de la resolución que rechaza el recurso extraordinario, plazo que se amplía de acuerdo con la tabla de distancias cuando el recurrente se domicilia en el interior del país.
+\end{norma}
+
+Como en todo recurso de queja, el centro de la argumentación es demostrar que el rechazo del recurso extraordinario fue \textbf{arbitrario}: es preciso convencer al tribunal de que el rechazo fue infundado, ilegítimo, irrazonable, y se basó en premisas erróneas. Debe demostrarse que hay una cuestión federal y que es procedente el recurso extraordinario.
+
+Esto se hace en un escrito más reducido que el recurso extraordinario: mientras el extraordinario admite cuarenta páginas de veintiséis renglones, el recurso de queja admite \textbf{diez páginas}, en las que debe fundarse por qué está mal rechazado el recurso extraordinario.
+
+\subsection{El problema práctico: la queja no suspende la ejecución}
+
+A diferencia del extraordinario concedido, que sí suspende la ejecución, la interposición del recurso de queja \textbf{no la suspende}. Mientras se acude en queja a la Corte, y esta resuelve \textit{inaudita parte}, la ejecución de la sentencia sigue su curso.
+
+Para intentar suspender la ejecución mientras se resuelve la queja, una opción es solicitar una \textbf{medida cautelar}. Esta estaría sustentada en la demostración de \textbf{verosimilitud} en el derecho a interponer el recurso extraordinario, porque, de lo contrario, la queja no suspende el curso de la ejecución. Este punto sirve de puente hacia el desarrollo de la medida cautelar, que se retoma en la sección~\ref{sec:cautelar}.
+
+%------------------------------------------------------------------------------
+\section{El per saltum}
+\label{sec:persaltum}
+
+El \textit{per saltum} es una figura prevista en el Código Procesal Civil y Comercial de la Nación, que establece que, en los casos de derecho federal, frente a la primera instancia, si hay una sentencia y se suscita una apelación en la cual se pueda demostrar que hay una \textbf{gravedad institucional}, puede invocarse el \textit{per saltum}. Por gravedad institucional se entiende que el caso, en general, excede a las partes y es una controversia de enorme proyección social, porque atañe a muchos sujetos que pueden estar en la misma situación.
+
+\begin{norma}{Artículos 257 bis y 257 ter del Código Procesal Civil y Comercial de la Nación (per saltum)}
+Habilitan, en procesos de índole federal, el recurso extraordinario \textit{per saltum} ante la Corte Suprema de Justicia de la Nación, respecto de sentencias de primera instancia, cuando la cuestión debatida sea de notoria gravedad institucional cuya solución definitiva y expedita sea necesaria, y el recurso constituya el único remedio eficaz para la protección del derecho federal comprometido.
+\end{norma}
+
+Puede invocarse el \textit{per saltum} explicando que, si debiera esperarse hasta que la causa pase de la primera instancia a la segunda instancia federal, y luego a la Corte, podría generarse algún perjuicio irreparable.
+
+\textbf{Requisitos del per saltum:}
+
+\begin{enumerate}
+    \item Debe tratarse de una causa de índole federal.
+    \item Debe existir una cuestión de gravedad institucional que exceda el mero interés de las partes y afecte a la comunidad en general.
+    \item Debe existir riesgo de un perjuicio irreparable si el caso sigue el trámite recursivo ordinario (primera instancia, cámara, Corte).
+\end{enumerate}
+
+El objetivo es que la Corte pueda tomar conocimiento de la controversia de forma inmediata, salteando la instancia de la Cámara.
+
+\subsection{Caso reciente de aplicación (rechazado por la Corte)}
+
+Se recuerda un caso reciente y de conocimiento público, en el que se había planteado la inconstitucionalidad de una nueva ley de empleo público y el Estado invocó el \textit{per saltum} para que la Corte resolviera con rapidez.
+
+La Corte rechazó el recurso, indicando que debía seguirse el cauce de la apelación normal: primera instancia, segunda instancia y luego, eventualmente, el superior tribunal. Había una invocación de derechos federales, pero la Corte consideró que no había una gravedad institucional o un perjuicio irreparable que ameritara la concesión, aun cuando se tratara de un caso de notoria exposición e intereses sociales: no llega a configurarse la idea de un daño irreversible. En ese caso la Corte desestimó el planteo, reafirmando el carácter absolutamente excepcional del \textit{per saltum}.
+
+\subsection{¿Se aplica el per saltum a las provincias?}
+
+No. El \textit{per saltum} está previsto solo para derecho federal. Cuando se sigue el derecho local, se está en derecho común, y el \textit{per saltum} está previsto en el Código Procesal Civil y Comercial de la Nación, solo para procesos de ley federal. Por ello nunca está en discusión que se saltee la instancia de la Corte provincial: todo lo federal va por la justicia federal y no pasa por la justicia local de la provincia.
+
+\subsection{Cuadro comparativo de las vías procesales}
+
+\begin{table}[H]
+\centering
+\caption{Vías procesales estudiadas}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.19\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}p{0.15\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Vía procesal} &
+\textbf{¿Ante quién se interpone?} &
+\textbf{Plazo} &
+\textbf{¿Qué se discute?} \\
+\midrule
+Recurso extraordinario &
+Tribunal Superior de la Causa que dictó el acto. &
+10 días &
+Existencia de cuestión federal y demás requisitos propios. \\
+\addlinespace
+Contestación del recurso &
+Ante el mismo tribunal (traslado a la contraparte). &
+10 días &
+Réplica de la contraparte. \\
+\addlinespace
+Recurso de queja &
+Directamente ante la Corte Suprema. &
+5 días (más tabla de distancias) &
+Arbitrariedad del rechazo del recurso extraordinario. \\
+\addlinespace
+\textit{Per saltum} &
+Directamente ante la Corte Suprema (salteando la Cámara). &
+No se indica en las notas &
+Gravedad institucional y perjuicio irreparable en causa federal. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellleft}
+    >{\raggedright\arraybackslash}p{\cornellright}
+}
+\cornellheader
+\endfirsthead
+\cornellheader
+\endhead
+
+\textbf{¿Ante qué tribunal se interpone el recurso extraordinario y en qué plazo?} &
+Ante el Tribunal Superior de la Causa (Corte o Suprema Corte provincial, Cámara Federal o, en la Ciudad, el Tribunal Superior de Justicia), que es el mismo tribunal que dictó el acto impugnado. Se interpone dentro de los diez días, cumpliendo las formalidades de la Acordada 4/2007 (hasta cuarenta páginas de veintiséis renglones). \\
+\cornellsep
+
+\textbf{¿Cómo continúa el trámite una vez interpuesto el recurso?} &
+Se da traslado a la contraparte, que contesta dentro de diez días. Luego el Tribunal Superior resuelve exclusivamente si concede o no el recurso extraordinario. \\
+\cornellsep
+
+\textbf{¿Qué efectos tienen la concesión y el rechazo del recurso extraordinario?} &
+La concesión tiene, en principio, efecto suspensivo sobre la ejecución de la sentencia (salvo, en el plano federal, sentencias plenarias coincidentes, caso en que puede ejecutarse fijándose una contracautela). El rechazo no tiene efecto suspensivo: la sentencia queda en condiciones de ejecutarse. \\
+\cornellsep
+
+\textbf{¿Qué ocurre si se rechaza el recurso extraordinario?} &
+La parte puede interponer un recurso de queja por recurso extraordinario denegado, directamente ante la Corte Suprema, dentro de los cinco días de notificada la denegatoria (más la ampliación por tabla de distancias), en un escrito de hasta diez páginas destinado a demostrar la arbitrariedad del rechazo. \\
+\cornellsep
+
+\textbf{¿Suspende la ejecución de la sentencia el recurso de queja?} &
+No. A diferencia del recurso extraordinario concedido, la mera interposición de la queja no suspende la ejecución; para intentarlo puede solicitarse una medida cautelar acreditando verosimilitud en el derecho. \\
+\cornellsep
+
+\textbf{¿Qué es el per saltum y cuándo procede?} &
+Es una figura excepcional del Código Procesal Civil y Comercial de la Nación que permite saltear la instancia de la Cámara Federal y acceder directamente a la Corte Suprema, en causas de derecho federal con gravedad institucional y riesgo de perjuicio irreparable si se siguiera el trámite ordinario. \\
+\cornellsep
+
+\textbf{¿Qué resolvió la Corte en el caso de la ley de empleo público?} &
+Rechazó el \textit{per saltum} invocado por el Estado: consideró que no había gravedad institucional ni perjuicio irreparable que ameritara la concesión, aun tratándose de un caso de notoria exposición e intereses sociales, y ordenó seguir el cauce de la apelación normal. \\
+\cornellsep
+
+\textbf{¿Se aplica el per saltum a causas de derecho local o provincial?} &
+No. Está previsto solo para procesos de derecho federal; por eso no se discute que se saltee la Corte provincial, ya que todo lo federal va por la justicia federal. \\
+\midrule
+
+\rowcolor{gray!8}
+\multicolumn{2}{p{\cornellfull}}{\textbf{Resumen:} el recurso extraordinario se interpone en diez días ante el Tribunal Superior de la Causa, se da traslado por diez días y dicho tribunal resuelve solo si lo concede. La concesión suspende, en principio, la ejecución; el rechazo no. Frente al rechazo procede la queja ante la Corte (cinco días, diez páginas), que no suspende la ejecución y puede complementarse con una medida cautelar. El \textit{per saltum} es una vía de máxima excepción, reservada a causas federales de gravedad institucional con riesgo de perjuicio irreparable.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================================
+% CAPÍTULO 3
+%==============================================================================
+\chapter[Control de constitucionalidad y tutela cautelar]{Control de Constitucionalidad y Tutela Cautelar}
+
+%------------------------------------------------------------------------------
+\section{Control de constitucionalidad de oficio}
+\label{sec:oficio}
+
+Un tópico central es el control de constitucionalidad de oficio: si la inconstitucionalidad de una norma puede declararse sin que ninguna de las partes haya planteado su invalidez.
+
+\begin{norma}{Doctrina de la Corte Suprema: control de constitucionalidad de oficio}
+A partir del precedente «Mill de Pereyra, Rita Aurora y otros c/ Provincia de Tucumán» (Fallos 324:3219, 2001), la Corte Suprema sostiene que los jueces pueden declarar de oficio la inconstitucionalidad de una norma, aun cuando ninguna de las partes lo haya solicitado expresamente, sin que ello implique una violación del derecho de defensa en juicio ni un exceso en las facultades jurisdiccionales.
+% TODO: dato a verificar con el material oficial (la carátula del precedente se transcribe tal como figura en las notas originales)
+\end{norma}
+
+Esta es la doctrina actual de la Corte, muy asentada en el tiempo: aun cuando ninguna de las partes haya planteado la invalidez de la norma, la justicia puede declararla de oficio. La Corte no puso exclusividad en cuanto a las temáticas: aunque puede pensarse en asuntos delicados como los de familia o derechos humanos, sostuvo, como principio general, que sí se puede.
+
+\subsection{Fundamentos de la declaración de oficio}
+
+Lo que puede estar en juego es una eventual violación del derecho de defensa; sin embargo, los jueces tienen la facultad y el deber de aplicar el derecho y proteger la Constitución. Los fundamentos son los siguientes:
+
+\begin{itemize}
+    \item \textbf{Principio \textit{iura novit curia}:} el juez conoce el derecho y, por lo tanto, también conoce cuándo una norma resulta inconstitucional. Hablar de la invalidez de una norma es hablar del conocimiento de las normas.
+    \item \textbf{Competencia y deber judicial} de aplicar el derecho y proteger la supremacía de la Constitución, aun sin petición expresa de parte.
+    \item \textbf{No hay violación del derecho de defensa} en juicio de las partes por este solo hecho: no habría reproche a la violación del derecho de defensa.
+\end{itemize}
+
+\subsection{El límite: la congruencia con la pretensión de la parte actora}
+
+Existe, sin embargo, un límite fundamental a esta potestad: la eventual declaración de invalidez debe ser \textbf{coincidente con la pretensión judicial}.
+
+\begin{example}{Indemnización por despido}
+Un trabajador demanda una indemnización por despido, reclamando el monto calculado conforme a la ley vigente, con los topes legales que esta establece.
+
+Se pregunta si el juez puede declarar de oficio la inconstitucionalidad de esos topes y otorgar una suma mayor a la reclamada. \textbf{Respuesta:} no, porque el juez estaría yendo más allá de lo pedido («pedí A y el juez me dio A + 5»), lo que sí constituye una violación del debido proceso: no por declarar de oficio la invalidez de la norma, sino por conceder más de lo que la parte solicitó al iniciar la demanda.
+\end{example}
+
+\begin{important}
+La declaración de invalidez de una norma puede realizarse de oficio, pero siempre que sea coincidente con la pretensión judicial de la parte actora. Si va más allá de lo que pide la parte, es allí donde puede haber una violación del derecho de defensa.
+\end{important}
+
+Como el juez conoce el derecho, conoce también el alcance de los derechos y si hay colisiones con otras normas o con la Constitución. Es aún más un deber de los jueces mantener incólume el derecho federal: la prioridad de la Constitución, de las normas federales, de los órganos y los niveles de prevalencia de las normas son conceptos que hacen al control de constitucionalidad, que puede ser de oficio, con la salvedad de que siempre debe ser en consonancia con la pretensión jurídica de la parte, sin ir más allá de lo que esta pide.
+
+\begin{note}
+En las clases se anunció el envío de una serie de precedentes jurisprudenciales que sostienen la postura de la Corte sobre el control de constitucionalidad de oficio, así como material adicional sobre cuestión federal y medidas cautelares. Ese material no está incluido en las notas.
+% TODO: contenido incompleto o ambiguo en las notas originales (precedentes anunciados no incorporados)
+\end{note}
+
+%------------------------------------------------------------------------------
+\section{La medida cautelar}
+\label{sec:cautelar}
+
+Se retoma el hilo dejado abierto en la sección~\ref{sec:queja}: la posibilidad de solicitar una medida cautelar para suspender la ejecución de una sentencia mientras tramita un recurso de queja. La medida cautelar es otro instrumento muy importante en cuestiones constitucionales.
+
+\subsection{Objetivo de la medida cautelar}
+
+El objetivo de la medida cautelar es que no se pierda el derecho y que la sentencia pueda tener validez o efecto: que tenga virtualidad una eventual decisión judicial, que no caiga en saco roto y que pueda ser ejecutable. Tiende, por lo tanto, a preservar derechos que todavía se están definiendo.
+
+\begin{definition}{Medida cautelar}
+Medida provisional, con un límite temporal, que no es una decisión definitiva ni hace cosa juzgada. Puede solicitarse en cualquier momento del proceso, incluso antes de su inicio, y su levantamiento también puede pedirse en cualquier momento. Su función es dar validez, ejecutoriedad y virtualidad a la eventual decisión sobre el fondo del asunto, evitando perjuicios irreparables mientras el proceso continúa.
+\end{definition}
+
+\subsection{Los tres presupuestos clásicos}
+
+No se trata de una sentencia definitiva: no es una decisión que vaya a perdurar en el tiempo, sino provisional y por tiempo finito. Debe reunir tres elementos clave:
+
+\begin{enumerate}
+    \item la \textbf{verosimilitud en el derecho};
+    \item el \textbf{peligro en la demora};
+    \item la \textbf{contracautela}.
+\end{enumerate}
+
+\begin{note}
+Las notas enumeran la contracautela como tercer presupuesto y la mencionan al tratar la ejecución de la sentencia ante sentencias plenarias coincidentes, pero no desarrollan su contenido.
+% TODO: contenido incompleto o ambiguo en las notas originales (contracautela sin desarrollo)
+\end{note}
+
+\subsubsection{Verosimilitud en el derecho}
+
+\begin{definition}{Verosimilitud en el derecho}
+Que el planteo que la genera tenga asidero jurídico. Como es una medida provisional en el marco de un proceso, aun cuando no se haya llegado a una sentencia, debe demostrarse preliminarmente que hay una razonabilidad en la configuración del derecho invocado: no una certeza absoluta, como la que buscaría una sentencia de fondo, sino un estado de configuración suficiente para habilitar una decisión judicial provisoria.
+\end{definition}
+
+\subsubsection{Peligro en la demora}
+
+\begin{definition}{Peligro en la demora}
+Es la demostración de que el transcurso del tiempo puede hacer perder algún derecho y, por lo tanto, puede tornar procedente la medida de preservación. La idea de un perjuicio irreparable, o de muy dificultosa reparación, es un ejemplo de peligro en la demora.
+\end{definition}
+
+\begin{example}{Prestación médica urgente}
+Si una persona intenta acceder a una prestación médica de alta complejidad para no agravar su estado de salud, puede solicitar cautelarmente la prestación mientras se discute, en el proceso principal, si esa prestación estaba realmente a cargo de la obra social o de la empresa de medicina prepaga.
+
+Mientras se discute eso, se provee la prestación, porque, de lo contrario, el mero transcurso del tiempo puede generar un daño irreparable en la salud. Después, eventualmente, se resolverá si queda a cargo del solicitante o si el costo se mantiene a cargo de la prepaga o de la obra social.
+
+Es el «típico ejemplo» de las cuestiones médicas, donde suele ser más sencillo demostrar el «humo del buen derecho»: una apariencia razonable de derecho, aunque todavía no esté totalmente configurado.
+\end{example}
+
+\subsubsection{Relación entre verosimilitud y peligro en la demora}
+
+\begin{important}
+\textbf{Vasos comunicantes.} Verosimilitud en el derecho y peligro en la demora se relacionan de forma \textbf{inversamente proporcional}: cuanto mayor es la configuración de la verosimilitud, menos exigente es el peligro en la demora; y cuanto mayor es el peligro en la demora, menos exigente debe ser la verosimilitud. Esto no significa que alguno de los dos requisitos pueda faltar por completo, sino que el tribunal pondera ambos en conjunto, buscando un equilibrio razonable.
+\end{important}
+
+\subsection{Medida cautelar y recurso extraordinario: una excepción muy acotada}
+
+El recurso extraordinario no procede, a priori, contra sentencias que no sean definitivas o asimilables; por ello es muy difícil plantear un recurso extraordinario contra una resolución cautelar. Sin embargo, si se demuestra que es una cautelar que tiene efectos generales, que afecta más allá del caso puntual y que puede configurar un agravio irreparable, muy excepcionalmente se habilita el recurso extraordinario contra medidas cautelares.
+
+Si bien se trata de una excepción a un requisito propio del recurso (que se dirija contra una sentencia definitiva o asimilable), no ha sido un supuesto infrecuente: hubo varios casos en los que la Corte resolvió recursos extraordinarios planteados contra medidas cautelares.
+
+\subsection{Régimen especial de la cautelar contra el Estado Nacional}
+
+\begin{norma}{Ley 26.854 (medidas cautelares contra el Estado Nacional)}
+Establece un régimen especial de medidas cautelares en las causas en que es parte o interviene el Estado Nacional, que prevé —a diferencia de la regla general de resolución \textit{inaudita parte}— un traslado previo a la autoridad pública demandada, con carácter urgente y por un plazo breve, antes de que el juez resuelva sobre la procedencia de la cautelar.
+\end{norma}
+
+La medida cautelar se pide y, generalmente, la primera decisión se resuelve \textit{inaudita parte}, es decir, sin la intervención de la otra parte. Pero cuando la medida se intenta hacer valer contra el Estado Nacional, la ley prevé un pequeño traslado para que el Estado pueda argumentar antes de que se resuelva si se otorga o no la cautelar. Se considera una pauta razonable que, teniendo en cuenta que el Estado es repositorio de los intereses comunes, tenga esa posibilidad de defensa. En la mayoría de los demás casos, la resolución sobre medidas cautelares se dispone \textit{inaudita parte}.
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellleft}
+    >{\raggedright\arraybackslash}p{\cornellright}
+}
+\cornellheader
+\endfirsthead
+\cornellheader
+\endhead
+
+\textbf{¿Puede un juez declarar de oficio la inconstitucionalidad de una norma?} &
+Sí. Conforme a la doctrina de la Corte iniciada en «Mill de Pereyra», el control de constitucionalidad puede ejercerse de oficio, sin que ello viole el derecho de defensa. La Corte no limitó esta posibilidad a determinadas temáticas: lo estableció como principio general. \\
+\cornellsep
+
+\textbf{¿En qué fundamentos se apoya el control de oficio?} &
+En el principio \textit{iura novit curia} (el juez conoce el derecho y, por ende, cuándo una norma es inconstitucional) y en el deber judicial de aplicar el derecho y proteger la supremacía de la Constitución, aun sin petición de parte. \\
+\cornellsep
+
+\textbf{¿Cuál es el límite del control de oficio?} &
+La declaración de invalidez debe ser coincidente con la pretensión de la parte actora. Si el juez concede más de lo pedido (por ejemplo, declara inválidos los topes de una indemnización por despido y otorga una suma mayor a la reclamada), viola el debido proceso y el derecho de defensa. \\
+\cornellsep
+
+\textbf{¿Cuál es el objetivo de la medida cautelar?} &
+Preservar derechos que todavía se están definiendo, para que la eventual decisión judicial tenga virtualidad, no caiga en saco roto y pueda ser ejecutable. \\
+\cornellsep
+
+\textbf{¿Qué naturaleza tiene la medida cautelar?} &
+Es provisional y por tiempo finito; no es una decisión definitiva ni hace cosa juzgada. Puede solicitarse en cualquier momento, incluso antes de iniciarse el proceso, y su levantamiento también puede pedirse en cualquier momento. \\
+\cornellsep
+
+\textbf{¿Cuáles son los tres presupuestos de la medida cautelar?} &
+Verosimilitud en el derecho, peligro en la demora y contracautela. \\
+\cornellsep
+
+\textbf{¿Qué es la verosimilitud en el derecho?} &
+Que el planteo tenga asidero jurídico: una demostración preliminar de razonabilidad en la configuración del derecho invocado, no una certeza absoluta como la de una sentencia de fondo, sino un estado suficiente para habilitar una decisión provisoria («humo del buen derecho»). \\
+\cornellsep
+
+\textbf{¿Qué es el peligro en la demora? ¿Qué ejemplo se trabajó?} &
+Es la demostración de que el transcurso del tiempo puede hacer perder un derecho; un perjuicio irreparable o de muy dificultosa reparación es un ejemplo. Ejemplo: la solicitud cautelar de una prestación médica de alta complejidad mientras se discute quién debe afrontarla. \\
+\cornellsep
+
+\textbf{¿Qué relación existe entre verosimilitud y peligro en la demora?} &
+Es inversamente proporcional («vasos comunicantes»): a mayor solidez de uno, menor exigencia respecto del otro; ninguno puede faltar por completo y el tribunal los pondera en conjunto. \\
+\cornellsep
+
+\textbf{¿Procede el recurso extraordinario contra una medida cautelar?} &
+Excepcionalmente sí, cuando la cautelar tiene efectos generales que exceden el caso puntual y puede configurar un agravio irreparable, aun cuando el requisito general exige que el recurso se dirija contra una sentencia definitiva o asimilable. \\
+\cornellsep
+
+\textbf{¿Qué régimen especial rige para las cautelares contra el Estado Nacional?} &
+La Ley 26.854 prevé un traslado previo, urgente y por plazo breve, a la autoridad pública demandada antes de resolver sobre la cautelar, a diferencia de la regla general de resolución \textit{inaudita parte}. \\
+\midrule
+
+\rowcolor{gray!8}
+\multicolumn{2}{p{\cornellfull}}{\textbf{Resumen:} los jueces pueden declarar de oficio la inconstitucionalidad de una norma, con fundamento en \textit{iura novit curia} y en el deber de proteger la Constitución, siempre que la declaración sea coincidente con la pretensión de la parte actora. La medida cautelar es una tutela provisional que preserva derechos en discusión y exige verosimilitud en el derecho, peligro en la demora y contracautela; los dos primeros se relacionan de forma inversamente proporcional. Contra ella procede el recurso extraordinario solo de manera muy excepcional, y contra el Estado Nacional rige un régimen especial con traslado previo.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================================
+% SÍNTESIS FINAL
+%==============================================================================
+\chapter*{Síntesis final}
+\phantomsection
+\addcontentsline{toc}{chapter}{Síntesis final}
+\markboth{Síntesis final}{Síntesis final}
+
+El desarrollo reconstruye, de manera integral, el itinerario que debe recorrer un caso constitucional desde que se dicta una sentencia definitiva hasta que, eventualmente, es resuelto por la Corte Suprema de Justicia de la Nación. Todo ese itinerario gira en torno a un único eje sustantivo: la existencia de una \textbf{cuestión federal}, que puede ser \textbf{simple} —cuando se debate la interpretación de una norma federal— o \textbf{compleja}, directa o indirecta, según si la colisión normativa involucra o no directamente a la Constitución Nacional.
+
+Los casos trabajados (la ley de PASO, la libertad de prensa frente a normas provinciales, los tributos confiscatorios, la ley de discapacidad, la autonomía universitaria y la tensión entre libertad de circulación y derecho de protesta) muestran que esta clasificación, aunque útil como herramienta argumentativa, no es un fin en sí misma: lo verdaderamente decisivo es poder demostrar con precisión qué derecho federal fue vulnerado.
+
+Una vez planteado el recurso extraordinario, su eventual rechazo no cierra la vía: el \textbf{recurso de queja} permite insistir directamente ante la Corte, aunque sin el efecto suspensivo que sí tiene el recurso concedido, lo que reclama, muchas veces, la solicitud de una \textbf{medida cautelar} fundada en la verosimilitud del derecho y el peligro en la demora. El \textit{per saltum}, por su parte, representa la vía de máxima excepción, reservada para causas federales de gravedad institucional donde el tiempo procesal ordinario resultaría, en sí mismo, una fuente de perjuicio irreparable.
+
+Finalmente, la potestad judicial de declarar de oficio la inconstitucionalidad de una norma —hoy asentada en la jurisprudencia de la Corte a partir de «Mill de Pereyra»— confirma que la protección de la supremacía constitucional no depende exclusivamente de la iniciativa de las partes, sino que constituye un deber de la magistratura, siempre que se ejerza dentro de los límites que impone la congruencia con la pretensión deducida en el proceso.
+
+En conjunto, estos institutos —cuestión federal, recurso extraordinario, queja, \textit{per saltum}, control de oficio y medida cautelar— conforman el andamiaje procesal que permite que los derechos reconocidos en la Constitución Nacional no queden en una mera declaración de principios, sino que puedan hacerse efectivos ante los tribunales en tiempo útil.
+
+\end{document}

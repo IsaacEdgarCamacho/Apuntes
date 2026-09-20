@@ -1,0 +1,742 @@
+% ==========================================================================
+% DOCUMENTCLASS
+% ==========================================================================
+\documentclass[12pt,oneside]{book}
+
+% ==========================================================================
+% METADATOS
+% ==========================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Constitucional Profundizado}
+\newcommand{\titulo}{Apuntes de Derecho Constitucional Profundizado}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+% ==========================================================================
+% PAQUETES
+% ==========================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ==========================================================================
+% CONFIGURACIÓN
+% ==========================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\captionsetup{font=small,labelfont=bf}
+
+% ==========================================================================
+% COMANDOS
+% ==========================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Tipos de columna auxiliares (definidos en el preámbulo)
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{Q}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% Cuadro Cornell: columna K (estrecha | ancha) y filas
+\newcolumntype{K}{@{}Q{0.25\textwidth}|Q{\dimexpr0.75\textwidth-2\tabcolsep-\arrayrulewidth\relax}@{}}
+\newcommand{\cornellhead}{%
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule}
+\newcommand{\cornellrow}[2]{%
+    \textbf{#1} & #2 \\
+    \addlinespace[0.3em]
+    \midrule[0.3pt]
+    \addlinespace[0.1em]}
+\newcommand{\cornellsummary}[1]{%
+    \multicolumn{2}{@{}Q{\textwidth}@{}}{\textbf{Resumen:} #1} \\}
+
+% ==========================================================================
+% ENTORNOS / CAJAS
+% ==========================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ==========================================================================
+% CONFIGURACIÓN FINAL
+% ==========================================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==========================================================================
+% DOCUMENT
+% ==========================================================================
+\begin{document}
+
+\frontmatter
+
+% ==========================================================================
+% PORTADA
+% ==========================================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\large Arbitrariedad de Sentencia \\[0.2em]
+Declaración de Inconstitucionalidad de Oficio \\[0.2em]
+Jurisdicción Originaria de la Corte Suprema \\[0.2em]
+Principio de Reserva (Artículo 19)}
+
+\vspace{0.8cm}
+
+{\small \textit{Cada concepto comprendido es un paso firme en el camino del estudio.}}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ==========================================================================
+% ÍNDICE
+% ==========================================================================
+\tableofcontents
+
+\mainmatter
+
+% ==========================================================================
+% CONTENIDO
+% ==========================================================================
+
+\chapter{Panorama de los contenidos}
+
+Los contenidos se organizan en cuatro grandes bloques temáticos:
+
+\begin{enumerate}
+    \item \textbf{Doctrina de la arbitrariedad de sentencia}: cuándo una sentencia puede ser revisada por la Corte Suprema aun cuando no exista una cuestión federal.
+    \item \textbf{Declaración de inconstitucionalidad de oficio}: si el juez puede declarar inconstitucional una norma sin que nadie lo haya pedido y cuáles son los límites de esa facultad.
+    \item \textbf{Jurisdicción originaria de la Corte Suprema}: en qué casos puede demandarse directamente ante la Corte.
+    \item \textbf{Artículo 19 de la Constitución Nacional (principio de reserva)}: qué acciones humanas quedan fuera del alcance de la ley y hasta dónde puede regular el Estado.
+\end{enumerate}
+
+\section{Hilo conductor}
+
+Si un juez dicta una sentencia injusta en un caso de derecho civil (por ejemplo, ignorando pruebas clave), el recorrido de estos contenidos permite, en primer lugar, detectar los vicios de esa sentencia (doctrina de la arbitrariedad) y llevarla hasta la Corte Suprema aun cuando no haya cuestión federal. Luego permite comprender cuándo la Corte puede actuar como tribunal de primera instancia (jurisdicción originaria). Finalmente, el artículo 19 aporta el marco de fondo: qué acciones humanas están resguardadas frente a la ley y hasta dónde puede avanzar el Estado.
+
+\section{Relevancia para el ejercicio profesional}
+
+Estos temas constituyen herramientas concretas para el ejercicio de la abogacía. La doctrina de la arbitrariedad permite impugnar sentencias ante la Corte Suprema incluso cuando no hay una cuestión federal en juego. La jurisdicción originaria define en qué casos puede demandarse directamente ante la Corte, sin recorrer la jerarquía judicial. El artículo 19 delimita el campo de la libertad individual frente al Estado, lo que resulta relevante en cualquier litigio constitucional, penal, civil o administrativo.
+
+
+% ==========================================================================
+\chapter[Doctrina de la Arbitrariedad]{Doctrina de la Arbitrariedad de Sentencia}
+% ==========================================================================
+
+\section{La revisión de la Corte más allá de la cuestión federal}
+
+Al estudiar la cuestión federal y las vías del recurso extraordinario (incluida la queja, que se interpone de forma directa ante la Corte cuando el recurso es rechazado), se examinaron los supuestos en que la Corte revisa decisiones judiciales por configurarse una \textbf{cuestión federal}: aquella en la que la decisión judicial definitiva o asimilable resulta contraria al derecho federal invocado, y cuyo escenario de controversia es la interpretación de una ley federal o las contradicciones entre la Constitución y el bloque federal.
+
+Existen las denominadas cuestiones federales \textbf{simple}, \textbf{compleja directa} y \textbf{compleja indirecta}, según que la controversia haga un reenvío a la Constitución o no. Estas cuestiones habilitan el conocimiento de la causa por parte de la Corte como instancia de apelación definitiva.
+
+Además de este supuesto, existe otro, desarrollado por la jurisprudencia, por el cual es posible acudir en revisión ante la Corte Suprema aun cuando no se configure una cuestión federal.
+
+\section{Concepto}
+
+\begin{definition}{Doctrina de la arbitrariedad}
+Doctrina desarrollada por la Corte Suprema mediante la cual se atribuye un carácter revisor de sentencias de tribunales inferiores aun cuando no estén configurados los presupuestos de una típica cuestión federal, en aquellos casos en que las conclusiones de la sentencia impugnada resultan contrarias a la sana crítica y al principio de razonabilidad. Se engloba bajo este nombre un conjunto de presupuestos que deben entenderse siempre como una \textbf{ruptura de la cadena racional y lógica} de la actividad jurisdiccional.
+\end{definition}
+
+Sus características principales son las siguientes:
+
+\begin{itemize}
+    \item \textbf{No tiene recepción legal específica.} A diferencia de la cuestión federal, regulada en la ley 48, no existe una norma que admita el carácter revisor de la Corte en estos supuestos: se trata de una doctrina de la propia Corte, que funciona como una \textbf{válvula de escape}.
+    \item \textbf{Origen jurisprudencial.} Es una doctrina que la Corte ha ido desarrollando, ampliando y sistematizando a lo largo de muchos años, desde el siglo XIX.
+    \item \textbf{Criterio de intervención.} La Corte interviene porque una sentencia debe estar debidamente fundada, anclada en los hechos probados y con una aplicación razonable del derecho vigente; cuando hay un ``ruido'' en la racionalidad de la decisión judicial, la Corte se reserva el derecho de actuar.
+    \item \textbf{Vocabulario.} La Corte no siempre denomina estrictamente ``arbitrariedad'' a estos supuestos; con frecuencia recurre también al concepto de \textbf{razonabilidad}, entendido como el ejercicio fundamentado del órgano jurisdiccional, que realiza una evaluación y una crítica concreta y razonada de los hechos y del derecho aplicable para arribar a una decisión que agota todas las cuestiones jurídicas puestas a su conocimiento.
+    \item \textbf{Ámbito.} Puede darse al tratarse de cuestiones de derecho común. Generalmente funciona como un salvoconducto para lograr la revisión de sentencias que, a priori, versan sobre derecho común.
+\end{itemize}
+
+La arbitrariedad puede darse por errores lógicos en la decisión judicial, tanto en la apreciación del derecho como en la valoración de la prueba de los hechos y en el correcto encuadramiento jurídico. Esto se vincula íntimamente con el \textbf{debido proceso adjetivo}, que conlleva la idea de una sentencia debidamente fundamentada y anclada en el derecho vigente y aplicable a la controversia.
+
+\section{Presupuestos de arbitrariedad}
+
+\subsection{Errores en la valoración de la prueba}
+
+La Corte puede intervenir, aun sin cuestión federal, cuando existe una ruptura del análisis y la consideración lógica de la prueba. Una sentencia que prescinde de manera ostensible de una prueba pertinente encuadra en la doctrina de la arbitrariedad.
+
+\begin{example}{Prueba testimonial deliberadamente omitida}
+Se cuenta con una prueba testimonial clave: se trata de un testigo situado en tiempo y espacio en el lugar de los hechos, calificado y sin ninguna circunstancia que pudiera generar un demérito de su declaración (por ejemplo, una relación con alguna de las partes). Si esa prueba es deliberadamente omitida en la decisión judicial, se configura un presupuesto que habilita la arbitrariedad de sentencia: la Corte puede analizar la causa porque advierte una seria irregularidad en la correcta valoración de las pruebas.
+\end{example}
+
+Otros supuestos vinculados con la prueba son:
+
+\begin{itemize}
+    \item una prueba pericial que no es debidamente merituada;
+    \item la consideración exclusiva de una prueba que adolece de serios errores (por ejemplo, una prueba pericial con algún error en su configuración).
+\end{itemize}
+
+\subsection{Errores en el encuadramiento jurídico}
+
+El incorrecto encuadramiento legal puede llevar a la Corte a revisar la sentencia y aplicar esta doctrina. Aunque no esté en juego el bloque de federalidad, sí lo está una grosera violación del marco jurídico correspondiente.
+
+\begin{table}[H]
+\centering
+\caption{Supuestos de incorrecto encuadramiento jurídico}
+\begin{tabularx}{\textwidth}{Q{0.28\textwidth}Y}
+\toprule
+\textbf{Supuesto} & \textbf{Descripción} \\
+\midrule
+\textbf{Marco jurídico inaplicable} & El régimen de seguros es tratado por otro tipo de cuerpo legal; siendo una relación de consumo, se prescinde de aplicar los principios de la ley de defensa del consumidor. \\
+\addlinespace
+\textbf{Ley no vigente} & Se aplica una ley antes de tiempo o una ley que ya no está vigente. Aunque parece un error grosero, puede ocurrir. \\
+\addlinespace
+\textbf{Ausencia de fundamentación} & Se brinda una fundamentación totalmente ajena a la resolución de la litis. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Violación del principio de congruencia}
+
+Este presupuesto se vincula con la congruencia entre la sentencia y la pretensión judicial. En el marco del derecho privado (a diferencia del derecho penal o incluso del laboral, donde muchas veces hay una instrucción de oficio), se plantea qué ocurre cuando una decisión judicial resuelve más de lo que pidieron las partes, resuelve otras cuestiones o resuelve menos. Por ejemplo: si se pide que se resuelvan los puntos A, B y C y la decisión solo aborda el punto A.
+
+\begin{example}{Resolución en más}
+Se promueve una demanda por daños y perjuicios y la sentencia incluye ítems indemnizatorios que no fueron solicitados. Se pidió lucro cesante y daño emergente, pero la sentencia agrega además la pérdida de chance. La decisión no es proporcional a lo solicitado por las partes, pues resuelve cuestiones no pedidas.
+\end{example}
+
+\begin{example}{Resolución en menos}
+Se solicita la declaración de nulidad de un acto administrativo y la fijación de una indemnización. La sentencia analiza solo la nulidad del acto y hace lugar a ella, pero no se adentra en la fijación de la indemnización pedida.
+\end{example}
+
+\begin{example}{Legitimación indebida}
+Se solicita la citación de un tercero solo con carácter de tercero y la sentencia resuelve una condena en su contra. Se viola así la posición de la parte llamada a juicio, que no puede ser objeto de condena.
+\end{example}
+
+Estos supuestos rompen el orden lógico y la debida fundamentación de la sentencia. Son ejemplos concretos y muy documentados de la doctrina de la arbitrariedad: una sentencia no fundada, que no resuelve todos los puntos puestos a su conocimiento, que resuelve más de lo que las partes pidieron, que prescinde de prueba, que realiza un incorrecto encuadramiento jurídico o que aplica legislación no vigente.
+
+\subsection{Exceso del tribunal de Cámara respecto de los agravios}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte se refiere a "principio de concurrencia"; el contexto describe una situación de congruencia con los agravios)
+Otro supuesto es la violación del principio denominado en las notas ``principio de concurrencia'': en segunda instancia, el Tribunal de Cámara resuelve más de lo solicitado. La arbitrariedad se fundamenta cuando puede demostrarse que la Cámara se excede de la materia de agravios.
+
+\begin{important}
+Cuando existe doble instancia, la instancia revisora debe estar estrictamente delimitada por el ámbito de los agravios. Todo lo que no ha sido objeto de una expresión de agravios concreta precluye como instancia, es decir, queda firme. La Cámara solo puede modificar los aspectos del fallo que fueron objeto estricto de apelación. Si trata elementos que no fueron objeto de impugnación, rompe el orden lógico en torno de su competencia y da lugar a la arbitrariedad de sentencia.
+\end{important}
+
+\section{Aplicaciones prácticas: honorarios e intereses}
+
+La Corte aplica la doctrina de la arbitrariedad incluso en materias de derecho común sin cuestión federal.
+
+\begin{itemize}
+    \item \textbf{Honorarios.} Las regulaciones de honorarios, a priori, no motivan la intervención de la Corte porque no está en juego una cuestión federal. Pero si los honorarios están fijados de manera irrazonable, violando lo que la norma procesal indica como ámbito para su fijación, puede darse la intervención de la Corte.
+    \item \textbf{Intereses.} Tampoco suscitan a priori una cuestión federal. Sin embargo, si se fija una tasa de intereses que resulta excesivamente onerosa o excesivamente escasa, por ejemplo por ser producto de una capitalización que nace de un incorrecto encuadramiento jurídico, la Corte puede intervenir. Sobre todo en materia laboral, la Corte ha abierto muchos casos de fijación de intereses.
+\end{itemize}
+
+\begin{note}
+Para el ejercicio profesional se trata de un campo importante: permite llegar hasta el máximo tribunal sorteando el escollo de la cuestión federal. Debe invocarse con mucha claridad, indicando expresamente dónde se encuentra el error en la apreciación del órgano jurisdiccional.
+\end{note}
+
+\section{Coexistencia con la cuestión federal}
+
+Cuestión federal y arbitrariedad de sentencia son dos campos muy amplios que habilitan la intervención de la Corte, pero no se presentan necesariamente de manera pura. Pueden convivir: en una misma apelación puede configurarse una cuestión federal e invocarse además algún supuesto de arbitrariedad, con lo cual el campo de revisión de la Corte resulta aún más amplio.
+
+\begin{example}{Cuestión federal y arbitrariedad en un mismo caso}
+En un caso analizado, la cuestión federal estaba configurada, pero además la Cámara había resuelto de oficio sobre algo que no había sido peticionado (concretamente, la inconstitucionalidad), y la demandada señalaba en el recurso extraordinario que la inconstitucionalidad no se había pedido en la instancia inicial.
+\end{example}
+
+\section{Cuadro Cornell: Doctrina de la Arbitrariedad}
+
+\begin{longtable}{K}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+\cornellrow{¿Qué es la doctrina de la arbitrariedad de sentencia?}{Es una doctrina de creación jurisprudencial, no regulada por la ley como la cuestión federal (ley 48), por la cual la Corte Suprema se atribuye el carácter de revisora de sentencias inferiores aun cuando no estén configurados los presupuestos de una típica cuestión federal. Actúa como una ``válvula de escape'': la Corte interviene cuando hay una ruptura de la cadena racional y lógica de la actividad jurisdiccional, contraria a la sana crítica y al principio de razonabilidad. Se ha desarrollado y sistematizado desde el siglo XIX.}
+\cornellrow{¿Qué diferencia hay entre cuestión federal y arbitrariedad? ¿Pueden coexistir?}{La cuestión federal se configura por una decisión definitiva o asimilable contraria al derecho federal invocado (simple, compleja directa o compleja indirecta). La arbitrariedad se da en cuestiones de derecho común, sin cuestión federal estricta. No se presentan necesariamente de manera pura: pueden convivir en una misma apelación, lo que amplía el campo de revisión de la Corte.}
+\cornellrow{¿Qué errores en la valoración de la prueba dan lugar a la arbitrariedad?}{La omisión deliberada de una prueba pertinente y clave (por ejemplo, un testigo calificado situado en el lugar de los hechos); una prueba pericial no debidamente merituada; la consideración exclusiva de una prueba con serios errores. En todos los casos hay una ruptura del análisis lógico de la prueba.}
+\cornellrow{¿Qué supuestos de incorrecto encuadramiento jurídico habilitan la doctrina?}{Aplicar un marco jurídico inaplicable (por ejemplo, prescindir de los principios de la ley de defensa del consumidor en una relación de consumo vinculada a seguros); aplicar una ley no vigente o antes de tiempo; brindar una fundamentación totalmente ajena a la resolución de la litis.}
+\cornellrow{¿Cómo se viola el principio de congruencia?}{Cuando la sentencia resuelve más de lo pedido (por ejemplo, agrega la pérdida de chance no solicitada), menos de lo pedido (por ejemplo, declara la nulidad de un acto pero no fija la indemnización solicitada) o condena a un tercero citado solo con carácter de tercero.}
+\cornellrow{¿Cuál es el límite de la Cámara respecto de los agravios?}{En la doble instancia, la revisión está delimitada por la materia de agravios: lo no cuestionado precluye y queda firme. Si la Cámara trata aspectos no impugnados se excede en su competencia, lo que da lugar a la arbitrariedad.}
+\cornellrow{¿Puede la Corte intervenir en honorarios e intereses?}{A priori no suscitan cuestión federal, pero la Corte puede intervenir si los honorarios están fijados irrazonablemente en violación de la norma procesal, o si los intereses resultan excesivamente onerosos o escasos (por ejemplo, por una capitalización derivada de un incorrecto encuadramiento jurídico). Ha abierto muchos casos de intereses en materia laboral.}
+\cornellrow{¿Qué debe hacer el abogado para invocar la arbitrariedad?}{Invocarla con mucha claridad, señalando expresamente dónde está el error en la apreciación del órgano jurisdiccional. Es un camino para llegar a la Corte sorteando el escollo de la cuestión federal.}
+\midrule
+\cornellsummary{La arbitrariedad es una doctrina jurisprudencial que permite a la Corte revisar sentencias de derecho común sin cuestión federal cuando se rompe la cadena racional y lógica de la decisión: omisión o error grave en la valoración de la prueba, incorrecto encuadramiento jurídico, falta de fundamentación, resolución en más o en menos de lo pedido y exceso de la Cámara sobre los agravios. Alcanza también a honorarios e intereses irrazonables, puede convivir con una cuestión federal y debe invocarse señalando con precisión el error.}
+\bottomrule
+\end{longtable}
+
+
+% ==========================================================================
+\chapter[Inconstitucionalidad de Oficio]{Declaración de Inconstitucionalidad de Oficio}
+% ==========================================================================
+
+\section{Concepto}
+
+La Corte ha aceptado la declaración de inconstitucionalidad de oficio, es decir, aun cuando las partes no hayan invocado estrictamente la invalidez constitucional de una norma. Se la concibe como un \textbf{deber del órgano jurisdiccional}.
+
+Como el órgano jurisdiccional se desenvuelve en pleno conocimiento de las normas jurídicas, se ha entendido que esta facultad no viola el derecho de defensa: puede declararse la invalidez de una norma aunque ninguna parte la haya planteado en el juicio.
+
+\begin{definition}{Iura novit curia}
+El juez conoce el derecho. Este principio habilita al tribunal a declarar la inconstitucionalidad de una norma aun cuando las partes no la hayan invocado expresamente. El límite es siempre la pretensión de las partes: el tribunal puede suplir la invocación del derecho, pero no puede resolver más de lo que fue pedido.
+\end{definition}
+
+\section{El límite fundamental: la pretensión de la parte}
+
+Esto no significa que la declaración de inconstitucionalidad pueda hacerse de oficio en cualquier caso. La declaración, si bien no fue alegada, debe ser \textbf{coincidente con la pretensión jurídica} de la parte. El tribunal conoce el derecho y puede suplir las invocaciones de las partes, pero no puede tergiversar la pretensión ni resolver en más de lo que la parte solicitó.
+
+La parte puede no haber invocado la inconstitucionalidad de la norma, pero el sentido y la pretensión jurídica de su apelación va en la dirección de revocar la sentencia y de no hacer lugar al reconocimiento del derecho. Si la declaración de inconstitucionalidad, aun no invocada, es correlativa a esa pretensión jurídica de fondo, no habría inconvenientes.
+
+\begin{formula}{Límite de la inconstitucionalidad de oficio}
+Aunque la inconstitucionalidad no haya sido invocada, los tribunales pueden declarar la invalidez de oficio. Lo que no pueden es que el fallo, al declararla de oficio, exceda lo que la parte pidió al momento de recurrir y también al momento de demandar. \textbf{El límite es la pretensión de la parte.}
+\end{formula}
+
+\begin{important}
+Respecto del derecho de defensa: en principio no hay violación, porque se trata de cuestiones eminentemente jurídicas. El derecho de defensa sí quedaría violado si la decisión que emana de la declaración de inconstitucionalidad va más allá de lo pedido por las partes.
+\end{important}
+
+\section{Precedentes históricos}
+
+\textit{Marbury v. Madison} y \textit{Sojo} son dos sentencias pioneras, en el ámbito americano y argentino respectivamente, en las cuales la parte no había invocado estrictamente la invalidez de la norma y esta se declaró igual, sin haber sido argumentada.
+
+Esto señala un camino largo y relativamente pacífico: como el juez conoce el derecho (\textit{iura novit curia}), se habilita la declaración de invalidez constitucional de una norma aun cuando no fuera pedida, pero esa decisión debe ser congruente con la pretensión jurídica. No puede sobrepasar el ámbito de los agravios ni de las pretensiones jurídicas de las partes.
+
+Otro precedente muy conocido es el caso \textit{Ortondo}, referido a un tema de expropiación, considerado uno de los primeros fallos en que la Corte se inmiscuye en la regulación económica de contratos de derecho privado. También allí se sostiene que la norma, aun cuando no se haya fundamentado estrictamente su congruencia o no con el derecho constitucional, puede ser invalidada de forma directa en la medida en que sea congruente con la pretensión jurídica de alguna de las partes.
+
+\section{Cuadro Cornell: Inconstitucionalidad de Oficio}
+
+\begin{longtable}{K}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+\cornellrow{¿Qué es la declaración de inconstitucionalidad de oficio?}{Es la facultad, concebida como deber del órgano jurisdiccional, de declarar la invalidez constitucional de una norma aun cuando ninguna de las partes lo haya solicitado expresamente.}
+\cornellrow{¿En qué principio se funda y por qué no viola el derecho de defensa?}{Se funda en el principio \textit{iura novit curia} (el juez conoce el derecho). Como el órgano jurisdiccional se desenvuelve en pleno conocimiento de las normas jurídicas y se trata de cuestiones eminentemente jurídicas, en principio no hay violación del derecho de defensa.}
+\cornellrow{¿Cuál es el límite de esta facultad?}{La pretensión de la parte. La declaración, aunque no haya sido alegada, debe ir de la mano con la pretensión jurídica de fondo (al demandar y al recurrir). El tribunal puede suplir la invocación del derecho, pero no puede resolver en más de lo que la parte solicitó.}
+\cornellrow{¿Cuándo sí se viola el derecho de defensa?}{Cuando la decisión que emana de la declaración de inconstitucionalidad va más allá de lo pedido por las partes.}
+\cornellrow{¿Qué precedentes se mencionan?}{\textit{Marbury v. Madison} (ámbito americano) y \textit{Sojo} (ámbito argentino): sentencias pioneras en las que la inconstitucionalidad se declaró sin haber sido invocada ni argumentada. Además, el caso \textit{Ortondo}, referido a un tema de expropiación, uno de los primeros fallos en que la Corte interviene en la regulación económica de contratos de derecho privado.}
+\midrule
+\cornellsummary{Los tribunales pueden declarar la inconstitucionalidad de una norma sin que las partes la hayan invocado, en virtud del principio \textit{iura novit curia}. La facultad no viola el derecho de defensa mientras la declaración sea congruente con la pretensión jurídica de la parte al demandar y al recurrir; excederla configura resolver en más de lo pedido.}
+\bottomrule
+\end{longtable}
+
+
+% ==========================================================================
+\chapter[Jurisdicción Originaria]{Jurisdicción Originaria de la Corte Suprema}
+% ==========================================================================
+
+\section{Jurisdicción por apelación y jurisdicción originaria}
+
+Las intervenciones de la Corte estudiadas hasta aquí se dan en situaciones en las cuales la Corte interviene por vía de apelación. Pero la Corte también puede desarrollar su actividad jurisdiccional en materia \textbf{originaria}: no mediante un recurso de apelación, sino porque toma la cuestión como tribunal originario.
+
+\begin{important}
+Los artículos 116 y 117 de la Constitución Nacional establecen los presupuestos en los cuales la jurisdicción de la Corte Suprema se despliega de forma originaria, es decir, como tribunal de primera y única instancia, sin posibilidad de apelación posterior.
+\end{important}
+
+\section{Supuestos de jurisdicción originaria}
+
+\subsection{Causas con personal diplomático extranjero}
+
+Son causas de jurisdicción originaria los asuntos concernientes a personal diplomático jerarquizado de naciones extranjeras: embajadores, ministros y cónsules extranjeros. Por la especial preocupación de velar por una relación diplomática positiva con otras naciones, y por la propia calificación de estos sujetos, la Corte toma estos casos de forma directa, aun cuando se trate de cuestiones de derecho civil.
+
+En la jurisprudencia moderna, en algunas cuestiones referidas a infracciones administrativas se entiende que no está en juego estrictamente la jurisdicción originaria, pero sí en casos de naturaleza penal que atañan a embajadores, ministros y cónsules extranjeros.
+
+\subsection{Controversias entre dos o más provincias}
+
+Cuando una controversia incluye a dos o más provincias, la Corte interviene en jurisdicción originaria.
+
+\begin{example}{Controversia por el río Atuel}
+Se mencionó, con la salvedad ``si no me equivoco'' del expositor, la controversia entre las provincias de Mendoza y La Pampa por la utilización del río Atuel: había distintas pretensiones entre las provincias, que cuestionaban determinados actos de la otra en el aprovechamiento de la cuenca hídrica de ese río interjurisdiccional.
+\end{example}
+
+El fundamento es el siguiente: al tratarse de una cuestión interjurisdiccional, no puede prevenir ningún tribunal de una provincia ni de otra, porque habría un posible desequilibrio entre los intereses de los juzgadores. Tampoco correspondería la competencia federal, pues habría un inconveniente al tratar de dilucidar si la competencia federal está afianzada en un territorio o en otro. La Corte es el único tribunal que puede zanjar equilibradamente este tipo de controversias sin incurrir en favoritismo por una u otra provincia.
+
+Se mencionó además un incremento del conflicto entre San Juan y La Rioja por problemas limítrofes, señalado como un típico problema resuelto por la jurisdicción originaria de la Corte.
+
+\subsection{Controversias entre el Estado Nacional y una provincia}
+
+Una controversia entre el Estado Nacional y una provincia es otro supuesto claro de jurisdicción originaria. Supone tener que optar entre la jurisdicción local o la federal, y se suscita el mismo problema de equilibrio: si se optara por la jurisdicción federal, se favorecería a la Nación; si se optara por la jurisdicción ordinaria local, se favorecería a la provincia. Por eso toda controversia entre la Nación y una provincia corresponde a la jurisdicción originaria de la Corte, para evitar cualquiera de estas posiciones parciales.
+
+\subsection{La Ciudad Autónoma de Buenos Aires}
+
+La Ciudad Autónoma de Buenos Aires (CABA) tiene un estatus particular: una suerte de estado federado, como expresa la Corte en sus últimos fallos. No es estrictamente una de las provincias originarias, pero ha adquirido un estatus y un grado de autonomía creciente con la nueva Constitución.
+
+\begin{formula}{Equiparación de la CABA a una provincia}
+La Corte ha resuelto que, a los efectos procesales de la jurisdicción originaria, la Ciudad Autónoma de Buenos Aires se equipara a una provincia. No es estrictamente una provincia, pero en cuanto estado autónomo por fuera del gobierno federal, tanto cuando la CABA demanda a la Nación como cuando una provincia demanda a la Nación, se dispara la jurisdicción originaria.
+\end{formula}
+
+\begin{example}{Clases presenciales durante la pandemia}
+La CABA demandó al Estado Nacional por lo que consideró una intromisión en su competencia para regular la educación básica, que tiene a su cargo. Las medidas adoptadas con ocasión de la pandemia, que prohibían las clases presenciales y mantenían el aislamiento obligatorio para la población escolar en el ámbito de la Ciudad, inhibían y se entrometían en su competencia para organizar la educación primaria.
+
+La Ciudad presentó la demanda ante la Corte, el Estado Nacional respondió y se inició el juicio, que concluyó con un fallo en el cual, según las notas, ``en algún punto no da directamente la razón'' a la Ciudad y declara la ilegitimidad de las medidas, en la medida en que considera que hay una intromisión en las facultades de regulación de la educación primaria que pertenecían a la Ciudad Autónoma.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se precisa en qué punto la Corte no dio la razón a la CABA)
+\end{example}
+
+\begin{example}{Coparticipación federal}
+La CABA demandó al gobierno nacional porque hubo una modificación de la coparticipación. La Ciudad pidió que se mantuviese el nivel de coparticipación de la última ley vigente. La ley no había cambiado: había cambiado únicamente un acuerdo entre la Nación y las provincias. También allí se suscitó una demanda en instancia originaria.
+\end{example}
+
+\subsection{Causas de almirantazgo y jurisdicción marítima}
+
+Las causas de almirantazgo y jurisdicción marítima son causas muy especiales por la temática abordada (jurisdicción marítima, jurisdicción internacional del mar). En ellas la Corte también interviene en su jurisdicción originaria.
+
+\subsection{Provincia contra Estado extranjero o ciudadano extranjero}
+
+Cuando una provincia demanda a un Estado extranjero o a un ciudadano extranjero, también hay jurisdicción originaria. Ello responde al especial celo con que el constituyente del año 53 y siguientes procuraba mantener buenas relaciones diplomáticas con los Estados.
+
+\subsection{Vecinos de una provincia contra otra provincia}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte formula el supuesto tanto como "demanda entre una provincia y vecinos de otra" como "demanda de vecinos de una provincia contra otra")
+En el ámbito del derecho común, la jurisdicción originaria también corresponde cuando, en una causa privada de derecho común, existe una demanda de vecinos de una provincia contra otra provincia. Ante la necesidad de dar un equilibrio en el cual no puede irse hacia una jurisdicción local ni hacia la otra, la solución constitucional es otorgar la jurisdicción originaria a la Corte Suprema.
+
+\section{Cuadro resumen de los supuestos}
+
+\begin{table}[H]
+\centering
+\caption{Supuestos de jurisdicción originaria de la Corte Suprema y su fundamento}
+\begin{tabularx}{\textwidth}{Q{0.42\textwidth}Y}
+\toprule
+\textbf{Supuesto de jurisdicción originaria} & \textbf{Fundamento} \\
+\midrule
+\textbf{Causas con embajadores, ministros y cónsules extranjeros} & Preservar las relaciones diplomáticas internacionales. \\
+\addlinespace
+\textbf{Controversias entre dos o más provincias} & Evitar el favoritismo jurisdiccional; solo la Corte es imparcial. \\
+\addlinespace
+\textbf{Controversias entre la Nación y una provincia (o la CABA)} & Evitar que prevalezca la jurisdicción federal o la local. \\
+\addlinespace
+\textbf{Causas de almirantazgo y jurisdicción marítima} & Especialidad de la materia y jerarquía del tribunal. \\
+\addlinespace
+\textbf{Provincia contra Estado o ciudadano extranjero} & Resguardo de las relaciones diplomáticas internacionales. \\
+\addlinespace
+\textbf{Vecinos de una provincia contra otra provincia} & Neutralidad jurisdiccional en causas de derecho común interprovincial. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Los supuestos más comunes son los que se dan entre dos o más provincias, entre la Nación y las provincias, y aquellos en que intervienen embajadores y diplomáticos o una demanda contra un ciudadano o un Estado extranjero. En todos ellos la Corte actúa como instancia originaria: como si fuera un juzgado de primera instancia, pero sin instancias superiores de apelación.
+
+\section{Un contraste: cuando no hay jurisdicción originaria}
+
+\begin{example}{El caso ``Frente Amplio Formoseño''}
+En este caso la Corte intervino, pero \textbf{en grado de apelación}, porque el asunto recorrió toda la escalera del derecho local de Formosa. Se trata de un contraste que muestra por qué no hay jurisdicción originaria: era un conflicto entre ciudadanos de Formosa y el gobierno de Formosa por la interpretación de un esquema electoral validado por normas provinciales de reelección indefinida, que se ventiló primero ante el fuero local y llegó a la Corte recién en grado de apelación.
+
+Todas aquellas cuestiones en las cuales se impugna una decisión de materia pública provincial por vecinos de la provincia se mantienen en el ámbito de la jurisdicción local y eventualmente pueden llegar a la Corte por vía del recurso extraordinario. En este ejemplo, como se entendía que la Constitución de Formosa podía colisionar con la Constitución Nacional y los pactos, se habilitó el recurso extraordinario y la Corte resolvió en grado de apelación.
+\end{example}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se hizo referencia a un segundo caso reciente, con el mismo nombre, como acción meramente declarativa sobre una sentencia en virtud del artículo 322 del Código Procesal; el docente indicó que buscaría cómo llegó a la Corte y no pudo precisar la vía)
+\begin{note}
+Se mencionó un segundo caso, de fecha reciente, con el mismo nombre: una acción meramente declarativa sobre aquella sentencia, en virtud del artículo 322 del Código Procesal. Se indicó que lo pedido era que la Corte definiera claramente si el gobernador puede presentarse a la reelección, y que probablemente se planteó como vía subsidiaria al pleito original. La vía por la cual llegó a la Corte no quedó precisada.
+\end{note}
+
+\section{Cuadro Cornell: Jurisdicción Originaria}
+
+\begin{longtable}{K}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+\cornellrow{¿Qué es la jurisdicción originaria de la Corte Suprema?}{Es la competencia por la cual la Corte actúa como tribunal de primera y única instancia, no mediante un recurso de apelación, sin posibilidad de apelación posterior. Se rige por los artículos 116 y 117 de la Constitución Nacional. La Corte actúa como si fuera un juzgado de primera instancia, pero sin instancias superiores.}
+\cornellrow{¿Cuáles son los supuestos de jurisdicción originaria?}{\begin{enumerate}[leftmargin=*,nosep]
+\item Causas con embajadores, ministros y cónsules extranjeros.
+\item Controversias entre dos o más provincias.
+\item Controversias entre la Nación y una provincia (o la CABA).
+\item Causas de almirantazgo y jurisdicción marítima.
+\item Provincia contra Estado o ciudadano extranjero.
+\item Vecinos de una provincia contra otra provincia, en causas de derecho común.
+\end{enumerate}}
+\cornellrow{¿Por qué las controversias entre provincias, o entre Nación y provincia, van directamente a la Corte?}{Porque ningún tribunal local de una provincia ni de la otra podría intervenir sin desequilibrio de intereses; la competencia federal también generaría el inconveniente de determinar si se afianza en un territorio o en otro. Optar por la jurisdicción federal favorecería a la Nación, y optar por la local favorecería a la provincia. Solo la Corte puede zanjar estas controversias sin favoritismo.}
+\cornellrow{¿Qué estatus tiene la CABA en la jurisdicción originaria?}{A los efectos procesales de la jurisdicción originaria, la Corte la equipara a una provincia, aunque no lo sea estrictamente. Cuando la CABA demanda a la Nación se dispara la jurisdicción originaria, como en el caso de las clases presenciales durante la pandemia y en el de la coparticipación federal.}
+\cornellrow{¿Por qué corresponde a la Corte el caso de los diplomáticos y de los Estados o ciudadanos extranjeros?}{Por la especial preocupación de velar por relaciones diplomáticas positivas con otras naciones. Se aplica aun en cuestiones de derecho civil; en algunas infracciones administrativas no está en juego la jurisdicción originaria, pero sí en casos penales que atañen a embajadores, ministros y cónsules.}
+\cornellrow{¿Cuándo una causa provincial no es de jurisdicción originaria? ¿Qué ejemplo se dio?}{Cuando vecinos de una provincia impugnan una decisión de materia pública provincial: se mantiene en la jurisdicción local y eventualmente llega a la Corte por recurso extraordinario. En el caso ``Frente Amplio Formoseño'' la Corte intervino en grado de apelación, tras recorrer el fuero local de Formosa.}
+\midrule
+\cornellsummary{La Corte actúa como tribunal de primera y única instancia en los supuestos de los artículos 116 y 117: personal diplomático extranjero, controversias entre provincias, Nación contra provincia (o CABA), almirantazgo, provincia contra Estado o ciudadano extranjero y vecinos de una provincia contra otra provincia. El fundamento común es preservar el equilibrio jurisdiccional y las relaciones diplomáticas. Los más frecuentes son los que involucran a provincias, a la Nación y a diplomáticos o extranjeros. Las causas de vecinos contra su propia provincia se resuelven en el fuero local y, en su caso, llegan a la Corte en grado de apelación.}
+\bottomrule
+\end{longtable}
+
+
+% ==========================================================================
+\chapter[Artículo 19: Principio de Reserva]{Artículo 19 de la Constitución Nacional: el Principio de Reserva}
+% ==========================================================================
+
+\section{Concepto: las acciones privadas y sus límites}
+
+El artículo 19 se refiere a las acciones privadas de los hombres que no ofendan al orden, a la moral pública ni perjudiquen a terceros.
+
+\begin{formula}{Artículo 19 de la Constitución Nacional}
+\textit{``Las acciones privadas de los hombres que de ningún modo ofendan al orden y a la moral pública, ni perjudiquen a un tercero, están solo reservadas a Dios, y exentas de la autoridad de los magistrados. Ningún habitante de la Nación será obligado a hacer lo que no manda la ley, ni privado de lo que ella no prohíbe.''}
+\end{formula}
+
+Esta es una típica norma que, en palabras de Kelsen, es una \textbf{norma de cerramiento}: brinda un principio interpretativo para entender dónde están las fronteras de la regulación legal, hasta dónde puede llegar una norma y cómo debe entenderse esto.
+
+Este principio resulta desafiante frente a cambios de paradigma, como las evoluciones científicas, o frente a análisis que van más allá de lo que podría denominarse peligro abstracto, que ponen en tela de juicio hasta dónde puede regular la ley.
+
+\begin{note}
+La Constitución, anclada en su tiempo y espacio, brinda una idea general y no un análisis de los casos particulares. Establece un principio que luego debe interpretarse caso a caso, para determinar dónde están las fronteras de la regulación.
+\end{note}
+
+\section{La libertad de expresión como ejemplo}
+
+La libertad de expresión es un ejemplo clásico del principio de reserva. Tanto la Constitución como los tratados internacionales presentan una idea muy fuerte de afianzar la no regulación en la medida en que determinadas decisiones jurídicas podrían implicar una restricción indebida de esta libertad.
+
+El concepto de libertad de expresión es amplio y está muy arraigado constitucionalmente. Protege tanto el derecho del emisor de la opinión política o pública como a los receptores, a quienes se procura asegurar lo que puede denominarse un \textbf{mercado amplio de ideas}. Existe así una dualidad: por un lado se asegura la palabra y el debate público a quien lo ejerce, y por el otro se asegura, desde el lado de los receptores, que no haya restricciones a lo que puede debatirse.
+
+\subsection{La censura previa y el sistema de responsabilidades ulteriores}
+
+El sistema penaliza fuertemente la censura previa: procura evitar toda censura previa y, en todo caso, permite la libertad de expresión y actúa sobre las consecuencias jurídicas que pueda tener su uso indebido y generador de daño.
+
+\begin{table}[H]
+\centering
+\caption{Características del sistema de libertad de expresión}
+\begin{tabularx}{\textwidth}{Q{0.28\textwidth}Y}
+\toprule
+\textbf{Característica} & \textbf{Descripción} \\
+\midrule
+Sistema reparador & La sanción se aplica después de la expresión, no antes (\textit{ex post}). \\
+\addlinespace
+Sin censura previa & Prohibida por el Pacto de San José de Costa Rica. \\
+\addlinespace
+Excepción & Protección de menores de edad frente a información sensible o datos nocivos para ese grupo de alta vulnerabilidad. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{``La Última Tentación de Cristo'' (Corte Interamericana de Derechos Humanos)}
+Fallo clásico de la Corte Interamericana de Derechos Humanos en el que se condena a Chile por no asegurar la libertad de expresión y haber ejercido la censura previa en relación con la exhibición de la película, que fue prohibida en ese país. Es el texto jurídico más tradicional en el ámbito interamericano sobre esta materia.
+\end{example}
+
+\section{Casos límite: eutanasia, aborto y debates actuales}
+
+\subsection{La eutanasia y el principio de reserva}
+
+La eutanasia se planteó como un tema de gran actualidad vinculado con el artículo 19. Existen normas sobre la materia; en Latinoamérica, Uruguay es uno de los países más desarrollados, con la denominada ley de muerte digna, la prohibición del encarnizamiento terapéutico o la muerte asistida. No hay diferencias sustanciales entre estos rótulos: a veces se engloba todo bajo un mismo título.
+
+El tema desafía a preguntarse si la norma podría llegar a penalizar estas situaciones y dónde está el real alcance del perjuicio a terceros, cuando quien solicita la medida es quizás el mismo sujeto.
+
+\paragraph{Posición favorable a su encuadre en el artículo 19.} Se sostuvo que la muerte digna podría encuadrarse claramente dentro de lo que alcanza el artículo 19: más allá de las cuestiones morales y religiosas, no resulta irrazonable entender que el principio consagrado se relaciona también con estas circunstancias, sobre todo por la ausencia de afectación a terceros. Se mencionó, en este sentido, un artículo de Carlos Nino, vinculado con la pretensión de la reforma constitucional de 1994.
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte no precisa el título del artículo de Carlos Nino ni cómo se vincula con la reforma constitucional del 94)
+
+\begin{note}
+Carlos Nino fue caracterizado como un constitucionalista muy citado en los últimos años, cuya obra ha sido revalorada. Fue un actor importante en la recuperación democrática, en el juicio a las juntas militares y en algunos aspectos de la modernización del sistema judicial en los primeros años de la vuelta de la democracia.
+\end{note}
+
+\paragraph{De los casos fáciles a los casos difíciles.} Se propuso pensar la cuestión desligada de ciertos dogmatismos y atendiendo a cómo sería la práctica jurídica en la aplicación de este tipo de normas. Una posición favorable a priori a despenalizar y regular la asistencia a una muerte digna puede verse matizada porque se trata de procesos inéditos en el derecho argentino: una vez que la norma circula y se genera una práctica, pueden aparecer alarmas que hagan necesaria una mayor intensidad de regulación.
+
+\begin{itemize}
+    \item Los \textbf{casos fáciles} son los casos típicos y contundentes, referidos a un padecimiento físico muy claro, muy documentado y fácilmente corroborable.
+    \item Los \textbf{casos difíciles} aparecen luego, por ejemplo cuando la petición surge en el ámbito de los padecimientos psíquicos, y obligan a la prudencia en la implementación y a cuestionar si la ley es correcta en su implementación.
+\end{itemize}
+
+\paragraph{Experiencias y opiniones personales.} Se mencionó, como aporte al debate, la experiencia de personas con enfermedades terminales de cáncer que manifestaban querer morir, sin que los cuidados paliativos resultaran ya suficientes, lo que fundaría la necesidad de una regulación profunda de la muerte digna. Se observó que las opiniones propias, por más objetivos que se intente ser, siempre están teñidas por experiencias cercanas.
+
+Se agregó que quien abre una puerta mediante una regulación debe estar dispuesto a revisitar el tema y a pensar la mejor forma de regularlo, de la manera más amplia y honesta posible.
+
+\paragraph{Supuestos problemáticos.} Los casos en que está en juego la voluntad de una muerte asistida desafían la regulación cuando involucran:
+
+\begin{itemize}
+    \item personas que no están en pleno uso de su voluntad y de su capacidad cognitiva;
+    \item menores de edad;
+    \item situaciones en que son terceros quienes piden la medida ante la imposibilidad de las partes de resolver por sí mismas (por ejemplo, personas en comas profundos o en situaciones de desconexión total), lo que abre el debate, más colateral, sobre si puede ser pedida por el núcleo familiar cercano y sobre quién tiene la decisión final.
+\end{itemize}
+
+\subsection{El aborto y la preparación social ante los cambios normativos}
+
+Se planteó que, como sociedad, quizás no se está tan preparado para una regulación de este tipo, como en su momento no se estuvo preparado para el aborto legal, que con el paso del tiempo fue siendo más aceptado.
+
+El aborto no punible plantea un desafío similar: intervienen subjetividades propias, éticas personales, religión, opiniones y convicciones muy íntimas, difíciles de encolumnar en una misma norma dejando satisfechos a todos.
+
+\begin{important}
+La base social y la legitimidad social de las normas es una cuestión que no puede dejarse de lado. Sin embargo, también debe aceptarse que las rupturas normativas y las normas pioneras suelen atravesar umbrales de complejidad en su implementación con poco o reducido consenso.
+\end{important}
+
+\section{Cuadro Cornell: Artículo 19}
+
+\begin{longtable}{K}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+\cornellrow{¿Qué establece el artículo 19 de la Constitución Nacional?}{Que las acciones privadas de los hombres que de ningún modo ofendan al orden y a la moral pública, ni perjudiquen a un tercero, están solo reservadas a Dios y exentas de la autoridad de los magistrados; y que ningún habitante será obligado a hacer lo que no manda la ley ni privado de lo que ella no prohíbe.}
+\cornellrow{¿Qué es una ``norma de cerramiento''?}{En palabras de Kelsen, una norma que brinda un principio interpretativo para entender dónde están las fronteras de la regulación legal y hasta dónde puede llegar una norma. El artículo 19 es una típica norma de este tipo, cuya aplicación debe interpretarse caso a caso.}
+\cornellrow{¿Cómo se relaciona la libertad de expresión con el artículo 19?}{Es un ejemplo clásico del principio de reserva. El concepto es amplio y protege tanto al emisor como a los receptores, asegurando un mercado amplio de ideas.}
+\cornellrow{¿Qué sistema rige respecto de la censura previa?}{El sistema penaliza fuertemente la censura previa, prohibida por el Pacto de San José de Costa Rica, y es reparador: la sanción se aplica después de la expresión (\textit{ex post}), actuando sobre las consecuencias jurídicas de su uso indebido y dañoso. La excepción es la protección de menores de edad frente a información sensible o datos nocivos. Un precedente clásico es \textit{La Última Tentación de Cristo}, de la Corte Interamericana, que condenó a Chile por censura previa.}
+\cornellrow{¿Por qué la eutanasia se vincula con el artículo 19 y qué desafíos plantea?}{Se debatió si la ausencia de perjuicio a terceros, cuando quien solicita la medida es el mismo sujeto, permite encuadrarla en el principio de reserva. Los desafíos aparecen en los casos difíciles: padecimientos psíquicos, personas sin plena capacidad cognitiva, menores de edad, o cuando son terceros quienes piden la medida. Exige una regulación abierta a ser revisada.}
+\cornellrow{¿Qué distinción se hizo entre casos fáciles y casos difíciles?}{Los casos fáciles son los de padecimiento físico muy claro y documentado; los difíciles surgen luego, en la práctica de la norma, y obligan a preguntarse si la ley es correcta en su implementación y a actuar con prudencia.}
+\cornellrow{¿Qué papel cumple la legitimidad social de las normas, según el debate sobre eutanasia y aborto?}{La base y la legitimidad social de las normas no puede dejarse de lado, porque intervienen convicciones íntimas difíciles de encolumnar en una misma norma. No obstante, las normas pioneras suelen atravesar umbrales de complejidad en su implementación con poco consenso.}
+\midrule
+\cornellsummary{El artículo 19 funciona como una norma de cerramiento: las acciones privadas que no ofenden al orden ni a la moral pública ni perjudican a terceros están exentas de la autoridad de los magistrados, y nadie está obligado a hacer lo que la ley no manda ni privado de lo que no prohíbe. La libertad de expresión, con su rechazo a la censura previa y su sistema de responsabilidades ulteriores, y los debates sobre eutanasia y aborto muestran la dificultad de trazar la frontera de la regulación, que debe interpretarse caso a caso y con legitimidad social.}
+\bottomrule
+\end{longtable}
+
+\end{document}
