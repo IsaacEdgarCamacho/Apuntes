@@ -1,0 +1,844 @@
+\documentclass[12pt,oneside]{book}
+
+% =====================================================================
+% METADATOS
+% =====================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Apuntes de Derecho de la Integración}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% =====================================================================
+% PAQUETES
+% =====================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =====================================================================
+% CONFIGURACIÓN
+% =====================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+
+\captionsetup{font=small,labelfont=bf}
+\captionsetup[table]{position=top}
+
+% Títulos de capítulo sobrios
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{10\p@}%
+  {\parindent\z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \large\bfseries\color{blue!50!black}\@chapapp\space \thechapter\par\nobreak
+      \vskip 4\p@
+    \fi
+    \interlinepenalty\@M
+    \Large\bfseries #1\par\nobreak
+    \vskip 20\p@
+  }}
+\renewcommand{\@makeschapterhead}[1]{%
+  \vspace*{10\p@}%
+  {\parindent\z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    \Large\bfseries #1\par\nobreak
+    \vskip 20\p@
+  }}
+\makeatother
+
+% Encabezados y pies
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =====================================================================
+% COMANDOS
+% =====================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Columnas y macros del cuadro Cornell
+\newcolumntype{Q}{>{\raggedright\arraybackslash}p{0.26\textwidth}!{\vrule width 0.4pt}}
+\newcolumntype{N}{>{\raggedright\arraybackslash}p{0.66\textwidth}}
+\newcommand{\cqa}[2]{\textbf{#1} & #2 \\[0.2em] \midrule[0.3pt]}
+\newcommand{\cornellsummary}[1]{%
+  \multicolumn{2}{p{\dimexpr0.92\textwidth+2\tabcolsep\relax}}{\textbf{Resumen:} #1} \\}
+
+% =====================================================================
+% ENTORNOS / CAJAS
+% =====================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =====================================================================
+% DOCUMENTO
+% =====================================================================
+\begin{document}
+
+% ---------------------------------------------------------------------
+% PORTADA
+% ---------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es el camino más seguro hacia la comprensión.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------------------------------------------------------------
+% ÍNDICE
+% ---------------------------------------------------------------------
+\tableofcontents
+
+% ---------------------------------------------------------------------
+% PRESENTACIÓN
+% ---------------------------------------------------------------------
+\chapter*{Presentación}
+\addcontentsline{toc}{chapter}{Presentación}
+\markboth{Presentación}{Presentación}
+
+Este material reconstruye, tema por tema, una clase de repaso integral previa al examen final de \textbf{Derecho de la Integración}. Abarca el sistema de solución de controversias de la \textbf{Unión Europea} (Tribunal de Justicia, cuestión prejudicial, recurso directo, abogados generales) y su comparación con el mecanismo del \textbf{Mercosur} (negociaciones directas, Grupo Mercado Común, Tribunal Permanente de Revisión); repasa la distinción entre derecho originario y derecho derivado, y cierra con la relación entre el derecho internacional y el derecho interno bajo las teorías monista y dualista.
+
+\begin{example}{Un contrato de compraventa entre una empresa argentina y una francesa}
+Los cinco bloques temáticos cuentan la misma historia desde ángulos distintos, como capas de un mismo edificio. Ante un contrato de compraventa entre una empresa argentina y una francesa, primero hay que saber cómo se prepara el examen (Capítulo~\ref{cap:examen}) para estudiar con criterio todo lo que sigue; después, quién resuelve el conflicto si surge del lado europeo (Capítulo~\ref{cap:tjue}) y quién lo resuelve si surge del lado del Mercosur (Capítulo~\ref{cap:mercosur}, en comparación directa con el anterior). Pero antes de preguntar quién resuelve, hay que saber qué tipo de norma se está aplicando (Capítulo~\ref{cap:fuentes}: ¿es un tratado fundacional o una resolución de un órgano derivado?) y, finalmente, si esa norma internacional le resulta exigible al juez argentino o no (Capítulo~\ref{cap:di-interno}, la puerta de entrada entre el derecho internacional y el derecho interno). Cada bloque responde una pregunta que el bloque anterior deja abierta.
+\end{example}
+
+\section*{Utilidad profesional y general}
+
+Cualquier abogado que asesore a una empresa con operaciones en el Mercosur o que negocie con contrapartes europeas necesita saber a qué tribunal recurrir cuando dos normas de distinto origen entran en conflicto y qué fuerza tiene cada resolución. Saber que una opinión consultiva del Tribunal Permanente de Revisión no obliga, mientras que una sentencia prejudicial del Tribunal de la Unión Europea sí, cambia la estrategia de un litigio internacional o de una negociación comercial. Entender si Argentina es monista o dualista es la base para explicar si un tratado que el país firmó ya resulta exigible o todavía no.
+
+Más allá de lo profesional, el contenido entrena una forma de pensar útil para cualquier decisión importante: distinguir cuándo una regla obliga y cuándo es solo una recomendación, y no confundir ambas cosas. Es la misma lógica que permite leer con criterio un contrato, un reglamento laboral o los términos de un acuerdo familiar, y saber qué se puede exigir y qué no.
+
+% =====================================================================
+% CAPÍTULO 1
+% =====================================================================
+\chapter[Preparación del examen final]{Preparación del examen final}\label{cap:examen}
+
+El repaso previo al examen final se organiza tema por tema, y conviene ir anotando las dudas que surjan para no llegar con sorpresas de último momento.
+
+\section{Modalidad de evaluación}
+
+La nota del parcial no condiciona el criterio con el que se toma el examen final; su única función es orientar sobre el tipo de examen que espera.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se menciona una cifra ilustrativa de 30 preguntas de verdadero o falso y, luego, una estructura de entre 10 y 15 preguntas de verdadero/falso y opción múltiple)
+Sobre el formato, el examen incluye preguntas de verdadero o falso que abarcan todos los temas del programa; a modo ilustrativo se menciona una cantidad de alrededor de treinta. Las notas indican además, en la descripción de la estructura del examen, entre 10 y 15 preguntas de verdadero/falso y opción múltiple.
+
+\begin{important}
+\textbf{Estructura del examen}
+\begin{itemize}
+    \item Entre 10 y 15 preguntas de verdadero/falso y opción múltiple, distribuidas sobre todos los temas del programa.
+    \item Un número reducido de preguntas a desarrollar (habitualmente dos), centradas en el régimen de solución de conflictos de la Unión Europea o del Mercosur, o en el derecho sustantivo de uno u otro bloque.
+    \item Ninguna pregunta a desarrollar es eliminatoria por sí sola: se estima que, del total, representa alrededor de un punto y medio sobre diez.
+\end{itemize}
+\end{important}
+
+Si se yerran una o dos preguntas sobre un tema puntual, esa pérdida es menor; lo que realmente compromete la nota es no dominar un bloque completo de contenidos, porque entonces se pierde una cantidad significativa de preguntas relacionadas entre sí.
+
+Respecto de qué contenidos conviene priorizar (comparar los órganos de la Unión Europea y del Mercosur o memorizar su composición), no se exige memorizar la cantidad de miembros de cada órgano, pero sí comprender \textbf{cómo se toman las decisiones} en cada uno (por consenso o por mayoría) y \textbf{a quién representa} cada órgano.
+
+\begin{example}{Trampa conceptual en una pregunta de verdadero o falso}
+Afirmación: “el Consejo representa a la Unión Europea”. La respuesta es \textbf{falsa}, porque quien representa a la Unión Europea es la \textbf{Comisión Europea}. El Consejo Europeo está integrado por los presidentes y mandatarios de los Estados, el Consejo de Ministros representa a los Estados y el Parlamento representa al pueblo.
+\end{example}
+
+\section{Estrategias de lectura comprensiva}
+
+La pregunta del examen debe tomarse \textbf{literalmente}, sin completarla mentalmente con lo que se cree que falta. La distinción entre una enumeración cerrada y una enumeración abierta es, en este sentido, una cuestión de lectura comprensiva: conviene tomarse dos minutos para leer bien antes de responder.
+
+\begin{example}{Enumeración cerrada y enumeración abierta}
+“Si yo te digo: los únicos órganos con capacidad decisoria son estos, y te está faltando uno, entonces la afirmación es falsa, porque dije ‘únicos’. Pero si te digo: este, este y este tienen capacidad decisoria, aunque me falte nombrar uno, la afirmación es verdadera, porque no dije que fueran los únicos.”
+\end{example}
+
+\begin{important}
+\textbf{Criterio de corrección de las preguntas a desarrollar.} No se premian la extensión ni las frases genéricas. Si se pide, por ejemplo, describir las características del Tribunal Permanente de Revisión y se dedican dos renglones a repetir la pregunta con otras palabras, esa introducción no vale nada. Lo que suma es identificar con precisión cada característica, enumerada punto por punto, y explicar qué significa cada una.
+\end{important}
+
+También se penaliza copiar, en una pregunta a desarrollar, fragmentos de enunciados que aparecieron en las preguntas de verdadero o falso, sin razonar la respuesta propia. Se recomienda rendir aunque se sienta que no se llegó a estudiar todo, ya que la instancia sirve además para entrenar la manera de exponerse a la evaluación y perder el nerviosismo.
+
+\section{Fundamento de la modalidad escrita}
+
+Antes, los exámenes finales eran orales y exigían haber aprobado previamente todos los parciales de la cursada. Esa modalidad desarrollaba una capacidad de \textbf{debate}: sostener una posición frente al profesor y argumentarla, algo que hoy es más difícil de entrenar.
+
+El formato actual es necesariamente escrito: con cursos reducidos era posible tomar examen oral durante varios días, pero con aulas numerosas el examen debe tomarse por escrito y en el horario de la clase. Por ello se combinan preguntas cerradas, que permiten evaluar muchos temas en poco tiempo, con preguntas a desarrollar, que evalúan la capacidad de redacción y de síntesis.
+
+\section{Cuadro Cornell: preparación del examen}
+
+\begin{longtable}{QN}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\multicolumn{2}{r}{\small\itshape continúa en la página siguiente} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\cqa{¿Cómo se distribuye el puntaje entre las distintas modalidades de pregunta?}{El examen combina entre 10 y 15 preguntas de verdadero/falso y opción múltiple sobre todos los temas del programa con un número reducido de preguntas a desarrollar (habitualmente dos), centradas en el régimen de solución de conflictos de la Unión Europea o del Mercosur, o en el derecho sustantivo de uno u otro bloque. Ninguna pregunta a desarrollar es eliminatoria por sí sola: se estima que representa alrededor de un punto y medio sobre diez.}
+\cqa{¿Qué se exige memorizar y qué comprender de los órganos de la Unión Europea y del Mercosur?}{No se exige memorizar la cantidad de miembros de cada órgano, pero sí comprender cómo se toman las decisiones (por consenso o por mayoría) y a quién representa cada órgano.}
+\cqa{¿Por qué una pregunta incompleta no equivale a una pregunta falsa?}{Porque la pregunta debe leerse literalmente. Una enumeración cerrada (“los únicos órganos…”) es falsa si falta uno; una enumeración abierta (sin la palabra “únicos”) puede ser verdadera aunque falte nombrar algún órgano.}
+\cqa{¿Qué se valora en una pregunta a desarrollar?}{No se valoran la extensión ni las frases genéricas: sirve identificar con precisión cada característica, enumerarla punto por punto y explicar qué significa. También se penaliza copiar fragmentos de las preguntas de verdadero o falso sin razonar la respuesta propia.}
+\cqa{¿Por qué el examen final es escrito y combina preguntas cerradas con preguntas a desarrollar?}{Porque, con aulas numerosas, el examen debe tomarse por escrito y en el horario de la clase. Las preguntas cerradas permiten evaluar muchos temas en poco tiempo; las de desarrollo evalúan la capacidad de redacción y de síntesis. El examen oral, propio de otra época, entrenaba la capacidad de debate.}
+\midrule
+\cornellsummary{el examen final abarca todos los temas del programa mediante preguntas cerradas y un pequeño número de preguntas a desarrollar. Lo decisivo es dominar bloques completos de contenido, comprender cómo deciden y a quién representan los órganos, leer literalmente cada enunciado y responder con precisión, punto por punto.}
+\end{longtable}
+
+Cerrado el repaso metodológico, la exposición retoma el contenido sustantivo: el sistema de solución de controversias de la Unión Europea, comparado en todo momento con el del Mercosur.
+
+% =====================================================================
+% CAPÍTULO 2
+% =====================================================================
+\chapter[El Tribunal de Justicia de la Unión Europea]{El Tribunal de Justicia de la Unión Europea}\label{cap:tjue}
+
+\section{La función interpretativa exclusiva}
+
+Cierta doctrina española reconoce al Tribunal de Justicia de la Unión Europea una relevancia en el ámbito legislativo, más allá de su carácter jurisdiccional, a pesar de que formalmente no tiene facultades para legislar. La razón está en su función esencial: “el único que interpreta, en forma exclusiva, el derecho comunitario es el Tribunal de la Unión Europea. No hay otra posibilidad”.
+
+Desde el origen del proceso de integración europea, los Estados entendieron que de nada servía dictar una norma única si cada uno la interpretaba a su manera; por eso se concentró en un solo órgano la función de fijar el sentido del derecho comunitario, de modo que ese criterio se mantenga uniforme en el tiempo y en todos los Estados.
+
+Al ejercer esa función, el Tribunal no se limita a aplicar la letra de la norma: cuando la interpreta, en los hechos la moldea, completando sentidos que la norma dejaba abiertos. Por eso la doctrina le atribuye un cierto carácter \textbf{“legiferante”}, aunque no sea su función formal: sus criterios de interpretación terminan operando, en la práctica, como una fuente más del derecho de la Unión.
+
+\begin{important}
+El Tribunal de Justicia de la Unión Europea es el \textbf{intérprete exclusivo} del derecho comunitario, pero no el único que lo aplica. Los jueces nacionales de cada Estado miembro aplican el derecho comunitario en los casos concretos que se les presentan; el Tribunal interviene cuando existe duda sobre cómo debe interpretarse una norma o cuando se cuestiona su cumplimiento. Es competente exclusivamente para la interpretación del derecho comunitario, no para su aplicación directa en los casos concretos.
+\end{important}
+
+\begin{example}{Conflicto entre una empresa francesa y una italiana}
+Un conflicto entre una empresa francesa y una empresa italiana que se rige por derecho comunitario se resuelve ante el juez nacional competente, no directamente ante el Tribunal de la Unión Europea. Solo si ese juez tiene dudas sobre cómo interpretar la norma aplicable recurre al Tribunal.
+\end{example}
+
+\section{Vías de acceso al Tribunal}
+
+Se distinguen tres vías principales por las que un asunto puede llegar al Tribunal de Justicia de la Unión Europea.
+
+\begin{table}[H]
+\centering
+\caption{Mecanismos de acceso al Tribunal de Justicia de la Unión Europea}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Vía} & \textbf{Descripción} \\
+\midrule
+\textbf{Cuestión prejudicial} (recurso de prejudicialidad) &
+El juez nacional que tiene dudas sobre la interpretación de una norma comunitaria, o sobre si su propia norma interna la contradice, eleva la consulta al Tribunal. Una vez resuelta, esa interpretación es obligatoria para ese tribunal y para todos los demás. \\
+\addlinespace
+\textbf{Recurso directo} &
+Permite a los particulares, a los Estados y a los propios órganos de la Unión acudir directamente al Tribunal para que resuelva sobre la compatibilidad entre normas o exija a un Estado que aplique el derecho comunitario que debe prevalecer sobre su derecho interno. \\
+\addlinespace
+\textbf{Recurso por incumplimiento del Estado} &
+Se utiliza cuando un Estado no está aplicando una norma que se encuentra en vigor. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La diferencia central entre la cuestión prejudicial y la simple respuesta que da el Tribunal Permanente de Revisión del Mercosur en una opinión consultiva (que se desarrolla en el Capítulo~\ref{cap:mercosur}) es que, cuando el Tribunal de la Unión Europea indica al juez cómo debe interpretarse la norma, “el juez está obligado a aplicarla así; no es una consulta”. Esa vinculatoriedad se extiende: una vez fijado el criterio en un caso, todos los demás tribunales quedan obligados a interpretar la norma de esa misma manera, lo que constituye la clave de la \textbf{función unificadora} del Tribunal.
+
+Los particulares pueden acceder directamente al recurso ante el Tribunal de la Unión Europea. En el Mercosur, en cambio, los particulares no tienen acceso directo y deben canalizar su reclamo a través de otro mecanismo. Frente a esa diferencia se sintetiza: “se dan cuenta el abismo que hay entre un sistema y el otro”.
+
+\section{Composición y formaciones de juzgamiento}
+
+El Tribunal está integrado por un juez por cada Estado miembro (veintisiete, según el número de Estados que se menciona al momento de la clase). No todos los jueces intervienen en todos los casos: según la relevancia y complejidad del asunto, se sortea si lo resuelve una sala pequeña, una gran sala, o si el asunto se eleva al pleno.
+
+\begin{table}[H]
+\centering
+\caption{Formaciones de juzgamiento del Tribunal}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Formación} & \textbf{Cuándo interviene} \\
+\midrule
+\textbf{Sala reducida} (tres jueces) &
+Cuestiones reiteradas, con abundantes precedentes, donde no hay debate real sobre el criterio a aplicar. \\
+\addlinespace
+\textbf{Gran sala} (aproximadamente quince jueces) &
+Cuestiones más complejas o novedosas. \\
+\addlinespace
+\textbf{Pleno} &
+Interviene en muy pocas ocasiones: cuando el asunto reviste una relevancia institucional de primer orden para la Unión Europea, o cuando se plantea directamente cambiar un criterio de interpretación ya asentado. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La elevación al pleno ocurre cuando los jueces de una sala perciben que el criterio habitual ya no resulta aplicable a un caso y que este excede lo que es habitual. La clasificación entre sala pequeña, gran sala y pleno no responde a categorías rígidas predeterminadas para cada tipo de asunto, sino que se decide caso por caso según la complejidad y la existencia (o no) de precedentes consolidados. El procedimiento interno (instrucción a cargo del abogado general, deliberación y votación) es el mismo sin importar si interviene una sala de tres, una de quince o el pleno; lo único que cambia es cuántos magistrados intervienen. Las decisiones se toman por mayoría.
+
+\subsection{El abogado general}
+
+\begin{definition}{Abogado general}
+Es quien instruye el expediente: recibe y provee las pruebas, arma y analiza el caso, y eleva a los jueces una propuesta de resolución fundada. Es un auxiliar del tribunal.
+\end{definition}
+
+El límite de esta función es que el abogado general \textbf{no vota}: “tiene algo que no tiene en ninguna de las instancias, en ningún recurso: no vota. Es un auxiliar del tribunal que tiene que intervenir, y yo solamente doy mi opinión; después se sientan los jueces a discutir y deciden, pero el abogado general no puede entrar a debatir, no puede entrar a discutir”.
+
+Para ser juez o abogado general se deben reunir las condiciones exigidas en el propio Estado para ocupar el más alto grado judicial, es decir, la capacidad para ser juez de la corte suprema del país de origen. Como esos requisitos varían según cada Estado, el nivel de exigencia depende del sistema jurídico de procedencia de cada magistrado.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la cantidad de abogados generales se enuncia con dudas: "veintisiete, mínimo", "debe haber muchos más", "once, doce por ahí")
+Sobre la cantidad de abogados generales, la respuesta inicial se relativiza: se menciona “veintisiete, mínimo”, luego se afirma que “debe haber muchos más” y finalmente que serían “once, doce por ahí”. Al menos cinco puestos corresponden siempre a los Estados originarios de la Unión (siempre hay un abogado general alemán, siempre hay uno francés), mientras que los cargos restantes rotan entre los demás Estados miembros.
+
+A partir de esa composición, el docente introduce una reflexión crítica sobre la \textbf{imparcialidad}: si quien instruye el expediente y propone la resolución proviene de la formación jurídica de un Estado determinado, es difícil sostener una neutralidad absoluta, aunque no se trata de mala fe sino de la forma de razonar que cada jurista incorpora en su propia tradición legal: “no es que lo hagan con maldad, es algo que llevás adentro: fuiste educado con tal criterio, con tal principio. […] La imparcialidad, la igualdad de la representación, yo la pongo en duda por este pequeño detalle”.
+
+\subsection{Designación y renovación}
+
+No hay sorteo para la designación: cada Estado elige a su representante según sus propios criterios internos, y luego ese magistrado ocupa el cargo de forma permanente hasta la renovación correspondiente. Lo que sí se sortea, caso por caso, es qué jueces y qué abogado general intervienen en cada expediente concreto.
+
+La renovación de los miembros del Tribunal se realiza \textbf{por mitades}, nunca en bloque, precisamente para preservar la continuidad de los criterios interpretativos ya asentados.
+
+\section{Métodos de interpretación normativa}
+
+Los jueces aplican dos criterios complementarios: un método finalista y un método sistémico.
+
+\begin{itemize}
+    \item \textbf{Criterio finalista}: la interpretación debe orientarse a cumplir la finalidad que tuvo la norma cuando fue dictada. Si una lectura posible conduce a un resultado que contradice ese propósito, esa interpretación no es válida.
+    \item \textbf{Criterio sistémico}: la interpretación de una norma debe ser coherente con el resto del sistema normativo del que forma parte; no puede leerse de manera aislada, en contradicción con otras disposiciones del mismo cuerpo de normas.
+\end{itemize}
+
+Ambos métodos se vinculan con la técnica de interpretación de la ley en general: buscar la intención del legislador y los fundamentos que dieron origen a la norma, de forma que la interpretación posibilite el cumplimiento de esa finalidad y no conduzca a una conclusión distinta. La necesidad de interpretar surge precisamente porque la letra de la norma no siempre es clara: si lo fuera, no habría nada que interpretar.
+
+\section{El Tribunal General y los tribunales especializados}
+
+La evolución institucional del sistema judicial europeo parte de un único tribunal (el Tribunal de las Comunidades Europeas, luego Tribunal de la Comunidad Europea). Con el tiempo, en la época del Tratado de Maastricht, los Estados advirtieron que ese único órgano no daba abasto para atender todos los recursos directos que le llegaban de los particulares, y crearon el \textbf{Tribunal de Primera Instancia}, exclusivamente destinado a recibir esos recursos directos.
+
+El Tribunal de Primera Instancia fue luego rebautizado como \textbf{Tribunal General}, que hoy recibe recursos de cualquier legitimado (particulares, Estados, órganos), mientras que el Tribunal de la Unión Europea concentra las consultas de los jueces nacionales, de los demás órganos y de los Estados. No existe entre ambos una relación de jerarquía: son dos tribunales de igual rango, cada uno con su propia competencia, salvo por una excepción:
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la cita equipara "dos órganos" con "dos Estados")
+\begin{quote}
+“Este [el Tribunal de la Unión Europea] va a intervenir específicamente cuando el conflicto sea entre dos órganos, es decir, entre dos Estados. En todos los demás casos, ingresa por el Tribunal General.”
+\end{quote}
+
+El número de jueces del Tribunal de la Unión Europea (uno por Estado) es independiente del número de jueces del Tribunal General (también uno por Estado, pero designado en representación separada), por lo que cada Estado termina designando dos magistrados: uno para cada tribunal.
+
+La creación del Tribunal General y del régimen que habilita crear tribunales especializados se sitúa en la reforma llevada adelante en el marco del Tratado de la Unión Europea de Maastricht, que rebautizó al antiguo tribunal comunitario y dejó abierta la posibilidad institucional de crear tribunales especiales por materia o por competencia.
+
+\begin{example}{El Tribunal de Asuntos Administrativos}
+Durante un tiempo funcionó el Tribunal de Asuntos Administrativos, creado para resolver conflictos entre los órganos de la Unión Europea. Finalmente fue disuelto: el docente conjetura que el costo institucional de mantenerlo no se justificaba, porque el Tribunal General podía resolver esas mismas cuestiones sin necesidad de sostener una estructura adicional con representación de los veintisiete Estados, exigencia que cualquier tribunal de este sistema debe cumplir.
+\end{example}
+
+La idea que resume todo el bloque: “cuando uno dice el Tribunal de la Unión Europea, en realidad está hablando de algo más: no es una corte con tres jueces, es todo un sistema de solución de conflictos”.
+
+\section{Control de legalidad}
+
+El Tribunal ejerce además un control de legalidad entre los propios órganos de la Unión: puede intervenir cuando un órgano sostiene que una norma dictada por otro órgano resulta incompatible con otra norma superior.
+
+\begin{definition}{Control de legalidad}
+Aplicado al derecho de la integración, implica verificar (1) que la norma haya sido emitida por el órgano competente, (2) que se haya seguido el procedimiento establecido para dictar ese tipo de norma, y (3) que no vulnere ninguna norma superior del ordenamiento.
+\end{definition}
+
+\section{Cuadro Cornell: el Tribunal de Justicia de la Unión Europea}
+
+\begin{longtable}{QN}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\multicolumn{2}{r}{\small\itshape continúa en la página siguiente} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\cqa{¿Qué función cumple, en exclusiva, el Tribunal de Justicia de la Unión Europea?}{Es el único intérprete del derecho comunitario. No es el único que lo aplica: la aplicación en casos concretos corresponde a los jueces nacionales, que recurren al Tribunal por vía de cuestión prejudicial cuando tienen dudas sobre la interpretación.}
+\cqa{¿Por qué se dice que el Tribunal, sin tener función legislativa, termina moldeando la norma?}{Porque al interpretarla completa sentidos que la norma dejaba abiertos. Por eso la doctrina le atribuye un carácter “legiferante”: sus criterios operan en la práctica como una fuente más del derecho de la Unión.}
+\cqa{¿Qué diferencia hay entre la cuestión prejudicial, el recurso directo y el recurso por incumplimiento?}{En la cuestión prejudicial, el juez nacional consulta cómo interpretar una norma comunitaria (o si su norma interna la contradice) y la interpretación obliga a ese tribunal y a todos los demás. El recurso directo permite a particulares, Estados y órganos acudir al Tribunal para que resuelva sobre la compatibilidad entre normas o exija a un Estado aplicar el derecho comunitario que debe prevalecer. El recurso por incumplimiento se usa cuando un Estado no aplica una norma en vigor.}
+\cqa{¿Quién puede acceder al Tribunal de Justicia de la Unión Europea?}{Los jueces nacionales (cuestión prejudicial), los Estados, los órganos de la Unión y los particulares (recurso directo), además del recurso por incumplimiento del Estado.}
+\cqa{¿Qué es el abogado general y qué no puede hacer?}{Instruye el expediente, reúne la prueba y propone una resolución a los jueces. No vota ni participa de la deliberación: su intervención es auxiliar.}
+\cqa{¿Cuándo interviene el pleno del Tribunal?}{Solo en asuntos de gran relevancia institucional o cuando se plantea cambiar un criterio de interpretación ya consolidado. Los casos habituales se resuelven en salas de tres o de quince jueces, según su complejidad.}
+\cqa{¿Qué distingue al método finalista del método sistémico de interpretación?}{El finalista exige interpretar la norma en función del propósito que tuvo al dictarse. El sistémico exige que esa interpretación sea coherente con el resto del ordenamiento del que forma parte, sin contradicciones internas.}
+\cqa{¿Qué diferencia hay entre el Tribunal General y el Tribunal de Justicia de la Unión Europea?}{No hay jerarquía entre ambos. El Tribunal General recibe recursos de cualquier legitimado; el Tribunal de la Unión Europea concentra las cuestiones prejudicial de los jueces, las consultas de otros órganos y los conflictos entre Estados.}
+\cqa{¿Por qué se disolvió el Tribunal de Asuntos Administrativos?}{El docente conjetura que su costo institucional no se justificaba: el Tribunal General podía resolver esas mismas cuestiones sin sostener una estructura adicional con representación de los veintisiete Estados.}
+\cqa{¿En qué consiste el control de legalidad?}{En verificar que la norma haya sido emitida por el órgano competente, que se haya seguido el procedimiento establecido y que no vulnere ninguna norma superior del ordenamiento.}
+\midrule
+\cornellsummary{el Tribunal de Justicia de la Unión Europea es el intérprete exclusivo del derecho comunitario; su interpretación es obligatoria para todos los tribunales, lo que garantiza la aplicación uniforme. Es un sistema con múltiples vías de acceso (cuestión prejudicial, recurso directo, recurso por incumplimiento), con salas de distinto tamaño, abogados generales que instruyen sin votar, dos criterios de interpretación (finalista y sistémico), un Tribunal General de igual rango y control de legalidad entre los órganos.}
+\end{longtable}
+
+% =====================================================================
+% CAPÍTULO 3
+% =====================================================================
+\chapter[Mercosur y Unión Europea]{Mercosur y Unión Europea: dos sistemas en espejo}\label{cap:mercosur}
+
+\section{Las etapas del procedimiento en el Mercosur}
+
+El procedimiento de solución de controversias del Mercosur se retoma para compararlo punto por punto con el sistema europeo recién desarrollado.
+
+\begin{important}
+\textbf{Protocolo de Brasilia y Protocolo de Olivos.} Durante la vigencia del Protocolo de Brasilia (1991), la intervención del Grupo Mercado Común era obligatoria como segunda etapa del procedimiento. Con el Protocolo de Olivos (firmado el 18 de febrero de 2002 y vigente desde el 1º de enero de 2004), que reemplazó al Protocolo de Brasilia y creó el Tribunal Permanente de Revisión, esa intervención pasó a ser \textbf{facultativa}: las partes pueden optar por omitirla y avanzar directamente hacia el arbitraje.
+\end{important}
+
+Las etapas del procedimiento son las siguientes:
+
+\begin{enumerate}
+    \item \textbf{Negociaciones directas}: primera etapa, de corta duración, entre los Estados en conflicto.
+    \item \textbf{Intervención del Grupo Mercado Común} (facultativa desde el Protocolo de Olivos): el Grupo puede formular recomendaciones o solicitar el asesoramiento de un experto, que cuenta con treinta días para expedirse.
+    \item \textbf{Arbitraje ante el Tribunal Permanente de Revisión}: si las etapas anteriores no resuelven la controversia, se accede al arbitraje. El laudo arbitral es vinculante y, si no se cumple espontáneamente, habilita la adopción de medidas compensatorias.
+\end{enumerate}
+
+A diferencia del Protocolo de Brasilia, hoy “todo el procedimiento del Mercosur es alternativo: puedo elegir otra cosa”, en referencia a la posibilidad de saltear etapas intermedias que antes eran obligatorias.
+
+\section{La opinión consultiva ante el Tribunal Permanente de Revisión}
+
+Este es el punto de comparación más importante entre ambos sistemas: quién puede acceder al Tribunal Permanente de Revisión y con qué efecto.
+
+En el Mercosur no existe recurso directo para los particulares. Solo la Corte Suprema, máximo tribunal de cada Estado parte, está habilitada para elevar una consulta al Tribunal Permanente de Revisión; los tribunales inferiores no pueden hacerlo directamente y deben canalizar la cuestión a través de la Corte: “el único órgano judicial que está habilitado para hacer la consulta es la Corte; en el otro [en la Unión Europea] es cualquier tribunal. Ya hay una diferencia importante”.
+
+\begin{important}
+\textbf{Consulta no vinculante.} A diferencia de la cuestión prejudicial europea, la opinión consultiva del Tribunal Permanente de Revisión no obliga a la Corte que la solicitó: es “una consulta; después, si quiero, no la aplico; no es ni siquiera vinculante”. La Corte puede apoyarse en esa opinión, pero también puede apartarse de ella si considera que existen motivos para interpretar la norma del Mercosur de otra manera dentro de su propio ordenamiento.
+\end{important}
+
+Esta característica se conecta con un rasgo estructural del sistema argentino: al regir entre nosotros el \textbf{control de constitucionalidad difuso}, cualquier tribunal puede interpretar por sí mismo una norma del Mercosur, sin que esa interpretación sea competencia exclusiva de los órganos del bloque.
+
+El docente agrega una lectura crítica sobre el escaso compromiso institucional que revela este diseño: “fíjense ustedes el escaso compromiso por parte del Estado de que otro resuelva cuestiones que me incumben a mí o a mi territorio: creamos una estructura, pero siempre la última palabra la tengo yo”.
+
+\begin{example}{La consulta que se demora a propósito}
+Si un Estado remite la consulta a su Corte Suprema sabiendo que la respuesta puede demorar mucho tiempo, en los hechos logra postergar indefinidamente la aplicación del criterio del Tribunal Permanente de Revisión y, mientras tanto, sigue aplicando su propio criterio. Con esta imagen se ilustra la diferencia entre un sistema que garantiza de raíz la aplicación uniforme del derecho (la Unión Europea, con un único tribunal y varias vías de acceso) y uno que no la garantiza del mismo modo (el Mercosur).
+\end{example}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la comparación entre órganos "intergubernamentales" y "órganos permanentes de naturaleza judicial" no está desarrollada)
+En la comparación entre los órganos que intervienen en cada sistema, los órganos del Mercosur son intergubernamentales (representan a los Estados que los integran), mientras que los de la Unión Europea combinan órganos permanentes de naturaleza judicial. Por eso, en el sistema europeo los laudos y resoluciones del Tribunal son siempre obligatorios, mientras que en el Mercosur las recomendaciones de sus órganos no siempre lo son.
+
+\section{Cuadro comparativo entre ambos sistemas}
+
+Ambos mecanismos de solución de controversias fueron creados con el mismo objetivo declarado: garantizar la \textbf{armonización legislativa} y la \textbf{aplicación uniforme} del derecho que cada bloque crea. Las diferencias centrales se resumen en el siguiente cuadro.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el cuadro califica de "ad hoc" a los órganos del Mercosur, mientras que el texto describe un Tribunal Permanente de Revisión)
+\begin{table}[H]
+\centering
+\caption{Mecanismos de solución de controversias: Mercosur y Unión Europea}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.19\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Criterio} & \textbf{Mercosur} & \textbf{Unión Europea} \\
+\midrule
+\textbf{Naturaleza de los órganos} &
+Órganos ad hoc: se conforman para cada controversia y luego se disuelven. &
+Órganos permanentes, de naturaleza judicial, con jueces que rotan por mitades. \\
+\addlinespace
+\textbf{Acceso al tribunal} &
+Solo la Corte Suprema de cada Estado (los tribunales inferiores no acceden directamente); los particulares no tienen recurso directo. &
+Acceso amplio: jueces nacionales (cuestión prejudicial), Estados, órganos y particulares (recurso directo). \\
+\addlinespace
+\textbf{Efecto de la resolución} &
+La opinión consultiva no es vinculante para la Corte que la solicitó. &
+La interpretación fijada por el Tribunal es obligatoria para el tribunal consultante y para todos los demás. \\
+\addlinespace
+\textbf{Cumplimiento del laudo arbitral} &
+El laudo arbitral sí es vinculante; su incumplimiento habilita medidas compensatorias. &
+Las resoluciones del Tribunal son siempre obligatorias. \\
+\addlinespace
+\textbf{Tipo de reclamo posible ante el bloque} &
+Recursos limitados: no existe la vía directa amplia que sí existe en la Unión Europea. &
+Múltiples vías: cuestión prejudicial, recurso directo, recurso por incumplimiento del Estado. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La conclusión, anticipada desde la primera clase del curso, es que “el Mercosur se está comportando, en las relaciones, como si fueran relaciones internacionales, en lugar de ser un espacio de integración”.
+
+\section{Cuadro Cornell: Mercosur y Unión Europea}
+
+\begin{longtable}{QN}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\multicolumn{2}{r}{\small\itshape continúa en la página siguiente} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\cqa{¿Cuáles son las etapas del procedimiento de solución de controversias del Mercosur?}{Negociaciones directas; intervención facultativa del Grupo Mercado Común (obligatoria bajo el Protocolo de Brasilia, facultativa desde el Protocolo de Olivos); arbitraje ante el Tribunal Permanente de Revisión, cuyo laudo es vinculante.}
+\cqa{¿Qué ocurre si las etapas previas no resuelven la controversia?}{Se accede al arbitraje ante el Tribunal Permanente de Revisión. El laudo arbitral es vinculante y, si no se cumple espontáneamente, habilita la adopción de medidas compensatorias.}
+\cqa{¿Qué diferencia hay entre la cuestión prejudicial europea y la opinión consultiva del Mercosur?}{La cuestión prejudicial es vinculante: el juez que consulta queda obligado a interpretar la norma como lo resolvió el Tribunal, y ese criterio se extiende a todos los demás tribunales. La opinión consultiva del Tribunal Permanente de Revisión no es vinculante: la Corte que la solicita puede apartarse de ella.}
+\cqa{¿Quién puede acceder al Tribunal Permanente de Revisión del Mercosur?}{Solo la Corte Suprema de cada Estado parte puede elevar la consulta; los tribunales inferiores no tienen acceso directo y los particulares tampoco tienen recurso directo.}
+\cqa{¿Por qué una opinión del Tribunal Permanente de Revisión no obliga a la Corte Suprema argentina?}{Porque el diseño del sistema deja la última palabra en cada Estado. Además, al regir el control de constitucionalidad difuso, cualquier tribunal puede interpretar por sí mismo una norma del Mercosur; la Corte puede apoyarse en la opinión o apartarse de ella.}
+\cqa{¿Qué bloque garantiza mejor la aplicación uniforme del derecho que crea?}{La Unión Europea, con un único tribunal, varias vías de acceso y resoluciones siempre obligatorias. El Mercosur no la garantiza del mismo modo: sus opiniones consultivas no vinculan y solo la Corte Suprema puede consultar.}
+\midrule
+\cornellsummary{ambos bloques crearon mecanismos de solución de controversias para armonizar y aplicar uniformemente su derecho, pero con diseños muy distintos. La Unión Europea ofrece acceso amplio y resoluciones obligatorias; el Mercosur limita el acceso a la Corte Suprema, prevé una opinión consultiva no vinculante y reserva la obligatoriedad al laudo arbitral. De ahí la conclusión de que el Mercosur se comporta como una relación internacional y no como un espacio de integración.}
+\end{longtable}
+
+% =====================================================================
+% CAPÍTULO 4
+% =====================================================================
+\chapter[Fuentes y jerarquía]{Fuentes y jerarquía del derecho de la integración}\label{cap:fuentes}
+
+\section{Derecho de la integración y derecho comunitario}
+
+Esta distinción conceptual suele preguntarse en el examen porque genera confusión.
+
+\begin{definition}{Derecho de la integración}
+Es todo el derecho que rige en cualquier tipo de área de integración: una zona de libre comercio, una unión aduanera, un mercado común, una comunidad. Es el \textbf{género}.
+\end{definition}
+
+\begin{definition}{Derecho comunitario}
+Es una \textbf{especie} dentro del género derecho de la integración. Solo existe a partir de que el proceso de integración alcanza el estadio de comunidad.
+\end{definition}
+
+Por eso es incorrecto hablar de “derecho comunitario del Mercosur”: el Mercosur es un mercado común, no una comunidad, de modo que el derecho que produce es derecho de la integración, pero no derecho comunitario en sentido técnico. La relación se formula así: “el derecho comunitario del Mercosur no es lo mismo que el de la Unión Europea; es que el Mercosur no tiene derecho comunitario, tiene derecho de la integración, porque no tiene las características de una comunidad. Somos un mercado común”.
+
+La escala de etapas de integración económica, vista en una clase anterior, es la siguiente:
+
+\begin{enumerate}
+    \item Integración fronteriza.
+    \item Zona de libre comercio.
+    \item Unión aduanera.
+    \item Mercado común.
+    \item Comunidad económica.
+    \item Unión.
+\end{enumerate}
+
+Cada una de esas etapas produce un derecho con características propias, y a partir del estadio de comunidad esas características cambian de manera cualitativa, no solo por la mayor complejidad institucional.
+
+\section{Derecho originario y derecho derivado}
+
+Esta clásica distinción se aplica específicamente al Mercosur.
+
+\begin{definition}{Derecho originario}
+Equivale, salvando las distancias, a la Constitución dentro de un Estado. En un área de integración es el tratado marco o tratado constitutivo, junto con los tratados posteriores que crean nuevos órganos o modifican la estructura institucional.
+\end{definition}
+
+\begin{definition}{Derecho derivado}
+Son las normas que emiten los órganos creados por el tratado marco, en ejercicio de las funciones que ese mismo tratado les asignó (reglas, reglamentos, disposiciones, decisiones). Se lo compara con la relación entre la Constitución y la ley o el decreto en el derecho interno: son las normas que emanan de los órganos que la propia Constitución creó.
+\end{definition}
+
+El derecho originario del Mercosur está integrado, principalmente, por:
+
+\begin{itemize}
+    \item el \textbf{Tratado de Asunción} (1991), tratado fundacional;
+    \item el \textbf{Protocolo de Ouro Preto} (1994), que estableció la estructura institucional definitiva del bloque;
+    \item el \textbf{Protocolo de Olivos}, ya presentado en el Capítulo~\ref{cap:mercosur} por crear el Tribunal Permanente de Revisión, que también integra el derecho originario porque adicionó nuevos órganos a la estructura del bloque.
+\end{itemize}
+
+El derecho originario no se agota en el tratado fundacional: cada vez que se incorpora un nuevo órgano mediante un instrumento posterior, ese instrumento pasa a integrar también el derecho originario, aunque no haya nacido junto con el tratado inicial.
+
+\begin{example}{Las enmiendas a la Constitución de los Estados Unidos}
+“Es como las enmiendas a la Constitución de los Estados Unidos: todas siguen siendo Constitución, aunque se hayan incorporado después. Lo que fue incorporado a la Constitución sigue siendo derecho originario.”
+\end{example}
+
+Esta distinción se ubica también respecto de las ramas clásicas del derecho: mientras se está creando derecho originario, los Estados actúan en el plano del derecho internacional público propiamente dicho, porque están limitando su propia soberanía o acordando con otros Estados soberanos en un pie de igualdad. Recién cuando se pasa al derecho derivado, propio de cada área específica (comercial, laboral, de seguridad), el derecho de la integración empieza a volverse más concreto y especializado.
+
+\section{Cuadro Cornell: fuentes y jerarquía}
+
+\begin{longtable}{QN}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\multicolumn{2}{r}{\small\itshape continúa en la página siguiente} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\cqa{¿Qué relación hay entre derecho de la integración y derecho comunitario?}{Es una relación de género a especie. El derecho de la integración rige en cualquier área de integración; el derecho comunitario es una especie que solo existe desde el estadio de comunidad.}
+\cqa{¿Por qué el Mercosur no puede llamar “derecho comunitario” a sus propias normas?}{Porque el derecho comunitario solo existe a partir del estadio de comunidad. El Mercosur es un mercado común, no una comunidad, por lo que produce derecho de la integración, pero no derecho comunitario en sentido técnico.}
+\cqa{¿Qué diferencia hay entre derecho originario y derecho derivado?}{El derecho originario equivale a la Constitución del área de integración: el tratado marco y los tratados que crean nuevos órganos. El derecho derivado son las normas dictadas por los órganos que ese tratado creó, en ejercicio de las funciones que les asignó.}
+\cqa{¿Qué instrumentos integran el derecho originario del Mercosur?}{El Tratado de Asunción (1991), el Protocolo de Ouro Preto (1994) y el Protocolo de Olivos, porque cada instrumento posterior que incorpora un nuevo órgano pasa a integrar también el derecho originario.}
+\midrule
+\cornellsummary{el derecho de la integración es el género y el derecho comunitario una especie que exige el estadio de comunidad; por eso el Mercosur, mercado común, no tiene derecho comunitario. El derecho originario (tratado marco y tratados posteriores que crean órganos) equivale a la Constitución; el derecho derivado emana de los órganos creados por ese tratado.}
+\end{longtable}
+
+% =====================================================================
+% CAPÍTULO 5
+% =====================================================================
+\chapter[Derecho internacional e interno]{Derecho internacional y derecho interno}\label{cap:di-interno}
+
+Este tramo se abre con una pregunta que retoma contenidos de cursos anteriores: ¿qué relación existe entre los tratados y el derecho interno? Antes de la reforma constitucional de 1994, no existía en el texto de la Constitución argentina una norma que estableciera con claridad qué jerarquía ocupaban los tratados internacionales dentro del ordenamiento jurídico. Frente a esa pregunta se retoman las dos teorías clásicas sobre la relación entre el derecho internacional y el derecho interno: el \textbf{monismo} y el \textbf{dualismo}.
+
+\begin{important}
+\textbf{Punto de partida.} Hablar de “relación”, de “conflicto” o de “primacía” entre un tratado y una ley solo tiene sentido si se parte de la idea de que ambos pertenecen al mismo sistema jurídico. Esa es la premisa del monismo. El dualismo, en cambio, niega esa premisa desde el inicio.
+\end{important}
+
+\section{La teoría dualista}
+
+\begin{definition}{Teoría dualista}
+Sostiene que el derecho internacional y el derecho interno se mueven en dos ámbitos totalmente distintos, sin punto de contacto: “nunca jamás de los jamases puede haber conflicto entre un tratado y una ley, porque se aplica en un ámbito distinto”.
+\end{definition}
+
+Para sostener esta separación, el dualismo identifica tres diferencias estructurales entre ambos órdenes:
+
+\begin{enumerate}
+    \item \textbf{Relación entre el órgano creador y el destinatario de la norma}: en el derecho internacional, quien dicta la norma (los Estados soberanos, en igualdad de condiciones) es el mismo sujeto que se somete a ella. En el derecho interno, el órgano legislativo dicta la norma y el Estado, a través de sus habitantes, es quien queda sometido a ella: son sujetos distintos.
+    \item \textbf{Ámbito territorial de aplicación}: las normas internacionales están destinadas a regular relaciones entre Estados; las normas internas regulan relaciones dentro de las fronteras de un Estado, entre ese Estado y sus ciudadanos.
+    \item \textbf{Procedimiento de creación}: en el orden interno interviene el Poder Legislativo, que sanciona la norma, y el Poder Ejecutivo, que la promulga; si el Ejecutivo veta la norma, esta no llega a existir. En el orden internacional el procedimiento es distinto, como se explica en la Sección~\ref{sec:monismo}.
+\end{enumerate}
+
+\begin{example}{La casa propia y la del vecino}
+Ambos sistemas no admiten comparación entre sí, porque no hay una jerarquía común entre ellos: “es la casa y la casa de tu vecino: ¿quién manda más, mi mamá o tu mamá? Cada cual manda en su casa”. Si los dos sistemas son autónomos, nunca puede existir en rigor un conflicto entre un tratado y una ley: sencillamente rigen en órbitas distintas.
+\end{example}
+
+\section{La teoría monista y el procedimiento complejo}\label{sec:monismo}
+
+\begin{definition}{Teoría monista}
+Sostiene que el sistema de elaboración de las normas internacionales es un sistema complejo, cuya vigencia se construye en varios pasos sucesivos. Parte de la premisa de que el tratado y la ley pertenecen al mismo sistema jurídico.
+\end{definition}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el paso 1 afirma que con la firma el Estado ya es internacionalmente responsable; más adelante se afirma que, sin ratificación, la norma no existe ni siquiera genera responsabilidad internacional)
+\begin{important}
+\textbf{Procedimiento complejo de elaboración de un tratado (sistema argentino)}
+\begin{enumerate}
+    \item \textbf{Firma del tratado por el Poder Ejecutivo}: en ese momento el Estado asume el compromiso internacional y ya es internacionalmente responsable frente al otro Estado, pero el tratado todavía no existe como norma dentro del ordenamiento jurídico argentino.
+    \item \textbf{Ratificación por el Congreso y depósito del instrumento de ratificación}: recién cuando intervienen los dos órganos que participan en la elaboración de la norma (Ejecutivo y Legislativo), el tratado queda vigente tanto en el ámbito internacional como en el ámbito interno, a la vez.
+\end{enumerate}
+\end{important}
+
+Hasta que no se completa la ratificación, la norma directamente no existe, ni siquiera genera responsabilidad internacional para el Estado: “si nosotros no lo ratificamos, entonces no está vigente para nadie, ni siquiera tiene responsabilidad internacional; la norma no existe, porque no cumplimentó todo el procedimiento de elaboración”.
+
+Hay una diferencia de orden respecto del procedimiento interno: en la elaboración de una ley interna primero interviene el Legislativo y después el Ejecutivo promulga; en el sistema de tratados es al revés: primero interviene el Ejecutivo (con la firma) y después el Congreso ratifica. En ambos casos la norma solo entra en vigor cuando intervinieron los dos órganos, y a partir de ese momento rige en los dos ámbitos, el internacional y el interno, simultáneamente.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la última oración de la cita no resulta clara)
+\begin{important}
+\textbf{“Ratificar” y no “incorporar”.} Dentro del sistema monista argentino no corresponde decir que “el tratado se incorpora” al derecho interno. Esa expresión pertenece al vocabulario dualista, porque presupone dos sistemas separados entre los cuales hay que trasladar la norma de uno a otro. En el sistema monista argentino, en cambio, el Congreso \textbf{ratifica} el tratado, no lo incorpora, porque el tratado y la ley conviven desde el inicio en el mismo sistema jurídico. En el lenguaje coloquial de cátedra es habitual confundir ambos verbos, pero técnicamente son dos ideas distintas.
+\end{important}
+
+La advertencia se formula así: “yo ratifico; la ley argentina ratifica el tratado, no lo incorpora. Si yo digo ‘incorporo’ es porque estoy pensando en un sistema dualista. […] Acá ratifico porque es el mismo procedimiento: no se terminó el procedimiento de elaboración normativa. Del otro lado, la norma ya existe, lo único que se aplica solamente en el ámbito internacional y no en el ámbito interno”.
+
+\section{Cierre y adelanto de la próxima clase}
+
+Con el procedimiento monista explicado, la clase siguiente comenzará donde esta termina: los distintos tipos de monismo que reconoce la doctrina, según la jerarquía que cada variante asigna a la relación entre el derecho internacional y el derecho interno.
+
+\begin{note}
+Los tipos de monismo se enuncian sin desarrollarlos todavía: monismo con igualdad jerárquica entre el derecho internacional y el derecho interno, monismo con supremacía del derecho internacional y monismo con supremacía del derecho interno. A partir de esa clasificación se analizará cómo se aplica cada variante en el derecho de la integración.
+\end{note}
+
+\section{Cuadro Cornell: derecho internacional y derecho interno}
+
+\begin{longtable}{QN}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\multicolumn{2}{r}{\small\itshape continúa en la página siguiente} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\cqa{¿Qué sostiene la teoría dualista sobre la relación entre tratado y ley?}{Que nunca puede haber un conflicto real entre ambos, porque pertenecen a sistemas jurídicos distintos: distinto órgano creador y destinatario, distinto ámbito territorial de aplicación y distinto procedimiento de creación.}
+\cqa{¿Por qué solo tiene sentido hablar de conflicto o primacía entre un tratado y una ley si se parte del monismo?}{Porque esas nociones presuponen que ambos pertenecen al mismo sistema jurídico. El monismo parte de esa premisa; el dualismo la niega desde el inicio.}
+\cqa{¿Cuál es el procedimiento complejo de elaboración de un tratado en el sistema monista argentino?}{Firma del Poder Ejecutivo (asume el compromiso internacional) y ratificación del Congreso con depósito del instrumento de ratificación. Recién con ambos pasos cumplidos, el tratado entra en vigor a la vez en el ámbito internacional y en el interno.}
+\cqa{¿Por qué es incorrecto decir que Argentina “incorpora” un tratado?}{Porque “incorporar” presupone dos sistemas jurídicos separados entre los cuales hay que trasladar la norma (vocabulario dualista). En el sistema monista argentino, el Congreso ratifica el tratado, que convive con la ley en el mismo sistema jurídico desde el inicio.}
+\midrule
+\cornellsummary{para el dualismo, el derecho internacional y el interno son órdenes independientes, por lo que no puede haber conflicto entre tratado y ley. Para el monismo, ambos integran un mismo sistema y la vigencia del tratado se construye mediante un procedimiento complejo (firma del Ejecutivo y ratificación del Congreso). En ese marco se ratifica y no se incorpora. Los tipos de monismo quedan para la clase siguiente.}
+\end{longtable}
+
+% =====================================================================
+% CAPÍTULO 6
+% =====================================================================
+\chapter[Síntesis integradora]{Síntesis integradora}
+
+La clase reconstruye, con un mismo hilo conductor, cómo dos procesos de integración regional, la Unión Europea y el Mercosur, resolvieron de manera muy distinta la misma necesidad: garantizar que el derecho que crean se interprete y se aplique de forma uniforme en todos sus Estados miembros.
+
+La Unión Europea lo logra con un tribunal permanente, de acceso amplio (jueces, Estados, órganos y particulares) y de interpretación obligatoria para todos; el Mercosur lo intenta con un tribunal cuya opinión, salvo en el arbitraje, no siempre vincula, y al que solo la Corte Suprema de cada Estado puede consultar. Esa diferencia de diseño institucional explica por qué se sostiene que el Mercosur funciona, en la práctica, más cerca de una relación internacional clásica que de un verdadero espacio de integración.
+
+Comprender esta comparación exige, a su vez, dominar dos distinciones de base: la que separa el derecho originario del derivado (para saber qué jerarquía tiene cada norma dentro del bloque) y la que separa el monismo del dualismo (para saber si, y cómo, ese derecho internacional se traslada al derecho interno de cada Estado parte).
+
+Las tres piezas (órganos jurisdiccionales, fuentes normativas y teoría de la recepción) conforman un mismo mapa conceptual que el examen final evaluará de manera integrada, combinando preguntas de verdadero o falso sobre precisiones puntuales con preguntas a desarrollar sobre alguno de los dos sistemas de solución de controversias.
+
+\end{document}

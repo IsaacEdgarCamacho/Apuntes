@@ -1,0 +1,902 @@
+%% ============================================================
+%% APUNTES DE ESTUDIO — DERECHO DE LA INTEGRACIÓN
+%% Estructura Institucional de la Unión Europea
+%% Documento autónomo: no requiere plantillas ni archivos externos
+%% Compilar con: pdflatex (dos pasadas)
+%% ============================================================
+
+\documentclass[12pt,oneside]{book}
+
+%% ------------------------------------------------------------
+%% METADATOS
+%% ------------------------------------------------------------
+% Universidad: no consta en los apuntes originales; se utiliza la indicada por defecto.
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+% Facultad: consta en el encabezado/pie del documento original.
+\newcommand{\facultad}{Facultad de Derecho}
+% Carrera: no consta en los apuntes originales; no se consigna.
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Estructura Institucional de la Unión Europea}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+% Año: no consta en los apuntes originales; se utiliza el año actual del entorno.
+\newcommand{\anio}{2026}
+
+%% ------------------------------------------------------------
+%% PAQUETES
+%% ------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%% ------------------------------------------------------------
+%% CONFIGURACIÓN
+%% ------------------------------------------------------------
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\captionsetup{font=small,labelfont=bf}
+
+%% ------------------------------------------------------------
+%% COMANDOS
+%% ------------------------------------------------------------
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Tipos de columna auxiliares para tablas
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+% Columnas del cuadro Cornell (izquierda estrecha, derecha amplia)
+\newcolumntype{Q}{>{\raggedright\arraybackslash}p{0.25\textwidth}}
+\newcolumntype{N}{>{\raggedright\arraybackslash}p{\dimexpr0.75\textwidth-2\tabcolsep\relax}}
+
+%% ------------------------------------------------------------
+%% ENTORNOS / CAJAS
+%% ------------------------------------------------------------
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%% ------------------------------------------------------------
+%% CONFIGURACIÓN FINAL (encabezados y pies)
+%% ------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%% ============================================================
+\begin{document}
+%% ============================================================
+
+%% ------------------------------------------------------------
+%% PORTADA
+%% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es convertir el esfuerzo en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%% ------------------------------------------------------------
+%% ÍNDICE
+%% ------------------------------------------------------------
+\frontmatter
+\tableofcontents
+\mainmatter
+
+%% ============================================================
+%% CAPÍTULO 1
+%% ============================================================
+\chapter[Integración comparada y pilares de la UE]{Integración comparada y los tres pilares de la Unión Europea}
+
+\section{Presentación y relevancia del tema}
+
+Todos los temas tratados están conectados por una pregunta fundamental: \textbf{¿cómo hace un grupo de países para tomar decisiones juntos sin perder su identidad propia?}
+
+Como analogía, puede pensarse en un barrio en el que las familias deciden crear una junta vecinal para resolver problemas comunes (seguridad, servicios). Cada familia sigue siendo independiente, pero la junta tiene reglas propias, órganos que deciden y normas que todos deben respetar. Eso es, en esencia, lo que hace la Unión Europea a escala continental.
+
+Para el futuro profesional del derecho, conocer la arquitectura institucional de la Unión Europea no es un ejercicio académico abstracto, sino una herramienta concreta de trabajo:
+
+\begin{itemize}
+    \item \textbf{Comercio internacional y contratos transfronterizos:} las empresas latinoamericanas que exportan a Europa deben cumplir normas dictadas por estos órganos (reglamentos, directivas). Conocer quién las dicta y cómo permite asesorar con precisión.
+    \item \textbf{Negociaciones bilaterales (por ejemplo, Mercosur-UE):} entender la estructura interna de la Unión Europea es imprescindible para comprender quién realmente negocia y quién ratifica los acuerdos.
+    \item \textbf{Organismos internacionales y organismos regionales:} el derecho comunitario europeo es el modelo más avanzado de integración; estudiar sus instituciones brinda un marco comparativo para analizar cualquier proceso de integración regional en el mundo.
+    \item \textbf{Resolución de conflictos:} saber qué tribunal interviene, bajo qué pilares y con qué normas es la base para cualquier litigio con aristas europeas.
+\end{itemize}
+
+\section{Procesos de integración en Asia y África}
+
+\subsection{La diversidad cultural}
+
+En Asia y África, una de las características distintivas de los procesos de integración es la fuerte presencia de la \textbf{diversidad cultural}. A diferencia de la integración latinoamericana, donde existe cierta identificación entre los pueblos como ``hermanos'', en esas regiones cada nación conserva una identidad tan profunda que sus miembros no se sienten parte de un mismo todo.
+
+Esta situación se expresa con la fórmula \textit{``juntos, pero no revueltos''}: se hace integración de tipo económico y se comparte un espacio común, pero no se pretende unificar la cultura, las tradiciones ni los valores de cada pueblo. Cada cual conserva su identidad.
+
+\subsection{La motivación geopolítica}
+
+Otra característica de las integraciones asiáticas y africanas es su \textbf{motivación geopolítica}. En estas regiones, la integración responde también a una necesidad externa: presentar un frente común ante las demandas de potencias como Estados Unidos o Rusia, que frecuentemente condicionan la aceptación de socios comerciales a la instalación de bases militares en el territorio.
+
+Es más difícil hacer frente a esas presiones estando solo. En consecuencia, la integración surge más por una necesidad defensiva externa que por el deseo genuino de ser socios.
+
+\section{El Parlasur y su naturaleza institucional}
+
+Respecto del Parlamento del Mercosur (Parlasur), se plantea la cuestión de si debe considerarse un órgano supranacional, dado que el material de estudio indica que el Mercosur está integrado por órganos intergubernamentales, pero que esa naturaleza aparece ``diluida'' por la existencia del Parlasur.
+
+La clave para responder está en las \textbf{funciones} efectivas del Parlasur: no tiene funciones legislativas. No legisla; elabora informes, emite propuestas y puede formular sugerencias, pero quienes siguen legislando son los órganos intergubernamentales.
+
+El Parlasur constituye un avance institucional importante, porque representa a la ciudadanía y no a los gobiernos. Sin embargo, al carecer de facultades decisorias, \textbf{no puede considerarse supranacional} en sentido estricto.
+
+\begin{table}[H]
+\centering
+\caption{Parlasur y Parlamento Europeo}
+\small
+\begin{tabularx}{\textwidth}{@{}P{3.2cm}YY@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Parlasur (Mercosur)} & \textbf{Parlamento Europeo (UE)} \\
+\midrule
+Representación & Representa a la ciudadanía (no a los gobiernos). & Representa a la ciudadanía. \\
+Facultades legislativas & Ninguna. Puede elaborar propuestas e informes y hacer sugerencias. & Facultades colegislativas plenas (desde el Tratado de Lisboa). \\
+Supranacionalidad & No es supranacional. & Es supranacional en el primer pilar. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Esta diferencia se advierte con claridad al analizar comparativamente los órganos de la Unión Europea: si bien en el Mercosur se creó un parlamento, la pregunta decisiva es si ese órgano hace leyes. En el caso del Parlasur, sus facultades no cambiaron sustancialmente respecto de las que tenía la comisión parlamentaria conjunta.
+
+\section{Los tres pilares de la Unión Europea}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (los apuntes presentan la estructura de pilares como "pre-Lisboa" y a la vez la utilizan para
+%  analizar la actuación actual de los órganos; no se precisa cómo se articulan ambas cuestiones).
+
+Los tres pilares de la Unión Europea (estructura previa al Tratado de Lisboa) resultan esenciales para entender \textbf{cuándo los órganos actúan con supranacionalidad y cuándo no}.
+
+\begin{table}[H]
+\centering
+\caption{Los tres pilares de la Unión Europea}
+\small
+\begin{tabularx}{\textwidth}{@{}P{3.4cm}YY@{}}
+\toprule
+\textbf{Pilar} & \textbf{Materias} & \textbf{Carácter} \\
+\midrule
+\textbf{Primer pilar:} Comunidades Europeas
+& Mercado único, libre circulación, normas comunitarias con primacía sobre el derecho nacional.
+& \textbf{Supranacional.} Los órganos gozan de supranacionalidad: sus decisiones obligan directamente a los estados miembros. \\
+\addlinespace
+\textbf{Segundo pilar:} Política Exterior y de Seguridad Común (PESC)
+& Relaciones exteriores, defensa.
+& Funciona por cooperación intergubernamental. No hay supranacionalidad: los estados mantienen el control de sus decisiones. \\
+\addlinespace
+\textbf{Tercer pilar:} Cooperación en Justicia y Asuntos de Interior (JAI)
+& Policía, fronteras, cooperación judicial.
+& También de carácter intergubernamental. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+Los órganos gozan de supremacía o supranacionalidad \textbf{únicamente cuando se actúa en el primer pilar}. En el segundo y el tercer pilar rigen la cooperación y la colaboración: se trata de otro tipo de relaciones.
+\end{important}
+
+La misma estructura institucional (los mismos órganos) actúa de manera diferente según el pilar en que se encuentre. Cuando el Consejo se reúne para tratar cuestiones del segundo pilar, por ejemplo, se rige por reglas distintas a las del primer pilar: ya no hay mayoría automática, sino que se requiere \textbf{consenso}.
+
+Por ello la estructura resulta compleja: los órganos son los mismos, pero, según el pilar en que estén actuando, toman la decisión de distinta manera.
+
+\section{Cuadro Cornell: integración comparada y pilares}
+
+\begin{longtable}{@{}QN@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué caracteriza a la integración en Asia y África?} &
+Se realiza integración económica sin unificar las culturas (``juntos, pero no revueltos''): cada nación mantiene su identidad profunda. La motivación frecuente es geopolítica: presentar un frente común ante potencias externas (Estados Unidos, Rusia) que condicionan la aceptación de socios comerciales a la instalación de bases militares. La integración surge más por una necesidad defensiva externa que por el deseo genuino de ser socios. \\[0.8em]
+
+\textbf{¿El Parlasur es un órgano supranacional?} &
+No. Representa a la ciudadanía (no a los gobiernos), lo cual constituye un avance institucional, pero no tiene facultades legislativas: solo elabora propuestas, informes y sugerencias. Los órganos que legislan siguen siendo intergubernamentales. \\[0.8em]
+
+\textbf{¿En qué se diferencian el Parlasur y el Parlamento Europeo?} &
+Ambos representan a la ciudadanía. El Parlasur carece de facultades legislativas y no es supranacional; el Parlamento Europeo tiene facultades colegislativas plenas desde el Tratado de Lisboa y es supranacional en el primer pilar. \\[0.8em]
+
+\textbf{¿Qué son los tres pilares de la UE?} &
+Primer pilar: Comunidades Europeas, de carácter supranacional (mercado único, libre circulación, normas de aplicación directa con primacía sobre el derecho nacional). Segundo pilar: Política Exterior y de Seguridad Común, intergubernamental. Tercer pilar: Cooperación en Justicia y Asuntos de Interior, intergubernamental. \\[0.8em]
+
+\textbf{¿Por qué se considera compleja la estructura institucional de la UE?} &
+Porque los mismos órganos actúan de modo diferente según el pilar: en el primero gozan de supranacionalidad; en el segundo y el tercero rige la cooperación y, en el caso del segundo pilar, ya no hay mayoría automática sino consenso. \\
+
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} la integración asiática y africana combina cooperación económica con preservación de la identidad cultural y una motivación defensiva frente a potencias externas. El Parlasur representa a la ciudadanía pero no legisla, por lo que no es supranacional. En la Unión Europea la supranacionalidad se da en el primer pilar; en el segundo y el tercero prevalece la cooperación intergubernamental, y los mismos órganos deciden de manera distinta según el pilar.
+} \\
+\bottomrule
+\end{longtable}
+
+%% ============================================================
+%% CAPÍTULO 2
+%% ============================================================
+\chapter[Órganos principales de la UE]{Estructura institucional: los órganos principales de la Unión Europea}
+
+\section{Advertencia terminológica: los distintos ``Consejos''}
+
+Existen tres instituciones distintas que se denominan de forma similar, lo que puede generar confusión en los materiales de consulta:
+
+\begin{important}
+\begin{enumerate}
+    \item \textbf{Consejo de Europa:} organización internacional independiente. \textbf{No forma parte de la Unión Europea.} Tiene sede en Estrasburgo y se ocupa de derechos humanos.
+    \item \textbf{Consejo Europeo:} órgano de la Unión Europea, integrado por los jefes de Estado y de gobierno de los estados miembros. Traza el rumbo político general.
+    \item \textbf{Consejo de la Unión Europea (o Consejo de Ministros):} órgano de la Unión Europea, integrado por representantes ministeriales de cada estado miembro. Colegisla con el Parlamento.
+\end{enumerate}
+\end{important}
+
+La similitud de las denominaciones puede llevar a consultar, descargar y estudiar el material correspondiente a una institución distinta de la que se pretendía estudiar.
+
+\section{El Consejo Europeo}
+
+\begin{definition}{Consejo Europeo}
+Órgano político de más alto nivel de la Unión Europea, integrado por los jefes de Estado y de gobierno de todos los estados miembros.
+\end{definition}
+
+\begin{important}
+En la Unión Europea, los integrantes se denominan \textbf{estados miembros}. En el Mercosur, los integrantes se denominan \textbf{estados parte}. Esta distinción terminológica tiene implicancias jurídicas y debe utilizarse correctamente.
+\end{important}
+
+Concurren al Consejo Europeo los primeros mandatarios: presidentes en las repúblicas y primeros ministros en las monarquías constitucionales.
+
+\begin{note}
+Técnicamente, cuando el material de estudio habla de ``democracia'', en rigor debería decir ``sistema republicano'', porque hay monarquías constitucionales en la Unión Europea. Una monarquía no es una democracia republicana, aunque tenga división de poderes. A las reuniones del Consejo Europeo no concurre el monarca, sino el primer ministro.
+\end{note}
+
+\subsection{Función del Consejo Europeo}
+
+La función del Consejo Europeo es trazar el \textbf{rumbo político general} de la Unión. Toma decisiones de política ``muy macro'': posiciones internacionales de la Unión Europea, grandes lineamientos geopolíticos y acuerdos estratégicos. Es el que ``marca el rumbo'' y hace el manejo político de la Unión.
+
+\textbf{No emite normas comunitarias en sentido técnico.} Su accionar es más propio del derecho internacional público (relación entre estados soberanos) que del derecho comunitario.
+
+\begin{example}{la cuestión Malvinas}
+Corresponde al Consejo Europeo decidir, por ejemplo, si la Unión Europea se alinea con Argentina en la cuestión Malvinas o se mantiene al margen, o qué postura toma la Unión cuando el tema se trata en la ONU. Eso se discute allí: es política pura.
+
+No habrá una norma de la Unión Europea que diga ``Malvinas es argentina''; lo que se define, desde lo político, es la postura que adoptará la Unión cuando el tema se trate en la ONU.
+\end{example}
+
+\section{El Consejo de la Unión Europea (Consejo de Ministros)}
+
+\begin{definition}{Consejo de la Unión Europea (Consejo de Ministros)}
+Órgano que representa a los estados miembros en la función legislativa y ejecutiva de la Unión. Se lo denomina también ``Consejo de Ministros'' para evitar confusiones con los demás ``Consejos''.
+\end{definition}
+
+Está integrado por un representante de cada estado miembro, de rango ministerial, que varía según el tema en agenda: si se trata un asunto de economía, concurren los ministros de economía; si es agricultura, los de agricultura, y así sucesivamente.
+
+\begin{table}[H]
+\centering
+\caption{Consejo Europeo y Consejo de Ministros}
+\small
+\begin{tabularx}{\textwidth}{@{}P{2.6cm}YY@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Consejo Europeo} & \textbf{Consejo de Ministros (Consejo de la UE)} \\
+\midrule
+Integración & Jefes de Estado y de gobierno. & Ministros sectoriales de cada estado miembro. \\
+Función & Dirección política macro; actúa como instancia de dirección política superior. & Colegislación (junto al Parlamento); representación de los estados en la creación normativa. \\
+Analogía & ``El que marca el rumbo''. & ``El que elabora la ley junto al Parlamento''. Como el Senado en Argentina, representa a los estados. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la relación entre ambos Consejos se recoge a partir de una intervención de un estudiante;
+%  el apunte no consigna una confirmación o corrección explícita de esa formulación).
+Respecto de la relación entre ambos órganos, se plantea que no existe dependencia de uno respecto del otro, sino que cada uno desarrolla su propio trabajo por separado: el Consejo Europeo marca el rumbo y el Consejo de Ministros decide qué se hace con lo que se marcó.
+
+El Consejo de Ministros, al representar a los estados, \textbf{defiende los intereses nacionales}. Sus miembros votan siguiendo las instrucciones de sus gobiernos nacionales. La dinámica de votación es por mayoría, pero cada representante vota a favor o en contra según la postura de su propio estado. Por eso es más fácil que voten según el interés propio del Estado.
+
+\section{El Parlamento Europeo}
+
+\begin{definition}{Parlamento Europeo}
+Órgano de representación ciudadana de la Unión Europea. Sus miembros son elegidos directamente por los ciudadanos de cada estado miembro, mediante sufragio universal.
+\end{definition}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el texto introduce la analogía como una comparación con el Mercosur, pero el cuadro que la desarrolla
+%  compara con el sistema argentino).
+\begin{note}
+Analogía con el sistema argentino, a modo didáctico:
+\begin{itemize}
+    \item Consejo de Ministros $\approx$ Senado (representa a los estados).
+    \item Parlamento Europeo $\approx$ Cámara de Diputados (representa a la ciudadanía).
+    \item Comisión Europea $\approx$ Poder Ejecutivo (ejecuta las normas).
+\end{itemize}
+Se trata de una analogía con fines exclusivamente didácticos, útil para comprender la lógica de representación, y no de una equivalencia literal.
+\end{note}
+
+\subsection{La proporcionalidad inversa}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la explicación del peso del voto de los diputados de países populosos --``votó siete'', ``votó dos''--
+%  se conserva tal como figura en las notas, sin precisar la forma de cálculo).
+\begin{definition}{Proporcionalidad inversa en el Parlamento Europeo}
+El Parlamento tiene un número fijo de bancas. Ningún país puede tener más de 96 ni menos de 6 representantes. Los escaños se asignan de forma proporcional a la población, pero de manera inversa: los países más pequeños tienen más representantes per cápita que los países grandes.
+\end{definition}
+
+Para compensar esta situación, cada diputado de un país populoso representa a más ciudadanos cuando vota. Un diputado puede estar votando ``por siete'' (representando siete unidades de ciudadanos), mientras que el de un país pequeño vota ``por uno'' o ``por dos''; es decir, cada diputado representa un porcentaje distinto de la población, porque en la sala no entran más de 96 por país.
+
+Este sistema evita que tres o cuatro países con grandes poblaciones dominen todas las decisiones.
+
+\subsection{Representación por ideología, no por país}
+
+Los diputados del Parlamento Europeo \textbf{no representan a su país de origen}, sino al ciudadano europeo en general. En consecuencia, se organizan por orientación política y no por nacionalidad: se sientan agrupados por bloque ideológico (izquierda, centroderecha, etc.) y no por delegaciones nacionales.
+
+\begin{example}{diputados italianos}
+Puede haber tres diputados italianos de derecha y cinco de izquierda. En el recinto se sentarán con sus bloques ideológicos respectivos, no juntos por ser italianos.
+\end{example}
+
+Cuando votan, lo hacen en virtud de la postura político-partidaria que tenga su ciudadanía, y no del interés del Estado. Esto contrasta con el Consejo de Ministros, donde los representantes defienden el interés nacional.
+
+\section{La Comisión Europea}
+
+\begin{definition}{Comisión Europea}
+Órgano ejecutivo de la Unión Europea. Está integrada por comisarios, uno por cada estado miembro, pero que no representan a sus estados sino a la Unión Europea en su conjunto. Ejecutan lo que disponen las leyes.
+\end{definition}
+
+La función de los comisarios equivale a la del Poder Ejecutivo en los sistemas nacionales. La Comisión:
+
+\begin{itemize}
+    \item ejecuta las normas aprobadas por el Consejo y el Parlamento;
+    \item dicta los actos reglamentarios necesarios para poner en funcionamiento las normas (análogo al decreto reglamentario presidencial);
+    \item gestiona el presupuesto de la Unión Europea.
+\end{itemize}
+
+\begin{example}{reglamentación de detalle}
+Si la norma dispuso que habrá libre tránsito de mercadería de frutas y verduras, el comisario es quien establece la normativa reglamentaria de detalle: qué aranceles sí y qué aranceles no.
+\end{example}
+
+\textbf{Control:} el Parlamento controla a la Comisión. Puede interpelar a los comisarios e incluso destituirlos.
+
+\section{Cuadro comparativo de los órganos principales}
+
+\begin{table}[H]
+\centering
+\caption{Órganos principales de la Unión Europea}
+\small
+\begin{tabularx}{\textwidth}{@{}P{2.6cm}YYY@{}}
+\toprule
+\textbf{Órgano} & \textbf{Integración} & \textbf{Representa a} & \textbf{Función principal} \\
+\midrule
+Consejo Europeo & Jefes de Estado y de gobierno & Los estados (nivel político) & Dirección política macro \\
+Consejo de Ministros & Ministros sectoriales & Los estados (función legislativa) & Colegislación con el Parlamento \\
+Parlamento Europeo & Diputados elegidos por sufragio universal & Los ciudadanos europeos & Colegislación; control de la Comisión \\
+Comisión Europea & Comisarios (uno por estado) & La Unión Europea & Ejecución de normas y presupuesto \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell: órganos principales}
+
+\begin{longtable}{@{}QN@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué diferencia hay entre el Consejo de Europa, el Consejo Europeo y el Consejo de la UE?} &
+El Consejo de Europa es una organización internacional independiente, que no forma parte de la Unión Europea, con sede en Estrasburgo y dedicada a los derechos humanos. El Consejo Europeo (jefes de Estado y de gobierno) traza el rumbo político general. El Consejo de la Unión Europea o Consejo de Ministros (representantes ministeriales) colegisla con el Parlamento. \\[0.8em]
+
+\textbf{¿Cuál es la diferencia entre el Consejo Europeo y el Consejo de Ministros?} &
+Consejo Europeo: jefes de Estado y de gobierno; dirección política macro; no emite normas comunitarias en sentido técnico. Consejo de Ministros: representantes ministeriales de cada estado, que varían según el tema en agenda; colegisla con el Parlamento y defiende intereses nacionales. Ambos representan a los estados, pero con distintas funciones y nivel de actuación. \\[0.8em]
+
+\textbf{¿Cómo funciona la proporcionalidad inversa en el Parlamento?} &
+El Parlamento tiene un número fijo de bancas (máximo 96 y mínimo 6 por país). Los escaños se asignan de forma proporcional a la población pero de manera inversa: los países pequeños tienen más representantes per cápita. Para compensarlo, un diputado de un país populoso representa a más ciudadanos al votar. Así se evita que tres o cuatro países grandes dominen todas las decisiones. \\[0.8em]
+
+\textbf{¿Por qué los diputados europeos se agrupan por ideología?} &
+Porque representan al ciudadano europeo en general y no al interés de su estado. Votan según la postura político-partidaria de su ciudadanía. Esto contrasta con el Consejo de Ministros, donde los representantes defienden el interés nacional. \\[0.8em]
+
+\textbf{¿Cuál es la función de la Comisión Europea?} &
+Es el órgano ejecutivo. Sus comisarios (uno por estado) representan a la Unión en su conjunto. Ejecuta las normas aprobadas por el Consejo y el Parlamento, dicta los actos reglamentarios necesarios para ponerlas en funcionamiento y gestiona el presupuesto de la Unión. \\[0.8em]
+
+\textbf{¿Quién controla a la Comisión Europea?} &
+El Parlamento Europeo, que puede interpelar a los comisarios e incluso destituirlos, y que controla la ejecución del presupuesto que administra la Comisión. Los ciudadanos, a través de sus representantes electos, ejercen así el control de la Unión. \\
+
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} la Unión Europea se organiza en torno a cuatro órganos principales. El Consejo Europeo fija la dirección política macro; el Consejo de Ministros representa a los estados y colegisla; el Parlamento Europeo representa a los ciudadanos, colegisla y controla a la Comisión; y la Comisión Europea, integrada por comisarios que representan a la Unión, ejecuta las normas y gestiona el presupuesto. Los tres ``Consejos'' no deben confundirse: el Consejo de Europa no forma parte de la Unión Europea.
+} \\
+\bottomrule
+\end{longtable}
+
+%% ============================================================
+%% CAPÍTULO 3
+%% ============================================================
+\chapter[Evolución histórica e institucional]{Evolución histórica e institucional de la Unión Europea}
+
+\section{Del Consejo dominante al Parlamento colegislador}
+
+La evolución del rol del Parlamento dentro de la Unión Europea es significativa y puede rastrearse en las propias normas comunitarias. En los orígenes, el \textbf{Consejo} era el que tomaba las decisiones y, en algunos casos, se requería que también interviniera el Parlamento. En las normativas antiguas se encuentran reglamentos del Consejo solo; en fechas posteriores comienzan a encontrarse reglamentos del Consejo \textbf{y} del Parlamento, porque después de Lisboa la intervención del Parlamento es obligatoria.
+
+Este cambio fue consecuencia del intento frustrado de sancionar una Constitución Europea.
+
+\section{El proyecto de Constitución Europea y su fracaso}
+
+En algún momento la Unión Europea quiso dotarse de una constitución europea. La Constitución fue redactada y estaba prácticamente lista para ser aprobada. Sin embargo, en aquellos países que habían acordado someterla a referéndum popular, la respuesta ciudadana fue negativa.
+
+La ciudadanía percibía la Constitución Europea como una amenaza a la soberanía nacional y a las identidades culturales. Había un ``cortocircuito'' entre el mando y la gente: los dirigentes creían que la Unión Europea era un gran proyecto, mientras que la población lo percibía como una invasión a su soberanía, a su condición de nacional, y consideraba que iba a perder identidad.
+
+En España, por ejemplo, sectores independentistas (como el catalán) rechazaban la idea de ser ciudadanos europeos porque ya cuestionaban ser ciudadanos españoles.
+
+\section{La campaña de información y el Tratado de Lisboa}
+
+Ante el rechazo, la Unión Europea cambió de estrategia. Lanzó una \textbf{campaña masiva de difusión e información} hacia la ciudadanía y, en lugar de una Constitución, incorporó todas las reformas deseadas dentro del \textbf{Tratado de Lisboa} (2007).
+
+Todo lo que se pretendía incluir en la Constitución se incluyó en Lisboa: se cambió la forma, pero la reforma que se quería hacer quedó hecha igual. El resultado fue un tratado votado por los estados, ubicado por encima de la soberanía del Estado. Y el derecho que se pretendía garantizar mediante una Constitución se garantiza en el tratado.
+
+Los tratados antecedentes, en orden cronológico, son:
+
+\begin{enumerate}
+    \item \textbf{Tratado de París (1951):} Comunidad Europea del Carbón y el Acero (CECA).
+    \item \textbf{Tratados de Roma (1957):} CEE y EURATOM.
+    \item \textbf{Tratado de Maastricht (1992).}
+    \item \textbf{Tratado de Ámsterdam (1997).}
+    \item \textbf{Tratado de Lisboa (2007):} el vigente, que incorpora las grandes reformas institucionales.
+\end{enumerate}
+
+\section{Mecanismos de participación ciudadana en la Unión Europea}
+
+Entre los mecanismos de participación ciudadana que se incorporaron o reforzaron con estas reformas se mencionan:
+
+\begin{enumerate}
+    \item \textbf{Iniciativa popular:} los ciudadanos europeos pueden impulsar un tema en la agenda legislativa reuniendo un mínimo de firmas (1 millón de ciudadanos de al menos 7 estados miembros).
+    \item \textbf{Defensor del Pueblo (Ombudsman):} órgano independiente que actúa autónomamente y protege a los ciudadanos frente a la mala administración de las instituciones europeas.
+    \item \textbf{Parlamento colegislador:} el Parlamento deja de ser consultivo y pasa a colegislar con el Consejo de Ministros en igualdad de condiciones.
+    \item \textbf{Control ciudadano vía Parlamento:} el Parlamento controla a la Comisión, que ejecuta el presupuesto; los ciudadanos controlan la Unión Europea a través de sus representantes electos.
+    \item \textbf{Transparencia presupuestaria:} publicación detallada de cuánto cuesta el funcionamiento de la Unión Europea por ciudadano.
+\end{enumerate}
+
+La transparencia presupuestaria permite tomar conciencia de cuánto cuesta la Unión (por ejemplo, 100 euros al año por ciudadano) y contrastarlo con los derechos de los que se goza, como el derecho a estudiar en la universidad de cualquier lugar de la Unión. Analizado de este modo, si se lo sabe aprovechar, el costo resulta reducido.
+
+\begin{example}{la libre circulación en Europa}
+En Europa se cruza la calle y se pasa de un país a otro. No es lo mismo que en Argentina, donde pueden transcurrir muchas horas de viaje sin haber salido siquiera de la provincia. En Europa, en una hora se cambia de país, y es habitual pasar el fin de semana en el país vecino, sin fronteras y sin trámites.
+\end{example}
+
+\section{Cuadro Cornell: evolución histórica e institucional}
+
+\begin{longtable}{@{}QN@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cómo evolucionó el rol del Parlamento en la UE?} &
+En los orígenes el Consejo era el que tomaba las decisiones y solo en algunos casos intervenía el Parlamento. Después de Lisboa, la intervención del Parlamento es obligatoria: pasó de ser consultivo a colegislar con el Consejo de Ministros en igualdad de condiciones. \\[0.8em]
+
+\textbf{¿Por qué fracasó la Constitución Europea?} &
+Los ciudadanos la percibieron como una amenaza a la soberanía nacional y a la identidad cultural. Hubo un cortocircuito entre la visión de los dirigentes (que veían el proyecto como positivo) y la percepción ciudadana (que lo vivía como una invasión). En los países que la sometieron a referéndum, la respuesta fue negativa. \\[0.8em]
+
+\textbf{¿Qué es el Tratado de Lisboa y qué cambió?} &
+Es el tratado vigente (2007). Incorporó todo lo que se quería incluir en la Constitución fallida, pero bajo la forma de un tratado votado por los estados. Convirtió al Parlamento en colegislador obligatorio, y con las reformas se incorporaron o reforzaron la iniciativa popular, el control ciudadano vía Parlamento y la transparencia presupuestaria. \\[0.8em]
+
+\textbf{¿Qué mecanismos de participación ciudadana se mencionan?} &
+Iniciativa popular (1 millón de ciudadanos de al menos 7 estados miembros); Defensor del Pueblo (Ombudsman); Parlamento colegislador; control ciudadano vía Parlamento sobre la Comisión; transparencia presupuestaria (costo del funcionamiento de la Unión por ciudadano). \\[0.8em]
+
+\textbf{¿Cuál es la secuencia de tratados hasta Lisboa?} &
+París (1951, CECA); Roma (1957, CEE y EURATOM); Maastricht (1992); Ámsterdam (1997); Lisboa (2007), el vigente. \\
+
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} el Parlamento pasó de tener una intervención limitada a ser colegislador obligatorio junto con el Consejo. Este cambio se vincula con el fracaso de la Constitución Europea, rechazada por la ciudadanía por percibirla como una amenaza a la soberanía y la identidad. La Unión respondió con una campaña de información y con el Tratado de Lisboa, que incorporó las reformas buscadas bajo la forma de un tratado, junto con mecanismos de participación y transparencia orientados a reconectar las instituciones con la población.
+} \\
+\bottomrule
+\end{longtable}
+
+%% ============================================================
+%% CAPÍTULO 4
+%% ============================================================
+\chapter[El caso Brexit]{El caso Brexit y las consecuencias no previstas de la legislación}
+
+\section{Causas, consecuencias y lecciones del Brexit}
+
+El caso Brexit se presenta como ejemplo paradigmático de las consecuencias de no informar adecuadamente a la ciudadanía sobre los alcances de la integración.
+
+\subsection{La posición histórica del Reino Unido en la UE}
+
+Inglaterra no fue socio fundador: ingresó después, más por una cuestión representativa y política que por una necesidad económica. Históricamente, su participación estuvo teñida de condiciones especiales:
+
+\begin{itemize}
+    \item \textbf{No adhirió a la moneda única} (el euro): mantuvo la libra esterlina.
+    \item \textbf{Cláusula opt-out inicial:} las normas aprobadas por mayoría \textbf{no} se aplicaban automáticamente en el Reino Unido; el gobierno británico debía aceptarlas expresamente.
+    \item \textbf{Cláusula opt-out invertida} (posteriormente): las normas \textbf{sí} se aplicaban, salvo que el gobierno británico se opusiera específicamente mediante una presentación formal.
+\end{itemize}
+
+Era un socio con un privilegio que no tenían Portugal, Italia ni ningún otro estado: un ``socio con coronita''.
+
+\subsection{El Brexit como ``chicana'' política}
+
+Inglaterra no tenía tanta intención de irse de la Unión Europea. No fue una cuestión de que firmemente se tomara la decisión, sino una \textbf{``chicana'' de partido político}.
+
+El Brexit fue propuesto como un referéndum por el entonces primer ministro, como una jugada política para consolidar apoyo interno, sin prever que la ciudadanía, poco informada sobre las consecuencias reales, votaría afirmativamente. La mecánica fue la siguiente:
+
+\begin{enumerate}
+    \item El primer ministro propone un referéndum sobre la permanencia en la Unión Europea como estrategia política.
+    \item La ciudadanía vota a favor del Brexit, muchos sin comprender las consecuencias prácticas.
+    \item Muchos votantes, cuando después del voto se les explicaron las implicaciones, dijeron: ``No lo sabía; si lo hubiera sabido, votaba que no''.
+    \item El proceso de negociación del Brexit se extendió más de dos años porque no había preparación alguna para una salida.
+    \item El día de la salida, centenares de camiones quedaron varados en la aduana: la libre circulación se cortó abruptamente y los productores no tenían la documentación exigida por la Unión Europea.
+\end{enumerate}
+
+\subsection{El common law inglés como complicación adicional}
+
+La complejidad del Brexit se agravó por el sistema jurídico del Reino Unido, que es un sistema de \textbf{creación pretoriana}: no es la norma la que se aplica, sino los precedentes judiciales, que adquieren principios fundamentales que se trasladan a otras situaciones idénticas.
+
+Cuando el Reino Unido salió de la Unión Europea, toda la normativa comunitaria que había sido incorporada a su sistema dejó de tener vigencia. Al ser un sistema de common law basado en precedentes, la pregunta fue qué ley nacional quedaba para reemplazar esa normativa comunitaria que durante décadas se había aplicado. Si se quita la norma comunitaria, no hay una ley que la reemplace, porque toda la legislación y la economía se habían acomodado a ese esquema comunitario. El vacío legal fue enorme.
+
+\section{Reflexión sobre legislación y consecuencias no previstas}
+
+Se advierte la importancia de pensar las consecuencias de la legislación antes de aprobarla: a veces se incorpora algo en una norma sin tomar en consideración las consecuencias a las que eso va a llevar. Se mencionan dos ejemplos de la legislación argentina.
+
+\begin{example}{embriones en la fecundación asistida}
+La legislación permitió la fecundación in vitro y la criopreservación de embriones. Años después surgió el debate sobre qué hacer con los embriones no utilizados: si la ley establece que la vida comienza en la concepción, ¿destruir un embrión es un delito? Esta consecuencia no se había legislado al momento de regular la fecundación asistida.
+\end{example}
+
+\begin{example}{matrimonio igualitario y adopción}
+Al aprobarse el matrimonio entre personas del mismo sexo, no se previó de forma integral la cuestión de la adopción y el derecho a formar familia. Las discusiones que siguieron demostraron que la ley había regulado el acto sin considerar todas sus consecuencias.
+\end{example}
+
+La discusión debió haberse dado antes: cuando se legisla, no es para conformar el momento, sino para organizar un proyecto de vida.
+
+\section{Cuadro Cornell: Brexit y consecuencias de la legislación}
+
+\begin{longtable}{@{}QN@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué estatus especial tenía el Reino Unido en la UE?} &
+No fue socio fundador. No adhirió a la moneda única (mantuvo la libra esterlina). Tuvo una cláusula opt-out inicial (las normas aprobadas por mayoría no se aplicaban automáticamente) y luego una opt-out invertida (se aplicaban salvo oposición formal del gobierno británico). Era un ``socio con coronita''. \\[0.8em]
+
+\textbf{¿Por qué el Brexit fue tan complejo?} &
+Fue una ``chicana'' política mal calculada: el referéndum se propuso como estrategia política y los ciudadanos votaron sin información suficiente sobre las consecuencias. No había preparación para una salida y la negociación se extendió más de dos años. El día de la salida, los camiones quedaron varados en la aduana al cortarse abruptamente la libre circulación. \\[0.8em]
+
+\textbf{¿Qué complicación agregó el common law inglés?} &
+Es un sistema de creación pretoriana, basado en precedentes judiciales. Al dejar de tener vigencia la normativa comunitaria incorporada durante décadas, no había una ley nacional que la reemplazara, porque legislación y economía se habían acomodado al esquema comunitario. El vacío legal fue enorme. \\[0.8em]
+
+\textbf{¿Qué enseñanza se presenta sobre legislar?} &
+Hay que pensar las consecuencias de una norma antes de aprobarla. Los ejemplos mencionados son los embriones en la fecundación asistida y la adopción tras el matrimonio igualitario. Cuando se legisla, no es para conformar el momento, sino para organizar un proyecto de vida. \\
+
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} el Reino Unido tuvo un estatus privilegiado en la Unión Europea y el Brexit surgió como una maniobra política sin preparación ni información suficiente para la ciudadanía. Las consecuencias fueron prácticas (camiones varados, negociación de más de dos años) y jurídicas (vacío legal en un sistema de common law que se había acomodado a la normativa comunitaria). El caso ilustra la importancia de informar a la ciudadanía y de prever las consecuencias de las decisiones normativas.
+} \\
+\bottomrule
+\end{longtable}
+
+%% ============================================================
+%% CAPÍTULO 5
+%% ============================================================
+\chapter[Órganos consultivos, financieros y normas]{Órganos consultivos, órganos financieros y tipos de normas de la Unión Europea}
+
+\section{Órganos consultivos}
+
+Además de los órganos decisorios, la Unión Europea cuenta con órganos consultivos que asesoran en materias específicas:
+
+\begin{itemize}
+    \item \textbf{Comité Económico y Social:} representa a los diferentes sectores económicos y sociales europeos (empleadores, trabajadores, sociedad civil). Emite dictámenes sobre propuestas legislativas.
+    \item \textbf{Comité de las Regiones:} representa a las regiones y entidades locales de la Unión Europea. Se reúne para tratar cuestiones que afectan especialmente a determinadas áreas geográficas.
+\end{itemize}
+
+\begin{example}{Comité de las Regiones del Mediterráneo}
+En una reunión del Comité de las Regiones del Mediterráneo se analizaban los problemas específicos que tenían esos países por compartir el Mediterráneo: problemas que a Alemania no le preocupaban. Son cuestiones que se tratan y elaboran en esas condiciones de regiones, porque de otro modo, al pasar al pleno, hay otros que no están en esa situación y no les prestan atención.
+\end{example}
+
+\section{Órganos financieros}
+
+La Unión Europea cuenta también con órganos financieros específicos.
+
+\subsection{Banco Central Europeo (BCE)}
+
+El Banco Central Europeo establece la \textbf{política monetaria de la zona euro}:
+
+\begin{itemize}
+    \item determina cuánto puede emitir cada estado miembro;
+    \item fija el tipo de cambio del euro;
+    \item establece el tipo de interés bancario;
+    \item regula toda la política económico-financiera de la zona euro.
+\end{itemize}
+
+\begin{example}{el euro y la emisión}
+El euro que se usa en España tiene la cara del rey español, pero cuánto puede emitir España lo decide el BCE. No es que cada país pueda ``prender la maquinita'', porque desestabiliza la moneda en todo el territorio.
+\end{example}
+
+\subsection{Banco Europeo de Inversiones (BEI)}
+
+El Banco Europeo de Inversiones presta dinero a los estados miembros de la Unión Europea para proyectos de desarrollo.
+
+\textbf{Condición:} los préstamos deben destinarse a proyectos que favorezcan el objetivo general de la integración europea (infraestructura, educación, etc.). En lugar de acudir al Fondo Monetario Internacional a pedir dinero, los estados recurren al BEI; pero no se presta para cualquier finalidad: tiene que ser para favorecer a la integración europea.
+
+\textbf{Lógica:} incluso cuando un país en dificultades pide un préstamo, el BEI evalúa si el proyecto fortalece la estabilidad regional, porque un estado económicamente inestable desestabiliza al conjunto.
+
+\section{Tipos de normas de la Unión Europea}
+
+Los distintos tipos de normas que pueden dictar los órganos de la Unión Europea se desarrollan en profundidad al tratar el derecho comunitario.
+
+\begin{formula}{el tipo de norma depende del efecto}
+En la Unión Europea, el tipo de norma depende del \textbf{tipo de efecto} que produce. El proceso de elaboración siempre es el mismo (Consejo + Parlamento), pero puede dar como resultado distintos tipos de normas (reglamentos, decisiones, resoluciones, directivas), con distintos efectos.
+\end{formula}
+
+\begin{table}[H]
+\centering
+\caption{Tipos de normas de la Unión Europea}
+\small
+\begin{tabularx}{\textwidth}{@{}P{2.6cm}Y@{}}
+\toprule
+\textbf{Norma} & \textbf{Efecto y alcance} \\
+\midrule
+Reglamento & De aplicación directa y obligatoria en todos los estados miembros. No requiere transposición al derecho interno. Es el más ``potente'' en cuanto a alcance. \\
+\addlinespace
+Directiva & Obliga a los estados miembros en cuanto al resultado a alcanzar, pero les deja libertad en cuanto a la forma y los medios. Requiere ser ``transpuesta'' al derecho nacional. \\
+\addlinespace
+Decisión & Obligatoria para sus destinatarios específicos (puede ser un estado, una empresa o una persona). No tiene alcance general. \\
+\addlinespace
+Resolución & Instrumento de naturaleza política o declarativa. No necesariamente vinculante. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Contraste con el Mercosur:} en el Mercosur, cada órgano emite un tipo específico de norma. En la Unión Europea, el mismo proceso puede dar lugar a distintos tipos de normas según el efecto jurídico buscado.
+
+\section{Cuadro Cornell: órganos consultivos y financieros, y normas}
+
+\begin{longtable}{@{}QN@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuáles son los órganos consultivos y para qué sirven?} &
+El Comité Económico y Social representa a los sectores económicos y sociales (empleadores, trabajadores, sociedad civil) y emite dictámenes sobre propuestas legislativas. El Comité de las Regiones representa a las regiones y entidades locales y trata cuestiones que afectan especialmente a determinadas áreas geográficas, que de otro modo podrían no recibir atención en el pleno. \\[0.8em]
+
+\textbf{¿Cuál es la función del Banco Central Europeo?} &
+Regula toda la política monetaria de la zona euro: determina cuánto puede emitir cada estado, fija el tipo de cambio del euro y establece el tipo de interés bancario. Ningún estado puede ``prender la maquinita'', para no desestabilizar la moneda en todo el territorio. \\[0.8em]
+
+\textbf{¿Qué función cumple el Banco Europeo de Inversiones?} &
+Presta dinero a los estados miembros para proyectos de desarrollo, siempre que favorezcan el objetivo general de la integración europea (infraestructura, educación, etc.). Evalúa si el proyecto fortalece la estabilidad regional, porque un estado económicamente inestable desestabiliza al conjunto. \\[0.8em]
+
+\textbf{¿Qué tipos de normas puede dictar la UE?} &
+Reglamento (aplicación directa y obligatoria en todos los estados, sin transposición); directiva (obliga al resultado pero deja libertad de forma y medios, y debe transponerse); decisión (obligatoria para destinatarios específicos, sin alcance general); resolución (naturaleza política o declarativa, no necesariamente vinculante). \\[0.8em]
+
+\textbf{¿De qué depende el tipo de norma y qué contraste hay con el Mercosur?} &
+En la Unión Europea el proceso de elaboración es siempre el mismo (Consejo + Parlamento) y el tipo de norma depende del efecto jurídico buscado. En el Mercosur, cada órgano emite un tipo específico de norma. \\
+
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} los órganos consultivos (Comité Económico y Social, Comité de las Regiones) asesoran y representan sectores y regiones. Los órganos financieros son el BCE, que regula la política monetaria de la zona euro, y el BEI, que presta a los estados para proyectos que favorezcan la integración. Las normas de la Unión (reglamento, directiva, decisión y resolución) se distinguen por su efecto jurídico, aunque el proceso de elaboración sea siempre el mismo.
+} \\
+\bottomrule
+\end{longtable}
+
+%% ============================================================
+%% SÍNTESIS GENERAL
+%% ============================================================
+\chapter*{Síntesis general}
+\addcontentsline{toc}{chapter}{Síntesis general}
+\markboth{Síntesis general}{Síntesis general}
+
+Se abordó la arquitectura institucional de la Unión Europea desde una perspectiva comparada y evolutiva. Se partió de los procesos de integración en Asia y África, caracterizados por la diversidad cultural y la motivación geopolítica, para contrastarlos con el modelo europeo.
+
+En el Mercosur, el Parlasur representa un avance democrático pero sin poder legislativo real, mientras que el Parlamento Europeo, tras el Tratado de Lisboa, se convirtió en colegislador pleno.
+
+La Unión Europea se estructura sobre tres órganos principales: el Consejo Europeo (dirección política macro), el Consejo de Ministros (representación estatal y colegislación) y el Parlamento (representación ciudadana y control). La Comisión ejecuta las normas bajo supervisión parlamentaria, cerrando un ciclo que garantiza el control ciudadano.
+
+Este sistema evolucionó desde un modelo tecnocrático-intergubernamental hacia uno de mayor participación ciudadana, impulsado por el fracaso de la Constitución Europea y la necesidad de reconectar las instituciones con la población. El caso Brexit ilustra las consecuencias dramáticas de tomar decisiones políticas trascendentes sin informar adecuadamente a la ciudadanía.
+
+Finalmente, el sistema normativo europeo (reglamentos, directivas, decisiones y resoluciones) refleja la complejidad de gobernar un espacio de integración supranacional que respeta las soberanías nacionales en determinados pilares y las supera en otros.
+
+%% ============================================================
+\end{document}
+%% ============================================================

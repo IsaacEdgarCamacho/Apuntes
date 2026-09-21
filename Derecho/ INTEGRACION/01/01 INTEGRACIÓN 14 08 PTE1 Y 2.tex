@@ -1,0 +1,866 @@
+% ============================================================
+% Apuntes de Derecho de la Integración — Método Cornell
+% Documento autónomo: no requiere plantillas ni archivos externos.
+% Compilar con pdfLaTeX (dos pasadas para el índice).
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ------------------------------------------------------------
+% METADATOS
+% ------------------------------------------------------------
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Apuntes de Derecho de la Integración}
+\newcommand{\subtitulo}{Clase 1 — Presentación de la asignatura}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+% El apunte original no indica el año: se utiliza el año actual del entorno.
+\newcommand{\anio}{2026}
+
+% ------------------------------------------------------------
+% PAQUETES
+% ------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ------------------------------------------------------------
+% CONFIGURACIÓN
+% ------------------------------------------------------------
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ------------------------------------------------------------
+% COMANDOS
+% ------------------------------------------------------------
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ------------------------------------------------------------
+% ENTORNOS / CAJAS
+% ------------------------------------------------------------
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ------------------------------------------------------------
+% CUADRO CORNELL (tabla real: columna izquierda estrecha,
+% columna derecha amplia, última fila con el resumen)
+% ------------------------------------------------------------
+\newlength{\cornizq}
+\newlength{\cornder}
+\newlength{\cornancho}
+\AtBeginDocument{
+    \setlength{\cornizq}{0.27\textwidth}
+    \setlength{\cornder}{\dimexpr\textwidth-\cornizq-4\tabcolsep-1pt\relax}
+    \setlength{\cornancho}{\dimexpr\textwidth-2\tabcolsep-1pt\relax}
+    \setlength{\LTleft}{0pt}
+    \setlength{\LTright}{0pt}
+}
+
+\newenvironment{cornell}
+{%
+    \small
+    \renewcommand{\arraystretch}{1.3}%
+    \begin{longtable}{>{\raggedright\arraybackslash}p{\cornizq}!{\vrule width 0.4pt}>{\raggedright\arraybackslash}p{\cornder}}
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{2}{r}{\footnotesize\itshape continúa en la página siguiente} \\
+    \endfoot
+    \bottomrule
+    \endlastfoot
+}
+{%
+    \end{longtable}%
+}
+
+% ------------------------------------------------------------
+% CONFIGURACIÓN FINAL
+% ------------------------------------------------------------
+\hypersetup{breaklinks=true}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+\frontmatter
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia convierte la comprensión en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho de la Integración'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+\mainmatter
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+
+% ------------------------------------------------------------
+\chapter{Presentación de la asignatura y sistema de evaluación}
+\chaptermark{Presentación y evaluación}
+% ------------------------------------------------------------
+
+\section{Carácter de la asignatura}
+
+Derecho de la Integración es una asignatura obligatoria dentro del plan de estudios de la Facultad de Derecho. En la primera clase se presentan el programa y el funcionamiento de la cursada, antes de comenzar con el desarrollo de los temas.
+
+\section{Modalidad de examen: parciales de tipo híbrido}
+
+La modalidad de evaluación de la cátedra se fundamenta en el contraste entre dos formatos posibles de examen: las preguntas a desarrollar y las preguntas cerradas (verdadero/falso y opción múltiple).
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el apunte habla de <<una o dos preguntas a desarrollar>> pero luego menciona
+% <<los otros dos>> y un 33 % menos, lo que sugiere tres preguntas; además, 25 preguntas
+% de 0,10 no suman una nota de 10. Se conserva tal como figura en el apunte.)
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Formato} & \textbf{Efecto sobre la evaluación} \\
+\midrule
+Una o dos preguntas a desarrollar &
+Si se yerra en una pregunta correspondiente a un tema no estudiado, la probabilidad de aprobar disminuye considerablemente: se pierde un 33\,\% y las otras dos deben estar excelentes para alcanzar el seis. \\
+\addlinespace
+Muchas preguntas de verdadero/falso o de múltiple choice &
+Cada pregunta vale poco (por ejemplo, 0,10). Con 25 preguntas, aunque diez salgan mal, el impacto sobre la nota es menor; pero es necesario haber estudiado. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La desventaja de este sistema, tanto para los estudiantes como para la cátedra, es que se pregunta \textbf{absolutamente todos los temas} dados en la materia, sin excepción: ningún estudiante puede alegar que justo no se le preguntó un tema porque no lo sabía.
+
+El examen tiene entonces una modalidad híbrida, compuesta por:
+
+\begin{itemize}
+    \item una parte de \textbf{verdadero/falso};
+    \item una parte de \textbf{múltiple choice};
+    \item una parte de \textbf{desarrollo breve} (respuestas de diez a quince renglones).
+\end{itemize}
+
+Cada una de estas partes tiene distintos porcentajes de la nota final.
+
+\section{Criterio de aprobación}
+
+\begin{important}
+Las respuestas incorrectas \textbf{no restan puntaje}, pero, como contrapartida, el umbral para aprobar es más exigente que en un examen tradicional: se requiere el \textbf{60\,\% del parcial correctamente respondido} para llegar al cuatro (nota mínima de aprobación).
+\end{important}
+
+La razón de este umbral se explica de la siguiente manera: si se aplicara la conversión directa sobre cien puntos, un 40\,\% equivaldría a un cuatro. Ello significaría que se sabe menos de lo que se ignora: nunca se aprueba una materia si, de cada diez preguntas, solamente se contestaron cuatro.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{cc}
+\toprule
+\textbf{Respuestas correctas} & \textbf{Nota} \\
+\midrule
+60\,\% & 4 (aprobado) \\
+66\,\% & 5 \\
+74\,\% & 6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Superado el umbral inicial, la nota <<se sube rápido>>.
+
+\section{Recuperatorio y promoción}
+
+El recuperatorio se toma a la semana de entregarse las notas del parcial, con la misma modalidad de examen. En el recuperatorio \textbf{también se puede promocionar} la materia, igual que en el parcial original, a diferencia de lo que algunos sostienen erróneamente, en contra del reglamento. Dado que se pregunta la totalidad de los temas y la cantidad de preguntas es muy grande, el recuperatorio puede tomarse como base de estudio.
+
+Habrá dos instancias parciales a lo largo de la cursada, cada una con su propio recuperatorio en la misma modalidad. Las notas de ambas instancias (parcial y recuperatorio) se promedian entre sí para la promoción.
+
+\begin{example}{Calificación y promoción}
+\begin{itemize}
+    \item Si en el parcial se obtuvo un dos y en el recuperatorio un ocho, la nota es un ocho.
+    \item Si se obtuvo un ocho en una instancia y un cuatro en la otra, la materia queda aprobada y promocionada.
+\end{itemize}
+\end{example}
+
+Contenidos de cada instancia: el \textbf{primer parcial} evalúa fundamentalmente la primera parte de la materia (relaciones de integración en el ámbito público, entre Estados); el \textbf{segundo parcial} y su correspondiente segunda etapa evalúan la segunda parte (relaciones de integración que afectan a los particulares).
+
+\section{Material de estudio y bibliografía}
+
+La cátedra \textbf{no cuenta con un manual único obligatorio}. Los libros disponibles en el mercado suelen estar escritos desde la experiencia de la Unión Europea, que no es equiparable a la realidad de otros bloques regionales, como el Mercosur: un libro que describe la integración puede estar describiendo lo que es la Unión Europea, y esa no es la realidad del Mercosur.
+
+El material se pone a disposición a través del campus virtual: artículos, explicaciones y material de cátedra, a medida que avanza el curso. Los tratados internacionales relevantes, que sí es necesario buscar y analizar en clase porque regulan cada tema específico, se indican oportunamente.
+
+\section{Metodología de cursada y participación}
+
+Se espera una dinámica de \textbf{participación} y de cuestionamiento por parte de los estudiantes. Se prevé conversar sobre temas de actualidad política y económica vinculados a la integración regional, con la expectativa de que exista debate respetuoso: puede sostenerse, por ejemplo, que determinada cuestión resulta inconveniente para el desarrollo económico, y debatirlo con respeto.
+
+Se reconoce la dificultad de sostener un debate abierto en el contexto de polarización de la sociedad argentina, pero se destaca el valor pedagógico de discutir temas de agenda internacional vinculados a la integración regional (se mencionó como ejemplo la actualidad migratoria en Europa), sin ofender a nadie.
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Por qué es obligatoria esta materia?} &
+Porque forma parte del plan de estudios de la Facultad de Derecho. En la primera clase se presentan el programa y el funcionamiento de la cursada. \\
+\cmidrule{1-2}
+\textbf{¿Cómo se compone el parcial?} &
+Modalidad híbrida: verdadero/falso, múltiple choice y preguntas de desarrollo breve (diez a quince renglones), con distintos porcentajes de la nota final cada parte. Se pregunta la totalidad de los temas dados, sin excepción. Las preguntas cerradas valen poco cada una, por lo que un error aislado impacta menos que en un examen con pocas preguntas a desarrollar, pero exige haber estudiado. \\
+\cmidrule{1-2}
+\textbf{¿Qué porcentaje se necesita para aprobar (llegar al 4)?} &
+El 60\,\% de respuestas correctas. Con 66\,\% se llega a 5 y con 74\,\% a 6. Las respuestas incorrectas no restan puntaje. \\
+\cmidrule{1-2}
+\textbf{¿Cómo funcionan el recuperatorio y la promoción?} &
+El recuperatorio se toma a la semana de entregarse las notas, con la misma modalidad que el parcial, y permite promocionar igual que el examen original. Hay dos instancias parciales, cada una con su recuperatorio, y las notas se promedian para la promoción. \\
+\cmidrule{1-2}
+\textbf{¿Hay un libro de texto único?} &
+No. Los manuales existentes suelen describir la experiencia de la Unión Europea, no equiparable a la del Mercosur. Se sube material de cátedra (artículos, explicaciones) al campus a medida que avanza el curso, y se indican los tratados relevantes. \\
+\cmidrule{1-2}
+\textbf{¿Qué se espera respecto de la dinámica de la cursada?} &
+Participación activa y debate respetuoso sobre actualidad política y económica vinculada a la integración regional, reconociendo la dificultad del contexto de polarización, pero destacando el valor pedagógico de discutir sin ofender. \\
+\midrule
+\multicolumn{2}{p{\cornancho}}{%
+\textbf{Resumen:} El parcial es híbrido (verdadero/falso, múltiple choice y desarrollo breve) y abarca todos los temas dados; se aprueba con el 60\,\% de respuestas correctas y las incorrectas no restan. El recuperatorio, con la misma modalidad, también permite promocionar, y las notas de las dos instancias se promedian. No hay manual único: el material se sube al campus y se indican los tratados aplicables. Se espera participación y debate respetuoso.
+} \\
+\end{cornell}
+
+% ------------------------------------------------------------
+\chapter{El Derecho de la Integración como rama autónoma}
+\chaptermark{Autonomía del Derecho de la Integración}
+% ------------------------------------------------------------
+
+\section{Distinción con el Derecho Internacional Público y Privado}
+
+Para ubicar el Derecho de la Integración conviene partir de la diferencia estructural entre las dos ramas clásicas del derecho internacional.
+
+\begin{definition}{Derecho Internacional Público}
+Regula las relaciones entre \textbf{Estados soberanos}, actuando en su calidad de tales; es decir, ejerciendo actos de soberanía (\emph{imperium}).
+\end{definition}
+
+\begin{definition}{Derecho Internacional Privado}
+Se ocupa de \textbf{relaciones particulares} que se desarrollan en un ámbito internacional. El Estado puede estar involucrado, pero actuando como persona privada; por ejemplo, al celebrar un contrato de compraventa internacional de mercadería.
+\end{definition}
+
+\begin{example}{La compra de vacunas durante la pandemia}
+Cuando durante la pandemia un Estado compró vacunas a otro país, se trataba de un contrato de compraventa internacional de mercadería con un Estado extranjero. En esa relación no estaba en juego la soberanía, ni el mar territorial, ni la plataforma submarina, ni el espacio aéreo: el Estado actuaba como una parte contractual más, en su calidad de persona privada.
+\end{example}
+
+Ambos tipos de relaciones jurídicas se desarrollan en un ámbito territorial ampliado, pero se diferencian en \textbf{la calidad en que actúa el Estado}: como soberano en un caso, y como persona privada en el otro. A estas dos ramas clásicas se agrega una tercera: el Derecho de la Integración.
+
+\section{Un tercer ámbito: ni derecho público ni derecho privado puro}
+
+El Derecho de la Integración regula un tipo de relaciones jurídicas que no pertenecen ni al Derecho Internacional Público ni al Derecho Internacional Privado. Existen reglas de relación entre los Estados, pero distintas de las que rigen entre Estados soberanos con actos de imperio; y también existen relaciones que afectan a las personas privadas, pero de naturaleza distinta a las del Derecho Internacional Privado clásico.
+
+Se trata de un \textbf{híbrido}: no es derecho privado ni derecho público, porque se está integrando un área en la que se acuerdan con los socios determinadas reglas de compromiso o de comportamiento en distintos ámbitos (el cultural, el económico, el político), según el tipo de integración que se establezca.
+
+\section{El debate sobre la autonomía de la materia}
+
+La ubicación del Derecho de la Integración dentro del plan de estudios fue objeto de un debate académico real. Existió un proyecto de reforma del plan de estudios de la Facultad que proponía denominar a las materias <<Derecho Internacional Público y de la Integración>> y <<Derecho Internacional Privado y de la Integración>>. Ello implicaba tratar las relaciones de integración entre Estados junto con las relaciones internacionales públicas, y las relaciones privadas de integración junto con el derecho internacional privado.
+
+Siguiendo el modelo de la Unión Europea, otras universidades todavía mantienen esa fusión en sus programas, bajo denominaciones como <<Derecho Internacional Privado y Comunitario>>.
+
+\begin{important}
+La Facultad de Derecho tomó la postura de que se trata de una \textbf{materia distinta}: un derecho autónomo, que tiene relaciones entre Estados y relaciones con particulares, pero que no son de carácter internacional, sino \textbf{de integración}.
+\end{important}
+
+\section{División del programa en dos grandes partes}
+
+A partir de esta autonomía, el programa de la materia se divide en dos partes claramente diferenciadas.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Parte} & \textbf{Contenido} \\
+\midrule
+\textbf{Primera parte:} relaciones públicas de integración &
+Se vincula con las relaciones entre Estados. Analiza qué tipo de integración se creó (política, económica, cultural), qué estructura institucional y qué órganos se establecieron, qué facultades tienen esos órganos, cómo están integrados y a quiénes obligan. Resulta más afín a quienes ya se sintieron atraídos por el Derecho Internacional Público. \\
+\addlinespace
+\textbf{Segunda parte:} relaciones privadas dentro de un área de integración &
+Se ocupa de lo que ocurre con los particulares. Está más relacionada con el Derecho Internacional Privado, ya que regula relaciones dirigidas a los particulares y no a los Estados entre sí. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Trabajador dentro del Mercosur}
+Un trabajador argentino que va a trabajar a Uruguay dentro del Mercosur: qué ley se aplica a sus derechos laborales, dónde se jubila y con qué ley. En el caso de un trabajador que aporta años de trabajo en dos países distintos del bloque, se plantea la pregunta de con qué ley se jubilaría; el interrogante queda planteado como disparador para el desarrollo posterior del programa.
+\end{example}
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Qué diferencia al Derecho Internacional Público del Privado?} &
+El Público regula relaciones entre Estados soberanos actuando como tales (actos de imperio). El Privado regula relaciones particulares en un ámbito internacional, incluso cuando interviene el Estado, pero actuando como persona privada (por ejemplo, una compraventa internacional de mercadería). \\
+\cmidrule{1-2}
+\textbf{¿Por qué el Derecho de la Integración es una materia autónoma?} &
+Porque regula relaciones que no son ni de Derecho Público ni de Derecho Privado clásico: reglas propias entre Estados socios y reglas propias para los particulares dentro de un área de integración. Es un híbrido. \\
+\cmidrule{1-2}
+\textbf{¿Qué postura tomó la Facultad frente a otros planes de estudio?} &
+Frente a los proyectos y planes que fusionan la materia con el derecho internacional (<<Derecho Internacional Público y de la Integración>>, <<Derecho Internacional Privado y Comunitario>>), la Facultad de Derecho sostuvo que es una materia distinta y autónoma. \\
+\cmidrule{1-2}
+\textbf{¿En qué dos partes se divide el programa?} &
+1) Relaciones públicas de integración (entre Estados: tipo de integración, estructura institucional, órganos, facultades, a quiénes obligan). 2) Relaciones privadas dentro del área de integración (particulares: por ejemplo, un trabajador que se desplaza dentro del bloque: ley aplicable, derechos laborales, jubilación). \\
+\midrule
+\multicolumn{2}{p{\cornancho}}{%
+\textbf{Resumen:} El Derecho Internacional Público regula relaciones entre Estados soberanos que actúan como tales, y el Privado, relaciones particulares en un ámbito internacional. El Derecho de la Integración constituye un tercer ámbito, híbrido, con reglas propias entre Estados y para particulares, y la Facultad lo consideró una materia autónoma. Su programa se divide en relaciones públicas de integración y relaciones privadas dentro del área de integración.
+} \\
+\end{cornell}
+
+% ------------------------------------------------------------
+\chapter{Concepto de integración y principios propios}
+\chaptermark{Concepto y principios}
+% ------------------------------------------------------------
+
+\section{Por qué no existe una definición única de integración}
+
+Los conceptos de integración que aparecen en los libros no están <<mal>>, pero muchas veces no representan a un espacio de integración concreto. Una afirmación habitual sostiene que la integración implica que los Estados ceden soberanía en órganos supranacionales; sin embargo, no todos los espacios de integración delegan soberanía a un organismo internacional. Existen distintos tipos de integración.
+
+Cada órgano de integración recibe facultades limitadas o amplias según lo que los Estados le hayan cedido específicamente, y esa cesión depende del tipo de integración de que se trate (política, económica, cultural, de defensa, etc.).
+
+\begin{important}
+No es posible construir un concepto general y cerrado de integración: la definición dependerá siempre del ámbito de integración concreto que se tenga enfrente.
+\end{important}
+
+\begin{example}{El Mercosur y la adopción}
+Existen tesis doctorales sobre la adopción en el Mercosur. En una discusión con otro titular de cátedra, que sostenía que sería conveniente regular la materia, se respondió que no es conveniente porque excede las facultades del órgano de integración: el Mercosur es un mercado común del sur y no tiene competencia para regular minoridad, filiación, ni para considerar a los niños <<mercadería>>. Mientras no se modifiquen los objetivos del área de integración en el tratado fundacional, el órgano carece de facultades para regular esas materias.
+\end{example}
+
+\section{Cooperación versus integración}
+
+Se distingue entre dos tipos de relaciones entre Estados que suelen confundirse: la cooperación y la integración.
+
+\begin{definition}{Cooperación}
+Es <<yo te ayudo>>: una colaboración voluntaria, sin que exista una obligación estructural entre las partes ni un objetivo común permanente.
+\end{definition}
+
+\begin{example}{El matrimonio y las tareas domésticas}
+Es lo que ocurre cuando uno de los integrantes de un matrimonio afirma <<yo te ayudé, puse el lavarropas>>. No se trata de ayuda: es su obligación (quien ensució, lava el baño). Cooperar es esto de <<yo te ayudo>>.
+\end{example}
+
+La relación de integración no es solamente cooperación: hay un \textbf{objetivo común} y un \textbf{compromiso}, no simplemente ayuda mutua ocasional. Además, dentro del ámbito de integración pueden existir distintos niveles de compromiso: no todos los Estados que se organizan en un área de integración se obligan al mismo nivel de responsabilidad, y pueden coexistir distintos modelos de integración según cuántos compromisos se asuman.
+
+\section{La metáfora del matrimonio}
+\label{sec:matrimonio}
+
+Para explicar el concepto de integración se utiliza una analogía extendida entre la integración y el matrimonio, contrastándola con un simple acuerdo o negocio transitorio entre dos partes.
+
+\begin{important}
+La integración es un matrimonio, no una unión de hecho, porque implica \textbf{obligaciones recíprocas y un compromiso recíproco}. No se trata de dos partes que se unieron transitoriamente: en teoría hay un proyecto común, y cada uno puede establecerse con requisitos propios y facultades propias, pero todo para un objetivo común y no para un objetivo propio.
+\end{important}
+
+Esta idea se ejemplificó con una distribución de roles dentro de un matrimonio en la que uno de los integrantes trabaja fuera de casa mientras el otro se encarga del cuidado de los cinco hijos. Aunque esa distribución pueda generar comentarios de terceros, responde a una organización funcional orientada a un objetivo común: sacar la familia adelante.
+
+A partir de esta base se desarrolla el contraste central de la metáfora:
+
+\begin{itemize}
+    \item \textbf{En un negocio}, se participa por el beneficio que reporta; no se mira si a la contraparte le va bien o mal, porque es problema de ella.
+    \item \textbf{En una integración}, existen otro tipo de relaciones: cada Estado debe tener conciencia de que si hace algo que afecte a otro Estado del área, tarde o temprano le repercute a él.
+\end{itemize}
+
+\begin{example}{La economía doméstica y el corte de luz}
+Supóngase que ambos integrantes de una pareja trabajan y comparten las tareas, pero uno gasta todo su sueldo en comprarse zapatos y perfumes, y al otro le queda pagar los impuestos. Llegará un momento en que la economía familiar no rinda. Si uno saca para su beneficio propio, el área en general se ve afectada: si no se pagó la luz porque el dinero se gastó en zapatos, se la cortan a toda la casa, y no solamente al otro integrante de la pareja.
+
+Trasladada esta lógica al mercado común, una medida económica que en lo inmediato beneficia a un socio del bloque (<<tiene zapato nuevo>>) puede a largo plazo perjudicar a la unión completa (<<le cortaron la luz>>), restringiendo la economía y las relaciones del conjunto.
+\end{example}
+
+\section{Principio de reciprocidad presumida}
+
+La reciprocidad funciona de manera distinta en el Derecho Internacional clásico y dentro de un área de integración.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Ámbito} & \textbf{Funcionamiento de la reciprocidad} \\
+\midrule
+Ámbito internacional &
+Se reconoce un derecho <<en tanto y en cuanto>> la ley del otro Estado reconozca a los ciudadanos argentinos determinado derecho. Es una \textbf{reciprocidad condicionada}, que debe verificarse caso por caso. \\
+\addlinespace
+Ámbito de integración &
+Se da por \textbf{sobreentendida}. Si un Estado celebró un acuerdo de integración con su socio, es porque ese socio va a aplicar exactamente la misma norma que se está aplicando: no es necesario someter el derecho a la condición de reciprocidad, porque esta rige desde el momento mismo en que se decidió asociarse. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Esta idea se relaciona con el funcionamiento de la norma de conflicto propia del Derecho Internacional Privado, que implica un <<salto al vacío>>, porque no se sabe a dónde se irá a parar. La diferencia en el ámbito de integración es que se sabe quiénes son los socios. % TODO: contenido incompleto o ambiguo en las notas originales
+% (la enumeración de los integrantes del Mercosur que figura en el apunte no menciona a Argentina.)
+Se mencionó que el Mercosur lo forman Uruguay, Paraguay, Venezuela (suspendida) y Brasil. Cuando se elaboran las normas de conflicto y se establece que se aplicará la ley del lugar de ejecución, y que la ejecución será en Brasil, ello es porque ya se sabe qué dice la norma brasileña.
+
+\section{Igualdad de trato, no discriminación y preferencia nacional}
+
+Algunos principios que parecen lógicos en el ámbito del Derecho Internacional Público, como la preferencia de los nacionales frente a los extranjeros en determinadas situaciones, resultan \textbf{inadmisibles dentro de un área de integración}.
+
+De la lógica de integración descrita en la sección~\ref{sec:matrimonio} se deriva una consecuencia normativa concreta: en un mercado único, un Estado miembro \textbf{no puede aplicar preferencias nacionales frente a sus socios} del bloque, aunque sí podría hacerlo frente a terceros Estados ajenos a la integración.
+
+\begin{example}{La licitación de obra pública}
+Si hay una obra pública y se presentan una empresa argentina y una brasileña, no puede decirse <<prefiero la argentina por compra nacional>>, porque se estaría violando la igualdad de trato con el socio. En cambio, si se presenta una empresa chilena (y Chile no integra el bloque), sí puede decirse: a igualdad de precio, se prefiere la argentina, porque es compra nacional.
+\end{example}
+
+Para ilustrar la inversión de estos principios se desarrolla el ejemplo del arraigo en materia procesal.
+
+\begin{definition}{Arraigo procesal}
+Exigencia procesal por la cual un extranjero que pretende litigar en un país debe fijar una garantía (excepción de arraigo), por ejemplo un domicilio, un bien o un seguro, para responder eventualmente por las costas y honorarios del juicio, en caso de resultar perdidoso y no contar con bienes en el país para responder.
+\end{definition}
+
+En el ámbito del Derecho Internacional clásico se presume que el extranjero debe fijar arraigo, salvo que un convenio bilateral específico lo exceptúe expresamente (se mencionó como ejemplo el caso de España, con quien existe esa excepción convencional).
+
+\begin{important}
+En el ámbito de integración es al revés: rige el \textbf{principio de igualdad de trato}. No se puede exigir a un extranjero, ni limitar su acceso a la justicia; debe establecerse en las mismas condiciones que a un nacional.
+\end{important}
+
+Se extendió el razonamiento: así como un nacional sin bienes puede solicitar el beneficio de litigar sin gastos (beneficio de pobreza), un extranjero proveniente de un país socio del bloque podría, en principio, solicitar ese mismo beneficio, precisamente en aplicación del principio de igualdad de trato.
+
+\begin{exercise}{Cuestión planteada para reflexionar}
+¿Podría un extranjero proveniente de un Estado socio del bloque de integración solicitar el beneficio de litigar sin gastos en las mismas condiciones que un nacional? ¿Qué principio de los vistos fundamentaría esa respuesta?
+\end{exercise}
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Por qué no existe una definición única de integración?} &
+Porque depende del tipo de integración (política, económica, cultural, de defensa) y de las facultades específicas que cada bloque haya cedido a sus órganos. No todo espacio de integración delega soberanía en órganos supranacionales. \\
+\cmidrule{1-2}
+\textbf{¿Qué diferencia a la cooperación de la integración?} &
+La cooperación es ayuda voluntaria (<<yo te ayudo>>), sin obligación estructural ni objetivo común permanente. La integración implica un compromiso recíproco orientado a un objetivo común; puede haber distintos niveles de compromiso y distintos modelos. \\
+\cmidrule{1-2}
+\textbf{¿Por qué la integración se parece más a un matrimonio que a un negocio?} &
+Porque implica obligaciones y compromiso recíprocos y un proyecto común, no una unión transitoria. En un negocio se mira el beneficio propio; en la integración, lo que afecta a un Estado del área tarde o temprano repercute en los demás (ejemplo del corte de luz). \\
+\cmidrule{1-2}
+\textbf{¿Por qué la reciprocidad se presume en el ámbito de integración?} &
+Porque al asociarse con un socio del bloque ya se sabe que ese socio aplicará exactamente la misma norma; no hace falta condicionar el reconocimiento de un derecho a que el otro Estado lo reconozca primero, como sí ocurre en el ámbito internacional (reciprocidad condicionada). Se conocen los socios, a diferencia del <<salto al vacío>> de la norma de conflicto. \\
+\cmidrule{1-2}
+\textbf{¿Qué implica la igualdad de trato respecto de la preferencia nacional?} &
+Un Estado miembro no puede aplicar preferencia nacional frente a sus socios del bloque, pero sí frente a terceros Estados (ejemplo de la obra pública: empresa brasileña vs. chilena). \\
+\cmidrule{1-2}
+\textbf{¿Por qué el arraigo procesal no se exige entre socios de un bloque?} &
+Porque rige la igualdad de trato: un extranjero proveniente de un Estado socio debe recibir las mismas condiciones de acceso a la justicia que un nacional, sin exigírsele garantías adicionales. En el ámbito internacional clásico, en cambio, se presume la exigencia de arraigo, salvo convenio bilateral que lo exceptúe (por ejemplo, España). \\
+\midrule
+\multicolumn{2}{p{\cornancho}}{%
+\textbf{Resumen:} No existe un concepto único y cerrado de integración: depende del tipo de integración y de las facultades cedidas a los órganos. La integración se distingue de la cooperación por el compromiso recíproco y el objetivo común, comparable a un matrimonio y no a un negocio transitorio. Sus principios propios incluyen la reciprocidad presumida, porque se conocen los socios, y la igualdad de trato, que impide la preferencia nacional frente a socios del bloque y el arraigo procesal.
+} \\
+\end{cornell}
+
+% ------------------------------------------------------------
+\chapter{Modelos de integración y estructura institucional}
+\chaptermark{Modelos e instituciones}
+% ------------------------------------------------------------
+
+\section{La integración como proceso evolutivo: la metáfora de la escalera}
+
+Una forma habitual de caracterizar a las áreas de integración es como un proceso progresivo, comparable a una \textbf{escalera}: un bloque inicia en el escalón más elemental y va perfeccionándose y profundizándose con el tiempo hasta alcanzar una integración más completa. Mientras no se llegue a una integración en todo tipo de relaciones, se está transitando la formación de esa integración, pero hay que ir integrándose en todo tipo de relaciones.
+
+El caso europeo es el ejemplo paradigmático de este modelo evolutivo: partió de una comunidad limitada al carbón y al acero, y fue incorporando progresivamente energía atómica, luego la economía en su conjunto, después aspectos políticos, y más adelante materias tan alejadas del objeto original como el medio ambiente o el trato a la ancianidad. Se lo fue viendo como un proceso: una vez alcanzado un escalón, se agrega el siguiente.
+
+\begin{example}{El límite político del proceso evolutivo}
+En algún momento, la Unión Europea intentó avanzar hacia una Constitución propia. Al someterse la propuesta a referéndum o consulta popular en los Estados miembros, la población rechazó la iniciativa, por entender que se perdía identidad y que no debían desaparecer como nación. El proceso evolutivo de profundización, entonces, no es ilimitado ni automático: encuentra un techo en la voluntad política y popular de cada Estado.
+\end{example}
+
+\section{Modelos estáticos: México, Estados Unidos y Canadá}
+
+Frente al modelo evolutivo europeo se presenta un contraejemplo deliberado: el bloque de integración conformado por \textbf{México, Estados Unidos y Canadá}, organizado en torno a una zona de libre comercio con un objetivo deliberadamente acotado y estable en el tiempo. No se hizo este modelo con la idea de ir sumando facultades (aceptar inversiones de otros países, permitir el libre tránsito de personas o que los mexicanos, en igualdad de trato, vayan a trabajar a Estados Unidos): el área de integración se hizo con ese objetivo, y no se prevé moverse de allí.
+
+Si se aplica la noción europea de integración a este modelo, algunos autores podrían objetar que <<eso tampoco es integración>>, precisamente porque carece de la proyección de avance progresivo propia del modelo europeo. Sin embargo, esto \textbf{no invalida al modelo}: se trata de un tipo de integración distinto, con objetivos definidos y estables (comercio entre los tres países, y nada más), sin vocación de sumar materias como el medio ambiente o los derechos de las personas mayores.
+
+\section{Principio de atribución (o especialidad) de facultades}
+
+\begin{definition}{Principio de atribución (o especialidad) de facultades}
+Los órganos de integración solo tienen las facultades que los Estados miembros les otorgaron específicamente, y no pueden expandirlas por sí mismos.
+\end{definition}
+
+\begin{example}{Las provincias y el Estado Nacional argentino}
+Las provincias precedieron al Estado Nacional; por lo tanto, el Estado Nacional no puede legislar sobre aquellas cuestiones que no fueron específicamente cedidas por las provincias a la Nación. La misma idea vale para los órganos de integración: la provincia de Corrientes no puede sacar un Código Civil, porque esa facultad fue transferida de manera exclusiva a la Nación.
+\end{example}
+
+Aplicando esta lógica al Mercosur, se sostiene que puede regular sobre matrimonio internacional dentro del área, pero no puede regular sobre minoridad, a pesar de que existen tesis doctorales sobre la adopción en el Mercosur: no son facultades del órgano de integración.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (en la sección sobre los factores de producción se afirma que el divorcio no lo resuelve
+% el órgano de integración sino el Derecho Internacional Privado; esto parece
+% no coincidir con la afirmación de que el Mercosur <<podría regular sobre matrimonio internacional>>.
+% Ambas afirmaciones se conservan tal como figuran en el apunte.)
+
+Esta idea se extiende al caso del \textbf{tráfico de menores}: aunque desde el punto de vista de la política legislativa pudiera parecer deseable una regulación conjunta, ese ámbito excede el objeto del Mercosur (que carece de competencia penal) y, por lo tanto, no corresponde otorgarle esa facultad sin antes modificar el tratado fundacional.
+
+\begin{note}
+Se hizo referencia al protocolo del Mercosur sobre medidas cautelares en cuestiones penales y administrativas. Si bien se trata de un instrumento valioso, corresponde en rigor al ámbito del Derecho Internacional (un tratado entre los Estados miembros) y no estrictamente al Derecho de la Integración, por exceder el objeto específico del mercado común.
+\end{note}
+
+Este límite de competencia funciona, en esta perspectiva, como una \textbf{garantía} frente al traspaso de facultades de los Estados al órgano comunitario sin el debido respaldo del tratado fundacional.
+
+\begin{important}
+El órgano de integración no puede ir más allá de las facultades que le fueron otorgadas en el tratado fundacional. Las facultades no se amplían solas: sería necesario cambiar el tratado fundamental, fijando un objetivo distinto. Para lo demás está el Derecho Público y el Derecho Privado; esto es integración.
+\end{important}
+
+\section{Supranacionalidad versus intergubernamentalidad}
+\label{sec:supra}
+
+Existen dos maneras estructuralmente distintas de organizar los órganos de un bloque de integración, según el grado de independencia que tengan respecto de los gobiernos que los designan.
+
+\begin{definition}{Órgano supranacional}
+Una vez designado el funcionario, este no responde al Estado que lo propuso, sino a la comunidad de integración en su conjunto. Las decisiones se toman por \textbf{mayoría} y resultan obligatorias para todos los Estados miembros, incluso para aquellos que votaron en contra.
+\end{definition}
+
+\begin{definition}{Órgano intergubernamental}
+Está integrado por \textbf{representantes de los gobiernos}, que siguen las instrucciones de sus respectivos Estados. Las decisiones no se imponen por mayoría simple, sino que requieren un mecanismo más cercano al consenso entre todos los socios.
+\end{definition}
+
+\begin{example}{La relación entre los presidentes del Mercosur}
+Se aludió, con humor, a la desconfianza que a veces existe entre los socios del Mercosur, planteando cómo se llevaban en ese momento los presidentes de Argentina y Brasil. Cuando no existe una confianza plena entre los socios, resulta más difícil otorgar a un órgano común facultades supranacionales que puedan imponerse por mayoría incluso en contra de la propia voluntad.
+\end{example}
+
+La elección entre uno u otro modelo institucional (qué tipo de órgano se crea y qué facultades se le otorgan) depende del \textbf{tipo de relaciones que existan entre los socios} y del grado de profundidad al que aspire el bloque de integración.
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Por qué algunos autores describen la integración como una escalera?} &
+Porque la ven como un proceso evolutivo: el bloque parte del escalón más elemental y se profundiza con el tiempo. El caso europeo empezó con carbón y acero y fue sumando energía atómica, economía, aspectos políticos, medio ambiente y trato a la ancianidad. Ese proceso encuentra un techo en la voluntad política y popular (rechazo del intento de Constitución europea). \\
+\cmidrule{1-2}
+\textbf{¿Todo modelo de integración aspira a profundizarse con el tiempo?} &
+No. El bloque de México, Estados Unidos y Canadá es una zona de libre comercio con objetivo acotado y estable, sin vocación de sumar materias. Es un tipo de integración distinto, no inválido. \\
+\cmidrule{1-2}
+\textbf{¿Qué es el principio de atribución (o especialidad) de facultades?} &
+Los órganos de integración solo pueden ejercer las facultades específicamente cedidas por los Estados en el tratado fundacional, y no pueden ampliarlas por sí mismos (igual que el Estado Nacional argentino solo legisla sobre lo que las provincias le cedieron). \\
+\cmidrule{1-2}
+\textbf{¿Puede el Mercosur regular adopción o tráfico de menores?} &
+No: excede su objeto fundacional (mercado común) y carece de competencia penal. Regularlo requeriría modificar el tratado fundacional, no una decisión del órgano. El protocolo sobre medidas cautelares en cuestiones penales y administrativas corresponde en rigor al Derecho Internacional. \\
+\cmidrule{1-2}
+\textbf{¿Qué diferencia a un órgano supranacional de uno intergubernamental?} &
+El supranacional actúa con independencia de los Estados que lo designaron, decide por mayoría y sus decisiones obligan a todos, incluso a quienes votaron en contra. El intergubernamental está integrado por representantes de los gobiernos, que siguen sus instrucciones, y decide mediante un mecanismo cercano al consenso. \\
+\midrule
+\multicolumn{2}{p{\cornancho}}{%
+\textbf{Resumen:} La integración puede concebirse como un proceso evolutivo (modelo europeo) o como un modelo estático con objetivo acotado (México, Estados Unidos y Canadá). En todos los casos rige el principio de atribución de facultades: los órganos solo tienen las facultades que el tratado fundacional les otorgó, y ampliarlas exige modificar ese tratado. Los órganos pueden ser supranacionales (mayoría, independencia de los Estados) o intergubernamentales (representantes de gobiernos, consenso), según las relaciones entre los socios.
+} \\
+\end{cornell}
+
+% ------------------------------------------------------------
+\chapter{Antecedentes históricos: la Unión Europea y el Mercosur}
+\chaptermark{Antecedentes históricos}
+% ------------------------------------------------------------
+
+\section{La CECA (1951)}
+
+El origen histórico de la actual Unión Europea se sitúa en el contexto de posguerra. En 1951, un grupo de seis países europeos, entre ellos Alemania (occidental, dado que Alemania del Este integraba entonces el bloque soviético) y Francia, crearon la Comunidad Económica del Carbón y del Acero (CECA), transfiriendo a una estructura institucional común las facultades de producción, comercialización e investigación relativas al carbón y al acero.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el apunte denomina a la CECA <<Comunidad Económica del Carbón y del Acero>> en el texto,
+% pero <<Comunidad Europea del Carbón y del Acero>> en el índice; además, solo nombra
+% a Alemania y a Francia entre los seis países.)
+
+\textbf{Por qué el carbón y el acero.} Europa necesitaba reconstruirse tras la guerra: inversión, producción, fábricas, edificios, automóviles. Al mismo tiempo, existía el riesgo de que alguno de los Estados (en particular, Alemania) se rearmara y repitiera un conflicto de la magnitud del que acababa de terminar.
+
+La solución institucional fue crear \textbf{órganos independientes de los Estados}: una vez designado, el funcionario ya no representaba a su país de origen, sino a la comunidad en su conjunto, y las decisiones se tomaban por mayoría, resultando obligatorias para todos. De esa manera, cada Estado podía controlar y ser controlado por los demás en la producción de los insumos estratégicos para la guerra (carbón y acero), incentivando la reconstrucción económica sin permitir el rearme unilateral de ninguno de ellos.
+
+Esta estructura supranacional se contrapone expresamente con el modelo intergubernamental del Mercosur (sección~\ref{sec:supra}): en este último, los funcionarios sí representan a sus respectivos gobiernos y siguen las instrucciones del poder ejecutivo nacional que los designó, mientras que en el modelo europeo originario los funcionarios pasaban a depender exclusivamente de la comunidad.
+
+\section{El Euratom y la Comunidad Económica Europea (1957)}
+
+En 1957 se firmaron los Tratados de Roma, mediante los cuales se crearon dos nuevas comunidades: la Comunidad Europea de la Energía Atómica (Euratom) y la Comunidad Económica Europea (CEE).
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.10\textwidth}
+    >{\raggedright\arraybackslash}p{0.25\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Año} & \textbf{Tratado} & \textbf{Creación} \\
+\midrule
+1951 & Tratado de París & CECA (Comunidad Económica del Carbón y del Acero) \\
+1957 & Tratados de Roma & Euratom (energía atómica) y Comunidad Económica Europea (CEE) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+A diferencia de la CECA, limitada al carbón y al acero, la CEE abarcaba \textbf{todos los aspectos de la economía}: libre tránsito de mercaderías o bienes, de personas, de servicios y de capitales.
+
+\section{Los cuatro factores de producción de la integración económica}
+
+La Comunidad Económica Europea reguló de manera integral los cuatro factores clásicos de la producción económica:
+
+\begin{enumerate}
+    \item bienes (mercaderías);
+    \item personas (como factor trabajo);
+    \item servicios;
+    \item capitales.
+\end{enumerate}
+
+\begin{important}
+Al integrarse en el marco de una unión económica, la libre circulación de personas y la igualdad de trato de personas se regulan \textbf{únicamente en su faceta de factor de producción (el trabajo)}, y no en los demás aspectos de la vida de las personas.
+\end{important}
+
+Por ejemplo, si una persona se divorcia, ello no lo resuelve el órgano de integración: lo sigue regulando el Derecho Internacional Privado, porque esa relación no tiene nada que ver con el objetivo de integración.
+
+Este razonamiento conecta directamente con el principio de atribución de facultades: si el tratado fundacional definió el objetivo económico del bloque, el órgano de integración carece de competencia para regular materias ajenas a ese objetivo, como el derecho de familia.
+
+\section{El Mercosur: decisión por consenso y límites de competencia}
+
+En el Mercosur se resuelve por \textbf{consenso}: no por unanimidad, pero es algo parecido, porque todos tienen que estar de acuerdo en lo mismo. Este mecanismo genera un riesgo: al requerirse el acuerdo de todos los Estados miembros, como ocurre en un tratado internacional clásico, el órgano del Mercosur tiende a comportarse, en los hechos, como si estuviera celebrando relaciones internacionales entre Estados soberanos, en lugar de ejercer las facultades específicas y limitadas propias de un órgano de integración. Como firman todos los Estados, a veces el órgano termina aprobando cosas que no corresponden.
+
+\begin{example}{El protocolo sobre medidas cautelares en cuestiones penales y administrativas}
+Se trata de un instrumento valioso, pero es Derecho Internacional. Se critica que se lo haya adoptado en el ámbito del Mercosur: es necesario un tratado internacional entre esos Estados miembros, pero en el ámbito internacional y no en el de integración.
+\end{example}
+
+El contraste entre la CECA y el Mercosur permite visualizar en la práctica los dos grandes modelos institucionales presentados en el capítulo anterior:
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Característica} & \textbf{CECA (1951)} & \textbf{Mercosur} \\
+\midrule
+Órganos & Supranacionales & Intergubernamentales \\
+Decisión & Por mayoría & Por consenso \\
+Funcionarios & Independientes de los Estados & Representan a sus gobiernos \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Ello explica por qué el Mercosur tiende a exceder sus competencias cuando actúa bajo la lógica del consenso unánime propia del Derecho Internacional clásico.
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Cuándo y por qué nació la CECA?} &
+En 1951 (Tratado de París), entre seis países europeos (entre ellos Alemania Occidental y Francia), para integrar la producción de carbón y acero, incentivando la reconstrucción de posguerra y evitando el rearme unilateral de cualquiera de sus miembros. Se crearon órganos independientes de los Estados: los funcionarios respondían a la comunidad y las decisiones se tomaban por mayoría. \\
+\cmidrule{1-2}
+\textbf{¿Qué se creó en los Tratados de Roma de 1957?} &
+El Euratom (Comunidad Europea de la Energía Atómica) y la Comunidad Económica Europea (CEE), que abarcaba todos los aspectos de la economía y no solo el carbón y el acero. \\
+\cmidrule{1-2}
+\textbf{¿Cuáles son los cuatro factores regulados por la integración económica europea?} &
+Bienes, personas (como factor trabajo), servicios y capitales. La libre circulación de personas se regula solo en su faceta laboral, no en otros aspectos de su vida (por ejemplo, un divorcio, que sigue regulando el Derecho Internacional Privado). \\
+\cmidrule{1-2}
+\textbf{¿Cómo decide el Mercosur y qué riesgo genera ese mecanismo?} &
+Decide por consenso (no por mayoría), lo que lo asemeja al Derecho Internacional clásico. El riesgo es que el órgano apruebe instrumentos que exceden su competencia de integración (por ejemplo, el protocolo sobre medidas cautelares en cuestiones penales y administrativas, que en rigor es Derecho Internacional). \\
+\cmidrule{1-2}
+\textbf{¿Qué contraste existe entre la CECA y el Mercosur?} &
+La CECA tiene órganos supranacionales, decide por mayoría y sus funcionarios son independientes de los Estados. El Mercosur tiene órganos intergubernamentales, decide por consenso y sus funcionarios representan a sus gobiernos. \\
+\midrule
+\multicolumn{2}{p{\cornancho}}{%
+\textbf{Resumen:} La integración europea comenzó en 1951 con la CECA (Tratado de París), con órganos supranacionales, y se amplió en 1957, con los Tratados de Roma, que crearon el Euratom y la CEE, cuya integración económica abarcó bienes, personas (como factor trabajo), servicios y capitales. El Mercosur, en cambio, decide por consenso mediante órganos intergubernamentales, lo que lo asemeja al Derecho Internacional clásico y genera el riesgo de aprobar instrumentos que exceden su competencia de integración.
+} \\
+\end{cornell}
+
+\end{document}

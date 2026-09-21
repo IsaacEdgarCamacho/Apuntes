@@ -1,0 +1,660 @@
+\documentclass[12pt,oneside]{book}
+
+% =====================================================
+% PAQUETES
+% =====================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% =====================================================
+% RUTAS DE IMÁGENES
+% =====================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =====================================================
+% METADATOS DEL DOCUMENTO
+% =====================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{El Mercosur y la Unión Europea: Estructura institucional comparada}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% =====================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% =====================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =====================================================
+% CONFIGURACIÓN GENERAL
+% =====================================================
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =====================================================
+% ENCABEZADOS Y PIES DE PÁGINA
+% =====================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =====================================================
+% COMANDOS MATEMÁTICOS
+% =====================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =====================================================
+% CAJAS ACADÉMICAS
+% =====================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =====================================================
+% DOCUMENTO
+% =====================================================
+\begin{document}
+
+% -----------------------------------------------------
+% PORTADA
+% -----------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender la estructura de las instituciones es el primer paso para pensar con criterio el derecho de la integración.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% -----------------------------------------------------
+% ÍNDICE
+% -----------------------------------------------------
+\tableofcontents
+
+% =====================================================
+% PRESENTACIÓN DE LA UNIDAD TEMÁTICA
+% =====================================================
+\chapter*{Presentación de la unidad temática}
+\addcontentsline{toc}{chapter}{Presentación de la unidad temática}
+
+Esta unidad temática aborda la estructura institucional del Mercosur y de la Unión Europea desde una perspectiva comparada. Los contenidos desarrollados corresponden a los siguientes ejes:
+
+\begin{itemize}
+    \item La estructura institucional del Mercosur durante el período de transición del Tratado de Asunción y su consolidación definitiva a través del Protocolo de Ouro Preto.
+    \item Los órganos del Mercosur: el Consejo del Mercado Común, el Grupo Mercado Común, la Comisión de Comercio, la Secretaría, el Parlamento del Mercosur (PARLASUR) y el Tribunal Permanente de Revisión.
+    \item Los mecanismos de solución de controversias: del arbitraje ad hoc del Protocolo de Brasilia al sistema con instancia de revisión.
+    \item El origen y la evolución de la Unión Europea (CECA, EURATOM y la Comunidad Económica Europea) y su estructura de tres pilares.
+    \item El rol del Tribunal de Justicia de la Unión Europea como intérprete único del derecho comunitario y su función cuasi legislativa.
+    \item Los límites reales de la supranacionalidad frente a cuestiones de soberanía, seguridad, migración y política exterior.
+\end{itemize}
+
+\section*{Relevancia profesional de la unidad}
+
+Comprender cómo se distribuye el poder de decisión entre Estados y organismos supranacionales constituye una herramienta central para cualquier abogado, diplomático, funcionario público o profesional de comercio exterior que trabaje con normativa del Mercosur, tratados internacionales o negociaciones con bloques como la Unión Europea. Distinguir un órgano intergubernamental de uno supranacional permite anticipar si una norma que afecta a una empresa, una importación o un derecho ciudadano resulta directamente obligatoria o depende todavía de la voluntad política de cada país.
+
+Asimismo, comprender los mecanismos de solución de controversias (arbitraje ad hoc frente a tribunales permanentes) resulta clave para el asesoramiento en conflictos comerciales internacionales, y conocer la tensión entre soberanía nacional y cesión de competencias permite analizar con criterio el debate público sobre migración, seguridad, moneda y tratados de integración regional.
+
+\section*{Cómo se relacionan los temas de esta unidad}
+
+El desarrollo puede pensarse como la comparación entre dos formas distintas de organizar un mismo objetivo: bajar barreras, comerciar en conjunto y cooperar entre Estados. El Mercosur, tras un período de prueba fijado por el Tratado de Asunción, estableció reglas más permanentes mediante el Protocolo de Ouro Preto, pero mantuvo a los Estados parte con poder de veto total, de modo que ningún Estado puede quedar obligado sin su acuerdo; por esa razón, los conflictos se resuelven mediante árbitros designados para el caso concreto y no mediante un tribunal permanente con competencia general.
+
+La Unión Europea, en cambio, otorgó a algunos de sus órganos poder de decisión propio, aunque —y esta es la idea que conecta ambos bloques— ese poder resulta fuerte únicamente en materia económica. En seguridad, justicia y política exterior, la Unión Europea vuelve a funcionar de un modo cercano al del Mercosur: por consenso, porque ningún Estado cede fácilmente su soberanía. Determinar cuánto poder de decisión propio tiene realmente un organismo internacional constituye el hilo conductor de toda la unidad.
+
+% =====================================================
+% CAPÍTULO 1 — EL MERCOSUR: ESTRUCTURA Y CONTROVERSIAS
+% =====================================================
+\chapter{El Mercosur: estructura y controversias}
+
+\section{La estructura institucional provisoria del Tratado de Asunción}
+
+Durante la vigencia del Tratado de Asunción (1991), previa al Protocolo de Ouro Preto, únicamente tres órganos del Mercosur contaban con capacidad decisoria propia, mientras que el resto de los organismos cumplía funciones de asesoramiento o consulta.
+
+\subsection{Los tres órganos con capacidad decisoria}
+
+Estos tres órganos compartían tres características esenciales que constituyen una clave de lectura aplicable a cualquier estructura de integración:
+
+\begin{definition}{Órgano intergubernamental de carácter decisorio}
+Los tres órganos originarios del Mercosur con poder decisorio se caracterizaban por:
+\begin{enumerate}
+    \item Ser \textbf{órganos intergubernamentales}, es decir, representar directamente a los gobiernos de los Estados parte y no a la ciudadanía.
+    \item \textbf{Decidir por consenso}: se requería la presencia y el acuerdo de todos los Estados presentes en la reunión respectiva.
+    \item Tener \textbf{poder decisorio}, a diferencia del resto de los órganos, de carácter meramente consultivo o de asesoramiento.
+\end{enumerate}
+\end{definition}
+
+\subsection{Los órganos de consulta y asesoramiento}
+
+Además de la Secretaría —que en esta etapa no era un órgano propiamente dicho, sino una secretaría administrativa— existían otros organismos de consulta:
+
+\begin{itemize}
+    \item El \textbf{Comité Económico y Social}, con participación de sindicatos, asociaciones de consumidores y representantes empresariales, de carácter estrictamente consultivo.
+    \item La \textbf{Comisión Parlamentaria Conjunta}, órgano de carácter informativo: elaboraba informes y estadísticas comparativas sobre el estado de implementación de las normas del Mercosur en cada país, pero no tenía función legislativa alguna.
+\end{itemize}
+
+\begin{note}
+Pese a llamarse ``parlamentaria'', la Comisión Parlamentaria Conjunta no era un parlamento: no legislaba, solo informaba. Su tarea consistía en reunir, para cada país miembro, un relevamiento del estado de vigencia y de acatamiento de las normas del Mercosur, con el objeto de elaborar comparativos entre los Estados parte.
+\end{note}
+
+\subsection{El carácter provisorio de la estructura y sus plazos}
+
+Esta estructura institucional era provisoria. Se había establecido un período de transición durante el cual estos órganos gobernarían el proceso de formación del arancel externo común y de la zona de libre comercio, hasta que el Mercosur estuviera efectivamente en funcionamiento. Una vez alcanzado ese objetivo, se preveía crear una estructura definitiva con funciones también definitivas para cada órgano.
+
+\begin{important}
+La concepción original apuntaba a una estructura no meramente intergubernamental, sino \textbf{supranacional}, en el pensamiento de quienes trabajaron en el proyecto originario, aunque ese objetivo no llegó a alcanzarse plenamente.
+\end{important}
+
+El plazo previsto para la etapa de transición, contado desde 1991 (Tratado de Asunción), fue de apenas \textbf{tres años}: los órganos de la estructura provisoria tenían fecha de caducidad y sus mandatos vencían en 1994.
+
+% -----------------------------------------------------
+\section{El Protocolo de Ouro Preto y la estructura definitiva del Mercosur}
+
+Ante el vencimiento de los mandatos en 1994, comenzó a trabajarse el Protocolo de Ouro Preto sobre la estructura institucional definitiva del Mercosur. En rigor, no se salió nunca del todo del período de transición, sino que se decidió tomar los mismos órganos existentes como definitivos y continuar trabajando a partir de ese esquema.
+
+\subsection{La reforma constitucional argentina de 1994}
+
+Este proceso se vincula con un hecho paralelo de gran relevancia ocurrido en la República Argentina ese mismo año: la reforma de la Constitución Nacional, que incorporó una previsión especial para los procesos de integración.
+
+\begin{important}
+\textbf{Constitución Nacional Argentina — artículo 75, inciso 24:}
+
+``Corresponde al Congreso: aprobar tratados de integración que deleguen competencias y jurisdicción a organizaciones supraestatales en condiciones de reciprocidad e igualdad, y que respeten el orden democrático y los derechos humanos. Las normas dictadas en su consecuencia tienen jerarquía superior a las leyes.''
+\end{important}
+
+En virtud de esta norma, el Congreso argentino quedó facultado, con una mayoría especial, a delegar facultades legislativas propias de la Argentina en órganos de integración creados con carácter supranacional, otorgando además a esas normas jerarquía superior a la ley interna.
+
+La Argentina fue el único país de la región que, en ese momento, previó constitucionalmente la posibilidad de ceder competencias a órganos supranacionales, dejando abierta la vía para no requerir en el futuro una nueva reforma constitucional en caso de avanzarse hacia ese modelo.
+
+\subsection{Qué mantuvo y qué modificó el Protocolo de Ouro Preto}
+
+El Protocolo de Ouro Preto (1994) mantuvo la misma estructura de base que el Tratado de Asunción: el \textbf{Consejo del Mercado Común (CMC)}, el \textbf{Grupo Mercado Común (GMC)} y la \textbf{Comisión de Comercio del Mercosur (CCM)} continuaron siendo los tres órganos con función decisoria, conservando las mismas características ya señaladas: intergubernamentalidad, decisión por consenso con presencia de todos los Estados, y representación directa de los gobiernos.
+
+\subsubsection{Cambios en la frecuencia de reuniones y en la presidencia}
+
+En la etapa de Asunción, el Consejo debía reunirse al menos una vez al año; con el Protocolo de Ouro Preto pasó a reunirse \textbf{dos veces al año}.
+
+La presidencia del Consejo del Mercosur es \textbf{alterna}: rota entre los Estados parte por orden alfabético y por períodos de un año (primero Argentina, luego Brasil, y así sucesivamente). Dado que el Mercosur posee personería jurídica propia y se presenta como bloque ante organismos internacionales —como las Naciones Unidas—, quien ejerce la representación del bloque en ese ámbito es justamente el presidente en ejercicio, denominado presidente ``pro tempore''.
+
+\subsubsection{La cuestión de las sedes y los nombres de los protocolos}
+
+Hasta el Protocolo de Ouro Preto, ninguno de los órganos del Mercosur tenía sede fija: las reuniones se organizaban en el país que ejercía la presidencia pro tempore, que debía encargarse de la logística, la seguridad y la agenda, con la colaboración de la Secretaría.
+
+\begin{note}
+Los protocolos del Mercosur suelen llevar el nombre del lugar donde fueron firmados, coincidente con el país que ejercía la presidencia pro tempore en ese momento. Así, el Protocolo de Ushuaia se firmó bajo presidencia pro tempore argentina, el Protocolo de Ouro Preto corresponde a Brasil, y el Protocolo de Las Leñas se firmó y desarrolló en Mendoza, Argentina.
+\end{note}
+
+\subsubsection{La Secretaría pasa a ser un órgano}
+
+Recién con el Protocolo de Ouro Preto, la Secretaría del Mercosur dejó de ser una simple oficina administrativa para adquirir estatus de \textbf{órgano}, con sede permanente en \textbf{Montevideo, Uruguay} —la única sede fija que existió durante mucho tiempo dentro de la estructura—.
+
+% TODO: contenido incompleto o ambiguo en las notas originales — la anécdota sobre la eventual capitalidad de Uruguay dentro del Mercosur constituye una apreciación personal del docente y no un dato normativo verificable a partir del apunte.
+Con el correr de las reformas posteriores, la Secretaría dejó de ser puramente administrativa para adquirir también una función técnica: no solo custodia los documentos, sino que puede advertir cuestiones vinculadas a la aplicación de las normas.
+
+\subsubsection{El rol de la Secretaría en la entrada en vigencia de las normas}
+
+Cada Estado debe ratificar internamente una norma del Mercosur mediante sus propios actos y leyes internas. La Secretaría recibe y reúne todas esas ratificaciones y, una vez completas, notifica que la norma entra en vigor simultáneamente para todos los Estados parte a partir de determinada fecha.
+
+\begin{important}
+En la puesta en funcionamiento de la norma, la Secretaría cumple un rol relevante en cuanto a su vigencia, función que se diferencia claramente de la meramente administrativa de recibir y archivar documentación.
+\end{important}
+
+% -----------------------------------------------------
+\section{Nuevos órganos: la Secretaría técnica, el PARLASUR y el Tribunal Permanente de Revisión}
+
+Una de las virtudes de la estructura definitiva adoptada en Ouro Preto fue precisamente no ser rígida: podía modificarse cada vez que resultara necesario, sin depender de plazos de caducidad como en la etapa anterior. De este modo pudieron crearse nuevos órganos —el Parlamento del Mercosur y el Tribunal Permanente de Revisión— sin necesidad de reformar todo el esquema institucional.
+
+\subsection{El Parlamento del Mercosur (PARLASUR)}
+
+En la estructura original solo existía la Comisión Parlamentaria Conjunta, de carácter meramente informativo. A través del \textbf{Tratado de Olivos} se dio un paso adicional con la creación del \textbf{Parlamento del Mercosur}, integrado por diputados que —a diferencia de los órganos tradicionales, todos intergubernamentales— representan directamente a la sociedad, a la población del Mercosur, y no a los gobiernos.
+
+\begin{important}
+El PARLASUR es el primer órgano del Mercosur que sale de la estructura intergubernamental tradicional. Sin embargo, en la práctica, los diputados llegan con una orientación política establecida por sus respectivos gobiernos y no se apartan totalmente de esa posición.
+\end{important}
+
+La implementación del Parlamento fue gradual: los primeros diputados fueron directamente designados por cada uno de los Estados, y con el tiempo se le fueron incorporando funciones adicionales.
+
+\subsubsection{Un punto clave: los actos del PARLASUR no son vinculantes}
+
+Los actos que emite el PARLASUR no son vinculantes para los Estados, a diferencia de las decisiones del Consejo o de la Comisión de Comercio. La función de dictar normas obligatorias sigue en manos del Consejo del Mercado Común, el Grupo Mercado Común y la Comisión de Comercio: si bien se modificó la denominación de los actos parlamentarios, en sustancia continúan siendo informes, dictámenes o proyectos de carácter no vinculante, sin que el PARLASUR constituya un órgano legislativo propiamente dicho.
+
+% -----------------------------------------------------
+\section{De la negociación directa al arbitraje: la solución de controversias en el Mercosur}
+
+\subsection{El Protocolo de Brasilia y el mecanismo original}
+
+Durante la vigencia del Tratado de Asunción no existía un órgano jurisdiccional dentro del Mercosur, sino un mecanismo de solución de controversias regulado por el \textbf{Protocolo de Brasilia}.
+
+\begin{formula}{Mecanismo escalonado del Protocolo de Brasilia}
+\begin{enumerate}
+    \item \textbf{Negociaciones directas} entre los Estados en conflicto.
+    \item Si las negociaciones directas fracasaban, intervenía el \textbf{Grupo Mercado Común} como mediador, pudiendo solicitar la colaboración técnica de la Comisión de Comercio para cuestiones específicas. El dictamen del Grupo, al igual que el de todo mediador, no era vinculante.
+    \item Si las partes no aceptaban la propuesta del Grupo Mercado Común, se recurría a un \textbf{arbitraje}.
+\end{enumerate}
+\end{formula}
+
+\subsection{Arbitraje ad hoc versus tribunal permanente}
+
+Un arbitraje ad hoc es aquel que se crea puntualmente para un caso concreto. A diferencia de un tribunal permanente, el arbitraje ad hoc se disuelve al terminar el caso; por lo tanto, ante un nuevo conflicto entre los mismos dos países sobre el mismo tema, debe nombrarse otro arbitraje, que no está obligado a decidir en el mismo sentido que el anterior.
+
+\begin{important}
+La falta de continuidad propia del arbitraje ad hoc impide lograr uniformidad de interpretación y aplicación de las normas del Mercosur, a diferencia de lo que ocurre con un tribunal permanente como el Tribunal de Justicia de la Unión Europea.
+\end{important}
+
+\subsection{La comparación con el Tribunal de Justicia de la Unión Europea}
+
+El objetivo principal del Tribunal de Justicia de la Unión Europea no es resolver el conflicto puntual entre partes —lo cual, en rigor, podría resolverlo la justicia interna de cada Estado— sino fijar cómo se interpreta y se aplica una norma, de manera uniforme para todos los Estados miembros. El Tribunal es el intérprete exclusivo del derecho comunitario: ningún otro órgano puede interpretar una norma de la Unión Europea, y sus decisiones son obligatorias no solamente para el caso concreto que las originó, sino para toda la Unión Europea.
+
+Esta lógica se diferencia del sistema de control de constitucionalidad difuso vigente en la Argentina, donde cada juez puede interpretar una norma de manera distinta sin que ello genere, por sí solo, ninguna consecuencia sistémica.
+
+\subsection{El Tribunal Permanente de Revisión del Mercosur}
+
+A través del Tratado de Olivos se creó el \textbf{Tribunal Permanente de Revisión (TPR)}, un órgano que no existía en la estructura originaria.
+
+\begin{definition}{Tribunal Permanente de Revisión}
+La doctrina prefiere hablar de ``tribunal arbitral'' antes que de ``tribunal jurisdiccional''. El calificativo ``permanente'' no implica que el Tribunal sesione todo el tiempo, sino que sus integrantes están designados de antemano y se convocan cuando se presenta un caso concreto, a diferencia del Tribunal de Justicia de la Unión Europea, que sí trabaja de modo continuo interpretando normas.
+\end{definition}
+
+La función original y principal del Tribunal Permanente de Revisión consiste en \textbf{revisar el laudo arbitral} dictado en la instancia anterior, dando así una instancia de revisión judicial que antes no existía para los arbitrajes del Mercosur. Como todo tribunal revisor, debe atenerse a lo que consta en el expediente: no puede ampliar el objeto del litigio, sino interpretar y verificar si se cumplió o no el derecho conforme lo alegado. Adicionalmente, el TPR tiene otras funciones, entre ellas intervenir en medidas cautelares.
+
+\begin{important}
+El Tribunal Permanente de Revisión no constituye una institución autónoma ni supralegal: conserva facultades bastante restringidas. La sola creación de un órgano no equivale a dotarlo de las funciones propias de un tribunal jurisdiccional pleno.
+\end{important}
+
+% =====================================================
+% CAPÍTULO 2 — LA UNIÓN EUROPEA
+% =====================================================
+\chapter{La Unión Europea: origen, pilares y supranacionalidad}
+
+\section{El Tribunal de Justicia de la Unión Europea como intérprete único del derecho comunitario}
+
+Retomando la comparación iniciada al tratar el Tribunal Permanente de Revisión del Mercosur, corresponde profundizar en el rol histórico del \textbf{Tribunal de Justicia de la Unión Europea (TJUE)} en la construcción del derecho comunitario.
+
+\subsection{Un derecho autónomo, ni público ni privado}
+
+Fue el propio Tribunal, a través de su jurisprudencia, el que fue estableciendo características fundamentales del derecho comunitario que no surgían expresamente ni del tratado marco ni de los tratados posteriores.
+
+\begin{definition}{Derecho comunitario}
+El derecho comunitario es autónomo: no pertenece ni al derecho público ni al derecho privado, sino que constituye derecho de la integración. Se basa en principios propios, entre ellos el de la \textbf{supremacía del derecho comunitario sobre el derecho interno}. Estas ideas no estaban escritas de ese modo en ningún tratado fundacional, sino que fue la interpretación del Tribunal la que las fue consolidando.
+\end{definition}
+
+\subsection{La función ``cuasi legisferante'' del Tribunal}
+
+Buena parte de la doctrina europea le reconoce al Tribunal una función que no le fue formalmente asignada: una función \textbf{cuasi legislativa} (o ``cuasi legisferante''). Esto se debe a que muchas normas terminan modificándose después de que el Tribunal las interpreta de determinada manera, lo cual demuestra su fuerte influencia real sobre la elaboración normativa del bloque, más allá de que formalmente su tarea sea solo interpretar.
+
+% -----------------------------------------------------
+\section{Los orígenes de la integración europea: CECA, EURATOM y la Comunidad Económica Europea}
+
+Existe un contraste de partida entre ambos procesos de integración: mientras que el Mercosur nació ya con la idea de constituir un mercado común y, según la evaluación expuesta en clase, ``no avanzó mucho más'' desde entonces, la Unión Europea tuvo un desarrollo completamente distinto, no enmarcado dentro de un espacio de integración más amplio como sí ocurre con el Mercosur dentro de ALADI.
+
+\subsection{Las causas fundacionales: reconstrucción económica y defensa común}
+
+La integración europea surgió de dos grandes necesidades históricas tras la Segunda Guerra Mundial: la \textbf{reconstrucción económica} de Europa y la organización de una \textbf{defensa común}.
+
+\subsubsection{La Comunidad Europea del Carbón y del Acero (CECA)}
+
+\begin{important}
+\textbf{Tratado de París (1951) — Constitución de la CECA:}
+
+El Tratado de París, de 1951, constituyó la Comunidad Europea del Carbón y del Acero (CECA), transfiriendo a órganos comunes de manera exclusiva la explotación, investigación, producción y comercialización del carbón y del acero.
+\end{important}
+
+Se eligieron justamente esos dos recursos por ser centrales tanto para la industria como para el armamento.
+
+\begin{example}{La magnitud de la reconstrucción de posguerra}
+Europa se encontraba devastada tras la guerra: ciudades como Londres y París habían sufrido bombardeos de gran magnitud, en una situación comparable a la de un desastre natural de proporciones extremas, donde la reconstrucción exige comenzar prácticamente desde cero. Por esa razón, la industria del acero y del carbón —fuente de energía predominante en ese momento— resultaba fundamental, lo que llevó a estructurar la CECA alrededor de dos objetivos claros: la industria y el rearme.
+\end{example}
+
+\subsubsection{EURATOM y la Comunidad Económica Europea (1957)}
+
+En 1957 se crearon dos comunidades adicionales: la \textbf{Comunidad Europea de la Energía Atómica (EURATOM)} y la \textbf{Comunidad Económica Europea (CEE)}. Esta última no se limitaba al libre tránsito de mercaderías: incluía también cuestiones monetarias y financieras, es decir, abarcaba mucho más que un simple mercado común.
+
+\subsection{De tres comunidades a una sola estructura institucional}
+
+A diferencia del Mercosur —donde lo económico y lo político quedaron separados en dos vías distintas—, la Unión Europea terminó creando una única estructura institucional que maneja todos sus asuntos, cualquiera sea el tema que se esté tratando en cada sesión.
+
+La CECA, como comunidad autónoma, desapareció con el tiempo: el carbón y el acero pasaron a ser una mercadería más dentro de la Comunidad Económica Europea, ya sin el carácter estratégico central que tenían en la posguerra, reemplazados por otras fuentes de energía y otros tipos de armamento.
+
+% -----------------------------------------------------
+\section{Los tres pilares de la Unión Europea y los límites reales de la supranacionalidad}
+
+Existe una idea muy extendida pero imprecisa: que la Unión Europea decide siempre por mayoría y que todos sus órganos son supranacionales. Esa afirmación solo es válida para una parte de sus competencias, lo que puede mostrarse mediante un esquema de tres columnas o ``pilares'' temáticos.
+
+\begin{important}
+No todas las relaciones que se dan dentro de la Unión Europea presentan la misma lógica de decisión: afirmar que la Unión Europea decide siempre por mayoría supranacional sería impreciso.
+\end{important}
+
+\subsection{Primer pilar: el ámbito económico, comercial y financiero}
+
+En esta primera columna se ubican la ex-CECA, EURATOM y la Comunidad Económica Europea (hoy Unión Europea), es decir, todo lo vinculado al libre tránsito de mercaderías, bienes, servicios, capitales y a la moneda única.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Pilar} & \textbf{Ámbito económico, comercial y financiero} \\
+\midrule
+Órganos que intervienen & Órganos comunes de la ex-CECA, EURATOM y la Comunidad Económica Europea \\
+Forma de decisión & Mayoría (absoluta o doble mayoría, según el tema) \\
+Carácter & Supranacional: la norma tiene prioridad frente al derecho interno \\
+\bottomrule
+\end{tabularx}
+\caption{Primer pilar de la Unión Europea}
+\end{table}
+
+Solo cuando los órganos sesionan tratando estos temas económicos, las facultades delegadas son verdaderamente exclusivas y la norma resultante tiene prioridad frente al derecho interno de cada Estado, decidiéndose por mayoría (absoluta o doble mayoría, según el tema).
+
+\subsection{Segundo pilar: seguridad interna y justicia}
+
+La segunda columna comprende todo lo relativo a la seguridad interna y la cooperación judicial, ámbito en el que se crearon dos organismos.
+
+\begin{example}{Europol y Eurojust}
+\textbf{Europol} es la policía europea, con jurisdicción en todo el territorio de la Unión Europea en materias como trata de personas o tráfico de drogas. Sus límites son claros: si un agente de Europol persigue a un traficante que cruza de un país a otro, no puede efectuar la detención por sí mismo del otro lado de la frontera; lo que sí puede hacer es dar aviso y trabajar en cooperación con la fuerza local.
+
+\textbf{Eurojust} es la agencia de cooperación judicial europea: no crea una justicia única, pero establece pautas de colaboración judicial internacional, como el reconocimiento de la competencia de un juez de un Estado en otro y la vigencia de resoluciones judiciales dentro de toda la Unión.
+\end{example}
+
+En este segundo pilar, las reglas de funcionamiento, las facultades y los presupuestos no se deciden por mayoría, sino que requieren acuerdo entre los Estados, precisamente porque se trata de materias vinculadas a la soberanía y al auxilio de la fuerza pública: ningún Estado cede fácilmente funciones de seguridad interna sin su consentimiento expreso.
+
+\subsection{Tercer pilar: política exterior y defensa común}
+
+En la tercera columna se ubica todo lo relativo a la política exterior y a la defensa común, ámbito en el que existe, por ejemplo, una oficina de satélites destinada al control del espacio aéreo.
+
+\begin{example}{La posición de la Unión Europea frente a la guerra entre Rusia y Ucrania}
+La posición de la Unión Europea frente a la invasión rusa a Ucrania ilustra el funcionamiento de este tercer pilar: las decisiones sobre qué política adoptar frente a un conflicto de esta naturaleza no se toman por mayoría, sino por consenso, debido a que están vinculadas a decisiones tan sensibles como la eventual participación en un conflicto bélico.
+\end{example}
+
+La Unión Europea trabajó, con dificultades, en la conformación de fuerzas armadas propias para una defensa común europea (no las fuerzas armadas de un país en particular, sino de la Unión), aunque durante mucho tiempo el aporte de soldados y de presupuesto fue voluntario, ya que este ámbito requiere \textbf{unanimidad} y no simple mayoría: ningún Estado puede ser obligado a delegar la defensa de su propia frontera.
+
+\subsection{Conclusión sobre los tres pilares}
+
+\begin{important}
+Cada vez que se habla de supranacionalidad y supralegalidad en la Unión Europea, normalmente se hace referencia al aspecto económico, pura y exclusivamente. En materia de seguridad interior o de defensa exterior, esa lógica ya no rige de la misma manera. La estructura de la Unión Europea es compleja porque no se limita a un aspecto económico, comercial o financiero: cuenta con una pluralidad de órganos, cada uno con su propia competencia, y en algunos casos se decide por mayoría y en otros por unanimidad o consenso.
+\end{important}
+
+\subsection{El límite de la supranacionalidad frente a la soberanía: casos de tensión}
+
+A continuación se desarrollan varios ejemplos en los que el discurso institucional europeo entra en tensión con decisiones concretas de los Estados miembros.
+
+\subsubsection{Las comisiones regionales y la crisis migratoria mediterránea}
+
+Existen comisiones regionales dentro de la estructura europea que atienden problemáticas específicas de determinadas zonas, como la \textbf{Comisión Regional del Mediterráneo}, que agrupa a los países con costa sobre ese mar, históricamente una vía de comercio y traslado de personas.
+
+\begin{example}{La crisis de los cayucos y la discusión sobre migración}
+España e Italia, por su condición de países peninsulares con costa mediterránea, fueron durante años los primeros receptores de embarcaciones que cruzaban de manera irregular. Se advierte una contradicción entre el discurso institucional —que declara que los migrantes son bienvenidos— y las dificultades reales que genera su recepción, en tanto se trata de personas que necesitan salud, vivienda y educación. Resulta preferible prometer menos y cumplirlo, evaluando luego la posibilidad de avanzar más, antes que declarar principios que después no pueden sostenerse en la práctica.
+\end{example}
+
+\subsubsection{El caso de la libertad religiosa en España}
+
+\begin{example}{Los símbolos religiosos en el espacio público}
+Como ejemplo de tensión cultural dentro de la Unión, puede citarse el debate en España sobre manifestaciones religiosas en la vía pública: por un lado, se cuestionaba a ciudadanos católicos por manifestar públicamente su fe cerca de una mezquita, mientras se defendía el derecho de otras comunidades religiosas a manifestar la propia. La Convención de Derechos Humanos reconoce el derecho de toda persona a manifestar sus ideas religiosas tanto en público como en privado. Este tipo de situaciones generó además cuestionamientos sobre el uso de símbolos religiosos en oficinas públicas, en relación con la libertad de expresión y de conciencia.
+\end{example}
+
+\subsubsection{El caso de la expulsión de comunidades gitanas de Francia}
+
+\begin{example}{Expulsión y libre tránsito en la Unión Europea}
+Ciertas disposiciones francesas dispusieron la expulsión de miembros de la comunidad gitana, lo que plantea un conflicto de derechos: si una persona de origen gitano y de nacionalidad, por ejemplo, polaca, es ciudadana de la Unión Europea, tiene en principio derecho a circular y permanecer en Francia. La justificación oficial de esas expulsiones fue calificada de discriminatoria, en la medida en que la pertenencia étnica no puede constituir por sí sola prueba de la comisión de un delito. Este caso muestra cuán compleja resulta en la práctica la aplicación del principio de libre tránsito dentro de la Unión.
+\end{example}
+
+Si bien para los países del Mercosur el libre tránsito de personas resulta una experiencia relativamente natural, para la Unión Europea acordar las pautas de libre tránsito y los derechos que corresponden a un ciudadano de un Estado miembro en otro Estado miembro fue y sigue siendo un proceso complejo, que depende del tiempo de permanencia y de requisitos específicos según cada caso.
+
+\begin{important}
+El principio de libre tránsito resulta central para la subsistencia del proyecto europeo: si dicho principio se viera afectado de manera sustancial, la propia continuidad de la Unión Europea quedaría comprometida.
+\end{important}
+
+\subsubsection{Política interna versus agenda internacional}
+
+Corresponde diferenciar entre cuestiones que forman parte de la agenda internacional en la que la Unión Europea participa como sujeto de derecho internacional (junto con otros actores, como el Mercosur o los Estados Unidos) y cuestiones que constituyen política interna propia de la Unión, como ciertas políticas ambientales o de protección a la ancianidad incorporadas en sus propios tratados.
+
+% TODO: contenido incompleto o ambiguo en las notas originales — las referencias a la disputa por las Islas Malvinas y a la mediación papal en el conflicto limítrofe con Chile por el Canal de Beagle fueron mencionadas por el docente como ejemplos adicionales de política exterior, sin desarrollo pormenorizado en el apunte original.
+
+Estos ejemplos ilustran la misma idea que atraviesa el desarrollo de la unidad: las decisiones de política exterior y de política interna deben analizarse de manera relacionada, sin asumir compromisos declarativos que luego no puedan sostenerse en la práctica.
+
+% =====================================================
+% CUADRO CORNELL — REPASO GENERAL
+% =====================================================
+\chapter{Cuadro Cornell — Repaso general}
+
+El siguiente cuadro reúne las preguntas clave que atraviesan ambas unidades temáticas, junto con su desarrollo correspondiente y una síntesis final integradora.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué distingue a un órgano intergubernamental de uno supranacional?} &
+El órgano intergubernamental representa directamente a los gobiernos de los Estados y decide por consenso (todos deben estar de acuerdo); el órgano supranacional recibe competencias delegadas y puede decidir por mayoría, con normas que tienen prioridad sobre el derecho interno. En el Mercosur, los tres órganos con poder decisorio (CMC, GMC, CCM) son intergubernamentales; en la Unión Europea, solo el pilar económico funciona con lógica supranacional. \\
+
+\textbf{¿Cómo evolucionó la estructura institucional del Mercosur?} &
+Nació de manera provisoria con el Tratado de Asunción (1991), con mandatos que caducaban en 1994. El Protocolo de Ouro Preto (1994) le dio carácter definitivo —aunque modificable— manteniendo el Consejo del Mercado Común, el Grupo Mercado Común y la Comisión de Comercio como órganos decisorios, y elevando a la Secretaría a la categoría de órgano, con sede en Montevideo. \\
+
+\textbf{¿Qué rol cumple el PARLASUR y por qué no es un órgano legislativo pleno?} &
+El Parlamento del Mercosur, creado por el Tratado de Olivos, representa a la ciudadanía y no a los gobiernos, siendo el primer órgano en salir de la lógica intergubernamental. Sin embargo, sus actos (dictámenes, proyectos) no son vinculantes: la función de dictar normas obligatorias sigue en manos del Consejo, el Grupo y la Comisión de Comercio. \\
+
+\textbf{¿Cómo se resuelven los conflictos en el Mercosur?} &
+El Protocolo de Brasilia estableció un mecanismo escalonado: negociaciones directas, mediación no vinculante del Grupo Mercado Común y, en caso de desacuerdo, arbitraje ad hoc (creado para cada caso y disuelto al finalizar, sin obligación de mantener criterios anteriores). El Tratado de Olivos creó el Tribunal Permanente de Revisión, que revisa el laudo arbitral y da mayor previsibilidad, aunque conserva facultades restringidas y no constituye un tribunal jurisdiccional pleno. \\
+
+\textbf{¿Por qué el Tribunal de Justicia de la Unión Europea tiene una función ``cuasi legislativa''?} &
+Porque es el intérprete exclusivo del derecho comunitario: sus sentencias son obligatorias para toda la Unión, no solo para el caso concreto, garantizando una interpretación uniforme del derecho. A través de su jurisprudencia estableció principios no escritos expresamente en los tratados, como la autonomía y la supremacía del derecho comunitario, por lo que la doctrina le reconoce una influencia real sobre la elaboración de normas. \\
+
+\textbf{¿Cómo y por qué nació la integración europea?} &
+Surgió tras la Segunda Guerra Mundial por la necesidad de reconstrucción económica y de organizar una defensa común. Comenzó con la Comunidad Europea del Carbón y del Acero (CECA, Tratado de París, 1951), centrada en dos recursos estratégicos para la industria y el armamento. En 1957 se sumaron la Comunidad Económica Europea (CEE) y la Comunidad Europea de la Energía Atómica (EURATOM), integrándose luego en una sola estructura institucional. \\
+
+\textbf{¿La Unión Europea decide siempre por mayoría y de forma supranacional?} &
+No. Solo en el pilar económico-comercial-financiero rige la lógica supranacional y la decisión por mayoría. En el pilar de seguridad interna y justicia (Europol, Eurojust) y en el pilar de política exterior y defensa común, las decisiones requieren acuerdo o unanimidad, porque involucran cuestiones de soberanía que los Estados no ceden fácilmente. \\
+
+\textbf{¿Qué tensión existe entre el discurso de integración y la práctica de los Estados?} &
+Los casos de migración mediterránea, libertad religiosa en España y expulsión de comunidades gitanas de Francia muestran que principios declarados en los tratados (libre tránsito, no discriminación, protección de derechos humanos) chocan con decisiones políticas internas condicionadas por factores sociales, económicos y culturales. El libre tránsito de personas, tan natural en el Mercosur, fue y sigue siendo un logro difícil de sostener en la Unión Europea. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Síntesis final:} La comparación entre ambos modelos de integración regional parte de objetivos similares pero construye arquitecturas institucionales muy distintas. El Mercosur, nacido con el Tratado de Asunción y consolidado con el Protocolo de Ouro Preto, mantuvo una estructura predominantemente intergubernamental: sus órganos decisorios (Consejo, Grupo y Comisión de Comercio) representan a los gobiernos y deciden por consenso, y aun sus innovaciones más recientes —el PARLASUR y el Tribunal Permanente de Revisión— conservan facultades limitadas, no vinculantes o restringidas a la revisión de lo ya decidido por un arbitraje ad hoc. La Unión Europea, en cambio, avanzó hacia una supranacionalidad real, pero acotada casi exclusivamente al ámbito económico, comercial y financiero, donde un Tribunal de Justicia único interpreta el derecho comunitario con efecto obligatorio para todos los Estados miembros y contribuye, de hecho, a moldear la propia normativa. Sin embargo, en materia de seguridad interna, justicia y política exterior —los otros dos pilares de su estructura— la Unión Europea vuelve a comportarse de un modo similar al Mercosur: decide por consenso o unanimidad, porque ningún Estado cede fácilmente su soberanía en cuestiones sensibles. Los casos de tensión analizados (crisis migratoria mediterránea, libertad religiosa en España, expulsión de comunidades gitanas de Francia) muestran que esta limitación no es meramente teórica: los principios declarados en los tratados de integración —libre tránsito, no discriminación, protección de derechos humanos— entran con frecuencia en conflicto con decisiones políticas internas condicionadas por factores sociales, económicos y culturales concretos. La lección metodológica que atraviesa toda la unidad, y que resulta transferible a cualquier análisis de derecho de la integración, es que el grado real de cesión de soberanía de un Estado a un organismo internacional nunca debe presumirse a partir del nombre de una institución o del texto declarativo de un tratado, sino que debe verificarse concretamente observando quién decide, cómo decide y qué efecto tiene esa decisión sobre el derecho interno.
+} \\
+
+\end{longtable}
+
+\end{document}

@@ -1,0 +1,822 @@
+%========================================================
+% DOCUMENTCLASS
+%========================================================
+\documentclass[12pt,oneside]{book}
+
+%========================================================
+% METADATOS
+%========================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Sistemas y Procesos de Integración Económica}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+%========================================================
+% PAQUETES
+%========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%========================================================
+% CONFIGURACIÓN
+%========================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%========================================================
+% COMANDOS
+%========================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%========================================================
+% ENTORNOS / CAJAS
+%========================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%========================================================
+% CONFIGURACIÓN FINAL
+%========================================================
+\renewcommand{\arraystretch}{1.25}
+
+%========================================================
+% DOCUMENTO
+%========================================================
+\begin{document}
+
+%--------------------------------------------------------
+% PORTADA
+%--------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\Large Clase N.º 1}
+
+\vspace{0.3cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es el camino para comprender.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho de la Integración'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%--------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------
+\tableofcontents
+\clearpage
+
+%--------------------------------------------------------
+% CONTENIDO
+%--------------------------------------------------------
+
+%========================================================
+\chapter[Introducción a los procesos de integración]{Introducción a los procesos de integración económica}
+%========================================================
+
+\section{Objeto de estudio}
+
+Este material desarrolla los distintos estadios o niveles del proceso de integración económica entre Estados: desde la zona de libre comercio, pasando por la unión aduanera y el mercado común, hasta la comunidad económica. Se analiza el caso concreto del \textbf{MERCOSUR} como ejemplo práctico, con sus avances, conflictos y desafíos.
+
+\section{Relevancia profesional}
+
+Comprender el Derecho de la Integración permite conocer el marco jurídico que regula el comercio, las inversiones y la circulación de personas entre países. Este conocimiento resulta esencial para:
+
+\begin{itemize}
+    \item asesorar a empresas que exportan o importan;
+    \item resolver conflictos de arbitraje internacional;
+    \item analizar la validez de normativas aduaneras;
+    \item defender derechos de trabajadores migrantes;
+    \item redactar o interpretar contratos internacionales.
+\end{itemize}
+
+El Derecho de la Integración es presentado como una de las ramas de mayor crecimiento profesional en el contexto de globalización económica.
+
+\section{Hilo conductor: la escalera de la integración}
+
+El desarrollo sigue la lógica de una escalera: cada peldaño representa un nivel más profundo de integración entre países.
+
+\begin{example}{Analogía del barrio}
+Supóngase un grupo de vecinos que deciden compartir recursos. Al principio solo eliminan el peaje entre las casas (\textbf{zona de libre comercio}); luego acuerdan cobrar lo mismo a quienes vienen de afuera (\textbf{unión aduanera}); después comparten el supermercado, los trabajos y los servicios (\textbf{mercado común}); hasta que finalmente llegan a tener una sola billetera (\textbf{comunidad económica}). Así funciona la integración entre Estados.
+\end{example}
+
+\section{Mapa de unidades}
+
+El material se organiza en cuatro bloques y trece unidades, cada una con una pregunta orientadora.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% Las unidades 1, 2, 10 y varias de las unidades 7 a 13 solo se desarrollan parcialmente en el cuerpo de las notas.
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}p{0.38\textwidth} >{\raggedright\arraybackslash}p{0.38\textwidth}@{}}
+\toprule
+\textbf{Unidad} & \textbf{Tema} & \textbf{Pregunta orientadora} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Unidad} & \textbf{Tema} & \textbf{Pregunta orientadora} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{3}{@{}l}{\textbf{Bloque I: Formas de integración económica (Unidades 1 a 4)}} \\
+\midrule
+1 & \textbf{Zona franca}: decisión unilateral del Estado. & ¿Por qué la zona franca no es integración? \\
+2 & \textbf{Unión fronteriza}: control aduanero bilateral simple. & ¿Qué la diferencia de la zona franca? \\
+3 & \textbf{Zona de libre comercio}: arancel intrazona cero, productos originarios. & ¿Cómo se logra el arancel cero entre miembros? \\
+4 & \textbf{Unión aduanera}: Arancel Externo Común (AEC) con terceros. & ¿Qué implica un arancel externo común? \\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{Bloque II: Mercado común y factores de producción (Unidades 5 a 8)}} \\
+\midrule
+5 & \textbf{Mercado común}: libre circulación de los cuatro factores productivos. & ¿Cuáles son los cuatro factores que circulan libremente? \\
+6 & \textbf{Libre circulación de mercaderías}: bienes en comercio sin aranceles ni barreras. & ¿Qué se entiende por mercadería en este contexto? \\
+7 & \textbf{Libre circulación de personas}: aspecto laboral y reválida de títulos. & ¿Qué aspectos de la persona regula el mercado común? \\
+8 & \textbf{Libre circulación de servicios y capitales}: inversiones, servicios profesionales, turismo. & ¿Por qué el libre tránsito de capitales genera conflictos? \\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{Bloque III: Comunidad y unión económica (Unidades 9 y 10)}} \\
+\midrule
+9 & \textbf{Comunidad económica}: moneda única, política financiera común. & ¿Qué se necesita para tener una moneda única? \\
+10 & \textbf{Unión económica y Unión Europea}: integración plena, derechos humanos incluidos. & ¿Cómo funciona el Banco Central Europeo? \\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{Bloque IV: MERCOSUR como caso práctico (Unidades 11 a 13)}} \\
+\midrule
+11 & \textbf{Estado actual del MERCOSUR}: zona de libre comercio y unión aduanera incompletas. & ¿Por qué el MERCOSUR es una integración incompleta? \\
+12 & \textbf{Conflicto de las bicicletas (Uruguay-Argentina)}: origen, arbitraje y valor agregado. & ¿Cómo se determina si un producto es ``industria nacional''? \\
+13 & \textbf{Armonización legislativa y derechos del consumidor}: estándares, reválidas, protocolo de la OIT. & ¿Por qué Brasil bloquea la norma de consumo del MERCOSUR? \\
+\end{longtable}
+
+\section{Repaso de conceptos previos}
+
+Como punto de partida se retoman los niveles iniciales de integración:
+
+\begin{itemize}
+    \item \textbf{Zona franca}: decisión unilateral del Estado; no constituye un ámbito de integración entre países.
+    \item \textbf{Unión fronteriza}: primer nivel de integración bilateral o multilateral.
+    \item \textbf{Zona de libre comercio}: primer estadio formal de integración económica.
+\end{itemize}
+
+%========================================================
+\chapter[Zona de libre comercio y unión aduanera]{Zona de libre comercio y unión aduanera}
+%========================================================
+
+\section{Zona de libre comercio}
+
+\subsection{Definición}
+
+\begin{definition}{Zona de libre comercio}
+Espacio de integración económica cuyo objetivo es establecer el \textbf{libre comercio de mercaderías o bienes} entre los Estados integrantes.
+\end{definition}
+
+\subsection{Mecanismo para alcanzar el libre comercio}
+
+El libre tránsito de bienes o mercaderías se alcanza mediante la disminución progresiva de lo que los Estados cobran, a la importación o a la exportación, sobre las mercaderías (aranceles e impuestos). Se aspira a que el tránsito sea libre, sin cobrar nada; por ello la reducción debe continuar hasta que el \textbf{arancel a la circulación de mercaderías entre los miembros del área sea cero}.
+
+\begin{important}
+El objetivo de la zona de libre comercio es que el arancel a la circulación de mercaderías entre los Estados miembros llegue a ser \textbf{cero}, mediante reducciones progresivas. Por eso se habla de \textbf{levantamiento de las barreras arancelarias} y de libre tránsito: se busca eliminar todo obstáculo al intercambio, es decir, el proteccionismo.
+\end{important}
+
+Esta reducción no puede hacerse de un día para el otro, porque afecta la \textbf{balanza económica presupuestaria} de cada Estado. Por ello se requiere, como mínimo, un organismo que se reúna, negocie, evalúe los efectos y actualice periódicamente la tabla de aranceles.
+
+\begin{example}{Actualización de la tabla arancelaria en el MERCOSUR}
+En el Boletín Oficial se publica aproximadamente cada tres meses la nueva tabla arancelaria del MERCOSUR, que se modifica periódicamente según las necesidades.
+\end{example}
+
+\subsection{El problema del origen de los productos: ``industria nacional''}
+
+Si un Estado no cobra aranceles a los demás miembros del área, surge la siguiente cuestión: ¿qué ocurre si se compran bienes a un tercer país (por ejemplo, China) a un arancel más conveniente y luego, como los demás miembros (por ejemplo, Brasil) no pueden cobrar aranceles, esos bienes se venden a costo cero dentro del área?
+
+La respuesta radica en dos elementos: existe un \textbf{arancel externo} que se cobra a los terceros países, y para que se dé la libre circulación los bienes deben ser \textbf{industria nacional}, es decir, \textbf{productos originarios del área}.
+
+\begin{important}
+Para circular libremente en el área de integración, los bienes deben ser \textbf{originarios del área}. Sin embargo, casi ningún producto es 100\,\% de fabricación nacional. Por eso la normativa establece \textbf{qué porcentaje del valor final} del producto puede corresponder a componentes extranjeros sin que pierda la calificación de ``industria nacional''. Esto se determina \textbf{producto por producto}.
+\end{important}
+
+\begin{example}{La vaca}
+Una vaca en pie que nació en la Argentina y se alimentó de pasto argentino es 100\,\% argentina. Pero si luego debe ser trozada y empacada, y el empaque y su mantenimiento provienen de otro Estado, o si fue vacunada con vacunas alemanas (por ejemplo, contra el virus de la vaca loca), cabe cuestionar si sigue siendo 100\,\% argentina.
+\end{example}
+
+\begin{example}{El automóvil}
+El motor de un auto proviene de Italia, pero los neumáticos, los frenos, los volantes, el chasis y el resto de los componentes se fabrican en el país. La cuestión es qué porcentaje del \textbf{valor final} del auto representa el componente extranjero, para determinar si el auto conserva la etiqueta de industria nacional.
+\end{example}
+
+\begin{important}
+El criterio no es la \textbf{cantidad de piezas} sino el \textbf{valor del producto}. Un auto tiene un solo motor y cuatro vidrios o cuatro neumáticos, pero lo relevante es cuánto valor aporta el componente extranjero.
+\end{important}
+
+\section{Caso práctico: el conflicto de las bicicletas entre Argentina y Uruguay}
+
+Este es uno de los conflictos más relevantes del MERCOSUR en relación con el principio de origen.
+
+\begin{example}{Conflicto de las bicicletas (Argentina vs.\ Uruguay)}
+Argentina tenía una gran industria nacional de elaboración de bicicletas. Uruguay comenzó a importar piezas separadas, desde China u otros países, y las ensamblaba localmente. El valor de las piezas sumadas era de 10.000 unidades, pero la bicicleta armada, pintada y funcionando valía 50.000 o 70.000, de modo que el valor agregado por Uruguay era muy superior al valor de la importación. Por ello, según la norma, no se estaría vulnerando el principio de industria nacional.
+
+Argentina argumentaba que Uruguay traía todas las piezas del exterior y solo las armaba. Uruguay se defendía sosteniendo que la norma fija el porcentaje sobre el valor agregado al producto, no sobre el valor de las piezas.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% La frase original del argumento argentino ("el hecho de que allá la fabriquen por dos mangos con 75") es ininteligible.
+
+El resultado fue que Uruguay vendía bicicletas a Argentina sin aranceles y más baratas que las de producción nacional, lo que afectó a la industria argentina del sector.
+
+\textbf{Resolución:} se inició un proceso de \textbf{arbitraje} ante el MERCOSUR. Uruguay se amparaba en la norma vigente y el caso se resolvió mediante acuerdo.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% El cuerpo del apunte indica que el caso se resolvió mediante acuerdo tras iniciarse un arbitraje; el cuadro Cornell original dice "se resolvió por arbitraje". Además, la frase sobre "la bandera delegada de la industria local era superior" es ambigua.
+\end{example}
+
+\textbf{Lección conceptual.} Estas cuestiones, que pueden parecer menores, se vinculan con el libre tránsito de mercaderías: las condiciones en que se produce ese tránsito importan porque el levantamiento de las barreras puede hacer quebrar la economía en un determinado rubro o ámbito. Toda esta normativa tiende a establecer los aranceles de circulación intrazona, que en teoría deben disminuir progresivamente hasta llegar a cero entre los Estados parte.
+
+\section{Unión aduanera}
+
+Una aduana se ocupa de las importaciones y exportaciones. En la zona de libre comercio el análisis se centraba en el ámbito intrazona; en la unión aduanera se incluyen además las importaciones y exportaciones con \textbf{terceros países}, y se establecen los aranceles que se cobrarán.
+
+\begin{definition}{Unión aduanera}
+Nivel que supera la zona de libre comercio al establecer un \textbf{Arancel Externo Común (AEC)}: todos los Estados miembros cobran la misma tasa arancelaria a los productos provenientes de terceros países (no miembros).
+
+\medskip
+\textit{Ejemplo:} cuando se traen las piezas de la bicicleta desde China, se cobra la tasa que fija el MERCOSUR, y todos los miembros cobran la misma.
+
+\medskip
+\textbf{Consecuencia:} si todos cobran lo mismo al exterior y el arancel intrazona es cero, la disparidad competitiva entre los Estados miembros ya no estará en los aranceles sino en los costos productivos internos (salarios, impuestos nacionales, eficiencia productiva).
+\end{definition}
+
+\subsection{Necesidad de un órgano específico}
+
+En la unión aduanera se requiere una estructura institucional más compleja. Existen dos posturas entre los autores:
+
+\begin{itemize}
+    \item Algunos sostienen que en este nivel se necesita un \textbf{órgano concreto, específico y totalmente independiente}: no una reunión de representantes de distintos países, sino una aduana del MERCOSUR que no dependa de las directrices ni de las influencias de ningún Estado en particular.
+    \item Otros consideran que basta con una \textbf{oficina de aduana MERCOSUR} dentro de la aduana, sin necesidad de un edificio propio, siempre que cuente con una estructura que funcione independientemente de la aduana nacional.
+\end{itemize}
+
+\subsection{Diferencias entre zona de libre comercio y unión aduanera}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.24\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Característica} & \textbf{Zona de libre comercio} & \textbf{Unión aduanera} \\
+\midrule
+Arancel intrazona & Cero (objetivo) & Cero (objetivo) \\
+Arancel a terceros países & Cada Estado lo fija libremente & AEC: todos cobran lo mismo \\
+Estructura institucional & Órgano negociador común & Órgano más independiente (aduana) \\
+\bottomrule
+\end{tabularx}
+\caption{Zona de libre comercio y unión aduanera.}
+\end{table}
+
+\subsection{Evolución histórica: ALALC y ALADI}
+
+En la época de la ALALC, el tratamiento del comportamiento frente a terceros países se dejaba para después de lograr el arancel cero intrazona. La ALADI, en cambio, partió de la necesidad de establecer una zona de libre comercio y, al mismo tiempo, un proyecto arancelario respecto de los terceros países.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% El apunte dice que la ALADI "ya no hizo los dos al mismo tiempo" y a continuación describe que arrancó con ambos aspectos; la redacción es ambigua.
+
+Se advirtió que ambos caminos deben recorrerse al mismo tiempo, porque no es posible estabilizar el mercado interno y la economía si no se sale de las crisis económicas.
+
+\subsection{Estado actual del MERCOSUR: integración incompleta}
+
+Al crearse, el MERCOSUR adopta determinadas formas: una zona de libre comercio y una unión fronteriza.
+
+\begin{important}
+El MERCOSUR es definido como una \textbf{zona de libre comercio incompleta} y una \textbf{unión aduanera incompleta}, porque:
+\begin{itemize}
+    \item no se llegó al arancel cero intrazona en la totalidad de los productos;
+    \item no se logró establecer el AEC para la totalidad de los bienes.
+\end{itemize}
+Faltan por cubrir áreas y aspectos en ambos niveles.
+\end{important}
+
+\section{Cuadro Cornell: zona de libre comercio y unión aduanera}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.26\textwidth} >{\raggedright\arraybackslash}p{0.64\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Qué es una zona de libre comercio?} &
+Es un espacio de integración económica cuyo objetivo es el libre comercio de mercaderías o bienes entre los Estados integrantes, logrando un arancel intrazona igual a cero mediante reducciones progresivas. \\[0.8em]
+
+\textbf{¿Por qué no se puede llegar al arancel cero de inmediato?} &
+Porque afecta la balanza económica presupuestaria de cada Estado. Se necesita un organismo que negocie, evalúe los efectos y actualice periódicamente la tabla de aranceles (en el MERCOSUR, aproximadamente cada tres meses). \\[0.8em]
+
+\textbf{¿Qué es un producto originario del área?} &
+Es aquel que cumple con el porcentaje de valor nacional exigido por la normativa del bloque. No se mide en cantidad de piezas sino en el porcentaje del valor final que representa el componente extranjero. Se establece producto por producto. \\[0.8em]
+
+\textbf{¿Qué fue el conflicto de las bicicletas?} &
+Uruguay importaba piezas de bicicleta desde China u otros países, las ensamblaba y las vendía a Argentina sin aranceles, más baratas que la producción nacional. Argentina lo cuestionó; Uruguay se amparó en que el valor agregado superaba el umbral legal. Se inició un arbitraje ante el MERCOSUR y el caso se resolvió mediante acuerdo. \\[0.8em]
+
+\textbf{¿Qué es el Arancel Externo Común (AEC)?} &
+Es la tasa arancelaria única que todos los Estados miembros de una unión aduanera cobran a los productos provenientes de terceros países. Elimina las diferencias de trato frente al mercado exterior; la disparidad competitiva pasa a estar en los costos productivos internos. \\[0.8em]
+
+\textbf{¿En qué se diferencian la zona de libre comercio y la unión aduanera?} &
+En ambas el objetivo intrazona es el arancel cero. En la zona de libre comercio cada Estado fija libremente el arancel a terceros países; en la unión aduanera todos cobran el mismo (AEC). La unión aduanera requiere además una estructura institucional más independiente (aduana). \\[0.8em]
+
+\textbf{¿Por qué el MERCOSUR es ``incompleto''?} &
+Porque no se alcanzó el arancel intrazona cero en todos los productos ni el AEC para la totalidad de los bienes. Hay acuerdo en algunos rubros pero no en los que afectan seriamente la economía de algún Estado miembro. \\
+\midrule
+
+\multicolumn{2}{p{\dimexpr0.90\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} La zona de libre comercio busca el arancel intrazona cero mediante reducciones progresivas y exige que los bienes sean originarios del área, criterio que se mide por el valor y no por la cantidad de piezas. La unión aduanera agrega el Arancel Externo Común frente a terceros países y una estructura institucional más independiente. El MERCOSUR es una zona de libre comercio y una unión aduanera incompletas.} \\
+\end{longtable}
+
+%========================================================
+\chapter[Mercado común]{Mercado común}
+%========================================================
+
+\section{Concepto y factores de producción}
+
+Al ascender en la escala se llega al mercado común. Ya no se trata solamente de la parte comercial: se habla de \textbf{economía de mercado}.
+
+\begin{definition}{Mercado común}
+Un mercado común aspira a la \textbf{libre circulación de los cuatro factores de producción económica}:
+\begin{enumerate}
+    \item \textbf{Mercaderías o bienes}: cosas susceptibles de apreciación económica que se pueden comprar o vender.
+    \item \textbf{Personas}: en su faz laboral (el factor trabajo).
+    \item \textbf{Servicios}: incluidos los servicios profesionales y los turísticos.
+    \item \textbf{Capitales}: inversiones de los socios y de terceros países.
+\end{enumerate}
+\end{definition}
+
+\section{Libre circulación de mercaderías}
+
+Un mercado común aspira a la libre circulación de mercaderías, es decir, a que circulen sin adicionarles impuestos, aranceles, retenciones ni otras cargas.
+
+Es \textbf{mercadería} aquello que puede comprarse o venderse, esto es, lo que es susceptible de apreciación económica.
+
+\begin{example}{El Obelisco}
+El Obelisco no sería parte de una norma del MERCOSUR porque no está en el comercio.
+\end{example}
+
+\section{Libre circulación de personas (factor trabajo)}
+
+La persona interesa al mercado común en tanto factor de producción, en su faz laboral. En un mercado común no se regula, por ejemplo, el matrimonio, porque no incide en la producción en un mercado. Lo que se regula respecto de la persona no es si es capaz o incapaz, sino si tiene \textbf{aptitud o capacidad legal para trabajar}.
+
+\begin{note}
+\textbf{Protocolo de Tucumán.} Regula específicamente el libre tránsito laboral en el MERCOSUR. A diferencia de la Unión Europea, que habla del libre tránsito de personas en sentido amplio, en el MERCOSUR el enfoque es exclusivamente laboral.
+\end{note}
+
+Para que el libre tránsito laboral sea efectivo deben regularse, entre otras, las siguientes cuestiones:
+
+\begin{itemize}
+    \item La norma de cada país no puede \textbf{discriminar} entre trabajadores de nacionalidad paraguaya, uruguaya, brasileña u otra, dado que existe libertad de tránsito. Se vinculan a esta cuestión, por ejemplo, los convenios jubilatorios.
+    \item No basta con establecer la igualdad de trato: es necesario definir qué se considera \textbf{salario} y qué tipo de actividad se considera \textbf{trabajo}. El protocolo se refiere al trabajo en relación de dependencia.
+    \item Es necesario \textbf{calificar}, término propio del Derecho Internacional: definir qué se entiende por trabajador y qué aspectos de esa persona pueden regularse dentro del espacio de integración.
+\end{itemize}
+
+\subsection{Documentación para el libre tránsito: el documento MERCOSUR}
+
+Para facilitar el libre tránsito puede establecerse un documento que garantice la identidad en igualdad de condiciones, como el Documento MERCOSUR República Argentina. Este documento habilita el libre tránsito entre Estados: no se necesitaría pasaporte para ir a Brasil o a Uruguay, porque la persona sería ciudadana mercosureña.
+
+\section{Libre circulación de servicios}
+
+\subsection{Reválida de títulos profesionales}
+
+Dentro de los servicios se encuentran los servicios profesionales, lo que plantea todas las cuestiones vinculadas a la \textbf{reválida de títulos}: el reconocimiento de un título obtenido en una universidad de otro Estado, si el profesional puede o no ejercer y hasta qué punto.
+
+\begin{important}
+Hasta el momento, en el MERCOSUR la reválida y el reconocimiento de títulos profesionales tienen efecto \textbf{únicamente académico}. Un profesional de otro Estado miembro puede venir a dar un posgrado y cobrar honorarios, pero no ejercer libremente la profesión.
+\end{important}
+
+Esta solución tiene su lógica: en medicina, por ejemplo, el cuerpo humano es el mismo en cualquier país, pero la cuestión es la \textbf{capacitación}. Además, existen diferencias entre universidades: la carrera de arquitectura en un país con actividad sísmica enfocará contenidos distintos que en un país sin esa realidad.
+
+\begin{example}{Modelo de la Unión Europea}
+Cuando la Unión Europea abordó la libre circulación de servicios y la reválida de títulos, lo resolvió exigiendo que, por ejemplo, abogados, arquitectos o ingenieros trabajaran durante determinada cantidad de años para un estudio. Todos los proyectos y trabajos debían estar firmados por un profesional de ese país, que garantizaba haber controlado el trabajo. Transcurridos esos años de ejercicio y práctica, se reconocía el derecho a ejercer la profesión en el país. Se mencionan aproximadamente seis años, como si se cursara nuevamente la carrera, pero trabajando bajo la guía y protección de un profesional recibido en el Estado. Así se hacía la reválida del título para el ejercicio profesional, y no solo con efecto académico.
+\end{example}
+
+\section{Libre circulación de capitales e inversiones}
+
+El libre tránsito de capitales se relaciona con las inversiones, tanto de los socios como de terceros países.
+
+\begin{example}{Impuesto país sobre la compra de reales}
+Ante la pregunta de si Argentina podía haber cobrado el impuesto país por la compra de reales brasileños, la respuesta es que no debería: no podría crearse un impuesto que limitara la libre circulación de capitales. Lo que sí puede exigirse es la declaración e imposición tributaria sobre ese capital.
+\end{example}
+
+\begin{example}{Sociedades offshore en Uruguay}
+Al estudiar sociedades en la parte general se plantea el tema de la sociedad offshore. Uruguay las tiene reguladas: su ley de sociedades permite constituir sociedades en Uruguay cuyo objeto no se desarrolla en el territorio uruguayo. Están especialmente reguladas y con beneficios.
+\end{example}
+
+\section{Servicios turísticos y derechos del consumidor}
+
+Para regular los servicios turísticos con libre tránsito de personas se necesita garantizar la \textbf{igualdad de trato} y el libre tránsito de las personas. El turismo de los propios nacionales solo traslada el dinero de un lugar a otro sin generar nuevos ingresos; para generar nuevos ingresos es necesario que el dinero provenga de otro país.
+
+\subsection{Derechos del consumidor: un desafío pendiente}
+
+Hasta el momento no se logró una normativa unificada de defensa del consumidor en el MERCOSUR:
+
+\begin{itemize}
+    \item La idea era tomar la ley más desarrollada de cada Estado y elevar los estándares.
+    \item Brasil tiene un Código de Defensa del Consumidor muy completo y se niega a bajar sus estándares.
+    \item Paraguay no puede garantizar el mismo nivel de derechos que Brasil exige.
+\end{itemize}
+
+Brasil rechaza establecer criterios más generales que bajen el nivel de protección, porque permitir el ingreso de productos de Paraguay con otro nivel de calidad y otro criterio de producción implicaría reducir los derechos de sus propios ciudadanos.
+
+\section{Cuadro Cornell: mercado común}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.26\textwidth} >{\raggedright\arraybackslash}p{0.64\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Cuáles son los cuatro factores de un mercado común?} &
+1) Mercaderías (bienes en el comercio), 2) Personas (en su faz laboral), 3) Servicios (incluidos profesionales y turísticos), 4) Capitales (inversiones internas y de terceros países). \\[0.8em]
+
+\textbf{¿Qué se entiende por mercadería?} &
+Todo aquello que se puede comprar o vender, susceptible de apreciación económica. Lo que no está en el comercio (como el Obelisco) queda fuera de la norma. \\[0.8em]
+
+\textbf{¿Qué aspecto de la persona regula el mercado común?} &
+La persona como factor de producción, en su faz laboral: su aptitud o capacidad legal para trabajar. No se regulan cuestiones como el matrimonio ni la capacidad o incapacidad en general. \\[0.8em]
+
+\textbf{¿Qué regula el Protocolo de Tucumán?} &
+Regula el libre tránsito laboral en el MERCOSUR. A diferencia de la Unión Europea, el enfoque es exclusivamente el aspecto laboral: la persona como factor de producción en relación de dependencia. \\[0.8em]
+
+\textbf{¿Cuál es el estado actual de la reválida de títulos en el MERCOSUR?} &
+Solo tiene efecto académico. Un profesional de otro Estado puede dar conferencias o posgrados pero no ejercer libremente su profesión. La Unión Europea resolvió esto exigiendo años de práctica supervisada por un profesional local. \\[0.8em]
+
+\textbf{¿Por qué Argentina no podía cobrar el impuesto país en la compra de reales?} &
+Porque el libre tránsito de capitales impide crear impuestos que limiten la circulación de dinero entre Estados miembros. Lo que sí se puede exigir es la declaración e imposición tributaria sobre ese capital. \\[0.8em]
+
+\textbf{¿Por qué Brasil bloquea la norma de consumo del MERCOSUR?} &
+Porque tiene un Código de Defensa del Consumidor muy avanzado. Aceptar un estándar más bajo implicaría bajar los derechos de sus propios ciudadanos al permitir el ingreso de productos con menores exigencias de calidad. \\
+\midrule
+
+\multicolumn{2}{p{\dimexpr0.90\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} El mercado común aspira a la libre circulación de cuatro factores de producción: mercaderías, personas en su faz laboral, servicios y capitales. En el MERCOSUR el libre tránsito de personas es exclusivamente laboral (Protocolo de Tucumán), la reválida de títulos tiene solo efecto académico, la libre circulación de capitales impide crear impuestos que la limiten, y la normativa unificada de consumo no se logró por la negativa de Brasil a bajar sus estándares.} \\
+\end{longtable}
+
+%========================================================
+\chapter[Comunidad económica y unión económica]{Comunidad económica y unión económica}
+%========================================================
+
+\section{Comunidad económica}
+
+En la comunidad económica no se habla solamente del mercado y de los factores de producción, sino de la economía en general.
+
+\begin{definition}{Comunidad económica}
+Añade al mercado común la integración económica plena, incluyendo:
+\begin{itemize}
+    \item \textbf{moneda única}, con banco central supranacional;
+    \item \textbf{política financiera común} (tasas de interés, reservas, emisión monetaria);
+    \item aspectos no solo comerciales sino también económicos y financieros de amplio alcance.
+\end{itemize}
+\end{definition}
+
+\subsection{La moneda única}
+
+Una moneda única requiere que varios países usen la misma moneda, pero además exige definir quién le da el valor, cuántas monedas se imprimen y quién decide. No se trata de reunir las reservas en un solo lugar: se exige a cada Estado que mantenga determinada reserva y que responda con determinados montos. Cada país conserva su propio banco central, que emite la moneda; pero el Banco Central Europeo determina cuánta moneda se emite, qué valor tendrá y qué tasa de interés puede cobrarse a nivel económico.
+
+\begin{important}
+\textbf{El Banco Central Europeo} es un ejemplo de institución supranacional que:
+\begin{itemize}
+    \item establece los parámetros de emisión monetaria para cada Estado miembro;
+    \item exige a cada Estado mantener determinado nivel de reservas;
+    \item fija tasas de interés mínimas y máximas para los préstamos;
+    \item puede sancionar a un Estado que emita moneda de más, afectando el valor del euro (imprimir de más desvaloriza el euro a nivel general).
+\end{itemize}
+\end{important}
+
+\subsection{La propuesta de dolarizar el MERCOSUR}
+
+En el debate académico se planteó la propuesta de dolarizar el MERCOSUR. Se objeta que no es posible estabilizar, como moneda de un espacio de integración, una moneda cuyo valor no se maneja. El valor de la moneda propia lo establece cada Estado, y cuando hay devaluación es porque el valor no responde a lo que realmente puede comprarse e intercambiarse.
+
+En una moneda única, la moneda debe valer lo mismo para todos los Estados miembros; no puede ocurrir que el peso argentino, el real y el peso uruguayo valgan cada uno algo distinto. El MERCOSUR no está en esa instancia y, según las notas, no llegará a ella: si no se puede manejar el valor de la propia moneda, no puede pretenderse manejar el de todas.
+
+\section{Unión económica y la Unión Europea}
+
+La denominación actual de este nivel es \textbf{unión económica}. Se trató de un cambio terminológico: ya no se trata de una economía en común, sino de una sola entidad; se habla de Europa como una totalidad.
+
+\begin{note}
+En el Tratado de Lisboa, la Unión Europea regula aspectos que van más allá de los factores de producción: derecho al ambiente sano, derecho al medio ambiente, protección a la ancianidad y derecho a morir dignamente. Ya no se considera a la persona solo desde una perspectiva productiva sino desde la perspectiva de los derechos humanos.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% El apunte lista por separado "derecho al ambiente sano" y "derecho al medio ambiente", lo cual parece redundante.
+\end{note}
+
+La Unión Europea avanzó a pasos agigantados sobre una base sólida. Se ilustra con una metáfora: al construir una casa, se hace la base y se espera como mínimo una semana antes de levantar, porque debe cimentarse y solidificarse; si se colocan ladrillos cuando la base aún no está seca, estos fallan. Es necesario, entonces, contar con una base muy concreta y sólida para avanzar.
+
+\subsection{Proporcionalidad entre integración y complejidad institucional}
+
+\begin{important}
+Existe una relación \textbf{directamente proporcional} con el grado de compenetración del área de integración. A mayor compromiso y profundidad del área de integración:
+\begin{itemize}
+    \item mayor cantidad y complejidad de órganos institucionales;
+    \item mayor complejidad del derecho que rige en esa área;
+    \item más funciones y facultades para esos órganos.
+\end{itemize}
+\end{important}
+
+\subsection{Sistemas de votación en las instituciones de integración}
+
+Si todos los países debieran ponerse de acuerdo en cada decisión, por ejemplo sobre el valor de la moneda, no se lograría consenso. Por ello algunas decisiones se toman por \textbf{mayoría}, mientras que, una vez establecido determinado marco, ciertas cuestiones (impositivas y otras) se resuelven por \textbf{unanimidad}, \textbf{consenso}, \textbf{mayorías especiales} o \textbf{doble mayoría}.
+
+\subsection{Otras experiencias de integración}
+
+La \textbf{Comunidad Andina} también cuenta con órganos supranacionales. Aunque no alcanza la perfección ni la complejidad de la Unión Europea, ya se encuentra dentro de un ámbito de comunidad económica, es decir, tiene órganos con carácter supranacional.
+
+\section{Cuadro Cornell: comunidad económica y unión económica}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.26\textwidth} >{\raggedright\arraybackslash}p{0.64\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Qué diferencia al mercado común de la comunidad económica?} &
+La comunidad económica incorpora, además de los cuatro factores, una moneda única y una política financiera común (banco central supranacional, regulación de emisión, tasas de interés). Es el caso de la Unión Europea con el Banco Central Europeo. \\[0.8em]
+
+\textbf{¿Qué se necesita para tener una moneda única?} &
+Que varios países usen la misma moneda y que se defina quién le da el valor, cuánta moneda se emite y quién decide. Cada Estado debe mantener determinada reserva; cada país conserva su banco central, pero un órgano supranacional determina la emisión, el valor y las tasas de interés. \\[0.8em]
+
+\textbf{¿Cómo funciona el Banco Central Europeo?} &
+Es un órgano supranacional que establece los parámetros de emisión de cada Estado, exige reservas, fija tasas de interés mínimas y máximas y puede sancionar a un Estado que emita moneda de más, porque eso desvaloriza el euro a nivel general. \\[0.8em]
+
+\textbf{¿Por qué no es viable dolarizar el MERCOSUR?} &
+Porque una moneda de un espacio de integración debe valer lo mismo para todos los miembros y su valor debe poder manejarse; si no se maneja el valor de la propia moneda, no puede pretenderse manejar el de una moneda ajena. \\[0.8em]
+
+\textbf{¿Qué es la unión económica y qué regula la Unión Europea en el Tratado de Lisboa?} &
+Es la denominación actual del nivel de integración plena; se trata de una sola entidad, no solo de una economía en común. El Tratado de Lisboa regula también aspectos como el ambiente sano, la protección a la ancianidad y el derecho a morir dignamente: la persona se considera desde los derechos humanos y no solo desde lo productivo. \\[0.8em]
+
+\textbf{¿Cuál es la relación entre integración y complejidad institucional?} &
+Es directamente proporcional: a mayor profundidad del área de integración, mayor cantidad y complejidad de órganos institucionales, mayor complejidad del derecho aplicable y más funciones y facultades para los órganos. \\[0.8em]
+
+\textbf{¿Cómo se toman las decisiones en los órganos de integración?} &
+Por mayoría en algunos casos; y, una vez establecido el marco, ciertas cuestiones se resuelven por unanimidad, consenso, mayorías especiales o doble mayoría. \\
+\midrule
+
+\multicolumn{2}{p{\dimexpr0.90\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} La comunidad económica agrega al mercado común una moneda única y una política financiera común, con instituciones supranacionales como el Banco Central Europeo. La unión económica, denominación actual del nivel de integración plena, incorpora la perspectiva de los derechos humanos. A mayor profundidad de la integración, mayor complejidad institucional y jurídica. La dolarización del MERCOSUR se descarta porque la moneda debe valer lo mismo para todos los miembros y su valor debe poder manejarse.} \\
+\end{longtable}
+
+%========================================================
+\chapter[Cuadro comparativo y repaso general]{Cuadro comparativo de los niveles de integración y repaso general}
+%========================================================
+
+\section{Cuadro comparativo general}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.17\textwidth}
+    >{\raggedright\arraybackslash}p{0.13\textwidth}
+    >{\raggedright\arraybackslash}p{0.07\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Nivel} & \textbf{Arancel intrazona} & \textbf{AEC} & \textbf{Libre circulación de factores} & \textbf{Política económica común} \\
+\midrule
+\textbf{Zona franca} & No aplica & No & No & No \\
+\textbf{Unión fronteriza} & Reducido & No & No & No \\
+\textbf{Zona de libre comercio} & Cero (objetivo) & No & Mercaderías & No \\
+\textbf{Unión aduanera} & Cero (objetivo) & Sí & Mercaderías & Arancel externo común \\
+\textbf{Mercado común} & Cero & Sí & Mercaderías, personas, servicios, capitales & Parcial \\
+\textbf{Comunidad económica} & Cero & Sí & Todos los factores & Moneda única, banco central \\
+\textbf{Unión económica} & Cero & Sí & Todos los factores y derechos humanos & Política común plena \\
+\bottomrule
+\end{tabularx}
+\caption{Niveles de integración económica.}
+\end{table}
+
+\section{Cuadro Cornell: repaso general}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.26\textwidth} >{\raggedright\arraybackslash}p{0.64\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Cómo se ordenan los niveles de integración y qué agrega cada uno?} &
+Zona franca (decisión unilateral, sin integración); unión fronteriza (primer nivel de integración bilateral o multilateral); zona de libre comercio (libre circulación de mercaderías, arancel intrazona cero); unión aduanera (agrega el AEC); mercado común (libre circulación de cuatro factores); comunidad económica (moneda única y política financiera común); unión económica (integración plena, con derechos humanos). \\[0.8em]
+
+\textbf{¿En qué estado se encuentra hoy el MERCOSUR?} &
+Es una zona de libre comercio y una unión aduanera incompletas: no se alcanzó el arancel cero intrazona ni el AEC en todos los productos, y persisten problemas pendientes como la reválida de títulos, los derechos del consumidor y la circulación de capitales. \\[0.8em]
+
+\textbf{¿Cuál es el principio rector del proceso de integración?} &
+A mayor integración, mayor complejidad institucional y jurídica. \\
+\midrule
+
+\multicolumn{2}{p{\dimexpr0.90\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} Se desarrollan los distintos estadios del proceso de integración económica, mostrando que cada nivel (zona franca, unión fronteriza, zona de libre comercio, unión aduanera, mercado común, comunidad económica y unión económica) representa un grado mayor de compromiso entre los Estados y, por ende, una mayor complejidad institucional y normativa. El eje analítico central es el MERCOSUR, actualmente clasificado como una zona de libre comercio y una unión aduanera incompletas, dado que no se alcanzó el arancel intrazona cero ni el Arancel Externo Común en la totalidad de los productos. El caso de las bicicletas ilustra la complejidad práctica del principio de origen: la determinación de qué porcentaje del valor final de un bien puede ser extranjero sin que pierda su calificación de ``industria nacional''. El mercado común agrega la libre circulación de los cuatro factores de producción, con problemas concretos pendientes de resolución en el MERCOSUR, como la reválida de títulos profesionales, los derechos del consumidor y la circulación de capitales. La comunidad económica, materializada en la Unión Europea, va más allá al incorporar moneda única, banco central supranacional y regulación de derechos que trascienden la dimensión meramente económica. El principio rector es que a mayor integración, mayor complejidad institucional y jurídica.} \\
+\end{longtable}
+
+\end{document}

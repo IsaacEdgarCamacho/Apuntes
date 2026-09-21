@@ -1,0 +1,656 @@
+% ============================================================
+% APUNTES UNIVERSITARIOS - DERECHO DE LA INTEGRACIÓN
+% Autor: Isaac Edgar Camacho Ocampo
+% Método Cornell - Documento autónomo y compilable
+% ============================================================
+
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% CODIFICACIÓN Y BABEL
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% ============================================================
+% MÁRGENES
+% ============================================================
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+% ============================================================
+% MATEMÁTICA
+% ============================================================
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% ============================================================
+% IMÁGENES
+% ============================================================
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% TABLAS
+% ============================================================
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% ============================================================
+% LISTAS
+% ============================================================
+\usepackage{enumitem}
+
+% ============================================================
+% COLORES Y CAJAS
+% ============================================================
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% ============================================================
+% ENCABEZADOS
+% ============================================================
+\usepackage{fancyhdr}
+
+% ============================================================
+% TIPOGRAFÍA
+% ============================================================
+\usepackage{ragged2e}
+
+% ============================================================
+% METADATOS INTERNOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Inmunidad del Estado, Solución de Conflictos\\y Jurisprudencia}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2025}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Apuntes de Derecho de la Integración},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% ÍNDICE - PROFUNDIDAD
+% ============================================================
+\setcounter{tocdepth}{2}
+
+% ============================================================
+% PÁRRAFOS
+% ============================================================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% ============================================================
+% LISTAS
+% ============================================================
+\setlist[itemize]{topsep=0.3em, itemsep=0.2em}
+\setlist[enumerate]{topsep=0.3em, itemsep=0.2em}
+
+% ============================================================
+% VIUDAS Y HUÉRFANAS
+% ============================================================
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% CAJAS ACADÉMICAS
+% ============================================================
+
+% Definición
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Importante
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Ejemplo
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Fórmula / Regla
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Ejercicio
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Nota
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% INICIO DEL DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el derecho internacional es el primer paso para operar con rigor en un mundo sin fronteras.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho de la Integración'', no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ============================================================
+% ÍNDICE
+% ============================================================
+\tableofcontents
+\thispagestyle{plain}
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+
+% ============================================================
+\chapter{Inmunidad del Estado}
+% ============================================================
+
+\section{El principio \textit{Par in parem non habet imperium}}
+
+El fundamento histórico de la noción de inmunidad estatal reside en un principio de origen medieval.
+
+\begin{definition}{Par in parem non habet imperium}
+``Entre iguales no hay autoridad.'' Principio formulado por \textbf{Bartolo de Sassoferrato} en el siglo XI, en el marco de la primera escuela estatutaria italiana. Significa que si dos estados son soberanos e iguales entre sí, ninguno puede quedar sometido a la jurisdicción del otro.
+\end{definition}
+
+Este principio se prolongó y reforzó durante los siglos XV y XVI con el surgimiento de las monarquías absolutas, período en el cual la figura del rey se identificaba con el propio Estado. En ese contexto, el soberano no podía ser cuestionado ni sometido a ningún tribunal, fuera este nacional o extranjero: cualquier acto emanado del monarca era, por definición, un acto del Estado.
+
+\section{Evolución histórica: de la inmunidad absoluta a la inmunidad relativa}
+
+Con el transcurso del tiempo, la concepción absoluta de la inmunidad fue cediendo ante nuevas realidades jurídicas y económicas. El primer quiebre conceptual se produjo cuando se aceptó que un Estado podía quedar sometido a las decisiones de una autoridad extranjera si él mismo había iniciado la acción ante esa jurisdicción. En ese supuesto, se entendía que mediaba una sumisión voluntaria: quien elige un foro para demandar no puede desconocer luego lo que ese foro resuelva.
+
+El paso siguiente fue más profundo: el reconocimiento de que el Estado no actúa siempre en ejercicio de su soberanía, sino que en ocasiones opera como un agente comercial, con un carácter idéntico al de un particular. Esta dualidad de roles es la base de la \textbf{inmunidad relativa}.
+
+\begin{table}[H]
+\centering
+\caption{Inmunidad absoluta versus inmunidad relativa}
+\begin{tabularx}{\textwidth}{
+    >{\bfseries\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Aspecto} & \textbf{Inmunidad absoluta} & \textbf{Inmunidad relativa} \\
+\midrule
+Período histórico & Hasta fines del siglo XIX / principios del XX & Desde mediados del siglo XX hasta la actualidad \\
+\addlinespace
+Fundamento & \textit{Par in parem non habet imperium}. Soberanía total & El Estado puede actuar con doble carácter: soberano o comercial \\
+\addlinespace
+Distinción de actos & No se realizaba distinción alguna. Todos los actos del Estado gozaban de inmunidad & Se distingue entre actos de imperio (soberanos) y actos de gestión (comerciales) \\
+\addlinespace
+Consecuencia & El Estado nunca podía ser demandado ante tribunales extranjeros & El Estado puede ser demandado por sus actos de gestión; los actos de imperio mantienen la inmunidad \\
+\addlinespace
+Postura argentina & Argentina fue más lenta en adoptar la distinción & Reconocida jurisprudencialmente a partir del fallo \textit{Manauta} (1994) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Actos de imperio y actos de gestión}
+
+La distinción entre ambas categorías constituye el núcleo operativo de la inmunidad relativa.
+
+\begin{definition}{Acto de imperio}
+Acto directamente vinculado a la soberanía del Estado. Son aquellos que solo puede realizar el Estado en cuanto tal, pues involucran el ejercicio de sus funciones esenciales. Gozan de inmunidad de jurisdicción.
+\end{definition}
+
+\begin{definition}{Acto de gestión}
+Acto que el Estado realiza sin comprometer su soberanía ni su existencia. Equivale a los que podría realizar un particular, tales como la celebración de contratos comerciales, contratos laborales o la emisión de deuda. No goza de inmunidad.
+\end{definition}
+
+El \textbf{test de distinción} consiste en preguntarse: ¿podría un particular realizar este acto? Si la respuesta es negativa, se trata de un acto de imperio; si es afirmativa, se trata de un acto de gestión.
+
+\begin{table}[H]
+\centering
+\caption{Criterios de distinción entre actos de imperio y actos de gestión}
+\begin{tabularx}{\textwidth}{
+    >{\bfseries\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Criterio} & \textbf{Actos de imperio} & \textbf{Actos de gestión} \\
+\midrule
+Naturaleza & Directamente vinculados a la soberanía del Estado & El Estado actúa sin comprometer su existencia o soberanía \\
+\addlinespace
+Test de distinción & ¿Podría un particular realizar este acto? No, porque es exclusivo del Estado soberano & ¿Podría un particular realizar este acto? Sí, es equivalente a una actividad privada \\
+\addlinespace
+Consecuencia jurídica & Goza de inmunidad de jurisdicción; no puede ser sometido a juicio (salvo aceptación voluntaria) & Cae la inmunidad; el Estado puede ser demandado ante juez competente \\
+\addlinespace
+Ejemplos & Defensa del territorio, límites geográficos, instalación de bases militares, dictado de normas soberanas & Compra de gas a Bolivia, explotación de Aerolíneas Argentinas, contratos laborales en embajadas, emisión de deuda pública \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+Los actos de imperio continúan gozando de inmunidad en el plano internacional. Ningún organismo internacional puede imponerle a un Estado soberano una decisión sobre materias que hacen al núcleo de su soberanía, salvo que ese Estado se haya sometido voluntariamente.
+\end{important}
+
+\subsection{Ejemplos prácticos de la distinción}
+
+\begin{example}{Discurso presidencial sobre recursos naturales en territorio en disputa}
+Un discurso del presidente de la Nación en el cual anuncia que sancionará a toda empresa que explote recursos naturales en territorio que el Estado considera propio, sin la autorización de la República Argentina, constituye un \textbf{acto de imperio}. Se trata de una manifestación directamente vinculada al ejercicio de la soberanía territorial.
+\end{example}
+
+\begin{example}{Compra de gas natural a Bolivia}
+Cuando el Estado argentino le compraba gas natural al Estado boliviano para suplir el déficit de provisión interna, ese acto era un \textbf{acto de gestión}. Aunque intervenían dos Estados soberanos, la operación consistía en la compraventa de una mercadería, actividad que también puede realizar un particular. La circunstancia de que ambas partes sean Estados no transforma por sí sola al acto en uno de carácter soberano.
+\end{example}
+
+\begin{example}{Aerolíneas Argentinas e YPF}
+La explotación de Aerolíneas Argentinas o de YPF, siendo empresas con participación estatal, constituye un \textbf{acto de gestión} en tanto esas empresas operan como personas de derecho privado. Sin embargo, si el Estado adquiriera aviones destinados específicamente a la defensa nacional y ese contrato no se cumpliera, la operación estaría intrínsecamente vinculada a la defensa de la soberanía y sería un \textbf{acto de imperio}.
+\end{example}
+
+\begin{example}{Deuda pública y bonos soberanos}
+Cuando un Estado se endeuda mediante la emisión de bonos en mercados internacionales, está realizando una actividad comercial. La emisión de deuda pública constituye un \textbf{acto de gestión}. Si el Estado no cumple con el pago, puede ser demandado por los acreedores.
+\end{example}
+
+\begin{example}{El Banco Central como garantía de un empréstito internacional}
+En un caso real analizado en clase, un presidente de la Nación puso como garantía de un préstamo internacional los bienes del Banco Central de la República Argentina. La consecuencia jurídica fue la siguiente: al ofrecer ese bien como garantía en un acto comercial, el Estado renunció a la inmunidad sobre ese bien específico. Si bien los bienes vinculados al ejercicio de la soberanía son normalmente inembargables, la voluntad expresa del Estado de ofrecerlos como garantía levanta esa protección. Es el mismo mecanismo que opera cuando una persona física levanta el bien de familia para darlo en garantía de un crédito bancario.
+\end{example}
+
+% ============================================================
+\chapter{Mecanismos de Solución de Conflictos entre Estados}
+% ============================================================
+
+\section{Clasificación general}
+
+Cuando un Estado no cumple con una norma del derecho de la integración —por ejemplo, si un acuerdo regional exime de aranceles a ciertos productos y un Estado miembro los cobra de todos modos—, se plantea la cuestión de cómo exigirle a un Estado soberano que acate esa norma. Los mecanismos de resolución de conflictos se clasifican en dos grandes categorías:
+
+\begin{table}[H]
+\centering
+\caption{Autocomposición versus heterocomposición}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Autocomposición} & \textbf{Heterocomposición} \\
+\midrule
+Las propias partes resuelven el conflicto sin intervención de un tercero decisor & Un tercero ajeno a las partes resuelve o propone solución al conflicto \\
+\addlinespace
+Ejemplo: negociaciones directas entre Estados & Ejemplos: mediación, conciliación, arbitraje, justicia ordinaria \\
+\addlinespace
+El cumplimiento depende de la voluntad de las partes & En el arbitraje, el laudo puede ser de cumplimiento forzoso; la mediación, en principio, no \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+En el ámbito internacional, la distinción entre autocomposición y heterocomposición adquiere una particularidad relevante: dado que los Estados no están obligados a someterse a ningún mecanismo externo de resolución, cuando un Estado acepta voluntariamente la intervención de un mediador o árbitro, el compromiso moral y político de cumplir con el resultado es tan fuerte que la mediación funciona en la práctica con efectos similares a los de la heterocomposición vinculante. Un Estado que desobedeciera la propuesta de un mediador que él mismo eligió enfrentaría consecuencias diplomáticas de envergadura.
+\end{important}
+
+\section{Autocomposición: las negociaciones directas}
+
+Las negociaciones directas son el mecanismo más elemental de resolución de conflictos entre Estados. Son las propias partes quienes buscan un acuerdo sin recurrir a un tercero. Su eficacia depende exclusivamente de la voluntad política de ambas partes.
+
+\section{Heterocomposición: mediación, conciliación, arbitraje}
+
+\begin{definition}{Mediación}
+Mecanismo de heterocomposición en el que un tercero neutral propone una solución al conflicto. Las partes no están jurídicamente obligadas a aceptarla, aunque en el plano internacional el compromiso político suele ser determinante para su cumplimiento.
+\end{definition}
+
+\begin{definition}{Arbitraje}
+Mecanismo de heterocomposición en el que un tercero —el árbitro— dicta un \textbf{laudo} que puede ser susceptible de cumplimiento forzoso. A diferencia de la mediación, el resultado del arbitraje puede tener fuerza vinculante.
+\end{definition}
+
+\begin{definition}{Conciliación}
+Mecanismo de heterocomposición en el que un tercero interviene para acercar a las partes y facilitar un acuerdo, sin imponer una solución.
+\end{definition}
+
+\section{Casos históricos de mediación y arbitraje internacional}
+
+\subsection{Canal de Beagle: la mediación papal}
+
+El conflicto entre Argentina y Chile por la soberanía sobre islas del Canal de Beagle involucraba el acceso al Océano Atlántico. La importancia estratégica de esas islas residía en que su posesión otorgaba al Estado titular una salida al Atlántico, evitando la circunnavegación por el Océano Pacífico. Dado que el Pacífico es el océano más extenso del mundo, el acceso atlántico tenía consecuencias comerciales y militares de primer orden.
+
+Argentina y Chile acordaron voluntariamente designar como mediador al \textbf{Papa Juan Pablo II}. La elección se fundó en la confianza que ambos Estados depositaban en la imparcialidad de esa figura. El resultado fue una propuesta de mediación que asignó determinados territorios e islas y otorgó a Chile acceso al canal. Ese acuerdo, alcanzado décadas atrás, constituye el fundamento de la situación territorial vigente en la zona.
+
+\begin{note}
+La distinción entre mediación y arbitraje es relevante en este caso: la propuesta papal no era un laudo susceptible de ejecución forzosa, sino una propuesta que los Estados podían aceptar o rechazar. Dado que ambos países la aceptaron voluntariamente, el cumplimiento fue pleno. En materia de actos soberanos, la aceptación o rechazo de una propuesta de mediación constituye en sí misma un ejercicio de la soberanía del Estado.
+\end{note}
+
+\subsection{Límites cordilleranos: Perito Moreno y Gran Bretaña como árbitro}
+
+El conflicto limítrofe entre Argentina y Chile en la Cordillera de los Andes se dirimió mediante arbitraje, con Gran Bretaña como árbitro. El conflicto surgía de la ambigüedad de los dos criterios internacionales para trazar fronteras en zonas montañosas:
+
+\begin{table}[H]
+\centering
+\caption{Criterios de delimitación de fronteras cordilleranas}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Criterio de los altos picos} & \textbf{Criterio del curso de las aguas} \\
+\midrule
+Se traza una línea imaginaria entre los picos más altos de cada bloque montañoso. El territorio al que ``apunta'' el pico más alto corresponde al Estado respectivo & Se determina hacia qué lado drena el agua del deshielo glaciar. Si drena hacia Argentina, el territorio es argentino; si drena hacia Chile, es chileno \\
+\addlinespace
+Problema: en ciertas zonas no estaba claro cuál era el pico más alto & Problema: en ciertas zonas el curso de las aguas era ambiguo \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Francisco Pascasio Moreno} (\textit{Perito Moreno}), naturalista y director del Museo de Ciencias Naturales de La Plata, fue designado para representar los intereses argentinos. Su labor consistió en recorrer exhaustivamente la zona en disputa, elaborar cartografía detallada e identificar con precisión los sectores en los que, aplicando el criterio del drenaje de aguas, el árbitro inglés probablemente fallaría a favor de Chile.
+
+En esas zonas estratégicas, el gobierno argentino instaló \textbf{destacamentos policiales o militares, una oficina de correos y una escuela}. De ese modo ejercía soberanía efectiva sobre el territorio. La lógica subyacente era anticiparse al argumento que Gran Bretaña podría utilizar: el ejercicio efectivo y continuado de soberanía sobre un territorio constituye, en el derecho internacional, uno de los fundamentos más sólidos para reclamar su pertenencia.
+
+Gracias a esta estrategia, Argentina conservó sectores patagónicos que de otro modo habría perdido. Como reconocimiento, el Estado argentino le donó tierras a Perito Moreno, y él las donó al propio Estado para que se constituyera un parque nacional.
+
+% ============================================================
+\chapter{Inmunidad de Ejecución y Jurisprudencia}
+% ============================================================
+
+\section{Distinción entre inmunidad de jurisdicción e inmunidad de ejecución}
+
+La caída de la inmunidad de jurisdicción —es decir, la posibilidad de llevar a un Estado a juicio— no implica necesariamente la caída de la inmunidad de ejecución. Estas son dos inmunidades conceptualmente distintas.
+
+\begin{definition}{Inmunidad de jurisdicción}
+Prerrogativa del Estado extranjero de no ser sometido a los tribunales de otro Estado. Cuando se pierde esta inmunidad, el Estado puede ser llevado a juicio.
+\end{definition}
+
+\begin{definition}{Inmunidad de ejecución}
+Prerrogativa del Estado extranjero de que sus bienes no sean embargados ni ejecutados forzosamente, incluso si fue condenado en juicio. Protege los bienes del Estado de la acción coactiva de los tribunales extranjeros.
+\end{definition}
+
+\begin{important}
+La distinción entre ambas inmunidades genera una consecuencia jurídica fundamental: en los sistemas que no hacen depender automáticamente la ejecución de la jurisdicción, una sentencia condenatoria contra un Estado que no puede ser ejecutada se convierte en una norma de cumplimiento voluntario. Desde el punto de vista del razonamiento jurídico, una norma carente de coacción no es una norma jurídica en sentido estricto, sino una norma moral. Distintos países adoptan posiciones diferentes al respecto: algunos consideran que la caída de la inmunidad de jurisdicción arrastra necesariamente la de ejecución; otros —como la Argentina, según la postura adoptada por la Corte Suprema— los tratan como institutos independientes.
+\end{important}
+
+\section{Bienes ejecutables del Estado}
+
+No todos los bienes del Estado son susceptibles de embargo o ejecución. El criterio determinante es si el bien está afecto al ejercicio de la soberanía:
+
+\begin{itemize}
+    \item \textbf{Bienes no ejecutables:} aquellos vinculados al ejercicio de la soberanía estatal (edificios de gobierno, bienes militares, reservas del Banco Central). Aunque el Estado haya perdido la inmunidad de jurisdicción, estos bienes mantienen la protección de la inmunidad de ejecución.
+    \item \textbf{Bienes ejecutables:} aquellos vinculados a actos de gestión, siempre que el Estado haya renunciado expresamente a la inmunidad sobre ellos —por ejemplo, poniéndolos como garantía contractual—.
+\end{itemize}
+
+\begin{important}
+En la práctica profesional, cuando se contrata con un Estado, la estrategia más eficaz para garantizar el cobro consiste en exigir que el Estado coloque bienes específicos como garantía de cumplimiento. Al hacerlo, el Estado renuncia a la inmunidad de ejecución sobre esos bienes concretos, haciéndolos embargables ante un eventual incumplimiento. Las empresas multinacionales aplican sistemáticamente esta estrategia en sus contratos con Estados.
+\end{important}
+
+\subsection{Caso de la Fragata Libertad}
+
+La fragata ARA Libertad de la Armada Argentina fue retenida en Ghana por un acreedor de bonos de deuda soberana argentina. Los hechos se desarrollaron de la siguiente manera: la fragata realizó una escala por desperfectos técnicos y requirió reparaciones en un astillero local. Quien prestó el servicio de reparación invocó su \textbf{derecho de retención} sobre el bien hasta tanto se le abonara el trabajo realizado. Sin embargo, el fundamento jurídico de fondo de la retención era más complejo: Argentina había renunciado a la inmunidad de ese bien en algún contrato vinculado a la deuda soberana.
+
+\begin{note}
+El derecho de retención en el caso de la Fragata Libertad fue el instrumento formal, pero la causa profunda era la renuncia previa a la inmunidad sobre el bien derivada de acuerdos contractuales celebrados con acreedores de la deuda pública. Un astillero que repara un buque puede invocar retención sobre el bien reparado hasta cobrar sus honorarios; sin embargo, que ese bien pueda ser finalmente objeto de una ejecución judicial depende de si el Estado ha renunciado previamente a su inmunidad.
+\end{note}
+
+\section{El caso Manauta --- Análisis jurisprudencial}
+
+\begin{definition}{Caso Manauta c/ Embajada de la Federación Rusa}
+Fallo de la Corte Suprema de Justicia de la Nación Argentina. Constituye el hito jurisprudencial que consolidó en Argentina el tránsito de la inmunidad absoluta a la inmunidad relativa de los Estados extranjeros.
+\end{definition}
+
+\subsection{Hechos}
+
+La Embajada de la Unión de Repúblicas Socialistas Soviéticas (URSS) en Argentina tenía empleados contratados localmente en su sección de prensa. Cuando se produjo el despido de ese sector, los trabajadores reclamaron salarios caídos, indemnización y aportes previsionales no ingresados.
+
+\subsection{Complejidad subjetiva: URSS y Federación Rusa}
+
+La demanda se interpuso contra la \textbf{Federación Rusa}, no contra la URSS. El problema era que los trabajadores habían sido contratados por la URSS, que al momento del juicio ya no existía como Estado. Con la caída del Muro de Berlín, los países que integraban el bloque soviético —Polonia, Checoslovaquia, Alemania Oriental, Ucrania, entre otros— declararon su independencia, y la URSS se disolvió. En el mismo edificio donde funcionaba la URSS continuó operando Rusia, pero ello no implicaba automáticamente que Rusia asumiera las obligaciones laborales de la URSS.
+
+La primera defensa de Rusia fue la \textbf{falta de legitimación pasiva}: los empleados habían trabajado para la URSS, no para Rusia. El fallo Manauta desarrolla un análisis político-jurídico para justificar por qué Rusia sí era continuadora de la URSS a los efectos de asumir esas obligaciones.
+
+\subsection{El régimen legal vigente al momento del caso}
+
+\begin{definition}{Ley 1285 (año 1958)}
+Norma argentina que establecía que los Estados extranjeros gozaban de inmunidad de jurisdicción, salvo que aceptaran voluntariamente someterse a los tribunales argentinos. El silencio ante la notificación de una demanda no podía interpretarse como aceptación. La aceptación debía ser expresa.
+\end{definition}
+
+Bajo este régimen, la situación era la siguiente: la embajada rusa fue notificada reiteradamente de la demanda y guardó silencio. Dado que la ley exigía aceptación expresa, el silencio no podía interpretarse como sumisión voluntaria. Los tribunales de primera instancia y la Cámara de Apelaciones declararon la incompetencia de los jueces argentinos.
+
+\subsection{La decisión de la Corte Suprema}
+
+El caso llegó a la Corte Suprema de Justicia de la Nación. El tribunal resolvió adoptando la \textbf{inmunidad relativa}: en el marco de las relaciones internacionales contemporáneas, los Estados no gozan de inmunidad absoluta, sino que es necesario distinguir entre actos de imperio y actos de gestión. Los actos de imperio continúan amparados por la inmunidad; los actos de gestión, no.
+
+El contrato laboral entre la embajada y sus empleados fue calificado como un \textbf{acto de gestión}. Por consiguiente, la Federación Rusa podía ser sometida a la jurisdicción argentina.
+
+\begin{note}
+Una cuestión procesal adicional que surge del fallo es la siguiente: si el empleador era Rusia y el contrato se ejecutaba en la embajada —que es territorio ruso—, los criterios ordinarios de competencia habrían indicado como juez competente al de Rusia. La solución de atribuir competencia a los tribunales argentinos se fundó en la necesidad de proteger al trabajador en el lugar donde se encontraba más vulnerable. Esta solución, aplicada jurisprudencialmente, fue posteriormente receptada por el Código Civil y Comercial de la Nación como regla de competencia internacional en materia laboral.
+\end{note}
+
+\subsection{Impacto normativo posterior: Ley 24.488}
+
+% TODO: el apunte menciona la Ley 24.488 en el índice temático pero no desarrolla su contenido de manera explícita en el cuerpo de la clase. La referencia surge del cuadro Cornell y del índice, sin mayor desarrollo en la transcripción.
+
+A partir del fallo Manauta, se sancionó la \textbf{Ley 24.488}, que codificó el criterio de inmunidad relativa adoptado por la Corte Suprema, estableciendo legalmente la distinción entre actos de imperio y actos de gestión en materia de inmunidad de jurisdicción de los Estados extranjeros en Argentina.
+
+% ============================================================
+% CUADRO CORNELL
+% ============================================================
+\chapter{Repaso --- Cuadro Cornell}
+
+\begin{table}[H]
+\centering
+\caption{Método Cornell --- Derecho de la Integración: Inmunidad del Estado, Solución de Conflictos y Jurisprudencia}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / Palabras clave} &
+\textbf{Notas / Respuestas} \\
+\midrule
+
+\textbf{¿Qué establece el principio \textit{Par in parem non habet imperium}?} &
+Formulado por Bartolo de Sassoferrato en el siglo XI: entre estados soberanos iguales no existe autoridad de uno sobre otro. Históricamente fundó la doctrina de la inmunidad absoluta del Estado. \\
+
+\addlinespace
+
+\textbf{¿En qué consiste la inmunidad absoluta?} &
+Doctrina según la cual ningún Estado puede ser sometido a la jurisdicción de otro, independientemente del tipo de acto realizado. Asociada a las monarquías absolutas, en las que el rey era el Estado y sus actos no podían ser cuestionados ni en el propio Estado ni en el extranjero. \\
+
+\addlinespace
+
+\textbf{¿Cuál es la diferencia entre acto de imperio y acto de gestión?} &
+\textbf{Acto de imperio:} directamente vinculado a la soberanía (defensa, límites territoriales, normas soberanas). Goza de inmunidad. Test: ¿podría un particular realizarlo? No. \textbf{Acto de gestión:} equivalente a uno que podría realizar un particular (compraventa, contrato laboral, deuda pública). No goza de inmunidad. \\
+
+\addlinespace
+
+\textbf{¿Qué es la autocomposición?} &
+Mecanismo en el que las propias partes del conflicto resuelven el litigio sin intervención de un tercero decisor. Ejemplo: negociaciones directas entre Estados. El cumplimiento depende de la voluntad de las partes. \\
+
+\addlinespace
+
+\textbf{¿Qué es la heterocomposición?} &
+Mecanismo en el que un tercero ajeno a las partes interviene para resolver o proponer solución al conflicto. Incluye mediación, conciliación, arbitraje y justicia ordinaria. En el plano internacional, adquiere carácter cuasi-vinculante dado el compromiso político implícito en la sumisión voluntaria del Estado. \\
+
+\addlinespace
+
+\textbf{¿Qué diferencia hay entre mediación y arbitraje?} &
+\textbf{Mediación:} el tercero propone, pero las partes no están jurídicamente obligadas a aceptar. \textbf{Arbitraje:} el árbitro dicta un laudo que puede ser susceptible de cumplimiento forzoso. En materia de actos de soberanía, los Estados suelen cumplir las propuestas de mediación por las consecuencias diplomáticas del incumplimiento. \\
+
+\addlinespace
+
+\textbf{¿Cuál fue la estrategia de Perito Moreno en el conflicto limítrofe con Chile?} &
+Francisco Pascasio Moreno recorrió los territorios en disputa entre Argentina y Chile (con árbitro inglés). Identificó las zonas donde Argentina perdería por el criterio del drenaje de aguas y alertó al gobierno. El Estado instaló destacamentos policiales, correos y escuelas para demostrar ejercicio efectivo de soberanía. Gracias a su labor, Argentina conservó sectores patagónicos estratégicos. \\
+
+\addlinespace
+
+\textbf{¿Qué diferencia hay entre inmunidad de jurisdicción e inmunidad de ejecución?} &
+\textbf{Inmunidad de jurisdicción:} el Estado no puede ser llevado a juicio. \textbf{Inmunidad de ejecución:} incluso condenado en juicio, no pueden ejecutarse sus bienes forzosamente. En Argentina, la Corte Suprema las trata como institutos independientes. Otros países consideran que la caída de la primera arrastra automáticamente a la segunda. \\
+
+\addlinespace
+
+\textbf{¿Todos los bienes del Estado son ejecutables?} &
+No. Los bienes afectos al ejercicio de la soberanía (edificios de gobierno, bienes militares, reservas del Banco Central) no son ejecutables. Sí pueden ejecutarse los bienes vinculados a actos de gestión, siempre que el Estado haya renunciado a la inmunidad sobre ellos, por ejemplo al ofrecerlos como garantía contractual. \\
+
+\addlinespace
+
+\textbf{¿Qué fue el caso Manauta y qué cambió?} &
+Empleados de la embajada soviética (luego Federación Rusa) en Argentina reclamaron indemnizaciones laborales. La Ley 1285/58 establecía inmunidad absoluta del Estado extranjero. La Corte Suprema adoptó la inmunidad relativa: los contratos laborales son actos de gestión, por lo que el Estado extranjero puede ser demandado en Argentina. Hito jurisprudencial que consolidó el tránsito de la inmunidad absoluta a la relativa. \\
+
+\addlinespace
+
+\textbf{¿Por qué las multinacionales exigen bienes en garantía al contratar con Estados?} &
+Porque no basta con incluir cláusulas de jurisdicción. Al exigir que el Estado ponga bienes específicos en garantía, el Estado renuncia a la inmunidad de ejecución sobre esos bienes, haciéndolos embargables si incumple el contrato. Esto garantiza la posibilidad efectiva de cobrar, y no solo de obtener una sentencia favorable. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:}
+La clase desarrolló el eje central de la solución de conflictos entre estados en el derecho de la integración, partiendo del principio histórico \textit{par in parem non habet imperium}, que fundamentó la inmunidad absoluta del Estado. Ese paradigma evolucionó hacia una inmunidad relativa que distingue entre actos de imperio ---directamente vinculados a la soberanía, siempre inmunes--- y actos de gestión ---equivalentes a los de un actor privado, no inmunes---. Sobre esta base se construyen los mecanismos de resolución: la autocomposición (negociaciones directas) y la heterocomposición (mediación, arbitraje, justicia), que en el plano internacional adquieren características peculiares dado el carácter voluntario de la sumisión estatal. Los casos históricos analizados ---Canal de Beagle con mediación papal, límites cordilleranos con la estrategia de Perito Moreno, deuda soberana y Fragata Libertad--- ilustran cómo estos principios operan en la práctica. El fallo \textit{Manauta} es el hito jurisprudencial que consolidó en Argentina la inmunidad relativa. Finalmente, la distinción entre inmunidad de jurisdicción e inmunidad de ejecución, y la posibilidad de renuncia a esta última mediante garantías contractuales, tiene aplicación práctica inmediata para todo abogado que negocie contratos con Estados.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}

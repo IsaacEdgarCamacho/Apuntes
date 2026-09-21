@@ -1,0 +1,964 @@
+%==============================================================================
+% APUNTES DE DERECHO DE LA INTEGRACIÓN
+% Documento autónomo: no requiere plantilla, .sty ni .cls externos.
+% Compilar con: pdflatex (dos pasadas, para índice y referencias)
+%==============================================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================================
+% METADATOS
+%==============================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Apuntes de Derecho de la Integración}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================================
+% PAQUETES
+%==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+% Matemática
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% Imágenes
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Tablas
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Listas
+\usepackage{enumitem}
+
+% Colores y cajas
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% Encabezados
+\usepackage{fancyhdr}
+
+% Control tipográfico
+\usepackage{ragged2e}
+
+% Hipervínculos y metadatos PDF (se carga al final del bloque de paquetes)
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true,
+    plainpages=false
+]{hyperref}
+
+%==============================================================================
+% CONFIGURACIÓN
+%==============================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+% Control de viudas y huérfanas
+\clubpenalty=10000
+\widowpenalty=10000
+
+% Encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% En documentos de una sola cara, el título del capítulo se guarda en \leftmark
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+
+% Páginas iniciales de capítulo: estilo limpio
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================================
+% COMANDOS
+%==============================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%==============================================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+%==============================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    before upper={\setlength{\parskip}{0.5em}},
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    before upper={\setlength{\parskip}{0.5em}},
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    before upper={\setlength{\parskip}{0.5em}},
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    before upper={\setlength{\parskip}{0.5em}},
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    before upper={\setlength{\parskip}{0.5em}},
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    coltitle=black,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    before upper={\setlength{\parskip}{0.5em}},
+    arc=2mm
+}
+
+%------------------------------------------------------------------------------
+% Cuadro Cornell: tabla real (columna izquierda estrecha, derecha amplia,
+% última fila a ancho completo con el resumen).
+% Uso: \begin{cornell} \cornellitem{Pregunta}{Respuesta} ... \cornellresumen{Texto} \end{cornell}
+%------------------------------------------------------------------------------
+\newcommand{\cornellheader}{%
+    \toprule
+    \textbf{Preguntas / palabras clave} &
+    \textbf{Notas / respuestas} \\
+    \midrule
+}
+
+\newcounter{cornellrow}
+
+\newenvironment{cornell}{%
+    \begingroup
+    \setcounter{cornellrow}{0}%
+    \renewcommand{\arraystretch}{1.25}
+    \begin{longtable}{@{}%
+        >{\raggedright\arraybackslash}p{0.27\textwidth}%
+        !{\vrule width 0.4pt}%
+        >{\raggedright\arraybackslash}p{\dimexpr0.73\textwidth-2\tabcolsep-0.4pt\relax}%
+        @{}}
+    \cornellheader
+    \endfirsthead
+    \cornellheader
+    \endhead
+    \endfoot
+    \bottomrule
+    \endlastfoot
+}{%
+    \end{longtable}
+    \endgroup
+}
+
+\newcommand{\cornellitem}[2]{%
+    \ifnum\value{cornellrow}>0 \midrule[\lightrulewidth]\fi
+    \stepcounter{cornellrow}%
+    \textbf{#1} & #2 \\[0.35em]
+}
+
+\newcommand{\cornellresumen}[1]{%
+    \midrule
+    \multicolumn{2}{@{}p{\textwidth}@{}}{%
+        \vspace{0.2em}\textbf{Resumen:} #1 \vspace{0.2em}} \\
+}
+
+% Encabezado de la sección de cada cuadro Cornell (sin numeración, con entrada en el índice)
+\newcommand{\cornellsection}{%
+    \clearpage
+    \section*{Cuadro Cornell}%
+    \addcontentsline{toc}{section}{Cuadro Cornell}%
+}
+
+%==============================================================================
+% DOCUMENTO
+%==============================================================================
+\begin{document}
+
+%==============================================================================
+% PORTADA
+%==============================================================================
+\frontmatter
+
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+\textit{Estudiar con constancia es la mejor forma de comprender.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+\setcounter{page}{2}% el entorno titlepage reinicia la numeración en clases de una sola cara
+
+%==============================================================================
+% ÍNDICE
+%==============================================================================
+\tableofcontents
+\mainmatter
+
+%==============================================================================
+% CAPÍTULO 1
+%==============================================================================
+\chapter[Fundamentos del proceso de integración]{Fundamentos del Proceso de Integración}
+
+\begin{note}
+\textbf{Relevancia para la práctica profesional.} Quien asesora a empresas con clientes regionales, organismos públicos o estudios de comercio exterior necesita comprender cómo se articulan los compromisos entre Estados: qué se negocia y qué queda librado a la voluntad de cada país. Distinguir «reconocer» de «garantizar» un derecho, o «uniformar» de «armonizar» una legislación, define qué puede exigirse judicialmente. Quien litigue sobre comercio exterior, inversiones extranjeras o aranceles del MERCOSUR necesita este marco para leer un tratado con criterio profesional y no quedarse en el título.
+
+Además, el método que propone el material —leer entre líneas, distinguir el objetivo declarado del medio elegido y no confundir una buena intención con un compromiso exigible— es una herramienta de pensamiento crítico aplicable a cualquier contrato, acuerdo o promesa que una persona deba evaluar.
+\end{note}
+
+\begin{exercise}{Búsqueda de un tratado marco}
+Se propuso un trabajo práctico sin nota, consistente en buscar el tratado marco (o tratado fundacional) de cualquier área de integración existente en el mundo. Además de identificar el nombre del tratado, la fecha desde la que se encuentra vigente y los países que lo integran, debe indicarse \textbf{qué tipo de integración} establece.
+
+En el desarrollo de la actividad, para el área de integración elegida deben identificarse tres elementos centrales:
+\begin{itemize}
+    \item las \textbf{características} del área de integración;
+    \item los \textbf{objetivos y finalidades} que persigue;
+    \item los \textbf{medios} de los que se vale para alcanzar esos fines.
+\end{itemize}
+\end{exercise}
+
+%------------------------------------------------------------------------------
+\section{La crítica a la técnica legislativa}
+
+Una advertencia metodológica atraviesa todo el estudio de la materia: los tratados deben leerse con \textbf{sentido crítico}, sin conformarse con el título ni con la enunciación general del texto. Con frecuencia los legisladores redactan cláusulas ambiguas, que admiten interpretaciones contradictorias; ese déficit de técnica legislativa obliga al intérprete a «leer entre líneas» para establecer qué quiso decir realmente la norma.
+
+\begin{example}{El discurso político vacío de contenido}
+Como ilustración se utilizó la letra de una canción de un reconocido cantautor, en la que un discurso político citado apela reiteradamente a la unión de esfuerzos y a la construcción de una plataforma común, pero al finalizar la escucha no queda claro qué es lo que se propone hacer efectivamente.
+
+El ejemplo muestra cómo un texto puede sonar comprometido y, sin embargo, no contener ninguna propuesta concreta. Una situación semejante puede presentarse en los tratados de integración cuando las declaraciones de buenas intenciones no se traducen en obligaciones exigibles.
+\end{example}
+
+%------------------------------------------------------------------------------
+\section{Reconocer, garantizar y promover: la clave de lectura}
+
+\begin{important}
+No es lo mismo que un Estado \textbf{reconozca} un derecho, que lo \textbf{garantice} o que lo \textbf{promueva}. Estas tres categorías implican compromisos jurídicos de intensidad completamente distinta, y buena parte del trabajo de interpretación de un tratado consiste en detectar cuál de las tres está efectivamente en juego.
+\end{important}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (las notas no desarrollan ni ejemplifican de manera específica la categoría «promover»; se conserva la enunciación tal como figura).
+
+Para ilustrar la distinción con un ejemplo del derecho constitucional argentino, se comparó el tratamiento que la Constitución Nacional da a la libertad de culto en general y al culto católico en particular. La Constitución de 1853 respondía a una matriz claramente liberal —heredera de la reacción frente al período colonial y, por ello, favorable a la libertad de comercio, de tránsito, de trabajo y de expresión—; sin embargo, el trato que dispensa a la religión no es uniforme.
+
+\textbf{Marco normativo: Constitución Nacional, artículos 2 y 14.}
+\begin{itemize}
+    \item El \textbf{artículo 2} establece: «El Gobierno federal sostiene el culto católico apostólico romano».
+    \item El \textbf{artículo 14} reconoce a todos los habitantes el derecho de «profesar libremente su culto», dentro del catálogo general de derechos civiles.
+\end{itemize}
+
+Ambas cláusulas tienen igual jerarquía constitucional, pero generan obligaciones estatales de naturaleza distinta:
+\begin{itemize}
+    \item el artículo 14 \textbf{garantiza} la libertad general de culto: la posibilidad de profesar cualquier religión y de ejercer todo lo relacionado con el propio culto, sin interferencia estatal;
+    \item el artículo 2 impone al Estado federal una obligación de \textbf{sostenimiento económico} específica respecto del culto católico, que la jurisprudencia de la Corte Suprema ha interpretado históricamente en clave de apoyo financiero y no de adopción de una religión oficial.
+\end{itemize}
+
+Garantizar la libertad de culto no es lo mismo que sostener un culto determinado. Ambas normas, pese a compartir el mismo rango constitucional, expresan dos criterios normativos distintos frente a un mismo tema, y ese tipo de distinciones es el que debe aprenderse a identificar al analizar un tratado de integración: qué es lo que el texto efectivamente compromete al Estado a hacer, más allá de la enunciación general de principios.
+
+Esta idea se vincula con la diferencia clásica entre una \textbf{declaración} de derechos humanos y una \textbf{convención}: mientras que una declaración expresa un reconocimiento de derechos sin necesariamente generar una obligación de garantía exigible, una convención implica un compromiso jurídico concreto de protección.
+
+%------------------------------------------------------------------------------
+\section{Integración formal e integración informal}
+
+La primera gran distinción de la unidad es la que existe entre integración formal e integración informal.
+
+\begin{definition}{Integración formal}
+Existe integración formal cuando el Estado es parte de un tratado, es decir, cuando el compromiso se formaliza jurídicamente y se le da una estructura institucional.
+\end{definition}
+
+\begin{definition}{Integración informal}
+Existe integración informal cuando, de hecho, un conjunto de Estados actúa como bloque —por ejemplo, votando de manera conjunta frente a organismos internacionales o sosteniendo posiciones y propuestas de defensa comunes— sin que exista un tratado que los obligue jurídicamente a conducirse de ese modo.
+\end{definition}
+
+%------------------------------------------------------------------------------
+\section{El tratado marco: la «Constitución» del área de integración}
+
+\begin{definition}{Tratado marco}
+Dentro de las integraciones formales, el tratado marco es el instrumento que cumple, dentro del área de integración, una función equivalente a la que cumple una Constitución dentro de un Estado: establece cuál es el proyecto común, qué aspiran los Estados parte, qué es lo que buscan, y cuáles son sus fines y objetivos.
+\end{definition}
+
+%------------------------------------------------------------------------------
+\section{Objetivos y medios: la relación instrumental}
+
+La relación entre objetivo y medio es una de las claves centrales de la materia. \textbf{Objetivo} y \textbf{fin} son términos equivalentes; el \textbf{medio}, en cambio, es una categoría distinta.
+
+\begin{definition}{Objetivo (o fin) y medio}
+El \textbf{objetivo} (o fin) es lo que se persigue alcanzar. El \textbf{medio} es el instrumento del que se vale para alcanzar ese objetivo.
+\end{definition}
+
+\begin{example}{Llegar a la facultad}
+El objetivo es llegar a la facultad; el medio es el trayecto elegido para llegar. Si el estudiante toma el subte y el servicio se interrumpe, puede optar por pedir un vehículo de aplicación y de todos modos cumplir el objetivo de llegar a la facultad, aunque haya cambiado el medio.
+
+Esta lógica es trasladable al área de integración: si el objetivo está claro, el medio puede modificarse en tanto siga permitiendo alcanzar ese mismo objetivo.
+\end{example}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (en este punto las notas sostienen que se «cambia de área de integración» al cambiar el medio empleado para conseguir los objetivos del tratado;
+%  en las secciones 1.7 y 1.8 se sostiene que el cambio de área se produce cuando el medio desplaza o altera el objetivo. Se conservan ambas formulaciones).
+En ese sentido, se indicó que se está cambiando de área de integración cuando se cambia el medio que se va a utilizar para conseguir los objetivos establecidos en el tratado.
+
+Un segundo ejemplo, ajeno a la integración propiamente dicha, permite consolidar la distinción: la \textbf{Convención sobre Derechos Humanos}.
+
+\begin{example}{Objetivo y medio en la Convención sobre Derechos Humanos}
+Al hablar de \emph{convención} ya no se trata de meras declaraciones: un acuerdo es un compromiso. El compromiso consiste en el reconocimiento y la protección de los derechos humanos, y el \textbf{fin} es la protección de los derechos del hombre.
+
+Respecto del \textbf{medio}, un Estado podría sancionar una ley que castigue penalmente los atentados contra la vida de otra persona, o crear un cuerpo policial especializado en la protección de ese derecho. El objetivo —proteger el derecho a la vida— permanece estable, mientras que los medios elegidos para alcanzarlo pueden variar de un Estado a otro.
+\end{example}
+
+\begin{note}
+En la expresión «derechos del hombre», el término «hombre» no refiere al género masculino sino al género humano en su conjunto, incluyendo a hombres y mujeres. Se trata de una precisión sobre el alcance que el expositor da al término, no de una norma jurídica positiva.
+\end{note}
+
+\textbf{Criterio práctico de lectura.} Los objetivos de un tratado suelen encontrarse en sus palabras introductorias o \textbf{preámbulo}, en fórmulas del tipo «nosotros, convencidos de…» o «conscientes de la necesidad de…». Antes de leer la totalidad del articulado, conviene prestar atención a esas cláusulas introductorias, porque allí suele anticiparse el rumbo general del instrumento.
+
+%------------------------------------------------------------------------------
+\section{Tipos de objetivos: político, económico, cultural y de seguridad}
+
+Un área de integración puede perseguir distintos tipos de objetivos:
+\begin{itemize}
+    \item objetivos \textbf{políticos};
+    \item objetivos \textbf{culturales};
+    \item objetivos \textbf{económicos};
+    \item objetivos de \textbf{seguridad o defensa común}.
+\end{itemize}
+
+Si bien es habitual asociar la palabra «integración» únicamente con la integración económica, existen áreas de integración cuyo objetivo principal no es económico. El MERCOSUR (Mercado Común del Sur) es un ejemplo de objetivo económico. Se lo contrapuso con la Unión de Naciones Suramericanas (UNASUR), organismo de integración con objetivos predominantemente políticos. Se señaló además que la región llegó a contar simultáneamente con ambos organismos y se sugirió que, más allá de las razones oficiales, esa duplicación institucional también podía explicarse por cuestiones de disputa de liderazgo político regional.
+
+Este comportamiento se contrastó con el proceso de integración europeo, que partió de un objetivo inicial acotado (el carbón, el acero y la energía atómica) y fue sumando progresivamente nuevas dimensiones: el mercado común, la moneda única, y cuestiones ambientales, sociales, culturales y administrativas.
+
+\begin{example}{La defensa común frente a un enemigo compartido}
+En las áreas de integración cuyo objetivo principal es la defensa común, los Estados que se sienten amenazados por un enemigo compartido se asocian primordialmente para garantizar su protección y la paz interna del bloque, con independencia de que compartan o no la misma religión, el mismo régimen de gobierno o los mismos criterios sobre otras cuestiones internas.
+
+En este contexto se mencionó también a la Organización de las Naciones Unidas como ejemplo histórico de las limitaciones de estos mecanismos de paz: pese al objetivo declarado de garantizar la paz mundial, la organización se encontró en más de una ocasión sin capacidad efectiva de intervención frente a conflictos internos de extrema violencia.
+\end{example}
+
+%------------------------------------------------------------------------------
+\section{Todo acuerdo de integración es, en el fondo, un acuerdo de paz}
+
+Según la posición de un sector de la doctrina, todo acuerdo de integración lleva implícito, aunque no se explicite, un \textbf{acuerdo de paz}. La explicación es la siguiente: cuando dos o más Estados comparten un proyecto común, en principio no debería haber una controversia de fondo entre ellos respecto de ese proyecto, del mismo modo en que dos personas que deciden formar una familia acuerdan de antemano sus fines compartidos, aun cuando después deban ajustar los medios concretos para alcanzarlos.
+
+\begin{important}
+El medio no puede absorber ni desplazar al objetivo: si el medio se lleva puesto el objetivo, cambió el área de integración, porque el objetivo pasa a ser otro.
+\end{important}
+
+%------------------------------------------------------------------------------
+\section{La integración como proceso progresivo}
+
+La integración es un \textbf{proceso} que avanza desde un compromiso menor hacia compromisos progresivamente mayores, hasta alcanzar, en su forma más completa, una integración que abarca todos los aspectos de la vida y de las relaciones entre los Estados.
+
+La Unión Europea es el ejemplo utilizado: comenzó con la integración del carbón, del acero y de la energía atómica, sin constituir todavía un mercado común, y fue sumando progresivamente el medio ambiente, la protección social, la moneda única y otros aspectos administrativos, financieros y culturales.
+
+Frente a la objeción de que el MERCOSUR «no hace integración» por carecer de ciertos elementos presentes en otros modelos, se sostuvo que se trata de una integración basada en un modelo distinto, y que lo determinante para hablar de un cambio de área de integración no es la ausencia de determinados elementos institucionales sino el \textbf{cambio del objetivo perseguido}. Mientras el objetivo se mantenga, los medios pueden variar o ampliarse progresivamente sin que ello implique abandonar el proyecto original. Si el medio empleado no permite la consecución del objetivo, hay dos caminos: cambiar el objetivo, porque se decidió otra cosa, o cambiar el medio, si el objetivo sigue siendo el mismo.
+
+Por último, el objetivo de un área de integración debe ser un \textbf{objetivo común} que beneficie a todos los Estados parte por igual; ese carácter común es lo que legitima, frente a cada uno de los Estados, la cesión de determinadas facultades a favor del proyecto compartido.
+
+%------------------------------------------------------------------------------
+\cornellsection
+
+\begin{cornell}
+\cornellitem{¿Qué diferencia a una integración formal de una integración informal?}{%
+La integración es \textbf{formal} cuando el Estado es parte de un tratado: el compromiso se formaliza jurídicamente y se le da estructura institucional. Es \textbf{informal} cuando un conjunto de Estados actúa de hecho como bloque (por ejemplo, votando en conjunto ante organismos internacionales o sosteniendo posiciones comunes) sin que exista un tratado que los obligue jurídicamente a comportarse de ese modo.}
+
+\cornellitem{¿Qué es el tratado marco y dónde suelen encontrarse los objetivos de un tratado?}{%
+Es el instrumento que cumple, dentro de un área de integración formal, una función equivalente a la de una Constitución dentro de un Estado: establece el proyecto común, lo que aspiran los Estados parte y sus fines y objetivos. Los objetivos suelen encontrarse en las palabras introductorias o preámbulo («nosotros, convencidos de…», «conscientes de la necesidad de…»), por lo que conviene leerlas antes que el articulado.}
+
+\cornellitem{¿Por qué deben leerse los tratados con sentido crítico?}{%
+Porque los legisladores redactan a veces cláusulas ambiguas que admiten interpretaciones contradictorias, lo que obliga a «leer entre líneas». Un texto puede sonar comprometido y no contener ninguna propuesta concreta: las declaraciones de buenas intenciones no siempre se traducen en obligaciones exigibles.}
+
+\cornellitem{¿Qué diferencia hay entre reconocer, garantizar y promover un derecho?}{%
+Son tres categorías que implican compromisos jurídicos de intensidad distinta; interpretar un tratado exige detectar cuál de ellas está en juego. Ejemplo constitucional: el art.~14 garantiza la libertad general de culto, mientras que el art.~2 impone al Estado federal un sostenimiento económico específico del culto católico. Del mismo modo, una declaración de derechos expresa un reconocimiento sin necesariamente generar una obligación de garantía exigible, mientras que una convención implica un compromiso jurídico concreto de protección.}
+
+\cornellitem{¿Cuál es la relación entre objetivo y medio?}{%
+Objetivo y fin son equivalentes; el medio es el instrumento del que se vale el Estado para alcanzar el objetivo. Si el objetivo está claro, el medio puede modificarse en tanto siga permitiendo alcanzarlo (ejemplos: llegar a la facultad por distintos trayectos; proteger el derecho a la vida mediante una ley penal o un cuerpo policial). El medio no puede llevarse puesto el objetivo: si lo hace, cambió el área de integración.}
+
+\cornellitem{¿Qué tipos de objetivos puede perseguir un área de integración?}{%
+Objetivos políticos, culturales, económicos y de seguridad o defensa común. Aunque suele asociarse «integración» con lo económico, hay áreas cuyo objetivo principal no lo es: el MERCOSUR es de objetivo económico, mientras que UNASUR fue caracterizada como un organismo de objetivos predominantemente políticos.}
+
+\cornellitem{¿Por qué se sostiene que todo acuerdo de integración es, en el fondo, un acuerdo de paz?}{%
+Según un sector de la doctrina, porque los Estados que comparten un proyecto común, en principio, no deberían tener una controversia de fondo respecto de ese proyecto, del mismo modo en que quienes forman una familia acuerdan de antemano sus fines compartidos y luego ajustan los medios.}
+
+\cornellitem{¿Por qué se dice que la integración es un proceso progresivo?}{%
+Porque avanza desde un compromiso menor hacia compromisos mayores, hasta abarcar, en su forma más completa, todos los aspectos de las relaciones entre los Estados (caso de la Unión Europea: carbón, acero y energía atómica; luego medio ambiente, protección social, moneda única, etc.). Lo determinante para hablar de cambio de área no es la ausencia de ciertos elementos institucionales sino el cambio del objetivo; este debe ser común y beneficiar a todos los Estados parte por igual, lo que legitima la cesión de facultades.}
+
+\cornellresumen{Un tratado de integración debe leerse críticamente, distinguiendo si el Estado reconoce, garantiza o promueve un derecho. La integración es formal cuando existe un tratado (el tratado marco funciona como la «Constitución» del área) e informal cuando los Estados actúan como bloque sin obligación jurídica. Lo central es la relación entre objetivo (político, económico, cultural o de defensa) y medio: el medio puede variar mientras se preserve el objetivo, pero no puede desplazarlo, y la integración es un proceso progresivo con un objetivo común para todos los Estados parte.}
+\end{cornell}
+
+%==============================================================================
+% CAPÍTULO 2
+%==============================================================================
+\chapter[Características del proceso de integración]{Características del Proceso de Integración}
+
+La integración puede analizarse a partir de un objetivo dominante —político, económico, cultural o de defensa—, pero nunca se agota exclusivamente en ese aspecto. Ponerse de acuerdo en materia económica presupone siempre, en algún grado, un acuerdo político previo, porque implica crear órganos y otorgarles facultades que son, en principio, soberanas del Estado.
+
+\begin{important}
+Ninguna integración es exclusivamente cultural, exclusivamente política ni exclusivamente económica: para ponerse de acuerdo en lo económico tuvo que haber un acuerdo político.
+\end{important}
+
+%------------------------------------------------------------------------------
+\section{Carácter pluridimensional y plurifacético}
+
+\begin{definition}{Integración pluridimensional y plurifacética}
+La integración es \textbf{pluridimensional} porque no se limita a una única dimensión de las relaciones entre los Estados (por ejemplo, la base económica): impacta simultáneamente sobre distintos planos, como el político, el económico, el legislativo y el cultural. Es \textbf{plurifacética} porque afecta distintas fases y dimensiones de las relaciones entre los Estados y entre los particulares.
+\end{definition}
+
+\begin{example}{La política legislativa como medio}
+Dentro del plano legislativo, al decidir crear normas comunes para regir dentro de un área de integración, los Estados deben definir, en primer lugar, una política acerca de cómo se van a dictar esas normas: por mayoría simple, por mayoría calificada, por consenso o por unanimidad.
+
+Esa decisión, aunque pertenece al plano normativo, es en sí misma una decisión política que condiciona el funcionamiento de todo el sistema.
+\end{example}
+
+\subsection{Uniformidad y armonización legislativa}
+
+Dentro del plano normativo existe una distinción de particular importancia práctica: la diferencia entre \textbf{uniformar} y \textbf{armonizar} una legislación.
+
+\begin{definition}{Uniformar y armonizar}
+\textbf{Uniformar} implica dictar una única norma, con una única solución aplicable por igual a todos los Estados parte. \textbf{Armonizar} implica acordar principios generales comunes, dejando librada a cada Estado la regulación específica de los detalles de implementación.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+ & \textbf{Uniformidad} & \textbf{Armonización} \\
+\midrule
+\textbf{Contenido de la norma} & Una única normativa. & Principios generales comunes. \\
+\textbf{Solución} & Una única solución para todos los Estados parte. & Cada Estado regula los detalles y requisitos en su propio ámbito (por ejemplo, en materia de inscripciones). \\
+\bottomrule
+\end{tabularx}
+\caption*{Diferencia entre uniformar y armonizar una legislación.}
+\end{table}
+
+\begin{example}{Inversiones extranjeras: un caso de armonización}
+Varios Estados de la región acuerdan un régimen de inversiones extranjeras en el que se establece, de manera común, qué tipo de inversiones se aceptarán: por ejemplo, podría excluirse de manera conjunta a las inversiones mineras que contaminen el medioambiente y priorizarse las vinculadas con tecnología o energía sustentable.
+
+Superado ese acuerdo de principios generales, cada Estado regula libremente los requisitos concretos de inscripción y los beneficios aplicables. El resultado es que una misma empresa puede recibir un trato distinto según decida invertir en un país o en otro dentro del mismo bloque, porque solo se armonizaron los criterios generales y no la solución de fondo.
+\end{example}
+
+Esta distinción es relevante también para entender por qué distintos autores discuten, muchas veces, si un determinado bloque «realmente hace integración»: la respuesta depende, en parte, de qué modelo de integración se utilice como parámetro de comparación, ya que uniformidad y armonización son dos caminos jurídicos válidos, aunque de distinta profundidad.
+
+%------------------------------------------------------------------------------
+\section{Interrelación e interdependencia}
+
+Todo proceso de integración se caracteriza por la interrelación y la interdependencia entre los Estados miembros. Esta idea se vincula con la distinción, ya trazada, entre un \textbf{acuerdo internacional común} y un \textbf{acuerdo específicamente de integración}: lo que hace uno de los Estados repercute en los otros.
+
+\begin{definition}{Interrelación e interdependencia}
+Hay \textbf{interrelación} cuando la conducta de uno de los Estados provoca una reacción en los demás. Hay \textbf{interdependencia} cuando todos los Estados dependen, en algún grado, de las decisiones de los otros.
+\end{definition}
+
+\begin{example}{Preferencias a la industria nacional y su efecto en cadena}
+Un Estado sanciona una ley de preferencia a la industria nacional. Esa decisión afecta a los productos de otro Estado miembro del bloque, lo que a su vez repercute en el funcionamiento del mercado común en su conjunto, y ese efecto retorna, de un modo u otro, sobre el propio Estado que dictó la medida, en tanto forma parte del mismo mercado.
+\end{example}
+
+%------------------------------------------------------------------------------
+\section{Estructura supranacional y delegación de soberanía}
+
+Las definiciones doctrinarias de integración suelen incluir, como característica, la existencia de una \textbf{estructura orgánica supranacional} y la \textbf{delegación de soberanía} estatal a favor de esa estructura. Sin embargo, en la mayoría de las áreas de integración esa estructura no existe; sí existe en la Unión Europea.
+
+Técnicamente, el Estado nunca cede su soberanía en sentido pleno: \textbf{delega el ejercicio exclusivo de determinadas facultades} a un órgano de integración, absteniéndose de regular por sí mismo en esa área específica. Esta dinámica se comparó con el proceso histórico por el cual las provincias argentinas, preexistentes a la Nación, delegaron determinadas facultades al gobierno federal al momento de constituirlo, reservándose todo lo que no fue expresamente delegado.
+
+\begin{important}
+Principio de las facultades no delegadas: las provincias argentinas —preexistentes a la Nación— conservan todas las facultades no expresamente delegadas al gobierno federal. Por analogía, aquello que los Estados parte no delegaron expresamente al órgano común de integración sigue siendo competencia exclusiva de cada Estado.
+\end{important}
+
+Este principio es relevante para el \textbf{control de soberanía}: si los Estados delegaron determinadas facultades a un órgano y este se pone a regular sobre cosas que no le fueron transferidas, excede su ámbito de competencia.
+
+Esta idea se conecta con el principio general de \textbf{validez de las normas jurídicas}: para que una norma sea válida debe haber sido dictada por el órgano competente, siguiendo el procedimiento indicado por la norma superior, y sin contradecir los objetivos ni la sustancia de esa norma superior. Trasladado al ámbito de la integración, un órgano de integración no puede legislar sobre materias que los Estados no le delegaron, del mismo modo en que, dentro de un Estado, un decreto reglamentario no puede modificar la ley que reglamenta: la creación de la norma corresponde al órgano legislativo, y la reglamentación no puede modificar el objetivo de la ley.
+
+\medskip
+\textbf{Síntesis de las características.} Un área de integración puede describirse en función de un objetivo dominante —económico, político, cultural o de defensa—, pero ese objetivo no agota el fenómeno: toda integración es, por definición, pluridimensional, plurifacética, interrelacionada e interdependiente, y solo en algunos modelos, como el europeo, presenta además una estructura orgánica supranacional con delegación efectiva de competencias exclusivas.
+
+%------------------------------------------------------------------------------
+\cornellsection
+
+\begin{cornell}
+\cornellitem{¿Por qué ninguna integración es puramente económica, política o cultural?}{%
+Porque ponerse de acuerdo en lo económico presupone un acuerdo político previo: implica crear órganos y otorgarles facultades que son, en principio, soberanas del Estado. Aunque pueda identificarse un objetivo dominante (económico, político, cultural o de defensa), este no agota el fenómeno.}
+
+\cornellitem{¿Qué significa que la integración es pluridimensional y plurifacética?}{%
+Que no se limita a una única dimensión de las relaciones entre Estados: impacta simultáneamente sobre los planos político, económico, legislativo y cultural, y afecta distintas fases de las relaciones entre los Estados y entre los particulares. Ejemplo: definir cómo se dictarán las normas comunes (mayoría simple, calificada, consenso o unanimidad) es una decisión política que pertenece al plano normativo.}
+
+\cornellitem{¿Qué diferencia hay entre uniformar y armonizar una legislación?}{%
+Uniformar es dictar una única norma con una única solución para todos los Estados parte. Armonizar es acordar principios generales comunes, dejando que cada Estado regule los detalles de implementación (por ejemplo, un régimen de inversiones extranjeras con criterios generales comunes, pero con requisitos de inscripción y beneficios definidos por cada Estado). Son dos caminos jurídicos válidos, de distinta profundidad.}
+
+\cornellitem{¿Qué significa que la integración se caracteriza por interrelación e interdependencia?}{%
+Interrelación: la conducta de un Estado provoca una reacción en los demás. Interdependencia: todos los Estados dependen, en algún grado, de las decisiones de los otros. Por eso lo que hace uno repercute en el otro, y esa es una diferencia entre un acuerdo internacional común y un acuerdo de integración (ejemplo: la ley de preferencia a la industria nacional).}
+
+\cornellitem{¿Qué implica la estructura supranacional y la delegación de soberanía?}{%
+Es una característica que suele aparecer en las definiciones doctrinarias, pero que en la mayoría de las áreas de integración no existe; sí existe en la Unión Europea. El Estado no cede su soberanía en sentido pleno: delega el ejercicio exclusivo de determinadas facultades a un órgano, absteniéndose de regular por sí mismo en esa materia. Lo no delegado expresamente permanece como competencia exclusiva del Estado.}
+
+\cornellitem{¿Qué ocurre si un órgano de integración regula más allá de lo que se le delegó?}{%
+Excede su competencia. Para que una norma sea válida debe ser dictada por el órgano competente, siguiendo el procedimiento de la norma superior y sin contradecir sus objetivos ni su sustancia; así como un decreto reglamentario no puede modificar la ley que reglamenta, un órgano de integración no puede legislar sobre materias que los Estados no le delegaron. Esto es relevante para el control de soberanía.}
+
+\cornellresumen{Toda integración es pluridimensional, plurifacética, interrelacionada e interdependiente, cualquiera sea su objetivo dominante, porque un acuerdo económico presupone un acuerdo político previo. En el plano normativo, uniformar (una única solución) y armonizar (principios generales comunes con regulación estatal de los detalles) son caminos válidos de distinta profundidad. Solo algunos modelos, como el europeo, presentan una estructura supranacional; en ella el Estado delega el ejercicio exclusivo de ciertas facultades, y lo no delegado sigue siendo suyo.}
+\end{cornell}
+
+%==============================================================================
+% CAPÍTULO 3
+%==============================================================================
+\chapter[Factores que condicionan la integración]{Factores que Condicionan la Integración}
+
+Más allá de la voluntad política declarada, existen aspectos que pueden facilitar o dificultar un proceso de integración entre Estados. Los factores condicionantes que se desarrollan son:
+\begin{itemize}
+    \item culturales y religiosos;
+    \item ideológicos y políticos;
+    \item territoriales y climáticos;
+    \item vinculados con la estabilidad democrática y la continuidad de la política exterior.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\section{Factor cultural y religioso}
+
+Las diferencias de religión, de costumbres y de organización social influyen de manera directa sobre la viabilidad de un proyecto de integración, aunque con distinta intensidad según el tipo de integración de que se trate. Como ejemplo, se planteó que no sería posible integrar un país musulmán con un país latinoamericano, porque su organización social es totalmente distinta de la organización social argentina.
+
+La intensidad de este factor varía según el objetivo del área de integración: la religión puede no ser determinante para una integración estrictamente económica, pero sí puede serlo para una integración política o cultural.
+
+\subsection{El caso latinoamericano: una base común subestimada}
+
+A diferencia de lo que ocurre entre bloques culturalmente heterogéneos, se sostuvo que los países latinoamericanos comparten una base religiosa, cultural y jurídica común, heredada del proceso de conquista y colonización española, que —a criterio del expositor— debería facilitar, y no dificultar, los procesos de integración regional.
+
+En este sentido se señaló que los países de la región provienen del mismo derecho: las leyes de Indias y las Siete Partidas de Alfonso el Sabio estuvieron regulando durante siglos. Como consecuencia, lo que es un contrato, una sociedad o un matrimonio para un país es también un contrato, una sociedad o un matrimonio para los demás.
+
+Se reconoció, dentro de esta explicación, la preexistencia de comunidades y pueblos originarios con organizaciones sociales propias. El respeto por sus tradiciones no equivale a que puedan apartarse del ordenamiento jurídico común (la Constitución y el Código Civil), sino que conviven dentro de él, en un marco de reconocimiento de su preexistencia étnica y cultural.
+
+A partir de esta constatación se formuló una pregunta: si la base religiosa, social y jurídica de la región es relativamente homogénea, ¿por qué resulta tan difícil para los países latinoamericanos integrarse? La respuesta apunta al plano político, que se desarrolla en el punto siguiente.
+
+%------------------------------------------------------------------------------
+\section{Factor ideológico y político}
+
+Los cambios de orientación ideológica de los gobiernos de turno inciden directamente sobre la continuidad de los compromisos de integración, en la medida en que cada nueva gestión puede modificar sus prioridades respecto de con quiénes conviene asociarse y en qué términos. A veces, al cambiar una ideología se deja de lado a ciertos socios: si un gobierno considera que las preferencias con determinados socios no convienen a su Estado ni a su mercado y prefiere un mercado libre, no propiciará el avance de un área de integración en la que deba otorgar forzosamente privilegios o beneficios a sus socios.
+
+\begin{note}
+\textbf{La falta de un proyecto país de largo plazo.} Esta inestabilidad ideológica se vincula con lo que se calificó como una característica recurrente de la región: la ausencia de un proyecto de país sostenido en el tiempo, más allá del signo político del gobierno de turno. Con frecuencia, cada nueva gestión tiende a desestimar lo construido por la anterior y a comenzar de nuevo, en lugar de sostener acuerdos básicos de largo plazo: se están poniendo siempre los cimientos, porque quien viene después rompe los cimientos anteriores y comienza a poner otros nuevos.
+\end{note}
+
+\subsection{El antecedente del Pacto de Olivos}
+
+Como ejemplo de un intento de acuerdo político de largo plazo entre las dos principales fuerzas políticas argentinas, se mencionó el pacto que sentó las bases de la reforma constitucional de 1994. Se lo valoró como un intento parcialmente frustrado de proyecto político compartido entre las dos principales fuerzas partidarias del país: se decía que ambas se unirían para crear un proyecto uniforme y, a criterio del expositor, el resultado no se correspondió con lo prometido.
+
+\begin{note}
+\textbf{Precisión incorporada en el material original.} Según las fuentes consultadas al elaborar el material de origen, el acuerdo conocido como Pacto de Olivos fue suscripto el 14 de noviembre de 1993 entre el entonces presidente Carlos Menem y el ex presidente Raúl Alfonsín, y sentó las bases de la reforma constitucional de 1994.
+\end{note}
+
+\subsection{La noción de nación según la teoría de Mancini}
+
+Se retomó un concepto trabajado previamente en Derecho Internacional Privado: la teoría de la nacionalidad de Pascuale Stanislao Mancini, jurista italiano del siglo XIX.
+% TODO: contenido incompleto o ambiguo en las notas originales (grafía del nombre del autor conservada tal como figura en las notas).
+
+Según esta teoría, no constituye una nación un grupo de personas que están en un territorio hablando un mismo idioma y con las mismas costumbres: la \textbf{nación} implica tener conciencia de un pasado en común y un objetivo propio en común.
+
+Esta noción se trasladó, por analogía, al plano de la integración regional: lo que permite que un conjunto de Estados conforme efectivamente un proyecto compartido no es solamente compartir un idioma o un origen histórico común, sino tomar conciencia de esa tradición compartida y fijarse, a partir de ella, un objetivo común hacia el futuro. A criterio del expositor, ese es precisamente el elemento que suele faltar en los procesos de integración latinoamericanos.
+
+%------------------------------------------------------------------------------
+\section{Factor territorial y climático}
+
+La extensión territorial y las condiciones climáticas de los Estados involucrados condicionan de manera directa la viabilidad y el costo de implementación de un área de integración, particularmente en lo relativo a infraestructura y transporte.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (las comparaciones de extensión territorial y de tiempos de viaje que siguen fueron expuestas por el docente y se conservan tal como figuran; no se verificaron).
+Como ilustración se comparó el tren de alta velocidad que une Francia con España, que demora una hora y media, con las cinco horas que lleva viajar hasta Mar del Plata en Argentina. Según lo expuesto, el tamaño de la provincia de Buenos Aires es comparable al de España, y Córdoba es más grande que Francia.
+
+\begin{example}{El costo de la infraestructura regional}
+En Europa, las distancias entre países son comparativamente pequeñas. Un área de integración como el MERCOSUR, en cambio, debe conectar territorios de Argentina, Brasil, Paraguay y Uruguay, atravesando selvas, distancias considerablemente mayores y condiciones climáticas dispares.
+
+Para lograr el mismo objetivo de libre tránsito de mercaderías, un área de integración latinoamericana requiere entonces una inversión en infraestructura sustancialmente mayor que un área de integración europea, con independencia de las diferencias en capacidad económica entre ambas regiones: con lo que en una región alcanza para construir una vía, en la otra se construyen tres.
+\end{example}
+
+Por eso una zona de libre comercio en África no es lo mismo que una en Europa ni que una en Latinoamérica: hay distintos factores en juego. Esta constatación permite cuestionar las explicaciones simplistas que atribuyen la falta de avance de un proceso de integración a una única causa aislada: se trata siempre de un conjunto de condiciones —políticas, culturales, geográficas— que operan de manera combinada.
+
+\subsection{El caso del MERCOSUR: mayoría versus consenso}
+
+Como ejemplo de cómo la decisión política incide sobre el diseño institucional, se comparó el sistema de toma de decisiones de la Unión Europea —basado en distintos tipos de mayorías según la materia— con el del MERCOSUR, que exige \textbf{consenso} entre todos los Estados parte para adoptar sus normas: si no están todos de acuerdo, no existe norma. Por lo tanto, no hay una decisión política de crear un órgano supranacional.
+
+%------------------------------------------------------------------------------
+\section{Estabilidad democrática y política exterior}
+
+Un último factor es la estabilidad institucional y democrática de cada Estado, y su capacidad de sostener una política exterior coherente a lo largo del tiempo, con independencia del signo político del gobierno de turno.
+
+Se contrastó con el caso de Estados Unidos, que no interrumpió nunca su período democrático: por más que un gobierno rechace al anterior, no se produce un golpe militar por el cual los militares tomen el poder. A partir de este contraste se desarrolló la idea de que, en algunos Estados, ciertas políticas de fondo —particularmente la política exterior y la política monetaria— se sostienen como \textbf{políticas de Estado}, más allá de qué partido gobierne, mientras que en otros contextos cada cambio de gobierno tiende a modificar sustancialmente esas mismas políticas.
+
+\begin{example}{La autonomía del banco central como política de Estado}
+En el sistema estadounidense, la presidencia del banco central es ejercida por un funcionario de carrera que no es removido por el cambio de gobierno, lo cual otorga estabilidad a la política monetaria con independencia de qué administración se encuentre en el poder. Al darle total autonomía para decidir respecto de las reservas y de la emisión, se logra más estabilidad económica, al menos en materia monetaria.
+
+Este esquema se contrapuso con la práctica argentina, en la que el cambio de gobierno suele traer aparejado el reemplazo del titular del Banco Central y del Ministerio de Economía, lo que, a criterio del expositor, dificulta sostener una política monetaria de largo plazo.
+\end{example}
+
+Como ejemplos adicionales de continuidad de la política exterior más allá del signo de gobierno se mencionaron la guerra de Vietnam, que se extendió durante distintas administraciones estadounidenses de distinto signo partidario, y el caso del entonces presidente Barack Obama, quien, luego de haber recibido el Premio Nobel de la Paz en 2009, autorizó en 2011 la operación militar que culminó con la muerte de Osama bin Laden. Más allá del discurso, Estados Unidos mantiene su política exterior: no importa el gobierno de turno, ese es el proyecto del país.
+
+\begin{important}
+A criterio del expositor, la falta de continuidad institucional y de políticas de Estado sostenidas en el tiempo constituye uno de los principales obstáculos para consolidar proyectos de integración duraderos en la región, aunque las condiciones culturales, religiosas y jurídicas de base serían, en principio, relativamente favorables.
+\end{important}
+
+\subsection{El límite de la integración frente al odio interétnico}
+
+\begin{note}
+Para ilustrar el extremo opuesto —contextos en los que las diferencias entre comunidades resultan insalvables para cualquier proyecto de integración— se hizo referencia al genocidio ocurrido en Ruanda en 1994, en el marco de un conflicto interétnico de extrema violencia entre las comunidades hutu y tutsi, en el que murieron cientos de miles de personas en un período muy breve y frente al cual las fuerzas internacionales de mantenimiento de la paz desplegadas en el país no lograron evitar la masacre.
+
+El punto central es que, en contextos de odio interétnico profundamente arraigado, ningún modelo de integración económica, social o cultural resulta viable, porque el rechazo hacia el otro impide incluso las relaciones comerciales o laborales más básicas: no se contrataría, en el propio negocio o empresa, a alguien de la otra comunidad.
+\end{note}
+
+%------------------------------------------------------------------------------
+\cornellsection
+
+\begin{cornell}
+\cornellitem{¿Qué factores culturales y religiosos condicionan un proceso de integración?}{%
+Las diferencias de religión, costumbres y organización social influyen sobre la viabilidad de la integración, con intensidad variable: pueden no ser determinantes en una integración estrictamente económica, pero sí en una integración política o cultural (ejemplo planteado: un país musulmán y un país latinoamericano, por sus organizaciones sociales distintas).}
+
+\cornellitem{¿Qué base común comparten los países latinoamericanos según el planteo desarrollado?}{%
+Una base religiosa, cultural y jurídica heredada de la conquista y colonización española (leyes de Indias, Siete Partidas de Alfonso el Sabio), de modo que conceptos como contrato, sociedad o matrimonio significan lo mismo para todos. Se reconoce la preexistencia de pueblos originarios, que conviven dentro del ordenamiento jurídico común (la Constitución y el Código Civil). Esa base debería facilitar la integración; la dificultad se explica en el plano político.}
+
+\cornellitem{¿Por qué los cambios de ideología afectan los compromisos de integración?}{%
+Porque cada gobierno puede modificar con quiénes conviene asociarse y en qué términos; un gobierno que prefiere un mercado libre no propiciará un área de integración que le obligue a otorgar privilegios a sus socios. A ello se suma la ausencia de un proyecto de país de largo plazo: cada gestión tiende a desestimar lo construido por la anterior.}
+
+\cornellitem{¿Qué noción de nación desarrolla Mancini y cómo se aplica a la integración?}{%
+La nación no es solo un grupo de personas que comparte territorio, idioma y costumbres: implica tener conciencia de un pasado común y un objetivo propio en común. Trasladado a la integración, un conjunto de Estados forma un proyecto compartido cuando toma conciencia de su tradición compartida y se fija un objetivo común hacia el futuro; según el expositor, eso suele faltar en América Latina.}
+
+\cornellitem{¿Qué factores territoriales y climáticos condicionan la integración?}{%
+La extensión territorial y las condiciones climáticas inciden en la viabilidad y el costo de la infraestructura y el transporte necesarios para el libre tránsito de mercaderías. Un área como el MERCOSUR (grandes distancias, selvas, condiciones climáticas dispares) requiere una inversión en infraestructura mayor que un área europea. La falta de avance de una integración nunca responde a una única causa aislada.}
+
+\cornellitem{¿Qué diferencia hay entre el sistema de decisión de la Unión Europea y el del MERCOSUR?}{%
+La Unión Europea decide con distintos tipos de mayorías según la materia; el MERCOSUR exige consenso de todos los Estados parte: si no hay acuerdo unánime, no existe norma. Esto refleja que no hay decisión política de crear un órgano supranacional.}
+
+\cornellitem{¿Por qué la estabilidad democrática y la continuidad de la política exterior condicionan la integración?}{%
+Porque los cambios abruptos de gobierno y de orientación política dificultan sostener compromisos de largo plazo. Los Estados que mantienen políticas de fondo (exterior, monetaria) como políticas de Estado más allá del gobierno de turno logran mayor estabilidad (ejemplo: banco central autónomo en Estados Unidos, frente al reemplazo de funcionarios en cada gobierno en Argentina).}
+
+\cornellitem{¿Qué límite impone el odio interétnico a la integración?}{%
+Cuando existe un odio interétnico profundamente arraigado (ejemplo mencionado: Ruanda, 1994), ningún modelo de integración económica, social o cultural resulta viable, porque el rechazo al otro impide incluso las relaciones comerciales o laborales básicas.}
+
+\cornellresumen{La viabilidad de una integración depende, además de la voluntad política declarada, de factores culturales y religiosos (de intensidad variable según el objetivo del área), ideológicos y políticos (cambios de gobierno y falta de proyecto de país de largo plazo), territoriales y climáticos (costo de la infraestructura) y de la estabilidad democrática y continuidad de la política exterior. Según el planteo del expositor, América Latina comparte una base cultural, religiosa y jurídica relativamente homogénea, pero la falta de continuidad de las políticas de Estado y de un objetivo común consciente constituye uno de los principales obstáculos para la integración.}
+\end{cornell}
+
+%==============================================================================
+% CAPÍTULO 4
+%==============================================================================
+\chapter[Etapas históricas de la integración latinoamericana]{Etapas Históricas de la Integración Latinoamericana}
+
+Se propone una periodización de los procesos de integración en América Latina en dos grandes etapas: una \textbf{anterior a la década de 1970} y otra \textbf{posterior a la década de 1970-80}. El criterio de corte responde a un quiebre político regional: durante la década de 1970 la mayoría de los países latinoamericanos atravesó gobiernos militares, lo que produjo una discontinuidad institucional profunda en toda la región.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el corte de la segunda etapa se formula como «década de 1970-80» y, más adelante, como retorno democrático de la «década de 1980»; se conserva la formulación de las notas).
+
+%------------------------------------------------------------------------------
+\section{Integración antes de la década de 1970: primero el mercado interno}
+
+En la primera etapa, las áreas de integración entendían que, al conformarse, lo primero que debía establecerse era el \textbf{mercado interno}. La estrategia dominante consistía en estabilizar primero las economías internas de cada Estado, «puertas adentro», y una vez consolidado ese mercado interno, recién entonces avanzar hacia una política exterior común frente a terceros países.
+
+Durante este período predominó la creación de \textbf{zonas de libre comercio} como primer escalón del proceso de integración: espacios en los que los Estados negocian y comercian mercaderías libremente entre sí, sin que ello implique todavía coordinar una política común hacia terceros Estados ajenos al bloque.
+
+\begin{example}{La analogía de la escolaridad}
+Esta lógica escalonada se comparó con el sistema educativo formal: así como una persona debe completar el nivel primario antes de acceder al secundario, y el secundario antes de inscribirse en un estudio superior, cada etapa no es un mero requisito formal de cumplimiento de plazos, sino que supone la adquisición efectiva de una base de conocimientos y de condiciones que sostienen el paso al escalón siguiente.
+
+Del mismo modo, en la primera etapa de la integración latinoamericana se entendía que un mercado interno estabilizado era la base indispensable antes de poder coordinar una política exterior común.
+\end{example}
+
+%------------------------------------------------------------------------------
+\section{Integración después de la década de 1970-80: el retorno democrático}
+
+Con el retorno de los países de la región a gobiernos democráticos, cambió también la lógica de los procesos de integración. En muchos casos, las economías internas se encontraban seriamente deterioradas tras los períodos de gobiernos de facto, lo que llevó a los Estados a encarar de manera simultánea la necesidad de fortalecer el mercado interno y la de conseguir inversión extranjera y una inserción internacional favorable.
+
+La necesidad de recursos se ilustró con una imagen: es imposible cocinar sin harina ni huevos; para hacer crecer la economía se necesitan recursos, porque no crece de la nada, y por eso se deben encarar ambas etapas simultáneamente.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.20\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+ & \textbf{Antes de la década de 1970} & \textbf{Después de la década de 1970-80} \\
+\midrule
+\textbf{Contexto} & Etapa previa al quiebre político de los gobiernos militares. & Retorno democrático; economías internas deterioradas tras los gobiernos de facto. \\
+\textbf{Estrategia} & Primero estabilizar el mercado interno «puertas adentro»; luego, una política exterior común. & Encarar simultáneamente el fortalecimiento del mercado interno y la búsqueda de inversión extranjera e inserción internacional favorable. \\
+\textbf{Modelo predominante} & Zonas de libre comercio como primer escalón. & Acuerdos bilaterales entre Argentina y Brasil como base del MERCOSUR, planteado directamente como mercado común. \\
+\bottomrule
+\end{tabularx}
+\caption*{Comparación de las dos etapas históricas de la integración latinoamericana.}
+\end{table}
+
+\subsection{Los antecedentes bilaterales entre Argentina y Brasil}
+
+En este período se ubica el origen del proceso que luego derivaría en el MERCOSUR. El punto de partida fue un acercamiento bilateral entre \textbf{Argentina y Brasil}, los dos países de mayor extensión territorial y mayor población de América del Sur y, por lo tanto, los de mayor peso relativo como mercados. Comenzaron con acuerdos parciales y bilaterales, que fueron la base para poder crear el mercado común del sur.
+
+\begin{note}
+\textbf{Precisión incorporada en el material original.} El antecedente directo del acercamiento bilateral fue la Declaración de Foz de Iguazú, suscripta el 30 de noviembre de 1985 entre los entonces presidentes de Argentina y Brasil, que dio inicio a un Programa de Integración y Cooperación Económica entre ambos países. A partir de ese acercamiento se sucedieron distintos acuerdos bilaterales de complementación económica durante los años siguientes, hasta desembocar en la firma del tratado multilateral que dio origen formal al MERCOSUR.
+\end{note}
+
+Un dato relevante para comprender la profundidad institucional del proceso es que el acuerdo finalmente alcanzado por los cuatro Estados fundadores no se limitó a establecer una zona de libre comercio —como había sido habitual en la primera etapa histórica— sino que planteó directamente la constitución de un \textbf{mercado común}, lo que constituye un compromiso institucional considerablemente más profundo.
+
+%------------------------------------------------------------------------------
+\cornellsection
+
+\begin{cornell}
+\cornellitem{¿Cuáles son las dos grandes etapas históricas de la integración latinoamericana y por qué se produce el corte entre ellas?}{%
+Una etapa anterior a la década de 1970 y otra posterior a la década de 1970-80. El corte responde a un quiebre político regional: durante la década de 1970 la mayoría de los países latinoamericanos atravesó gobiernos militares, con una discontinuidad institucional profunda.}
+
+\cornellitem{¿Por qué se buscaba primero fortalecer la economía interna antes de la década de 1970?}{%
+Porque se entendía que, al conformar un área de integración, lo primero era establecer el mercado interno: estabilizar las economías «puertas adentro» y, una vez fortalecidas, avanzar hacia una política exterior común frente a terceros. Predominaron las zonas de libre comercio como primer escalón. La analogía es la escolaridad: cada nivel supone una base efectiva para pasar al siguiente.}
+
+\cornellitem{¿Qué cambió con el retorno a la democracia en la región?}{%
+Las economías internas estaban seriamente deterioradas tras los gobiernos de facto, por lo que los Estados debieron encarar simultáneamente el fortalecimiento del mercado interno y la obtención de inversión extranjera y de una inserción internacional favorable, ya que la economía necesita recursos para crecer.}
+
+\cornellitem{¿Cuál fue el punto de partida del proceso que derivó en el MERCOSUR?}{%
+Un acercamiento bilateral entre Argentina y Brasil, los dos países más grandes de América del Sur en extensión y población y, por lo tanto, de mayor peso como mercados. Comenzaron con acuerdos parciales y bilaterales que fueron la base para crear el mercado común del sur. Como antecedente directo se menciona la Declaración de Foz de Iguazú (30 de noviembre de 1985).}
+
+\cornellitem{¿En qué se diferenció el acuerdo de los cuatro Estados fundadores del modelo de la primera etapa?}{%
+No se limitó a una zona de libre comercio, como había sido habitual en la primera etapa, sino que planteó directamente la constitución de un mercado común, un compromiso institucional considerablemente más profundo.}
+
+\cornellresumen{La integración latinoamericana se divide en una etapa anterior a la década de 1970, centrada en estabilizar primero el mercado interno antes de coordinar una política exterior común (predominio de zonas de libre comercio), y una posterior, tras el retorno democrático, en la que los Estados encararon simultáneamente el fortalecimiento interno y la apertura a la inversión extranjera. En ese marco, el acercamiento bilateral entre Argentina y Brasil dio origen al proceso que culminó en el MERCOSUR, planteado directamente como mercado común.}
+\end{cornell}
+
+%==============================================================================
+% CAPÍTULO 5
+%==============================================================================
+\chapter[Modelos y zonas de integración económica]{Modelos y Zonas de Integración Económica}
+
+Las zonas de integración económica son modelos cuyo objetivo principal es económico, sin perjuicio de que incluyan además cuestiones políticas, culturales y de otra índole. Este capítulo presenta una primera aproximación a la escala de modelos existentes; su profundización quedó reservada para la clase siguiente.
+
+%------------------------------------------------------------------------------
+\section{Unión fronteriza}
+
+\begin{definition}{Unión fronteriza}
+Es el primer modelo presentado: aquel esquema cuyo ámbito de aplicación territorial se limita a las zonas de frontera entre los Estados limítrofes, y no a la totalidad del territorio de cada Estado.
+\end{definition}
+
+Por ejemplo, la regulación de la triple frontera responde a esta lógica: por la cercanía, esas zonas necesitan algún ordenamiento y alguna regulación específica.
+
+%------------------------------------------------------------------------------
+\section{Zona de libre comercio}
+
+\begin{definition}{Zona de libre comercio}
+Es el segundo modelo desarrollado. A diferencia de la unión fronteriza, comprende la \textbf{totalidad del territorio} de cada uno de los Estados que la integran, y no solamente sus zonas limítrofes. En ella no existen preferencias ni gravámenes aduaneros entre los Estados parte para la circulación de mercaderías.
+\end{definition}
+
+Ese resultado no se alcanza de manera inmediata a partir de la firma del tratado, sino a través de una \textbf{escala de desgravación arancelaria}, que todavía se sigue aplicando. Trimestralmente se publica la tabla con los aranceles de importación y de exportación dentro del MERCOSUR.
+
+%------------------------------------------------------------------------------
+\section{Zona franca: una decisión unilateral, no un acuerdo de integración}
+
+Existe un error conceptual frecuente: confundir una zona de libre comercio con una zona franca.
+
+\begin{definition}{Zona franca}
+Es un espacio dentro del territorio de un único Estado soberano, creado por decisión unilateral de ese Estado, con el propósito de promover el desarrollo económico de una determinada región de su propio territorio, sin que su existencia dependa del acuerdo o de la voluntad de otros Estados.
+\end{definition}
+
+\begin{example}{Beneficios unilaterales para poblar una zona desfavorable}
+Dos mecanismos típicos de una zona franca son: (a) el pago de un adicional salarial —por ejemplo, un porcentaje superior sobre el sueldo de base— para incentivar que trabajadores se radiquen en una zona geográfica considerada desfavorable; y (b) la exención de aranceles de importación para determinados bienes, como ocurre con ciertos regímenes de compra de vehículos en zonas francas.
+
+En ambos casos se trata de decisiones que el Estado adopta de manera unilateral para promover una parte específica de su propio territorio, sin que exista un acuerdo con otros Estados que lo obligue a ello.
+\end{example}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+ & \textbf{Zona de libre comercio} & \textbf{Zona franca} \\
+\midrule
+\textbf{Origen} & Acuerdo multilateral entre Estados. & Decisión unilateral de un único Estado soberano. \\
+\textbf{Ámbito territorial} & Totalidad del territorio de cada Estado parte. & Un espacio dentro del territorio de un único Estado. \\
+\textbf{Efecto} & Libre tránsito recíproco de mercaderías entre los territorios de los Estados parte, sin abonar aranceles al cruzar cada aduana. & Promoción de una región del propio territorio (por ejemplo, mediante exenciones arancelarias o incentivos salariales). \\
+\bottomrule
+\end{tabularx}
+\caption*{Zona de libre comercio y zona franca.}
+\end{table}
+
+\begin{important}
+La zona franca no es un acuerdo de integración: es un espacio dentro del territorio que el Estado soberano quiere promover, sin importar lo que piensen los demás Estados. La zona de libre comercio, en cambio, se acuerda con los demás Estados.
+\end{important}
+
+%------------------------------------------------------------------------------
+\section{El caso del MERCOSUR}
+
+El MERCOSUR se presenta como ejemplo del modelo de \textbf{mercado común}.
+
+\begin{note}
+\textbf{Precisión incorporada en el material original: Tratado de Asunción.} En la clase, un estudiante respondió inicialmente que el MERCOSUR databa del año 1990. Según las fuentes consultadas al elaborar el material de origen, el Mercado Común del Sur (MERCOSUR) fue creado mediante el Tratado de Asunción, suscripto el 26 de marzo de 1991 en la ciudad de Asunción, Paraguay, por Argentina, Brasil, Paraguay y Uruguay; el tratado fundacional corresponde, por lo tanto, a 1991 y no a 1990.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (las notas indican que «con posterioridad a la firma del tratado fundacional, hacia 1983» ya se registraban los primeros acercamientos bilaterales entre Argentina y Brasil;
+%  esa secuencia resulta inconsistente con las fechas de 1985 y 1991 indicadas en el propio material. Se conserva la referencia a 1983 tal como figura).
+Se indicó que hacia 1983 ya se registraban los primeros acercamientos bilaterales entre Argentina y Brasil que sentarían las bases del proceso. Se mencionó además la creación de la Asociación Latinoamericana de Integración como un desprendimiento institucional anterior, cuyo desarrollo quedó anunciado para la clase siguiente.
+
+\begin{note}
+\textbf{Temas pendientes.} Quedó pendiente el desarrollo pormenorizado de las restantes zonas de integración económica —unión aduanera, mercado común y unión económica—, que no llegaron a desarrollarse por razones de tiempo y se retomarán en el siguiente encuentro.
+\end{note}
+
+%------------------------------------------------------------------------------
+\cornellsection
+
+\begin{cornell}
+\cornellitem{¿Qué diferencia a una unión fronteriza de una zona de libre comercio?}{%
+La unión fronteriza limita su ámbito de aplicación a las zonas de frontera entre Estados limítrofes (por ejemplo, la regulación de la triple frontera); la zona de libre comercio comprende la totalidad del territorio de cada Estado parte. En la zona de libre comercio no existen preferencias ni gravámenes aduaneros entre los Estados parte para la circulación de mercaderías.}
+
+\cornellitem{¿Cómo se alcanza el libre comercio entre los Estados parte?}{%
+No de un día para el otro, sino mediante una escala de desgravación arancelaria, que todavía se sigue aplicando; trimestralmente se publica la tabla con los aranceles de importación y exportación dentro del MERCOSUR.}
+
+\cornellitem{¿Por qué una zona franca no es lo mismo que una zona de libre comercio?}{%
+La zona franca es una decisión unilateral de un único Estado soberano para promover una parte de su propio territorio (por ejemplo, con adicionales salariales o exención de aranceles de importación), sin depender del acuerdo de otros Estados. La zona de libre comercio depende de un acuerdo multilateral y se traduce en libre tránsito recíproco de mercaderías entre los territorios de los Estados parte.}
+
+\cornellitem{¿Cuándo y cómo se creó el MERCOSUR?}{%
+Mediante el Tratado de Asunción, suscripto el 26 de marzo de 1991 por Argentina, Brasil, Paraguay y Uruguay, con el antecedente del acercamiento bilateral entre Argentina y Brasil (Declaración de Foz de Iguazú, 1985).}
+
+\cornellitem{¿Por qué el MERCOSUR nació directamente como mercado común y no como zona de libre comercio?}{%
+Porque el acuerdo de los cuatro Estados fundadores planteó directamente la constitución de un mercado común, un compromiso institucional considerablemente más profundo que el de la zona de libre comercio, que había sido habitual en la primera etapa histórica. Se trata, además, de un modelo que exige consenso para adoptar sus normas.}
+
+\cornellresumen{Las zonas de integración económica se presentan como una escala de modelos: la unión fronteriza (limitada a las zonas de frontera) y la zona de libre comercio (totalidad del territorio de los Estados parte, con desgravación arancelaria progresiva) resultan de acuerdos entre Estados, mientras que la zona franca es una decisión unilateral de un Estado para promover una parte de su propio territorio. El MERCOSUR, creado por el Tratado de Asunción de 1991, se planteó directamente como mercado común. Las zonas restantes (unión aduanera, mercado común y unión económica) quedaron pendientes de desarrollo.}
+\end{cornell}
+
+%==============================================================================
+% FIN DEL DOCUMENTO
+%==============================================================================
+\end{document}

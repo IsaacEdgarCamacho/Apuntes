@@ -1,0 +1,606 @@
+% =====================================================================
+%  APUNTES DE DERECHO DE LA INTEGRACIÓN
+%  Documento autónomo en LaTeX — método Cornell
+% =====================================================================
+
+\documentclass[12pt,oneside]{book}
+
+% ---------------------------------------------------------------------
+% METADATOS DEL DOCUMENTO
+% ---------------------------------------------------------------------
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\carrera}{Abogacía --- Ciclo Superior}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Apuntes de Derecho de la Integración}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ---------------------------------------------------------------------
+% PAQUETES
+% ---------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ---------------------------------------------------------------------
+% RUTAS DE IMÁGENES
+% ---------------------------------------------------------------------
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ---------------------------------------------------------------------
+% ÍNDICE
+% ---------------------------------------------------------------------
+\setcounter{tocdepth}{2}
+
+% ---------------------------------------------------------------------
+% CONFIGURACIÓN DE PÁRRAFOS Y LISTAS
+% ---------------------------------------------------------------------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+% ---------------------------------------------------------------------
+% CONTROL DE VIUDAS Y HUÉRFANAS
+% ---------------------------------------------------------------------
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ---------------------------------------------------------------------
+% ENCABEZADOS Y PIES DE PÁGINA
+% ---------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------------------------------------------------------------------
+% COMANDOS MATEMÁTICOS AUXILIARES
+% ---------------------------------------------------------------------
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ---------------------------------------------------------------------
+% CAJAS ACADÉMICAS SEMÁNTICAS
+% ---------------------------------------------------------------------
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+\begin{document}
+
+% =====================================================================
+% PORTADA
+% =====================================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el derecho de la integración exige, antes que memorizar normas, entender el equilibrio entre soberanía y cooperación que las sostiene.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho de la Integración'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% =====================================================================
+% ÍNDICE
+% =====================================================================
+\tableofcontents
+
+% =====================================================================
+% PRESENTACIÓN DE LA CLASE
+% =====================================================================
+\chapter*{Presentación de la clase}
+\addcontentsline{toc}{chapter}{Presentación de la clase}
+
+Este documento reorganiza y depura, en clave académica, los apuntes correspondientes a una clase sobre inmunidad de jurisdicción en los procesos de integración y sobre el sistema de solución de controversias del Mercosur. El material fue elaborado a partir de la transcripción de la clase; por razones de confidencialidad se omiten las referencias a la institución de origen y al docente a cargo.
+
+\begin{note}
+\textbf{¿De qué trata esta clase?} La clase profundiza el régimen de inmunidad de jurisdicción de los órganos y funcionarios de los procesos de integración (Mercosur y Unión Europea) y desarrolla el sistema de solución de controversias del Mercosur: su evolución desde el Protocolo de Brasilia hasta el Protocolo de Olivos, la creación del Tribunal Permanente de Revisión, el objeto del mecanismo, la ejecución de los laudos y la legitimación de Estados y particulares para accionar.
+
+\textbf{¿Para qué sirve en la vida profesional?} Todo abogado que asesore empresas con operaciones en el Mercosur, organismos públicos o estudios de comercio exterior necesita saber, en la práctica, si puede demandar a un organismo internacional o a un Estado extranjero ante un juez local; qué camino seguir cuando un Estado del bloque aplica mal una norma común (aranceles, sanidad, transporte, inversiones); y qué puede esperarse realmente de un laudo, incluyendo sus límites de ejecución. Esto evita asesoramientos erróneos y permite anticipar plazos y vías de reclamo, incluida la Sección Nacional del Grupo Mercado Común.
+
+\textbf{¿Por qué es útil más allá del ejercicio profesional?} Entender la soberanía, la inmunidad y los mecanismos de solución de controversias entre Estados brinda herramientas para leer con criterio propio la actualidad internacional: por qué un país puede sancionar a una empresa sin declarar la guerra a otro Estado, por qué el Brexit generó consecuencias que aún se pagan, o por qué una región puede ser muy autónoma sin ser soberana.
+\end{note}
+
+Los temas de esta clase forman una sola línea de razonamiento: primero es necesario saber quién puede ser sometido a la justicia y quién no (la inmunidad de los órganos y funcionarios); después, cuando surge un problema entre los Estados del bloque, es necesario saber por qué vía institucional corresponde reclamar (el sistema de solución de controversias); y, por último, conviene tener presente que detrás de cada reclamo jurídico existen también intereses políticos y económicos concretos, tal como ocurre en la agenda internacional cotidiana.
+
+% =====================================================================
+% CAPÍTULO 1 — INMUNIDAD EN LOS PROCESOS DE INTEGRACIÓN
+% =====================================================================
+\chapter{Inmunidad en los procesos de integración}
+
+\section{Repaso: la inmunidad de jurisdicción de los órganos del Mercosur}
+
+El tema de esta clase se vincula directamente con el mecanismo de solución de controversias, dentro del marco institucional del Mercosur. Antes de desarrollarlo, corresponde completar un punto pendiente: la inmunidad de los órganos, en conexión con lo ya visto sobre la inmunidad del Estado y la distinción entre actos de imperio y actos de gestión.
+
+\subsection{De las sedes rotativas a los órganos con sede fija}
+
+En un primer momento, los órganos del Mercosur no tenían una sede fija: se reunían en el país que ejercía la presidencia \textit{pro tempore} en cada período. Con el tiempo, se crearon órganos con sede física permanente, como la Secretaría (que pasó a ser un órgano con sede propia, en Montevideo) y el Tribunal Permanente de Revisión (con sede en Asunción).
+
+Cada vez que un órgano adquiere una sede física en un Estado determinado, ese Estado sede firma con el Mercosur un acuerdo de inmunidad de jurisdicción respecto de la actividad de ese organismo. Esto significa que los órganos nacionales de ese país no pueden, según lo pactado en cada acuerdo de sede, ejercer jurisdicción sobre ese órgano.
+
+\begin{definition}{Acuerdo de sede e inmunidad de jurisdicción}
+Cuando un órgano del Mercosur (por ejemplo, la Secretaría en Montevideo o el Tribunal Permanente de Revisión en Asunción) se instala con sede fija en un Estado parte, ese Estado firma con el bloque un acuerdo de sede que garantiza la inmunidad de jurisdicción del organismo. En consecuencia, las acciones que realice ese organismo y los miembros que intervengan en su nombre no pueden ser sometidos a la jurisdicción nacional del Estado sede.
+\end{definition}
+
+La inmunidad de jurisdicción arrastra, como consecuencia, la inmunidad de ejecución: si un órgano goza de inmunidad de jurisdicción, tampoco pueden afectarse sus bienes ni su documentación.
+
+\begin{important}
+La inmunidad de jurisdicción de un órgano de integración conlleva necesariamente la inmunidad de ejecución sobre sus bienes: no es posible afectarlos de ninguna manera mientras subsista el acuerdo de sede.
+\end{important}
+
+\subsection{Caso real: los reclamos laborales contra la Secretaría del Mercosur}
+
+Un caso ilustrativo se relaciona con el personal administrativo (no diplomático) de la Secretaría del Mercosur. A diferencia de los funcionarios designados por un período determinado (legisladores o magistrados con mandato fijo), el personal administrativo suele ser incorporado por quienes ocupan los cargos políticos, y cuando esos funcionarios dejan sus puestos --- por ejemplo, porque son reubicados en algún ministerio o en otra lista política ---, ese personal administrativo queda en una situación de incertidumbre laboral.
+
+\begin{example}{Reclamos laborales contra la Secretaría del Mercosur}
+En los primeros cambios de autoridades, el personal administrativo de la Secretaría del Mercosur comenzó a presentar reclamos porque no se les respetó la estabilidad ni se los indemnizó por el despido, entre otros planteos. Esos reclamos se dirigieron contra la Secretaría del Mercosur ante la justicia uruguaya (Estado sede de la Secretaría). El Tribunal Superior de Uruguay declaró que el Estado uruguayo no tenía competencia para someter a la Secretaría del Mercosur a la justicia local.
+\end{example}
+
+Este caso se vincula con el precedente ``Manauta'' (relativo a la inmunidad de jurisdicción del Estado, visto en clases anteriores). A diferencia de ese precedente, dentro del Mercosur un reclamo de este tipo no cuenta con una vía judicial equivalente, porque los particulares no tienen acceso directo al mecanismo de solución de controversias del bloque.
+
+\section{La inmunidad en la Unión Europea: un régimen más preciso}
+
+En el derecho comparado existen también instituciones que no pueden ser sometidas a jurisdicción nacional de la misma manera. El Tratado de Lisboa remite, en esta materia, al Tratado de Funcionamiento de la Unión Europea (TFUE), que regula estas cuestiones de un modo más técnico y preciso que el esquema del Mercosur.
+
+\begin{note}
+Se hizo referencia, dentro del Tratado de Funcionamiento de la Unión Europea (TFUE), a un artículo --- mencionado en clase como artículo 274 --- que distingue los actos de imperio de los actos de gestión de las instituciones europeas.
+% TODO: contenido incompleto o ambiguo en las notas originales. La numeración exacta del artículo fue mencionada oralmente y debería verificarse en el texto vigente del TFUE y en el Protocolo n.º 7 sobre los Privilegios y las Inmunidades de la Unión Europea antes de citarla en un trabajo académico.
+\end{note}
+
+Esa norma establece que los jueces nacionales no pueden someter a juicio ni a las instituciones de la Unión Europea ni a sus funcionarios por los actos, opiniones, declaraciones y votos emitidos en el ejercicio de sus funciones y para el cumplimiento de los objetivos de la Unión. Cuando se realiza un \textbf{acto de imperio} --- es decir, un acto cumplido en ejercicio de la función y para el objetivo para el que el órgano fue creado --- no es posible someter a su autor a un tribunal nacional. En cambio, las cuestiones privadas de los funcionarios sí pueden ser sometidas a jurisdicción.
+
+\subsection{Ejemplo: el levantamiento de la inmunidad de un eurodiputado}
+
+\begin{example}{Levantamiento de inmunidad de un eurodiputado}
+Si un eurodiputado comete un delito ajeno al ejercicio de su función, se solicita a la Unión Europea que le retire la inmunidad a esa persona, precisamente porque no se trata de un acto vinculado al ejercicio de sus funciones. Levantada la inmunidad, el eurodiputado puede ser sometido a la jurisdicción nacional.
+\end{example}
+
+\subsection{El Tribunal de Justicia de la Unión Europea y el acceso directo de los particulares}
+
+Existe una diferencia estructural muy importante entre el Mercosur y la Unión Europea: en la Unión Europea existe un órgano jurisdiccional permanente y único --- el Tribunal de Justicia de la Unión Europea --- que tiene competencia exclusiva para evaluar los actos institucionales, y al que los particulares pueden acceder de manera directa mediante un recurso directo ante el tribunal. El Mercosur, como se desarrollará en el capítulo siguiente, no ofrece una vía equivalente.
+
+% =====================================================================
+% CAPÍTULO 2 — SOLUCIÓN DE CONTROVERSIAS EN EL MERCOSUR
+% =====================================================================
+\chapter{El sistema de solución de controversias del Mercosur}
+
+\section{Conceptos generales: autocomposición y heterocomposición}
+
+Dentro de los sistemas de solución de conflictos existen dos grandes familias de mecanismos: la autocomposición y la heterocomposición.
+
+\begin{table}[H]
+\centering
+\caption{Autocomposición y heterocomposición}
+\begin{tabularx}{\textwidth}{@{}l X X@{}}
+\toprule
+\textbf{Concepto} & \textbf{Definición} & \textbf{Ejemplos citados} \\
+\midrule
+Autocomposición & Son las propias partes las que resuelven el conflicto, llegando a un acuerdo sobre cómo solucionarlo. & Negociación directa, conciliación, mediación \\
+\addlinespace
+Heterocomposición & Interviene un tercero imparcial e independiente de las partes, que resuelve el conflicto. & Arbitraje, tribunales judiciales o permanentes \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Dentro del Mercosur, el sistema combina ambas lógicas: primero instancias de autocomposición (negociaciones directas y, en cierta medida, la intervención conciliadora del Grupo Mercado Común) y, si estas fracasan, instancias de heterocomposición (arbitraje y, luego, el Tribunal Permanente de Revisión).
+
+\section{Evolución del sistema de solución de controversias del Mercosur}
+
+\subsection{El vacío del Tratado de Asunción y el Protocolo de Brasilia}
+
+El Tratado de Asunción, acto fundacional del Mercosur, no reguló ningún procedimiento de solución de controversias. Ese vacío fue cubierto por un instrumento adicional: el Protocolo de Brasilia. La creación del Mercosur no dejó de prever un mecanismo; simplemente no fue incorporado en el propio Tratado de Asunción, sino resuelto en un protocolo adicional.
+
+\begin{definition}{Protocolo de Brasilia (1991)}
+Instrumento adicional al Tratado de Asunción que estableció, con carácter transitorio, el primer sistema de solución de controversias del Mercosur. Previó tres etapas sucesivas: (1) negociaciones directas entre los Estados; (2) intervención obligatoria del Grupo Mercado Común; y (3) arbitraje ante un Tribunal Arbitral Ad Hoc.
+\end{definition}
+
+\textbf{a) Negociaciones directas.} Los Estados se sientan a negociar diplomáticamente. El plazo original era de quince días, prorrogable de común acuerdo las veces que las partes consideraran necesario para mantener las conversaciones en buenos términos.
+
+\textbf{b) Intervención obligatoria del Grupo Mercado Común (GMC).} Si las negociaciones directas fracasan, la controversia pasa a una segunda instancia obligatoria: la intervención del Grupo Mercado Común, integrado por funcionarios de los ministerios de cada Estado. Cada parte expone allí su posición.
+
+Cuando la cuestión resulta demasiado técnica, el Grupo Mercado Común puede solicitar --- de manera no obligatoria --- un informe a un grupo de expertos o a la Comisión de Comercio del Mercosur. Esa colaboración no es vinculante ni obliga al Grupo Mercado Común a seguir lo que el informe recomiende.
+
+Con los elementos aportados por las partes y, eventualmente, ese informe técnico, el Grupo Mercado Común elabora una propuesta de solución, cumpliendo una función asimilable a la de un mediador o conciliador: si las partes aceptan la propuesta, la cumplen; si no la aceptan, el conflicto continúa.
+
+\textbf{c) Arbitraje ante un Tribunal Arbitral Ad Hoc.} Si la propuesta del Grupo Mercado Común no es aceptada, la controversia pasa a la etapa arbitral. El tribunal es colegiado, compuesto por un mínimo de tres árbitros: uno designado por cada uno de los Estados involucrados en la controversia, y un tercer árbitro neutral que preside el tribunal.
+
+Los árbitros surgen de listas o nóminas de expertos que cada Estado presenta al momento de crearse el Mercosur (y que se renuevan periódicamente). En la época de Brasilia, cada Estado debía presentar una nómina de diez expertos en materias vinculadas al espacio de integración. Cuando surge una controversia, cada Estado elige un árbitro de su propia lista, y el tercer árbitro --- quien preside --- se designa de común acuerdo entre las partes o a partir de las listas de los demás Estados.
+
+\begin{important}
+El Tribunal Arbitral Ad Hoc se constituye de manera específica para cada controversia y deja de existir una vez dictado el laudo. Si el mismo tipo de conflicto vuelve a plantearse entre otros dos Estados, debe integrarse un tribunal distinto.
+\end{important}
+
+\subsubsection{Naturaleza jurídica del arbitraje y falta de uniformidad}
+
+El arbitraje es una forma de justicia privada, no estatal ni nacional: las partes acuerdan someterse a un tercero neutral, y no a un órgano jurisdiccional del Mercosur ni a la justicia de ninguno de los Estados.
+
+Al no ser un tribunal permanente sino ad hoc, se advierte un problema estructural: los laudos son obligatorios entre las partes de cada caso, pero no generan jurisprudencia vinculante para casos futuros. Distintos tribunales, integrados por distintos árbitros, pueden interpretar la misma norma de manera diferente: en una controversia puede reconocerse determinada interpretación y, en otra posterior, con otro tribunal, desestimarse esa misma interpretación, porque el mecanismo para homogeneizar la interpretación no resulta adecuado.
+
+De ello se sigue que la función principal del mecanismo de solución de controversias --- establecer una interpretación uniforme del derecho de la integración --- quedaba, en la etapa de Brasilia, débilmente garantizada.
+
+\subsection{El Protocolo de Ouro Preto: ajustes al esquema de Brasilia}
+
+En el período de transición del Mercosur se dictó el Protocolo de Ouro Preto, que mantuvo en lo sustancial el mismo esquema de Brasilia, con una modificación relevante: quitó el carácter obligatorio de la intervención del Grupo Mercado Común. A partir de entonces, las partes podían realizar la negociación directa e ir directamente al arbitraje; la intervención del Grupo Mercado Común pasó a ser facultativa.
+
+\subsection{El Protocolo de Olivos y el Tribunal Permanente de Revisión}
+
+Hacia 2002 se modifica nuevamente el sistema mediante el Protocolo de Olivos, que crea el Tribunal Permanente de Revisión, con sede en Asunción.
+
+\begin{definition}{Protocolo de Olivos (2002)}
+Modificó el sistema de solución de controversias del Mercosur y creó el Tribunal Permanente de Revisión (TPR), con sede en Asunción, Paraguay. A diferencia de los tribunales arbitrales ad hoc, sus miembros son designados por un período determinado (renovable) e intervienen en todos los casos que se presenten durante su mandato.
+\end{definition}
+
+La principal ventaja de contar con un tribunal permanente es la posibilidad de un criterio más uniforme, al no cambiar de integrantes en cada controversia: aunque a sus miembros se los sigue denominando árbitros, se trata en rigor de un tribunal permanente.
+
+\textbf{Funciones del Tribunal Permanente de Revisión}
+
+\textbf{a) Instancia de apelación o revisión del laudo arbitral.} El Tribunal Permanente de Revisión interviene, en primer lugar, como instancia de apelación de los laudos dictados por el Tribunal Arbitral Ad Hoc. En esta función su actuación es limitada: no puede producir prueba nueva, y solo revisa la cuestión de derecho debatida y cuestionada del laudo apelado, sin reorganizar todo el procedimiento.
+
+\textbf{b) Instancia única \textit{per saltum}.} El Tribunal también puede intervenir en instancia única, sin pasar por el arbitraje ad hoc, cuando --- concluidas las negociaciones directas sin acuerdo --- las partes deciden ir directamente al Tribunal Permanente de Revisión, generalmente por la urgencia o la importancia del asunto. En este supuesto, el Tribunal actúa con la totalidad de las facultades de un tribunal de instancia única: puede producir prueba, dictar medidas y sentenciar.
+
+\textbf{c) Medidas provisionales o cautelares.} El Tribunal Permanente de Revisión puede dictar medidas provisionales o cautelares en cualquier momento del procedimiento, incluso durante la etapa de negociación directa, cuando exista riesgo de un daño grave o irreparable.
+
+\begin{example}{Medida cautelar ante un daño irreparable}
+Ante la importación de bananas o de algún producto perecedero, si ninguna de las partes toma medidas para la conservación del material, es posible acudir directamente al Tribunal Permanente de Revisión para que adopte una medida urgente de protección, como una cautelar o una medida precautoria.
+\end{example}
+
+Esta instancia adicional no reemplaza al procedimiento ya iniciado, sino que se suma a él, corrigiendo un problema anterior: que un único órgano decisorio resolviera sin ningún tipo de control o revisión posterior.
+
+\section{El objeto del mecanismo de solución de controversias}
+
+Tanto el mecanismo del Mercosur como el de la Unión Europea apuntan a resolver conflictos relativos a la aplicación, interpretación y vigencia del derecho de la integración, y no a resolver el conflicto particular entre dos partes privadas. Lo que está en discusión no es si una parte privada le paga o no a la otra en una compraventa determinada, sino la vigencia, la aplicación o la interpretación de la normativa común.
+
+\begin{example}{Analogía de la interpretación normativa}
+Así como en el derecho penal la presencia o ausencia de una coma puede modificar por completo el sentido de una norma --- debate doctrinario histórico sobre cierto artículo del Código Penal referido a la violación ---, en el derecho de la integración la correcta interpretación de una norma común determina si un Estado la está aplicando bien o mal. El mecanismo de solución de controversias existe, precisamente, para fijar esa interpretación auténtica, atendiendo a la finalidad que tuvo la norma al dictarse.
+\end{example}
+
+Cuando un Estado interpreta y aplica la norma de un modo distinto al fijado por el órgano de solución de controversias, ese Estado debe corregir su normativa interna, mientras que el otro Estado sigue amparado por lo resuelto, aun cuando la cuestión de fondo fuera, en definitiva, una controversia entre dos países del bloque.
+
+\section{La posibilidad de acudir a otros foros: una crítica al sistema}
+
+Existe una diferencia importante entre el Protocolo de Brasilia y el Protocolo de Olivos: mientras que Brasilia establecía el mecanismo del Mercosur como la única vía a seguir, Olivos permite que, de común acuerdo, los Estados sometan la controversia a otro mecanismo de solución de controversias distinto, si estuvieran vinculados a él por otro convenio.
+
+\subsection{El caso de ``las papeleras''}
+
+\begin{example}{El caso de las papeleras}
+El conflicto conocido como ``el caso de las papeleras'', entre la Argentina y la República Oriental del Uruguay, vinculado a la instalación de plantas de celulosa sobre el río Uruguay, no se resolvió mediante el sistema de solución de controversias del Mercosur, sino ante otro tribunal internacional. Esta circunstancia se señala como una incoherencia respecto de los objetivos del bloque: el conflicto se resolvió atendiendo más a consideraciones comerciales --- qué le convenía a cada parte --- que a la norma o a su ubicación dentro del sistema del Mercosur.
+\end{example}
+
+\subsection{Inversiones extranjeras y otros foros arbitrales}
+
+La crítica se extiende al ámbito de las inversiones extranjeras: los Estados pueden acordar bilateralmente someter sus controversias de inversión a otros foros --- se menciona, a modo de ejemplo, el Centro de Arbitraje de la Cámara de Comercio Internacional con sede en París ---, dejando de lado el sistema del Mercosur, aun cuando las condiciones y parámetros de protección a la inversión fueron fijados originalmente por los propios Estados del bloque.
+
+En la elección del foro pueden influir, además de consideraciones jurídicas, intereses políticos concretos. Se menciona, a modo de ejemplo, la resistencia de determinados países europeos a la instalación de plantas industriales que pudieran contaminar sus propios ríos, aun cuando sostuvieran que era admisible que esas plantas se instalaran en otro país.
+
+En síntesis, permitir litigar fuera del sistema del Mercosur le resta autoridad y sentido al propio Tribunal Permanente de Revisión, dado que el objetivo declarado del mecanismo es justamente uniformar la interpretación y aplicación del derecho de la integración. El sistema de solución de controversias del Mercosur es opcional: rige siempre que los Estados decidan impulsar la acción del tribunal, pero no existe sometimiento obligatorio a lo que este decida.
+
+\begin{note}
+\textbf{Consulta:} ¿es obligatoria la negociación directa y, si no se llega a un acuerdo, pueden las partes irse del sistema de solución de controversias del Mercosur e iniciar la acción ante otro sistema al que estén ligadas por otra convención, o deben permanecer dentro del sistema del Mercosur?
+
+\textbf{Respuesta:} Sí, pueden hacerlo. Dentro del sistema del Mercosur, después de las negociaciones directas las partes pueden ir al Grupo Mercado Común, aunque no es obligatorio; si acuden a él, su informe no es vinculante y puede cumplirse o no. Si no acuden al Grupo Mercado Común, no hay consecuencia alguna, pero debe agotarse igualmente el arbitraje. Una vez dictado el laudo arbitral, si se apela, corresponde acudir al Tribunal Permanente de Revisión; o bien, concluidas las negociaciones directas, puede plantearse un \textit{per saltum} e ir directamente al tribunal, sin pasar ni por el Grupo Mercado Común ni por el arbitraje ad hoc. Cuando se elige otro foro distinto, las negociaciones directas deben estar siempre cumplidas; recién a partir de allí se decide si se acude al Grupo Mercado Común, al arbitraje del Mercosur, o a otro sistema al que las partes estén vinculadas por otra convención.
+\end{note}
+
+\begin{important}
+El informe del Grupo Mercado Común (función conciliadora) no debe confundirse con el laudo arbitral. El laudo es una verdadera sentencia privada dictada por los árbitros, con la particularidad de que no es ejecutable por sí misma: el árbitro no puede imponer su ejecución forzosa y debe recurrirse a otro mecanismo (las medidas compensatorias) para hacerlo valer frente al Estado incumplidor.
+\end{important}
+
+\section{Ejecución de los laudos y medidas compensatorias}
+
+El sistema del Mercosur carece de supranacionalidad: las decisiones del Tribunal Permanente de Revisión y los laudos del Tribunal Ad Hoc no son ejecutables por la fuerza frente a un Estado que decide no cumplirlos. Si el Estado condenado no acepta cumplir con la sentencia o con el laudo arbitral, el Estado perjudicado queda habilitado para tomar medidas compensatorias frente al incumplimiento.
+
+\subsection{Proporcionalidad y aprobación de las medidas}
+
+Las medidas compensatorias deben aplicarse, en principio, dentro del mismo rubro o sector en el que se produjo el perjuicio. Solo cuando eso no resulta posible --- porque el intercambio comercial entre ambos Estados no se concentra en ese mismo rubro --- se puede justificar aplicar la medida sobre otro sector, dado que un mismo producto puede impactar de manera distinta según cada economía.
+
+El Estado perjudicado no puede fijar por sí mismo, en forma definitiva, el alcance de la medida compensatoria: debe someter su propuesta a la aprobación del mismo órgano que dictó el laudo o la sentencia (el Tribunal Ad Hoc o el Tribunal Permanente de Revisión, según corresponda). La medida queda sin efecto si no es aprobada de esa manera.
+
+\begin{important}
+\textbf{Medidas compensatorias: síntesis.} Ante el incumplimiento de un laudo o sentencia dentro del sistema del Mercosur, el Estado perjudicado puede aplicar medidas compensatorias (de tipo retorsivo), en principio dentro del mismo rubro afectado. Si ello no resulta eficaz, puede justificar aplicarlas sobre otro rubro. En todos los casos, la medida debe ser sometida a la aprobación del mismo órgano --- Tribunal Ad Hoc o Tribunal Permanente de Revisión --- que dictó la decisión incumplida.
+\end{important}
+
+\section{Legitimación para accionar: los Estados y los particulares}
+
+Únicamente los Estados tienen legitimación directa para accionar, es decir, para iniciar el mecanismo de solución de controversias del Mercosur; los particulares no pueden accionar por sí mismos.
+
+\subsection{El camino de la empresa privada: la Sección Nacional}
+
+\begin{example}{Reclamo de una empresa privada ante un incumplimiento}
+Una empresa que resulta directamente perjudicada por el incumplimiento de otro Estado no puede presentarse directamente ante el sistema de solución de controversias. Debe formular su reclamo ante la Sección Nacional del Grupo Mercado Común de su propio Estado, aportando toda la documentación respaldatoria (qué importó, qué se le cobró de más, entre otros elementos).
+\end{example}
+
+La Sección Nacional evalúa el caso y, si considera que efectivamente existe un incumplimiento de la normativa mercosureña por parte de otro Estado, puede decidir asumirlo y plantearlo como un conflicto interestatal ante el sistema de solución de controversias. En ese planteo, lo relevante no es tanto si se le paga o no a la empresa, sino que no se está respetando la norma común.
+
+\subsection{La discrecionalidad estatal}
+
+El Estado no está obligado a hacerse cargo del reclamo: la decisión de asumirlo es discrecional, y en ella pesan también consideraciones políticas y económicas, como la relevancia de la empresa reclamante o el perjuicio efectivamente sufrido.
+
+\begin{example}{Contraste: el caso del monotributista}
+Un monotributista que vende productos por internet y al que se le cobró un impuesto que, según entiende, no correspondía, puede presentar su reclamo ante la Sección Nacional. Sin embargo, resulta poco probable que el Estado decida asumir un conflicto diplomático con otro Estado del bloque por un reclamo de esa escala.
+\end{example}
+
+% =====================================================================
+% CAPÍTULO 3 — CONTEXTO POLÍTICO Y REFLEXIÓN CRÍTICA
+% =====================================================================
+\chapter{Contexto político y reflexión crítica}
+
+\section{Soberanía, jurisdicción y coyuntura internacional}
+
+% TODO: contenido incompleto o ambiguo en las notas originales. Por la naturaleza fragmentaria y coloquial del pasaje original, esta sección presenta una síntesis fiel al sentido de lo expresado en clase, antes que una transcripción palabra por palabra.
+
+Un Estado puede ejercer actos de soberanía sin necesidad de someterse ni de reconocer la jurisdicción de otro Estado sobre un mismo territorio.
+
+\begin{example}{Sanciones a empresas privadas y disputa de soberanía}
+En un discurso público, un jefe de Estado anunció que sancionaría a toda empresa que explotara recursos en un territorio en disputa de soberanía sin contar con la autorización del país reclamante, en referencia a la disputa por las Islas Malvinas. Dirigirse contra las empresas privadas y no contra el otro Estado directamente permite ejercer un acto de soberanía sin reconocer, al mismo tiempo, la jurisdicción del otro Estado sobre el territorio en disputa, y sin que ello implique, en sí mismo, una declaración de conflicto armado.
+\end{example}
+
+Esta misma lógica puede observarse en otros procesos de soberanía y autonomía territorial en Europa: las consecuencias del Brexit --- incluyendo la situación de Irlanda del Norte y de Escocia, y los sectores que luego de la salida del Reino Unido manifestaron interés en reincorporarse a la Unión Europea ---, y la distinción entre autonomía regional y soberanía plena, ejemplificada con el proceso independentista de Cataluña dentro de España.
+
+Existe una diferencia conceptual relevante entre ambas nociones: una región puede gozar de un alto grado de autonomía --- lengua propia, instituciones propias, amplias competencias --- sin que ello equivalga a soberanía plena. Si una región se declara independiente sin lograr reconocimiento internacional, queda en una posición de fragilidad económica, al perder el marco de negociación que le brindaba pertenecer a un Estado reconocido y, a través de él, a la Unión Europea.
+
+\begin{important}
+Antes de emitir una crítica o una opinión sobre un hecho político o jurídico, es necesario escuchar y analizar distintas posturas, evitando quedarse con una sola fuente o una sola perspectiva.
+\end{important}
+
+\section{Balance crítico del sistema del Mercosur}
+
+Más allá de que la creación del Tribunal Permanente de Revisión representó un avance institucional respecto del esquema original de Brasilia, el sistema continúa sin lograr una verdadera armonización legislativa ni un criterio uniforme de solución de controversias, en la medida en que persiste la posibilidad de acudir a otros foros y no existe un mecanismo vinculante de jurisprudencia. El Mercosur avanzó hacia una mayor permanencia y especialización de sus órganos de solución de controversias, pero, al mantener ese mecanismo como alternativo y no exclusivo, no logra una armonización legislativa plena ni un criterio uniforme de solución de conflictos.
+
+% =====================================================================
+% CAPÍTULO 4 — CUADRO CORNELL: SÍNTESIS INTEGRADORA
+% =====================================================================
+\chapter{Cuadro Cornell: síntesis integradora}
+
+El siguiente cuadro reorganiza los contenidos de la clase en el formato de notas Cornell, útil para el repaso y el estudio: a la izquierda, las preguntas y conceptos clave; a la derecha, la explicación desarrollada; y, al final, una síntesis integradora de todo lo trabajado.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué es la inmunidad de jurisdicción de un órgano de integración?} &
+Es la imposibilidad de que los tribunales nacionales del Estado sede juzguen a un organismo internacional (o a sus funcionarios, por actos de función) por las actividades propias de su función. Surge de un acuerdo de sede entre el Estado y el bloque de integración, y arrastra también la inmunidad de ejecución sobre los bienes del organismo. \\
+\addlinespace
+
+\textbf{¿Qué diferencia hay entre un acto de imperio y un acto privado de un funcionario?} &
+El acto de imperio (opiniones, votos, decisiones tomadas en ejercicio de la función y para el cumplimiento de los objetivos del organismo) está protegido por la inmunidad. El acto privado o personal del funcionario, ajeno al ejercicio de sus funciones, no está amparado y puede ser juzgado por la jurisdicción nacional (previo levantamiento de la inmunidad, si correspondiera). \\
+\addlinespace
+
+\textbf{¿Qué diferencia estructural existe entre el Mercosur y la Unión Europea en materia de inmunidad y acceso a la justicia?} &
+La Unión Europea cuenta con un órgano jurisdiccional permanente y único (el Tribunal de Justicia de la Unión Europea), con competencia exclusiva sobre estas cuestiones y al que los particulares pueden acceder mediante recurso directo. El Mercosur no ofrece a los particulares una vía judicial directa equivalente. \\
+\addlinespace
+
+\textbf{¿Qué son la autocomposición y la heterocomposición?} &
+La autocomposición es la resolución del conflicto por las propias partes (negociación directa, conciliación, mediación). La heterocomposición implica la intervención de un tercero imparcial ajeno a las partes que resuelve la controversia (arbitraje, tribunales). \\
+\addlinespace
+
+\textbf{¿Cómo estableció el Protocolo de Brasilia la solución de controversias en el Mercosur?} &
+En tres etapas sucesivas: negociaciones directas entre los Estados (con plazo prorrogable); intervención obligatoria del Grupo Mercado Común, con función conciliadora no vinculante; y arbitraje ante un Tribunal Arbitral Ad Hoc, integrado por tres árbitros (uno por cada Estado y un tercero neutral), constituido de manera específica para cada controversia. \\
+\addlinespace
+
+\textbf{¿Qué cambió el Protocolo de Ouro Preto?} &
+Eliminó el carácter obligatorio de la intervención del Grupo Mercado Común, permitiendo que las partes fueran directamente de la negociación directa al arbitraje. \\
+\addlinespace
+
+\textbf{¿Qué aportó el Protocolo de Olivos?} &
+Creó el Tribunal Permanente de Revisión (con sede en Asunción), integrado por árbitros designados por un período determinado que intervienen en todos los casos planteados durante su mandato, con tres funciones: instancia de apelación de laudos, instancia única \textit{per saltum}, y dictado de medidas provisionales o cautelares. \\
+\addlinespace
+
+\textbf{¿Cuál es el objeto real del mecanismo de solución de controversias?} &
+Determinar la correcta interpretación, aplicación y vigencia del derecho de la integración; no resolver el litigio comercial particular entre dos personas o empresas privadas. \\
+\addlinespace
+
+\textbf{¿Por qué se considera incoherente que se pueda acudir a otros foros?} &
+Porque, según el Protocolo de Olivos, los Estados pueden someter de común acuerdo la controversia a otro mecanismo distinto del Mercosur (como ocurrió en el caso de las papeleras entre Argentina y Uruguay, resuelto ante otro tribunal internacional), lo que debilita el objetivo de uniformar la interpretación del derecho del bloque y resta autoridad al Tribunal Permanente de Revisión. \\
+\addlinespace
+
+\textbf{¿Son ejecutables por la fuerza los laudos y sentencias del sistema del Mercosur?} &
+No. El sistema carece de supranacionalidad. Ante el incumplimiento, el Estado perjudicado puede aplicar medidas compensatorias, en principio dentro del mismo rubro afectado, sujetas a la aprobación del mismo órgano que dictó la decisión incumplida. \\
+\addlinespace
+
+\textbf{¿Quiénes pueden accionar ante el sistema de solución de controversias del Mercosur?} &
+Solo los Estados parte. Los particulares (personas o empresas) deben presentar su reclamo ante la Sección Nacional del Grupo Mercado Común de su propio Estado, que decide de manera discrecional --- con criterios también políticos y económicos --- si asume el caso como conflicto interestatal. \\
+\addlinespace
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} La clase conecta dos planos del derecho de la integración que suelen enseñarse por separado, pero que en la práctica operan juntos: la inmunidad de jurisdicción de los órganos y funcionarios del bloque, y el mecanismo institucional para resolver los conflictos que surgen entre los Estados miembros. Ambos institutos comparten una misma lógica de fondo: los Estados aceptan ceder una porción de su potestad jurisdiccional únicamente dentro de los límites que ellos mismos definieron al crear el organismo o al diseñar el procedimiento de solución de controversias. Por eso un organismo goza de inmunidad frente a los tribunales nacionales mientras actúa dentro de su función, y por eso un Estado solo puede ser llevado ante un tribunal arbitral o ante el Tribunal Permanente de Revisión en la medida en que él mismo aceptó ese mecanismo. La evolución histórica del sistema --- de la ausencia de regulación en Asunción, al esquema de tres etapas de Brasilia, a la flexibilización de Ouro Preto y a la creación del Tribunal Permanente de Revisión en Olivos --- muestra un proceso de institucionalización progresiva, pero incompleto: el Mercosur avanzó hacia una mayor permanencia y especialización de sus órganos de solución de controversias, sin llegar a construir un verdadero sistema supranacional. Persisten limitaciones estructurales: los laudos no generan jurisprudencia obligatoria para casos futuros, las partes pueden convenir litigar fuera del sistema del bloque, las decisiones no son ejecutables por la fuerza sino únicamente mediante medidas compensatorias aprobadas por el propio órgano que dictó la decisión, y los particulares carecen de legitimación directa, debiendo canalizar sus reclamos a través de la Sección Nacional del Grupo Mercado Común de su Estado, sujeto a la discrecionalidad política de este último. El contraste permanente con la Unión Europea --- que cuenta con un Tribunal de Justicia único, acceso directo de los particulares y una regulación normativa más precisa de la inmunidad --- funciona como un espejo que permite dimensionar con mayor claridad las fortalezas y, sobre todo, las asignaturas pendientes del proceso de integración regional sudamericano. Finalmente, el excurso sobre soberanía y coyuntura internacional, aunque ajeno estrictamente al programa normativo, ilustra en clave de actualidad una misma idea de fondo trabajada durante toda la clase: el ejercicio de la soberanía y el reconocimiento (o no reconocimiento) de una jurisdicción ajena son decisiones estratégicas de los Estados, con consecuencias jurídicas, económicas y políticas que trascienden el texto escrito de cualquier tratado.
+} \\
+
+\end{longtable}
+
+\end{document}
+
