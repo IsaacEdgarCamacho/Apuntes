@@ -1,0 +1,2243 @@
+%==============================================================================
+% APUNTES INTEGRADOS DE DERECHO CONSTITUCIONAL PROFUNDIZADO
+% Documento único, autónomo, compilable con pdflatex (dos pasadas).
+% Integración editorial de nueve clases/apuntes independientes en un solo
+% cuerpo de estudio. No requiere plantillas, .sty ni .cls externos.
+%==============================================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================================
+% METADATOS
+%==============================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\materia}{Derecho Constitucional Profundizado}
+\newcommand{\titulo}{Interpretación, Control de Constitucionalidad y Derechos Fundamentales en el Sistema Constitucional Argentino}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================================
+% PAQUETES
+%==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{font=small,labelfont=bf}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\renewcommand{\arraystretch}{1.2}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Apuntes integrados de Derecho Constitucional Profundizado},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios integrados},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================================
+% CONFIGURACIÓN GENERAL
+%==============================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{Índice general}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{topsep=0.3em,itemsep=0.2em}
+\setlist[enumerate]{topsep=0.3em,itemsep=0.2em}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+%==============================================================================
+% COMANDOS MATEMÁTICOS (por si se requieren en algún desarrollo)
+%==============================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%==============================================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+%==============================================================================
+\newtcolorbox{definition}[1]{
+    enhanced, breakable, title={Definición: #1}, fonttitle=\bfseries,
+    colback=blue!3, colframe=blue!50!black, boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{important}{
+    enhanced, breakable, title={Importante}, fonttitle=\bfseries,
+    colback=yellow!8, colframe=orange!70!black, boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{example}[1]{
+    enhanced, breakable, title={Ejemplo: #1}, fonttitle=\bfseries,
+    colback=green!4, colframe=green!40!black, boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{formula}[1]{
+    enhanced, breakable, title={Fórmula / Regla: #1}, fonttitle=\bfseries,
+    colback=purple!4, colframe=purple!50!black, boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{exercise}[1]{
+    enhanced, breakable, title={Ejercicio: #1}, fonttitle=\bfseries,
+    colback=gray!5, colframe=gray!60!black, boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{note}{
+    enhanced, breakable, title={Nota}, fonttitle=\bfseries,
+    colback=white, colframe=gray!50, boxrule=0.6pt, arc=2mm
+}
+% Caja sobria para transcribir artículos constitucionales y normas citadas
+\newtcolorbox{norma}[1]{
+    enhanced, breakable, sharp corners,
+    colback=gray!4, colframe=gray!4, boxrule=0pt,
+    borderline west={2.5pt}{0pt}{gray!60}, left=8pt,
+    before upper={\textbf{#1.}\ }
+}
+
+%==============================================================================
+% CUADRO CORNELL (entorno unificado, usado al final de cada capítulo denso)
+%==============================================================================
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{Q}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\cornellhead}{%
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule}
+\newcommand{\cornellsep}{\\ \addlinespace \cmidrule[0.2pt]{1-2} \addlinespace}
+
+%==============================================================================
+% ENCABEZADOS Y PIES DE PÁGINA
+%==============================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\nouppercase{\leftmark}}
+\fancyhead[R]{\footnotesize\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================================
+% DOCUMENTO
+%==============================================================================
+\begin{document}
+
+\frontmatter
+
+%------------------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+
+\vspace*{1cm}
+{\large \textsc{\universidad}}
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+\vspace{0.2cm}
+
+{\large \carrera}
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+\vspace{1cm}
+
+{\LARGE \titulo}
+\vspace{0.8cm}
+
+\textit{Comprender es el primer paso para convertir el estudio en conocimiento.}
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+\vspace{0.5cm}
+
+{\large Apuntes de estudio integrados}
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+\vfill
+
+{\large \autor}
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Constitucional Profundizado''. Integra, en un único volumen, el desarrollo de todas las clases de la materia. No pretende sustituir el material oficial de la cátedra ni la lectura de los fallos y normas en su fuente original.}
+\end{flushleft}
+\end{titlepage}
+
+%------------------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------------------
+\tableofcontents
+
+%------------------------------------------------------------------------------
+% PRESENTACIÓN GENERAL
+%------------------------------------------------------------------------------
+\chapter*{Presentación}
+\addcontentsline{toc}{chapter}{Presentación}
+\markboth{Presentación}{Presentación}
+
+Este volumen reúne, en un único cuerpo de estudio, el desarrollo completo de la materia \materia. El recorrido puede pensarse como la construcción progresiva de un mismo edificio conceptual, en el que cada parte se apoya en la anterior.
+
+Se parte de los \textbf{fundamentos}: qué es la Constitución, de dónde provienen sus reglas, cómo se organiza el poder entre la Nación, las provincias y los municipios, y qué papel cumplen los partidos políticos y el voto en un sistema representativo, republicano y federal. Sobre esa base se estudia la \textbf{interpretación constitucional}: los métodos con que jueces y abogados desentrañan el sentido de un texto que envejece más lentamente que la sociedad que rige. A partir de allí se examina el \textbf{control de constitucionalidad}: quién puede invalidar una norma, cómo se llega hasta la Corte Suprema mediante el recurso extraordinario federal, y qué ocurre cuando ese recurso es rechazado. Finalmente, se estudia el \textbf{principio de reserva del artículo 19} y su proyección sobre la libertad de expresión, la libertad religiosa y otros derechos individuales, como ejemplo privilegiado de una zona gris en la que la argumentación jurídica marca la diferencia.
+
+\begin{important}
+\textbf{Advertencia sobre las fuentes.} Este material fue elaborado exclusivamente a partir de la transcripción de las clases y de los apuntes originales de cada unidad. Los fragmentos que en las fuentes originales aparecían señalados como imprecisos, incompletos o con dudas sobre una carátula, una cita o una grafía se conservan con esa misma prevención, mediante comentarios de verificación que no alteran el texto visible. Este apunte no reemplaza la lectura de los fallos, normas y manuales de la bibliografía oficial de la cátedra.
+\end{important}
+
+\section*{Mapa de lectura}
+\addcontentsline{toc}{section}{Mapa de lectura}
+
+\begin{itemize}
+    \item \textbf{Parte I --- Fundamentos del sistema constitucional argentino.} Qué es la Constitución, sus fuentes históricas, su rigidez y su reforma, la organización representativa, republicana y federal del poder, y el papel de los partidos políticos y del voto.
+    \item \textbf{Parte II --- Interpretación constitucional.} Los tres grandes métodos ---textualismo, originalismo y pragmatismo--- y el aporte del análisis económico del derecho.
+    \item \textbf{Parte III --- Control de constitucionalidad y precedentes.} El sistema difuso argentino, los fallos fundacionales (\emph{Marbury} y \emph{Sojo}), los precedentes de la Corte y su abandono (\emph{overruling}), la doctrina de la arbitrariedad de sentencia, la declaración de inconstitucionalidad de oficio y la jurisdicción originaria.
+    \item \textbf{Parte IV --- El recurso extraordinario federal.} Sus requisitos formales, comunes y propios; la cuestión federal simple y compleja; la queja, el \emph{per saltum} y la tutela cautelar; y una batería de casos reales de aplicación.
+    \item \textbf{Parte V --- El principio de reserva y los derechos individuales.} El artículo 19 como frontera de la regulación estatal, la libertad de expresión y la responsabilidad de los medios, la libertad religiosa y las categorías sospechosas, y otros ámbitos de aplicación del principio de reserva.
+\end{itemize}
+
+Cada capítulo cierra, cuando la densidad conceptual lo justifica, con un \textbf{cuadro Cornell}: una columna de preguntas disparadoras y otra con su desarrollo, pensada para la recuperación activa del contenido antes de un examen.
+
+
+\mainmatter
+
+%==============================================================================
+\part{Fundamentos del sistema constitucional argentino}
+%==============================================================================
+
+%==============================================================================
+\chapter{Encuadre de la materia}
+%==============================================================================
+
+\section{Ubicación de la materia y objetivos de la cátedra}
+
+La materia se sitúa en una instancia más avanzada de la carrera que el curso inicial de Derecho Constitucional, lo que permite dar por conocidos los grandes principios constitucionales para concentrarse en las denominadas \textbf{``zonas grises''}: los espacios de indeterminación normativa donde, a criterio de la cátedra, se juega buena parte del desempeño profesional.
+
+El objetivo central del curso fue explicado en estos términos: \textit{``nosotros en definitiva nos desenvolvemos más allá de ser abogado litigante, abogado legislador, abogado negociador, abogado administrador (\ldots) siempre hay mucho de este constante choque de ideas y capacidad de argumentación''}. A partir de esa premisa, la finalidad pedagógica de la materia es dotar al estudiante de \textbf{pensamiento lateral} frente a los conflictos propios del derecho constitucional, junto con \textbf{capacidad crítica} y \textbf{capacidad de argumentación y persuasión}, entendidas como herramientas transferibles a cualquier campo profesional futuro.
+
+\begin{important}
+\textbf{El compromiso de honestidad intelectual.} La única regla de juego propuesta para la cursada es la honestidad intelectual: cada estudiante puede expresar libremente su postura sobre los temas debatidos, ya que lo que se evalúa no es la coincidencia con una opinión determinada, sino la capacidad de articulación, la capacidad de argumentación y el manejo de conocimientos objetivos. La pluralidad de posturas enriquece la materia, en tanto disciplina social atravesada por la confrontación de ideas.
+\end{important}
+
+La participación activa ---debates, exposiciones grupales, confrontación de posturas entre dos grupos o formatos de ``órgano juzgador''--- es un componente central y recurrente de la cursada. El docente propuso organizar exposiciones periódicas de los propios estudiantes, aproximadamente cada tres clases, en equipos de entre tres y cuatro integrantes, en las que estos asumen un rol protagónico presentando temas trabajados de antemano.
+
+\section{Modalidad de cursada y evaluación}
+
+La materia se dicta en modalidad virtual, pero los exámenes parciales y el examen final son \textbf{presenciales}. La cursada contempla \textbf{dos exámenes parciales presenciales de carácter escrito}, con una modalidad mixta: preguntas de desarrollo más amplias combinadas con preguntas de respuesta más breve o de opción múltiple, con el objetivo declarado de evaluar de forma más justa a estudiantes con distintos estilos de examen. Los \textbf{recuperatorios}, en cambio, tienen una modalidad más flexible ---trabajos, exposiciones u otras formas--- a definir según la cantidad de estudiantes que deban rendirlos y el avance general del curso.
+
+\section{¿Por qué importa esta materia más allá del examen?}
+
+Entrena una herramienta que se usa toda la vida profesional: la capacidad de argumentar con solidez frente a normas que no tienen una única respuesta correcta. El abogado litigante, el legislador, el negociador y el administrador enfrentan a diario zonas grises donde la ley no resuelve todo por sí sola, y ahí es donde se nota quién sabe razonar jurídicamente y quién no.
+
+Comprender cómo se interpreta la norma que organiza la convivencia de un país ---quién tiene poder, qué límites tiene ese poder y qué garantías protegen a cada persona--- permite además participar como ciudadano informado en debates públicos (reformas, coparticipación, autonomía municipal, derechos) que afectan la vida cotidiana de cualquier habitante, sea o no abogado. De esta primera unidad se lleva un mapa de las fuentes del derecho constitucional argentino, el manejo de los tres grandes métodos de interpretación y una primera aproximación al análisis económico del derecho.
+
+%==============================================================================
+\chapter[El concepto de Constitución]{El concepto de Constitución y sus fuentes}
+%==============================================================================
+
+\section{La Constitución como pacto social}
+
+Frente a la pregunta sobre qué es la Constitución, no existe una respuesta unívoca, sino distintas aproximaciones. Desde la ciencia política se aporta una mirada centrada en el diseño institucional, en la que la Constitución constituye el ``corpus político, económico, institucional y legal'' del país. Una de las caracterizaciones clásicas es la propia del pensamiento de \textbf{Juan Bautista Alberdi}, para quien la Constitución es un verdadero \textbf{``plan político''}. La visión considerada predominante en la actualidad es, sin embargo, la contractualista.
+
+\begin{definition}{Constitución según el criterio contractualista}
+Esquema institucional básico; acuerdo esencial que permite la vida en sociedad a partir de las restricciones que cada individuo acepta voluntariamente sobre parte de sus derechos, en pos de una armonización de la vida común dentro de un territorio, una soberanía y una población determinados.
+\end{definition}
+
+Esta idea se vincula con el \textbf{principio de gobierno representativo}: la Constitución no solo organiza al Estado, sino que también \textbf{autolimita el ejercicio directo de la soberanía popular}, canalizándola a través de instituciones representativas ---el pueblo no delibera ni gobierna sino a través de sus representantes---, principio que se retoma con mayor detalle en el capítulo dedicado a los sistemas políticos.
+
+\begin{note}
+\textbf{Precisión histórica.} El principio de gobierno representativo suele vincularse en clase con la Revolución Francesa. Corresponde precisar, por exactitud histórica, que esta tuvo lugar a fines del siglo XVIII (1789) y no del siglo XVI; se trata de una imprecisión menor de expresión oral que no afecta el argumento sustancial sobre la representación política.
+\end{note}
+
+\section{Dimensión económica de la Constitución}
+
+La Constitución no se agota en su faz jurídico-institucional: también expresa un \textbf{programa económico} y un modelo de relación entre la Argentina y el resto del mundo ---con otros países, con los migrantes, con el capital humano y material que ingresa al país.
+
+\textbf{Juan Bautista Alberdi} es una referencia ineludible del pensamiento económico incorporado a la Constitución, aun cuando fue más relevante ``desde el mundo de las ideas'' que desde el ejercicio de cargos políticos formales. Su obra \textit{Sistema Económico y Rentístico} es mencionada como fuente de los principios del Estado liberal del siglo XIX que la Constitución recoge en varios de sus preceptos esenciales, delineando un diseño económico de la Nación en cuanto a las competencias del gobierno federal y su relación con las provincias. Esta dimensión económica reaparece, más adelante, al estudiar el dominio originario de los recursos naturales y el régimen de coparticipación federal.
+
+\section{Fuentes históricas del constitucionalismo argentino}
+
+Al no conservarse actas suficientemente concisas de la Convención Constituyente originaria, se han generado numerosas especulaciones acerca de cuál fue la base más relevante del texto de 1853. La posición asumida en la cátedra es clara: se trata de una \textbf{mixtura}, reconociendo la incidencia original de la Constitución de los Estados Unidos en muchos puntos importantes, junto con aportes del \textbf{derecho hispano}, incluso cuando la intención de los constituyentes era abandonar esa impronta e inclinarse hacia un derecho considerado más ``original'' e ``incipiente'': el derecho americano. Ello ocurrió sobre todo por influencia de \textbf{Domingo Faustino Sarmiento}, aunque también en cabeza de \textbf{Alberdi}, con su sólido dominio del derecho continental europeo y de ciertas herencias hispánicas.
+
+El objeto de estudio de la asignatura es el conjunto de artículos que componen la Constitución Nacional, con la particularidad expansiva de los tratados internacionales incorporados por el \textbf{artículo 75, inciso 22}, que se examina en el capítulo siguiente.
+
+\subsection{El modelo constitucional de Estados Unidos: trayectorias inversas}
+
+Estados Unidos, formalmente, \textbf{nunca volvió a convocar una convención constituyente} para modificar su Constitución; sin embargo, muchos de sus principios más elementales ---como el \textbf{debido proceso}--- fueron incorporados mediante sucesivas \textbf{enmiendas}. Un ejemplo es la enmienda que estableció la prohibición de reelección presidencial indefinida, sancionada luego de los sucesivos períodos de Franklin D. Roosevelt. La garantía de no autoincriminación, popularmente conocida como ``la quinta enmienda'', tiene su equivalente en el artículo 18 de la Constitución argentina.
+
+\begin{norma}{Artículo 18 de la Constitución Nacional (garantía de no autoincriminación)}
+\textit{``Ningún habitante de la Nación puede ser penado sin juicio previo fundado en ley anterior al hecho del proceso, ni juzgado por comisiones especiales, o sacado de los jueces designados por la ley antes del hecho de la causa. Nadie puede ser obligado a declarar contra sí mismo; ni arrestado sino en virtud de orden escrita de autoridad competente. Es inviolable la defensa en juicio de la persona y de los derechos.''}
+\end{norma}
+
+El contraste entre ambos procesos constitucionales revela \textbf{trayectorias históricas inversas}: Estados Unidos sancionó primero su Constitución y luego atravesó una guerra civil de gran magnitud a mediados del siglo XIX; la Argentina, en cambio, transitó primero un largo período de guerras civiles ---de aproximadamente treinta a treinta y cinco años--- y recién después, con los estados provinciales y el estado nacional exhaustos, arribó a la sanción y consolidación de su Constitución, en particular a partir de 1860, con la incorporación de Buenos Aires.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{Q{0.19\textwidth}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Estados Unidos} & \textbf{Argentina} \\
+\midrule
+Secuencia histórica & Unión y Constitución primero; guerra civil después (mediados del siglo XIX). & Guerras civiles primero (c.\ 30--35 años); consolidación constitucional después (1853--1860). \\
+Mecanismo de reforma & Enmiendas sucesivas aprobadas por el Congreso y ratificadas por las legislaturas estaduales. & Convención Constituyente formal; última reforma en 1994. \\
+Códigos de fondo & Cada estado tiene su propio código civil, comercial y penal (por ejemplo, Luisiana y Utah); no hay código penal nacional. & Un mismo Código Civil y Comercial y un mismo Código Penal se aplican en todo el país; cada provincia conserva su código de procedimiento. \\
+Hito territorial clave & --- & Incorporación de Buenos Aires a la Confederación (1860). \\
+\bottomrule
+\end{tabularx}
+\caption{Comparación entre los procesos constitucionales de Estados Unidos y Argentina.}
+\end{table}
+
+\begin{example}{Diferencias entre estados en materia penal y civil}
+En Estados Unidos existe un código civil y comercial de Luisiana y otro de Utah, y una ley penal de Utah y otra de Luisiana. No hay un código penal nacional: por eso en algunos estados existe la pena de muerte y en otros no, y en algunos el aborto está penalizado y en otros no. Para un norteamericano promedio, la Constitución nacional resulta por ello menos importante en la vida cotidiana que las leyes locales.
+\end{example}
+
+\subsection{El Pacto de Olivos y la tendencia a romantizar los procesos constitucionales}
+
+Es habitual identificar con facilidad la negociación política detrás del \textbf{Pacto de Olivos} ---antecedente inmediato de la reforma de 1994---, pero conviene advertir sobre la tendencia a \textbf{romantizar} los procesos constitucionales pasados: también en 1853 los constituyentes protagonizaron un proceso profundamente político. La incorporación de Buenos Aires en 1860 respondió a un acuerdo político complejo, en el que la provincia condicionó su ingreso a la Confederación a la modificación de determinados puntos que consideraba lesivos para sus intereses, en un contexto todavía marcado por las heridas recientes de la segunda batalla de Cepeda y la batalla de Pavón.
+
+%==============================================================================
+\chapter{Rigidez, reforma y tratados internacionales}
+%==============================================================================
+
+\section{Un núcleo duro con procedimientos agravados}
+
+Los sistemas constitucionales suelen combinar un \textbf{núcleo duro de difícil modificación} ---la Constitución en sentido estricto--- con \textbf{procedimientos agravados} que buscan evitar reformas constantes, pero que a la vez admiten complementaciones relevantes con el correr del tiempo, tal como ocurrió en la práctica constitucional estadounidense mediante enmiendas.
+
+\begin{important}
+\textbf{El sistema argentino tras 1994.} La Constitución argentina, tras la reforma de 1994, presenta un mecanismo de incorporación de tratados internacionales que la enriquece de un modo más flexible que el rígido sistema de reforma total, aunque de ningún modo comparable en volumen a las enmiendas estadounidenses. Estas incorporaciones son ``solo complementariedades del cuerpo constitucional'' y nunca podrían contravenir la primera parte de la Constitución ---declaraciones, derechos y garantías--- ni su parte institucional.
+\end{important}
+
+\section{Tratados con jerarquía constitucional: artículo 75, inciso 22}
+
+\begin{norma}{Artículo 75, inciso 22 de la Constitución Nacional}
+\textit{``Corresponde al Congreso: (\ldots) Aprobar o desechar tratados concluidos con las demás naciones y con las organizaciones internacionales y los concordatos con la Santa Sede. Los tratados y concordatos tienen jerarquía superior a las leyes. La Declaración Americana de los Derechos y Deberes del Hombre; la Declaración Universal de Derechos Humanos; la Convención Americana sobre Derechos Humanos; el Pacto Internacional de Derechos Económicos, Sociales y Culturales; el Pacto Internacional de Derechos Civiles y Políticos y su Protocolo Facultativo; la Convención sobre la Prevención y la Sanción del Delito de Genocidio; la Convención Internacional sobre la Eliminación de todas las Formas de Discriminación Racial; la Convención sobre la Eliminación de todas las Formas de Discriminación contra la Mujer; la Convención contra la Tortura y otros Tratos o Penas Crueles, Inhumanos o Degradantes; la Convención sobre los Derechos del Niño; en las condiciones de su vigencia, tienen jerarquía constitucional, no derogan artículo alguno de la primera parte de esta Constitución y deben entenderse complementarios de los derechos y garantías por ella reconocidos. Solo podrán ser denunciados, en su caso, por el Poder Ejecutivo Nacional, previa aprobación de las dos terceras partes de la totalidad de los miembros de cada Cámara. Los demás tratados y convenciones sobre derechos humanos, luego de ser aprobados por el Congreso, requerirán del voto de las dos terceras partes de la totalidad de los miembros de cada Cámara para gozar de la jerarquía constitucional.''}
+\end{norma}
+
+Hoy no existe discusión alguna respecto del \textbf{estatus constitucional} de estos tratados, ni de su aplicación directa y su exigibilidad. Deben ser votados por una \textbf{mayoría agravada}, y la propia Constitución consagró de forma expresa la \textbf{prelación de los tratados internacionales por sobre las leyes del Congreso}, lo cual ya era sostenido previamente a nivel doctrinario. Gracias a este mecanismo, el sistema constitucional argentino posterior a 1994 dejó de ser tan rígido como el anterior, aunque ello no equivale al dinamismo del sistema de enmiendas estadounidense. Como se verá en la Parte IV, cuando estos tratados están en juego, la eventual colisión normativa constituye una \textbf{cuestión federal compleja directa}, porque a los efectos del recurso extraordinario se los trata como parte de la Constitución.
+
+%==============================================================================
+\chapter[Sistemas políticos]{Sistemas políticos: representación, república y federalismo}
+%==============================================================================
+
+\section{Congreso Nacional, no ``Parlamento''}
+
+En el uso corriente del lenguaje jurídico y político actual es frecuente escuchar referirse a ``el Parlamento'' cuando, en rigor, corresponde hablar del \textbf{Congreso Nacional} o del \textbf{Poder Legislativo}. Esta identificación es incorrecta por dos razones: la propia Constitución utiliza, de forma indistinta, las expresiones Congreso Nacional o Poder Legislativo; y, de modo más sustancial, el sistema parlamentario y el sistema constitucional argentino son \textbf{sistemas políticos distintos}. Emplear ``Parlamento'' como sinónimo de ``Congreso Nacional'' oscurece esa diferencia, que se desarrolla en la sección~\ref{sec:parlamentario}.
+
+\section{Forma de gobierno: representativo, republicano y federal}
+
+\begin{norma}{Artículo 1 de la Constitución Nacional}
+La Nación Argentina adopta para su gobierno la forma representativa republicana federal, según lo establece la presente Constitución.
+\end{norma}
+
+\begin{itemize}
+    \item \textbf{Representativo:} nadie delibera ni gobierna sino a través de sus representantes (art.\ 22, primera oración, CN).
+    \item \textbf{Republicano:} existe una clara distinción y diferenciación de poderes, con cometidos y competencias específicas, bajo un esquema de \emph{mutuo freno y contrapeso}.
+    \item \textbf{Federal:} el armado político reposa en las provincias originarias, que conservan todo el poder no delegado al gobierno federal (art.\ 121 CN) y cuentan con determinados ámbitos de autonomía.
+\end{itemize}
+
+\section{División de poderes e incompatibilidad de cargos}
+
+El Estado argentino distribuye sus cometidos entre tres centros de poder distintos, encarnados por funcionarios diferentes. Un principio elemental de este esquema es la \textbf{prohibición de simultaneidad de cargos}: el presidente, el vicepresidente, los ministros y el jefe de gabinete no pueden tener participación simultánea en el Poder Legislativo ni en el Poder Judicial, y los gobernadores no pueden ocupar cargos en los poderes federales.
+
+Una prohibición particularmente explícita, de redacción original, veda al Poder Ejecutivo el ejercicio de funciones judiciales.
+
+\begin{norma}{Artículo 109 de la Constitución Nacional}
+En ningún caso el Presidente de la Nación puede ejercer funciones judiciales, arrogarse el conocimiento de causas pendientes o restablecer las fenecidas.
+\end{norma}
+
+La única competencia de raíz judicial que conserva el Poder Ejecutivo es la facultad de dictar \textbf{indultos} (art.\ 99, inc.\ 5, CN), sujeta a un procedimiento constitucionalmente prefijado.
+
+\section{Los decretos del Ejecutivo: DNU y decretos delegados}
+
+Los actos de naturaleza legislativa dictados por el Poder Ejecutivo son, como principio general, insanablemente nulos. La Constitución admite dos excepciones.
+
+\begin{norma}{Artículo 99, inciso 3 (extracto) de la Constitución Nacional}
+El Poder Ejecutivo no podrá en ningún caso, bajo pena de nulidad absoluta e insanable, emitir disposiciones de carácter legislativo. Solamente cuando circunstancias excepcionales hicieran imposible seguir los trámites ordinarios previstos por esta Constitución para la sanción de las leyes, y no se trate de normas que regulen materia penal, tributaria, electoral o el régimen de los partidos políticos, podrá dictar decretos por razones de necesidad y urgencia (\ldots)
+\end{norma}
+
+\begin{norma}{Artículo 76 de la Constitución Nacional}
+Se prohíbe la delegación legislativa en el Poder Ejecutivo, salvo en materias determinadas de administración o de emergencia pública, con plazo fijado para su ejercicio y dentro de las bases de la delegación que el Congreso establezca.
+\end{norma}
+
+\begin{table}[H]
+\centering
+\caption{DNU y decretos delegados: cuadro comparativo}
+\begin{tabularx}{\textwidth}{Q{0.22\textwidth}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Decreto de necesidad y urgencia (DNU)} & \textbf{Decreto delegado} \\
+\midrule
+Naturaleza & Legislativa; no requiere ley delegante previa. & Raíz legislativa, pero exige una ley delegante previa. \\
+Condición & Régimen muy estricto para su dictado. & Marco jurídico que otorga certeza temática y temporal. \\
+Límites & Materias prohibidas: electoral, tributaria, penal y régimen de partidos políticos. & Materias muy determinadas y plazo para su ejercicio. \\
+Regla general & Excepción al principio de que el Ejecutivo no legisla. & Excepción autorizada por ley del Congreso (art.\ 76). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Camaronera Patagónica (CSJN, 2014)}
+La Corte Suprema declaró la inconstitucionalidad de las normas del Código Aduanero que otorgaban al Ejecutivo la competencia para fijar retenciones a las exportaciones ---entre ellas, a la soja y sus derivados--- sin haber determinado un límite temporal. La Corte entendió que esa delegación sin plazo incurría en una inconstitucionalidad, por violentar la división de poderes.
+\end{example}
+
+\section{El artículo 29: la prohibición de facultades extraordinarias}
+
+El Poder Legislativo tiene una prohibición expresa, heredada de la época del rosismo, de conceder al Ejecutivo facultades extraordinarias o la suma del poder público.
+
+\begin{norma}{Artículo 29 de la Constitución Nacional}
+El Congreso no puede conceder al Ejecutivo Nacional, ni las Legislaturas provinciales a los gobernadores de provincia, facultades extraordinarias, ni la suma del poder público, ni otorgarles sumisiones o supremacías por las que la vida, el honor o las fortunas de los argentinos queden a merced de gobiernos o persona alguna. Actos de esta naturaleza llevan consigo una nulidad insanable, y sujetarán a los que los formulen, consientan o firmen, a la responsabilidad y pena de los infames traidores a la patria.
+\end{norma}
+
+Esta cláusula tiene su raíz histórica en la gestión de Juan Manuel de Rosas como gobernador, quien contó con facultades extraordinarias para manejar de forma monopólica las relaciones exteriores de las Provincias Unidas del Río de la Plata. El artículo 29 ha resistido el paso del tiempo porque constituye una verdadera declaración política contra la posibilidad de que el Congreso otorgue ``cheques en blanco'' a otros poderes del Estado, especialmente al Poder Ejecutivo.
+
+\begin{note}
+\textbf{Precisión histórica.} El artículo 29 integra el texto constitucional originario de 1853, sancionado tras la caída de Rosas, y no la etapa de la ``generación del 80'', que es posterior; se conserva esta precisión frente a una asociación hecha en clase entre ambos períodos.
+\end{note}
+
+\section{Vasos comunicantes entre poderes}
+
+El reparto de competencias busca una \textbf{racionalización del poder}: una compartimentación orientada al equilibrio, con determinados mecanismos excepcionales ---los llamados \emph{puntos de fuga}--- por los cuales se generan \textbf{vasos comunicantes} entre un poder y otro. El DNU es un vaso comunicante por el cual el Ejecutivo se introduce en funciones legislativas; el indulto, uno por el cual interviene, de modo regulado, en funciones jurisdiccionales; y las leyes de delegación son, en sentido inverso, un vaso comunicante por el que el Congreso otorga al Ejecutivo funciones normativas con límites temáticos y temporales estrictos.
+
+\section{El sistema parlamentario y su comparación con el argentino}
+\label{sec:parlamentario}
+
+En el sistema parlamentario ---con desarrollo en el derecho europeo continental, como los sistemas italiano y español, y con rasgos distintivos en el caso inglés--- los miembros del Ejecutivo son miembros del Parlamento, por lo que los límites entre poderes resultan mucho más difusos. El régimen reposa en gran medida en \textbf{alianzas políticas} que duran lo que dura su capacidad de aunar criterios y conformar gobierno, frente al calendario electoral preestablecido del sistema argentino, que las partes no pueden disponer.
+
+El sistema parlamentario dispone de dos mecanismos de autorregulación: el \textbf{voto de censura}, por el cual el Parlamento, por mayoría agravada (generalmente dos tercios), ordena cesar al Ejecutivo y llamar a elecciones; y la \textbf{disolución del Parlamento}, por la cual el Ejecutivo disuelve el Parlamento y convoca a elecciones. En el sistema argentino no existe ninguno de los dos: el mecanismo análogo es el \textbf{juicio político} (\emph{impeachment}), en el que la Cámara de Diputados acusa y el Senado juzga.
+
+\begin{norma}{Artículo 53 (primera parte) de la Constitución Nacional}
+Sólo ella [la Cámara de Diputados] ejerce el derecho de acusar ante el Senado al presidente, vicepresidente, al jefe de gabinete de ministros, a los ministros y a los miembros de la Corte Suprema, en las causas de responsabilidad que se intenten contra ellos, por mal desempeño o por delito en el ejercicio de sus funciones; o por crímenes comunes (\ldots)
+\end{norma}
+
+\begin{norma}{Artículo 59 (extracto) de la Constitución Nacional}
+Al Senado corresponde juzgar en juicio público a los acusados por la Cámara de Diputados (\ldots) Ninguno será declarado culpable sino a mayoría de los dos tercios de los miembros presentes.
+\end{norma}
+
+A diferencia del sistema parlamentario, el juicio político no funciona como un mecanismo flexible de renovación de autoridades, sino como una verdadera \textbf{ruptura}: el sistema argentino no cuenta con mecanismos flexibles para conformar nuevas mayorías, sino con calendarios eleccionarios preestablecidos. Los regímenes parlamentarios son, como regla general, más \textbf{flexibles} y con respuestas más inmediatas a las crisis, pero tienden a ser más \textbf{inestables}, proclives a \textbf{coaliciones gobernantes}. El sistema argentino es, en este punto, más cercano al sistema norteamericano: un sistema bipartidista tradicional.
+
+\begin{table}[H]
+\centering
+\caption{Sistema constitucional argentino frente al sistema parlamentario}
+\begin{tabularx}{\textwidth}{Q{0.22\textwidth}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Sistema argentino} & \textbf{Sistema parlamentario} \\
+\midrule
+Estructura de poderes & Tres poderes separados; federal. & Límites difusos: el Ejecutivo integra el Parlamento. \\
+Alternancia & Calendario electoral preestablecido. & Reposa en alianzas y en la capacidad de formar gobierno. \\
+Control entre poderes & Juicio político (ruptura). & Voto de censura y disolución del parlamento. \\
+Estabilidad & Más rígido y estable. & Más flexible, pero más inestable. \\
+Sistema de partidos & Bipartidista tradicional (como EE.\ UU.). & Proclive a coaliciones coyunturales. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%==============================================================================
+\chapter[Federalismo y municipios]{Federalismo: recursos naturales, coparticipación y municipios}
+%==============================================================================
+
+\section{Dominio originario de los recursos naturales}
+
+La Constitución establece que los recursos naturales son de dominio público y, más concretamente, del \textbf{dominio originario de las provincias}.
+
+\begin{norma}{Artículo 124 de la Constitución Nacional (in fine)}
+Corresponde a las provincias el dominio originario de los recursos naturales existentes en su territorio.
+\end{norma}
+
+La cláusula fue incorporada por la reforma constitucional de 1994 y consolidó a nivel constitucional el concepto de dominio originario provincial sobre los recursos naturales, previamente presente de modo implícito en normativa de rango inferior.
+
+\begin{example}{Vaca Muerta, ¿de quién es la riqueza del subsuelo?}
+La formación de Vaca Muerta, situada entre las provincias de Neuquén y Mendoza, ilustra la disposición constitucional: conforme al artículo 124, ese dominio originario corresponde a las provincias, lo cual genera un diseño institucional con fuerte impronta provincialista, incluso cuando la explotación y regulación efectiva de los recursos naturales en la práctica involucra también al gobierno federal.
+\end{example}
+
+\section{El régimen de coparticipación federal}
+
+Para conjugar la idea de un dominio natural de las provincias que, a su vez, es regulado y en gran parte administrado en sus utilidades por el gobierno nacional, hay que pasar inevitablemente por la \textbf{ley de coparticipación federal}, una norma cuyo plazo constitucional de sanción ya se encuentra vencido.
+
+\begin{norma}{Disposición Transitoria Sexta de la Constitución Nacional}
+Un régimen de coparticipación conforme a lo dispuesto en el inciso 2 del artículo 75 y la reglamentación del organismo fiscal federal, serán establecidos antes de la finalización del año 1996; la distribución de competencias, servicios y funciones vigentes a la sanción de esta reforma, no podrá modificarse sin la aprobación de la provincia interesada; tampoco podrá modificarse en desmedro de las provincias la distribución de recursos vigente a la sanción de esta reforma y en ambos casos hasta el dictado del mencionado régimen de coparticipación.
+\end{norma}
+
+La reforma de 1994 impuso el plazo del 31 de diciembre de 1996 para sancionar un nuevo régimen de coparticipación conforme al artículo 75, inciso 2. Ese mandato constitucional continúa incumplido, lo que explica que la ley vigente (23.548) sea descripta en clase como una norma ``recontravencida''. Su modificación o reemplazo es tan compleja, desde el punto de vista del consenso político necesario, que en la práctica el régimen se mantiene inalterado. La compatibilidad de este esquema con el dominio originario provincial de los recursos naturales fue planteada como interrogante abierto en clase, sin que se agotara una respuesta específica sobre ese punto.
+
+\section{De la autarquía a la autonomía municipal}
+
+A fines de los años noventa y principios de los 2000, el reconocimiento constitucional de los municipios era todavía una novedad reciente, apenas consolidada por la reforma de 1994. Un precedente jurisprudencial fundamental es el fallo \textbf{``Rivademar, Ángela Digna Balbina Martínez Galván de c. Municipalidad de Rosario''}, resuelto por la Corte Suprema el 21 de marzo de 1989 (Fallos 312:326), en el que la Corte modificó su doctrina histórica y reconoció a los municipios el carácter de \textbf{entidades autónomas} ---y no meramente autárquicas---, sentando así una base jurisprudencial que la reforma de 1994 recogería expresamente en el artículo 123.
+
+\begin{norma}{Artículo 123 de la Constitución Nacional}
+Cada provincia dicta su propia constitución, conforme a lo dispuesto por el artículo 5° asegurando la autonomía municipal y reglando su alcance y contenido en el orden institucional, político, administrativo, económico y financiero.
+\end{norma}
+
+Se advierte un crecimiento sostenido del peso político y electoral de los municipios en las últimas décadas, ilustrado con la centralidad actual de los intendentes del conurbano bonaerense en las elecciones de la provincia de Buenos Aires, un fenómeno que treinta años atrás prácticamente no existía en el discurso público.
+
+\subsection{Las tasas municipales y su desnaturalización}
+
+\begin{definition}{Tasa y tributo local}
+Desde el ABC de la materia fiscal, la \textbf{tasa} debe guardar relación directa de \textbf{contraprestación} con un servicio efectivamente prestado por el municipio. Con el paso del tiempo esa noción se ha desvirtuado considerablemente: muchas tasas municipales se calculan de forma proporcional a determinadas actividades económicas o hechos imponibles, sin relación directa con la contraprestación de un servicio concreto, asimilándose en la práctica a un verdadero \textbf{tributo local}.
+\end{definition}
+
+Este fenómeno se retoma con mayor detalle, junto con el precedente \emph{Municipalidad de Quilmes} y el caso de la tasa vial municipal sobre los combustibles, en el capítulo sobre casos de aplicación del recurso extraordinario federal (Parte IV).
+
+%==============================================================================
+\chapter[Partidos y sistemas electorales]{Partidos políticos, voto y sistemas electorales}
+%==============================================================================
+
+\section{Los partidos políticos como institución fundamental}
+
+Los partidos políticos son \textbf{órganos necesarios del sistema democrático}: dado que nadie delibera ni gobierna sino a través de sus representantes, son los vehículos necesarios para la representación política.
+
+\begin{norma}{Artículo 38 (extracto) de la Constitución Nacional}
+Los partidos políticos son instituciones fundamentales del sistema democrático. Su creación y el ejercicio de sus actividades son libres dentro del respeto a esta Constitución, la que garantiza su organización y funcionamiento democráticos, la representación de las minorías, la competencia para la postulación de candidatos a cargos públicos electivos, el acceso a la información pública y la difusión de sus ideas. (\ldots) Los partidos políticos deberán dar publicidad del origen y destino de sus fondos y patrimonio.
+\end{norma}
+
+\begin{definition}{Monopolio de la representación política}
+La Constitución y la Ley de Partidos Políticos configuran a los partidos como el vehículo obligado ---una suerte de monopolio--- para el acceso a cargos electivos: sin pertenecer a un partido político no es posible presentarse válidamente como candidato.
+\end{definition}
+
+\subsection{Requisitos legales}
+
+\begin{important}
+Requisitos de un partido político, según lo expuesto en clase:
+\begin{enumerate}[label=\alph*)]
+\item Estructura organizativa que asegure representación democrática interna y elección periódica de autoridades.
+\item Estatuto constitutivo, validado por la justicia electoral, que vele por los principios del sistema representativo y democrático.
+\item Un piso de afiliados equivalente, según lo expuesto en clase, a un porcentaje del padrón de cada distrito.
+\item Un piso de votos por elección (según lo expuesto en clase, en el entorno del 2\,\% del padrón electoral), bajo riesgo de pérdida de la personería jurídica si no se alcanza en dos elecciones consecutivas.
+\item Para alcance nacional: presencia en al menos cinco distritos o provincias.
+\item Transparencia del patrimonio y del origen de los fondos de campaña, sometida al control de la justicia electoral.
+\end{enumerate}
+\end{important}
+
+\begin{note}
+\textbf{Precisión sobre el piso de afiliados.} En clase se mencionó, en un pasaje, un tope del ``4\,\%'' del padrón local, y en otro pasaje un piso de afiliados también en el entorno del 4\,\%. La Ley Orgánica de los Partidos Políticos (Ley 23.298) exige, en rigor, una adhesión mínima equivalente al cuatro por mil (4\textperthousand) de los inscriptos en el padrón del distrito, con un máximo de 4.000 adhesiones. Se conservan aquí ambas formulaciones tal como fueron expuestas en clase, dejando constancia de esta precisión.
+\end{note}
+
+Los partidos cuentan con \textbf{personería jurídica} y funcionan, en algún sentido, como una asociación sin fines de lucro orientada a la representación política, sujeta a numerosas regulaciones sobre rendición de gastos y composición de las listas. Entre ellas se destaca la \textbf{ley de equidad de género (paridad)}, que exige que las candidaturas se intercalen entre géneros en las listas oficializadas. Existe además una justicia electoral que, en segunda instancia, cuenta con cámaras especializadas que resuelven las apelaciones contra los fallos de los jueces electorales de primera instancia.
+
+\section{El derecho al voto}
+
+El derecho al voto está regulado por el \textbf{Código Electoral Nacional}, que establece su carácter secreto y universal. La justicia ha anulado, en precedentes judiciales, la norma que impedía a priori el voto de las personas detenidas y no condenadas, por resultar violatoria del principio de inocencia.
+
+\begin{definition}{Voto de personas detenidas sin condena firme}
+Solo pierden el derecho al voto las personas condenadas, por sentencia firme y en cumplimiento de la condena, por delito doloso, sin ningún recurso judicial pendiente. Impedir el voto a personas detenidas sin condena firme vulnera el principio de inocencia.
+\end{definition}
+
+\section{Sistemas y fórmulas electorales}
+
+El sistema más usado en el país es el \textbf{sistema proporcional} (mencionado en clase como sistema D'Hondt), en el que hay prevalencia de las mayorías, atemperada por una representación que también otorga lugar a las fuerzas minoritarias. En oposición se ubica el \textbf{sistema uninominal de distrito único}, en el que solo se elige un representante por circunscripción ---más cercano al sistema norteamericano---, y que en la Argentina se intentó implementar sin que perdurara en el tiempo.
+
+\begin{table}[H]
+\centering
+\caption{Sistemas electorales comparados}
+\begin{tabularx}{\textwidth}{Q{0.28\textwidth}YY}
+\toprule
+\textbf{Sistema} & \textbf{Mecánica} & \textbf{Efecto sobre la representación} \\
+\midrule
+Proporcional (D'Hondt) & Reparto de bancas proporcional a los votos de cada lista. & Prevalecen las mayorías, con lugar también para las minorías. \\
+Uninominal de distrito único & Un solo representante por circunscripción. & Favorece a la primera mayoría de cada distrito. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Una variante particular es la \textbf{ley de lemas}: un mismo partido puede presentar varias listas (sublemas), cuyos votos se acumulan para el lema (partido), resultando elegida la lista más votada dentro de esa suma total. La Corte, en un precedente escueto, no la consideró a priori un sistema ilegítimo, entendiendo que la provincia tenía derecho a establecerla tal como la había sancionado.
+
+\section{Cuadro Cornell: fundamentos del sistema constitucional argentino}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué es la Constitución según el criterio contractualista?} &
+Un esquema institucional básico y un acuerdo esencial que permite la vida en sociedad a partir de restricciones voluntariamente aceptadas sobre los derechos individuales, para armonizar la convivencia en un territorio con soberanía y población propias.
+\cornellsep
+
+\textbf{¿Cuáles son las principales fuentes históricas de la Constitución argentina?} &
+Una mixtura con fuerte incidencia de la Constitución de los Estados Unidos, junto con aportes del derecho hispano e influencias del derecho continental europeo, sistematizadas por Alberdi y difundidas por Sarmiento.
+\cornellsep
+
+\textbf{¿Qué establece el artículo 75, inciso 22?} &
+Otorga jerarquía constitucional a un listado taxativo de tratados de derechos humanos ---ampliable por mayoría agravada de dos tercios de cada Cámara--- y consagra la prelación general de los tratados internacionales sobre las leyes del Congreso.
+\cornellsep
+
+\textbf{¿En qué se diferencian un DNU y un decreto delegado?} &
+El DNU tiene naturaleza legislativa y no requiere ley previa, pero tiene materias prohibidas (electoral, tributaria, penal, partidos políticos); el decreto delegado exige una ley delegante previa, con materias determinadas y plazo de ejercicio (art.\ 76 CN).
+\cornellsep
+
+\textbf{¿Qué prohíbe el artículo 29 de la Constitución?} &
+Que el Congreso conceda al Ejecutivo, o las legislaturas a los gobernadores, facultades extraordinarias o la suma del poder público; tiene su raíz histórica en la experiencia de Rosas.
+\cornellsep
+
+\textbf{¿En qué se diferencia el sistema parlamentario del sistema constitucional argentino?} &
+En el parlamentario los miembros del Ejecutivo integran el Parlamento y existen el voto de censura y la disolución del parlamento; en el argentino hay tres poderes separados, calendario electoral fijo y el juicio político como mecanismo de ruptura, no de renovación flexible.
+\cornellsep
+
+\textbf{¿A quién pertenece el dominio originario de los recursos naturales?} &
+A las provincias, conforme al artículo 124 CN, incorporado en la reforma de 1994 (ejemplo: Vaca Muerta, entre Neuquén y Mendoza).
+\cornellsep
+
+\textbf{¿Qué estableció el fallo ``Rivademar'' (CSJN, 1989) sobre los municipios?} &
+Reconoció a los municipios como entidades autónomas y no meramente autárquicas, doctrina que la reforma de 1994 recogió en el artículo 123.
+\cornellsep
+
+\textbf{¿Por qué los partidos políticos tienen un ``monopolio'' de la representación?} &
+Porque, conforme a la Constitución y a la Ley de Partidos Políticos, no es posible presentarse a un cargo electivo sino a través de un partido político.
+\cornellsep
+
+\textbf{¿Quiénes pueden perder el derecho al voto?} &
+Solo las personas condenadas por sentencia firme y en cumplimiento de una condena privativa de la libertad por delito doloso, sin recursos pendientes.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} el sistema constitucional argentino se apoya en una Constitución de raíz contractualista, con fuentes mixtas hispanoamericanas, organizada de forma representativa, republicana y federal, y reforzada desde 1994 por un mecanismo flexible de incorporación de tratados con jerarquía constitucional. La división de poderes se protege con prohibiciones expresas (arts.\ 29, 76, 99 inc.\ 3, 109) y se distingue nítidamente del sistema parlamentario. El reparto de competencias entre Nación, provincias y municipios genera tensiones recurrentes en torno a los recursos naturales, la coparticipación y las tasas municipales, mientras que los partidos políticos y el derecho al voto canalizan institucionalmente la representación popular.} \\
+\end{longtable}
+
+%==============================================================================
+\part{Interpretación constitucional}
+%==============================================================================
+
+%==============================================================================
+\chapter{Métodos de interpretación constitucional}
+%==============================================================================
+
+\section{El problema de interpretar un texto que envejece}
+
+Frente a las múltiples dimensiones de la Constitución ya expuestas, la materia propone un abordaje \textbf{multidisciplinario} que no se agota en la terminología estrictamente jurídica. El problema central de la interpretación constitucional es que un texto fundacional, a diferencia de las normas de rango inferior, tiende a permanecer en el tiempo sin replanteos automáticos, salvo que medie una reforma constitucional: aquel pacto jurídico, la idea del contrato social, a medida que pasan los años ``se va quedando atrás''. Como ejemplo de esta aceleración de los cambios sociales frente a un texto estable, se menciona que hace apenas diez años la inteligencia artificial se percibía como un tema de ciencia ficción y hoy plantea desafíos interpretativos concretos para el ordenamiento jurídico.
+
+La \textbf{letra de la Constitución} y de las normas que deban interpretarse constituye la primera, básica y primordial fuente de interpretación. Como toda hermenéutica, esta tarea puede requerir además una interpretación conjunta de dos normas en pugna, para determinar cuál prevalece en el caso y cuál resulta aplicable.
+
+\section{Tres corrientes de interpretación constitucional}
+
+Se presentan tres grandes corrientes o escuelas de interpretación constitucional, ordenadas de mayor a menor apego literal al texto.
+
+\subsection{El textualismo}
+
+\begin{definition}{Textualismo}
+Corriente que afianza el valor de la \textbf{letra como primera fuente} de interpretación y le da un sentido estricto: la letra no solo es la primera referencia a la hora de interpretar el cuerpo legal que se quiere aplicar, sino que además reduce fuertemente la interpretación o la creatividad del juez u órgano que realiza la aplicación, porque es el texto el que marca los límites.
+\end{definition}
+
+En la jurisprudencia argentina, la Corte sostiene que la primera fuente de interpretación es la letra de la norma y que esta debe entenderse según el \textbf{uso corriente o significado corriente} que las palabras tienen en los tiempos actuales. Se trata de una modulación más flexible que la del textualismo puro: la Corte argentina no congela el significado de las palabras en el momento histórico de la sanción, sino que las interpreta con el sentido que tienen en la actualidad.
+
+\begin{example}{Tenencia de estupefacientes para consumo personal y artículo 19}
+La tenencia de estupefacientes para consumo personal plantea la cuestión de cómo contrastarla con el principio de reserva del artículo 19 de la Constitución Nacional (desarrollado en la Parte V): qué extensión darle a las expresiones según las cuales las acciones no pueden ofender la moral ni las buenas costumbres, ni perjudicar a terceros. El ejemplo refleja las distintas posiciones posibles: un ámbito de interpretación acotado a la literalidad del texto, o un margen para adaptar y proyectar la norma a los tiempos actuales.
+\end{example}
+
+\subsection{El originalismo}
+
+El originalismo \textbf{no es equivalente} al textualismo. Ambas son corrientes que intentan ser restrictivas de la actividad de los jueces, pero por vías distintas.
+
+\begin{definition}{Originalismo}
+Corriente según la cual toda interpretación legal, si bien debe responder a la fidelidad del texto que describe la situación, debe además estar imbuida y consustanciada con el \textbf{período histórico} en el que la norma fue redactada: las palabras tienen el sentido que tenían históricamente al momento de su redacción y sanción.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Comparación entre textualismo y originalismo}
+\begin{tabularx}{\textwidth}{Q{0.24\textwidth}YY}
+\toprule
+\textbf{Dimensión} & \textbf{Textualismo} & \textbf{Originalismo} \\
+\midrule
+Fuente primaria & Letra de la norma & Letra y contexto histórico de sanción \\
+Significado de las palabras & Uso corriente y actual & Sentido al momento de la redacción \\
+Rol del juez & Muy limitado por el texto & Limitado por texto e historia legislativa \\
+Referencia cultural & El texto en sí mismo & Voluntad de los ``padres fundadores'' \\
+Arraigo en Argentina & Moderado (doctrina de la Corte) & Débil \\
+Arraigo en EE.\ UU. & Fuerte & Muy fuerte (jueces conservadores) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+En el derecho argentino el originalismo no está tan arraigado como en los Estados Unidos, donde el concepto de los \textbf{padres fundadores} tiene un desarrollo que no existe con la misma intensidad en la Argentina: los operadores originalistas tratan de pensar cómo responderían ante la situación actual figuras como Franklin o Madison. Esta situación tiene un condicionante práctico: en la Argentina no existe constancia documentada clara de cómo fue la Asamblea Constituyente de 1853 (la de 1860 está algo más documentada), lo que explica en parte por qué no existe la misma tradición de apelación a los constituyentes originarios que sí existe en Estados Unidos.
+
+\begin{important}
+Tanto el textualismo como el originalismo son corrientes conservadoras desde el punto de vista metodológico: priorizan la fidelidad de la letra y del momento histórico por sobre cualquier adaptación o proyección hacia los tiempos actuales. El efecto práctico es achicar el campo de interpretación de los jueces.
+\end{important}
+
+\subsection{El pragmatismo o interpretación dinámica}
+
+\begin{definition}{Pragmatismo (interpretación dinámica)}
+La corriente más flexible de las tres, que prioriza mantener incólumes y actualizados los principios constitucionales esenciales por sobre la voluntad explícita original del legislador, otorgando un rol más activo al intérprete.
+\end{definition}
+
+\begin{important}
+\textbf{La corriente pragmática y su mayor fertilidad interpretativa.} La posición pragmática es la que ofrece un campo mucho más fértil para reinterpretaciones constitucionales, en tanto no busca su fundamento en la voluntad explícita del legislador original ni en el texto literal, sino en mantener vigentes y adaptados a los tiempos actuales los principios constitucionales esenciales, reconociendo a la vez que los constituyentes originales, aunque sabios, fueron ``producto de un tiempo que ya no existe''.
+\end{important}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Las tres corrientes de interpretación constitucional}
+\begin{tabularx}{\textwidth}{Q{0.17\textwidth}YY}
+\toprule
+\textbf{Corriente} & \textbf{Fuente primaria} & \textbf{Grado de subjetividad} \\
+\midrule
+Textualismo & El texto y su significado corriente & Relativamente bajo \\
+Originalismo & Voluntad e intención histórica de los constituyentes & Medio-alto \\
+Pragmatismo & Principios esenciales, actualizados a la época & Alto \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Derecho y economía}
+
+Como complemento de las herramientas de interpretación, la cátedra incorpora nociones de derecho y economía, en particular de \textbf{análisis económico del derecho}: ``detrás de todo gran diseño institucional hay también una posición que tiene sus efectos económicos concretos y sus dinámicas políticas que son muy concretas''. El alcance de este enfoque se delimita con cuidado: se trata de una materia jurídica, no económica, pero cualquier análisis de un fallo, una decisión judicial o una decisión política debería tener razonablemente en cuenta estos postulados económicos.
+
+La idea que atraviesa todo este bloque es que la interpretación constitucional no es un ejercicio abstracto, sino una tarea cotidiana que se activa cada vez que se discute la constitucionalidad o inconstitucionalidad de una norma, tal como se desarrolla en la Parte III.
+
+\section{Cuadro Cornell: interpretación constitucional}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Cuál es la primera fuente de interpretación constitucional?} &
+La letra de la Constitución y de las normas que deban interpretarse. Puede requerir una interpretación conjunta de dos normas en pugna para determinar cuál prevalece.
+\cornellsep
+
+\textbf{¿Qué es el textualismo y cómo limita al juez?} &
+La corriente que afianza el valor de la letra como primera fuente y le da un sentido estricto: la creatividad del juez queda muy reducida porque el texto marca los límites de la interpretación posible.
+\cornellsep
+
+\textbf{¿Cómo entiende la Corte argentina el significado de las palabras de la norma?} &
+Con el uso o significado corriente que las palabras tienen en los tiempos actuales; es una modulación más flexible que el textualismo puro.
+\cornellsep
+
+\textbf{¿En qué se diferencia el originalismo del textualismo?} &
+El textualismo se limita a la letra y a su uso corriente; el originalismo agrega el peso histórico: las palabras tienen el sentido que tenían al momento de su redacción y sanción, en consonancia con la voluntad de los padres fundadores.
+\cornellsep
+
+\textbf{¿Por qué está más arraigado el originalismo en Estados Unidos que en la Argentina?} &
+Por la deferencia explícita hacia la voluntad de los padres fundadores y porque en Argentina no existe constancia documentada clara de la Asamblea Constituyente de 1853.
+\cornellsep
+
+\textbf{¿En qué consiste la corriente pragmática?} &
+Prioriza mantener actualizados los principios constitucionales esenciales por sobre la letra o la intención histórica original, otorgando mayor proactividad al intérprete frente a un texto que envejece.
+\cornellsep
+
+\textbf{¿Qué aporta el análisis económico del derecho a esta materia?} &
+Una herramienta complementaria para identificar las consecuencias y dinámicas económicas concretas que subyacen a todo gran diseño institucional o decisión judicial.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} frente a un texto que envejece sin actualizarse automáticamente, tres corrientes disputan su interpretación: el textualismo, apegado a la letra y a su significado corriente actual; el originalismo, atento a la voluntad histórica de los constituyentes; y el pragmatismo, orientado a mantener vigentes los principios esenciales, con mayor fertilidad para reinterpretaciones. El análisis económico del derecho es una herramienta transversal para comprender las consecuencias reales de estas decisiones interpretativas.} \\
+\end{longtable}
+
+%==============================================================================
+\part{Control de constitucionalidad y precedentes}
+%==============================================================================
+
+%==============================================================================
+\chapter{El sistema difuso de control de constitucionalidad}
+%==============================================================================
+
+\section{Concepto}
+
+Toda interpretación constitucional supone desentrañar el sentido de la Constitución y determinar si existe una eventual colisión entre normas inferiores y la Constitución, o cuál es el propio alcance de la norma fundacional. Al hacerlo, se está ejerciendo un \textbf{control de constitucionalidad}.
+
+\begin{definition}{Control de constitucionalidad difuso}
+Sistema, adoptado por Argentina y por los Estados Unidos, en el que todos los jueces ---y no solo la Corte Suprema--- tienen el poder de declarar inconstitucional una norma en un caso concreto, en la medida en que sea conducente para la resolución del conflicto. No existe un tribunal con una calificación exclusiva y excluyente para resolverlo, como sucede en otros órdenes jurídicos.
+\end{definition}
+
+En el sistema argentino, cualquier juez llamado a resolver un conflicto puede, siempre que se trate de una cuestión justiciable, ejercer el control de constitucionalidad y, como \textit{última ratio}, \textbf{invalidar una norma} emanada del Congreso o del Poder Ejecutivo: una ley, un decreto o un decreto de necesidad y urgencia.
+
+\section{Comparación con los sistemas concentrados}
+
+Declarar la invalidez de un acto o ley supone una eventual colisión entre poderes del Estado. En el sistema continental europeo (por ejemplo, el italiano, el alemán y el español) existen \textbf{tribunales constitucionales}, que llevan adelante en forma exclusiva el control de constitucionalidad; esto no es posible, por ejemplo, en el sistema español.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Sistema difuso y sistema concentrado}
+\begin{tabularx}{\textwidth}{Q{0.22\textwidth}YY}
+\toprule
+\textbf{Característica} & \textbf{Sistema difuso (Argentina / EE.\ UU.)} & \textbf{Sistema concentrado (España / Alemania / Italia)} \\
+\midrule
+¿Quién ejerce el control? & Cualquier juez en cualquier proceso. & Tribunal Constitucional especializado y exclusivo. \\
+Acceso del justiciable & Directo, en el mismo proceso. & Indirecto: se remite al tribunal especializado. \\
+Alcance de la decisión & Para el caso concreto (\textit{inter partes}). & Efecto general (\textit{erga omnes}). \\
+Riesgo & Sentencias contradictorias entre juzgados. & Menor acceso para justiciables sin recursos. \\
+Carácter & Más democrático y accesible. & Más especializado, menos accesible. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Ventajas y costos del sistema difuso}
+
+El sistema vigente, aunque tiene algunas imperfecciones y tiende a generar marcos temporales de incertidumbre, resulta mucho más \textbf{democrático}, porque está al alcance de todos: cualquier abogado puede plantear la invalidez de una norma; el justiciable no debe esperar a un tribunal lejano, porque la cuestión se resuelve en el mismo proceso; y las instancias recursivas enriquecen el debate y permiten un tiempo de maduración de los temas.
+
+Frente a ello, hay que asumir un plazo de incertidumbre en el que puede haber sentencias contrapuestas, leyes generales puestas en duda o inaplicadas, enfrentamiento entre los poderes del Estado y la situación, a veces absurda pero real, de que una norma se aplique para algunos y para otros no. Estos son los \textbf{costos de transacción} del sistema difuso.
+
+\begin{important}
+El sistema difuso requiere de un \textbf{principio ordenador}. Sin él, caería en decisiones caóticas y contradictorias. Ese rol de ordenador lo cumple la \textbf{Corte Suprema} como intérprete máximo y definitivo de la Constitución, como se desarrolla en el capítulo sobre precedentes constitucionales.
+\end{important}
+
+%==============================================================================
+\chapter[Marbury y Sojo]{Fallos fundacionales: Marbury v. Madison y Sojo}
+%==============================================================================
+
+El estudio de los fallos fundacionales del control de constitucionalidad puede introducirse con una pregunta hipotética: si un ciudadano es detenido injustamente por publicar una caricatura crítica, ¿ante qué juez debe acudir? ¿Es posible ir directamente a la Corte Suprema? Esas fueron, precisamente, las preguntas que se plantearon en 1887 en el caso \emph{Sojo} y en 1803 en el caso \emph{Marbury}. El hilo conductor de ambos fallos es uno solo: \textbf{quién tiene la última palabra sobre la Constitución y cómo se ejerce ese poder}.
+
+\section{Marbury v. Madison (1803)}
+
+\subsection{Contexto político: Adams y Jefferson}
+
+El presidente Adams, a punto de dejar el poder tras perder la elección, había nombrado a \textbf{42 jueces} que todavía no habían asumido: un mandato \textbf{remanente}, con la opinión del pueblo ya en sentido opuesto. El acto de nombramiento \textbf{existió} como \textbf{acto de Estado}; lo único que le faltaba era la rubricación. Jefferson, ya electo, sostenía que no los nombraría, y se creía con derecho no solo a no nombrarlos, sino también a \textbf{interpretar la Constitución} él mismo. Ese era el dilema central del fallo: la Constitución norteamericana no era clara ---y aún hoy no lo es en todos los puntos--- al establecer cuáles son las funciones propias de la Corte y cuáles las de los tribunales inferiores.
+
+\begin{example}{Diferencias entre estados en los Estados Unidos}
+Existe un código civil y comercial de Luisiana y otro de Utah, y una ley penal de Utah y otra de Luisiana: no hay un código penal nacional. Por eso en algunos estados existe la pena de muerte y en otros no. Argentina, en cambio, cuenta con un Código Civil y Comercial y un Código Penal únicos para todo el país, aunque cada provincia conserva su código de procedimiento.
+\end{example}
+
+\subsection{La vía procesal elegida por Marbury}
+
+Marbury, uno de los 42 jueces nombrados, reclamó ser puesto en funciones \textbf{directamente ante la Corte}, y no ante un juez de primera instancia del Distrito de Columbia. El dilema era si habían hecho bien en ir directamente a la Corte, dado que nombrar jueces es un \textbf{acto federal complejo} en el que intervienen dos poderes: el Ejecutivo, que nombra, y el Legislativo, a través del Senado, que presta el aval.
+
+\subsection{John Marshall y el conflicto normativo}
+
+Marshall, presidente de la Corte, había sido además Secretario de Estado. En lugar de resolver por el camino fácil, examinó el texto constitucional para determinar qué estaba en conflicto: la \textbf{Judiciary Act} (ley judicial número 13), que establecía que había que nombrar a estos jueces, frente al \textbf{artículo 3 de la Constitución norteamericana}, que no establecía con claridad qué casos van directamente a la Corte y cuáles por apelación.
+
+\subsection{La ``lógica de Marshall'': tres preguntas}
+
+\begin{table}[H]
+\centering
+\small
+\caption{La lógica de Marshall}
+\begin{tabularx}{\textwidth}{Q{0.09\textwidth}YY}
+\toprule
+\textbf{Pregunta} & \textbf{Planteo} & \textbf{Respuesta} \\
+\midrule
+1.\textsuperscript{a} & ¿Existió el acto de nombramiento? & \textbf{Sí.} El acto existió, aunque faltaba la rubricación. \\
+2.\textsuperscript{a} & ¿Tiene viabilidad el reclamo? ¿Acudieron al lugar adecuado? & \textbf{Sí.} El Poder Judicial es el lugar correcto para interpretar si se violó el derecho. \\
+3.\textsuperscript{a} & ¿Puede el Poder Judicial emitir un \emph{mandamus} para colocarlos en el cargo? & \textbf{No.} Interferiría con la división de poderes e invadiría funciones del Ejecutivo. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Ante la tercera pregunta, la Corte se \textbf{autorrestringió} y, paradójicamente, \textbf{ganó más}: le puso límites al presidente y resolvió la duda de Jefferson sobre si él también podía interpretar la Constitución. A partir de ese momento, \textbf{el único órgano capacitado para interpretar y decir lo que es la ley es el Poder Judicial}.
+
+\begin{important}
+\textbf{Frase célebre del fallo.} ``El gobierno de los Estados Unidos es un gobierno de leyes y no de hombres''. En consecuencia, también el presidente debe acatar la ley, aunque se crea representante del pueblo.
+\end{important}
+
+\subsection{``No tenemos ni la bolsa ni la espada''}
+
+No es cierto que el Poder Judicial sea el más fuerte de los tres poderes: es el \textbf{más débil}, porque no tiene ni la bolsa ni la espada. La \textbf{bolsa} representa los fondos del Estado, controlados por el Legislativo; la \textbf{espada} representa el monopolio de la fuerza, propio del Ejecutivo.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Los tres poderes según Marshall}
+\begin{tabularx}{\textwidth}{Q{0.19\textwidth}YY}
+\toprule
+\textbf{Poder} & \textbf{Recurso / fortaleza} & \textbf{Debilidad} \\
+\midrule
+Poder Ejecutivo & Monopolio del uso de la fuerza (la ``espada''). & Sometido a la ley y al control judicial. \\
+Poder Legislativo & Control de los fondos públicos (la ``bolsa''). & Sus leyes pueden ser declaradas inconstitucionales. \\
+Poder Judicial & Control de constitucionalidad y última palabra. & No tiene ni la bolsa ni la espada. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+A partir de este fallo, el Poder Judicial comienza a ejercer el \textbf{control de constitucionalidad}, y el Ejecutivo queda por debajo de la ley. Esa es la \textbf{autonomía propia} que el Poder Judicial logró en los Estados Unidos, y que Argentina \textbf{copió tal cual}.
+
+\section{Sojo c/ Poder Ejecutivo Nacional (1887)}
+
+\subsection{Contexto y hechos}
+
+El fallo \emph{Sojo} presenta una circunstancia similar a \emph{Marbury}, pero en Argentina, planteada en \textbf{1887}, cuando hacía poco tiempo ---veinticinco o veintisiete años--- que regían la división de poderes y la Constitución. Sojo era un dibujante que hacía \textbf{sátiras políticas}: el dibujo que motivó el caso representaba a una mujer ---la República Argentina--- con la cabeza aplastada por una prensa ---el sistema---, rodeada de seres grotescos con los bolsillos llenos de dinero ---los políticos---. El Poder Legislativo se dio por aludido, y el gobierno de Juárez Celman ordenó la detención de Sojo \textbf{sin juicio previo}.
+
+\begin{definition}{Habeas corpus}
+Figura jurídica muy antigua, que proviene de la Gloriosa Revolución Inglesa, cuando se sostuvo que el monarca no tenía derecho a andar secuestrando gente. En latín significa ``dónde está el cuerpo''. Protege la libertad física de la persona.
+\end{definition}
+
+\subsection{El error procesal y los artículos 116 y 117}
+
+El abogado de Sojo presentó el habeas corpus \textbf{directamente ante la Corte Suprema}, y no ante un juez ordinario. Para resolver el caso había que interpretar dos artículos de la Constitución y la \textbf{Ley 48}, que sistematiza el control de constitucionalidad.
+
+\begin{norma}{Artículo 116 de la Constitución Nacional}
+Corresponde a la Corte Suprema y a los tribunales inferiores de la Nación, el conocimiento y decisión de todas las causas que versen sobre puntos regidos por la Constitución y por las leyes de la Nación, con la reserva hecha en el inciso 12 del artículo 75; y por los tratados con las naciones extranjeras; de las causas concernientes a embajadores, ministros públicos y cónsules extranjeros; de las causas de almirantazgo y jurisdicción marítima; de los asuntos en que la Nación sea parte; de las causas que se susciten entre dos o más provincias; entre una provincia y los vecinos de otra; entre los vecinos de diferentes provincias; y entre una provincia o sus vecinos contra un Estado o ciudadano extranjero.
+\end{norma}
+
+\begin{norma}{Artículo 117 de la Constitución Nacional}
+En estos casos [los del art.\ 116], la Corte Suprema ejercerá su jurisdicción por apelación según las reglas y excepciones que prescriba el Congreso; pero en todos los asuntos concernientes a embajadores, ministros y cónsules extranjeros, y en los que alguna provincia fuese parte, la ejercerá originaria y exclusivamente.
+\end{norma}
+
+\begin{note}
+En el fallo \emph{Sojo}, estos artículos se citaban como artículos 100 y 101, ya que la numeración cambió con la reforma constitucional de 1994.
+\end{note}
+
+El artículo 116 establece el \textbf{género} y la regla general: las causas se plantean por \textbf{vía recursiva o de apelación}, agotando las instancias desde la más baja hasta la más alta. El artículo 117 establece la \textbf{excepción}: la competencia \textbf{originaria y exclusiva} de la Corte, reservada a embajadores, ministros y cónsules extranjeros, y a los asuntos en que una provincia sea parte.
+
+\begin{definition}{Numerus clausus}
+Expresión latina que significa ``número cerrado''. Los casos de competencia originaria del artículo 117 están taxativamente determinados: si un caso no está allí, no es ampliable ni admite interpretación extensiva ni analogía.
+\end{definition}
+
+\begin{important}
+La competencia originaria de la Corte es \textbf{excepcional, no es la regla}. La regla es la competencia ordinaria por vía de apelación, y excepcionalmente la originaria, sujeta a un numerus clausus.
+\end{important}
+
+\begin{example}{Accidente de tránsito con un embajador}
+Un accidente de tránsito común corresponde a un juez civil de primera instancia. Pero si quien conducía era el Embajador de Chile, por el artículo 117 y por la calidad de la persona, el caso pasa a ser de competencia originaria de la Corte. Sojo, en cambio, no era embajador ni cónsul: era un simple dibujante, por lo que la competencia originaria no era aplicable a su caso.
+\end{example}
+
+\subsection{La decisión de la Corte}
+
+La Corte interpretó que el caso de Sojo no era una cuestión de inconstitucionalidad sino de \textbf{jurisdicción y competencia}: se había equivocado de instancia. Remitió la causa al juez de primera instancia, quien aplicó el habeas corpus y dejó libre a Sojo. De haberse limitado la Corte a rechazar el planteo sin más, Sojo habría permanecido detenido.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Comparación entre los fallos Marbury y Sojo}
+\begin{tabularx}{\textwidth}{Q{0.20\textwidth}YY}
+\toprule
+& \textbf{Marbury v. Madison} & \textbf{Sojo c/ Poder Ejecutivo Nacional} \\
+\midrule
+Cuestión de fondo & Declaración de inconstitucionalidad. & Jurisdicción y competencia, no inconstitucionalidad. \\
+Vía elegida & Directamente ante la Corte. & Directamente ante la Corte. \\
+Resultado & La Corte se consolida como único intérprete de la Constitución. & La Corte remite el caso a primera instancia, donde Sojo es liberado. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Por eso, en el fallo \emph{Sojo} se plantea que todos los jueces controlan la Constitución, y la Corte Suprema no es el único órgano que interviene en las cuestiones constitucionales, aunque actúa como árbitro último ---el sistema difuso descripto en el capítulo anterior.
+
+\section{Cuadro Cornell: Marbury y Sojo}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué es Marbury v. Madison y por qué es fundacional?} &
+El fallo de la Corte Suprema de Estados Unidos de 1803 en el que se ejerce el control de constitucionalidad judicial: Marshall determinó que el Poder Judicial es el único intérprete de la Constitución. Argentina copió tal cual esa autonomía.
+\cornellsep
+
+\textbf{¿Qué es la ``lógica de Marshall''?} &
+El razonamiento de tres preguntas: 1) ¿existió el acto de nombramiento? (sí); 2) ¿se acudió al lugar adecuado? (sí); 3) ¿puede el Poder Judicial ordenar el nombramiento mediante un \emph{mandamus}? (no, invadiría al Ejecutivo).
+\cornellsep
+
+\textbf{¿Qué significa ``un gobierno de leyes y no de hombres''?} &
+Que todas las personas están por debajo de la ley y nadie está por encima de ella, ni siquiera el presidente.
+\cornellsep
+
+\textbf{¿Qué significa ``no tenemos ni la bolsa ni la espada''?} &
+Que el Poder Judicial es el más débil de los tres poderes: no controla los fondos del Estado ni el monopolio de la fuerza; su poder es el control de constitucionalidad.
+\cornellsep
+
+\textbf{¿Cuál fue el error procesal en el caso Sojo?} &
+Su abogado presentó el habeas corpus directamente ante la Corte, en lugar de ante un juez de primera instancia, pese a que el artículo 116 establece la vía de apelación como regla general.
+\cornellsep
+
+\textbf{¿Qué diferencia el artículo 116 del artículo 117?} &
+El 116 es la regla general (vía de apelación); el 117 es la excepción: competencia originaria y exclusiva de la Corte para embajadores, cónsules, ministros extranjeros y causas donde una provincia sea parte, en un \emph{numerus clausus}.
+\cornellsep
+
+\textbf{¿Cómo resolvió la Corte el caso Sojo?} &
+Declaró que no era una cuestión de inconstitucionalidad sino de jurisdicción y competencia, y remitió la causa a primera instancia, donde Sojo fue liberado mediante el habeas corpus.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} \emph{Marbury} y \emph{Sojo} son los fallos fundacionales del control de constitucionalidad en Estados Unidos y Argentina. En ambos casos la parte acudió directamente a la Corte; en \emph{Marbury}, esa autorrestricción consolidó al Poder Judicial como único intérprete de la Constitución; en \emph{Sojo}, la Corte remitió el caso a primera instancia por tratarse de una cuestión de competencia, ilustrando la regla del artículo 116 (apelación) frente a la excepción del artículo 117 (competencia originaria).} \\
+\end{longtable}
+
+%==============================================================================
+\chapter[Precedentes y overruling]{Precedentes constitucionales y su abandono (overruling)}
+%==============================================================================
+
+\section{La Corte Suprema como tribunal ordenador}
+
+La decisión ordenadora, la que brinda la interpretación definitiva de la Constitución, es la de la \textbf{Corte}. Es la que define los precedentes constitucionales y funciona como organismo ordenador frente a las distintas sentencias que pueden ser contradictorias en los juzgados de primera instancia o en las cámaras: es la última cabeza del Poder Judicial, que jerárquicamente, por vía de recurso, termina dictando las directrices constitucionales.
+
+\section{Obligatoriedad de los precedentes de la Corte}
+
+El sistema argentino no es estrictamente un sistema de precedentes, aunque se asemeja cada vez más a uno. Las decisiones que tienen una densidad que permite proyectar el precedente a muchos casos similares \textbf{deben ser seguidas obligatoriamente} por los tribunales inferiores. Se abandonó así la visión más reduccionista de la Corte de otras décadas, que sostenía que sus precedentes solo obligaban para el caso concreto.
+
+\begin{important}
+\textbf{Excepción al seguimiento del precedente.} Los tribunales inferiores solo podrían apartarse mediante una decisión meditada, muy prudente y muy justificada, si existiera alguna cuestión que no se planteó en el precedente, justificando que hay algún aspecto que quizás no fue tenido en cuenta por la Corte.
+\end{important}
+
+\section{El overruling: cuando la Corte cambia su propio precedente}
+
+\begin{definition}{Overruling}
+Abandono, por parte de la propia Corte, de un precedente que ella misma había sentado con anterioridad. Ocurre incluso en los sistemas más ceñidos a la idea del \emph{common law}.
+\end{definition}
+
+\subsection{La Corte Warren y el fin de la doctrina ``separados pero iguales''}
+
+En los años sesenta, en la época de la lucha por los derechos civiles, la denominada Corte Warren revisó los precedentes vigentes desde décadas atrás, más permeables con el segregacionismo. La doctrina de \textbf{``separados pero iguales''} (\emph{separate but equal}) sostenía que podía haber segregación siempre que no hubiera una prestación diferente en calidad para la población afroamericana. A fines de los años cincuenta y sobre todo en los sesenta, la Corte modificó ese criterio: aun cuando pudiera demostrarse un servicio igual por separado, el solo hecho de la segregación genera una dimensión clara de desigualdad, que desvaloriza a las minorías y retroalimenta una idea de \emph{apartheid}. La doctrina fue así abandonada.
+
+\subsection{Los fallos Fayt y Schiffrin}
+
+Según la \textbf{doctrina Fayt}, sentada por la Corte de los años noventa, los jueces que cumplían 75 años podían permanecer en el cargo, porque se entendió que la Convención Constituyente se había extralimitado al modificar el punto referido a la inamovilidad de los jueces. El fallo es discutible, entre otras razones, porque la mayoría de la Corte que lo votó estaba integrada por jueces que podían tener un interés personal en el resultado.
+
+En el fallo \textbf{Schiffrin}, la Corte, con nueva composición, se apartó de esa doctrina, sosteniendo que no hubo apartamiento de la ley de reforma, porque entre los artículos incluidos estaban los referidos a la composición del Poder Judicial. Dos de los jueces de la mayoría de \emph{Schiffrin} habían sido constituyentes en 1994: Lorenzetti y Rosatti\footnote{En las notas originales de esta unidad la grafía del segundo apellido aparece transcripta de forma dudosa; se conserva aquí la forma ``Rosatti''. \% TODO: verificar grafía del apellido tal como figura en las fuentes originales.}, lo que tuvo un peso institucional muy fuerte. Se destacó además que el tiempo transcurrido desde \emph{Fayt} mostraba que los temores sobre una desestabilización de la independencia judicial no se habían materializado.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Fayt y Schiffrin: un caso de overruling}
+\begin{tabularx}{\textwidth}{Q{0.22\textwidth}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Fallo Fayt (1999)} & \textbf{Fallo Schiffrin (overruling)} \\
+\midrule
+Cuestión debatida & Validez de la reforma que fija retiro a los 75 años. & Reexamen de la misma cuestión con nueva composición. \\
+Posición & La reforma era inválida: la Convención se extralimitó. & La reforma era válida: estaba dentro de los artículos habilitados. \\
+Efectos & Jueces mayores de 75 podían continuar indefinidamente. & Se restituyó la validez de la cláusula constitucional. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El fallo Levinas: un precedente operativo}
+
+En el precedente \textbf{Levinas}, la Corte sentó el principio de que, en materia de derecho común, las sentencias de las \textbf{cámaras nacionales} son revisables por el Tribunal Superior de Justicia (TSJ) de la Ciudad, como Tribunal Superior de la Causa, en forma previa a la apelación ante la Corte. Esta cuestión se vincula con la sanción de la \textbf{Ley 27.802}, que dispone la transferencia de la justicia nacional ordinaria con asiento en la CABA a la jurisdicción local, en cumplimiento del artículo 129 y de la cláusula transitoria decimoquinta de la Constitución reformada en 1994. A partir de la notificación de ese fallo, las partes que quieran impugnar sentencias de las cámaras nacionales deben interponer el recurso ante el TSJ, y no directamente ante la Corte.
+
+\begin{important}
+Hay una tendencia a virar paulatinamente hacia un sistema que, sin ser el típico sistema anglosajón de precedentes, se le asemeja cada vez más: cuando hay un criterio constitucional claro y sostenido por la Corte, este tribunal cumple su misión ordenadora para evitar contradicciones y apelaciones innecesarias.
+\end{important}
+
+\section{Cuadro Cornell: precedentes y overruling}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Están obligados los jueces inferiores a seguir los precedentes de la Corte?} &
+Sí, cuando se trata de decisiones con densidad suficiente para proyectarse a casos similares; solo pueden apartarse con una justificación muy prudente.
+\cornellsep
+
+\textbf{¿Qué es el overruling?} &
+El abandono, por la propia Corte, de un precedente que ella misma había sentado. Ejemplos: la Corte Warren con ``separados pero iguales'', y el paso de \emph{Fayt} a \emph{Schiffrin}.
+\cornellsep
+
+\textbf{¿Por qué la Corte Warren abandonó ``separados pero iguales''?} &
+Porque entendió que el solo hecho de la segregación genera desigualdad, aun con prestaciones iguales, al desvalorizar a las minorías.
+\cornellsep
+
+\textbf{¿Qué diferencia a Fayt de Schiffrin?} &
+\emph{Fayt} declaró inválida la reforma que fijaba el retiro a los 75 años, por entender que la Convención se había extralimitado; \emph{Schiffrin} revirtió ese criterio, sosteniendo que la composición del Poder Judicial sí estaba habilitada por la ley de reforma.
+\cornellsep
+
+\textbf{¿Qué estableció el fallo Levinas?} &
+Que las sentencias de las cámaras nacionales, en materia de derecho común, son revisables por el TSJ de la Ciudad antes de llegar a la Corte, en línea con la Ley 27.802 de transferencia de la justicia nacional a la CABA.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} la Corte Suprema es el tribunal ordenador del sistema difuso; sus precedentes de proyección general obligan a los tribunales inferiores, aunque la propia Corte puede modificarlos mediante \emph{overruling}, como ocurrió con ``separados pero iguales'' y con el paso de \emph{Fayt} a \emph{Schiffrin}. El fallo \emph{Levinas} ilustra un precedente operativo con alcance hacia el futuro, en un tránsito hacia una práctica cercana al sistema anglosajón.} \\
+\end{longtable}
+
+%==============================================================================
+\chapter[Arbitrariedad de sentencia]{La doctrina de la arbitrariedad de sentencia}
+%==============================================================================
+
+\section{Una vía de revisión más allá de la cuestión federal}
+
+Además de la cuestión federal ---que se estudia en detalle en la Parte IV---, existe otra vía, desarrollada por la jurisprudencia, por la cual es posible acudir en revisión ante la Corte Suprema aun cuando no se configure una cuestión federal.
+
+\begin{definition}{Doctrina de la arbitrariedad}
+Doctrina desarrollada por la Corte Suprema mediante la cual se atribuye un carácter revisor de sentencias de tribunales inferiores aun cuando no estén configurados los presupuestos de una típica cuestión federal, en aquellos casos en que las conclusiones de la sentencia impugnada resultan contrarias a la sana crítica y al principio de razonabilidad. Se engloba bajo este nombre un conjunto de presupuestos que deben entenderse siempre como una \textbf{ruptura de la cadena racional y lógica} de la actividad jurisdiccional.
+\end{definition}
+
+Sus características principales: \textbf{no tiene recepción legal específica} ---a diferencia de la cuestión federal, regulada en la Ley 48, funciona como una \textbf{válvula de escape} de creación pretoriana, sistematizada desde el siglo XIX---; la Corte interviene cuando hay un ``ruido'' en la racionalidad de la decisión judicial; y con frecuencia se recurre también al concepto de \textbf{razonabilidad}. Puede darse en cuestiones de derecho común, funcionando como un salvoconducto para lograr la revisión de sentencias que, a priori, versan sobre esa materia.
+
+\section{Presupuestos de arbitrariedad}
+
+\subsection{Errores en la valoración de la prueba}
+
+\begin{example}{Prueba testimonial deliberadamente omitida}
+Un testigo situado en tiempo y espacio en el lugar de los hechos, calificado y sin circunstancias que generen demérito de su declaración, es deliberadamente omitido en la decisión judicial. Se configura así un presupuesto que habilita la arbitrariedad de sentencia.
+\end{example}
+
+Otros supuestos vinculados con la prueba: una prueba pericial no debidamente merituada, o la consideración exclusiva de una prueba que adolece de serios errores.
+
+\subsection{Errores en el encuadramiento jurídico}
+
+\begin{table}[H]
+\centering
+\caption{Supuestos de incorrecto encuadramiento jurídico}
+\begin{tabularx}{\textwidth}{Q{0.28\textwidth}Y}
+\toprule
+\textbf{Supuesto} & \textbf{Descripción} \\
+\midrule
+Marco jurídico inaplicable & Prescindir, por ejemplo, de los principios de la ley de defensa del consumidor en una relación de consumo. \\
+Ley no vigente & Aplicar una ley antes de tiempo o una ley ya derogada. \\
+Ausencia de fundamentación & Brindar una fundamentación totalmente ajena a la resolución de la litis. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Violación del principio de congruencia}
+
+\begin{example}{Resolución en más}
+Se demanda por daños y perjuicios reclamando lucro cesante y daño emergente, y la sentencia agrega además la pérdida de chance, no solicitada.
+\end{example}
+
+\begin{example}{Resolución en menos}
+Se solicita la nulidad de un acto administrativo y una indemnización; la sentencia hace lugar a la nulidad, pero no se adentra en la indemnización pedida.
+\end{example}
+
+\begin{example}{Legitimación indebida}
+Se solicita la citación de un tercero solo con ese carácter, y la sentencia resuelve una condena en su contra.
+\end{example}
+
+\subsection{Exceso del tribunal de Cámara respecto de los agravios}
+
+\begin{important}
+Cuando existe doble instancia, la instancia revisora debe estar estrictamente delimitada por el ámbito de los agravios. Todo lo que no ha sido objeto de una expresión de agravios concreta precluye, es decir, queda firme. Si la Cámara trata elementos que no fueron objeto de impugnación, rompe el orden lógico de su competencia y da lugar a la arbitrariedad de sentencia.
+\end{important}
+
+\section{Aplicaciones prácticas: honorarios e intereses}
+
+Las regulaciones de honorarios, a priori, no motivan la intervención de la Corte porque no está en juego una cuestión federal; pero si están fijados de manera irrazonable, violando la norma procesal, puede darse la intervención de la Corte. Lo mismo ocurre con los \textbf{intereses}: si se fija una tasa excesivamente onerosa o escasa ---por ejemplo, por una capitalización derivada de un incorrecto encuadramiento jurídico---, la Corte puede intervenir; ha abierto muchos casos de este tipo en materia laboral.
+
+\section{Coexistencia con la cuestión federal}
+
+Cuestión federal y arbitrariedad de sentencia no se presentan necesariamente de manera pura: pueden convivir en una misma apelación, con lo cual el campo de revisión de la Corte resulta aún más amplio.
+
+\section{Cuadro Cornell: arbitrariedad de sentencia}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué es la doctrina de la arbitrariedad de sentencia?} &
+Una doctrina de creación jurisprudencial, no regulada por ley como la cuestión federal, por la cual la Corte revisa sentencias inferiores cuando hay una ruptura de la cadena racional y lógica de la decisión, aun sin cuestión federal.
+\cornellsep
+
+\textbf{¿Qué errores en la valoración de la prueba habilitan la arbitrariedad?} &
+La omisión deliberada de una prueba pertinente y clave, una prueba pericial no merituada o la consideración exclusiva de una prueba con serios errores.
+\cornellsep
+
+\textbf{¿Cómo se viola el principio de congruencia?} &
+Resolviendo más de lo pedido, menos de lo pedido, o condenando a un tercero citado solo con ese carácter.
+\cornellsep
+
+\textbf{¿Puede la Corte intervenir en honorarios e intereses?} &
+Sí, excepcionalmente, cuando están fijados de forma irrazonable, aunque a priori no susciten cuestión federal.
+\cornellsep
+
+\textbf{¿Pueden coexistir cuestión federal y arbitrariedad?} &
+Sí, en una misma apelación, ampliando el campo de revisión de la Corte.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} la arbitrariedad de sentencia es una válvula de escape jurisprudencial que permite a la Corte revisar sentencias de derecho común sin cuestión federal, cuando se rompe la cadena racional de la decisión: errores graves de prueba, incorrecto encuadramiento jurídico, falta de fundamentación, incongruencia o exceso de la Cámara sobre los agravios. Puede coexistir con una cuestión federal y debe invocarse señalando con precisión el error.} \\
+\end{longtable}
+
+%==============================================================================
+\chapter[Inconstitucionalidad de oficio]{Declaración de inconstitucionalidad de oficio}
+%==============================================================================
+
+\section{Concepto y fundamento}
+
+La Corte ha aceptado la declaración de inconstitucionalidad de oficio, es decir, aun cuando las partes no hayan invocado estrictamente la invalidez constitucional de una norma. Se la concibe como un \textbf{deber del órgano jurisdiccional}.
+
+\begin{definition}{Iura novit curia}
+El juez conoce el derecho. Este principio habilita al tribunal a declarar la inconstitucionalidad de una norma aun cuando las partes no la hayan invocado expresamente.
+\end{definition}
+
+A partir del precedente \textbf{``Mill de Pereyra, Rita Aurora y otros c/ Provincia de Tucumán''} (Fallos 324:3219, 2001)\footnote{La carátula se transcribe tal como figura en las notas originales de la unidad. \% TODO: dato a verificar con el material oficial.}, la Corte sostiene que los jueces pueden declarar de oficio la inconstitucionalidad de una norma, aun cuando ninguna de las partes lo haya solicitado expresamente, sin que ello implique una violación del derecho de defensa en juicio ni un exceso en las facultades jurisdiccionales. La Corte no puso exclusividad en cuanto a las temáticas: sostuvo esta posibilidad como principio general.
+
+Los fundamentos de esta facultad son: el principio \textit{iura novit curia}; la competencia y el deber judicial de aplicar el derecho y proteger la supremacía de la Constitución, aun sin petición expresa de parte; y la conclusión de que, por ese solo hecho, no hay violación del derecho de defensa de las partes.
+
+\section{El límite: la congruencia con la pretensión de la parte}
+
+Existe, sin embargo, un límite fundamental: la eventual declaración de invalidez debe ser \textbf{coincidente con la pretensión jurídica} de la parte actora, tanto al demandar como al recurrir. El tribunal puede suplir la invocación del derecho, pero no puede resolver más de lo que fue pedido.
+
+\begin{example}{Indemnización por despido}
+Un trabajador demanda una indemnización por despido conforme a los topes legales vigentes. ¿Puede el juez declarar de oficio la inconstitucionalidad de esos topes y otorgar una suma mayor a la reclamada? \textbf{Respuesta:} no, porque el juez estaría yendo más allá de lo pedido, lo que sí constituye una violación del debido proceso: no por declarar de oficio la invalidez de la norma, sino por conceder más de lo solicitado.
+\end{example}
+
+\begin{important}
+La declaración de invalidez de una norma puede realizarse de oficio, pero siempre que sea coincidente con la pretensión judicial de la parte actora. Si va más allá de lo que pide la parte, es allí donde puede haber una violación del derecho de defensa.
+\end{important}
+
+\section{Precedentes históricos}
+
+\emph{Marbury v. Madison} y \emph{Sojo} son dos sentencias pioneras, en el ámbito americano y argentino respectivamente, en las que la parte no había invocado estrictamente la invalidez de la norma y esta se declaró igualmente, sin haber sido argumentada, mostrando un camino largo y relativamente pacífico hacia la doctrina actual. Otro precedente mencionado es el caso \textbf{Ortondo}, referido a un tema de expropiación, considerado uno de los primeros fallos en que la Corte se inmiscuye en la regulación económica de contratos de derecho privado, también bajo la condición de que la invalidación sea congruente con la pretensión jurídica de alguna de las partes.
+
+\section{Cuadro Cornell: inconstitucionalidad de oficio}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué es la declaración de inconstitucionalidad de oficio?} &
+La facultad, concebida como deber del órgano jurisdiccional, de declarar la invalidez constitucional de una norma aun cuando ninguna de las partes lo haya solicitado expresamente, a partir de ``Mill de Pereyra'' (2001).
+\cornellsep
+
+\textbf{¿En qué principio se funda y por qué no viola el derecho de defensa?} &
+En el principio \textit{iura novit curia}: el juez conoce el derecho. Al tratarse de cuestiones eminentemente jurídicas, en principio no hay violación del derecho de defensa.
+\cornellsep
+
+\textbf{¿Cuál es el límite de esta facultad?} &
+La pretensión de la parte: el tribunal puede suplir la invocación del derecho, pero no puede resolver en más de lo que la parte solicitó.
+\cornellsep
+
+\textbf{¿Qué precedentes históricos se mencionan?} &
+\emph{Marbury v.\ Madison} y \emph{Sojo}, sentencias pioneras donde la invalidez se declaró sin haber sido invocada; y el caso \emph{Ortondo}, sobre expropiación.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} los tribunales pueden declarar de oficio la inconstitucionalidad de una norma en virtud del principio \textit{iura novit curia}, sin que ello viole el derecho de defensa, siempre que la declaración sea congruente con la pretensión de la parte al demandar y al recurrir.} \\
+\end{longtable}
+
+%==============================================================================
+\chapter{Jurisdicción originaria de la Corte Suprema}
+%==============================================================================
+
+\section{Jurisdicción por apelación y jurisdicción originaria}
+
+Además de intervenir por vía de apelación, la Corte también puede desarrollar su actividad en materia \textbf{originaria}: no mediante un recurso, sino tomando la cuestión como tribunal de primera y única instancia, sin posibilidad de apelación posterior.
+
+\begin{important}
+Los artículos 116 y 117 de la Constitución Nacional (ya presentados al estudiar el fallo \emph{Sojo}) establecen los presupuestos en los cuales la jurisdicción de la Corte se despliega de forma originaria.
+\end{important}
+
+\section{Supuestos de jurisdicción originaria}
+
+\begin{itemize}
+    \item \textbf{Causas con personal diplomático extranjero:} embajadores, ministros y cónsules extranjeros, aun en cuestiones de derecho civil; en la jurisprudencia moderna, no siempre en infracciones administrativas, pero sí en causas de naturaleza penal.
+    \item \textbf{Controversias entre dos o más provincias:} ningún tribunal de una provincia ni de otra podría intervenir sin desequilibrio de intereses, y tampoco correspondería la competencia federal por el mismo motivo. Ejemplo mencionado: la controversia entre Mendoza y La Pampa por el río Atuel, y el conflicto limítrofe entre San Juan y La Rioja.
+    \item \textbf{Controversias entre el Estado Nacional y una provincia:} optar por la jurisdicción federal favorecería a la Nación, y por la local, a la provincia; solo la Corte puede zanjar el conflicto sin favoritismo.
+    \item \textbf{La Ciudad Autónoma de Buenos Aires:} la Corte ha resuelto que, a los efectos procesales de la jurisdicción originaria, la CABA se equipara a una provincia, aunque no lo sea estrictamente.
+    \item \textbf{Causas de almirantazgo y jurisdicción marítima.}
+    \item \textbf{Provincia contra Estado o ciudadano extranjero.}
+    \item \textbf{Vecinos de una provincia contra otra provincia}, en causas de derecho común.
+\end{itemize}
+
+\begin{example}{Clases presenciales durante la pandemia}
+La CABA demandó al Estado Nacional por considerar que las medidas que prohibían las clases presenciales durante la pandemia se entrometían en su competencia para regular la educación primaria. El fallo, según las notas de clase, no dio directamente la razón a la Ciudad y declaró la ilegitimidad de las medidas por la intromisión advertida en esa competencia.\footnote{Las notas originales no precisan con exactitud en qué punto la Corte no dio la razón a la CABA. \% TODO: contenido incompleto en las fuentes originales.}
+\end{example}
+
+\begin{example}{Coparticipación federal}
+La CABA demandó al gobierno nacional porque hubo una modificación de la coparticipación mediante un acuerdo entre la Nación y las provincias, sin que la ley hubiera cambiado. También allí se suscitó una demanda en instancia originaria.
+\end{example}
+
+\section{Un contraste: cuando no hay jurisdicción originaria}
+
+\begin{example}{El caso ``Frente Amplio Formoseño''}
+La Corte intervino, pero \textbf{en grado de apelación}, porque el asunto recorrió toda la escalera del derecho local de Formosa: un conflicto entre ciudadanos de Formosa y el gobierno provincial por la interpretación de un esquema electoral de reelección indefinida, ventilado primero ante el fuero local. Como se entendía que la Constitución de Formosa podía colisionar con la Constitución Nacional, se habilitó el recurso extraordinario y la Corte resolvió en grado de apelación, no en jurisdicción originaria.
+\end{example}
+
+Todas aquellas cuestiones en las que se impugna una decisión de materia pública provincial por vecinos de la propia provincia se mantienen en el ámbito de la jurisdicción local, y eventualmente pueden llegar a la Corte por vía del recurso extraordinario federal, tema que se desarrolla en la Parte IV.
+
+\section{Cuadro Cornell: jurisdicción originaria}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué es la jurisdicción originaria de la Corte?} &
+La competencia por la cual la Corte actúa como tribunal de primera y única instancia, sin posibilidad de apelación posterior, conforme a los artículos 116 y 117 CN.
+\cornellsep
+
+\textbf{¿Cuáles son sus supuestos principales?} &
+Causas con diplomáticos extranjeros; controversias entre provincias; controversias entre la Nación y una provincia (o la CABA); almirantazgo; provincia contra Estado o ciudadano extranjero; vecinos de una provincia contra otra.
+\cornellsep
+
+\textbf{¿Por qué las controversias entre provincias van directamente a la Corte?} &
+Porque ningún tribunal local podría intervenir sin desequilibrio de intereses, y la competencia federal generaría el mismo problema.
+\cornellsep
+
+\textbf{¿Qué estatus tiene la CABA en la jurisdicción originaria?} &
+Se la equipara a una provincia a esos efectos procesales, aunque no lo sea estrictamente (casos: clases presenciales durante la pandemia, coparticipación federal).
+\cornellsep
+
+\textbf{¿Cuándo una causa provincial NO es de jurisdicción originaria?} &
+Cuando vecinos de una provincia impugnan una decisión de materia pública provincial: se mantiene en el fuero local y, en su caso, llega a la Corte por recurso extraordinario (caso ``Frente Amplio Formoseño'').
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} la Corte actúa como tribunal de primera y única instancia en los supuestos taxativos de los artículos 116 y 117 CN, para preservar el equilibrio jurisdiccional entre provincias, entre la Nación y las provincias, y las relaciones diplomáticas. Las causas de vecinos contra su propia provincia, en cambio, se resuelven en el fuero local y llegan a la Corte, en su caso, en grado de apelación mediante el recurso extraordinario federal.} \\
+\end{longtable}
+
+%==============================================================================
+\part{El recurso extraordinario federal}
+%==============================================================================
+
+%==============================================================================
+\chapter{Concepto y requisitos formales}
+%==============================================================================
+
+\section{El recurso extraordinario como mecanismo de impugnación}
+
+\begin{definition}{Recurso extraordinario federal}
+Recurso que se interpone en el marco de un juicio que ya está en curso y habiendo intervenido otro tribunal. Por eso presupone la intervención previa de otro tribunal y no constituye \textbf{jurisdicción originaria} de la Corte Suprema (desarrollada en el capítulo anterior).
+\end{definition}
+
+Todo el tema puede pensarse como el manual de instrucciones para acudir, una sola vez y de forma correcta, a la Corte Suprema: primero hay que cumplir el protocolo de ingreso (\textbf{requisitos formales}); luego, demostrar que existe un motivo real para acudir (\textbf{requisitos comunes}); y, por último, probar que el problema es precisamente del tipo que la Corte atiende, es decir, uno que involucra la Constitución (\textbf{requisitos propios}, la cuestión federal). Si en algún paso del recorrido algo falla, la puerta no se abre y solo queda un último recurso: la \textbf{queja}.
+
+\begin{definition}{Tipos de requisitos del recurso extraordinario}
+\begin{itemize}
+    \item \textbf{Requisitos formales:} cuestiones objetivas o de forma, comunes a la presentación del recurso.
+    \item \textbf{Requisitos comunes:} presupuestos generales de cualquier recurso judicial, no solo el extraordinario (existencia de un proceso judicial, gravamen, interés).
+    \item \textbf{Requisitos propios:} lo particular del recurso extraordinario, exigido por el artículo 14 de la Ley 48; lo esencial para saber cuándo resulta procedente interponerlo.
+\end{itemize}
+\end{definition}
+
+\begin{important}
+Cualquier inobservancia de los requisitos formales conduce, en la generalidad de los casos, al rechazo del recurso. Existe una excepción: el supuesto de quien litiga \textit{in forma pauperis}, cuando resulta muy complicado exigirle a un ciudadano el cumplimiento estricto de estos requisitos por encontrarse en una situación particular de vulnerabilidad.
+\end{important}
+
+\section{La Acordada 4/2007 de la Corte Suprema}
+
+Algunos requisitos formales ---extensión de las páginas, interlineado, forma de redacción del escrito--- no están regulados en el Código Procesal, sino en una acordada de la Corte: la \textbf{Acordada 4/2007}. En su momento fue cuestionada, porque parte de la doctrina entendía que la Corte carecía de competencia regulatoria de orden procesal; sin embargo, con recepción de la costumbre americana, hoy está totalmente aceptada y es muy difícil de impugnar.
+
+\begin{table}[H]
+\centering
+\caption{Requisitos formales de la Acordada 4/2007}
+\begin{tabularx}{\textwidth}{Q{0.38\textwidth}Y}
+\toprule
+\textbf{Aspecto} & \textbf{Requisito} \\
+\midrule
+Extensión máxima del recurso extraordinario & 40 páginas. \\
+Extensión máxima de la queja & 10 páginas. \\
+Renglones por página & Máximo de 26 renglones. \\
+Tamaño de letra & Mínimo cuerpo 12. \\
+Carátula & Datos del expediente y resumen del proceso. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Plazo, tribunal de interposición y oportunidad del planteo}
+
+\begin{itemize}
+    \item \textbf{Plazo:} diez (10) días hábiles desde la notificación de la resolución impugnada.
+    \item \textbf{Tribunal:} el mismo que dictó la resolución impugnada, que debe ser el \textbf{Tribunal Superior de la Causa} ---el máximo tribunal al que se pueda llegar antes de la Corte, sin otros medios recursivos disponibles.
+\end{itemize}
+
+En el ámbito de una provincia, el tribunal superior de la causa es la \textbf{Corte Suprema o Suprema Corte provincial}; en el plano federal, la \textbf{Cámara Federal}; en la Ciudad Autónoma de Buenos Aires, conforme al precedente \emph{Levinas} ya estudiado, el \textbf{Tribunal Superior de Justicia de la Ciudad}.
+
+\begin{example}{Tribunal de interposición en el ámbito provincial}
+Si el tribunal que dictó la resolución impugnada es la Corte Suprema de una provincia (por ejemplo, el Tribunal Superior de Chaco), el recurso extraordinario se interpone ante ese mismo tribunal provincial.
+\end{example}
+
+\textbf{Oportunidad del planteo.} La cuestión federal debe haber sido introducida oportunamente: no puede surgir recién en la última instancia, como fruto de una reflexión tardía cuando la parte advierte que está perdiendo el litigio.
+
+\subsection{El planteo del caso federal en cada instancia (``reserva'')}
+
+\begin{definition}{Planteo del caso federal}
+Advertir al tribunal que se está en presencia de un tema que suscita una cuestión federal, determinarla y dar la fundamentación de los artículos de la Constitución y de los precedentes involucrados, enumerándolos aunque sea de forma sucinta.
+\end{definition}
+
+\begin{note}
+En la jerga forense es muy habitual la expresión ``reservo la cuestión federal'' o ``reservo caso federal''. Esa práctica es técnicamente cuestionable, porque los derechos no se reservan, se ejercen: en rigor, no se trata de guardar algo para más adelante, sino del \textbf{planteo efectivo del caso federal}. No obstante, suelen emplearse los términos aceptados en la jerga profesional para no generar confusión.
+\end{note}
+
+\begin{important}
+Este planteo debe hacerse desde el primer escrito y reiterarse en cada instancia: en primera instancia, al interponer o contestar la demanda; en segunda instancia, al expresar agravios.
+\end{important}
+
+\section{Cuadro Cornell: concepto y requisitos formales}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué es el recurso extraordinario federal y por qué no es jurisdicción originaria?} &
+Un mecanismo de impugnación que presupone la intervención previa de otro tribunal, a diferencia de la jurisdicción originaria de la Corte.
+\cornellsep
+
+\textbf{¿En qué tres tipos de requisitos se organiza su estudio?} &
+Formales, comunes (a todo recurso) y propios (lo particular del recurso extraordinario, exigido por el art.\ 14, Ley 48).
+\cornellsep
+
+\textbf{¿Qué regula la Acordada 4/2007?} &
+Las condiciones formales de interposición: extensión máxima (40 páginas del recurso, 10 de la queja), 26 renglones por página, letra mínima cuerpo 12 y carátula con los datos del expediente.
+\cornellsep
+
+\textbf{¿Cuál es el plazo y el tribunal de interposición?} &
+Diez días hábiles desde la notificación, ante el mismo tribunal que dictó la resolución, que debe ser el Tribunal Superior de la Causa (Corte provincial, Cámara Federal o TSJ de la CABA, según el caso).
+\cornellsep
+
+\textbf{¿Qué es la ``reserva'' del caso federal y cuándo debe hacerse?} &
+Es, técnicamente, el planteo efectivo de la cuestión federal: advertirla, determinarla y fundamentarla desde el primer escrito y en cada instancia posterior.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} el recurso extraordinario federal presupone un juicio previo y exige cumplir, primero, requisitos formales (Acordada 4/2007, plazo de diez días, tribunal superior de la causa y planteo oportuno del caso federal en cada instancia), cuya inobservancia conduce, en general, al rechazo del recurso.} \\
+\end{longtable}
+
+%==============================================================================
+\chapter[Requisitos comunes y propios del REF]{Requisitos comunes y requisitos propios del recurso extraordinario}
+%==============================================================================
+
+\section{Requisitos comunes a todo recurso judicial}
+
+Los requisitos comunes son aquellos presentes en cualquier tipo de recurso judicial, y no solo en el extraordinario.
+
+\begin{definition}{Gravamen}
+Perjuicio acreditado en cabeza de quien impugna. La decisión cuestionada debe generar, inevitablemente, un perjuicio concreto a quien recurre.
+\end{definition}
+
+\begin{important}
+El daño debe ser \textbf{actual}: no puede ser conjetural ni futuro sin demasiado anclaje temporal.
+\end{important}
+
+Debe existir, además, un \textbf{proceso judicial} en trámite ---en contraposición, por ejemplo, a una instancia administrativa---: es un presupuesto ineludible para la procedencia de cualquier recurso, incluido el extraordinario.
+
+\section{Sentencia definitiva o asimilable}
+
+\begin{definition}{Sentencia definitiva o asimilable}
+El recurso extraordinario, en principio, no está previsto para actos interlocutorios ni para medidas cautelares. Debe tratarse de sentencias que ponen fin al proceso, o \textbf{asimilables a definitivas}: aquellas en las que ya no hay marcha atrás, o solo hay marcha adelante, generando un perjuicio irreparable.
+\end{definition}
+
+\subsection{Las medidas cautelares y su carácter provisional}
+
+Las medidas cautelares son medidas provisionales, dictadas antes o en el curso del proceso, cuyo objeto es \textbf{asegurar el objeto del proceso}: que lo que se resuelva en última instancia pueda efectivamente cumplirse. Técnicamente \textbf{no son sentencias}, porque cualquier medida cautelar debe ser luego ratificada mediante la decisión de fondo.
+
+\begin{example}{Medida cautelar que ordena proveer una vacuna a un menor}
+Si se obtiene una cautelar que ordena proveer una vacuna, no puede darse por terminado el juicio con el argumento de que ya se obtuvo lo pretendido: es posible que luego se reclamen daños y perjuicios.
+\end{example}
+
+\subsection{Excepciones: cuando la Corte revisa medidas cautelares}
+
+Excepcionalmente, en casos de especial trascendencia, gravedad institucional o que involucran pluralidad de sujetos con fuerte impacto social, la Corte se aboca a recursos extraordinarios interpuestos contra medidas cautelares, en la medida en que puedan generar perjuicios irreparables.
+
+\begin{example}{Grupo Clarín y la Ley de Medios}
+Cuando se sancionó la ley de medios, el grupo empresario la impugnó e interpuso una medida cautelar para suspender su aplicación. La Corte abordó el recurso extraordinario pese a estar dirigido contra una cautelar, por tratarse de una ley recientemente dictada con un enorme efecto social.
+\end{example}
+
+\begin{example}{Ley de financiamiento de la universidad pública}
+La universidad sostuvo que no se cumplía con la ley de financiamiento; el fuero contencioso administrativo hizo lugar a la cautelar, pero habilitó su revisión por la Corte, dada la delicadeza política del caso. Este ejemplo se retoma con mayor detalle, como Caso 5, en el capítulo de aplicaciones prácticas.
+\end{example}
+
+\section{La cuestión federal: simple y compleja}
+
+En todo recurso extraordinario debe demostrarse la existencia de una controversia jurídica susceptible de ser resuelta por los tribunales, en la que esté en juego un caso o cuestión federal. La Ley 48 establece la distinción entre cuestión federal simple y compleja a los fines de la procedencia del recurso.
+
+\begin{important}
+El corazón de los requisitos del recurso extraordinario está en la existencia de una \textbf{cuestión federal}. El recurso procede contra sentencias definitivas o asimilables, pero, desde lo conceptual, procede siempre que haya una cuestión federal.
+\end{important}
+
+\begin{definition}{Cuestión federal simple}
+Controversia en la que está en tela de juicio la interpretación de la ley, de la Constitución o de un tratado: se discute el real alcance de una norma federal, sin que exista un conflicto entre dos normas.
+\end{definition}
+
+\begin{example}{Alcance de la ``indemnización plena''}
+Si para resolver el caso está en juego desentrañar qué alcance corresponde darle al concepto de ``indemnización plena'', se trata de una cuestión federal simple.
+\end{example}
+
+\begin{definition}{Cuestión federal compleja: directa e indirecta}
+A diferencia de la simple, en la compleja existe un \textbf{conflicto normativo} entre dos o más normas.
+
+\textbf{Compleja directa:} la colisión enfrenta a la Constitución con otra norma o acto de rango inferior.
+
+\textbf{Compleja indirecta:} la colisión se da entre dos o más normas inferiores a la Constitución, sin que esta última esté directamente en pugna.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Cuestión federal compleja directa e indirecta}
+\begin{tabularx}{\textwidth}{Q{0.22\textwidth}YY}
+\toprule
+\textbf{Tipo} & \textbf{Normas en conflicto} & \textbf{Ejemplo} \\
+\midrule
+Compleja directa & La Constitución Nacional y una norma inferior. & Una ley o decreto que contradicen directamente una disposición constitucional. \\
+Compleja indirecta & Dos o más normas inferiores entre sí. & Una norma provincial que controvierte una ley del Congreso o un tratado sin jerarquía constitucional. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Los tratados del \textbf{artículo 75, inciso 22} (ya estudiado en la Parte I) son parte de la Constitución a los efectos de la cuestión federal: si la controversia involucra a uno de esos tratados, se trata de una cuestión federal \textbf{compleja directa}; si involucra a un tratado sin jerarquía constitucional (por ejemplo, el tratado del Mercosur) frente a una ley nacional, se trata de una cuestión federal \textbf{compleja indirecta}, porque ambas normas son inferiores a la Constitución.
+
+\subsection{Decisión contraria al derecho federal invocado, y relación directa e inmediata}
+
+\begin{definition}{Decisión contraria al derecho federal invocado}
+Para que el recurso extraordinario sea procedente, la decisión impugnada debe ser contraria al derecho federal invocado por quien recurre.
+\end{definition}
+
+\begin{example}{Norma provincial y norma federal en pugna}
+Si estaban en pugna una norma provincial y una federal, y la instancia anterior resolvió que debía prevalecer la federal, no hay allí una cuestión constitucional en juego, porque la propia Constitución prevé esa prelación: la sentencia no es contraria al derecho federal invocado.
+\end{example}
+
+\begin{definition}{Relación directa e inmediata}
+La resolución de la cuestión federal debe tener relación directa con la decisión del juicio; no puede tratarse de una controversia meramente conjetural o académica.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Síntesis de los requisitos propios}
+\begin{tabularx}{\textwidth}{Q{0.25\textwidth}Y}
+\toprule
+\textbf{Cuestión federal} & \textbf{En qué consiste} \\
+\midrule
+Simple & Interpretación de una ley federal, la Constitución o un tratado. \\
+Compleja directa & Conflicto entre la Constitución y una norma inferior. \\
+Compleja indirecta & Conflicto entre dos o más normas inferiores a la Constitución. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{¿Es obligatorio clasificar la cuestión federal?}
+
+Hay quienes, por una cuestión profesional, realizan esta clasificación para encorsetar y facilitar el análisis del tribunal; para otros, es una forma de sustentar la idea de que se está frente a una cuestión federal real. En ningún caso es una condición absoluta.
+
+\begin{important}
+\textbf{Conclusión metodológica.} No es un requisito intrínseco clasificar la cuestión federal como simple, compleja, directa o indirecta para que proceda el recurso extraordinario. Lo que sí resulta indispensable es \textbf{demostrar cuál es el derecho federal que está siendo vulnerado}. Etiquetar el tipo de cuestión federal es una herramienta argumentativa, no una condición de admisibilidad.
+\end{important}
+
+Las categorías, además, no son puras y excluyentes: puede haber cuestiones que incluyan en parte una controversia sobre el alcance de una norma y en parte una colisión normativa, y todo depende también de la capacidad de argumentar y de cómo se plantea el problema. Un desarrollo extenso de casos reales que ilustran esta clasificación ---incluyendo la ley de PASO, la libertad de prensa, los tributos confiscatorios, las reelecciones indefinidas y el financiamiento universitario--- se presenta en el capítulo de aplicaciones prácticas de esta misma parte.
+
+\section{Cuadro Cornell: requisitos comunes y propios}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué exigen los requisitos comunes a todo recurso?} &
+Un gravamen o perjuicio actual y concreto, y la existencia de un proceso judicial en trámite.
+\cornellsep
+
+\textbf{¿Qué tipo de resoluciones habilita el recurso extraordinario?} &
+Sentencias definitivas o asimilables a definitivas; en principio no medidas cautelares, salvo gravedad institucional, pluralidad de sujetos o fuerte impacto social (casos Clarín/Ley de Medios y financiamiento universitario).
+\cornellsep
+
+\textbf{¿Qué es una cuestión federal simple?} &
+La controversia sobre el real alcance de una norma federal, sin colisión con otra norma.
+\cornellsep
+
+\textbf{¿Qué diferencia a la cuestión federal compleja directa de la indirecta?} &
+En la directa, la Constitución colisiona con una norma inferior; en la indirecta, colisionan dos o más normas inferiores entre sí, sin que la Constitución esté directamente en pugna.
+\cornellsep
+
+\textbf{¿Es obligatorio clasificar el tipo de cuestión federal?} &
+No; lo esencial es demostrar cuál es el derecho federal vulnerado. La clasificación es una herramienta argumentativa, no una condición de admisibilidad.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} más allá de los requisitos comunes (gravamen y proceso judicial) y del requisito de sentencia definitiva, el núcleo del recurso extraordinario es la cuestión federal: simple cuando se discute la interpretación de una norma, compleja ---directa o indirecta--- cuando hay colisión normativa. Lo decisivo es siempre demostrar el derecho federal vulnerado y que la decisión le sea contraria.} \\
+\end{longtable}
+
+%==============================================================================
+\chapter[Queja, per saltum y cautelar]{La queja, el per saltum y la tutela cautelar}
+%==============================================================================
+
+\section{El trámite del recurso extraordinario}
+
+El recurso extraordinario se interpone dentro de los diez días de notificada la sentencia; se da traslado a la contraparte, que contesta dentro de otros diez días; y el Tribunal Superior de la Causa resuelve \textbf{exclusivamente si concede o no} el recurso.
+
+\begin{important}
+\textbf{Efectos de la concesión y del rechazo.} Si el tribunal concede el recurso, la concesión tiene, en principio, \textbf{efecto suspensivo} sobre la ejecución de la sentencia (con la excepción, en el plano federal, de sentencias plenarias coincidentes, en cuyo caso puede ejecutarse fijando una contracautela). Si el tribunal rechaza el recurso, no hay efecto suspensivo: la sentencia queda en condiciones de ejecutarse.
+\end{important}
+
+\section{La queja por recurso extraordinario denegado}
+
+\begin{definition}{Recurso de queja por recurso extraordinario denegado}
+Recurso que la parte que interpuso el recurso extraordinario presenta, si quiere insistir, frente al rechazo de este. Se interpone directamente ante la Corte Suprema.
+\end{definition}
+
+El recurso extraordinario no se cobra con una tasa, pero la queja sí requiere un \textbf{depósito} (salvo excepciones, como el trabajador); si la queja no es aceptada, el monto se destina a la biblioteca de la Corte. Se interpone dentro del plazo de \textbf{cinco (5) días} desde la notificación del rechazo, ampliable según la tabla de distancias para quien se domicilia en el interior del país, en un escrito de hasta \textbf{diez páginas}.
+
+\begin{table}[H]
+\centering
+\caption{Recurso extraordinario y queja}
+\begin{tabularx}{\textwidth}{Q{0.20\textwidth}YY}
+\toprule
+& \textbf{Recurso extraordinario} & \textbf{Queja} \\
+\midrule
+Ante quién & El mismo tribunal que dictó el acto impugnado. & Directamente ante la Corte Suprema. \\
+Costo & No se cobra tasa. & Requiere depósito, salvo excepciones. \\
+Extensión máxima & 40 páginas. & 10 páginas. \\
+Plazo & 10 días. & 5 días (más tabla de distancias). \\
+Cuándo procede & Contra sentencia definitiva o asimilable. & Cuando el recurso extraordinario fue rechazado. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El centro de la argumentación de la queja es demostrar que el rechazo del recurso extraordinario fue \textbf{arbitrario}: infundado, ilegítimo o irrazonable. A diferencia del extraordinario concedido, la mera interposición de la queja \textbf{no suspende la ejecución} de la sentencia, ya que la Corte resuelve \textit{inaudita parte}. Para intentar suspenderla mientras tramita la queja, una opción es solicitar una \textbf{medida cautelar}, sustentada en la verosimilitud del derecho a interponer el recurso extraordinario.
+
+\section{El per saltum}
+
+\begin{definition}{Per saltum}
+Figura prevista en los artículos 257 bis y 257 ter del Código Procesal Civil y Comercial de la Nación, utilizada en el ámbito federal para pasar de la primera instancia a la Corte Suprema de forma directa, sin pasar por la cámara, cuando la cuestión debatida sea de notoria \textbf{gravedad institucional} cuya solución definitiva y expedita sea necesaria, y el recurso constituya el único remedio eficaz para la protección del derecho federal comprometido.
+\end{definition}
+
+Por gravedad institucional se entiende que el caso, en general, excede a las partes y es una controversia de enorme proyección social, porque atañe a muchos sujetos que pueden estar en la misma situación. Requisitos: 1) causa de índole federal; 2) gravedad institucional que exceda el interés de las partes; 3) riesgo de un perjuicio irreparable si el caso sigue el trámite recursivo ordinario.
+
+\begin{example}{Rechazo del per saltum en la reforma laboral}
+Un juez de primera instancia había declarado la inconstitucionalidad de un artículo de la reforma laboral; el gobierno solicitó el \textit{per saltum} frente a la medida cautelar que había suspendido varios artículos de la ley. La Corte rechazó la pretensión, al no encontrar acreditada la extrema celeridad invocada, y consideró razonable que la causa siguiera su curso ordinario ante la cámara, que terminó levantando la suspensión.
+\end{example}
+
+\begin{note}
+En un caso similar, referido a una ley de empleo público, la Corte también rechazó el \textit{per saltum} invocado por el Estado, por no encontrar acreditada la gravedad institucional ni el perjuicio irreparable, y ordenó seguir el cauce de la apelación normal, reafirmando el carácter absolutamente excepcional de esta figura.
+\end{note}
+
+El \textit{per saltum} está previsto \textbf{solo para derecho federal}: nunca está en discusión que se saltee la instancia de la Corte provincial, porque todo lo federal va por la justicia federal.
+
+\section{Control de constitucionalidad de oficio y su vínculo con el recurso extraordinario}
+
+Como se desarrolló en la Parte III, la doctrina de la Corte a partir de ``Mill de Pereyra'' permite la declaración de inconstitucionalidad de oficio. Esa facultad se retoma aquí porque, muchas veces, es en el propio trámite del recurso extraordinario donde se activa: el juez, conociendo el derecho, puede advertir una colisión normativa no planteada por las partes, siempre que la declaración resulte coincidente con la pretensión jurídica deducida.
+
+\section{La medida cautelar}
+
+\begin{definition}{Medida cautelar}
+Medida provisional, con un límite temporal, que no es una decisión definitiva ni hace cosa juzgada. Puede solicitarse en cualquier momento del proceso, incluso antes de su inicio. Su función es dar validez, ejecutoriedad y virtualidad a la eventual decisión sobre el fondo del asunto, evitando perjuicios irreparables mientras el proceso continúa.
+\end{definition}
+
+\subsection{Los tres presupuestos clásicos}
+
+\begin{enumerate}
+    \item \textbf{Verosimilitud en el derecho:} que el planteo tenga asidero jurídico; no una certeza absoluta, sino un ``humo del buen derecho'' suficiente para habilitar una decisión provisoria.
+    \item \textbf{Peligro en la demora:} la demostración de que el transcurso del tiempo puede hacer perder un derecho, generando un perjuicio irreparable o de muy dificultosa reparación.
+    \item \textbf{Contracautela.}
+\end{enumerate}
+
+\begin{example}{Prestación médica urgente}
+Si una persona intenta acceder a una prestación médica de alta complejidad, puede solicitar cautelarmente la prestación mientras se discute si estaba a cargo de la obra social o de la prepaga: de lo contrario, el mero transcurso del tiempo puede generar un daño irreparable en la salud.
+\end{example}
+
+\begin{important}
+\textbf{Vasos comunicantes.} Verosimilitud en el derecho y peligro en la demora se relacionan de forma \textbf{inversamente proporcional}: cuanto mayor es la configuración de la verosimilitud, menos exigente es el peligro en la demora, y viceversa. Ninguno de los dos requisitos puede faltar por completo; el tribunal los pondera en conjunto.
+\end{important}
+
+El recurso extraordinario no procede, a priori, contra resoluciones cautelares, por no ser sentencias definitivas; sin embargo, como ya se vio, si la cautelar tiene efectos generales, afecta más allá del caso puntual y puede configurar un agravio irreparable, muy excepcionalmente se habilita el recurso extraordinario contra ella. Contra el \textbf{Estado Nacional} rige, además, un régimen especial: la \textbf{Ley 26.854} prevé un traslado previo, urgente y por plazo breve, a la autoridad pública demandada, antes de resolver sobre la cautelar, a diferencia de la regla general de resolución \textit{inaudita parte}.
+
+\section{Cuadro Cornell: queja, per saltum y tutela cautelar}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué ocurre si se rechaza el recurso extraordinario?} &
+La parte puede interponer un recurso de queja directamente ante la Corte, dentro de los cinco días, en un escrito de hasta diez páginas, con depósito previo.
+\cornellsep
+
+\textbf{¿Suspende la ejecución de la sentencia la queja?} &
+No; a diferencia del recurso extraordinario concedido, la queja no suspende la ejecución, salvo que se obtenga una medida cautelar fundada en la verosimilitud del derecho.
+\cornellsep
+
+\textbf{¿Qué es el per saltum y cuándo procede?} &
+Una figura excepcional que permite saltear la instancia de la Cámara Federal y acceder directamente a la Corte, en causas de derecho federal con gravedad institucional y riesgo de perjuicio irreparable.
+\cornellsep
+
+\textbf{¿Se aplica el per saltum a causas provinciales?} &
+No; está previsto solo para procesos de derecho federal.
+\cornellsep
+
+\textbf{¿Cuáles son los tres presupuestos de la medida cautelar?} &
+Verosimilitud en el derecho, peligro en la demora y contracautela; los dos primeros se relacionan de forma inversamente proporcional.
+\cornellsep
+
+\textbf{¿Qué régimen especial rige para las cautelares contra el Estado Nacional?} &
+La Ley 26.854 exige un traslado previo, urgente y breve, a la autoridad pública demandada, antes de resolver sobre la cautelar.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} rechazado el recurso extraordinario, resta la queja ante la Corte, sin efecto suspensivo, complementable con una medida cautelar. El \textit{per saltum} es la vía de máxima excepción para causas federales de gravedad institucional. La medida cautelar exige verosimilitud del derecho, peligro en la demora y contracautela, y solo excepcionalmente es recurrible por vía extraordinaria.} \\
+\end{longtable}
+
+%==============================================================================
+\chapter[Casos de aplicación del REF]{Casos de aplicación del recurso extraordinario federal}
+%==============================================================================
+
+Los capítulos anteriores presentaron el marco conceptual del recurso extraordinario y de la cuestión federal. Este capítulo reúne una batería de casos reales y de dominio público, trabajados en distintas clases, que ilustran cómo esos conceptos se aplican en la práctica. Se organizan primero los ejemplos clásicos de cuestión federal simple y compleja, luego la jurisprudencia reciente de control de constitucionalidad, y finalmente cinco controversias expuestas en formato de estudio de caso.
+
+\section{Ejemplos adicionales de cuestión federal simple y compleja}
+
+\begin{example}{Ley de PASO y ley de partidos políticos}
+Se analizó si la ley de las PASO (Primarias Abiertas, Simultáneas y Obligatorias) implicaba la exclusión del ejercicio de derechos políticos de partidos que no alcanzaran una representación suficiente. El caso no configura una cuestión federal simple, sino \textbf{compleja indirecta}: lo que está en juego es una eventual colisión entre la ley de las PASO y la ley de partidos políticos, dos normas inferiores, ninguna de ellas la Constitución.
+\end{example}
+
+\begin{example}{Libertad de expresión y ley provincial}
+Una ley provincial que restringiera la libertad de expresión o de prensa colisiona con el artículo 14 (derecho a publicar las ideas por la prensa sin censura previa) y con el artículo 32 CN (el Congreso federal no dictará leyes que restrinjan la libertad de imprenta). Se trata de una cuestión federal \textbf{compleja directa}: la Constitución frente a una norma provincial. Solo hay cuestión federal impugnable si la sentencia hace valer la norma provincial en desmedro del derecho federal invocado; si, en cambio, la sentencia hace prevalecer la Constitución, no hay cuestión federal, porque la supremacía del derecho federal queda incólume.
+\end{example}
+
+\begin{example}{Tributo confiscatorio y derecho de propiedad}
+Una ley tributaria del Congreso con alícuotas muy elevadas puede colisionar con el artículo 17 CN (derecho de propiedad e inviolabilidad de la propiedad). La Corte ha desarrollado, de la mano del derecho de propiedad, la \textbf{prohibición de confiscación}: en algunos casos cuantificó ese límite en el \textbf{33\,\%}, aunque no de modo uniforme. Se trata de una cuestión federal \textbf{compleja directa}.
+\end{example}
+
+\begin{example}{Reelecciones indefinidas y sistema republicano}
+Un caso vinculado con reelecciones sucesivas de un mismo gobernador provincial se resolvió analizando el alcance de los principios de \textbf{sistema republicano} y \textbf{alternancia de poderes}: la gran cantidad de períodos sucesivos había generado una \textbf{inconstitucionalidad sobreviniente}. Se trata de un ejemplo certero de cuestión federal \textbf{simple}, porque, aunque excede el análisis de un solo artículo, constituye un análisis sobre la propia naturaleza republicana de la Constitución, sin colisión con otra norma.
+\end{example}
+
+\begin{example}{Libertad de circulación frente a derecho de protesta}
+Cuando dos postulados constitucionales colisionan entre sí ---la libertad de manifestar y expresarse, y la libertad de circulación dentro del territorio--- se configura una cuestión federal \textbf{compleja directa ``pura''}: compleja porque hay dos principios en pugna, y directa porque ambos están en el mismo escalón de la pirámide normativa, sin que medie una norma inferior.
+\end{example}
+
+\begin{example}{Ley de discapacidad y Plan Médico Obligatorio}
+Una norma inferior que no reconoce una prestación prevista como básica por una ley de discapacidad puede colisionar tanto con tratados de raíz constitucional (art.\ 75 inc.\ 22, incluida la Convención sobre los Derechos de las Personas con Discapacidad) como con la ley federal inferior: se trata de una cuestión federal \textbf{compleja}, que según el enfoque puede ser directa o indirecta, mostrando que muchas cuestiones exceden los compartimentos utilizados para simplificar su comprensión.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Tipos de cuestión federal y ejemplos trabajados}
+\begin{tabularx}{\textwidth}{Q{0.19\textwidth}YY}
+\toprule
+\textbf{Tipo} & \textbf{¿Qué normas están en pugna?} & \textbf{Ejemplo} \\
+\midrule
+Simple & Una sola norma federal, cuyo alcance se discute. & Reelecciones indefinidas y sistema republicano. \\
+Compleja directa & La Constitución frente a una norma inferior. & Tributo confiscatorio (art.\ 17); libertad de prensa frente a ley provincial (arts.\ 14 y 32). \\
+Compleja directa ``pura'' & Dos normas de la propia Constitución, en el mismo nivel jerárquico. & Libertad de circulación frente a derecho de protesta. \\
+Compleja indirecta & Dos o más normas inferiores entre sí. & Ley de PASO frente a ley de partidos políticos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Jurisprudencia reciente de control de constitucionalidad}
+
+Se identificaron los siguientes ejemplos recientes, a fin de ilustrar la aplicación práctica de los conceptos estudiados: el \textbf{DNU 70/2023}; la \textbf{reforma laboral} y la actualización de los créditos judiciales, en un contexto de enorme litigiosidad producto del proceso inflacionario, donde distintos fueros fijaron por su lado la doctrina que consideraban más razonable; el \textbf{impuesto a las ganancias} sobre los haberes, mencionado como ámbito de mucha litigiosidad sin que se recordara con precisión un pronunciamiento de inconstitucionalidad; el \textbf{per saltum} rechazado en la reforma laboral (ya visto en el capítulo anterior); y los \textbf{DNU de 2019} que modificaron por decreto la ley de lealtad comercial, en los que la Corte declaró que en materia de infracciones no pueden fijarse por decreto cuestiones clave para la determinación de una multa: debe ser una ley del Congreso.
+
+\section{Cinco controversias recientes: estudio de casos}
+
+Los siguientes cinco casos fueron expuestos en formato de trabajo grupal, cada uno vinculado a una experiencia real o de dominio público, para identificar el tipo de cuestión federal involucrada y el recorrido procesal del recurso extraordinario federal.
+
+\subsection{Caso 1: vivienda digna y grupos prioritarios en la CABA}
+
+Una mujer de origen ruso, nacionalizada argentina, ingresó al país en 2017 como peticionante de refugio por persecución vinculada a su orientación sexual. En 2020 inició un amparo habitacional; recientemente le fue expedido un certificado de discapacidad por osteonecrosis y coxartrosis. En primera instancia no se le reconoció el beneficio; la Cámara hizo lugar al reclamo, equiparando su situación a la de los grupos prioritarios de la Ley 4036 (mayores de 60 años, personas con discapacidad y, por vía jurisprudencial, mujeres en situación de violencia de género). El Gobierno de la Ciudad interpuso un recurso de inconstitucionalidad, denegado; ante la queja, el Tribunal Superior de Justicia la admitió, revocó la sentencia de Cámara y devolvió las actuaciones. El Ministerio Público de la Defensa presentó entonces el recurso extraordinario federal, en agosto de 2026.
+
+\begin{norma}{Artículo 14 bis (fragmento) de la Constitución Nacional}
+El Estado otorgará los beneficios de la seguridad social, que tendrá carácter de integral e irrenunciable (\ldots); la protección integral de la familia (\ldots) y el acceso a una vivienda digna.
+\end{norma}
+
+El argumento central sostiene que ni el artículo 14 bis, ni el artículo 16 (igualdad ante la ley), ni los tratados con jerarquía constitucional invocados (PIDESC, CEDAW\footnote{En las notas originales esta convención aparece también citada como ``CEDAU'' en un pasaje. \% TODO: verificar sigla en las fuentes originales.}) ni los artículos 17 y 18 de la Constitución de la Ciudad establecen un orden de prelación entre las personas vulnerables. Se aplica aquí un criterio hermenéutico ya visto en la Parte II: allí donde la ley no distingue, no corresponde introducir distinciones por vía interpretativa. \textbf{Cierre:} cuestión federal \textbf{compleja y directa}; sentencia definitiva de última instancia satisfecha por el pronunciamiento del Tribunal Superior de Justicia; recurso presentado y pendiente.
+
+\subsection{Caso 2: ciudadanía, migraciones y decretos de necesidad y urgencia}
+
+Un hombre de nacionalidad china, radicado en Entre Ríos desde 2015, solicitó la carta de ciudadanía ante la Justicia Federal, competente históricamente para otorgarla. En 2025 el Poder Ejecutivo dictó el \textbf{DNU 366/2025}, que transfirió esa competencia a la Dirección Nacional de Migraciones, órgano administrativo. Se le denegó la ciudadanía por haber ingresado por un ``paso de los libres''.
+
+\begin{norma}{Artículo 99, inciso 3, de la Constitución Nacional}
+El Poder Ejecutivo no podrá en ningún caso, bajo pena de nulidad absoluta e insanable, emitir disposiciones de carácter legislativo. Solamente cuando circunstancias excepcionales hicieran imposible seguir los trámites ordinarios (\ldots) y no se trate de normas que regulen materia penal, tributaria, electoral o el régimen de los partidos políticos, podrá dictar decretos por razones de necesidad y urgencia (\ldots)
+\end{norma}
+
+La Cámara Nacional Electoral hizo lugar al planteo y declaró la nulidad del DNU 366/2025, por la ausencia de necesidad y urgencia y por tratarse de una materia ---electoral, por su incidencia sobre derechos políticos--- expresamente vedada a los DNU. El Poder Ejecutivo presentó el recurso extraordinario, admitido y pendiente de resolución, argumentando que la nulidad debería tener efecto solo para el caso concreto. \textbf{Cierre:} cuestión federal \textbf{compleja y directa}, entre el DNU y el artículo 99 inciso 3 CN.
+
+\subsection{Caso 3: movilidad jubilatoria --- el caso ``Badaro''}
+
+El caso ``Badaro c/ ANSES'' fue resuelto por la Corte en 2007. El haber del señor Badaro, superior al mínimo, había aumentado solo un 11\,\% entre 2002 y 2006, mientras el nivel general de precios había aumentado un 91\,\% y los salarios un 88\,\%.
+
+\begin{norma}{Artículo 14 bis (fragmento) de la Constitución Nacional}
+(\ldots) jubilaciones y pensiones móviles (\ldots)
+\end{norma}
+
+La Corte, en 2006, reconoció el problema pero otorgó al Congreso un plazo para legislar; como las medidas adoptadas no resolvieron el deterioro, volvió a intervenir en 2007 y declaró la \textbf{inconstitucionalidad} del artículo 7, inciso 2, de la Ley 24.463, por consagrar un régimen de movilidad con un nivel de protección menor al existente al momento de su entrada en vigencia. Ordenó reajustar el haber entre enero de 2002 y diciembre de 2006 conforme al índice de salarios de nivel general. \textbf{Cierre:} cuestión federal \textbf{compleja y directa}, entre la Ley 24.463 y el artículo 14 bis CN; precedente base de la doctrina y jurisprudencia previsional posterior.
+
+\subsection{Caso 4: poder tributario municipal --- la tasa vial}
+
+Numerosos municipios de distintas provincias sancionaron, en 2024, ordenanzas que aplicaban un recargo directo sobre los combustibles (entre el 1,5\,\% y el 2\,\% por litro), generando reclamos de cámaras empresariales y de la Secretaría de Energía.
+
+\begin{norma}{Artículo 9, Ley 23.548 (Ley de Coparticipación Federal de Impuestos)}
+Principio de no analogía tributaria: prohíbe a las provincias y a sus municipios aplicar gravámenes locales análogos a los tributos nacionales coparticipados.
+\end{norma}
+
+\begin{norma}{Artículo 75, inciso 13, de la Constitución Nacional (cláusula comercial)}
+Corresponde al Congreso (\ldots) reglar el comercio con las naciones extranjeras, y de las provincias entre sí.
+\end{norma}
+
+El precedente ``Municipalidad de Quilmes'' admitió que una tasa se exprese como un porcentaje de una operación, sin que ello la convierta automáticamente en un impuesto, aunque el punto sigue discutido. El caso ``Rafo'' (Córdoba) recorrió todas las instancias provinciales y llegó al rechazo del recurso extraordinario en el Tribunal Superior de Justicia de esa provincia. La tasa vial también compromete la prohibición de aduanas interiores (arts.\ 9, 10 y 11 CN) y el derecho de propiedad (art.\ 17), por su posible confiscatoriedad. \textbf{Cierre:} admite dos vías: cuestión federal \textbf{compleja indirecta} (ordenanza frente a la Ley de Coparticipación) y cuestión federal \textbf{compleja directa} (colisión con la cláusula comercial y la prohibición de aduanas interiores). La vía de la \textbf{acción declarativa de certeza} resulta especialmente idónea para impugnar preventivamente este tipo de tributo, antes de que se produzca la imposición efectiva.
+
+\subsection{Caso 5: autonomía universitaria e insistencia legislativa}
+
+En 2024 el Congreso sancionó la Ley 27.757 de financiamiento universitario, vetada íntegramente por el Poder Ejecutivo. En 2025 se sancionó la Ley 27.795, también vetada, pero el Congreso logró la \textbf{insistencia legislativa}.
+
+\begin{norma}{Artículo 83 de la Constitución Nacional (insistencia legislativa)}
+Desechado en el todo o en parte un proyecto por el Poder Ejecutivo, vuelve con sus objeciones a la Cámara de su origen; ésta lo discute de nuevo, y si lo confirma por mayoría de dos tercios de votos, pasa otra vez a la Cámara de revisión. Si ambas Cámaras lo sancionan por igual mayoría, el proyecto es ley y pasa al Poder Ejecutivo para su promulgación.
+\end{norma}
+
+El Poder Ejecutivo, mediante el Decreto 759/2025, condicionó la ejecución de los artículos 5 y 6 de la ley (salarios docentes y no docentes) a la determinación previa de la fuente de financiamiento. El Consejo Interuniversitario Nacional inició un amparo colectivo con medida cautelar; la primera instancia y luego la Cámara hicieron lugar, entendiendo que la insistencia legislativa del artículo 83 prevalece sobre la voluntad posterior del Ejecutivo de condicionar la norma.
+
+\begin{norma}{Artículo 75, inciso 19, de la Constitución Nacional (autonomía universitaria)}
+Corresponde al Congreso: (\ldots) Sancionar leyes de organización y de base de la educación que consoliden la unidad nacional (\ldots) y que garanticen los principios de gratuidad y equidad de la educación pública estatal y la autonomía y autarquía de las universidades nacionales.
+\end{norma}
+
+El Poder Ejecutivo interpuso un recurso extraordinario sobre la medida cautelar, invocando gravedad institucional, que la Corte rechazó, por faltar el requisito de sentencia definitiva en un amparo colectivo aún en trámite. \textbf{Cierre:} cuestión federal \textbf{compleja y directa} (Decreto 759/2025 frente a los artículos 83 y 75 inciso 19 CN), con un problema de \textbf{admisibilidad procesal} por ausencia de sentencia definitiva, tema ya desarrollado al estudiar los requisitos propios del recurso.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Cuadro comparativo de los cinco casos}
+\begin{tabularx}{\textwidth}{Q{0.13\textwidth}Q{0.18\textwidth}Q{0.22\textwidth}Q{0.13\textwidth}Y}
+\toprule
+\textbf{Caso} & \textbf{Norma inferior cuestionada} & \textbf{Norma constitucional en juego} & \textbf{Tipo de cuestión federal} & \textbf{Estado del REF} \\
+\midrule
+1. Vivienda digna & Interpretación restrictiva de la Ley 4036 (CABA) & Arts.\ 14 bis y 16 CN; arts.\ 17 y 18 CCABA; CEDAW; PIDESC & Compleja, directa & Presentado, pendiente ante el TSJ \\
+2. Ciudadanía & DNU 366/2025 & Art.\ 99 inc.\ 3 CN & Compleja, directa & Admitido, pendiente ante la Corte \\
+3. Badaro & Art.\ 7 inc.\ 2, Ley 24.463 & Art.\ 14 bis CN & Compleja, directa & Resuelto (2007) \\
+4. Tasa vial & Ordenanzas municipales & Ley 23.548 y arts.\ 9, 10, 11, 17 y 75 inc.\ 13 CN & Compleja, indirecta y directa & Múltiples reclamos en trámite \\
+5. Universidades & Decreto 759/2025 & Arts.\ 83 y 75 inc.\ 19 CN & Compleja, directa & Sobre cautelar; problema de admisibilidad \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell: casos de aplicación}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Por qué la ley de PASO frente a la ley de partidos políticos es compleja indirecta?} &
+Porque ninguna de las dos normas en colisión es la Constitución: ambas son inferiores.
+\cornellsep
+
+\textbf{¿Cuándo hay cuestión federal impugnable si una norma federal colisiona con una local?} &
+Cuando la decisión judicial recurrida es contraria al derecho federal invocado; si la sentencia hace valer el derecho federal, no hay cuestión federal impugnable.
+\cornellsep
+
+\textbf{¿Qué límite aplicó la Corte para la confiscatoriedad tributaria?} &
+En algunos casos, el 33\,\% de la propiedad, aunque no de modo uniforme.
+\cornellsep
+
+\textbf{Caso 1 --- ¿por qué no existe un orden de prelación para acceder a la vivienda?} &
+Porque ni la Constitución, ni la Ley 4036, ni los tratados internacionales invocados establecen un ranking de beneficiarios.
+\cornellsep
+
+\textbf{Caso 2 --- ¿por qué se declaró nulo el DNU 366/2025?} &
+Por falta de necesidad y urgencia y por tratarse de una materia con incidencia electoral, vedada al Poder Ejecutivo.
+\cornellsep
+
+\textbf{Caso 3 --- ¿qué estableció la Corte en Badaro?} &
+Que la movilidad jubilatoria del artículo 14 bis exige un piso mínimo de protección; ordenó reajustar el haber según índices salariales objetivos.
+\cornellsep
+
+\textbf{Caso 4 --- ¿por qué es cuestionable la tasa vial municipal?} &
+Porque distorsiona la figura de la tasa (exige contraprestación directa), viola el principio de no analogía tributaria y afecta la cláusula comercial y la prohibición de aduanas interiores.
+\cornellsep
+
+\textbf{Caso 5 --- ¿por qué el recurso extraordinario estaba ``mal utilizado''?} &
+Porque se interpuso contra una medida cautelar dentro de un amparo colectivo aún en trámite, sin sentencia definitiva, salvo gravedad institucional no reconocida por la Corte.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} los casos trabajados ---PASO, tributos confiscatorios, reelecciones indefinidas, libertad de circulación, vivienda digna, ciudadanía y migraciones, movilidad jubilatoria, tasa vial municipal y financiamiento universitario--- muestran el mismo patrón: una norma de rango inferior entra en tensión con una norma de rango superior, y esa tensión se canaliza mediante la cuestión federal y el recurso extraordinario. El control de constitucionalidad no es un ejercicio abstracto: es la herramienta con la que el sistema jurídico argentino corrige, caso por caso, los desbordes de competencia de los poderes públicos frente a los derechos y garantías que la Constitución promete a cada persona.} \\
+\end{longtable}
+
+%==============================================================================
+\part{El principio de reserva y los derechos individuales}
+%==============================================================================
+
+%==============================================================================
+\chapter{El artículo 19: el principio de reserva}
+%==============================================================================
+
+\section{Las acciones privadas y sus límites}
+
+\begin{norma}{Artículo 19 de la Constitución Nacional}
+\textit{``Las acciones privadas de los hombres que de ningún modo ofendan al orden y a la moral pública, ni perjudiquen a un tercero, están sólo reservadas a Dios, y exentas de la autoridad de los magistrados. Ningún habitante de la Nación será obligado a hacer lo que no manda la ley, ni privado de lo que ella no prohíbe.''}
+\end{norma}
+
+\begin{definition}{Principio de reserva}
+Ámbito de la conducta humana vedado a la regulación normativa: las acciones privadas que no ofenden el orden ni la moral pública ni perjudican a terceros. El Congreso no puede regular conductas que no exteriorizan una afectación de terceros. El punto más complejo de esta garantía consiste en determinar dónde está la veda normativa y cuál es el verdadero umbral en el que las normas no pueden entrometerse.
+\end{definition}
+
+Esta es, en palabras de Kelsen, una típica \textbf{norma de cerramiento}: brinda un principio interpretativo para entender dónde están las fronteras de la regulación legal, hasta dónde puede llegar una norma y cómo debe entenderse esto. Resulta desafiante frente a cambios de paradigma, como las evoluciones científicas, o frente a análisis que van más allá de lo que podría denominarse peligro abstracto. La Constitución, anclada en su tiempo y espacio, brinda una idea general y no un análisis de los casos particulares: establece un principio que luego debe interpretarse caso a caso, para determinar dónde están las fronteras de la regulación. Entre los campos de aplicación de este principio se destacan la no punición penal, la interrupción del embarazo, el consumo de estupefacientes y la muerte asistida, ejemplos que se desarrollan a continuación.
+
+\section{Consumo personal de estupefacientes: el caso Bazterrica}
+
+\begin{example}{Bazterrica (CSJN, 1986)}
+Dictado por la nueva integración de la Corte al inicio de la etapa democrática, estableció que la tenencia de estupefacientes ---en el caso, marihuana--- para consumo personal, sin que la cantidad permitiera presumir a priori que excedía ese consumo interno y sin afectación de terceros verificada, se encontraba despenalizada: el legislador no podía entrometerse en esos actos privados.
+\end{example}
+
+\begin{definition}{Doctrina del caso Bazterrica}
+La tenencia de estupefacientes para consumo personal, sin cantidad que exceda a priori ese consumo interno y sin afectación de terceros, es una acción privada amparada por el artículo 19: el legislador no puede entrometerse.
+\end{definition}
+
+\section{Interrupción del embarazo: la doctrina Roe v. Wade}
+
+Durante muchos años estuvo vigente en los Estados Unidos la doctrina \emph{Roe v.\ Wade} (Corte Suprema de los Estados Unidos, 1973), que, ante la ausencia de norma federal explícita, ordenó el modo en que el Estado podía regular la interrupción del embarazo, en función del estado de gestación y del concepto de \textbf{viabilidad} del feto.
+
+\begin{table}[H]
+\centering
+\caption{Doctrina Roe v. Wade: esquema por trimestres}
+\begin{tabularx}{\textwidth}{Q{0.18\textwidth}YY}
+\toprule
+\textbf{Etapa} & \textbf{Criterio} & \textbf{Intervención del Estado} \\
+\midrule
+Primer trimestre & Dependencia biológica del no nacido respecto de la madre. & No es objeto de punición ni regulación estatal. \\
+Segundo trimestre & Determinadas causales terapéuticas. & Puede convalidarse la no penalización. \\
+Tercer trimestre & Viabilidad del no nacido. & Restricción fuerte: solo despenalizada en caso de peligro de vida de la madre. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+Esta doctrina estuvo vigente durante décadas hasta la modificación jurisprudencial introducida por la composición de la Corte estadounidense de sesgo conservador, con las últimas designaciones del expresidente Donald Trump. Se planteó, en paralelo, que como sociedad quizás no se está tan preparado para una regulación de este tipo, del mismo modo en que en su momento no se estuvo preparado para el aborto legal, que con el paso del tiempo fue siendo más aceptado. El aborto no punible plantea un desafío similar, en el que intervienen subjetividades propias, éticas personales, religión y convicciones muy íntimas.
+\end{note}
+
+\section{La muerte asistida: casos fáciles y casos difíciles}
+
+La eutanasia se planteó como un tema de gran actualidad vinculado con el artículo 19. En Latinoamérica, Uruguay es uno de los países más desarrollados en la materia, con la denominada ley de muerte digna. Existe una posición favorable a encuadrar la muerte digna dentro del artículo 19, por la ausencia de afectación a terceros cuando quien solicita la medida es el propio sujeto, en la que se menciona un artículo de \textbf{Carlos Nino}\footnote{No se precisa el título exacto del artículo ni su vínculo puntual con la reforma constitucional de 1994. \% TODO: contenido incompleto en las fuentes originales.}, constitucionalista revalorado en los últimos años y actor relevante en la recuperación democrática.
+
+\begin{itemize}
+    \item Los \textbf{casos fáciles} son los típicos y contundentes, referidos a un padecimiento físico muy claro, muy documentado y fácilmente corroborable.
+    \item Los \textbf{casos difíciles} aparecen luego, por ejemplo cuando la petición surge en el ámbito de los padecimientos psíquicos, y obligan a la prudencia en la implementación.
+\end{itemize}
+
+\begin{important}
+Los supuestos más problemáticos surgen cuando están en juego personas que no están en pleno uso de su voluntad y capacidad cognitiva, menores de edad, o situaciones en que son terceros quienes piden la medida ante la imposibilidad de las partes de resolver por sí mismas. No se ofrece una respuesta unívoca para esos supuestos; se remite al criterio general de decisión personal, inequívoca y lúcida.
+\end{important}
+
+Quien abre una puerta mediante una regulación debe estar dispuesto a revisitar el tema y a pensar la mejor forma de regularlo, de la manera más amplia y honesta posible; la base y la legitimidad social de las normas no puede dejarse de lado, aunque las rupturas normativas y las normas pioneras suelen atravesar umbrales de complejidad en su implementación con poco consenso inicial.
+
+\section{Libertad religiosa como otro ámbito de reserva}
+
+La libertad religiosa entra también dentro del umbral de la zona de reserva: las personas deben ser libres de profesar su religión con total libertad. Sus límites y aplicaciones concretas ---testigos de Jehová y transfusiones de sangre, educación en el hogar, comunidades menonitas y objeción religiosa al servicio militar--- se desarrollan en el capítulo dedicado a la libertad religiosa, más adelante en esta misma parte, donde el artículo 19 vuelve a operar como hilo conductor explícito.
+
+\section{Cuadro Cornell: el artículo 19}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué establece el artículo 19 de la Constitución Nacional?} &
+Que las acciones privadas que de ningún modo ofendan al orden y a la moral pública, ni perjudiquen a un tercero, están exentas de la autoridad de los magistrados; y que nadie está obligado a hacer lo que la ley no manda ni privado de lo que no prohíbe.
+\cornellsep
+
+\textbf{¿Qué es una ``norma de cerramiento''?} &
+En palabras de Kelsen, una norma que brinda un principio interpretativo para entender las fronteras de la regulación legal, cuya aplicación debe interpretarse caso a caso.
+\cornellsep
+
+\textbf{¿Qué resolvió Bazterrica (CSJN, 1986)?} &
+Que la tenencia de estupefacientes para consumo personal, sin afectar a terceros, no puede ser penada: es una acción privada amparada por el artículo 19.
+\cornellsep
+
+\textbf{¿Qué estableció la doctrina Roe v. Wade y qué ocurrió con ella?} &
+Un esquema de regulación de la interrupción del embarazo por trimestres, según la viabilidad del feto; fue luego modificada por la actual composición de la Corte estadounidense.
+\cornellsep
+
+\textbf{¿Qué distingue a los casos fáciles de los casos difíciles en materia de muerte asistida?} &
+Los fáciles son de padecimiento físico claro y documentado; los difíciles surgen en la práctica de la norma (padecimientos psíquicos, personas sin plena capacidad, menores) y exigen prudencia.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} el artículo 19 funciona como una norma de cerramiento que traza la frontera entre lo que el Estado puede y no puede regular. \emph{Bazterrica} y la doctrina \emph{Roe v.\ Wade} ilustran, en materias distintas, el mismo ejercicio: identificar cuándo una conducta privada, sin afectación de terceros, queda exenta de la autoridad de los magistrados. Los debates sobre eutanasia y aborto muestran la dificultad de trazar esa frontera con legitimidad social.} \\
+\end{longtable}
+
+%==============================================================================
+\chapter{Libertad de expresión y responsabilidad de los medios}
+%==============================================================================
+
+\section{La doble dimensión de la libertad de expresión}
+
+La libertad de expresión, conforme lo sostiene la Corte Interamericana de Derechos Humanos, tiene una \textbf{doble dimensión}.
+
+\begin{definition}{Doble dimensión de la libertad de expresión}
+\textbf{Dimensión individual:} derecho de cada persona a expresar y difundir su pensamiento y opiniones. \textbf{Dimensión social o colectiva:} derecho de la sociedad a recibir información y opiniones, entendida como condición para el funcionamiento del sistema democrático y para la existencia de un verdadero \textbf{mercado de ideas}.
+\end{definition}
+
+\begin{norma}{Pacto de San José de Costa Rica}
+En el marco del Pacto y del ámbito interamericano de derechos, los países deben concebir la libertad de expresión como uno de los pilares del sistema democrático; su estado es uno de los elementos con que la Carta Democrática de la OEA examina si un sistema político adhiere a los postulados democráticos.
+\end{norma}
+
+El sistema penaliza fuertemente la \textbf{censura previa} ---prohibida por el Pacto de San José--- y es \textbf{reparador}: la sanción se aplica después de la expresión (\emph{ex post}), sobre las consecuencias jurídicas de un uso indebido y dañoso, nunca sobre la publicación previa. La excepción es la protección de menores de edad frente a información sensible o datos nocivos.
+
+\begin{example}{``La Última Tentación de Cristo'' (Corte Interamericana de Derechos Humanos)}
+Fallo clásico en el que se condena a Chile por no asegurar la libertad de expresión y haber ejercido censura previa al prohibir la exhibición de la película en ese país.
+\end{example}
+
+\section{Ponzetti de Balbín: intimidad frente a prensa}
+
+\begin{example}{Ponzetti de Balbín c. Editorial Atlántida (CSJN, 1984)}
+La viuda de Ricardo Balbín demandó porque se había publicado una fotografía tomada a Balbín en su lecho de enfermo, en terapia intensiva. La Corte entendió que en este caso no estaba en juego la libertad de prensa, porque la información sobre su estado de salud ya era conocida y divulgada, y la fotografía no agregaba nada al interés social sobre esa figura pública. Aun siendo Balbín un político prominente, la imagen constituyó una intromisión ilegítima en su privacidad, y la Corte convalidó una indemnización a la familia.
+\end{example}
+
+\begin{important}
+El concepto de \textbf{figura pública} es central: cuanto más pública es la figura de una persona, mayor es la necesidad de la población de conocer información sobre ella, y esa persona debe tolerar una mayor injerencia en su vida. Sin embargo, la libertad de prensa es conciliable con la responsabilidad por su ejercicio irregular: una fotografía captada en un ámbito estrictamente privado, que no aporta nada al interés público, sigue siendo una intromisión ilegítima.
+\end{important}
+
+\section{La doctrina de la real malicia}
+
+Existen dos grandes teorías desarrolladas por la jurisprudencia en relación con la protección de los medios de prensa en la divulgación de ideas. La primera, de raíz norteamericana, fue extrapolada y adoptada por la Corte argentina: la \textbf{doctrina de la Real Malicia} (\emph{actual malice}), surgida en \emph{New York Times v.\ Sullivan} (EE.\ UU., 1964).
+
+\begin{definition}{Doctrina de la Real Malicia}
+Cuando la información se refiere a una \textbf{persona pública}, sujeta a un escrutinio más intenso, el medio de comunicación solo responde por una información inexacta si quien demanda prueba que el medio \textbf{conocía de antemano la falsedad} de la información y, aun así, decidió difundirla (dolo, o cuanto menos una negligencia grave en el chequeo de las fuentes). La carga de la prueba recae en quien demanda.
+\end{definition}
+
+Se requiere, entonces, un estándar de exigencia mucho mayor que la simple prueba de la falsedad: debe probarse el conocimiento previo de la no veracidad y, pese a ello, la decisión de avanzar con la difusión. Con el tiempo, la doctrina se ha ido aplicando de forma más amplia que a los solos funcionarios de alto rango, alcanzando también a personas que, sin detentar una función pública, tienen un conocimiento vasto por parte de la población.
+
+\begin{important}
+Discriminar entre una \textbf{persona pública por su desempeño profesional} (por ejemplo, un funcionario) y una \textbf{persona conocida públicamente}, que no es exactamente lo mismo, suele ser el punto de mayor complejidad al aplicar esta doctrina.
+\end{important}
+
+\section{La doctrina Campillay}
+
+Un desarrollo propio y exclusivo del derecho argentino (fallo Campillay, CSJN, 1986) prevé dispositivos mediante los cuales, con un ejercicio prudente de la libertad de información, los medios pueden asegurarse la no responsabilidad por la circulación de información falaz.
+
+\begin{definition}{Doctrina Campillay --- tres presupuestos indistintos}
+\begin{enumerate}
+    \item \textbf{Cita de la fuente:} una cita concreta, clara, identificable y de buena fe, no una mera alusión vaga.
+    \item \textbf{Omisión de la identidad} de la persona sobre la que se informa, de modo que no haya daño a su reputación ni a su honor.
+    \item \textbf{Modo potencial:} la información se difunde sin asegurar su carácter inexcusable o indudable, en tono conjetural.
+\end{enumerate}
+Con que se concrete fehacientemente uno de estos presupuestos, no hay responsabilidad del medio.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Real malicia y doctrina Campillay: cuadro comparativo}
+\begin{tabularx}{\textwidth}{Q{0.18\textwidth}Q{0.24\textwidth}YY}
+\toprule
+\textbf{Doctrina} & \textbf{Origen} & \textbf{Presupuesto central} & \textbf{Efecto} \\
+\midrule
+Real Malicia & Jurisprudencia de EE.\ UU., adoptada por la CSJN. & Falsedad de la información y conocimiento previo de esa falsedad por el medio. & Habilita la responsabilidad civil frente a personas públicas. \\
+Campillay & Jurisprudencia propia de la Corte argentina. & Omisión de identidad, cita de fuente o modo potencial. & Exime de responsabilidad al medio que cumple alguno de estos recaudos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+En la generalidad de los casos, la responsabilidad de los medios exige acreditar la falsedad de lo informado y un nexo causal con un daño cierto ---reputacional o directo---, siempre reconocible y demostrable por quien invoca la acción judicial, con las salvedades expuestas cuando se trata de personas de dimensión pública.
+
+\section{Cuadro Cornell: libertad de expresión}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué es la doble dimensión de la libertad de expresión?} &
+La dimensión individual (expresar y difundir el propio pensamiento) y la dimensión social o colectiva (recibir información, como condición de la democracia).
+\cornellsep
+
+\textbf{¿Qué resolvió Ponzetti de Balbín?} &
+Que la foto de Balbín en terapia intensiva fue una intromisión ilegítima en su intimidad: aunque era figura pública, la imagen no aportaba nada al interés público, y correspondió indemnizar.
+\cornellsep
+
+\textbf{¿Qué es la doctrina de la Real Malicia?} &
+La regla de \emph{New York Times v.\ Sullivan}: el medio solo responde ante una persona pública si esta prueba que el medio conocía de antemano la falsedad de la información y aun así la difundió.
+\cornellsep
+
+\textbf{¿Cuáles son los tres presupuestos de la doctrina Campillay?} &
+Cita de la fuente, omisión de la identidad del sujeto, o uso del modo potencial; basta con uno para eximir de responsabilidad al medio.
+\cornellsep
+
+\textbf{¿Cuál es la diferencia entre Real Malicia y Campillay?} &
+La Real Malicia exige probar la falsedad y el conocimiento previo de esa falsedad por el medio; Campillay ofrece recaudos formales que, de cumplirse, eximen de responsabilidad sin analizar el conocimiento subjetivo del medio.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} la libertad de expresión, en su doble dimensión, se concilia con la responsabilidad de los medios mediante dos estándares complementarios: la Real Malicia, que exige probar el conocimiento previo de la falsedad cuando se trata de personas públicas, y Campillay, que exime de responsabilidad con el cumplimiento de recaudos formales. \emph{Ponzetti de Balbín} muestra que, aun frente a una figura pública, la intromisión en un ámbito estrictamente privado sin interés público real es indemnizable.} \\
+\end{longtable}
+
+%==============================================================================
+\chapter[Libertad religiosa]{Libertad religiosa, categorías sospechosas y neutralidad estatal}
+%==============================================================================
+
+\section{La Iglesia como persona jurídica de derecho público}
+
+El Código Civil reconoció a la \textbf{Iglesia Católica} como persona jurídica de derecho público, lo que conlleva privilegios tales como la inmunidad e inembargabilidad de los bienes afectados al culto, extendida también a otras religiones registradas ante la Secretaría de Culto. Originalmente se exigía que el presidente profesara la religión católica, requisito derogado por la \textbf{reforma constitucional de 1994}, que mantuvo el estatus de la Iglesia como persona jurídica de derecho público. Las relaciones con la Santa Sede están reguladas bajo un concordato\footnote{Se hace referencia en clase a un ``concordato de gran antigüedad'' sin precisar su denominación, fecha o contenido exacto; posiblemente el Concordato de 1966 y la normativa concordataria vigente. \% TODO: verificar antes de utilizarlo como referencia de estudio.} que la reconoce también como un Estado extranjero, con inmunidad para sus representantes diplomáticos.
+
+A partir de la reforma de 1994, la idea del sostenimiento del culto católico debe conjugarse inevitablemente con una férrea libertad y con el concepto de no discriminación entre los distintos credos.
+
+\section{Categorías sospechosas}
+
+\begin{definition}{Categorías sospechosas}
+Regulaciones que establecen diferencias basadas en rasgos como edad, nacionalidad, religión, origen o género. La jurisprudencia de la Corte las somete a un escrutinio más estricto, invirtiendo la presunción de legitimidad de la norma.
+\end{definition}
+
+Las normas emanadas de competencias originarias por procedimientos legítimos se presumen, en general, legítimas y plenamente aplicables. Lo que hace la categoría sospechosa es invertir esa carga: la norma se presume, a priori, potencialmente inválida, y es el Estado quien, en juicio, debe demostrar su legitimidad y razonabilidad.
+
+\begin{important}
+\textbf{Inversión de la carga de la prueba.} Frente a una categoría sospechosa, se invierte la presunción de legitimidad habitual de las leyes: es el Estado quien debe demostrar en juicio su legitimidad y razonabilidad.
+\end{important}
+
+\begin{example}{Exigencia de nacionalidad para cargo de secretario judicial}
+Una persona nacida en Alemania impugnó un concurso para el Poder Judicial, para el cargo de secretario, que exigía ser ciudadano argentino, nativo o naturalizado.\footnote{El nombre del fallo fue expresado con dudas sobre su grafía. Podría tratarse del precedente ``Gottschau, Evelyn Patrizia c/ Consejo de la Magistratura de la Ciudad Autónoma de Buenos Aires'' (CSJN, 2006). \% TODO: verificar carátula, tribunal y fecha exactos antes de citarlo.} \textbf{Razonamiento de la Corte:} la exigencia de nacionalidad constituye una categoría sospechosa; por lo tanto, la norma no se presume legítima, y el Estado debe demostrar su razonabilidad, lo que no ocurrió en el caso. \textbf{Conclusión:} la Corte hizo lugar al planteo, por entender que el requisito de nacionalidad no resultaba razonable para el cargo de secretario judicial.
+\end{example}
+
+\section{El caso de la educación religiosa obligatoria en Salta}
+
+Una demanda iniciada en la provincia de Salta cuestionó la educación inicial obligatoria en la que se impartía, en los hechos, catequesis católica.\footnote{Existen dudas sobre la carátula exacta del fallo; se menciona ``Castillo, Viviana y otros c/ Provincia [de Salta] s/ Amparo'', con intervención de la Asociación de Derechos Civiles (ADC). \% TODO: verificar carátula, tribunal y fecha exactos antes de citar el precedente.} La Corte de Justicia de Salta había dictado un fallo favorable a la legalidad de la norma, y el caso llegó a la Corte Suprema por apelación.
+
+La asociación demandante sostenía que, bajo la apariencia de una asignatura de ``religión a secas'' sin credo específico, se generaba en los hechos una discriminación: solo la Iglesia Católica contaba con medios para desplegar profesores, y no existían materias alternativas activas para quienes se eximían.
+
+\begin{important}
+\textbf{Discriminación indirecta.} Lo relevante del caso no era la existencia formal de una opción de exención, sino su ineficacia práctica: los alumnos exentos no recibían una materia alternativa y quedaban, en los hechos, relegados frente a la mayoría.
+\end{important}
+
+En el juicio se acreditó que los alumnos que no asistían eran muy pocos, por cierta vergüenza u ocultamiento de su condición minoritaria, y que no contaban con ninguna clase de reemplazo. La Corte, con \textbf{voto dividido de tres contra uno}, resolvió que el sistema, tal como estaba implementado, era violatorio de la libertad religiosa, por establecer preferencias y evidenciar una segregación hacia los alumnos que no cursaban la clase de religión, sin ofrecerles una alternativa educativa real. El juez Rosatti\footnote{Se identifica al juez que votó en disidencia con una grafía dudosa (``Rosati''); se conserva aquí la forma ``Rosatti''. \% TODO: verificar grafía y composición exacta del tribunal.} votó a favor de la legalidad de la ley. El argumento de la \textbf{autonomía provincial} en materia de educación inicial, invocado por la propia provincia, no fue suficiente para justificar la norma frente a la protección de la libertad religiosa.
+
+\begin{table}[H]
+\centering
+\caption{Argumentos y resultado del caso de educación religiosa en Salta}
+\begin{tabularx}{\textwidth}{Q{0.28\textwidth}Q{0.24\textwidth}Y}
+\toprule
+\textbf{Argumento} & \textbf{Sostenido por} & \textbf{Resultado} \\
+\midrule
+Autonomía provincial en educación inicial & Provincia de Salta & No fue suficiente para justificar la norma \\
+Discriminación indirecta hacia alumnos no católicos & ADC y demás demandantes & Acogido por la mayoría (3 a 1) \\
+Legalidad y constitucionalidad de la norma & Voto en disidencia (Rosatti) & Voto minoritario, no prevaleció \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{definition}{Neutralidad estatal en materia religiosa}
+El sostenimiento del culto católico se reduce a los aspectos institucionales de configuración de la Iglesia como persona jurídica de derecho público, pero no puede trasladarse a preferencias expresas en la opción religiosa de las personas. La profesión de la religión queda relegada al ámbito de reserva del artículo 19 CN.
+\end{definition}
+
+Como ejemplo hipotético de norma que sería reprochable bajo el mismo criterio: exigir que los profesores de derecho de una universidad deban profesar el catolicismo para poder dictar clases sería una categoría sospechosa, discriminatoria respecto de los no católicos, y probablemente sería tildada de inconstitucional con relativa rapidez.
+
+\section{Libertad religiosa en casos particulares}
+
+\subsection{Testigos de Jehová y transfusiones de sangre}
+
+La Corte ha aceptado que la negativa a recibir transfusiones de sangre por motivos religiosos queda amparada por el principio de reserva y la libertad religiosa, siempre que se trate de una decisión personal, inequívoca y expresada en condiciones de lucidez y libre discernimiento, sin afectación de terceros. Esa voluntad no puede ser suplida, ni siquiera por familiares allegados.
+
+\begin{important}
+Se plantea como cuestión abierta el supuesto en que la persona afectada no está consciente y son terceros quienes deciden en su nombre, en especial cuando está en juego la vida de un menor; no se ofrece una respuesta unívoca para ese supuesto.
+\end{important}
+
+\subsection{Educación en el hogar y comunidades menonitas}
+
+La Constitución reconoce que todo ciudadano es libre de enseñar y de aprender (art.\ 14 CN), sin exigir que ello ocurra en una institución. Un ejemplo, llevado a un plano no ya de opción individual sino ligado a la religión y la cultura, es el de las \textbf{comunidades menonitas}, que han tenido roces con distintos gobiernos por no querer enviar a sus hijos a los sistemas de educación básica provinciales. Existe un fallo de la justicia en Uruguay\footnote{No se identifica con precisión la carátula, el tribunal ni la fecha de este precedente ni del acuerdo mencionado con una comunidad menonita de La Pampa. \% TODO: verificar antes de utilizarlos como cita jurisprudencial.} que reconoció ese derecho, y en Argentina se llegó a un acuerdo con una comunidad menonita de la provincia de La Pampa, acreditando la enseñanza de contenidos básicos de cumplimiento obligatorio en el país. Un caso similar, más famoso, se dio en los Estados Unidos, en relación con la Primera Enmienda\footnote{Podría tratarse del caso \emph{Wisconsin v.\ Yoder} (1972), referido a comunidades amish, identificación que no surge de la fuente y debe verificarse. \% TODO: verificar antes de citar.}, respecto de comunidades religiosas que se niegan a enviar a sus hijos a la educación formal.
+
+\subsection{Objeción religiosa al servicio militar}
+
+Algo similar ocurría con religiones que impedían portar armas, en relación con el servicio militar obligatorio, en un contexto histórico en el que ese servicio no era solo una prestación de defensa, sino que conllevaba también políticas de sanidad pública.
+
+\begin{definition}{El principio de reserva como hilo conductor}
+El principio de reserva (art.\ 19 CN) constituye el eje común que atraviesa los casos analizados: transfusiones de sangre, educación en el hogar, comunidades menonitas y objeción religiosa al servicio militar.
+\end{definition}
+
+\section{Cuadro Cornell: libertad religiosa}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué privilegios conlleva el estatus de la Iglesia Católica como persona jurídica de derecho público?} &
+La inmunidad e inembargabilidad de los bienes afectados al culto, extendida a otras religiones registradas ante la Secretaría de Culto.
+\cornellsep
+
+\textbf{¿Qué es una categoría sospechosa y qué efecto produce?} &
+Una distinción normativa basada en rasgos como edad, nacionalidad, religión, origen o género, que invierte la presunción de legitimidad: el Estado debe demostrar la razonabilidad de la norma.
+\cornellsep
+
+\textbf{¿Cómo se resolvió el caso de educación religiosa en Salta?} &
+La Corte, por tres votos contra uno, declaró inconstitucional la asignatura de religión obligatoria en la educación inicial, por generar discriminación indirecta hacia los alumnos no católicos.
+\cornellsep
+
+\textbf{¿Qué rige la negativa a transfusiones de sangre por motivos religiosos?} &
+El principio de reserva y la libertad religiosa, siempre que sea una decisión personal, inequívoca y lúcida, no suplible por terceros.
+\cornellsep
+
+\textbf{¿Qué derecho se reconoció a las comunidades menonitas?} &
+El derecho a la educación comunitaria alternativa, sin obligación de concurrir a los establecimientos provinciales, acreditando contenidos básicos obligatorios.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} el sostenimiento institucional del culto católico convive con la exigencia de neutralidad estatal, reforzada por la doctrina de las categorías sospechosas, que invierte la carga de la prueba cuando una norma distingue por religión u otros rasgos sensibles. Esta lógica se proyecta en el fallo sobre educación religiosa en Salta y en los casos de transfusiones de sangre, educación en el hogar y comunidades menonitas, todos anclados en el principio de reserva del artículo 19 CN.} \\
+\end{longtable}
+
+%==============================================================================
+\chapter{Otros ámbitos del principio de reserva}
+%==============================================================================
+
+\section{Aptitud nupcial y derecho a equivocarse: el caso Sejean}
+
+\begin{example}{Sejean (CSJN, 1986)}
+Hasta la reforma introducida en los años ochenta, las personas divorciadas podían disolver su vínculo matrimonial, pero no recuperaban la aptitud nupcial: no podían generar un nuevo vínculo matrimonial con la estabilidad y los derechos y obligaciones que de él emergen. En el fallo, con distintos votos, se destaca especialmente el del doctor Petracchi, que introduce la célebre expresión \emph{el derecho a poder equivocarse}. La Corte estableció, por vía pretoriana, el derecho a recuperar la aptitud nupcial con el divorcio.
+\end{example}
+
+\begin{important}
+Impedir a los divorciados recuperar la aptitud nupcial era una limitación irrestricta de la libertad personal sin derechos de terceros en contradicción; además, a la sociedad le convenía que forjaran nuevos lazos afectivos y jurídicos duraderos. La Corte señaló que todo el derecho de familia se sustenta en la preservación y la certidumbre sobre el alcance de los derechos, por lo que la cuestión no era solo de privacidad, sino también de dotar de certeza y seguridad a los vínculos afectivos duraderos.
+\end{important}
+
+\begin{note}
+La ``reforma tardía de los años 80'' a la que se alude en clase es la que introdujo el divorcio vincular (Ley 23.515, de 1987), posterior al fallo \emph{Sejean} (1986).
+\end{note}
+
+\emph{Bazterrica} y \emph{Sejean} constituyen, junto con la doctrina \emph{Roe v.\ Wade} ya presentada, los ejemplos jurisprudenciales centrales con los que se analizó en clase el alcance del artículo 19: en el primer caso, para despenalizar el consumo de estupefacientes con carácter estrictamente personal; en el segundo, para reconocer el derecho a recuperar la aptitud nupcial.
+
+\section{Imputabilidad penal juvenil y Convención de los Derechos del Niño}
+
+Se planteó en clase si una eventual baja de la edad de imputabilidad penal podría generar planteos de inconstitucionalidad frente a la Convención de los Derechos del Niño, que considera niño a toda persona hasta los 18 años.
+
+\begin{note}
+El punto que sigue corresponde a una \textbf{opinión personal} manifestada por el docente, y no a una doctrina o jurisprudencia consolidada; se transcribe con ese carácter.
+\end{note}
+
+Según esa opinión, la posibilidad de una responsabilidad penal de menores de edad no debe entenderse necesariamente como una igualación de las condiciones de detención y resocialización respecto de las personas adultas: en la medida en que existan ámbitos diferenciados y adaptados a las características propias de la minoridad, no habría, por esa sola circunstancia, una violación constitucional. El límite que fija la Convención no implicaría \emph{per se} una prohibición de la baja de la imputabilidad; sí podría configurar un régimen ilegítimo si se demostrara que dicha baja conlleva un tratamiento igualitario, en ámbitos comunes, entre personas menores de edad y personas adultas.
+
+\section{Cierre de la Parte V}
+
+El recorrido de esta última parte parte de la libertad de expresión y su doble dimensión, se adentra en los límites de la responsabilidad de los medios frente a personas públicas mediante las doctrinas de la Real Malicia y Campillay, avanza hacia la libertad religiosa ---el sostenimiento constitucional del culto católico, la neutralidad estatal y las categorías sospechosas, ilustradas en el fallo sobre educación religiosa en Salta y en los casos de transfusiones de sangre, educación en el hogar y comunidades menonitas--- y culmina con otros ámbitos del principio de reserva, como la aptitud nupcial en \emph{Sejean} y el debate sobre la imputabilidad penal juvenil.
+
+Este recorrido permite observar un patrón común a toda la materia: en cada bloque, un derecho individual entra en tensión con una potestad, un interés o una organización estatal, y la jurisprudencia construye estándares ---probatorios, de razonabilidad o de neutralidad--- para resolver esa tensión caso por caso, más que mediante reglas absolutas. Es, en definitiva, la misma lógica que atravesó toda la materia desde el primer capítulo: comprender cómo se interpreta y se controla la constitucionalidad de una norma no es un ejercicio abstracto, sino la herramienta cotidiana con la que el sistema jurídico argentino equilibra el poder del Estado con los derechos y garantías que la Constitución promete a cada persona.
+
+\section{Cuadro Cornell: otros ámbitos del artículo 19}
+
+\begin{longtable}{Q{0.28\textwidth}Q{\dimexpr0.66\textwidth\relax}}
+\cornellhead
+\endfirsthead
+\cornellhead
+\endhead
+
+\textbf{¿Qué resolvió el caso Sejean y qué frase célebre lo acompaña?} &
+Reconoció, por vía pretoriana, el derecho a recuperar la aptitud nupcial tras el divorcio, porque prohibirlo limitaba la libertad personal sin afectar a terceros. El voto del Dr.\ Petracchi habla del ``derecho a poder equivocarse''.
+\cornellsep
+
+\textbf{¿La baja de la imputabilidad penal choca necesariamente con la Convención de los Derechos del Niño?} &
+Según la opinión personal expuesta en clase, no necesariamente: la Convención no implica \emph{per se} una prohibición, salvo que el régimen implicara iguales condiciones de detención, juzgamiento y resocialización que para los adultos.
+\\
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} el principio de reserva del artículo 19 se proyecta también sobre la aptitud nupcial ---con el reconocimiento del ``derecho a poder equivocarse'' en \emph{Sejean}--- y sobre el debate, todavía abierto, acerca de la imputabilidad penal juvenil. En todos los casos, el criterio decisivo es el mismo: la ausencia de afectación real a terceros como condición para que el Estado se abstenga de regular una conducta.} \\
+\end{longtable}
+
+%==============================================================================
+% CIERRE DEL DOCUMENTO
+%==============================================================================
+\backmatter
+
+\chapter*{Advertencia final sobre las fuentes}
+\addcontentsline{toc}{chapter}{Advertencia final sobre las fuentes}
+
+Este volumen fue elaborado exclusivamente a partir de la integración editorial de nueve apuntes y transcripciones de clase de la materia \materia. No se incorporó información externa a esas fuentes: toda definición, ejemplo, fallo, norma o dato histórico reproducido proviene de ellas. Los pasajes en que las fuentes originales presentaban una imprecisión, una duda sobre una carátula o una grafía, o un desarrollo incompleto, se conservan con esa misma prevención, identificados mediante comentarios de verificación (\texttt{\% TODO}) que no se muestran en el texto compilado, y mediante notas al pie o cajas de ``Nota'' cuando la prevención debía quedar visible para quien estudia. Antes de utilizar cualquiera de estas referencias en una evaluación o en un escrito profesional, corresponde verificarlas contra la bibliografía oficial de la cátedra y las fuentes normativas y jurisprudenciales originales.
+
+\end{document}
