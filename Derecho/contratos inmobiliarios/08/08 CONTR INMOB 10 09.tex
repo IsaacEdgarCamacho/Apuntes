@@ -1,0 +1,988 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Contrato Inmobiliario}
+\newcommand{\titulo}{Blockchain, criptoactivos y el camino hacia la tokenización inmobiliaria}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF (al final, tras definir \titulo y \autor)
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ---------------- PORTADA ----------------
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el origen de una tecnología es el primer paso para poder asesorar con criterio sobre su futuro.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de «Contrato Inmobiliario» no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------- ÍNDICE ----------------
+\tableofcontents
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+
+\chapter{Presentación del tema}
+
+La clase constituye la base conceptual de la tokenización inmobiliaria, contenido que se desarrollará en el encuentro siguiente. El recorrido reconstruye el origen de la tecnología \textit{blockchain} con el fin de comprender, más adelante, cómo se compra, se vende y se prueba la titularidad de un inmueble representado en tokens.
+
+El desarrollo se organiza en ocho bloques temáticos:
+
+\begin{itemize}
+    \item \textbf{Origen}: redes centralizadas y distribuidas, los cypherpunks y la crisis de 2008.
+    \item \textbf{Bitcoin}: el problema del doble gasto, la escasez, la reserva de valor y las altcoins.
+    \item \textbf{Blockchain}: mineros, bloques, pulso de diez minutos, inmutabilidad y exploradores públicos.
+    \item \textbf{Billeteras y titularidad}: exchanges, PSAV bajo control de la CNV y acta notarial de acceso a la billetera.
+    \item \textbf{Notariado y registros}: blockchain como «notario de la red», de la fe pública a la fe criptográfica, y el caso de Estonia.
+    \item \textbf{Plataformas y tokenización}: qué pedir y qué verificar antes de aconsejar una inversión, ilustrado con el caso de Juancito Pérez.
+    \item \textbf{Claves, herencia y privacidad}: frase semilla, patrimonio digital, y herramientas de privacidad.
+    \item \textbf{Trazabilidad y responsabilidad}: OSINT, fraudes frecuentes, Código Civil y Comercial y legislación de consumo.
+\end{itemize}
+
+\begin{important}
+El profesional que comprenda esta tecnología estará en condiciones de asesorar cuando el cliente llegue con una inversión, una herencia o una estafa vinculadas con criptoactivos. En concreto, este contenido resulta útil para:
+\begin{itemize}
+    \item \textbf{Asesorar inversiones}: exigir el \textit{white paper}, el título de propiedad, la inescindibilidad entre el token y el inmueble, y la inscripción del PSAV ante la Comisión Nacional de Valores (CNV), además de comprobar la existencia real de la plataforma.
+    \item \textbf{Acreditar titularidad}: comprender qué puede y qué no puede constatar el escribano en un acta de acceso a una billetera, y cómo se prueba esa titularidad ante un juez.
+    \item \textbf{Planificar sucesiones}: incluir los activos digitales en los testamentos y resolver el problema de las claves y la frase semilla.
+    \item \textbf{Reclamar}: elegir la vía civil, de consumo (criptoconsumidores) o penal, apoyándose en la trazabilidad de los activos.
+    \item \textbf{Notariado y registros}: ubicar al notario como nodo validador y como garante de la identidad, uno de los espacios más atacados en materia de ciberseguridad.
+    \item \textbf{Prevención de lavado}: conocer los controles KYC/AML y las listas del GAFI que aplican las plataformas.
+\end{itemize}
+\end{important}
+
+% =====================================================
+\chapter{Orígenes: redes, cypherpunks y crisis}
+
+\section{Redes centralizadas y redes distribuidas}
+
+Una red centralizada organiza su información a través de un único sistema central. Cuando ese servidor sufre un ataque, la totalidad del sistema queda comprometida. Una red distribuida, en cambio, ubica sus servidores en distintos lugares: si se ataca a uno de ellos, los demás continúan funcionando y la organización logra resguardar su información.
+
+\begin{table}[H]
+\centering
+\caption{Redes centralizadas y redes distribuidas}
+\begin{tabular}{p{0.28\textwidth}p{0.32\textwidth}p{0.32\textwidth}}
+\toprule
+\textbf{Aspecto} & \textbf{Red centralizada} & \textbf{Red distribuida} \\
+\midrule
+Ubicación de los servidores & Un único sistema central. & Servidores distribuidos en diferentes lugares. \\
+Ante un ataque & Si se ataca la red centralizada, cae todo el sistema. & Si se ataca a un servidor, los otros siguen funcionando. \\
+Información de la organización & Depende del funcionamiento de ese punto central. & La organización logra resguardar la información. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Los cypherpunks y la desconfianza en el Estado}
+
+Con el tiempo surgió un grupo filosófico de fuerte base técnica y criptográfica que se autodenominó \textbf{cypherpunks}. Este movimiento comenzó a cuestionar el manejo estatal del dinero, señalando fenómenos como la inflación y las burbujas económicas. Su origen se vincula con la economía liberal inglesa más purista, para la cual el Estado no resulta necesario en la administración del patrimonio individual.
+
+\begin{important}
+Si las redes distribuidas ya resguardan la información de organizaciones y empresas, también pueden permitir manejar el patrimonio propio sin depender del Estado y sin las burbujas inflacionarias que genera la emisión centralizada de moneda.
+\end{important}
+
+\section{Contexto histórico: la crisis de 2008}
+
+El planteo cypherpunk se apoya en un contexto histórico concreto: la crisis de las burbujas hipotecarias de 2008 durante la presidencia de Barack Obama en los Estados Unidos, y la crisis griega, ambas vinculadas a préstamos que no pudieron cubrirse y que derivaron en la caída de esas economías. El grupo que sostiene esta filosofía está compuesto, además, por programadores con dominio técnico de los lenguajes utilizados para programar \textit{blockchain}.
+
+\begin{note}
+En la exposición se menciona a Solidity como «el lenguaje bajo el cual se programa blockchain». Solidity es, en rigor, el lenguaje de programación de los contratos inteligentes de la red Ethereum; Bitcoin utiliza un lenguaje de \textit{scripts} propio y más limitado. Se conserva la afirmación original y se deja esta aclaración para el estudio.
+\end{note}
+
+A partir de este contexto, el grupo se propone resolver el problema técnico conocido como \textbf{doble gasto}.
+
+\section{El doble gasto y el registro distribuido}
+
+\begin{definition}{Doble gasto}
+Problema de certificar que el dinero ya gastado no pueda volver a gastarse. Tradicionalmente lo resuelve el banco, en su carácter de autoridad central.
+\end{definition}
+
+\begin{example}{El home banking}
+En un sistema bancario tradicional, si una persona tiene diez unidades monetarias y gasta una, la certificación de que le quedan nueve está centralizada en una única autoridad: el banco. Cuando el banco realiza tareas de mantenimiento de su sistema —por ejemplo, los avisos de indisponibilidad los fines de semana por la madrugada— el usuario no puede disponer de sus propios fondos mientras dura esa interrupción.
+\end{example}
+
+Frente a esta dependencia, el planteo cypherpunk propone que, si todos los participantes de una red se ponen de acuerdo, pueden cumplir la misma función que cumplía el banco sin necesidad de una autoridad central: si A tiene diez unidades y transfiere una a B, todos los integrantes de la red conocen, al mismo tiempo, que A tiene nueve y B tiene una. La información deja de estar centralizada y pasa a compartirse en tiempo real entre todos los miembros del ecosistema.
+
+\begin{table}[H]
+\centering
+\caption{El banco y el registro distribuido}
+\begin{tabular}{p{0.28\textwidth}p{0.32\textwidth}p{0.32\textwidth}}
+\toprule
+\textbf{Aspecto} & \textbf{Banco (sistema centralizado)} & \textbf{Registro distribuido} \\
+\midrule
+Quién certifica el pasaje de fondos & Una sola autoridad: el banco. & Todos los que forman parte de la red se ponen de acuerdo. \\
+Ejemplo & Tengo diez, gasté una, me quedan nueve. & A tiene diez y transfiere una a B: todos, al mismo tiempo, saben que A tiene nueve y B tiene una. \\
+Disponibilidad & Si el banco actualiza su sistema y se detiene, no puedo usar mis fondos. & Todos tienen en tiempo real la misma información; no depende de un único punto. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{¿Quién paga las burbujas?}
+
+Ante una burbuja de deudores incobrables, no siempre se recurre a medidas como el corralito argentino, que afecta directamente los fondos privados de las personas; con frecuencia es el propio Estado el que termina financiando esas pérdidas. Esta forma de resolución genera, a su vez, más impuestos y déficit para la conducción del país.
+
+% =====================================================
+\chapter{Bitcoin: escasez, confianza y altcoins}
+
+\section{Nace Bitcoin: Satoshi Nakamoto y el white paper}
+
+Bajo el seudónimo de \textbf{Satoshi Nakamoto} —cuya identidad real se desconoce, sin que esté establecido siquiera si se trata de una persona o de un grupo— se publicó el primer \textit{white paper} de Bitcoin. Este documento describe un sistema \textit{peer to peer}: una transferencia de persona a persona, sin necesidad de una entidad centralizada externa que la certifique.
+
+\begin{important}
+Bitcoin es la criptomoneda: una tenencia con sentido económico, atravesada por la escasez. La tecnología subyacente que la sostiene es \textbf{blockchain}, cuyo potencial es mucho mayor que el de la propia moneda. Quedarse solo con Bitcoin es quedarse con «un pedacito del potencial» de blockchain.
+\end{important}
+
+\begin{table}[H]
+\centering
+\caption{Bitcoin y blockchain}
+\begin{tabular}{p{0.28\textwidth}p{0.62\textwidth}}
+\toprule
+\textbf{Concepto} & \textbf{Descripción} \\
+\midrule
+Bitcoin & La criptomoneda: una tenencia con sentido económico, con un componente de valor y de escasez fundamental. \\
+Blockchain & La tecnología subyacente: se utiliza para transaccionar la criptomoneda, pero su potencial excede ampliamente a Bitcoin. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Escasez y reserva de valor}
+
+El propio \textit{white paper} de Bitcoin establece que se emitirá una cantidad determinada de unidades. Quienes ya poseen bitcoins forman parte de un sistema cerrado a nuevos ingresos gratuitos de oferta.
+
+\begin{note}
+En la exposición se ubicó el cierre de la emisión de Bitcoin en el año 2049. El protocolo de Bitcoin fija, en rigor, un tope de 21 millones de unidades, cuya emisión completa está prevista para alrededor del año 2140. Se transcribe la fecha mencionada en clase y se deja constancia del dato para el estudio.
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (fecha de cierre de emisión).
+\end{note}
+
+\begin{example}{El club o la membresía}
+La lógica de la escasez de Bitcoin puede compararse con la de un club o una membresía: quienes ya pertenecen conservan su lugar, y quien desea ingresar debe pagar el precio que los miembros actuales estén dispuestos a aceptar por su parte, precisamente porque no hay nuevas plazas gratuitas disponibles.
+\end{example}
+
+Esta dinámica constituye lo que se denomina \textbf{reserva de valor}: la riqueza se acumula a través de este tipo de inversiones y, con el tiempo, adquiere un valor distinto del inicial, en función de la escasez y de la oferta y demanda de quienes desean pertenecer al sistema. Todos los participantes cuidan la red para mantener ese valor, de modo que nadie miente ni genera un disvalor dentro de la cadena.
+
+\section{Confiar en el código}
+
+Quien participa como nodo activo dentro de la red y se desconecta temporalmente debe aceptar, al reincorporarse, con un margen de probabilidad, todas las transacciones que no pudo verificar durante su ausencia. Esto exige confiar siempre en el código informático, que es quien otorga la seguridad criptográfica a todo el sistema. Según la exposición, el sistema funciona sin inconvenientes desde 2008 hasta la actualidad, con fluctuaciones propias del mercado (se mencionaron valores de hasta cien mil dólares y descensos posteriores a alrededor de sesenta y siete mil).
+
+\begin{important}
+Quien participa en la red debe confiar siempre en el código informático, porque es el código el que otorga la seguridad criptográfica a todo el sistema.
+\end{important}
+
+\section{Coins, altcoins y contratos inteligentes}
+
+Bitcoin no es la única criptomoneda. Se denomina \textbf{coin} a Bitcoin y \textbf{altcoins} a todas las demás monedas alternativas, entre ellas Tether y Ethereum. Ethereum constituye la otra gran red posterior a Bitcoin: permite el ingreso a través de Layer 1 y Layer 2, y habilita la incorporación de \textbf{contratos inteligentes}. Sobre esta base corren las plataformas que, más adelante, permiten el proceso de tokenización.
+
+% =====================================================
+\chapter{Blockchain: minería, bloques y transparencia}
+
+\section{Descentralización e inmutabilidad}
+
+\begin{definition}{Inmutabilidad}
+Una transacción ya realizada y verificada por el sistema de mineros no puede alterarse. El respaldo de la información está descentralizado en múltiples ubicaciones y no existe una única copia que alguien pueda modificar; cualquier alteración sería detectada por los demás participantes de la red.
+\end{definition}
+
+Esta característica sostiene la confianza de quienes deciden transaccionar sus ahorros en la cadena en lugar de depositarlos en un banco: nadie puede mentir dentro del sistema porque todos los demás participantes conservan una copia verificable de la información.
+
+\section{Los mineros y el bloque}
+
+\begin{example}{El Lejano Oeste}
+El concepto de minería se apoya en la imagen de la fiebre del oro del Lejano Oeste norteamericano, cuando grupos de personas recorrían el territorio —California y el medio oeste de los Estados Unidos— en busca de oro. De manera análoga, los llamados «mineros» de blockchain ponen a trabajar computadoras de gran poder de cálculo para descubrir el algoritmo que permite cerrar y encriptar un conjunto de transacciones.
+\end{example}
+
+Las transacciones que se van generando se agrupan, según el momento en que se producen, en un \textbf{bloque}. Una vez cerrado, ese bloque no puede revertirse ni sometido a ingeniería inversa para deshacer su encriptación.
+
+\begin{note}
+La docente recomienda la lectura de un texto de quince carillas, enviado previamente, que desarrolla en profundidad el funcionamiento de blockchain antes de la clase siguiente sobre tokenización.
+\end{note}
+
+El cierre de cada bloque tiene un ritmo estable, conocido como el \textbf{pulso de diez minutos} o «bit» de Bitcoin: las máquinas de los mineros prueban de manera sucesiva numerosas posibilidades hasta descubrir el algoritmo que sella el bloque.
+
+\begin{table}[H]
+\centering
+\caption{El pulso de diez minutos y el ajuste de dificultad}
+\begin{tabular}{p{0.30\textwidth}p{0.28\textwidth}p{0.28\textwidth}}
+\toprule
+\textbf{Situación} & \textbf{Qué significa} & \textbf{Qué se hace} \\
+\midrule
+El algoritmo tarda más de diez minutos & Está muy difícil. & Se baja el nivel de complejidad del algoritmo. \\
+Se resuelve en menos de diez minutos (por ejemplo, en nueve) & Está muy fácil. & Se procura mantener la dificultad en torno a los diez minutos. \\
+Objetivo del ajuste & Un pulso estable de diez minutos. & Que todas las transacciones de ese lapso queden encriptadas y cerradas en un bloque. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Exploradores de blockchain}
+
+Sitios públicos como \textbf{Etherscan} (para la red Ethereum) y \textbf{Blockchain Explorer}, en blockchain.com (para Bitcoin), permiten a cualquier persona consultar las transacciones registradas y los últimos bloques generados. A través de estos exploradores puede rastrearse cómo una billetera determinada fue adquiriendo fondos a lo largo del tiempo, incluso si esos fondos permanecieron guardados, por ejemplo, en un dispositivo externo como un pendrive.
+
+\section{Pseudoanonimización y billeteras}
+
+\begin{definition}{Pseudoanonimización}
+Blockchain no ofrece anonimato absoluto sino pseudoanonimización: toda billetera tiene un dueño, y a ese dueño se puede llegar, especialmente cuando los activos se encuentran en un \textit{exchange}.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Tipos de billetera}
+\begin{tabular}{p{0.32\textwidth}p{0.24\textwidth}p{0.30\textwidth}}
+\toprule
+\textbf{Tipo} & \textbf{Quién custodia} & \textbf{Descripción} \\
+\midrule
+Billetera custodiada & Una entidad: el \textit{exchange}. & Funciona como una casa de cambio que custodia las tenencias. \\
+Billetera no custodiada (\textit{non-custodial wallet}) & La propia persona. & La persona conserva por sí misma el control de las credenciales. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =====================================================
+\chapter{Billeteras, PSAV y titularidad}
+
+\section{Exchanges y proveedores de servicios de activos virtuales}
+
+En Argentina operan diversos \textit{exchanges}, entre ellos Ripio y Lemon Cash, todos los cuales deben encontrarse inscriptos.
+
+\begin{important}
+A través de la legislación mencionada en clase, los \textbf{Proveedores de Servicios de Activos Virtuales (PSAV)} están regidos y controlados por la Comisión Nacional de Valores (CNV). Quienes no se encuentran inscriptos como PSAV quedan fuera del circuito de la legislación argentina.
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (no se indicó en clase el número de ley ni de resolución correspondiente).
+\end{important}
+
+\section{El blanqueo y el acta notarial de titularidad}
+
+Durante el régimen de blanqueo del año 2025, quienes poseían criptomonedas y deseaban acogerse al canjeo debían demostrar la titularidad de esos activos, es decir, acreditar que eran los únicos con el control y el dominio de las credenciales de acceso a la billetera.
+
+\begin{important}
+En el marco de ese régimen, quien poseía criptomonedas y quería realizar el canjeo debía demostrar que tenía el control y el dominio exclusivo de las credenciales de acceso a su billetera.
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (no se indicó en clase el número de la norma ni sus artículos).
+\end{important}
+
+Esa titularidad se demuestra mediante un \textbf{acta notarial}: la prueba consiste en que la persona acredita, ante el escribano, que puede ingresar a la billetera.
+
+\begin{example}{El acta de acceso a la billetera}
+Ante el escribano, la persona ingresa a su billetera utilizando su usuario y contraseña, sin que estos datos se registren en el acta —hacerlo equivaldría a entregar la billetera misma—. El escribano observa el resultado del ingreso: cuántos tokens y de qué tipo posee la persona en esa billetera, que puede contener múltiples criptomonedas.
+\end{example}
+
+Ante la consulta de un alumno sobre qué ocurre si dos personas comparten usuario y contraseña, la docente explicó que, en ese caso, quien accede con esas credenciales compartidas puede disponer de los fondos sin que el acta pueda advertir esa circunstancia. Frente a la pregunta de cómo se acredita el origen lícito de los activos, aclaró que el acta recoge la declaración de la persona sobre ese origen, y que ese origen se verifica adicionalmente mediante herramientas de trazabilidad cripto, recorriendo la cadena de operaciones para comprobar que los fondos provienen de compras y transferencias legítimas y no de actividades vinculadas al lavado de dinero o al terrorismo.
+
+\begin{note}
+Las intervenciones de los alumnos en este pasaje fueron reconstruidas a partir de una grabación de baja calidad; se preservó el sentido de cada pregunta.
+\end{note}
+
+\begin{important}
+En el acta, el escribano da fe de que la persona ingresó a la billetera; el origen lícito de los fondos surge de la declaración de esa persona y se verifica con herramientas de trazabilidad cripto, recorriendo la cadena de operaciones.
+\end{important}
+
+\section{Shitcoins, memecoins y el caso Libra}
+
+No todas las criptomonedas conservan su valor. Algunas —conocidas como \textit{shitcoins} o \textit{memecoins}— fueron impulsadas artificialmente al alza, lo que llevó a numerosos inversores a comprarlas, para luego desplomarse, generando pérdidas comparables, según la expresión utilizada en clase, a «perder como en la guerra». El caso de la criptomoneda Libra fue señalado por los propios alumnos como un ejemplo de este fenómeno.
+
+% =====================================================
+\chapter{Blockchain, notariado y registros}
+
+\section{De las criptomonedas al inmueble: el proceso técnico}
+
+A partir de los conceptos anteriores, el análisis se traslada a otra forma de riqueza propia de un sistema capitalista: el inmueble, preguntándose cómo pueden realizarse compras inmobiliarias utilizando criptoactivos.
+
+Ante la consulta de un alumno sobre el proceso técnico de autorización de una transacción, la docente confirmó que esa tarea corresponde a los mineros y que el tiempo de sellado de un bloque se mide en minutos: una operación realizada hace diez minutos ya se encuentra sellada, en virtud del mismo pulso descrito anteriormente (véase la Sección 3.2), que ajusta la dificultad del algoritmo para mantener ese ritmo constante y así permitir que todas las transacciones realizadas en ese lapso queden encriptadas dentro de un mismo bloque.
+
+\begin{note}
+Las intervenciones del alumno en este pasaje fueron reconstruidas a partir de una grabación de baja calidad; se preservó el sentido de sus preguntas.
+\end{note}
+
+\section{Cadena de bloques y protocolo notarial}
+
+La denominación «cadena de bloques» responde a que cada bloque contiene información del bloque anterior, continúa su secuencia y, a la vez, prepara la información del bloque siguiente.
+
+\begin{example}{Las escrituras del protocolo notarial}
+Esta lógica es análoga a la numeración de las escrituras en el protocolo notarial: no puede existir la escritura número tres sin la número uno y la número dos. Una vez impresa una escritura, no puede romperse ni desarmarse para que deje de existir; podrá discutirse después si produjo o no efectos jurídicos, pero la información permanece registrada. En blockchain ocurre exactamente lo mismo con cada bloque cerrado.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{El protocolo notarial y la cadena de bloques}
+\begin{tabular}{p{0.24\textwidth}p{0.34\textwidth}p{0.32\textwidth}}
+\toprule
+\textbf{Aspecto} & \textbf{Protocolo notarial} & \textbf{Cadena de bloques} \\
+\midrule
+Unidad & Escritura número uno, dos, tres… & Bloque que conoce al anterior y prepara la información del siguiente. \\
+Una vez cerrada & La escritura impresa no puede romperse ni desarmarse: existe. & El bloque no puede revertirse ni someterse a ingeniería inversa. \\
+Efectos & Después se determinará si tuvo efectos jurídicos, si fue firmada o no. & La información queda registrada y custodiada en el bloque. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{important}
+Blockchain es conocida como «el notario de la red»: cada bloque continúa al anterior, como las escrituras numeradas del protocolo, y lo registrado no puede desarmarse. Según la exposición, esta tecnología no viene a reemplazar al notariado.
+\end{important}
+
+\section{De la fe pública a la fe criptográfica}
+
+El desarrollo de blockchain implica un desplazamiento conceptual: de la fe pública a la \textbf{fe criptográfica}. La premisa cypherpunk sostiene que no es necesario depositar confianza en la persona ubicada detrás de un nodo determinado, sino en el código mismo.
+
+\begin{example}{«In God we trust» e «In code we trust»}
+El dólar, como moneda fiat emitida por los Estados, lleva impresa la leyenda «In God we trust». Frente a esa fórmula, los cypherpunks contraponen «In code we trust»: la confianza se deposita en el código. Esta confianza en el código hace innecesario confiar en las personas con las que se transacciona.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Dos lemas, dos formas de confianza}
+\begin{tabular}{p{0.26\textwidth}p{0.32\textwidth}p{0.32\textwidth}}
+\toprule
+\textbf{Aspecto} & \textbf{«In God we trust»} & \textbf{«In code we trust»} \\
+\midrule
+Dónde aparece & En el dólar, moneda fiat emitida por los Estados. & Es la frase de los cypherpunks. \\
+En qué se confía & En la persona o entidad que emite y certifica. & En el código informático. \\
+Con quién se transacciona & Importa la persona. & No importa la persona: se transacciona con una dirección de billetera; detrás hay un ser humano, por ahora. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+En el sistema descrito, la parte transaccionante no se identifica por su nombre sino por una \textit{address} o dirección hash de billetera. La exposición señala que, detrás de esa dirección, existe por el momento un ser humano, aunque plantea el interrogante de qué ocurrirá con la irrupción de la inteligencia artificial agéntica en la gestión de finanzas.
+
+\begin{important}
+Se produce un cambio de los conceptos de fe pública a fe criptográfica: la confianza en el código hace que ya no resulte necesario confiar en las personas con quienes se transacciona.
+\end{important}
+
+\section{Estonia y el futuro de los registros}
+
+\begin{example}{El registro de la propiedad inmueble de Estonia}
+Estonia cuenta con un registro de la propiedad inmueble que funciona íntegramente sobre blockchain. Al tratarse de un territorio de la ex Unión Soviética afectado por guerras y bombardeos, con pérdida de gran parte de su documentación física, el país optó por migrar hacia un entorno virtual para sus transacciones registrales. De este modo, si el título de propiedad se encuentra registrado en una cadena de blockchain, la destrucción física de la documentación no afecta la acreditación de la titularidad.
+\end{example}
+
+Este caso permite pensar en blockchain como un posible futuro de los sistemas registrales, tema que genera debate en los congresos de derecho registral.
+
+\section{El notariado internacional ante blockchain}
+
+\subsection{El congreso y la Unión Internacional del Notariado}
+
+La exposición menciona un congreso internacional a realizarse los días 24 y 25 de septiembre, y hace referencia a la doctora Cristina Armella, presidenta honoraria de la \textbf{Unión Internacional del Notariado (UINL)} y primera mujer en ocupar ese cargo. La UINL es la organización internacional que agrupa a noventa y cinco notariados de los cinco continentes.
+
+\begin{note}
+Se indicó en clase que la Unión Internacional del Notariado nace en 1950 y que su origen es argentino. La Unión Internacional del Notariado Latino se fundó, en rigor, en Buenos Aires en 1948. Se transcribe la fecha mencionada en clase y se deja constancia del dato para el estudio.
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (año de fundación).
+\end{note}
+
+Pertenecen al notariado latino países como Japón, China, Ucrania, Rusia y Francia, entre casi toda Europa, además de Quebec, en Canadá. La denominación «latino» no remite al origen geográfico de los países, sino a que su sistema de leyes se basa en el derecho romano-germánico. Los países de derecho anglosajón, como los Estados Unidos, no cuentan con notariado latino, aunque se realizan encuentros de derecho comparado entre ambos sistemas.
+
+\begin{table}[H]
+\centering
+\caption{Notariado latino y derecho anglosajón}
+\begin{tabular}{p{0.26\textwidth}p{0.35\textwidth}p{0.29\textwidth}}
+\toprule
+\textbf{Aspecto} & \textbf{Notariado latino} & \textbf{Derecho anglosajón} \\
+\midrule
+Base del sistema de leyes & Derecho romano-germánico. & Derecho anglosajón. \\
+Países mencionados & Japón, China, Ucrania, Rusia, Francia y casi toda Europa; Quebec (Canadá). & Estados Unidos: no tiene notariado latino. \\
+Relación entre ambos & Se realizan encuentros de derecho comparado. & Se realizan encuentros de derecho comparado. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Blockchain y notariado}
+
+Dentro de la Unión Internacional del Notariado, los notariados de Alemania, China y Francia ya trabajan con blockchain. Según la exposición, esta tecnología debería constituir la próxima herramienta del notario, que debe insertarse en ella como un nodo más, un nodo validador de transacciones, en especial en el terreno de la identidad de las personas, señalado como uno de los espacios más atacados en materia de ciberseguridad en la actualidad.
+
+\begin{important}
+El notariado debe insertarse en blockchain como un nodo más, un nodo validador de transacciones, en especial en el terreno de la identidad de las personas, hoy uno de los espacios más atacados en materia de ciberseguridad.
+\end{important}
+
+\section{Congreso e interdisciplina: drones, martilleros y tokens}
+
+\subsection{Organizadores e invitados}
+
+El congreso mencionado cuenta, entre sus organizadores, con un especialista en cuestiones registrales identificado como doctor Sabene, referente en materia de catastros y registros y director de los encuentros de registro de la propiedad inmueble.
+
+\begin{note}
+El apellido «Sabene» fue transcripto a partir de una grabación automática y no pudo verificarse; se recomienda confirmarlo con la cátedra.
+\end{note}
+
+El congreso convoca a defensores, martilleros, abogados, escribanos, empresas de tecnología y representantes del Estado, entre ellos la Secretaría de Innovación, con el objetivo de trabajar sobre los desafíos que plantean estas tecnologías. Incluye además un \textit{call for papers} dirigido a profesionales recientemente graduados, de hasta cinco años de antigüedad en el título, y su organización académica está a cargo de la Universidad de la Marina Mercante.
+
+\subsection{Otras disciplinas: drones, martilleros y tokenización}
+
+\begin{important}
+Los vehículos aéreos no tripulados (drones) cuentan con una regulación específica y están controlados por la Administración Nacional de Aviación Civil (ANAC).
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (no se indicó en clase el número de la resolución ni sus artículos).
+\end{important}
+
+Los drones se utilizan para realizar mediciones de grandes extensiones de tierra, lo que también empieza a vincularse con procesos de tokenización. Estas tecnologías atraviesan, por lo tanto, no solo al derecho y al notariado, sino a otras disciplinas: los martilleros, por ejemplo, conjugan el mundo de la propiedad real con el de las plataformas de venta fraccionada de inmuebles a través de tokens, tema que se desarrollará en la clase siguiente sobre tokenización.
+
+% =====================================================
+\chapter{Formación, plataformas y tokenización}
+
+\section{Leer, formarse y asesorar}
+
+La exposición destaca la importancia de la lectura y de la formación continua frente al fenómeno de la desinformación, en el marco de evaluaciones internacionales —como las pruebas PISA— que muestran dificultades de comprensión lectora entre las nuevas generaciones. La formación en estos temas constituye, según la docente, la diferencia que permitirá al futuro profesional asesorar adecuadamente cuando un cliente se presente con una oferta de inversión en una plataforma.
+
+\begin{important}
+La formación en estos temas es la diferencia que permitirá asesorar cuando un cliente llegue con una oferta de inversión en una plataforma.
+\end{important}
+
+\section{Plataformas de inversión: riesgos y fraudes}
+
+A diferencia del control que se realiza sobre un fideicomiso inmobiliario tradicional —donde se revisan sus reglas, se solicita el modelo de contrato de adhesión y los antecedentes de la constructora—, frente a una plataforma de inversión en criptoactivos es necesario revisar sus condiciones, el \textit{white paper} y comprobar la existencia real de la plataforma.
+
+\begin{table}[H]
+\centering
+\caption{Qué controlar en un fideicomiso y en una plataforma}
+\begin{tabular}{p{0.28\textwidth}p{0.32\textwidth}p{0.32\textwidth}}
+\toprule
+\textbf{Aspecto} & \textbf{Fideicomiso} & \textbf{Plataforma de inversión} \\
+\midrule
+Reglas y condiciones & Las reglas del fideicomiso. & Las condiciones de la plataforma. \\
+Documento clave & Modelo del contrato de adhesión. & El \textit{white paper}. \\
+Otros controles & Antecedentes de la constructora. & Que la plataforma exista. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La exposición anticipa la intervención de un especialista invitado, el comisario Maximiliano Méndez, a cargo de la división de ciberdelitos en la ciudad de Buenos Aires, quien expondrá sobre plataformas que carecen de existencia jurídica y a las cuales, de manera ingenua, numerosas personas transfieren sus ahorros.
+
+\begin{example}{La plataforma que desaparece}
+Una plataforma fraudulenta puede ofrecer una aplicación descargable desde una tienda oficial, que muestra a diario el supuesto rendimiento de la inversión e incluso permite realizar retiros parciales para generar confianza. En determinado momento, la aplicación deja de estar disponible y los ahorros transferidos desaparecen junto con la plataforma.
+\end{example}
+
+\subsection{Brecha de género en el mundo cripto}
+
+La exposición señala una brecha de género en el acceso a las finanzas descentralizadas: según la experiencia de la docente en la temática de género digital y vulnerabilidad tecnológica, son mayoritariamente varones quienes acceden a este tipo de herramientas financieras, frente a una participación mucho menor de mujeres. Existen iniciativas —identificadas como espacios de «cripto chicas»— orientadas a fortalecer el acceso de las mujeres a las finanzas descentralizadas.
+
+\section{¿Cómo se prueba que una plataforma existe?}
+
+\begin{important}
+En el \textit{white paper} de una plataforma de tokenización debe verificarse: que exista un título de propiedad; que los tokens estén efectivamente respaldados en el inmueble del cual es propietaria la sociedad organizadora; y que conste la inescindibilidad entre el token y el inmueble.
+\end{important}
+
+A ello se suma la verificación de que la plataforma se encuentre inscripta como Proveedor de Servicios de Activos Virtuales ante la Comisión Nacional de Valores, registración que constituye una garantía adicional de existencia real. Ante la consulta de un alumno sobre plataformas radicadas en el exterior, la docente reconoció que, en esos casos, no existe forma de verificar la garantía de la inversión, y que la registración ante la CNV constituye, en el ámbito argentino, la principal garantía disponible de que la plataforma efectivamente existe.
+
+\begin{note}
+La intervención del alumno en este pasaje fue reconstruida a partir de una grabación de baja calidad; se preservó el sentido de su consulta.
+\end{note}
+
+\begin{important}
+El proveedor de servicios de activos virtuales debe aplicar, respecto de cada plataforma, los controles previos de prevención de lavado de activos: KYC (\textit{Know Your Customer}, conozca a su cliente) y AML (\textit{Anti-Money Laundering}), que incluyen el testeo de la persona contra las listas del GAFI para descartar su vinculación con jurisdicciones o maniobras de lavado de dinero.
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (no se indicó en clase número de norma ni artículos).
+\end{important}
+
+\section{Tokenización inmobiliaria: el caso de Juancito Pérez}
+
+A diferencia del sistema pseudoanonimizado de Bitcoin, en la tokenización inmobiliaria el titular de los tokens se encuentra identificado. Sin embargo, sigue tratándose de una forma de generar reserva de valor.
+
+\begin{example}{Juancito Pérez y su inmueble por pedacitos}
+Juancito Pérez no puede adquirir de una sola vez un inmueble de sesenta y cinco o noventa metros cuadrados, pero con sus ahorros progresivos va comprando tokens que representan fracciones de un desarrollo inmobiliario. No es lo mismo comprar tokens cuando el desarrollo está «en el pozo» —es decir, en etapa de construcción— y luego quemar esos tokens para recuperar la ganancia una vez que el inmueble está terminado y listo para la venta. Con el tiempo, Juancito puede llegar a reunir los tokens suficientes para adquirir, por ejemplo, un ambiente de cuarenta y cinco metros cuadrados.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Bitcoin y tokenización inmobiliaria}
+\begin{tabular}{p{0.26\textwidth}p{0.34\textwidth}p{0.30\textwidth}}
+\toprule
+\textbf{Aspecto} & \textbf{Bitcoin (sistema autónomo)} & \textbf{Tokenización inmobiliaria} \\
+\midrule
+Identidad del titular & Pseudoanonimización: el dueño es la billetera. & Ya no hay pseudoanonimización: hay una persona identificada que compró tokens. \\
+Respaldo & Escasez de la criptomoneda. & Tokens respaldados en un inmueble. \\
+Función para el ahorrista & Reserva de valor. & También es una forma de generar reserva de valor, comprando fracciones a medida que se ahorra. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{note}
+Queda como tarea para la clase siguiente la lectura del material enviado previamente, condición necesaria para poder avanzar sobre el desarrollo específico de la tokenización.
+\end{note}
+
+% =====================================================
+\chapter{Claves, herencia y privacidad}
+
+\section{La billetera del pendrive: ¿cómo pruebo mi titularidad?}
+
+Ante la consulta de un alumno sobre cómo probar la titularidad de criptoactivos adquiridos años atrás y conservados en un pendrive, considerando que la normativa argentina reconoce este tipo de billeteras desde hace relativamente poco tiempo, la docente explicó que el control de las credenciales es siempre personal —aun cuando el titular sea una persona jurídica, en cuyo caso deben preverse mecanismos internos, como resguardar las claves en un sobre cerrado bajo custodia reforzada, para determinar quién las conserva—. En la práctica habitual, ese control recae en una persona física.
+
+\begin{note}
+La intervención del alumno en este pasaje fue reconstruida a partir de una grabación de baja calidad; se preservó el sentido de su pregunta.
+\end{note}
+
+\section{Ballenas y críticas a Bitcoin}
+
+Una de las críticas dirigidas a Bitcoin se refiere a los grandes tenedores o «ballenas» (\textit{whales}), que concentran importantes volúmenes de la criptomoneda. Cuando estos grupos —frecuentemente identificados como operadores de origen chino— compran o venden de manera masiva, provocan movimientos significativos en el precio, beneficiándose de esas fluctuaciones.
+
+\begin{note}
+En la exposición se hace referencia a una segunda crítica dirigida a Bitcoin, que no llegó a enunciarse de manera completa en la grabación disponible.
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (segunda crítica a Bitcoin no especificada).
+\end{note}
+
+\section{Claves perdidas, herencia y patrimonio digital}
+
+\subsection{Claves perdidas}
+
+Existen casos de personas que perdieron sus credenciales de acceso, fallecieron sin transmitirlas o simplemente no logran recordarlas. En esos supuestos, las tenencias de criptoactivos permanecen inaccesibles, «a nombre de nadie».
+
+\subsection{Herencia y patrimonio digital}
+
+La incorporación de los activos digitales a los testamentos constituye una de las cuestiones emergentes del ejercicio profesional actual. El patrimonio digital de una persona puede incluir derechos de autor, obras no publicadas, tenencia y utilización de acciones, u obras guardadas en servicios de almacenamiento en la nube. Frente al fallecimiento del titular, se plantea el interrogante de cómo transmitir a los herederos las claves de la billetera, conocidas como frase semilla.
+
+\begin{definition}{Frase semilla}
+Serie de doce palabras que permite recuperar el acceso a una billetera de criptoactivos en caso de haber perdido las credenciales. Al crear una billetera, el sistema genera estas doce palabras, que deben conservarse y, en caso de recuperación, colocarse en el orden exacto en que fueron generadas.
+\end{definition}
+
+Se plantea como objetivo deseable que no sea un único notario quien concentre el control de todas las claves de una sucesión. Un alumno aportó, a modo de ejemplo, el funcionamiento del navegador Brave, que permite sincronizar el historial entre dispositivos mediante un sistema de doce palabras ordenadas, de lógica equivalente a la frase semilla.
+
+\begin{note}
+La intervención del alumno en este pasaje fue reconstruida a partir de una grabación de baja calidad; se preservó el sentido de su ejemplo.
+\end{note}
+
+\section{Privacidad y convivencia digital}
+
+Toda actividad registrada en buscadores como Google queda almacenada y es conocida por la empresa. Frente a ello, existen alternativas orientadas a la protección de la privacidad.
+
+\begin{table}[H]
+\centering
+\caption{Herramientas y redes de privacidad mencionadas}
+\begin{tabular}{p{0.22\textwidth}p{0.68\textwidth}}
+\toprule
+\textbf{Herramienta} & \textbf{Descripción} \\
+\midrule
+Brave & Navegador orientado a la privacidad: impide el seguimiento de la actividad del usuario por parte de terceros. \\
+Tor & Red de comunicaciones por capas («cebolla») que dificulta la identificación del usuario; también puede emplearse con fines ilícitos, por lo que su valoración depende del uso que se le dé. \\
+Mastodon & Red social concebida como alternativa a otras plataformas comerciales, sin sistemas de fomento del odio, orientada a la libre expresión sin restricciones algorítmicas de visibilidad. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Tor y la dark web}
+
+La red Tor funciona por capas, de manera análoga a una cebolla, distribuyendo la conexión entre múltiples equipos que prestan su capacidad de red para replicarla hacia otros nodos. Esto dificulta identificar el origen de una conexión, lo que explica que en investigaciones de determinados delitos las fuerzas de seguridad puedan allanar un domicilio cuyo titular no tuvo participación en el hecho investigado, por haber sido su conexión utilizada como nodo intermedio. La red profunda o \textit{dark web} no es intrínsecamente ilícita: constituye un espacio privado que, como cualquier otro, puede utilizarse tanto para fines legítimos como ilegítimos.
+
+\subsection{Mastodon y la atención condicionada}
+
+Mastodon se concibió como alternativa a otras redes sociales comerciales, sin mecanismos de fomento del odio y sin restricciones algorítmicas sobre qué contenidos llegan a los seguidores de un usuario. La exposición advierte que, en las redes sociales convencionales, la visibilidad de las publicaciones está condicionada por decisiones de la propia plataforma, de modo que la atención del usuario se encuentra dirigida y no responde exclusivamente a sus intereses declarados.
+
+% =====================================================
+\chapter{Trazabilidad, responsabilidad y cierre}
+
+\section{Actividad complementaria y oratoria}
+
+\begin{note}
+La docente anuncia el envío de una pequeña actividad complementaria y recomienda entrenar la oratoria: la capacidad de exponer con claridad y asertividad resulta necesaria tanto para la relación con los clientes como para la instancia de evaluación oral.
+\end{note}
+
+\section{Titularidad de la billetera ante el juez}
+
+Retomando la consulta sobre la prueba de titularidad de una billetera no reconocida formalmente, la docente explicó que, de manera análoga a lo que ocurre con los bienes muebles en relación con el título, el acceso a las credenciales otorga la titularidad. Esa titularidad puede acreditarse ingresando a la billetera ante el juez interviniente, mostrando los activos existentes. La billetera se identifica mediante una dirección alfanumérica de sesenta y cuatro caracteres, y toda su actividad queda registrada en los bloques de la red correspondiente (Ethereum o Bitcoin, según el caso).
+
+\begin{note}
+La intervención del alumno en este pasaje fue reconstruida a partir de una grabación de baja calidad; se preservó el sentido de su pregunta.
+\end{note}
+
+\begin{important}
+Como en los bienes muebles con relación al título, el acceso a las credenciales de la billetera otorga la titularidad; puede acreditarse ingresando a la billetera ante el juez. Toda la actividad de la billetera queda registrada en los bloques.
+\end{important}
+
+\section{Trazabilidad de activos y formación especializada}
+
+Existe actualmente una oferta de posgrado especializada en trazabilidad de activos, disciplina que emplean los juzgados penales para determinar la comisión de estafas y robos de activos digitales, y para disponer su restitución. La exposición menciona a dos profesionales argentinos que capacitan en la materia en el ámbito de la Oficina de las Naciones Unidas contra la Droga y el Delito (UNODC): un profesional identificado como Denis, y Agostina Arena, proveniente de una fiscalía de la provincia de Neuquén y con experiencia posterior en el sector privado.
+
+\begin{note}
+Los apellidos de los profesionales mencionados fueron reconstruidos a partir de una grabación automática y conviene verificarlos con la cátedra.
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (apellido del profesional identificado como «Denis»).
+\end{note}
+
+La reflexión final de este punto sostiene que el notariado no puede desentenderse de estos nuevos actores y ecosistemas tecnológicos, bajo riesgo de quedar rezagado frente a las nuevas generaciones de profesionales.
+
+\section{Responsabilidad civil y derecho del consumo}
+
+Frente a una estafa vinculada con criptoactivos, la persona damnificada dispone de distintas vías jurídicas.
+
+\begin{important}
+El Código Civil y Comercial otorga las herramientas necesarias para hacer responder civilmente a quienes resulten responsables de estas situaciones, más allá de la vía específica de ciberdelitos.
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (no se citaron artículos concretos en clase).
+\end{important}
+
+\begin{important}
+A las herramientas del Código Civil y Comercial se suma la legislación de consumo, que habilita a responsabilizar objetivamente al proveedor de la plataforma. En este sentido, puede hablarse propiamente de «criptoconsumidores».
+
+\% TODO: contenido incompleto o ambiguo en las notas originales (no se citaron leyes ni artículos específicos en clase).
+\end{important}
+
+\begin{important}
+Ante una estafa cripto existen vías penal (ciberdelitos y denuncia, con trazabilidad), civil (responsabilidad civil del Código Civil y Comercial) y de consumo (responsabilidad objetiva del proveedor de la plataforma: «criptoconsumidores»).
+\end{important}
+
+\section{Investigación y fraudes: OSINT, phishing y cuentas mula}
+
+\begin{definition}{Informe OSINT}
+\textit{Open Source Intelligence}: informe elaborado a partir de todas las fuentes de información abiertas y accesibles, del cual pueden obtenerse datos familiares, de propiedades y de vehículos de una persona investigada, entre otra información.
+\end{definition}
+
+\begin{example}{Recuperación de criptoactivos de una persona damnificada}
+Los investigadores especializados suelen crear perfiles falsos en redes sociales para realizar tareas de seguimiento sobre personas vinculadas a determinada información, elaborando el informe OSINT correspondiente. A partir de ese trabajo pueden ordenarse allanamientos —como uno realizado en la provincia de Buenos Aires— en los que se secuestran computadoras y teléfonos celulares, lo que permite recuperar activos que, al provenir verificadamente de la dirección de la billetera de la persona damnificada, pueden restituirse a su titular.
+\end{example}
+
+\begin{important}
+Entre las modalidades de fraude descritas se encuentran: el ataque de copiar y pegar, que sustituye la dirección de destino al momento de transferir criptoactivos; la «página gemela» del \textit{home banking}, una réplica del sitio bancario legítimo que captura usuario y contraseña cuando la víctima los ingresa; y las cuentas mula, utilizadas mediante la técnica de \textit{smurfing} —división de una transferencia en montos pequeños—, en las que terceros reciben una comisión por prestar su cuenta sin ser, en general, quienes cometieron el delito original.
+\end{important}
+
+Frente a estos fraudes, una de las respuestas disponibles es el congelamiento de fondos, orientado a inmovilizar cuentas que participaron del desvío de activos y a facilitar su posterior rastreo.
+
+\section{Cierre de la clase}
+
+La clase concluye con una referencia a la importancia del descanso adecuado durante el cuatrimestre y con información sobre la modalidad de evaluación.
+
+\begin{note}
+El examen parcial o final se tomará en forma oral, a cargo de ambas docentes de la cátedra, hacia la última semana del cuatrimestre, en torno al 5 de octubre.
+
+\% TODO: contenido incompleto o ambiguo en las notas originales — el intercambio sobre fechas fue reconstruido a partir de una grabación de baja calidad; conviene confirmar fecha y modalidad exactas con la cátedra.
+\end{note}
+
+Como tarea para el encuentro siguiente, queda pendiente la lectura del texto de quince carillas enviado por la docente, referido a la tokenización inmobiliaria, así como la realización de una breve actividad complementaria y el entrenamiento de la exposición oral.
+
+% ============================================================
+% CUADRO CORNELL DE REPASO GENERAL
+% ============================================================
+\chapter{Cuadro Cornell de repaso general}
+
+El siguiente cuadro reúne las preguntas y los conceptos clave que atraviesan la clase, con sus respuestas correspondientes, y cierra con una síntesis integradora de todo el contenido desarrollado.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.60\textwidth}
+}
+\caption{Cuadro Cornell — Blockchain, criptoactivos y tokenización inmobiliaria} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\textit{(continúa de la página anterior)}} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{(continúa en la página siguiente)}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué diferencia hay entre una red centralizada y una distribuida?} &
+En la centralizada, si algo ataca al sistema único, cae todo. En la distribuida, los servidores están en distintos lugares: si se ataca a uno, los otros siguen funcionando y la organización resguarda la información. \\
+
+\textbf{¿Quiénes eran los cypherpunks y qué proponían?} &
+Un grupo filosófico de programadores con fuerte base criptográfica que desconfiaba de cómo los Estados manejan el dinero (inflación, burbujas). Proponían manejar el patrimonio propio a través de redes distribuidas, sin necesidad del Estado. \\
+
+\textbf{¿Qué contexto histórico sustenta esa filosofía?} &
+La crisis de las burbujas hipotecarias de 2008 y la de Grecia: préstamos que no se podían cubrir. El Estado terminó financiando las pérdidas, lo que genera más impuestos y déficit. \\
+
+\textbf{¿Qué es el doble gasto y quién lo resuelve tradicionalmente?} &
+Es el problema de certificar que el dinero ya gastado no se vuelva a gastar. Lo resuelve el banco como autoridad central (tengo diez, gasto una, me quedan nueve). La propuesta es que todos los participantes de la red lo registren a la vez, sin banco. \\
+
+\textbf{¿Qué es Bitcoin y en qué se diferencia de blockchain?} &
+Bitcoin es la criptomoneda, nacida del \textit{white paper} de Satoshi Nakamoto (\textit{peer to peer}, sin entidad central). Blockchain es la tecnología subyacente, con un potencial mucho mayor que la moneda. \\
+
+\textbf{¿Por qué se dice que Bitcoin es una reserva de valor?} &
+Porque su emisión es limitada: hay escasez, y con oferta y demanda de quienes quieren «pertenecer al club» el valor se acumula. Todos cuidan la red para mantener ese valor. (En clase se ubicó el cierre de emisión en 2049; el protocolo prevé alrededor de 2140.) \\
+
+\textbf{¿Qué significa «confiar en el código»?} &
+Que la seguridad criptográfica del sistema descansa en el código informático y no en las personas: «In code we trust», en contraposición al «In God we trust» del dólar, moneda fiat emitida por los Estados. \\
+
+\textbf{¿Qué es una altcoin y qué aporta Ethereum?} &
+Todo lo que no es Bitcoin. Ethereum es la otra gran red: permite ingresar contratos inteligentes y plataformas que corren por blockchain, base de la tokenización. \\
+
+\textbf{¿Qué es la inmutabilidad y por qué existe?} &
+Una transacción realizada y verificada por los mineros no puede alterarse: el respaldo está descentralizado, no hay una única copia y los demás participantes verían la alteración. \\
+
+\textbf{¿Qué hacen los mineros y qué es el pulso de diez minutos?} &
+Con computadoras de gran poder computacional descubren el algoritmo que permite cerrar y encriptar un grupo de transacciones en un bloque, cada diez minutos. Si tardan más, se baja la complejidad; si tardan menos, se mantiene la dificultad en torno a los diez minutos. \\
+
+\textbf{¿Por qué se llama «cadena» de bloques y qué relación tiene con el protocolo notarial?} &
+Cada bloque contiene información del anterior y prepara la del siguiente, como las escrituras numeradas del protocolo: una vez impresa, no se puede romper ni desarmar. Por eso blockchain es «el notario de la red». \\
+
+\textbf{¿Qué son los exploradores de blockchain?} &
+Sitios públicos (Etherscan, Blockchain Explorer) donde cualquiera puede ver transacciones y últimos bloques. Permiten rastrear cómo una billetera fue adquiriendo fondos con el tiempo. \\
+
+\textbf{¿Blockchain es anónima? ¿Qué tipos de billetera hay?} &
+No: hay pseudoanonimización, porque la billetera tiene un dueño y se llega a él. Puede ser custodiada (un \textit{exchange}) o no custodiada (\textit{non-custodial wallet}). \\
+
+\textbf{¿Qué son los PSAV y quién los controla?} &
+Proveedores de Servicios de Activos Virtuales (Ripio, Lemon Cash y otros). Deben estar inscriptos y están regidos y controlados por la Comisión Nacional de Valores; los que no lo están quedan fuera del circuito legal argentino. Aplican KYC/AML y listas del GAFI. \\
+
+\textbf{¿Cómo se prueba la titularidad de una billetera?} &
+Con el acceso a las credenciales. Ante el escribano, la persona ingresa y el acta da fe de que entró y de los activos que ve; el origen lícito se declara y se verifica con herramientas de trazabilidad. Ante el juez, el acceso a las credenciales da la titularidad, como en los bienes muebles. \\
+
+\textbf{¿Qué es la fe criptográfica?} &
+El cambio del concepto de fe pública a la confianza en el código: no importa con quién se transacciona, sino la dirección de billetera. Detrás hay un ser humano, por ahora. \\
+
+\textbf{¿Qué rol puede tener el notariado?} &
+Insertarse como un nodo más, validador de transacciones, y garante de la identidad de las personas. Alemania, China y Francia ya trabajan con blockchain. Estonia tiene su registro inmobiliario en blockchain porque perdió documentación física por las guerras. \\
+
+\textbf{¿Qué es la tokenización inmobiliaria?} &
+Comprar tokens que representan y están respaldados por un inmueble, de a poco y a medida de los ahorros (caso de Juancito Pérez). Ya no hay pseudoanonimización: el titular está identificado. Se puede comprar «en el pozo» y quemar los tokens al vender. \\
+
+\textbf{¿Cómo verifico que una plataforma existe?} &
+Se revisan las condiciones y el \textit{white paper} (título de propiedad, respaldo del token en el inmueble, inescindibilidad) y que esté inscripta como PSAV ante la CNV. Con plataformas del exterior no hay forma de averiguarlo. En un fideicomiso se controlan las reglas, el contrato de adhesión y los antecedentes de la constructora. \\
+
+\textbf{¿Qué pasa con las criptomonedas cuando el titular muere o pierde las claves?} &
+Quedan «a nombre de nadie». Por eso los testamentos deben incluir los activos digitales, y se debe resolver la frase semilla (doce palabras en orden), evitando que un solo notario controle todas las claves. \\
+
+\textbf{¿Qué herramientas de privacidad se mencionaron?} &
+Brave (navegador que evita el seguimiento), Tor (red por capas, «cebolla», que también se usa para fines ilícitos) y Mastodon (alternativa a otras redes comerciales). La atención en redes está dirigida y condicionada. \\
+
+\textbf{¿Qué vías jurídicas tiene quien sufre una estafa cripto?} &
+Civil (Código Civil y Comercial), de consumo (responsabilidad objetiva del proveedor de la plataforma: «criptoconsumidores») y penal (denuncia y trazabilidad de activos). \\
+
+\textbf{¿Cómo operan los fraudes descritos?} &
+Cambio de la dirección al copiar y pegar; páginas gemelas del \textit{home banking} que capturan usuario y contraseña; cuentas mula y \textit{smurfing} (envíos pequeños); informe OSINT para investigar; congelamientos de fondos. \\
+
+\textbf{¿Qué tareas y evaluación quedaron pendientes?} &
+Leer el texto de quince carillas enviado antes de la clase siguiente (tokenización), realizar una pequeña actividad y entrenar la oratoria. La evaluación será oral, en la última semana, hacia el 5 de octubre. \\
+
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} La clase reconstruye el camino que lleva de las redes distribuidas a la tokenización inmobiliaria. Frente a un sistema financiero centralizado, cuyas crisis —como la de 2008— terminó pagando el Estado, los cypherpunks propusieron una red en la que todos verifican todo y nadie depende de un banco: así nació Bitcoin, un activo escaso que funciona como reserva de valor, y su tecnología subyacente, blockchain. Los mineros cierran cada diez minutos bloques encadenados e inmutables, visibles en exploradores públicos, con pseudoanonimización y no con anonimato. Esta lógica se asemeja al protocolo notarial, por lo que blockchain fue llamada «el notario de la red»: se pasa de la fe pública a la fe criptográfica, y el notariado debe insertarse como nodo validador y garante de la identidad, como muestra el registro inmobiliario de Estonia. En Argentina, las plataformas se ordenan como PSAV bajo control de la CNV, con controles KYC/AML; la titularidad de una billetera se prueba con el acceso a las credenciales, ante escribano o ante juez. Sobre esa base se construye la tokenización, que permite comprar un inmueble por pedacitos, pero exige verificar el \textit{white paper}, el título de propiedad y la existencia real de la plataforma, porque los fraudes —páginas gemelas, cuentas mula, plataformas que desaparecen— son frecuentes. Quien asesora debe además prever la herencia digital (frase semilla, claves), cuidar la privacidad y conocer las vías de reclamo: civil, de consumo y penal, con apoyo en la trazabilidad.
+} \\
+
+\end{longtable}
+
+\end{document}

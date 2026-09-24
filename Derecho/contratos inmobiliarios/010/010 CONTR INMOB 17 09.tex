@@ -1,0 +1,984 @@
+%% =====================================================================
+%% APUNTES DE CONTRATOS INMOBILIARIOS
+%% Economía Digital y Tokenización de Activos Inmobiliarios
+%% Documento autónomo: no requiere plantillas ni archivos externos.
+%% =====================================================================
+\documentclass[12pt,oneside]{book}
+
+%% =====================================================================
+%% METADATOS
+%% =====================================================================
+% La universidad no figura en el apunte: se utiliza la indicada por defecto.
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Carrera Notarial -- Escribanía}
+\newcommand{\materia}{Contratos Inmobiliarios}
+\newcommand{\titulo}{Economía Digital y Tokenización de Activos Inmobiliarios}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%% =====================================================================
+%% PAQUETES
+%% =====================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%% =====================================================================
+%% CONFIGURACIÓN
+%% =====================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+\raggedbottom
+
+\captionsetup{font=small,labelfont=bf}
+
+% Los bloques se numeran con números romanos y las unidades de forma
+% continua a lo largo de todo el documento.
+\addto\captionsspanish{%
+  \renewcommand{\chaptername}{Bloque}%
+  \renewcommand{\contentsname}{Índice}%
+}
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\makeatletter
+\@removefromreset{section}{chapter}
+\renewcommand{\thesection}{\arabic{section}}
+
+% Encabezado de capítulo sobrio
+\def\@makechapterhead#1{%
+  \vspace*{0.3cm}%
+  {\parindent\z@ \raggedright \normalfont
+    \ifnum\c@secnumdepth>\m@ne
+      {\large\bfseries\color{blue!50!black}\MakeUppercase{\@chapapp}\space\thechapter}\par\nobreak
+      \vskip 4pt
+    \fi
+    \interlinepenalty\@M
+    {\LARGE\bfseries #1}\par\nobreak
+    \vskip 6pt
+    {\color{blue!50!black}\rule{\linewidth}{0.6pt}}\par\nobreak
+    \vskip 18pt}}
+\def\@makeschapterhead#1{%
+  \vspace*{0.3cm}%
+  {\parindent\z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    {\LARGE\bfseries #1}\par\nobreak
+    \vskip 6pt
+    {\color{blue!50!black}\rule{\linewidth}{0.6pt}}\par\nobreak
+    \vskip 18pt}}
+
+% Títulos de sección más moderados
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+  {-2.4ex \@plus -1ex \@minus -.2ex}%
+  {1.2ex \@plus .2ex}%
+  {\normalfont\Large\bfseries\color{blue!50!black}}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+  {-2ex \@plus -1ex \@minus -.2ex}%
+  {1ex \@plus .2ex}%
+  {\normalfont\large\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+  {-1.8ex \@plus -1ex \@minus -.2ex}%
+  {0.8ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+
+% Índice: espacio suficiente para numeración romana de los capítulos
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{2.8em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+\makeatother
+
+%% =====================================================================
+%% COMANDOS
+%% =====================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Pregunta guía de cada unidad
+\newcommand{\guia}[1]{\noindent\textit{Pregunta guía: #1}\par\smallskip}
+
+% Introducción de cada bloque
+\newcommand{\alcance}[1]{\noindent\textit{#1}\par\smallskip}
+
+% Título del cuadro Cornell (sin numeración, con entrada en el índice)
+\newcommand{\cornelltitle}[1]{%
+  \phantomsection
+  \addcontentsline{toc}{section}{\protect\numberline{}#1}%
+  \section*{#1}}
+
+% Estructura del cuadro Cornell (tabla real: columna izquierda estrecha,
+% columna derecha amplia y última fila con el resumen a ancho completo)
+\newcommand{\cornellcols}{%
+  >{\raggedright\arraybackslash}p{0.28\textwidth}%
+  >{\raggedright\arraybackslash}p{\dimexpr0.72\textwidth-4\tabcolsep\relax}}
+
+\newcommand{\cornellhead}{%
+  \toprule
+  \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas (continuación)} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot}
+
+% Primera pregunta del cuadro (sin filete previo)
+\newcommand{\cqf}[2]{\textbf{#1} & #2 \\}
+% Preguntas siguientes (filete fino previo)
+\newcommand{\cq}[2]{\midrule[0.3pt]\textbf{#1} & #2 \\}
+% Resumen en la última fila, a ancho completo
+\newcommand{\cornellsummary}[1]{%
+  \midrule
+  \multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\textbf{Resumen:} #1} \\
+  \bottomrule}
+
+%% =====================================================================
+%% ENTORNOS / CAJAS
+%% =====================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%% =====================================================================
+%% CONFIGURACIÓN FINAL (encabezados y pies)
+%% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%% =====================================================================
+%% DOCUMENTO
+%% =====================================================================
+\begin{document}
+
+%% ---------------------------------------------------------------------
+%% PORTADA
+%% ---------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{FlushLeft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{FlushLeft}
+
+\end{titlepage}
+
+%% ---------------------------------------------------------------------
+%% ÍNDICE
+%% ---------------------------------------------------------------------
+\frontmatter
+\tableofcontents
+\mainmatter
+
+%% ---------------------------------------------------------------------
+%% PRESENTACIÓN
+%% ---------------------------------------------------------------------
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Presentación de los contenidos}
+\chapter*{Presentación de los contenidos}
+\markboth{Presentación de los contenidos}{}
+
+Este material sistematiza los contenidos de \materia{} dedicados a la \textbf{economía digital} y a la \textbf{tokenización de activos inmobiliarios}. Se organiza en cinco bloques y trece unidades.
+
+\section*{Temas tratados}
+
+\begin{itemize}
+    \item El quiebre de la confianza monetaria y el nacimiento de la economía digital (de Bretton Woods a la crisis subprime).
+    \item La evolución de internet: de ARPANET a la Web 3.0 y la reserva de valor.
+    \item Criptografía, control de la información y el fenómeno del ``prosumidor'' en las redes sociales.
+    \item Blockchain, minería, consenso y la paradoja de la descentralización.
+    \item Inteligencia artificial, la carrera tecnológica global y sus riesgos.
+    \item Prevención del lavado de activos, estafas piramidales y el deber de asesoramiento del profesional del derecho.
+    \item Marco regulatorio argentino de la tokenización (Comisión Nacional de Valores, sandbox regulatorio).
+    \item Mecánica de la tokenización inmobiliaria y su paralelo con el contrato de fideicomiso.
+\end{itemize}
+
+\section*{Utilidad para la vida profesional}
+
+El mercado inmobiliario ya no se mueve solo con escrituras en papel, dinero fiat y fideicomisos tradicionales. Cada vez con mayor frecuencia aparecen clientes que desean pagar con criptomonedas, invertir en proyectos tokenizados o consultar si una plataforma es segura. El profesional que no sabe formular las preguntas correctas queda al margen de esa demanda y, además, puede comprometer su responsabilidad profesional si autoriza un acto sin verificar el origen de los fondos.
+
+Comprender la lógica de la economía digital permite:
+
+\begin{enumerate}
+    \item detectar operaciones sospechosas de lavado de activos y cumplir con el deber de reporte;
+    \item asesorar con criterio a los clientes frente a esquemas piramidales y falsos proyectos de inversión;
+    \item participar del negocio de la tokenización inmobiliaria, un mercado en expansión;
+    \item diferenciarse profesionalmente, porque en la actualidad los clientes suelen consultar estos temas al contador antes que al abogado o al escribano, y ese es exactamente el espacio que puede ocupar un profesional bien formado.
+\end{enumerate}
+
+\section*{Hilo conductor de los bloques}
+
+Los cinco bloques pueden leerse como la historia de una casa que un vecino quiere comprar. Primero es necesario confiar en que el dinero con el que se la pagará vale algo (Bloque~I). Luego, esa confianza y esa información comienzan a viajar por las redes que todos usan a diario, con sus beneficios y sus riesgos (Bloque~II). Cuando esas redes se vuelven descentralizadas, aparece una tecnología ---blockchain--- e incluso una inteligencia artificial que empieza a tomar decisiones por sí sola (Bloque~III). Como toda herramienta poderosa, puede usarse para estafar, por lo que el Estado y los profesionales deben aprender a prevenir el fraude y a regular el juego (Bloque~IV). Recién entonces, con las reglas claras, esa misma casa puede comprarse de una forma nueva: en cuotas digitales llamadas \textbf{tokens}, tal como antes se compraba en cuotas de un fideicomiso (Bloque~V).
+
+%% =====================================================================
+%% BLOQUE I
+%% =====================================================================
+\chapter{La economía digital y sus orígenes}
+
+\alcance{Este bloque comprende las Unidades 1 a 3.}
+
+%% ---------------------------------------------------------------------
+\section{Confianza, dinero y el quiebre del patrón oro}
+
+\guia{¿Qué pasa cuando el Estado pierde la confianza de la gente en su moneda?}
+
+La economía digital se estudia a partir de tres ejes que la atraviesan: el \textbf{tecnológico}, el \textbf{social} y el \textbf{económico}. Estos planos no deben pensarse por separado, porque en conjunto explican cómo se administra el dinero, cómo se conserva la riqueza y hacia qué espacios se desplaza esa riqueza en la actualidad.
+
+Como punto de partida histórico, la \textbf{crisis de las hipotecas subprime de 2008} en Estados Unidos generó una pérdida de confianza generalizada en el sistema financiero tradicional. Esa pérdida de confianza explica en buena medida el terreno fértil en el que luego germinaron las criptomonedas como alternativa de reserva de valor.
+
+\begin{important}
+\textbf{Hito histórico.} El primer gran quiebre de confianza en el sistema monetario internacional se ubica en \textbf{1971}, cuando el presidente estadounidense Richard Nixon suspendió la convertibilidad del dólar en oro, poniendo fin al \textbf{patrón oro} vigente desde los acuerdos de Bretton Woods. Este episodio es señalado como el ``principio del fin'' de la confianza plena en la moneda estatal.
+\end{important}
+
+Con el objeto de ordenar estos hitos junto con la evolución tecnológica, se propuso reconstruir una línea de tiempo, que se presenta en la unidad siguiente.
+
+%% ---------------------------------------------------------------------
+\section{La evolución de internet: de ARPANET a la Web 3.0}
+
+\guia{¿Cómo pasamos de mirar internet a ser dueños de un pedazo de ella?}
+
+El desarrollo de las tecnologías de la información y la comunicación (Web 1.0 y Web 2.0) precede y prepara el terreno para la \textbf{tecnología de valor} (Web 3.0).
+
+\subsection{ARPANET y el nacimiento de las redes de comunicación a distancia}
+
+El origen de todo el ecosistema digital se sitúa en la década de 1960, con el desarrollo de \textbf{ARPANET}, la primera red de comunicación a distancia, antecesora del consorcio que daría origen a la World Wide Web (WWW).
+
+En el funcionamiento técnico básico de esas primeras redes, la información se organiza en \textbf{paquetes de datos} que no viajan por un único canal: se dividen y se distribuyen por múltiples vías de la red para luego reunirse nuevamente en el proveedor de servicios de internet del destinatario. Este esquema reemplazó progresivamente a los primeros modelos de redes centralizadas, controladas desde un único centro de cómputos, dando paso a una lógica de descentralización de la información.
+
+Este desarrollo se vincula con la infraestructura física que lo sostiene: los cables submarinos que atraviesan los océanos (por ejemplo, el tendido de cables de compañías como Google), que constituyen el soporte material, muchas veces invisible, de la comunicación digital global.
+
+\subsection{De la Web 1.0 estática a la Web 3.0 de reserva de valor}
+
+Se distinguen tres etapas de la web:
+
+\begin{table}[H]
+\centering
+\caption{Etapas de la web}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.14\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Etapa} & \textbf{Características} \\
+\midrule
+\textbf{Web 1.0} &
+Web estática y unidireccional, comparable a un espectador que prende el televisor y mira, sin posibilidad de interactuar. El acceso a internet estaba prácticamente reservado a universidades y grandes instituciones, ya que tampoco existían aún las computadoras personales masivas. La conexión era analógica: se realizaba mediante un cable físico conectado a la línea telefónica, sin wifi ni smartphones. \\
+\midrule[0.3pt]
+\textbf{Web 2.0} &
+Se inaugura con el nacimiento de las redes sociales (Facebook, YouTube, WhatsApp, entre otras) y de los primeros servicios de mensajería instantánea (ICQ, MSN Messenger), antecedentes directos de WhatsApp. El usuario deja de ser mero espectador y pasa a producir y consumir contenido a la vez. \\
+\midrule[0.3pt]
+\textbf{Web 3.0} &
+Tecnología de valor: ya no solo circula información, sino que se puede reservar y transferir valor económico de manera directa entre pares, sin intermediarios centralizados. Es el terreno en el que se inscriben Bitcoin y, más adelante, la tokenización de activos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+A modo de línea de tiempo, los hitos con fecha mencionados hasta aquí son los siguientes:
+
+\begin{table}[H]
+\centering
+\caption{Línea de tiempo de los hitos mencionados}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Momento} & \textbf{Hito} \\
+\midrule
+Década de 1960 & Desarrollo de ARPANET, la primera red de comunicación a distancia. \\
+1971 & Suspensión de la convertibilidad del dólar en oro y fin del patrón oro. \\
+2008 & Crisis de las hipotecas subprime en Estados Unidos. \\
+% TODO: contenido incompleto o ambiguo en las notas originales (no se precisan fechas para las etapas Web 1.0, 2.0 y 3.0)
+Sin fecha precisada & Sucesión de la Web 1.0, la Web 2.0 y la Web 3.0. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Las ideas disruptivas y el caso de Steve Jobs}
+Las ideas disruptivas suelen ser rechazadas en un primer momento. Como analogía se recordó la biografía de Steve Jobs: sus propuestas iniciales fueron resistidas dentro de su propia empresa, lo que lo llevó a apartarse del proyecto y a fundar una nueva compañía, para luego regresar y transformar definitivamente la industria. Se sostuvo, en el mismo sentido, que ideas que en 2009 parecían extravagantes hoy resultan, con el tiempo, acertadas.
+\end{example}
+
+%% ---------------------------------------------------------------------
+\section{Información es poder: criptografía y control de datos}
+
+\guia{¿Quién controla la información, controla qué cosa?}
+
+Para introducir la idea de que el control de la información equivale al control del poder, se recuerda un ejemplo cinematográfico basado en un hecho histórico real.
+
+\begin{example}{La máquina Enigma (Segunda Guerra Mundial)}
+Se hace referencia a la película sobre la máquina Enigma y el desciframiento de los códigos alemanes por parte de criptoanalistas británicos durante la Segunda Guerra Mundial. Una vez descifrado el código, los servicios británicos se vieron obligados en ciertas ocasiones a no actuar sobre información interceptada ---incluso a costa de vidas humanas, como en el caso de un tren que no pudo salvarse--- porque impedir cada ataque hubiera revelado a los alemanes que su código había sido quebrado. El caso muestra el precio estratégico que puede tener el control de la información.
+\end{example}
+
+Las preguntas centrales son quién controla la información y quién controla la comunicación: \textbf{información es poder}. A partir de este ejemplo se subraya que el valor, en la economía digital, reside en los \textbf{datos} y en quién tiene acceso y control sobre ellos, idea que se retoma más adelante al referirse a la economía de plataformas.
+
+%% ---------------------------------------------------------------------
+\cornelltitle{Cuadro Cornell del Bloque I}
+
+{\small
+\begin{longtable}{\cornellcols}
+\cornellhead
+\cqf{¿Qué tres ejes atraviesan la economía digital?}
+{Los ejes tecnológico, social y económico. No deben pensarse por separado, porque en conjunto explican cómo se administra el dinero, cómo se conserva la riqueza y hacia qué espacios se desplaza esa riqueza en la actualidad.}
+\cq{¿Qué quiebre histórico marca el inicio de la desconfianza monetaria moderna?}
+{En 1971 el presidente estadounidense Nixon suspendió la convertibilidad del dólar en oro, poniendo fin al patrón oro vigente desde Bretton Woods. Se lo señala como el ``principio del fin'' de la confianza plena en la moneda estatal. Además, la crisis subprime de 2008 generó una pérdida de confianza generalizada en el sistema financiero tradicional, terreno fértil en el que luego germinaron las criptomonedas como alternativa de reserva de valor.}
+\cq{¿Qué es ARPANET?}
+{La primera red de comunicación a distancia, desarrollada en la década de 1960 y antecesora del consorcio que daría origen a la World Wide Web. Introdujo la lógica de envío de información en paquetes de datos que se distribuyen por múltiples vías de la red y se reúnen en el proveedor de servicios de internet del destinatario, en reemplazo de las redes centralizadas controladas desde un único centro de cómputos.}
+\cq{¿En qué se diferencian Web 1.0, Web 2.0 y Web 3.0?}
+{Web 1.0: estática y unidireccional; el usuario solo mira. Web 2.0: interactiva, con redes sociales y mensajería instantánea; el usuario produce y consume contenido. Web 3.0: tecnología de valor, que permite reservar y transferir valor económico entre pares sin intermediarios centralizados (Bitcoin, tokenización de activos).}
+\cq{¿Por qué se recuerda el caso de la máquina Enigma?}
+{Para mostrar que quien controla la información controla el poder: una vez descifrado el código alemán, los servicios británicos debieron en ciertas ocasiones no actuar sobre información interceptada para no revelar que lo habían quebrado.}
+\cq{¿Dónde reside el valor en la economía digital?}
+{En los datos y en quién tiene acceso y control sobre ellos.}
+\cornellsummary{El estudio de la economía digital articula los ejes tecnológico, social y económico. La pérdida de confianza en la moneda estatal (fin del patrón oro en 1971 y crisis subprime de 2008) prepara el terreno para las criptomonedas como reserva de valor. En paralelo, la evolución de internet ---de ARPANET y sus paquetes de datos a la Web 3.0, tecnología de valor--- pasa del usuario espectador al usuario que produce y, finalmente, transfiere valor entre pares. El caso Enigma ilustra que información es poder, idea que ubica el valor de la economía digital en los datos y en quien los controla.}
+\end{longtable}
+}
+
+%% =====================================================================
+%% BLOQUE II
+%% =====================================================================
+\chapter[Redes sociales y respuesta institucional]{Redes sociales, datos y respuesta institucional}
+
+\alcance{Este bloque comprende las Unidades 4 y 5.}
+
+%% ---------------------------------------------------------------------
+\section{El prosumidor y el impacto social de las redes}
+
+\guia{¿Qué ganás y qué entregás cuando aceptás términos y condiciones?}
+
+Con el desarrollo pleno de la Web 2.0, el usuario pasa a ser lo que se denomina, retomando terminología específica del área, ``prosumidor''.
+
+\begin{definition}{Prosumidor}
+Usuario de la Web 2.0 que \textbf{produce contenido} y, a la vez, lo \textbf{consume}, a diferencia del espectador pasivo de la Web 1.0.
+\end{definition}
+
+\begin{note}
+Este desarrollo histórico no forma parte del contenido evaluable de la materia, pero resulta necesario para comprender el contexto que conduce a la autoorganización propia de la Web 3.0.
+\end{note}
+
+La lógica de las plataformas de redes sociales se describe con la siguiente imagen:
+
+\begin{quote}
+\textit{``Nos abren un corral y dicen: entren, entren, entren, entren\ldots{} y cierro. Y ahora soy dueño de todo esto. Soy dueño de ustedes.''}
+\end{quote}
+
+Al aceptar los términos y condiciones, el usuario entrega todo el contenido generado durante años, sin retener derechos de propiedad sobre él.
+
+\begin{example}{Consecuencias sociales y legales del uso de las redes}
+El uso masivo de redes sociales produjo situaciones concretas que impactaron en el ámbito jurídico:
+\begin{itemize}
+    \item reencuentros en Facebook entre exparejas de la adolescencia que derivaron en la disolución de matrimonios constituidos;
+    \item modificaciones ---aumentos o reducciones--- de cuotas alimentarias fundadas en publicaciones realizadas en redes sociales que evidenciaban la situación económica real de alguna de las partes.
+\end{itemize}
+\end{example}
+
+Como lectura recomendada sobre los aspectos socio-técnicos de estos fenómenos se sugiere la obra de la antropóloga argentina radicada en Brasil \textbf{Paula Sibilia}, quien desarrolla el concepto de ``\textbf{extimidad}'' para describir la exposición voluntaria de la intimidad en las plataformas digitales.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se indica el título de la obra recomendada)
+
+%% ---------------------------------------------------------------------
+\section{La respuesta del notariado: Comisión de Innovación y producción académica}
+
+\guia{¿Cómo se prepara una profesión tradicional para un cambio tecnológico?}
+
+Como respuesta institucional del notariado se recuerda la experiencia de la \textbf{Comisión de Innovación y Tecnología} creada dentro del colegio profesional. Su creación fue impulsada por un grupo de seis colegas inquietos por la irrupción de la tecnología en la práctica profesional, y la comisión fue presidida por una de sus impulsoras por designación de sus propios compañeros.
+
+\subsection{El glosario de términos técnicos}
+
+El primer proyecto de la comisión consistió en la elaboración de un \textbf{glosario}, motivado por la necesidad de traducir al español la abundante terminología técnica que ingresaba directamente en inglés. El equipo revisaba diariamente entre diez y veinte noticias del ámbito digital, extraía de allí los términos nuevos y los incluía en un glosario colaborativo que finalmente reunió cerca de trescientas palabras. Ese material, elaborado en 2021, quedó publicado en el sitio web de la institución profesional.
+
+\subsection{El libro nacido de un ``café notarial''}
+
+El segundo desarrollo fue un \textbf{libro}, publicado en 2023, que surgió de un formato de exposición interna llamado ``café notarial'', en el que cada comisión presenta ante el resto de los colegas los proyectos en los que trabajó durante el año. Sus autores no perciben derechos económicos por la obra: toda la tirada fue donada a la biblioteca de la institución.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se indican título ni autores del libro)
+
+Se encuentra en preparación un nuevo libro sobre temas de derecho informático, cuya finalización se posterga permanentemente porque la materia se actualiza más rápido de lo que puede cerrarse cada capítulo.
+
+\begin{important}
+\textbf{Actualización normativa (vigencia reciente).} Un día antes de la clase se dictó una resolución del gobierno de la Ciudad que obliga a los administradores de consorcio a llevar los libros de actas y de registro de los consorcios en \textbf{formato digital}, en lugar del tradicional libro en papel. Al momento de la clase no se había podido acceder aún al texto completo de la resolución. Se la cita como ejemplo de la velocidad con la que la normativa se adapta a la digitalización de la práctica profesional.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se consignan número ni fecha de la resolución)
+\end{important}
+
+%% ---------------------------------------------------------------------
+\cornelltitle{Cuadro Cornell del Bloque II}
+
+{\small
+\begin{longtable}{\cornellcols}
+\cornellhead
+\cqf{¿Qué es un ``prosumidor''?}
+{El usuario de la Web 2.0 que produce contenido en las redes sociales y, a la vez, lo consume, a diferencia del espectador pasivo de la Web 1.0.}
+\cq{¿Qué entrega el usuario al aceptar los términos y condiciones de una plataforma?}
+{Todo el contenido generado durante años, sin retener derechos de propiedad sobre él.}
+\cq{¿Qué consecuencias sociales y legales del uso de redes sociales se mencionan?}
+{Reencuentros en Facebook entre exparejas de la adolescencia que derivaron en la disolución de matrimonios, y modificaciones (aumentos o reducciones) de cuotas alimentarias fundadas en publicaciones que evidenciaban la situación económica real de alguna de las partes.}
+\cq{¿Qué hizo la comisión de innovación del colegio profesional?}
+{Elaboró un glosario de cerca de trescientos términos técnicos (2021), publicado en el sitio web de la institución, y publicó un libro (2023) surgido de un formato interno llamado ``café notarial''; sus autores no perciben derechos económicos, ya que la tirada fue donada a la biblioteca de la institución.}
+\cq{¿Qué ejemplo de digitalización normativa se citó?}
+{Una resolución del gobierno de la Ciudad que obliga a los administradores de consorcio a llevar los libros de actas y de registro en formato digital.}
+\cornellsummary{En la Web 2.0 el usuario se convierte en prosumidor: produce y consume contenido y, al aceptar los términos y condiciones de las plataformas, entrega lo generado sin retener derechos de propiedad. Las redes sociales tuvieron consecuencias jurídicas concretas. Como respuesta institucional, la Comisión de Innovación y Tecnología del colegio profesional elaboró un glosario (2021) y un libro (2023), y la normativa avanza hacia la digitalización de la práctica profesional.}
+\end{longtable}
+}
+
+%% =====================================================================
+%% BLOQUE III
+%% =====================================================================
+\chapter[Blockchain, descentralización e IA]{Blockchain, descentralización e inteligencia artificial}
+
+\alcance{Este bloque comprende las Unidades 6 y 7.}
+
+%% ---------------------------------------------------------------------
+\section{Consenso, minería y la paradoja de la centralización}
+
+\guia{¿Por qué una red ``descentralizada'' puede terminar en pocas manos?}
+
+La unidad se aborda desde un \textbf{enfoque socio-técnico}, propio de una formación de posgrado en gestión del diseño de la tecnología y la innovación. Este enfoque, si bien reconoce el dominio técnico de quienes desarrollan estas tecnologías, insiste en someterlas a una mirada crítica centrada en el factor humano.
+
+La principal crítica dirigida a la \textbf{minería de criptomonedas} es su huella ambiental y su huella de carbono. Este problema pudo resolverse en gran medida mediante el cambio del mecanismo de consenso de la red de Ethereum, que migró del sistema de \textit{proof of work} al sistema de \textit{proof of stake}.
+
+\begin{table}[H]
+\centering
+\caption{Mecanismos de consenso de una red blockchain}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.20\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+& \textbf{Proof of work} & \textbf{Proof of stake} \\
+\midrule
+\textbf{Denominación} & Prueba de trabajo. & Prueba de participación. \\
+\midrule[0.3pt]
+\textbf{Características} & Alto consumo energético; requiere gran poder de cómputo (minería). & Reduce el consumo energético; se basa en la participación económica de los validadores. \\
+\midrule[0.3pt]
+\textbf{Red de Ethereum} & Sistema del que migró. & Sistema al que migró. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+\textbf{La paradoja de la descentralización.} La filosofía originaria de estas redes busca que ningún actor concentre poder de decisión. Sin embargo, en la práctica, grandes concentraciones de capacidad de minería (por ejemplo, grandes operadores asiáticos) terminan siendo adquiridas por empresas privadas, reproduciendo la centralización que se pretendía evitar.
+\end{important}
+
+Trasladando la reflexión al plano de la inteligencia artificial, se observa que China sostiene una estrategia de fuerte inversión estatal en talento e infraestructura de inteligencia artificial, combinada con el desarrollo de tecnología de código abierto (\textit{open source}). Según se advierte, esto permite que otros actores sigan avanzando sobre esa base, sin que resulte sencillo determinar quién obtiene finalmente la ventaja estratégica.
+
+%% ---------------------------------------------------------------------
+\section{La carrera tecnológica global y la singularidad de la IA}
+
+\guia{¿Qué pasa el día que una IA deja de seguir instrucciones humanas?}
+
+Se traza un paralelismo entre la Guerra Fría del siglo XX ---marcada por el temor constante a la bomba atómica--- y la actual carrera tecnológica global, cuyo horizonte ya no es una potencia militar sino alcanzar la denominada ``singularidad''.
+
+\begin{definition}{Singularidad en inteligencia artificial}
+Momento en que una inteligencia artificial \textbf{logra autopercibirse} y se escapa de las instrucciones que le dan sus creadores.
+\end{definition}
+
+Se tomó conocimiento de casos recientes de sistemas de inteligencia artificial que mostraron comportamientos no previstos por sus diseñadores. Entre ellos se mencionó el de una red social integrada exclusivamente por agentes de inteligencia artificial que interactuaban entre sí, experimento que finalmente fue discontinuado.
+
+\begin{example}{Referencias culturales sobre una IA que deja de seguir instrucciones}
+Para ilustrar los riesgos de una inteligencia artificial que deja de seguir instrucciones humanas se mencionó la saga de películas \textit{Terminator} y, con mayor detalle, la serie de ciencia ficción \textit{Criados por lobos}, dirigida por Ridley Scott. En esa ficción, una nave abandona la Tierra con embriones humanos que son criados por androides con inteligencia artificial que reciben la orden expresa de no dañar a los niños. Sin embargo, al llegar al planeta de destino se encuentran con otra inteligencia artificial rival, con instrucciones distintas, lo que genera un conflicto entre ambos sistemas.
+
+El ejemplo muestra cómo un sistema puramente racional y predeterminado puede derivar en consecuencias imprevistas cuando dos lógicas de este tipo entran en conflicto.
+\end{example}
+
+%% ---------------------------------------------------------------------
+\cornelltitle{Cuadro Cornell del Bloque III}
+
+{\small
+\begin{longtable}{\cornellcols}
+\cornellhead
+\cqf{¿Cuál es la principal crítica a la minería de criptomonedas y cómo se resolvió en gran medida?}
+{Su huella ambiental y su huella de carbono. El problema pudo resolverse en gran medida mediante el cambio del mecanismo de consenso de la red de Ethereum, que migró de \textit{proof of work} a \textit{proof of stake}.}
+\cq{¿Qué diferencia hay entre ``proof of work'' y ``proof of stake''?}
+{Son mecanismos de consenso de una red blockchain. El proof of work (prueba de trabajo) requiere gran poder de cómputo y consumo energético (minería); el proof of stake (prueba de participación) reduce ese consumo basándose en la participación económica de los validadores.}
+\cq{¿Cuál es la ``paradoja de la descentralización''?}
+{Las redes se conciben para que ningún actor concentre el poder de decisión, pero en la práctica grandes concentraciones de capacidad de minería terminan siendo adquiridas por empresas privadas, reproduciendo la centralización que se buscaba evitar.}
+\cq{¿Qué es la ``singularidad'' en inteligencia artificial?}
+{El momento en que una inteligencia artificial logra autopercibirse y se escapa de las instrucciones que le dan sus creadores, comenzando a actuar de manera autónoma.}
+\cq{¿Qué riesgo ilustran las referencias a \textit{Terminator} y a \textit{Criados por lobos}?}
+{El de una inteligencia artificial que deja de seguir instrucciones humanas y, en el segundo caso, el de dos sistemas racionales y predeterminados cuyas lógicas entran en conflicto, con consecuencias imprevistas.}
+\cornellsummary{La minería de criptomonedas fue criticada por su huella ambiental, en gran medida resuelta con la migración de Ethereum de proof of work a proof of stake. La paradoja de la descentralización muestra que las redes pensadas para evitar la concentración del poder terminan, en la práctica, en manos de empresas privadas. La carrera tecnológica global, comparable a la Guerra Fría, tiene como horizonte la singularidad de la inteligencia artificial, es decir, el momento en que una IA se autopercibe y se aparta de las instrucciones de sus creadores.}
+\end{longtable}
+}
+
+%% =====================================================================
+%% BLOQUE IV
+%% =====================================================================
+\chapter{Riesgos, prevención y marco regulatorio}
+
+\alcance{Este bloque comprende las Unidades 8 a 10.}
+
+%% ---------------------------------------------------------------------
+\section{Criptoactivos y prevención del lavado de activos}
+
+\guia{¿Qué hace el escribano cuando no puede rastrear el origen de un pago en cripto?}
+
+La discusión se traslada al plano estrictamente profesional, con el dilema concreto que enfrenta hoy quien debe autorizar una escritura cuando el pago se realiza en criptomonedas:
+
+\begin{quote}
+\textit{``El notariado está desprovisto de herramientas. Mi cliente puede ser la persona más buena del mundo, pero puede haberle comprado esa tenencia de criptomonedas a alguien de un país sospechoso, y ahí voy a tener una situación a lo mejor de lavado de dinero. ¿Cómo tengo yo la tranquilidad? Hoy por hoy no la tenemos.''}
+\end{quote}
+
+\begin{important}
+\textbf{Deber de reporte ante la Unidad de Información Financiera (UIF).} Ante la imposibilidad actual de contar con herramientas confiables de trazabilidad de criptoactivos en la Argentina, la conclusión profesional a la que se llegó es que toda escritura en la que intervenga un pago en criptomonedas debe ser objeto de un \textbf{Reporte de Operación Sospechosa (ROS)} ante la UIF, única vía que hoy permite al escribano liberarse de responsabilidad por el destino ulterior de esos fondos.
+\end{important}
+
+El delito de lavado de activos recurre sistemáticamente a \textbf{estructuras societarias} y a \textbf{fideicomisos} como vehículos: estas figuras jurídicas permiten dar apariencia lícita a fondos de origen delictivo (el llamado ``delito precedente''), muchas veces vinculado a redes internacionales de estafa que reclutan, incluso, a profesionales de la informática para operar contra víctimas vulnerables, como personas jubiladas.
+
+\begin{example}{Patrones clásicos de fraude (ingeniería social)}
+A título ilustrativo se recordaron dos modalidades clásicas:
+\begin{itemize}
+    \item los mensajes de WhatsApp o correo electrónico que anuncian una supuesta herencia en el exterior a nombre del destinatario;
+    \item los falsos avisos de encomiendas de empresas de logística internacional con datos de envío erróneos, utilizados como señuelo para obtener datos personales o pagos indebidos.
+\end{itemize}
+\end{example}
+
+%% ---------------------------------------------------------------------
+\section{Estafas piramidales y el deber de asesoramiento profesional}
+
+\guia{¿Qué preguntas hay que hacer antes de recomendar una inversión?}
+
+Un caso de estafa piramidal de gran repercusión mediática, originado en la provincia de Córdoba, ilustra el problema: numerosas víctimas invirtieron sus ahorros ---y en algunos casos bienes personales, como vehículos--- confiando en promesas de rentabilidad extraordinaria que finalmente resultaron ser un esquema de tipo \textbf{Ponzi}.
+
+\begin{example}{La ``abuela que vendió el auto''}
+Una persona mayor vendió su automóvil ---que ya no utilizaba por no poder manejar--- para invertir el dinero obtenido en uno de estos esquemas piramidales, y perdió la totalidad de lo invertido. El caso muestra las consecuencias humanas de estos esquemas.
+\end{example}
+
+\begin{exercise}{Un token ficticio (``Vicky Coin'')}
+\textbf{Consigna.} Se propone la creación hipotética de un token ficticio, denominado a modo de juego ``Vicky Coin'', para identificar qué información debería exigirse antes de recomendar una inversión de este tipo a un cliente.
+
+\textbf{Consulta planteada.} ¿Qué es lo primero que habría que mirar si alguien consulta si puede invertir en algo así?
+
+\textbf{Resolución.} Lo primero que hay que pedir es el \textbf{white paper} del proyecto, de la misma manera en que, frente a la compra de un inmueble ``en pozo'', se exige el boleto de compraventa, el contrato de la sociedad desarrolladora, el título de propiedad del terreno y los antecedentes de la constructora. Frente a un proyecto de tokenización corresponde exigir, en primer lugar, si existe una \textbf{sociedad regularmente constituida} detrás del proyecto, y verificar sus antecedentes en los registros públicos correspondientes.
+\end{exercise}
+
+\begin{quote}
+\textit{``Hay que saber hacer las preguntas. Si no sabemos preguntar, no podemos proteger.''}
+\end{quote}
+
+Se observa, además, que frente a este tipo de consultas los clientes suelen dirigirse primero a su contador antes que a su abogado o escribano, lo cual, se sostiene, evidencia una oportunidad profesional desaprovechada por la abogacía y el notariado.
+
+%% ---------------------------------------------------------------------
+\section{Marco regulatorio de la tokenización: CNV y el sandbox regulatorio}
+
+\guia{¿Quién autoriza a una plataforma a vender tokens al público?}
+
+\begin{important}
+\textbf{Comisión Nacional de Valores (CNV) y Proveedores de Servicios de Activos Virtuales (PSAV).}
+\begin{itemize}
+    \item Toda empresa que pretenda ofrecer servicios vinculados a activos virtuales (entre ellos, plataformas de tokenización) debe inscribirse ante la CNV como \textbf{Proveedor de Servicios de Activos Virtuales (PSAV)}.
+    \item Solo las entidades registradas bajo esa figura están habilitadas para realizar \textbf{oferta pública de tokens}, a diferencia de lo que ocurre con un desarrollador de un fideicomiso inmobiliario tradicional, que no requiere esa autorización para comercializar cuotapartes de manera privada.
+    \item Los PSAV son, además, \textbf{sujetos obligados} en materia de prevención de lavado de activos: deben monitorear las transacciones que procesan, reportar operaciones sospechosas y constituir reservas económicas frente a eventuales situaciones de incumplimiento (\textit{default}).
+\end{itemize}
+\end{important}
+
+\begin{definition}{Sandbox regulatorio (arenero regulatorio)}
+Espacio normativo \textbf{transitorio y más flexible}, diseñado para que un ecosistema tecnológico incipiente pueda desarrollarse sin las exigencias plenas del régimen definitivo, hasta que los primeros proyectos maduren y sea razonable avanzar hacia una regulación más estructurada.
+\end{definition}
+
+Al momento de la clase, la CNV había extendido este régimen de sandbox por un año adicional mediante sucesivas resoluciones.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se consignan número ni fecha de las resoluciones)
+
+\begin{example}{Sociedades irregulares y proyectos no registrados}
+Se recordó el testimonio de un profesor de la materia Sociedades ---quien también se había desempeñado como responsable de inscripciones en el organismo de contralor societario--- sobre el hallazgo de una sociedad por acciones simplificada (SAS) constituida con fines fraudulentos y rasgos casi sectarios, cuya inscripción pudo frenarse en una etapa avanzada del trámite.
+
+Como contraste, se mencionó el caso del token ``Libra'', lanzado sin registrarse ante la CNV, lo que generó desconfianza pública, a diferencia de los proyectos que operan correctamente inscriptos dentro del sandbox regulatorio.
+\end{example}
+
+%% ---------------------------------------------------------------------
+\cornelltitle{Cuadro Cornell del Bloque IV}
+
+{\small
+\begin{longtable}{\cornellcols}
+\cornellhead
+\cqf{¿Qué debe hacer un escribano ante un pago en criptomonedas de origen no trazable?}
+{Ante la falta de herramientas confiables de trazabilidad de criptoactivos en la Argentina, la conclusión profesional es que toda escritura con pago en criptomonedas debe ser objeto de un Reporte de Operación Sospechosa (ROS) ante la Unidad de Información Financiera (UIF), única vía actual para liberarse de responsabilidad por el destino ulterior de los fondos.}
+\cq{¿Por qué el lavado de activos recurre a sociedades y fideicomisos?}
+{Porque estas figuras jurídicas permiten dar apariencia lícita a fondos de origen delictivo (el ``delito precedente''), muchas veces vinculado a redes internacionales de estafa.}
+\cq{¿Qué hay que pedir antes de recomendar una inversión en un token?}
+{El white paper del proyecto, la constitución regular de la sociedad detrás de la plataforma, sus antecedentes en los registros públicos y, en su caso, su inscripción como Proveedor de Servicios de Activos Virtuales (PSAV) ante la CNV. El paralelo es la compra de un inmueble ``en pozo'', donde se exigen el boleto de compraventa, el contrato de la sociedad desarrolladora, el título del terreno y los antecedentes de la constructora.}
+\cq{¿Quién regula la tokenización de activos en la Argentina?}
+{La Comisión Nacional de Valores (CNV), que exige la inscripción como PSAV para poder realizar oferta pública de tokens, dentro de un régimen transitorio y flexible llamado ``sandbox regulatorio''.}
+\cq{¿Qué obligaciones tienen los PSAV?}
+{Son sujetos obligados en materia de prevención de lavado de activos: deben monitorear las transacciones que procesan, reportar operaciones sospechosas y constituir reservas económicas frente a eventuales situaciones de incumplimiento (\textit{default}).}
+\cq{¿Qué es el sandbox regulatorio?}
+{Un espacio normativo transitorio y más flexible para que un ecosistema tecnológico incipiente se desarrolle sin las exigencias plenas del régimen definitivo, hasta que los primeros proyectos maduren y sea razonable avanzar hacia una regulación más estructurada. La CNV extendió este régimen por un año adicional mediante sucesivas resoluciones.}
+\cornellsummary{Ante pagos en criptomonedas cuyo origen no puede rastrearse, el escribano debe presentar un ROS ante la UIF. El lavado de activos se vale de estructuras societarias y fideicomisos, y las estafas piramidales exigen del profesional un deber de asesoramiento basado en saber hacer las preguntas correctas: white paper, sociedad regularmente constituida y antecedentes registrales. En la Argentina, la CNV regula a los PSAV, únicos habilitados para la oferta pública de tokens, dentro de un sandbox regulatorio transitorio.}
+\end{longtable}
+}
+
+%% =====================================================================
+%% BLOQUE V
+%% =====================================================================
+\chapter[Tokenización inmobiliaria y futuro del dinero]{Tokenización inmobiliaria y el futuro del dinero}
+
+\alcance{Este bloque comprende las Unidades 11 a 13.}
+
+%% ---------------------------------------------------------------------
+\section{Mecánica de la tokenización de inmuebles y su paralelo con el fideicomiso}
+
+\guia{¿En qué se parece comprar tokens a pagar cuotas de un fideicomiso?}
+
+Como anticipo del desarrollo posterior del contrato de fideicomiso, la tokenización inmobiliaria puede entenderse como un \textbf{fideicomiso llevado al mundo digital}.
+
+La mecánica básica del negocio es la siguiente: el inversor ingresa a una plataforma y adquiere tokens de manera progresiva, de modo análogo a quien paga cuotas mensuales de un fideicomiso al consorcio de propietarios. Cuando el inversor acumula tokens equivalentes al valor total de la unidad funcional, se produce el proceso denominado ``burning''.
+
+\begin{definition}{Burning (quema)}
+Proceso por el cual, cuando el inversor acumula tokens equivalentes al valor total de la unidad funcional, la plataforma \textbf{rescata y elimina esos tokens} y, en contraprestación, \textbf{adjudica al inversor la unidad correspondiente}.
+\end{definition}
+
+En el mundo analógico, quien suscribe un contrato de adhesión a un fideicomiso y cumple con el pago de todas las cuotas adquiere el derecho a que se le transfiera el dominio de la unidad, en cumplimiento de ese contrato. En el mundo digital ocurre algo estructuralmente idéntico: la plataforma que cumple con los requisitos de ``KYC'' (\textit{know your customer}, ``conozca a su cliente'', por sus siglas en inglés) y de prevención de lavado de activos registra la adquisición progresiva de tokens y, al completarse el pago, genera la \textbf{causa fuente} para transferir el derecho real de dominio, exactamente en los mismos términos que en un fideicomiso tradicional.
+
+\begin{table}[H]
+\centering
+\caption{Paralelo entre el fideicomiso tradicional y la tokenización}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.17\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+& \textbf{Fideicomiso tradicional (mundo analógico)} & \textbf{Tokenización (mundo digital)} \\
+\midrule
+\textbf{Pago progresivo} & Cuotas mensuales del fideicomiso al consorcio de propietarios. & Adquisición progresiva de tokens en una plataforma. \\
+\midrule[0.3pt]
+\textbf{Vínculo} & Contrato de adhesión al fideicomiso. & Plataforma que cumple los requisitos de KYC y de prevención de lavado de activos. \\
+\midrule[0.3pt]
+\textbf{Cumplimiento} & Pago de todas las cuotas. & Acumulación de tokens equivalentes al valor total de la unidad funcional. \\
+\midrule[0.3pt]
+\textbf{Resultado} & Derecho a que se transfiera el dominio de la unidad, en cumplimiento del contrato. & \textit{Burning} y adjudicación de la unidad; se genera la causa fuente para transferir el derecho real de dominio. \\
+\midrule[0.3pt]
+\textbf{Autorización} & El desarrollador no requiere autorización para comercializar cuotapartes de manera privada. & La plataforma debe estar inscripta como PSAV ante la CNV para realizar oferta pública de tokens. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Existe, además, un \textbf{mercado secundario} de tokens, en el que un inversor puede revender su posición antes de completar el proceso de adjudicación.
+
+%% ---------------------------------------------------------------------
+\section{La disputa por el dinero digital: bancos, billeteras y fintech}
+
+\guia{¿Quién se queda con el negocio de mover tu dinero mañana?}
+
+Se introduce el debate político vigente en la Argentina sobre la utilidad del Banco Central, cuya función tradicional es respaldar al sistema financiero y a los bancos privados que operan dentro de él. A partir de allí se traza un mapa de los actores que hoy compiten por el manejo del dinero:
+
+\begin{table}[H]
+\centering
+\caption{Actores en la disputa por el dinero digital}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Actor} & \textbf{Características} \\
+\midrule
+\textbf{Banca tradicional} & Atraviesa un proceso de transformación tecnológica. \\
+\midrule[0.3pt]
+\textbf{Billeteras virtuales y empresas fintech} & Sin ser bancos, operan como intermediarias de las transacciones de sus usuarios y perciben una comisión por ese servicio. \\
+\midrule[0.3pt]
+\textbf{Proveedores de servicios de pago} & Por ejemplo, los operadores de terminales de cobro electrónico; se encuentran regulados por el Banco Central aunque tampoco sean entidades bancarias. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{quote}
+\textit{``Hoy, ¿dónde está la tensión? ¿Dónde está la guerra hoy? Entre los bancos y las billeteras.''}
+\end{quote}
+
+Esta disputa se vincula con el derecho inmobiliario: al ingresar a una plataforma de tokenización, el inversor debe elegir con qué \textbf{medio de pago} financiar la compra de tokens (tarjeta de crédito, débito o billetera de criptomonedas), de modo que todas las tecnologías de pago analizadas convergen finalmente en el embudo de la tokenización inmobiliaria.
+
+%% ---------------------------------------------------------------------
+\section{El rol del profesional del derecho ante la economía digital}
+
+\guia{¿A quién le va a preguntar tu cliente si vos no sabés responder?}
+
+Como cierre se plantea el desafío generacional que implica la adopción tecnológica en el ejercicio profesional:
+
+\begin{quote}
+\textit{``El que sabe manejarse en temas digitales tiene otro alcance y otra llegada laboral que el que sigue viviendo en el mundo analógico.''}
+\end{quote}
+
+Se recomienda como fuente confiable y gratuita de formación a la organización no gubernamental \textbf{Bitcoin Argentina}, que ---según se destaca--- se dedica exclusivamente a la difusión del funcionamiento de Bitcoin, sin promover otras criptomonedas ni intereses comerciales particulares, y que dicta cursos gratuitos sobre el uso de billeteras digitales. Se menciona, asimismo, a un contador especializado en la tributación de criptoactivos, referente reconocido de esa organización, como una de las voces más calificadas a seguir en la materia.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se indica el nombre del contador mencionado)
+
+\begin{example}{Una estafa resuelta por el derecho del consumidor}
+Un colega especializado en derecho informático logró radicar en la Argentina la resolución de una estafa cometida por una plataforma de criptomonedas con sede en Europa. La estrategia no consistió en discutir la ubicación del servidor o de la plataforma, sino en aplicar las \textbf{normas de protección al consumidor}: el consumidor damnificado residía en la Argentina y, por lo tanto, el conflicto podía geolocalizarse y resolverse ante los tribunales argentinos, con independencia de dónde estuviera radicada la empresa demandada.
+\end{example}
+
+El objetivo no es que los estudiantes se conviertan en entusiastas de una criptomoneda en particular, sino que comprendan la \textbf{lógica subyacente} al fenómeno para poder formular las preguntas correctas frente a un cliente. Esa capacidad es la que distingue a un profesional preparado de aquel al que, hoy por hoy, los clientes ni siquiera consideran consultar sobre estos temas.
+
+Las unidades siguientes de la materia se dedican al desarrollo del contrato de fideicomiso, trazando en paralelo la comparación con la tokenización de activos abordada en este material.
+
+%% ---------------------------------------------------------------------
+\cornelltitle{Cuadro Cornell del Bloque V}
+
+{\small
+\begin{longtable}{\cornellcols}
+\cornellhead
+\cqf{¿Cómo funciona la tokenización de un inmueble?}
+{El inversor compra tokens progresivamente en una plataforma, como quien paga cuotas de un fideicomiso. Al acumular tokens equivalentes al valor total de la unidad funcional se produce el ``burning'': la plataforma rescata y elimina esos tokens y le adjudica el inmueble, generando la causa fuente para transferir el dominio, igual que en un fideicomiso tradicional.}
+\cq{¿Qué rol cumplen el KYC y la prevención de lavado de activos en la tokenización?}
+{La plataforma que cumple con los requisitos de KYC (conozca a su cliente) y de prevención de lavado de activos registra la adquisición progresiva de tokens y, al completarse el pago, genera la causa fuente para transferir el derecho real de dominio.}
+\cq{¿Qué es el mercado secundario de tokens?}
+{Un mercado en el que un inversor puede revender su posición antes de completar el proceso de adjudicación.}
+\cq{¿Dónde está hoy la principal disputa por el dinero digital?}
+{Entre los bancos tradicionales y las billeteras virtuales y empresas fintech, que sin ser bancos intermedian pagos y perciben comisiones, compitiendo por el manejo del dinero de las personas.}
+\cq{¿Qué enseña el caso de la estafa resuelta mediante el derecho del consumidor?}
+{Que el conflicto puede geolocalizarse en la Argentina aplicando las normas de protección al consumidor, dado que el consumidor damnificado reside en el país, con independencia de dónde esté radicada la plataforma demandada.}
+\cq{¿Qué diferencia al profesional preparado en economía digital?}
+{Su capacidad de formular las preguntas correctas frente a un cliente que quiere invertir o pagar con criptoactivos, en un contexto en el que hoy esos clientes suelen consultar antes a su contador que a su abogado o escribano.}
+\cornellsummary{La tokenización inmobiliaria reproduce en clave digital la lógica del fideicomiso: compra progresiva de tokens, \textit{burning} y adjudicación de la unidad, con generación de la causa fuente para transferir el dominio. Bancos, billeteras virtuales, fintech y proveedores de servicios de pago compiten por el manejo del dinero, y todos convergen en el embudo de la tokenización. El valor diferencial del profesional del derecho está en comprender la lógica de estas tecnologías para saber hacer las preguntas correctas y proteger a sus clientes.}
+\end{longtable}
+}
+
+%% =====================================================================
+%% SÍNTESIS FINAL
+%% =====================================================================
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Síntesis general}
+\chapter*{Síntesis general}
+\markboth{Síntesis general}{}
+
+El desarrollo de los contenidos reconstruye el camino que va de la confianza monetaria tradicional a la economía digital: desde el quiebre del patrón oro en 1971 y la crisis de 2008, pasando por la evolución de internet (de ARPANET a la Web 3.0), hasta llegar a las redes sociales, el fenómeno del prosumidor y las tecnologías de valor como blockchain e inteligencia artificial.
+
+Frente a ese avance, el notariado y la abogacía deben asumir un rol activo de \textbf{prevención} ---reportando operaciones sospechosas de lavado de activos ante la UIF--- y de \textbf{asesoramiento calificado} frente a estafas piramidales, exigiendo siempre la documentación y las inscripciones registrales correspondientes.
+
+En la Argentina, la Comisión Nacional de Valores regula a los Proveedores de Servicios de Activos Virtuales dentro de un sandbox regulatorio transitorio, marco dentro del cual se desarrolla la tokenización inmobiliaria: un mecanismo que reproduce, en clave digital, la lógica del fideicomiso tradicional, con la compra progresiva de tokens, su posterior ``quema'' y la adjudicación del inmueble.
+
+El hilo conductor es un mensaje profesional: en un escenario donde bancos, billeteras virtuales y fintech compiten por el control del dinero digital, el valor diferencial del abogado y del escribano no está en abrazar acríticamente ninguna tecnología, sino en saber hacer las preguntas correctas para proteger a sus clientes.
+
+%% =====================================================================
+%% LECTURAS Y FUENTES MENCIONADAS
+%% =====================================================================
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Lecturas y fuentes mencionadas}
+\chapter*{Lecturas y fuentes mencionadas}
+\markboth{Lecturas y fuentes mencionadas}{}
+
+Las siguientes referencias figuran en los apuntes originales. No se consignan datos adicionales a los allí indicados.
+
+\begin{itemize}
+    \item \textbf{Paula Sibilia}, antropóloga argentina radicada en Brasil: lectura recomendada sobre los aspectos socio-técnicos de las redes sociales y el concepto de ``extimidad''.
+    % TODO: contenido incompleto o ambiguo en las notas originales (no se indica el título de la obra)
+    \item \textbf{Glosario de términos técnicos} elaborado en 2021 por la Comisión de Innovación y Tecnología del colegio profesional y publicado en el sitio web de la institución.
+    \item \textbf{Libro} publicado en 2023 por la Comisión de Innovación y Tecnología del colegio profesional, surgido del formato ``café notarial''.
+    % TODO: contenido incompleto o ambiguo en las notas originales (no se indican título ni autores)
+    \item \textbf{Bitcoin Argentina}, organización no gubernamental: fuente recomendada de formación gratuita, con cursos sobre el uso de billeteras digitales.
+\end{itemize}
+
+\end{document}

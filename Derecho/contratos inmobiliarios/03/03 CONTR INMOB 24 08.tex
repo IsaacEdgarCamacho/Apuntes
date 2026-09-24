@@ -1,0 +1,911 @@
+%==============================================================================
+% APUNTES DE ESTUDIO --- DERECHOS REALES: EL DOMINIO
+% Documento LaTeX autónomo (sin plantillas ni archivos .sty/.cls externos)
+% Compilar con: pdflatex (dos pasadas para índice y referencias cruzadas)
+%==============================================================================
+\documentclass[12pt,oneside]{book}
+
+%------------------------------------------------------------------------------
+% METADATOS
+%------------------------------------------------------------------------------
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Programa de Abogacía --- Ciclo de Formación Notarial y Profesional}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{El dominio y su proyección en la práctica notarial y societaria}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+\newcommand{\reflexion}{Cada concepto bien comprendido es un paso firme hacia el criterio profesional.}
+
+%------------------------------------------------------------------------------
+% PAQUETES
+%------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%------------------------------------------------------------------------------
+% CONFIGURACIÓN
+%------------------------------------------------------------------------------
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+\addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\captionsetup{font=small,labelfont=bf}
+
+%------------------------------------------------------------------------------
+% ENCABEZADOS Y PIES
+%------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%------------------------------------------------------------------------------
+% COMANDOS
+%------------------------------------------------------------------------------
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Anchos de las columnas del cuadro Cornell (columna izquierda estrecha)
+\newlength{\cornellL}
+\newlength{\cornellR}
+\AtBeginDocument{%
+    \setlength{\cornellL}{0.26\dimexpr\textwidth-2\tabcolsep\relax}%
+    \setlength{\cornellR}{0.74\dimexpr\textwidth-2\tabcolsep\relax}%
+}
+
+% Filas del cuadro Cornell: pregunta en negrita / respuesta
+\newcommand{\cornellrow}[2]{\textbf{#1} & #2 \\[0.3em] \midrule[0.3pt]}
+\newcommand{\cornelllastrow}[2]{\textbf{#1} & #2 \\[0.3em]}
+
+%------------------------------------------------------------------------------
+% ENTORNOS / CAJAS ACADÉMICAS
+%------------------------------------------------------------------------------
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%==============================================================================
+\begin{document}
+%==============================================================================
+
+%------------------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{\reflexion}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derechos Reales'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%------------------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------------------
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+%------------------------------------------------------------------------------
+% PRESENTACIÓN DE LOS CONTENIDOS
+%------------------------------------------------------------------------------
+\chapter*{Presentación de los contenidos}
+\addcontentsline{toc}{chapter}{Presentación de los contenidos}
+\markboth{Presentación de los contenidos}{Presentación de los contenidos}
+
+\section*{Temas tratados}
+\addcontentsline{toc}{section}{Temas tratados}
+
+Este material recorre el derecho real de dominio como punto de partida necesario para comprender procesos más complejos de organización patrimonial, incluida, en última instancia, la tokenización de activos. Se estudian las características del \textbf{dominio perfecto} y sus excepciones (usucapión, expropiación, destrucción total, abandono, ejecución forzosa, confiscación y accesión). Luego se cruza ese eje con el \textbf{derecho societario}: el nacimiento de la sociedad a partir del contrato constitutivo, la capacidad y la responsabilidad de la sociedad en formación, la adquisición de inmuebles antes de la inscripción registral, los actos notoriamente extraños al objeto social y las causales de liquidación, cancelación y reconducción societaria.
+
+El recorrido culmina con un estudio detallado del \textbf{dominio revocable} (artículo 1965 del Código Civil y Comercial de la Nación), sus condiciones suspensivas y resolutorias y sus aplicaciones prácticas en la negociación notarial. Se incorpora, además, una reflexión sobre los métodos alternativos de resolución de conflictos y sobre el ejercicio ético y competitivo de la profesión.
+
+\section*{Utilidad para la vida profesional}
+\addcontentsline{toc}{section}{Utilidad para la vida profesional}
+
+El material se orienta por tres ideas sobre la utilidad de estos contenidos para el ejercicio profesional:
+
+\begin{itemize}
+    \item \textbf{Encuadrar antes de resolver.} El hilo conductor es encontrar dónde encuadrar un problema antes de intentar resolverlo. Es la habilidad que distingue a quien ofrece soluciones reales de quien repite fórmulas: un futuro abogado o escribano que sabe identificar si un caso es de dominio, de sociedades o de sucesiones ahorra años de litigio a su cliente.
+    \item \textbf{Herramientas concretas para la práctica diaria.} Instituciones como la sociedad en formación, la compra en gestión de negocios, los actos notoriamente extraños al objeto social o el dominio revocable no son abstracciones académicas: son las herramientas con las que se estructuran operaciones inmobiliarias, familiares y societarias reales, evitando errores que generan pasivos, embargos e inhibiciones evitables.
+    \item \textbf{Un criterio profesional, no solo técnico.} Se invita a pensar en los métodos alternativos de resolución de conflictos y en la ética de los honorarios como parte constitutiva del ejercicio profesional. Saber litigar es necesario, pero también lo es saber cuándo \emph{no} litigar y cobrar por el conocimiento y no por el precio.
+\end{itemize}
+
+\section*{Relación entre los cuatro bloques}
+\addcontentsline{toc}{section}{Relación entre los cuatro bloques}
+
+El contenido se organiza en cuatro bloques (capítulos), que equivalen a las cuatro preguntas que un escribano se hace frente a un mismo mostrador.
+
+\begin{example}{La compra de un departamento a estrenar}
+Primero hay que entender qué es exactamente el dominio que se está adquiriendo y qué tan ``absoluto'' es realmente (\emph{primer bloque}). Si la compra la realiza una empresa constructora que todavía no terminó de inscribirse, hay que saber qué puede firmar válidamente y quién responde si algo sale mal (\emph{segundo bloque}). Si el vendedor original nunca completó los trámites o la empresa que figura como dueña ya no existe, hay que decidir si conviene un juicio largo o una solución más rápida (\emph{tercer bloque}). Y si el comprador solo quiere pagar cuando la constructora empiece realmente la obra, aparece el dominio revocable (\emph{cuarto bloque}).
+\end{example}
+
+%==============================================================================
+% CAPÍTULO 1
+%==============================================================================
+\chapter[El dominio]{Derechos reales: el dominio}
+
+\section{Introducción metodológica y objetivo del curso}
+\label{sec:introduccion}
+
+Los contenidos se adaptan a los intereses del grupo, pero siempre se orientan a un objetivo final común: la \textbf{organización patrimonial} y, en particular, la \textbf{tokenización de activos}. Para llegar a ese objetivo es necesario recorrer temas notariales y de derecho civil, porque sin ellos no se comprenderían la importancia y el porqué de la tokenización.
+
+No se trata de un desvío del programa ni de un retroceso temático, sino de un tránsito necesario: firma digital, blockchain y tokenización forman parte del recorrido, pero antes es preciso tener fijos otros conceptos. Para comprender las ventajas de la tokenización hay que entender en profundidad qué es lo ``no tokenizado''.
+
+Una evaluación diagnóstica previa mostró carencias importantes en derecho societario, por lo que resulta necesario reforzar tanto el derecho societario como los derechos reales antes de avanzar.
+
+Los derechos reales se eligen como eje articulador no porque la organización patrimonial recaiga exclusivamente sobre ellos (puede recaer, por ejemplo, sobre un inmueble o sobre una fábrica en funcionamiento), sino porque el concepto de derecho real permite advertir que instituciones que se conocen como fijas, inamovibles y absolutas admiten en la práctica numerosas variantes y matices. Esas variantes permiten dar respuestas a los clientes sin recurrir siempre a los contratos típicos.
+
+\begin{note}
+A lo largo del cuatrimestre se combinan derecho societario, derecho civil y contratos, pero el eje que atraviesa todo el recorrido es el derecho real, dado el \emph{numerus clausus} de derechos reales establecido por el Código Civil y Comercial (CCyC): todo lo que no sea uno de los derechos reales taxativamente enumerados por la ley será, a lo sumo, un contrato nominado, pero nunca un derecho real.
+\end{note}
+
+\section{El dominio como derecho real absoluto}
+\label{sec:dominio-absoluto}
+
+El dominio es el derecho real más fuerte y absoluto del sistema. A partir de su reconstrucción en clase, puede definirse del siguiente modo:
+
+\begin{definition}{Dominio}
+Poder jurídico de estructura legal que otorga al titular las facultades de \textbf{uso}, \textbf{goce} y \textbf{disposición} sobre la cosa.
+\end{definition}
+
+Una característica estructural clave es que el \textbf{dominio pleno}, entendido como la titularidad del ciento por ciento de esas facultades, no puede recaer sobre más de una persona a la vez. Cuando el derecho se reparte entre varios cotitulares, como ocurre en el \textbf{condominio}, ya no se está frente a un dominio absoluto en cabeza de un único titular sino frente a otra figura.
+
+\subsection{¿Se pierde el dominio si no se usa?}
+
+En principio, no. El dominio, como derecho real \textbf{perpetuo}, subsiste aunque el titular no ejerza activamente sus facultades: si el titular no usa el bien, sigue siendo dueño.
+
+Sin embargo, la perpetuidad del dominio admite excepciones, la primera y más relevante de las cuales es la \textbf{usucapión} (prescripción adquisitiva), que se desarrolla en la sección siguiente.
+
+\begin{note}
+Uso, goce y disposición no son garantía de dominio eterno. La tensión central de esta sección se resume en la expresión ``nada es absoluto, nada es tan perfecto'': el dominio se presenta primero como el derecho real más fuerte del sistema, para luego revelarse como un derecho sometido a numerosas excepciones legales y a modalidades (como el dominio revocable) que lo matizan considerablemente.
+\end{note}
+
+\section{Excepciones a la perpetuidad del dominio}
+\label{sec:excepciones}
+
+La \textbf{usucapión} (prescripción adquisitiva) es la primera gran excepción a la perpetuidad del dominio. Quien no ejerce actos posesorios sobre la cosa puede ver desplazada su posición frente a quien sí los ejerce con ánimo de dueño durante el plazo legal: la usucapión da preferencia a quien estuvo en el uso, el goce y la posesión de la cosa y puede desplazar al titular registral.
+
+Un punto técnico central es que la \textbf{calidad jurídica} en la que se ocupa la cosa es determinante. Un locatario, por más que ocupe el inmueble durante décadas, nunca podrá usucapir, porque su posesión reconoce el derecho ajeno (el del propietario-locador) y le falta el ánimo de dueño exigido por la ley.
+
+\begin{example}{El locatario que nunca puede usucapir}
+Quien celebra veinte contratos de locación durante cuarenta años en forma ininterrumpida nunca logrará la prescripción adquisitiva, porque en cada contrato reconoce que el otro tiene la calidad de dueño.
+\end{example}
+
+Esta distinción, la calidad jurídica en que se posee, es lo que en la práctica profesional permite ``defender al que está poseyendo'' o ``defender al que es dueño del inmueble'', según el caso concreto.
+
+\subsection{Causales de pérdida del dominio perfecto}
+
+A partir de una consigna abierta (identificar las excepciones a la perpetuidad del dominio), se construyó el siguiente listado de causales, cada una con sus matices.
+
+\begin{table}[H]
+\centering
+\caption{Causales de pérdida del dominio perfecto}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Causal} & \textbf{Explicación} \\
+\midrule
+Usucapión (prescripción adquisitiva) & Pérdida por falta de ejercicio de actos posesorios, sumada al ejercicio de la posesión con ánimo de dueño por un tercero durante el plazo legal. \\
+Expropiación & Puede ser \textbf{directa} (el Estado, la Nación, la provincia o el municipio expropian el bien) o \textbf{inversa} (el propio titular solicita que se lo expropie por determinada causa). \\
+Destrucción total de la cosa & Solo la destrucción \emph{total} hace perder el dominio; si es parcial, el dominio subsiste sobre lo que resta. \\
+Abandono (cosas muebles) & Aplica principalmente a cosas muebles; en inmuebles, el abandono por sí solo no produce la pérdida del dominio si nadie más ocupa la cosa y ejerce actos posesorios. \\
+Ejecución forzosa & Derivada, por ejemplo, de una sentencia judicial que ordena el remate del bien para cobrar una deuda. \\
+Confiscación & Asimilable, en inmuebles, a una forma de expropiación; sobre cosas muebles opera de manera más directa. \\
+Accesión & Se da cuando una cosa se une a otra y quedan unidas; no siempre implica pérdida total del dominio, muchas veces deriva en un condominio. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{El abandono de inmuebles y los actos posesorios}
+
+El abandono de inmuebles es un supuesto en el que muchas veces se pierde el \emph{ejercicio} de la posesión (por ejemplo, dejando de pagar impuestos, que es uno de los actos posesorios típicos) sin que ello derive automáticamente en la prescripción adquisitiva a favor de un tercero, si nadie ocupó efectivamente el inmueble. Puede haber abandono sin que nadie tome la cosa: \textbf{no todo dejar de poseer conduce a la prescripción}.
+
+\begin{example}{Terrenos comprados por boleto de compraventa y nunca escriturados}
+Un caso ilustrativo es el de una persona que compraba terrenos (en la provincia de Córdoba, entre otros lugares) mediante una libreta de pagos, sin que la familia llegara a conocer con exactitud dónde estaban ubicados. Esos terrenos no tenían dominio a nombre del comprador porque no habían sido escriturados: el titular de dominio los había vendido por boleto de compraventa pero nunca había hecho la transferencia de dominio.
+
+En estos casos, el vendedor original (muchas veces una sociedad ya disuelta, sin actividad ni liquidador) conserva formalmente la titularidad registral, aunque el uso y goce reales estén en cabeza de otra persona. La posibilidad de usucapir dependerá de que haya existido posesión continuada con ánimo de dueño durante el plazo legal.
+\end{example}
+
+\section{Casos prácticos de pérdida y falta de dominio}
+\label{sec:casos-practicos}
+
+Dos aportes espontáneos de una estudiante (la donación con cargo y el caso de las bóvedas del cementerio de la Recoleta) permitieron remarcar la importancia de encuadrar correctamente cada problema jurídico antes de intentar resolverlo.
+
+\begin{example}{Las bóvedas del cementerio de la Recoleta}
+Caso de conocimiento público: el gobierno de la Ciudad de Buenos Aires intentó reasignar bóvedas del cementerio de la Recoleta, y una heredera se opuso alegando que allí se encontraban sepultados sus familiares. Según lo relatado en clase, el gobierno habría argumentado la falta de pago de la tasa correspondiente durante varios años.
+\end{example}
+
+Una advertencia metodológica central es \textbf{no mezclar categorías jurídicas distintas}. Una donación con cargo, un régimen especial de dominio (como el de los cementerios privados, sujeto a un régimen diferente del dominio público y del dominio privado ordinario) y la usucapión son instituciones distintas, y confundirlas lleva a errores de encuadre que perjudican al cliente.
+
+\begin{important}
+Cuando una persona trae un problema, lo primordial es saber dónde encuadrarlo. Primero se encuadra el problema; recién después se busca la solución. Al tratarse de derechos reales, no corresponde mezclar el análisis con instituciones ajenas (por ejemplo, la donación con cargo).
+\end{important}
+
+También se mencionaron los \textbf{conjuntos inmobiliarios} (countries) como ejemplo de regímenes especiales de dominio, regulados de forma diferente al dominio ordinario y a la propiedad horizontal. Esto refuerza la idea de que ``dominio'' no es una categoría única y homogénea, sino que admite regímenes especiales según el tipo de bien de que se trate.
+
+\subsection{El dominio perfecto e imperfecto}
+
+El dominio puede ser \textbf{perfecto} o \textbf{imperfecto}. Esta clasificación estructura el resto del desarrollo. Dentro del dominio imperfecto, el ejemplo central es el \textbf{dominio revocable}, que se estudia en profundidad en el cuarto bloque (capítulo~\ref{cap:revocable}). El estudio de las causales de pérdida corresponde al dominio perfecto.
+
+\section{Accesión y condominio}
+\label{sec:accesion}
+
+La \textbf{accesión} es la causal de pérdida del dominio menos ``absoluta'' de todas. Consiste en la unión de una cosa con otra, de modo que quedan juntas. No necesariamente toda accesión provoca la pérdida de dominio: la unión de dos cosas no siempre extingue el dominio de una de ellas a favor de la otra, sino que muchas veces genera un \textbf{condominio} entre ambos titulares.
+
+Después de repasar usucapión, expropiación, destrucción total, abandono, ejecución forzosa, confiscación y accesión, queda claro que el dominio, presentado inicialmente como el derecho real ``más duro'' y ``más absoluto'', está atravesado por numerosas excepciones legales: aquel derecho que se decía perpetuo y absoluto lleva, en definitiva, un signo de interrogación.
+
+Con esta conclusión se pasa al segundo eje: el análisis, desde la práctica notarial, de cómo una sociedad, persona jurídica distinta de sus miembros, adquiere y ejerce el dominio sobre los bienes, incluso antes de completar su trámite de inscripción registral.
+
+\section{Cuadro Cornell del capítulo}
+
+\begingroup
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{\cornellL}>{\RaggedRight\arraybackslash}p{\cornellR}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cornellrow{¿Por qué estudiar derechos reales antes de la tokenización?}{Porque comprender las ventajas de tokenizar un activo exige primero entender en profundidad el régimen ``no tokenizado'': qué es el dominio, qué facultades otorga y qué límites tiene. Saltar directamente a la tokenización sin ese fundamento impediría comprender su verdadero valor agregado.}
+
+\cornellrow{¿Qué facultades otorga el dominio pleno?}{Uso, goce y disposición sobre la cosa, de manera perpetua y, en principio, exclusiva: el 100\% del dominio no puede recaer sobre más de una persona a la vez (de lo contrario, se estaría frente a un condominio).}
+
+\cornellrow{¿El no uso de un bien hace perder el dominio?}{No, en principio: el dominio es perpetuo y subsiste aunque no se ejerzan activamente sus facultades. La excepción relevante es la usucapión, que exige además que un tercero posea la cosa con ánimo de dueño durante el plazo legal.}
+
+\cornellrow{¿Qué causales pueden hacer perder el dominio perfecto?}{Usucapión (prescripción adquisitiva), expropiación (directa o inversa), destrucción total de la cosa, abandono (principalmente de cosas muebles), ejecución forzosa, confiscación y accesión (esta última, generalmente, deriva en condominio y no en pérdida total del dominio).}
+
+\cornellrow{¿Por qué un locatario nunca puede usucapir el inmueble que alquila?}{Porque su posesión reconoce el derecho del propietario: le falta el ánimo de dueño exigido por la ley para la prescripción adquisitiva, sin importar cuántos años continuados haya ocupado el inmueble en calidad de locatario.}
+
+\cornellrow{¿Cuál es la primera pregunta que debe hacerse un profesional frente a un problema jurídico?}{En qué categoría jurídica se encuadra el caso. Mezclar categorías distintas (por ejemplo, donación con cargo y usucapión, o el régimen especial de cementerios con el dominio ordinario) conduce a errores de estrategia que perjudican al cliente.}
+
+\cornelllastrow{¿Qué es el dominio perfecto e imperfecto y dónde se ubica el dominio revocable?}{El dominio puede ser perfecto o imperfecto. El dominio revocable es el ejemplo central del dominio imperfecto; las causales de pérdida estudiadas corresponden al dominio perfecto.}
+
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} El dominio es el derecho real más fuerte del sistema (uso, goce y disposición; perpetuo y, en su forma plena, no compartido por más de una persona), pero no es absoluto. Admite excepciones a su perpetuidad: usucapión, expropiación, destrucción total, abandono, ejecución forzosa, confiscación y accesión. La calidad jurídica de la posesión es determinante (el locatario no usucape), y antes de resolver un caso hay que encuadrarlo correctamente.
+} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+%==============================================================================
+% CAPÍTULO 2
+%==============================================================================
+\chapter[Derecho societario y práctica notarial]{Derecho societario y práctica notarial}
+
+\section{Nacimiento de la sociedad y contrato plurilateral de organización}
+\label{sec:nacimiento}
+
+El análisis del dominio se retoma desde otro ángulo: el de \emph{quién} puede ser titular de ese dominio. Para ello es necesario precisar el momento exacto en que nace la sociedad como sujeto de derecho.
+
+La sociedad nace con el \textbf{contrato constitutivo}. El registro es meramente declarativo, y no se adopta la teoría de la institución. El ordenamiento argentino adopta la teoría del \textbf{contrato plurilateral de organización}, de modo que la inscripción registral tiene efecto meramente \emph{declarativo} y no constitutivo. Ese contrato da derecho al nacimiento de una persona jurídica diferente, que queda regularmente constituida con la inscripción en la Inspección General de Justicia (IGJ) en la Ciudad Autónoma de Buenos Aires, en la Dirección Provincial de Personas Jurídicas o en el órgano competente según cada provincia.
+
+\subsection{Competencia provincial de los registros}
+
+La IGJ y sus equivalentes provinciales dependen de cada provincia y no de la Nación, porque se trata de \textbf{derechos de forma}, no de fondo. Todo derecho de forma que no haya sido delegado a la Nación pertenece a las provincias, conforme al reparto de competencias de la Constitución Nacional y del Código.
+
+\begin{note}
+\textbf{Distinción entre norma vigente y opinión del docente.} Los comentarios del docente sobre cómo debería reorganizarse la IGJ en el marco de la autonomía porteña constituyen una posición personal, expresamente presentada como tal, y no una descripción del derecho vigente. El régimen actual, tal como se explicó, es que la IGJ de la Nación conserva competencia sobre las sociedades con sede en la Ciudad Autónoma de Buenos Aires.
+\end{note}
+
+\subsection{La sociedad en formación}
+
+\begin{definition}{Sociedad en formación}
+Estado en el que se encuentra la sociedad en el transcurso que va desde la constitución (firma del contrato constitutivo) hasta la inscripción registral.
+\end{definition}
+
+\section{Capacidad y responsabilidad de la sociedad en formación}
+\label{sec:capacidad}
+
+Este es uno de los puntos técnicos más importantes: la distinción entre \textbf{capacidad} y \textbf{responsabilidad}. Dado que se parte del contrato plurilateral de organización, la sociedad en formación tiene \textbf{plena capacidad jurídica} desde el momento de su constitución: puede realizar todos los actos que la sociedad quiera realizar y tiene plena capacidad para adquirir derechos y contraer obligaciones. Lo único que varía es un problema de \emph{responsabilidad}, y no de capacidad: si esta recaerá sobre la sociedad, sobre la sociedad y quienes realizaron el acto, o directamente sobre quienes realizaron el acto y no sobre la sociedad.
+
+Capacidad y responsabilidad no son lo mismo: la capacidad es el ejercicio de adquisición de derechos y obligaciones y no se relaciona con la responsabilidad.
+
+\begin{table}[H]
+\centering
+\caption{Capacidad y responsabilidad en la sociedad en formación}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.24\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Concepto} & \textbf{Alcance en la sociedad en formación} \\
+\midrule
+Capacidad & Plena desde la firma del contrato constitutivo: la sociedad puede adquirir derechos y contraer obligaciones. \\
+Responsabilidad & Depende del acto realizado: puede recaer sobre la sociedad, sobre quien actuó, o sobre ambos, según se explica en las secciones~\ref{sec:adquisicion} y~\ref{sec:extranos}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Adquisición de inmuebles por sociedades en formación}
+\label{sec:adquisicion}
+
+El problema práctico central se presenta a través de un diálogo hipotético: un cliente anuncia que va a comprar un inmueble pero no quiere ponerlo a su nombre por temor a un embargo.
+
+\subsection{La compra en gestión de negocios y sus riesgos}
+
+Frente a ese planteo, el docente criticó abiertamente una práctica notarial extendida: la llamada \textbf{compra en gestión de negocios}, en la que una persona compra ``para sí y para una sociedad que oportunamente aceptará'' (con dinero de la sociedad en formación). A su criterio, se trata de un error.
+
+\begin{example}{Juancito, Santi y los riesgos de la compra en gestión}
+Dos personas con nombres ficticios (``Juancito'' o ``Santi'') compran un inmueble a título personal, con la promesa de que la sociedad lo aceptará más adelante. Los riesgos que esto genera son los siguientes:
+\begin{itemize}
+    \item Mientras la sociedad no acepte dentro del período fiscal correspondiente, el comprador debe declarar el inmueble en su propio impuesto a las ganancias, porque forma parte de su patrimonio personal.
+    \item Si el comprador fallece antes de que la sociedad acepte, debe iniciarse su sucesión para poder completar la operación.
+    \item Si al comprador le trazan una inhibición general de bienes (por ejemplo, por no pagar una cuota alimentaria), debe levantarse esa inhibición antes de que la sociedad pueda aceptar.
+    \item Si al inmueble le trazan un embargo (por ejemplo, por una deuda del colegio de sus hijos), debe levantarse ese embargo antes de completar la operación.
+\end{itemize}
+A criterio del docente, la compra en gestión de negocios es un error porque trae consecuencias jurídicas que la gente no atiende.
+\end{example}
+
+\subsection{¿Cuándo sí conviene la compra en gestión?}
+
+Existe un supuesto legítimo para utilizar esta figura: cuando uno de los destinatarios de la compra está temporalmente ausente (por ejemplo, en el exterior) pero su regreso e incorporación están asegurados en el corto plazo, evitando así una escritura adicional posterior.
+
+\begin{example}{Compra a favor de dos hijos, con uno ausente}
+Un padre quiere comprar un departamento a favor de sus dos hijos, pero uno de ellos no pudo llegar (está en Mendoza o en España) y se sabe que regresa al mes. Compra entonces el hermano presente, para sí y para su hermano, que oportunamente aceptará.
+\end{example}
+
+\subsection{La solución preferida: encuadrar dentro del objeto social}
+
+Frente al problema de comprar un inmueble a nombre de una sociedad todavía no inscripta, el docente propuso un método de análisis en dos pasos, aplicable a la práctica profesional cotidiana:
+
+\begin{enumerate}
+    \item \textbf{Verificar el objeto social.} Se debe determinar si la compra del inmueble está comprendida dentro del objeto social de la sociedad (por ejemplo, si su objeto es la construcción o la compraventa de inmuebles). En ese caso no hay problema: la sociedad en formación puede comprar directamente mientras se tramita su inscripción.
+    \item \textbf{Autorizar expresamente el acto, si excede el objeto social.} Se debe incluir una autorización expresa en la parte del acta constitutiva donde hablan las partes, incluso cuando se trate de un acto ajeno al giro ordinario (por ejemplo, alquilar un local o contratar personal), de modo que ese acto quede imputado directamente a la sociedad y no a quien lo firmó.
+\end{enumerate}
+
+Una herramienta administrativa práctica es el \textbf{formulario 185}, trámite que permite obtener un número de CUIT para la sociedad en formación (y no solamente cuando la sociedad sale inscripta) mientras se completa la inscripción definitiva.
+
+\subsection{El plazo de duración: desde la constitución o desde la inscripción}
+
+La ley permite optar por computar el plazo de duración de la sociedad desde el momento de la constitución o desde el momento de la inscripción. La preferencia personal del docente es fijarlo \textbf{desde el contrato constitutivo}, por una razón práctica: le permite lograr que todos los actos que realiza la sociedad sean imputados a la sociedad y no a quien los firmó.
+
+\begin{important}
+Si no se previó una autorización expresa en el acta constitutiva y el objeto social no cubre el acto realizado, quien firmó la escritura sin estar autorizado corre el riesgo de que el acto se le impute personalmente, ya que la sociedad aún no está definitivamente inscripta.
+\end{important}
+
+\section{Actos notoriamente extraños al objeto social}
+\label{sec:extranos}
+
+Se plantea un supuesto de conflicto: qué ocurre cuando un director compra un inmueble para una sociedad cuyo objeto social nada tiene que ver con inmuebles (por ejemplo, una sociedad dedicada a la compra o confección de remeras, muy lejos de poder comprar un inmueble).
+
+El procedimiento correcto consiste en esperar a que la sociedad quede regularmente constituida (es decir, inscripta) y, en ese momento, someter la operación a una \textbf{reunión de directorio}, donde la mayoría de los directores debe aprobar o rechazar la compra. Las consecuencias serán diferentes según que la mayoría apruebe o no la compra. Esto muestra la importancia real de las reuniones de directorio, muchas veces subestimadas por los propios profesionales: no son un mero trámite formal.
+
+\subsection{Régimen de responsabilidad según la aprobación del directorio y de la asamblea}
+
+El circuito de responsabilidad para actos notoriamente extraños al objeto social se desarrolla paso a paso. A modo de recurso didáctico, se lo comparó con la canción infantil ``un, dos, tres, indiecitos'', para remarcar cómo la responsabilidad se va sumando entre los distintos órganos societarios.
+
+\begin{table}[H]
+\centering
+\caption{Responsabilidad por actos extraños al objeto social}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.34\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Supuesto} & \textbf{Quiénes resultan responsables} \\
+\midrule
+Acto dentro del objeto social & No hay responsabilidad especial: el acto es propio del giro ordinario de la sociedad y la compromete normalmente. \\
+Acto extraño al objeto, aprobado por directorio y por asamblea & Responden la sociedad, los directores que aprobaron el acto y quien lo realizó. \\
+Acto extraño al objeto, no aprobado por la asamblea & Responden únicamente los directores que aprobaron el acto y quien lo realizó (no la sociedad). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+\textbf{Cambio anunciado en un proyecto de reforma.} A título informativo, y aclarando expresamente que se trata de un proyecto de ley todavía no vigente, se comentó que en el eventual proyecto de reforma societaria la figura del acto ``notoriamente extraño'' al objeto social quedaría desdibujada, porque el objeto social pasaría a definirse de otra manera. Mientras el proyecto no sea aprobado, sigue rigiendo el régimen vigente explicado en esta sección.
+\end{note}
+
+\subsection{Actas volantes y libros societarios durante la etapa de formación}
+
+Se aborda también el problema práctico de documentar decisiones societarias cuando todavía no existen libros rubricados, por tratarse de una sociedad en formación con objeto no inmobiliario. La solución consiste en labrar un \textbf{acta de asamblea} (denominada coloquialmente ``acta volante'') con la unanimidad de los socios o con las mayorías exigidas por la ley, dejando constancia expresa de que, al no existir aún libros rubricados por tratarse de una sociedad en formación, el acto se transcribirá en el libro correspondiente una vez que este sea rubricado.
+
+\begin{important}
+Para tener validez, un acta volante debe reunir los mismos requisitos que un acta ordinaria posterior a la inscripción: unanimidad o las mayorías exigidas por la ley. Si se exige la participación de todos o de una mayoría determinada y solo concurre una parte de los socios (por ejemplo, dos de ocho), el acto no puede realizarse.
+\end{important}
+
+El mismo criterio se aplica a la reunión de socios de una \textbf{sociedad de responsabilidad limitada (SRL)}, que, contrariamente a una creencia extendida entre los estudiantes, también está obligada a llevar libros rubricados.
+
+\section{Plazo, liquidación, cancelación y reconducción societaria}
+\label{sec:reconduccion}
+
+Para determinar cuándo termina efectivamente de existir una sociedad, se utilizó una analogía con la vida y la muerte de las personas: ¿cuándo se muere, cuándo se está en coma y cuándo se deja de existir?
+
+La \textbf{liquidación} equivale, en esta analogía, al ``estado de coma'': la sociedad todavía existe jurídicamente, pero solo para concluir las operaciones pendientes. La \textbf{cancelación}, en cambio, es la muerte definitiva. Entre ambos momentos la sociedad puede seguir viva durante un período prolongado: la liquidación puede durar décadas y la sociedad sigue viva. Si la sociedad sigue viva, existe un recurso: la reconducción.
+
+\begin{definition}{Reconducción societaria}
+Posibilidad de ``revivir'' una sociedad en liquidación que todavía no fue cancelada, siempre que se cuente con la unanimidad exigida por la ley.
+\end{definition}
+
+Por ejemplo, si una liquidación comenzó hace tiempo y la sociedad todavía no tiene cancelación, los herederos de quienes eran en su momento los accionistas pueden decidir levantar la sociedad reconduciéndola. Se necesita unanimidad y los requisitos que pide la ley, pero puede hacerse precisamente porque la sociedad todavía no está cancelada.
+
+\begin{example}{La marca de los sombreros y la reconducción societaria}
+Una sociedad fabricante de sombreros dejó de ser rentable porque el producto perdió demanda en el mercado. Aunque el negocio original ya no tiene sentido, la sociedad conserva un activo valioso: su nombre y su marca registrada. Alguien se acerca y plantea que ya no hay gente que use sombreros, pero que quiere usar esa misma marca para quien quiera fabricar, por ejemplo, cabezas de plástico. El titular no quiere transferir la marca, porque era de su familia.
+
+En lugar de liquidar definitivamente la sociedad y perder el valor de la marca familiar, opta por reconducirla y celebrar un convenio de explotación conjunta con un tercero interesado en el nuevo uso de la marca, manteniendo así viva a la sociedad y aprovechando el activo intangible que ya tenía.
+\end{example}
+
+Esta sección se conecta de vuelta con el eje de los derechos reales: una sociedad en liquidación (pero no cancelada) puede seguir siendo titular de dominio sobre inmuebles que integran su patrimonio, lo cual condiciona directamente las opciones disponibles para quien pretenda regularizar la titularidad de esos bienes, como se desarrolla en la sección~\ref{sec:prescripcion}.
+
+\section{Cuadro Cornell del capítulo}
+
+\begingroup
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{\cornellL}>{\RaggedRight\arraybackslash}p{\cornellR}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cornellrow{¿Cuándo nace una sociedad en el derecho argentino?}{Con la firma del contrato constitutivo (teoría del contrato plurilateral de organización), y no con su inscripción registral, que tiene efecto meramente declarativo. Entre la constitución y la inscripción, la sociedad es una ``sociedad en formación''.}
+
+\cornellrow{¿Qué puede hacer una sociedad en formación?}{Tiene plena capacidad para adquirir derechos y contraer obligaciones desde su constitución. Lo que varía según el acto realizado es la responsabilidad: puede recaer sobre la sociedad, sobre quien actuó, o sobre ambos.}
+
+\cornellrow{¿Qué riesgos tiene comprar un inmueble ``para una sociedad que oportunamente aceptará''?}{El comprador debe declarar el bien en su patrimonio personal (impuesto a las ganancias) mientras la sociedad no acepte; si fallece, debe tramitarse su sucesión; si le trazan una inhibición o un embargo, deben levantarse antes de que la sociedad pueda aceptar. Por ello, conviene evaluar si el acto está comprendido en el objeto social o autorizarlo expresamente en el acta constitutiva.}
+
+\cornellrow{¿Cómo se evita que el acto se impute a quien firmó la escritura?}{Verificando si la compra está comprendida en el objeto social; si lo excede, incluyendo una autorización expresa en el acta constitutiva para que el acto se impute directamente a la sociedad. Fijar el plazo de duración desde el contrato constitutivo permite, a criterio del docente, que los actos se imputen a la sociedad y no a quien los firmó.}
+
+\cornellrow{¿Quién responde por un acto notoriamente extraño al objeto social?}{Depende de las aprobaciones: si el directorio y la asamblea aprueban el acto, responden la sociedad, los directores que lo aprobaron y quien lo realizó; si la asamblea no lo aprueba, responden únicamente los directores que aprobaron el acto y quien lo ejecutó (no la sociedad).}
+
+\cornellrow{¿Qué requisitos tiene un acta volante?}{Debe reunir los mismos requisitos que un acta posterior a la inscripción (unanimidad o mayorías exigidas por la ley) y dejar constancia de que se transcribirá en el libro una vez rubricado. La SRL también lleva libros rubricados.}
+
+\cornelllastrow{¿Cuándo termina realmente una sociedad?}{Con la cancelación, no con la liquidación. Durante la liquidación ---que puede durar décadas--- la sociedad sigue existiendo y conserva su patrimonio; mientras no esté cancelada, puede ser reconducida por decisión unánime de sus miembros.}
+
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} La sociedad nace con el contrato constitutivo y la inscripción es solo declarativa. La sociedad en formación tiene plena capacidad; lo que varía es la responsabilidad. Para adquirir inmuebles antes de la inscripción conviene encuadrar el acto dentro del objeto social o autorizarlo expresamente en el acta constitutiva, evitando la compra en gestión de negocios. Los actos notoriamente extraños al objeto social generan responsabilidad diferenciada según la aprobación del directorio y de la asamblea. La sociedad termina con la cancelación y, mientras no se cancele, puede reconducirse.
+} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+%==============================================================================
+% CAPÍTULO 3
+%==============================================================================
+\chapter[Extinción del dominio y ejercicio profesional]{Extinción del dominio y ejercicio profesional}
+
+\section{Extinción del dominio por prescripción y sus alternativas}
+\label{sec:prescripcion}
+
+Si el titular registral de un inmueble es una sociedad en liquidación pero todavía no cancelada, el inmueble sigue integrando su patrimonio. Frente a esta situación hay dos caminos posibles: pedir la \textbf{liquidación judicial}, si la sociedad no tiene liquidador, o evaluar la vía de la \textbf{usucapión}.
+
+Como primer paso frente a un cliente que llega con una situación de posesión sin título perfecto, se recomienda indagar si existe una vía administrativa o societaria más rápida antes de embarcarse directamente en un juicio de usucapión (que es más largo) o en una acción de reivindicación (que es más difícil).
+
+\begin{important}
+Antes de iniciar un juicio de usucapión conviene verificar si la sociedad titular todavía está vigente o si existe alguien, como un liquidador, que pueda firmar la escritura. Si esa vía existe, es mucho más fácil que enviar al cliente a usucapir. No se debe mandar directamente a la gente a iniciar un juicio de usucapión si hay otras posibilidades.
+\end{important}
+
+\begin{example}{Un juicio de usucapión que duró más de treinta años}
+Caso real de la práctica profesional del docente, que ilustra los costos económicos, emocionales y de tiempo de un juicio de usucapión mal evaluado desde el inicio. Se trataba de una prescripción adquisitiva sobre un inmueble bajo el régimen de propiedad horizontal (PH), iniciada en 1983 y concluida recién en el año en que se dictó la clase. El inmueble fue escriturado al terminar el juicio y de inmediato vendido en 50.000 dólares.
+
+La demora se debió, en gran parte, a decisiones procesales del juzgado: en lugar de avanzar de manera más expeditiva ante la falta de comparecencia de los demandados (que estaban en rebeldía), el juez tramitó individualmente cada uno de los expedientes sucesorios de los ocho hermanos titulares originales del inmueble, varios de los cuales fallecieron durante el proceso, generando a su vez nuevas sucesiones de sus propios herederos (ocho hijos, otros siete hijos). A ello se sumaron los costos de intereses, escrituras, juicio y abogados, con dos abogados fallecidos durante el proceso.
+\end{example}
+
+Este caso sirve para introducir una postura personal sobre la resolución de conflictos, que se desarrolla en la sección siguiente: conviene evaluar alternativas antes de judicializar los temas.
+
+\section{Métodos alternativos de resolución de conflictos}
+\label{sec:mediacion}
+
+El docente expresó abiertamente su preferencia profesional por los métodos alternativos de resolución de conflictos, en particular la \textbf{mediación}, frente a la vía judicial tradicional. A su criterio, el método alternativo es el ideal, por dos razones: la \textbf{inmediatez} y los \textbf{resultados}.
+
+Sostiene que en mediación se logra mucho más que en un juicio de quince años, que termina afectando la salud y la psiquis de las personas y que, en lo económico, ofrece muy pocas chances de ganar. Como mediador en ejercicio, explicó su propio criterio de selectividad: toma pocas mediaciones, las necesarias para dar cumplimiento a la actividad en la que sigue activo, priorizando la calidad del proceso por sobre la cantidad de casos. Aunque una mediación no siempre alcance lo ideal, resulta más ideal que lo que determina un juez.
+
+Se reconoció también, con matices, que existen jueces que incorporan la lógica de la mediación dentro del propio proceso judicial, promoviendo acuerdos en instancias como las audiencias preliminares, en las que al celebrar el acuerdo preliminar y el acta tratan de generar mediaciones.
+
+\begin{example}{La empresa familiar resuelta por una jueza con mirada de mediación}
+Una colega abogada relató al docente que una jueza del fuero comercial había resuelto favorablemente un conflicto societario complejo dentro de una empresa familiar, aplicando en su rol judicial la misma lógica de mediación que el docente promueve. Al indagar quién era la jueza, se descubrió que tenía un perfil profesional también vinculado a la empresa familiar, lo que, según se comentó en clase, explicaría su enfoque conciliador.
+\end{example}
+
+\section{Ética profesional y política de honorarios}
+\label{sec:honorarios}
+
+La reflexión sobre la resolución de conflictos se conecta con una reflexión más amplia sobre el ejercicio de la profesión: en un mercado donde muchos colegas compiten bajando sus honorarios, el verdadero valor diferencial de un profesional está en el \textbf{conocimiento aplicado}, no en el precio.
+
+Habrá millones de abogados; el plus de cada profesional está en saber resolverle el problema al cliente y no a través de lo típico, porque a través de lo típico todos saben hacerlo. Una donación o una compraventa, todo el mundo las hace y allí habrá que discutir honorarios; en cambio, una respuesta que no todos dan hace al profesional competitivo no por el precio sino por el conocimiento.
+
+\subsection{El honorario mínimo como piso ético, no negociable}
+
+Sobre el honorario mínimo, el criterio sostenido es que no se baja: el honorario mínimo es el que establece la ley y el que establecen los colegios profesionales, y es inamovible.
+
+\begin{example}{El reclamo por un honorario excesivo y el llamado de atención entre colegas}
+Un cliente del docente, derivado a un escribano para una operación inmobiliaria, recibió una factura muy superior al honorario mínimo arancelario, lo que generó un fuerte malestar. Frente a esa situación, el docente optó por comunicarse directamente con el colega para hacerle notar la situación, advirtiéndole que podía denunciarlo, en lugar de iniciar una denuncia formal ante el colegio profesional.
+
+El docente explicó por qué, a su criterio, esta práctica informal es preferible a la denuncia formal: cobrar por debajo del honorario mínimo, además de ser una práctica desleal hacia otros profesionales, expone al colega a perder su matrícula, y el verdadero cambio de conducta se logra cuando el profesional ``se hace respetar'' frente al mercado y no únicamente por la vía sancionatoria. Si un profesional pide 800 (mil pesos), aparecerá otro que, para ganarse al cliente, ofrecerá 799, y así los honorarios bajan progresivamente. Aunque tal vez el colega no se respete, quien sí se respetó se dejó respetar.
+\end{example}
+
+Finalmente, se contrastó el poder de negociación de comprador y vendedor frente a un profesional inmobiliario: salvo excepciones puntuales (como el IVA en operaciones de gran envergadura), habitualmente es la parte vendedora la que tiene mayor margen de negociación de honorarios, mientras que el comprador prácticamente no negocia el arancel del intermediario. La explicación es que el producto del profesional es su conocimiento: todo el mundo sabe hacer un dominio, pero complejizarlo no todos saben hacerlo, y esa es la diferencia que se puede ofrecer.
+
+\begin{important}
+El objetivo del curso no es simplemente repasar instituciones conocidas ---el dominio, una sociedad anónima--- sino aprender a combinarlas de manera creativa para diferenciarse profesionalmente. Según se explicó, estamos en un momento especial para las profesiones, en el que mucho se mide por precio, y el precio ya no alcanza para sostener una carrera.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begingroup
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{\cornellL}>{\RaggedRight\arraybackslash}p{\cornellR}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cornellrow{¿Cuándo conviene evaluar una alternativa antes de iniciar un juicio de usucapión?}{Siempre que sea posible verificar primero si existe una sociedad titular todavía vigente, o un liquidador que pueda otorgar la escritura correspondiente: esa vía suele ser considerablemente más rápida y económica que un juicio de usucapión, que puede extenderse durante décadas.}
+
+\cornellrow{¿Qué caminos hay si el titular registral es una sociedad en liquidación no cancelada?}{Como no está cancelada, todavía tiene su patrimonio: se puede pedir la liquidación judicial, si no tiene liquidador, o evaluar la usucapión.}
+
+\cornellrow{¿Por qué el docente prefiere la mediación frente al litigio judicial?}{Por la inmediatez y por los resultados: sostiene que en mediación se logran acuerdos más favorables que en juicios prolongados, que además desgastan la salud física y psíquica de las partes y ofrecen pocas garantías de éxito económico.}
+
+\cornellrow{¿Cómo se construye el valor diferencial de un profesional del derecho?}{A través del conocimiento aplicado a la resolución de problemas concretos, y no mediante la baja de honorarios. Sostener el honorario mínimo arancelario es, según el docente, una cuestión de ética profesional y de sostenibilidad de la profesión en su conjunto.}
+
+\cornelllastrow{¿Qué es el honorario mínimo y por qué se considera inamovible?}{Es el que establece la ley y el que establecen los colegios profesionales. Cobrar por debajo es una práctica desleal hacia otros profesionales y expone al colega a perder su matrícula; si uno baja, otro ofrecerá menos y los honorarios bajan progresivamente.}
+
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} Antes de iniciar un juicio de usucapión conviene verificar si existe una sociedad vigente o un liquidador que pueda firmar la escritura, porque los juicios pueden durar décadas y ser muy costosos. El docente prefiere los métodos alternativos, en particular la mediación, por su inmediatez y sus resultados. El valor diferencial del profesional está en el conocimiento aplicado y no en el precio, y el honorario mínimo es un piso ético no negociable.
+} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+%==============================================================================
+% CAPÍTULO 4
+%==============================================================================
+\chapter[El dominio revocable]{El dominio revocable en profundidad}
+\label{cap:revocable}
+
+\section{Marco normativo del dominio revocable}
+\label{sec:marco-revocable}
+
+Se retoma la clasificación anticipada en la sección~\ref{sec:casos-practicos} (dominio perfecto e imperfecto) para desarrollar la principal manifestación del dominio imperfecto: el \textbf{dominio revocable}. Interesa que se comiencen a ver las modalidades que puede tener el dominio y cómo puede llegar a usarse ese dominio imperfecto.
+
+La estructura básica del instituto es la siguiente: el dominio revocable es un dominio sometido a una condición, que puede ser suspensiva o resolutoria; puede tratarse de un tiempo fijo que transcurre o de un hecho puntual que ocurre.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% En la exposición se mencionaron condiciones "suspensiva o resolutoria", mientras que el
+% texto del artículo 1965 transcripto en las notas se refiere a "condición o plazo resolutorios".
+% Se conservan ambas formulaciones tal como constan en el apunte.
+
+\begin{definition}{Dominio revocable (art. 1965 CCyC)}
+Dominio sometido a condición o plazo resolutorios, a cuyo cumplimiento el dueño debe restituir la cosa a quien se la transmitió.
+\end{definition}
+
+\subsection{Artículo 1965 del Código Civil y Comercial de la Nación}
+
+El artículo 1965 regula específicamente esta figura y conviene tenerlo presente por su relevancia práctica en la actividad notarial. Su texto es el siguiente:
+
+\begin{formula}{Artículo 1965 CCyC --- Dominio revocable}
+\textit{Dominio revocable es el sometido a condición o plazo resolutorios, a cuyo cumplimiento el dueño debe restituir la cosa a quien se la transmitió. La condición o el plazo deben ser impuestos por disposición voluntaria expresa o por la ley. Las condiciones resolutorias impuestas al dominio se deben tener por no escritas si el efecto es sujetar la revocación a la sola voluntad del transmitente, salvo pacto en contrario. Las condiciones resolutorias impuestas al dominio se deben tener limitadas al término de diez años, aunque no pueda realizarse el hecho previsto dentro de aquel plazo, o este sea mayor o incierto. Si los diez años transcurren sin haberse producido la resolución, el dominio debe quedar definitivamente establecido. El plazo se computa desde la fecha del título constitutivo del dominio imperfecto.}
+
+\smallskip
+{\small Código Civil y Comercial de la Nación, Ley 26.994, Libro Cuarto --- Derechos Reales, Título III --- Dominio, Capítulo 5 (Dominio revocable).}
+\end{formula}
+
+El contenido normativo esencial transmitido es: condición o plazo resolutorios, límite de diez años y consolidación definitiva del dominio transcurrido ese plazo.
+
+\section{Plazos ciertos e inciertos en cláusulas resolutorias}
+\label{sec:plazos}
+
+A partir de supuestos concretos de aplicación del dominio revocable propuestos por los estudiantes, se desarrolla una de las advertencias técnicas más importantes: la diferencia entre un \textbf{plazo cierto} y una \textbf{condición incierta}.
+
+\begin{example}{Dar la casa ``cuando se reciba de abogado''}
+Un estudiante propone dar una casa a alguien ``cuando se reciba de abogado''. La condición es posible, pero se plantea el interrogante de cómo tomar ese plazo: resulta \emph{incierto}.
+
+El problema concreto surge al combinar una condición formulada en términos inciertos con el límite legal de diez años del artículo 1965 CCyC: si la persona se recibe de abogado este año, el año próximo o dentro de veinticinco años, a los diez años el dominio queda consolidado. Si se recibió en el año 10 y un día, se perdió la posibilidad de dar la casa en el tiempo que se quería.
+\end{example}
+
+\begin{formula}{Redacción de cláusulas resolutorias}
+Conviene siempre redactar cláusulas resolutorias con \textbf{plazos ciertos} y evitar condiciones basadas en hechos futuros de ocurrencia incierta.
+\end{formula}
+
+Por ejemplo, fórmulas como ``para cuando mi hija se case'' o ``para cuando mi hijo tenga un hijo'' son riesgosas, porque no se sabe si el hecho ocurrirá alguna vez. En cambio, ``para cuando mi hijo tenga la mayoría de edad'' constituye un plazo cierto, porque en algún momento va a llegar a la mayoría de edad; y ``para cuando mi hija cumpla 15 años'' también, porque ya se sabe cuándo los va a cumplir.
+
+\begin{table}[H]
+\centering
+\caption{Plazo cierto y condición incierta en las cláusulas resolutorias}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.17\textwidth}
+    >{\raggedright\arraybackslash}p{0.31\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo de cláusula} & \textbf{Ejemplo} & \textbf{Riesgo jurídico} \\
+\midrule
+Plazo cierto & ``Cuando mi hijo cumpla la mayoría de edad'' / ``cuando mi hija cumpla 15 años'' & Bajo: el hecho ocurrirá necesariamente y en una fecha determinable de antemano. \\
+Condición incierta & ``Cuando se reciba de abogado'' / ``cuando se case'' / ``cuando tenga un hijo'' & Alto: el hecho puede no ocurrir nunca y, aun si ocurre, puede hacerlo después de vencido el plazo máximo legal de 10 años. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+Aun dentro de un plazo cierto, conviene fijar \textbf{hitos intermedios verificables} (por ejemplo, presentación de planos, aprobación de observaciones), de modo de reducir el margen de discusión sobre si la condición efectivamente se cumplió o no. Se deben poner causales ciertas, que puedan verificarse y no den lugar a interpretación: si se pone simplemente ``iniciar la obra'', pueden objetar que la obra no se inició porque no aprobaron el plano.
+\end{important}
+
+\section{Aplicaciones prácticas del dominio revocable}
+\label{sec:aplicaciones}
+
+Se desarrollan dos aplicaciones concretas del dominio revocable en la práctica profesional: el derecho de reversión en las donaciones y la garantía del cumplimiento de obligaciones sin necesidad de ejecutar una hipoteca.
+
+\subsection{El derecho de acrecer y el derecho de reversión en las donaciones}
+
+Se advierte sobre un error frecuente en la aplicación del derecho de acrecer entre cónyuges: muchas veces se hace mal. Cuando alguien es titular único de un inmueble, el cónyuge no acrece; solo acrece el titular de ese derecho real y, después, el cónyuge del titular de ese derecho.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% La formulación oral sobre el derecho de acrecer entre cónyuges es breve y no desarrolla el supuesto completo.
+
+\begin{example}{Derecho de reversión en una donación a dos hijos}
+Un señor dona a favor de sus dos hijos y, lamentablemente, uno de ellos fallece previamente. Entonces se da el derecho de reversión: le vuelve ese inmueble al donante.
+
+Una precisión que muchas veces se pasa por alto es que el derecho de reversión, al derivar de un dominio revocable, también está sujeto al límite temporal de diez años que establece el artículo 1965 CCyC. Transcurrido ese plazo, la condición pierde eficacia, aunque el hecho al que estaba sujeta finalmente ocurra. Mucha gente piensa que el derecho de reversión es \emph{sine die}, pero además está el plazo legal: transcurridos los diez años, el derecho de reversión ya no sirve.
+\end{example}
+
+\begin{note}
+\textbf{Derecho de acrecer y derecho de reversión: no son lo mismo.} Dentro del marco de las donaciones a varios beneficiarios, el \textbf{derecho de acrecer} opera cuando uno de los donatarios no puede o no quiere recibir su parte, permitiendo que los restantes ``acrezcan'' su porción. El \textbf{derecho de reversión}, en cambio, opera cuando fallece uno de los donatarios antes de vencido el plazo legal, y hace que el bien vuelva al donante originario. Ambos derechos deben pactarse expresamente, y ambos están sujetos al límite de diez años del dominio revocable cuando corresponda.
+\end{note}
+
+\subsection{Garantizar el cumplimiento de una obligación sin ejecutar una hipoteca}
+
+La aplicación práctica considerada más interesante consiste en usar el dominio revocable como garantía de que el comprador de un inmueble inicie efectivamente una obra determinada dentro de un plazo pactado, sin necesidad de constituir y eventualmente ejecutar una hipoteca. La pregunta que motiva el mecanismo es qué ocurre si se transmite el dominio de un inmueble a un tercero para la construcción de un edificio y este no comienza la obra.
+
+\begin{example}{Venta a una desarrolladora sujeta a condición resolutoria}
+En la compraventa de un inmueble a una desarrolladora se pacta que, si dentro de un plazo determinado (por ejemplo, tres años) no se inicia la obra proyectada, el dominio se revoca automáticamente y vuelve al vendedor, sin necesidad de tramitar ninguna acción judicial adicional. De ese modo no hay que ejecutar la hipoteca y se asegura que el comprador tenga que empezar la obra sí o sí, porque si no la empieza no conserva el dominio.
+\end{example}
+
+La principal ventaja operativa frente a una garantía hipotecaria tradicional es que, producido el incumplimiento de la condición, el dominio se revoca de pleno derecho, sin necesidad de iniciar una acción judicial de ejecución.
+
+\subsection{Instrumentación registral y ejecución de la revocación}
+
+En el Registro de la Propiedad Inmueble, la anotación registral consigna directamente la \textbf{causal de dominio revocable}, del mismo modo que se anota el derecho de reversión.
+
+Para acreditar en la práctica el cumplimiento de la condición resolutoria (por ejemplo, que efectivamente no se inició la obra en plazo), una solución instrumental habitual es otorgar, en la misma escritura que constituye el dominio revocable, un \textbf{poder especial irrevocable} que habilite al beneficiario de la reversión a otorgar por sí solo la escritura de revocación llegado el caso, sin necesidad de una nueva intervención del titular revocado.
+
+\begin{example}{Cláusula de dominio revocable para asegurar el inicio de obra}
+Elementos del caso desarrollado, útiles como guía de redacción en la práctica notarial:
+\begin{itemize}
+    \item Transmisión del dominio de un inmueble a un tercero, sujeta a condición resolutoria: el inicio efectivo de una obra determinada.
+    \item Plazo cierto para el cumplimiento de la condición (en el ejemplo, tres años).
+    \item Hitos intermedios verificables dentro de ese plazo (por ejemplo, presentación de planos dentro de determinados meses, respuesta a observaciones dentro de otro plazo), para reducir el margen de discusión sobre el cumplimiento.
+    \item Otorgamiento, en el mismo acto, de un poder especial irrevocable a favor del transmitente original, que le permita instrumentar por sí solo la escritura de revocación en caso de incumplimiento.
+    \item Anotación registral de la causal de dominio revocable, de forma análoga a como se anota el derecho de reversión.
+\end{itemize}
+\end{example}
+
+\section{Cuadro Cornell del capítulo}
+
+\begingroup
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{\cornellL}>{\RaggedRight\arraybackslash}p{\cornellR}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cornellrow{¿Qué es el dominio revocable? (art. 1965 CCyC)}{Es el dominio sometido a condición o plazo resolutorios, a cuyo cumplimiento el dueño debe restituir la cosa a quien se la transmitió. La condición o el plazo deben ser impuestos por disposición voluntaria expresa o por la ley, y las condiciones resolutorias impuestas al dominio están limitadas a un plazo máximo de diez años.}
+
+\cornellrow{¿Qué ocurre al cumplirse los diez años sin que se produzca la resolución?}{El dominio queda definitivamente establecido. El plazo se computa desde la fecha del título constitutivo del dominio imperfecto.}
+
+\cornellrow{¿Por qué conviene fijar plazos ciertos y no condiciones inciertas en una cláusula resolutoria?}{Porque una condición incierta (por ejemplo, ``cuando se reciba de abogado'') puede no cumplirse nunca, o cumplirse después de vencido el plazo máximo legal de diez años, frustrando la finalidad de la cláusula. Un plazo cierto (por ejemplo, ``al cumplir la mayoría de edad'') ocurrirá necesariamente y en fecha determinable.}
+
+\cornellrow{¿Qué diferencia hay entre el derecho de acrecer y el derecho de reversión?}{El derecho de acrecer permite que los demás donatarios absorban la parte de quien no puede o no quiere recibir la suya; el derecho de reversión hace que el bien vuelva al donante si fallece un donatario antes de vencido el plazo legal. Ambos deben pactarse expresamente y, cuando derivan de un dominio revocable, están sujetos al límite de diez años.}
+
+\cornellrow{¿Cómo puede usarse el dominio revocable para garantizar el inicio de una obra?}{Transmitiendo el dominio sujeto a la condición resolutoria de que la obra se inicie dentro de un plazo cierto; si no se cumple, el dominio se revoca de pleno derecho y vuelve al transmitente, sin necesidad de ejecutar una hipoteca ni de iniciar una acción judicial adicional, especialmente si se otorgó un poder especial irrevocable para instrumentar la escritura de revocación.}
+
+\cornelllastrow{¿Cómo se refleja y se acredita la revocación en la práctica?}{En el Registro de la Propiedad Inmueble se anota la causal de dominio revocable, como se anota el derecho de reversión. Para instrumentar la revocación se puede otorgar, en la misma escritura, un poder especial irrevocable, y conviene fijar hitos intermedios verificables.}
+
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} El dominio revocable (art.~1965 CCyC) es el dominio sometido a condición o plazo resolutorios, limitado a diez años, transcurridos los cuales el dominio queda definitivamente establecido. Conviene redactar las cláusulas con plazos ciertos y con hitos verificables. Tiene aplicaciones prácticas en el derecho de reversión y en la garantía del inicio de una obra sin ejecutar una hipoteca, con anotación registral y, de ser necesario, un poder especial irrevocable para la escritura de revocación.
+} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+%==============================================================================
+% SÍNTESIS FINAL
+%==============================================================================
+\chapter*{Síntesis final}
+\addcontentsline{toc}{chapter}{Síntesis final}
+\markboth{Síntesis final}{Síntesis final}
+
+Se construyó un puente entre dos ramas que suelen enseñarse por separado, los derechos reales y el derecho societario, unidas por una misma pregunta práctica: \emph{quién es dueño de qué, en qué momento y con qué límites}.
+
+El dominio, presentado inicialmente como el derecho real más absoluto del sistema, se reveló atravesado por numerosas excepciones (usucapión, expropiación, destrucción total, abandono, ejecución forzosa, confiscación y accesión) y por modalidades que lo matizan aún más, siendo el \textbf{dominio revocable} ---regulado por el artículo 1965 del Código Civil y Comercial--- la más relevante para la práctica notarial. En paralelo, el análisis de la sociedad en formación mostró que \textbf{capacidad y responsabilidad son categorías distintas}, y que un correcto encuadre del objeto social y una autorización expresa en el acta constitutiva evitan buena parte de los riesgos de la clásica ``compra en gestión de negocios''.
+
+El hilo conductor de todo el recorrido fue la importancia de \textbf{encuadrar correctamente cada problema antes de intentar resolverlo} y de construir valor profesional a través del conocimiento aplicado, ya sea eligiendo la vía más eficiente (una escritura de reconducción societaria en lugar de una liquidación, una mediación en lugar de un litigio de años, o una cláusula de dominio revocable en lugar de una hipoteca) o sosteniendo una política de honorarios basada en la calidad del servicio y no en la baja de precios. Ese mismo criterio de encuadre y de búsqueda de soluciones no convencionales es la base sobre la cual más adelante se construirán los desarrollos de firma digital, blockchain y tokenización de activos que constituyen el objetivo final del curso.
+
+\end{document}
