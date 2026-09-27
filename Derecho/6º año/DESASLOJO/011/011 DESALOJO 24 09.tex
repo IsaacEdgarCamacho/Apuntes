@@ -1,0 +1,615 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\unidadcurricular}{Práctica Profesional I}
+\newcommand{\ciclolectivo}{Ciclo lectivo 2026}
+\newcommand{\titulo}{El juicio de desalojo: redacción de la demanda}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL (ENCABEZADOS Y PIES)
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{0.3cm}
+
+{\normalsize \unidadcurricular\ --- \ciclolectivo}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el procedimiento es el primer paso para transformar un conflicto cotidiano en una pieza jurídica sólida.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil y Comercial'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% CONTENIDO
+% ------------------------------------------------------------
+
+\chapter{Fundamentos del proceso de desalojo}
+
+\section{Marco general de la clase}
+
+El presente material corresponde a una comisión de práctica profesional dedicada a la redacción de demandas de desalojo. A partir de dos causales típicas de este proceso especial ---la falta de pago del canon locativo y el vencimiento del plazo contractual---, se repasaron los pasos previos a la demanda (intimación y carta documento), la estructura exigida por el artículo 330 del Código Procesal, los medios de prueba propios de este proceso (documental, confesional y pericial) y las reglas de competencia y domicilio. La clase se cerró con un taller práctico de redacción grupal de una demanda de desalojo con datos ficticios.
+
+Como punto de partida del trabajo práctico, se retomó lo avanzado en un encuentro anterior, en el que ya se habían comenzado a redactar las cartas documento y las demandas correspondientes a dos variantes del proceso: el desalojo por falta de pago y el desalojo por vencimiento de contrato. Se señaló que, más allá de los modelos de escrito entregados como guía, la redacción de una demanda de desalojo admite un desarrollo considerablemente mayor que el de esos modelos base.
+
+Respecto de las causales, se advirtió que se trata en general de causales objetivas: el incumplimiento del pago o el vencimiento del plazo son hechos verificables, sin mayor margen de discusión salvo que la parte demandada plantee una reconvención. Frente a la falta de pago, la prueba clave consiste en la exhibición de los últimos recibos y en la acreditación del cumplimiento del plazo de espera posterior a la intimación; en el caso de los intrusos, la acreditación resulta más sencilla porque no existe ningún contrato que deba analizarse.
+
+\section{Desalojo contra intrusos y contra locatarios}
+
+Se introdujo aquí una distinción normativa central para todo el desarrollo posterior: dos artículos del Código Procesal regulan vías \textbf{prácticamente gemelas}, pero dirigidas a sujetos distintos.
+
+\begin{important}
+El artículo \textbf{680 bis} del Código Procesal se aplica contra \textbf{intrusos}, es decir, personas que ocupan el inmueble sin ningún vínculo contractual. El artículo \textbf{684 bis} se aplica, en cambio, contra \textbf{locatarios, sublocatarios y ocupantes} que sí mantuvieron o mantienen algún tipo de relación jurídica con el inmueble. Ambas normas prevén un trámite abreviado para el desalojo; la diferencia entre ellas radica exclusivamente en el vínculo ---o ausencia de vínculo--- que une al ocupante con el inmueble.
+\end{important}
+
+Frente a los intrusos, la acreditación resulta más simple precisamente porque no existe contrato alguno que deba ser analizado: basta con demostrar la ausencia de todo título que legitime la ocupación.
+
+\section{Consejo profesional: precisión y consistencia en la demanda}
+
+Antes de avanzar sobre los modelos de escrito, se compartió una recomendación de ejercicio profesional que atraviesa buena parte del contenido de la clase: conviene escribir lo estrictamente necesario, evitando extenderse en argumentos que puedan contradecirse entre sí a lo largo del escrito.
+
+\begin{important}
+Conviene escribir lo mínimo indispensable en una demanda. Cuanto más extenso es un escrito, mayor es el riesgo de generar inconsistencias entre distintos pasajes ---por ejemplo, entre lo afirmado en una página y lo afirmado en otra---, lo que puede debilitar la posición procesal y ofrecer argumentos a la contraparte.
+\end{important}
+
+Esta recomendación se vincula directamente con los requisitos que el artículo 330 del Código Procesal exige para toda demanda: hechos claros, el derecho en que se funda la pretensión ---aunque, en definitiva, el derecho lo aplica el juez--- y la prueba, considerada el elemento que más pesa en el resultado de cualquier causa. Este último punto se desarrolla con mayor detalle en el Capítulo~\ref{cap:causales-estructura} y en el Capítulo~\ref{cap:prueba}.
+
+\section{El código como herramienta profesional permanente}
+
+Ante una pregunta sobre cómo desconocer documentación presentada por la contraparte, se explicó que la vía de impugnación depende de la naturaleza del documento:
+
+\begin{itemize}
+    \item Si el documento es un \textbf{instrumento público}, la única vía de impugnación es la \textbf{redargución de falsedad}.
+    \item Si es un \textbf{instrumento privado con firma reconocida}, puede plantearse la \textbf{falsedad ideológica} (cuando el contenido no responde a la verdad) o la \textbf{falsedad material} (cuando el documento fue adulterado).
+\end{itemize}
+
+A partir de esta distinción se planteó una reflexión más amplia sobre el vínculo entre el derecho de fondo y el derecho procesal: el Código Civil y Comercial de la Nación produjo numerosas reformas procesales indirectas, al punto de que, según fue citado en clase de un reconocido procesalista, \textit{``la última gran reforma del Código Procesal fue, en rigor, el Código Civil''}.
+
+\begin{note}
+Se recomendó adquirir, en cuanto sea posible, un código comentado ---aunque sea de varios tomos---, porque incorpora jurisprudencia, explicaciones y remisiones a otros artículos que un código sin comentar no ofrece, y que debe irse actualizando periódicamente. Se contrastó esta recomendación con épocas en las que había que trasladar físicamente los libros de una biblioteca durante un plazo de catorce días, remarcando que en la actualidad el acceso a la bibliografía jurídica es masivo gracias a los libros digitales y a las bibliotecas universitarias, incluso después de la graduación.
+\end{note}
+
+% ------------------------------------------------------------
+\chapter{Causales de desalojo y estructura de la demanda}
+\label{cap:causales-estructura}
+
+\section{Desalojo por vencimiento de contrato}
+
+\subsection{Los hechos del caso}
+
+El caso trabajado en clase parte de un contrato de locación con vigencia desde abril de 2018 hasta el 31 de marzo de 2020. Una vez finalizado el plazo contractual, el locatario no restituyó el inmueble ni continuó abonando el canon locativo, lo que motivó la demanda de desalojo por vencimiento de contrato.
+
+\begin{example}{Relato de los hechos}
+Con fecha determinada, la parte actora suscribió un contrato de locación vigente desde abril de 2018 hasta el 31 de marzo de 2020. Una vez finalizado el plazo contractual, y no habiéndose recibido tampoco los pagos del canon locativo, se demanda por desalojo por vencimiento de contrato.
+\end{example}
+
+\subsection{Intimación previa: la carta documento}
+
+Antes de iniciar la demanda, la parte actora debe intimar fehacientemente al locatario a restituir el inmueble. La carta documento, junto con el contrato de locación, constituye la prueba documental insustituible del expediente: ambos elementos deben incorporarse siempre al expediente.
+
+\begin{important}
+La carta documento puede quedar incontestada: nadie está obligado a responderla. Su función es intimar al locatario a pagar o a acercarse a dialogar con los representantes de la parte actora. Si el locatario decide no contestar ni comunicarse, queda de todos modos notificado, y una vez vencido el plazo de espera correspondiente, puede iniciarse la demanda.
+\end{important}
+
+\subsection{Manifestación sobre sublocatarios y ocupantes desconocidos}
+
+Conviene incluir en toda demanda de este tipo una fórmula específica: manifestar expresamente que se desconoce la existencia de sublocatarios, subocupantes u otras personas dentro del inmueble, distintas de los codemandados.
+
+\begin{note}
+Si se menciona en la demanda que existen otros ocupantes, resulta necesario individualizarlos; de lo contrario, no podrían ser incluidos en el desalojo. Al no individualizarlos, se deja abierta la posibilidad de que sea el oficial de justicia quien, el día del lanzamiento, constate quién habita efectivamente el inmueble ---el demandado, otras personas, o nadie---, sin que ello afecte la validez de la diligencia.
+\end{note}
+
+\subsection{El lanzamiento inmediato y su naturaleza jurídica}
+
+El pedido de lanzamiento inmediato, regulado en el artículo 684 del Código Procesal, se diferencia de una medida cautelar del artículo 230, aunque ambas figuras comparten presupuestos similares.
+
+\begin{important}
+El artículo \textbf{684} del Código Procesal habilita a solicitar el desalojo inmediato del inmueble, sin que ello configure técnicamente una medida cautelar del artículo 230. No obstante, comparte con esta última la exigencia de una \textbf{contracautela}, destinada a responder por los eventuales daños si la pretensión finalmente no prospera.
+\end{important}
+
+\section{Desalojo por falta de pago}
+
+La falta de pago constituye una causal objetiva: basta con acreditar que el locatario no abonó el canon locativo dentro del plazo pactado.
+
+\begin{formula}{Plazos de la intimación por falta de pago}
+Cumplida la intimación fehaciente al locatario, deben transcurrir los plazos legales antes de promover la demanda: dos meses de mora en el pago, y diez días corridos desde el vencimiento de la intimación, conforme a lo señalado en clase y en remisión a los artículos 1219 a 1227 del Código Civil y Comercial, que regulan el contrato de locación como marco de fondo aplicable.
+\end{formula}
+
+La tasa de justicia, como regla general, se calcula sobre un porcentaje del monto reclamado; este punto se retoma con mayor detalle en el apartado dedicado al taller práctico (Sección~\ref{sec:tasa-justicia}).
+
+\section{Estructura de la demanda: el artículo 330 del Código Procesal}
+
+\begin{definition}{Contenido mínimo de la demanda (art. 330 CPCC)}
+El artículo 330 del Código Procesal Civil y Comercial fija el contenido mínimo que debe reunir toda demanda: la relación clara y precisa de los hechos, el derecho invocado ---aunque, en definitiva, el derecho lo aplica el juez--- y la petición formulada en términos claros y positivos.
+\end{definition}
+
+Se remarcó que, aunque la prueba no forma parte de los requisitos enumerados en el artículo 330, constituye en la práctica el elemento que más pesa para el resultado del juicio: puede elaborarse una argumentación jurídica sólida, pero si la prueba ofrecida es deficiente, la posición procesal queda comprometida.
+
+\section{Cuadro comparativo de las causales de desalojo}
+
+El siguiente cuadro reúne las tres causales de desalojo trabajadas en clase, junto con su fundamento, su requisito previo y la norma de referencia citada.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.6cm}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Causal} & \textbf{Fundamento invocado} & \textbf{Requisito previo} & \textbf{Norma de referencia citada en clase} \\
+\midrule
+Falta de pago &
+El locatario no abonó el canon locativo en el plazo pactado &
+Intimación fehaciente y espera de diez días corridos desde el vencimiento &
+Código Civil y Comercial, arts. 1219 y ss. (locación); Código Procesal, art. 684 bis \\
+\addlinespace
+Vencimiento de contrato &
+Se cumplió el plazo contractual y el locatario no restituyó el inmueble &
+Carta documento intimando la devolución de la tenencia &
+Código Civil y Comercial, arts. 1219 a 1227; Código Procesal, art. 684 \\
+\addlinespace
+Intrusión (sin contrato) &
+El ocupante ingresó al inmueble sin título ni contrato alguno &
+No requiere intimación contractual previa: se acredita la ausencia de vínculo &
+Código Procesal, art. 680 bis \\
+\bottomrule
+\end{tabularx}
+\caption{Causales de desalojo trabajadas en clase}
+\end{table}
+
+% ------------------------------------------------------------
+\chapter{La prueba en el juicio de desalojo}
+\label{cap:prueba}
+
+\section{Oportunidad procesal para el ofrecimiento de la prueba}
+
+El sistema procesal vigente exige acompañar u ofrecer toda la prueba junto con la demanda, cualquiera sea el tipo de proceso de que se trate (especial, ordinario o abreviado).
+
+\begin{note}
+Antes, en el proceso ordinario, no se ofrecía la prueba junto con la demanda: primero se corrían los traslados y se planteaban las excepciones, y recién después se producía la prueba. En el sistema actual, en cambio, la demanda se inicia y la prueba se ofrece en su totalidad junto con ella.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales. Se planteó una duda sobre si la mediación previa resulta obligatoria en los procesos de desalojo, sin que quedara resuelta dentro de la clase registrada.
+
+\section{Prueba documental}
+
+El contrato de locación y la carta documento de intimación constituyen la prueba documental insustituible del expediente, tal como se desarrolló en el Capítulo~\ref{cap:causales-estructura}.
+
+\begin{important}
+Si la firma del contrato de locación está certificada ante escribano público ---práctica especialmente recomendada---, la prueba pericial caligráfica resulta innecesaria, porque la firma ya está avalada por un funcionario con fe pública. Al momento de la clase, esa certificación tenía un costo aproximado de 60.000 pesos, monto que evita la necesidad de un perito calígrafo frente a un eventual desconocimiento de firma por parte del demandado. Además, con el contrato certificado queda preparada la vía ejecutiva para el cobro de los alquileres adeudados.
+\end{important}
+
+\section{Prueba confesional: el pliego de posiciones}
+
+\begin{definition}{Prueba confesional}
+La prueba confesional consiste en un pliego de posiciones que debe acompañarse hasta media hora antes de la audiencia preliminar, como último plazo. Contiene preguntas formuladas de manera asertiva, denominadas \textbf{posiciones}, para que la contraparte reconozca hechos bajo juramento (por ejemplo: que adeuda alquileres, o que el contrato de locación se encuentra vencido). Si la parte interrogada no responde, los hechos planteados se tienen por reconocidos. Quien redacta el pliego se denomina \textbf{ponente}; quien lo contesta se denomina \textbf{absolvente}.
+\end{definition}
+
+Se destacó que cada posición implica en sí misma un reconocimiento de esa situación para quien la formula, y se subrayó la importancia de no descuidar ningún medio de prueba: sin prueba no hay demanda que resista un juicio. Si la contraparte niega todo o el juez declara la causa de puro derecho, puede dictarse sentencia sin necesidad de otra prueba cuando lo alegado ya surge acreditado del expediente; pero si no se acompaña ninguna prueba, el juez carece de forma de verificar, por ejemplo, que el contrato se encuentra efectivamente vencido.
+
+\section{Prueba pericial caligráfica}
+
+La prueba pericial se reserva para el supuesto en que la contraparte desconozca la firma de un instrumento privado.
+
+\begin{important}
+La prueba pericial caligráfica se vuelve innecesaria cuando la firma del contrato de locación fue certificada por escribano público, ya que en ese caso un funcionario con fe pública da fe de su autenticidad.
+\end{important}
+
+% ------------------------------------------------------------
+\chapter{Competencia, domicilios y excepciones procesales}
+
+\section{Reglas generales de competencia y prórroga de jurisdicción}
+
+Como regla general, es competente el juez del lugar donde se ubica el inmueble o donde se celebró el contrato, salvo que las partes hayan pactado una prórroga de jurisdicción.
+
+\begin{formula}{Determinación de la competencia}
+La competencia surge, en primer lugar, del lugar donde se firma el contrato o donde se encuentra el inmueble; en su defecto, de la prórroga de jurisdicción, si esta fue pactada en el contrato. Cuando el contrato se firma en un lugar, ambas partes residen allí y el inmueble también se encuentra allí, se aplican sin dificultad las reglas generales de competencia, salvo que exista una prórroga expresa de jurisdicción.
+\end{formula}
+
+\section{Domicilio real, especial y electrónico}
+
+Es una práctica habitual en los contratos de locación fijar un domicilio especial en el propio inmueble locado, distinto del domicilio real o del domicilio legal de una eventual sociedad locataria, con el fin de asegurar que todas las notificaciones ---incluidas las de una futura demanda--- lleguen efectivamente a destino.
+
+\begin{important}
+El domicilio especial fijado en el inmueble locado no es el domicilio real: es el domicilio que se establece, para el locatario, en el propio inmueble, y para el locador, en el domicilio donde sabe que recibirá las notificaciones. Esto resulta útil porque, si el inquilino se traslada a otra provincia o a un municipio más lejano, las notificaciones igualmente se practican en el inmueble: si el destinatario está presente, se notifica en persona; si no lo está, queda de todos modos notificado. Si el locatario es una sociedad, el domicilio especial más conveniente sigue siendo el del inmueble, y no la sede social, porque esta puede modificarse por estatuto en cualquier momento.
+\end{important}
+
+\subsection{Cómputo de los plazos: días corridos y días hábiles}
+
+\begin{formula}{Días corridos y días hábiles}
+Los plazos previstos en el Código Civil y Comercial ---derecho de fondo--- se cuentan en \textbf{días corridos}. Los plazos regulados por el Código Procesal ---derecho de forma--- se cuentan en \textbf{días hábiles}.
+\end{formula}
+
+\section{Excepciones procesales: la excepción de arraigo}
+
+\begin{example}{La derogación de la excepción de arraigo}
+La reforma introducida por el Código Civil y Comercial derogó la excepción de arraigo, que permitía exigir una caución a quien demandaba sin domicilio ni bienes en el país, con el fin de garantizar el pago de las costas en caso de perder el juicio. Esta figura estaba pensada para una situación extrema ---la de quien litiga desde el exterior sin ningún vínculo con el país--- y no constituía una regla general dirigida contra los extranjeros.
+\end{example}
+
+Esta derogación se vincula con la reflexión planteada en el Capítulo~\ref{cap:causales-estructura} y en el primer capítulo sobre el impacto del Código Civil y Comercial en el derecho procesal: se trata de una de las reformas procesales indirectas producidas por dicho código, al punto de haber sido calificada, según un reconocido procesalista citado en clase, como una de las transformaciones más relevantes del derecho procesal reciente, aun sin tratarse formalmente de una reforma del Código Procesal.
+
+% ------------------------------------------------------------
+\chapter{Taller práctico: redacción grupal de una demanda de desalojo}
+
+La segunda parte de la clase se destinó a un ejercicio práctico: con guía docente, se completó de manera colectiva una demanda de desalojo con datos ficticios, aplicando en tiempo real los conceptos revisados en los capítulos anteriores.
+
+\section{Organización de los grupos y roles procesales}
+
+Un primer paso del ejercicio consistió en identificar qué rol procesal ocupaba cada parte del caso ficticio: quiénes eran los locadores (propietarios) y quién el locatario demandado.
+
+\begin{note}
+A los fines de la legitimación activa, no importa cuál de los cotitulares firmó el contrato, sino su condición de propietario. Puede verificarse en el contrato qué parte corresponde a cada cotitular; a quien reviste esa condición se lo denomina \textbf{locador}.
+\end{note}
+
+\section{Datos de las partes: personería, domicilios y patrocinio letrado}
+
+Durante la redacción conjunta se indicaron los datos que no pueden faltar en el encabezado de una demanda de este tipo.
+
+\begin{important}
+El primer escrito debe llevar el domicilio real de cada actor. El domicilio electrónico del letrado o letrada patrocinante, constituido en la sede electrónica del Colegio de Abogados, es obligatorio. El número de contacto telefónico es optativo, y su exigencia por parte de la coordinación de la materia responde únicamente a facilitar la comunicación.
+\end{important}
+
+Respecto de la personería, se explicó que, cuando la parte actúa por derecho propio, no corresponde acompañar ningún instrumento de personería. En cambio, si se actúa con apoderado y se omite acreditar esa personería, la contraparte puede oponer la excepción de falta de personería, la cual corre con las costas del incidente.
+
+\begin{note}
+El ``tomo y folio'' es la matrícula que cada abogado obtiene al inscribirse en el Colegio de Abogados. La matriculación, sin embargo, no resulta obligatoria para el ejercicio de la profesión en todos los casos.
+\end{note}
+
+\section{Objeto de la demanda y manifestación sobre ocupantes}
+
+En la redacción del objeto de la demanda se utiliza una fórmula específica: demandar a la persona identificada y, en el mismo renglón, a sus sublocatarios, subocupantes, intrusos y a todo aquel que ocupe el inmueble, sin individualizar a nadie de quien no se tenga certeza.
+
+\begin{formula}{Fórmula del objeto de la demanda}
+Se demanda a la persona identificada \textbf{y a sus sublocatarios, subocupantes, intrusos y a todo aquel que ocupe el inmueble}. En un párrafo aparte se manifiesta: ``desconozco si existen, en el inmueble, otros ocupantes distintos de los codemandados''. Esta fórmula evita la obligación de identificar puntualmente a personas de las que no se tiene certeza.
+\end{formula}
+
+\section{Hechos y antecedentes contractuales}
+
+En el caso de falta de pago, los hechos se redactan siguiendo el mismo esquema utilizado para el vencimiento de contrato: fecha de celebración del contrato, plazo de vigencia ---con su fecha de inicio y de finalización, calculada desde el día siguiente a la firma---, monto del canon locativo pactado, y constancia de haberse cursado la intimación de pago mediante carta documento.
+
+\begin{example}{Redacción de los antecedentes contractuales}
+Los antecedentes se redactan de la siguiente manera: en primer lugar, el contrato de locación con su fecha correspondiente, aclarando que el plazo se cuenta a partir del día siguiente a la firma, y no desde el mismo día. A continuación: ``hago constar que mi representada envió a la parte demandada la carta documento intimando el pago de los alquileres adeudados''.
+\end{example}
+
+\section{Tasa de justicia y petitorio final}
+\label{sec:tasa-justicia}
+
+\begin{formula}{Cálculo de la tasa de justicia}
+En los procesos de \textbf{monto determinado}, la tasa de justicia se calcula como un porcentaje de la suma reclamada (en el caso trabajado, equivalente a varios meses de canon locativo). En los procesos de \textbf{monto indeterminado} ---por ejemplo, una acción declarativa de certeza sobre un límite entre inmuebles---, corresponde abonar un monto fijo, que se actualiza periódicamente por acordada, salvo que se invoque el beneficio de litigar sin gastos.
+\end{formula}
+
+El petitorio de este tipo de demandas debe incluir el pedido de desocupación inmediata del inmueble, junto con la condena en costas y la reserva del caso federal cuando corresponda.
+
+% ------------------------------------------------------------
+\chapter{Cuadro Cornell de repaso general}
+
+El siguiente cuadro reúne, en formato Cornell, las preguntas y los conceptos clave desarrollados a lo largo de la clase, junto con su explicación, y cierra con una síntesis integradora de todo el contenido.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\caption{Cuadro Cornell: el juicio de desalojo} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{¿Cuál es la diferencia entre el art. 680 bis y el art. 684 bis del Código Procesal?} &
+El art. 680 bis se aplica contra intrusos, personas que ocupan el inmueble sin ningún vínculo contractual. El art. 684 bis se aplica contra locatarios, sublocatarios y ocupantes que sí mantuvieron algún tipo de relación jurídica con el inmueble. Ambas vías son procesalmente muy similares (``gemelas''), pero exigen acreditar situaciones de hecho distintas. \\
+\addlinespace
+
+\textbf{¿Qué exige el art. 330 del Código Procesal para toda demanda?} &
+Una relación clara y precisa de los hechos, el derecho invocado (que igualmente aplica el juez) y una petición formulada en términos claros y positivos. La prueba, aunque no está en este artículo, es el elemento que en la práctica más pesa para el resultado del juicio. \\
+\addlinespace
+
+\textbf{¿Por qué conviene escribir lo mínimo indispensable en una demanda?} &
+Porque cuanto más extenso es un escrito, mayor es el riesgo de generar inconsistencias entre distintos pasajes, lo que puede debilitar la posición procesal y dar argumentos a la contraparte. \\
+\addlinespace
+
+\textbf{¿Qué pasos previos exige el desalojo por falta de pago?} &
+Intimar fehacientemente al locatario ---habitualmente por carta documento--- a que pague la deuda, y esperar el plazo legal ---dos meses de mora y diez días corridos desde la intimación--- antes de promover la demanda. \\
+\addlinespace
+
+\textbf{¿Qué prueba es insustituible en el desalojo por vencimiento de contrato?} &
+El contrato de locación y la carta documento mediante la cual se intimó la devolución de la tenencia una vez vencido el plazo contractual. Ambos documentos deben incorporarse siempre al expediente. \\
+\addlinespace
+
+\textbf{¿Por qué certificar la firma del contrato ante escribano público?} &
+Porque, si la firma está certificada, se vuelve innecesaria la prueba pericial caligráfica en caso de que el demandado la desconozca: la certificación de un funcionario con fe pública ya acredita su autenticidad. Además, deja preparada la vía ejecutiva para reclamar el cobro de los alquileres adeudados. \\
+\addlinespace
+
+\textbf{¿Qué es la prueba confesional y cómo funciona?} &
+Es un pliego de posiciones que se acompaña hasta media hora antes de la audiencia preliminar, con preguntas formuladas en forma asertiva para que la contraparte (el absolvente) reconozca hechos bajo juramento. Quien redacta el pliego es el ponente; si el absolvente no contesta, los hechos planteados se tienen por reconocidos. \\
+\addlinespace
+
+\textbf{¿Cuándo es innecesaria la prueba pericial caligráfica?} &
+Cuando la firma del instrumento (por ejemplo, el contrato de locación) fue certificada por escribano público, ya que dicha certificación por sí sola acredita la autenticidad de la firma frente a un eventual desconocimiento del demandado. \\
+\addlinespace
+
+\textbf{¿Qué determina la competencia y por qué conviene fijar un domicilio especial?} &
+La competencia surge, como regla general, del lugar del inmueble o del contrato, salvo prórroga de jurisdicción pactada. El domicilio especial fijado en el propio inmueble locado garantiza que las notificaciones lleguen a destino aunque el locatario se traslade a otro lugar, y es preferible incluso al domicilio legal de una sociedad locataria, que puede modificarse por estatuto. \\
+\addlinespace
+
+\textbf{¿Por qué se derogó la excepción de arraigo?} &
+Como consecuencia de las reformas introducidas por el Código Civil y Comercial de la Nación, que ---según fue citado en clase de un reconocido procesalista--- terminaron representando la reforma procesal más importante de los últimos años, aun sin ser, en sentido estricto, una reforma del Código Procesal. \\
+\addlinespace
+
+\textbf{¿Cómo se calcula la tasa de justicia?} &
+En los procesos de monto determinado, como un porcentaje de la suma reclamada. En los de monto indeterminado (por ejemplo, una acción declarativa de certeza sobre límites entre inmuebles), se abona un monto fijo actualizado periódicamente por acordada, salvo que se invoque el beneficio de litigar sin gastos. \\
+\addlinespace
+
+\textbf{¿Qué días se cuentan como corridos y cuáles como hábiles?} &
+Los plazos previstos en el Código Civil y Comercial (derecho de fondo) se cuentan en días corridos; los plazos regulados por el Código Procesal (derecho de forma) se cuentan en días hábiles. \\
+\addlinespace
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} El desalojo es un proceso especial y abreviado cuya lógica se ordena alrededor de tres preguntas: qué causal habilita la acción (falta de pago, vencimiento de contrato o intrusión, cada una con requisitos previos y normas propias), cómo se traduce esa causal en una demanda que cumpla con el artículo 330 (hechos claros, derecho invocado y petitorio preciso, evitando extenderse en argumentos que generen inconsistencias) y, sobre todo, cómo se prueba lo que se afirma, porque sin prueba no hay demanda que resista un juicio. La prueba documental (el contrato, certificado ante escribano siempre que sea posible, y la carta documento de intimación) es la columna vertebral del expediente; la prueba confesional permite, mediante el pliego de posiciones, obtener un reconocimiento directo de los hechos; y la prueba pericial caligráfica queda reservada como recurso de último orden. A esto se suman las reglas de competencia (ligada al inmueble o al contrato, salvo prórroga) y la conveniencia de fijar un domicilio especial en el inmueble locado, que asegura que las notificaciones cumplan su finalidad aun cuando el locatario se traslade. El taller práctico de redacción conjunta de una demanda ficticia cumplió la función de anclar toda esta teoría en el gesto concreto que cualquier abogado repite muchas veces en su carrera: convertir un conflicto de la vida cotidiana en un escrito judicial claro, consistente y bien probado.
+} \\
+
+\end{longtable}
+
+\end{document}

@@ -1,0 +1,794 @@
+\documentclass[12pt,oneside]{book}
+
+% =====================================================
+% METADATOS
+% =====================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\catedra}{Cátedra de Derecho Procesal}
+\newcommand{\materia}{Juicio de Desalojo}
+\newcommand{\submateria}{Derecho Procesal --- CPO}
+\newcommand{\titulo}{Apuntes de Juicio de Desalojo}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+\newcommand{\reflexionmotivacional}{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+% =====================================================
+% PAQUETES
+% =====================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =====================================================
+% CONFIGURACIÓN
+% =====================================================
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =====================================================
+% ENCABEZADOS Y PIES
+% =====================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =====================================================
+% COMANDOS MATEMÁTICOS
+% =====================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =====================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% =====================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Caja para norma citada (variante de "important" con otro color, uso frecuente en este apunte)
+\newtcolorbox{normacitada}{
+    enhanced,
+    breakable,
+    title={Norma citada},
+    fonttitle=\bfseries,
+    colback=red!3,
+    colframe=red!45!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% =====================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% =====================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+\begin{document}
+
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \catedra}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{0.4cm}
+
+{\normalsize \submateria}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{\reflexionmotivacional}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+
+\pagestyle{fancy}
+\frontmatter
+\tableofcontents
+
+\mainmatter
+
+\chapter{Presentación de la materia y marco general}
+\label{cap:presentacion}
+
+Esta clase introductoria presenta la materia y desarrolla los cimientos conceptuales del juicio de desalojo: la distinción entre tenencia y posesión, la legitimación activa y pasiva para demandar, las distintas vías procesales disponibles (ordinaria, sumarísima, monitoria, administrativa y el desalojo de intrusos), la evolución reciente de la legislación de alquileres, las formas válidas de firma de los contratos (hológrafa, electrónica, digital y certificada notarialmente) y, finalmente, los caracteres esenciales de los contratos de locación y de comodato como títulos que habilitan el proceso.
+
+\section{Relevancia práctica de la materia}
+
+El desalojo constituye una de las materias de mayor aplicación práctica de la carrera: tarde o temprano, como abogado o abogada, un familiar, un amigo o un cliente atravesará un conflicto de esta naturaleza. Comprender la diferencia entre tenencia y posesión, saber elegir la vía procesal correcta y conocer qué firma es válida en cada instrumento son herramientas que se emplean desde el inicio del ejercicio profesional, más allá de la orientación que cada estudiante elija dentro del Derecho.
+
+Se trata, además, de un contenido útil no solo para el ejercicio profesional, sino para la vida cotidiana de cualquier persona: como inquilino, propietario, comodatario o simplemente como quien acompaña a un familiar en un conflicto habitacional. Entender qué es un contrato de locación, qué diferencia existe entre poseer y tener, y qué firma resulta válida permite tomar decisiones más informadas y prudentes, incluso antes de ejercer la profesión.
+
+\section{Marco normativo general de la materia}
+
+El programa de la materia se apoya en tres cuerpos normativos que se entrecruzan permanentemente.
+
+\begin{important}
+El programa se apoya en tres cuerpos normativos que se entrecruzan permanentemente: el \textbf{Código Procesal Civil y Comercial de la Nación} (con sus diferencias respecto del Código Procesal de la provincia de Buenos Aires), el \textbf{Código Civil y Comercial de la Nación} ---en particular, la parte especial de contratos de locación--- y la \textbf{normativa constitucional y convencional}, incluyendo los tratados internacionales de derechos humanos.
+\end{important}
+
+Si bien la cátedra utiliza como referencia principal el Código Procesal Civil y Comercial de la Nación, el ejercicio profesional también se desarrolla en la provincia de Buenos Aires, por lo cual deben conocerse los comentarios y diferencias respecto del Código Procesal bonaerense. Asimismo, el Código Civil y Comercial de la Nación contiene normas de contenido procesal relevantes para el desalojo de inmuebles urbanos, especialmente en la parte especial de contratos de locación.
+
+\subsection{La perspectiva de vulnerabilidad como eje transversal}
+
+La materia incorpora la perspectiva de vulnerabilidad como eje transversal, en tanto el operador jurídico puede encontrarse, según el caso, en cualquiera de los dos lados del conflicto de desalojo: procurando el lanzamiento para recuperar la tenencia, o bien acompañando la conflictiva de un sujeto vulnerable amenazado de desalojo.
+
+\begin{note}
+El estudio de la materia no se limita al proceso judicial en sentido estricto, sino que incorpora las normas constitucionales y convencionales aplicables, así como los criterios sentados por organismos internacionales, entre ellos la Corte Interamericana de Derechos Humanos.
+\end{note}
+
+\subsection{La importancia del cumplimiento de las formas procesales}
+
+\begin{example}{Rechazo por incumplimiento formal --- art. 280 CPCCN}
+En un fallo de la Corte Suprema de Justicia de la Nación, una comunidad indígena argentina reclamó la restitución de tierras invocando su carácter ancestral. La Corte no llegó a analizar el fondo del reclamo: rechazó el recurso por incumplimiento de los requisitos formales del artículo 280 del Código Procesal Civil y Comercial de la Nación. El caso ilustra que el desconocimiento de las normas procesales puede determinar la pérdida de un proceso, incluso cuando existan fundamentos sustanciales atendibles, sin que ello implique tomar posición sobre si la comunidad tenía o no razón en cuanto al fondo del reclamo.
+\end{example}
+
+\begin{normacitada}
+\textbf{Artículo 280 del Código Procesal Civil y Comercial de la Nación} --- norma que regula los requisitos formales de admisibilidad del recurso extraordinario ante la Corte Suprema de Justicia de la Nación. Su incumplimiento formal puede determinar el rechazo del recurso sin analizar el fondo del planteo.
+\end{normacitada}
+
+\section{La instrucción previa a la demanda: la intimación}
+
+Dentro de la dinámica de trabajo práctico de la materia, se destaca la importancia de la etapa de instrucción previa a la interposición de la demanda de desalojo, en particular respecto de las intimaciones exigidas por la ley como paso previo obligatorio en determinados supuestos.
+
+\begin{example}{Intimación por falta de pago}
+La intimación resulta obligatoria en los casos de falta de pago. Resulta relevante contar con un modelo de carta documento y con un esquema de los elementos que la norma exige para que la intimación se considere realizada en debida forma, ya que este es un instrumento de uso frecuente en el ejercicio profesional. Debe prestarse especial atención a eventuales modificaciones normativas que agreguen o quiten requisitos a este tipo de intimación.
+\end{example}
+
+% TODO: el apunte original no detalla de manera completa cuáles son, específicamente, todos los elementos que la norma exige para la intimación por falta de pago; solo se menciona su existencia y su carácter obligatorio.
+
+\chapter{Tenencia, posesión y legitimación}
+\label{cap:tenencia}
+
+\section{Tenencia y posesión: distinción conceptual}
+
+El desalojo suele asociarse, en el imaginario común, exclusivamente al vencimiento de un contrato de locación o a la falta de pago del canon locativo. Sin embargo, existen otros motivos que habilitan la vía de desalojo, distintos de la locación: el comodato, el subarrendamiento, entre otros. La ejecución de una hipoteca, en cambio, no constituye uno de esos supuestos, porque persigue un objetivo distinto: la subasta del bien.
+
+En el juicio de desalojo se persigue la restitución del bien que ocupa una persona que no tiene derecho a retenerlo, o cuyo derecho a retenerlo se ha extinguido y debe restituirlo. En ese proceso se discute la \textbf{tenencia}, a diferencia de la \textbf{posesión}.
+
+\begin{definition}{Tenencia y posesión}
+La tenencia y la posesión son ambas relaciones de poder que una persona puede tener respecto de una cosa. En la posesión, quien tiene la relación de poder con la cosa lo hace a título de dueño: se comporta como dueño. En la tenencia, en cambio, quien tiene la cosa lo hace en nombre de otro: reconoce la posesión ajena. Esto es lo que ocurre con el locatario: no recibe la posesión, sino la tenencia; técnicamente, recibe la facultad de usar y gozar de la cosa a cambio de un precio, de forma temporal.
+\end{definition}
+
+\begin{important}
+El elemento diferencial entre poseer y tener no está en el hecho material de ocupar la cosa, sino en el \textbf{ánimo} con que se la ocupa. El poseedor se comporta como dueño (\textit{animus domini}); el tenedor, en cambio, reconoce que la posesión pertenece a otra persona, aunque ejerza materialmente el uso de la cosa. El dominio, como derecho real, requiere ambos elementos: el \textbf{corpus} (la posesión material) y el \textbf{animus domini} (el ánimo de dueño).
+\end{important}
+
+\begin{example}{El comportamiento como dueño}
+El hecho de sostener una cosa y comportarse como su dueño convierte a esa persona, de hecho, en poseedora; la otra parte podrá luego discutir si tiene un mejor derecho a esa posesión, pero la posesión de hecho ya existe por el solo comportamiento como dueño.
+\end{example}
+
+\subsection{La interversión del título}
+
+Una relación que comenzó como mera tenencia puede, con el transcurso del tiempo y mediante actos externos inequívocos, mutar en posesión. En derechos reales, esto se conoce como \textbf{intervertir el título}.
+
+\begin{note}
+La jurisprudencia sostiene que no basta con la mera manifestación personal de que se ocupa la cosa para intervertir el título. Si alguien comenzó como tenedor y luego pretende comportarse como poseedor, debe haberlo manifestado expresamente mediante actos que impliquen esa nueva atribución: por ejemplo, excluir al dueño, no dejarlo entrar, o bien, en el caso de un inmueble rural, marcar los límites, plantar árboles o cultivar el campo. Deben existir actos que no realiza quien es meramente tenedor y reconoce ajena la posesión.
+\end{note}
+
+En el juicio de desalojo solo se discute la tenencia; si el demandado reviste el carácter de poseedor, la posesión no puede discutirse por la vía del desalojo.
+
+\subsection{Desalojo y acciones posesorias: procesos distintos}
+
+El proceso de desalojo es distinto de las acciones reales, de las acciones posesorias y de los interdictos regulados en el Código Procesal: no tutelan el mismo derecho.
+
+\begin{important}
+La acción de despojo parte de un derecho real. El proceso de desalojo, en cambio, donde se busca recuperar la tenencia, parte de un \textbf{derecho personal}: en el contrato de locación y en el contrato de comodato nace una relación de derecho personal, no de derecho real. En el derecho real hay un señorío, hay \textit{animus domini} más tradición de la cosa. En la tenencia, el \textit{animus domini} no está: se reconoce el señorío en otra persona.
+\end{important}
+
+\begin{example}{Comodato dentro de un conflicto sucesorio}
+Una persona ocupa un inmueble perteneciente al acervo hereditario del padre de los titulares, habiendo sido admitida en el inmueble por uno de los herederos, sin pagar contraprestación alguna, en el marco de un préstamo de uso gratuito. Frente a esta situación, la parte contraria promueve una acción reivindicatoria. La figura aplicable es el \textbf{comodato} (préstamo de uso gratuito), y la vía adecuada frente al comodato vencido, o frente a la reclamación de restitución, sería en principio el desalojo por comodato vencido. En el caso, además, existía una obligación alimentaria del padre hacia la ocupante, lo que agregaba complejidad a la conflictiva.
+\end{example}
+
+\section{Legitimación activa en el proceso de desalojo}
+
+La ley no limita la posibilidad de demandar por desalojo al propietario ni exclusivamente al locador.
+
+\begin{formula}{Sujetos con legitimación activa}
+Pueden demandar por desalojo: el locador; el locatario, si tiene un sublocatario; el sublocador; el comodante, si venció el préstamo precario; e incluso el poseedor, cuando exista una persona con menos derecho que él a tener la tenencia y que se haya introducido en el inmueble.
+\end{formula}
+
+\begin{normacitada}
+El Código Procesal Civil y Comercial de la Nación no establece expresamente quiénes tienen legitimación activa para obrar en el proceso de desalojo, a diferencia de lo que ocurre con la legitimación pasiva, que sí está prevista de manera expresa (véase la sección sobre legitimación pasiva).
+\end{normacitada}
+
+\subsection{Legitimación para obrar y personería: dos conceptos distintos}
+
+\begin{definition}{Legitimación para obrar y personería}
+La \textbf{legitimación para obrar} es la posibilidad que la ley otorga a una persona para reclamar una determinada pretensión. La \textbf{personería} es, en cambio, la aptitud procesal de esa persona para comparecer válidamente en el proceso, ya sea por capacidad propia o por representación. Son cuestiones procesalmente distintas, aunque en la práctica a veces se las denomine, de manera imprecisa, con el mismo nombre.
+\end{definition}
+
+\begin{example}{El menor propietario y el tío administrador}
+Un menor de edad es titular de una propiedad heredada de sus padres, que se encuentra alquilada. El tío del menor, sin ostentar la titularidad ni la representación legal, promueve por sí mismo una demanda de desalojo contra el inquilino por falta de pago.
+
+Si en el contrato de locación figura como locador el menor, titular de la propiedad, el legitimado activo es el padre del menor, su representante legal, o el tutor, según corresponda. Aunque el tío haya administrado de hecho el departamento, no tiene legitimación activa, porque la ley no le reconoce aptitud para reclamar en ese carácter. El tío podría actuar como abogado patrocinante, pero no por derecho propio, salvo que el representante legal del menor le otorgue poder para actuar en su representación. El menor, por su parte, no podría demandar por sí mismo, salvo que estuviera emancipado.
+\end{example}
+
+\begin{important}
+Para tener legitimación para obrar, la persona debe ser capaz o contar con la personería correspondiente. Si falta la capacidad o la personería, se opone la \textbf{excepción de falta de personería}. Si, en cambio, falta la legitimación ---es decir, la persona que reclama no es aquella a quien la ley reconoce aptitud para hacerlo en ese carácter---, se opone la \textbf{excepción de falta de legitimación activa}. Ambas excepciones son procesalmente distintas, aunque en la práctica a veces se las denomine, de manera imprecisa, con el mismo nombre.
+\end{important}
+
+\subsection{La legitimación activa no requiere titularidad de dominio}
+
+No es necesario ser propietario o titular de dominio para tener legitimación activa en el desalojo; basta con revestir el carácter de locador, aun cuando se locara un bien ajeno.
+
+\begin{example}{Desalojo contra intrusos: acreditación de la posesión}
+Cuando se demanda a un intruso ---persona que ocupó el inmueble sin título alguno que la vincule con el actor--- no existe contrato que sirva de título habilitante. Quien demanda debe acreditar su mejor derecho sobre la cosa, ya sea invocando el dominio o una posesión anterior. No basta con acompañar el informe de dominio del Registro de la Propiedad Inmueble, porque ese informe no acredita, por sí solo, que el actor haya entrado efectivamente en posesión del bien: el dominio requiere \textit{corpus} más \textit{animus domini}, y el informe registral solo acredita el título, no la posesión efectiva. La escritura pública, en cambio, permite acreditar la posesión, en tanto hace constar que hubo tradición del bien ---es decir, que se entregó la posesión---, aunque se trate de una manifestación del escribano y no de un hecho comprobado materialmente por el tribunal.
+\end{example}
+
+Existe una diferencia práctica relevante entre lo que exige la jurisprudencia de los tribunales de los distintos Departamentos Judiciales de la provincia de Buenos Aires y lo que exige la jurisprudencia del orden nacional respecto de la acreditación de la posesión en los juicios contra intrusos.
+
+\begin{table}[H]
+\centering
+\caption{Acreditación de la posesión frente a intrusos: provincia de Buenos Aires vs. orden nacional}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Departamentos Judiciales --- Provincia de Buenos Aires} & \textbf{Fuero Civil --- Orden Nacional} \\
+\midrule
+Exigencia probatoria frente a intrusos & Se exige acreditar que el actor tuvo, en algún momento, la posesión efectiva sobre el inmueble, aun cuando actualmente reclame solo la tenencia. & No se exige acreditar posesión anterior; basta con acompañar el título (por ejemplo, contrato de locación) y acreditar el carácter invocado. \\
+Riesgo procesal & La demanda puede ser rechazada si no se acredita esa posesión pretérita. & Menor exigencia probatoria en este punto específico. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Vías frente a los intrusos}
+
+Contra los intrusos existen dos vías posibles: la civil y la penal, aunque en la práctica la vía penal resulta poco efectiva. La cátedra centra la enseñanza en la vía civil, que incluye la figura del \textbf{desalojo inmediato}, prevista especialmente para estos supuestos y desarrollada en el Capítulo \ref{cap:vias}.
+
+\begin{note}
+Las vías civil y penal no se excluyen entre sí, aunque cada una tramita por un fuero distinto. En la práctica profesional suele optarse por una sola de las dos vías.
+\end{note}
+
+\section{Legitimación pasiva y diferencia con la personería}
+
+A diferencia de la legitimación activa, la legitimación pasiva sí se encuentra prevista de manera expresa en el Código Procesal.
+
+\begin{normacitada}
+El Código Procesal establece expresamente (art. 680 y normas concordantes) quiénes pueden revestir el carácter de legitimados pasivos en el proceso de desalojo: el \textbf{locatario}, el \textbf{sublocatario}, el \textbf{intruso}, y toda persona que tenga la obligación de restituir la cosa cuya tenencia se reclama.
+\end{normacitada}
+
+\begin{example}{Poder mal redactado: falta de personería, no de legitimación}
+Si el tío del ejemplo anterior es abogado y actúa con un poder mal redactado o incorrecto, no se configura falta de legitimación, sino \textbf{falta de personería}: existe una deficiencia en la personería o en la capacidad de quien se presenta. La falta de legitimación activa, en cambio, indica que quien reclama no es el sujeto habilitado por la ley para reclamar en esa cuestión. El sujeto habilitado por la ley es, según el caso, el locador; si no es locador, podría ser el propietario, tratándose de un intruso.
+
+Si la demanda la interpone el tío invocando derecho propio, sin ser locador ni propietario ni tener poder válido, la parte demandada puede oponer la excepción de falta de legitimación activa, porque el sistema legal no reconoce al tío como sujeto habilitado para reclamar en ese carácter.
+\end{example}
+
+\chapter{Vías procesales y procesos especiales}
+\label{cap:vias}
+
+\section{Vías procesales: ordinario, sumario y sumarísimo}
+
+Cuando se interpone la demanda de desalojo, corresponde al juez determinar, conforme a la norma del Código Procesal Civil y Comercial de la Nación, si la causa tramita por la vía ordinaria o por la vía de conocimiento sumarísimo. En la práctica del ejercicio profesional, la mayoría de los casos tramita hoy por la vía sumarísima.
+
+\begin{example}{Antecedente histórico: el desalojo en el derecho español antiguo}
+En el derecho español antiguo (hacia 1800), la discusión entre locador y locatario se resolvía de manera casi inmediata: si el inquilino no tenía defensa que oponer, en pocos días se procedía al lanzamiento de la propiedad. No se trataba, en sentido estricto, de un proceso sumarísimo en sentido moderno, sino de algo más cercano a un proceso monitorio: si el inquilino no pagaba, debía restituir el inmueble, sin mayor debate.
+\end{example}
+
+\begin{important}
+La calificación de un proceso como ``sumarísimo'' no garantiza, por sí sola, celeridad efectiva. Existen otros procesos también calificados como sumarísimos ---como el amparo--- que en la práctica se extienden durante años. En materia de desalojo, más allá de la vía elegida, es posible solicitar el desalojo anticipado o medidas cautelares, pero su procedencia no deriva de la calificación de sumarísimo, sino del cumplimiento de los requisitos propios de la cautelar.
+\end{important}
+
+% TODO: el apunte original ilustra la morosidad judicial con un ejemplo genérico (un caso de repetición de impuestos contra el Estado Nacional que continuaría sin sentencia luego de veinte años de litigio), sin precisar datos adicionales que permitan verificarlo; se conserva únicamente como referencia a la reflexión sobre los tiempos reales del proceso judicial.
+
+\section{El proceso monitorio: un modelo comparado}
+
+Existe en danza un proyecto de reforma legislativa que, entre otros puntos, propone otorgar mayor protagonismo al proceso sumarísimo, reforzar la perspectiva de vulnerabilidad ---con intervención del Ministerio Público cuando hay sujetos vulnerables involucrados, tal como ya ocurre en la actualidad--- y limitar la prueba documental y pericial admisible en los casos de falta de pago o vencimiento de contrato.
+
+Frente a la escasa novedad que representaría ese proyecto respecto del régimen ya vigente en cuanto a la vulnerabilidad, resulta de interés el \textbf{proceso monitorio}, aplicado en otras provincias argentinas como modelo procesal comparado.
+
+\begin{definition}{Proceso monitorio}
+El proceso monitorio consiste en: demanda, sentencia monitoria. Se demanda, se dicta sentencia monitoria y, luego, al ser notificada esa sentencia, el demandado puede oponerse a ella o aceptarla. Si la acepta (o no se opone), la sentencia se vuelve definitiva. Si se opone, se abre el proceso de conocimiento.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Sistema vigente (CPCCN) frente al proceso monitorio de otras provincias}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Sistema vigente (CPCCN)} & \textbf{Proceso monitorio (otras provincias)} \\
+\midrule
+Estructura básica & Demanda $\rightarrow$ contestación $\rightarrow$ prueba $\rightarrow$ sentencia (ordinario o sumarísimo). & Demanda $\rightarrow$ sentencia monitoria directa. \\
+Rol del demandado & Contesta y ofrece prueba antes de la sentencia. & Recién después de notificada la sentencia puede oponerse; si no se opone, la sentencia queda firme. \\
+Dinamismo procesal & Menor celeridad relativa. & Mayor celeridad relativa. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+El proceso monitorio invierte la lógica tradicional del contradictorio: primero se dicta sentencia sobre la base de lo alegado por el actor, y recién después el demandado tiene la carga de oponerse, si quiere discutir. Si no se opone, la sentencia monitoria queda firme y produce los mismos efectos que una sentencia definitiva.
+\end{important}
+
+\section{Desalojo de intrusos y desalojo inmediato}
+
+El régimen especial previsto para el desalojo contra intrusos, ya introducido en el Capítulo~\ref{cap:tenencia}, se centra en los siguientes requisitos procesales específicos.
+
+\begin{normacitada}
+El Código Procesal Civil y Comercial de la Nación regula el \textbf{desalojo inmediato} como un procedimiento especial para los casos de intrusión, que exige la traba de una \textbf{caución} ---caución económica o autoembargo sobre un inmueble--- como condición para que proceda el lanzamiento anticipado, y prevé la intervención del juez, o de quien este designe, para realizar el \textbf{reconocimiento judicial} del inmueble.
+\end{normacitada}
+
+\begin{note}
+La figura del desalojo inmediato contra intrusos ha adquirido relevancia periodística reciente, en relación con operativos de desalojo llevados adelante por el gobierno de la Ciudad Autónoma de Buenos Aires mediante la vía administrativa, tema que se desarrolla en la siguiente sección.
+\end{note}
+
+\section{Vía administrativa y medidas cautelares}
+
+Constituye un fenómeno de actualidad la aplicación, por parte del gobierno de la Ciudad Autónoma de Buenos Aires, de desalojos por vía administrativa, con fundamento en un decreto preexistente, lo que generó controversia y una acción de amparo.
+
+\begin{example}{Desalojos administrativos en la Ciudad de Buenos Aires}
+El poder ejecutivo local de la Ciudad de Buenos Aires aplicó desalojos por vía administrativa invocando un decreto preexistente, dictado originalmente para casos de emergencia, como el riesgo de derrumbe del inmueble, pero utilizado también, según lo difundido, para procesos de intrusos. Esta aplicación dio lugar a una acción de amparo colectivo, promovida en representación de las personas afectadas, en cuyo marco un juez exigió al gobierno de la Ciudad que, como mínimo, acreditara un informe técnico que constatara el peligro de derrumbe invocado; de lo contrario, el desalojo debía tramitar por la vía judicial ordinaria.
+\end{example}
+
+\begin{definition}{Medida cautelar}
+La cautelar es provisoria: ello no significa que la medida que ordena suspender una conducta termine siendo definitiva, como una resolución de condena. Para que una cautelar proceda, y para que continúe vigente, deben acreditarse la \textbf{verosimilitud del derecho} y el \textbf{peligro en la demora}.
+\end{definition}
+
+\begin{important}
+Frente a un mismo conflicto ---el desalojo de intrusos por parte de la administración pública--- coexisten al menos tres vías posibles: (a) la vía judicial ordinaria de desalojo, eje central de la materia; (b) la vía administrativa, fundada en decretos de emergencia, aplicable solo en supuestos excepcionales (como el riesgo de derrumbe) y sujeta a control judicial posterior mediante amparo; y (c) el subsistema de medidas cautelares, que puede activarse tanto para proteger a quien reclama el desalojo como a quien se defiende de un desalojo administrativo irregular.
+\end{important}
+
+El operador jurídico puede encontrarse, según el caso, patrocinando a cualquiera de las dos partes en pugna en este tipo de conflictos, por lo que el conocimiento tanto del proceso judicial como del proceso administrativo resulta indispensable para el ejercicio profesional.
+
+\chapter{Marco normativo y firma de los contratos}
+\label{cap:normativo}
+
+\section{Evolución legislativa de los alquileres (2015--2023)}
+
+Antes de analizar un contrato de locación en particular, resulta imprescindible verificar la fecha de su celebración, dado que en pocos años se sucedieron varias reformas legislativas con distintos regímenes de vigencia temporal.
+
+\begin{important}
+Lo primero que hay que ver cuando se tiene un juicio de desalojo fundado en un contrato de locación es la \textbf{fecha del contrato}, porque existen distintas normas con vigencia temporal diferenciada. Las normas que aparecen derogadas pueden, sin embargo, tener vigencia según la fecha del contrato que se esté analizando.
+\end{important}
+
+A continuación se repasa cronológicamente la sucesión de normas aplicables a los contratos de locación de inmuebles con destino habitacional, comercial y de otros usos, dictadas entre 2015 y 2023.
+
+\begin{normacitada}
+\textbf{Código Civil y Comercial de la Nación (Ley 26.994)} --- vigente desde agosto de 2015. Modificó aspectos de la anterior Ley 23.091 de Locaciones Urbanas e incorporó la regulación del contrato de locación (arts. 1187 y siguientes) al cuerpo unificado.
+\end{normacitada}
+
+\begin{normacitada}
+\textbf{Ley 27.551 (Nueva Ley de Alquileres)} --- comenzó a regir el 1º de julio de 2020. Modificó diversos aspectos del Código Civil y Comercial en materia de contratos de locación de inmuebles. La propia ley establece que sus disposiciones rigen para los contratos celebrados a partir de la fecha de su entrada en vigencia, sin operar retroactivamente sobre contratos anteriores.
+\end{normacitada}
+
+\begin{normacitada}
+\textbf{Decreto de Necesidad y Urgencia N.º 70/2023}, del 29 de diciembre de 2023 --- modificó de manera sustancial el régimen de locaciones urbanas, derogando buena parte de las disposiciones de la Ley 27.551 y ampliando la autonomía de la voluntad de las partes contratantes.
+\end{normacitada}
+
+\begin{table}[H]
+\centering
+\caption{Norma aplicable según la fecha de celebración del contrato de locación}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.32\textwidth} X}
+\toprule
+\textbf{Período de celebración del contrato} & \textbf{Norma aplicable} \\
+\midrule
+Antes de agosto de 2015 & Ley 23.091 (Ley de Locaciones Urbanas) y régimen del Código Civil derogado. \\
+Entre agosto de 2015 y junio de 2020 & Código Civil y Comercial de la Nación (Ley 26.994), arts. 1187 y ss. \\
+Entre julio de 2020 y diciembre de 2023 & Código Civil y Comercial reformado por la Ley 27.551 (Nueva Ley de Alquileres). \\
+A partir del 29 de diciembre de 2023 & Régimen resultante del Decreto de Necesidad y Urgencia 70/2023, con mayor amplitud de la autonomía de la voluntad. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Más allá de la norma vigente al momento de la celebración, el contrato mismo ---en tanto expresión de la autonomía de la voluntad de las partes--- debe leerse íntegramente, cláusula por cláusula, verificando además que ninguna de sus disposiciones vulnere el orden público.
+
+\begin{important}
+Frente a cualquier conflicto de locación, el primer paso metodológico consiste en determinar la fecha de celebración del contrato para identificar la norma temporalmente aplicable, y el segundo paso consiste en leer íntegramente el instrumento contractual para verificar qué pactaron las partes al amparo de la autonomía de la voluntad, controlando en todo momento que ninguna cláusula vulnere el orden público vigente al momento de la celebración.
+\end{important}
+
+\section{Formas de firma: hológrafa, electrónica y digital}
+
+El instrumento contractual ---contrato de locación o comodato--- sobre el cual se basa el proceso de desalojo puede llevar distintos tipos de firma, cada uno con un régimen probatorio propio, cuestión central en la etapa de instrucción del caso.
+
+\subsection{Firma hológrafa}
+
+\begin{definition}{Firma hológrafa}
+La firma hológrafa es la firma inserta de puño y letra: la firma tradicional, que se utilizaba antes y que se sigue utilizando en la actualidad.
+\end{definition}
+
+Frente al desconocimiento de la firma hológrafa por parte de quien la suscribió, la única vía para acreditar su autenticidad es la \textbf{prueba pericial caligráfica}. Por ello resulta decisiva la etapa de instrucción previa a la demanda: al momento de redactar la demanda no solo deben describirse los hechos conforme a la normativa procesal aplicable, sino también anticipar si la parte contraria va a negar o desconocer ese hecho, y qué medio de prueba se ofrecerá.
+
+\begin{normacitada}
+\textbf{Artículo 330 del Código Procesal Civil y Comercial de la Nación} --- establece los requisitos de la demanda, entre ellos, los hechos en que se funda, explicados claramente, y el ofrecimiento de toda la prueba de que la parte intente valerse.
+\end{normacitada}
+
+\subsection{Firma digital y firma electrónica}
+
+La firma digital está operativa en la República Argentina y se diferencia de la firma electrónica. Es frecuente que notarios y notarias utilicen este tipo de firma en la celebración de contratos de locación o comodato.
+
+\begin{definition}{Firma electrónica y firma digital}
+La \textbf{firma electrónica} está avalada por una institución privada. La \textbf{firma digital} está avalada por un organismo público, o bien, en el caso del notario ---considerado funcionario público---, da fe pública de esa firma en el instrumento. No son equivalentes: cada una habilita un tipo de prueba distinto ante su desconocimiento.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\caption{Tipos de firma en los instrumentos contractuales}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} X X}
+\toprule
+\textbf{Tipo de firma} & \textbf{Organismo que la avala} & \textbf{Régimen probatorio ante desconocimiento} \\
+\midrule
+Hológrafa (de puño y letra) & No requiere organismo; es la firma manuscrita tradicional. & Si se desconoce, corresponde prueba pericial caligráfica; la carga de acreditar la autenticidad recae en quien invoca la firma. \\
+Electrónica & Avalada por una institución privada (por ejemplo, el Colegio de Abogados). & Si se desconoce, la carga de probar su autenticidad recae en quien la invoca (no se presume la autoría). \\
+Digital & Avalada por un organismo público, o por un notario en ejercicio de la fe pública. & Se presume la autoría y la integridad del documento; ante su desconocimiento, se invierte la carga de la prueba, que pasa a quien la desconoce. \\
+Certificada ante notario público & El escribano da fe únicamente de que la firma corresponde a esa persona, no del contenido íntegro del instrumento. & Queda constancia en el libro de requerimientos de la escribanía; el escribano certifica la firma, no el contenido. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Firma digital y firma hológrafa frente al desconocimiento}
+La firma hológrafa puede ser atacada, y hasta que un perito calígrafo determine que efectivamente no corresponde a la persona, queda en tela de juicio. La firma digital también puede atacarse, pero con la carga de la prueba invertida: presupone la autoría de quien firmó y presupone que el documento no fue adulterado; se presume, y queda a cargo de la otra parte probar lo contrario. La firma electrónica, en cambio, si es desconocida, debe ser probada por quien la invoca.
+\end{example}
+
+\begin{note}
+En la práctica profesional, el tipo de firma utilizado varía según el fuero: en el fuero nacional, los jueces y juezas no cuentan con firma digital, sino con firma electrónica; en la provincia de Buenos Aires, en cambio, los jueces sí cuentan con firma digital. Al presentar un escrito ante el sistema del Poder Judicial de la Nación mediante firma electrónica, no resulta necesario volver a firmarlo en forma hológrafa.
+\end{note}
+
+\begin{important}
+El instrumento contractual base del proceso de desalojo puede estar suscripto mediante firma hológrafa, firma electrónica, firma digital, o certificado en cuanto a la autenticidad de la firma ante notario público. Cada una de estas formas exige, ante su desconocimiento, una estrategia probatoria distinta: pericial caligráfica para la hológrafa; carga de la prueba en cabeza de quien invoca la firma electrónica; y carga de la prueba en cabeza de quien la desconoce, tratándose de la firma digital, que goza de presunción de autoría e integridad.
+\end{important}
+
+\chapter{Locación y comodato como títulos del desalojo}
+\label{cap:locacion}
+
+\section{Elementos y caracteres del contrato de locación}
+
+\begin{normacitada}
+\textbf{Código Civil y Comercial de la Nación, artículo 1187 y siguientes} --- regulan el contrato de locación, definiendo las figuras del locador y del locatario, y estableciendo sus caracteres, obligaciones y modo de extinción.
+\end{normacitada}
+
+Al igual que ocurre respecto de la legitimación activa (véase el Capítulo~\ref{cap:tenencia}), la calidad de locador no se identifica necesariamente con la titularidad de dominio: esa legitimación activa para obrar y para peticionar un proceso de desalojo, con el fin de recuperar la tenencia, es más amplia que la mera titularidad registral.
+
+\begin{important}
+El Código Civil y Comercial establece que, para el contrato de locación con destino inmueble, la forma de prestar el consentimiento es la \textbf{escrita}. Para iniciar los procesos de desalojo fundados en vencimiento de contrato o en falta de pago se necesita el instrumento, porque se trata de un contrato consensual, y el consentimiento para inmuebles exige, por disposición del legislador, que sea por escrito.
+\end{important}
+
+\subsection{Caracteres esenciales}
+
+\begin{definition}{Caracteres del contrato de locación}
+El contrato de locación es:
+\begin{itemize}
+\item \textbf{Oneroso}: una persona usa y goza del inmueble y otra permite ese uso y goce, pero no de manera gratuita, sino a cambio de un precio acordado (la gratuidad es propia del comodato, no de la locación).
+\item De \textbf{plazo}, hoy librado en gran medida a la autonomía de la voluntad de las partes. Las normativas anteriores establecían plazos mínimos y máximos de locación; actualmente esos mínimos quedan abiertos a que las partes los determinen libremente. En la práctica, sin embargo, suele mantenerse la fórmula de dos años para vivienda y tres años para destino comercial, aunque ya no constituya una exigencia legal indicativa.
+\end{itemize}
+\end{definition}
+
+\begin{example}{Los gastos que integran la obligación de pago del locatario}
+Dentro de los gastos que integran la obligación de pago a cargo del locatario no solo debe considerarse el canon locativo (el alquiler propiamente dicho), sino también los servicios de luz, gas y agua, las expensas ---ordinarias o, según lo pactado, completas--- y el impuesto de rentas. Estos rubros pueden integrar el reclamo tanto en el proceso de desalojo como en el proceso ejecutivo o de cobro de alquileres, y su exigibilidad surge de lo pactado en la redacción del contrato, lo que exige su lectura completa.
+\end{example}
+
+\subsection{Incumplimiento del contrato y causales de desalojo}
+
+El incumplimiento del contrato que habilita el desalojo no se limita al impago del canon locativo, sino que puede derivar de cualquier obligación pactada por las partes.
+
+\begin{note}
+El objeto del proceso puede consistir en desalojo por vencimiento de contrato, desalojo por cambio de destino, entre otras causales, agrupadas administrativamente bajo la carátula genérica de ``otras causales''. El incumplimiento del pago del alquiler o de las expensas, en cambio, se canaliza por la vía de ejecución de alquileres o cobro de alquileres, y no por la vía de desalojo.
+\end{note}
+
+\subsection{Cesión y sublocación}
+
+También debe tenerse en cuenta la cesión y la sublocación al analizar la conflictiva, verificando qué quedó pactado en el contrato de locación al respecto. La generalidad de la práctica contractual incluye una cláusula que prohíbe la sublocación y la cesión, aunque lo efectivamente practicado por las partes puede diferir de lo pactado formalmente.
+
+\section{El contrato de comodato: caracteres y comparación}
+
+\begin{normacitada}
+\textbf{Código Civil y Comercial de la Nación, artículo 1533 y siguientes} --- regulan el contrato de comodato, definiendo las figuras del comodante y del comodatario, y estableciendo la gratuidad como carácter esencial de este contrato.
+\end{normacitada}
+
+\begin{definition}{Comodato}
+El comodato es una figura afín a la locación, pero estructuralmente distinta: sus sujetos son el \textbf{comodante} y el \textbf{comodatario}, y se otorga el uso y goce de la cosa sin ninguna prestación de canon locativo. Es una prestación gratuita en cuanto al uso, que puede pactarse dejando a cargo del comodatario los servicios del inmueble.
+\end{definition}
+
+Del mismo modo que ocurre con la locación, también puede promoverse el desalojo fundado en comodato vencido, y este contrato exige, en principio, la forma escrita.
+
+\begin{important}
+En el Código de Vélez se admitía la figura del \textbf{comodato precario}, es decir, aquel pactado verbalmente, de palabra. El Código Civil y Comercial vigente desde 2015 no reflejó esta figura: por más que la conflictiva exista en la práctica, debe probarse el préstamo de uso con otros medios si no se cuenta con el instrumento escrito.
+\end{important}
+
+El comodato suele estilarse entre personas unidas por una relación de confianza mutua ---familiares, amigos--- y, a diferencia de la locación, no reconoce plazos mínimos ni máximos legalmente establecidos: rige plenamente la autonomía de la voluntad de las partes.
+
+\begin{table}[H]
+\centering
+\caption{Comparación entre locación y comodato}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Locación} & \textbf{Comodato} \\
+\midrule
+Sujetos & Locador --- Locatario & Comodante --- Comodatario \\
+Contraprestación & Oneroso: a cambio de un precio (canon locativo). & Gratuito: uso y goce sin contraprestación en dinero, aunque puede pactarse el pago de servicios. \\
+Forma & Escrita, exigida por el Código Civil y Comercial para inmuebles. & En principio escrita; ya no existe la figura del comodato precario verbal del viejo Código de Vélez. \\
+Plazos legales & Anteriormente con mínimos y máximos legales; hoy librados a la autonomía de la voluntad. & Sin mínimos ni máximos legalmente establecidos; plena autonomía de la voluntad. \\
+Causal de desalojo & Vencimiento de contrato, falta de pago, cambio de destino, otras causales. & Comodato vencido. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Comodato derivado de una compraventa}
+El comodato no siempre deriva de un préstamo de uso pactado como figura autónoma desde el inicio; también puede derivar de una compraventa inmobiliaria. Si dos personas celebran una escritura pública de compraventa traslativa de dominio, el comprador puede permitir al vendedor permanecer en el inmueble por un plazo breve ---por ejemplo, mientras finaliza la mudanza a su nueva vivienda---, configurándose así un comodato posterior a la propia compraventa.
+\end{example}
+
+\section{Extinción anticipada y resolución alternativa de conflictos}
+
+Se desarrollan a continuación las formas de extinción anticipada del contrato de locación, comenzando por la referencia al \textbf{convenio de desocupación}, cláusula de uso frecuente en el pasado.
+
+\begin{note}
+El convenio de desocupación no se encuentra derogado; sin embargo, existen hoy otras vías para pactar una salida del inmueble, distintas del convenio de desocupación tradicional. En particular, se encuentra establecida la posibilidad de que las partes, de común acuerdo, renuncien al plazo pactado y hagan la restitución anticipada.
+\end{note}
+
+\begin{example}{Renuncia anticipada al plazo pactado}
+Un contrato con un plazo original de dos años, que venciera, por ejemplo, en marzo de determinado año, puede ser objeto de una renuncia anticipada de ese plazo por parte de ambos contratantes, de común acuerdo, permitiendo la entrega anticipada del inmueble antes del vencimiento originalmente pactado.
+\end{example}
+
+En una conflictiva de desalojo, que suele extenderse considerablemente en el tiempo ante los tribunales, resulta recomendable agotar las alternativas de solución del conflicto, incluyendo los métodos alternativos de resolución de conflictos.
+
+\begin{important}
+Puede pactarse, por ejemplo, que la persona permanezca dos meses sin abonar el canon locativo y, a cambio, entregue la tenencia, documentando el acuerdo ante un mediador para que tenga fuerza de acuerdo homologado. Evitar el litigio de desalojo resulta preferible en numerosos casos, dado que se trata de procesos muy extensos en el tiempo; aun cuando con un arreglo pueda perderse algún dinero, suele ganarse en tiempo y en desgaste evitado.
+\end{important}
+
+\begin{important}
+\textbf{Síntesis de cierre.} La extinción anticipada del contrato de locación o de comodato, mediante la renuncia de común acuerdo al plazo pactado, constituye una alternativa preferible al litigio judicial en numerosos casos: reduce drásticamente los tiempos de resolución del conflicto y evita el desgaste emocional y económico propio de un juicio de desalojo, que puede extenderse durante años. Agotar las vías alternativas de resolución de conflictos ---incluida la mediación--- constituye una buena práctica profesional antes de acudir al Poder Judicial.
+\end{important}
+
+\chapter{Repaso general: cuadro Cornell}
+\label{cap:cornell}
+
+El siguiente cuadro sintetiza, en formato Cornell, las preguntas y conceptos clave desarrollados a lo largo de la clase, con su correspondiente respuesta o explicación.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.58\textwidth}
+}
+\caption{Cuadro Cornell --- Juicio de desalojo} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\textit{(continuación)}} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{continúa en la página siguiente}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué diferencia a la tenencia de la posesión?} &
+La posesión implica ejercer el poder sobre la cosa con \textit{animus domini} (comportarse como dueño); la tenencia implica ejercer ese poder reconociendo que la posesión pertenece a otra persona. El locatario recibe la tenencia, no la posesión. \\
+
+\textbf{¿Quiénes tienen legitimación activa para demandar el desalojo?} &
+No solo el locador: también el locatario (si tiene sublocatario), el sublocador, el comodante y hasta el poseedor frente a quien tenga menos derecho que él. No hace falta ser propietario; basta con ser locador de un bien aunque sea ajeno. \\
+
+\textbf{¿Quiénes pueden ser demandados (legitimación pasiva)?} &
+El Código Procesal establece expresamente que pueden ser demandados el locatario, el sublocatario, el intruso y, en general, toda persona que tenga la obligación de restituir la cosa. \\
+
+\textbf{¿Cuál es la diferencia entre falta de legitimación y falta de personería?} &
+La falta de legitimación implica que quien reclama no es el sujeto que la ley habilita para hacerlo en ese carácter. La falta de personería implica una deficiencia en la capacidad o en la representación (por ejemplo, un poder mal otorgado). \\
+
+\textbf{¿Qué exige la jurisprudencia bonaerense frente a los intrusos, a diferencia del fuero nacional?} &
+En los Departamentos Judiciales de la provincia de Buenos Aires se exige acreditar que el actor tuvo, en algún momento, la posesión efectiva del inmueble. En el orden nacional no se exige esa acreditación; basta con el título invocado. \\
+
+\textbf{¿Por qué vía tramita hoy la mayoría de los desalojos?} &
+Por la vía de conocimiento sumarísimo, según determinación del juez conforme al Código Procesal Civil y Comercial de la Nación, aunque la sola calificación de ``sumarísimo'' no garantiza celeridad real. \\
+
+\textbf{¿Cómo funciona el proceso monitorio?} &
+Se dicta primero una sentencia monitoria a partir de la demanda; recién luego de notificada, el demandado puede oponerse (abriendo el proceso de conocimiento) o aceptarla (quedando firme). Se aplica en otras provincias argentinas, no en el sistema nacional. \\
+
+\textbf{¿Qué exige el desalojo inmediato contra intrusos?} &
+La traba de una caución (económica o autoembargo sobre un inmueble) y la intervención del juez, o de quien este designe, para realizar el reconocimiento judicial del inmueble. \\
+
+\textbf{¿Puede el poder ejecutivo desalojar por vía administrativa?} &
+Solo en supuestos excepcionales de emergencia (por ejemplo, riesgo de derrumbe), con fundamento en decretos específicos, y sujeto a control judicial posterior mediante amparo, como ocurrió con los desalojos administrativos de la Ciudad de Buenos Aires. \\
+
+\textbf{¿Qué norma resulta aplicable a un contrato según su fecha de celebración?} &
+Depende del período: Ley 23.091 (antes de agosto de 2015); Código Civil y Comercial ---Ley 26.994--- (agosto de 2015 a junio de 2020); Código Civil y Comercial reformado por Ley 27.551 (julio de 2020 a diciembre de 2023); régimen del DNU 70/2023 (desde el 29 de diciembre de 2023). \\
+
+\textbf{¿Qué diferencia hay entre firma hológrafa, electrónica y digital?} &
+La hológrafa es de puño y letra y, si se desconoce, requiere pericial caligráfica. La electrónica está avalada por una entidad privada y, ante su desconocimiento, la carga de la prueba recae en quien la invoca. La digital está avalada por un organismo público (o notario) y goza de presunción de autoría, invirtiéndose la carga de la prueba hacia quien la desconoce. \\
+
+\textbf{¿Qué caracteres esenciales tiene el contrato de locación?} &
+Es un contrato oneroso, con un plazo (hoy librado en gran medida a la autonomía de la voluntad), de forma escrita obligatoria para inmuebles, e integrado por el canon locativo más los gastos ordinarios pactados (servicios, expensas, impuestos). \\
+
+\textbf{¿En qué se diferencia el comodato de la locación?} &
+El comodato es gratuito (comodante-comodatario), sin canon locativo, aunque puede pactarse que el comodatario asuma los gastos del inmueble; no reconoce plazos mínimos ni máximos legales y ya no admite la figura del comodato precario verbal. \\
+
+\textbf{¿Cómo puede extinguirse anticipadamente un contrato de locación?} &
+Mediante la renuncia de común acuerdo al plazo pactado y la restitución anticipada de la tenencia, documentada preferentemente ante un mediador, privilegiando siempre las vías alternativas de resolución de conflictos frente al desgaste de un litigio prolongado. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} La clase introductoria a Desalojo recorre, de manera integrada, los presupuestos que debe manejar quien pretenda iniciar o defender un proceso de esta naturaleza. Parte de una distinción conceptual ineludible ---tenencia versus posesión--- que determina quiénes están legitimados activa y pasivamente para intervenir en el proceso, diferenciando la legitimación sustancial de la mera personería procesal. Sobre esa base, se exploran las vías procesales disponibles: la ordinaria y la sumarísima del sistema nacional vigente, el proceso monitorio aplicado en otras provincias como modelo comparado más dinámico, el régimen especial del desalojo inmediato contra intrusos, y la vía administrativa excepcional, sujeta a control judicial mediante amparo y al subsistema de medidas cautelares. Se estudia también el sustento documental del reclamo: la verificación de la ley vigente al momento de la celebración del contrato ---dada la sucesión de reformas entre 2015, 2020 y el Decreto 70/2023--- y el tipo de firma inserta en el instrumento (hológrafa, electrónica, digital o certificada notarialmente), cuestión decisiva para la estrategia probatoria. Finalmente, se estudian los caracteres de los dos contratos que habitualmente sirven de título al desalojo ---la locación, onerosa y de plazo hoy flexible, y el comodato, gratuito y sin plazos legales mínimos ni máximos--- cerrando con la recomendación de agotar las vías alternativas de resolución de conflictos, como la renuncia de común acuerdo al plazo contractual o la mediación, frente a la extensión temporal real del litigio judicial.
+} \\
+
+\end{longtable}
+
+
+\end{document}

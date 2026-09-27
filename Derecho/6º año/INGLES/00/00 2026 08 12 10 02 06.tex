@@ -1,0 +1,584 @@
+\documentclass[12pt,oneside]{book}
+
+% =====================================================
+% METADATOS DEL DOCUMENTO
+% =====================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Cátedra de Lectocomprensión --- Traductorado / Abogacía}
+\newcommand{\materia}{Lectocomprensión de Textos Jurídicos en Inglés}
+\newcommand{\titulo}{Apuntes de Lectocomprensión de Textos Jurídicos en Inglés}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2025}
+
+% =====================================================
+% PAQUETES
+% =====================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =====================================================
+% RUTAS DE IMÁGENES
+% =====================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =====================================================
+% CONFIGURACIÓN GENERAL
+% =====================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =====================================================
+% COMANDOS MATEMÁTICOS
+% =====================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =====================================================
+% ENCABEZADOS Y PIES DE PÁGINA
+% =====================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small Lectocomprensión Jurídica}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =====================================================
+% CAJAS ACADÉMICAS
+% =====================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =====================================================
+% DOCUMENTO
+% =====================================================
+\begin{document}
+
+% -----------------------------------------------------
+% PORTADA
+% -----------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{0.4cm}
+
+{\normalsize Primer cuatrimestre --- Ciclo lectivo \anio\ · Clase N.\textordmasculine\ 1}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender antes de traducir es el primer paso para transformar un texto ajeno en conocimiento propio.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Lectocomprensión de Textos Jurídicos en Inglés'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% -----------------------------------------------------
+% ÍNDICE
+% -----------------------------------------------------
+\tableofcontents
+
+% =====================================================
+% CAPÍTULO 1
+% =====================================================
+\chapter{Presentación del curso y encuadre}
+
+Esta primera clase presenta el encuadre general de la materia: sus objetivos, su metodología de trabajo de tipo ``aula taller'', el sistema de evaluación (parcial individual y trabajo grupal de investigación) y las normas de cursada (asistencia, material de estudio, uso responsable de diccionarios e inteligencia artificial). Sobre el final, se introduce el contenido específico de la Unidad 1 (Derecho Constitucional comparado) y se desarrollan las tres primeras estrategias de lectocomprensión: el análisis de la macroestructura del texto, el reconocimiento de términos transparentes o cognados, y la identificación de falsos cognados.
+
+\begin{important}
+El ejercicio de cualquier profesión jurídica exige manejarse con fuentes, doctrina, jurisprudencia y contratos redactados originalmente en inglés. Quien no desarrolla una estrategia de lectura eficiente queda dependiendo por completo de traducciones de terceros o de traductores automáticos que pueden ``alucinar'' e inventar fallos, citas o normas inexistentes. Las estrategias enseñadas en esta materia --- leer la macroestructura antes que el detalle, apoyarse en los cognados, desconfiar de los falsos amigos, usar la inteligencia artificial como herramienta y no como reemplazo del criterio propio --- son transferibles a cualquier situación profesional futura: informes internacionales, contratos con cláusulas en inglés, jurisprudencia comparada, negociaciones o la lectura crítica de cualquier fuente en un idioma extranjero. La materia enseña, además, a tolerar la incertidumbre frente a un texto que no se comprende del todo y a construir sentido igualmente, con lo que se sabe y con lo que se puede inferir.
+\end{important}
+
+\section{Contexto de la clase y modalidad virtual excepcional}
+
+La cursada de la cátedra es, por regla general, presencial, tanto los días martes como los miércoles. La modalidad virtual se reserva exclusivamente para situaciones excepcionales que impiden el dictado presencial, como paros docentes, movilizaciones o cierres imprevistos de la facultad. En el caso de la primera clase del cuatrimestre, la coincidencia con una jornada de paro docente y movilización motivó el dictado virtual de dicho encuentro, aunque se aclaró expresamente que esta decisión respondía a una cuestión de organización de la cursada y no implicaba una posición contraria al reclamo docente, sino una postura personal sobre los medios de protesta empleados.
+
+\begin{important}
+La modalidad de la cursada es, por regla general, presencial. La virtualidad se reserva exclusivamente para situaciones excepcionales (paros, movilizaciones, cierres imprevistos de la facultad) y no constituye la modalidad habitual de trabajo.
+\end{important}
+
+\section{Presentación de la docente y de la cátedra}
+
+La docente a cargo de la comisión es traductora pública, con más de veinte años de trayectoria docente, y aclara expresamente no ser abogada ni contar con una formación jurídica sólida y sistemática, más allá del conocimiento adquirido a través del ejercicio profesional, los años de docencia y el contacto permanente con abogados. Esta aclaración resulta relevante para situar el alcance de los conocimientos jurídicos que la cátedra puede aportar, particularmente en lo referido a modificaciones recientes del derecho argentino.
+
+Se informa asimismo un cambio reciente en el plan de estudios: la materia, que anteriormente se dictaba en tres cuatrimestres de tres horas semanales cada uno, pasó a dictarse en un único cuatrimestre de cuatro horas y media semanales, a pedido de los propios estudiantes, dado que su carga horaria total anterior superaba a la de materias troncales de la carrera. Este cambio es valorado por la cátedra como insuficiente en términos del tiempo disponible para el trabajo, en particular para quienes no cuentan con un buen nivel de inglés.
+
+\section{Objetivos y alcance de la materia}
+
+Uno de los ejes centrales de la clase consiste en desmontar la idea de que Lectocomprensión es un curso de idioma inglés. Se aclara expresamente que la materia no tiene por objetivo enseñar inglés, dado que resulta imposible aprender a hablar un idioma en el término de un cuatrimestre.
+
+\begin{example}{el examen libre y el conocimiento técnico-jurídico}
+Una alumna relató, a partir de su experiencia con exámenes libres de la materia, que uno de los ejercicios consistía en el análisis de un fallo judicial de Estados Unidos, para lo cual era necesario conocer el funcionamiento de la justicia estadounidense y las similitudes con el derecho argentino. Aun contando con buen dominio del idioma inglés, ciertas cuestiones no resultaban comprensibles por tratarse de un lenguaje técnico-jurídico específico. Este ejemplo permite distinguir el dominio general del idioma del conocimiento técnico propio de la disciplina, que constituye el verdadero objeto de trabajo de la materia.
+\end{example}
+
+A partir de esta distinción se formula el primer principio metodológico central de la materia: no se traduce palabra por palabra. Forzar la traducción término a término mediante el diccionario conduce frecuentemente a interpretaciones erróneas, además de insumir un tiempo del que no se dispondrá el día del examen.
+
+\begin{example}{el texto en rumano}
+En una capacitación docente, se entregó a un grupo de profesores de la cátedra un texto escrito en rumano --- idioma que ninguno de los presentes conocía --- con la consigna de identificar la idea principal en cinco minutos. El primer impulso del grupo fue recurrir a la traducción automática e identificar cada palabra de forma aislada; sin embargo, apelando a las estrategias propias de quien enfrenta un idioma extranjero, el grupo logró aproximarse al sentido general del texto. Esta experiencia sirvió a la cátedra para comprender la situación que atraviesa el estudiantado frente a un texto jurídico en inglés.
+\end{example}
+
+Se traslada la misma lógica que se aplica naturalmente al leer en la lengua materna: cuando aparece una palabra desconocida, en general no se interrumpe la lectura para buscarla en el diccionario, sino que se continúa leyendo y se infiere el significado por el contexto.
+
+\begin{example}{la lectura en lengua materna}
+Al leer en español un autor de estilo complejo --- se menciona el caso de Borges ---, es habitual encontrar palabras cuyo significado exacto se desconoce. Sin embargo, la lectura continúa y, por el contexto, se comprende la idea general del texto, aun sin conocer el significado preciso de cada término. Esta misma estrategia, naturalizada en la lengua materna, es la que la materia busca trasladar a la lectura de textos jurídicos en inglés.
+\end{example}
+
+\begin{important}
+El objetivo de la materia consiste en que, con el conocimiento del idioma inglés que cada estudiante posea --- mucho o poco --- y las estrategias de lectura que se trabajarán a lo largo de la cursada, el estudiantado pueda leer un texto jurídico en inglés, comprenderlo con mayor o menor profundidad, y explicar en español de qué se trata dicho texto.
+\end{important}
+
+\section{Ubicación de la materia en el plan de estudios}
+
+La materia se ubica hacia el final de la carrera porque requiere que el estudiantado cuente ya con una formación jurídica sólida en el derecho argentino, condición necesaria para poder estudiar, analizar y comparar dicho sistema con el sistema jurídico extranjero del common law. Sin un conocimiento previo de nociones como constitución rígida o flexible, o del funcionamiento del proceso civil argentino, resulta imposible explicar las diferencias con el proceso anglosajón.
+
+Se anticipa además que, a medida que avanza el programa, las semejanzas entre el sistema argentino (de tradición continental) y el sistema anglosajón (common law) tienden a disminuir: son mayores en la primera unidad, referida a derecho constitucional, y se reducen progresivamente al abordar contratos y, especialmente, derecho procesal, en la medida en que se trata de dos tradiciones jurídicas de base distinta --- el derecho continental y el derecho consuetudinario.
+
+\begin{table}[H]
+\centering
+\caption{Cuadro comparativo mencionado en clase: derecho continental vs. common law}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Sistema continental (Argentina)} & \textbf{Sistema anglosajón (common law)} \\
+\midrule
+Origen y base & Derecho romano-germánico; normas codificadas & Derecho consuetudinario (\textit{customary law}); precedentes judiciales \\
+Peso de la palabra & Predomina lo escrito (escritos, expedientes) & Predomina lo oral (audiencias, testimonios, alegatos) \\
+Proceso penal/civil & Mayormente escrito, aunque con juicios orales y jurados en expansión & Mayormente oral; juicio por jurados \\
+Vocabulario jurídico & Usucapión, servidumbre, usufructo, etc. & Términos con significado técnico distinto al uso cotidiano \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Este contraste entre lo oral y lo escrito tiene consecuencias concretas también en la propia evaluación de la materia, como se desarrolla en el Capítulo~3.
+
+Se destaca, además, que el vocabulario jurídico constituye un lenguaje de especialidad tanto en español como en inglés, y que esta especificidad terminológica es independiente del dominio general del idioma. Términos como \textit{usucapión}, \textit{usufructo} o \textit{servidumbre} resultan ajenos a quien no tiene formación jurídica, aun siendo hablante nativo de español; el mismo fenómeno se reproduce en inglés respecto del vocabulario técnico del derecho.
+
+% =====================================================
+% CAPÍTULO 2
+% =====================================================
+\chapter{Organización administrativa de la cursada}
+
+\section{Asistencia y régimen de faltas}
+
+Salvo en la primera clase virtual, se toma asistencia en cada encuentro. Se explica que asistir a clase resulta relevante más allá del dominio individual del idioma, en la medida en que se trabajan en el aula cuestiones que no figuran en el diccionario ni en el material de estudio --- entre ellas, ejemplos que se van desarrollando en clase y que son tenidos en cuenta al momento de elaborar los exámenes.
+
+Respecto del régimen formal, se exige un 75\% de asistencia. Las faltas justificadas --- por ejemplo, por cuestiones médicas o por coincidencia con audiencias de prácticas profesionales --- deben acreditarse en el momento correspondiente, y no de forma extemporánea.
+
+\begin{important}
+Se exige un 75\% de asistencia para la regularidad de la cursada. Las inasistencias justificadas deben acreditarse en el momento en que se producen. Quien, al momento de rendir el parcial, no cumple con las condiciones de regularidad, no puede rendirlo.
+\end{important}
+
+\section{Material de estudio y plataforma Classroom}
+
+El material de cátedra se comparte a través de la plataforma Classroom, a la que debe ingresarse obligatoriamente con el correo institucional (académico) y no con cuentas personales, a fin de evitar confusiones administrativas dado el elevado número de estudiantes y comisiones que atiende la cátedra.
+
+El material está organizado por unidades temáticas --- por ejemplo, la Unidad 1 corresponde a Derecho Constitucional --- y es común a toda la cátedra; lo que varía de una comisión a otra es la selección de textos que cada docente decide trabajar efectivamente en clase dentro de cada unidad.
+
+También se encuentra disponible en Classroom el programa de la materia, cuya lectura se recomienda, y que se caracteriza mediante una figura tomada del propio lenguaje jurídico.
+
+\begin{definition}{contrato pedagógico}
+El programa de la materia puede entenderse como un contrato pedagógico: un instrumento que permite establecer qué puede esperar el estudiantado de la cátedra y qué espera la cátedra del estudiantado, en tanto se trata de una relación bilateral y no unilateral. La cátedra asume una prestación (el dictado y la orientación del proceso de aprendizaje) y el estudiantado asume una contraprestación (el control de la propia asistencia, la concurrencia a clase con el material correspondiente, la resolución de las actividades solicitadas), distribuyéndose de este modo la responsabilidad sobre el proceso de cursada.
+\end{definition}
+
+Se aclara asimismo que no existe un cronograma con fechas fijas y estrictas, decisión deliberada de la cátedra frente a la imprevisibilidad propia del dictado --- paros, movilizaciones, ausentismo en días de lluvia, entre otros factores --- que de otro modo obligaría a reprogramar constantemente los contenidos.
+
+\section{Diccionarios y fuentes de referencia}
+
+Se explica la necesidad de contar con dos tipos de diccionario: uno general, de lenguaje cotidiano (por ejemplo, Larousse, Collins o Webster's), y uno específicamente jurídico bilingüe, dado que el diccionario general no incluye terminología técnica del derecho.
+
+Se recomienda particularmente el diccionario bilingüe jurídico de Cabanellas, en su tomo de inglés a español --- el único necesario para la materia, dado que no se producirá texto alguno en inglés ---, aunque se mencionan también otras alternativas, como las de Marina Orellana y de Editorial Estudio.
+
+\begin{example}{la definición de ``termination'' en Cabanellas}
+El diccionario de Cabanellas presenta una particularidad: en lugar de ofrecer un término equivalente preciso, suele dar la definición completa del concepto. Así, ante la palabra \textit{termination}, en vez de remitir directamente a ``extinción del contrato'', ofrece una definición extensa (por ejemplo, la medida mediante la cual un empleador pone fin al contrato laboral del trabajador). Esta característica, que resulta poco práctica para quien traduce profesionalmente y necesita un término preciso, resulta en cambio especialmente útil para esta materia, en la medida en que explica conceptos del sistema anglosajón que no existen o que difieren del sistema argentino.
+\end{example}
+
+\begin{important}
+Para el primer parcial (individual, presencial y escrito) es obligatorio contar con diccionario en formato papel. No está permitido el uso de dispositivos electrónicos, por lo cual quien no disponga de diccionario propio debe solicitarlo prestado a un compañero o retirarlo de la biblioteca de la facultad con antelación.
+\end{important}
+
+\begin{note}
+La restricción al uso de dispositivos electrónicos durante el examen no responde a una postura ideológica contraria a la tecnología, sino a una cuestión práctica de control durante la instancia evaluatoria, motivada por situaciones de uso indebido de recursos digitales registradas en cuatrimestres anteriores.
+\end{note}
+
+\section{El uso de la inteligencia artificial y los traductores automáticos}
+
+Este es uno de los tramos de mayor densidad conceptual de la clase. Se parte de un reconocimiento honesto: la propia cátedra utiliza inteligencia artificial con frecuencia, especialmente para la preparación de clases, sin sostener una postura de rechazo tecnológico. Se advierte, sin embargo, que el uso extendido de la inteligencia artificial en distintas disciplinas tiende a obstruir o anular procesos mentales que antes se realizaban de forma autónoma.
+
+\begin{example}{el cálculo matemático sin herramientas}
+Quien no aprendió en el colegio a calcular un porcentaje o a resolver una división manualmente, aun habiéndolo olvidado con el tiempo, puede recuperar ese conocimiento cuando resulta necesario. En cambio, quien nunca desarrolló esa habilidad de manera autónoma no cuenta con un criterio propio para advertir si el resultado que arroja una calculadora es correcto o si se ha producido un error. Esta analogía se traslada al uso de la inteligencia artificial: solo quien desarrolló la habilidad de base puede advertir cuándo el resultado ofrecido por la herramienta es erróneo.
+\end{example}
+
+\begin{example}{las ``alucinaciones'' de la inteligencia artificial}
+Al solicitar a un sistema de inteligencia artificial que elabore un informe con jurisprudencia sobre determinado tema, o que sugiera fuentes o actividades vinculadas a un área de conocimiento, el sistema puede ofrecer resultados aparentemente correctos --- enlaces, fallos, sitios --- que en la práctica no existen. Este fenómeno, conocido como ``alucinación'', exige una revisión crítica constante de toda información obtenida por este medio, en la medida en que la herramienta puede inventar fallos, citas o fuentes inexistentes con apariencia de verosimilitud.
+\end{example}
+
+\begin{important}
+Quien no cuenta con la formación necesaria para identificar los errores de la inteligencia artificial se encuentra en desventaja frente a sus resultados. No corresponde delegar en el traductor automático la totalidad del proceso de comprensión de un texto: se trata de un recurso que llegó para quedarse y que no puede ignorarse, pero cuya utilización sin criterio propio conlleva el riesgo de una dependencia tecnológica que anula la capacidad de resolver problemas de manera autónoma.
+\end{important}
+
+\begin{example}{la analogía culinaria}
+El uso indiscriminado de la inteligencia artificial para resolver un texto equivale a pedir un servicio de comida a domicilio mientras se pretende aprender a cocinar: el resultado inmediato se obtiene, pero no se produce aprendizaje alguno. En la materia se solicita frenar el impulso de pasar todo el texto por el traductor automático, tanto porque no podrá utilizarse el día del examen como porque dicha práctica atenta contra el objetivo central de la cursada: que el estudiantado piense, razone, se pregunte y cuestione el material que tiene delante.
+\end{example}
+
+% =====================================================
+% CAPÍTULO 3
+% =====================================================
+\chapter{Sistema de evaluación}
+
+\section{Primer parcial individual y recuperatorio}
+
+El primer parcial es individual, presencial y escrito. Se toma un día miércoles, con tres horas disponibles para su resolución, aunque está pensado para completarse en aproximadamente una hora y media o dos, y requiere el uso de diccionario en papel. Consiste en la lectura de un texto en inglés sobre un tema ya trabajado en clase, y en la resolución de consignas redactadas en español; no se exige ninguna producción escrita en inglés.
+
+\begin{important}
+La redacción en español constituye una condición central de aprobación del parcial, independientemente de la comprensión efectiva del texto en inglés. Una comprensión correcta del texto que no pueda expresarse con claridad en español --- por errores de redacción que impidan la comprensión de la respuesta --- puede determinar la desaprobación del examen, en la medida en que el lenguaje resulta especialmente relevante para el ejercicio de la disciplina jurídica.
+\end{important}
+
+Para fundamentar esta exigencia, se retoma la comparación entre el sistema anglosajón y el sistema argentino en cuanto al peso relativo del lenguaje oral y escrito en el proceso judicial, ya introducida en la Sección~1.4: en el sistema anglosajón el proceso penal o civil es mayormente oral, mientras que en el sistema argentino, pese al avance de los juicios orales y del sistema de jurados, la mayor parte de los procesos continúa siendo escrita. Por esta razón, la forma en que se expresa por escrito la comprensión de un texto resulta un elemento determinante de evaluación.
+
+El recuperatorio, destinado a quienes no aprueben el primer parcial, sigue un formato similar aunque algo más breve, y se toma aproximadamente una semana después de conocidas las notas del primer parcial.
+
+Respecto de las fechas, se aclara que el primer parcial de esta materia suele tomarse más tarde que en otras materias cuatrimestrales --- hacia fines de octubre ---, precisamente porque el objetivo de la cátedra es la incorporación de estrategias de lectura, un proceso que requiere mayor tiempo de maduración que la mera acumulación de contenido teórico.
+
+\section{Trabajo grupal de investigación y exposición oral}
+
+Superado el primer parcial (o su recuperatorio), se habilita una segunda instancia evaluativa: un trabajo grupal, en general de cuatro integrantes, de carácter más autónomo, con una etapa escrita y una etapa oral. En la etapa escrita, cada grupo elige un tema jurídico no trabajado previamente en clase y elabora un trabajo de investigación a partir de varias fuentes en inglés, a diferencia del parcial individual, en el que el texto es provisto por la cátedra. En la etapa oral, cada grupo realiza una exposición de entre 15 y 20 minutos ante la docente y el resto del curso.
+
+\begin{example}{la especialización notarial comparada}
+En un cuatrimestre anterior, un grupo eligió como tema de investigación la especialización notarial, comparando la figura del escribano público argentino con la figura equivalente existente en Estados Unidos, que presenta numerosas diferencias respecto de la argentina. Este ejemplo se destaca como modelo de elección de un tema original, en contraposición a la reiteración de temas ya trabajados en cuatrimestres anteriores.
+\end{example}
+
+Se atiende especialmente a la contención emocional del estudiantado en esta instancia, dado que suele coincidir con el tramo final de la carrera. Cuando el trabajo escrito presenta aspectos que no cumplen con las pautas exigidas, se informa al grupo con antelación suficiente para realizar los ajustes correspondientes antes de la exposición oral, de modo de evitar la desaprobación en dicha instancia.
+
+La calificación de esta instancia, al igual que la del parcial individual, es de tipo binario: aprobado o desaprobado, sin nota numérica.
+
+\section{Condiciones de regularidad y particularidades de la cátedra}
+
+Se trata de una cátedra única, con múltiples comisiones a cargo de distintos docentes pero con examen unificado. Por esta razón, a diferencia de lo que puede ocurrir en otras materias, no se admiten oyentes a los efectos de acreditar la materia mediante examen libre en otra comisión: el examen es el mismo para todo el estudiantado, cualquiera sea quien lo corrija.
+
+Finalmente, se informa que las exposiciones orales grupales se concentran en las últimas tres o cuatro clases del cuatrimestre --- habitualmente las últimas semanas de noviembre ---, reservándose siempre la última clase del cuatrimestre como fecha de contingencia para quienes no hayan podido exponer por motivos de fuerza mayor.
+
+% =====================================================
+% CAPÍTULO 4
+% =====================================================
+\chapter[Estrategias de lectocomprensión (Unidad 1)]{Estrategias de lectocomprensión: Unidad 1 --- Derecho Constitucional}
+
+Sobre el final de la clase se trabaja con el primer texto de la Unidad 1, titulado \textit{``How is the U.S. Government Organized?''}, extraído del sitio oficial \textit{usa.gov}. A partir de este texto se presentan las tres primeras estrategias de lectocomprensión de la cátedra.
+
+\section{Primera estrategia: la macroestructura del texto}
+
+\begin{definition}{macroestructura del texto}
+La macroestructura de un texto está constituida por el conjunto de elementos paratextuales --- títulos, subtítulos, viñetas, colores, subrayados, tipografía y fuente de publicación --- que pueden observarse antes de realizar una lectura en profundidad, y que permiten anticipar el contenido general del texto y organizar la información previamente a descender al detalle léxico.
+\end{definition}
+
+Antes de leer en profundidad el texto de trabajo, se propone observar únicamente sus elementos visuales. A partir de esa sola observación, resulta posible identificar que el texto describe la organización del Estado de Estados Unidos a partir de sus tres poderes, de manera similar --- aunque no idéntica --- al sistema argentino, que también se organiza en poder ejecutivo, legislativo y judicial.
+
+\begin{important}
+En el título del texto trabajado, la palabra \textit{government} (``gobierno'') no se refiere al Poder Ejecutivo, como suele entenderse coloquialmente en la Argentina la expresión ``el gobierno'', sino al Estado en su conjunto, integrado por los tres poderes: legislativo, ejecutivo y judicial. Se trata de un término potencialmente engañoso si se lo interpreta a partir del uso coloquial habitual en español.
+\end{important}
+
+El valor de los elementos paratextuales como estrategia de lectura es un procedimiento que en español se aplica de forma automática --- por ejemplo, al identificar en un manual de derecho la estructura típica de naturaleza jurídica, elementos, definición y clasificación --- y que en inglés simplemente debe hacerse consciente como primera estrategia de lectocomprensión.
+
+Se destaca también la importancia de observar la fuente del texto --- en este caso, \textit{usa.gov} ---, en tanto aporta información sobre su confiabilidad y su registro. No es equivalente obtener información sobre la estructura del Estado de Estados Unidos de una fuente como Wikipedia que de un sitio oficial. Asimismo, la propia fuente puede anticipar contenido: una fuente identificada como del Reino Unido (UK) en lugar de Estados Unidos (US) permitiría anticipar diferencias constitucionales relevantes entre ambos sistemas --- ambos de tradición \textit{common law} ---, como la existencia de una monarquía en el Reino Unido, inexistente en el sistema estadounidense.
+
+\section{Segunda estrategia: términos transparentes o cognados}
+
+\begin{definition}{cognado o término transparente}
+Un cognado o término transparente es una palabra que, al leerse o escucharse en otra lengua, permite reconocer de forma casi inmediata la idea que representa en la lengua propia, generalmente por compartir con ella un origen etimológico común. El español, en tanto lengua romance derivada del latín --- al igual que el italiano, el francés y el portugués ---, y el inglés, lengua de origen sajón con mayor semejanza con el alemán, tienen orígenes distintos; sin embargo, existen términos que en algún momento de su historia compartieron un origen común, en la medida en que el inglés también incorporó términos provenientes del latín.
+\end{definition}
+
+A partir del texto trabajado, se identifican de forma colaborativa numerosos cognados: \textit{Constitution/Constitución}, \textit{government/gobierno}, \textit{legislative/legislativo}, \textit{executive/ejecutivo}, \textit{judicial/judicial}, \textit{president/presidente}, \textit{cabinet/gabinete}, \textit{Congress/Congreso}, \textit{Supreme Court/Corte Suprema}, \textit{federal/federal}, \textit{confirmed/confirmado}, \textit{exceptional/excepcional}, \textit{remove/remover}, \textit{evaluates/evalúa} e \textit{individual/individual}, entre otros.
+
+El valor pedagógico de esta estrategia resulta especialmente relevante para quienes tienen escaso o nulo dominio del inglés, en la medida en que permite reducir significativamente la sensación de desconocimiento total frente a un texto: aun sin poder describir la totalidad de su contenido, el reconocimiento de los cognados permite ubicarse temáticamente frente al texto.
+
+Se aclara, no obstante, que no toda palabra reconocible por el contexto jurídico es necesariamente un cognado en sentido estricto. Los términos \textit{branch} (poder del Estado) y \textit{law} (ley), por ejemplo, pueden reconocerse por asociación conceptual previa o por haber sido leídos con anterioridad en otro contexto, y no por semejanza fonética o gráfica directa con su equivalente en español; por esta razón, no se los considera cognados en sentido estricto, aunque su reconocimiento resulte igualmente útil para la comprensión del texto.
+
+\section{Tercera estrategia: los falsos cognados}
+
+El punto más denso de la clase, desde el punto de vista lingüístico-jurídico, surge del análisis de la siguiente oración del texto trabajado:
+
+\begin{quote}
+\textit{``The justices of the Supreme Court, who can overturn unconstitutional laws, are nominated by the President and confirmed by the Senate.''} (fuente: \textit{usa.gov})
+\end{quote}
+
+La lectura literal inicial de esta oración genera confusión, dado que una traducción aparente en términos de ``la justicia de la Corte Suprema'' no resulta lógica en combinación con un verbo en plural ni con la idea de que dicha ``justicia'' sea nominada por el presidente y confirmada por el Senado. El análisis colectivo de la oración permite advertir varias señales de alarma: la presencia de un verbo en plural, y el uso de comas que funcionan como un inciso aclaratorio dentro de la oración (``who can overturn unconstitutional laws''). A partir de estas señales se concluye que el término \textit{justices} no puede estar refiriendo al concepto abstracto de justicia, en la medida en que resultaría ilógico que el presidente nominara leyes inconstitucionales y que el Senado las confirmara.
+
+\begin{definition}{falso cognado (false friend)}
+Un falso cognado o falso amigo (\textit{false friend}) es una palabra que, por su semejanza formal con un término de otra lengua, parece significar una determinada cosa o identificarse con un determinado concepto, cuando en realidad tiene un significado distinto en el contexto dado.
+\end{definition}
+
+La resolución del caso, mediante consulta al diccionario, confirma que \textit{justice}, en plural (\textit{justices}), designa concretamente a los ministros de la Corte Suprema, y no al concepto abstracto de ``justicia'' --- que, en todo caso, se emplearía en singular. El término específico para referirse a un juez en general, por su parte, es \textit{judge}. La determinación de cuál de los dos sentidos de \textit{justice} corresponde en cada caso depende del contexto de la oración. Se agrega, como dato complementario, que la máxima autoridad de la Corte Suprema estadounidense recibe el nombre de \textit{Chief Justice}, equivalente funcional al presidente de la Corte Suprema en el sistema argentino.
+
+\begin{table}[H]
+\centering
+\caption{Cognados y falsos cognados identificados en la clase}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} >{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Término en inglés} & \textbf{Categoría} & \textbf{Explicación} \\
+\midrule
+Constitution, government, president, Congress, federal & Cognado / término transparente & Semejanza fonética y gráfica directa con el término en español; origen etimológico común \\
+branch, law & No es cognado (aunque se reconozca) & Se reconoce por contexto o experiencia previa, no por semejanza formal con el término español \\
+justice(s) & Falso cognado (\textit{false friend}) & En plural designa a los ministros de la Corte Suprema, no al concepto abstracto de ``justicia'' \\
+overturn & Palabra compuesta a analizar por partes & \textit{turn} (girar, dar vuelta) + \textit{over} (sobre, encima): en este contexto equivale a ``declarar inconstitucional'' / ``anular'' \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{descomposición morfológica de ``overturn''}
+Aunque se escribe como una sola palabra, \textit{overturn} es una palabra compuesta. \textit{Turn} significa dar vuelta o girar (\textit{turn around}, darse vuelta; \textit{turn the page}, dar vuelta la hoja); \textit{over} es una preposición que indica ``encima'' o ``sobre''. A partir de esta descomposición es posible aproximarse al sentido del término en el contexto trabajado: ``declarar inconstitucional'' ciertas normas.
+\end{example}
+
+Como criterio general para detectar un falso cognado durante la lectura, se señala que estos términos suelen advertirse cuando, durante la lectura, algo ``no cierra'' o genera una sensación de extrañeza respecto del sentido de la oración; frente a esa señal, corresponde prestar especial atención al término involucrado y, en caso de duda, verificar su significado en el diccionario.
+
+\begin{note}
+El reconocimiento de cognados y la detección de falsos cognados se integran con el conocimiento jurídico previo del estudiantado: los términos identificados en un texto --- por ejemplo, Constitución, Estados Unidos, jueces, Corte Suprema --- deben relacionarse entre sí para adquirir sentido, tarea en la que interviene tanto el conocimiento jurídico de base como el sentido común.
+\end{note}
+
+\section{Cierre de la clase y organización de la próxima}
+
+Se sintetizan las dos estrategias léxicas trabajadas --- cognados y falsos cognados --- y se anticipa que, durante las primeras clases del cuatrimestre, se solicitará al curso marcar sistemáticamente los cognados de cada texto trabajado, práctica que se irá dejando de lado progresivamente a medida que se incorpore como hábito de lectura. Se destaca el valor de esta estrategia para reducir la ansiedad inicial frente a un texto en inglés, en la medida en que permite advertir que, aun sin comprender la totalidad del texto, existe un conjunto significativo de términos reconocibles. Se da por finalizado el encuentro, con la indicación de continuar trabajando el mismo texto en el próximo encuentro presencial.
+
+% =====================================================
+% CORNELL
+% =====================================================
+\chapter*{Resumen Cornell}
+\addcontentsline{toc}{chapter}{Resumen Cornell}
+\markboth{Resumen Cornell}{Resumen Cornell}
+
+Esquema de repaso de los conceptos centrales trabajados en la clase, organizado según el método Cornell: preguntas disparadoras y su desarrollo correspondiente, cerrado con una síntesis integradora.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.58\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es Lectocomprensión?} &
+Una materia orientada a desarrollar estrategias de lectura de textos jurídicos en inglés, y no a enseñar el idioma inglés en sí. Su objetivo es que el estudiantado pueda comprender un texto jurídico en inglés y explicarlo en español. \\
+
+\textbf{¿Por qué la materia se cursa casi al final de la carrera?} &
+Porque requiere una formación jurídica sólida en el sistema argentino, necesaria para poder comparar dicho sistema con el common law (sistema anglosajón). \\
+
+\textbf{¿Qué es un cognado o término transparente?} &
+Una palabra que, por compartir raíz etimológica --- generalmente latina --- con su equivalente en español, se reconoce con facilidad sin necesidad de dominar el idioma inglés (por ejemplo, \textit{Constitution}, \textit{government}, \textit{federal}). \\
+
+\textbf{¿Qué es un falso cognado (\textit{false friend})?} &
+Una palabra que, por su semejanza formal con un término español, parece significar una determinada cosa, pero que en realidad tiene un significado distinto en el contexto dado. Se detecta cuando el sentido de la oración genera extrañeza y se confirma consultando el diccionario (por ejemplo, \textit{justice/justices}, que en plural refiere a los ministros de la Corte Suprema y no al concepto abstracto de justicia). \\
+
+\textbf{¿Qué es la macroestructura de un texto?} &
+El conjunto de elementos paratextuales (títulos, subtítulos, viñetas, tipografía, fuente del texto) que permiten anticipar el contenido y organizar la información antes de una lectura en profundidad. \\
+
+\textbf{¿Por qué no se recomienda traducir palabra por palabra?} &
+Porque distorsiona el sentido --- las estructuras sintácticas del inglés y del español difieren ---, insume demasiado tiempo --- incompatible con los tiempos del examen --- y desalienta el desarrollo de estrategias de comprensión global. \\
+
+\textbf{¿Qué rol cumple la inteligencia artificial en la materia?} &
+Se admite como herramienta de apoyo, pero se advierte sobre sus ``alucinaciones'' (fallos y fuentes inventadas) y sobre el riesgo de delegar por completo el proceso de comprensión, lo que anula el desarrollo del criterio propio. \\
+
+\textbf{¿Cómo se evalúa la materia?} &
+Con un primer parcial individual, presencial y escrito (texto en inglés, respuestas en español, con diccionario en papel), y una segunda instancia grupal de investigación con entrega escrita y exposición oral. Ambas instancias se califican como aprobado o desaprobado. \\
+
+\textbf{¿Qué diccionarios se requieren?} &
+Un diccionario general (por ejemplo, Larousse, Collins o Webster's) y un diccionario bilingüe específicamente jurídico (por ejemplo, Cabanellas, tomo inglés-español), indispensable para el vocabulario técnico que no figura en los diccionarios generales. \\
+
+\textbf{¿Qué diferencia estructural existe entre el sistema argentino y el anglosajón?} &
+El sistema argentino, de tradición continental, es predominantemente escrito; el sistema anglosajón (common law), de base consuetudinaria, otorga mayor peso a las actuaciones orales, aunque también se registran por escrito. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} Esta primera clase de Lectocomprensión no enseña inglés: enseña a leer estratégicamente un texto jurídico en un idioma que no se domina del todo, apoyándose en tres pilares que se refuerzan entre sí. El primero es el conocimiento jurídico previo del estudiantado, que permite anticipar contenidos y detectar cuándo algo ``no cierra'' en una oración. El segundo es la lectura de la macroestructura del texto --- títulos, subtítulos, viñetas y fuente --- como primer acercamiento antes de descender al detalle léxico. El tercero es el trabajo con el vocabulario: reconocer cognados para reducir la sensación de desconocimiento total, y desconfiar de los falsos cognados cuando el sentido de una oración genera ruido, verificando siempre en el diccionario. A estas estrategias se suma una postura crítica frente a la traducción automática y la inteligencia artificial: herramientas útiles como apoyo, pero peligrosas como sustituto del criterio propio, en la medida en que solo quien desarrolló la habilidad de base puede advertir cuándo el resultado que ofrecen es erróneo. El encuadre administrativo de la cursada (asistencia, material, parcial individual, trabajo grupal) no constituye un aspecto meramente burocrático, sino la estructura que sostiene el proceso de construcción progresiva de una competencia lectora transferible a cualquier desafío profesional futuro en el que el derecho y el inglés se crucen.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

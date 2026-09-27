@@ -1,0 +1,701 @@
+\documentclass[12pt,oneside]{book}
+
+% =========================================================
+% METADATOS
+% =========================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\catedra}{Cátedra de Derecho Procesal Civil y Comercial}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{La Contestación de la Demanda y las Excepciones Previas}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% =========================================================
+% PAQUETES
+% =========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% =========================================================
+% RUTAS DE IMÁGENES
+% =========================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =========================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% =========================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =========================================================
+% CONFIGURACIÓN GENERAL
+% =========================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% =========================================================
+% ENCABEZADOS Y PIES
+% =========================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =========================================================
+% COMANDOS MATEMÁTICOS
+% =========================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =========================================================
+% CAJAS ACADÉMICAS
+% =========================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =========================================================
+% DOCUMENTO
+% =========================================================
+\begin{document}
+
+% ---------------------------------------------------------
+% PORTADA
+% ---------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \catedra}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el porqué de cada institución procesal es lo que permite litigar con criterio y no solo con memoria.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'', no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------------------------------------------------
+% ÍNDICE
+% ---------------------------------------------------------
+\tableofcontents
+
+% ---------------------------------------------------------
+% INTRODUCCIÓN AL TEMA
+% ---------------------------------------------------------
+\chapter*{Presentación del tema}
+\addcontentsline{toc}{chapter}{Presentación del tema}
+
+Estos apuntes reconstruyen, de manera ordenada, todo lo que ocurre desde que el demandado es notificado del traslado de la demanda hasta que queda trabada la litis: la citación a estar a derecho y el emplazamiento para contestar, la rebeldía, las costas y los gastos del proceso, las excepciones previas --su concepto, su clasificación doctrinaria y su trámite--, la estructura formal del escrito de contestación de demanda, la carga procesal de reconocer o negar los hechos que impone el artículo 356 del Código Procesal, y los distintos medios de prueba --documental, indiciaria, pericial, informativa-- que el abogado deberá ofrecer para sostener su versión de los hechos.
+
+Se trata, probablemente, del contenido más aplicado de toda la materia: ningún abogado litigante evita nunca el momento de redactar una contestación de demanda o de decidir si conviene oponer una excepción previa. Saber cómo se cuenta un plazo, qué defensa corresponde a cada situación, cómo negar un hecho sin quedar ``confeso'' por descuido, o cómo probar una simulación con indicios cuando no hay prueba directa, es lo que separa a un profesional que defiende bien a su cliente de uno que pierde un juicio por un error de forma.
+
+El conocimiento de estos mecanismos resulta además de utilidad general: comprenderlos ayuda a entender qué puede ocurrir si no se responde a tiempo un reclamo judicial, por qué es importante conservar pruebas (fotos, videos, contratos, mensajes) desde el primer momento de un conflicto, y qué consecuencias reales tiene el silencio o la demora frente a una notificación.
+
+\begin{note}
+El desarrollo que sigue se organiza en cinco bloques temáticos, que representan las cinco decisiones sucesivas que enfrenta todo demandado desde que es notificado hasta que queda trabada la discusión judicial: (I) el traslado de la demanda y la rebeldía; (II) las costas y los gastos del proceso; (III) las excepciones previas; (IV) el escrito de contestación de demanda; y (V) la prueba.
+\end{note}
+
+% ===========================================================
+\chapter{El traslado de la demanda y la rebeldía}
+% ===========================================================
+
+\section{La notificación del traslado: citación y emplazamiento}
+
+El traslado de la demanda notificado al demandado importa dos caras diferenciadas, que conviene distinguir con claridad.
+
+\begin{important}
+\textbf{Los dos efectos de la notificación del traslado:}
+\begin{enumerate}
+    \item \textbf{La citación para estar a derecho:} obliga al demandado a constituirse como parte en el proceso, bajo apercibimiento de rebeldía.
+    \item \textbf{El emplazamiento para contestar la demanda:} es el plazo dentro del cual el demandado debe presentar su responde, oponer excepciones y ofrecer prueba.
+\end{enumerate}
+\end{important}
+
+Si el demandado simplemente comparece y constituye domicilio sin contestar la demanda todavía, cumple con la citación a estar a derecho pero no con el emplazamiento, que corre por separado.
+
+\section{La rebeldía del demandado}
+
+Si el demandado no comparece a estar a derecho, puede ser declarado rebelde. La rebeldía no opera de oficio, sino que requiere pedido de parte, y conviene al actor porque implica la posibilidad de trabar medidas cautelares sin tener que acreditar el peligro en la demora ni prestar contracautela.
+
+\begin{important}
+\textbf{Consecuencias de la declaración de rebeldía:}
+\begin{itemize}
+    \item Se facilita el dictado de medidas cautelares, dispensando el peligro en la demora y la contracautela.
+    \item Se altera el régimen de notificaciones: a partir de la declaración de rebeldía, todas las resoluciones se tienen por notificadas por ministerio de la ley (por nota), salvo la sentencia definitiva, que debe notificarse por cédula.
+\end{itemize}
+\end{important}
+
+Ante la duda sobre si el demandado tuvo o no conocimiento efectivo de la demanda, existe una primera presunción a favor del actor: la ley presume conocido lo que corresponde a las cargas procesales de quien no responde.
+
+\begin{note}
+Cuando el actor solicita la declaración de rebeldía, la resolución que la declara también se notifica: no se deja de notificar esa resolución en particular. De ahí en más rige el nuevo régimen de notificación por nota, salvo para la sentencia definitiva.
+\end{note}
+
+% ===========================================================
+\chapter{Costas, honorarios y gastos del proceso}
+% ===========================================================
+
+\section{Costas, gastos causídicos y tasa de justicia}
+
+El principio general es que quien reclama judicialmente algo sin que el demandado haya incurrido en mora, ni allanado a la primera intimación, no puede cobrarle las costas, porque este último no incumplió. En cambio, si el demandado fue intimado por una obligación y no la cumplió, y después es demandado, sí cargará con las costas.
+
+\begin{important}
+\textbf{¿Cómo se componen las costas del proceso?}
+\begin{itemize}
+    \item \textbf{Honorarios profesionales:} se calculan según una escala porcentual sobre el monto del proceso. La escala es regresiva: a mayor monto del proceso, menor es el porcentaje aplicable; a menor monto, mayor porcentaje.
+    \item \textbf{Tasa de justicia:} corresponde aproximadamente al 3\% del monto del juicio, y se abona para iniciar la causa; queda en beneficio del Poder Judicial.
+    \item \textbf{Gastos causídicos:} son los desembolsos concretos que cada parte debió realizar para el proceso --por ejemplo, contratar a un ingeniero para constatar un desperfecto en una propiedad-- y que se acreditan con la factura correspondiente.
+\end{itemize}
+\end{important}
+
+\begin{note}
+Quien pierde el juicio paga los gastos causídicos que la otra parte tuvo que afrontar para el proceso. Por ejemplo: si se contrató a un ingeniero para constatar un desperfecto en una propiedad, esa factura se lleva al expediente, y si la parte que la generó gana el pleito, la contraria debe reembolsarla.
+\end{note}
+
+Los honorarios regulados a favor de los abogados se ejecutan por los procedimientos de ejecución de sentencia previstos en el código; si el vencido no paga voluntariamente, la sentencia puede ejecutarse forzosamente, incluso contra el abogado de la contraparte vencida en lo que hace a sus propios honorarios.
+
+% ===========================================================
+\chapter{Las excepciones previas}
+% ===========================================================
+
+\section{Concepto y fundamento de las excepciones previas}
+
+Las excepciones previas se vinculan con los presupuestos procesales: condiciones que deben darse para que el proceso pueda avanzar válidamente. Por ejemplo, se requiere un juez competente --si no hay un juez competente, no hay proceso--; no puede haber dos procesos en trámite por la misma causa --lo que constituye litispendencia--; y se exige la capacidad procesal de las partes, porque un incapaz no puede intervenir por sí.
+
+\begin{formula}{Etapas del proceso de conocimiento ordinario}
+Etapa introductoria $\rightarrow$ Etapa probatoria $\rightarrow$ Etapa discusional (alegatos) $\rightarrow$ Etapa decisoria (sentencia) $\rightarrow$ Etapa recursiva $\rightarrow$ Etapa ejecutoria.
+\end{formula}
+
+Las excepciones previas y defensas pueden agruparse en dos grandes familias: las de naturaleza procesal y las que remiten al derecho de fondo. Entre las primeras se mencionan la incompetencia, la falta de legitimación y la litispendencia; entre las segundas, la cosa juzgada, el pago, la prescripción y la excepción de incumplimiento contractual (si me reclaman algo, respondo que no pago hasta que la otra parte no cumpla). A ellas se agrega la caducidad de instancia, que opera quando la parte que debía impulsar el proceso no lo hace, lo que en los procesos ordinarios conduce a la caducidad.
+
+Todo lo enumerado --contestación de demanda y excepciones previas-- constituye, en conjunto, el derecho de defensa del demandado: todo lo que este puede hacer para resistir la pretensión del actor.
+
+\section{Clasificación doctrinaria: impedimentos, excepciones y defensas}
+
+\begin{definition}{La reconvención}
+Más que una defensa, la reconvención es un contraataque del demandado: este introduce, dentro del mismo proceso, una pretensión propia contra el actor. La pretensión reconvenida debe ser conexa con la de la demanda principal; no procede reconvenir sobre una cuestión totalmente inconexa. No existe, en cambio, la ``reconvención de la reconvención''.
+\end{definition}
+
+\subsection*{¿Por qué se llaman excepciones ``de previo y especial pronunciamiento''?}
+
+Se llaman así porque se plantean y se resuelven antes de la sentencia. La contestación de la demanda propiamente dicha se resuelve recién en la sentencia; en cambio, las excepciones previas se resuelven de entrada, antes de continuar el proceso, mediante un trámite especial. El ejemplo típico es la incompetencia: no tendría sentido tramitar todo un proceso ordinario para que, recién al final, el juez advierta que era incompetente; por eso esta defensa se resuelve al comienzo.
+
+\subsection*{La clasificación de Carlos Carli}
+
+La obra de referencia para este tema es \textit{La demanda civil}, de Carlos Carli, que plantea una clasificación de las excepciones en impedimentos procesales, excepciones propiamente dichas y defensas, retomando también la posición de Palacio.
+
+\begin{important}
+\textbf{Clasificación de Carlos Carli (con Palacio):}
+
+\textbf{1. Impedimentos procesales.} Se utilizan cuando no se dan los presupuestos procesales: son ``como las dos caras de una misma moneda'' --si falta el presupuesto, hay impedimento procesal--. Los cinco presupuestos procesales son: juez competente, proceso único (no litispendencia), capacidad procesal de las partes (personería), arraigo, y demanda clara (no oscura). A cada uno corresponde una excepción: incompetencia, litispendencia, falta de personería, falta de arraigo y defecto legal, respectivamente. Al plantear un impedimento procesal no se dice nada del derecho de la parte ni de la acción que tiene; se dice que no se puede llevar adelante un proceso válidamente si no se da ese presupuesto.
+
+\textbf{2. Excepciones propiamente dichas.} Atacan la acción, no el proceso ni el derecho de fondo. El ejemplo central es la prescripción: al plantearla, el demandado ataca la acción --la pérdida de la acción por el paso del tiempo--, no el derecho en sí. También se ubican aquí la cosa juzgada, la transacción y la conciliación previas: en todos los casos no se niega que el actor tenga derecho, sino que no tiene acción para reclamarlo en ese proceso.
+
+\textbf{3. Defensas.} Atacan directamente el derecho del actor. Cuando el demandado se defiende alegando, por ejemplo, el pago de la obligación reclamada, está negando la existencia misma del derecho invocado.
+\end{important}
+
+Esta triple distinción sirve para ver dónde está parada cada defensa y qué es lo que efectivamente ataca: el proceso, la acción o el derecho del actor.
+
+\subsection*{Por qué algunas defensas de fondo se admiten como previas}
+
+El pago, aunque es una cuestión de fondo, puede oponerse también como excepción de previo pronunciamiento cuando es de fácil y rápida comprobación, ya que en principio no existe dificultad para determinar, como excepción previa, si una obligación fue pagada. El legislador simplemente eligió nominar solo algunas de estas defensas. Asimismo, ciertas excepciones nominadas --como la falta de legitimación o la prescripción-- no siempre tramitan como previas: solo lo hacen cuando la cuestión es manifiesta, es decir, cuando no requiere de mayor prueba. Cuando la cuestión no es manifiesta y exige producir prueba, la misma defensa se resuelve junto con el fondo del asunto, en la sentencia.
+
+\begin{important}
+\textbf{Regla práctica:} toda excepción previa se opone junto con la contestación de la demanda. Si la cuestión que plantea es de puro derecho o de comprobación manifiesta, se resuelve como previa; si requiere producir prueba, tramita junto con el fondo y se resuelve en la sentencia.
+\end{important}
+
+\section{Cómputo de plazos y efectos del planteo de excepciones}
+
+El cómputo de plazos es un tema frecuente en los exámenes parciales, en el que suelen cometerse errores al plasmarlo por escrito aunque se lo comprenda verbalmente. Es necesario identificar con precisión qué resolución es y qué plazo le corresponde.
+
+\begin{exercise}{Cómputo de plazos}
+\textbf{Supuesto:} se notifica la demanda el día lunes 31; el día hábil siguiente es feriado. El plazo para contestar demanda en un proceso ordinario es de 15 días hábiles.
+
+\textbf{Regla de cómputo:} en todos los medios de notificación --por nota, por cédula, por acta notarial, por telegrama, o cualquier otro medio-- el día de la notificación no se cuenta. El plazo empieza a correr desde el día hábil siguiente, y no se cuentan los sábados, domingos ni feriados.
+
+\textbf{Resolución:} notificado el lunes 31, el día 1 del cómputo es el primer día hábil siguiente; si el día inmediato es feriado, ese día no se cuenta, y recién el próximo día hábil pasa a ser el ``día uno'' del plazo.
+\end{exercise}
+
+\begin{note}
+Este es exactamente el punto donde más alumnos se equivocan en los exámenes: confunden el día de la notificación con el primer día del plazo.
+\end{note}
+
+\subsection*{Suspensión e interrupción del plazo por el planteo de excepciones}
+
+Cuando el demandado opone excepciones previas junto con la contestación de la demanda, el plazo para contestar queda suspendido hasta que se resuelvan. Al reanudarse el proceso, queda pendiente el remanente del plazo que no se había consumido al momento de oponer la excepción.
+
+\begin{important}
+\textbf{Suspensión vs. interrupción del plazo:}
+\begin{itemize}
+    \item Si se \textbf{rechaza} la excepción de defecto legal: el plazo había quedado suspendido; al notificarse el rechazo, se reanuda por el remanente --los días que faltaban al momento de oponerla--.
+    \item Si se \textbf{hace lugar} a la excepción de defecto legal (porque la demanda era realmente oscura o ambigua y el actor debió corregirla): el plazo se interrumpe, y el demandado vuelve a contar con el plazo completo desde la notificación de la demanda ya corregida.
+\end{itemize}
+\end{important}
+
+\begin{note}
+El uso de la excepción de defecto legal puede tener una finalidad estratégica: aunque se sepa que será rechazada porque la demanda es clara, plantearla permite ganar tiempo, ya que mientras se sustancia la excepción el plazo para contestar queda suspendido. Al rechazarse la excepción se cargará con las costas de ese incidente, pero se habrá ganado tiempo para preparar mejor la defensa. Por eso, en la práctica, esta excepción se utiliza en ocasiones más como mecanismo dilatorio que con su finalidad propia.
+
+% TODO: contenido incompleto o ambiguo en las notas originales -- se señala expresamente que la cátedra sigue, en el punto de la reanudación del plazo por remanente frente a un nuevo plazo íntegro, la posición de Palacio, sin que el apunte especifique el desarrollo doctrinario completo de esa posición.
+\end{note}
+
+Si la demanda debió modificarse a raíz de una excepción de defecto legal, el nuevo plazo corre íntegro desde la notificación de la demanda corregida; las demás excepciones, en cambio, no generan un nuevo plazo distinto, sino la reanudación del remanente.
+
+\section{Impedimentos procesales, excepciones y presupuestos: un cierre práctico}
+
+\begin{table}[H]
+\centering
+\caption{Presupuesto procesal y excepción correspondiente}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Presupuesto procesal} & \textbf{Excepción correspondiente} \\
+\midrule
+Juez competente & Excepción de incompetencia \\
+Proceso único (no dos procesos por la misma causa) & Excepción de litispendencia \\
+Capacidad procesal / representación (personería) & Excepción de falta de personería \\
+Arraigo (hoy prácticamente en desuso, salvo domicilio o bienes fuera del país) & Excepción de falta de arraigo \\
+Demanda clara y precisa & Excepción de defecto legal en el modo de proponer la demanda \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+En la gran mayoría de los casos, los juicios tramitan por proceso ordinario o por proceso sumarísimo. En el sumarísimo --por ejemplo, en el desalojo-- no se admiten excepciones de previo y especial pronunciamiento: todas las defensas, previas o de fondo, se resuelven juntas en la sentencia.
+\end{important}
+
+% ===========================================================
+\chapter{El escrito de contestación de demanda}
+% ===========================================================
+
+\section{Estructura formal del escrito de contestación}
+
+El escrito de contestación de demanda guarda un paralelo directo con el escrito de demanda ya estudiado. En el encabezamiento, en lugar de decir ``interpone demanda'', se dice ``contesta demanda''. El destinatario es el mismo juez que resulta competente para la causa: se trata del mismo tipo de pieza procesal, con el mismo destinatario y el mismo tribunal; lo que cambia es el objeto y el contenido de los capítulos.
+
+\begin{important}
+\textbf{Estructura del escrito de contestación de demanda:}
+\begin{enumerate}
+    \item \textbf{Encabezamiento (sumilla o ``suma''):} en el margen superior se indica de forma abreviada el contenido del escrito: ``Contesta demanda. Opone excepciones. Ofrece prueba''.
+    \item \textbf{Carátula del expediente:} se identifica el proceso --por ejemplo, ``Pérez, Juan c/ [demandado] s/desalojo''-- y el número de expediente, si ya se conoce.
+    \item \textbf{Personería:} se indica si se comparece por derecho propio o en representación de otro, acompañando en este último caso copia del poder o carta poder correspondiente.
+    \item \textbf{Domicilios:} se constituye domicilio procesal (físico y electrónico) y se denuncia el domicilio real, junto con los datos del letrado patrocinante o apoderado.
+    \item \textbf{Objeto:} se expresa el propósito del escrito --por ejemplo: ``Vengo, en tiempo y forma, a contestar la demanda incoada en mi contra, solicitando su rechazo con costas, por las razones de hecho y de derecho que a continuación se exponen''--.
+    \item \textbf{Capítulo de excepciones previas (si corresponde):} se oponen todas las excepciones que se decida plantear.
+    \item \textbf{Capítulo de contestación de demanda propiamente dicha:} reconocimiento o negativa de los hechos, versión propia de los hechos, y encuadre jurídico de la defensa.
+    \item \textbf{Ofrecimiento de prueba:} documental, pericial, testimonial, informativa, etc.
+    \item \textbf{Petitorio:} síntesis final de lo solicitado. Es el capítulo que más se lee: aunque no siempre se lee el escrito completo, el petitorio sí se lee siempre.
+\end{enumerate}
+\end{important}
+
+\begin{important}
+Las excepciones se oponen siempre junto con la contestación de la demanda, en el mismo escrito, no por separado. Antes de la reforma podían presentarse en momentos distintos; hoy, si no se cumple con esta carga en la primera oportunidad, opera la \textbf{preclusión}, que es la pérdida, extinción o consumación de una facultad procesal por no haberse ejercido en el momento debido.
+\end{important}
+
+Si bien la prueba de las excepciones y la del fondo se ofrecen conjuntamente en el mismo escrito, conviene organizarlas en capítulos separados --uno para la prueba de las excepciones y otro para la prueba del fondo del asunto--, porque técnicamente son dos cuestiones distintas.
+
+\begin{example}{Prórroga de competencia territorial}
+Sobre el objeto del escrito cuando también contiene una demanda incidental de competencia: si el demandado entiende que el juez interviniente no es competente, en lugar de contestar sin más, plantea primero una cuestión de competencia pidiendo que el expediente se remita al juez que considera competente.
+
+Si un inmueble está situado, por ejemplo, en Córdoba, y el contrato se firmó pactando la competencia federal de la Ciudad Autónoma de Buenos Aires, esa prórroga de competencia territorial es válida porque se trata de una cuestión patrimonial disponible para las partes, y por lo tanto puede hacerse valer. Distinto es cuando la competencia no es prorrogable, como en materia federal frente a un asunto local: en ese caso el juez puede declararse incompetente de oficio, sin esperar a que la parte lo plantee.
+\end{example}
+
+\section{El artículo 356 del Código Procesal: la carga de la negativa}
+
+El capítulo de la contestación de demanda propiamente dicha tiene su carga central regulada en el artículo 356 del Código Procesal Civil y Comercial.
+
+\begin{important}
+\textbf{Artículo 356 del Código Procesal Civil y Comercial --- Carga de reconocer o negar los hechos:}
+
+``En la contestación opondrá el demandado todas las excepciones o defensas de que intente valerse. Deberá además:
+
+1) Reconocer o negar categóricamente cada uno de los hechos expuestos en la demanda, la autenticidad de los documentos acompañados que se le atribuyeren y la recepción de las cartas y telegramas a él dirigidos cuyas copias se acompañen. Su silencio, sus respuestas evasivas, o la negativa meramente general podrán estimarse como reconocimiento de la verdad de los hechos pertinentes y lícitos a que se refieren. En cuanto a los documentos, se los tendrá por reconocidos o recibidos, según el caso. No estarán sujetos al cumplimiento de la carga mencionada en el párrafo precedente el defensor oficial y el demandado que interviniere en el proceso como sucesor a título universal de quien participó en los hechos o suscribió los documentos, o recibió las cartas o telegramas, quienes podrán reservar su respuesta definitiva para después de producida la prueba.
+
+2) Especificar con claridad los hechos que alegare como fundamento de su defensa.
+
+3) Observar, en lo aplicable, los requisitos prescriptos en el artículo 330.''
+\end{important}
+
+Respecto de los hechos hay que reconocer o negar categóricamente: no basta una negativa genérica. Si el demandado hace una negativa general y después, especialmente, niega los hechos uno por uno, esa negativa debe ser hecho por hecho, porque cada hecho tiene su propia relevancia.
+
+\begin{note}
+Por precaución profesional, conviene negar expresamente incluso los hechos que parecen secundarios: si se deja un hecho sin negar, una presunción sobre ese hecho --aunque no esté probado directamente-- puede completar la cadena de razonamiento del juez en contra del demandado, precisamente porque no lo negó categóricamente.
+\end{note}
+
+\begin{example}{La norma y sus hechos antecedentes}
+Los hechos alegados constituyen el antecedente de aplicación de la norma. La norma dice que si se da A, debe ser B; y B es justamente lo que el actor reclamó. Entonces, esos hechos --el antecedente A-- deben estar probados en el proceso para que el juez pueda aplicar la consecuencia B.
+\end{example}
+
+Cada parte debe probar el presupuesto de aplicación de la norma que invoca a su favor, como fundamento de su pretensión o de su defensa: no prueba solo el actor, sino que cada parte prueba lo que le conviene alegar.
+
+\begin{table}[H]
+\centering
+\caption{Actitudes frente a los hechos de la demanda (art. 356 CPCC)}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Actitud} & \textbf{Consecuencia procesal} \\
+\midrule
+Reconocer el hecho & El hecho queda fuera del debate probatorio (si se trata de un derecho disponible); no hace falta producir prueba sobre él. \\
+Negar el hecho & El hecho se transforma en ``controvertido'' --afirmado por una parte y negado por la otra-- y queda dentro del objeto de la prueba: quien lo alegó deberá probarlo. \\
+Silencio, negativa genérica o respuesta evasiva & Constituye una ``admisión técnica'' de los hechos: el artículo 356 dice que el juez ``podrá'' tenerlos por ciertos. ``Podrá'' no significa ``deberá''; por eso, aun en el silencio, siempre conviene ofrecer y producir prueba sobre esos hechos, para no quedar expuesto a esa presunción en la sentencia. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+En cuanto a la prueba documental acompañada por la contraria, el reconocimiento o desconocimiento debe ser expreso y puntual, documento por documento: no alcanza una manifestación genérica.
+
+% ===========================================================
+\chapter{La prueba en el proceso}
+% ===========================================================
+
+\section{Hechos, negativas y presunciones simples}
+
+Conviene diferenciar con precisión la prueba directa de un hecho de la prueba por indicios y presunciones. La verdad de los hechos es una cosa; el indicio es otra distinta. Los indicios no son la prueba directa del hecho: son otros hechos que, interpretados armónicamente, de forma contundente y categórica, hacen presumir la existencia de un hecho distinto que no se pudo probar directamente.
+
+\begin{note}
+Los indicios no se ``ofrecen'' como un medio de prueba autónomo, sino que se construyen recién en la etapa de alegatos, a partir de la prueba ya producida en el expediente. Es en esa instancia donde el abogado reconstruye la historia y recurre a la prueba indiciaria.
+\end{note}
+
+\begin{example}{Simulación de una compraventa para eludir una fianza}
+Un local comercial estaba alquilado por un canon mensual de varios millones de pesos, garantizado por una fianza. El inquilino dejó de pagar y se insolventó; el fiador, para evitar hacer frente a su obligación, transfirió simuladamente un local de su propiedad a su sobrino, mediante un boleto de compraventa. Detrás de esa operación existiría, según sospechaba el acreedor, un contradocumento --un pacto por el cual el sobrino reconoce que la venta no es real-- que naturalmente nadie exhibiría como prueba en el juicio.
+
+La pregunta central es: si no hay forma de acceder a ese contradocumento oculto, ¿cómo se prueba la simulación? La respuesta es reuniendo varios indicios precisos y concordantes --nunca uno solo-- que, interpretados en conjunto, permitan presumir el hecho oculto.
+
+\textbf{Indicios recolectados en el caso:}
+\begin{enumerate}
+    \item \textbf{Falta de capacidad económica del comprador:} se podría requerir información a entidades bancarias o a la AFIP para verificar si efectivamente ingresó el dinero declarado en la operación a la cuenta del vendedor.
+    \item \textbf{Vínculo de parentesco entre las partes:} la relación de tío y sobrino constituye, por sí sola, un indicio adicional de connivencia, aunque no sea determinante en soledad.
+    \item \textbf{Ausencia de entrega efectiva de la posesión:} el supuesto vendedor siguió explotando el local con normalidad después de la venta, sin que se le hubiera entregado la posesión al comprador.
+\end{enumerate}
+
+No es posible probar directamente que la venta es simulada, pero sí es posible probar estos tres hechos distintos --falta de capacidad económica, parentesco, no entrega de la posesión-- que, interpretados en conjunto, de forma armónica, precisa y concordante, permiten tener por acreditada la existencia de otro hecho: la simulación. Eso es la prueba de presunciones o prueba indiciaria.
+\end{example}
+
+\begin{note}
+La prueba indiciaria también se utiliza en otros terrenos, como los juicios de filiación, donde además se acude a otros medios técnicos, como el examen genético.
+\end{note}
+
+\section{La prueba documental}
+
+\begin{definition}{Documento}
+Se define como documento a toda representación material apta para exteriorizar el pensamiento humano, sin importar el soporte físico en el que se plasme. Como ejemplo puede pensarse en el mojón: una piedra que se coloca como límite entre dos terrenos en una operación de mensura. Esa piedra ``representa'' algo humano, porque su finalidad es delimitar un espacio con valor jurídico --si se retira el mojón, pierde su razón de ser-- y por eso constituye prueba documental.
+\end{definition}
+
+A partir de ese concepto amplio, la prueba documental actual incluye:
+\begin{itemize}
+    \item Comprobantes de pago, contratos de locación y otros documentos literales.
+    \item Mensajes de WhatsApp y correos electrónicos.
+    \item Videos y fotografías, siempre que puedan acreditarse en su origen y contenido.
+\end{itemize}
+
+\begin{example}{El video del local dañado}
+Ante el supuesto de que se hayan ocasionado daños a un local y exista una filmación de ese momento, esa prueba es documental, porque lo que importa es el soporte: la filmación. Para probar bien el estado del local conviene, además, contar con fotos del antes y del después: cómo se entregó el local, en qué condiciones y en qué estado consta al momento del reclamo. Una buena práctica es sacar esas fotos con las partes presentes, incluso firmadas, para poder compararlas si después hay discusión.
+\end{example}
+
+La regla general es que la prueba debe extraerse de la fuente más directa posible. Para un video, eso significa solicitar informativa a la empresa que administra las cámaras de seguridad, o pedirle al cliente que resguarde el disco rígido original donde quedó grabado, para no perder la cadena de custodia de esa prueba.
+
+\begin{note}
+Sobre el riesgo de no resguardar a tiempo la prueba digital: en un caso, un video relevante estaba grabado en un celular que luego se sobreescribió, al no haberse resguardado a tiempo, con lo cual se perdió definitivamente esa prueba. En otro caso, dentro de un proceso laboral por maltrato a empleados de una empresa, el abogado de la parte contraria envió un pendrive con un video; en esa oportunidad se solicitó formalmente a la Cámara laboral que resguardara el video bajo su custodia hasta la audiencia de vista de causa --donde se produce la prueba testimonial y se debate el caso ante los jueces--, precisamente para poder incorporarlo válidamente sin que la otra parte pudiera desconocer su origen.
+\end{note}
+
+\section{Instrumentos públicos y privados: la impugnación}
+
+\begin{important}
+\textbf{Instrumentos públicos: la redargución de falsedad.} Si el documento acompañado es un instrumento público, la parte a quien se opone debe impugnarlo al momento de contestar el traslado, mediante el incidente de redargución de falsedad, dentro de los diez días de esa impugnación. Un instrumento público goza de fe pública y se presume auténtico hasta que sea declarado falso mediante ese incidente específico.
+\end{important}
+
+Dentro de la fe pública corresponde distinguir la falsedad ideológica de la material o intelectual. La falsedad ideológica es la que supone que el escribano faltó a la verdad de los hechos que dice haber presenciado --por ejemplo, si asienta que se entregó el dinero en el acto y eso no ocurrió--. Ese es un hecho amparado por la fe pública del instrumento, y por eso, para atacarlo, hace falta el incidente de redargución de falsedad.
+
+No toda mención en una escritura requiere, en cambio, ese incidente tan exigente: las simples manifestaciones de las partes recogidas por el escribano --no los hechos que este presenció directamente-- pueden impugnarse por prueba en contrario, sin necesidad de redargución de falsedad. Si la escritura dice que el comprador entregó el dinero antes, ante el escribano, eso está amparado por la fe pública; pero si solo consta como una manifestación de las partes, basta con impugnarlo y probar lo contrario. Es necesario analizar, frente a cada traslado, qué tipo de documento es, para saber si alcanza con impugnarlo o si hace falta el incidente completo.
+
+\begin{important}
+\textbf{Instrumentos privados: el desconocimiento de firma.} Si el documento es privado, basta con desconocerlo al contestar el traslado, sin necesidad de un incidente autónomo. Si lo que se desconoce es la firma, corresponde ofrecer directamente la prueba pericial caligráfica en ese mismo acto.
+\end{important}
+
+\begin{note}
+Si se reconoce la firma de un documento privado, automáticamente queda reconocido el documento en su integridad, y por lo tanto también el monto o la cláusula que figure en él. Distinto es si directamente se niega que la firma corresponda a esa persona: en ese caso se designa un perito calígrafo, que puede dictaminar si la firma corresponde o no.
+\end{note}
+
+\subsection*{El perito oficial y el consultor técnico}
+
+El perito oficial se designa mediante un sorteo entre los profesionales inscriptos en la lista correspondiente. Antiguamente ese sorteo era manual --con bolillas dentro de un bolillero de tela, de donde se extraía un papelito con un nombre--; hoy el sorteo se realiza de forma informática.
+
+\begin{important}
+\textbf{El consultor técnico de parte.} Cada parte puede designar, además del perito oficial único, su propio consultor técnico. El consultor técnico asiste a la parte para proponer los puntos de pericia, para controlar la tarea del perito oficial y, eventualmente, para presentar un informe propio si discrepa con las conclusiones de aquel. Un mismo profesional del derecho no está capacitado para dictaminar sobre puntos médicos, de mala praxis o cuestiones caligráficas: para eso existen los peritos y consultores técnicos especializados en cada materia.
+\end{important}
+
+\begin{note}
+Existen profesionales --escribanos o peritos-- que actúan mal y otros que actúan bien; quienes incumplen sus deberes pueden ser sometidos a proceso disciplinario o incluso penal, según el caso, sin que ello altere el valor jurídico general de la fe pública ni de la prueba pericial como institución.
+\end{note}
+
+\section{Prueba pericial, de terceros e informativa}
+
+\begin{important}
+\textbf{Prueba de terceros (testimonial):} se puede ofrecer el testimonio de personas ajenas al proceso; la parte contraria también puede pedir que se cite a declarar a un tercero, y si este no comparece, esa omisión puede jugar en su contra como un indicio desfavorable a quien lo propuso.
+
+\textbf{Prueba informativa:} se solicita mediante oficios a organismos públicos o entidades privadas --por ejemplo, un registro de obra pública-- para que informen datos objetivos que obran en su poder.
+\end{important}
+
+En materia de prueba pericial resulta importante fijar con precisión los puntos de pericia sobre los que deberá expedirse el experto designado.
+
+\subsection*{El petitorio final del escrito}
+
+El petitorio es una síntesis de todo lo pedido a lo largo del escrito. Debe consignarse siempre, en forma completa, porque muchas veces es lo único que efectivamente se lee con detenimiento: si no está ahí resumido lo que se pide, se corre el riesgo de que el juzgado no le dé curso a algo que sí se planteó en el cuerpo del escrito.
+
+\begin{note}
+El cargo judicial es el que certifica la fecha y la hora de presentación de un escrito. Con la presentación electrónica, ese cargo lo asigna automáticamente el sistema informático del Poder Judicial, y no ya la propia parte.
+\end{note}
+
+% ===========================================================
+\chapter{Repaso final: cuadro Cornell}
+% ===========================================================
+
+El siguiente cuadro reúne, en el formato del método Cornell, las preguntas centrales que permiten repasar activamente los contenidos desarrollados en los cinco bloques temáticos, junto con una síntesis final de la clase.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.60\textwidth}
+}
+\caption{Cuadro Cornell --- Contestación de la demanda y excepciones previas} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\textit{(continuación del cuadro Cornell)}} \\
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{continúa en la página siguiente}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué dos efectos produce notificar el traslado de la demanda?} &
+La citación para estar a derecho (obliga a comparecer, bajo apercibimiento de rebeldía) y el emplazamiento para contestar la demanda (plazo para responder, oponer excepciones y ofrecer prueba). \\
+
+\textbf{¿Qué consecuencias trae la declaración de rebeldía?} &
+Facilita trabar medidas cautelares sin acreditar peligro en la demora ni prestar contracautela, y modifica el régimen de notificaciones: todo se notifica por nota salvo la sentencia, que se notifica por cédula. \\
+
+\textbf{¿Cómo se componen las costas de un proceso?} &
+Por los honorarios profesionales (según escala regresiva sobre el monto del proceso), la tasa de justicia (aprox. 3\% del monto del juicio) y los gastos causídicos (desembolsos concretos acreditados con comprobantes). \\
+
+\textbf{¿Por qué las excepciones previas se llaman ``de previo y especial pronunciamiento''?} &
+Porque se resuelven antes de la sentencia, apenas planteadas, mediante un trámite especial y separado del principal, a diferencia de la contestación de fondo, que se resuelve recién en la sentencia. \\
+
+\textbf{Según Carlos Carli, ¿en qué tres categorías se clasifican las defensas del demandado?} &
+Impedimentos procesales (atacan el proceso, por falta de un presupuesto procesal), excepciones propiamente dichas (atacan la acción, ej. prescripción, cosa juzgada) y defensas (atacan el derecho de fondo del actor, ej. el pago). \\
+
+\textbf{¿Cuáles son los cinco presupuestos procesales y su excepción correlativa?} &
+Juez competente (incompetencia), proceso único (litispendencia), capacidad procesal/personería (falta de personería), arraigo (falta de arraigo) y demanda clara (defecto legal). \\
+
+\textbf{¿Qué diferencia hay entre suspensión e interrupción del plazo al oponer excepciones?} &
+Si se rechaza la excepción, el plazo se reanuda por el remanente pendiente al momento de oponerla. Si se hace lugar (ej. defecto legal, por demanda corregida), el plazo se interrumpe y corre completo de nuevo desde la nueva notificación. \\
+
+\textbf{¿Qué carga impone el artículo 356 del Código Procesal respecto de los hechos de la demanda?} &
+Reconocer o negar categóricamente cada hecho, expedirse sobre la autenticidad de los documentos y sobre la recepción de cartas y telegramas. El silencio, la evasiva o la negativa genérica pueden estimarse como reconocimiento de los hechos. \\
+
+\textbf{¿Qué diferencia hay entre un hecho reconocido, uno negado y una negativa genérica?} &
+El reconocido queda fuera de prueba; el negado se vuelve controvertido y debe probarlo quien lo alegó; el silencio o la negativa genérica configuran una ``admisión técnica'' que el juez podrá (no deberá) tener por cierta. \\
+
+\textbf{¿Cómo se prueba un hecho --como una simulación-- cuando no hay prueba directa?} &
+Mediante prueba indiciaria: varios hechos distintos, precisos y concordantes (ej. falta de capacidad económica, parentesco, no entrega de la posesión) que, interpretados en conjunto, permiten presumir el hecho oculto. \\
+
+\textbf{¿Qué se entiende por documento a efectos de la prueba documental?} &
+Toda representación material apta para exteriorizar el pensamiento humano, sin importar el soporte: contratos, comprobantes, mensajes de WhatsApp, correos electrónicos, fotos, videos e incluso un mojón que delimita un terreno. \\
+
+\textbf{¿Cómo se impugna un instrumento público y cómo uno privado?} &
+El instrumento público se impugna mediante el incidente de redargución de falsedad, dentro de los diez días de la impugnación. El instrumento privado se impugna con el simple desconocimiento, y si se niega la firma, se ofrece pericia caligráfica. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} La clase reconstruye el itinerario que recorre todo demandado desde que es notificado del traslado de la demanda hasta que queda trabada la litis. Se distingue la citación a estar a derecho del emplazamiento para contestar, y se analizan las consecuencias de la rebeldía y el cálculo de costas, honorarios y gastos causídicos. Se profundiza luego en las excepciones previas: su fundamento como mecanismo de previo y especial pronunciamiento, su clasificación doctrinaria en impedimentos procesales, excepciones propiamente dichas y defensas --según Carli y Palacio--, y las reglas de cómputo, suspensión e interrupción de plazos que rigen su planteo, incluyendo su uso estratégico como herramienta dilatoria. A continuación se construye, capítulo por capítulo, la estructura del escrito de contestación de demanda, con especial énfasis en la carga que impone el artículo 356 del Código Procesal: reconocer o negar categóricamente cada hecho, bajo apercibimiento de que el silencio se interprete como reconocimiento. Finalmente, se recorren los distintos medios de prueba --documental en sentido amplio, indiciaria o de presunciones, pericial, testimonial e informativa-- y su tratamiento según se trate de instrumentos públicos o privados. En conjunto, el material ofrece el mapa completo de las decisiones y cargas procesales que enfrenta el abogado defensor entre la notificación de la demanda y el inicio de la etapa probatoria.
+} \\
+
+\end{longtable}
+
+\end{document}

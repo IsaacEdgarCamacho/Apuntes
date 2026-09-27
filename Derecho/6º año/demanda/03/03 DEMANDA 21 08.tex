@@ -1,0 +1,842 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\titulo}{El proceso de conocimiento: de la demanda a la sentencia}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\renewcommand{\chaptername}{Bloque}
+\renewcommand{\contentsname}{Índice}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Cuadro Cornell: anchos de columna y utilidades
+\newlength{\cqa}
+\newlength{\cqb}
+\setlength{\cqa}{0.27\textwidth}
+\setlength{\cqb}{0.655\textwidth}
+\newcommand{\cqheader}{%
+  \toprule
+  \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+  \midrule
+}
+\newcommand{\cqrow}[2]{%
+  \textbf{#1} & #2 \\
+  \addlinespace[0.8em]
+}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es transformar la información en comprensión.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de <<\materia>> no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% PRESENTACIÓN DE LA CLASE
+% ------------------------------------------------------------
+\chapter*{Presentación de la clase}
+\addcontentsline{toc}{chapter}{Presentación de la clase}
+\markboth{Presentación de la clase}{}
+
+\section{Temas tratados}
+
+La clase repasa la construcción del lenguaje procesal y desarrolla en profundidad los cinco modos anormales de terminación del proceso ---allanamiento, transacción, desistimiento, conciliación y caducidad de instancia---, para luego reconstruir paso a paso la estructura del proceso ordinario: demanda, traslado, contestación, excepciones, audiencia del artículo 360 y fijación de los hechos controvertidos y conducentes. Cierra con el planteo de un caso real de responsabilidad civil por un accidente náutico en el río Tigre, que sirve de base para diseñar, en conjunto, la estrategia de una demanda de daños y perjuicios.
+
+\section{Relevancia del contenido}
+
+\subsection{¿Para qué sirve esto en la vida profesional?}
+
+La abogacía se ejerce, en gran medida, redactando y leyendo escritos: una demanda mal estructurada, una excepción no opuesta a tiempo o una instancia caduca por descuido pueden costarle a un cliente su derecho ---y al abogado, un juicio por mala praxis---. Dominar estos institutos (modos anormales, \textit{tema decidendum}, excepciones, audiencia preliminar) es la caja de herramientas mínima para litigar con criterio, anticipar los movimientos de la contraparte y proteger al cliente de plazos fatales.
+
+\subsection{¿Es útil para la vida personal? ¿Por qué?}
+
+Sí, y no solo dentro de los tribunales: aprender a describir un hecho con precisión, distinguir lo controvertido de lo irrelevante y argumentar con la menor cantidad de palabras posible es una destreza de pensamiento que ordena cualquier negociación, reclamo o conflicto cotidiano. Además, la anécdota del abogado demandado por dejar caducar una instancia es un recordatorio concreto de que la responsabilidad profesional y la disciplina en los plazos no son un detalle técnico, sino el núcleo mismo de la confianza que un cliente deposita en su abogado.
+
+\section{Mapa de la clase}
+
+Los cuatro bloques de la clase están unidos por una misma idea: la de una cadena de eslabones. El proceso judicial es una sucesión ordenada de actos ---como los pasos de un trámite administrativo cotidiano--- que va desde el primer reclamo (la demanda) hasta la resolución final (la sentencia).
+
+\begin{itemize}
+    \item El \textbf{Bloque 1} da las herramientas de lenguaje para transitar esa cadena.
+    \item El \textbf{Bloque 2} explica las salidas anticipadas de esa cadena (los modos anormales).
+    \item El \textbf{Bloque 3} recorre eslabón por eslabón la cadena completa hasta la audiencia preliminar.
+    \item El \textbf{Bloque 4} aplica todo lo anterior a un caso real, tal como un mecánico aplicaría la teoría del motor al arreglo concreto de un auto.
+\end{itemize}
+
+\begingroup
+\small
+\begin{longtable}{
+    >{\RaggedRight\arraybackslash}p{0.19\textwidth}
+    >{\RaggedRight\arraybackslash}p{0.33\textwidth}
+    >{\RaggedRight\arraybackslash}p{0.36\textwidth}
+}
+\toprule
+\textbf{Unidad} & \textbf{Ideas centrales} & \textbf{Pregunta guía} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Unidad} & \textbf{Ideas centrales} & \textbf{Pregunta guía} \\
+\midrule
+\endhead
+\multicolumn{3}{l}{\textit{Bloque 1. Fundamentos del lenguaje procesal}} \\
+\addlinespace
+1. El lenguaje como herramienta procesal &
+Precisión, síntesis, estructura mental, argumentación. &
+¿Cómo se logra comunicar un reclamo jurídico con precisión y sin esfuerzo para el otro? \\
+\addlinespace
+\midrule
+\multicolumn{3}{l}{\textit{Bloque 2. Modos anormales de terminación del proceso (Unidades 2 a 6)}} \\
+\addlinespace
+2. Allanamiento &
+Reconocimiento, aceptación lisa y llana. &
+¿Qué requisitos debe cumplir el demandado para allanarse válidamente? \\
+\addlinespace
+3. Transacción &
+Concesiones recíprocas, homologación judicial. &
+¿Qué efecto produce la homologación de un acuerdo transaccional? \\
+\addlinespace
+4. Desistimiento &
+De la acción, del derecho, conformidad de la contraparte. &
+¿Por qué el desistimiento de la acción exige el consentimiento del demandado y el del derecho no? \\
+\addlinespace
+5. Conciliación &
+Acuerdo con intervención de un tercero, audiencia preliminar. &
+¿En qué se diferencia la conciliación de la transacción? \\
+\addlinespace
+6. Caducidad de instancia &
+Inactividad procesal, plazo de seis meses, responsabilidad profesional. &
+¿Qué consecuencias trae para el abogado dejar caducar una instancia? \\
+\addlinespace
+\midrule
+\multicolumn{3}{l}{\textit{Bloque 3. Estructura del proceso ordinario (Unidades 7 a 11)}} \\
+\addlinespace
+7. La demanda como acto procesal &
+Interrupción de la prescripción, inicio del proceso. &
+¿Qué efecto produce la demanda sobre el curso de la prescripción? \\
+\addlinespace
+8. Traslado y contestación de demanda &
+Cédula, plazo de quince días. &
+¿Por qué medio se notifica el traslado de la demanda y en qué plazo debe contestarse? \\
+\addlinespace
+9. El tema decidendum &
+Congruencia, límites de la sentencia. &
+¿Por qué lo no planteado en la demanda o en la contestación no puede reclamarse después? \\
+\addlinespace
+10. Excepciones y defensas de fondo &
+Forma versus fondo, negar hechos o negar derecho. &
+¿Cuáles son las dos grandes estrategias de defensa de un demandado? \\
+\addlinespace
+11. Audiencia del artículo 360 &
+Hechos controvertidos y conducentes, apertura a prueba. &
+¿Qué hechos fija el juez en la audiencia preliminar y por qué solo esos? \\
+\addlinespace
+\midrule
+\multicolumn{3}{l}{\textit{Bloque 4. Caso práctico integrador}} \\
+\addlinespace
+12. El accidente náutico en el río Tigre &
+Hechos, prueba testimonial, legitimación pasiva, estrategia. &
+¿Cómo se transforma un relato de hechos en la estructura de una demanda de daños y perjuicios? \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+% ------------------------------------------------------------
+% BLOQUE 1
+% ------------------------------------------------------------
+\chapter{Fundamentos del lenguaje procesal}
+\markboth{Bloque 1. Fundamentos del lenguaje}{}
+
+\section{Unidad 1. El lenguaje como herramienta procesal}
+
+La herramienta fundamental del trabajo del abogado es la palabra: describir un hecho y su adecuación normativa, y disponer una argumentación adecuada. Una parte esencial del entrenamiento consiste, por lo tanto, en poder expresarse.
+
+\textbf{Expresarse} significa utilizar la menor cantidad de palabras posible, siendo lo más preciso posible, para transmitir un contenido directo, preciso y simple, que el otro pueda entender sin esfuerzo. Una de las cuestiones que más ayuda a expresarse de esa manera es tener una cierta estructura mental de lo que se quiere decir y de hacia dónde se quiere ir.
+
+Para ilustrarlo, se propone un ejercicio: explicar qué es un proceso judicial a alguien completamente ajeno al derecho ---por ejemplo, un estudiante de física---.
+
+\begin{example}{Explicar el proceso a un lego en la materia}
+Se plantea la siguiente situación hipotética: alguien que no sabe nada de derecho pregunta \textit{¿qué es un proceso?}. La respuesta que se construye junto con el curso es que un proceso es un conjunto de actividades coordinadas para producir un resultado: la sentencia.
+
+A partir de esa definición se propone imaginar el proceso como una \textbf{cadena formada por eslabones}. El primer eslabón es la demanda, con la cual se inicia el proceso; el último eslabón es la sentencia.
+\end{example}
+
+\begin{definition}{Proceso}
+El \textbf{proceso} es un conjunto de actividades coordinadas que se ordenan para producir un resultado: la \textbf{sentencia}. Tiene un extremo inicial (la demanda) y un extremo final (la sentencia), aunque existen modos de terminación anteriores a ese extremo final.
+\end{definition}
+
+Frente a la pregunta de si existe alguna posibilidad de que el proceso termine antes de llegar a la sentencia, la respuesta es afirmativa: existen los llamados \textbf{modos anormales de terminación del proceso}.
+
+\begin{note}
+La denominación <<anormales>> no significa que estos modos sean anormales en sentido estricto: normalmente se supone, o está previsto, llegar a la sentencia. Sin embargo, por distintas razones, el proceso termina de otra manera, y los legisladores no hallaron mejor manera de expresarlo que con ese calificativo.
+\end{note}
+
+\clearpage
+\section{Cuadro Cornell del Bloque 1}
+
+\begin{longtable}{>{\RaggedRight\arraybackslash}p{\cqa} >{\RaggedRight\arraybackslash}p{\cqb}}
+\cqheader
+\endfirsthead
+\cqheader
+\endhead
+\cqrow{¿Qué significa expresarse con precisión en el trabajo del abogado?}{Utilizar la menor cantidad de palabras posible, siendo lo más preciso posible, para transmitir un contenido directo, preciso y simple que el otro pueda entender sin esfuerzo. Ayuda tener una estructura mental de lo que se quiere decir y de hacia dónde se quiere ir.}
+\cqrow{¿Qué es un proceso judicial?}{Un conjunto de actividades coordinadas que se ordenan para producir un resultado: la sentencia. Puede imaginarse como una cadena de eslabones cuyo primer eslabón es la demanda y cuyo último eslabón es la sentencia.}
+\cqrow{¿Puede el proceso terminar antes de la sentencia? ¿Por qué se los llama <<anormales>>?}{Sí: mediante los modos anormales de terminación del proceso. No son anormales en sentido estricto; se los denomina así porque normalmente se supone, o está previsto, llegar a la sentencia, y los legisladores no hallaron mejor manera de expresar que el proceso termina de otra manera.}
+\midrule
+\multicolumn{2}{>{\RaggedRight\arraybackslash}p{\dimexpr\cqa+\cqb+2\tabcolsep\relax}}{\textbf{Resumen:} el trabajo del abogado se apoya en la palabra, por lo que es esencial expresarse con precisión y síntesis. El proceso es un conjunto de actividades coordinadas que van de la demanda a la sentencia, pero puede terminar antes por alguno de los modos anormales, que se desarrollan en el bloque siguiente.} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+% BLOQUE 2
+% ------------------------------------------------------------
+\chapter{Modos anormales de terminación del proceso}
+\markboth{Bloque 2. Modos anormales de terminación}{}
+
+Los modos anormales de terminación del proceso son cinco: \textbf{allanamiento}, \textbf{transacción}, \textbf{desistimiento}, \textbf{conciliación} y \textbf{caducidad de instancia}. Se desarrollan a continuación uno por uno.
+
+\section{Unidad 2. Allanamiento}
+
+Una formulación inicial del allanamiento sostiene que consiste en <<darle la razón>> al actor. La idea es correcta, pero conviene expresarla con mayor precisión: el demandado se allana cuando \textbf{reconoce el reclamo del actor}.
+
+\begin{definition}{Allanamiento}
+El demandado se allana cuando reconoce el reclamo del actor. Para que el allanamiento sea válido, este reconocimiento debe ser total: requiere una \textbf{aceptación lisa y llana} de la pretensión del actor.
+\end{definition}
+
+\begin{important}
+Si el demandado introduce un condicionamiento ---por ejemplo, <<sí, pero\ldots>>---, ese <<pero>> significa que no hay allanamiento. El allanamiento requiere una aceptación pura, lisa y llana de la pretensión del actor, y para ser válido es necesario reconocer integralmente lo que reclama la otra parte.
+\end{important}
+
+\begin{example}{por qué ocurre el allanamiento en la práctica}
+Aunque parezca mentira, el allanamiento sucede. A veces las partes hablan, van, vienen, se cansan, y una de ellas inicia la demanda. El otro, cuando la recibe, va a ver a su abogado y le dice que no tiene manera de discutir sobre el tema, que le va a resultar más caro, y entonces se allana.
+\end{example}
+
+\section{Unidad 3. Transacción}
+
+\begin{definition}{Transacción}
+Es un \textbf{acuerdo entre las partes} basado en concesiones recíprocas. Las partes ---con sus abogados--- llevan ese acuerdo al juez, lo presentan para que lo \textbf{homologue}; si no existe una cuestión de orden público que lo impida, el juez lo homologa.
+\end{definition}
+
+\begin{important}
+Una vez homologado por el juez, el acuerdo transaccional adquiere el efecto de \textbf{cosa juzgada} y se convierte, además, en un \textbf{título ejecutivo}. Adquiere cosa juzgada porque esa cuestión ya no puede volver a discutirse: queda cerrada para siempre.
+\end{important}
+
+\section{Unidad 4. Desistimiento}
+
+El desistimiento no admite una sola modalidad: se distingue entre el \textbf{desistimiento de la acción} y el \textbf{desistimiento del derecho}.
+
+\subsection{Desistimiento de la acción}
+
+Quien desiste de la acción desiste del \textbf{proceso}, pero se reserva la posibilidad de volver a demandar, de volver a iniciar, siempre y cuando no opere la prescripción. Por ello, el desistimiento de la acción requiere el \textbf{consentimiento} (la conformidad) de la parte contraria.
+
+\begin{example}{por qué se necesita la conformidad de la contraparte}
+Se inicia un juicio y, unos días después, el actor desiste de la acción. El demandado puede oponerse a que se acepte ese desistimiento sin su conformidad: puede sostener que no quiere quedarse con esa <<espada de Damocles>> durante un tiempo indeterminado y que, por ejemplo, dentro de seis meses el actor se arrepienta y vuelva. Como ya se está en juicio, el demandado prefiere seguirlo y terminarlo. Por esa razón, si la parte va a desistir de la acción, requiere el consentimiento de la otra.
+\end{example}
+
+\subsection{Desistimiento del derecho}
+
+Cuando el desistimiento recae sobre el derecho mismo ---y no solamente sobre la acción---, el actor renuncia a su derecho. Con esa renuncia no puede perjudicar a la contraparte, de modo que esta no tiene facultad de impedirlo: queda liberada del reclamo para siempre. Una vez homologado por el juez, el desistimiento del derecho se convierte también en \textbf{cosa juzgada}.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\RaggedRight\arraybackslash}p{0.22\textwidth}
+    >{\RaggedRight\arraybackslash}X
+    >{\RaggedRight\arraybackslash}X
+}
+\toprule
+& \textbf{Desistimiento de la acción} & \textbf{Desistimiento del derecho} \\
+\midrule
+Qué se abandona &
+El proceso. &
+El derecho mismo: el actor renuncia a él. \\
+\addlinespace
+Nueva demanda &
+Se conserva la posibilidad de volver a demandar, siempre que no opere la prescripción. &
+El demandado queda liberado del reclamo para siempre. \\
+\addlinespace
+Conformidad de la contraparte &
+Se requiere, porque el demandado no debe quedar sujeto a una posible nueva demanda. &
+No se requiere, porque la renuncia no puede perjudicar a la contraparte. \\
+\addlinespace
+Efecto de la homologación &
+% TODO: contenido incompleto o ambiguo en las notas originales
+No se precisa en las notas. &
+Se convierte en cosa juzgada. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Unidad 5. Conciliación}
+
+Tanto en la conciliación como en la transacción las partes llegan a un acuerdo. La diferencia es que en la \textbf{conciliación participa un tercero}. En la transacción, el acuerdo lo hacen los abogados con las partes y se lo llevan al juez; si no hay una cuestión de orden público que lo impida, el juez lo homologa. La conciliación, en cambio, es la que se promueve, muchas veces, en la audiencia preliminar.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\RaggedRight\arraybackslash}p{0.20\textwidth}
+    >{\RaggedRight\arraybackslash}X
+    >{\RaggedRight\arraybackslash}X
+}
+\toprule
+& \textbf{Transacción} & \textbf{Conciliación} \\
+\midrule
+Similitud &
+Acuerdo entre las partes. &
+Acuerdo entre las partes. \\
+\addlinespace
+Diferencia &
+El acuerdo lo hacen los abogados con las partes y se lo llevan al juez, que lo homologa si no hay cuestión de orden público que lo impida. &
+Participa un tercero; se promueve, muchas veces, en la audiencia preliminar. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+\textbf{Artículo 360 del Código Procesal Civil y Comercial de la Nación --- Audiencia preliminar.}
+% TODO: contenido incompleto o ambiguo en las notas originales (no queda claro si el texto entrecomillado es cita literal del artículo)
+Según las notas: <<El primer paso que debe dar el juez en la audiencia del artículo 360, antes de fijar el objeto del juicio, es promover la conciliación entre las partes.>>
+
+Aunque este momento está previsto para dicho acto procesal, las partes pueden solicitar una audiencia de conciliación en cualquier momento anterior al dictado de la sentencia.
+\end{important}
+
+\section{Unidad 6. Caducidad de instancia}
+
+La caducidad de instancia es el quinto y último modo anormal, y constituye un tema que hay que dominar con especial atención, porque \textbf{no puede operar la caducidad de instancia si no hay responsabilidad}: cuando hay caducidad de instancia, alguno de los abogados ---se lo reclamen o no después--- tiene una responsabilidad involucrada.
+
+\subsection{Fundamento: el impulso procesal}
+
+El proceso civil y comercial, a diferencia del proceso penal, se caracteriza por ser \textbf{impulsado por las partes}: son ellas las encargadas de llevar el proceso etapa por etapa, mediante peticiones dirigidas al juez. Las partes son una suerte de peticionantes que siempre solicitan algo al juez, y el juez es una especie de ordenador que siempre ordena, porque es su función. Cuando las partes dejan de pedir, el legislador supone que ya no tienen interés en seguir con el proceso.
+
+A partir de esa presunción de desinterés opera el mecanismo de la caducidad: si transcurre el plazo legal sin que se produzca ningún acto de impulso procesal, la instancia caduca.
+
+\begin{definition}{Acto impulsorio}
+Es aquel acto que tiene el efecto de hacer avanzar el proceso hacia su etapa siguiente. No todo acto procesal es impulsorio: una petición que no cumple la función de avanzar hacia el final del proceso ---por ejemplo, solicitar una copia de un expediente--- no interrumpe el plazo de caducidad.
+\end{definition}
+
+\begin{important}
+\textbf{Artículo 310 del Código Procesal Civil y Comercial de la Nación --- Plazos de caducidad.} <<Se producirá la caducidad de la instancia cuando no se instare su curso dentro de los siguientes plazos: 1) De seis (6) meses, en primera o única instancia.>>
+
+El plazo aplicable al proceso de conocimiento ordinario es de seis meses en primera instancia.
+\end{important}
+
+\subsection{Efectos de la caducidad}
+
+El efecto de la caducidad de instancia es que \textbf{se extingue el proceso, pero no caduca el derecho}. Lo único que se pierde es la instancia: se pierde tiempo, tiene un costo económico y genera cierta angustia, pero el derecho de fondo se conserva, salvo que en el ínterin haya operado la prescripción.
+
+\begin{exercise}{redacción de un escrito de caducidad de instancia}
+Se propone redactar el escrito por el cual se solicita la declaración de caducidad de instancia. Pasar el conocimiento al papel es una cuestión distinta de saberlo, y de eso se trata el entrenamiento. Se reproducen tres propuestas de redacción:
+
+\begin{enumerate}
+    \item <<Presento para la extinción del proceso en virtud de haber pasado los seis meses requeridos por la ley, artículo 310, sin impulso procesal, para configurarse la caducidad de instancia.>>
+    \item <<Vengo a solicitar la caducidad de instancia en los autos caratulados, por haberse cumplido el plazo perentorio de seis meses desde el último acto procesal del actor, a fojas\ldots>>
+    \item <<Que tengo presente el plazo transcurrido, sin que la contraparte impulsara acción alguna, de acuerdo al plazo consignado en el artículo 310 del Código Procesal, que es de seis meses. Vengo a solicitar la caducidad de instancia.>>
+\end{enumerate}
+
+La segunda propuesta se considera perfecta; a ella se agrega que también podría citarse el sistema de las cargas y la imposición de las costas.
+\end{exercise}
+
+\subsection{Desarrollo del incidente de caducidad}
+
+Presentado el pedido, el juez corre traslado de la caducidad.
+% TODO: contenido incompleto o ambiguo en las notas originales (las notas dicen <<como demandados>> al hablar de quien se opone a la caducidad)
+La parte frente a la cual se pide la caducidad tratará de \textbf{oponerse}, porque no le conviene. Para ello procurará:
+
+\begin{itemize}
+    \item encontrar que hubo algún acto que impulsó el proceso;
+    \item mostrar que fue el tribunal el que lo detuvo;
+    \item discutir desde cuándo empezó a correr el plazo y si hubo días inhábiles judiciales, para sostener que no se cumplieron los seis meses.
+\end{itemize}
+
+Si se hace lugar a la caducidad, el proceso se extingue y la parte actora deberá afrontar el pago de las costas. Existe, sin embargo, una vía de salvación: se puede volver a iniciar el juicio, porque no se perdió el derecho; lo único que se perdió, hasta ese momento, fue la instancia.
+
+\subsection{Caducidad y responsabilidad profesional}
+
+\begin{example}{la casa con filtraciones y la responsabilidad del abogado}
+Para ilustrar la gravedad de la caducidad cuando sí opera la prescripción del derecho de fondo, se relata un caso real vinculado a la experiencia profesional del docente. Una persona planteó lo siguiente: tenía una hermosa casa antigua, de 1920, de más de doscientos y pico de metros. En el fondo había una casita, algo así como una dependencia de servicio. Los dueños la alquilaron y quien la ocupó fue cubriendo cada vez más la terraza. En esa terraza empezaron a aparecer filtraciones: cada vez que llovía, la casa se empezaba a arruinar. La familia decidió iniciar un juicio. La casa, que en un momento valía casi medio millón de dólares, terminó valiendo mucho menos ---al punto de tener que venderse el terreno para su demolición y reconstrucción--- porque el abogado, por una razón que se desconoce, dejó caducar la instancia.
+
+Los clientes quedaron tan mal con lo sucedido que iniciaron un juicio de daños y perjuicios contra su propio abogado, y lo ganaron con seguridad, porque no hay forma de defenderse frente a una caducidad de instancia: esa es una responsabilidad que corre por cuenta del abogado.
+\end{example}
+
+\begin{important}
+Cuando opera la caducidad de instancia y, además, se encuentra ya cumplido el plazo de prescripción de la acción de fondo, el perjuicio para el cliente puede ser irreversible: pierde definitivamente el derecho que intentaba hacer valer. En ese escenario, la responsabilidad recae sobre el abogado que dejó de impulsar el proceso, y puede dar lugar a un reclamo de daños y perjuicios en su contra.
+\end{important}
+
+\subsection{Caducidad y prescripción}
+
+Una pregunta de repaso plantea si, cuando transcurren los seis meses sin impulso, hay prescripción; es decir, si en el proceso uno pierde el derecho. El sistema es muy particular: el plazo de la prescripción se \textbf{interrumpe en el momento de iniciar la demanda}. Cuando se declara la caducidad de la instancia, ese efecto interruptivo desaparece y se vuelve al primer momento:
+
+\begin{itemize}
+    \item si desde que se produjo el hecho hasta la declaración de caducidad no transcurrió el plazo de prescripción, se puede volver a iniciar la demanda;
+    \item si sí transcurrió, en principio se puede igualmente iniciar el juicio, pero se expone a que la contraparte oponga la excepción de prescripción.
+\end{itemize}
+
+\begin{note}
+Todo lo que es el proceso es una construcción intelectual: no hay nada físico ni proveniente de la naturaleza. Es un invento, de alguna manera, como cualquier juego. Así como en el fútbol vale jugar con el pie y no con la mano porque así se decidió, el sistema procesal funciona conforme a lo que se decidió que funcione.
+\end{note}
+
+\begin{important}
+La excepción de prescripción debe oponerse en la primera oportunidad procesal disponible. Si el demandado contesta la demanda y omite plantearla, pierde la posibilidad de invocarla después.
+\end{important}
+
+\clearpage
+\section{Cuadro Cornell del Bloque 2}
+
+\begin{longtable}{>{\RaggedRight\arraybackslash}p{\cqa} >{\RaggedRight\arraybackslash}p{\cqb}}
+\cqheader
+\endfirsthead
+\cqheader
+\endhead
+\cqrow{¿Cuáles son los modos anormales de terminación del proceso?}{Allanamiento, transacción, desistimiento, conciliación y caducidad de instancia.}
+\cqrow{¿Qué requisito debe cumplir el allanamiento para ser válido?}{Debe ser una aceptación lisa y llana de la pretensión del actor: un reconocimiento total, sin condicionamientos. Cualquier <<pero>> que se agregue elimina la validez del allanamiento.}
+\cqrow{¿Qué es la transacción y qué efecto tiene la homologación?}{Es un acuerdo entre las partes basado en concesiones recíprocas. Presentado ante el juez, si no vulnera el orden público, este lo homologa; con la homologación, el acuerdo adquiere efecto de cosa juzgada y se convierte en título ejecutivo.}
+\cqrow{¿Cuál es la diferencia entre desistir de la acción y desistir del derecho?}{Al desistir de la acción se abandona el proceso, pero se conserva la posibilidad de iniciar una nueva demanda (mientras no opere la prescripción), por lo que se requiere la conformidad del demandado. Al desistir del derecho se renuncia al derecho mismo; como no puede perjudicar a la contraparte, no requiere su conformidad, la libera del reclamo para siempre y, homologado, produce cosa juzgada.}
+\cqrow{¿En qué se diferencia la conciliación de la transacción?}{Ambas son acuerdos entre partes, pero en la conciliación participa un tercero y se promueve, muchas veces, en la audiencia preliminar del artículo 360; en la transacción el acuerdo lo hacen los abogados con las partes y se lo llevan al juez para su homologación. Las partes pueden solicitar una audiencia de conciliación en cualquier momento anterior a la sentencia.}
+\cqrow{¿Cuándo opera la caducidad de instancia y cuál es su efecto?}{Opera cuando transcurren seis meses en primera instancia sin ningún acto procesal de impulso (artículo 310 CPCCN). Su efecto es la extinción del proceso, con pago de las costas por la parte actora, pero no extingue el derecho de fondo, salvo que además haya operado la prescripción.}
+\cqrow{¿Qué es un acto impulsorio?}{Aquel que hace avanzar el proceso hacia su etapa siguiente. No todo acto procesal lo es: pedir una copia del expediente, por ejemplo, no interrumpe el plazo de caducidad.}
+\cqrow{¿Por qué la caducidad de instancia compromete la responsabilidad del abogado?}{Porque el impulso del proceso está a cargo de las partes (y, en la práctica, de sus abogados). Si además del proceso se pierde el derecho por prescripción, el cliente pierde definitivamente su reclamo, lo que puede derivar en un juicio de daños y perjuicios contra el profesional.}
+\cqrow{¿Qué relación hay entre la demanda, la caducidad y la prescripción?}{La demanda interrumpe el curso de la prescripción. Si luego se declara la caducidad de instancia, ese efecto interruptivo desaparece: si ya transcurrió el plazo de prescripción, la nueva demanda queda expuesta a la excepción de prescripción, que debe oponerse en la primera oportunidad procesal.}
+\midrule
+\multicolumn{2}{>{\RaggedRight\arraybackslash}p{\dimexpr\cqa+\cqb+2\tabcolsep\relax}}{\textbf{Resumen:} el proceso puede terminar antes de la sentencia por cinco modos anormales. El allanamiento exige aceptación lisa y llana; la transacción y la conciliación son acuerdos (esta última con intervención de un tercero); el desistimiento puede ser de la acción (requiere conformidad y conserva el derecho a demandar) o del derecho (no la requiere y produce cosa juzgada); y la caducidad de instancia sanciona la inactividad de seis meses, extingue el proceso pero no el derecho, salvo prescripción, y compromete la responsabilidad profesional del abogado.} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+% BLOQUE 3
+% ------------------------------------------------------------
+\chapter{Estructura del proceso ordinario}
+\markboth{Bloque 3. Estructura del proceso ordinario}{}
+
+Superados los modos anormales, se retoma la cadena de eslabones del proceso y se reconstruye, paso por paso, la estructura ordinaria: demanda, traslado, contestación, excepciones y audiencia preliminar.
+
+\section{Unidad 7. La demanda como acto procesal}
+
+El proceso empieza con la demanda, que es un \textbf{acto procesal}.
+
+\begin{definition}{Acto procesal}
+Todo acto que se realiza dentro del proceso es un acto procesal. Los actos procesales tienen como objeto ir desde la demanda hasta la sentencia, y pueden provenir de las partes, del juez a través de sus resoluciones, o de terceros auxiliares del proceso (peritos, oficiales de justicia, entre otros).
+\end{definition}
+
+La demanda \textbf{interrumpe el curso de la prescripción} del derecho que se reclama, de modo que la promoción del proceso se conecta directamente con lo trabajado sobre caducidad de instancia.
+
+\section{Unidad 8. Traslado y contestación de demanda}
+
+Una vez presentada la demanda, el juez \textbf{da traslado} de ella. El mecanismo para hacerlo es una \textbf{cédula} (en el caso analizado, una cédula en papel). En un juicio ordinario, el traslado es por \textbf{quince días}. Dentro de ese plazo ---por ejemplo, si el demandado comparece el día diez--- el demandado \textbf{contesta la demanda}.
+
+\section{Unidad 9. El tema decidendum}
+
+Con la demanda y la contestación se fijan las posiciones de las partes. No solo eso: se establece hasta dónde puede otorgar el juez y hasta dónde se establecen las defensas. Ello se denomina técnicamente \textit{tema decidendum}.
+
+\begin{definition}{Tema decidendum}
+Es el conjunto de cuestiones que quedan sometidas a la decisión del juez a partir de lo planteado en la demanda y en la contestación. El juez no puede dar más de lo que el actor pidió ni reconocer mayores defensas que las que el demandado introdujo (principio de congruencia).
+\end{definition}
+
+Para las partes, esto también funciona como una limitación: lo que no se plantea en su oportunidad ya no puede introducirse después, en virtud del principio de preclusión y del derecho de defensa en juicio.
+
+\section{Unidad 10. Excepciones y defensas de fondo}
+
+Al contestar la demanda, el demandado cuenta con dos grandes tipos de defensa: las \textbf{de forma} (excepciones) y las \textbf{de fondo}.
+
+\subsection{Defensas de forma: las excepciones}
+
+Consisten en plantear, por ejemplo, que el actor no tiene personería, que hay un defecto legal o que el juez no es el correspondiente. Con ellas no se le dice al juez que la contraparte no tiene razón, sino que existe una cuestión técnica, previa, que hay que resolver antes de continuar.
+
+\subsection{Defensas de fondo}
+
+Cuando no existe un defecto formal que permita oponer una excepción, la defensa debe plantearse en el fondo de la cuestión, con dos variantes:
+
+\begin{itemize}
+    \item \textbf{negar los hechos}; o
+    \item \textbf{no discutir los hechos} ---porque se está de acuerdo en que se produjeron--- pero asignarles una interpretación diferente del derecho aplicable.
+\end{itemize}
+
+\begin{example}{la empresa constructora en Puerto Madero}
+Se supone que se es abogado de una empresa constructora que está levantando un edificio en Puerto Madero. Tiene un contrato con muchas cláusulas, y en un momento el actor dice que la empresa debe cumplir determinada obligación. Se puede negar la existencia misma del contrato o de los hechos invocados ---y con ello se niega también el derecho que la otra parte pretende fundar en esos hechos---, o bien reconocer que el contrato existe y que esos hechos ocurrieron, pero sostener que la cláusula debe interpretarse de otra manera. En ese caso no se niegan los hechos: se da una interpretación distinta del derecho aplicable a esos mismos hechos.
+\end{example}
+
+\begin{important}
+Orden de las defensas: primero, el demandado debe evaluar si existen excepciones para oponer, ya que deben plantearse en la primera oportunidad procesal. Luego, al contestar la demanda en cuanto al fondo, debe decidir si la defensa se apoya en la negación de los hechos o en una interpretación distinta del derecho aplicable a hechos que no se discuten.
+\end{important}
+
+\section{Unidad 11. La audiencia del artículo 360: hechos controvertidos y conducentes}
+
+Trabada la litis con la demanda y la contestación, el proceso llega a la \textbf{audiencia preliminar}. En ella se fija el \textbf{objeto del juicio}, lo cual no es poca cosa: el juez tiene que mirar la demanda y la contestación y decidir qué cuestiones sí y cuáles no.
+
+\begin{important}
+\textbf{Artículo 360 del Código Procesal Civil y Comercial de la Nación --- Contenido de la audiencia preliminar.}
+El juez, en la audiencia preliminar, debe fijar los hechos articulados que sean conducentes a la decisión del juicio sobre los cuales versará la prueba, recibir la prueba confesional si fue ofrecida, y proveer las demás pruebas que considere admisibles.
+
+Este es el primer paso ---previa la conciliación--- y su correcto cumplimiento es determinante para todo el desarrollo posterior del proceso.
+\end{important}
+
+\begin{definition}{Hechos controvertidos y conducentes}
+Un hecho es \textbf{controvertido} cuando una parte lo afirma y la otra lo niega. Pero para que los hechos controvertidos sean útiles en el juicio, tienen que ser además \textbf{conducentes}, es decir, relevantes para la resolución del pleito. Solo los hechos controvertidos y, a la vez, conducentes son los que el juez fija en la audiencia preliminar y sobre los que se habrá de producir la prueba.
+\end{definition}
+
+A veces las partes afirman muchas cosas, y la mitad de ellas, aunque estén controvertidas, no sirve para resolver el pleito.
+
+\begin{example}{una audiencia mal llevada}
+En una audiencia especialmente complicada, ya virtual, el juez no se detuvo a fijar cuáles eran los hechos controvertidos y conducentes: directamente dijo <<bueno, abrimos a prueba>>. Entonces se abrió la prueba y se pidió, por ejemplo, un oficio para acreditar un dato completamente irrelevante para el pleito: se pierde tiempo y no sirve para nada, porque ese dato no cambia en absoluto la resolución del caso. El juez, cuando se hace cargo de su función, tiene que preguntarse frente a cada hecho si sirve o no para resolver.
+\end{example}
+
+\begin{note}
+Todo lo que tiene que ver con la producción o la denegación de la prueba es, en principio, inapelable: si se deniega una prueba, no hay posibilidad de apelar esa resolución de manera directa, salvo por una vía recursiva específica que se verá más adelante.
+\end{note}
+
+\clearpage
+\section{Cuadro Cornell del Bloque 3}
+
+\begin{longtable}{>{\RaggedRight\arraybackslash}p{\cqa} >{\RaggedRight\arraybackslash}p{\cqb}}
+\cqheader
+\endfirsthead
+\cqheader
+\endhead
+\cqrow{¿Qué es un acto procesal y qué es la demanda?}{Todo acto realizado dentro del proceso es un acto procesal; puede provenir de las partes, del juez a través de sus resoluciones o de terceros auxiliares (peritos, oficiales de justicia, etc.). La demanda es el acto procesal con el que empieza el proceso.}
+\cqrow{¿Qué efecto produce la demanda sobre la prescripción?}{Interrumpe el curso de la prescripción del derecho que se reclama.}
+\cqrow{¿Por qué medio se notifica el traslado de la demanda y en qué plazo debe contestarse?}{Se notifica mediante cédula (en el caso analizado, en soporte papel). En el juicio ordinario, el plazo para contestar la demanda es de quince días.}
+\cqrow{¿Qué es el tema decidendum?}{El conjunto de cuestiones que quedan sometidas a la decisión del juez a partir de lo planteado en la demanda y en la contestación. El juez no puede otorgar más de lo pedido por el actor ni reconocer defensas no introducidas por el demandado; y las partes no pueden introducir cuestiones nuevas después, por el principio de preclusión y el derecho de defensa en juicio.}
+\cqrow{¿Cuáles son las dos grandes estrategias de defensa del demandado?}{Las excepciones (defensas de forma, que plantean una cuestión técnica previa, como la falta de personería, un defecto legal o que el juez no es el correspondiente) y las defensas de fondo, que pueden consistir en negar los hechos invocados por el actor o en admitirlos pero asignarles una interpretación distinta del derecho aplicable.}
+\cqrow{¿Qué debe hacer el juez en la audiencia del artículo 360?}{Promover la conciliación y luego fijar los hechos articulados conducentes a la decisión del juicio sobre los cuales versará la prueba, recibir la prueba confesional si fue ofrecida y proveer las demás pruebas que considere admisibles.}
+\cqrow{¿Cuándo un hecho es controvertido y cuándo es conducente?}{Es controvertido cuando una parte lo afirma y la otra lo niega. Es conducente cuando resulta relevante para resolver el pleito. Solo los hechos que reúnen ambas condiciones integran el objeto de la prueba fijado por el juez.}
+\cqrow{¿Son apelables las resoluciones sobre producción o denegación de prueba?}{En principio son inapelables de forma directa; existe una vía recursiva específica para cuestionarlas, que se verá más adelante.}
+\midrule
+\multicolumn{2}{>{\RaggedRight\arraybackslash}p{\dimexpr\cqa+\cqb+2\tabcolsep\relax}}{\textbf{Resumen:} la demanda inicia el proceso e interrumpe la prescripción; se traslada por cédula y se contesta dentro de quince días. Con ambos escritos queda fijado el \textit{tema decidendum}, que limita al juez y a las partes. El demandado puede oponer excepciones de forma o defender el fondo negando los hechos o discutiendo el derecho aplicable. En la audiencia del artículo 360 el juez promueve la conciliación y fija los hechos controvertidos y conducentes sobre los que se producirá la prueba.} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+% BLOQUE 4
+% ------------------------------------------------------------
+\chapter{Caso práctico integrador}
+\markboth{Bloque 4. Caso práctico integrador}{}
+
+\section{Unidad 12. El accidente náutico en el río Tigre}
+
+Se presenta un caso real ---actualmente en trámite--- que servirá de base para construir, en las clases siguientes, una demanda de daños y perjuicios. Se trata de un hecho efectivamente ocurrido, y el objetivo del ejercicio es aprender a transformar un relato de hechos en la estructura de una demanda: a partir de las preguntas de los estudiantes se va realizando el primer punteo de los hechos.
+
+\subsection{Los hechos}
+
+El hecho ocurrió pocos días antes del Carnaval de Río, en febrero de 2019, en el río Tigre, en la zona donde se ubica la estación fluvial y salen las lanchas de pasajeros, cerca del puente por donde cruza la Ruta 60. En esa zona hay numerosos clubes de remo.
+
+Una de las lanchas de pasajeros ---de las típicas embarcaciones marrones que trasladan turistas por el Tigre--- estaba amarrada junto a otras, a la espera de zarpar, cuando inició una maniobra de retroceso para acomodarse. En la embarcación viajaban dos tripulantes: el \textbf{patrón}, encargado de conducir, y el \textbf{marinero}, que debe ubicarse en la popa durante las maniobras para advertir sobre obstáculos. Sin embargo, el marinero se encontraba adelante, conversando con el patrón, en lugar de estar atrás cumpliendo su función de vigía.
+
+En simultáneo, se aproximaba un kayak doble perteneciente a un club de remo, tripulado por dos remeros ---un hombre y una mujer, ambos abogados y profesores de profesión--- que navegaban correctamente por su derecha, conforme a las normas de navegación aplicables (similares, según se explica, a las de tránsito vehicular). Al ejecutar su maniobra de retroceso sin el debido control, la lancha colisionó por el lado de estribor con la popa del kayak, que volcó.
+
+El remero que iba atrás logró salir nadando. La remera que iba adelante fue succionada por la hélice de la lancha, que ---a diferencia de un vehículo terrestre--- no se detiene de inmediato al producirse una colisión, sino que continúa avanzando y generando un efecto de succión. Esa succión atrapó el cuerpo de la mujer, que fue arrastrada y pasada por encima de la embarcación.
+
+En el lugar había un catamarán cercano, cuya tripulación advirtió lo que estaba sucediendo y comenzó a tocar la campana y a hacer señales de alarma. Una pasajera de otra lancha, al ver que la mujer flotaba sin que nadie actuara, se arrojó al agua y la remolcó hasta que pudo ser subida a una embarcación. Fue trasladada a un hospital de la zona, donde permaneció internada dos o tres días y finalmente falleció como consecuencia de una sepsis generalizada derivada de las lesiones.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se afirma que el otro tripulante no requirió atención médica de urgencia y, a la vez, que un médico le realizó maniobras de reanimación)
+El otro tripulante del kayak, que había podido salir nadando, no requirió atención médica de urgencia en el lugar; entre los presentes había un médico ---uno de los pasajeros de otra lancha--- que le realizó maniobras de reanimación sobre el muelle.
+
+\subsection{Reconstrucción de los hechos mediante preguntas}
+
+La reconstrucción del cuadro fáctico mediante preguntas es la manera en que debería procederse al entrevistar a un cliente. Las preguntas planteadas y sus respuestas fueron las siguientes:
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+    \item[¿A qué hospital fueron trasladados?] El hombre salió por sus propios medios. A la mujer la rescató una pasajera que estaba cerca, se tiró al agua y la remolcó hasta que la subieron a una de las lanchas. La llevaron a un hospital de la zona, donde estuvo internada dos o tres días y falleció como consecuencia de una sepsis generalizada.
+    \item[¿Cuántos testigos hay?] Hay por lo menos cinco testigos claves que fueron testigos presenciales.
+    \item[¿Qué edad tenía la mujer fallecida y a qué se dedicaba?] Alrededor de cuarenta años. Era abogada y ejercía además la docencia.
+    \item[¿Estaban federados los remeros, tenían la habilitación correspondiente del club?] Sí, estaban acreditados en ese club. Para poder salir con la embarcación desde el club, deben aprobar un examen de idoneidad.
+\end{description}
+
+\subsection{Análisis de la mecánica del hecho y de la responsabilidad}
+
+Lo que realmente influye en la mecánica del hecho es el procedimiento del marinero y del patrón. En primer lugar, estaban realizando una \textbf{maniobra peligrosa}: ir hacia atrás para acomodarse. Y en esa maniobra no estaban tomando los recaudos necesarios para llevarla a cabo con seguridad.
+
+Para hacer esa maniobra hay que emitir algún tipo de señal ---sonido, luz--- para que los demás adviertan que la embarcación se está moviendo. Pero, sobre todo, tiene que haber, sí o sí, un marinero ubicado en la parte de atrás, para que vea y avise al conductor. Hay una función preventiva en esa ubicación: se controla que no haya nadie atrás antes de maniobrar. Ese es el procedimiento correcto. De haber estado el marinero en su puesto, esperando y observando antes de que el patrón maniobrara, el accidente no habría sucedido.
+
+\begin{important}
+Elementos fácticos especialmente relevantes para construir la demanda:
+\begin{enumerate}[label=(\roman*)]
+    \item la maniobra peligrosa de retroceso sin las señales o recaudos debidos;
+    \item la ausencia del marinero en su puesto de vigía en la popa, incumpliendo su función preventiva;
+    \item la circunstancia de que el kayak navegaba correctamente por su derecha, conforme a las normas de navegación; y
+    \item el efecto de succión propio de las embarcaciones a motor, que agravó las lesiones al arrastrar a la víctima.
+\end{enumerate}
+\end{important}
+
+\subsection{Dificultades del caso, factor de atribución, sujetos y rubros}
+
+El caso presenta dificultades: se indica que todavía está pendiente y que las contrapartes están dificultando su trámite en los tribunales. Respecto del \textbf{factor de atribución}, el marinero, en principio, no tiene tanta responsabilidad como el patrón: objetivamente, el patrón tendría mayor responsabilidad por ser quien conducía la maniobra.
+
+En cuanto a la relación entre las embarcaciones y los posibles sujetos demandados (aún sin definir), el kayak era del club de remo; la lancha pertenece a una empresa de transporte fluvial de pasajeros, con un recorrido regular, como si fuera una empresa de colectivos.
+
+Respecto de los \textbf{rubros indemnizatorios}, se mencionan el daño moral y el daño psicológico. Además, es necesario averiguar de qué trabajaban las víctimas, si tenían hijos a cargo, si estaban casados y si convivían; se indica que la señora tenía tres hijos.
+
+\subsection{Estrategia de la demanda}
+
+El planteo del caso adelanta que en las clases siguientes se trabajará sobre la estrategia concreta de la demanda: a quién demandar, qué rubros reclamar y cómo probar cada uno de los hechos relevantes. Se pide pensar el hecho, a quién se va a demandar y cómo se va a estructurar la demanda, imaginando la estrategia. El monto reclamado ---diez pesos o cien millones--- es una cuestión secundaria en este momento; lo relevante es saber qué rubros se van a tener y, sobre todo, cómo se los va a probar.
+
+\clearpage
+\section{Cuadro Cornell del Bloque 4}
+
+\begin{longtable}{>{\RaggedRight\arraybackslash}p{\cqa} >{\RaggedRight\arraybackslash}p{\cqb}}
+\cqheader
+\endfirsthead
+\cqheader
+\endhead
+\cqrow{¿Cuál es el objetivo del caso del accidente náutico en el Tigre?}{Aprender a transformar un relato de hechos en la estructura de una demanda de daños y perjuicios, mediante un caso real y en trámite, reconstruyendo los hechos a partir de las preguntas de los estudiantes, como se haría al entrevistar a un cliente.}
+\cqrow{¿Qué ocurrió en el accidente?}{Una lancha de pasajeros inició una maniobra de retroceso sin control; el marinero no estaba en la popa como vigía. Colisionó por estribor con la popa de un kayak doble que navegaba correctamente por su derecha, y que volcó. La remera que iba adelante fue succionada por la hélice y arrastrada; fue rescatada por una pasajera, internada y falleció por una sepsis generalizada derivada de las lesiones.}
+\cqrow{¿Qué elementos fácticos resultaron clave para la demanda?}{La maniobra peligrosa de retroceso sin las señales o recaudos debidos, la ausencia del marinero en su puesto de vigía en la popa, la circunstancia de que el kayak navegaba correctamente por su derecha, y el efecto de succión propio de las embarcaciones a motor que agravó las lesiones de la víctima.}
+\cqrow{¿Quién tiene mayor responsabilidad, el patrón o el marinero?}{En principio, el marinero no tiene tanta responsabilidad como el patrón; objetivamente, el patrón tendría mayor responsabilidad por ser quien conducía la maniobra.}
+\cqrow{¿Qué relación había entre las embarcaciones y qué rubros se consideran?}{El kayak era del club de remo; la lancha pertenece a una empresa de transporte fluvial de pasajeros con recorrido regular. Como rubros se mencionan el daño moral y el daño psicológico, y hay que averiguar de qué trabajaban las víctimas, si tenían hijos a cargo, si estaban casados y si convivían.}
+\cqrow{¿Qué debe definirse para construir la estrategia de la demanda?}{El hecho, a quién demandar, cómo estructurar la demanda, qué rubros reclamar y, sobre todo, cómo probar cada uno de ellos; el monto es una cuestión secundaria en esta etapa.}
+\midrule
+\multicolumn{2}{>{\RaggedRight\arraybackslash}p{\dimexpr\cqa+\cqb+2\tabcolsep\relax}}{\textbf{Resumen:} el caso del accidente náutico en el río Tigre funciona como banco de pruebas de lo trabajado: un relato de hechos ---una maniobra peligrosa, un marinero fuera de su puesto, una embarcación que no se detiene de inmediato--- que debe traducirse en la estructura técnica y probatoria de una demanda de daños y perjuicios, definiendo a quién demandar, qué rubros reclamar y cómo probarlos.} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+% SÍNTESIS FINAL
+% ------------------------------------------------------------
+\chapter*{Síntesis final}
+\addcontentsline{toc}{chapter}{Síntesis final}
+\markboth{Síntesis final}{}
+
+La clase construye, de manera progresiva, el mapa completo del proceso de conocimiento. En primer lugar, establece que todo proceso es una cadena de actos que va de la demanda a la sentencia, y que esa cadena puede interrumpirse antes de tiempo mediante cinco modos anormales ---allanamiento, transacción, desistimiento, conciliación y caducidad de instancia---. El denominador común de todos ellos, salvo la caducidad, es que suponen un acuerdo o una decisión voluntaria de las partes, mientras que la caducidad es una sanción a la inactividad que compromete directamente la responsabilidad profesional del abogado.
+
+Superado ese punto, la clase reconstruye la estructura ordinaria del proceso: la demanda interrumpe la prescripción, se traslada por cédula, se contesta dentro de los quince días, y con ambos escritos queda fijado el \textit{tema decidendum} que limita tanto al juez como a las partes. Dentro de la contestación, el demandado puede oponer excepciones de forma o defender el fondo negando hechos o discutiendo el derecho aplicable. Todo ese recorrido desemboca en la audiencia del artículo 360, donde el juez promueve la conciliación y fija los hechos controvertidos y conducentes sobre los que se producirá la prueba.
+
+Finalmente, el caso del accidente náutico en el río Tigre funciona como banco de pruebas de todo lo anterior: un relato de hechos ---una maniobra peligrosa, un marinero fuera de su puesto, una embarcación que no logra detenerse a tiempo--- que los estudiantes deben aprender a traducir en la estructura técnica y probatoria de una demanda de daños y perjuicios, cerrando el círculo entre la teoría procesal y la práctica profesional real.
+
+\end{document}

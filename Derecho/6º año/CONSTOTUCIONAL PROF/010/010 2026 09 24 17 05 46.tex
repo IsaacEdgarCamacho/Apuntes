@@ -1,0 +1,703 @@
+% !TEX program = pdflatex
+% =========================================================
+% APUNTES DE DERECHO CONSTITUCIONAL — MÉTODO CORNELL
+% Documento autónomo, autocontenido, listo para compilar
+% =========================================================
+
+% ---------- DOCUMENTCLASS ----------
+\documentclass[12pt,oneside]{book}
+
+% ---------- PAQUETES ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+
+\usepackage{ragged2e}
+
+% ---------- HIPERVÍNCULOS Y METADATOS PDF ----------
+% (se declara luego de definir \titulo y \autor, ver más abajo)
+
+% ---------- RUTAS DE IMÁGENES ----------
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ---------- METADATOS DEL DOCUMENTO ----------
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Constitucional}
+\newcommand{\titulo}{Clase de Repaso --- Primera Parte del Programa}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ---------- ÍNDICE ----------
+\setcounter{tocdepth}{2}
+
+% ---------- CONFIGURACIÓN DE PÁRRAFOS ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% ---------- CONFIGURACIÓN DE LISTAS ----------
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+% ---------- CONTROL DE VIUDAS Y HUÉRFANAS ----------
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ---------- ENCABEZADOS Y PIES ----------
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- COMANDOS MATEMÁTICOS ----------
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ---------- CAJAS ACADÉMICAS ----------
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =========================================================
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el andamiaje procesal y sustantivo de la Constitución es el primer paso para pensar y argumentar como litigante.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Constitucional'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------- ÍNDICE ----------
+\tableofcontents
+
+% =========================================================
+\chapter*{Presentación del repaso}
+\addcontentsline{toc}{chapter}{Presentación del repaso}
+
+Este material recorre, a modo de guía de preguntas, los ejes de la primera parte del programa de Derecho Constitucional: la interpretación constitucional (textualismo y originalismo, holding y obiter dictum), el control de constitucionalidad (sistemas concentrado y difuso, y el carácter contramayoritario del Poder Judicial), las vías de acceso a la Corte Suprema (cuestión federal, arbitrariedad de sentencia, inconstitucionalidad de oficio, recurso extraordinario, queja, per saltum y gravedad institucional), las medidas cautelares en sede extraordinaria, y un bloque final de derechos en debate: el principio de reserva (art.\ 19 CN), la libertad religiosa, la libertad de expresión (doctrinas Campillay y Real Malicia) y el derecho de réplica.
+
+El hilo conductor de este repaso es, en esencia, una única pregunta práctica: si un litigante pierde en primera instancia, ¿qué puerta le queda para llegar hasta la Corte Suprema y con qué llave se abre esa puerta? Cada bloque de la guía responde a un tramo de ese recorrido: primero es necesario saber leer el texto constitucional (Bloque I); luego, entender quién tiene autoridad para invalidar una norma que lo contradice (Bloque II); después, identificar el camino procesal correcto --- cuestión federal, arbitrariedad, per saltum --- para llegar al máximo tribunal (Bloque III); de forma excepcional, solicitar que ese camino se recorra mediante una medida urgente (Bloque IV); y, finalmente, aplicar todo ese andamiaje a los derechos concretos que con mayor frecuencia se litigan en la práctica: la privacidad, la religión y la libertad de expresión (Bloque V).
+
+\begin{important}
+Este conjunto de herramientas es la caja de herramientas con la que cualquier litigante piensa un caso constitucional: identificar si hay cuestión federal, elegir la vía correcta (extraordinario, queja o per saltum) y fundamentar una cautelar o una tacha de arbitrariedad son destrezas de uso profesional real. Las doctrinas Campillay y de la Real Malicia resultan indispensables para asesorar a medios de comunicación o a personas afectadas por una publicación; el artículo 19 de la Constitución Nacional es la base para litigar derechos personalísimos y libertades individuales. En el plano más general, estas herramientas explican por qué el Estado puede o no limitar una publicación, por qué un juez puede declarar inconstitucional una norma sin que nadie se lo haya pedido, y hasta dónde llega la privacidad de una persona frente a la prensa o frente al propio Estado.
+\end{important}
+
+% =========================================================
+\chapter{Interpretación y Hermenéutica Constitucional}
+
+Este capítulo aborda los dos primeros ejes del programa: el punto de partida desde el cual debe leerse el texto constitucional (textualismo y originalismo) y la distinción entre aquella parte de un fallo que obliga a futuro y aquella que no (holding y obiter dictum).
+
+\section{Textualismo y Originalismo}
+
+El textualismo es la corriente de interpretación de la hermenéutica jurídica que centra su análisis en la literalidad de la norma, en la forma en que esta se encuentra expresada, prescindiendo de consideraciones que puedan introducir una vía más subjetiva. Se busca una interpretación aséptica y automática, que entienda la norma a partir de su textualidad y de su literalidad, de acuerdo con el significado ordinario y común de las palabras.
+
+Cuando se trata de textos constitucionales --- generalmente redactados en momentos históricos muy anteriores ---, el textualismo propone entenderlos de acuerdo con la literalidad vigente al momento en que fueron redactados. Por ese motivo, esta corriente presenta puntos de contacto con el originalismo.
+
+\begin{definition}{Textualismo y originalismo}
+Corriente de interpretación jurídica --- particularmente desarrollada en Estados Unidos --- que privilegia el significado ordinario y común de las palabras de la norma, atendiendo a su redacción y a su literalidad, y prescindiendo de consideraciones sobre los bienes jurídicos protegidos o sobre la llamada ``intención del legislador''. Busca posicionar al intérprete en un rol neutro, limitado a desentrañar la literalidad de las palabras que componen la norma.
+\end{definition}
+
+Esta escuela de interpretación es propia, sobre todo, de jueces conservadores en Estados Unidos, entre ellos Antonin Scalia, juez de origen ítalo-estadounidense que integró la Corte Suprema de ese país hasta su fallecimiento y que desarrolló ampliamente el textualismo tanto en sus sentencias como en sus trabajos académicos.
+
+En cuanto a la jurisprudencia argentina, la Corte Suprema ha entendido, en general, que la interpretación jurídica tiene como primera fuente la letra de la norma, de acuerdo con el significado ordinario de las palabras que la componen. Sin perjuicio de que existieron épocas y perfiles de Cortes con mayor activismo o interpretación más subjetiva, se mantuvo como principio rector que la primera fuente de interpretación es el texto de la norma.
+
+\section{Holding y Obiter Dictum}
+
+El holding de un fallo es aquella consideración jurídica sobre la que se asienta el modo en que este se resuelve, lo que le da sustento argumental a la decisión judicial. Por lo tanto, el holding está enteramente ligado a la forma y al por qué o al cómo se resuelve un caso.
+
+El obiter dictum, en cambio, consiste en consideraciones que muchas veces no se encuentran en el centro de gravedad del fallo, pero que resultan oportunas porque van perfilando fallos futuros. Esto es algo que ha hecho la Corte argentina, tomando también la práctica de la Corte estadounidense: un obiter dictum --- es decir, aquello que orbita alrededor del centro esencial de la decisión judicial --- puede, en el futuro, convertirse en una doctrina central para la interpretación jurídica.
+
+\begin{table}[H]
+\centering
+\caption{Holding y obiter dictum}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Concepto} & \textbf{Definición} & \textbf{Función} \\
+\midrule
+Holding & Consideración jurídica sobre la que se asienta el modo en que se resuelve el caso. & Da sustento argumental directo a la decisión judicial; es lo que efectivamente obliga como precedente. \\
+Obiter dictum & Consideraciones periféricas, no centrales, que acompañan la decisión. & No resuelven el caso concreto, pero pueden perfilar doctrina para fallos futuros. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Si bien ambos son antecedentes jurisprudenciales, la distinción resulta relevante para la labor del abogado: muchas veces el obiter dictum de un fallo presente puede llegar a ser el holding de un fallo futuro y pasar a ocupar la centralidad de la decisión judicial. Se trata, entonces, de una distinción que todo operador jurídico debe manejar para identificar los puntos centrales de un fallo y el modo en que este pasa a ser un precedente constitucional útil a futuro, sentando la doctrina que el tribunal --- sobre todo si se trata de la Corte Suprema, intérprete final de la Constitución --- habrá de seguir.
+
+\section*{Cornell --- Interpretación y Hermenéutica Constitucional}
+\addcontentsline{toc}{section}{Cornell --- Interpretación y Hermenéutica Constitucional}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es el textualismo?} &
+Corriente hermenéutica que interpreta la norma según el significado ordinario y literal de sus palabras al momento de su redacción, prescindiendo de valoraciones subjetivas sobre su finalidad; tiene puntos de contacto con el originalismo y fue especialmente desarrollada por jueces como Antonin Scalia en Estados Unidos. \\
+
+\textbf{¿Cuál es la primera fuente de interpretación para la Corte argentina?} &
+La letra de la norma, de acuerdo con el significado ordinario de las palabras que la componen, aun reconociendo épocas de mayor activismo o interpretación subjetiva. \\
+
+\textbf{¿Qué diferencia al holding del obiter dictum?} &
+El holding es la consideración jurídica que da sustento argumental directo a la resolución del caso; el obiter dictum es una consideración periférica que, sin resolver el caso, puede perfilar doctrina para fallos futuros. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} La interpretación constitucional argentina privilegia la literalidad del texto como primera fuente, con puntos de contacto con el textualismo y el originalismo estadounidenses. Dentro de cada fallo, solo el holding genera precedente obligatorio, mientras que el obiter dictum orbita alrededor de la decisión y puede convertirse en doctrina futura.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================
+\chapter{Control de Constitucionalidad}
+
+Este capítulo desarrolla el concepto y la función del control de constitucionalidad, los dos grandes modelos que lo organizan --- concentrado y difuso --- y el carácter contramayoritario del Poder Judicial que lo ejerce.
+
+\section{Concepto y Función del Control de Constitucionalidad}
+
+El control de constitucionalidad constituye el centro neurálgico de la primera parte del programa. Consiste en la labor de los tribunales orientada a mantener la supremacía constitucional y a evitar interpretaciones que puedan socavar la autoridad de la Constitución, generando, por ejemplo, la primacía de normas inferiores por sobre el derecho federal invocado. Se trata de evitar decisiones judiciales que, al asentarse en determinadas interpretaciones, hagan prevalecer normas inferiores por sobre la Constitución, lo que alteraría el orden de jerarquías y podría generar interpretaciones erróneas de lo que se denomina cuestión federal.
+
+Este control constituye una labor, un cometido y un deber que radica exclusivamente en los tribunales, en el Poder Judicial: los otros poderes del Estado no ejercen esta potestad de eventualmente invalidar normas del Congreso o actos de los demás poderes.
+
+\begin{definition}{Supremacía constitucional}
+La Constitución es la norma hipotética fundamental en la que están esbozados los principios jurídicos que deben seguir las normas inferiores: el contrato social inicial en el que se establecen la división de poderes y las declaraciones, derechos y garantías básicas de los ciudadanos.
+\end{definition}
+
+\section{Sistemas Concentrado y Difuso}
+
+Los dos grandes modelos de control de constitucionalidad son el concentrado y el difuso, sin perjuicio de que existen distintas graduaciones y no existen modelos exclusivamente puros. El control concentrado remite a la idea de un órgano especialmente calificado y singularmente conformado para ejercer ese control, como ocurre en España, en Alemania o, con algunas modulaciones, en Italia; es un modelo eminentemente europeo y continental. En el sistema concentrado, un único tribunal superior --- el Tribunal Constitucional, por ejemplo en el caso español --- interpreta las cuestiones federales sin intervención de tribunales inferiores ni una vía de apelación previa. Su decisión, denominada por la doctrina la última ratio, radica en la posibilidad de declarar ineficaz una norma, con efectos generales, erga omnes.
+
+En los sistemas difusos, en cambio, estas cuestiones no difieren de otro tipo de procesos judiciales y siguen el derrotero de las distintas instancias, porque el sistema difuso otorga amplia capacidad para que los tribunales declaren la inconstitucionalidad. Queda en cabeza del damnificado seguir impugnando y llegar hasta el máximo pronunciamiento posible, que en la mayoría de los casos --- si hay una cuestión federal clara --- será el de la Corte Suprema de Justicia. Cada jerarquía de tribunal dentro del proceso podrá revisar la cuestión, siempre bajo los límites que cada apelación y cada marco recursivo impongan, respetando el principio de congruencia.
+
+\begin{table}[H]
+\centering
+\caption{Sistemas concentrado y difuso de control de constitucionalidad}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Sistema concentrado} & \textbf{Sistema difuso} \\
+\midrule
+Órgano competente & Un único tribunal especialmente calificado (ej.: Tribunal Constitucional). & Todos los tribunales, en cualquier instancia, dentro del proceso judicial ordinario. \\
+Vía de acceso & Directa, sin intervención de tribunales inferiores. & A través de las distintas instancias y apelaciones, hasta la Corte Suprema. \\
+Efecto de la declaración & General, erga omnes: invalida la norma para todos los casos análogos. & Para el caso concreto (inter partes); la Corte argentina evita declaraciones genéricas. \\
+Modelo de referencia & España, Alemania, Italia (con modulaciones). & Argentina, Estados Unidos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+Pese a la vigencia del sistema difuso, la jurisprudencia reciente de la Corte muestra un intento de evitar las declaraciones genéricas o erga omnes de normas o leyes. Aunque existen vehículos procesales para la pluralidad de sujetos que puedan impugnar una norma, la Corte ha sugerido que ese es un concepto que solo admite excepciones muy contadas y fundamentadas: el principio general indica que, en el sistema difuso, la declaración debe ser para el caso concreto.
+\end{note}
+
+\section{El Poder Judicial como Órgano Contramayoritario}
+
+El Poder Judicial es un poder que no tiene ni el sustento económico ni el monopolio legítimo de las fuerzas de seguridad interior y exterior. Es, en cambio, el poder destinado a zanjar conflictos entre la ciudadanía, o entre la ciudadanía y sujetos del exterior, con un marco estricto de desenvolvimiento: los tribunales no pueden adoptar decisiones o declaraciones de índole política o de oportunidad, sino que deben ceñirse a los conflictos jurídicos y resolver frente a las partes que les han llevado el caso.
+
+Esa configuración --- resolver conflictos entre partes con carácter de tercero imparcial --- hace que el Poder Judicial tienda a ser, por su fisonomía y sus competencias, el poder con mayor proyección contramayoritaria: es, generalmente, el poder llamado a resolver en procesos judiciales para el resguardo de los derechos de las minorías.
+
+\begin{definition}{Poder Judicial contramayoritario}
+Aquel poder en el cual la voluntad mayoritaria se encuentra más intermediada y atenuada, precisamente porque su función es resolver conflictos entre dos o más partes actuando como tercero imparcial --- incluyendo, muchas veces, el resguardo de derechos de minorías frente a decisiones de las mayorías políticas.
+\end{definition}
+
+Justamente por ese carácter contramayoritario, la Constitución estableció un modo de designación de los jueces mucho más indirecto, en el cual las preferencias de la mayoría no se vuelcan de forma automática, como sí sucede en cualquier elección del Congreso o del Poder Ejecutivo. La Constitución incorpora, como organismo tendiente a la evaluación de las condiciones de los jueces, al Consejo de la Magistratura.
+
+\section*{Cornell --- Control de Constitucionalidad}
+\addcontentsline{toc}{section}{Cornell --- Control de Constitucionalidad}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿En qué consiste el control de constitucionalidad?} &
+En la labor exclusiva de los tribunales orientada a mantener la supremacía de la Constitución, evitando que normas inferiores prevalezcan sobre el derecho federal o constitucional. \\
+
+\textbf{¿Qué distingue al sistema concentrado del difuso?} &
+En el concentrado, un único tribunal especializado declara la inconstitucionalidad con efecto general (erga omnes), sin instancias previas (modelo europeo). En el difuso, cualquier juez puede declararla dentro del proceso ordinario, con efecto para el caso concreto (modelo argentino y estadounidense). \\
+
+\textbf{¿Por qué se dice que el Poder Judicial es un órgano contramayoritario?} &
+Porque no responde al voto directo de las mayorías --- los jueces se designan por un procedimiento más indirecto, con intervención del Consejo de la Magistratura --- y su función típica es resguardar derechos de minorías frente a decisiones de la mayoría política. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El control de constitucionalidad, ejercido en Argentina bajo un modelo difuso, permite a cualquier tribunal declarar la inconstitucionalidad para el caso concreto, con la Corte Suprema como intérprete final y guardiana de la supremacía constitucional, en su rol de poder contramayoritario.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================
+\chapter{Vías de Acceso a la Corte Suprema}
+
+Este capítulo desarrolla las distintas puertas procesales para llegar a la Corte Suprema: la cuestión federal, la arbitrariedad de sentencia, la inconstitucionalidad de oficio, el recurso extraordinario y la queja, y el remedio excepcional del per saltum junto con el concepto de gravedad institucional.
+
+\section{La Cuestión Federal}
+
+La cuestión federal es el presupuesto propio y elemental para la procedencia del recurso extraordinario: se configura cuando hay un derecho federal invocado que puede ser perjudicado, menoscabado o anulado por una decisión judicial contraria a ese derecho. Para admitir un recurso extraordinario debe demostrarse que existe un derecho federal que está siendo menoscabado y que fue invocado oportunamente.
+
+Se distingue la cuestión federal simple de la compleja. Existe cuestión federal simple cuando el derecho federal es definido a resultas de una interpretación propia de la Constitución, sin que exista colisión con otra norma; el término ``simple'' no alude a que sea sencilla, sino a que no hay una complejidad en la cual deba ponderarse una norma frente a otra. La cuestión federal compleja aparece cuando existe un conflicto entre dos o más normas, o entre un acto y una norma, y hay que dirimir cuál prevalece a los efectos de la Constitución y sus postulados. Dentro de la cuestión federal compleja se distingue, a su vez, entre directa --- cuando el conflicto es entre la Constitución y una norma inferior --- e indirecta --- cuando lo que está en pugna son dos normas inferiores entre sí, sin que esté en juego directamente la hermenéutica de la Constitución.
+
+\begin{table}[H]
+\centering
+\caption{Tipos de cuestión federal}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} X X}
+\toprule
+\textbf{Tipo de cuestión federal} & \textbf{Qué está en juego} & \textbf{Ejemplo de conflicto} \\
+\midrule
+Simple & Interpretación directa de un postulado de la propia Constitución. & Determinar el alcance de una cláusula constitucional, sin conflicto con otra norma. \\
+Compleja directa & Conflicto entre la Constitución y una norma inferior. & Una ley o decreto que contradice un artículo constitucional. \\
+Compleja indirecta & Conflicto entre dos normas inferiores entre sí (no directamente con la Constitución). & Una ley provincial que colisiona con una ley federal. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Arbitrariedad de Sentencia}
+
+La arbitrariedad de sentencia es otra vía que puede habilitar la intervención revisora de la Corte, aun cuando no haya cuestión federal. Ya no está en juego una cuestión estrictamente federal, sino que se verifica que los extremos de la interpretación jurídica y la decisión judicial se asienten sobre bases razonables: por ejemplo, que las normas citadas se correspondan con las normas vigentes y que no se aplique una norma derogada o modificada.
+
+La fundamentación es un elemento clave para dar razonabilidad y legitimidad a los actos judiciales: debe existir una fundamentación suficiente, una correcta interpretación de las pruebas, la aplicación del derecho vigente, y una decisión que se corresponda con los términos en que fue habilitada la instancia --- tomando todos los puntos disputados por las partes, sin agregar otros pero sin dejar de resolverlos. Como ejemplos de arbitrariedad se mencionan: dejar de lado una prueba pertinente y clave sin dar debida fundamentación; hacer una incorrecta valoración del marco jurídico aplicable; aplicar una norma que no está vigente; o no tomar en cuenta los argumentos expuestos en los recursos y sus contestaciones --- lo que se denomina una ``orfandad de razonamientos'' cuando, en realidad, los fundamentos del recurso estaban explicitados.
+
+\begin{definition}{Arbitrariedad de sentencia}
+Vía de acceso a la Corte Suprema distinta de la cuestión federal, fundada en la falta de razonabilidad de la decisión judicial: ausencia de fundamentación suficiente, incorrecta valoración de la prueba, aplicación de derecho no vigente u omisión de tratar los agravios de las partes. Permite que la causa sea revisada por la Corte en resguardo del derecho de defensa y del debido proceso.
+\end{definition}
+
+\section{Inconstitucionalidad de Oficio}
+
+El precedente más comúnmente citado en esta materia es el fallo Mill de Pereyra. El control de constitucionalidad permite una decisión judicial aun sin petición expresa de la parte que pretenda la invalidez de la norma, porque el juez conoce el derecho --- principio de iura novit curia ---, de modo que la falta de petición expresa no es un obstáculo insalvable para declarar la inconstitucionalidad.
+
+Lo que sí debe existir es una declaración que vaya de la mano de la decisión judicial que se pretende y que se mantenga dentro de la órbita de los agravios que motivaron la intervención de la jurisdicción revisora. No hay violación del derecho de defensa porque la norma es conocida por todos, y el juez aplica el derecho e inaplica el que concibe como ilegítimo. Lo que sí podría ser lesivo del derecho de defensa es resolver por fuera del marco de los agravios de la instancia abierta.
+
+\begin{important}
+\textbf{Fallo Mill de Pereyra --- inconstitucionalidad de oficio.} ``La doctrina actual de la Corte Suprema postula que los jueces pueden declarar de oficio la inconstitucionalidad de una norma, sin necesidad de petición expresa de parte, siempre que dicha declaración se mantenga dentro de la órbita de los agravios que habilitaron la instancia revisora.''
+\end{important}
+
+\section{Recurso Extraordinario Federal y Recurso de Queja}
+
+El recurso extraordinario y el recurso de queja por extraordinario denegado se distinguen por requisitos formales comunes y propios. Los requisitos comunes, exigibles a cualquier vía impugnatoria, son: la existencia de un gravamen o perjuicio real, concreto y mensurable; que se trate de un proceso judicial ya iniciado; que el recurso se presente ante el tribunal inmediatamente superior al que resolvió; y una fundamentación que surja de la expresión de agravios.
+
+En cuanto a los requisitos formales propiamente dichos, el recurso extraordinario debe interponerse dentro de los diez días, mientras que la queja cuenta con cinco días --- en ambos casos, con posibilidad de ampliación en razón de la distancia. La diferencia procedimental es que el recurso extraordinario se presenta ante el mismo tribunal que dictó la sentencia impugnada, mientras que la queja se presenta directamente ante la Corte Suprema. En el ámbito del Código Procesal Civil y Comercial de la Nación --- que regula estrictamente el procedimiento ante la Corte por recurso extraordinario --- se establece que la resolución acerca de la concesión o no del recurso debe notificarse a las partes; por lo tanto, los cinco días de la queja comienzan a correr desde la notificación del auto denegatorio del recurso.
+
+\begin{important}
+\textbf{Acordada 4/2007 (Corte Suprema de Justicia de la Nación) --- requisitos formales.} ``Recurso extraordinario federal: máximo de 40 páginas y 26 renglones por página, con interlineado de 1,5. Recurso de queja: formato más reducido, máximo de 10 páginas de 26 renglones cada una.''
+\end{important}
+
+\begin{table}[H]
+\centering
+\caption{Recurso extraordinario federal y recurso de queja}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} X X}
+\toprule
+\textbf{Aspecto} & \textbf{Recurso extraordinario federal} & \textbf{Recurso de queja} \\
+\midrule
+Plazo de interposición & 10 días (con ampliación en razón de la distancia). & 5 días desde la notificación del auto denegatorio (con ampliación en razón de la distancia). \\
+Ante quién se presenta & Ante el tribunal que dictó la sentencia impugnada. & Directamente ante la Corte Suprema de Justicia de la Nación. \\
+Extensión máxima (Acordada 4/2007) & 40 páginas, 26 renglones, interlineado 1,5. & 10 páginas, 26 renglones. \\
+Qué debe demostrarse & La existencia de cuestión federal y/o arbitrariedad de sentencia. & Que el rechazo del recurso extraordinario fue incorrecto. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El recurso de queja es subsidiario, para el caso de que se rechace el extraordinario. En la queja debe demostrarse por qué existe la cuestión federal planteada oportunamente en el recurso extraordinario, y por qué la Corte necesita intervenir; si la Corte abre la queja, revisará el fondo, es decir, la resolución del extraordinario. La cuestión federal y la arbitrariedad de sentencia no son compartimentos puros: en la práctica suele haber más de un argumento, y es tarea del litigante desplegar los distintos puntos de forma fundada.
+
+\section{Per Saltum y Gravedad Institucional}
+
+El per saltum es el remedio procesal que, en el marco de una causa de derecho federal, permite ir de la primera instancia directamente a la Corte, generando --- como indica su nombre en latín --- un salto de la segunda instancia. Se presenta ante la Corte invocando dos presupuestos básicos. El primero es un peligro grave e irreversible --- emparentado con el concepto de ``peligro en la demora'' de la medida cautelar ---: si se espera hasta la resolución judicial definitiva por la vía ordinaria puede producirse un daño grave e irreversible en los derechos o intereses del recurrente. El segundo presupuesto es la gravedad institucional, que también habilita a la Corte a admitir el per saltum sin esperar a que resuelva la cámara.
+
+\begin{definition}{Gravedad institucional}
+Presupuesto excepcional en el que está en juego la supervivencia o continuidad misma de las instituciones del sistema de derecho: el orden del sistema democrático, la subsistencia de instituciones, o un quiebre grave de la confianza entre la ciudadanía y los poderes del Estado. Un concepto básico de la gravedad institucional es que ``excede el caso concreto'', es decir, va más allá de la situación particular de las partes.
+\end{definition}
+
+\begin{example}{Caso Bruglia y Bertuzzi --- per saltum admitido}
+La Corte admitió el per saltum cuando debía resolverse la estabilidad de dos jueces del fuero penal cuya posición estaba siendo cuestionada, jueces que habían intervenido en juicios de gran relevancia pública, entre ellos el juicio por corrupción de la expresidenta Cristina Fernández. Al estar en tela de juicio la estabilidad y la legitimidad de esos magistrados, podía lesionarse la necesaria confianza entre la ciudadanía y los organismos del Poder Judicial. En cambio, frente a un pedido de per saltum vinculado con una reforma laboral --- aun cuando un juez había declarado la nulidad parcial de esa reforma con efecto amplio ---, la Corte entendió que no se configuraba un caso de gravedad institucional extrema y rechazó el planteo, señalando que existían las distintas instancias recursivas ordinarias.
+\end{example}
+
+En materia penal es difícil que se configure gravedad institucional, porque cada proceso es individual e intersubjetivo: no hay un enjuiciamiento de una política criminal, sino la situación concreta de una persona acusada de determinado delito. Por más pública que sea esa persona, difícilmente se configure con claridad una cuestión de gravedad institucional, porque siempre se dirimen derechos estrictamente subjetivos del imputado, y además rige la garantía del doble conforme --- dos instancias de revisión ---. Tampoco es sencillo que exista un peligro de imposible reparación ulterior, porque la persona puede invocar ese peligro si está privada de la libertad mediante una prisión preventiva.
+
+\section*{Cornell --- Vías de Acceso a la Corte Suprema}
+\addcontentsline{toc}{section}{Cornell --- Vías de Acceso a la Corte Suprema}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuándo hay cuestión federal simple?} &
+Cuando el conflicto exige exclusivamente interpretar un postulado de la propia Constitución, sin que exista colisión con otra norma. \\
+
+\textbf{¿Cuándo hay cuestión federal compleja directa e indirecta?} &
+Directa: cuando colisionan la Constitución y una norma inferior. Indirecta: cuando colisionan dos normas inferiores entre sí, sin estar en juego directamente la interpretación de la Constitución. \\
+
+\textbf{¿Qué es la arbitrariedad de sentencia?} &
+Vía de acceso a la Corte distinta de la cuestión federal, basada en la falta de razonabilidad de un fallo: ausencia de fundamentación suficiente, incorrecta valoración de la prueba, aplicación de norma no vigente u omisión de tratar los agravios de las partes. \\
+
+\textbf{¿Qué establece el fallo Mill de Pereyra?} &
+Que los jueces pueden declarar de oficio la inconstitucionalidad de una norma, sin pedido expreso de parte, siempre que la declaración se mantenga dentro de la órbita de los agravios que habilitaron la instancia. \\
+
+\textbf{¿Qué exige la Acordada 4/2007 para el recurso extraordinario y la queja?} &
+Recurso extraordinario: máximo 40 páginas y 26 renglones, interlineado 1,5. Queja: máximo 10 páginas de 26 renglones. El recurso se presenta ante el tribunal que dictó la sentencia (10 días); la queja, directamente ante la Corte (5 días). \\
+
+\textbf{¿Qué es el per saltum y qué requisitos exige?} &
+Remedio procesal que permite saltar de la primera instancia directamente a la Corte Suprema, invocando peligro grave e irreversible y/o gravedad institucional. \\
+
+\textbf{¿Qué significa gravedad institucional?} &
+Que está en juego la supervivencia o continuidad de las instituciones del sistema democrático, o el quiebre de la confianza entre la ciudadanía y los poderes del Estado, excediendo el caso concreto de las partes. \\
+
+\textbf{¿Por qué es difícil que se configure gravedad institucional en materia penal?} &
+Porque cada proceso penal es individual e intersubjetivo, se dirimen derechos estrictamente subjetivos del imputado y, además, rige la garantía del doble conforme (dos instancias de revisión). \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} A partir de la cuestión federal (simple, compleja directa e indirecta), la arbitrariedad de sentencia y la inconstitucionalidad de oficio, se detallan las distintas puertas de acceso a la Corte: el recurso extraordinario y la queja, con los requisitos de la Acordada 4/2007, y la vía excepcional del per saltum, condicionada a la gravedad institucional o al perjuicio irreparable.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================
+\chapter{Medidas Cautelares en Sede Extraordinaria}
+
+\section{Medida Cautelar y Recurso Extraordinario}
+
+En principio, los recursos extraordinarios solo se habilitan para sentencias definitivas o asimilables a definitivas, mientras que las medidas cautelares son, por su propia naturaleza, provisionales y subsidiarias respecto de la resolución de la causa principal. Por ese motivo, no es habitual que una decisión sobre medida cautelar sea susceptible de revisión por la Corte, salvo en aquellos casos muy importantes en los que hay una cuestión federal muy clara, gravedad institucional o daños irreversibles.
+
+Los requisitos de la medida cautelar son la verosimilitud del derecho, el peligro en la demora y la contracautela. La verosimilitud del derecho es la idea de que la cuestión federal invocada tenga suficiente entidad y virtualidad, un viso de contexto favorable. Mediando además el peligro en la demora --- la idea de un perjuicio que se torne, con el tiempo, irremontable e irreversible --- se abre el resquicio excepcional por el cual una medida cautelar puede llegar a ser analizada por la Corte.
+
+\begin{example}{Caso Grupo Clarín --- Ley de Medios}
+Como ejemplo de este supuesto excepcional, se menciona la medida cautelar que en su momento sostenía el Grupo Clarín para mantener la no adhesión al régimen de tenencia de medios previsto por la Ley de Medios. Por su relevancia y trascendencia como cuestión institucional clave --- encontrándose en juego el derecho a la libertad de expresión, la posibilidad de continuidad de una empresa de medios y un debate público de gran magnitud --- fue un supuesto que habilitó excepcionalmente a la Corte a analizar la cautelar por la vía extraordinaria, aunque luego el caso se resolvió sobre el fondo.
+\end{example}
+
+La idea que subyace a los requisitos de verosimilitud del derecho y peligro en la demora es asegurar el resultado de una eventual decisión judicial: que esta no caiga en saco roto, que no se transforme en una decisión incumplible, o que el contexto no se erosione de tal forma que la sentencia definitiva no pueda llegar a cumplirse.
+
+\section*{Cornell --- Medidas Cautelares en Sede Extraordinaria}
+\addcontentsline{toc}{section}{Cornell --- Medidas Cautelares en Sede Extraordinaria}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Puede la Corte revisar una medida cautelar por recurso extraordinario?} &
+Excepcionalmente, cuando existe una cuestión federal muy clara, gravedad institucional o riesgo de daños irreversibles, dado que el recurso extraordinario en principio solo procede contra sentencias definitivas o asimilables. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} La revisión de cautelares por vía extraordinaria es excepcional, condicionada a gravedad institucional o a un perjuicio irreparable, como se verificó en el caso del Grupo Clarín frente a la Ley de Medios.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================
+\chapter{Derechos Constitucionales en Debate}
+
+Este capítulo aplica el andamiaje procesal desarrollado en los capítulos anteriores a tres derechos concretos que con frecuencia se litigan en la práctica: el principio de reserva, la libertad religiosa y la libertad de expresión, junto con el derecho de réplica.
+
+\section{Principio de Reserva (Art. 19 CN)}
+
+El principio de reserva se vincula estrechamente con fallos como Ponzetti de Balbín, referido a imágenes que generarían una intromisión indebida en un aspecto privativo de los derechos personalísimos y del ámbito privado de una persona.
+
+\begin{important}
+\textbf{Artículo 19 de la Constitución Nacional.} ``Las acciones privadas de los hombres que de ningún modo ofendan al orden y a la moral pública, ni perjudiquen a un tercero, están sólo reservadas a Dios, y exentas de la autoridad de los magistrados. Ningún habitante de la Nación será obligado a hacer lo que no manda la ley, ni privado de lo que ella no prohíbe.''
+\end{important}
+
+Aunque Ponzetti de Balbín era un político conocido, la situación de su agonía en la etapa final de su enfermedad no involucraba un interés público relevante en cuanto al conocimiento de su estado de salud. Ese fallo permitió a la Corte explicar cuál es el umbral de privacidad del artículo 19: aquellas acciones privadas que están por fuera de cualquier regulación o decisión judicial.
+
+\begin{example}{Fallo Bazterrica --- tenencia de estupefacientes para consumo personal}
+En el fallo Bazterrica, sobre la tenencia de estupefacientes para consumo personal, la Corte entendió que debía replegarse la idea de la punición y la persecución penal, porque, por las características del caso, se estaba ante un umbral del derecho personal del acusado que no se proyectaba sobre perjuicios a terceros ni sobre la moral y las costumbres de la sociedad. Por lo tanto, esa tenencia para consumo personal también quedó resguardada dentro del ámbito del artículo 19.
+\end{example}
+
+\section{Libertad Religiosa}
+
+En el fallo sobre la educación religiosa en las escuelas de la provincia de Salta, la Corte ponderó dos conceptos que no presentan la contradicción que podría suponerse en un primer momento: el sostenimiento constitucional del culto católico apostólico romano y la libertad religiosa para el pleno uso y goce de las prácticas privadas, interactuando y conviviendo razonablemente en un concepto constitucional moderno.
+
+La educación religiosa tenía carácter obligatorio en las escuelas, bajo el supuesto de que los estudiantes recibirían un panorama de las distintas religiones. Sin embargo, el modo en que estaba impartida la clase generaba, por un lado, una forma de discriminación o victimización para los alumnos que no tomaban esos cursos, ya que perdían esos horarios sin que fueran reemplazados por clases regulares ni por ninguna asignatura complementaria. Por otro lado, la asignatura correspondía específicamente a la religión católica, lo que generaba una prevalencia que afectaba el principio de equidad en las políticas públicas educativas.
+
+Aunque también estaba en juego la autonomía provincial para darse sus propias instituciones y regular la educación escolar básica, la Corte, por mayoría, entendió que esa práctica había incurrido en una violación de la libertad religiosa, porque generaba ganadores y perdedores: quien quisiera sortear esas clases quedaba en evidencia y muy identificado como parte de una minoría, al tener que suscribir una declaración jurada de que no asistiría a ninguna de las clases de religión.
+
+\begin{example}{Educación religiosa en las escuelas de Salta}
+Más que la existencia de la asignatura en sí, lo que llevó a los jueces a declarar la inconstitucionalidad de la norma fue la forma concreta en que se demostró, a lo largo del juicio, que se impartían las clases de religión: un esfuerzo argumental de la Corte que permite que convivan el sostenimiento constitucional del culto católico apostólico y la prohibición de que ello se traduzca en una clase exclusiva de religión católica en la escuela primaria.
+\end{example}
+
+\section{Libertad de Expresión: Doctrina Campillay y Doctrina de la Real Malicia}
+
+La libertad de expresión es, a la vez, un derecho para los ciudadanos y un deber de protección por parte del Estado; resulta central para un modelo democrático de convivencia y de libre participación en un mercado amplio y sin censura de ideas, pareceres y opiniones. Además de asegurar ese libre flujo de opiniones e ideas dirigido a toda la sociedad, cumple un mandato secundario pero no menos importante: funciona como un control social de la gestión de gobierno, al permitir el acceso a datos de la gestión pública y generar un escrutinio de los funcionarios y del gobierno de turno. La Constitución establece la prohibición de censura previa y de restricción a la libertad de prensa, asegurando como contracara el derecho a la libertad de expresión: se responde únicamente ex post, y frente a una acreditación certera del daño.
+
+Las doctrinas Campillay y de la Real Malicia permiten una adecuada aplicación del derecho a la libertad de expresión, haciendo un distingo importante cuando se trata de figuras públicas --- políticos y gobernantes ---, respecto de las cuales debe existir, como sociedad, un mayor celo en el conocimiento de sus actividades, porque trascienden lo individual. Siendo figuras públicas, debe existir una mayor tolerancia de su parte a que se recaben datos e información, a brindar explicaciones y a estar sujetos a ese escrutinio.
+
+\begin{definition}{Doctrina de la Real Malicia}
+Establece que las personas con trascendencia pública, que detentan cargos de relevancia en los que está interesada la sociedad, deben tolerar una mayor intromisión en su esfera del artículo 19 --- sin que ello implique que no existan límites, porque siempre hay un resquicio para los derechos personalísimos. Para que un medio de prensa sea responsabilizado por una información referida a una figura pública, quien reclama la reparación debe probar la ``real malicia'': que el medio conocía la inexactitud de la información y aun así actuó dolosamente, o que, aun sin conocerla, la precariedad de la afirmación era tan patente que una diligencia razonable debió obligarlo a verificarla antes de publicarla.
+\end{definition}
+
+El origen de esta doctrina se atribuye a la Corte estadounidense, en el caso Sullivan, precedente que luego fue modelándose y completándose en sus alcances hasta constituir, hoy en día, una doctrina vigente tanto en Argentina como en Estados Unidos.
+
+\begin{definition}{Doctrina Campillay}
+Establece las conductas diligentes que eximen de responsabilidad a un medio de comunicación por una información, aun cuando esta fuera luego declarada inexacta o errada, siempre que se verifique alguno de tres presupuestos: (i) que la información se comunique en forma potencial --- usando un claro sentido condicional, sin invitar a confusión y con una declaración honesta de su carácter conjetural ---; (ii) que se cite la fuente periodística original de forma clara, concisa y honesta; o (iii) que no se permita identificar al particular afectado, de modo que este no pueda invocar un agravio concreto.
+\end{definition}
+
+Los tres presupuestos de la doctrina Campillay son indistintos: son distintas vías de morigeración de la responsabilidad, y cualquiera de ellos, suficientemente configurado, podría llevar a la exención de responsabilidad del medio de prensa. La cita de la fuente debe ser clara, concisa y honesta; respecto del carácter potencial, debe demostrarse que el texto no genera una verdadera aseveración; y, respecto de la identidad, no debe divulgarse la del sujeto que pueda sentirse damnificado por la información.
+
+\section{Derecho de Réplica}
+
+El derecho de réplica busca que la persona que pueda ser perjudicada por una información inexacta tenga alcance a un medio o vía de reparación razonable: la posibilidad de una contestación en el mismo medio y con la misma difusión que tuvo la información inexacta que pudo haber causado el daño. Se trata de la idea de ``escuchar las dos campanas'' como forma de reparación, buscando contrarrestar una información que se entiende inexacta --- más que maliciosa, inexacta ---; en definitiva, un remedio procesal que en el derecho argentino fue internalizado a partir de su introducción en la Declaración Americana, el Pacto de San José de Costa Rica.
+
+\begin{important}
+\textbf{Fallo Ekmekdjian c/ Sofovich --- Pacto de San José de Costa Rica.} ``La Corte entendió que, por estar el derecho de réplica introducido mediante un tratado internacional, era operativo aun cuando no hubiera una recepción expresa en el derecho local.''
+\end{important}
+
+El precedente Ekmekdjian c/ Sofovich es el caso en el que la Corte aplica el derecho de réplica por aplicación del Pacto de San José de Costa Rica --- la Convención Americana sobre Derechos Humanos ---, permitiendo comprender el origen legal de la figura, la interpretación de la Corte, y el alcance de esta vía de reparación por la cual el sujeto damnificado puede acceder a una misma vía de expresión, en similares términos y condiciones, respecto de la información que lo ha perjudicado.
+
+\section*{Cornell --- Derechos Constitucionales en Debate}
+\addcontentsline{toc}{section}{Cornell --- Derechos Constitucionales en Debate}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué establece el artículo 19 de la Constitución Nacional (principio de reserva)?} &
+Que las acciones privadas que no ofendan el orden ni la moral pública ni perjudiquen a terceros están reservadas a Dios y exentas de la autoridad de los magistrados; nadie está obligado a hacer lo que la ley no manda ni privado de lo que ella no prohíbe. \\
+
+\textbf{¿Qué resolvieron los fallos Ponzetti de Balbín y Bazterrica?} &
+Ponzetti de Balbín protegió la privacidad frente a la difusión de imágenes de la agonía de una figura pública sin interés público relevante; Bazterrica amparó, dentro del artículo 19, la tenencia de estupefacientes para consumo personal por no afectar a terceros ni la moral pública. \\
+
+\textbf{¿Qué decidió la Corte sobre la educación religiosa obligatoria en Salta?} &
+Declaró la inconstitucionalidad de la práctica por vulnerar la libertad religiosa, ya que el modo de impartir la clase generaba discriminación hacia quienes no la tomaban y una prevalencia indebida de la religión católica en la escuela pública. \\
+
+\textbf{¿En qué consiste la doctrina Campillay?} &
+Exime de responsabilidad a un medio de prensa por información luego declarada inexacta si se verifica alguno de tres presupuestos, en forma indistinta: difusión en sentido potencial, cita clara y honesta de la fuente, o reserva de la identidad del afectado. \\
+
+\textbf{¿En qué consiste la doctrina de la Real Malicia?} &
+Exige, para responsabilizar a un medio por informar sobre una figura pública, probar que conocía la falsedad de la información y aun así la publicó (dolo), o que actuó con notoria despreocupación por verificar su veracidad; se originó en el caso Sullivan de la Corte estadounidense. \\
+
+\textbf{¿Qué establece el derecho de réplica y en qué fallo se basa?} &
+Permite a quien fue perjudicado por información inexacta acceder a una vía de reparación consistente en contestar en el mismo medio y en similares condiciones; en Argentina se reconoció en el fallo Ekmekdjian c/ Sofovich, por aplicación directa del Pacto de San José de Costa Rica. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:} El andamiaje procesal se proyecta sobre los derechos más debatidos de la parte dogmática: el principio de reserva del artículo 19 (Ponzetti de Balbín, Bazterrica), la libertad religiosa (educación religiosa en Salta) y la libertad de expresión, morigerada por Campillay y la Real Malicia y complementada por el derecho de réplica de Ekmekdjian c/ Sofovich.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================================================
+\chapter*{Síntesis General del Repaso}
+\addcontentsline{toc}{chapter}{Síntesis General del Repaso}
+
+Este repaso recorre, de forma articulada, el andamiaje que un litigante necesita para llevar un conflicto constitucional desde la primera instancia hasta la Corte Suprema de Justicia de la Nación. Parte de la base hermenéutica --- cómo se interpreta el texto constitucional (textualismo, originalismo) y qué parte de un fallo genera doctrina obligatoria (holding y obiter dictum) --- para asentar luego el fundamento de todo el sistema: el control de constitucionalidad, ejercido en Argentina bajo un modelo difuso en el que cada tribunal puede declarar la inconstitucionalidad para el caso concreto, con la Corte Suprema como intérprete final y guardiana de la supremacía constitucional, en su rol de poder contramayoritario.
+
+A partir de allí, se detallan las distintas puertas de acceso a la Corte: la cuestión federal (simple, compleja directa e indirecta), la arbitrariedad de sentencia, la inconstitucionalidad de oficio, el recurso extraordinario y la queja con los requisitos de la Acordada 4/2007, y las vías excepcionales del per saltum y de la revisión de cautelares, condicionadas a gravedad institucional o perjuicio irreparable.
+
+Finalmente, ese aparato procesal se proyecta sobre los derechos más debatidos de la parte dogmática: el principio de reserva del artículo 19 (Ponzetti de Balbín, Bazterrica), la libertad religiosa (educación religiosa en Salta) y la libertad de expresión, morigerada por Campillay y la Real Malicia y complementada por el derecho de réplica de Ekmekdjian c/ Sofovich. En conjunto, el derecho constitucional se revela como la estructura procesal y sustantiva que enmarca cualquier litigio en el que esté en juego un derecho fundamental frente al poder del Estado o frente a terceros.
+
+\end{document}

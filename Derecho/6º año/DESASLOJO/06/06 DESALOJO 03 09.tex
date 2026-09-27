@@ -1,0 +1,862 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% METADATOS DEL DOCUMENTO
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\titulo}{El juicio de desalojo: notificación, rebeldía y estructura de la demanda}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el proceso es aprender a construir, paso a paso, el camino hacia una decisión justa.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil y Comercial'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+\chapter[Fundamentos del proceso y la notificación]{Fundamentos del proceso y la notificación}
+\label{ch:fundamentos}
+
+El presente capítulo aborda el punto de partida del juicio de desalojo: el acto que da inicio al proceso, los actos previos que pueden resultar necesarios antes de demandar, y la cuestión —central en la práctica— de la notificación válida del traslado de la demanda.
+
+\section{La demanda como acto de iniciación del proceso}
+
+La demanda constituye el acto procesal que da inicio, en sentido formal, al proceso judicial.
+
+\begin{definition}{Demanda}
+La demanda es la base misma del proceso: una petición mediante la cual la parte actora pide algo concreto al juez, ejerciendo lo que técnicamente se conoce como \textbf{pretensión}.
+\end{definition}
+
+Si bien el proceso se inicia formalmente con la demanda, existen actos procesales previos que pueden realizarse antes de ella. Entre ellos se encuentran las \textbf{diligencias preliminares}, que constituyen el acto procesal previo por excelencia cuando el actor carece de un dato indispensable para trabar correctamente la demanda.
+
+\section{Diligencias preliminares}
+
+\begin{definition}{Diligencias preliminares}
+Las diligencias preliminares se utilizan cuando el actor necesita algún dato de la futura parte demandada que no puede obtener por sus propios medios.
+\end{definition}
+
+\begin{important}
+El \textbf{domicilio no es}, en principio, uno de los datos que justifican una diligencia preliminar: el domicilio se ubica con medios propios y no corresponde promover una diligencia preliminar solo para conocerlo. Como se sintetiza en las notas de clase: \textit{``el domicilio lo podemos ubicar de otra manera, con nuestros propios medios; no vamos a hacer una diligencia preliminar para conocer el domicilio''}.
+\end{important}
+
+\section{El domicilio y la notificación}
+
+El domicilio y su correcta notificación constituyen uno de los ejes centrales de la primera parte de la unidad. Corresponde distinguir dos escenarios: el domicilio conocido y el domicilio desconocido.
+
+\subsection{Domicilio desconocido: notificación a personas inciertas}
+
+Cuando el actor no conoce el domicilio del demandado, debe agotar todas las diligencias razonablemente exigibles para procurar identificarlo antes de recurrir a la notificación por edictos.
+
+\begin{important}
+Procedimiento habitual ante el domicilio desconocido: si se libró un oficio o una cédula y el resultado es negativo porque la persona no vive en ese domicilio, corresponde librar oficios a organismos públicos —por ejemplo, a la Policía Federal y a la Cámara Electoral— para intentar dar con el domicilio real \textbf{antes} de notificar por edictos a persona incierta.
+\end{important}
+
+\begin{example}{La chapa borrada}
+En la práctica de los desalojos suele ocurrir que el notificador va a buscar al demandado a un domicilio y un vecino le informa que esa persona no vive allí, o bien alguien ha retirado o modificado la numeración de la puerta para dificultar la identificación del inmueble: \textit{``el locatario va y saca la chapa; el locador va y pinta el número; el locatario busca un amigo que le da una pincelada al número\dots''}. Por esta razón, las cédulas y mandamientos suelen exigir que se individualice el inmueble señalando puntos de referencia adicionales.
+\end{example}
+
+\subsection{Domicilio conocido: la mecánica de la notificación}
+
+Puede ocurrir que el oficial notificador no logre ingresar al edificio donde debe practicarse la notificación (por ejemplo, porque no se le permite el paso hasta el departamento indicado).
+
+\begin{important}
+Procedimiento ante la imposibilidad de ingresar al domicilio:
+\begin{enumerate}
+    \item El oficial notificador debe procurar el ingreso valiéndose, de ser necesario, del auxilio de la fuerza pública.
+    \item Si aun así no lo dejan entrar, debe dejar aviso y retornar al día siguiente.
+    \item Si en esa segunda oportunidad tampoco es atendido, corresponde dejar la cédula por debajo de la puerta, quedando el demandado debidamente notificado.
+\end{enumerate}
+La consecuencia procesal es clara: \textit{``si vuelve, deja la cédula por debajo de la puerta y queda debidamente notificado''}; la imposibilidad material de ingresar no puede paralizar el proceso.
+\end{important}
+
+\subsection{Domicilio contractual o electrónico pactado}
+
+En los contratos de locación suele pactarse un domicilio especial de notificación —incluso electrónico— para facilitar las comunicaciones entre las partes. Si bien las partes podrían apartarse de esa cláusula, lo aconsejable es respetar la forma pactada por razones de seguridad jurídica y practicidad.
+
+\subsection{La nulidad de la notificación defectuosa: consecuencias}
+
+Resulta especialmente relevante analizar qué ocurre si, años después de iniciado un proceso, se comprueba que la notificación inicial fue defectuosa —por ejemplo, porque no se agotaron las diligencias para dar con el verdadero domicilio del demandado—.
+
+\begin{example}{El proceso anulado por notificación defectuosa}
+\textit{``Capaz tenemos cinco años de proceso y se comprueba que estuvo mal notificada la parte, que no era el domicilio correcto. Cuando decretan la nulidad de lo actuado, hay que notificar de vuelta, trasladar la demanda de nuevo\dots\ y empezamos de vuelta esos cinco años de proceso''}.
+\end{example}
+
+\begin{important}
+Aun cuando se anule todo lo actuado por defectos de notificación:
+\begin{itemize}
+    \item la demanda \textbf{mantiene su efecto interruptivo de la prescripción}; lo que se pierde es tiempo procesal, no el derecho de fondo;
+    \item las \textbf{costas} de ese proceso nulo deben ser afrontadas por quien resulte responsable de la notificación defectuosa.
+\end{itemize}
+\end{important}
+
+\section{Medidas cautelares y contracautela}
+
+Existe un peligro en la demora que puede afectar la efectividad de la sentencia, ya que los procesos judiciales insumen tiempo y ese tiempo puede jugar en contra del titular del derecho. Como vía más expeditiva puede mencionarse, a modo de ejemplo, la acción de amparo, aunque en general el mecanismo para proteger un derecho amenazado durante el proceso es solicitar al juez una medida cautelar.
+
+\begin{definition}{Medida cautelar}
+La medida cautelar exige, como presupuestos, \textbf{verosimilitud del derecho} y \textbf{peligro en la demora}. Dado que se resuelve sin escuchar a la contraparte —es decir, \textit{``inaudita parte''}—, exige como contrapartida el otorgamiento de una \textbf{contracautela}, en resguardo de los eventuales daños que la medida pudiera causar si finalmente no le asistiera razón al peticionante.
+\end{definition}
+
+\section*{Cuadro Cornell — Bloque I}
+\addcontentsline{toc}{section}{Cuadro Cornell — Bloque I}
+
+\begin{longtable}{
+    p{0.28\textwidth}
+    p{\dimexpr\textwidth-0.28\textwidth-4\tabcolsep\relax}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué es la demanda?} &
+El acto procesal que da inicio formal al proceso judicial; a través de ella, el actor ejerce el derecho de acción y formula una pretensión concreta ante el juez. \\
+
+\textbf{¿Cuándo se usan las diligencias preliminares?} &
+Cuando el actor necesita, antes de demandar, algún dato sobre el futuro demandado que no puede obtener por sus propios medios. No se usan para conocer el domicilio, que se ubica por medios propios. \\
+
+\textbf{¿Cómo se notifica si no se conoce el domicilio?} &
+Se deben agotar todas las diligencias razonables (oficios a organismos públicos) para dar con el domicilio real; si aun así no se lo ubica, corresponde notificar por edictos a persona incierta. \\
+
+\textbf{¿Qué se hace si no dejan ingresar al notificador al domicilio?} &
+El oficial debe procurar el ingreso con auxilio de la fuerza pública; si no lo dejan entrar, deja aviso y vuelve al día siguiente; si tampoco es atendido, deja la cédula bajo la puerta y el demandado queda debidamente notificado. \\
+
+\textbf{¿Qué requisitos exige una medida cautelar?} &
+Verosimilitud del derecho y peligro en la demora; al dictarse sin escuchar a la contraparte (``inaudita parte''), exige contracautela para resguardar eventuales daños. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} Todo comienza con una notificación bien hecha: si el domicilio del demandado no se identifica y se agota correctamente, cualquier avance posterior del proceso puede caer por nulidad, con la consiguiente pérdida de años de litigio.
+} \\
+
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+\chapter[La rebeldía y sus efectos]{La rebeldía y sus efectos}
+\label{ch:rebeldia}
+
+Una vez notificada la demanda, el sistema procesal debe dar respuesta al silencio del demandado. Este capítulo desarrolla el concepto de rebeldía, su distinción con figuras afines y los efectos que produce sobre los hechos y los documentos del proceso.
+
+\section{Concepto y requisitos de la rebeldía}
+
+Resulta necesario marcar con especial énfasis la diferencia entre una persona rebelde y una persona que simplemente no ha sido notificada: \textit{``rebelde no es rebelde alguien que no está fehacientemente notificado y conocido; ojo con eso''}.
+
+\begin{definition}{Rebeldía}
+Para que exista rebeldía en sentido técnico es necesario que el traslado de la demanda haya sido notificado en un \textbf{domicilio conocido} —es decir, con constancia cierta de que la persona vive allí— y que, pese a ello, el demandado no comparezca a estar en derecho.
+\end{definition}
+
+\begin{important}
+\textbf{Notificación por domicilio conocido + incomparecencia} = rebeldía en sentido propio.
+
+\textbf{Notificación por edictos a persona incierta} (domicilio desconocido, agotadas las diligencias) \textbf{+ incomparecencia} = no hay rebeldía en sentido estricto; corresponde la intervención del defensor oficial, ya que sería demasiado grave para el demandado que el proceso avanzara sin ningún tipo de contralor sobre una persona de la que ni siquiera se tiene certeza de que haya conocido la demanda.
+\end{important}
+
+Los requisitos mínimos para declarar a alguien rebelde son, entonces: primero, haber sido notificado en un domicilio conocido; segundo, no haber comparecido a estar en derecho en esa primera oportunidad. Si el demandado compareció inicialmente —por ejemplo, mediante un apoderado— y luego el apoderado renuncia o le es revocado el mandato, no corresponde declarar la rebeldía sin más: el demandado debe ser intimado a designar un nuevo apoderado.
+
+\begin{note}
+La resolución que declara la rebeldía queda firme, salvo apelación, al día hábil siguiente de dictada, y las notificaciones posteriores al rebelde se practican por ministerio de la ley, sin necesidad de notificación personal —con la excepción de la sentencia definitiva, que siempre debe notificarse en forma personal o por cédula—.
+\end{note}
+
+\section{Citación vs. emplazamiento: dos cargas distintas}
+
+El traslado de la demanda genera, en rigor, dos cargas procesales diferentes y autónomas entre sí.
+
+\begin{definition}{Citación y emplazamiento}
+La \textbf{citación} impone al demandado la carga de comparecer y constituir domicilio (``ponerse a derecho''). El \textbf{emplazamiento} impone la carga de contestar la demanda dentro de un plazo determinado.
+\end{definition}
+
+\begin{important}
+La rebeldía implica no presentarse, no simplemente no contestar. Para ser declarado rebelde no hace falta no contestar: basta con que la persona no se presente. Si el demandado se presenta —sencillamente constituyendo domicilio— ya no puede ser declarado rebelde, por más que no conteste la demanda.
+\end{important}
+
+Presentarse tarde tiene, sin embargo, consecuencias: si el demandado se presenta fuera del plazo legal, los actos procesales que ya precluyeron no pueden retrotraerse. Se aplica el sistema de \textbf{preclusión}: el proceso avanza en etapas sucesivas y, superada una etapa, no se puede volver atrás, salvo que exista una nulidad.
+
+\begin{definition}{Carga procesal}
+La carga procesal es un imperativo de interés propio, no una obligación: es un deber que se cumple en interés propio. Se hace si se quiere; si no se hace, se pierde la posibilidad, la facultad, pero no existe obligación de hacerlo. Se diferencia así de la obligación en sentido estricto, cuyo incumplimiento puede ser exigido coactivamente por otro sujeto.
+\end{definition}
+
+\section{Efectos de la rebeldía sobre los hechos y los documentos (art. 356)}
+
+Frente a la incontestación de la demanda —sea por rebeldía, sea porque, contestando, el demandado guarda silencio o da respuestas evasivas respecto de determinados hechos—, la norma procesal distingue dos consecuencias claramente diferentes: una para los hechos y otra para los documentos.
+
+\begin{formula}{Artículo 356}
+Respecto de los \textbf{hechos}: si el demandado no los contesta categóricamente o guarda silencio, el juez \textbf{PODRÁ} tenerlos por reconocidos. No es una presunción de derecho ni un efecto automático: es una facultad del juez, que debe valorar la prueba existente en el expediente.
+
+Respecto de los \textbf{documentos} acompañados con la demanda: si el demandado no se expide expresamente sobre ellos al contestar, se los \textbf{DEBERÁ} tener por auténticos. Aquí no hay margen de valoración: es una prueba tasada, cuyo efecto está predeterminado por la ley.
+\end{formula}
+
+Corresponde remarcar el matiz entre ``podrá'' y ``deberá'': \textit{``la rebeldía, ante la duda, permite presumir la verdad de los hechos\dots\ pero ojo con ese tema, porque han existido casos en que, pese a la rebeldía, el juez rechazó la demanda''}.
+
+\begin{example}{La demanda ``de puro derecho'' rechazada}
+Un actor, ante la rebeldía del demandado, pidió que se dictara sentencia ``de puro derecho'' —es decir, sin abrir a prueba, confiado en que la rebeldía por sí sola le garantizaba el triunfo—. Sin embargo, la sentencia rechazó la demanda: al pedir sentencia ``de puro derecho'', el actor renuncia a que se abra la causa a prueba; en ese caso, el juez no cuenta con ningún elemento adicional que le permita tener, siquiera, una duda razonable a favor del actor, y la sola rebeldía —sin ningún principio de prueba que la respalde— no alcanza para tener los hechos por acreditados. Por ello, aun frente a un demandado rebelde, conviene igualmente abrir la causa a prueba y producir, por ejemplo, la absolución de posiciones, para sembrar en el juez esa duda razonable adicional.
+\end{example}
+
+\begin{important}
+Para generar la duda razonable a favor del actor no alcanza con una certeza categórica ausente: basta con mostrar algo que no sea categórico, aunque no alcance para una sentencia favorable directa, si sirve para instalar la duda razonable de que el actor tiene razón. Esa duda se genera pidiendo que se abra la causa a prueba, aunque sea preliminar, y tomando la prueba confesional de la contraria.
+\end{important}
+
+\begin{note}
+El demandado declarado rebelde pierde la posibilidad de ofrecer prueba fuera del momento procesal oportuno —junto con la demanda o con la contestación—, en virtud del principio de preclusión de los plazos, que son perentorios: vencido el plazo, se pierde la facultad sin necesidad de que la parte contraria lo pida expresamente.
+\end{note}
+
+\section*{Cuadro Cornell — Bloque II}
+\addcontentsline{toc}{section}{Cuadro Cornell — Bloque II}
+
+\begin{longtable}{
+    p{0.28\textwidth}
+    p{\dimexpr\textwidth-0.28\textwidth-4\tabcolsep\relax}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Cuándo hay rebeldía en sentido propio?} &
+Cuando el demandado fue notificado en un domicilio conocido y, pese a ello, no comparece a estar en derecho. Si la notificación fue por edictos (domicilio desconocido), no hay rebeldía propiamente dicha y corresponde la intervención del defensor oficial. \\
+
+\textbf{¿Cuál es la diferencia entre citación y emplazamiento?} &
+La citación impone la carga de comparecer (ponerse a derecho); el emplazamiento impone la carga de contestar la demanda. Basta con presentarse (constituir domicilio) para evitar la rebeldía, aunque no se conteste la demanda en ese acto. \\
+
+\textbf{¿Qué efecto produce la incontestación respecto de los hechos y los documentos (art. 356)?} &
+Respecto de los hechos, el juez PODRÁ tenerlos por reconocidos (facultad, no automatismo). Respecto de los documentos acompañados, se los DEBERÁ tener por auténticos si no son expresamente desconocidos (prueba tasada). \\
+
+\textbf{¿Por qué puede rechazarse una demanda pese a la rebeldía del demandado?} &
+Porque si el actor pide sentencia ``de puro derecho'' sin ofrecer ni un mínimo de prueba, el juez puede no encontrar siquiera una duda razonable a su favor y rechazar la demanda. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} A partir de una notificación válida, el sistema procesal reacciona ante el silencio del demandado con la figura de la rebeldía, que genera presunciones a favor del actor —automáticas respecto de los documentos no desconocidos, pero solo facultativas respecto de los hechos—, por lo que ni siquiera un demandado rebelde exime al actor de ofrecer y producir prueba mínima.
+} \\
+
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 3
+% ============================================================
+\chapter[Etapas del proceso y prueba confesional]{Etapas del proceso y prueba confesional}
+\label{ch:etapas}
+
+Superada la etapa de la notificación y la eventual rebeldía, corresponde reconstruir el esquema completo de etapas por el que transita el proceso civil, así como la función de la mediación previa y de la prueba confesional dentro de ese esquema.
+
+\section{Las seis etapas del proceso civil}
+
+El proceso civil se ordena cronológicamente en seis etapas sucesivas.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Etapa} & \textbf{Contenido} \\
+\midrule
+\textbf{Introductoria} & Demanda, contestación de demanda, reconvención y su contestación, y resolución de excepciones previas. \\
+\textbf{Preliminar} & Audiencia del art.\ 360: se fijan los hechos controvertidos, se determinan los medios de prueba admisibles, se ``depura'' el proceso y el juez actúa como conciliador. \\
+\textbf{Probatoria} & Producción efectiva de los medios de prueba admitidos: documental, informativa, pericial, testimonial, confesional, reconocimiento judicial. \\
+\textbf{Conclusional} & Alegatos de las partes sobre el mérito de la prueba producida. \\
+\textbf{Recursiva} & Dictada la sentencia, eventual interposición de recursos por la parte disconforme. \\
+\textbf{Ejecutoria} & Firme la sentencia, cumplimiento y ejecución forzada en caso de incumplimiento voluntario. \\
+\bottomrule
+\end{tabularx}
+\caption{Las seis etapas del proceso civil}
+\end{table}
+
+En la etapa introductoria se incorporan la demanda, la contestación, la reconvención y su contestación, la excepción previa y su resolución. En la etapa preliminar se realiza la actividad del artículo 360: las partes fijan los sujetos y el objeto del proceso, se fijan los medios de prueba y se depura el proceso, tratando de simplificarlo antes de pasar a la etapa probatoria.
+
+\section{La mediación previa obligatoria}
+
+La mediación previa obligatoria cumple la función de descongestionar el sistema judicial, ubicándose fuera del proceso, antes de que este se inicie formalmente.
+
+\begin{note}
+\textit{``La ley de mediación trató de descongestionar el proceso antes de que se iniciara; puso una puerta de salida para los litigios, porque el legislador entendía que, una vez metido en el proceso judicial, uno está como atrapado en una trampa''}.
+\end{note}
+
+El mediador, a diferencia del juez, no puede proponer fórmulas conciliatorias por sí mismo, mientras que el juez sí puede hacerlo, precisamente en la audiencia preliminar. Si la mediación fracasa y las partes no arriban a un acuerdo, recién entonces corresponde iniciar la demanda judicial.
+
+\section{La prueba confesional y la absolución de posiciones}
+
+\begin{definition}{Prueba confesional}
+La prueba confesional se provoca por vía oral, mediante la formulación de afirmaciones que la contraparte debe reconocer como ciertas o negar bajo juramento. Esas afirmaciones se denominan ``posiciones'' y se redactan en un pliego, el cual se presenta ante el juzgado en sobre cerrado.
+\end{definition}
+
+\begin{important}
+Cómo se construye el pliego de posiciones:
+\begin{itemize}
+    \item Se redactan proposiciones afirmativas juramentadas, del tipo ``Para que jure como es cierto que\dots'', sobre los hechos centrales del reclamo (por ejemplo: que no abonó el alquiler; que ocupa indebidamente el inmueble; que tiene obligación de desalojar).
+    \item Las afirmaciones deben ser favorables a quien las formula y desfavorables a quien debe responderlas.
+    \item El pliego se firma, se presenta en sobre cerrado y se notifica debidamente a la contraria; si el citado a absolver posiciones no comparece a la audiencia estando debidamente notificado, se lo tiene por confeso de todas las afirmaciones contenidas en el pliego (\textit{ficta confessio}).
+\end{itemize}
+\end{important}
+
+Esta prueba se toma en la audiencia preliminar (art.\ 360), una vez cerrada la etapa introductoria —trabada la litis, resueltas las excepciones y planteos previos que hubiera—. La prueba confesional resulta útil incluso frente a un demandado rebelde: las afirmaciones del pliego, debidamente notificadas, se tendrán por ciertas si no comparece, lo que, sumado a las demás constancias de la causa, genera la duda razonable necesaria a favor del actor.
+
+\begin{note}
+Las preguntas destinadas a los testigos son un instrumento distinto de las posiciones: mientras las posiciones se dirigen a la contraparte y buscan provocar su confesión, el interrogatorio de testigos se dirige a terceros ajenos al litigio y persigue un objetivo probatorio diferente.
+\end{note}
+
+\section*{Cuadro Cornell — Bloque III}
+\addcontentsline{toc}{section}{Cuadro Cornell — Bloque III}
+
+\begin{longtable}{
+    p{0.28\textwidth}
+    p{\dimexpr\textwidth-0.28\textwidth-4\tabcolsep\relax}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Cuáles son las seis etapas del proceso civil?} &
+Introductoria, preliminar, probatoria, conclusional, recursiva y ejecutoria, en ese orden sucesivo y preclusivo. \\
+
+\textbf{¿Qué función cumple la mediación previa obligatoria?} &
+Descongestionar el sistema judicial ofreciendo una instancia de conciliación previa y externa al proceso; si fracasa, recién entonces se inicia la demanda judicial. \\
+
+\textbf{¿Cómo se provoca la prueba confesional?} &
+Mediante un pliego de posiciones —afirmaciones juradas presentadas en sobre cerrado— que la contraparte debe reconocer o negar en audiencia; si no comparece estando notificada, se la tiene por confesa (\textit{ficta confessio}). \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} Ese proceso avanza luego por etapas sucesivas y preclusivas —introductoria, preliminar, probatoria, conclusional, recursiva y ejecutoria— dentro de las cuales la prueba confesional, provocada mediante el pliego de posiciones, cumple un rol estratégico para reforzar la posición del actor.
+} \\
+
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 4
+% ============================================================
+\chapter[El juicio de desalojo en la práctica]{El juicio de desalojo en la práctica}
+\label{ch:practica}
+
+Este capítulo desciende de las instituciones generales del proceso civil al terreno concreto del juicio de desalojo: la prueba del incumplimiento en el desalojo por falta de pago, los límites de la responsabilidad del fiador y la distinción, decisiva para la vía procesal, entre poseedor y tenedor.
+
+\section{Desalojo por falta de pago}
+
+\begin{exercise}{¿Qué debe verificar un juez en un desalojo por falta de pago?}
+Ante un desalojo fundado en falta de pago, el juez debe verificar dos cuestiones centrales: que se acredite el comprobante de pago o su ausencia, y que quien demanda revista el carácter de \textbf{locador} —no hace falta que sea propietario, pero sí locador—.
+
+A partir de esta verificación se introduce otra herramienta relevante en la práctica de los desalojos por falta de pago: la \textbf{resolución anticipada del contrato}, como medida que permite al locador dar por concluida la relación locativa antes del vencimiento pactado ante el incumplimiento del inquilino.
+\end{exercise}
+
+\begin{important}
+Medios de prueba actuales del pago del alquiler: hoy prevalece la transferencia bancaria y el comprobante emitido por el locador —generalmente monotributista o inscripto en Ganancias—, que el locador envía mensualmente al inquilino, entre otras razones porque ese comprobante le permite a este descontarlo de Ganancias. Si el alquiler se cobra en negro, corresponde recurrir a otro tipo de prueba.
+
+Si el pago se hizo en negro y el locador desconoce la firma inserta en un recibo privado, corresponde ofrecer una \textbf{pericia caligráfica} para determinar su autenticidad.
+\end{important}
+
+\section{La responsabilidad del fiador}
+
+\begin{example}{El fiador que terminó pagando la deuda}
+En un caso real de la práctica profesional, el inquilino desapareció, dejó de pagar veinte meses y no quiso saber más nada. Se recurrió al fiador: se acudió al juzgado y se logró una cautelar genérica —no fue posible embargar directamente por no existir firma certificada—. El fiador, desesperado, terminó pagando las cuotas adeudadas, si bien lo que había estado mal era la conducta del inquilino, que dejó el inmueble sin avisarle al locador y le cerró la puerta, quedando todo ese incumplimiento a cargo del fiador.
+\end{example}
+
+\begin{formula}{Régimen vigente de la fianza en la locación}
+El fiador responde, en principio, hasta el vencimiento del plazo del contrato de locación.
+
+\textbf{Excepción}: si al vencer el contrato el locatario no restituye el inmueble, el locador puede mantener vigente la fianza más allá del vencimiento, siempre que intime fehacientemente al locatario a restituir el inmueble y comunique esa intimación al fiador.
+
+Si el locador omite intimar al locatario y notificar al fiador esa circunstancia, la fianza cesa automáticamente al vencimiento del contrato, y el fiador deja de responder por los períodos posteriores, cualquiera sea la deuda acumulada.
+
+% TODO: contenido incompleto o ambiguo en las notas originales — el docx señala que, bajo el régimen anterior a la reforma del Código Civil y Comercial, si el fiador no rescindía expresamente su compromiso, seguía respondiendo indefinidamente, pero remite a una clase anterior para el desarrollo completo de ese régimen previo.
+\end{formula}
+
+\begin{note}
+Recomendación práctica sobre la intimación al fiador: conviene hacerla con antelación —tres meses antes, o al menos dos meses antes del vencimiento—, poniéndose en contacto con el inquilino para verificar si habrá renovación o prórroga. Si la hay, corresponde que el fiador vuelva a firmar con firma certificada, o directamente armar un nuevo contrato certificado con nueva fianza.
+\end{note}
+
+\section{Poseedor, tenedor y la acción de desalojo}
+
+Antes de encuadrar la demanda es fundamental determinar con qué carácter ocupa el inmueble quien va a ser demandado, porque de ello depende la vía procesal idónea. Ante la duda sobre el carácter de la ocupación, conviene intimar previamente al ocupante mediante una diligencia preliminar, para conocer con precisión en qué calidad ocupa el bien y encuadrar correctamente la demanda.
+
+\begin{definition}{Posesión y tenencia}
+\textbf{Posesión}: relación de poder sobre la cosa en la que el poseedor se comporta como dueño (\textit{animus domini}), excluyendo a los demás de ese carácter.
+
+\textbf{Tenencia}: relación de poder sobre la cosa en la que el tenedor reconoce en otro el carácter de poseedor, aunque detente materialmente la cosa.
+\end{definition}
+
+\begin{important}
+Consecuencia procesal: el desalojo es una acción personal que solo sirve para discutir la \textbf{tenencia}. Si el ocupante invoca y acredita —aunque sea sumariamente— actos posesorios (por ejemplo, excluir al dueño, negarse a reconocerlo como tal, dejar de pagar el alquiler y modificar el inmueble como propio), la vía del desalojo deja de ser idónea y corresponde discutir la posesión por la vía real o posesoria correspondiente (interdictos, acción reivindicatoria).
+\end{important}
+
+\begin{example}{El locatario que se comporta como dueño}
+Con el correr del tiempo, un locatario puede comenzar a comportarse como dueño: deja de pagar el alquiler, no permite el ingreso del propietario, modifica el inmueble sin autorización y niega el carácter de propietario a quien lo era. En ese supuesto, la persona ``se dice poseedor'' y, si logra acreditar mínimamente esos actos, el desalojo deja de ser la vía adecuada.
+\end{example}
+
+\begin{note}
+Para iniciar un desalojo no es necesario ser propietario del inmueble: basta con revestir el carácter de locador. Incluso puede demandar el desalojo un locatario que, gracias a una facultad de sublocar prevista en su contrato, resulta a su vez locador de un sublocatario que no le paga.
+\end{note}
+
+\section*{Cuadro Cornell — Bloque IV}
+\addcontentsline{toc}{section}{Cuadro Cornell — Bloque IV}
+
+\begin{longtable}{
+    p{0.28\textwidth}
+    p{\dimexpr\textwidth-0.28\textwidth-4\tabcolsep\relax}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Cómo se prueba hoy el pago del alquiler?} &
+Principalmente mediante transferencias bancarias y comprobantes emitidos por el locador (monotributista o inscripto en Ganancias); si el pago fue en negro y se desconoce la firma de un recibo, corresponde una pericia caligráfica. \\
+
+\textbf{¿Hasta cuándo responde el fiador de una locación?} &
+En principio, hasta el vencimiento del contrato. Puede extenderse solo si el locador intima fehacientemente al locatario a restituir el inmueble y notifica esa intimación al fiador; de lo contrario, la fianza cesa automáticamente al vencer el contrato. \\
+
+\textbf{¿Por qué importa distinguir poseedor de tenedor antes de demandar?} &
+Porque el desalojo (acción personal) solo sirve para discutir la tenencia; si el ocupante acredita, aunque sea sumariamente, actos posesorios, corresponde discutir la posesión por la vía real o posesoria (interdictos, reivindicación), no por el desalojo. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} En el terreno concreto del desalojo, la prueba del incumplimiento (recibos, transferencias, pericias), la correcta determinación de hasta cuándo responde el fiador, y la distinción entre poseedor y tenedor del inmueble son las piezas que definen si la vía elegida es la adecuada.
+} \\
+
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 5
+% ============================================================
+\chapter[Estructura técnica de la demanda]{Estructura técnica de la demanda}
+\label{ch:estructura}
+
+Comprendidas las instituciones generales del proceso y las particularidades del desalojo, corresponde abordar cómo se redacta técnicamente la demanda, desde la carátula hasta el ofrecimiento de prueba.
+
+\section{La carátula y el encabezamiento}
+
+La demanda puede compararse con un expediente que, como cualquier libro, necesita un título.
+
+\begin{definition}{Carátula}
+La carátula es el título del escrito. Se ubica al margen, sin sangría, a diferencia del resto de los párrafos del escrito, que sí llevan sangría de primera línea.
+\end{definition}
+
+\begin{example}{Modelos de carátula}
+\begin{itemize}
+    \item ``Promueve demanda de desalojo por falta de pago''
+    \item ``Promueve demanda de desalojo por vencimiento de contrato''
+    \item ``Promueve demanda de desalojo — acción reivindicatoria''
+\end{itemize}
+\end{example}
+
+En el primer escrito de un expediente, el actor no conoce todavía el número ni la carátula oficial que le asignará el tribunal —que se compone con el nombre del actor, la palabra ``contra'' o ``c/'', el nombre del demandado y el objeto, por ejemplo: ``Fulano c/ Mengano s/ desalojo por falta de pago''—. Esa carátula definitiva la asigna el juzgado al recibir la demanda; en los escritos posteriores, en cambio, sí se consigna ``en los autos caratulados\dots''.
+
+\begin{important}
+Contenido del encabezamiento, común a cualquier tipo de proceso:
+\begin{itemize}
+    \item Identificación de quién se presenta: nombre completo, y si lo hace por derecho propio, patrocinado o mediante apoderado.
+    \item Domicilio real (domicilio de la persona) y domicilio constituido: el domicilio físico (habitualmente, el del abogado patrocinante) y el domicilio electrónico, que corresponde a la clave del profesional interviniente.
+    \item Individualización del expediente en el que se actúa (en los escritos posteriores al inicial) y mención del objeto de la presentación.
+\end{itemize}
+\end{important}
+
+\begin{note}
+Sobre la fórmula ``respetuosamente digo'' que muchos abogados incluyen al comienzo del escrito: se trata de una fórmula de cortesía que no resulta jurídicamente indispensable, ya que el trato respetuoso entre abogados y jueces debería darse por sentado, sin necesidad de invocarlo expresamente.
+\end{note}
+
+\begin{formula}{Artículo 5 — Ley 23.187 (ejercicio de la profesión de abogado)}
+``En el ejercicio profesional, los abogados quedan equiparados a los magistrados en cuanto a la consideración y respeto que se les debe, sin perjuicio de las sanciones que pudieran corresponder a quien no observare esta norma.''
+\end{formula}
+
+\section{Representación procesal: derecho propio, patrocinio y apoderado}
+
+Corresponde diferenciar con claridad las distintas formas en que una parte puede comparecer en un proceso judicial.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Forma} & \textbf{Explicación} \\
+\midrule
+\textbf{Derecho propio} & La parte se presenta personalmente, asistida por un letrado patrocinante (obligatorio: no todos pueden ejercer la procuración, solo abogados o procuradores matriculados). \\
+\textbf{Patrocinio} & El abogado asiste técnicamente a la parte, que actúa por su propio derecho y firma junto con el letrado. \\
+\textbf{Apoderado} & Mediante un poder, un abogado ejerce la representación de la parte y actúa en su nombre. Un mismo abogado puede reunir a la vez el rol de apoderado y de patrocinante. \\
+\bottomrule
+\end{tabularx}
+\caption{Formas de comparecer en el proceso}
+\end{table}
+
+Las personas jurídicas no pueden presentarse por derecho propio, ya que carecen de existencia física para actuar personalmente: necesitan un representante legal —por ejemplo, el presidente de una asociación o un socio con facultades suficientes—, quien debe acreditar su carácter con copias certificadas del instrumento constitutivo, del acta de asamblea y del acta de directorio pertinente, y actuar asistido por un letrado patrocinante.
+
+\section{El objeto de la demanda: la pretensión}
+
+\begin{definition}{Pretensión}
+El objeto de la demanda es, técnicamente, la pretensión, compuesta por tres elementos:
+\begin{itemize}
+    \item \textbf{Elemento subjetivo}: quiénes son los sujetos de la pretensión —a quién se le reclama (el demandado) y quién reclama (el actor)—.
+    \item \textbf{Elemento objetivo}: qué se pide en concreto, esto es, el tipo de sentencia que se solicita (en el caso del desalojo: la restitución del inmueble).
+    \item \textbf{Causa}: los hechos y el fundamento de derecho en que se apoya el reclamo, mencionados en el objeto de manera genérica y desarrollados en detalle en el capítulo de los hechos.
+\end{itemize}
+\end{definition}
+
+\begin{example}{Redacción del objeto en un desalojo}
+Ante la pregunta de cómo redactar el objeto en un juicio de desalojo, la respuesta correcta consiste en individualizar el inmueble, indicar qué se pide —la restitución— y mencionar la causa de manera genérica, sin desarrollar todavía los hechos, que se reservan para el capítulo siguiente. Un ejemplo de esa redacción: que se requiere la restitución del inmueble en el plazo de ley, por la falta de pago de los alquileres.
+\end{example}
+
+Las principales causales que pueden fundar una demanda de desalojo son: la falta de pago, el vencimiento del contrato, la intrusión y el uso indebido del inmueble.
+
+\section{Los hechos, el derecho y la prueba}
+
+\begin{example}{La demanda como película, no como cuento}
+\textit{``La demanda no es un cuento que uno arma y que tiene que anticipar de entrada cómo termina. Tengo que hacerlo como si empezara una película: primero una fotografía de la situación inicial, después qué pasó, y recién al final la conclusión''}. Los hechos deben ``encuadrar'' en la conclusión que el actor pretende sostener, teniendo siempre como norte la norma que contempla el caso y que se invoca a favor del actor: si se aparta de ese norte, la demanda puede ser rechazada o puede aplicarse una norma distinta, con otra consecuencia jurídica.
+\end{example}
+
+\begin{definition}{Subsunción jurídica}
+Al dictar sentencia, el juez debe verificar si los hechos alegados y acreditados en el proceso encuadran en el supuesto de hecho abstracto previsto por una norma; si encajan, aplica esa norma —abstracta y general— al caso concreto, dictando una sentencia individual que resuelve la controversia. Esta operación se denomina subsunción jurídica: constatar los hechos del proceso, verificar que una norma los contempla, aplicarla y así cerrar la norma sobre el caso concreto.
+\end{definition}
+
+\subsection*{La contestación de la demanda y la carga de negar categóricamente}
+
+En la práctica, el demandado tiende a negar todos y cada uno de los hechos de la demanda, porque una fórmula genérica de desconocimiento (``niego por no constarme'') no satisface la exigencia legal de una negativa categórica y específica respecto de cada hecho.
+
+\begin{important}
+\textit{``Si no niega puntualmente, tiene consecuencias: se suele poner esa fórmula genérica inicial de niego todos y cada uno de los hechos por no constarme, pero eso no es una negativa que cumpla con lo que exige el artículo 356, que dice que debe ser una negativa categórica; entonces, después de esa fórmula general, se pone: especialmente niego\dots''}. El trabajo de negar hecho por hecho es arduo pero indispensable, ya que un error en este punto puede implicar el reconocimiento tácito de un hecho.
+\end{important}
+
+\subsection*{La planilla de hechos y medios de prueba}
+
+Como herramienta práctica de trabajo, se recomienda armar, para cada escrito, una planilla con dos columnas: los hechos alegados, numerados, y frente a cada uno, el medio de prueba ofrecido para acreditarlo.
+
+\begin{note}
+Medios de prueba: documental, pericial, informativa, confesional, testimonial y reconocimiento judicial.
+\end{note}
+
+Un documento privado, por sí solo, no basta como prueba plena si no es reconocido por la contraparte: debe respaldarse con otro medio probatorio.
+
+\begin{important}
+Cómo respaldar un documento privado impugnado:
+\begin{itemize}
+    \item Si el demandado desconoce la firma del documento: se ofrece prueba pericial caligráfica.
+    \item Si se trata de una carta documento cuya autenticidad se pone en duda: se ofrece prueba informativa, solicitando al correo que informe sobre la autenticidad de la pieza y la fecha de recepción.
+    \item Si existe un testigo que puede dar fe de la firma o del contenido del documento: se ofrece prueba testimonial.
+\end{itemize}
+\end{important}
+
+Estos criterios de previsión probatoria deben aplicarse siempre con antelación, ya que la oportunidad de ofrecer prueba precluye y no puede subsanarse después de vencido el plazo correspondiente.
+
+\section*{Cuadro Cornell — Bloque V}
+\addcontentsline{toc}{section}{Cuadro Cornell — Bloque V}
+
+\begin{longtable}{
+    p{0.28\textwidth}
+    p{\dimexpr\textwidth-0.28\textwidth-4\tabcolsep\relax}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué elementos componen el objeto (la pretensión) de la demanda?} &
+El elemento subjetivo (quién reclama y a quién), el elemento objetivo (el tipo de sentencia que se pide) y la causa (los hechos y el derecho invocados). \\
+
+\textbf{¿Cómo debe redactarse el capítulo de los hechos y qué exige la negativa del demandado?} &
+Los hechos se narran cronológicamente y deben encuadrar en la norma invocada (subsunción jurídica). Al contestar, el demandado debe negar cada hecho de forma categórica y específica; una negativa genérica no cumple con el art.\ 356. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{
+\textbf{Resumen:} Finalmente, todo ese razonamiento se traduce en un escrito con reglas técnicas propias —carátula, encabezamiento, objeto compuesto por elemento subjetivo, objetivo y causa, hechos narrados cronológicamente y prueba ofrecida en tiempo y forma—, porque el proceso es un sistema formal cuya observancia no es un capricho, sino la garantía de la seguridad jurídica de ambas partes.
+} \\
+
+\end{longtable}
+
+\end{document}

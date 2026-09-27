@@ -1,0 +1,650 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\catedra}{Cátedra de Derecho Procesal Civil y Comercial}
+\newcommand{\cicloLectivo}{Ciclo Lectivo 2026}
+\newcommand{\titulo}{Medidas preliminares, medidas cautelares y recursos extraordinarios. El uso responsable de la inteligencia artificial en la formación jurídica}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ---------------- PORTADA ----------------
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender el procedimiento con criterio propio es, para quien litiga, la primera forma de ejercer la abogacía.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.3cm}
+
+{\normalsize \catedra\ --- \cicloLectivo}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil y Comercial'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------- ÍNDICE ----------------
+\tableofcontents
+
+% ============================================================
+% PRESENTACIÓN GENERAL
+% ============================================================
+\chapter*{Presentación general de la clase}
+\addcontentsline{toc}{chapter}{Presentación general de la clase}
+
+La clase combina una reflexión inicial sobre el uso de la inteligencia artificial en la formación del abogado con el desarrollo técnico de tres institutos centrales del derecho procesal civil y comercial: la prueba documental y las medidas preliminares, las medidas cautelares y sus requisitos, y las vías recursivas extraordinarias (reserva del caso federal, casación y queja). El hilo conductor es siempre el mismo: cómo construir, paso a paso, una estrategia procesal sólida, ya sea para conseguir un documento antes de demandar, para proteger un derecho mientras dura el juicio, o para llevar un agravio hasta la última instancia posible.
+
+Los cuatro bloques que integran estos apuntes están unidos por una misma idea rectora: la construcción, con método, de una estrategia procesal completa. Un ejemplo permite visualizarlos como un solo recorrido: si una persona necesita demandar a un hospital por una mala praxis, primero deberá conseguir la historia clínica que no tiene (prueba documental y medidas preliminares). Mientras dura el juicio, puede necesitar que no se interrumpa su cobertura de obra social (medidas cautelares). Si en el camino un juez resuelve mal y viola una garantía constitucional, será necesario saber cómo reclamarlo hasta la última instancia (reserva del caso federal y recursos extraordinarios). Y en todo ese recorrido, la manera en que el profesional construyó su propio criterio, sin delegar su razonamiento en un atajo tecnológico, es lo que en buena medida determina el resultado del caso (inteligencia artificial y formación del abogado).
+
+\begin{important}
+El eje que atraviesa toda la clase es que el conocimiento del derecho de fondo, por sí solo, no alcanza: lo que distingue a quien ejerce la abogacía es saber cómo incorporar correctamente una prueba, cómo fundar un pedido cautelar, cómo reservar (o no) una cuestión constitucional, y cómo seguir litigando cuando un juez deniega un recurso.
+\end{important}
+
+% ============================================================
+% BLOQUE I
+% ============================================================
+\chapter[IA y formación del abogado]{Inteligencia artificial y formación del abogado}
+
+\section{La irrupción de la inteligencia artificial en la práctica jurídica}
+
+La clase se abre con una reflexión sobre el temor de los abogados jóvenes, especialmente quienes tienen entre dos y cinco años de recibidos, a lanzarse a ejercer la profesión de manera independiente frente al avance de la inteligencia artificial. Este temor motivó la referencia a una nota periodística compartida previamente con el curso.
+
+Se destaca que, si bien la inteligencia artificial existía desde hacía tres o cuatro años, fue recién a partir del año anterior al dictado de la clase cuando se produjo un salto cualitativo en su desarrollo y en el acceso masivo a estas herramientas por parte del público general.
+
+\begin{important}
+El fenómeno del acceso masivo a la inteligencia artificial no constituye una particularidad local, sino un fenómeno de alcance mundial.
+\end{important}
+
+Para dimensionar la velocidad de esta transformación, se la compara con un proceso de masificación tecnológica anterior: la implementación del expediente digital. En aquel momento, una cantidad considerable de abogados quedó fuera de la práctica profesional por no haberse adaptado a las nuevas plataformas, mientras que otros profesionales lograron adecuarse pese a las resistencias iniciales.
+
+Esta transformación tecnológica se vincula, además, con un dato generacional relevante: el valor del título universitario de grado se ha devaluado con el correr del tiempo. Mientras que en generaciones anteriores el título de grado resultaba suficiente para el ejercicio profesional, actualmente resulta necesario avanzar hacia estudios de posgrado (una maestría, como mínimo) para consolidar una trayectoria profesional competitiva.
+
+\section{Herramienta o dependencia: la analogía del gimnasio}
+
+A partir de la corrección de los trabajos prácticos del curso, se observa que una parte significativa de los estudiantes no elaboró sus trabajos con criterio propio, sino recurriendo de manera acrítica a herramientas de inteligencia artificial.
+
+\begin{important}
+La inteligencia artificial resulta una herramienta valiosa quien ya cuenta con los elementos de criterio propio para utilizarla; cuando no se comprende aquello que se está produciendo, la herramienta juega en contra de la formación profesional.
+\end{important}
+
+Se plantea que quienes egresan sin haber desarrollado ese criterio propio encontrarán mayores dificultades para insertarse profesionalmente, y que ese desarrollo del criterio propio constituye, precisamente, el diferencial que puede favorecer a quienes sí lo cultiven.
+
+La idea central de esta unidad se sintetiza en una analogía explícita:
+
+\begin{important}
+\textit{``Es como la gimnasia sin esfuerzo: no existe.''} La comodidad que ofrece la inteligencia artificial no reemplaza el entrenamiento intelectual propio, del mismo modo en que no existe una dieta que no implique cuidado alguno, ni un desempeño deportivo sin entrenamiento previo.
+\end{important}
+
+\begin{important}
+La labor del abogado es, fundamentalmente, una labor intelectual: el entrenamiento necesario consiste en desarrollar la propia manera de pensar y de argumentar. La posesión de datos, por sí sola, vale muy poco en la actualidad, dado que el acceso a la información es prácticamente universal; lo que antes resultaba impensable (traducir un documento o acceder a cualquier biblioteca en segundos) hoy es inmediato, pero esa disponibilidad no garantiza saber cómo resolver concretamente una cuestión jurídica.
+\end{important}
+
+\section{Deterioro cognitivo y pruebas PISA}
+
+Se incorpora a la reflexión un diagnóstico sobre el deterioro en la comprensión lectora de las nuevas generaciones, ilustrado con una observación directa sobre estudiantes secundarios de alta exigencia académica: aun dentro de un mismo nivel de exigencia, las diferencias de comprensión lectora entre estudiantes que sostienen hábitos de estudio profundos y quienes no lo hacen resultarán, con el tiempo, sumamente significativas, aun cuando egresen con el mismo título.
+
+Esta desigualdad se enmarca como un rasgo de época, que se manifiesta no solo en el plano económico, sino de manera cada vez más marcada en el plano cultural.
+
+\begin{example}{Los resultados de las pruebas PISA en la Argentina}
+Las últimas pruebas PISA evidenciaron, para la Argentina, un deterioro cognitivo entendido como un retroceso y una pobreza desde el punto de vista intelectual y material. La Argentina se ubicó en el noveno lugar entre dieciséis países de Latinoamérica en esta edición, resultado que se señala como dramático en atención a los antecedentes históricos del país en materia educativa.
+\end{example}
+
+\begin{example}{La pregunta de las pruebas PISA que la mayoría no pudo resolver}
+Uno de los ítems utilizados como ejemplo plantea el siguiente problema: una persona debe decidir entre dos planes de telefonía celular. Uno cuesta un monto fijo mensual con determinada cantidad de gigabytes incluidos, y cobra un adicional por cada gigabyte extra; el otro tiene un costo base menor, pero un costo por gigabyte extra más alto, para un determinado consumo mensual. La consigna requiere determinar cuál de los dos planes resulta más conveniente.
+
+El ejercicio no requería más que una operación de suma y resta, y sin embargo la amplia mayoría de los estudiantes evaluados no logró resolverlo. El ítem de comprensión de textos correspondiente presentaba un nivel de dificultad igualmente básico.
+\end{example}
+
+Además del uso de la inteligencia artificial, se identifica el uso intensivo de redes sociales como otro factor relevante en el deterioro de la capacidad de comprensión lectora: la exposición sostenida a contenidos breves y de consumo inmediato (como videos de corta duración) favorece un patrón de atención fragmentado y una búsqueda constante de estímulo inmediato, en detrimento de la lectura y comprensión de textos más extensos.
+
+\begin{important}
+\textit{``Es como tener un gimnasio en tu propia casa y decir: `como está en mi casa, lo voy a hacer en algún momento.'\ ''} La disponibilidad inmediata del conocimiento, lejos de garantizar su aprovechamiento, puede generar una comodidad que termina jugando en contra del propio aprendizaje. Esta es la paradoja señalada: no resulta claro si es la necesidad la que impulsa a superarse, o si, por el contrario, es la abundancia de recursos disponibles la que perjudica el desarrollo de las capacidades propias.
+\end{important}
+
+\section{El compromiso individual frente a un fenómeno social}
+
+Se plantea que, frente a un fenómeno de alcance social como el descripto, existe también un margen de compromiso individual: la suma de las decisiones individuales conforma, en definitiva, a la sociedad en su conjunto. El desafío no se agota en que cada individuo resuelva su propia situación particular, sino en procurar una mejora colectiva.
+
+% TODO: contenido incompleto o ambiguo en las notas originales -- el docente no desarrolla en detalle el alcance concreto de ese "compromiso individual" más allá de la declaración de intención personal de dar lo mejor posible en su propio desempeño.
+
+Este bloque introductorio se cierra con un anuncio vinculado a la evaluación del curso: la modalidad del recuperatorio consistiría en tres preguntas simples, de cinco minutos cada una, a resolver sobre un conjunto de hechos entregados en clase, con los cuales debía confeccionarse una demanda siguiendo la misma lógica trabajada en las clases previas.
+
+% ============================================================
+% BLOQUE II
+% ============================================================
+\chapter[Prueba documental y medidas prelim.]{Prueba documental y medidas preliminares}
+
+\section{Exhibición de documentos y documentos en poder de terceros}
+
+A partir de errores detectados en las citas normativas de los trabajos prácticos del curso, se repasan las normas del Código Procesal Civil y Comercial de la Nación relativas a la prueba documental en poder de terceros.
+
+\begin{definition}{Documentos en poder de un tercero (artículo 389 del Código Procesal)}
+Si el documento que deba reconocerse se encontrare en poder de un tercero, se lo intimará para que lo presente. Si lo acompañase, podrá solicitar su oportuna devolución, dejando testimonio en el expediente. El requerido podrá oponerse a su presentación si el documento fuere de su exclusiva propiedad y la exhibición pudiera ocasionarle perjuicio. Ante la oposición formal del tenedor del documento, no se insistirá en el requerimiento.
+\end{definition}
+
+\begin{definition}{Exhibición de documentos (artículo 388 del Código Procesal)}
+Las partes y los terceros en cuyo poder se encuentren documentos esenciales para la solución del litigio estarán obligados a exhibirlos o a designar el protocolo o archivo en que se hallan los originales.
+\end{definition}
+
+El sentido práctico de ambas normas es el siguiente: cuando una parte no cuenta con una prueba documental esencial para el litigio pero sabe que un tercero la posee, puede invocar el artículo 389 para intimarlo a que la presente, sin que ello requiera necesariamente que dicho tercero sea notificado como parte demandada. En la práctica, con frecuencia quien posee el documento resulta ser la propia contraparte del proceso, más que un tercero ajeno a él.
+
+\begin{example}{La póliza de seguro en la demanda confeccionada por el curso}
+Un ejemplo recurrente de documento sujeto a intimación es la póliza de seguro, que habitualmente no obra en poder del actor sino de la aseguradora demandada. La utilidad procesal de intimar su presentación radica en que permite probar la existencia de un contrato de seguro, que ese contrato obliga a la aseguradora a responder en determinados supuestos, y que el riesgo reclamado se encuentra efectivamente cubierto. La póliza puede intimarse tanto en la propia demanda como mediante una diligencia preliminar previa a su presentación.
+\end{example}
+
+\section{Diligencias preliminares: concepto y casos típicos}
+
+\begin{definition}{Diligencia preliminar}
+Proceso que se inicia con carácter previo a la demanda cuando existe una prueba en peligro de desaparecer, o que de otro modo no podría obtenerse, con el fin de asegurar esa prueba documental necesaria antes de promover la acción principal. También puede utilizarse para averiguar datos esenciales que se desconocen y que resultan indispensables para poder demandar, como el domicilio de la parte demandada.
+\end{definition}
+
+\begin{important}
+La diligencia preliminar no debe confundirse con la prueba anticipada, que constituye un instituto procesal distinto.
+\end{important}
+
+\begin{example}{La historia clínica como diligencia preliminar}
+Un caso típico de diligencia preliminar es el pedido de la historia clínica en supuestos de responsabilidad médica: cuando una persona conoce que sufrió un daño derivado de un error médico ocurrido tiempo atrás, pero no dispone de la historia clínica necesaria para confeccionar adecuadamente la demanda, puede solicitar al juez, de manera preliminar, que se ordene la obtención de ese documento antes de iniciar el proceso, o conjuntamente con él, cuando el documento resulte fundamental para poder confeccionar la demanda.
+\end{example}
+
+\section{Competencia para promover diligencias preliminares}
+
+\begin{formula}{Competencia territorial de la diligencia preliminar}
+La medida preliminar se presenta ante el juzgado que resultaría competente para la futura demanda, es decir, siguiendo las mismas reglas de competencia territorial que regirán el proceso principal.
+\end{formula}
+
+\begin{example}{La historia clínica de un cliente operado en otra jurisdicción}
+Si el hecho que dará lugar a una eventual demanda por mala praxis ocurrió en una clínica ubicada en una localidad distinta a la del domicilio del profesional interviniente, la medida preliminar tendiente a obtener la historia clínica correspondiente debe presentarse ante el juzgado que resultaría competente para la futura demanda de fondo, conforme a las reglas generales de competencia territorial.
+\end{example}
+
+Vinculado con la parte general del proceso, se repasan además otros temas relevantes para la evaluación de la materia:
+
+\begin{note}
+En los casos de representación procesal de un menor de edad por su padre o su madre, la demanda debe consignar expresamente esa representación (por ejemplo: ``Fulano de tal, en representación de su hijo menor\ldots''), y dicha representación se acredita mediante la partida de nacimiento, la cual constituye, además, una de las primeras piezas de la prueba documental, en tanto acredita la personería del representante.
+\end{note}
+
+Quedan enunciados, sin desarrollo específico en esta clase, otros temas que integran el programa de examen vinculados a la parte general del proceso: la intervención de terceros (artículos 90 y 91 del Código Procesal), el régimen de notificaciones (en particular, la notificación de la demanda) y las excepciones procesales.
+
+% ============================================================
+% BLOQUE III
+% ============================================================
+\chapter{Medidas cautelares}
+
+\section{Concepto y naturaleza jurídica de la medida cautelar}
+
+El concepto de medida cautelar se construye por aproximaciones sucesivas a partir de la distinción entre la resolución que la dispone y la institución procesal en sí misma.
+
+\begin{definition}{Medida cautelar}
+La medida cautelar es un instituto procesal que tiene por objeto proteger un derecho cuando el transcurso del tiempo necesario hasta el dictado de la sentencia definitiva podría hacer que ese derecho dejara de ser efectivo, por haber desaparecido, haberse perdido, o por no poder esperarse razonablemente hasta ese momento.
+\end{definition}
+
+\section{Los tres requisitos de toda medida cautelar}
+
+\begin{formula}{Los tres requisitos de la medida cautelar}
+\begin{enumerate}
+    \item \textbf{Peligro en la demora}: riesgo concreto, evidente y actual de que la demora del proceso torne ilusorio el derecho reclamado.
+    \item \textbf{Verosimilitud del derecho}: no requiere acreditar el derecho de manera plena, sino que este resulte creíble y presumible a partir de los elementos aportados; no es necesario que el derecho esté reconocido todavía en una sentencia, pero debe existir una cantidad de elementos que lo hagan presumible.
+    \item \textbf{Contracautela}: garantía que quien pide la cautelar ofrece para responder por los eventuales daños que la medida pudiera causar si fue pedida en exceso o de manera abusiva. Puede ser personal, real o juratoria; los bienes ofrecidos como contracautela pueden constituirse en especie o por un monto determinado, admitiéndose mayor flexibilidad en asuntos de naturaleza comercial.
+\end{enumerate}
+\end{formula}
+
+\section{Caso práctico: la medida cautelar contra el decreto de aumento de las prepagas}
+
+% TODO: contenido incompleto o ambiguo en las notas originales -- el número del decreto no pudo identificarse con precisión a partir de la fuente original, por lo que en este apunte se lo menciona de modo genérico como el decreto de aumento de las cuotas de medicina prepaga.
+
+Se reconstruye en clase, paso a paso, una medida cautelar dirigida a que no se aplicara, a un caso concreto, el aumento dispuesto por decreto sobre las cuotas de las empresas de medicina prepaga.
+
+\begin{example}{Construcción de la medida cautelar contra el decreto de aumento de las prepagas}
+\textbf{Objeto:} promover una medida cautelar contra la aplicación de las medidas dispuestas por el decreto, limitada al caso concreto de la persona afectada, sin plantear la inconstitucionalidad general de la norma.
+
+\textbf{Peligro en la demora:} se acredita explicando que, de demorarse la resolución, la persona afectada --que debe afrontar un tratamiento médico urgente-- no podría continuar solventando el pago de su obra social, quedando en un estado de indefensión que tornaría ilusorio el derecho reclamado si debiera esperarse hasta el dictado de la sentencia definitiva.
+
+\textbf{Verosimilitud del derecho:} se acredita mostrando el conjunto de circunstancias que hacen creíble la pretensión: que el decreto afecta a la persona, que esta es titular de determinada obra social, que padece una enfermedad concreta, y que sus ingresos resultan insuficientes para afrontar el nuevo monto de la cuota, entre otros elementos que permiten construir un cuadro de situación coherente ante el juez.
+
+\textbf{Contracautela:} se ofrece como tercer y último requisito, una vez acreditados los dos anteriores.
+\end{example}
+
+\section{El principio de bilateralidad: ``inaudita parte'' y sus excepciones}
+
+\begin{important}
+Una característica distintiva de la resolución que dispone una medida cautelar, frente al resto de las resoluciones judiciales, es que habitualmente se dicta sin escuchar previamente a la otra parte (\textit{inaudita parte}), sin que se corra traslado. Precisamente por ello se exige la contracautela, como forma de hacer responsable a quien solicitó la medida en caso de haberla pedido en exceso o de manera abusiva.
+\end{important}
+
+\begin{example}{El caso de la revinculación paterno-filial: cuando el juez sí corrió traslado}
+En un caso en el que se solicitaba, por vía de medida cautelar, la revinculación de un padre con sus hijos (es decir, no el régimen de comunicación definitivo, sino un mínimo de contacto mientras tramitaba el proceso principal), el juez interviniente decidió apartarse del principio general de dictado \textit{inaudita parte}: en atención a la naturaleza de la cuestión y al interés superior del niño, corrió traslado a la otra parte por tres días antes de resolver la cautelar. Se trató de una vía excepcional de traslado previo, en lugar de resolver directamente la medida y dejar que la otra parte, de no estar de acuerdo, recurriera con posterioridad.
+\end{example}
+
+En la práctica, correr traslado antes de resolver una medida cautelar suele jugar en contra de quien la solicita, porque permite a la contraparte ocultar bienes, modificar la situación de hecho o dilatar el trámite mediante el uso del propio plazo del traslado. La contracautela constituye, precisamente, la contrapartida de esa sorpresa procesal: dado que quien solicita la medida ha debido ofrecer una caución, la otra parte conserva la posibilidad de recurrir la medida una vez dictada.
+
+\begin{note}
+Corresponde distinguir el ``traslado'', que se corre a las partes del proceso, de la ``vista'', que se corre a otros funcionarios que intervienen sin ser parte, como el Ministerio Público.
+\end{note}
+
+% ============================================================
+% BLOQUE IV
+% ============================================================
+\chapter[Reserva del caso federal y recursos extraordinarios]{Reserva del caso federal y vías recursivas extraordinarias}
+
+\section{La reserva de caso federal: cuándo corresponde}
+
+Se advierte sobre el uso automático e indiscriminado de la reserva del caso federal en los escritos judiciales, práctica que carece de sentido jurídico cuando no se sustenta en una fundamentación concreta.
+
+\begin{definition}{Reserva del caso federal (artículo 14 de la ley 48)}
+Norma que fundamenta la reserva de la vía de acceso a la Corte Suprema de Justicia de la Nación por la vía del recurso extraordinario federal, cuando se encuentra comprometida una garantía de la Constitución Nacional o de un tratado internacional con jerarquía constitucional.
+\end{definition}
+
+\begin{important}
+La reserva del caso federal solo tiene sentido cuando puede identificarse, de manera concreta y fundada, qué artículo de la Constitución Nacional o de un tratado internacional está efectivamente comprometido en el caso. Colocarla de manera automática, sin esa fundamentación, la convierte en una fórmula vacía, sin ninguna consecuencia procesal real.
+\end{important}
+
+\begin{example}{Reserva bien fundada: el caso del decreto de aumento de las prepagas}
+En el caso de la medida cautelar contra el decreto de aumento de las cuotas de las prepagas trabajado en el bloque anterior, sí correspondería una reserva de caso federal bien fundada, en tanto podrían encontrarse comprometidos: el artículo 14 de la Constitución Nacional (derecho a la salud), el artículo 17 (derecho de propiedad), el derecho a la vida, los tratados internacionales con jerarquía constitucional, y la propia constitucionalidad del decreto, en la medida en que pudiera considerarse que el Poder Ejecutivo excedió sus atribuciones invadiendo esferas propias del Poder Legislativo.
+\end{example}
+
+\begin{example}{Reserva sin sentido: la demanda confeccionada por el curso}
+Aplicado el mismo criterio, en sentido negativo, a la demanda de daños y perjuicios que el curso había redactado como trabajo práctico, se concluye que no existía allí ninguna violación concreta a un derecho constitucional que justificara una reserva de caso federal, salvo que se configurara un error muy grosero, como la aplicación por parte del juez de una ley manifiestamente distinta de la que correspondía al caso.
+\end{example}
+
+\section{Caso práctico: restitución internacional de menores}
+
+Como cierre de la clase, se relata un caso real y complejo de restitución internacional de menores, utilizado como hilo conductor para el análisis de la nulidad procesal, el recurso de casación y el recurso de queja.
+
+\begin{example}{Los hechos del caso}
+Un matrimonio integrado por una mujer de nacionalidad francesa y argentina, y sus dos hijos, con residencia alternada entre la Argentina y Madrid, atraviesa una crisis matrimonial. Durante el conflicto, la madre viajaba con los hijos con asiduidad, dado que ambos progenitores contaban con poderes para hacerlo.
+
+En determinado momento, el padre viaja por trabajo a Uruguay y, al regresar, encuentra que la madre se había ido con los dos hijos, sin que pudiera ubicarlos. Tras algunos contactos iniciales por videollamada, la comunicación se interrumpió.
+
+El padre inicia en Argentina un juicio de restitución internacional ante un juzgado civil de familia de la Capital Federal, por ser el domicilio donde residía la familia. El juez argentino ordena la restitución de los menores.
+
+En paralelo, en Francia se sustancian varios procesos: uno ante un tribunal de primera instancia de la ciudad donde se encontraban los niños --donde la familia materna sostenía que el domicilio conyugal era, en rigor, argentino-- y luego ante una cámara de apelaciones, que confirma el criterio de la instancia anterior. En ambos procesos se produce un informe que concluye que no puede presumirse la existencia de abuso del padre hacia uno de los hijos, denunciado por la madre en el marco del conflicto, por no existir signos compatibles con esa hipótesis. La Cámara de Casación de París termina confirmando que los niños debían regresar a la Argentina.
+\end{example}
+
+\begin{example}{El proceso penal en Francia y el regreso a la Argentina}
+Mientras tramitaban los procesos civiles, la madre formula además una denuncia penal en Francia. En el sistema procesal francés, la policía judicial no cumple funciones de policía de calle, sino que asiste exclusivamente al fiscal y al juez en las medidas de un proceso judicial; un fiscal y esta policía judicial llevan adelante un procedimiento previo para determinar si el hecho denunciado constituye delito. En el caso analizado, el fiscal francés concluye que no hay delito y ordena el archivo de las actuaciones.
+
+\begin{note}
+El archivo dispuesto por el fiscal francés no equivale a un sobreseimiento en el sentido argentino: en la Argentina el sobreseimiento lo dicta un juez, mientras que el archivo, en el caso relatado, fue dispuesto directamente por el fiscal, sin que se avanzara con una investigación posterior.
+\end{note}
+
+Con el proceso civil de restitución ya resuelto a su favor, el padre viaja, retira a los dos hijos y regresa con ellos a Buenos Aires. Aproximadamente una semana después, la madre presenta en Argentina una denuncia penal casi idéntica a la francesa, incorporando partes editadas de las filmaciones de cámara Gesell realizadas en Francia. Una jueza civil argentina ordena entonces la restitución de los menores a la madre. Desde ese momento transcurrieron cinco años sin que el padre pudiera ver a sus hijos, y el juicio oral en sede penal todavía no se había realizado al momento del dictado de esta clase.
+\end{example}
+
+\section{El planteo de nulidad por falta de fundamentación}
+
+En su intervención profesional como defensor del padre en la causa penal, se logra, como resultado procesal relevante, que el imputado no permaneciera detenido y que se incorporaran a la causa penal argentina la totalidad de los expedientes franceses, incluidas las filmaciones completas de las cámaras Gesell practicadas en Francia.
+
+Faltando pocos días para la realización del juicio oral, la querella plantea que el niño se encontraba en condiciones de someterse a una nueva cámara Gesell en la Argentina, y solicita su realización.
+
+\begin{important}
+Frente a ese pedido se identifican dos obstáculos procesales centrales: en primer lugar, la prueba ya había precluido, por cuanto debió haber sido ofrecida en el momento procesal correspondiente a la etapa de ofrecimiento de prueba para el debate; en segundo lugar, se trataba de una nueva exposición de una víctima menor de edad, lo que planteaba un riesgo de revictimización.
+\end{important}
+
+El tribunal, pese a ello, hace lugar al pedido de la querella mediante una resolución de apenas cuatro líneas, fundada únicamente en la conformidad prestada por la defensora de menores y por la fiscalía, sin exponer razones propias.
+
+\begin{formula}{Fundamento del planteo de nulidad}
+Toda resolución judicial debe estar fundada, bajo pena de nulidad, conforme al principio general vinculado, en la clase, al artículo 125 del Código Procesal Penal. Una resolución que no explica en qué consiste la prueba faltante ni por qué corresponde apartarse de la preclusión ya operada resulta arbitraria y, por ello, nula.
+\end{formula}
+
+Sobre esa base se plantea la nulidad de la resolución, articulando como agravios la arbitrariedad de la decisión y el menoscabo al derecho de defensa, por no encontrarse las partes en igualdad de condiciones frente a una resolución carente de fundamentación.
+
+Se aplica, además, el mismo criterio explicado respecto de la reserva del caso federal (véase la sección 4.1): en este planteo no correspondía formular esa reserva, porque las cuestiones concretas y reales en juego eran la arbitrariedad de la resolución y el derecho de defensa, cuya afectación --de producirse la pericia y revictimizarse al niño-- no podría corregirse con posterioridad.
+
+\begin{note}
+El tribunal rechazó el planteo de nulidad, por considerar que se garantizaba la participación de la defensa en la nueva cámara Gesell ordenada.
+\end{note}
+
+\section{El recurso de casación: agravio y resolución equiparable a definitiva}
+
+Frente al rechazo del planteo de nulidad, se interpone recurso de casación.
+
+\begin{formula}{Requisitos para la procedencia del recurso de casación}
+\begin{enumerate}
+    \item Acreditar la existencia de un \textbf{agravio}.
+    \item Que la resolución recurrida sea \textbf{arbitraria}.
+    \item Que la resolución sea \textbf{definitiva}, o bien \textbf{equiparable a definitiva}.
+\end{enumerate}
+\end{formula}
+
+\begin{definition}{Resolución equiparable a definitiva}
+Una sentencia definitiva es la que pone fin al proceso, o la que constituye un modo anormal de terminarlo. Una resolución que no reúne formalmente esas características puede, sin embargo, equipararse a definitiva cuando produce un efecto que ya no podrá repararse en una etapa procesal posterior. En el caso analizado, ese efecto irreparable era el sometimiento del adolescente a una nueva pericia que lo revictimizaría, sin posibilidad de deshacer esa exposición si más adelante se revocara la decisión.
+\end{definition}
+
+\begin{important}
+\textit{``El procedimiento es tanto o más importante, a veces, que el conocimiento del derecho de fondo''}: el derecho de fondo suele responder a una lógica relativamente sencilla, pero si no se sabe cómo incorporarlo correctamente al proceso, ese conocimiento pierde utilidad práctica. Para determinar si una resolución es equiparable a definitiva es necesario anticipar los efectos concretos de esa resolución sobre la situación de las partes, y no limitarse a su forma.
+\end{important}
+
+\section{El recurso de queja}
+
+\begin{definition}{Recurso de queja}
+El recurso de queja no discute el fondo del asunto, sino exclusivamente la denegatoria de un recurso anterior. Se interpone directamente ante el tribunal superior a aquel que denegó el recurso, y su único objeto es lograr que ese tribunal superior revise la denegatoria y, si corresponde, conceda el recurso originalmente rechazado.
+\end{definition}
+
+El funcionamiento del instituto puede describirse de manera general en los siguientes términos: interpuesto un recurso (por ejemplo, de apelación), el juez debe concederlo o denegarlo. Si el juez lo deniega y la parte recurrente considera que debió haber sido concedido, puede interponer un recurso de queja directamente ante el tribunal superior, exponiendo por qué considera que la denegatoria fue incorrecta. El tribunal superior puede hacer lugar a la queja o rechazarla.
+
+\begin{important}
+Si el tribunal superior hace lugar a la queja, lo único que se obtiene es que revise la denegatoria y conceda el recurso originalmente denegado; no implica, todavía, resolver el fondo del asunto planteado en ese recurso.
+\end{important}
+
+\begin{note}
+Si el tribunal superior no hace lugar a la queja, la resolución que denegó el recurso original queda firme, salvo que se encuentre comprometido un derecho de raigambre constitucional, caso en el cual podría intentarse una vía de queja ante la Corte Suprema de Justicia de la Nación, previo cumplimiento del depósito que la reglamentación exige. El mismo esquema se repite en instancias superiores: si una sentencia de cámara no concede el recurso extraordinario interpuesto contra ella, corresponde acudir en queja directamente ante la Corte Suprema, cumpliendo con el depósito correspondiente.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales -- la clase concluye con un breve intercambio sobre los poderes que ambos progenitores tenían para viajar con los menores y sobre cómo la práctica notarial fue exigiendo, con el tiempo, una fecha cierta de regreso en este tipo de poderes, sin que este punto se desarrolle con mayor profundidad en el material original.
+
+% ============================================================
+% CUADRO CORNELL FINAL — REPASO INTEGRADOR
+% ============================================================
+\chapter*{Cuadro Cornell --- Repaso integrador de la clase}
+\addcontentsline{toc}{chapter}{Cuadro Cornell --- Repaso integrador de la clase}
+
+El siguiente cuadro reúne, mediante preguntas de recuperación activa, los conceptos centrales desarrollados a lo largo de los cuatro bloques de esta clase.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué riesgo advierte el docente sobre el uso de la inteligencia artificial en la formación jurídica?} &
+Usarla como reemplazo del pensamiento propio en lugar de como herramienta complementaria. Su analogía central: ``la gimnasia sin esfuerzo no existe''. La abogacía es una labor intelectual; el entrenamiento necesario es pensar y argumentar, no acumular datos ya accesibles para todos. \\
+
+\textbf{¿Qué mostraron las pruebas PISA sobre la Argentina?} &
+Un retroceso (``deterioro cognitivo'') y una pobreza intelectual y material: la Argentina quedó novena de dieciséis países de Latinoamérica. El ejemplo dado (elegir entre dos planes de celular mediante una simple resta) no pudo ser resuelto por la mayoría de los evaluados. \\
+
+\textbf{¿Qué establecen los artículos 388 y 389 del Código Procesal sobre prueba documental?} &
+El art. 388 obliga a partes y terceros que tengan documentos esenciales para el litigio a exhibirlos o indicar dónde están los originales. El art. 389 permite intimar a un tercero a presentar un documento; este puede oponerse si es de su exclusiva propiedad y la exhibición le genera perjuicio, en cuyo caso no se insiste con el requerimiento. \\
+
+\textbf{¿Qué es una diligencia preliminar y cuándo se usa?} &
+Un proceso previo a la demanda para asegurar una prueba en riesgo de desaparecer, o para obtener un dato esencial (como el domicilio del demandado). Casos típicos: intimar la póliza de seguro a la aseguradora y pedir la historia clínica al hospital o médico demandado. \\
+
+\textbf{¿Ante qué juez se tramita una diligencia preliminar?} &
+Ante el juzgado que resultaría competente para la futura demanda, siguiendo el mismo criterio de competencia territorial que regirá el proceso principal. \\
+
+\textbf{¿Qué es, procesalmente, una medida cautelar?} &
+Un instituto procesal que protege un derecho cuando el paso del tiempo hasta la sentencia definitiva podría hacer que ese derecho dejara de ser efectivo, por haber desaparecido, haberse perdido, o por no poder esperarse razonablemente. \\
+
+\textbf{¿Cuáles son los tres requisitos de toda medida cautelar?} &
+1) Peligro en la demora: riesgo concreto y actual de que la demora torne ilusorio el derecho. 2) Verosimilitud del derecho: no exige prueba plena, sino elementos que lo hagan creíble y presumible. 3) Contracautela: garantía (personal, real o juratoria) por los eventuales daños de una medida pedida en exceso. \\
+
+\textbf{¿Por qué la medida cautelar se dicta ``inaudita parte''?} &
+Porque normalmente se resuelve sin escuchar a la otra parte, para evitar que esta frustre la medida (ocultando bienes, dilatando plazos, etc.). La contracautela es la contrapartida de esa sorpresa procesal. Excepcionalmente, un juez puede correr traslado previo cuando está en juego el interés superior de un niño. \\
+
+\textbf{¿Cuándo tiene sentido hacer una reserva de caso federal?} &
+Solo cuando puede identificarse, de manera concreta y fundada, qué artículo de la Constitución Nacional o de un tratado internacional está efectivamente comprometido (por ejemplo, arts. 14 y 17 de la CN). Puesta de manera automática y sin esa fundamentación, es ``una fórmula vacía'' sin consecuencia procesal real. \\
+
+\textbf{¿Qué tribunal argentino resultó competente en el caso de restitución internacional relatado?} &
+Un juzgado civil de familia de la Capital Federal, por ser el domicilio donde residía la familia. Ese juzgado ordenó la restitución de los menores; en paralelo, distintos tribunales franceses (primera instancia, cámara de apelaciones y Cámara de Casación de París) intervinieron en procesos conexos. \\
+
+\textbf{¿Por qué se planteó la nulidad de la resolución que ordenaba una nueva cámara Gesell?} &
+Por dos razones: la prueba ya había precluido (debía ofrecerse en el momento procesal correspondiente) y la resolución, de apenas cuatro líneas, carecía de fundamentación, lo que la volvía arbitraria. Toda resolución judicial debe estar fundada bajo pena de nulidad. \\
+
+\textbf{¿Qué debe acreditarse para que proceda un recurso de casación?} &
+Un agravio, que la resolución recurrida sea arbitraria, y que sea definitiva o equiparable a definitiva (es decir, que produzca un efecto que ya no pueda repararse en una etapa procesal posterior, aunque formalmente no ponga fin al proceso). \\
+
+\textbf{¿Qué es y para qué sirve el recurso de queja?} &
+Es la vía para cuestionar la denegatoria de un recurso anterior. Se interpone directamente ante el tribunal superior al que denegó, pidiéndole que revise esa denegatoria y conceda el recurso original. Si se hace lugar a la queja, se gana únicamente que el recurso sea tratado; no se resuelve todavía el fondo del asunto. \\
+
+\textbf{¿Cuál es la diferencia entre ``traslado'' y ``vista'' en el proceso?} &
+El traslado se corre a las partes del proceso. La vista se corre a otros funcionarios que intervienen sin ser parte, como el Ministerio Público o el defensor de menores. \\
+
+\textbf{¿Qué diferencia destaca el docente entre el archivo fiscal francés y el sobreseimiento argentino?} &
+En Francia, un fiscal puede ordenar el archivo de una denuncia cuando concluye que no hay delito, sin investigar más. En la Argentina, el sobreseimiento --figura distinta-- lo dicta un juez, no el fiscal. \\
+
+\textbf{¿Qué idea resume la relación entre derecho de fondo y derecho procesal en esta clase?} &
+``El procedimiento es tanto o más importante, a veces, que el conocimiento del derecho de fondo'': conocer el derecho no alcanza si no se sabe incorporarlo correctamente al proceso. Saber hacer un proceso judicial es, según el docente, la especialidad propia de quien ejerce la abogacía. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} La clase recorre, con un mismo método de construcción colectiva del concepto seguido de su aplicación a un caso concreto, tres institutos centrales del proceso civil y comercial --la prueba documental y las medidas preliminares, las medidas cautelares y las vías recursivas extraordinarias-- y los enmarca en una advertencia inicial sobre el uso de la inteligencia artificial en la formación del abogado. El eje que atraviesa toda la clase es que el conocimiento del derecho de fondo, por sí solo, no alcanza: lo que distingue a quien ejerce la abogacía es saber cómo incorporar correctamente una prueba, cómo fundar un pedido cautelar, cómo reservar (o no) una cuestión constitucional, y cómo seguir litigando cuando un juez deniega un recurso. El caso de restitución internacional de menores relatado hacia el final --con su planteo de nulidad por falta de fundamentación, su recurso de casación y la explicación general del recurso de queja-- funciona como síntesis práctica de todo lo anterior: muestra, en un caso real y con consecuencias muy concretas para las personas involucradas, que la técnica procesal bien empleada es, en definitiva, la herramienta con la que un abogado protege derechos que de otro modo quedarían indefensos.
+} \\
+
+\end{longtable}
+
+\end{document}

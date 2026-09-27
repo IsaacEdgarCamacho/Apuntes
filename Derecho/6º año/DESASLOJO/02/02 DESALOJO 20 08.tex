@@ -1,0 +1,737 @@
+\documentclass[12pt,oneside]{book}
+
+% =========================================================
+% METADATOS
+% =========================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{El Proceso de Desalojo}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% =========================================================
+% PAQUETES
+% =========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% =========================================================
+% CONFIGURACIÓN
+% =========================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% =========================================================
+% COMANDOS MATEMÁTICOS
+% =========================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% =========================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% =========================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Norma / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% =========================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% =========================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% =========================================================
+% DOCUMENTO
+% =========================================================
+\begin{document}
+
+% ---------------------------------------------------------
+% PORTADA
+% ---------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------------------------------------------------------
+% ÍNDICE
+% ---------------------------------------------------------
+\tableofcontents
+\clearpage
+
+% ---------------------------------------------------------
+% INTRODUCCIÓN
+% ---------------------------------------------------------
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
+
+El presente material desarrolla el proceso de desalojo desde una perspectiva integral. Se parte de la distinción entre los principios, creados por el constituyente, y los sistemas, creados por el legislador; se recorre el marco normativo del contrato de locación y sus sucesivas reformas (Ley 27.551, Ley 27.737 y el DNU 70/2023); se analiza la clasificación procesal del desalojo como proceso especial y su eventual vínculo con el derecho del consumidor; se estudian los métodos alternativos de resolución de conflictos; se examina la legitimación activa y pasiva, las causales de desalojo y la condena de futuro; y se cierra con una reflexión sobre el rol del abogado o abogada como mediador del conflicto y el cambio de paradigma hacia la oralidad y la inmediación en el proceso civil.
+
+\begin{note}
+El desalojo constituye uno de los procesos más frecuentes en la práctica del abogado litigante: locadores que necesitan recuperar un inmueble, inquilinos en mora o conflictos derivados del vencimiento del contrato. Comprender la clasificación procesal, la legitimación, las causales y los tiempos reales del proceso permite asesorar con precisión desde el inicio del ejercicio profesional, evitar errores que hacen perder tiempo o el caso —como plantear mal un recurso o ignorar un pacto de foro prorrogado— y, sobre todo, incorporar la negociación y los métodos alternativos como primera herramienta antes de litigar.
+\end{note}
+
+\begin{note}
+Más allá de lo estrictamente jurídico, el estudio de este proceso pone de relieve la importancia de escuchar el conflicto real antes de encasillarlo en una solución preconcebida, y de reconocer que cualquier persona —sin importar su edad o condición— puede encontrarse en situación de vulnerabilidad según el contexto. Esa mirada empática y flexible, junto con la valoración de la comunicación y la negociación por sobre la confrontación, resulta una herramienta útil no solo para el ejercicio del derecho.
+\end{note}
+
+% =========================================================
+% BLOQUE 1
+% =========================================================
+\chapter{Fundamentos y Principios}
+
+\section{Principios y sistemas}
+
+Los principios y los sistemas constituyen categorías jurídicas diferentes. Los principios han sido creados por el constituyente: son los presupuestos jurídicos fundantes de un ordenamiento jurídico y se encuentran alojados en la Constitución Nacional y en los tratados internacionales, los cuales, a partir de la reforma constitucional de 1994, poseen igual jerarquía que la Constitución.
+
+\begin{formula}{Jerarquía constitucional de los tratados internacionales (reforma de 1994)}
+Los tratados internacionales de derechos humanos, a partir de la reforma constitucional de 1994, tienen igual jerarquía que la Constitución Nacional.
+\end{formula}
+
+En materia de desalojo se recurre con frecuencia a los tratados internacionales bajo una perspectiva de vulnerabilidad.
+
+\begin{example}{Las miradas delante y detrás de la puerta}
+Al analizar la complejidad del desalojo puede distinguirse la mirada de quien está delante de la puerta de una vivienda de la mirada de quien está detrás de ella. En un desalojo no solo está en juego el derecho de propiedad —ubicado en un lugar jerárquicamente elevado entre los principios—, sino también otros derechos, como la igualdad y el respeto a la persona humana, que están en juego del otro lado de la puerta.
+\end{example}
+
+Los sistemas, en cambio, son creados por el legislador. El sistema es aquello que traslada el principio a la realidad: es el método por el cual se traduce a la práctica un principio constitucional o convencional. El legislador debe considerar el ordenamiento jurídico, el presupuesto jurídico fundante y los principios que operan en la República Argentina, y elaborar la ley en función de ellos.
+
+\begin{definition}{Principios vs. sistemas}
+\textbf{Principios}: creados por el constituyente. Son los presupuestos jurídicos fundantes de un ordenamiento jurídico (Constitución Nacional y tratados internacionales con jerarquía constitucional).
+
+\textbf{Sistemas}: creados por el legislador. Son el método concreto mediante el cual se traduce, en normas positivas, el principio constitucional o convencional.
+\end{definition}
+
+\begin{example}{El proyecto de ley de inviolabilidad de la propiedad privada}
+Un sistema creado por el legislador —como un eventual proyecto de ley sobre inviolabilidad de la propiedad privada— debe someterse al Congreso para su aprobación y responder a los principios constitucionales. Esta correspondencia resulta central porque, si el sistema legal no respeta los principios constitucionales, los abogados y las abogadas terminan planteando cuestiones de inconstitucionalidad e inconvencionalidad ante los tribunales.
+\end{example}
+
+\section{Reglas de Brasilia y perspectiva de vulnerabilidad}
+
+Las Reglas de Brasilia son reglas de acceso a la justicia que tratan la problemática de las personas en condición de vulnerabilidad.
+
+\begin{formula}{Reglas de Brasilia sobre Acceso a la Justicia de las Personas en Condición de Vulnerabilidad}
+Incorporadas a la normativa argentina mediante la Acordada 5/2009 de la Corte Suprema de Justicia de la Nación. No provienen de una ley ni de un tratado internacional, sino de esta acordada de la Corte, y resultan aplicables a todo tipo de proceso judicial, no solo al desalojo.
+\end{formula}
+
+Estas reglas se aplican en el proceso de desalojo porque la condición de persona vulnerable no se limita exclusivamente al adulto mayor, ni al niño, niña o adolescente, ni a la persona con capacidad restringida.
+
+\begin{example}{El jubilado que vive de la renta de un inmueble}
+Una persona adulta, con un trabajo modesto y jubilada, que tiene un pequeño departamento dado en locación, puede encontrarse en condición de vulnerabilidad si el inquilino deja de pagar o no desocupa el inmueble. Con su jubilación mínima y su trabajo mínimo, esa persona necesita el ingreso adicional del canon locativo para vivir con cierta comodidad. Cuando queda atrapada en un proceso de desalojo sin cobrar el alquiler, también puede encontrarse en condición de vulnerabilidad, aunque no encaje en ninguna de las categorías clásicas.
+\end{example}
+
+Cualquier persona puede resultar vulnerable, según quién esté del otro lado del conflicto: la posibilidad de educación, la historia personal y la situación económica de cada quien determinan su grado de vulnerabilidad frente al otro. Por ello, la Regla de Brasilia se aplica no solo al desalojo, sino a todo proceso judicial.
+
+\begin{important}
+Se prefiere hablar de ``perspectiva de vulnerabilidad'' antes que limitarse a la ``perspectiva de género'', sin que esto implique dejarla de lado. La intención es abrir el abanico de análisis a cualquier sujeto vulnerable, sin focalizarlo exclusivamente en una única categoría.
+\end{important}
+
+\section{El Código Civil y Comercial como código pro persona}
+
+El Código Civil y Comercial de la Nación, vigente desde agosto de 2015, es un código pro persona: abandona el positivismo puro para constituirse en un constitucionalismo privado, por el cual la normativa específica queda subordinada a la impronta de la norma constitucional e infraconstitucional.
+
+\begin{formula}{Artículo 958 del Código Civil y Comercial — Libertad de contratación}
+Consagra la libertad de contratar. Las partes son libres para celebrar un contrato y determinar su contenido, dentro de los límites impuestos por la ley, el orden público, la moral y las buenas costumbres.
+\end{formula}
+
+En materia de locación y comodato opera plenamente la autonomía de la voluntad: lo que las partes resuelvan, contraten y plasmen en el contrato vale como la ley misma, salvo que se vulneren normas de orden público.
+
+\section{Forma escrita del contrato de locación}
+
+\begin{formula}{Artículo 1188 del Código Civil y Comercial — Forma}
+El contrato de locación de inmueble exige, para su consentimiento, la forma escrita. Cuando la locación tiene por objeto un inmueble, no se admite la contratación en forma verbal: debe volcarse a un soporte documental.
+\end{formula}
+
+Este contenido se ubica dentro de los derechos personales: primero los contratos en general (autonomía de la voluntad, artículo 958) y luego el contrato en particular de la locación. En el Código Procesal, este proceso se ubica dentro de los procesos especiales.
+
+\begin{definition}{Cuestiones disponibles y orden público}
+Existen cuestiones disponibles, sobre las cuales las partes pueden pactar libremente, y cuestiones donde interviene el orden público, que limitan lo que las partes pueden acordar por su sola voluntad. Cuando hay orden público, existe un límite a la autonomía de la voluntad; cuando no lo hay, las partes pueden disponer libremente.
+\end{definition}
+
+% =========================================================
+% BLOQUE 2
+% =========================================================
+\chapter{Marco Normativo del Alquiler}
+
+\section{Evolución legislativa de los alquileres}
+
+La sucesión normativa reciente en materia de locaciones comprende la Ley 27.551 (ley de alquileres), posteriormente modificada por la Ley 27.737, y finalmente el DNU 70/2023, actualmente operativo.
+
+\begin{formula}{DNU 70/2023}
+Decreto de Necesidad y Urgencia actualmente vigente en materia de locaciones. Deroga buena parte del esquema anterior establecido por las Leyes 27.551 y 27.737. Es la norma operativa hoy en la práctica profesional.
+\end{formula}
+
+% TODO: contenido incompleto o ambiguo en las notas originales — existe un proyecto de ley en danza en el Congreso que avanza sobre varios temas, entre ellos el pasaje del proceso de desalojo a la vía sumarísima, sin que el apunte precise su estado parlamentario actual más allá de una eventual media sanción mencionada más adelante.
+
+\section{Derecho transitorio: el artículo 7 del Código Civil y Comercial}
+
+\begin{example}{El contrato firmado bajo la ley anterior}
+Un caso frecuente en la práctica es el de un conflicto derivado de un contrato celebrado bajo el régimen legal vigente durante una gestión presidencial anterior a la actual —es decir, bajo las leyes 27.551/27.737, hoy derogadas en gran parte por el DNU 70/2023—. Corresponde entonces acudir al artículo 7 del Código Civil y Comercial para determinar qué norma se aplica a las relaciones jurídicas nacidas bajo el régimen anterior.
+\end{example}
+
+\begin{formula}{Artículo 7 del Código Civil y Comercial — Eficacia temporal}
+Establece que a partir de su entrada en vigencia las leyes se aplican a las consecuencias de las relaciones y situaciones jurídicas existentes, y que las nuevas leyes no tienen efecto retroactivo, sean o no de orden público, salvo disposición en contrario.
+\end{formula}
+
+Estas leyes derogaron buena parte de las normas del Código Civil en cuanto al procedimiento, aunque no en su totalidad, y también establecían determinadas pautas de procedimiento en el Código Procesal local. Existen tantos códigos procesales como provincias, y el Código Procesal nacional se ve afectado por el proyecto de ley en danza, que, hasta el momento del apunte, aún no se encontraba vigente.
+
+\section{Efectos económicos de la regulación anterior}
+
+Bajo la ley anterior, el problema principal fue que quienes tenían viviendas o locales para dar en locación retiraban buena parte de su oferta del mercado: aproximadamente el ochenta por ciento de la oferta se encontraba restringida.
+
+\begin{example}{El monoambiente inaccesible}
+Una persona proveniente de otra provincia que desea estudiar en la Facultad de Derecho de la Universidad de Buenos Aires y busca alquilar un monoambiente encuentra que, por la escasez de oferta generada por la regulación anterior, ese monoambiente llegaba a valer como una casa con pileta. La razón: quienes disponían de inmuebles para locar preferían no alquilar antes que someterse a la ley anterior, que tenía una impronta de mayor amparo a quien usaba y gozaba de la cosa. Muchos propietarios preferían pagar las expensas de su bolsillo y no alquilar, antes que quedar atados a esas condiciones. La consecuencia paradójica fue que la norma pensada para proteger al inquilino terminó perjudicando también a quienes buscaban alquilar, porque el costo de acceder a una vivienda se disparó por la falta de oferta.
+\end{example}
+
+Bajo la ley anterior la actualización del canon locativo era anual, las propiedades muchas veces se devolvían deterioradas, y el costo de refacción resultaba equivalente al valor de la locación del año anterior. Cuando el DNU cambió el esquema y los contratos vencidos se actualizaron, muchos inquilinos se retiraron de esas locaciones porque resultaban más económicas las nuevas ofertas que la actualización de los contratos regidos por la ley anterior.
+
+\begin{important}
+La normativa que buscaba proteger a un sector terminó perjudicando a todos. Tanto quien pretendía locar un inmueble para vivir como quien disponía de un inmueble para dar en locación resultaron, en distintos momentos y por distintas razones, sujetos vulnerables. Esto refuerza la idea de que la vulnerabilidad no depende de una categoría fija, sino del contexto y de la relación concreta entre las partes.
+\end{important}
+
+\section{Locación y derecho del consumidor}
+
+Se plantea la cuestión de en qué casos podría aplicarse la ley de defensa del consumidor a la locación de inmuebles. Al respecto resulta relevante la postura del Dr. Ricardo Lorenzetti, ministro de la Corte Suprema de Justicia de la Nación, según la cual en la locación existe un consumidor y un usuario, dado que hay uso y goce de la cosa y contraprestación de un precio.
+
+\begin{formula}{Artículo 1093 del Código Civil y Comercial — Contrato de consumo}
+Define al contrato de consumo como el celebrado entre un consumidor o usuario final, con una persona humana o jurídica que actúe profesional u ocasionalmente, para la adquisición, uso o goce de bienes o servicios, para uso privado, familiar o social.
+\end{formula}
+
+\begin{formula}{Artículo 1187 del Código Civil y Comercial — Contrato de locación}
+Define al contrato de locación como aquel por el cual una parte se obliga a otorgar a otra el uso y goce temporario de una cosa, a cambio del pago de un precio en dinero.
+\end{formula}
+
+Existen distintas posturas doctrinarias sobre la aplicación del derecho del consumidor a la locación: una tesis restringida, que sostiene que las normas de consumo nunca se aplican; una tesis amplia, que sostiene que siempre se aplican; y una tercera postura, intermedia, que mira la conflictiva concreta caso por caso.
+
+\begin{definition}{La conflictiva por sobre el molde preconcebido}
+No todo conflicto derivado de una locación debe encuadrarse automáticamente en el derecho del consumidor, ni tampoco descartarse siempre esa posibilidad. Lo importante —no solo para el desalojo, sino para cualquier conflicto que llegue a un futuro juez, jueza, abogado o abogada— es escuchar primero la conflictiva concreta y no tratar de encajarla rápidamente en un molde preconcebido.
+\end{definition}
+
+El artículo 958 del Código Civil y Comercial (libertad de contratar) determina que la aplicación del Código es supletoria de lo que las partes acordaron. Por ello, ante cada conflicto, resulta indispensable leer con detenimiento el contrato: aunque las partes lo perciban como un documento simple, suele contener cláusulas relevantes —muchas veces en letra pequeña— que la contraparte no leyó o no advirtió.
+
+% =========================================================
+% BLOQUE 3
+% =========================================================
+\chapter{El Proceso de Desalojo}
+
+\section{Clasificación procesal del desalojo}
+
+El desalojo se ubica dentro de la clasificación general de los procesos que tramitan en el orden nacional: procesos de conocimiento, procesos universales y procesos especiales. El desalojo es, precisamente, un proceso especial.
+
+\begin{definition}{Vía ordinaria y vía sumarísima}
+El Código le da al proceso de desalojo la posibilidad de tramitar por la vía del proceso de conocimiento ordinario, donde hay un debate amplio y una prueba amplia, o por la vía del proceso de conocimiento sumarísimo, más acotada. En la práctica, la mayoría de los juzgados otorgan la vía del proceso sumarísimo, salvo que existan controversias que ameriten la vía ordinaria, que cuenta con un plazo más extenso para el ofrecimiento de prueba.
+\end{definition}
+
+Rige una regla general de derecho procesal aplicable tanto al proceso ordinario como al sumarísimo: con los escritos postulatorios —demanda y contestación— deben afirmarse todos los hechos y ofrecerse toda la prueba correspondiente, incluyendo, si se quiere, consultor técnico, ya en los escritos constitutivos del proceso.
+
+\section{El desalojo en otras jurisdicciones provinciales}
+
+En la República Argentina existen otros tipos de procesos que no operan en el ámbito de la Ciudad de Buenos Aires ni en la provincia de Buenos Aires. Existen procesos monitorios en otras provincias, así como procesos abreviados, como el que rige en la provincia de Córdoba, donde el proceso de desalojo abreviado incorpora una mirada particularmente fuerte sobre el polo vulnerable.
+
+\begin{example}{Códigos procesales provinciales: no siempre el más antiguo es el más atrasado}
+Cada provincia cuenta con su propio código procesal, y estos códigos son similares entre sí, aunque algunos se encuentran más actualizados que otros. Podría suponerse que la Ciudad de Buenos Aires cuenta con el código más actualizado, pero en la práctica hay provincias —como San Juan— cuyo código procesal está incluso más actualizado.
+\end{example}
+
+\section{Sujetos del proceso de desalojo}
+
+Además de las partes, pueden intervenir sujetos extrajudiciales: el mediador o la mediadora, cuya intervención no es obligatoria en el desalojo sino optativa; y el árbitro, en el marco de un sistema adversarial de resolución del conflicto. Dentro del proceso judicial propiamente dicho interviene la jueza o el juez.
+
+\begin{formula}{Artículo 14 del Código Procesal Civil y Comercial de la Nación — Recusación sin expresión de causa}
+Regula la recusación sin causa, mecanismo por el cual se desplaza la competencia de la jueza o el juez asignado, sin necesidad de expresar el motivo, en la primera presentación en el proceso. El último apartado del artículo excluye esta posibilidad en los procesos de desalojo y en las ejecuciones de alquileres: en estos procesos no se puede recusar sin causa.
+\end{formula}
+
+\begin{example}{La recusación como estrategia dilatoria}
+La recusación sin causa se ejercita electrónicamente, con la sola presentación en el sistema informático, y puede utilizarse en la práctica para dilatar el proceso, ya que quien recusa consigue que el expediente vuelva al sistema de sorteo o asignación informática. El límite específico para el desalojo y las ejecuciones de alquileres, establecido en el último apartado del artículo 14 del Código Procesal, busca precisamente evitar esta clase de dilaciones en procesos que, por su naturaleza, requieren celeridad.
+\end{example}
+
+\section{Domicilios y prórroga de competencia}
+
+Resulta importante leer con atención, en todo contrato de locación o comodato, si existe un pacto de foro prorrogado. Este pacto permite que, en caso de conflicto, la competencia territorial se desplace a tribunales distintos de los del lugar donde se encuentra ubicado el inmueble.
+
+\begin{example}{El pacto de foro prorrogado hacia otra jurisdicción}
+Un contrato puede pactar que, ante cualquier conflicto, entiendan tribunales distintos de los correspondientes al lugar donde está ubicado el inmueble —por ejemplo, tribunales de otra jurisdicción—, aun cuando el inmueble se encuentre en la Ciudad de Buenos Aires. La competencia territorial puede pactarse y prorrogarse expresamente. Del mismo modo, puede pactarse que entienda un tribunal arbitral —por ejemplo, el de un colegio profesional— mediante una cláusula compromisoria: la cláusula contractual que establece que, ante un conflicto, este será dirimido por un tribunal arbitral.
+\end{example}
+
+\begin{definition}{La prórroga de competencia depende de la voluntad de las partes en cada instancia}
+Aunque el contrato establezca el pacto de foro prorrogado hacia el tribunal arbitral, es posible iniciar la demanda ante la jueza o el juez nacional en lo civil. El límite está en el momento en que se corre traslado a la otra parte: es esa parte quien puede oponer la excepción de incompetencia por cláusula compromisoria al contestar la demanda, o bien aceptar la competencia del fuero elegido por el actor. La decisión queda, en definitiva, en manos de la parte demandada.
+\end{definition}
+
+En los procesos de desalojo el traslado de la demanda se dirige siempre contra el sujeto pasivo que figura en el contrato de locación —persona física o jurídica— y, además, siempre se notifica a subinquilinos y ocupantes, aun cuando estén expresamente prohibidos por el contrato.
+
+\begin{definition}{Tres tipos de domicilio que no deben confundirse}
+\textbf{Domicilio especial}: el que las partes consignan en el propio contrato de locación o de comodato para las notificaciones relativas a ese contrato.
+
+\textbf{Domicilio constituido (ad litem)}: el domicilio procesal que se constituye en los estrados correspondientes a la zona del juzgado interviniente, conforme a las reglas procesales.
+
+\textbf{Domicilio electrónico}: mecanismo de notificación electrónica que, con la ley anterior, era obligatorio; con el DNU 70/2023 dejó de serlo, aunque el proyecto de ley en danza pretende reincorporarlo como obligatorio para el domicilio electrónico constituido por la parte, no el del abogado o abogada.
+\end{definition}
+
+\begin{formula}{Regla especial de notificación en los procesos de desalojo}
+En los procesos de desalojo, a diferencia de lo que ocurre en otro tipo de procesos (por ejemplo, una compraventa o un reclamo de daños y perjuicios), se considera válidamente notificada a la parte demandada en el domicilio del propio inmueble objeto del desalojo. Esta es una regla especial, propia de esta clase de proceso.
+\end{formula}
+
+En la práctica profesional, ante la dificultad de contactar a una parte, se recurre a todos los canales disponibles: llamado telefónico, mensaje de texto, correo electrónico y carta simple, de manera de no depender únicamente de que el correo postal entregue la notificación en mano. Si existiera un domicilio electrónico constituido, también se utiliza ese canal para notificar.
+
+% =========================================================
+% BLOQUE 4
+% =========================================================
+\chapter{Resolución de Conflictos y Práctica Profesional}
+
+\section{Comunicación y negociación previa al litigio}
+
+El abogado o abogada debe analizar la conflictiva a partir del concepto de conflicto de Remo Entelman: la interferencia intersubjetiva de intereses entre dos o más partes, que puede derivar del incumplimiento de un contrato de locación. Frente a ese conflicto, es preciso trabajarlo desde una etapa temprana, para que no escale.
+
+\begin{definition}{Los métodos alternativos de resolución de conflictos (MASC)}
+El horizonte del abogado o abogada no debe limitarse a acudir al Poder Judicial: existen otros sistemas para solucionar la conflictiva, agrupados bajo la denominación de métodos alternativos de resolución de conflictos. El vínculo entre las partes puede pensarse como un canal de comunicación (emisor, receptor, código), por lo que corresponde buscar distintas maneras de llegar a la otra parte, aun cuando en un primer momento parezca imposible dialogar.
+\end{definition}
+
+Aunque los procesos de desalojo son extensos, engorrosos y llevan mucho tiempo en plazos, siempre conviene explorar el canal de comunicación: citar a todas las partes que se pueda, de manera virtual o presencial, ya que de allí pueden surgir alternativas de todo tipo, incluidas alternativas económicas.
+
+\begin{example}{La propuesta de pagar tres meses de alojamiento a cambio de la desocupación}
+Ante la consulta de si es posible ofrecer al ocupante de una vivienda el pago de tres meses de alojamiento en otro lugar para que desocupe la casa y luego pueda reinsertarse en un nuevo contrato de locación, corresponde advertir que difícilmente se le alquile a esa persona un nuevo lugar si no cuenta con una garantía propietaria o un seguro de caución. Una alternativa consiste en que la propia parte locadora ofrezca alquilarle directamente por tres meses un lugar para que desocupe el inmueble propio. El punto central es que este tipo de acuerdo debe ser voluntariamente pactado entre las partes: el juez o la jueza no puede obligar a la parte demandada a aceptarlo. Lograr este tipo de soluciones es un trabajo que corresponde a los abogados y abogadas, no al tribunal.
+\end{example}
+
+\section{La audiencia preliminar del artículo 360}
+
+Entre la etapa introductoria del proceso y la etapa probatoria se ubica la audiencia del artículo 360.
+
+\begin{formula}{Artículo 360 del Código Procesal Civil y Comercial de la Nación — Audiencia preliminar}
+Es una audiencia preliminar obligatoria en los procesos, que le otorga al proceso una impronta de oralidad y de mediación. Entre los incisos que la regulan, uno de ellos habilita a la jueza o al juez a intentar que las partes lleguen a algún entendimiento, ofreciendo fórmulas conciliatorias —facultad que, a diferencia del mediador, no está vedada para el juez o la jueza—.
+\end{formula}
+
+\begin{example}{Un acuerdo alcanzado en la audiencia del artículo 360}
+En una audiencia del artículo 360 las partes pueden llegar a acordar el desalojo de forma pacífica, con costas por su orden, evitando así que se lleve a cabo el lanzamiento.
+\end{example}
+
+\begin{important}
+Existen juezas y jueces que toman muy en serio la audiencia del artículo 360, entendiendo que allí se puede terminar de resolver buena parte del conflicto, mientras que otros la toman de manera más ligera, limitándose a preguntar si hay acuerdo o alguna propuesta y a labrar el acta sin explorar caminos posibles. Se trata, sin embargo, de una herramienta muy valiosa para sacar la conflictiva del expediente y llegar a una solución entre las partes, en lugar de que el proceso llegue hasta el final, con todos sus costos, tiempos y el desgaste emocional que ello implica.
+\end{important}
+
+\section{Vías composicional, cooperativa, colaborativa y adversarial}
+
+En la práctica, suele darse que se le paga a quien está ocupando el inmueble para que se retire: todas las alternativas que el cliente permita son válidas, siempre que sean legales.
+
+\begin{example}{El caso sin margen de negociación}
+En un caso llevado hasta el final del proceso —con sentencia firme, orden de lanzamiento e intervención de policía y cerrajero— no hubo forma de negociar nada con la contraparte durante el trámite. Sin embargo, incluso en ese caso, en el momento mismo del lanzamiento —con el flete ya presente— la persona ocupante aceptó retirarse a cambio de que se le pagaran treinta días de estadía en una habitación alquilada, permitiéndosele además llevar sus pertenencias. El acuerdo se cerró en el instante, frente al oficial de justicia.
+\end{example}
+
+\begin{definition}{Vía composicional, cooperativa y colaborativa vs. vía adversarial}
+La vía composicional, cooperativa y colaborativa es aquella en la que las partes —denominadas en esta vía ``partícipes'' y no ``parte actora'' y ``parte demandada''— construyen juntas la solución del conflicto, cediendo cada una algo. La vía adversarial, en cambio, incluye tanto el proceso judicial como el arbitraje. Si bien el arbitraje podría en teoría aplicarse a un desalojo, en la práctica no es habitual: la vía más frecuente sigue siendo la composicional cuando hay margen de acuerdo, o la judicial cuando no lo hay.
+\end{definition}
+
+Esta vía se contrapone al diseño confrontativo del proceso judicial regulado en el Código Procesal: quien demanda afirma los hechos, y la parte demandada niega, desconoce y rechaza cada uno de los puntos planteados.
+
+\section{El lanzamiento en la práctica: dificultades, oficios y honorarios}
+
+\begin{example}{Flexibilidad en la diligencia de lanzamiento}
+En una diligencia de lanzamiento, el oficial de justicia debe constatar el domicilio, habitualmente identificado con el número de la puerta. Si el cartel con el número de la dirección fuera retirado poco antes de la diligencia —una estrategia habitual para dilatar el lanzamiento alegando que ``no hay domicilio''— puede recurrirse a medios prácticos para volver a señalizar el número y permitir que la diligencia se lleve a cabo. Este tipo de recursos surge de la experiencia práctica.
+\end{example}
+
+\begin{important}
+El flete es obligatorio en la diligencia de lanzamiento: lo impone el propio proceso, para evitar que las pertenencias de quien es desalojado terminen en la calle. Es obligación del locador —quien recupera el inmueble— hacerse cargo de, por lo menos, un mes de depósito de esas pertenencias, mientras la persona desalojada las retira o no. Transcurrido ese plazo, si las cosas no son retiradas, pueden donarse.
+\end{important}
+
+\begin{example}{El oficio de ambulancia y el oficio veterinario}
+Al solicitar al juzgado el oficio para llevar a cabo el lanzamiento, es habitual pedir también un oficio para ambulancia y otro para atención veterinaria de animales, ya que si se encuentran animales en el inmueble no es posible simplemente dejarlos en la calle. En cuanto al oficio de ambulancia, es frecuente que alguna persona se descompense durante la diligencia, ya sea por el esfuerzo físico o, en ocasiones, simulando una afección grave.
+\end{example}
+
+\begin{example}{El lanzamiento con intervención policial armada}
+En casos especialmente difíciles, con repercusión en medios de comunicación, puede resultar necesaria la intervención de personal policial armado para concretar el lanzamiento. En estos casos, el abogado o la abogada ingresa junto con el oficial de justicia y la fuerza pública, mientras que el cliente permanece afuera; a diferencia de la policía, el profesional ingresa sin armas y sin chaleco, exponiéndose a una situación de tensión considerable.
+\end{example}
+
+Frente a estas dificultades, siempre conviene intentar negociar una salida pacífica, aunque en ocasiones ello no resulta posible porque la contraparte no tiene ningún interés en negociar.
+
+\begin{note}
+Los honorarios regulados judicialmente en los procesos de desalojo suelen ser muy bajos en relación con el trabajo y el desgaste que implica el proceso. Por esa razón, es habitual que los abogados y abogadas celebren un convenio de honorarios con el propio cliente, en especial cuando este tiene posibilidad de recuperar el inmueble y, eventualmente, alquilarlo o venderlo, de un modo comparable a la comisión que cobra una inmobiliaria.
+\end{note}
+
+% =========================================================
+% BLOQUE 5
+% =========================================================
+\chapter{Legitimación, Causales y Jurisprudencia}
+
+\section{Contestación de demanda, preclusión y derecho comparado}
+
+\begin{formula}{Artículo 356 del Código Procesal Civil y Comercial de la Nación — Contestación de demanda}
+Establece que en la contestación de demanda el demandado debe reconocer o negar categóricamente cada uno de los hechos expuestos en la demanda, así como la autenticidad de los documentos acompañados. Su silencio, sus respuestas evasivas o la negativa meramente general pueden ser tomados como reconocimiento de los hechos y documentos.
+\end{formula}
+
+Las contestaciones de demanda suelen leerse, para quien recién comienza a estudiarlas, como un ejercicio casi absurdo de negaciones sistemáticas (``niego'', ``rechazo'', ``desconozco''), estructura que responde exactamente a lo que exige el artículo 356. Si no se niegan expresamente los hechos y los documentos, se los tiene por admitidos y no serán objeto de prueba, lo cual perjudica gravemente a quien contesta la demanda al momento de la sentencia.
+
+\begin{definition}{El sistema de preclusión procesal argentino}
+En el sistema argentino rige el principio de preclusión: cada etapa del proceso, una vez cumplida o vencido su plazo, queda clausurada y no puede volver a discutirse. Por ello, aunque se intente componer, conciliar o negociar con la contraparte, de todos modos debe contestarse la demanda dentro del plazo procesal correspondiente (por ejemplo, cinco días en el proceso sumarísimo), bajo riesgo de incurrir en responsabilidad profesional si se deja precluir el derecho. Muchas veces la negociación y el proceso judicial avanzan en paralelo.
+\end{definition}
+
+\begin{example}{El pretrial estadounidense y el disclosure británico}
+El sistema argentino puede contrastarse con otros sistemas del mundo, donde no rige un esquema tan estricto de preclusión, sino que el derecho se extingue de otra manera. En el sistema estadounidense existe la etapa de discovery dentro del pretrial, y en el Reino Unido, el instituto del disclosure. En ambos sistemas, todos los hechos y toda la prueba se exhiben entre las partes antes del juicio propiamente dicho, lo que permite a los abogados evaluar tempranamente si conviene continuar con el proceso. En esos sistemas, además, quien inicia una demanda sin fundamento corre el riesgo de afrontar costas elevadas, lo cual no siempre ocurre en el sistema argentino, donde las costas y cauciones suelen ser bajas.
+\end{example}
+
+\subsection*{El cambio de paradigma: oralidad, inmediación y plazo razonable}
+
+Las propuestas de reforma que impulsan una mayor oralidad e inmediación en los procesos civiles, comerciales y laborales no implican, por sí solas, una mejora sustancial si no se acompañan de los recursos humanos y materiales adecuados: de nada sirve declarar el proceso oral si, en la práctica, la primera audiencia demora años en concretarse.
+
+\begin{formula}{Plazo razonable — Corte Interamericana de Derechos Humanos}
+La Corte Interamericana de Derechos Humanos ha condenado a numerosos países, entre ellos la Argentina, por incumplir la garantía del plazo razonable en la administración de justicia.
+\end{formula}
+
+\begin{example}{La virtualidad y la disponibilidad real del personal judicial}
+Al intentar comunicarse con un juzgado para conocer el estado de una causa, puede informarse que el empleado a cargo del expediente se encuentra trabajando de manera virtual ese día, sin que resulte sencillo comunicarse por ningún medio alternativo en el horario en que, en teoría, debería estar disponible. Para que la oralidad y la inmediación funcionen realmente, resulta imprescindible contar con personal efectivamente disponible; en ese sentido, resulta preferible reforzar los juzgados existentes con más personal antes que multiplicar la cantidad de juzgados sin cubrir sus necesidades reales de funcionamiento.
+\end{example}
+
+\section{Legitimación activa y pasiva}
+
+\begin{formula}{Requisito de la legitimación activa en los departamentos judiciales de la provincia de Buenos Aires}
+Los departamentos judiciales de la provincia de Buenos Aires exigen que quien pretenda la legitimación activa para solicitar el lanzamiento acredite haber detentado, en algún momento, la posesión del inmueble cuyo desalojo se solicita. Esta exigencia debe tenerse presente al redactar los escritos postulatorios de demanda en esa jurisdicción.
+\end{formula}
+
+\begin{formula}{Artículo 680 del Código Procesal Civil y Comercial de la Nación — Legitimación pasiva}
+Establece que la acción de desalojo puede dirigirse contra todo aquel que use u ocupe el inmueble, aun sin derecho, cuando su título es meramente precario o si carece de título, así como contra los sucesores de ese ocupante o contra sublocatarios y ocupantes de cualquier especie.
+\end{formula}
+
+\begin{definition}{Legitimación activa amplia y legitimación pasiva amplia}
+\textbf{Legitimación activa}: no se limita exclusivamente al titular dominial (quien tiene el animus domini y la tradición), sino que se extiende ampliamente al condómino, al heredero, al administrador de la asociación o consorcio, al representante, al usuario, al usufructuario y al tenedor. Es amplia: la tiene todo aquel que ostente el derecho al uso y goce de la cosa.
+
+\textbf{Legitimación pasiva}: se dirige contra todo aquel que no tenga derecho al uso y goce de la cosa y, sin embargo, la use u ocupe.
+\end{definition}
+
+\section{Falta de legitimidad y falta de personería}
+
+\begin{definition}{Falta de legitimidad $\neq$ falta de personería}
+\textbf{Falta de legitimidad (para obrar)}: cuestiona si quien demanda o es demandado es efectivamente el titular de la relación jurídica sustancial invocada en el proceso.
+
+\textbf{Falta de personería}: cuestiona la representación con la que se actúa en el proceso —por ejemplo, no contar con poder suficiente para representar a otra persona o a una sociedad, o presentarse en nombre de un menor de edad o de una persona con capacidad restringida sin la intervención del representante legal, tutor o curador correspondiente—.
+\end{definition}
+
+\section{Causales de desalojo y condena de futuro}
+
+\begin{formula}{Artículo 684 bis del Código Procesal Civil y Comercial de la Nación — Desalojo inmediato}
+Regula un supuesto de desalojo inmediato. La redacción actual eliminó la exigencia, vigente anteriormente, de que el inmueble tuviera destino habitacional: hoy la norma se aplica sin distinción de destino.
+\end{formula}
+
+\begin{important}
+Antes de iniciar un proceso de desalojo por falta de pago, es obligatorio intimar previamente a la parte locataria para que abone lo adeudado dentro de un plazo determinado. Recién vencido ese plazo sin que se verifique el pago, puede iniciarse el proceso judicial. El proyecto de ley en danza pretendía reducir ese plazo de intimación a tres días, pero en el trámite legislativo —tras la media sanción— se mantuvieron los diez días que rigen actualmente.
+\end{important}
+
+\begin{formula}{Plazo de la intimación de pago previa al desalojo por falta de pago}
+Diez (10) días es el plazo vigente de la intimación previa y obligatoria que debe cursarse a la parte locataria antes de poder iniciar el proceso judicial de desalojo por falta de pago.
+\end{formula}
+
+\begin{formula}{Requisito de los dos períodos vencidos (Código Civil y Comercial)}
+El Código Civil y Comercial exige que se encuentren vencidos, como mínimo, dos períodos de pago (por ejemplo, dos meses) para poder iniciar el proceso de desalojo por falta de pago. Con uno solo no alcanza; puede tratarse de dos o más períodos adeudados, ya sea en concepto de canon locativo, expensas u otros conceptos asimilados que las partes hayan pactado.
+\end{formula}
+
+\begin{example}{Cómo imputar los pagos parciales para no perder la causal}
+Cuando la parte locataria comienza a adeudar expensas, conviene imputar todo pago parcial que realice a las deudas de servicios, impuestos y expensas, de manera de mantener siempre vigente la deuda por el canon locativo propiamente dicho, que es la que sostiene la causal de falta de pago para el desalojo.
+\end{example}
+
+Cuando la causal de desalojo no es la falta de pago sino el vencimiento del contrato, no resulta necesaria la intimación previa: puede iniciarse directamente el proceso, aunque en la práctica igualmente suele cursarse una intimación, sin que la ley lo exija en este supuesto. Otras causales mencionadas son el vencimiento del contrato y el cambio de destino del inmueble —por ejemplo, cuando un departamento con destino habitacional es utilizado, en los hechos, con un destino comercial distinto al pactado—.
+
+\begin{formula}{Artículo 688 del Código Procesal Civil y Comercial de la Nación — Condena de futuro}
+Permite iniciar un proceso de desalojo antes de que se produzca el vencimiento del contrato, obteniendo una sentencia que condene a la parte locataria a restituir el inmueble en la fecha futura en que operará el vencimiento contractual. Se trata de una figura que muchos colegas desconocen en la práctica.
+\end{formula}
+
+\begin{example}{La utilidad estratégica de la condena de futuro}
+Si el contrato vence en una fecha determinada del año próximo, la parte locadora puede iniciar desde ya el proceso de desalojo con fundamento en el artículo 688, adelantándose a los tiempos que insume el proceso judicial. De este modo, llegado el vencimiento, ya se cuenta con una sentencia que ordena la restitución del inmueble. Esta condena de futuro solo procede en relación con el vencimiento del contrato, no con otras causales, y corresponde correr traslado a la parte demandada de este planteo, del mismo modo que en cualquier otro proceso de desalojo. Corresponde al abogado o abogada explicar a su cliente esta posibilidad y sus tiempos reales, para que decida si conviene adelantar el proceso aun sabiendo que la sentencia definitiva podrá demorar.
+\end{example}
+
+\section{Jurisprudencia de la Corte Suprema y cambio de paradigma}
+
+\begin{formula}{Cómo citar un fallo de la Corte Suprema de Justicia de la Nación}
+Fallos: 335:452 (Corte Suprema de Justicia de la Nación). Para su búsqueda, se ingresa a la página de la Corte, se accede a la sección de sumarios y se localiza por tomo (335) y página (452) de la colección oficial de Fallos. No es necesario memorizar el nombre completo de las partes para citar correctamente un fallo.
+\end{formula}
+
+Este fallo se analiza desde una perspectiva de vulnerabilidad. Su enseñanza central puede resumirse en que para habitar hay que habitar con derechos, vinculando la locación de vivienda con la perspectiva de género en el derecho contemporáneo. Esta mirada es relativamente reciente: antes casi no se aplicaba una perspectiva de vulnerabilidad de este tipo, y su desarrollo ha ido creciendo progresivamente.
+
+\begin{important}
+En el caso, las críticas se dirigieron a los jueces de instancias inferiores por no haber respetado el principio constitucional y convencional de igualdad y no discriminación. Sin embargo, la Corte sostuvo que la igualdad es un principio constitucional y una garantía del derecho, pero que en el caso concreto no se encontraba violentada, y que hubo un error en la forma de plantear el recurso extraordinario, lo cual dejó la cuestión de fondo fuera de análisis. Resulta central conocer bien el derecho procesal: un planteo correcto en cuanto a la forma —por ejemplo, en relación con los recaudos del artículo 280 del Código Procesal— es tan relevante como el fundamento de fondo, porque un error de forma puede impedir que la Corte llegue siquiera a analizar la cuestión sustancial.
+\end{important}
+
+\subsection*{Cierre: el rol del abogado o abogada como mediador del conflicto}
+
+Antes que derivar automáticamente el caso al Poder Judicial, corresponde buscar siempre la solución del conflicto: mediar, conciliar y autocomponer son caminos que —salvo la violencia— resultan preferibles, porque en definitiva la abogacía es, también, un servicio de mediación entre las partes.
+
+\begin{note}
+Entre quienes cursan la materia, en el futuro alguien podría ocupar una banca legislativa e impulsar reformas que acerquen los principios constitucionales a los sistemas procesales vigentes: menos rigidez formal, más oralidad e inmediación, siempre que estén acompañadas de los recursos humanos necesarios para hacerlas efectivas y para cumplir con el plazo razonable exigido por la Corte Interamericana de Derechos Humanos.
+\end{note}
+
+% =========================================================
+% CORNELL — REPASO FINAL
+% =========================================================
+\chapter{Repaso: Cuadro Cornell}
+
+El siguiente cuadro reúne, en formato Cornell, los conceptos y preguntas clave desarrollados a lo largo de la materia, junto con su respuesta o explicación, y cierra con una síntesis integradora de todo el contenido.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué diferencia hay entre principios y sistemas?} &
+Los principios son presupuestos jurídicos fundantes creados por el constituyente (Constitución y tratados internacionales con jerarquía constitucional). Los sistemas son creados por el legislador como el método concreto que traduce esos principios a normas positivas aplicables. \\
+
+\textbf{¿Qué son las Reglas de Brasilia y cómo se incorporaron?} &
+Son reglas sobre acceso a la justicia de personas en condición de vulnerabilidad, incorporadas al ordenamiento argentino mediante la Acordada 5/2009 de la CSJN, aplicables a todo tipo de proceso, no solo al desalojo. \\
+
+\textbf{¿Por qué cualquier persona puede ser considerada vulnerable?} &
+Porque la vulnerabilidad no depende de categorías fijas (adulto mayor, niño/a, persona con capacidad restringida) sino del contexto: la educación, la historia personal y la situación económica de cada quien frente al otro determinan su grado de vulnerabilidad en cada conflicto concreto. \\
+
+\textbf{¿Qué significa que el Código Civil y Comercial sea un código ``pro persona''?} &
+Que adopta un constitucionalismo privado, subordinando la normativa específica a los principios constitucionales y convencionales, en lugar de un positivismo puro centrado solo en la ley. \\
+
+\textbf{¿Qué exige el artículo 1188 del CCyC para la locación de un inmueble?} &
+La forma escrita: el consentimiento para locar un inmueble no puede prestarse verbalmente, debe volcarse en un soporte documental. \\
+
+\textbf{¿Qué norma rige hoy el contrato de locación?} &
+El DNU 70/2023, que derogó buena parte del esquema de las Leyes 27.551 y 27.737. Existe además un proyecto de ley en danza que, entre otras cosas, propone llevar el desalojo a la vía sumarísima. \\
+
+\textbf{¿Qué norma resuelve qué ley se aplica a un contrato firmado bajo un régimen anterior?} &
+El artículo 7 del Código Civil y Comercial, que regula la eficacia temporal de la ley y determina qué norma corresponde a las relaciones jurídicas nacidas bajo la legislación anterior. \\
+
+\textbf{¿Por qué la regulación restrictiva de alquileres perjudicó también a los propios inquilinos?} &
+Porque generó una fuerte retracción de la oferta de inmuebles en locación (hasta un 80\%), lo cual disparó los precios de los pocos inmuebles disponibles, perjudicando a quienes buscaban alquilar. \\
+
+\textbf{¿Puede aplicarse el derecho del consumidor a la locación?} &
+Depende de la postura doctrinaria: hay una tesis restringida (nunca), una tesis amplia (siempre) y una tesis intermedia —que mira la conflictiva concreta caso por caso—, esta última respaldada por la postura del Dr. Lorenzetti sobre la locación como posible contrato de consumo. \\
+
+\textbf{¿Cómo se clasifica procesalmente el desalojo?} &
+Es un proceso especial que puede tramitar por la vía de conocimiento ordinario (debate y prueba amplios) o por la vía sumarísima (más acotada), siendo esta última la que en la práctica otorgan la mayoría de los juzgados. \\
+
+\textbf{¿Qué sujetos pueden intervenir en un proceso de desalojo?} &
+Además de las partes, pueden intervenir el mediador o mediadora (de intervención optativa, no obligatoria), el árbitro (vía adversarial) y la jueza o el juez, con el límite del artículo 14 CPCCN que impide la recusación sin causa en desalojos y ejecuciones de alquileres. \\
+
+\textbf{¿Dónde se considera válidamente notificada la parte demandada en un desalojo?} &
+En el domicilio del propio inmueble objeto del desalojo, una regla especial de notificación propia de este tipo de proceso, distinta a la de otros procesos civiles. \\
+
+\textbf{¿Qué es un pacto de foro prorrogado y qué límite tiene?} &
+Es la cláusula contractual que desplaza la competencia territorial a otro tribunal (judicial o arbitral, mediante cláusula compromisoria). Su límite práctico está en que la parte demandada puede optar por no oponer la excepción de incompetencia al recibir el traslado, validando así el fuero elegido por el actor. \\
+
+\textbf{¿Qué exige el artículo 356 del CPCCN al contestar demanda?} &
+Negar o reconocer categóricamente cada hecho y cada documento; el silencio o la negativa genérica puede interpretarse como reconocimiento, lo que explica el estilo defensivo y sistemático de negación de las contestaciones de demanda. \\
+
+\textbf{¿Qué es el sistema de preclusión y en qué se diferencia de otros sistemas del mundo?} &
+Es el principio por el cual cada etapa procesal, cumplida o vencida, queda clausurada. Contrasta con sistemas como el pretrial/discovery estadounidense o el disclosure británico, donde los hechos y pruebas se exponen entre partes antes del juicio, permitiendo evaluar tempranamente si conviene litigar. \\
+
+\textbf{¿Qué diferencia hay entre falta de legitimidad y falta de personería?} &
+La falta de legitimidad cuestiona si la parte es la verdadera titular de la relación jurídica sustancial; la falta de personería cuestiona la representación con la que se actúa en el proceso (poderes, tutela, curatela, representación societaria). \\
+
+\textbf{¿Qué exige la ley antes de iniciar un desalojo por falta de pago?} &
+Una intimación previa y obligatoria de pago por diez días, y que existan al menos dos períodos de pago vencidos (canon, expensas u otros conceptos asimilados) antes de poder iniciar el proceso judicial. \\
+
+\textbf{¿Qué es la condena de futuro del artículo 688 CPCCN?} &
+Permite iniciar el desalojo antes de que venza el contrato, para obtener anticipadamente una sentencia que ordene restituir el inmueble en la fecha futura de vencimiento, adelantándose a los tiempos reales del proceso judicial. \\
+
+\textbf{¿Qué enseña el fallo de la CSJN (Fallos 335:452)?} &
+Que para habitar hay que habitar con derechos, vinculando la vivienda con la perspectiva de género; y que un planteo procesal mal formulado (recaudos del artículo 280 CPCCN) puede impedir que la Corte analice la cuestión de fondo, aunque el principio de igualdad no estuviera realmente vulnerado en el caso. \\
+
+\textbf{¿Cuál es el rol que se propone para el abogado o abogada frente al desalojo?} &
+Actuar primero como mediador del conflicto —explorando la negociación, la comunicación y los métodos alternativos— antes de derivar automáticamente el caso al litigio judicial, reservando el proceso contencioso para cuando la negociación resulta imposible. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} La materia recorre el proceso de desalojo como un caso testigo para pensar el derecho procesal civil en su conjunto, partiendo de la distinción entre principios —creados por el constituyente y alojados en la Constitución y los tratados internacionales— y sistemas —creados por el legislador para bajar esos principios a la realidad—. Sobre esa base se despliega la perspectiva de vulnerabilidad de las Reglas de Brasilia, que atraviesa transversalmente todo el análisis: cualquier persona, sea locador o locatario, puede encontrarse en condición de vulnerabilidad según el contexto, como lo demuestra la propia historia de la regulación de alquileres en la Argentina, cuya excesiva protección a una parte terminó perjudicando a todas. A partir de allí, se desciende al Código Civil y Comercial como código pro persona, a la forma escrita exigida para el contrato de locación de inmuebles y a la sucesión normativa reciente (Leyes 27.551 y 27.737, DNU 70/2023), resuelta mediante el artículo 7 del Código Civil y Comercial para los conflictos de derecho transitorio. Superada esta base normativa, se analiza el desalojo como proceso especial —ordinario o sumarísimo—, sus sujetos (mediador, árbitro, juez o jueza), los límites a la recusación sin causa y las reglas particulares de domicilio y competencia, incluyendo el pacto de foro prorrogado y la cláusula compromisoria. Se dedica un desarrollo extenso a los métodos alternativos de resolución de conflictos —la comunicación, la negociación, la audiencia del artículo 360 y las vías composicional, cooperativa y colaborativa—, en contraste con la vía adversarial regida por el artículo 356 y el sistema de preclusión, comparado con el pretrial estadounidense y el disclosure británico. Finalmente, se estudian la legitimación activa y pasiva del artículo 680, la distinción entre falta de legitimidad y falta de personería, las causales de desalojo —falta de pago con su intimación previa de diez días, vencimiento de contrato y condena de futuro del artículo 688—, y se cierra con el fallo de la Corte Suprema (Fallos 335:452) sobre vivienda y perspectiva de género, para concluir con una reflexión sobre el rol del abogado o abogada como mediador del conflicto y sobre la necesidad de acompañar cualquier cambio de paradigma procesal —hacia la oralidad y la inmediación— con los recursos humanos y materiales que permitan cumplir con el plazo razonable exigido por la Corte Interamericana de Derechos Humanos.
+} \\
+\end{longtable}
+
+\end{document}

@@ -1,0 +1,1028 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% METADATOS DEL DOCUMENTO
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Práctica Profesional}
+\newcommand{\titulo}{Desalojo por cambio de destino: de la carta documento a la demanda}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\renewcommand{\chaptername}{Bloque}
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced, breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3, colframe=blue!50!black,
+    boxrule=0.8pt, arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced, breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8, colframe=orange!70!black,
+    boxrule=0.8pt, arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced, breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4, colframe=green!40!black,
+    boxrule=0.8pt, arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced, breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4, colframe=purple!50!black,
+    boxrule=0.8pt, arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced, breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5, colframe=gray!60!black,
+    boxrule=0.8pt, arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced, breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white, colframe=gray!50,
+    boxrule=0.6pt, arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ---------------- PORTADA ----------------
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+
+\vspace*{1cm}
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+\textit{Comprender el procedimiento es el primer paso para convertir la práctica en criterio profesional.}
+
+\vspace{1.2cm}
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+{\large \autor}
+
+\vspace{0.3cm}
+{\large \anio}
+
+\end{center}
+
+\vfill
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Práctica Profesional'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+\end{titlepage}
+
+% ---------------- ÍNDICE ----------------
+\tableofcontents
+\clearpage
+
+% ============================================================
+% PRESENTACIÓN DEL TALLER
+% ============================================================
+\chapter*{Presentación del taller}
+\addcontentsline{toc}{chapter}{Presentación del taller}
+\markboth{Presentación del taller}{Presentación del taller}
+
+\section*{Temas tratados}
+\addcontentsline{toc}{section}{Temas tratados}
+
+Un taller práctico sobre un caso ficticio de desalojo por cambio de destino: una vivienda alquilada como ``destino familiar únicamente'' que el inquilino usa para elaborar y vender comida. La clase recorrió, en tres actos, lo que hace un estudio jurídico: (1) redactar la carta documento de intimación, (2) negociar entre estudios antes del juicio y (3) armar la demanda, apartado por apartado (encabezado, carátula, objeto, competencia, legitimación, hechos, derecho, prueba, petitorio), con el artículo 680 ter del CPCCN como pieza clave, hasta el formulario de sorteo y el número de expediente.
+
+\section*{Utilidad profesional}
+\addcontentsline{toc}{section}{Utilidad profesional}
+
+Es el paso a paso real de un conflicto de alquiler. Quien atienda a un locador o a un locatario va a tener que leer el contrato, intimar con plazo y apercibimiento, negociar sin comprometer al cliente y, si no hay acuerdo, iniciar el juicio sin errores de forma.
+
+Este taller entrena habilidades transversales: redactar con precisión, elegir domicilios estratégicamente, prever qué negará la otra parte y ofrecer toda la prueba desde el inicio, porque después no hay otra oportunidad.
+
+También permite evitar errores caros: sortear sin la firma de todos los clientes, ignorar el reconocimiento judicial del artículo 680 ter o descuidar la prueba puede demorar o frustrar el desalojo.
+
+\section*{Utilidad personal}
+\addcontentsline{toc}{section}{Utilidad personal}
+
+Cualquier persona alquila o alquilará: saber que el contrato es ``ley para las partes'', que una carta documento es un medio fehaciente y que nadie puede hacer justicia por mano propia protege tanto a quien alquila como a quien presta su casa. Además, negociar con datos, plazos y respeto suele resolver más conflictos que un juicio.
+
+\begin{example}{Cómo se relacionan los bloques}
+Imaginar que se presta un departamento a un amigo ``para vivir'' y se descubre que instaló una pastelería permite ver el recorrido completo del taller. Primero se revisa qué dice el acuerdo y qué está pasando (Bloque 1). Después se envía un aviso escrito y fehaciente, con un plazo, para que se vuelva a lo pactado (Bloque 2, la carta documento). En paralelo se dialoga para llegar a un arreglo sin llegar a juicio (Bloque 3). Si no hay respuesta, se presenta el reclamo formal: primero quiénes son las partes y dónde se las notifica (Bloque 4), luego por qué asiste razón y con qué pruebas (Bloque 5) y, por último, se firma y se registra el escrito para que se asigne un juzgado (Bloque 6). Cada bloque es un paso del mismo camino: avisar, dialogar, reclamar y probar.
+\end{example}
+
+\section*{Guía temática}
+\addcontentsline{toc}{section}{Guía temática}
+
+La siguiente tabla resume el orden en que se desarrollaron los bloques y unidades de la clase.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.10\textwidth} >{\raggedright\arraybackslash}p{0.30\textwidth} >{\RaggedRight\arraybackslash}p{0.52\textwidth}}
+\toprule
+\textbf{Bloque} & \textbf{Unidad} & \textbf{Contenido y pregunta guía} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Bloque} & \textbf{Unidad} & \textbf{Contenido y pregunta guía} \\
+\midrule
+\endhead
+1 & Unidad 1. Apertura y modalidad del Taller 2 & Caso ficticio, dos grupos, contrato modelo. ¿Cómo se organiza el taller y qué se trabaja en paralelo? \\
+\addlinespace
+1 & Unidad 2. Consigna: los tres pasos de la clase & Intimación, negociación, demanda. ¿Qué hay que hacer y en qué orden? \\
+\addlinespace
+\cmidrule{1-3}
+2 & Unidad 3. La intimación previa & Obligatoria solo por falta de pago. ¿Cuándo es obligatoria la intimación previa y por qué conviene enviarla igual? \\
+\addlinespace
+2 & Unidad 4. La carta documento en la práctica & Tres ejemplares, digital, arancel. ¿Papel o digital, y quién paga la carta documento? \\
+\addlinespace
+2 & Unidad 5. Partes y domicilios de la carta & Remitente, destinatario, domicilio constituido. ¿Qué domicilio se coloca a cada parte y por qué? \\
+\addlinespace
+2 & Unidad 6. Contenido de la intimación por cambio de destino & Plazo, apercibimiento, costas, negociación. ¿Qué debe decir, como mínimo, la carta? \\
+\addlinespace
+\cmidrule{1-3}
+3 & Unidad 7. Simulación: primer contacto con el locatario & Llamado, contrato, derivación al abogado. ¿Cómo se toma contacto sin resolver nada con el cliente ajeno? \\
+\addlinespace
+3 & Unidad 8. Simulación: diálogo entre estudios & Abogado del demandado, plazo, alternativas. ¿Por qué el abogado del demandado suele esperar? \\
+\addlinespace
+\cmidrule{1-3}
+4 & Unidad 9. Antes de demandar: firma y sorteo & Tres actores, firma ológrafa, patrocinio. ¿Cuándo se sortea la demanda? \\
+\addlinespace
+4 & Unidad 10. Encabezamiento y domicilios & Procesal, legal, electrónico, zona. ¿Qué domicilios lleva el escrito y cuál es cada uno? \\
+\addlinespace
+4 & Unidad 11. Carátula y código de objeto & Apellido primero, listado del Colegio. ¿Cómo se caratula y qué objeto se elige? \\
+\addlinespace
+4 & Unidad 12. Objeto de la demanda & Cambio de destino, costas, fundamento. ¿Por qué el juez no debe adivinar el objeto? \\
+\addlinespace
+\cmidrule{1-3}
+5 & Unidad 13. Competencia y legitimación activa & Prórroga, artículo 5, titulares, condómina. ¿Qué apartado va siempre y cuál se aclara por estrategia? \\
+\addlinespace
+5 & Unidad 14. Relación locativa, incumplimiento e intimación & Cláusula, resolución, mano propia, documental. ¿Por qué no basta la cláusula para echar al inquilino? \\
+\addlinespace
+5 & Unidad 15. Derecho y artículo 680 ter & Iura novit curia, reconocimiento judicial. ¿Qué modalidad especial exige el desalojo por cambio de destino? \\
+\addlinespace
+5 & Unidad 16. Casos prácticos de cambio de destino & Fiestas, consultorios, consorcio, vecinos. ¿Cómo se ve el cambio de destino en la vida real? \\
+\addlinespace
+5 & Unidad 17. Subinquilinos, ocupantes y prueba & No reconocer, artículo 18, acta notarial. ¿Por qué toda la prueba va con la demanda? \\
+\addlinespace
+\cmidrule{1-3}
+6 & Unidad 18. Autorizados, petitorio y firma & Cierre forense, firma de los tres. ¿Cómo se cierra la demanda y quién firma? \\
+\addlinespace
+6 & Unidad 19. Formulario de inicio y número de expediente & Cámara civil, PJN, juzgado, aviso al cliente. ¿Cómo se obtiene el número de expediente? \\
+\bottomrule
+\end{longtable}
+
+\clearpage
+
+% ============================================================
+% BLOQUE 1
+% ============================================================
+\chapter{Arranque y dinámica del taller}
+\markboth{Arranque y dinámica del taller}{Arranque y dinámica del taller}
+
+\section*{Unidad 1. Apertura y modalidad del Taller 2}
+\addcontentsline{toc}{section}{Unidad 1. Apertura y modalidad del Taller 2}
+
+\subsection*{Recapitulación del caso}
+\addcontentsline{toc}{subsection}{Recapitulación del caso}
+
+El Taller 2 se desarrolla en el marco del estudio jurídico, sobre un caso ficticio presentado en una clase anterior. El cliente ya fue recibido en el estudio por el equipo completo y por la letrada a cargo de la entrevista inicial; el taller retoma, a partir de allí, la resolución del conflicto.
+
+\subsection*{Materiales del taller}
+\addcontentsline{toc}{subsection}{Materiales del taller}
+
+La clase se dividió en dos grupos de trabajo. A cada grupo se le entregó un contrato de locación modelo, sin los datos particulares de los sujetos del caso ficticio, para que lo completara con la información correspondiente a las partes. Ese contrato sirve de base tanto para la redacción de las cartas documento como, más adelante, para la demanda.
+
+\subsection*{Dinámica: un trabajo en dos mundos paralelos}
+\addcontentsline{toc}{subsection}{Dinámica: un trabajo en dos mundos paralelos}
+
+El taller exige trabajar simultáneamente en dos planos: por un lado, la preparación de los elementos que se incorporarán al expediente judicial; por otro, y en paralelo, un intento de negociación entre las partes (locador y locatario), sin que ese diálogo interrumpa la preparación de la vía judicial. No se espera que en esta etapa se alcance un acuerdo, ya que la negociación formal del caso se proyecta recién hacia el final del proceso, en la audiencia del artículo 360 del CPCCN.
+
+\begin{important}
+El docente insiste en que, mientras se prepara la demanda —mundo judicial, regido por el sistema de preclusión—, corre en paralelo el mundo de la negociación entre las partes. El taller obliga a trabajar ambos planos a la vez.
+\end{important}
+
+\section*{Unidad 2. Consigna: los tres pasos de la clase}
+\addcontentsline{toc}{section}{Unidad 2. Consigna: los tres pasos de la clase}
+
+La consigna de la clase se organiza en tres pasos sucesivos. En el primero, ambos grupos redactan la carta de intimación como si fueran parte, representando al locador. En el segundo, cada grupo simula una conversación entre locador y locatario —en principio telefónica, aunque también puede desarrollarse por videollamada (Zoom o Meet), medio que se señala como más habitual que un encuentro presencial entre estudios—, con el propósito de negociar antes de llegar al juicio. En el tercer paso —el ``acto tres''— ambos grupos abandonan el rol de locatarios y de abogados del locatario y redactan la demanda de desalojo.
+
+\begin{example}{Los tres actos del taller}
+Acto 1: redactar la carta documento de intimación (ambos grupos, del lado del locador).
+
+Acto 2: conversación entre estudios (grupo locador y grupo locatario), por teléfono, Zoom o Meet.
+
+Acto 3: redacción de la demanda de desalojo por cambio de destino.
+\end{example}
+
+\clearpage
+
+% ============================================================
+% BLOQUE 2
+% ============================================================
+\chapter{La intimación y la carta documento}
+\markboth{La intimación y la carta documento}{La intimación y la carta documento}
+
+\section*{Unidad 3. La intimación previa}
+\addcontentsline{toc}{section}{Unidad 3. La intimación previa}
+
+\subsection*{¿Cuándo es obligatoria?}
+\addcontentsline{toc}{subsection}{¿Cuándo es obligatoria?}
+
+La intimación previa mediante carta documento resulta obligatoria únicamente en el desalojo fundado en falta de pago. En los demás objetos de desalojo —como el cambio de destino, que es el del presente caso, o el vencimiento de contrato, que se señala como uno de los más típicos— la carta documento no es obligatoria.
+
+\begin{table}[H]
+\centering
+\caption{Obligatoriedad de la intimación previa según la causal de desalojo}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Causal de desalojo} & \textbf{¿Intimación previa obligatoria?} & \textbf{Observación del docente} \\
+\midrule
+Falta de pago & Sí, es obligatoria & La intimación previa es requisito. \\
+Cambio de destino (otras causales) & No es obligatoria & Se recomienda enviarla igual. \\
+Vencimiento de contrato & No es obligatoria & Es de los objetos más típicos. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Por qué enviarla igual}
+\addcontentsline{toc}{subsection}{Por qué enviarla igual}
+
+Aunque no sea obligatoria en este caso, se recomienda enviar la carta documento de todos modos, porque transmite una seriedad que una llamada, un correo electrónico o un mensaje de WhatsApp no logran transmitir.
+
+\begin{quote}
+\textit{``Yo, de estilo, la mando, para que lo vean. «Che, viene más serio.» Esto no es solo una llamadita, un correo electrónico, una imagen de WhatsApp. Bueno, esto viene más serio.''} --- Palabras del docente.
+\end{quote}
+
+\section*{Unidad 4. La carta documento en la práctica}
+\addcontentsline{toc}{section}{Unidad 4. La carta documento en la práctica}
+
+\subsection*{Formato papel y formato digital}
+\addcontentsline{toc}{subsection}{Formato papel y formato digital}
+
+En formato papel, la carta documento se redacta en tres ejemplares: uno queda en el correo, otro queda sellado y se lo lleva quien la despacha, y el tercero es el que se entrega a la persona destinataria. El Correo Argentino cuenta además con un sistema de carta documento digital, que evita la confección de los tres ejemplares en papel y el traslado a una sucursal. Ambos formatos son arancelados —se paga la carta y, además, el envío—, con la salvedad de que en materia laboral la intimación es gratuita. El formato digital resulta más cómodo para quienes manejan medios digitales; el formato papel sigue siendo preferido por clientes de edad avanzada o de bajos recursos, que prefieren concurrir personalmente al correo.
+
+\begin{table}[H]
+\centering
+\caption{Carta documento en papel y carta documento digital}
+\begin{tabular}{@{}p{2.3cm}p{5.7cm}p{5.7cm}@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Carta documento en papel} & \textbf{Carta documento digital} \\
+\midrule
+Elaboración & Se redacta en tres ejemplares. & Se hace en el sistema del Correo Argentino, sin papel. \\
+Trámite & Alguien debe ir al correo y poner la firma. & No hace falta ir personalmente al correo. \\
+A quién le sirve & Personas mayores, de bajos recursos o que no usan celular. & Quien maneja cómodamente medios digitales. \\
+Costo & Arancelado: se paga en el correo, más el envío. & También arancelado: hay que pagar todo. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{¿Es gratuita? Pregunta de una alumna}
+\addcontentsline{toc}{subsection}{¿Es gratuita? Pregunta de una alumna}
+
+Ante la pregunta de si la carta documento es gratuita —por ejemplo, en la intimación a un trabajador—, se aclaró que la gratuidad corresponde al ámbito del derecho laboral, ajeno a la materia de la clase; en el ámbito civil que aquí se trabaja, la carta documento es arancelada tanto en su confección como en su envío, sea en papel o en formato digital. Antiguamente, en el formato papel, se completaba un formulario en la propia sucursal del correo; actualmente el trámite se realiza con arancel. Se señaló, además, la necesidad de contar con el Código Procesal y el Código Civil para encuadrar correctamente la intimación antes de redactarla.
+
+\section*{Unidad 5. Partes y domicilios de la carta}
+\addcontentsline{toc}{section}{Unidad 5. Partes y domicilios de la carta}
+
+\subsection*{Punto de partida: el caso y el contrato}
+\addcontentsline{toc}{subsection}{Punto de partida: el caso y el contrato}
+
+El punto de partida es la lectura del contrato de locación ficticio elaborado en la clase anterior, que cada grupo debía completar con los personajes del caso. A partir de esa lectura se redacta la carta intimando al cese del cambio de destino: se intima a que cese la ocupación con un destino distinto del pactado —vivienda—, bajo apercibimiento.
+
+\subsection*{Completar los sujetos del contrato}
+\addcontentsline{toc}{subsection}{Completar los sujetos del contrato}
+
+De la lectura del contrato surgió que los locadores son Juan Román, su madre Marta y su hermana Claudia, quienes dieron el inmueble en locación; Martín es el locatario, y existía una garantía real; la sublocataria no firma el contrato. Se destacó que Juan Román es quien otorgó la tenencia, y que lo relevante, antes de redactar la carta, es identificar correctamente a los sujetos del contrato.
+
+\begin{note}
+Durante la lectura del contrato ficticio se mencionaron, entre otros datos del caso: un vencimiento del contrato el 30 de abril de 2028, un alquiler ajustable trimestralmente y una garantía prevista en la cláusula novena. Como domicilio del inmueble locado se completó la calle Gerbal 1550.
+\end{note}
+
+\subsection*{Remitente y destinatario: una carta por persona}
+\addcontentsline{toc}{subsection}{Remitente y destinatario: una carta por persona}
+
+Identificados los sujetos del contrato, se determinó que el destinatario de la carta es el locatario, Martín, y que el remitente es Juan Román. Cuando el remitente está compuesto por varias personas —en este caso, Juan Román, Claudia y Marta—, cada una debe despachar su propia carta documento por separado: no pueden expedirla en conjunto.
+
+\begin{quote}
+\textit{``Y el destinatario, si fueran más de una persona, por más que sea el hijo, la pareja, el padre, es una carta por persona. No se puede, por más que vivan todos juntos. El remitente también.''} --- Palabras del docente.
+\end{quote}
+
+\subsection*{El domicilio del remitente}
+\addcontentsline{toc}{subsection}{El domicilio del remitente}
+
+El domicilio del remitente se obtiene, en principio, del propio contrato de locación, donde suele figurar al comienzo o al final del instrumento. Antes de utilizarlo hay que confirmar con el cliente si continúa viviendo allí. Muchos clientes no desean que sus datos personales figuren en la carta documento y piden, en su lugar, que se coloque el domicilio del estudio jurídico; en tal caso corresponde constituir domicilio en el estudio.
+
+\begin{quote}
+\textit{``Muy bien, Laura. En el contenido, luego de redactar la carta, va a haber un renglón que diga «constituyo domicilio a los efectos del presente en…», y ahí van a inventar el domicilio de abogados. […] Y si acá ponen el domicilio de Juan Román, que es el mismo del contrato, no aclaran nada en el renglón.''} --- Palabras del docente.
+\end{quote}
+
+\subsection*{El domicilio del destinatario}
+\addcontentsline{toc}{subsection}{El domicilio del destinatario}
+
+Al destinatario, Martín, se le coloca como domicilio el del inmueble locado (Gerbal 1550), precisamente porque se trata de una acción de desalojo: al no tratarse de otro tipo de acción, el domicilio relevante es el del inmueble.
+
+\begin{table}[H]
+\centering
+\caption{Domicilios a consignar en la carta documento}
+\begin{tabular}{@{}p{3.2cm}p{5.6cm}p{5.6cm}@{}}
+\toprule
+\textbf{Parte de la carta} & \textbf{Domicilio que se coloca} & \textbf{Razón} \\
+\midrule
+Remitente (locador) & El del contrato, o el del estudio jurídico si el cliente lo pide. & Muchos clientes no quieren que figure su domicilio; se pregunta siempre. \\
+Constitución de domicilio & El del estudio (renglón ``constituyo domicilio a los efectos del presente en…''). & Si se repite el del contrato, no se aclara nada. \\
+Destinatario (locatario) & El inmueble locado. & Es un desalojo: se intima donde está el inmueble. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{note}
+Para reflexionar: ¿qué le preguntarías a tu cliente antes de escribir su domicilio en una carta documento?
+\end{note}
+
+\section*{Unidad 6. Contenido de la intimación por cambio de destino}
+\addcontentsline{toc}{section}{Unidad 6. Contenido de la intimación por cambio de destino}
+
+\subsection*{Comienzo de la carta y objeto del reclamo}
+\addcontentsline{toc}{subsection}{Comienzo de la carta y objeto del reclamo}
+
+El cuerpo de la carta comienza con la fecha y el lugar. En cuanto al objeto del reclamo, se aclaró que no se intima a que el locatario cambie el destino del inmueble ni a que rescinda el contrato, sino que se lo intima al cese del cambio de destino: el contrato de locación establece ``destino familiar únicamente'' y contiene una cláusula que prohíbe destinarlo a otro uso. En consecuencia, la carta debe intimar a que cese el cambio de destino, con cita de la cláusula que fija el destino pactado y de la cláusula que prohíbe modificarlo, otorgando un plazo para revertir la situación bajo apercibimiento de iniciar la acción judicial de desalojo por cambio de destino e incumplimiento contractual, con costas.
+
+\subsection*{Costas y costos}
+\addcontentsline{toc}{subsection}{Costas y costos}
+
+\begin{table}[H]
+\centering
+\caption{Distinción entre costos y costas}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Término} & \textbf{Qué comprende} \\
+\midrule
+Costos & Lo que genera de gasto. \\
+Costas & Todo lo que son honorarios y todo lo que lleva el proceso: tasa judicial, bono, etcétera. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{El mundo paralelo: la puerta a la negociación}
+\addcontentsline{toc}{subsection}{El mundo paralelo: la puerta a la negociación}
+
+Además del contenido intimatorio, la carta debe abrir una vía de negociación, sin utilizar expresamente la fórmula ``métodos alternativos''. Se sugiere, en cambio, incorporar una solicitud de contacto con el estudio jurídico junto con los medios de comunicación disponibles —WhatsApp, correo electrónico—, de modo que, si el locatario desea negociar, pueda hacerlo a través de su abogado o directamente con el estudio interviniente. Esta previsión resulta particularmente útil cuando existe un fuerte desacuerdo entre locador y locatario que dificulta el contacto directo.
+
+\subsection*{Esquema del contenido y cierre}
+\addcontentsline{toc}{subsection}{Esquema del contenido y cierre}
+
+\begin{quote}
+\textit{``[…] «Usted se obligó a destino vivienda». […] «Usted se obligó a través de un contrato suscripto con fecha…» […] ¿Usted se obligó a esto? ¿Usted no cumple con esto? ¿Se lo intima, en un plazo, a que vuelva a revertir su situación?''} --- Palabras del docente.
+\end{quote}
+
+No existe una forma estricta de redacción: cada quien puede redactar con su propio tono, siempre sin faltar el respeto. El contenido mínimo debe dar cuenta de que el destinatario se obligó a través de un contrato con una fecha determinada, que incumplió esa obligación (en el caso, cambiando el destino pactado —vivienda— por la elaboración y venta de productos de repostería, comida y merchandising) y que se lo intima, en un plazo, a revertir esa situación.
+
+\begin{important}
+Contenido mínimo de la carta documento de intimación:
+\begin{enumerate}
+\item Fecha y lugar.
+\item Remitente y destinatario (una carta por persona), con sus domicilios.
+\item Cómo se obligó el destinatario (contrato con fecha y cláusula de destino).
+\item Cuál es el incumplimiento (el uso que se le da al inmueble).
+\item Intimación a que cese, en un plazo, bajo apercibimiento de iniciar la acción de desalojo por cambio de destino, con costas.
+\item Constitución de domicilio en el estudio.
+\item Datos de contacto para negociar.
+\item Cierre: ``Queda usted debidamente notificado''.
+\end{enumerate}
+\end{important}
+
+\clearpage
+
+% ============================================================
+% BLOQUE 3
+% ============================================================
+\chapter{Negociación extrajudicial}
+\markboth{Negociación extrajudicial}{Negociación extrajudicial}
+
+\section*{Unidad 7. Simulación: primer contacto con el locatario}
+\addcontentsline{toc}{section}{Unidad 7. Simulación: primer contacto con el locatario}
+
+El primer contacto con el locatario lo realiza la abogada o el abogado del locador, mediante un llamado telefónico acompañado del envío de un correo electrónico; los datos de contacto se obtienen del propio contrato. El objetivo de este primer contacto no es resolver nada con el locatario directamente, sino derivarlo a su propio abogado o abogada.
+
+\subsection*{Escena 1: la llamada al locatario}
+\addcontentsline{toc}{subsection}{Escena 1: la llamada al locatario}
+
+\begin{example}{Simulación de la llamada al locatario}
+\textbf{Ivana (abogada de Juan Román):} Hola, buenas tardes. Soy Ivana, la abogada de Juan Román, que es su locador.
+
+\textbf{Martín (locatario):} No, no me suena.
+
+\textbf{Ivana:} ¿Usted estaría alquilando un inmueble en la calle Gerbal 1550?
+
+\textbf{Martín:} No… no tengo idea.
+
+\textbf{Ivana:} ¿De casualidad su pareja no se encuentra viviendo en este domicilio?
+
+\textbf{Martín:} No, tampoco. No tengo mujer. Tengo pareja masculina. Si quiere, le puedo pasar el contacto de mi abogada y usted puede hablar con ella.
+
+\textbf{Ivana:} Perfecto. Dígame su número.
+
+\textbf{Martín:} Le da un número de contacto.
+
+\textbf{Ivana:} ¿Y el nombre de la doctora?
+
+\textbf{Martín:} Doctora Laura.
+
+\textbf{Ivana:} Perfecto. Muchas gracias.
+\end{example}
+
+\subsection*{Escena 2: Martín llama a su abogada}
+\addcontentsline{toc}{subsection}{Escena 2: Martín llama a su abogada}
+
+\begin{example}{Simulación de la consulta de Martín con su abogada}
+\textbf{Martín:} Hola. Me acaba de tocar la puerta una chica y me preguntó por mi domicilio, por si estoy alquilando. No tengo idea. ¿Sabés algo? No me dejó nada; le dije que cualquier cosa se comunicara con vos. Yo estoy alquilando y nada, todo bien.
+
+\textbf{Dra. Laura (abogada de Martín):} Pero vos firmaste el contrato.
+
+\textbf{Martín:} Sí, pero ni idea; fue hace dos años… Mi pareja necesitaba plata y se puso a vender tortas. No tiene nada de malo.
+
+\textbf{Dra. Laura:} ¿Y te acordás de lo que firmaste en el contrato?
+
+\textbf{Martín:} No decía que era solo familiar, pero ni idea; no pensé que iba a ser tanto quilombo.
+\end{example}
+
+Frente a la consulta de su cliente, la doctora Laura le solicita el contacto de quien llamó y el contrato firmado, como paso previo indispensable para poder evaluar la situación.
+
+\subsection*{La posición del abogado del demandado}
+\addcontentsline{toc}{subsection}{La posición del abogado del demandado}
+
+Se observó que resulta poco frecuente que el abogado o la abogada de la parte demandada se apresure a comunicarse con la contraparte, a diferencia de lo ocurrido en la simulación.
+
+\begin{quote}
+\textit{``Cuando sos demandado, te sentás a esperar que llueva, que salga el sol, que caiga granizo, que nieve. Hasta que el otro no activa, el abogado del demandado se queda en el molde.''} --- Palabras del docente.
+\end{quote}
+
+\section*{Unidad 8. Simulación: diálogo entre estudios}
+\addcontentsline{toc}{section}{Unidad 8. Simulación: diálogo entre estudios}
+
+\subsection*{Escena 3: llamada entre los abogados}
+\addcontentsline{toc}{subsection}{Escena 3: llamada entre los abogados}
+
+\begin{example}{Simulación del diálogo entre los estudios jurídicos}
+\textbf{Abogada del locador:} Hola. Me comunico con el estudio jurídico… ¿Ustedes representan a Martín, locatario del inmueble de Gerbal 1550?
+
+\textbf{Abogado del locatario:} Sí, es nuestro cliente. Contame qué podemos hacer por vos.
+
+\textbf{Abogada del locador:} Le hablo en representación de Juan Román, que es el locador del inmueble. Quisiéramos conversar porque se ve que hay un incumplimiento del contrato, de la cláusula segunda, sobre el destino de vivienda.
+
+\textbf{Abogado del locatario:} En realidad tendría que hablar con mi cliente para ponerme en autos, si es cierto lo que usted me está diciendo. Lo que sí tengo conocimiento es que mi cliente está pasando por un momento muy complicado, económico y personal. Tendría que hablar con el cliente primero. Si usted me deja sus datos, una vez que yo hable con mi cliente, después me comunico y evaluamos alternativas antes de llegar a instancia judicial. Nuestro cliente también está a favor de buscar otras vías.
+\end{example}
+
+Se destacó la construcción defensiva del abogado del locatario, que no confirma ni niega el incumplimiento y remite la respuesta a una consulta previa con su cliente.
+
+\subsection*{Cómo debe responder el estudio del locador}
+\addcontentsline{toc}{subsection}{Cómo debe responder el estudio del locador}
+
+Frente a esa respuesta evasiva, el estudio del locador debe fijar un plazo claro para que la contraparte se comunique —por ejemplo, hasta fin de la semana siguiente—, advirtiendo que, de no recibir respuesta, se iniciará la demanda judicial de desalojo.
+
+\begin{example}{Qué se aprendió con la simulación}
+El locatario y su abogado no se comprometen: piden hablar con el cliente y evalúan alternativas. El estudio del locador debe fijar un plazo claro (``hasta fin de la semana que viene'') antes de iniciar la demanda, y dejar datos de contacto. Quien es demandado suele esperar: la iniciativa la tiene el actor.
+\end{example}
+
+\clearpage
+
+% ============================================================
+% BLOQUE 4
+% ============================================================
+\chapter{La demanda I: presentación y encabezado}
+\markboth{La demanda I: presentación y encabezado}{La demanda I: presentación y encabezado}
+
+\section*{Unidad 9. Antes de demandar: firma y sorteo}
+\addcontentsline{toc}{section}{Unidad 9. Antes de demandar: firma y sorteo}
+
+\subsection*{Acto tres: iniciar la demanda}
+\addcontentsline{toc}{subsection}{Acto tres: iniciar la demanda}
+
+Ante la falta de respuesta del estudio del locatario, corresponde iniciar la demanda de desalojo por cambio de destino, conforme el esquema del artículo 330 del CPCCN.
+
+\begin{formula}{Art. 330 del CPCCN · Forma de la demanda}
+La demanda será deducida por escrito y contendrá:
+\begin{enumerate}
+\item El nombre y domicilio del demandante.
+\item El nombre y domicilio del demandado.
+\item La cosa demandada, designándola con toda exactitud.
+\item Los hechos en que se funde, explicados claramente.
+\item El derecho expuesto sucintamente, evitando repeticiones innecesarias.
+\item La petición en términos claros y positivos.
+\end{enumerate}
+\end{formula}
+
+\begin{note}
+Durante el trabajo en grupos, una alumna comentó que había concurrido a tribunales a consultar sobre una demanda de desalojo sin obtener respuesta, por no encontrarse presente la persona a cargo del expediente.
+\end{note}
+
+\subsection*{¿Cuándo se sortea? La firma de los tres clientes}
+\addcontentsline{toc}{subsection}{¿Cuándo se sortea? La firma de los tres clientes}
+
+El sorteo del juzgado no puede solicitarse antes de que la demanda esté firmada por los tres clientes, dado que hasta ese momento podrían cambiar de abogado, llegar a un arreglo o arrepentirse de iniciar el proceso.
+
+\begin{quote}
+\textit{``Si después no vienen más al estudio… […] No se puede adelantar hasta que no vengan los tres. […] Hasta que no vengan los tres a firmar —acuérdense, la firma ológrafa si es patrocinio—, yo no sorteo nada. Porque después desaparece la gente, y en el sorteo te dan el número de expediente.''} --- Palabras del docente.
+\end{quote}
+
+Si el escrito no llega a subirse al sistema luego del sorteo, este queda sin efecto y debe repetirse.
+
+\begin{important}
+No se sortea ni se sube la demanda antes de que todos los clientes firmen. Con patrocinio letrado, la firma es ológrafa y deben firmar los tres actores. Si el escrito no se sube, el sorteo queda sin efecto y hay que volver a sortear.
+\end{important}
+
+\section*{Unidad 10. Encabezamiento y domicilios}
+\addcontentsline{toc}{section}{Unidad 10. Encabezamiento y domicilios}
+
+\subsection*{Patrocinio letrado o apoderado}
+\addcontentsline{toc}{subsection}{Patrocinio letrado o apoderado}
+
+En la presentación de la demanda deben figurar el patrocinio, el domicilio, el objeto y la pretensión (``a promover demanda por desalojo''). El domicilio puede ser el del estudio del abogado, a efectos de las notificaciones. El encabezamiento indica, además, si la representación se ejerce con patrocinio letrado o con apoderado, junto con los datos del abogado interviniente; incluir WhatsApp y correo electrónico no es obligatorio, pero facilita que la contraparte disponga de vías de contacto para continuar la negociación.
+
+\subsection*{Domicilio procesal, legal y electrónico}
+\addcontentsline{toc}{subsection}{Domicilio procesal, legal y electrónico}
+
+En la constitución de domicilio del escrito no corresponde consignar el domicilio legal, sino el domicilio procesal o ad litem: el domicilio dentro del radio en el que se sorteará el juzgado. El domicilio legal responde a otros supuestos —el legal societario, el del curador y el curado, o el del representante legal de los menores— y no es el que se utiliza en este escrito. El domicilio procesal debe constituirse siempre, sea que se actúe con patrocinio o con apoderado; también debe constituirse siempre el domicilio electrónico, que en el orden nacional corresponde al CUIT del abogado y, en el orden provincial, al nombre seguido del CUIT.
+
+\begin{table}[H]
+\centering
+\caption{Tipos de domicilio en la demanda}
+\begin{tabular}{@{}p{3.4cm}p{6.4cm}p{3.2cm}@{}}
+\toprule
+\textbf{Domicilio} & \textbf{A qué responde} & \textbf{¿Va siempre?} \\
+\midrule
+Procesal (ad litem) & Dentro del radio del juzgado donde se sortea la causa. & Sí, sea patrocinante o apoderado. \\
+Legal & Societario, del curador y del curado, del representante legal de menores. & No es el que se coloca en el escrito. \\
+Electrónico & Nacional: el CUIT del abogado. Provincial: nombre y luego el CUIT. & Sí, siempre. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{La zona de notificación}
+\addcontentsline{toc}{subsection}{La zona de notificación}
+
+En el encabezamiento se consigna, entre paréntesis, la zona de notificación correspondiente al domicilio constituido. El sistema de notificaciones está dividido en zonas numeradas, de modo que quien deba enviar una notificación en papel identifica, a través de ese número, la zona por la cual debe cursarse la cédula.
+
+\section*{Unidad 11. Carátula y código de objeto}
+\addcontentsline{toc}{section}{Unidad 11. Carátula y código de objeto}
+
+\subsection*{Cómo se caratulan los autos}
+\addcontentsline{toc}{subsection}{Cómo se caratulan los autos}
+
+Los autos se caratulan comenzando por el apellido y el nombre de pila del actor, seguido de ``contra'' y el o los demandados, agregando ``y otros'' cuando corresponde.
+
+\begin{definition}{Forma de la carátula}
+Riquel, Juan Román y otros c/ [apellido y nombre del locatario] y otros s/ desalojo (otras causales). Primero el apellido, luego el nombre de pila; después ``contra'' el demandado; y ``y otros'' cuando hay más partes.
+\end{definition}
+
+\subsection*{El listado de objetos del Colegio}
+\addcontentsline{toc}{subsection}{El listado de objetos del Colegio}
+
+La expresión ``otras causales'' proviene del listado de objetos de juicio que elabora el Colegio de la Abogacía (Colegio de Abogados), utilizado para caratular el formulario que se envía al sorteo de la cámara respectiva. Dentro del rubro desalojo, ese listado distingue: falta de pago, vencimiento de contrato, comodato, intrusos y otras causales; el cambio de destino se ubica en esta última categoría, al no encuadrar en ninguna de las anteriores. El listado se actualiza periódicamente, incorporando nuevos códigos cuando surgen nuevos procesos.
+
+\section*{Unidad 12. Objeto de la demanda}
+\addcontentsline{toc}{section}{Unidad 12. Objeto de la demanda}
+
+En el objeto de la demanda debe indicarse con claridad a qué se viene: en el caso, ``cambio de destino'', contra Martín y sus inquilinos y ocupantes, con domicilio en Gerbal 1550. El juez no debe tener que inferir el objeto de la presentación. Luego del objeto, puede desarrollarse brevemente el fundamento del pedido —``incumplimiento imputable al locatario; se ordena el desalojo y la restitución, con costas''—, pudiendo agregarse, de manera optativa, una breve referencia a las normas del Código Civil en que se funda el reclamo. El objeto puede cerrarse directamente en ``con costas'' o incorporar esa mención adicional de fundamento.
+
+\begin{quote}
+\textit{``En el objeto yo tengo que ponerle a qué vengo. Fíjense que no tiene que adivinar el juez: tengo que decirle «cambio de destino».''} --- Palabras del docente.
+\end{quote}
+
+\clearpage
+
+% ============================================================
+% BLOQUE 5
+% ============================================================
+\chapter{La demanda II: fundamentos y prueba}
+\markboth{La demanda II: fundamentos y prueba}{La demanda II: fundamentos y prueba}
+
+\section*{Unidad 13. Competencia y legitimación activa}
+\addcontentsline{toc}{section}{Unidad 13. Competencia y legitimación activa}
+
+\subsection*{Competencia}
+\addcontentsline{toc}{subsection}{Competencia}
+
+Antes de determinar la competencia es necesario leer el contrato completo, ya que puede existir prórroga de competencia en cuestiones patrimoniales en las que no interviene el orden público —por ejemplo, hacia un arbitraje del Colegio de Escribanos, de la Bolsa de Comercio, o hacia otro departamento judicial—. En el caso trabajado no se planteó esa complejidad y se aplicó directamente el artículo 5 del CPCCN, que atribuye competencia al juez del lugar donde está situado el inmueble.
+
+\begin{formula}{Art. 5 del CPCCN · Competencia (fragmento)}
+La competencia se determinará por la naturaleza de las pretensiones deducidas en la demanda y no por las defensas opuestas por el demandado. Con excepción de los casos de prórroga expresa o tácita, cuando procediere, y sin perjuicio de las reglas especiales contenidas en este Código y en otras leyes, será juez competente: 1) Cuando se ejerciten acciones reales sobre bienes inmuebles, el del lugar donde esté situada la cosa litigiosa. \dots
+\end{formula}
+
+\subsection*{Legitimación activa}
+\addcontentsline{toc}{subsection}{Legitimación activa}
+
+A diferencia de la competencia, que siempre debe incluirse, el apartado de legitimación activa es optativo. Se aclara igualmente, como estrategia procesal, para anticiparse a la excepción dilatoria de falta de legitimación que suele oponer la parte demandada. Los actores están legitimados por ser titulares de la relación sustancial; la legitimación para promover el desalojo es amplia y alcanza, entre otros, al usuario, al usufructuario, al heredero y al condómino que acredite tal carácter, así como al locatario que subloca, si el contrato lo permitía.
+
+\begin{important}
+Es un apartado que puede o no colocarse. El docente lo incluye para adelantarse a las dilatorias de la parte demandada (excepción de falta de legitimación). Los actores están legitimados por ser titulares de la relación sustancial; la legitimación es amplia (usuario, usufructuario, heredero, condómino con acreditación, locatario que sublocó si estaba permitido).
+\end{important}
+
+\section*{Unidad 14. Relación locativa, incumplimiento e intimación}
+\addcontentsline{toc}{section}{Unidad 14. Relación locativa, incumplimiento e intimación}
+
+\subsection*{Relación locativa e incumplimiento}
+\addcontentsline{toc}{subsection}{Relación locativa e incumplimiento}
+
+En el apartado de relación locativa se describe el contrato: el plazo, la cláusula y el destino pactado, de modo que el juez o la jueza puedan tomar conocimiento de sus términos. En un apartado separado se describe el incumplimiento del contrato, consistente en el cambio de destino. El esquema general de la demanda puede repetirse en otras causales de desalojo —falta de pago, vencimiento de contrato, intrusos—, aunque cada una incorpora elementos propios.
+
+\subsection*{Intimación y resolución}
+\addcontentsline{toc}{subsection}{Intimación y resolución}
+
+En este apartado se describe al juzgado que ya se efectuó la intimación mediante carta documento y que se apercibió a la contraparte con el inicio de la acción judicial de resolución del contrato. Se aclaró que, aunque el contrato prevea esa cláusula, no es posible desalojar al locatario directamente por esa vía: es necesario iniciar el proceso judicial de desalojo.
+
+\begin{quote}
+\textit{``Mucha gente se les queja a ustedes en el estudio, clientes que dicen: «Che, pero si está la cláusula ahí». Bueno, pero no tenés el monopolio de la fuerza estatal. Hasta las personas que ocupan tienen derechos.''} --- Palabras del docente.
+\end{quote}
+
+Este principio se vincula con la prohibición de hacer justicia por mano propia: históricamente esa vía se ejerció, pero con el desarrollo de la sociedad el Estado asumió el monopolio de la fuerza a través del Poder Judicial.
+
+\subsection*{Daños y perjuicios: otra acción}
+\addcontentsline{toc}{subsection}{Daños y perjuicios: otra acción}
+
+Si el inmueble resultara dañado, el reclamo por esos daños constituye una acción distinta —daños y perjuicios—, ajena a la acción de desalojo. Esta última se limita a la restitución de la persona ocupante, sin atender al estado en que se encuentre el inmueble; el estado del inmueble deberá acreditarse, en su caso, para iniciar posteriormente el proceso de daños.
+
+\subsection*{Documental que se acompaña}
+\addcontentsline{toc}{subsection}{Documental que se acompaña}
+
+Con el escrito postulatorio —así se denomina la demanda, y luego, en su caso, la contestación— debe acompañarse toda la documentación que se encuentre en poder de la parte; la que no esté en su poder debe individualizarse para que sea incorporada al proceso, y debe ofrecerse toda la prueba en esa misma oportunidad. Entre la documental se enumeran el contrato, la carta documento enviada y las fotografías disponibles.
+
+\section*{Unidad 15. Derecho y artículo 680 ter del CPCCN}
+\addcontentsline{toc}{section}{Unidad 15. Derecho y artículo 680 ter del CPCCN}
+
+\subsection*{Cómo se funda en derecho}
+\addcontentsline{toc}{subsection}{Cómo se funda en derecho}
+
+En el apartado de derecho se citan normas del Código Civil y Comercial de la Nación referidas a la locación, junto con normas del Código Procesal. Se señaló que, si se cita una norma equivocada, ello no determina que la demanda se tenga por no presentada, en virtud del principio de que el juez conoce el derecho (iura novit curia); de todos modos, conviene evitar errores. También pueden citarse doctrina y jurisprudencia.
+
+\subsection*{El 680 ter: lo que nos habilitó el legislador}
+\addcontentsline{toc}{subsection}{El 680 ter: lo que nos habilitó el legislador}
+
+El artículo 680 ter del Código Procesal habilita una modalidad particular del desalojo, aplicable al cambio de destino, que el abogado debe conocer y solicitar expresamente.
+
+\begin{formula}{Art. 680 ter del CPCCN · Reconocimiento judicial}
+Cuando el desalojo se fundare en las causales de cambio de destino, deterioro del inmueble, obras nocivas o uso abusivo o deshonesto, el juez deberá realizar antes del traslado de la demanda un reconocimiento judicial dentro de los cinco días de dictada la primera providencia, con asistencia del Defensor Oficial. Igual previsión deberá tomarse cuando se diera la causal prevista en los artículos 680 bis y 684 bis.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+Nota de actualización (ajena a la clase): el 7 de agosto de 2026 el Senado dio media sanción a un proyecto de ley que propone modificar este artículo; conviene verificar el texto vigente al momento de aplicarlo.
+\end{formula}
+
+\begin{quote}
+\textit{``Ustedes, como alumnos, tienen que salir de acá sabiendo: «Lo conocí, está allá en la nube». El día de mañana tienen un problema, o van a ser los abogados, y dicen: «Uf, esto yo lo conocí. Lo vi, lo vi. Lo busco». Pero si nunca lo vi, no lo voy a buscar.''} --- Palabras del docente.
+\end{quote}
+
+El reconocimiento judicial debe realizarse antes de correr traslado de la demanda; el juez puede delegar esa diligencia en otro empleado del juzgado. La norma se aplica al cambio de destino y también a los casos de intrusos. Su finalidad es que el juzgado verifique directamente los hechos denunciados antes de avanzar, lo que permite tramitar estos desalojos con mayor celeridad, dentro de un plazo de cinco días.
+
+\begin{important}
+En los desalojos por cambio de destino (y también en los de intrusos), el juez debe hacer un reconocimiento judicial antes de correr traslado de la demanda, dentro de los cinco días de la primera providencia, con asistencia del Defensor Oficial; puede delegarlo. Es una modalidad particular del desalojo que el abogado debe pedir y conocer.
+\end{important}
+
+\section*{Unidad 16. Casos prácticos de cambio de destino}
+\addcontentsline{toc}{section}{Unidad 16. Casos prácticos de cambio de destino}
+
+El cambio de destino admite variantes que se presentan con frecuencia en la práctica. Se señaló que circunstancias como el horario o la frecuencia en que se desarrolla la actividad no alteran la calificación jurídica del supuesto, aunque sí inciden en la prueba que deberá producirse. Otro ejemplo habitual es el de un consultorio médico o de un profesional de la salud instalado en una unidad cuyo reglamento de copropiedad prohíbe ese uso, lo que suele generar conflictos de consorcio.
+
+\begin{example}{Caso real del docente: fiesta electrónica en un departamento}
+Un joven alquiló un departamento en un edificio con amenities y lo convirtió en lugar de reunión y de fiestas electrónicas, con el consiguiente malestar de los vecinos, pese a las denuncias policiales realizadas. El reglamento del edificio establece como destino la vivienda, y ese uso configura un cambio de destino que habilita el desalojo por esta causal.
+\end{example}
+
+\begin{note}
+Para reflexionar: ¿qué prueba ofrecerías para acreditar un cambio de destino cuando los vecinos son los únicos testigos?
+\end{note}
+
+\section*{Unidad 17. Subinquilinos, ocupantes y prueba}
+\addcontentsline{toc}{section}{Unidad 17. Subinquilinos, ocupantes y prueba}
+
+\subsection*{Denuncia de subinquilinos y ocupantes}
+\addcontentsline{toc}{subsection}{Denuncia de subinquilinos y ocupantes}
+
+En la demanda se denuncia la existencia de inquilinos, locatarios u ocupantes, sin reconocerlos individualmente. Se explicó que, como estrategia del abogado del locador, conviene no reconocerlos, porque de lo contrario el juzgado exigiría notificar individualmente a cada persona que se identifique, lo que complicaría innecesariamente el trámite.
+
+\begin{quote}
+\textit{``Está bien no reconocer, porque si no, el juzgado, por la debida defensa en juicio —principio constitucional […], artículo 18—, te hace notificar a cada uno que te aparece. Te vuelve loco.''} --- Palabras del docente.
+\end{quote}
+
+\begin{formula}{Art. 18 de la Constitución Nacional (fragmento)}
+Es inviolable la defensa en juicio de la persona y de los derechos.
+\end{formula}
+
+Por eso, la demanda se dirige, en general, ``contra subinquilinos y ocupantes''.
+
+\subsection*{Toda la prueba va con la demanda}
+\addcontentsline{toc}{subsection}{Toda la prueba va con la demanda}
+
+Toda la prueba debe acompañarse con la demanda. Con posterioridad solo pueden agregarse documentos de fecha posterior a su inicio; no puede ofrecerse prueba adicional luego de ese momento, ya que el sistema procesal vigente concentra toda la prueba en los escritos postulatorios, tras la eliminación del juicio sumario. Entre la documental a acompañar se mencionan el contrato de locación, la carta documento y las fotografías.
+
+\subsection*{Acta notarial y reconocimiento judicial}
+\addcontentsline{toc}{subsection}{Acta notarial y reconocimiento judicial}
+
+Cuando el cliente cuenta con recursos, puede contratarse a un escribano para labrar un acta notarial que constate la situación denunciada. Esa acta constituye una prueba con fe pública y agiliza la acción, pero no reemplaza el reconocimiento judicial del artículo 680 ter, que es obligatorio en todo cambio de destino y debe realizarlo el juez —o quien este delegue— dentro de los cinco días.
+
+\begin{table}[H]
+\centering
+\caption{Acta notarial y reconocimiento judicial}
+\begin{tabular}{@{}p{2.6cm}p{5.6cm}p{5.6cm}@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Acta notarial} & \textbf{Reconocimiento judicial (art. 680 ter)} \\
+\midrule
+Quién lo realiza & Un escribano contratado por el locador. & El juez, que puede delegar en otro empleado. \\
+Carácter & Opcional; tiene fe pública. & Obligatorio en todo cambio de destino. \\
+Efecto & Aporta prueba y acelera la acción; no reemplaza el reconocimiento judicial. & Se hace antes del traslado de la demanda, dentro de los cinco días. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Ofrecer toda la prueba conducente}
+\addcontentsline{toc}{subsection}{Ofrecer toda la prueba conducente}
+
+El ofrecimiento de prueba queda a criterio de cada parte, como carga en su propio interés. Conviene ofrecer toda la prueba conducente frente a los hechos que previsiblemente controvertirá la contraparte —por ejemplo, prueba informativa mediante oficio a las cámaras del Gobierno de la Ciudad, ante la expectativa de que el demandado niegue los hechos denunciados.
+
+\clearpage
+
+% ============================================================
+% BLOQUE 6
+% ============================================================
+\chapter{Cierre y presentación}
+\markboth{Cierre y presentación}{Cierre y presentación}
+
+\section*{Unidad 18. Autorizados, petitorio y firma}
+\addcontentsline{toc}{section}{Unidad 18. Autorizados, petitorio y firma}
+
+El apartado de autorizados —no exigido por el artículo 330, aunque de uso habitual— permite incluir a otras personas que colaboran con el estudio, dentro o fuera de él. El petitorio resume, en términos concisos, todo lo peticionado en la demanda, y el cierre forense utiliza la fórmula ``Proveer de conformidad, será justicia'', seguida de la firma. Al tratarse de patrocinio letrado, la firma debe ser ológrafa y corresponde a los tres actores: no basta con que firme uno solo.
+
+\begin{definition}{Cierre de la demanda}
+Autorizados (no es obligatorio en el art. 330, pero se suele usar) $\rightarrow$ Petitorio conciso $\rightarrow$ ``Proveer de conformidad, será justicia'' $\rightarrow$ Firma en forma de los tres actores (patrocinio letrado).
+\end{definition}
+
+\section*{Unidad 19. Formulario de inicio y número de expediente}
+\addcontentsline{toc}{section}{Unidad 19. Formulario de inicio y número de expediente}
+
+\subsection*{Cómo se llena el formulario}
+\addcontentsline{toc}{subsection}{Cómo se llena el formulario}
+
+Una vez firmada la demanda por los tres clientes, se completa el formulario de inicio, necesario para el sorteo que asignará el número de expediente. En ese formulario se consignan el objeto del juicio (con el código correspondiente del listado del Colegio de la Abogacía), el actor (Riquel, comenzando por el apellido), el tipo y número de documento (obtenidos del contrato de locación), los demandados (Martín, y ``subinquilinos y ocupantes'') y la fecha de confección del formulario. El formulario se guarda en formato PDF y se envía a la cámara civil, por tratarse de una materia de locación —de naturaleza civil—; la cámara responde por correo electrónico o a través del PJN (en radicaciones), informando el juzgado sorteado y el número de expediente, datos que se completan manualmente en el escrito de demanda ya firmado y se comunican al cliente.
+
+\begin{table}[H]
+\centering
+\caption{Campos del formulario de inicio}
+\begin{tabular}{@{}p{3cm}p{5.2cm}p{5.2cm}@{}}
+\toprule
+\textbf{Campo del formulario} & \textbf{Qué se completa} & \textbf{De dónde sale} \\
+\midrule
+Objeto del juicio & Código y descripción: desalojo, otras causales. & Listado del Colegio de la Abogacía. \\
+Actor & Riquel (apellido primero). & Datos de los clientes. \\
+Tipo y número de documento & Los de cada parte. & Contrato de locación. \\
+Demandados & Martín; y ``subinquilinos y ocupantes''. & Contrato y denuncia de ocupantes. \\
+Fecha & La de confección del formulario. & --- \\
+Envío & Se guarda en PDF y se manda a la cámara civil. & La cámara responde por correo o en el PJN (radicaciones). \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{note}
+El docente cerró la clase recordando que las cartas documento no se entregan ya redactadas: cada grupo debe elaborarlas por su cuenta.
+\end{note}
+
+\clearpage
+
+% ============================================================
+% RESUMEN CORNELL
+% ============================================================
+\chapter{Resumen Cornell}
+\markboth{Resumen Cornell}{Resumen Cornell}
+
+Preguntas disparadoras y conceptos clave a la izquierda; respuestas y desarrollo a la derecha; síntesis integradora al pie.
+
+\begin{longtable}{>{\RaggedRight\arraybackslash}p{0.30\textwidth} >{\RaggedRight\arraybackslash}p{0.60\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuándo es obligatoria la intimación previa en un desalojo?} &
+Cuando el desalojo es por falta de pago. En los demás objetos (cambio de destino, vencimiento de contrato, otras causales) no es obligatoria la carta documento, pero el docente la envía igual porque ``viene más serio'' que una llamada, un correo o un WhatsApp. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{Carta documento: ¿papel o digital?} &
+En papel se redacta en tres ejemplares (uno queda en el correo, otro sellado y otro para el destinatario). El Correo Argentino ofrece el sistema digital. Ambas son aranceladas (se paga la carta y el envío); solo en lo laboral es gratuita. Hay clientes mayores o de bajos recursos que prefieren el papel. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Una carta por varias personas?} &
+No. Es una carta por persona, tanto para el remitente como para el destinatario, aunque vivan juntos o sean familia. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Qué domicilio lleva el remitente?} &
+El del contrato o, si el cliente no quiere que figure, el del estudio jurídico. Siempre se le pregunta al cliente si conserva su domicilio. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Y el destinatario? ¿Qué es constituir domicilio?} &
+Al locatario se lo intima en el inmueble locado. Al final de la carta hay un renglón: ``constituyo domicilio a los efectos del presente en…'' (el del estudio). Si se repite el del contrato, no se aclara nada. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Cuál es el contenido mínimo de la intimación por cambio de destino?} &
+Fecha y lugar; cómo se obligó el destinatario (contrato, fecha, cláusula de destino: vivienda); el incumplimiento concreto; intimación a que cese en un plazo y bajo apercibimiento de iniciar el desalojo, con costas; constitución de domicilio; datos de contacto; cierre ``Queda usted debidamente notificado''. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{Costas vs. costos: ¿en qué se diferencian?} &
+Costos: lo que genera de gasto. Costas: honorarios y todo lo que lleva el proceso (tasa judicial, bono, etcétera). \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Por qué incluir medios de contacto en la carta?} &
+Porque corre en paralelo el mundo de la negociación: el locatario puede querer hablar con un abogado, y a veces hay ``cortocircuito'' entre locador y locatario. Se ponen WhatsApp, correo o teléfono del estudio, sin escribir ``métodos alternativos''. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Por qué el abogado del demandado suele esperar?} &
+Porque quien es demandado ``se queda en el molde'' hasta que el otro activa. Solo se mueve si su cliente se lo pide. El estudio del locador debe fijar un plazo (``hasta fin de la semana que viene''). \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Por qué no alcanza la cláusula contractual para echar al inquilino?} &
+Porque nadie tiene el monopolio de la fuerza estatal: lo tiene el Poder Judicial. Hacer justicia por mano propia está vedado; hay que iniciar el proceso de desalojo. Los daños en el inmueble son otra acción (daños y perjuicios). \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Cuándo se sortea la demanda?} &
+Solo cuando firman los tres clientes (firma ológrafa, con patrocinio letrado). El sorteo da el número de expediente; si la demanda no se sube, queda sin efecto y hay que volver a sortear. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Qué diferencia hay entre domicilio procesal, legal y electrónico?} &
+Procesal (ad litem): dentro del radio del juzgado; siempre va. Legal: societario, del curador, de menores; no se usa en el escrito. Electrónico: CUIT del abogado (nacional); nombre y CUIT (provincial). Se agrega la ``zona de notificación''. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Cómo se caratula y qué objeto se elige?} &
+Apellido, nombre, c/ demandado y otros, s/ desalojo. El código sale del listado de objetos del Colegio de la Abogacía: falta de pago, vencimiento, comodato, intrusos y otras causales (donde va el cambio de destino). \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Qué debe decir el objeto de la demanda?} &
+Se dice sin rodeos a qué se viene: ``cambio de destino'', contra Martín y sus inquilinos y ocupantes, con domicilio en el inmueble; ``incumplimiento imputable al locatario, se ordena el desalojo y la restitución, con costas''. El juez no debe adivinar. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Cómo se determina la competencia (art. 5 CPCCN)?} &
+Va siempre. Hay que leer el contrato por si hay prórroga (arbitraje, otro departamento judicial). Si no, el juez del lugar donde está situado el inmueble. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Por qué aclarar la legitimación activa?} &
+Es opcional, pero se adelanta a las dilatorias del demandado. Los actores son titulares de la relación sustancial; la legitimación es amplia (heredero, usufructuario, condómino que acredite, locatario que sublocó si estaba permitido). \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Qué exige el artículo 680 ter del CPCCN?} &
+En cambio de destino (y en intrusos), el juez debe hacer un reconocimiento judicial antes del traslado de la demanda, dentro de los cinco días de la primera providencia, con asistencia del Defensor Oficial; puede delegarlo. Hay que pedirlo y conocerlo. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Por qué no se reconoce a los subinquilinos y ocupantes?} &
+Porque, por la defensa en juicio (art. 18 CN), el juzgado tendría que notificar a cada persona que se individualice y complicaría el proceso. Se demanda ``contra subinquilinos y ocupantes'' en general. \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Cuándo se ofrece la prueba y cuál?} &
+Toda con la demanda (``toda la carne al asador''); luego solo documentos posteriores. Documental: contrato, carta documento, fotografías; acta notarial (opcional, no reemplaza el reconocimiento judicial); informativa (por ejemplo, cámaras de la Ciudad). \\
+\addlinespace \cmidrule{1-2}
+
+\textbf{¿Cómo se cierra la demanda y cómo se obtiene el número de expediente?} &
+Autorizados $\rightarrow$ petitorio $\rightarrow$ ``Proveer de conformidad, será justicia'' $\rightarrow$ firma de los tres. Se completa el formulario (objeto, actor, demandados, documento, fecha), se guarda en PDF y se envía a la cámara civil, que informa el número de expediente y el juzgado; se completa a mano en la demanda y se avisa al cliente. \\
+\addlinespace
+
+\midrule
+\multicolumn{2}{>{\RaggedRight\arraybackslash}p{0.92\textwidth}}{
+\textbf{Síntesis final:} El taller mostró el recorrido completo de un desalojo por cambio de destino, desde el primer aviso hasta el número de expediente. Todo parte de leer el contrato: allí están el destino pactado (vivienda), los sujetos, los domicilios y la competencia. Con ese material se redacta una carta documento que, aunque en este supuesto no sea obligatoria, otorga seriedad: una carta por persona, con remitente y destinatario bien identificados, intimación en un plazo y bajo apercibimiento, constitución de domicilio en el estudio, medios de contacto para negociar y cierre formal. En paralelo, las partes conversan para evitar el juicio, sabiendo que el demandado suele esperar y que el locador debe fijar un plazo. Si no hay acuerdo, no se puede hacer justicia por mano propia: se demanda, con el esquema del art. 330 del CPCCN —encabezamiento con patrocinio y domicilios (procesal y electrónico), carátula con el código ``otras causales'', objeto claro, competencia (art. 5), legitimación activa aclarada para evitar dilatorias, relación locativa, incumplimiento, intimación previa, derecho, denuncia de ocupantes sin reconocerlos (art. 18 CN), toda la prueba ofrecida con la demanda y petitorio firmado por los tres clientes—. La pieza clave es el art. 680 ter: el juez debe realizar un reconocimiento judicial antes de correr traslado, dentro de los cinco días, por lo que el abogado debe conocerlo y pedirlo. Finalmente, el formulario se sube a la cámara civil y se informa al cliente el juzgado y el número de expediente.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

@@ -1,0 +1,647 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% METADATOS DEL DOCUMENTO (obtenidos del apunte original)
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Filosofía y Letras}
+\newcommand{\materia}{Lectocomprensión en Inglés}
+\newcommand{\titulo}{Apuntes de Clase}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+\newcommand{\reflexionmotivacional}{Comprender un idioma es aprender a pensar más allá de las palabras.}
+
+% ============================================================
+% HIPERVÍNCULOS Y METADATOS PDF
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% CONFIGURACIÓN GENERAL
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% ENCABEZADOS Y PIES
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS MATEMÁTICOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS ACADÉMICAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{\reflexionmotivacional}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+\clearpage
+
+% ============================================================
+% CAPÍTULO 1: INTRODUCCIÓN Y FUNDAMENTOS DE LECTOCOMPRENSIÓN
+% ============================================================
+\chapter{Introducción y fundamentos de la lectocomprensión}
+
+\section{Presentación de la unidad}
+
+Esta unidad aborda la lectocomprensión de textos en inglés, con especial aplicación al análisis de la Constitución de los Estados Unidos. Los temas tratados son los siguientes:
+
+\begin{itemize}
+    \item Términos transparentes y cognados.
+    \item Falsos cognados: identificación y estrategias.
+    \item Estructura de la Constitución de Estados Unidos.
+    \item División de poderes: legislativo, ejecutivo y judicial.
+    \item Sistema de frenos y contrapesos.
+    \item Composición del Congreso estadounidense.
+    \item Estrategias de lectocomprensión en textos técnicos.
+\end{itemize}
+
+\subsection{Relevancia de la lectocomprensión en inglés}
+
+El dominio de las técnicas de lectocomprensión en inglés resulta esencial para distintos perfiles académicos y profesionales:
+
+\begin{itemize}
+    \item \textbf{Estudiantes de Derecho}: acceso a jurisprudencia estadounidense, tratados internacionales y literatura legal en inglés.
+    \item \textbf{Profesionales}: lectura de documentación técnica, normativas internacionales y correspondencia comercial.
+    \item \textbf{Académicos}: consulta de artículos científicos, investigaciones y referencias bibliográficas en la lengua internacional de la ciencia.
+    \item \textbf{Abogados}: negociación de contratos internacionales, comprensión de sistemas legales extranjeros y argumentación ante cortes internacionales.
+\end{itemize}
+
+En la era de la globalización, la capacidad de leer y comprender textos en inglés constituye una competencia indispensable que abre oportunidades laborales, académicas y profesionales. Las estrategias presentadas en esta unidad permiten no solo traducir, sino verdaderamente comprender la intención y la estructura de textos complejos en una segunda lengua.
+
+\subsection{Mapa temático de conceptos clave}
+
+La siguiente tabla organiza los conceptos centrales de la unidad junto con la pregunta guía que orienta su estudio, agrupados por bloque temático.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.10\textwidth}
+    >{\raggedright\arraybackslash}p{0.35\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{N.º} & \textbf{Concepto} & \textbf{Pregunta guía} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{N.º} & \textbf{Concepto} & \textbf{Pregunta guía} \\
+\midrule
+\endhead
+
+\multicolumn{3}{l}{\textit{Fundamentos de lectocomprensión}} \\
+\midrule
+1 & Términos transparentes: palabras que suenan igual en español e inglés por su origen común & ¿Cómo identificar palabras que mantienen significado entre idiomas? \\
+2 & Cognados: términos con origen etimológico común que conservan significado similar & ¿Qué diferencia hay entre un cognado verdadero y su variante lingüística? \\
+3 & Falsos cognados: palabras que parecen cognados pero tienen significados distintos & ¿Por qué \textit{government} no siempre se traduce como ``gobierno''? \\
+\midrule
+\multicolumn{3}{l}{\textit{Estructura constitucional estadounidense}} \\
+\midrule
+4 & División de poderes: separación entre poder legislativo, ejecutivo y judicial & ¿Cómo se distribuye el poder en la estructura gubernamental estadounidense? \\
+5 & Frenos y contrapesos: mecanismo de control mutuo entre los tres poderes & ¿Cuál es el propósito del ``sistema de pesos y contrapesos''? \\
+\midrule
+\multicolumn{3}{l}{\textit{Poder legislativo}} \\
+\midrule
+6 & Estructura del Congreso: composición bicameral, Senado y Cámara de Representantes & ¿Cómo está dividido el Congreso estadounidense? \\
+7 & El Senado: representación estatal y características de composición & ¿Por cuánto tiempo sirven los senadores y cuáles son sus límites de reelección? \\
+8 & Cámara de Representantes: distribución proporcional por población & ¿Cómo se distribuyen los representantes entre los diferentes estados? \\
+\midrule
+\multicolumn{3}{l}{\textit{Poder ejecutivo}} \\
+\midrule
+9 & Funciones del presidente: funciones y facultades del jefe del poder ejecutivo & ¿Cuáles son las principales responsabilidades del presidente estadounidense? \\
+10 & Composición del poder ejecutivo: gabinete y agencias federales & ¿Quiénes integran el poder ejecutivo además del presidente? \\
+\midrule
+\multicolumn{3}{l}{\textit{Poder judicial}} \\
+\midrule
+11 & Estructura del poder judicial: Corte Suprema y tribunales federales & ¿Cuáles son las funciones principales del poder judicial en el sistema estadounidense? \\
+\bottomrule
+\end{longtable}
+
+\section{Unidad 1: Términos transparentes y cognados}
+
+\begin{definition}{Términos transparentes}
+Son términos que suenan parecidos en español e inglés debido a su estructura gráfica o fonética. Cuando se leen estas palabras, remiten automáticamente a su significado en español porque comparten el mismo origen etimológico. El ejemplo clásico es la palabra \textit{transparente}: es transparente como un vidrio, lo que se ve a través de la luz es lo que está del otro lado.
+\end{definition}
+
+\begin{definition}{Cognados}
+Es un concepto lingüístico. Los cognados son términos que tienen un origen común en español e inglés. En general, las lenguas romance (como el español) derivan del latín, mientras que el inglés es una lengua sajona de origen germánico. Sin embargo, a través del contacto histórico y la influencia latina, existen muchos términos que comparten raíces comunes, lo que permite una comunicación más fluida entre hablantes de estos idiomas.
+\end{definition}
+
+\section{Unidad 2: Falsos cognados. Trampas de la traducción}
+
+\begin{definition}{Falso cognado o falso amigo}
+Un falso cognado, también llamado ``falso amigo'', es una palabra que parece significar un determinado concepto o instituto en otro idioma, pero en realidad significa algo completamente distinto. El significado puede ser opuesto o simplemente relacionado, pero diferente.
+\end{definition}
+
+\subsection{Origen etimológico de los falsos cognados}
+
+En general, los cognados y los falsos cognados surgen porque existe un origen común de los términos en español e inglés. El inglés tiende a tener palabras cortas, de dos o tres sílabas como máximo. Cuando en inglés se encuentran palabras muy largas, generalmente contienen:
+
+\begin{itemize}
+    \item \textbf{Prefijos} (agregados al inicio de la palabra, ej.: \textit{unconstitutional}).
+    \item \textbf{Sufijos} (agregados al final, ej.: \textit{prestación}).
+    \item \textbf{Palabras de origen latino} (que provienen del latín).
+\end{itemize}
+
+Con el tiempo, el sentido de estos términos se fue diversificando. En una cultura, ese mismo término que tenía un origen común encaminó su significado hacia otro lado. La gente, a lo largo de los siglos, comenzó a usarlo de otra manera y adquirió un significado completamente distinto.
+
+\subsection{Estrategias para identificar falsos cognados}
+
+\begin{important}
+No existe una lista que se pueda aprender de memoria, como los verbos irregulares en inglés. La forma de identificar falsos cognados es la siguiente: cuando se está leyendo un texto e interpretando su contenido, surge la pregunta interna ``¿Qué tiene que ver esto aquí?''. Cuando una palabra o concepto no cierra y la lectura pierde coherencia, es una posible señal de que se trata de un falso cognado. La solución es buscar esa palabra en el diccionario.
+\end{important}
+
+% ============================================================
+% CAPÍTULO 2: ESTRUCTURA CONSTITUCIONAL ESTADOUNIDENSE
+% ============================================================
+\chapter{Estructura constitucional estadounidense}
+
+\section{La Constitución y la división de poderes}
+
+El texto menciona que la Constitución de Estados Unidos se divide en tres secciones. Sin embargo, en realidad, lo que se divide no es la Constitución misma, sino el gobierno federal en tres ramas (\textit{branches}), que corresponden a los tres poderes: ejecutivo, legislativo y judicial.
+
+\begin{note}
+La traducción literal de \textit{branch} es ``rama'' (rama del árbol). Sin embargo, en el contexto constitucional, es más apropiado hablar de ``poderes'' que de ``ramas''. Aunque ``rama'' no es completamente incorrecto, ``poder'' es técnicamente más preciso.
+\end{note}
+
+El objetivo de esta división es que ningún individuo o grupo tenga demasiado poder. La Constitución busca impedir la concentración del poder en una sola persona o institución. El texto establece: \textit{``no individual or group will have too much power''}, diferenciando entre personas físicas (individuos) y personas jurídicas (grupos).
+
+\section{Primer falso cognado: \textit{Government}}
+
+Un ejemplo central que aparece en el texto es la palabra \textit{government}. La tendencia automática es traducirla como ``gobierno''. Sin embargo, al analizar el contexto completo, el texto indica que el \textit{government} se divide en tres poderes (ejecutivo, legislativo y judicial). En realidad, la palabra \textit{government} en este contexto se refiere al ``Estado'' o a la ``organización del Estado'', no al gobierno en el sentido del poder ejecutivo.
+
+En inglés, el término \textit{government} se utiliza generalmente en este sentido, para referirse a toda la estructura del Estado. En español, la palabra ``gobierno'' se reserva generalmente para referirse al poder ejecutivo (Presidente, Ministros). Por ello, en este contexto constitucional, se trata de un falso cognado: parece significar ``gobierno'', pero en realidad significa ``Estado'' u ``organización estatal''.
+
+\section{Las tres ramas: funciones específicas}
+
+El texto presenta las funciones de cada rama mediante verbos en presente, tercera persona del singular (con \textit{-s}):
+
+\begin{table}[H]
+\centering
+\caption{Funciones de las tres ramas del gobierno}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Rama} & \textbf{Función} \\
+\midrule
+Legislativa (\textit{Legislative}) & Elabora, sanciona, redacta — hace las leyes (\textit{makes laws}). \\
+Ejecutiva (\textit{Executive}) & Lleva a cabo, ejecuta — realiza las leyes (\textit{carries out laws}). \\
+Judicial (\textit{Judicial}) & Evalúa, interpreta, aplica — interpreta las leyes y controla la constitucionalidad (\textit{evaluates laws}). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+El texto utiliza verbos muy simples: \textit{makes}, \textit{carries out}, \textit{evaluates}. En lugar de términos técnicos más precisos como ``sanciona'', ``redacta'' o ``promulga'', se emplea un lenguaje llano. Esto se relaciona con la fuente del texto: es un documento que apela al público en general para que cualquier persona lo pueda entender, independientemente de su formación jurídica. Por eso busca palabras simples y de fácil comprensión.
+\end{note}
+
+% ============================================================
+% CAPÍTULO 3: PODER LEGISLATIVO — EL CONGRESO ESTADOUNIDENSE
+% ============================================================
+\chapter{Poder legislativo: el Congreso estadounidense}
+
+El Congreso está compuesto por dos cámaras: el Senado y la Cámara de Representantes (\textit{House of Representatives}), lo cual configura un sistema bicameral, similar al argentino.
+
+\section{El Senado: características y composición}
+
+El Senado está compuesto por un total de \textbf{100 senadores}: 2 por cada uno de los 50 estados estadounidenses, independientemente de su población. Esto implica que Wyoming, con muy poca población, tiene la misma representación que California, mucho más poblada. Los senadores sirven durante un mandato (\textit{term}) de \textbf{6 años} y no hay límite de reelección: pueden ser reelectos indefinidamente.
+
+\begin{note}
+Cuando aparece \textit{term} en un contexto político, no se refiere a una palabra (término), sino a un mandato o período de ejercicio de un cargo. \textit{``The term is six years''} significa ``el mandato dura seis años''. Este es un ejemplo de cómo el contexto es fundamental para la correcta interpretación.
+\end{note}
+
+\section{La Cámara de Representantes: distribución proporcional}
+
+A diferencia del Senado, la Cámara de Representantes tiene una composición proporcional a la población. El total de representantes es \textbf{435}, distribuidos entre los 50 estados en proporción a su población. Los estados más poblados tienen más representantes, mientras que los menos poblados tienen al menos uno.
+
+\begin{note}
+La traducción literal de \textit{House} es ``casa'', pero en el contexto del Congreso estadounidense se traduce como ``Cámara''. Así, \textit{House of Representatives} es ``Cámara de Representantes'', no ``Casa de Representantes''. En español se utiliza también ``Cámara de Diputados'' en lugar de ``Cámara de Representantes'', aunque ambas terminologías son correctas.
+\end{note}
+
+\subsection{Delegados sin derecho a voto}
+
+El texto menciona la existencia de ``delegados no votantes'' (\textit{nonvoting delegates}) que representan al Distrito de Columbia y a otros territorios estadounidenses. El Distrito de Columbia es similar a la Ciudad Autónoma de Buenos Aires en Argentina: posee un estatus especial dentro de los Estados Unidos. Es una ciudad-capital que no forma parte de ningún estado, pero que depende del gobierno federal. Los delegados del Distrito de Columbia y de los territorios pueden participar en los debates del Congreso, pero no tienen derecho a votar.
+
+\subsection{Mandato de los representantes}
+
+Los representantes cumplen un mandato de \textbf{2 años}, significativamente más corto que el de los senadores. Esto refleja una intención de que sean más responsables y estén directamente ligados a los cambios de opinión de su electorado. Como en el Senado, no hay límite de reelección.
+
+\begin{note}
+Cuando el texto dice \textit{``a two-year term''}, utiliza una estructura nominal característica del inglés, donde se encadenan sustantivos y adjetivos para formar una expresión. En español no es posible construir de esta manera; se debe decir ``un mandato de dos años'', agregando preposiciones, artículos y verbos. El inglés permite una estructura más concisa. La clave para entender estas construcciones es identificar el sustantivo núcleo (\textit{term}) y analizar cómo los demás elementos lo califican (\textit{two-year}).
+\end{note}
+
+% ============================================================
+% CAPÍTULO 4: PODER EJECUTIVO
+% ============================================================
+\chapter{Poder ejecutivo}
+
+El poder ejecutivo se encarga de ejecutar y hacer cumplir las leyes que sanciona el poder legislativo. Su estructura es más concentrada que la del Congreso, siendo el Presidente la figura central.
+
+\section{Término clave: \textit{Enforce} (hacer cumplir)}
+
+El verbo \textit{enforce} es sumamente jurídico y técnico. Literalmente significa ``darle fuerza'' (\textit{en + force}), pero en contexto legal significa ``hacer cumplir'' o ``poner en práctica'' una ley. Este verbo está compuesto por un prefijo (\textit{en-}) y la palabra \textit{force} (fuerza), lo que permite deducir su significado incluso sin diccionario.
+
+\section{Composición del poder ejecutivo}
+
+El poder ejecutivo incluye al Presidente, al Vicepresidente, al Gabinete (\textit{Cabinet}), a agencias federales independientes, y a diversos consejos, comisiones y comités. El texto menciona específicamente ``\textit{high ranking government officials}'' (funcionarios gubernamentales de alto rango).
+
+\section{Funciones del presidente}
+
+El Presidente es el jefe del Estado, líder del gobierno federal y comandante en jefe de las Fuerzas Armadas. Este es un rol que existe en la mayoría de los sistemas presidenciales, similar al rol del Presidente en Argentina, aunque con algunas diferencias importantes en las facultades.
+
+\subsection{Mandato presidencial y límites de reelección}
+
+El Presidente cumple un mandato de \textbf{4 años} y puede ser elegido no más de dos veces (máximo 8 años de gobierno). Este límite fue establecido constitucionalmente después del Presidente Franklin D. Roosevelt, quien se reeligió cuatro veces. Esta diferencia es importante: a diferencia de Argentina, que permite la reelección consecutiva, Estados Unidos prohíbe explícitamente que un presidente cumpla más de dos mandatos.
+
+\subsection{El Vicepresidente}
+
+El Vicepresidente asiste y apoya al Presidente. Si el Presidente es incapaz de ejercer sus funciones por cualquier motivo (enfermedad, muerte, renuncia, destitución), el Vicepresidente asume automáticamente la presidencia. El Vicepresidente, a diferencia del Presidente, puede ser reelecto un número ilimitado de veces, incluso en fórmulas distintas (con otro Presidente). Esta característica hace que el rol del Vicepresidente sea bastante distinto al de otros sistemas presidenciales, como el argentino.
+
+\begin{note}
+En este contexto, \textit{support} significa ``apoyar'' o ``asistir'', no ``soportar'' en el sentido de ``tolerar''. Se trata de otro falso cognado potencial que debe interpretarse según el contexto de uso.
+\end{note}
+
+\subsection{El Gabinete (\textit{Cabinet})}
+
+El Gabinete está integrado por funcionarios de alto rango designados por el Presidente. Estos incluyen a los Secretarios de Estado (equivalentes a Ministros en otros países). Los miembros del Gabinete deben ser confirmados por el Senado mediante votación. Se requiere una mayoría simple (51 votos de 100 senadores) para la confirmación. Este es un mecanismo de control del poder legislativo sobre el ejecutivo.
+
+\subsection{Facultades del presidente}
+
+El Presidente tiene, entre otras, las siguientes facultades:
+
+\begin{itemize}
+    \item Vetar leyes creadas por el Congreso.
+    \item Nominar (proponer) a los jefes de agencias federales.
+    \item Nominar (proponer) a jueces federales, incluidos los de la Corte Suprema.
+\end{itemize}
+
+% ============================================================
+% CAPÍTULO 5: PODER JUDICIAL
+% ============================================================
+\chapter{Poder judicial}
+
+El poder judicial es responsable de interpretar las leyes y controlar su constitucionalidad. Su función principal es garantizar que las acciones del gobierno se ajusten a la Constitución.
+
+\section{Composición del poder judicial}
+
+El poder judicial está compuesto por la Corte Suprema y otros tribunales federales. Los jueces de la Corte Suprema son propuestos (nominados) por el Presidente y confirmados por el Senado.
+
+\begin{important}
+En inglés, \textit{court} se refiere a cualquier tipo de tribunal, independientemente de su nivel jerárquico (primera instancia, apelación o casación). En español se hace una distinción clara: ``juzgado'' (primera instancia), ``tribunal'' (apelación) y ``corte'' (máxima instancia). Cuando aparece \textit{court} en un texto en inglés, debe analizarse el contexto para determinar de qué tipo de tribunal se trata. Traducir automáticamente \textit{court} como ``corte'' es un error frecuente que puede llevar a confusión. \textit{Supreme Court} es claramente la ``Corte Suprema'', pero \textit{other courts} pueden ser tribunales de cualquier nivel.
+\end{important}
+
+\section{Funciones del poder judicial}
+
+El verbo \textit{evaluate} (evalúa) describe la función del poder judicial, pero debe interpretarse con cuidado. No significa simplemente ``evaluar'' en sentido general, sino ``controlar'', ``interpretar'' y ``aplicar'' las leyes. El poder judicial puede declarar una ley inconstitucional, anulando así su vigencia. El verbo \textit{overturn} (derrocar, anular) expresa esta facultad: ``pueden anular leyes inconstitucionales''.
+
+% ============================================================
+% CAPÍTULO 6: SISTEMA DE FRENOS Y CONTRAPESOS
+% ============================================================
+\chapter{Sistema de frenos y contrapesos}
+
+El sistema completo se denomina \textit{``system of checks and balances''} en inglés, que se traduce como ``sistema de frenos y contrapesos'' o ``sistema de pesos y contrapesos''.
+
+\begin{important}
+Si se traduce \textit{``checks and balances''} literalmente, se obtiene ``cheques y balances'', lo cual no tiene sentido. \textit{Check} en este contexto no significa ``cheque'' (instrumento financiero), sino ``control'' o ``revisión''. \textit{Balance} no se refiere al ``balance contable'' de una empresa, sino al ``equilibrio''. En conjunto, \textit{``system of checks and balances''} es un instituto político específico que en español se denomina ``sistema de frenos y contrapesos'', donde cada rama del gobierno puede controlar, limitar y equilibrar el poder de las otras.
+\end{important}
+
+% ============================================================
+% CAPÍTULO 7: ESTRATEGIAS TRANSVERSALES DE LECTOCOMPRENSIÓN
+% ============================================================
+\chapter{Estrategias transversales de lectocomprensión}
+
+A continuación se presentan las estrategias clave para abordar textos complejos en inglés.
+
+\section{Identificación de términos transparentes}
+
+Marcar palabras transparentes en un texto permite anticipar el contenido general. Al identificar palabras como ``Constitución'', ``poderes'', ``ejecutivo'', ``legislativo'' o ``judicial'', se puede inferir que el texto trata sobre estructura gubernamental, incluso sin entender todas las palabras.
+
+\section{Estrategia de fraccionamiento de oraciones}
+
+Cuando una oración es compleja o genera dificultad, una estrategia efectiva es extraer las partes secundarias (como las que están entre comas) y leer primero la oración simplificada. Luego se agregan las partes extraídas. Esto facilita la comprensión de la estructura gramatical principal.
+
+\begin{example}{Fraccionamiento de una oración compleja}
+Oración original: \textit{``The Justices of the Supreme Court, who are nominated by the president and confirmed by the Senate, can overturn unconstitutional laws.''}
+
+Se puede leer primero la estructura simplificada: \textit{``The Justices of the Supreme Court can overturn unconstitutional laws.''} Luego se agrega la información entre comas sobre cómo se nombran los jueces.
+\end{example}
+
+\section{Deducción por composición de palabras}
+
+Muchas palabras en inglés se componen de prefijos más raíces, o de raíces más sufijos. Identificar estos componentes permite deducir significados incluso sin diccionario. Por ejemplo:
+
+\begin{itemize}
+    \item \textit{un-} (no) + \textit{constitutional} (constitucional) = \textit{unconstitutional} (inconstitucional).
+    \item \textit{over-} (sobre, exceder) + \textit{turn} (girar) = \textit{overturn} (anular, derrocar).
+\end{itemize}
+
+\section{La importancia del contexto}
+
+El mismo término puede tener significados diferentes según el contexto:
+
+\begin{itemize}
+    \item \textit{Government} puede significar ``gobierno'' en algunos contextos, pero ``Estado'' en otros.
+    \item \textit{Support} puede significar ``apoyar'' o ``sostener'' dependiendo del contexto.
+    \item \textit{State} puede referirse al ``Estado federal'' o a un ``estado particular'', dependiendo de si aparece en singular o plural y del contexto circundante.
+\end{itemize}
+
+Siempre es necesario analizar el contexto completo para interpretar correctamente.
+
+\section{Cuándo consultar el diccionario}
+
+No todo desconocimiento requiere consultar el diccionario. Las palabras del lenguaje cotidiano pueden deducirse del contexto. Sin embargo, los términos técnicos y específicos de una disciplina (como los términos jurídicos o constitucionales) generalmente requieren búsqueda en el diccionario cuando su falta de comprensión afecta la interpretación del párrafo.
+
+\begin{important}
+Regla general: consultar el diccionario cuando la incomprensión impide entender la idea central de una oración o párrafo.
+\end{important}
+
+\section{Síntesis de las estrategias de lectocomprensión}
+
+La lectocomprensión en inglés no se trata simplemente de traducir cada palabra, sino de comprender la estructura, identificar patrones, usar estrategias de deducción y siempre considerar el contexto. La combinación de términos transparentes, cognados y técnicas de análisis de palabras compuestas permite abordar textos académicos y profesionales con mayor confianza y efectividad. El diccionario es una herramienta necesaria, pero no debe ser el único recurso: el razonamiento lógico, la observación de patrones y la comprensión global del contexto son igual de importantes.
+
+% ============================================================
+% CAPÍTULO 8: NOTAS CORNELL
+% ============================================================
+\chapter{Notas Cornell}
+
+El siguiente cuadro reúne, según el método Cornell, las preguntas y palabras clave más relevantes de la unidad junto con su desarrollo correspondiente, cerrando con una síntesis integradora del contenido.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es un término transparente?} &
+Palabras que suenan parecido en español e inglés por su origen etimológico común. Ejemplo: ``Constitución'' suena igual y significa lo mismo. Son fáciles de identificar y permiten anticipar contenido. \\
+
+\textbf{¿Cuál es la diferencia entre un cognado y un falso cognado?} &
+Cognado: término con origen común que conserva significado similar. Falso cognado: parece cognado pero tiene significado distinto. Ejemplos: \textit{government} (Estado, no gobierno en sentido ejecutivo); \textit{support} (apoyar, no soportar). \\
+
+\textbf{¿Cómo identificar falsos cognados?} &
+No hay una lista para memorizar. Se identifican cuando la lectura pierde coherencia: ``esto no cierra''. Luego se busca en el diccionario. El contexto es clave para diferenciar cuándo una palabra tiene múltiples significados. \\
+
+\textbf{¿Cuál es la función de \textit{branch} en \textit{branches of government}?} &
+\textit{Branch} literalmente significa ``rama'', pero en contexto constitucional se refiere a los tres ``poderes'' (ejecutivo, legislativo, judicial). Es preferible usar ``poder'' en lugar de ``rama'' en este contexto técnico. \\
+
+\textbf{¿Por qué \textit{government} es un falso cognado en el texto de la Constitución?} &
+Aunque \textit{government} se traduce como ``gobierno'', en el texto se refiere a toda la estructura del Estado, no solo al ejecutivo. En inglés se usa \textit{government} para la estructura estatal completa; en español se distingue ``gobierno'' (ejecutivo) de ``Estado''. \\
+
+\textbf{¿Cuáles son los tres poderes según la Constitución estadounidense?} &
+1) Legislativo (hace leyes) — Congreso; 2) Ejecutivo (ejecuta leyes) — Presidente y Gabinete; 3) Judicial (interpreta y controla leyes) — Corte Suprema y tribunales. \\
+
+\textbf{¿Cómo se compone el Congreso estadounidense?} &
+Sistema bicameral: Senado (2 senadores por estado = 100 en total; mandatos de 6 años; reelección ilimitada) y Cámara de Representantes (435 miembros distribuidos por población; mandatos de 2 años; reelección ilimitada). \\
+
+\textbf{¿Qué significa \textit{enforce} en \textit{carries out and enforces laws}?} &
+Literalmente ``dar fuerza''. En contexto legal: ``hacer cumplir'' o ``poner en práctica'' las leyes. Es el verbo que describe la función del ejecutivo de garantizar que se respeten y apliquen las normas. \\
+
+\textbf{¿Cuál es el significado de \textit{court} en inglés y cómo se traduce?} &
+En inglés, \textit{court} se refiere a cualquier tribunal sin importar su nivel jerárquico. En español se diferencia: juzgado (primera instancia), tribunal (apelación), corte (máxima instancia). La traducción requiere analizar el contexto. \\
+
+\textbf{¿Qué es el \textit{system of checks and balances}?} &
+Sistema mediante el cual cada rama del gobierno puede controlar y limitar el poder de las otras, evitando la concentración de poder. Se denomina ``sistema de frenos y contrapesos'' en español. Literalmente no significa ``cheques y balances''. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:}
+Leer un idioma extranjero no es un proceso mecánico de traducción palabra por palabra, sino un acto de interpretación activa que requiere identificar patrones, contexto y estructura. Los términos transparentes facilitan la anticipación de contenido; los cognados verdaderos refuerzan la comprensión; y los falsos cognados representan trampas que requieren verificación. La Constitución estadounidense sirve como caso de estudio para aplicar estas técnicas, al presentar un documento con lenguaje de fácil acceso (intencionalmente simple para el público general) pero con contenido conceptualmente complejo (organización estatal, distribución de poderes, sistema de controles mutuos). Las estrategias de fraccionamiento de oraciones, identificación de estructuras nominales encadenadas, y análisis de prefijos y sufijos proporcionan herramientas que trascienden este texto específico y pueden aplicarse a cualquier documento académico o profesional en inglés.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}
