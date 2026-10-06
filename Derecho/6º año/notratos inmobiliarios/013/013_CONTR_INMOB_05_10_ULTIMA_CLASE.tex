@@ -1,0 +1,1077 @@
+%==============================================================================
+% DOCUMENTCLASS
+%==============================================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================================
+% METADATOS
+%==============================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\materia}{Contratos Inmobiliarios}
+\newcommand{\titulo}{Apuntes de Contratos Inmobiliarios}
+\newcommand{\subtitulo}{Compra en pozo, financiación del terreno, fideicomiso, hipoteca divisible y tokenización}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================================
+% PAQUETES
+%==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================================
+% CONFIGURACIÓN
+%==============================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\captionsetup{font=small,labelfont=bf}
+
+%==============================================================================
+% COMANDOS
+%==============================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Columnas y fila de resumen del cuadro Cornell
+\newcommand{\cornellresumen}[1]{%
+  \multicolumn{2}{p{\dimexpr0.89\textwidth+2\tabcolsep\relax}}{\textbf{Resumen:} #1}\\}
+
+%==============================================================================
+% ENTORNOS / CAJAS
+%==============================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%==============================================================================
+% CONFIGURACIÓN FINAL
+%==============================================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================================
+% DOCUMENTO
+%==============================================================================
+\begin{document}
+
+%------------------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\Large \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%------------------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------------------
+\tableofcontents
+
+%==============================================================================
+% CONTENIDO
+%==============================================================================
+
+%------------------------------------------------------------------------------
+\chapter[La compra en pozo]{La compra en pozo y el boleto de compraventa}
+%------------------------------------------------------------------------------
+
+\section{Los actores y la financiación del desarrollo inmobiliario}
+
+La materia explica cómo se hace, jurídica y financieramente, un edificio en Argentina cuando ninguno de los involucrados dispone del dinero para pagar el terreno ni para construir. El tratamiento parte de una pregunta práctica —¿qué hay detrás de «comprar un pozo»?— y adopta la perspectiva material del litigio: se analiza tanto la teoría como lo que ocurre en la práctica, porque la teoría resulta clara pero en la práctica las cosas no funcionan del mismo modo.
+
+En un desarrollo inmobiliario (un emprendimiento de propiedad horizontal, de superficie o un conjunto inmobiliario) intervienen tres partes:
+
+\begin{itemize}
+    \item el \textbf{dueño del terreno}, titular de la parcela;
+    \item la \textbf{constructora};
+    \item la \textbf{desarrolladora}.
+\end{itemize}
+
+Dado que hay poca liquidez en el mercado, los terrenos muchas veces no se terminan pagando en dinero en efectivo. Por ese motivo el mercado en su conjunto recurrió a \textbf{mecanismos de financiación}, que se estudian a lo largo de estos apuntes.
+
+\begin{note}
+Las notas originales usan la analogía de un viaje a Mar del Plata para ordenar todos los temas: el destino es la entrega de las unidades funcionales y cada figura jurídica es un «vehículo» para llegar a él (véase el Capítulo~\ref{cap:financiacion}).
+\end{note}
+
+\section{Qué significa comprar un pozo}
+
+Quien dice «compro un pozo» está, en realidad, \textbf{comprando un departamento} y, a la vez, \textbf{financiando la obra}. Esta doble condición genera ventajas, pero también riesgos para la persona que pone el dinero.
+
+\begin{important}
+\textbf{Riesgos típicos de quien compra en pozo} (según los ejemplos expuestos):
+\begin{enumerate}
+    \item que la obra no se termine;
+    \item que la unidad se venda varias veces;
+    \item que la superficie o la calidad entregadas no coincidan con lo prometido;
+    \item que la constructora quiebre.
+\end{enumerate}
+Todos estos supuestos terminan, en la práctica, en juicio.
+\end{important}
+
+Los conflictos que llegan a los tribunales son, por ejemplo: se prometieron 50 metros y se entregaron 40; se prometió un determinado revestimiento y se colocó otro de inferior calidad; la constructora vendió la misma unidad dos veces; la constructora se fundió y se llegó a una quiebra.
+
+\begin{example}{Edificio «Elefante Blanco» (Avellaneda)}
+Se trata de un edificio de gran tamaño que se vendió una enorme cantidad de veces. La constructora quebró y, en el marco de la quiebra, se discute cuánto dinero puede recuperarse de la venta total de la estructura.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se precisan datos del caso)
+\end{example}
+
+\section{Por qué se producen los conflictos}
+
+Los conflictos se explican por dos factores principales.
+
+\subsection{El dinero no declarado}
+
+Ni a las constructoras ni a los compradores les gusta declarar el dinero: prefieren mantenerlo sin declarar. En consecuencia, se firma un papel que no se declara ni se escribe en ningún lado, y de allí surgen los problemas: se hace un boleto por un precio y otro boleto por otro precio, y luego resulta difícil determinar cuánto se pagó y cuánto no.
+
+Esta conducta implica un beneficio para ambas partes, ya que se pagan menos impuestos si la obra se entrega, pero trae aparejados múltiples problemas.
+
+\subsection{La falta de publicidad de los boletos}
+
+Como consecuencia de lo anterior, los boletos no se declaran ni se inscriben en ningún lado. La razón es que, si el boleto se inscribe, después no se pueden cambiar las fechas ni jugar con los precios.
+
+Además, existe un perjuicio probatorio: en un eventual juicio por daños y perjuicios, el valor que se reclama es el del boleto. Si se consignó un valor inferior al real, no puede reclamarse el 100\,\%.
+
+\begin{note}
+\textbf{Registración de boletos.} Se anticipa que el nuevo DNU permite inscribir los boletos de compraventa en el registro, lo que impide alterar fechas y precios (se desarrolla en el Capítulo~\ref{cap:hipoteca-divisible}).
+\end{note}
+
+Tanto las constructoras como los adquirentes por boleto son, entonces, renuentes a la publicidad de estos instrumentos. A ello se suma el aspecto impositivo.
+
+\begin{note}
+\textbf{IVA en la primera venta.} En la primera venta de un inmueble nuevo (un producto nuevo), la constructora debe pagar el impuesto al valor agregado dentro de los diez días de firmado el boleto, con una alícuota del 10,5\,\%. Como los emprendimientos generalmente se financian (se paga un adelanto y luego cuotas), tanto el comprador como el vendedor son renuentes a declarar.
+\end{note}
+
+Se mencionó la práctica de «hacer el boleto y después romperlo»: según lo expuesto, alrededor de un 70\,\% de los boletos de compraventa termina rompiéndose.
+
+\section{Naturaleza jurídica del boleto de compraventa}
+
+El boleto de compraventa puede analizarse como un contrato que consiste en una \textbf{promesa de entrega de una unidad futura} (cuando se trata de un departamento en pozo) o como un \textbf{contrato de compraventa propiamente dicho}, con entrega de posesión instantánea.
+
+Si se lo considera el contrato de compraventa de un inmueble, que exige escritura pública, el boleto adolece de un vicio de forma y, por lo tanto, tendría una \textbf{nulidad relativa}. Sin embargo, tanto el vendedor como el comprador pueden pedir la \textbf{escrituración} del inmueble, ya sea mediante un juicio de escrituración o por acuerdo de partes.
+
+\begin{note}
+Referencia editorial incluida en las notas originales (no citada por el docente): Código Civil y Comercial (CCyC), arts.~1017 y 1018 (forma y conversión del acto) y art.~1170 (boleto de compraventa de inmuebles).
+\end{note}
+
+\section{Por qué las unidades en pozo solo se comercializan por boleto}
+
+Las unidades en pozo no pueden escriturarse, por tres razones: no está afectado el plano de propiedad horizontal, no hay reglamento y la unidad no existe. Al no poder escriturarse una unidad inexistente, la \textbf{única forma de comercializarla es el boleto de compraventa}: la comercialización de cosas futuras no puede hacerse, salvo mediante este instrumento.
+
+\subsection{La alternativa descartada: transmitir un porcentaje de condominio}
+
+Podría pensarse en transmitir el porcentual de condominio que corresponde a la unidad. Por ejemplo, si la unidad equivale al 3\,\%, se transmitiría al comprador el 3\,\% del terreno; a medida que se vendan unidades se iría reuniendo a distintos titulares. Sin embargo, esta solución no conviene en la práctica argentina, por los siguientes motivos:
+
+\begin{itemize}
+    \item si un condómino muere, hay que hacer la sucesión;
+    \item si a uno se le decreta la quiebra, se dictan medidas cautelares;
+    \item si a uno se le decreta la inhibición, no se puede llegar a escriturar;
+    \item los compradores pasan a ser \textbf{socios de personas desconocidas};
+    \item cada vez que se firma un boleto, la constructora o desarrolladora tendría que reunir la firma de todos los condóminos, lo que resultaría inviable.
+\end{itemize}
+
+Por eso se generan \textbf{relaciones bilaterales} únicamente entre el adquirente por boleto y la desarrolladora.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.3cm}YY}
+\toprule
+\textbf{Alternativa} & \textbf{Qué implicaría} & \textbf{Riesgo señalado} \\
+\midrule
+\textbf{Escriturar la unidad en pozo} & Transferir el dominio de una unidad futura & Imposible: no hay plano de propiedad horizontal, ni reglamento, ni unidad existente. \\
+\addlinespace
+\textbf{Transmitir un porcentaje de condominio (por ejemplo, 3\,\% por unidad)} & Cada comprador pasa a ser condómino del terreno & La muerte, quiebra o inhibición de un condómino traban todo; los compradores son socios de desconocidos; cada nueva venta exigiría la firma de todos. \\
+\addlinespace
+\textbf{Boleto de compraventa} & Relación bilateral entre el adquirente y la desarrolladora & Es la vía práctica, aunque con los riesgos propios de un derecho personal. \\
+\bottomrule
+\end{tabularx}
+\caption{Por qué no se transmite el porcentaje de condominio del terreno}
+\end{table}
+
+\section{Dueño del terreno, constructora y desarrolladora}
+
+La constructora y la desarrolladora \textbf{no son lo mismo}. Pueden ser la misma persona, pero en Argentina lo que suele ocurrir es que quien desarrolla no es quien construye.
+
+\begin{itemize}
+    \item La \textbf{constructora} se dedica a poner ladrillos y entregar un producto final. Tiene sus propios riesgos (laborales y de obra).
+    \item La \textbf{desarrolladora} piensa el negocio: se encarga de la comercialización, de la estructuración del negocio y del financiamiento. Puede ser desarrolladora una persona que no tenga ni un solo empleado, a quien solo le interesa estructurar, comercializar y vender el negocio.
+\end{itemize}
+
+Separar ambas funciones responde, además, a una \textbf{división de riesgos}. La constructora asume el riesgo laboral: si un trabajador sufre un accidente, le reclama a la constructora. Si la constructora fuera a la vez dueña del terreno y desarrolladora, el terreno quedaría expuesto a los riesgos de la construcción. En Argentina, si no se contratan o no se pagan los seguros, se responde con el patrimonio. Con una estructura bien dividida, al menos dentro de la estructura jurídica, el trabajador solo podría ir contra la constructora y no se afectaría lo demás.
+
+\begin{example}{El comprador por boleto frente al juicio laboral}
+Un comprador por boleto tiene la promesa de que se le entregue la unidad funcional. Si hay un juicio laboral y se embarga y ejecuta el terreno, al juez le importará la indemnización del trabajador y no necesariamente terminar el edificio y entregar la unidad. Tanto el derecho del comprador como la indemnización laboral son obligaciones pecuniarias, que pueden medirse en dinero. Pero en un juicio que llegue a concurso o quiebra, tiene más peso el crédito laboral que el boleto de compraventa: uno es \textbf{quirografario} y el otro goza de \textbf{privilegio}.
+\end{example}
+
+\begin{note}
+Referencia editorial incluida en las notas originales: régimen de privilegios de la Ley de Concursos y Quiebras (Ley 24.522).
+\end{note}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Constructora} & \textbf{Desarrolladora} \\
+\midrule
+\textbf{Función} & Poner ladrillos y entregar el producto final & Pensar y estructurar el negocio \\
+\textbf{Tareas} & Ejecución de la obra & Comercialización, estructuración y financiamiento \\
+\textbf{Riesgos propios} & Laborales y de obra (accidentes, seguros) & Comerciales y financieros \\
+\textbf{Estructura posible} & Con personal y obra & Puede no tener ni un solo empleado \\
+\bottomrule
+\end{tabularx}
+\caption{Constructora y desarrolladora}
+\end{table}
+
+\section{Recomendaciones antes de invertir en un pozo}
+
+Para quien va a invertir en un pozo se formulan tres recomendaciones:
+
+\begin{enumerate}
+    \item \textbf{Pedir un informe de inhibición} sobre el terreno (para verificar si el terreno tiene juicios).
+    \item \textbf{Pedir un informe comercial} de la constructora y de la desarrolladora (un informe de tipo Veraz).
+    \item \textbf{No comprar a quien realiza su primer emprendimiento}: quien hace las cosas por primera vez suele fracasar más que quien realiza un segundo o tercer emprendimiento.
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell: la compra en pozo}
+%------------------------------------------------------------------------------
+
+\begin{longtable}{p{0.27\textwidth}p{0.62\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué significa «comprar en pozo»?} &
+Comprar un departamento y, a la vez, financiar la obra. Se compra una unidad que todavía no existe, por boleto de compraventa. \\[0.6em]
+
+\textbf{¿Qué riesgos corre el comprador?} &
+Que la obra no se termine, que la unidad se venda varias veces, que la superficie o la calidad no sean las prometidas y que la constructora quiebre. Todos terminan en juicio. \\[0.6em]
+
+\textbf{¿Por qué hay tantos conflictos?} &
+Por el dinero no declarado y la falta de publicidad de los boletos: se firman boletos con distintos precios, no se inscriben y después no puede reclamarse el 100\,\%. Se indicó que cerca del 70\,\% de los boletos se rompe. \\[0.6em]
+
+\textbf{¿Qué es el boleto y por qué es la vía obligada?} &
+Una promesa de entrega de unidad futura (o compraventa con posesión inmediata). No puede escriturarse porque no hay plano de propiedad horizontal, ni reglamento, ni unidad existente. Padece un vicio de forma (nulidad relativa) pero permite pedir la escrituración. \\[0.6em]
+
+\textbf{¿Por qué no se transmite un porcentaje de condominio?} &
+Porque la muerte, la quiebra o la inhibición de un condómino traban todo, los compradores serían socios de desconocidos y cada venta exigiría la firma de todos. Por eso hay relaciones bilaterales entre el adquirente y la desarrolladora. \\[0.6em]
+
+\textbf{Constructora vs.\ desarrolladora} &
+La constructora pone ladrillos y asume los riesgos laborales y de obra; la desarrolladora estructura, comercializa y financia. Separarlas protege el terreno y a los boletistas (el crédito laboral tiene privilegio y el boleto es quirografario). \\[0.6em]
+
+\textbf{¿Qué verificar antes de invertir?} &
+Informe de inhibición del terreno, informe comercial de la constructora y de la desarrolladora, y no comprar el primer emprendimiento de alguien. \\
+
+\midrule
+\cornellresumen{Comprar en pozo es comprar un departamento y financiar la obra mediante un boleto, único instrumento posible para una unidad inexistente. Los riesgos (obra inconclusa, venta múltiple, diferencias con lo prometido y quiebra) derivan en gran medida de la informalidad: dinero no declarado y boletos sin publicidad. La separación entre constructora y desarrolladora divide riesgos, y antes de invertir conviene pedir informes de inhibición y comerciales y desconfiar del primer emprendimiento.}
+\bottomrule
+\end{longtable}
+
+%------------------------------------------------------------------------------
+\chapter[Financiación del terreno]{Financiar el terreno: permuta y protección del dueño}\label{cap:financiacion}
+%------------------------------------------------------------------------------
+
+\section{Las formas de pagar el terreno}
+
+Los negocios que se analizan a continuación suelen hacerse «sin plata». El terreno tiene valor, pero vale hasta que alguien lo paga: hay poca gente que cuente con dólares en blanco y líquidos para pagar un terreno y, además, tener dinero para construir el edificio. De allí surge la cuestión de cómo estructurar jurídica y financieramente un edificio.
+
+Las modalidades mencionadas son las siguientes:
+
+\begin{itemize}
+    \item \textbf{Compraventa al contado}: el comprador paga todo en dinero.
+    \item \textbf{Compraventa en cuotas}: por ejemplo, se paga el 50\,\% y el otro 50\,\% se financia.
+    \item \textbf{Permuta lisa y llana por unidades ya construidas}: una constructora que no puede pagar en efectivo, pero que tiene departamentos ya construidos, intercambia terrenos por departamentos.
+    \item \textbf{Permuta por unidades a construir}: el dueño del terreno no cobra en dinero, sino que adquiere la promesa de obtener tres unidades o más. Generalmente se le suele pagar \textbf{entre el 10\,\% y el 15\,\%} del edificio; por ejemplo, si se hacen diez unidades, se entrega una.
+\end{itemize}
+
+En la permuta por unidades a construir, el dueño transfiere el terreno y el desarrollador, que cuenta con el dinero suficiente para construir, promete unidades futuras: se perfecciona el acto. La desarrolladora se lleva el terreno y el dueño del terreno se lleva las unidades, más precisamente, la \textbf{promesa de las unidades}.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.6cm}YY}
+\toprule
+\textbf{Modalidad} & \textbf{Cómo funciona} & \textbf{Observación} \\
+\midrule
+\textbf{Compraventa al contado} & El comprador paga todo en dinero & Hay poca liquidez; pocos tienen dólares «en blanco» \\
+\addlinespace
+\textbf{Compraventa en cuotas} & Por ejemplo, 50\,\% al contado y 50\,\% financiado & El vendedor queda como acreedor del saldo \\
+\addlinespace
+\textbf{Permuta lisa y llana por unidades ya construidas} & Se intercambian terrenos por departamentos existentes & Requiere que la constructora ya tenga departamentos \\
+\addlinespace
+\textbf{Permuta por unidades a construir} & El dueño transfiere el terreno y recibe la promesa de unidades futuras & Se suele pagar entre el 10\,\% y el 15\,\% del edificio (por ejemplo, una unidad cada diez) \\
+\bottomrule
+\end{tabularx}
+\caption{Formas de pagar o comercializar un terreno}
+\end{table}
+
+\section{Cómo proteger al dueño del terreno}
+
+Si el cliente es el dueño del terreno que entrega su inmueble sin recibir nada en el momento y corre múltiples riesgos, se plantea cómo asesorarlo jurídicamente para cubrirlo.
+
+\subsection{Pacto de reversión y pacto de retroventa}
+
+Una primera idea es un \textbf{pacto de reversión}: si no se concretara la entrega de las unidades, o si la obra quedara frenada, el dueño del terreno volvería a ser quien permutó.
+
+Frente a ello se advierte que \textbf{no vale lo mismo} un lote de terreno pelado que un terreno construido a medias, sin terminar y con boletistas que ya compraron unidades: habría que demoler lo construido a medias para recuperar el terreno. A esto se suma que muchas veces los dueños de terrenos son personas mayores que vivieron toda su vida en su casa, no están acostumbradas a hacer negocios y necesitan seguridad: si les va mal, necesitan tener el dinero, y no les sirve que les devuelvan el inmueble para terminarlo porque no tienen la capacidad económica para hacerlo.
+
+Aun así, la idea puede ser útil en otros casos. El código de planeamiento (el que establece cuántos pisos pueden construirse) cambia generalmente muy seguido, y esa variabilidad afecta el valor del terreno y la conveniencia del negocio. Una desarrolladora que ya posee un terreno, que no le sirve y que aún no cuenta con financiación para construir (como los carteles de «departamentos a estrenar» que permanecen años sin obra), podría convenir un \textbf{pacto de retroventa}: vende el terreno y lo vuelve a comprar «como esté» si no lo termina. Corre mucho riesgo, pero la desarrolladora sabe que, si no lo termina, tiene los medios para hacerlo.
+
+\begin{important}
+El pacto de retroventa exige que la desarrolladora o constructora tenga \textbf{espalda financiera} (grupos grandes de constructores). No sirve para personas humanas que necesitan dinero en caso de no recibir las unidades. Se discutió si debía plantearse como pacto de retroventa o como cláusula de resolución ante la no entrega; se concluyó que se asemeja más a un pacto de retroventa.
+\end{important}
+
+\begin{note}
+Referencia editorial incluida en las notas originales (no citada por número en la clase): CCyC, art.~1163 y ss.\ (pacto de retroventa: el vendedor se reserva el derecho de recuperar la cosa vendida contra la restitución del precio).
+\end{note}
+
+\section{La analogía del viaje a Mar del Plata: el vehículo jurídico}
+
+Para ordenar las alternativas se utiliza una analogía: un viaje a Mar del Plata. Se puede ir en bicicleta, auto, camión, avión o tren. Lo que se piensa es el \textbf{vehículo} que se utilizará para llegar al destino, y el destino es la \textbf{entrega de las unidades funcionales}.
+
+El avión es mucho más seguro que el auto, pero mucho más costoso; el tren es más barato que el auto, pero más lento. De la misma manera, deben pensarse los pros y los contras y ver qué negocio se ajusta a cada vehículo. El primer interrogante es cómo cuidar a la persona que aporta el terreno; luego se verá cómo cuidar al boletista.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.4cm}Y}
+\toprule
+\textbf{En el viaje\ldots} & \textbf{En el negocio inmobiliario} \\
+\midrule
+\textbf{El destino} & Entrega y escrituración de las unidades funcionales \\
+\textbf{El pasaje y el asiento} & El boleto de compraventa del comprador en pozo \\
+\textbf{El combustible} & Dinero para pagar el terreno y construir (permuta, cuotas, crédito) \\
+\textbf{El vehículo} & Sociedad, derecho de superficie, fideicomiso o hipoteca \\
+\textbf{El pago del pasaje con crédito} & Hipoteca divisible y crédito bancario \\
+\textbf{Pasajes fraccionados} & Tokenización: se compra un crédito, no el asiento \\
+\bottomrule
+\end{tabularx}
+\caption{El desarrollo inmobiliario como viaje}
+\end{table}
+
+\begin{important}
+Cada figura jurídica (permuta, sociedad, derecho de superficie, fideicomiso, hipoteca) es un «vehículo»: más seguro o más barato, más rápido o más lento. Hay que elegir el vehículo según el \textbf{caso puntual}.
+\end{important}
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell: financiación del terreno}
+%------------------------------------------------------------------------------
+
+\begin{longtable}{p{0.27\textwidth}p{0.62\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cómo se paga un terreno?} &
+Al contado, en cuotas, mediante permuta por departamentos construidos o mediante permuta por unidades a construir (normalmente entre el 10\,\% y el 15\,\% del edificio). \\[0.6em]
+
+\textbf{¿Qué recibe el dueño del terreno en la permuta por unidades a construir?} &
+La promesa de unidades futuras. La desarrolladora se lleva el terreno y el dueño, la promesa de las unidades. \\[0.6em]
+
+\textbf{¿Cómo se protege al dueño del terreno?} &
+Con un pacto de reversión o de retroventa (o cláusula de resolución), útil si la desarrolladora tiene espalda financiera. Pero un terreno a medio construir y con boletistas ya no vale como un lote pelado, y la idea no sirve para quienes necesitan dinero en lugar de recuperar el inmueble. \\[0.6em]
+
+\textbf{¿Qué enseña la analogía del viaje a Mar del Plata?} &
+El destino es la entrega de las unidades; cada figura jurídica es un vehículo con costos, riesgos y tiempos distintos. Se elige según el caso puntual. \\
+
+\midrule
+\cornellresumen{El terreno se paga al contado, en cuotas o por permuta, y en la permuta por unidades a construir el dueño recibe una promesa de unidades futuras, lo que lo expone a riesgos. El pacto de reversión o de retroventa lo protege solo si la desarrolladora tiene espalda financiera. Las figuras jurídicas se piensan como vehículos para llegar al destino (la entrega de las unidades) y se eligen según el caso.}
+\bottomrule
+\end{longtable}
+
+%------------------------------------------------------------------------------
+\chapter[Los vehículos jurídicos]{Los vehículos jurídicos: sociedad, superficie, fideicomiso e hipoteca}
+%------------------------------------------------------------------------------
+
+\section{Primer vehículo: la sociedad}
+
+Una alternativa es constituir una sociedad. Ser socio implica asociarse con una persona a quien tal vez no se conoce, con consecuencias como soportar las disputas entre socios y responder solidariamente. Si el objetivo es proteger al dueño del terreno y no generarle más complicaciones, no resulta conveniente que forme parte de un negocio de este tipo.
+
+La idea no se descarta: sirve cuando, por ejemplo, el dueño del terreno es a la vez desarrollador y se asocia con alguien a quien conoce para crear una sociedad y hacer el emprendimiento. Pero conviene en ciertos casos y en otros no.
+
+Quien asesore no actuará en un comienzo para grandes corporaciones, sino para casos como el de un jubilado que cobra la mínima y es dueño de un terreno. Para ese caso la sociedad \textbf{no protege}: si el dueño aporta el terreno a la sociedad y tiene, por ejemplo, el 20\,\% de ella, disminuye su calidad de titular de dominio. Si la sociedad pasa a tener el 100\,\% del dominio, quien era dueño del 100\,\% pasa a tener el 20\,\% de la sociedad.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{YY}
+\toprule
+\textbf{A favor (desarrollador que conoce a su socio)} & \textbf{En contra (dueño de terreno jubilado)} \\
+\midrule
+Permite estructurar el emprendimiento entre personas que se conocen. & Obliga a asociarse con desconocidos. \\
+Sirve para casos puntuales de confianza previa. & Implica responsabilidad y soportar las disputas entre socios. \\
+Es un vehículo viable para desarrollar el negocio. & No protege al aportante: disminuye su calidad de titular de dominio (por ejemplo, pasa de dueño del 100\,\% a tener el 20\,\% de la sociedad). \\
+\bottomrule
+\end{tabularx}
+\caption{La sociedad como vehículo}
+\end{table}
+
+\section{Segundo vehículo: el derecho de superficie}
+
+Otra alternativa es que el dueño ceda a la constructora el derecho de superficie. La principal contra es que el titular lo es por \textbf{un plazo determinado}: vencido el plazo, el derecho se extingue. Nadie compra un departamento sabiendo que en 20 años dejará de ser dueño; tampoco se pondría un millón de dólares para levantar un edificio que solo pueda usarse por 20 años.
+
+\begin{example}{Persona de 75 años y derecho de superficie}
+Una persona de 75 años que vive en una zona de alto valor (avenida Libertador) recibió dinero de la herencia de su madre (doscientos mil dólares), no le alcanza para comprar el departamento y no quiere pagar un alquiler mes a mes, porque quiere sentir que es dueña: poder hacer reformas, alquilarlo, etc. El dueño, por su parte, no tiene a quién venderlo. Se constituye un derecho de superficie por 20 años (se estima que la persona vivirá hasta los 95). La persona se ahorra la administración y la incertidumbre sobre los alquileres; el dueño se asegura el cobro, evitando inquilinos que no pagan y los desalojos o ejecuciones.
+\end{example}
+
+Para un jubilado de 75 años dueño del terreno, en cambio, el derecho de superficie resulta complejo y riesgoso: se le diría que en 20 años le devolverán el derecho y tendrá todo el edificio, lo que difícilmente le sirva a una persona de esa edad. En ese caso convendría más un fideicomiso en el que el patrimonio pase a las futuras unidades, a los hijos.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{YY}
+\toprule
+\textbf{Ventajas} & \textbf{Desventajas} \\
+\midrule
+Útil en casos puntuales, como el comprador de 75 años que quiere sentirse dueño por un plazo (20 años) sin pagar alquiler ni administrar la propiedad. & Es un derecho temporal: al vencer el plazo se extingue. \\
+El dueño del inmueble se asegura el cobro (evita desalojos y ejecuciones por inquilinos morosos). & Nadie compra un departamento sabiendo que en 20 años deja de ser dueño. \\
+ & Comercialmente, nadie invierte un millón de dólares en un edificio que solo podrá usar 20 años. \\
+ & Para el jubilado dueño del terreno: complejo y riesgoso. \\
+\bottomrule
+\end{tabularx}
+\caption{El derecho de superficie según los ejemplos de la clase}
+\end{table}
+
+\begin{note}
+Referencia editorial incluida en las notas originales: CCyC, arts.~2114 y ss.\ (derecho de superficie).
+\end{note}
+
+\section{Tercer vehículo: el fideicomiso}
+
+El fideicomiso es un vehículo viable y bastante usado.
+
+\subsection{Las figuras del fideicomiso}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3cm}YY}
+\toprule
+\textbf{Figura} & \textbf{Función} & \textbf{Ejemplo en el desarrollo inmobiliario} \\
+\midrule
+\textbf{Fiduciante} & El aportante & Quien aporta el terreno y quien aporta el dinero (desarrollador o constructora) \\
+\textbf{Fiduciario} & El que administra & Quien administra el patrimonio fiduciario \\
+\textbf{Beneficiario} & Quien recibe los beneficios durante el desarrollo del fideicomiso & Quien recibe los beneficios durante la obra \\
+\textbf{Fideicomisario} & Quien recibe el destino final y finaliza el fideicomiso & Quien recibe el destino final de los bienes \\
+\bottomrule
+\end{tabularx}
+\caption{Las figuras del fideicomiso}
+\end{table}
+
+\begin{note}
+Referencia editorial incluida en las notas originales: CCyC, arts.~1666 y ss.\ (contrato de fideicomiso).
+\end{note}
+
+En el ejemplo de una pareja de jubilados que aporta el terreno, esa pareja es \textbf{fiduciante}; el desarrollador que aporta el dinero es otro fiduciante. El fiduciario es quien administra. Se indicó que el fiduciario no puede ser fiduciante y fideicomisario; que el fiduciario no pueda ser fiduciante está discutido, pero en Argentina se recomienda no hacerlo nunca, porque lo discutido termina jugando en contra. La regla práctica es: quien aporta no debe ser quien administra, y quien administra no debe ser quien recibe al final.
+
+\begin{important}
+\textbf{Atajo frecuente en la práctica argentina.} En lugar de que el fiduciante administre, el desarrollador crea una sociedad cuyo único objeto es administrar el fideicomiso, y esa sociedad es la fiduciaria. Es una persona jurídica distinta de los fiduciantes; los socios de esa sociedad pueden ser los fiduciantes, pero el fiduciario es la sociedad, y si mañana se vende la sociedad los socios pueden ser otras personas. Se aclaró que todo esto es teórico desde el punto de vista práctico.
+\end{important}
+
+\subsection{Ventajas y protección del dueño del terreno}
+
+Entre las ventajas de esta forma de comercialización se señalaron: no es necesario pagar todo en ese momento y se puede avanzar con un monto bastante menor; permite más adhesiones y buscar terceros; se arranca con un patrimonio inicial menor, con desembolsos a medida que avanza el emprendimiento; y se separa la responsabilidad.
+
+El jubilado queda cubierto porque, si ocurre algo con el contrato de fideicomiso, no se afecta su patrimonio: el terreno no está a su nombre. Sin embargo, si la obra se frena e inician juicio los aportantes, el aportante del terreno puede perder todo. Por eso importa qué tipo de fideicomiso se trate (inmobiliario, al costo o de administración). Si es inmobiliario, hay un problema cuando el patrimonio va a liquidación.
+
+\subsubsection{El fideicomiso al costo}
+
+En el fideicomiso al costo, el fiduciante que aporta el terreno \textbf{no pone ningún ingreso más}, solamente el terreno; los fiduciantes inversores aportan dinero y, si falta plata, deben seguir aportando hasta terminar el edificio. Si no aportan, se les puede reclamar la diferencia. El mecanismo de protección funciona así: cada mes deben aportar; si no aportan un mes, hay multa; si no aportan otro mes, otra multa; si persisten, pierden la calidad de fiduciante. Llega un momento en que todos pierden esa calidad menos el que aportó el terreno. Nadie que ya aportó quiere dejar de perder lo aportado por no poner un monto adicional.
+
+\subsection{Reparos}
+
+Los riesgos propios del fideicomiso, de la construcción y de la obra siguen existiendo. Además, es difícil explicarle a un jubilado que vivió toda su vida en su casa lo que es un fideicomiso. Quien aporta el terreno queda «dentro del proyecto»: puede haber asambleas, o una acción de rendición de cuentas si se llevan el dinero. Por eso conviene más a un heredero joven, que sabe cómo administrarlo, que a una pareja de jubilados.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{YY}
+\toprule
+\textbf{Ventajas} & \textbf{Reparos} \\
+\midrule
+Permite arrancar con un patrimonio inicial menor, con desembolsos a medida que avanza la obra. & Los riesgos propios del fideicomiso, de la construcción y de la obra siguen existiendo. \\
+Permite sumar adhesiones y buscar terceros inversores. & Es muy difícil de explicar a un jubilado, que queda «dentro del proyecto» (asambleas, rendición de cuentas). \\
+Separa la responsabilidad: el terreno deja de estar a nombre del aportante y no se afecta su patrimonio personal. & Si la obra se frena y hay juicios o liquidación, el aportante del terreno puede perderlo. \\
+En el fideicomiso al costo, quien aporta el terreno no vuelve a aportar; quienes incumplen los aportes pierden su calidad de fiduciantes. & Conviene más a un heredero joven que sabe administrarlo que a una pareja de jubilados. \\
+\bottomrule
+\end{tabularx}
+\caption{Fideicomiso: ventajas y reparos señalados}
+\end{table}
+
+\section{Cuarto vehículo: la hipoteca en garantía de unidades futuras}
+
+\subsection{Los derechos reales de garantía}
+
+El derecho permite constituir \textbf{derechos reales de garantía}. La hipoteca se constituye sobre inmuebles; sobre bienes muebles o intangibles (por ejemplo, una marca) se trataría de una prenda. No se recomienda a quien entrega un terreno aceptar una prenda sobre una marca, salvo que se trate de una marca de gran valor; las marcas y señales por sí mismas no tienen un valor equivalente.
+
+\begin{note}
+Referencia editorial incluida en las notas originales: CCyC, arts.~2205 y ss.\ (hipoteca) y arts.~2219 y ss.\ (prenda).
+\end{note}
+
+La propuesta es hacer una \textbf{permuta por unidades a construir garantizada con una hipoteca por saldo de precio}. El dueño transfiere el dominio del lote y el desarrollador se obliga a terminar el edificio y a entregar unidades futuras, garantizando esa obligación con una hipoteca sobre el terreno.
+
+\subsection{Ejecución y privilegio}
+
+El riesgo siempre es que no se entreguen las unidades futuras. Ante ello se ejecuta la hipoteca, por falta de entrega, terminaciones inadecuadas, demora (y multas aplicables). La hipoteca de primer grado otorga un \textbf{privilegio} por sobre los restantes acreedores: «primero en el tiempo, primero en el derecho». Cualquier boletista que aparezca después tendrá menor privilegio de cobro. En principio prevalece el acreedor hipotecario; en materia laboral podría verse afectado, lo que daría lugar a otra discusión.
+
+\subsection{Cognoscibilidad: publicidad de la hipoteca}
+
+\begin{important}
+Cuando existe una hipoteca sobre un desarrollo, es obligatorio consignar en el boleto de compraventa que existe una hipoteca vigente, con indicación de la suma y de su inscripción. En la escritura de permuta por unidades a construir debe pactarse esa obligación. Así el tercero toma conocimiento (\textbf{cognoscibilidad}) y la hipoteca queda además publicitada en el registro de la propiedad. El boletista sabe que la hipoteca va a primar sobre su derecho: si se ejecuta, deberá ir a cobrar en la fila.
+\end{important}
+
+\subsection{Sobre qué se constituye y cuánto}
+
+La hipoteca se constituye, en un primer momento, sobre el lote y, en un segundo momento, cuando el edificio está construido, sobre las unidades. Se constituye sobre todo el terreno: no se puede afectar solo una esquina o la mitad. Además, debe ser acorde al valor del terreno. Si el terreno vale 100 y la hipoteca es por 50, nunca podrá ejecutarse efectivamente por 50, porque la ejecución (juicio de ejecución hipotecaria, subasta o venta directa; en algún caso, quiebra) generalmente se realiza por un valor inferior al real. Es un aspecto a considerar al constituir la garantía, que debe poder amortizar el dinero; de lo contrario, no es una garantía exigible.
+
+\subsection{Cancelación de la hipoteca}
+
+Una vez que el dueño entregó la posesión del terreno y el desarrollador cumple, la obligación deja de ser futura y pasa a ser presente. Entonces el desarrollador entrega la llave del departamento y se \textbf{cancela la hipoteca}, porque la obligación se cumplió. A veces se pacta que la cancelación ocurra al escriturar, no al entregar la llave. Puede pactarse a la entrega de llaves o a la escrituración; al respecto se señaló que la entrega de llaves puede ocurrir antes del plano, que a fin de cuentas puede demorar seis meses.
+
+Cuando el dueño del terreno quiere ceder una de las unidades futuras antes de terminada la obra, se le exige cancelar la hipoteca antes de ceder, para no contratar con alguien desconocido. Se resuelve mediante una \textbf{cancelación parcial}, pactada en el mismo contrato de permuta por unidades a construir.
+
+\begin{example}{Cancelación parcial por cesión de una unidad}
+Al dueño del terreno se le entregarán tres departamentos y quiere vender uno de los tres. Al ceder, se le dice que ese departamento vale 6.000 y se cancela la hipoteca por 6.000, siendo la hipoteca total por 300. Es una cancelación parcial porque todavía se le deben dos departamentos. Al desarrollador no le importa: ya no debe garantizar lo que ya cobró el dueño, porque el cesionario le pagó. El cesionario pasa a ser un boletista más.
+% TODO: contenido incompleto o ambiguo en las notas originales (los montos del ejemplo no son consistentes entre sí)
+\end{example}
+
+\subsection{Si no se constituye hipoteca}
+
+Cuando no se constituye una hipoteca, el terreno está libre de gravamen y la constructora no garantiza nada. En esa situación pueden aparecer terceros adquirentes de buena fe a comprar las unidades, lo que lleva a la cuestión del crédito (Capítulo~\ref{cap:hipoteca-divisible}).
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.6cm}YY}
+\toprule
+\textbf{Etapa} & \textbf{Qué ocurre} & \textbf{Observación} \\
+\midrule
+\textbf{Constitución} & Se hipoteca el terreno (hipoteca de primer grado) en garantía de la entrega de unidades futuras & El monto debe ser acorde al valor del terreno; si no, no es una garantía exigible \\
+\addlinespace
+\textbf{Incumplimiento} & Se ejecuta la hipoteca (falta de entrega, terminaciones inadecuadas, demoras, multas) & La ejecución suele realizarse por un valor inferior al real \\
+\addlinespace
+\textbf{Publicidad} & Debe consignarse en los boletos y en la escritura de permuta; queda publicitada en el registro & Genera conocimiento de terceros \\
+\addlinespace
+\textbf{Cancelación} & A la entrega de la llave o a la escrituración (según se pacte); parcial si el dueño cede una unidad antes de terminar la obra & Se pacta en el contrato de permuta \\
+\addlinespace
+\textbf{Sobre qué recae} & Primero sobre el lote; luego sobre las unidades construidas & Si es divisible, se regula por separado \\
+\bottomrule
+\end{tabularx}
+\caption{Hipoteca en garantía de la permuta por unidades a construir}
+\end{table}
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell: los vehículos jurídicos}
+%------------------------------------------------------------------------------
+
+\begin{longtable}{p{0.27\textwidth}p{0.62\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué ventajas y límites tiene la sociedad como vehículo?} &
+Sirve entre personas que se conocen; no protege al jubilado, que pasa de ser dueño del 100\,\% a socio con una parte y comparte la responsabilidad. \\[0.6em]
+
+\textbf{¿Qué límites tiene el derecho de superficie?} &
+Es temporal: se extingue. Nadie compra un departamento que dejará de ser suyo en 20 años. Solo sirve en casos puntuales (por ejemplo, una persona de 75 años que quiere sentirse dueña por un plazo). \\[0.6em]
+
+\textbf{¿Quién es quién en el fideicomiso?} &
+Fiduciante (aporta), fiduciario (administra), beneficiario (recibe durante el desarrollo) y fideicomisario (recibe el destino final). Fiduciario y fiduciante no deben coincidir; en la práctica se usa una sociedad fiduciaria. \\[0.6em]
+
+\textbf{¿Por qué conviene el fideicomiso al costo para el dueño del terreno?} &
+Porque quien aporta el terreno no vuelve a aportar; los inversores deben seguir aportando y, si no lo hacen, pagan multas y pierden la calidad de fiduciantes. Aun así, es difícil de explicar a un jubilado y los riesgos de la obra subsisten. \\[0.6em]
+
+\textbf{¿Cómo garantiza una hipoteca la entrega de unidades futuras?} &
+Hipoteca de primer grado sobre el terreno, acorde a su valor. Debe consignarse en cada boleto y en la escritura de permuta, se publicita en el registro, se ejecuta ante incumplimiento y se cancela (total o parcialmente) al entregar la llave o escriturar. \\
+
+\midrule
+\cornellresumen{Ninguna figura es buena en abstracto: la sociedad sirve entre conocidos, el derecho de superficie es temporal, el fideicomiso (preferentemente al costo) permite financiar y separar responsabilidad pero es difícil de explicar a un jubilado, y la hipoteca de primer grado garantiza la entrega de unidades con privilegio y publicidad, cancelándose total o parcialmente según se cumple la obligación.}
+\bottomrule
+\end{longtable}
+
+%------------------------------------------------------------------------------
+\chapter[La hipoteca divisible]{El comprador por boleto y la hipoteca divisible}\label{cap:hipoteca-divisible}
+%------------------------------------------------------------------------------
+
+\section{Terceros adquirentes de buena fe y necesidad de crédito}
+
+Los terceros adquirentes de buena fe pueden carecer del dinero para comprar y necesitar un crédito bancario. Frente a esa necesidad, un nuevo DNU del año 2024 establece las llamadas \textbf{hipotecas divisibles}.
+
+\begin{definition}{Hipoteca divisible}
+Es una hipoteca que se constituye sobre el terreno (sobre la matrícula del terreno) pero que afecta única y exclusivamente a una unidad funcional.
+\end{definition}
+
+\begin{note}
+Las notas originales no consignan el número del decreto. Verificar la numeración y el texto vigente antes de citarlo.
+\end{note}
+
+En este esquema hay tres partes:
+
+\begin{itemize}
+    \item el \textbf{titular del terreno}, que es el desarrollista y está libre de medidas cautelares y de gravámenes;
+    \item el \textbf{adquirente}, que se obliga al pago de cuotas, pero no con la constructora sino con una entidad financiera;
+    \item la \textbf{entidad financiera} (banco), a cuyo nombre estará la hipoteca. Sería muy raro que una constructora constituya una hipoteca a quien va a comprar por boleto sin conocerlo.
+\end{itemize}
+
+La constructora recibe el dinero todo junto; el boletista lo paga en cuotas al banco. Es como comprar con un crédito hipotecario, pero sobre una unidad futura en lugar de una unidad ya construida.
+
+Como en las unidades futuras no pueden hacerse escrituras en condominio (sería poco práctico comprar con la constructora, por ejemplo, un 3\,\% del terreno), lo que ocurre es: se hace un boleto de compraventa, se constituye una hipoteca de primer grado divisible sobre el terreno y, una vez terminada la obra, la hipoteca pasa a estar sobre la unidad funcional comprada. El crédito sigue: el crédito puede durar 20 o 30 años y la obra, 3 o 4 años.
+
+\section{Quién paga a quién}
+
+Se aclaró que el comprador adquiere el pozo por boleto, pero que el banco da el dinero a la constructora. Los precios son lineales y cerrados: tratándose de una compraventa no hay aportes adicionales, a diferencia de un aporte común. Por eso debe tratarse de una compraventa de unidad funcional y no de un fideicomiso.
+
+\begin{example}{Mecánica del crédito}
+El comprador compra a la constructora; el banco le presta dinero al comprador y garantiza ese crédito con una hipoteca, como la tradicional. El banco entrega toda la suma a la constructora al inicio y el comprador paga las cuotas al banco. La novedad es que la hipoteca tradicional recae sobre un inmueble que ya existe, y aquí el inmueble todavía no existe.
+\end{example}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.6cm}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Hipoteca tradicional} & \textbf{Hipoteca divisible (DNU 2024)} \\
+\midrule
+\textbf{Objeto} & Inmueble que ya existe & Terreno (matrícula del lote), pero afectando únicamente la futura unidad funcional \\
+\addlinespace
+\textbf{Acreedor} & Banco o entidad financiera & Entidad financiera (no la constructora) \\
+\addlinespace
+\textbf{Deudor} & El comprador del inmueble existente & El comprador por boleto; el titular del terreno es el desarrollista \\
+\addlinespace
+\textbf{Pago a la constructora} & --- & Todo junto, al inicio, por el banco \\
+\addlinespace
+\textbf{Cuotas} & Del comprador al banco & Del boletista al banco, por 20 o 30 años \\
+\addlinespace
+\textbf{Traslado} & --- & Terminada la obra, la hipoteca se traslada a la unidad funcional \\
+\addlinespace
+\textbf{Novedad} & --- & Se constituye sobre algo que todavía no existe \\
+\bottomrule
+\end{tabularx}
+\caption{Hipoteca tradicional e hipoteca divisible}
+\end{table}
+
+\section{Registración del boleto y dudas sobre la implementación}
+
+La novedad es que \textbf{sí o sí} debe registrarse el boleto de compraventa en el registro de la propiedad inmueble, con una serie de requisitos.
+
+\subsection{Primera advertencia: capacidad de repago del comprador}
+
+Para trasladar la hipoteca divisible al comprador que suscribió el boleto, este debe tener capacidad contributiva para continuar con la hipoteca en forma personal: deja de ser deudor el titular del terreno y pasa a serlo el comprador. El banco debería, a criterio expuesto, aprobar las condiciones antes de que se firme el boleto. Hoy el mecanismo para suscribir los boletos todavía no está aceptado, y esa es una complejidad que se va a suscitar.
+
+Puede ocurrir que, al firmar el boleto, el comprador tuviera capacidad contributiva, pero que cuatro años después (al dar la posesión) haya cambiado su situación económica o personal y el banco no quiera otorgarle el crédito. En ese caso el comprador debe pagar la totalidad del precio al constructor, porque este pactó que al momento de la posesión o de la escritura se le entregue el dinero, y la hipoteca es un problema del comprador.
+
+\begin{important}
+Si el banco no aprueba al comprador antes de que firme el boleto, al trasladar la hipoteca a su unidad puede negarle el crédito; entonces el comprador debe pagar de contado todo el precio al constructor. Por eso se plantea un trabajo en equipo entre la entidad financiera y el constructor, no solo al suscribir la primera hipoteca sino al suscribir cada boleto.
+\end{important}
+
+\subsection{Segunda advertencia: el registro de la propiedad y la legislación crediticia}
+
+El registro de la propiedad ya tiene la posibilidad de inscribir boletos de compraventa. Se expresó una duda de fondo: el registro de la propiedad inmueble es un registro de \textbf{derechos reales} y no de derechos personales. El boleto es un derecho personal, como la cesión de crédito hereditario, que ya no se inscribe en el registro. Aun así, el boleto debe inscribirse en el registro: si no se inscribe allí, lo inscribirían la Comisión Nacional de Valores o una entidad privada, y se quitaría seguridad jurídica al tercero. Por eso, apenas se supo que saldría el decreto, los registros salieron a actuar de inmediato.
+
+Cada registro tiene un formato para inscribir: algunos lo ubican en gravámenes, otros en otro lado, o lo inscriben como hipoteca agregando las cláusulas de la hipoteca divisible. Todo esto es totalmente nuevo y todavía no está en uso en la práctica.
+
+\begin{important}
+Sin una buena legislación paralela de los organismos crediticios, la hipoteca divisible puede fracasar. Si interviene el Estado (por ejemplo, proyectos para un barrio determinado), el crédito se otorga «sí o sí». Si se otorga a la clase media, el banco evaluará la capacidad de repago, la situación fiscal (si son monotributistas, si están al día) y el estado civil. Se aclaró que no se trata de una postura negativa respecto de la hipoteca divisible: como tema teórico sería ideal, pero hoy se la ve «verde» y deben ajustarse algunas cuestiones.
+\end{important}
+
+Una solución propuesta es que el comprador pudiera firmar previamente con el banco un compromiso por el cual el banco se obligue a entregar el crédito, y no solo a una persona determinada, sino a quien venga.
+
+\begin{example}{Capacidad de repago}
+Se menciona el caso de un comprador que quedaría debiendo 50.000 dólares y gana 1.200.000 pesos por mes: en 30 años no podría pagar, porque tendrá que vivir, pagar expensas e impuestos. Al banco le conviene, además, tener el terreno como garantía: si ejecuta el terreno entero, puede darlo a otra persona para que termine de construir.
+\end{example}
+
+\section{¿Cuándo se «divide» la hipoteca?}
+
+Se planteó un segundo esquema: quien toma el crédito es quien construye, y el terreno está a nombre de quien construye. La hipoteca se vuelve divisible cuando se debe dar la unidad funcional al comprador y se escritura. Es decir, la división se produce \textbf{en el momento de la transmisión final}.
+
+\begin{example}{División de una hipoteca de 100.000}
+Si el constructor pidió 100.000 de hipoteca y tiene diez departamentos, cada comprador debe pagar 10.000. Si uno de los compradores tiene un problema y no se le da el crédito, el constructor solo contará con 90.000. Para que el constructor pueda dar el departamento, el comprador debe cancelar, pero no podrá hacerlo si no le dan el crédito.
+\end{example}
+
+La visión propuesta es otra: que se compre en pozo financiado con crédito hipotecario, pero que el \textbf{garante del crédito sea el adquirente final} y no la constructora. La constructora aporta el terreno, pero quien siga pagando la cuota (por 30 años, 15 años, etc.) debe ser el adquirente final de su unidad. A la constructora no le sirve hacer un negocio y no vender las unidades hasta dentro de 30 años: hace circulación del terreno, construye y termina el edificio en unos cinco años. Por eso lo ideal sería que, a medida que se firman los boletos, se vaya haciendo la divisibilidad del crédito.
+
+Queda planteado el interrogante de si los compradores comprarían un inmueble con una hipoteca de primer grado y qué ocurriría con los acreedores quirografarios.
+
+\begin{note}
+Las explicaciones de las dos partes de la clase sobre quién toma el crédito presentan esquemas diferentes: en la primera, el banco presta al comprador y paga a la constructora todo junto; en la segunda, el crédito lo toma quien construye y la hipoteca se divide al transmitir la unidad. Se conservan ambas tal como fueron expuestas.
+% TODO: contenido incompleto o ambiguo en las notas originales
+\end{note}
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell: la hipoteca divisible}
+%------------------------------------------------------------------------------
+
+\begin{longtable}{p{0.27\textwidth}p{0.62\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es la hipoteca divisible?} &
+Hipoteca del nuevo DNU (2024) constituida sobre la matrícula del terreno que afecta solo a una unidad funcional. El banco presta, la constructora cobra todo junto y la hipoteca se traslada a la unidad terminada. \\[0.6em]
+
+\textbf{¿Quién paga a quién?} &
+El comprador compra a la constructora por boleto; el banco le presta al comprador y entrega el dinero a la constructora; el comprador paga las cuotas al banco. \\[0.6em]
+
+\textbf{¿Por qué se la ve «verde»?} &
+Porque el banco puede negar el crédito al comprador al momento del traslado (por cambio de su situación económica), porque el registro inscribe derechos reales y el boleto es un derecho personal, y porque falta legislación crediticia paralela. Se propone que el banco apruebe al comprador antes de firmar el boleto. \\[0.6em]
+
+\textbf{¿Cuándo se divide realmente la hipoteca?} &
+Según el segundo esquema, en el momento de la transmisión de la unidad al comprador. Se propone que el garante final sea el adquirente y no la constructora. \\
+
+\midrule
+\cornellresumen{La hipoteca divisible permitiría financiar al comprador con crédito bancario desde el boleto, trasladando luego la hipoteca a su unidad. Hoy depende de que el banco apruebe al comprador, de que los registros la implementen y de legislación crediticia complementaria; por eso se la considera todavía «verde».}
+\bottomrule
+\end{longtable}
+
+%------------------------------------------------------------------------------
+\chapter[Tokenización y cierre]{Tokenización, sociedades y cierre: modalidad de examen y pacto de reversión}
+%------------------------------------------------------------------------------
+
+\section{La tokenización: se compra un crédito, no la cosa}
+
+Todos los derechos reales y contratos vistos, que son innovadores, deben interrelacionarse con la tokenización.
+
+\begin{important}
+\textbf{La tokenización no es más que un crédito.} Cuando se compra un token no se compra un departamento, ni un pedazo de departamento. Quien compra un token (de agro, de un departamento, de una maquinaria) compra un derecho, una porción de ese derecho, que recién se materializa cuando ese derecho se transmite, se enajena o se permuta. Mientras tanto, solo se tiene un token, un derecho.
+\end{important}
+
+Tokenizar un departamento no es ser dueño de un departamento. Tokenizar el agro, por ejemplo la cosecha, no implica llevarse el trigo; tampoco la vaca ni el departamento, y puede referirse a cosas muebles y semovientes. Lo que se obtiene es un crédito sobre eso.
+
+Existen entonces dos niveles: un primer nivel, que es el derecho real, la propiedad o la cosa; y un segundo nivel, que es el crédito sobre eso, un derecho personal. Aunque el token esté en una plataforma blockchain y genere un derecho que se crea de propiedad, hay propiedad sobre el token, pero sobre la cosa solo existe un derecho personal.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm}YY}
+\toprule
+\textbf{Nivel} & \textbf{Qué se tiene} & \textbf{Ejemplo} \\
+\midrule
+\textbf{Primer nivel} & Derecho real: la propiedad o la cosa & Ser dueño del departamento, del trigo, de la vaca \\
+\textbf{Segundo nivel} & Crédito sobre la cosa: derecho personal & Comprar un token de un departamento, de la cosecha o de una maquinaria \\
+\textbf{Aclaración clave} & Aunque esté en una plataforma blockchain, se tiene propiedad sobre el token, no sobre la cosa & No se lleva el trigo \\
+\bottomrule
+\end{tabularx}
+\caption{Los dos niveles: derecho real y derecho personal en la tokenización}
+\end{table}
+
+\section{Las sociedades y su relación con los derechos reales}
+
+Los titulares de los dominios son normalmente sociedades. Además, las acciones pueden formar parte de la tokenización, de los pactos, de los fideicomisos y de los fideicomisos de garantía. Por eso no debe reducirse el análisis a un derecho real: también puede utilizarse el capital social y los títulos que representan esa titularidad, que pueden ser objeto de muchos de los contratos estudiados.
+
+\begin{note}
+Se anticipó que, a partir de la nueva ley societaria (si se sanciona), ya no existiría el capital sino el patrimonio.
+\end{note}
+
+\section{Alcance de la materia y modalidad del examen}
+
+Los temas tratados son innovadores y, según se expresó, de nivel de posgrado, dados con los mismos materiales. El objetivo, dado que la universidad es pública, es que los estudiantes salgan con una visión global del tema, para que no tengan que esperar a un posgrado para conocer qué es la tokenización, el derecho de superficie, la hipoteca divisible, el fideicomiso de garantía o el pacto de sindicación. Quien tenga un caso concreto podrá especializarse e investigar.
+
+\begin{important}
+\textbf{Modalidad de examen anunciada.} No se preguntará la definición (por ejemplo, «qué es la tokenización») sino la \textbf{aplicación práctica}: «¿puedo tokenizar el derecho de superficie?, ¿en qué caso?», «¿cómo aplicaríamos un pacto de sindicación?». El objetivo es llevar los temas a la práctica: si queda en lo teórico, no sirve.
+\end{important}
+
+\section{Donación con usufructo y pacto de reversión}
+
+Se planteó la consulta sobre las donaciones con reserva de usufructo, en las que puede pactarse una reversión, y el límite de \textbf{diez años} de ese pacto.
+
+La explicación dada es que así lo establece el código, aunque una parte de la doctrina no comparte el criterio. La limitación de los derechos reales, por orden público, dura diez años.
+
+\begin{note}
+Referencia editorial incluida en las notas originales (no citada por número en la clase): CCyC, art.~1566 (cláusula de reversión en la donación) y régimen del dominio revocable (arts.~1965 y ss.); verificar el texto vigente.
+\end{note}
+
+\subsection{Fundamento del plazo máximo}
+
+Para la planificación sucesoria lo ideal sería que no existiera plazo. Pero si se mantuviera el derecho de reversión por 20 o 30 años, el inmueble no podría venderse en ese lapso: se lo saca del mercado, lo que el código no quiere. La razón es mantener la \textbf{seguridad jurídica} y permitir la transmisión de los bienes.
+
+\begin{example}{Dificultades prácticas de un pacto sin plazo}
+Una persona de 70 años dona con derecho de reversión; a los 97 años debería firmar la renuncia al derecho de reversión y tal vez no tenga capacidad mental. Mientras no fallezca, el inmueble puede quedar fuera del mercado. Si la mitad de los inmuebles de una ciudad se donara con derecho de reversión, nadie podría vender un inmueble.
+\end{example}
+
+\subsection{Casos planteados}
+
+\begin{itemize}
+    \item \textbf{Aceptación por los herederos.} Si, vencido el plazo, fallece la persona y el heredero (por ejemplo, el cónyuge) acepta el derecho de reversión, no pasaría nada porque lo consiente; pero podría impugnarlo y llevarlo a juicio.
+    \item \textbf{Venta con derecho de reversión en el año 12.} Se plantea si, muerto el donatario después de la venta, el donante (padre o madre) puede observar el título. Se respondió que se cree que no, aunque podría sostenerse que sí: lo que podría prevalecer es la norma de orden público que fija un máximo de diez años a las restricciones al dominio. En un litigio, el resultado no es claro.
+\end{itemize}
+
+Se comparó con la legítima: los herederos pueden renunciar a una legítima y es válido, pero en este caso no resulta claro.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.6cm}YY}
+\toprule
+\textbf{Tesis} & \textbf{Fundamento} & \textbf{Consecuencias prácticas} \\
+\midrule
+\textbf{Plazo máximo de diez años} & La limitación de los derechos reales por orden público dura diez años; protege la seguridad jurídica & Vencido el plazo, el pacto no sería oponible; el inmueble vuelve al mercado \\
+\addlinespace
+\textbf{Pacto sin límite temporal (parte de la doctrina)} & La voluntad plasmada en el pacto debe respetarse & Mejora la planificación sucesoria, pero deja inmuebles fuera del mercado durante décadas \\
+\bottomrule
+\end{tabularx}
+\caption{Pacto de reversión: posiciones expuestas}
+\end{table}
+
+\section{Cierre}
+
+Se indicó que lo tratado también ingresa como hipótesis de examen.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se precisa a qué tema se refiere «esto»)
+
+%------------------------------------------------------------------------------
+\section{Cuadro Cornell: tokenización, pacto de reversión y examen}
+%------------------------------------------------------------------------------
+
+\begin{longtable}{p{0.27\textwidth}p{0.62\textwidth}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Quien compra un token es dueño de la cosa?} &
+No. Quien compra un token compra un crédito (derecho personal), no el departamento, el trigo ni la vaca. Tiene propiedad sobre el token, no sobre la cosa. \\[0.6em]
+
+\textbf{¿Cómo se relacionan las sociedades con los derechos reales?} &
+Los titulares de los dominios suelen ser sociedades, y sus acciones y títulos pueden ser objeto de tokenización, pactos y fideicomisos, incluido el de garantía. \\[0.6em]
+
+\textbf{¿Cuánto dura un pacto de reversión y por qué?} &
+El código limita por orden público las restricciones al dominio a diez años, para dar seguridad jurídica y no sacar inmuebles del mercado; parte de la doctrina discrepa. \\[0.6em]
+
+\textbf{¿Cómo se evaluará lo aprendido?} &
+No se preguntarán definiciones sino aplicaciones: «¿puedo tokenizar el derecho de superficie?», «¿cómo aplicaríamos un pacto de sindicación?». \\
+
+\midrule
+\cornellresumen{La tokenización otorga un crédito (derecho personal) y no la propiedad de la cosa; las sociedades y sus títulos pueden integrar los contratos estudiados; el pacto de reversión tiene un límite de diez años por razones de orden público y seguridad jurídica; y el examen evaluará la capacidad de aplicar estas herramientas a casos concretos.}
+\bottomrule
+\end{longtable}
+
+%------------------------------------------------------------------------------
+% SÍNTESIS FINAL
+%------------------------------------------------------------------------------
+\chapter[Síntesis final]{Síntesis final de los apuntes}
+
+Comprar o desarrollar «en pozo» en Argentina es un negocio de riesgos que el derecho debe distribuir: el comprador por boleto (que financia la obra sin tener aún un derecho real), el dueño del terreno (que cambia su inmueble por promesas) y la desarrolladora (que necesita financiar sin dinero propio). La informalidad —el dinero no declarado y los boletos sin publicidad— explica por qué muchos conflictos terminan en juicio.
+
+Frente a ello se propone pensar en «vehículos» jurídicos —permuta con pacto de retroventa, sociedad, derecho de superficie, fideicomiso (preferentemente al costo) e hipoteca de primer grado— y elegir el adecuado según el caso, porque ninguno es bueno en abstracto: cada uno sirve para perfiles distintos y exige explicar con claridad al cliente qué riesgo asume.
+
+La novedad de la hipoteca divisible permitiría financiar al comprador con crédito bancario desde el boleto, pero hoy depende de que el banco apruebe al comprador, de que los registros la implementen y de legislación crediticia complementaria; por eso se la considera todavía «verde».
+
+Por último, la tokenización otorga un crédito (derecho personal) y no la propiedad de la cosa, el pacto de reversión tiene un límite de diez años por razones de orden público y seguridad jurídica, y el examen evaluará la capacidad de aplicar estas herramientas a casos concretos, no de repetir definiciones.
+
+\end{document}

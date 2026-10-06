@@ -1,0 +1,603 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Colegio de Escribanos}
+\newcommand{\carrera}{Curso de Tecnología Legal Notarial --- Curso electivo de práctica notarial}
+\newcommand{\materia}{Firma Digital, Firma Electrónica y el Rol Notarial}
+\newcommand{\titulo}{De la firma electrónica a la blockchain: identidad, prueba y certeza en el documento digital}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ============================================================
+% RUTAS DE IMÁGENES
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL (hipervínculos y metadatos PDF)
+% ============================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{El estudio riguroso de los fundamentos técnicos y jurídicos es la mejor herramienta frente a un ejercicio profesional en constante transformación.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Tecnología Legal Notarial'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+\clearpage
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+\chapter{Firma digital, firma electrónica y el rol notarial}
+
+La clase abordó, de manera progresiva, la distinción entre firma electrónica y firma digital, sus consecuencias en materia de carga de la prueba, el valor agregado que aporta la certificación notarial, la infraestructura y las plataformas disponibles para firmar y validar documentos digitales, y los límites jurisdiccionales de la actuación notarial, tanto a nivel interprovincial como internacional.
+
+\section*{Temas centrales de la clase}
+\begin{itemize}
+    \item La distinción legal y técnica entre firma electrónica y firma digital (Ley 25.506).
+    \item Las presunciones de autoría e integridad, la función hash y la carga de la prueba.
+    \item El rol del escribano como certificador de identidad, legalidad y control tributario.
+    \item Los mecanismos de prueba de vida, validación de documentos y plataformas notariales (MADONO, SDF 2.0, Firma Ciudadana).
+    \item Los riesgos de la identidad digital: deepfakes, abuso de token y criptografía postcuántica.
+    \item La jurisdicción notarial, la digitalización comparada (Argentina y Brasil) y la actuación notarial internacional.
+\end{itemize}
+
+\section*{Relevancia profesional}
+\begin{itemize}
+    \item Distinguir la firma electrónica de la firma digital resulta determinante para la validez y la fuerza probatoria de un documento: puede ser la diferencia entre un contrato válido y un instrumento que nadie puede hacer valer judicialmente.
+    \item Para quien ejerce la función notarial, esta distinción orienta el asesoramiento sobre qué tipo de firma corresponde según el riesgo del acto.
+    \item Reconocer los mecanismos de fraude de identidad mediante deepfakes o suplantación en videollamadas constituye una competencia profesional cada vez más determinante.
+    \item Incorporar firma digital, certificación remota y validación de documentos representa una ventaja competitiva real para el ejercicio profesional.
+\end{itemize}
+
+% ============================================================
+% BLOQUE 1
+% ============================================================
+\section{Fundamentos: firma electrónica y firma digital}
+
+\subsection{Punto de partida y marco normativo general}
+
+El déficit de formación específica en materia de firma digital constituye un problema estructural: en general, los programas de acceso a la función notarial no incluyen el estudio de la Ley 25.506 de Firma Digital, ni siquiera en distritos con mayor desarrollo institucional, como la Ciudad de Buenos Aires. Esta carencia favorece que el tema se conozca de manera superficial y se confunda con frecuencia con el régimen de la firma electrónica.
+
+El desarrollo de la clase siguió un orden deliberado: partir de la distinción entre firma electrónica y firma digital para, recién después, poder abordar cuestiones más complejas como blockchain y la tokenización, en tanto estos últimos conceptos presuponen la comprensión de los primeros.
+
+\begin{important}
+Si el acceso a la función notarial nunca exigió siquiera una lectura de la Ley de Firma Digital, el propio ingreso a la profesión queda desactualizado frente al mundo de los documentos electrónicos que ya circula en la práctica diaria.
+\end{important}
+
+\subsection{Firma electrónica y firma digital: el caso del pase de un futbolista}
+
+La Ley 25.506 reconoce validez a la firma electrónica, aunque con un régimen probatorio distinto al de la firma digital.
+
+\begin{formula}{Artículo 5, Ley 25.506 --- Firma electrónica}
+Se entiende por firma electrónica al conjunto de datos electrónicos integrados, ligados o asociados de manera lógica a otros datos electrónicos, utilizado por el signatario como su medio de identificación, que carezca de alguno de los requisitos legales para ser considerada firma digital. En caso de ser desconocida la firma electrónica corresponde a quien la invoca acreditar su validez.
+\end{formula}
+
+Para poner en tensión esta distinción, se planteó como disparador un caso real vinculado a un contrato de pase de un futbolista por una cifra económica muy significativa, suscripto mediante firma electrónica (no digital).
+
+\begin{example}{El pase del futbolista}
+Un club y un jugador firman un contrato de pase por una suma muy importante utilizando firma electrónica. Al mes siguiente, el club no deposita el sueldo pactado. El jugador reclama; el club responde que no existe ``ningún contrato firmado''. El conflicto se traslada entonces a una pregunta técnica: ¿ese documento está firmado en sentido jurídico, y quién tiene que probarlo?
+\end{example}
+
+Una postura posible ---sostenida como ejercicio de debate por uno de los presentes--- es que, al no cumplir con los requisitos legales de la firma digital, ese instrumento debe considerarse un instrumento particular no firmado, aun cuando exprese una manifestación de voluntad. Sobre esa base se profundizó en los artículos 7 y 8 de la Ley 25.506, que instituyen, respectivamente, la presunción de autoría y la presunción de integridad, ambas exclusivas de la firma digital y no de la electrónica.
+
+\begin{formula}{Artículos 7 y 8, Ley 25.506}
+\textbf{Artículo 7 (Presunción de autoría):} se presume que un documento digital firmado digitalmente pertenece al titular del certificado digital que permite verificar dicha firma. \\
+\textbf{Artículo 8 (Presunción de integridad):} si el resultado de la verificación de una firma digital es válido, se presume que el documento digital no ha sido modificado desde el momento de su firma.
+\end{formula}
+
+La clave para resolver el caso no está solo en si el documento es válido en abstracto, sino en determinar sobre quién recae la carga de la prueba: en la firma electrónica, quien afirma haber firmado debe probarlo; en la firma digital, en cambio, opera una presunción legal a favor de quien firmó, y es la contraparte la que debe probar que no lo hizo.
+
+\begin{important}
+La diferencia entre firma electrónica y firma digital no es meramente técnica: define quién tiene que salir a probar algo en un conflicto judicial. Firmar electrónicamente traslada la carga de la prueba a quien firmó; firmar digitalmente la traslada a quien pretende desconocer la firma.
+\end{important}
+
+A partir de esta distinción puede construirse una estructura de tres niveles: en la base, la firma electrónica, reconocida por la ley y a la que no puede negársele validez sin negar buena parte del mundo digital cotidiano (por ejemplo, una comunicación de WhatsApp, que lleva inserta una firma electrónica en tanto vincula al usuario con su número telefónico asociado); en un nivel intermedio, la firma digital, con sus presunciones legales de autoría e integridad; y en el nivel superior, la certificación notarial de la firma digital, que aporta certeza sobre la identidad de quien firmó.
+
+% ============================================================
+% BLOQUE 2
+% ============================================================
+\section{Prueba, presunciones y riesgos de la identidad digital}
+
+\subsection{Presunción de autoría e integridad y función hash}
+
+La presunción de integridad de la firma digital se sostiene técnicamente en la función hash. Cuando un documento se firma digitalmente, el sistema aplica un algoritmo matemático que produce una cadena de caracteres única asociada a ese contenido exacto. Si el documento se modifica ---aunque sea mínimamente---, la función hash arroja un resultado distinto, lo que revela la alteración. El proceso de validación consiste en verificar que el hash generado por la clave pública coincide con el generado por la clave privada del firmante.
+
+\begin{example}{Cómo funciona el «tilde verde»}
+La clave privada genera un código numérico de 64 caracteres (letras y números). Cuando el sistema verifica la firma con la clave pública correspondiente, si el resultado coincide exactamente con ese mismo código, en el mismo orden, el validador muestra un tilde verde: eso significa que el documento no fue alterado y que existen la presunción de autoría y la presunción de integridad que otorga la ley.
+\end{example}
+
+Sin embargo, esa presunción legal ---por más sólida que sea--- no equivale a una certeza absoluta sobre quién firmó. Se ha demostrado en capacitaciones técnicas que es posible manipular el hash de una conversación de WhatsApp guardada en una computadora, lo que relativiza el valor probatorio de ese tipo de comunicaciones cuando se las analiza fuera de un contexto pericial adecuado: dan fe del procedimiento, pero no necesariamente del contenido de los mensajes, porque podría tratarse de una simulación.
+
+\begin{important}
+La presunción legal de autoría e integridad de la firma digital es una herramienta jurídica poderosa, pero no sustituye a la certeza sobre la identidad de la persona física que está detrás de esa firma. Presunción y certeza son dos cosas distintas.
+\end{important}
+
+\subsection{Valor probatorio de las comunicaciones electrónicas y riesgos de la identidad digital}
+
+Los estados de WhatsApp presentan una complejidad probatoria particular, ya que son volátiles y desaparecen a las veinticuatro horas.
+
+\begin{example}{El estado de WhatsApp}
+Un empleado publicó, un domingo a la noche, un estado de WhatsApp en el que anunciaba que al día siguiente no se presentaría a trabajar por motivos ajenos a una causa habilitante. Dado que el estado desaparece a las 24 horas, fue necesario realizar una captura y una copia forense de ese contenido antes de que se perdiera, para poder incorporarlo como prueba al procedimiento laboral.
+\end{example}
+
+Este tipo de prueba resulta cada vez más relevante en materia laboral y de familia, donde la prueba admite mayor amplitud probatoria y el WhatsApp suele ser uno de los primeros elementos que se ofrecen, lo que justifica que el escribano se especialice también en derecho informático para realizar constataciones con el respaldo forense adecuado.
+
+La sola existencia de una firma digital válida tampoco garantiza que el titular esté efectivamente vivo y en condiciones de consentir en el momento de firmar: la firma digital da una presunción, no una certeza, lo que habilita usos y abusos del token por parte de terceros ---incluidos herederos--- una vez fallecido el titular. A este riesgo se suman los fraudes de identidad mediante inteligencia artificial.
+
+\begin{example}{Fraude por videollamada con identidades sintéticas}
+En un caso ampliamente difundido, un empleado autorizó una transferencia de fondos muy importante tras una videollamada en la que creyó ver y escuchar a todo el directorio de su empresa. En realidad, todos los participantes ---salvo él--- eran entidades sintéticas generadas por inteligencia artificial. El trabajo remoto desde cualquier lugar del mundo también facilita que empresas crean estar contratando personas físicas cuando en verdad están dando acceso a espías industriales.
+\end{example}
+
+Frente a este panorama corresponde aplicar el principio de «zero trust» (cero confianza): no dar nunca por sentada la identidad de un interlocutor solo porque «se lo ve» a través de una pantalla, y requerir validación adicional cuando no se trate de un interlocutor conocido.
+
+A ello se suma la amenaza que representa, a futuro, la computación cuántica para los algoritmos criptográficos que hoy sostienen tanto la firma digital como la seguridad bancaria. El instituto estadounidense de normas y tecnología (NIST) convocó a matemáticos y físicos de todo el mundo para desarrollar algoritmos más resistentes ante ese escenario.
+
+\begin{example}{El «Quantum Day» y los algoritmos postcuánticos}
+El instituto estadounidense de tecnología convocó a especialistas para diseñar algoritmos poscuánticos ante el escenario del llamado «quantum day»: el momento en que la computación cuántica alcance la capacidad de quebrar, en pocas horas, los algoritmos que hoy protegen las transacciones bancarias y la firma digital. Mientras tanto, ya existen atacantes que aplican la estrategia denominada «cosechar hoy para abrir mañana»: recopilar y almacenar hoy información cifrada que no pueden leer, para descifrarla en el futuro cuando la tecnología cuántica lo permita.
+\end{example}
+
+\begin{important}
+El sistema de firma digital que hoy se explica como una novedad podría quedar tecnológicamente superado en pocos años por la computación cuántica. Bancos y organismos internacionales ya están preparando algoritmos postcuánticos, mientras que en la práctica notarial argentina todavía se está incorporando el conocimiento básico de la firma digital vigente.
+\end{important}
+
+% ============================================================
+% BLOQUE 3
+% ============================================================
+\section{El escribano como certificador}
+
+\subsection{Certificación notarial de firma digital y prueba de vida}
+
+Además de la firma digital simple ---que ya trae presunción legal de autoría e integridad---, existe la posibilidad de solicitar su certificación notarial, un escalón adicional que aporta lo que la sola presunción legal no puede dar: certeza sobre la identidad de la persona que firmó en ese momento. El procedimiento típico de certificación remota consiste en que el escribano contacta al titular de la firma digital por videoconferencia a través de la plataforma segura del Colegio de Escribanos; la persona coloca su token y su contraseña, firma frente al escribano, y este emite una constancia ---una foja digital--- certificando que esa persona en particular colocó su firma en su presencia.
+
+\begin{formula}{Artículo 308 --- Certificación notarial por videoconferencia}
+El artículo 308 constituye la base normativa para la certificación notarial de firmas mediante videoconferencia, un procedimiento que todos los escribanos deben poder ejecutar con solvencia.
+\end{formula}
+
+El elemento diferencial de esta certificación es la prueba de vida, requisito que se volvió especialmente relevante durante la pandemia, cuando había que constatar la subsistencia de personas mayores para sostener determinados beneficios sin poder visitarlas presencialmente.
+
+\begin{example}{Prueba de vida en videoconferencia}
+Durante la certificación, un sistema automatizado del Colegio envía a la persona un enlace mediante el cual debe grabar un video breve, pronunciando en el momento tres palabras aleatorias que se le indican, generadas en el instante, de modo que no puedan prepararse de antemano. Ese video se contrasta contra la base del Registro Nacional de las Personas (Renaper), que devuelve dos resultados: si la persona está efectivamente viva (no hay aviso de fallecimiento) y un porcentaje de coincidencia entre el rostro de la grabación y el de la base de datos.
+\end{example}
+
+Este mecanismo permite detectar cuando alguien ya fallecido «sigue firmando» a través de su token, lo que constituye un uso o abuso de la firma digital por parte de terceros. Al mismo tiempo, el propio sistema de validación puede resultar poco accesible para personas mayores, que a veces tienen dificultades para completar correctamente el proceso de grabación; esta tensión se trabaja bajo el concepto de «apoyo digital», en paralelo con los sistemas de apoyo para personas mayores que reconoce el Código Civil y Comercial.
+
+Cuando la persona no puede completar la prueba de vida por videoconferencia, existe una validación intermedia: se le solicita, a través del mismo canal de contacto, que envíe fotografías del frente y del dorso de su documento de identidad.
+
+\begin{example}{El documento desactualizado}
+Si la persona presenta una fotografía del documento de identidad con una imagen anterior a la última actualización, corresponde exigirle que primero renueve o actualice el documento antes de continuar con el acto notarial, porque la fotografía válida a los fines de la comparación es siempre la última registrada. Esta situación es frecuente, sobre todo entre personas mayores que, por temor a perder o que les roben el documento actualizado, prefieren salir con uno anterior.
+\end{example}
+
+\subsection{Funciones del escribano: identidad, legalidad y fisco}
+
+El escribano cumple, al intervenir en la certificación de una firma digital, un conjunto de funciones que ninguna plataforma de firma electrónica o digital puede reemplazar por sí sola.
+
+\begin{important}
+El escribano es, en primer lugar, una entidad de identidad: verifica que quien firma es efectivamente quien dice ser. En segundo lugar, ejerce un control de legalidad sobre el contenido de lo que se firma ---por ejemplo, detectando contratos bajados de internet que citan artículos de códigos derogados o de otra jurisdicción---. En tercer lugar, actúa como agente de información, percepción y retención en materia tributaria. Y, como un paso adicional, cumple funciones de prevención de lavado de activos, financiamiento del terrorismo y de la proliferación de armas de destrucción masiva.
+\end{important}
+
+Sobre el control de legalidad, existe un riesgo concreto en la práctica: personas que descargan de internet modelos de contratos ---por ejemplo, de locación--- que citan legislación derogada o de otra jurisdicción, sin advertir que ya no resultan aplicables; el escribano es quien realiza ese contralor de la legislación aplicable. Respecto del control tributario, si el acto que se firma debe estar gravado con algún impuesto, corresponde dejar constancia de esa circunstancia para resguardar la responsabilidad profesional y asesorar correctamente a quien firma. En cuanto a la prevención de lavado de activos, el escribano avala negocios que podrían encubrir delitos precedentes ---como la trata de personas--- o delitos informáticos, por lo que ese control adicional tiene un valor social que va más allá de la mera certificación técnica de una firma.
+
+\begin{important}
+Presunción legal, prueba de quién firmó electrónicamente, y certeza aportada por la certificación notarial (Ley 25.506) son tres niveles distintos y complementarios, no intercambiables. Ninguna plataforma privada de firma electrónica realiza, además, control de identidad reforzado, control de legalidad, control tributario y prevención de lavado de activos en un mismo acto.
+\end{important}
+
+% ============================================================
+% BLOQUE 4
+% ============================================================
+\section{Infraestructura y plataformas de firma digital}
+
+\subsection{ONTI, certificadores licenciados y el token}
+
+Lo determinante para que una firma sea «digital» y no simplemente «electrónica» no es la sofisticación del procedimiento matemático o criptográfico empleado, sino quién está detrás de la infraestructura que emite el certificado.
+
+\begin{formula}{Artículo 2, Ley 25.506 --- Firma digital}
+Se entiende por firma digital al resultado de aplicar a un documento digital un procedimiento matemático que requiere información de exclusivo conocimiento del firmante, encontrándose ésta bajo su absoluto control, y que además sea susceptible de verificación por terceros.
+\end{formula}
+
+\begin{important}
+Si la firma fue otorgada por la ONTI (Oficina Nacional de Tecnologías de la Información) o por un certificador licenciado por ella ---como los Colegios de Escribanos que prestan ese servicio--- es firma digital. Todo lo demás, sin importar cuán sofisticada sea la tecnología subyacente, es firma electrónica.
+\end{important}
+
+% TODO: contenido incompleto o ambiguo en las notas originales: la cronología institucional de la infraestructura de firma digital en la Argentina aparece mencionada de forma sintética en el apunte (inicio de la adopción empresarial hacia el año 2000, consolidación a partir de 2020 con el impulso de los negocios digitales y el comercio electrónico), sin mayor precisión sobre los hitos normativos intermedios.
+
+El procedimiento operativo para obtener el token es el siguiente: la persona solicita un turno, se presenta ante un operador del Colegio y carga su clave y su contraseña ---la única clave que conocerá, bajo su exclusiva responsabilidad---, quedando así vinculada a un token.
+
+\begin{example}{Clave simétrica frente a clave asimétrica}
+En una clave simétrica, alguien más conoce o entrega la misma clave que usa el titular. En cambio, en el esquema de firma digital, el operador del Colegio entrega el token, pero la contraseña que se carga en ese momento la conoce exclusivamente el titular: es una clave asimétrica, y por eso la responsabilidad de lo firmado recae enteramente en esa persona.
+\end{example}
+
+Si el token se pierde o se daña, el titular debe comunicarse con el Colegio para solicitar la revocación del certificado y la emisión de un nuevo token con un nuevo turno. En el uso cotidiano, la computadora solicita la clave y contraseña, lo que habilita el uso de un programa llamado «firmador», al cual se adjunta el documento a firmar; al hacer clic en «firmar» y verificar el tilde verde, el documento queda firmado y se descarga junto con su certificado de registro.
+
+\subsection{Validación de documentos y percepción social}
+
+Quien recibe un documento firmado digitalmente no necesita ninguna contraseña: accede a una herramienta de validación provista por la entidad emisora, a la que se adjunta el documento recibido para confirmar su autenticidad.
+
+\begin{example}{El validador de documentos notariales (MADONO)}
+El Colegio de Escribanos ofrece en su sitio web un validador de documentos notariales (identificado con el acrónimo MADONO). Quien recibe un documento firmado digitalmente por un escribano debe arrastrarlo o adjuntarlo en esa herramienta para confirmar que efectivamente fue firmado y certificado por esa persona; de lo contrario, cualquiera podría fabricar un PDF con apariencia de estar firmado sin que exista una firma real detrás. Este mecanismo es comparable al de los títulos digitales de propiedad automotor, que incluyen un código QR para su validación.
+\end{example}
+
+Este último paso ---la validación por parte del receptor--- cierra el círculo completo de la infraestructura de firma digital: la primera pata es no divulgar nunca la clave y contraseña; la firma en sí es la segunda; y la validación por quien recibe el documento es la tercera y última.
+
+Existe, además, un problema más cultural que técnico: buena parte de la ciudadanía no confía en un documento firmado digitalmente porque, a simple vista, no «parece» firmado, al no existir una rúbrica manuscrita ni un sello visible. La solución adoptada por el Colegio de Escribanos fue incorporar un sello visual ---una imagen con la leyenda de que el documento fue firmado digitalmente por determinado escribano, en determinada fecha--- al pie de cada documento digital, con el fin de generar en el receptor la sensación visual de autenticidad que el proceso técnico, por sí solo, no transmite.
+
+\begin{important}
+La validez jurídica de un documento firmado digitalmente no depende de que se «vea» firmado, pero su aceptación social sí. Diseñar la experiencia del usuario alrededor del documento digital ---con sellos visuales y validadores accesibles--- es tan importante como la solidez técnica y legal del sistema.
+\end{important}
+
+A partir de diciembre de 2025 se dictó una resolución que habilitó la tramitación de la firma digital de manera remota, sin necesidad de presencialidad ante la ONTI o el certificador licenciado, lo que generó dudas sobre cómo se controla la identidad en ese trámite a distancia. Como respuesta institucional a estas tensiones se presentó, apenas tres semanas antes de la clase, la plataforma «Firma Ciudadana» del Colegio de Escribanos, lanzada públicamente en el marco de un congreso de real estate.
+
+\begin{example}{La plataforma de Firma Ciudadana}
+La persona se registra («se enrola») en la plataforma de Firma Ciudadana del Colegio de Escribanos, inicia sesión y firma un documento a través del proceso que ofrece la propia plataforma. A diferencia de otros sistemas, el documento firmado no queda alojado en ningún servidor del Colegio, lo que garantiza la privacidad de quien usa el sistema. La firma es gratuita y está avalada por una institución con más de 160 años de trayectoria en el resguardo de la seguridad jurídica.
+\end{example}
+
+% TODO: contenido incompleto o ambiguo en las notas originales: el fundamento de la iniciativa «Firma Ciudadana» se remite a un informe elevado al Consejo Directivo del Colegio en el año 2021 por quien entonces ejercía como presidenta de la comisión de innovación; las notas originales alternan referencias en masculino («el docente») y en femenino («ella misma», «presidenta») al referirse a la misma persona, discordancia que se conserva tal como figura en el apunte.
+
+\begin{example}{El informe de 2021 sobre empresas de firma electrónica}
+El relevamiento identificado en el informe de 2021 constató que el número de empresas privadas de firma electrónica había pasado de apenas tres a veintiuna en poco tiempo, mientras que, en paralelo, las ventas de fojas de certificación de firmas y de libros de escribanos venían en descenso. Ese cruce de datos motivó la discusión política dentro del Colegio sobre cómo reposicionar la función notarial frente a ese mercado.
+\end{example}
+
+La conclusión de aquel debate fue que no tenía sentido resistirse a la desaparición de una modalidad de certificación de firmas para intentar preservar un statu quo, sino que había que competir ofreciendo un servicio superior y gratuito, apoyado en la confianza que la ciudadanía deposita en la institución notarial. Esta plataforma no compite con la actividad de los propios escribanos, sino que busca captar a la ciudadanía que de otro modo recurriría a plataformas privadas de pago, ofreciéndole certeza sobre la identidad, control de legalidad, asesoramiento y custodia frente a delitos precedentes, elementos que una empresa de firma electrónica no ofrece.
+
+\begin{important}
+El mercado de la firma electrónica privada creció rápidamente en la Argentina en los últimos años, en paralelo a una caída de las certificaciones notariales tradicionales. La respuesta institucional del notariado no fue resistir el cambio, sino ofrecer una alternativa gratuita, avalada por su trayectoria y sin alojamiento del documento, que integra ese cambio en lugar de negarlo.
+\end{important}
+
+% ============================================================
+% BLOQUE 5
+% ============================================================
+\section{Jurisdicción notarial y derecho comparado}
+
+\subsection{Competencia territorial y digitalización comparada}
+
+La plataforma de certificaciones que reemplaza al histórico «libro azul» en soporte físico es el Sistema de Certificaciones de Firmas (SDF), actualmente en su versión 2.0. Este sistema permite que la persona requirente se encuentre en cualquier lugar, siempre que el escribano actuante esté sentado dentro de su propia jurisdicción, que es la que en definitiva determina la competencia.
+
+\begin{example}{La evolución del criterio jurisdiccional}
+En una primera etapa, el sistema únicamente habilitaba la certificación remota para personas ubicadas en la Ciudad de Buenos Aires o en el extranjero, y se resolvía mediante una declaración jurada de la propia persona sobre su ubicación. Frente a las tensiones interprovinciales que generó su implementación ---con amenazas de denuncia contra escribanos que certificaban firmas de personas ubicadas fuera de su jurisdicción de residencia---, el criterio cambió: hoy no importa dónde esté físicamente la persona requirente en el país; si algún colegio provincial quisiera cuestionar una certificación remota, la respuesta institucional fue ofrecerle el mismo sistema, de manera gratuita, para que también pueda certificar a distancia.
+\end{example}
+
+La digitalización notarial argentina puede compararse con la brasileña, que presenta un grado de digitalización considerablemente mayor por razones que no son únicamente tecnológicas, sino de diseño institucional.
+
+\begin{table}[H]
+\centering
+\caption{Digitalización notarial: Argentina y Brasil}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} X}
+\toprule
+\textbf{Aspecto} & \textbf{Situación} \\
+\midrule
+Grado de digitalización & Brasil alcanzó el cien por ciento de digitalización de sus actos notariales; en la Argentina, la digitalización avanzó de manera parcial. \\
+Diseño institucional & Brasil es una república federativa en la que notarios y registradores pueden ejercer en cualquier punto del territorio nacional. \\
+Jurisdicción notarial & En la Argentina, cada provincia se reservó constitucionalmente la facultad de regular la función notarial dentro de su propio territorio, lo que estableció jurisdicciones estrictas: un escribano matriculado en una jurisdicción no puede ejercer como tal en otra sin cumplir los requisitos de esa demarcación. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+La brecha de digitalización notarial entre la Argentina y Brasil no responde únicamente a una diferencia de infraestructura tecnológica, sino a una diferencia estructural de organización federal: la fragmentación jurisdiccional argentina ---una jurisdicción por provincia--- es un obstáculo institucional adicional a la digitalización plena de la función notarial.
+\end{important}
+
+\subsection{Actuación notarial internacional y matricidad en soporte papel}
+
+La actuación notarial internacional plantea el problema de cómo intervenir cuando las partes de un mismo acto ---por ejemplo, una compraventa de un inmueble--- se encuentran en distintos países. El principio general, ya consolidado en esa discusión internacional, es que no puede recurrirse a un notario totalmente ajeno a la operación, ni buscar una jurisdicción más conveniente a nivel tributario si ni el inmueble ni las partes tienen relación con ese territorio.
+
+\begin{definition}{Punto de conexión}
+Noción tomada del derecho internacional privado según la cual debe existir un vínculo real ---un punto de conexión--- entre el notario interviniente y el negocio jurídico. Sin ese punto de conexión, no existe posibilidad de intervención notarial válida.
+\end{definition}
+
+\begin{example}{El caso de Puerto Rico}
+La legislación de Puerto Rico permite que un notario tome un avión, se lleve su protocolo y viaje ---por ejemplo, a Ámsterdam--- para tomarle la firma a un residente en el extranjero, algo que la organización notarial argentina no admite bajo su esquema actual de matricidad y jurisdicción.
+\end{example}
+
+La escritura pública en la Argentina continúa firmándose en soporte papel y de manera presencial, sin que exista todavía la posibilidad de una escritura pública a distancia. Es posible trabajar con poderes otorgados en el extranjero bajo la forma de instrumento privado con doble columna, siempre que el país donde el instrumento vaya a surtir efecto admita esa modalidad; pero cuando el acto de apoderamiento debe otorgarse en la Argentina, el mandato exige escritura pública. Ya existen, sin embargo, las primeras copias digitales de las escrituras: aunque el original ---la matriz--- sigue existiendo en soporte papel, la persona requirente puede llevarse en el momento una copia digital, sin esperar los tiempos administrativos tradicionales de expedición de copias.
+
+\begin{example}{Poderes con sucursales en otra jurisdicción}
+Una empresa con sede en la Ciudad de Buenos Aires necesita otorgar un poder a una persona que actuará en su sucursal de otra provincia. En esos casos suele resultar más práctico otorgar la primera copia, legalizarla en el Colegio de Escribanos correspondiente y remitirla ---incluso físicamente, por correo--- a la jurisdicción donde va a utilizarse, en lugar de intentar forzar una certificación digital que no siempre resuelve estos cruces interjurisdiccionales dentro de una misma empresa.
+\end{example}
+
+\begin{important}
+Pese a todo el desarrollo de la firma digital, la certificación remota y la certeza notarial, la escritura pública argentina continúa firmándose en soporte papel y de manera presencial. La digitalización avanzó decididamente en la certificación de firmas y en las copias, pero la matricidad del acto notarial de mayor jerarquía ---la escritura pública--- todavía no dio ese salto.
+\end{important}
+
+% ============================================================
+% CORNELL
+% ============================================================
+\section*{Cuadro Cornell}
+\addcontentsline{toc}{section}{Cuadro Cornell}
+
+La siguiente tabla organiza, en formato Cornell, las preguntas y conceptos clave desarrollados en la clase junto con su respuesta o explicación, seguida de una síntesis final integradora.
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+    >{\raggedright\arraybackslash}p{0.60\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuál es la diferencia esencial entre firma electrónica y firma digital?} &
+La firma electrónica (art. 5, Ley 25.506) existe y tiene validez, pero quien la invoca debe probar que firmó. La firma digital (art. 2) exige un procedimiento matemático de exclusivo control del firmante, verificable por terceros, y otorgado por la ONTI o un certificador licenciado; goza de presunción legal de autoría e integridad (arts. 7 y 8). \\
+\addlinespace
+
+\textbf{¿Quién tiene la carga de la prueba en cada caso?} &
+Con firma electrónica, la carga de la prueba recae sobre quien firmó (debe acreditar la autoría, por ejemplo mediante pericia). Con firma digital, la presunción legal invierte la carga: es la contraparte quien debe probar que la persona no firmó. \\
+\addlinespace
+
+\textbf{¿Qué garantiza técnicamente la función hash?} &
+La función hash genera un código único asociado al contenido exacto de un documento. Si el documento se altera, el hash cambia. La validación compara el hash obtenido con la clave pública contra el generado por la clave privada; si coinciden, se confirma la presunción de integridad. \\
+\addlinespace
+
+\textbf{¿Puede un mensaje de WhatsApp usarse como prueba?} &
+Sí, como firma electrónica del género de las comunicaciones electrónicas, vinculando al usuario con su número telefónico. Pero su valor probatorio es limitado: los estados son volátiles (24 horas) y su contenido puede manipularse técnicamente, por lo que suele requerir constatación forense adicional. \\
+\addlinespace
+
+\textbf{¿Qué aporta la certificación notarial que la sola firma digital no da?} &
+Certeza sobre la identidad de quien firma en el momento del acto, mediante videoconferencia, prueba de vida (validación con Renaper, art. 308) y, cuando corresponde, verificación fotográfica del documento de identidad actualizado. \\
+\addlinespace
+
+\textbf{¿Qué funciones cumple el escribano además de certificar la firma?} &
+Actúa como entidad de identidad, realiza control de legalidad sobre el contenido firmado (evitando normativa derogada o de otra jurisdicción), cumple funciones de agente de información y retención tributaria, y aplica controles de prevención de lavado de activos y financiamiento del terrorismo. \\
+\addlinespace
+
+\textbf{¿Quién puede emitir válidamente una firma digital?} &
+Únicamente la ONTI (Oficina Nacional de Tecnologías de la Información) o sus certificadores licenciados. Sin ese origen institucional, cualquier firma ---por sofisticada que sea su criptografía--- sigue siendo firma electrónica, no digital. \\
+\addlinespace
+
+\textbf{¿Por qué la ciudadanía desconfía de los documentos firmados digitalmente?} &
+Porque no presentan una rúbrica visible. La solución adoptada fue incorporar un sello visual identificatorio al pie del documento y ofrecer validadores accesibles (como el validador de documentos notariales), junto con la plataforma gratuita de Firma Ciudadana. \\
+\addlinespace
+
+\textbf{¿Por qué un escribano no puede certificar en cualquier provincia como en Brasil?} &
+Porque en la Argentina cada provincia se reservó la facultad constitucional de regular su propia función notarial, generando jurisdicciones estrictas. En Brasil, como república federativa con otro diseño institucional, los notarios ejercen en todo el territorio, lo que ---entre otros factores--- explica su digitalización total de actos. \\
+\addlinespace
+
+\textbf{¿Qué límites existen hoy para la actuación notarial internacional y la escritura pública?} &
+Debe existir un punto de conexión real entre el notario y el negocio (no vale elegir jurisdicción por conveniencia). La escritura pública en la Argentina continúa siendo en soporte papel y presencial, aunque ya existen primeras copias digitales inmediatas. \\
+\midrule
+
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:} La clase recorrió un camino ascendente: partió de la distinción legal entre firma electrónica y firma digital establecida en la Ley 25.506 ---una distinción que determina quién debe probar qué ante un conflicto---, avanzó hacia los mecanismos técnicos que la sostienen (la función hash y las presunciones de autoría e integridad), y expuso sus límites frente a riesgos crecientes de suplantación de identidad, desde el uso cuestionable de mensajería instantánea como prueba hasta los fraudes por videollamada con identidades sintéticas. Sobre esa base, reivindicó el valor agregado específico de la función notarial: no la mera certificación de una firma, sino el control de identidad mediante prueba de vida, el control de legalidad del contenido firmado, el control tributario y la prevención del lavado de activos, funciones que ninguna plataforma privada de firma electrónica reemplaza. Finalmente, situó todo este desarrollo dentro de sus límites institucionales concretos: la fragmentación jurisdiccional provincial que distingue a la Argentina de modelos como el brasileño, los criterios aún en construcción para la actuación notarial internacional, y la persistencia de la escritura pública en soporte papel pese a los avances de la firma digital, la certificación remota y plataformas propias como el validador de documentos notariales y la Firma Ciudadana. El hilo conductor de toda la clase fue que la tecnología no reemplaza la certeza jurídica: la puede acompañar, agilizar o hacer más accesible, pero la certeza sobre quién es la persona que firma y qué es lo que está firmando sigue requiriendo, en los actos de mayor relevancia, la intervención de una función notarial que entienda tanto el derecho como la tecnología que lo atraviesa.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

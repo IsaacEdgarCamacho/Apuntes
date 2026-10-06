@@ -1,0 +1,1007 @@
+\documentclass[12pt,oneside]{book}
+
+% ==========================================================
+% METADATOS
+% ==========================================================
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el apunte no indica universidad, facultad ni año; se aplican los valores por defecto
+% establecidos: Universidad de Buenos Aires (UBA) y el año actual).
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\carrera}{Colegio de Escribanos --- Carrera de Notariado}
+\newcommand{\materia}{Nuevas Formas y Tecnología Jurídica}
+\newcommand{\titulo}{Apuntes de Nuevas Formas y Tecnología Jurídica}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+\newcommand{\reflexion}{Comprender es el primer paso para convertir el estudio en conocimiento.}
+
+% ==========================================================
+% PAQUETES
+% ==========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==========================================================
+% CONFIGURACIÓN
+% ==========================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ==========================================================
+% COMANDOS
+% ==========================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Anchos de las columnas del cuadro Cornell
+\newlength{\cornellizq}
+\newlength{\cornellder}
+\newlength{\cornellfull}
+\AtBeginDocument{
+    \setlength{\cornellizq}{0.27\textwidth}
+    \setlength{\cornellder}{\dimexpr\textwidth-\cornellizq-4\tabcolsep\relax}
+    \setlength{\cornellfull}{\dimexpr\textwidth-2\tabcolsep\relax}
+}
+
+% ==========================================================
+% ENTORNOS / CAJAS
+% ==========================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ==========================================================
+% CONFIGURACIÓN FINAL
+% ==========================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==========================================================
+% DOCUMENTO
+% ==========================================================
+\begin{document}
+
+% ----------------------------------------------------------
+% PORTADA
+% ----------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{0.2cm}
+
+{\normalsize Materia optativa --- Ciclo de formación en tecnología jurídica}
+
+\vspace{3cm}
+
+{\Huge \textbf{\titulo}}
+
+\vspace{1cm}
+
+\textit{\reflexion}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ----------------------------------------------------------
+% ÍNDICE
+% ----------------------------------------------------------
+\frontmatter
+\tableofcontents
+\mainmatter
+
+% ==========================================================
+% CAPÍTULO 1
+% ==========================================================
+\chapter[Presentación]{Presentación de la materia y criterio de estudio}
+\label{cap:presentacion}
+
+\section{Orientación de la materia}
+
+La materia es de carácter optativo y se inscribe en un ciclo de formación en tecnología jurídica del Colegio de Escribanos, Carrera de Notariado. Está dirigida a los operadores jurídicos --- notarios, abogados y martilleros --- que trabajan hoy dentro de un ecosistema en el que la firma digital, la prueba electrónica y los contratos electrónicos constituyen la forma cotidiana de dar fe, de contratar y de litigar.
+
+La cursada se organiza a partir de dos orientaciones: una más tradicional, correspondiente a los contenidos del derecho inmobiliario, y otra tecnológica. Como ejes de esta última se enunciaron, de manera introductoria, los siguientes conceptos:
+
+\begin{itemize}
+    \item blockchain;
+    \item criptomonedas;
+    \item inteligencia artificial;
+    \item seguridad de la información;
+    \item protección de datos personales;
+    \item ciberseguridad;
+    \item firma digital.
+\end{itemize}
+
+\section{Temas tratados}
+
+Los contenidos desarrollados en esta clase son los siguientes:
+
+\begin{itemize}
+    \item El gobierno electrónico y el nacimiento del marco normativo digital (leyes 25.506 y 25.326, ambas del año 2000).
+    \item La evolución de internet, de la Web 1.0 a la Web 3.0, y su impacto en la función notarial.
+    \item La prueba electrónica, los metadatos y la cadena de custodia en las actas notariales.
+    \item El derecho del consumidor digital y la contratación electrónica incorporada al Código Civil y Comercial (2015).
+    \item Los orígenes filosóficos e históricos de la tecnología blockchain: cyberpunks, crisis subprime y el white paper de Bitcoin.
+    \item Los riesgos de la desintermediación: tokenización, estafas y esquemas Ponzi en plataformas digitales.
+\end{itemize}
+
+\section{Utilidad profesional y personal}
+
+Entender de dónde proviene el marco normativo digital --- por qué surgió en el año 2000, por qué se aceleró con las redes sociales y por qué hoy convive con blockchain --- permite al futuro operador jurídico asesorar con criterio en situaciones como las siguientes:
+
+\begin{itemize}
+    \item cuando un cliente pregunta si un contrato firmado electrónicamente es válido;
+    \item cuando hay que constatar una situación en una red social;
+    \item cuando aparece una propuesta de inversión en una plataforma tokenizada.
+\end{itemize}
+
+Esta comprensión resulta útil también en la vida personal. Comprender qué se cede a cambio de los servicios digitales gratuitos, reconocer los patrones de una estafa piramidal presentada como proyecto de inversión y distinguir una firma electrónica de una firma digital antes de aceptar condiciones con un clic son herramientas de protección patrimonial que exceden lo profesional.
+
+\section{El criterio de la escalera}
+
+La tecnología debe pensarse como una escalera y no como un salto. Es la misma lógica que se sigue para construir una casa: primero los cimientos, después las paredes y recién al final el techo. No se puede hablar de blockchain sin haber entendido antes qué es una firma digital, y no se puede hablar de firma digital sin entender por qué el Estado empezó a digitalizarse en el año 2000. Cada bloque temático es un escalón que sostiene al siguiente.
+
+\begin{example}{el criterio de la escalera}
+El aprendizaje de las tecnologías jurídicas debe darse de forma escalonada, sin saltar etapas. Esta lógica se sintetizó con la siguiente frase: «Si no sabemos firma digital, no podemos avanzar a blockchain. Si no podemos avanzar a la tecnología blockchain, no podemos entrar en lo que es la actualización.»
+
+Esta idea funciona como hilo conductor de todos los bloques que siguen. Es, además, la actitud necesaria para no quedar desactualizado en una profesión que cambia más rápido que la ley que la regula.
+\end{example}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellizq}
+    >{\raggedright\arraybackslash}p{\cornellder}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Por qué una materia optativa se dedica exclusivamente a la tecnología jurídica?} &
+Porque todo notario, abogado o martillero trabaja hoy dentro de un ecosistema donde la firma digital, la prueba electrónica y los contratos electrónicos son la forma cotidiana de dar fe, de contratar y de litigar. Conocer el origen del marco normativo permite asesorar con criterio, y a la vez brinda herramientas de protección patrimonial en la vida personal. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué significa pensar la tecnología como una escalera?} &
+Aprender de manera escalonada, sin saltar etapas, como al construir una casa: primero los cimientos, luego las paredes y por último el techo. No se puede abordar blockchain sin comprender antes la firma digital, ni la firma digital sin entender por qué el Estado comenzó a digitalizarse en el año 2000. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué ejes temáticos abarca la cursada?} &
+Blockchain, criptomonedas, inteligencia artificial, seguridad de la información, protección de datos personales, ciberseguridad y firma digital. \\
+
+\midrule
+
+\multicolumn{2}{p{\cornellfull}}{
+\textbf{Resumen:}
+La materia aborda la tecnología jurídica bajo el criterio de la escalera: cada etapa sostiene a la siguiente, y comprender el origen de cada herramienta es condición para asesorar sobre ella. Su utilidad es directa para los operadores jurídicos y también para la protección patrimonial personal.
+} \\
+
+\bottomrule
+\end{longtable}
+
+% ==========================================================
+% CAPÍTULO 2
+% ==========================================================
+\chapter[Gobierno electrónico]{Gobierno electrónico y marco normativo inicial}
+\label{cap:gobierno}
+
+\section{El gobierno electrónico}
+
+Para comprender el origen del marco normativo digital argentino es necesario partir del concepto de gobierno electrónico, que constituye su punto de partida histórico.
+
+\begin{definition}{Gobierno electrónico}
+Es una materia propia del derecho administrativo. Consiste en la relación entre el Estado y sus administrados, que deja de ser presencial y pasa a darse a través de los canales digitales.
+\end{definition}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la exposición oral menciona que la relación se da "a través del tiempo y de los canales digitales").
+
+\subsection{El contexto del año 2000}
+
+El fenómeno se ubica temporalmente en el año 2000. En ese momento ya se venía consolidando en el mundo un debate en torno al gobierno electrónico, vinculado por algunas corrientes doctrinarias a fenómenos de \textbf{control social}, dado que la digitalización del Estado implica un seguimiento y un perfilamiento del ciudadano.
+
+Sin embargo, en el año 2000 aún no existían las herramientas de inteligencia artificial generativa, el uso masivo de datos biométricos ni el desarrollo actual de la internet de las cosas. Por ello la privacidad, aunque ya expuesta, no enfrentaba todavía el nivel de exposición actual.
+
+\subsection{Adopción de la firma digital}
+
+\begin{example}{los colegios profesionales y la firma digital}
+En los primeros intentos de implementación de la firma digital, algunos colegios profesionales pequeños evaluaron adoptarla, pero los costos resultaban imposibles y se optó por no avanzar. Esa decisión fue calificada como un error.
+
+Más allá de la existencia de la tecnología, la ciudadanía no adoptó masivamente la firma digital porque la administración pública continuó vinculándose con el ciudadano de manera presencial, de mostrador, y porque faltaba un cambio cultural previo para que la implementación tecnológica prosperara.
+\end{example}
+
+\subsection{El factor catalítico y el aceleracionismo}
+
+Se planteó el interrogante sobre cuál fue el factor catalítico que hizo que este proceso explotara. En ese marco se introdujo la referencia a una corriente filosófica, la de los \textbf{aceleracionistas}, que analiza cómo los factores disruptivos --- como las irrupciones tecnológicas --- generan sacudidas sociales que llevan a la sociedad, como si fuese un corral de ovejas, hacia determinado lado.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el apunte no desarrolla expresamente cuál fue el factor catalítico; solo lo formula como pregunta).
+
+\section{Las leyes 25.506 y 25.326}
+
+La primera norma central de la cursada es la Ley de Firma Digital. Se subrayó expresamente la coincidencia cronológica entre ambas leyes fundacionales del derecho digital argentino: las dos fueron sancionadas en el año 2000.
+
+\begin{itemize}
+    \item \textbf{Ley 25.506 --- Ley de Firma Digital.} Sancionada en el año 2000. Regula el régimen de la firma digital y su equiparación jurídica con la firma manuscrita en las condiciones que la propia ley establece. Es la primera norma sobre la cual se trabaja en la cursada.
+    \item \textbf{Ley 25.326 --- Ley de Protección de Datos Personales.} Sancionada también en el año 2000. Regula el tratamiento de datos personales asentados en archivos, registros, bancos de datos u otros medios técnicos de tratamiento de datos.
+\end{itemize}
+
+Ambas leyes son parecidas pero no iguales. Se empezó a hablar de estas cuestiones en ese momento porque había una gran impronta de trabajar sobre lo que se denomina gobierno electrónico.
+
+\begin{important}
+Las leyes 25.506 y 25.326 nacen del mismo impulso histórico: la construcción del gobierno electrónico. Mientras la primera habilita jurídicamente la actuación digital del Estado y de los particulares mediante la firma digital, la segunda busca contener los riesgos que esa misma digitalización genera sobre la privacidad del ciudadano. Son, en ese sentido, dos caras de un mismo proceso.
+\end{important}
+
+\section{Decreto 182/2019}
+
+El decreto reglamentario vinculado a la infraestructura de firma digital es el \textbf{Decreto 182/2019}, que tiene una modificación posterior en el año 2024. Se solicitó su lectura junto con la de la Ley de Firma Digital para la clase siguiente (véase el capítulo~\ref{cap:cierre}).
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellizq}
+    >{\raggedright\arraybackslash}p{\cornellder}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el gobierno electrónico?} &
+Es derecho administrativo: la relación entre el Estado y sus administrados, que deja de ser presencial para desarrollarse a través de canales digitales. Explica por qué en el año 2000 se sancionaron las leyes 25.506 (firma digital) y 25.326 (protección de datos personales). \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué riesgo se asociaba al gobierno electrónico ya en el año 2000?} &
+Algunas corrientes doctrinarias lo vinculaban con fenómenos de control social, porque la digitalización del Estado implica un seguimiento y un perfilamiento del ciudadano. En ese momento aún no existían la inteligencia artificial generativa, el uso masivo de datos biométricos ni el desarrollo actual de la internet de las cosas. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Por qué ambas leyes son del año 2000?} &
+Porque nacieron del mismo impulso: construir un Estado digital. La firma digital habilita la actuación jurídica a distancia; la protección de datos personales busca contener los riesgos de esa misma digitalización sobre la privacidad del ciudadano. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué regula cada una de las dos leyes?} &
+La Ley 25.506 regula el régimen de la firma digital y su equiparación con la firma manuscrita en las condiciones que la propia ley establece. La Ley 25.326 regula el tratamiento de datos personales asentados en archivos, registros, bancos de datos u otros medios técnicos de tratamiento de datos. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Por qué la ciudadanía no adoptó masivamente la firma digital?} &
+Porque la administración pública siguió vinculándose con el ciudadano de manera presencial, de mostrador, y faltaba un cambio cultural previo. Además, algunos colegios profesionales pequeños no avanzaron por los costos, decisión calificada como un error. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué es el aceleracionismo?} &
+Una corriente filosófica que analiza cómo los factores disruptivos, como las irrupciones tecnológicas, generan sacudidas sociales que llevan a la sociedad hacia determinado lado. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué decreto reglamentario se pidió leer?} &
+El Decreto 182/2019, vinculado a la infraestructura de firma digital, con una modificación en el año 2024. \\
+
+\midrule
+
+\multicolumn{2}{p{\cornellfull}}{
+\textbf{Resumen:}
+El gobierno electrónico es la relación digital entre el Estado y los administrados y constituye el origen del marco normativo digital. En el año 2000 se sancionaron la Ley 25.506 (firma digital) y la Ley 25.326 (protección de datos personales), dos caras de un mismo proceso: habilitar la actuación digital y contener sus riesgos sobre la privacidad. La adopción de la firma digital fue limitada por los costos, por la persistencia de la atención presencial y por la falta de un cambio cultural previo.
+} \\
+
+\bottomrule
+\end{longtable}
+
+% ==========================================================
+% CAPÍTULO 3
+% ==========================================================
+\chapter[Web 1.0 y Web 2.0]{Evolución de internet: Web 1.0 y Web 2.0}
+\label{cap:web}
+
+La evolución de internet se presenta en tres etapas: la Web 1.0, la Web 2.0 y la Web 3.0. Este capítulo desarrolla las dos primeras; la Web 3.0 se trata en el capítulo~\ref{cap:web3}. En todas ellas, de lo que se habla siempre es de comunicaciones electrónicas.
+
+\section{El circuito de la innovación tecnológica}
+
+\begin{important}
+Toda tecnología y todo descubrimiento tecnológico surge primero en el ámbito militar, luego se traslada a la academia y recién después al ámbito comercial. Ese es el circuito que siguen las innovaciones tecnológicas.
+\end{important}
+
+\section{La Web 1.0}
+
+Aplicando el circuito anterior al desarrollo de internet, la primera etapa corresponde al momento en que las comunicaciones electrónicas comienzan a circular entre universidades. Sus hitos son la primera comunicación exitosa a distancia entre casas de estudio y el primer correo electrónico.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la exposición oral menciona "la primera sede exitosa de comunicación a distancia entre casas de estudio").
+
+Se mencionó también, como hito generacional previo a las redes sociales, a los primeros sistemas de mensajería instantánea, caracterizados por un sonido de conexión particular.
+
+\begin{note}
+Se relató la experiencia de una comisión de innovación y tecnología dentro del ámbito colegial, fundada y presidida entre 2020 y 2023. Su trabajo más relevante fue la elaboración de un glosario de términos digitales, disponible para su descarga, que reúne cerca de trescientas palabras destinadas a traducir el vocabulario tecnológico al lenguaje notarial.
+\end{note}
+
+\section{La Web 2.0 y las empresas GAFAM}
+
+La Web 2.0 es la web de las redes sociales. En esta etapa comienzan a aparecer las grandes empresas tecnológicas, denominadas «tigres tecnológicos» o empresas \textbf{GAFAM}: Google, Amazon, Facebook, Apple y Microsoft.
+
+\subsection{El activo principal de las plataformas}
+
+El interrogante central es cuál es el activo principal de estas empresas. La respuesta es la información, pero esa respuesta es demasiado genérica: se trata de la información de datos de los propios usuarios. Como se sintetizó en el intercambio de la clase, el producto gratis es el propio usuario: somos el producto.
+
+\begin{important}
+Las grandes plataformas tecnológicas construyeron un modelo de negocio basado en la obtención de datos de los usuarios a cambio de servicios aparentemente gratuitos. Las personas cedieron sus datos de manera masiva y voluntaria porque, a cambio, accedían a un mundo de conexión antes impensado: reencuentros con compañeros de estudio, vínculos recuperados después de años y nuevas formas de relación social y patrimonial.
+\end{important}
+
+La consecuencia de este fenómeno para la práctica notarial se desarrolla en el capítulo~\ref{cap:prueba}.
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellizq}
+    >{\raggedright\arraybackslash}p{\cornellder}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuál es el circuito de toda innovación tecnológica?} &
+Ámbito militar $\rightarrow$ academia $\rightarrow$ ámbito comercial. Este esquema explica el desarrollo de internet: primero como red entre universidades (Web 1.0), luego como red social masiva (Web 2.0) y finalmente como paradigma descentralizado (Web 3.0). \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué caracteriza a la Web 1.0?} &
+Es la etapa en la que las comunicaciones electrónicas comienzan a circular entre universidades: la primera comunicación exitosa a distancia entre casas de estudio y el primer correo electrónico. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué es la Web 2.0 y quiénes son las empresas GAFAM?} &
+La Web 2.0 es la web de las redes sociales, con la aparición de las grandes empresas tecnológicas o «tigres tecnológicos»: Google, Amazon, Facebook, Apple y Microsoft. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Cuál es el activo principal de las empresas GAFAM?} &
+Los datos de los usuarios. El modelo de negocio se sostiene en la obtención masiva de información personal a cambio de servicios aparentemente gratuitos: el usuario es, en los hechos, el producto. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Por qué las personas cedieron sus datos?} &
+De manera masiva y voluntaria, a cambio de un mundo de conexión antes impensado: reencuentros con compañeros de estudio, vínculos recuperados después de años y nuevas formas de relación social y patrimonial. \\
+
+\midrule
+
+\multicolumn{2}{p{\cornellfull}}{
+\textbf{Resumen:}
+Toda tecnología recorre el circuito militar, académico y comercial. La Web 1.0 fue la etapa de las comunicaciones electrónicas entre universidades; la Web 2.0, la de las redes sociales y las empresas GAFAM, cuyo activo principal son los datos de los usuarios, quienes los cedieron voluntariamente a cambio de servicios aparentemente gratuitos.
+} \\
+
+\bottomrule
+\end{longtable}
+
+% ==========================================================
+% CAPÍTULO 4
+% ==========================================================
+\chapter[Prueba electrónica]{Prueba electrónica y función notarial}
+\label{cap:prueba}
+
+\section{Nuevas actas notariales en redes sociales}
+
+El fenómeno de las redes sociales se vincula con la práctica notarial concreta: desde los años 2007-2008 comenzaron a labrarse las primeras actas de comprobación de situaciones dentro de redes sociales.
+
+\begin{example}{aumento de cuota alimentaria y fotos de vacaciones}
+En un proceso de aumento de cuota alimentaria, la parte demandada --- contra quien se reclamaba el incremento --- sostenía no poder afrontarlo, mientras que su perfil de Facebook mostraba fotografías de vacaciones. No corresponde identificar el género de la parte involucrada, porque no es relevante para el punto que se busca ilustrar.
+
+Lo que el caso evidencia es que las contradicciones entre lo declarado judicialmente y lo exhibido en redes sociales empezaron a requerir un nuevo tipo de acta notarial.
+\end{example}
+
+\section{La prueba electrónica}
+
+\begin{definition}{Prueba electrónica}
+Nueva rama del derecho, vinculada al ámbito del derecho procesal electrónico, que se ocupa de hechos que ya no se prueban en el ámbito físico sino en el digital (redes sociales, comunicaciones electrónicas).
+\end{definition}
+
+Ya estamos tan digitalizados que muchas cuestiones del mundo probatorio dejaron de darse únicamente en el ámbito físico y empezaron a darse también en el ámbito digital. Es allí donde el notario tiene que aprender a labrar este tipo de actas. Se inicia así una nueva etapa probatoria.
+
+\section{Metadatos}
+
+Toda comunicación electrónica, además de la comunicación en sí, tiene determinados aspectos técnicos. Hasta un documento de Word posee metadatos.
+
+\begin{definition}{Metadatos}
+Información técnica que acompaña a toda comunicación o documento electrónico, más allá de su contenido visible. Constituye la materia prima que necesita cualquier perito informático.
+\end{definition}
+
+\section{Límites del conocimiento técnico del notario: el perito}
+
+\begin{example}{la cañería rota y el perito}
+Ante la constatación de una cañería rota, el notario no tiene por qué saber si se trata de una cañería pluvial o cloacal, ni diagnosticar la causa técnica de la fisura. Para ello debe convocar a un arquitecto, a un ingeniero civil o al especialista pertinente, quien elaborará el informe técnico correspondiente. El notario da fe de la manifestación y deja constancia de lo actuado, lo que constituye plena prueba en sede civil.
+
+Esta misma lógica se traslada al ámbito digital: si el notario no tiene conocimientos técnicos informáticos, debe basarse en el dictamen de un perito o experto forense, dejando constancia de los pasos seguidos por ese experto para la obtención, custodia y presentación de la prueba en sede judicial.
+\end{example}
+
+\section{Cadena de custodia y volatilidad de la prueba digital}
+
+\begin{definition}{Cadena de custodia en materia digital}
+Conjunto de pasos documentados que garantizan que la prueba electrónica obtenida no fue alterada desde su recolección hasta su presentación judicial.
+\end{definition}
+
+Su preservación es especialmente crítica porque la prueba electrónica es mucho más volátil que la prueba física. En el ámbito físico, la prueba en papel, si es sustraída, reaparece para declarar. En el ámbito digital ocurre algo equivalente, pero con mucha mayor volatilidad: pueden introducirse virus o borrarse la prueba que estaba almacenada.
+
+\begin{note}
+Se recomendó la carrera de especialización en derecho informático dictada por especialistas del área, considerada necesaria para todo operador jurídico que quiera comprender cabalmente este campo, dado que la formación de grado en la materia resulta insuficiente.
+\end{note}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellizq}
+    >{\raggedright\arraybackslash}p{\cornellder}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué recaudos debe tomar el notario al constatar una situación digital?} &
+Debe aprender a labrar actas de comprobación digital, atendiendo a los metadatos y, cuando la cuestión exceda su competencia técnica, apoyándose en el dictamen de un perito o experto forense, dejando constancia de los pasos seguidos por ese experto para la obtención, custodia y presentación de la prueba. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Desde cuándo se labran actas sobre redes sociales?} &
+Desde los años 2007-2008 comenzaron a labrarse las primeras actas de comprobación de situaciones dentro de redes sociales. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué es la prueba electrónica y por qué preocupa al notariado?} &
+Es la nueva rama del derecho procesal que se ocupa de hechos que ya no se prueban en el ámbito físico sino en el digital (redes sociales, comunicaciones electrónicas). Preocupa al notariado porque el notario debe aprender a labrar este tipo de actas. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué son los metadatos?} &
+Información técnica que acompaña a toda comunicación o documento electrónico, incluso a un documento de Word. Son la materia prima que necesita cualquier perito informático. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Cuándo necesita el notario un perito?} &
+Cuando la cuestión excede su conocimiento técnico. Así como ante una cañería rota convoca a un especialista para el informe técnico y él da fe de lo actuado, en lo digital debe basarse en el dictamen de un perito o experto forense. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué es la cadena de custodia en materia digital?} &
+El conjunto de pasos documentados que garantizan que la prueba electrónica obtenida no fue alterada desde su recolección hasta su presentación judicial. Es especialmente crítica porque la prueba digital es mucho más volátil que la prueba física. \\
+
+\midrule
+
+\multicolumn{2}{p{\cornellfull}}{
+\textbf{Resumen:}
+Las redes sociales generaron una nueva etapa probatoria: la prueba electrónica, que exige nuevas actas notariales. Los metadatos son la materia prima del perito informático, y cuando el notario carece de conocimientos técnicos debe apoyarse en un experto forense y dejar constancia de sus pasos. La cadena de custodia protege una prueba mucho más volátil que la física.
+} \\
+
+\bottomrule
+\end{longtable}
+
+% ==========================================================
+% CAPÍTULO 5
+% ==========================================================
+\chapter[Contratación electrónica]{Contratación electrónica y derecho del consumidor digital}
+\label{cap:contratos}
+
+\section{Plataformización de la economía}
+
+Cerrando el desarrollo de la Web 2.0, corresponde considerar la plataformización de las economías, los términos y condiciones en las plataformas y el derecho de consumo digital aplicado a las contrataciones electrónicas.
+
+\section{Los contratos electrónicos en el Código Civil y Comercial}
+
+En el año 2015 se incorpora al Código Civil y Comercial de la Nación normativa de derecho de consumo aplicada a la contratación electrónica.
+
+Como actividad de lectura se indicó la revisión de los artículos 286, 287, 288, 317 y 319 del Código Civil y Comercial. Los artículos 286, 287 y 288 regulan la forma y la firma; los artículos 317 y 319 se vinculan con la valoración de la prueba electrónica por parte del juez.
+
+\section{Tensión entre la Ley de Firma Digital y el Código Civil y Comercial}
+
+Se anticipó que la clase siguiente se destinaría a analizar la tensión existente entre la Ley de Firma Digital y la redacción del Código Civil y Comercial de 2015 respecto de la distinción entre firma electrónica y firma digital. La pregunta disparadora que guía ese análisis es si la firma electrónica es, jurídicamente, firma (véase el capítulo~\ref{cap:cierre}).
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellizq}
+    >{\raggedright\arraybackslash}p{\cornellder}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cómo incorporó el Código Civil y Comercial la contratación electrónica?} &
+En el año 2015 incorporó normativa de derecho de consumo aplicada a la contratación electrónica, en el marco del fenómeno de plataformización de la economía. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué temas comprende la plataformización de la economía?} &
+Los términos y condiciones en las plataformas y el derecho de consumo digital aplicado a las contrataciones electrónicas. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué artículos del Código Civil y Comercial deben revisarse y qué regulan?} &
+Los artículos 286, 287, 288, 317 y 319. Los artículos 286, 287 y 288 regulan la forma y la firma; los artículos 317 y 319 regulan la valoración judicial de la prueba electrónica. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué tensión se analizará en la clase siguiente?} &
+La existente entre la Ley de Firma Digital y la redacción del Código Civil y Comercial de 2015 respecto de la distinción entre firma electrónica y firma digital. \\
+
+\midrule
+
+\multicolumn{2}{p{\cornellfull}}{
+\textbf{Resumen:}
+La plataformización de la economía trajo consigo los términos y condiciones de las plataformas y el consumo digital. En 2015 el Código Civil y Comercial incorporó normativa de consumo aplicada a la contratación electrónica; los artículos 286, 287, 288, 317 y 319 son de lectura obligatoria, y de su contraste con la Ley de Firma Digital surge la distinción, aún abierta, entre firma electrónica y firma digital.
+} \\
+
+\bottomrule
+\end{longtable}
+
+% ==========================================================
+% CAPÍTULO 6
+% ==========================================================
+\chapter[Web 3.0 y blockchain]{Web 3.0, blockchain y criptoactivos}
+\label{cap:web3}
+
+\section{La Web 3.0 y el paradigma cyberpunk}
+
+Cada vez que se escuche \textbf{Web 3}, corresponde pensar en un nuevo paradigma tecnológico impulsado filosóficamente por un grupo denominado \textbf{cyberpunks}. Su filosofía está vinculada a una economía liberal libertaria, cuya postura puede resumirse así: no se necesita al Estado.
+
+\begin{important}
+La tecnología blockchain nace de este pensamiento, en un grupo de técnicos que sostienen que los Estados lo único que hacen es llevar a la bancarrota a las personas cuyo patrimonio fluctúa: personas que construyen un patrimonio y que, tras una racha económica adversa, deben vender sus propiedades para pagar deudas.
+\end{important}
+
+\section{La crisis de las hipotecas subprime}
+
+Este fenómeno se sitúa en el contexto de crisis monetarias internacionales, con los casos de Grecia y de Portugal como antecedentes. El análisis se concentra en el estallido de la crisis de las hipotecas subprime en Estados Unidos, que terminó de detonar la desconfianza.
+
+Se comenzó a prestar dinero sin que vinieran los «prepagos» correspondientes, lo que generó una burbuja inmobiliaria que en un momento explotó.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el apunte no aclara a qué se refiere con "prepagos").
+
+\begin{note}
+Se indicó que estos contenidos todavía no figuran en los libros, por lo que se recomendó seguir las noticias vinculadas.
+\end{note}
+
+\begin{example}{el rescate estatal y el origen de la desconfianza}
+Para evitar que Estados Unidos entrara en bancarrota tras el estallido de la burbuja inmobiliaria, el Estado no dispuso de los ahorros privados de las personas --- cosa que en la Argentina sí se permitió en otros contextos históricos --- sino que debió recurrir a fondos públicos para el rescate del sistema financiero.
+
+Esta decisión generó una fuerte crisis económica y fue el caldo de cultivo que dio origen al movimiento que cuestionaba la intervención estatal en la economía y que impulsaría, poco después, la creación de Bitcoin.
+\end{example}
+
+\section{Satoshi Nakamoto y el white paper de Bitcoin}
+
+En ese contexto de crisis aparece un grupo anónimo, o una persona --- no se sabe --- que se da a conocer en el ámbito digital como \textbf{Satoshi Nakamoto}. Sigue siendo una especulación quién puede ser. Crea y publica el \textbf{white paper de Bitcoin}, primera criptomoneda.
+
+\begin{definition}{White paper}
+Documento constitucional fundacional de una criptomoneda o de una plataforma que genera algún token o moneda propia. Funciona como el conjunto de reglas de juego del proyecto.
+\end{definition}
+
+\begin{important}
+El white paper debe leerse siempre antes de considerar cualquier inversión. Frente a un cliente que quiere invertir en una criptomoneda presentada como un furor del mercado, lo primero que debe indicársele es que descargue y lea el white paper correspondiente.
+\end{important}
+
+\section{Reglas de juego de las plataformas tokenizadas}
+
+\begin{example}{la analogía de la gamificación}
+Así como en un videojuego existen reglas claras sobre qué se puede y qué no se puede hacer, el white paper establece las reglas de la plataforma. Entre otras cuestiones, define:
+
+\begin{itemize}
+    \item cuántos tokens se pueden emitir;
+    \item cuánto tiempo debe permanecer un inversor en la plataforma;
+    \item en qué condiciones puede retirarse;
+    \item si puede vender su posición a alguien externo al proyecto o si está obligado a operar únicamente dentro del mercado interno de la plataforma.
+\end{itemize}
+\end{example}
+
+Estas son las nuevas preguntas que los operadores jurídicos deben aprender a formular, porque ya no existe una ley o un marco jurídico único para estudiar estas contrataciones. Se trata de ofertas realizadas directamente por una plataforma a un particular, respecto de las cuales el rol del asesor jurídico consiste en explicar dónde, cómo y cuándo se debe hacer clic para contratar.
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellizq}
+    >{\raggedright\arraybackslash}p{\cornellder}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el paradigma cyberpunk y qué relación tiene con blockchain?} &
+Una corriente filosófica de raíz liberal libertaria que desconfía de la intervención del Estado en la economía. De ese pensamiento nace la tecnología blockchain, impulsada por técnicos que sostenían que los Estados llevan a la bancarrota a quienes ven fluctuar su patrimonio. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué relación existe entre la crisis subprime y el nacimiento de Bitcoin?} &
+Las hipotecas subprime generaron una burbuja inmobiliaria que explotó. El Estado debió rescatar el sistema financiero con fondos públicos, lo que produjo una crisis de confianza y fue el caldo de cultivo del movimiento contrario a la intervención estatal. En ese contexto surge Satoshi Nakamoto y publica el white paper de Bitcoin. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Quién es Satoshi Nakamoto?} &
+Un grupo anónimo o una persona, no se sabe, que se da a conocer en el ámbito digital con ese nombre. Quién puede ser sigue siendo una especulación. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué es un white paper y qué función cumple?} &
+El documento constitucional fundacional de una criptomoneda o plataforma que emite tokens. Funciona como las reglas de juego del proyecto y debe leerse siempre antes de asesorar sobre una inversión. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué nuevas preguntas debe formular el operador jurídico frente a un token?} &
+Cuántos tokens se pueden emitir, cuánto tiempo debe permanecer el inversor, en qué condiciones puede retirarse y si puede vender su posición a alguien externo o solo dentro del mercado interno de la plataforma. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Cuál es el rol del asesor jurídico frente a estas contrataciones?} &
+No existe una ley o marco jurídico único para estudiarlas: son ofertas directas de una plataforma a un particular. El asesor explica dónde, cómo y cuándo se debe hacer clic para contratar. \\
+
+\midrule
+
+\multicolumn{2}{p{\cornellfull}}{
+\textbf{Resumen:}
+La Web 3.0 nace del paradigma cyberpunk, de raíz liberal libertaria y desconfiada del Estado. La crisis subprime y el rescate estatal con fondos públicos alimentaron esa desconfianza y precedieron a la aparición de Satoshi Nakamoto y del white paper de Bitcoin. El white paper fija las reglas de juego de cada plataforma y debe leerse antes de invertir; ante la ausencia de un marco jurídico único, el operador jurídico debe aprender a formular nuevas preguntas.
+} \\
+
+\bottomrule
+\end{longtable}
+
+% ==========================================================
+% CAPÍTULO 7
+% ==========================================================
+\chapter[Estafas y esquemas Ponzi]{Riesgos de la desintermediación: estafas y esquemas Ponzi}
+\label{cap:riesgos}
+
+\section{Tokenización y estafas (scams)}
+
+Las plataformas de tokenización presentan riesgos cuando son utilizadas con fines fraudulentos, sobre todo en cuestiones de derecho de consumo. Llevado por el mal camino, este fenómeno termina en las llamadas estafas o \textit{scams}: plataformas que se generan con el solo objeto de recaudar fondos de manera lícita en apariencia y luego levantar la plataforma llevándose todo lo recaudado.
+
+\section{Esquemas piramidales}
+
+\begin{example}{estafas piramidales en zonas ganaderas}
+Este tipo de esquemas se dio con particular intensidad en algunas provincias, especialmente en zonas ganaderas donde circula una importante masa de dinero fuera del circuito bancarizado. Con la promesa de ganancias muy altas, numerosas personas del sector agropecuario entregaban sus fondos a organizaciones que, detrás de una apariencia de proyecto de inversión, ocultaban un esquema delictivo.
+
+El mecanismo clásico es el siguiente: los primeros inversores cobran efectivamente lo prometido, pero ese pago se financia con el dinero de los inversores que van ingresando después. El reconocimiento popular de este tipo de estructuras piramidales se ilustra con la frase «nadar en la abundancia».
+\end{example}
+
+\section{La falta de denuncia}
+
+Un componente social y psicológico relevante es que muchas veces las víctimas --- incluso personas mayores --- no realizan la denuncia correspondiente por vergüenza: implica reconocer que fueron estafadas por un grupo de actores que les hicieron creer. Frente a esta situación, muchas veces no hay denuncias.
+
+\section{El riesgo para el operador jurídico}
+
+\begin{important}
+Existe un riesgo adicional para los propios operadores jurídicos: cuando se los invita a formar parte de un proyecto de este tipo prestando su firma o su nombre como garantía de seriedad, quien no tiene dominio pleno de lo que ocurre dentro de la plataforma también puede quedar comprometido.
+
+Frente a cualquier propuesta de inversión en plataformas digitales, el operador jurídico debe actuar con el mismo criterio de prudencia y verificación documental que aplicaría ante cualquier otro negocio jurídico, exigiendo siempre la lectura previa del white paper y de las condiciones de la plataforma.
+\end{important}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellizq}
+    >{\raggedright\arraybackslash}p{\cornellder}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué son los scams?} &
+Estafas basadas en plataformas que se generan con el solo objeto de recaudar fondos de manera lícita en apariencia y luego levantar la plataforma llevándose todo lo recaudado. Se vinculan especialmente con el derecho de consumo. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Cuál es el mecanismo de una estafa piramidal?} &
+Los primeros inversores cobran lo prometido, pero ese pago se financia con el dinero de los inversores que ingresan después. Detrás de la apariencia de un proyecto de inversión se oculta un esquema delictivo. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Por qué las víctimas de estafas piramidales muchas veces no denuncian?} &
+Por vergüenza social: reconocer haber sido estafado implica admitir haber creído en un grupo de actores que hicieron creer. Esto favorece la persistencia de este tipo de organizaciones delictivas, especialmente en circuitos con alta circulación de dinero fuera del sistema bancarizado. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué riesgo corre el operador jurídico frente a estos proyectos?} &
+Si presta su firma o su nombre como garantía de seriedad sin dominio pleno de lo que ocurre en la plataforma, también puede quedar comprometido. Debe actuar con prudencia y verificación documental, exigiendo la lectura previa del white paper y de las condiciones de la plataforma. \\
+
+\midrule
+
+\multicolumn{2}{p{\cornellfull}}{
+\textbf{Resumen:}
+Las plataformas de tokenización pueden usarse para estafas: scams y esquemas piramidales que pagan a los primeros inversores con el dinero de los siguientes. Muchas víctimas no denuncian por vergüenza. El operador jurídico debe evitar prestar su nombre sin dominio de la plataforma y exigir siempre la lectura previa del white paper y de las condiciones.
+} \\
+
+\bottomrule
+\end{longtable}
+
+% ==========================================================
+% CAPÍTULO 8
+% ==========================================================
+\chapter[Cierre y consignas]{Cierre de la clase y consignas para el próximo encuentro}
+\label{cap:cierre}
+
+\section{Sentido del recorrido realizado}
+
+El recorrido de esta clase constituye una introducción necesaria para poder abordar en profundidad, en la clase siguiente, la firma digital y la firma electrónica: es la «gran pantalla» previa a ese estudio.
+
+\begin{important}
+La clase construyó, escalón por escalón, el mapa histórico y conceptual necesario para comprender por qué la tecnología jurídica ocupa hoy un lugar central en la práctica notarial e inmobiliaria: partiendo del gobierno electrónico y las leyes fundacionales del año 2000, pasando por la evolución de internet desde la Web 1.0 hasta la Web 3.0, y llegando hasta los riesgos concretos de las plataformas de tokenización. El hilo conductor fue siempre el mismo: no se puede comprender una etapa sin haber comprendido la anterior.
+\end{important}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el índice temático del apunte enumera 13 unidades, mientras que el desarrollo de la clase
+% presenta 10; esta versión se organiza por capítulos temáticos).
+
+\section{Consigna de lectura obligatoria}
+
+Material de lectura para la próxima clase:
+
+\begin{itemize}
+    \item Ley 25.506 --- Ley de Firma Digital, texto completo.
+    \item Decreto 182/2019, reglamentario en materia de infraestructura de firma digital, con su modificación del año 2024.
+    \item Código Civil y Comercial de la Nación: artículos 286, 287, 288, 317 y 319 (estos dos últimos referidos a la valoración de la prueba electrónica por parte del juez).
+\end{itemize}
+
+\begin{exercise}{cuadro comparativo de dos columnas}
+Elaborar dos columnas comparativas entre la regulación de la Ley de Firma Digital y la redacción del Código Civil y Comercial de 2015, identificando la tensión conceptual entre firma electrónica y firma digital que emerge de ambos cuerpos normativos.
+\end{exercise}
+
+\section{Caso disparador}
+
+\begin{exercise}{el pase de un jugador de fútbol firmado electrónicamente}
+Existe un documento de pase de un jugador de fútbol por una suma relevante --- a modo de ejemplo, una cifra entre cien mil y trescientos mil dólares --- firmado a través de una plataforma de firma electrónica. ¿Ese contrato es válido? ¿Se considera firmado? ¿O adolece de algún vicio de forma?
+
+La respuesta a este interrogante requiere haber comprendido la distinción técnica y normativa entre firma electrónica y firma digital, que se trabajará en el encuentro siguiente.
+\end{exercise}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellizq}
+    >{\raggedright\arraybackslash}p{\cornellder}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué debe leerse para la próxima clase?} &
+La Ley 25.506 (texto completo), el Decreto 182/2019 con su modificación del año 2024 y los artículos 286, 287, 288, 317 y 319 del Código Civil y Comercial. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué trabajo se propuso realizar?} &
+Elaborar dos columnas comparativas entre la regulación de la Ley de Firma Digital y la redacción del Código Civil y Comercial de 2015, identificando la tensión conceptual entre firma electrónica y firma digital. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Es la firma electrónica lo mismo que la firma digital?} &
+Es la pregunta abierta que cierra la clase y que se responderá en el próximo encuentro, a partir de la lectura de la Ley 25.506, el Decreto 182/2019 y los artículos 286 a 288 y 317 a 319 del Código Civil y Comercial. \\
+\addlinespace[0.6em]
+\midrule[\lightrulewidth]
+
+\textbf{¿Qué plantea el caso del pase del jugador de fútbol?} &
+Si un documento de pase firmado mediante una plataforma de firma electrónica, por una suma relevante, es válido, se considera firmado o adolece de algún vicio de forma. Su respuesta exige distinguir firma electrónica de firma digital. \\
+
+\midrule
+
+\multicolumn{2}{p{\cornellfull}}{
+\textbf{Resumen:}
+La clase reconstruye, de manera escalonada, el camino histórico y normativo que explica la posición actual del derecho notarial e inmobiliario frente a la tecnología. Todo comienza en el año 2000, con el nacimiento simultáneo de las leyes 25.506 y 25.326, expresión jurídica del proyecto de gobierno electrónico. A partir de allí, la evolución de internet --- desde la Web 1.0 académica, pasando por la Web 2.0 de las redes sociales y las empresas GAFAM, hasta la Web 3.0 descentralizada nacida del pensamiento cyberpunk tras la crisis subprime --- explica por qué hoy el operador jurídico debe manejar con la misma soltura un acta de comprobación en redes sociales, la valoración de metadatos como prueba, un contrato de consumo digital y el análisis de un white paper de una plataforma de tokenización. El eje pedagógico que atraviesa todo el recorrido --- no se puede saltar etapas, primero la firma digital, después blockchain --- funciona a la vez como método de estudio y como criterio profesional de prudencia: comprender la lógica y el origen de cada herramienta tecnológica antes de asesorar sobre ella es lo que distingue a un operador jurídico actualizado de uno expuesto a los riesgos --- incluidas las estafas piramidales --- que la propia digitalización habilita.
+} \\
+
+\bottomrule
+\end{longtable}
+
+\end{document}
