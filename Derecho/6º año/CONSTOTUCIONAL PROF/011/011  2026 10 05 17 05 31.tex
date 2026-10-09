@@ -1,0 +1,887 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Constitucional}
+\newcommand{\titulo}{Apuntes de Derecho Constitucional}
+\newcommand{\temas}{Derecho de r\'eplica (Ekmekdjian c/ Sofovich) -- Legitimaci\'on activa -- DNU -- Doctrina de la emergencia}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Anchos de columnas del cuadro Cornell (se calculan al iniciar el documento)
+\newlength{\cornellL}
+\newlength{\cornellR}
+\newlength{\cornellW}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+\setlength{\cornellL}{0.25\textwidth}
+\setlength{\cornellR}{\dimexpr\textwidth-\cornellL-4\tabcolsep\relax}
+\setlength{\cornellW}{\dimexpr\textwidth-2\tabcolsep\relax}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\titulo}}
+
+\vspace{0.8cm}
+
+{\large \temas}
+
+\vspace{0.8cm}
+
+\textit{\small Comprender cada concepto con constancia es la mejor manera de hacer propio el conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Constitucional'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% CONTENIDO
+% ------------------------------------------------------------
+
+% ============================================================
+\chapter[Panorama general]{Panorama general de los temas}
+% ============================================================
+
+\section{Ejes de los contenidos}
+
+El material se organiza en dos grandes ejes.
+
+El primero repasa el \textbf{derecho de réplica} a través del fallo \textit{Ekmekdjian c/ Sofovich}. El derecho de réplica es la herramienta jurídica que permite contestar, con la misma difusión, una información ofensiva o inexacta. De este fallo se desprenden dos ideas centrales: los \textbf{tratados internacionales prevalecen sobre las leyes internas} y los \textbf{derechos que consagran son operativos}. A partir de allí se plantea un debate sobre \textbf{quién está legitimado para reclamar} (legitimación activa), contrastado con el reciente fallo de la Corte sobre el decreto 70 y los excombatientes de Malvinas, lo que conduce al análisis de los \textbf{decretos de necesidad y urgencia (DNU)}.
+
+El segundo eje es la \textbf{doctrina de la emergencia}: cuándo y cómo el Estado puede restringir derechos económicos en una crisis. Se estudian los casos \textit{Ercolano c/ Lanteri}, \textit{Avico c/ de la Pesa}, \textit{Peralta} y \textit{Galli}, y los requisitos de razonabilidad que fijó la Corte.
+
+Una cita jurisprudencial recurrente de la Corte en este terreno es la referida a \textit{«la apelación a la emergencia pública en materia de libertades»}.
+
+\section{Utilidad de estos temas para la práctica profesional}
+
+Según las notas, estos temas resultan útiles aun para quien no litigue en materia constitucional, porque enseñan a razonar con las reglas que organizan toda la práctica jurídica y económica:
+
+\begin{itemize}
+    \item \textbf{Jerarquía de normas.} Saber que un tratado prevalece sobre una ley y que sus derechos son directamente exigibles permite fundar reclamos aun cuando <<falte una ley>> (Ekmekdjian).
+    \item \textbf{Legitimación activa.} Antes de demandar hay que saber si se está habilitado para hacerlo: es la primera pregunta que decide si un caso avanza o se rechaza.
+    \item \textbf{Límites al poder.} Entender cuándo un DNU o una medida de emergencia es válida (excepcionalidad, plazo, proporcionalidad) sirve para asesorar frente a normas que afectan contratos, ahorros o propiedad.
+    \item \textbf{Razonamiento jurídico y argumentación.} Los requisitos de razonabilidad (medio-fin, proporcionalidad, no alterar la sustancia del derecho) son una guía de análisis aplicable a cualquier regulación.
+    \item \textbf{Casos reales de la vida económica argentina:} alquileres, hipotecas, plazos fijos y corralito.
+\end{itemize}
+
+La utilidad no se agota en el examen: prepara para leer una norma nueva, preguntarse si es constitucional y construir un argumento sólido.
+
+\section{Cómo se relacionan los temas}
+
+\begin{example}{El edificio con consorcio}
+Imaginemos un edificio de departamentos.
+
+\begin{itemize}
+    \item El \textbf{derecho de réplica} es el derecho a contestar, en el mismo grupo de vecinos, si alguien acusa falsamente de algo, con el mismo alcance que la acusación.
+    \item La \textbf{legitimación activa} es preguntarse quién puede reclamar: ¿solo el afectado, cualquier vecino, o solo el administrador?
+    \item Los \textbf{DNU} son el administrador que decide solo, sin asamblea, porque <<no hay tiempo>>; el consorcio (el Congreso) debe poder revisarlo, y las reglas dicen cuándo esa decisión unilateral es válida.
+    \item La \textbf{doctrina de la emergencia} es lo que ocurre si se inunda el edificio: se admiten medidas extraordinarias (por ejemplo, congelar expensas o postergar pagos), pero solo mientras dure la inundación, de forma proporcionada y sin quitarle a nadie lo esencial de su derecho.
+\end{itemize}
+\end{example}
+
+El hilo común de todos los temas es la pregunta: \textbf{¿quién puede hacer qué, hasta dónde y bajo qué control?}
+
+% ============================================================
+\chapter[Derecho de réplica y Ekmekdjian]{El derecho de réplica y el fallo \textit{Ekmekdjian c/ Sofovich}}
+% ============================================================
+
+\section{El derecho de réplica}
+
+\textit{Ekmekdjian c/ Sofovich} es un fallo clásico que aborda el derecho de réplica, un derecho particular, con una historia importante y un recorrido considerable.
+
+\subsection{Antecedentes históricos}
+
+Ya en el siglo XIX se encuentran las primeras disposiciones, en Inglaterra y en Estados Unidos, sobre la posibilidad de <<subirse al foro público>> para contestar una denuncia o un comentario.
+
+\subsection{Fuente en el derecho argentino}
+
+En la Constitución Nacional el derecho de réplica \textbf{no está incorporado taxativamente}. La Argentina lo internalizó a nivel federal por intermedio del \textbf{Pacto de San José de Costa Rica}. Además, existe jurisprudencia y, sobre todo, constituciones provinciales que incorporan específicamente el derecho de réplica.
+
+\begin{note}
+\textbf{Norma de referencia: Pacto de San José de Costa Rica (Convención Americana sobre Derechos Humanos), art.~14.1.}
+
+<<Toda persona afectada por informaciones inexactas o agraviantes emitidas en su perjuicio a través de medios de difusión legalmente reglamentados y que se dirijan al público en general, tiene derecho a efectuar por el mismo órgano de difusión su rectificación o respuesta en las condiciones que establezca la ley.>>
+
+En las notas originales se aclara que el docente menciona el Pacto sin leer el artículo y que su texto oficial se incluye como referencia.
+\end{note}
+
+\subsection{Sentido del derecho de réplica}
+
+Frente a una información que pueda reputarse \textbf{ofensiva o inexacta}, el derecho de réplica da la posibilidad de tener una expresión pública <<con la misma difusión y con el mismo alcance>> que la información primigenia que se cuestiona. De este modo se desplaza <<esa suerte de monopolio de los medios de comunicación>> y se otorga al particular una herramienta jurídica rápida y accesible: ante una información que considera ofensiva y basada en hechos que pueden considerarse erróneos, tiene una voz con la misma amplificación, por los mismos medios, para rebatirla y contestarla.
+
+\begin{definition}{Derecho de réplica}
+Herramienta jurídica que, frente a una información ofensiva o inexacta, permite una expresión pública con la misma difusión y el mismo alcance que la información cuestionada, por los mismos medios.
+\end{definition}
+
+Es una herramienta \textbf{accesoria} de cualquier otra acción, como la de responsabilidad civil. La legislación argentina responde siempre al concepto de \textbf{prohibición de censura previa y responsabilidad civil ulterior}. Por lo tanto, el derecho de réplica no excluye otras vías reparatorias: puede convivir con ellas.
+
+\begin{important}
+Por su naturaleza, el derecho de réplica brinda un espacio de características similares al espacio original de la información cuestionada, para que quien invoque legitimación activa como perjudicado directo pueda utilizar esa vía de comunicación y rebatir con la misma intensidad. Se trata de una \textbf{orden judicial de hacer}: obliga al medio que emitió la primera información a dar ese espacio para la réplica.
+\end{important}
+
+\section{Importancia del fallo \textit{Ekmekdjian}}
+
+\subsection{Prevalencia de los tratados internacionales sobre las leyes internas}
+
+Como el derecho de réplica está en el Pacto de San José de Costa Rica, la Corte sostiene, en el año \textbf{1992} (es decir, \textit{anterior a la reforma} constitucional), la \textbf{prevalencia de los tratados internacionales y su cumplimiento por sobre las leyes internas}. Esto ya venía sustentado en su jurisprudencia reciente y se funda en dos aspectos:
+
+\begin{enumerate}
+    \item La \textbf{primacía de los tratados internacionales} por sobre las leyes internas (jerarquía normativa).
+    \item La \textbf{ejecución y el cumplimiento efectivo de los tratados}, que permite evitar que el Estado incurra en el incumplimiento de una obligación internacional.
+\end{enumerate}
+
+Por ambas razones se hacen prevalecer los tratados internacionales, algo que luego fue ratificado explícitamente por la Constitución reformada en 1994.
+
+\begin{note}
+\textbf{Norma de referencia: Constitución Nacional, art.~75 inc.~22 (párr.~1.º).}
+
+<<Aprobar o desechar tratados concluidos con las demás naciones y con las organizaciones internacionales y los concordatos con la Santa Sede. Los tratados y concordatos tienen jerarquía superior a las leyes.>>
+
+En las notas originales se aclara que el docente alude a la ratificación de 1994 sin citar el artículo y que se agrega su texto como referencia.
+\end{note}
+
+\subsection{La operatividad de los derechos consagrados en tratados}
+
+El segundo punto relevante es la \textbf{operatividad}. La Corte señala que el derecho de réplica, aunque pueda ser pasible de alguna reglamentación complementaria para optimizar su aplicación, y aunque en aquel momento no había merecido ninguna reglamentación, está consagrado en un tratado internacional. Los derechos consagrados en los tratados internacionales son <<plenamente operativos>>, por lo que cualquier interpretación judicial debe propender a su \textbf{aplicación directa}, de buena fe, efectiva y oportuna.
+
+Aun cuando existía una defensa del Estado según la cual se necesitaba algún tipo de regulación, la Corte tornó netamente operativo el derecho.
+
+\begin{important}
+Lo central del fallo se resume en dos puntos: (1) las \textbf{obligaciones internacionales} y la necesidad de los Estados de cumplirlas (en este caso, el Pacto de San José en cuanto a la operatividad del derecho de réplica); y (2) la idea de que debe hacerse una interpretación tendiente a dar operatividad a estos derechos internacionales, <<y no escudarse en una falta de legislación interna para denegar ese derecho>>.
+\end{important}
+
+\section{El punto débil del fallo: la legitimación activa}
+
+\subsection{Los hechos}
+
+Ekmekdjian era un abogado constitucionalista de importante reputación. Inicialmente envió una carta para que fuera leída, como descargo o réplica, en el programa de televisión donde se habían deslizado comentarios considerados ofensivos hacia figuras religiosas (Jesucristo y la Virgen). Sofovich, como productor del programa, no la leyó. Luego se inició la acción.
+
+\subsection{La debilidad señalada}
+
+Allí radica, según las notas, <<la pata floja de este fallo, lo más discutible>>: se trata de una réplica frente a una religión con posición mayoritaria en el credo dentro del país, y no se ve con claridad, con un análisis estricto de la legitimación activa, dónde puede considerarse legitimado un ciudadano común en defensa de determinados íconos religiosos. Una consideración complementaria es que la condición de católico practicante del abogado lo legitimó, en manos de una religión institucionalizada mediante una jerarquía, a arrogarse la defensa de la religión y del buen nombre de dos figuras religiosas que habrían sido blasfemadas o difamadas por los dichos.
+
+Parte del fallo en \textbf{disidencia} apela a este punto. Fundamentalmente, el juez \textbf{Fayt} se pregunta dónde puede considerarse destinatario de los perjuicios por los comentarios a las figuras religiosas a la persona de Ekmekdjian, teniendo en cuenta la generalidad de los comentarios y siendo que la religión católica tiene una jerarquía y una institución con medios para responder eventualmente ante agravios.
+
+\subsection{La decisión}
+
+La Corte, por mayoría, juzgó que Ekmekdjian tenía ese derecho y debía ejercerlo. Se condenó al productor televisivo a leer el mensaje de desagravio en el mismo horario central, porque el concepto del derecho de réplica consiste en obtener el \textbf{mismo foro} en el cual se vertió la información ofensiva o inexacta. En los hechos, la Corte activó el derecho de réplica y obligó a Sofovich a leer la réplica que había hecho el abogado.
+
+\section{Cuadro Cornell: derecho de réplica y \textit{Ekmekdjian}}
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{\cornellL}|>{\raggedright\arraybackslash}p{\cornellR}|}
+\hline
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\hline
+\endhead
+
+\textbf{¿Qué es el derecho de réplica y para qué sirve?} &
+Es una herramienta jurídica rápida y accesible frente a una información ofensiva o inexacta: permite expresarse públicamente con la misma difusión y el mismo alcance que la información cuestionada, y así desplaza el monopolio de los medios de comunicación. Es una orden judicial de hacer que obliga al medio a dar el espacio para la réplica. \\
+\hline
+
+\textbf{¿Es compatible con otras acciones?} &
+Sí. Es accesorio de otras acciones, como la de responsabilidad civil. La legislación argentina sigue el concepto de prohibición de censura previa y responsabilidad civil ulterior, por lo que el derecho de réplica puede convivir con otras vías reparatorias. \\
+\hline
+
+\textbf{¿Cuál es la fuente del derecho de réplica en la Argentina?} &
+No está incorporado taxativamente en la Constitución Nacional. Se internalizó a nivel federal por el Pacto de San José de Costa Rica; además hay jurisprudencia y constituciones provinciales que lo incorporan específicamente. \\
+\hline
+
+\textbf{¿Qué dos ideas deja \textit{Ekmekdjian c/ Sofovich} (1992)?} &
+(1) Los tratados internacionales prevalecen sobre las leyes internas y deben cumplirse, para evitar que el Estado incurra en incumplimiento de una obligación internacional (ratificado explícitamente en 1994). (2) Los derechos consagrados en tratados son operativos: no se puede denegarlos escudándose en la falta de legislación interna. \\
+\hline
+
+\textbf{¿Qué significa que un derecho sea operativo?} &
+Que, aunque pueda ser pasible de reglamentación complementaria y aun si no la tiene, la interpretación judicial debe propender a su aplicación directa, de buena fe, efectiva y oportuna. \\
+\hline
+
+\textbf{¿Cuál es el punto débil del fallo?} &
+La legitimación activa: un abogado, como católico, reclamó por el agravio a figuras religiosas, cuando existe una institución con jerarquía y medios para defenderlas. El juez Fayt lo planteó en su disidencia. \\
+\hline
+
+\textbf{¿Qué resolvió finalmente la Corte?} &
+Por mayoría, reconoció el derecho de Ekmekdjian y condenó al productor a leer el mensaje de desagravio en el mismo horario central, porque la réplica debe darse en el mismo foro en que se vertió la información. \\
+\hline
+
+\multicolumn{2}{|p{\cornellW}|}{%
+\textbf{Resumen:} El derecho de réplica permite contestar con la misma difusión una información ofensiva o inexacta. No figura expresamente en la Constitución Nacional, pero se incorporó por el Pacto de San José de Costa Rica. \textit{Ekmekdjian c/ Sofovich} (1992) afirmó la prevalencia de los tratados sobre las leyes internas y la operatividad de los derechos que consagran. Su punto débil es la legitimación activa del abogado, objetada por el juez Fayt.} \\
+\hline
+\end{longtable}
+
+% ============================================================
+\chapter[Legitimación activa y DNU]{Legitimación activa y decretos de necesidad y urgencia}
+% ============================================================
+
+\section{Un paralelismo con la actualidad: Malvinas y el decreto 70}
+
+El punto de la legitimación activa se conecta con el reciente fallo de la Corte Suprema en relación con la cuestión Malvinas, sobre la impugnación del \textbf{decreto 70}, que suspendía la aplicación de la denominada \textit{ley de tierras}. La Corte se limitó a analizar la \textbf{legitimación activa} del grupo de excombatientes de Malvinas que había realizado la impugnación y que había recibido, en las instancias anteriores, el visto bueno de la justicia como legitimados activos. Debe destacarse que se habla \textit{estrictamente de la legitimación activa}.
+
+\subsection{El caso}
+
+Las cámaras inferiores, en lo federal, admitieron a este grupo de excombatientes, nucleados en defensa de la soberanía de la Argentina en el Atlántico Sur, y les otorgaron legitimación activa. Entendieron que, siendo un grupo que había empuñado las armas en defensa de la Nación y siendo su objeto social la defensa de la soberanía, se advertía \textit{prima facie} una legitimación para cuestionar el decreto.
+
+El sustento de la impugnación era que el decreto de necesidad y urgencia había derogado la ley y que se ponía en peligro la integridad territorial y los límites que el legislador había entendido razonables en cuanto a la adquisición y posesión de tierras bajo umbrales decididos en resguardo de la integridad y soberanía territorial del país.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente no precisa si todos los excombatientes eran militares o también personal conscripto civil)
+
+\subsection{La decisión de la Corte}
+
+La Corte, en su fallo revocatorio, entiende que este grupo \textbf{no tiene una legitimación efectiva}, por dos razones:
+
+\begin{enumerate}
+    \item \textbf{Objeto social.} Se peleaba por la soberanía de las Islas Malvinas y el Atlántico Sur, zona en disputa con el Reino Unido. No hay correspondencia entre ese objeto social y una ley que rige para todo el territorio, cuando se impugna un decreto que la suspende pero no sobre los territorios a los que remite el objeto social.
+    \item \textbf{Naturaleza del territorio y la soberanía.} En un plano más conceptual y dogmático, la Corte dice que el territorio y su regulación son <<un atributo estricto del Estado>>: población, territorio y jurisdicción son elementos constitutivos típicos del Estado nacional. Por lo tanto no están en cabeza de la población individualmente, sino que, a través de los representantes designados, es función de los tres poderes (legislativo, ejecutivo y judicial) tutelarlo desde cada una de sus competencias.
+\end{enumerate}
+
+\subsection{Comparación con \textit{Ekmekdjian}}
+
+\begin{table}[H]
+\centering
+\caption{Legitimación activa en \textit{Ekmekdjian c/ Sofovich} y en el caso de los excombatientes (decreto 70)}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Ekmekdjian c/ Sofovich} & \textbf{Excombatientes de Malvinas (decreto 70)} \\
+\midrule
+\textbf{Quién reclama} & Un abogado constitucionalista que se sintió ofendido como católico & Un grupo de excombatientes de Malvinas nucleados en defensa de la soberanía \\
+\addlinespace
+\textbf{Bien jurídico invocado} & Buen nombre de figuras religiosas (Jesucristo y la Virgen) & Soberanía e integridad territorial (ley de tierras) \\
+\addlinespace
+\textbf{Criterio de la Corte sobre legitimación} & Se admitió la legitimación del abogado (con la disidencia del juez Fayt) & Se negó: el objeto social no coincide y la soberanía es atributo del Estado \\
+\addlinespace
+\textbf{Crítica planteada} & Existe una jerarquía e institución religiosa que podría defender esos intereses & Se acepta lo difuso en un caso y se lo rechaza en otro: <<zona gris>> \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{La «doble vara» en la legitimación activa}
+
+Se planteó en clase que existe una diferencia de criterios: se acepta la legitimación activa de Ekmekdjian y no la del grupo de excombatientes. Por un lado, se es hiperrestrictivo con los excombatientes de Malvinas y, por el otro, muy permisivo con Ekmekdjian, de modo que no se advierte con claridad el criterio para definir la legitimación activa.
+
+El docente retoma lo dicho: hay <<una suerte de doble vara>>. Pueden existir aspectos discutibles cuando se trata de derechos \textbf{colectivos o de apropiación colectiva}. En el caso de la religión, existe una jerarquía y una institución, encarnada por la Iglesia y, a nivel internacional, por el Vaticano, que resguarda y tutela esos intereses. Sin embargo, se aceptó al abogado en su condición de católico, por haber argumentado que había sufrido un perjuicio en su persona. En el fallo sobre el decreto 70, en cambio, no se vio esa misma flexibilidad, y hay argumentos que lo ponen en <<un velo de cierto gris>>, porque muchas veces se habla de conceptos inasibles que pueden ser apropiados por un grupo o colectivo social.
+
+\section{¿Es la soberanía un derecho de los particulares?}
+
+\subsection{La tesis de la Corte}
+
+Una intervención sostuvo que la Corte pudo haber dicho que el derecho a la soberanía no es un derecho de los particulares y que por eso no había legitimación. El docente coincide: como dijo la Corte, el territorio es un atributo del Estado nacional. La \textbf{soberanía}, que es el ejercicio de la jurisdicción sobre el territorio desplazando cualquier otra jurisdicción de otros países, es un atributo del Estado y no puede ser \textit{ejercida por particulares} en el sentido de impugnar, en este caso, un decreto de necesidad y urgencia.
+
+El docente reconoce que es un tema todavía muy discutible y que <<ninguna respuesta es absoluta>>. Plantea la pregunta: <<¿quién podría estar legitimado? ¿Solo el Estado podría ir en contra de esa propia norma dictada, cuestionándola? ¿Los Estados provinciales podrían?>> Bajo esta tesis existiría una visión reduccionista, según la cual ningún particular podría accionar en defensa de la legalidad frente a lo que este decreto estaría violando.
+
+\subsection{Objeciones}
+
+Se objetó que la tesis es algo extremista, porque la soberanía se ejerce de muchas maneras: a través del voto y de representantes que deciden por los ciudadanos; ¿por qué no podría haber un derecho a la soberanía?
+
+El docente continúa el cuestionamiento:
+
+\begin{itemize}
+    \item Bajo esa lógica, cualquiera de los presentes tampoco sería legitimado activo, siendo la soberanía un atributo del Estado.
+    \item El Estado está encarnado por las instituciones que lo representan, pero \textbf{la soberanía reside en el pueblo que las ha elegido}. Si hubiera actos de Estado reprochables para parte de esa población, no podría negarse la legitimación activa a un grupo social para impugnarlos.
+    \item Las autoridades que ejercen esos actos (el Congreso dictando una ley, o el Ejecutivo dictando el decreto que la anula) ejercen una competencia pública que tiene efecto sobre todos los ciudadanos; allí puede pensarse en un reenvío a ese \textit{poder originario}, porque ambos poderes están investidos por el voto.
+    \item El pueblo, en alguno de sus colectivos intermedios (una asociación, quizás una provincia, o un colectivo social), debería tener una posibilidad de impugnación. Siguiendo esa lógica, <<es un poco más raro decir que no hay derecho a la soberanía>>.
+\end{itemize}
+
+La pregunta es hasta qué punto hay una calificación especial por haber intervenido en un conflicto bélico. Puede haber una mayor calificación moral, pero quizás podría pensarse que no hay una especial legitimación activa en este grupo y que, así como se les pudo dar esa legitimación, también podría haberse dado a otro tipo de poderes. Una excesiva formalidad en la calificación de la legitimación activa <<puede dar situaciones de impunidad>>, al no ventilarse ante los tribunales cuestionamientos a determinados actos y normas de gobierno.
+
+\begin{important}
+Toda la jurisprudencia a partir del año 1994, sin caer en un relativismo absoluto, ha ido en una dirección tendiente a otorgar \textbf{mayor representación y mayor legitimación activa} para cuestionar los actos de gobierno o las leyes. La idea de derechos de incidencia colectiva tiene la orientación de ampliar las bases de la legitimación activa.
+\end{important}
+
+Se trata de una cuestión discutible. Ante bienes jurídicos de tal generalidad como la defensa de la soberanía, puede llegarse a una suerte de \textbf{acción popular indiscriminada}, donde podrían aparecer vecinos que dijeran, por ejemplo, que según su posición la ley viola el derecho de cualquier ciudadano del mundo de habitar en el país e igualar los derechos de los nacionales.
+
+\section{Estatus especial de los excombatientes}
+
+Ante la pregunta de si los excombatientes tienen un estatus jurídico especial, el docente responde que \textbf{absolutamente no en lo que hace a la competencia}, aunque acepta que hay un hecho que tiene <<cierta elevación moral>>. No sabe si técnicamente habilita una competencia, pero es un punto importante. Existen leyes, como en muchos países, tendientes a otorgar prioridades y beneficios a los excombatientes. Es <<una zona muy gris>>: la legitimación activa siempre presenta estos dilemas.
+
+\section{La legitimación de los legisladores}
+
+Cabe preguntarse qué ocurre con los legisladores que han votado la ley o participan: ¿podrían decir que se sienten violentados en su derecho de legislar cuando el Ejecutivo toma unilateralmente un DNU, sin existir causa de urgencia y estando reunido el Congreso? Debe distinguirse entre un DNU que crea una nueva reglamentación y un DNU por el que \textit{se intenta dejar sin efecto una ley vigente}: en este último caso hay un conflicto directo.
+
+La jurisprudencia ha dicho que los legisladores \textbf{no tienen una calificación superior} a la de cualquier ciudadano para impugnar determinados decretos o normas. Los legisladores que no tienen mayoría no pueden accionar individualmente diciendo que les violan el derecho a legislar, porque de lo contrario intentarían, por la vía del Poder Judicial, impugnar las normas que no logran frenar por no tener mayoría en el Congreso. Es una jurisprudencia muy recordada de la Corte cuando se está en el plano general de una reglamentación que, por ejemplo, sale por DNU.
+
+Pero en el caso analizado hay \textit{un ataque directo a una competencia ya legítimamente ejercida}: el DNU no innova regulando algo no regulado, sino que incide directamente sobre una ley solicitando su suspensión. Ahí sí puede haber un agravio a los legisladores.
+
+\section{Los DNU: control parlamentario, control judicial y crítica a la ley de trámite}
+
+\subsection{Normas constitucionales aludidas}
+
+\begin{note}
+\textbf{Norma de referencia: Constitución Nacional, art.~99 inc.~3 (DNU).}
+
+<<El Poder Ejecutivo no podrá en ningún caso bajo pena de nulidad absoluta e insanable, emitir disposiciones de carácter legislativo. Solamente cuando circunstancias excepcionales hicieran imposible seguir los trámites ordinarios previstos por esta Constitución para la sanción de las leyes, y no se trate de normas que regulen materia penal, tributaria, electoral o el régimen de los partidos políticos, podrá dictar decretos por razones de necesidad y urgencia, los que serán decididos en acuerdo general de ministros que deberán refrendarlos, conjuntamente con el jefe de gabinete de ministros.>>
+
+En las notas originales se aclara que el docente se refiere a la excepcionalidad y a las materias vedadas sin leer el texto, y que se transcribe el texto oficial como referencia.
+\end{note}
+
+\begin{note}
+\textbf{Norma de referencia: Constitución Nacional, art.~82 (sanción tácita).}
+
+<<La voluntad de cada Cámara debe manifestarse expresamente; se excluye, en todos los casos, la sanción tácita o ficta.>>
+
+En las notas originales se aclara que el docente se refiere a <<un artículo que dice que las cámaras no actúan por un poder tácito ficto>> y que se transcribe el texto oficial.
+\end{note}
+
+\subsection{Control parlamentario}
+
+Se planteó que el control de un DNU parece ser más una función del control parlamentario, del Poder Legislativo, que del Poder Judicial, ya que en definitiva el presidente legisló con el decreto; se reconoció la dificultad de que se requiere una mayoría muy amplia en las dos cámaras, pero se sostuvo que es el Congreso quien debe declarar que el decreto no es válido. El docente considera correcto el planteo.
+
+El trámite de aprobación de los DNU siempre estableció en la Constitución una reglamentación posterior con intervención de las dos cámaras. El problema surge porque la \textbf{ley que regula el trámite de los DNU}, sostenida desde hace muchos años a lo largo de tres gestiones anteriores, entiende que \textit{solo con el explícito rechazo de ambas cámaras pierde vigencia el decreto}. Allí hay un punto que, según el docente, nos debemos: un debate mucho más profundo como sociedad.
+
+\subsection{Crítica a la ley de trámite}
+
+La Constitución establece que los DNU son \textbf{decretos excepcionales}: una función excepcional para casos de emergencia y <<cuando no están dadas las condiciones para que pueda legislar y ejercer su labor el Congreso>>. Si se admite una regulación según la cual el decreto queda vigente porque las dos cámaras no fueron explícitas en su rechazo, <<estamos alterando el concepto de excepcionalidad>>, porque la Constitución también establece que las cámaras no actúan por consentimiento tácito, sino que sus decisiones tienen que ser efectivas. Es un diseño <<muy reprochable>> del actual trámite de los DNU.
+
+En la práctica, la ley dice que, si no hay rechazo de diputados y senadores, el rechazo de una sola cámara no alcanza. Ahí hay un problema interpretativo, porque el Congreso está compuesto por las dos cámaras. Si se sostiene que el DNU es excepcional, se tergiversa ese sentido, porque bastaría al poder público dominar una de las dos cámaras para sacar todo por decreto, ya que siempre trabará el rechazo de una de ellas. Un Poder Ejecutivo que controle el Senado o Diputados, y no las dos salas, podría actuar con DNU si se sigue a rajatabla el diseño de esta regulación. Con ello:
+
+\begin{itemize}
+    \item Se desvirtúa el \textbf{carácter bicameral} del Congreso.
+    \item Se desvirtúa el artículo que exige que las dos cámaras actúen explícitamente y que no pueda deducirse un consentimiento tácito.
+    \item Se corre el eje de que los DNU son \textbf{excepcionales}: son <<anomalías>> que solo surgen cuando el plan inicial (un Congreso reunido y sancionando una ley) no puede llevarse a cabo, y no cuando el Ejecutivo no tiene mayoría ni la legitimación de sus mayorías en ambas cámaras.
+\end{itemize}
+
+\begin{note}
+\textbf{Opinión del docente.} La ley de trámite de DNU, al sostener que se mantiene en vigor el DNU que no haya recibido el doble rechazo, <<adolece de inconstitucionalidad>>. A nivel político, agrega, siempre ocurre lo mismo: al partido que detenta el Ejecutivo le conviene la norma cuando ejerce el poder, y solo en la oposición observa que es un problema, porque vehiculiza lo que se denomina <<gobierno mediante DNU>>.
+\end{note}
+
+\subsection{Control judicial}
+
+Frente a la observación de que siempre hay un trámite posterior del Congreso, el docente señala que la Corte tiene dicho desde hace muchos años, ya desde la década del 90, que \textbf{la eventual revisión del DNU por el Congreso no inhibe cualquier impugnación judicial} que pueda llevar a cabo el legitimado activo. <<Eso es un punto clave>>: el ciudadano no está limitado a la comisión bicameral y puede impugnar el decreto.
+
+\section{Cuadro Cornell: legitimación activa y DNU}
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{\cornellL}|>{\raggedright\arraybackslash}p{\cornellR}|}
+\hline
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\hline
+\endhead
+
+\textbf{¿Qué resolvió la Corte sobre la legitimación de los excombatientes de Malvinas (decreto 70)?} &
+Revocó lo resuelto en las instancias anteriores y negó la legitimación efectiva del grupo, por dos razones: su objeto social (soberanía de Malvinas y el Atlántico Sur) no se corresponde con una ley que rige para todo el territorio, y el territorio y su regulación son un atributo estricto del Estado, tutelado por los tres poderes a través de los representantes. \\
+\hline
+
+\textbf{¿Qué es la «doble vara» en la legitimación activa?} &
+Se admitió la legitimación del abogado en \textit{Ekmekdjian} y se negó a los excombatientes en el caso del decreto 70. Se critica que se sea permisivo en un caso e hiperrestrictivo en el otro, sobre todo tratándose de derechos colectivos o de apropiación colectiva (<<zona gris>>). \\
+\hline
+
+\textbf{¿Es la soberanía un derecho de los particulares?} &
+Según la tesis de la Corte, es un atributo del Estado y no puede ser ejercida por particulares para impugnar un DNU. El docente cuestiona que esa tesis sea reduccionista: la soberanía reside en el pueblo que eligió a las instituciones, por lo que un colectivo intermedio debería tener posibilidad de impugnar; una formalidad excesiva puede dar situaciones de impunidad. \\
+\hline
+
+\textbf{¿Cuál es la tendencia jurisprudencial desde 1994 y qué riesgo tiene?} &
+Otorgar mayor representación y mayor legitimación activa para cuestionar actos de gobierno o leyes (derechos de incidencia colectiva). El riesgo es llegar a una acción popular indiscriminada. \\
+\hline
+
+\textbf{¿Pueden los legisladores impugnar un DNU?} &
+La jurisprudencia dice que no tienen una calificación superior a la de cualquier ciudadano ni pueden accionar individualmente por no tener mayoría. Pero si el DNU deja sin efecto una ley vigente hay un ataque directo a una competencia ya ejercida, y ahí puede haber un agravio a los legisladores. \\
+\hline
+
+\textbf{¿Qué características tiene el DNU según la Constitución (art. 99 inc. 3)?} &
+Es excepcional: procede solo si circunstancias excepcionales hacen imposible seguir los trámites ordinarios para sancionar leyes, y no puede regular materia penal, tributaria, electoral ni el régimen de los partidos políticos. \\
+\hline
+
+\textbf{¿Qué crítica se hizo a la ley de trámite de los DNU?} &
+Exige el rechazo de ambas cámaras para dejar sin efecto un DNU. Para el docente esto desvirtúa su excepcionalidad, el carácter bicameral del Congreso y la prohibición de sanción tácita (art. 82): bastaría controlar una cámara para gobernar por DNU. \\
+\hline
+
+\textbf{¿La revisión del Congreso impide la impugnación judicial de un DNU?} &
+No. La Corte tiene dicho desde la década del 90 que la eventual revisión por el Congreso no inhibe la impugnación judicial del legitimado activo. \\
+\hline
+
+\multicolumn{2}{|p{\cornellW}|}{%
+\textbf{Resumen:} La legitimación activa fue el punto débil de \textit{Ekmekdjian} y se contrastó con el fallo sobre el decreto 70, donde la Corte negó la legitimación de los excombatientes de Malvinas por considerar la soberanía un atributo del Estado. Esto muestra la tensión entre exigir formalidad para accionar y ampliar el acceso a la Justicia. De allí surge la crítica a la ley de trámite de los DNU, que al exigir el doble rechazo parlamentario desvirtúa su excepcionalidad, y la regla de que la revisión del Congreso no inhibe la impugnación judicial.} \\
+\hline
+\end{longtable}
+
+% ============================================================
+\chapter[Doctrina de la emergencia]{La doctrina de la emergencia}
+% ============================================================
+
+\section{Introducción: los derechos económicos de la Constitución}
+
+Se ingresa en el terreno de los \textbf{derechos económicos de la Constitución}. La pregunta central es: \textit{¿qué es la doctrina de la emergencia y cómo se ha ido aplicando en el tiempo?}
+
+\begin{definition}{Doctrina de la emergencia}
+Doctrina por la cual, ante una crisis económica real, el Estado puede restringir razonablemente derechos económicos (propiedad, contratos) sin alterar su sustancia. Se apoya en la lógica del estado de sitio (art.~23), en \textit{Home Building} y en el \textit{New Deal} y la influencia de Keynes.
+\end{definition}
+
+\section[Ercolano c/ Lanteri]{Primer precedente: \textit{Ercolano c/ Lanteri} (1922)}
+
+Muchos de los primeros precedentes son \textit{Ercolano c/ Lanteri}, el fallo en el cual la Corte, en el año 1922, convalidó \textbf{el congelamiento de las locaciones urbanas}, es decir, de los alquileres.
+
+\subsection{El contexto}
+
+Hoy existe una gran discusión pública, por ejemplo en países europeos, sobre el alza desmedida de los alquileres urbanos y la accesibilidad a la vivienda. La Argentina, en la década del 20, atravesó una crisis económica luego de un período bastante extenso de desarrollo y crecimiento, bajo la presidencia de Yrigoyen: hubo un aumento de la inflación y el Congreso dictó una ley por la cual, por \textbf{dos años}, dispuso el congelamiento de los alquileres, es decir, la inalterabilidad de los contratos de locación en cuanto a la actualización del precio.
+
+\subsection{El caso}
+
+Ercolano, el inquilino, consignó el depósito del alquiler y solicitó que se tuviera por pagado con el precio congelado, con lo que hizo una suerte de convalidación de la norma. Lanteri, el propietario, impugnó. La Corte emitió el primer fallo en el que tuvo que vérselas con la regulación de \textbf{derechos económicos de amplio espectro y generales}: pugnaban el bolsillo de los inquilinos contra el \textbf{derecho de propiedad} y el derecho a la \textbf{intangibilidad de los contratos} de los propietarios.
+
+\subsection{Una particularidad histórica: el mercado de propietarios}
+
+En esa época no existía la ley de propiedad horizontal, por lo que el mercado de propietarios era muy particular: eran capitales muy concentrados, no una familia que hubiera ahorrado toda su vida para comprar un departamento y alquilarlo. Como no se podían dividir los edificios, estos estaban en manos de sociedades o personas físicas propietarias de todas las unidades de cada edificio de renta. Era un plan de desarrollo común que grandes ganaderos y grandes empresarios buscaran renta construyendo ellos mismos un edificio para poner todos los departamentos en alquiler.
+
+Esto no incide estrictamente sobre la decisión jurídica de fondo, pero sí sobre la composición de la categoría de propietarios. Hoy muchos propietarios son pequeños ahorristas y la composición de inquilinos y dueños es mucho más atomizada. Según el docente, la primera ley de propiedad horizontal es del primer gobierno de Perón, <<si no me equivoco, en el 47 o 48>>.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente no está seguro de la fecha de la primera ley de propiedad horizontal)
+
+\subsection{Resultado}
+
+\textit{Ercolano c/ Lanteri} es uno de los primeros grandes fallos en torno a controversias sobre derechos económicos entre propietarios e inquilinos: por un lado, la accesibilidad de la vivienda; por otro, la libertad de contratar y de disponer de la vivienda, y la intangibilidad de los contratos pactados. El fallo convalidó la ley de congelamiento de alquileres, entendiendo que había \textbf{una situación de emergencia inédita en el país}.
+
+La Nación venía de un crecimiento progresivo y constante. A mediados de los años 20 hay un primer sacudón, producto de algunas malas políticas, del crecimiento de la inflación y de las tensiones de la restricción comercial operada por la Primera Guerra Mundial y sus años subsiguientes, en los que la Argentina vio restringidos los mercados. Fue una crisis quizás no tan profunda como la de mediados de los años 30, pero la Corte convalidó el congelamiento de alquileres.
+
+\section[Avico c/ de la Pesa]{Segundo precedente: \textit{Avico c/ de la Pesa} (década del 30)}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente ubica el fallo en la década del 30 y menciona el año 32; en las notas se lo consigna como 1934)
+
+En \textit{Avico c/ de la Pesa}, la Corte resuelve acerca de una ley que, en cuanto a las ejecuciones hipotecarias, establece una \textbf{prórroga en el tiempo} de las ejecuciones para evitar los lanzamientos, es decir, que fueran desalojados los propietarios con créditos hipotecarios. Además, la ley, fundada en una emergencia pública, \textbf{reduce los intereses de las hipotecas}. La constitución de estas hipotecas era una práctica muy extendida para acceder a la primera vivienda.
+
+Frente a una crisis económica similar a la de los años anteriores, quizás más profunda en los años 30 pero igual en sus efectos, la Corte convalidó la norma que prorrogó la suspensión de los desalojos hipotecarios y redujo los intereses, desde la óptica de proteger a los habitantes de inmuebles que estaban pagando estos instrumentos para acceder a la vivienda. Aquí la Corte hace <<una primera aproximación concreta de lo que es la doctrina de la emergencia>>.
+
+\begin{table}[H]
+\centering
+\caption{Comparación entre \textit{Ercolano c/ Lanteri} y \textit{Avico c/ de la Pesa}}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Ercolano c/ Lanteri} & \textbf{Avico c/ de la Pesa} \\
+\midrule
+\textbf{Época} & Año 1922, crisis económica de mediados de los años 20 & Década del 30 (el docente menciona el año 32; en las notas la sentencia se consigna como de 1934), crisis más profunda \\
+\addlinespace
+\textbf{Medida convalidada} & Congelamiento de alquileres urbanos por dos años & Prórroga de ejecuciones hipotecarias y reducción de intereses \\
+\addlinespace
+\textbf{Derechos en tensión} & Bolsillo del inquilino frente a propiedad e intangibilidad de los contratos & Propiedad del acreedor hipotecario frente al acceso del deudor a la primera vivienda \\
+\addlinespace
+\textbf{Resultado} & La Corte convalidó la ley & La Corte convalidó la ley y sentó una primera aproximación a la doctrina de la emergencia \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Fundamento de la doctrina: del estado de sitio a los derechos económicos}
+
+\subsection{El estado de sitio}
+
+La Corte parte del \textbf{estado de sitio}. Ante su declaración hay una \textit{morigeración} de las libertades y de los derechos de libre circulación y de detención: las personas pueden ser detenidas y trasladadas dentro del territorio, pero deben ser rápidamente puestas a disposición de los jueces de garantías, sin que su derecho de defensa pueda ser vulnerado.
+
+\begin{note}
+\textbf{Norma de referencia: Constitución Nacional, art.~23 (estado de sitio).}
+
+<<En caso de conmoción interior o de ataque exterior que pongan en peligro el ejercicio de esta Constitución y de las autoridades creadas por ella, se declarará en estado de sitio la provincia o territorio en donde exista la perturbación del orden, quedando suspensas allí las garantías constitucionales. Pero durante esta suspensión no podrá el presidente de la República condenar por sí ni aplicar penas. Su poder se limitará en tal caso, respecto de las personas, a arrestarlas o trasladarlas de un punto a otro de la Nación, si ellas no prefiriesen salir fuera del territorio argentino.>>
+
+En las notas originales se aclara que el docente describe el estado de sitio sin leer el artículo y que se transcribe el texto oficial como referencia.
+\end{note}
+
+El razonamiento es el siguiente: si frente a derechos tan esenciales como la libertad ambulatoria y la libertad personal puede haber flexibilidades en un estado de sitio por conmoción interior, en lo que se refiere a derechos económicos también debería haber \textbf{una morigeración en el uso de los derechos} ante una emergencia. Cabe esperar que, ante una emergencia, los derechos y garantías económicos puedan ser restringidos \textit{razonablemente y sin llegar a degradar la sustancia del derecho}.
+
+\subsection{La influencia norteamericana: \textit{Home Building}, \textit{New Deal} y Keynes}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se cita Home Building sin precisar año ni tribunal)
+
+La Corte ensaya esto basada en un fallo muy parecido, también sobre ejecuciones hipotecarias, de Estados Unidos: \textit{Home Building}. Estados Unidos pasaba por una crisis aún más seria para el tamaño de su economía: la \textbf{Gran Depresión}. Allí se desarrolla gran parte del \textbf{New Deal} del presidente Roosevelt, que llega después del estallido de la crisis de 1929 (<<martes negro>>) y de la crisis del 30, y que empieza a aplicar una política de creciente intervención en la economía, con mayor actividad del Estado, al amparo de lo que luego fue sistematizado por \textbf{Keynes}, el economista inglés.
+
+La idea es una intervención más rápida y más decidida del Estado cuando hay situaciones de mercado que generan una espiral de degradación y pérdida de valor. Aun bajo una postura liberal de mínimo intervencionismo, en esa situación de excepción se admite una respuesta más activa del Estado, sobre todo promoviendo la \textbf{demanda agregada}: volcar transferencias en el mercado para dinamizar un mercado deprimido y romper una espiral de expectativas que pueden llevar a una crisis mayor.
+
+Frente a expectativas negativas (una economía cada vez más compleja, con menos consumo y más inflación), las partes y los actores del mercado se cubren rebajando sus inversiones y sus aumentos de sueldo, lo que genera un parate progresivo de la actividad. Estas teorías sostienen una mayor intervención del Estado para romper esa dinámica negativa y, mediante transferencias al sector privado, volver a generar confianza para mejorar los indicadores económicos, transformando las expectativas negativas en positivas.
+
+Hay mucha literatura sobre el tema. Algunos otorgan a la política de Keynes un factor muy coyuntural: sostienen que <<Keynes nunca dejó de ser un liberal>> y que estableció cómo debía conducirse el Estado en un período muy preciso y breve; si luego se volvía a una buena senda de crecimiento, el Estado debía retraerse a su canon normal de garante de la seguridad interna y externa y <<no mucho más que eso>>. Otros sostienen que la teoría de Keynes era mucho más estructural y que la intervención del Estado había llegado para quedarse. Es una discusión económica que excede el tema.
+
+\begin{important}
+La Corte toma esta coyuntura para interpretar que \textbf{los derechos económicos reconocidos en la Constitución pueden sufrir alteraciones, pero bajo determinadas reglas de razonabilidad}. El Estado tiene la facultad de regular con mayor alcance y, en algún punto, restringiendo estos derechos, pero bajo normas racionales que eviten decisiones arbitrarias y decisiones que afecten en sustancia los derechos.
+\end{important}
+
+\section{Reconocer la emergencia y utilizarla}
+
+Se consultó cuál es la diferencia entre reconocer que existe una emergencia y utilizarla. El docente valora que es una buena pregunta y explica que lo que dice la Corte es que, frente a una situación de emergencia, cabe esperar una mayor intervención en los derechos económicos: debe tolerarse por parte del Estado, mediante su Poder Legislativo y la ejecución por parte del Ejecutivo, una mayor restricción de los derechos, pero \textbf{como respuesta a una emergencia económica debidamente verificada}.
+
+<<No podemos poner los caballos atrás del carro o el carro delante de los caballos>>: tiene que haber una crisis económica, más allá de sus orígenes, de entidad importante, y no una pequeña ondulación de las variables económicas. Frente a una emergencia económica reconocible cabe aplicar esta doctrina para posibilitar una mayor restricción de los derechos económicos. En la actual coyuntura, es el \textbf{Congreso} el que debe declarar la emergencia económica para habilitar la regulación de emergencia.
+
+\section{Requisitos de la doctrina de la emergencia}
+
+\begin{table}[H]
+\centering
+\caption{Requisitos de la doctrina de la emergencia}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Requisito} & \textbf{Explicación} \\
+\midrule
+\textbf{1. Crisis económica real y verificable} & Debe haber una crisis que ponga, con considerable generalidad, en peligro cierto el bienestar de la población y el crecimiento económico, con posible perjuicio al bienestar general. No es una declaración caprichosa: debe ser una situación verificable. \\
+\addlinespace
+\textbf{2. Declaración del Congreso} & En la jurisprudencia actual es el Congreso el que debe declarar la emergencia. \\
+\addlinespace
+\textbf{3. Temporalidad o finitud} & Plazo cierto, con principio y fin, determinado por el Congreso. La teoría es excepcional, como los DNU, y no puede ser permanente. El docente advierte que el país ha vivido muchos años con crisis recurrentes y sucesivas declaraciones de emergencia, un punto analizable por la coyuntura. \\
+\addlinespace
+\textbf{4. Finalidad pública y bien común} & Las medidas que restrinjan derechos económicos deben buscar el bienestar común (<<el famoso bien común como principio ordenador>>) y tener por objetivo conjurar y superar la crisis. Es un presupuesto de legitimidad. \\
+\addlinespace
+\textbf{5. No alterar la sustancia del derecho} & Las regulaciones pueden restringir los derechos, pero no pueden alterar su sustancia. Puede haber alguna alteración en el ejercicio de los derechos, pero no se los puede desnaturalizar. Es el aspecto central. \\
+\addlinespace
+\textbf{6. Razonabilidad y proporcionalidad} & Las restricciones deben ser razonables y proporcionales a la duración y la gravedad de la crisis (adecuación medio-fin). No puede haber sobrerregulación. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Proporcionalidad}
+Si hay una cuestión puntual en el mercado de alquileres, la regulación no puede trasladarse a la posesión de la propiedad y a su extensión y, por ejemplo, <<hago la reforma agraria porque estoy en crisis económica>>. La búsqueda del bien común tiene que ser proporcional a revertir la situación y no ir más allá de lo necesario para conjurar la crisis.
+\end{example}
+
+\begin{important}
+Estos aspectos hacen, a grandes rasgos, a la \textbf{razonabilidad}: existencia de una crisis; plazo cierto, no permanente; emergencia declarada por el Congreso; no alterar la sustancia de los derechos; finalidad pública; y proporcionalidad o adecuación medio-fin. La restricción del derecho tiene que ser acorde a la gravedad de la crisis, sin una sobrerregulación que, bajo la excusa de una crisis económica, menoscabe derechos de particulares. Son cuestiones muy generales que la Corte sistematizó para racionalizar medidas que probablemente sean <<antipáticas>>, pero que pueden ser tolerables y razonables en el contexto de emergencia en que se dictan, siempre que su vigencia no vaya más allá de conjurar la crisis.
+\end{important}
+
+\section{El caso \textit{Peralta} (1990): no mutar la sustancia del derecho}
+
+Como ejemplo del requisito más importante (no mutar la sustancia ni desnaturalizar el derecho), se presenta el caso \textit{Peralta}, del año 1990.
+
+\subsection{El decreto 36/90}
+
+El \textbf{decreto 36/90} dispuso que los plazos fijos se devolverían mediante la emisión de \textbf{bonos representativos} de las sumas depositadas en dólares en los bancos. El Estado atravesaba una gran crisis económica al amparo de la hiperinflación de la última etapa de Alfonsín y los primeros meses de Menem, en una transición compleja con prácticamente nulidad de reservas y un gran problema de actividad económica. Por eso se echó mano de los depósitos en moneda extranjera del sistema bancario. La norma disponía que se devolverían periódicamente mediante títulos de deuda representativos de esos montos, a cancelarse en el tiempo.
+
+\subsection{La posición de la Corte}
+
+Al analizar el punto central (<<suena un poco abstracto>>: ¿hasta qué punto no se muta la sustancia?), la Corte dijo que los títulos de deuda tenían un vencimiento y que, si bien el derecho de propiedad se prorrogaba en el tiempo mediante títulos que vencerían dentro de unos años, eso \textit{no trastocaba el derecho de fondo}, que se mantenía de algún modo inalterable. La Corte entendió cumplidos los requisitos:
+
+\begin{itemize}
+    \item El decreto establecía la \textbf{transitoriedad}.
+    \item \textbf{No se mutaba el derecho de propiedad}: los bonos se entregaban a cada poseedor para que pudiera venderlos en el mercado o esperar hasta su repago, lo que configuraba una suerte de prórroga en el tiempo para su ejercicio y no una violación.
+    \item Se sostuvo la \textbf{finalidad pública} del decreto: los bonos son representativos del valor oportunamente depositado y su transitoriedad estaba acotada a la situación de emergencia.
+\end{itemize}
+
+\textit{Peralta} es, además, el primer fallo en el que hay un análisis de constitucionalidad en el marco de un \textbf{amparo}, y da la primera proyección de lo que luego se consolidó como la doctrina de la emergencia económica.
+
+\subsection{Un matiz: los mayores de 75 años}
+
+Para los tenedores de plazos fijos \textbf{mayores de 75 años}, la Corte dijo que debía devolvérseles directamente el dinero y que no valía el Plan Bonex, porque la expectativa de vida era incompatible con recibir oportunamente el cobro. <<No era lo mismo si yo tenía 75 años que si era un tenedor de 30 años>>: el contexto hacía que en un caso el derecho de propiedad se desnaturalizara y en el otro no.
+
+\section{Consolidación: \textit{Galli} (2004) y el corralito}
+
+En el fallo del año 2004, en la causa \textit{Galli}, la Corte analizó nuevamente la cuestión bajo el prisma de la emergencia económica para convalidar los decretos que habían dispuesto, por ejemplo, la \textbf{pesificación de los títulos de deuda}, el \textbf{decreto 471}. Luego hubo pronunciamientos posteriores: la devolución de los plazos fijos del \textit{corralito} también apeló a la doctrina de la emergencia, mediante una fórmula que ajustó los intereses para que la brecha con el dólar no fuera tan grande.
+
+La jurisprudencia se ha mantenido casi inalterable: la Corte la utilizó para convalidar el Plan Bonex (decreto del caso \textit{Peralta}), la pesificación de títulos de deuda (\textit{Galli}, 2004) y la devolución de los plazos fijos. Este tipo de decisiones de regulación económica siempre se ha mirado bajo el prisma de la doctrina de la emergencia.
+
+El docente plantea, sin embargo, una pregunta válida: si bien puede considerarse una racionalización del tema, no es fácil ponerse de acuerdo por la generalidad de sus contenidos. <<Hasta qué punto que a mí me devuelvan el dinero en un bono que es a pagar durante tantos años no desnaturaliza mi derecho de propiedad.>> Por más que, esperando diez años, pudiera tenerse el dinero, el transcurso de ese tiempo es considerable.
+
+\section{Relación entre emergencia y DNU}
+
+Los DNU ya eran una realidad en el derecho argentino y la Corte los analizó en sucesivos fallos; la \textbf{reforma de 1994 no hace sino institucionalizarlos}, dándoles un mecanismo de racionalización: primero sosteniendo el concepto de \textbf{excepcionalidad} y luego estableciendo las \textbf{materias vedadas}: penal, tributaria (<<que en el aspecto económico no es un dato menor>>), electoral y de partidos políticos.
+
+Ya \textit{Peralta} mostraba la importancia que venían adquiriendo estos decretos, porque existía institucionalmente un contexto en el cual los Poderes Ejecutivos tenían congresos adversos: en situaciones de crisis había \textit{bloqueos} que obligaban muchas veces al Ejecutivo a echar mano de DNU. El debate se traslada hasta la actualidad: el decreto 70 está todavía pendiente de un debate constitucional de fondo y hay otros muchos decretos que han puesto en el debate público dónde está la razonabilidad constitucional. ¿Cuál es el alcance de la revisión judicial? Ha habido épocas de mayor y menor vigor, pero son elementos que hoy plantean desafíos muy importantes.
+
+La Constitución incorporó al texto una posibilidad que ya existía de hecho, intentando un cauce más institucional y racional. Pero en el trámite posterior de revisión bicameral hay un escollo importante que probablemente deba modificarse en el futuro <<para dotar al Congreso de una real intervención, y no de una suerte de carrera de obstáculos>> para dificultar la revocación de este tipo de decreto. La exigencia legal del doble rechazo, en cada una de las cámaras, para dejar sin vigencia un DNU \textbf{desnaturaliza su carácter excepcional}, porque a lo largo de sucesivas gestiones siempre una de las dos cámaras es más compleja para arribar a mayorías que apoyen o bajen el DNU.
+
+\section{Comparación con Estados Unidos}
+
+Todo esto se da en el marco de un contexto de mayor intervención del Estado en la economía. En Estados Unidos, luego del período de Roosevelt, en lo que se denominó la Gran Depresión, la Corte abandonó con el tiempo ese criterio de excepción como respuesta recurrente, y se fue consolidando la idea de que ese era el modo en que debían analizarse las medidas económicas tomadas por el gobierno.
+
+\begin{note}
+Es importante conocer en qué consiste la doctrina de la emergencia y cuáles son sus requisitos para ejercer esa regulación económica.
+\end{note}
+
+\section{Cuadro Cornell: doctrina de la emergencia}
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{\cornellL}|>{\raggedright\arraybackslash}p{\cornellR}|}
+\hline
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\hline
+\endhead
+
+\textbf{¿Qué es la doctrina de la emergencia?} &
+Doctrina por la cual, ante una crisis económica real, el Estado puede restringir razonablemente derechos económicos (propiedad, contratos) sin alterar su sustancia. Se apoya en la lógica del estado de sitio (art. 23), en \textit{Home Building} y en el \textit{New Deal} y Keynes. \\
+\hline
+
+\textbf{¿Qué resolvió \textit{Ercolano c/ Lanteri} (1922)?} &
+La Corte convalidó una ley que congelaba los alquileres urbanos por dos años, ante una emergencia inédita en el país. Enfrentaba el bolsillo de los inquilinos con el derecho de propiedad y la intangibilidad de los contratos de los propietarios. \\
+\hline
+
+\textbf{¿Qué resolvió \textit{Avico c/ de la Pesa} (década del 30)?} &
+Convalidó una ley que prorrogaba las ejecuciones hipotecarias para evitar desalojos y reducía los intereses de las hipotecas. Es una primera aproximación concreta a la doctrina de la emergencia. \\
+\hline
+
+\textbf{¿Por qué los derechos económicos admiten restricciones?} &
+Si en el estado de sitio pueden flexibilizarse derechos esenciales como la libertad personal y ambulatoria, también debe haber una morigeración de los derechos económicos ante una emergencia. La Corte se apoyó en \textit{Home Building} y en el contexto del \textit{New Deal} y Keynes (mayor intervención estatal), pero bajo reglas de razonabilidad. \\
+\hline
+
+\textbf{¿Qué diferencia hay entre reconocer la emergencia y utilizarla?} &
+La mayor restricción de derechos solo se tolera como respuesta a una emergencia económica debidamente verificada, de entidad importante, y hoy es el Congreso el que debe declararla. \\
+\hline
+
+\textbf{¿Cuáles son los requisitos de la emergencia?} &
+Crisis real y verificable; declaración del Congreso; plazo cierto y finito; finalidad pública (bien común); no alterar la sustancia del derecho; razonabilidad y proporcionalidad (adecuación medio-fin), sin sobrerregulación. \\
+\hline
+
+\textbf{¿Qué resolvió \textit{Peralta} (1990)?} &
+Convalidó el decreto 36/90, que devolvía los plazos fijos mediante bonos (Plan Bonex): entendió que había transitoriedad, finalidad pública y que no se alteraba la sustancia del derecho de propiedad, sino que se prorrogaba su ejercicio. Fue el primer análisis de constitucionalidad en el marco de un amparo. \\
+\hline
+
+\textbf{¿Qué excepción hizo la Corte en \textit{Peralta}?} &
+Para los tenedores mayores de 75 años dispuso la devolución directa, porque la expectativa de vida era incompatible con el cobro oportuno y el derecho de propiedad se desnaturalizaba. \\
+\hline
+
+\textbf{¿Cómo se consolidó la doctrina?} &
+En \textit{Galli} (2004) la Corte convalidó la pesificación de títulos de deuda (decreto 471), y la devolución de los plazos fijos del corralito también apeló a la doctrina de la emergencia. Queda abierta la duda de hasta qué punto devolver el dinero en bonos a pagar durante años no desnaturaliza la propiedad. \\
+\hline
+
+\textbf{¿Cómo se relacionan emergencia y DNU?} &
+La reforma de 1994 institucionalizó los DNU como excepcionales y vedó las materias penal, tributaria, electoral y de partidos políticos. El requisito del doble rechazo parlamentario desnaturaliza su carácter excepcional, y el debate sobre el alcance del control judicial sigue vigente (decreto 70). \\
+\hline
+
+\multicolumn{2}{|p{\cornellW}|}{%
+\textbf{Resumen:} Desde \textit{Ercolano c/ Lanteri} y \textit{Avico c/ de la Pesa} hasta \textit{Peralta} y \textit{Galli}, la Corte admitió que, ante una crisis económica real, declarada por el Congreso, de duración limitada y con finalidad pública, el Estado puede restringir derechos económicos de manera razonable y proporcionada, siempre que no altere su sustancia. El hilo común es la razonabilidad: ningún poder, ni siquiera en la emergencia, puede desnaturalizar los derechos.} \\
+\hline
+\end{longtable}
+
+% ------------------------------------------------------------
+% SÍNTESIS GENERAL
+% ------------------------------------------------------------
+\chapter[Síntesis general]{Síntesis general de repaso}
+
+Los contenidos conectan dos problemas centrales del derecho constitucional: cómo se hacen valer los derechos y cómo se controla el poder en situaciones excepcionales.
+
+El fallo \textit{Ekmekdjian c/ Sofovich} consagró el derecho de réplica a partir del Pacto de San José de Costa Rica y dejó dos enseñanzas: los tratados prevalecen sobre las leyes internas y sus derechos son operativos aunque falte reglamentación. Su debilidad, la legitimación activa, se comparó con el fallo reciente sobre el decreto 70 y los excombatientes de Malvinas, mostrando la tensión entre exigir formalidad para accionar y ampliar el acceso a la Justicia, lo que condujo a la crítica de la ley de trámite de los DNU, que al exigir el doble rechazo parlamentario desvirtúa su excepcionalidad.
+
+La segunda parte presentó la doctrina de la emergencia, desde \textit{Ercolano c/ Lanteri} y \textit{Avico c/ de la Pesa} hasta \textit{Peralta} y \textit{Galli}: ante una crisis económica real, declarada por el Congreso, de duración limitada y con fin público, el Estado puede restringir derechos económicos de manera razonable y proporcionada, siempre que no altere su sustancia.
+
+\textbf{El hilo común es la razonabilidad: ningún poder, ni siquiera en la emergencia, puede desnaturalizar los derechos.}
+
+\end{document}
