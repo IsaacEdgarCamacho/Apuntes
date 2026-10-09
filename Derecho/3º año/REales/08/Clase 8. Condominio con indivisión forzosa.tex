@@ -1,0 +1,684 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{Medianería y Condominios}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\renewcommand{\contentsname}{Índice}
+
+% Entorno para cuadros Cornell (tabla real: columna izquierda estrecha, derecha amplia)
+\newcolumntype{L}{>{\raggedright\arraybackslash}p{0.27\textwidth}}
+\newcolumntype{R}{>{\raggedright\arraybackslash}p{0.65\textwidth}}
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derechos Reales'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ============================================================
+% ÍNDICE
+% ============================================================
+\tableofcontents
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+
+\chapter{Condominio con indivisión forzosa: estructura y fundamentos}
+
+\section{Presentación del tema}
+
+El tema central es la regulación legal de muros, cercos y fosos, dentro del estudio del condominio con indivisión forzosa.
+
+\begin{note}
+\textbf{Utilidad profesional.} Para el profesional del derecho, especialmente en la práctica inmobiliaria, notarial o registral, la comprensión de la medianería permite: (1) asesorar correctamente a propietarios sobre sus derechos y obligaciones en construcciones colindantes; (2) resolver conflictos entre vecinos sobre muros y cercos; (3) redactar escrituras públicas que reflejen la verdadera naturaleza jurídica del inmueble; (4) orientar trámites registrales complejos; y (5) evitar litigios costosos al identificar correctamente la titularidad de estructuras compartidas. La medianería es la regulación que permite la vida urbana moderna, generando economía de terreno, solidez estructural y garantizando la privacidad constitucional. Todo acto de compraventa, construcción o modificación de un inmueble toca este régimen.
+\end{note}
+
+La medianería funciona como la ``columna vertebral'' que sostiene la estructura urbana: cada muro es una especie de acuerdo silencioso entre vecinos, en el que ambos necesitan encerrarse (derecho) y ambos deben contribuir (obligación), generando un sistema donde la responsabilidad se comparte. El estudio del tema avanza desde lo más simple (qué tipos de muros hay) hasta lo más complejo (quién paga qué y cuándo).
+
+\section{Estructura general del condominio con indivisión forzosa}
+
+El condominio con indivisión forzosa es un tipo de condominio de \textbf{origen legal}. Presenta dos facetas principales, reguladas en el título cuarto del libro cuarto del Código Civil.
+
+\subsection{Primera faceta: accesorios indispensables}
+
+La primera faceta es el condominio de indivisión forzosa sobre \textbf{accesorios indispensables a dos inmuebles}, regulado en los artículos 2004 y 2005 del Código Civil.
+
+\begin{definition}{Condominio sobre accesorios indispensables (arts. 2004 y 2005)}
+Condominio sobre accesorios indispensables para el uso común de dos inmuebles colindantes. Ejemplos: pasillos de acceso y pasadizos comunes. Cada condómino tiene derecho a usarlos conforme a su destino.
+\end{definition}
+
+El caso más claro es el de los pasillos, que son accesorios indispensables al uso común de dos inmuebles. El estudio de esta faceta no presenta dificultad. El régimen es claro: cada condómino debe usar el accesorio sin afectar al otro y \textbf{no puede pedir la partición}, porque se trata de un condominio de indivisión forzosa, necesario para el uso de ambos inmuebles.
+
+\subsection{Segunda faceta: muros, cercos y fosos}
+
+La segunda faceta es el condominio sobre muros, cercos y fosos, regulado en los artículos 2006 a 2030 del Código Civil.
+
+\begin{definition}{Condominio sobre muros, cercos y fosos (arts. 2006 a 2030)}
+Condominio sobre muros de cerramiento entre inmuebles colindantes. Este régimen es mucho más complejo que el de los accesorios indispensables, y está vinculado con la problemática de la medianería.
+\end{definition}
+
+Esta es la faceta que presenta dificultad en su estudio e interpretación, precisamente por su vinculación con la medianería.
+
+\section{Límites al derecho de propiedad}
+
+La medianería es una institución que impone un límite importante al derecho de propiedad: este condominio otorga a cada propietario de inmuebles colindantes urbanos el \textbf{derecho y la obligación recíprocos} de construir un muro de cerramiento.
+
+\subsection{Potencia del derecho real}
+
+En este régimen se advierte con toda fortaleza la potencia del derecho real: por tratarse de un derecho y una obligación recíprocos, el muro de cerramiento \textbf{no requiere la conformidad del otro vecino}. Quien construye puede hacerlo aun cuando el vecino se haya opuesto directamente o no contribuya al gasto. Más aún, la ley autoriza a quien construye a edificar \textbf{la mitad del muro sobre el terreno del vecino}, que posiblemente se opuso a la construcción.
+
+Quien construye de este modo está adelantando el cumplimiento de una obligación legal que también pesaba sobre el vecino. Desde que construye el muro de cerramiento medianero, cumple la función que exige la ley y, por ello, tiene derecho a reclamar.
+
+\subsection{Medidas habituales del muro de cerramiento}
+
+Con las normativas actuales, los muros de cerramiento son habitualmente de \textbf{tres metros de alto por treinta centímetros de espesor}, lo que se denomina comúnmente la \textbf{``pared de treinta''}.
+
+\section{Fundamentos del régimen}
+
+\subsection{Fundamentos constitucionales}
+
+El régimen de medianería se ancla en principios constitucionales fundamentales.
+
+\begin{definition}{Artículos 18 y 19 de la Constitución Nacional}
+Art. 18: inviolabilidad del domicilio. Art. 19: ``Las acciones privadas de los hombres que de ningún modo ofendan al orden y a la moral pública, ni perjudiquen a un tercero, están solo reservadas a Dios, y exentas de la autoridad de los magistrados.'' Estos artículos protegen la privacidad e intimidad personal y familiar.
+\end{definition}
+
+Las garantías constitucionales de intimidad personal y familiar dependen de que exista el derecho a la privacidad; sin la posibilidad de encerrarse, dicha intimidad no podría garantizarse.
+
+\subsection{Facultad de exclusión y encerramiento}
+
+\begin{definition}{Facultad de exclusión y encerramiento (art. 1944)}
+Cada titular de dominio tiene la facultad de exclusión y encerramiento de su inmueble. Es una facultad inherente al derecho de propiedad.
+\end{definition}
+
+Si cada propietario tiene la facultad de encerramiento, su vecino, dueño del inmueble contiguo, también la tiene. La faceta obligacional surge de la normativa concreta en materia de condominios con indivisión forzosa.
+
+\subsection{Fundamentos económicos}
+
+Además del fundamento constitucional, existen motivos económicos: el régimen permite \textbf{economizar el suelo}. La tierra es escasa y no toda es cultivable, por lo que resulta muy importante economizar terreno. Este ahorro se multiplica por la enorme cantidad de inmuebles existentes en los sectores urbanos.
+
+\subsection{Fundamentos técnicos}
+
+Desde la ingeniería y la arquitectura existen razones vinculadas con la \textbf{solidez}: los inmuebles se ``abrazan'' entre sí, se apoyan unos en otros y se fortalecen mutuamente, de modo que las construcciones se solidifican.
+
+% ------------------------------------------------------------
+% CORNELL CAPÍTULO 1
+% ------------------------------------------------------------
+\section{Cuadro Cornell: condominio con indivisión forzosa y fundamentos}
+
+\begingroup
+\small
+\begin{longtable}{L R}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuáles son las dos facetas del condominio con indivisión forzosa?} &
+Es un condominio de origen legal, regulado en el título cuarto del libro cuarto del Código Civil. La primera faceta recae sobre accesorios indispensables a dos inmuebles (arts. 2004 y 2005); la segunda, sobre muros, cercos y fosos (arts. 2006 a 2030), vinculada con la medianería y de mayor dificultad. \\[0.8em]
+
+\textbf{¿Por qué no puede pedirse la partición en los accesorios indispensables?} &
+Porque se trata de un condominio de indivisión forzosa, necesario para el uso de ambos inmuebles. Cada condómino debe usarlo sin afectar al otro. \\[0.8em]
+
+\textbf{¿Qué límite impone al derecho de propiedad el condominio sobre muros?} &
+Otorga a cada propietario de inmuebles colindantes urbanos el derecho y la obligación recíprocos de construir un muro de cerramiento, sin necesidad de conformidad del vecino, incluso con oposición de este y aun cuando no contribuya al gasto. \\[0.8em]
+
+\textbf{¿Puedo construir un muro sin permiso de mi vecino?} &
+Sí. La ley otorga un derecho y una obligación recíprocos, y quien construye puede hacerlo contra la voluntad del vecino y hasta edificar la mitad del muro sobre el terreno de este. \\[0.8em]
+
+\textbf{¿Cuáles son las dimensiones habituales de un muro de cerramiento?} &
+Tres metros de alto por treinta centímetros de espesor: la ``pared de treinta''. \\[0.8em]
+
+\textbf{¿Cuáles son los fundamentos del régimen?} &
+Constitucionales (arts. 18 y 19 CN: privacidad e intimidad; art. 1944: facultad de exclusión y encerramiento); económicos (economía de un suelo escaso, multiplicada por la cantidad de inmuebles urbanos); y técnicos (solidez: los inmuebles se abrazan y se fortalecen entre sí). \\
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:} El condominio con indivisión forzosa es de origen legal y tiene dos facetas: accesorios indispensables (arts. 2004 y 2005, sin dificultad) y muros, cercos y fosos (arts. 2006 a 2030, más complejo y ligado a la medianería). Esta última impone un derecho y una obligación recíprocos de cerramiento, que no requieren la conformidad del vecino, y se funda en la privacidad constitucional, la facultad de encerramiento, la economía de suelo y la solidez de las construcciones.
+} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+\chapter{Clasificación de los muros}
+
+La clasificación sigue la estructura didáctica de Marina Mariani de Vidal, que formula dos preguntas fundamentales: \textbf{dónde está ubicado el muro} en el terreno (distinción según un criterio físico) y \textbf{de quién es el muro} (distinción según un criterio jurídico).
+
+\section{Clasificación física: ¿dónde está el muro?}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (los incisos e) y g) del art. 2006 no figuran en los apuntes)
+
+\subsection{Muro lindero, separativo o divisorio (art. 2006, inc. a)}
+
+\begin{definition}{Muro lindero, separativo o divisorio}
+Son sinónimos. Es el que demarca el inmueble y lo delimita del inmueble colindante.
+\end{definition}
+
+\subsection{Muro incaballado (art. 2006, inc. b)}
+
+\begin{definition}{Muro incaballado o medianero}
+Es el lindero que se asienta parcialmente en cada uno de los inmuebles colindantes. La distribución típica es de 15 centímetros en cada terreno, lo que genera la llamada ``pared de 30'' (15 y 15).
+\end{definition}
+
+\subsection{Muro contiguo (art. 2006, inc. c)}
+
+\begin{definition}{Muro contiguo}
+Es el lindero que se asienta totalmente en uno de los inmuebles colindantes, de modo que el filo (borde) del muro coincide con el límite separativo de ambos inmuebles.
+\end{definition}
+
+\subsection{Muro de elevación (art. 2006, inc. d)}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte atribuye el inciso d) tanto al muro de elevación como al muro medianero)
+
+\begin{definition}{Muro de elevación}
+Es el lindero que excede la altura del muro de cerramiento ordinario, que es de 3 metros, sea incaballado o contiguo, en la altura que supera esa medida.
+\end{definition}
+
+\begin{example}{Muro de cinco metros}
+Si un muro mide 5 metros, será medianero hasta los 3 metros y será muro de elevación en los 2 metros que superan esa altura.
+\end{example}
+
+\subsection{Muro enterrado (art. 2006, inc. h)}
+
+\begin{definition}{Muro enterrado}
+Es el ubicado debajo del nivel del suelo, sin servir de cimiento a una construcción en la superficie; es la estructura necesaria para el cerramiento que queda bajo tierra.
+\end{definition}
+
+\section{Clasificación jurídica: ¿de quién es el muro?}
+
+Una vez clasificados físicamente, el análisis jurídico se pregunta de quién es el muro, lo que abre la distinción entre muros medianeros y privativos.
+
+\subsection{El muro medianero}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte cita el art. 2006 inc. d) para el muro medianero)
+
+\begin{definition}{Muro medianero}
+Es el lindero que es común y pertenece en condominio a ambos colindantes. El muro medianero surge desde la construcción.
+\end{definition}
+
+Desde que uno o ambos vecinos construyen el muro, sea incaballado o contiguo, se cumple la finalidad recíproca de derecho y obligación de encerrarse, y el muro \textbf{pertenece a los dos}, aunque no haya sido construido en el terreno de ambos. Por eso la ley permite, por ejemplo, que Juan lo construya avanzando 15 centímetros sobre el terreno de María.
+
+\begin{important}
+El condominio es de \textbf{fuente legal}: desde que se construye, el muro nace medianero. Es medianero hasta la altura de 3 metros y desde que comienza la construcción.
+\end{important}
+
+\subsection{Características del muro medianero}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Característica} & \textbf{Descripción} \\
+\midrule
+Origen legal & El condominio surge por ley desde el momento de la construcción. \\
+Titularidad & Pertenece a ambos condóminos por igual (50-50). \\
+Derechos del no constructor & Usar el muro, anclar construcciones, reclamar contribución. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Construcción compartida o unilateral}
+
+El muro puede ser construido:
+
+\begin{itemize}
+\item por ambos vecinos (compartido);
+\item por uno solo de los vecinos (unilateral);
+\item con contribución de gastos.
+\end{itemize}
+
+Puede ser construido incaballado o contiguo, a comunidad de gastos o pagado por uno solo de los vecinos. % TODO: contenido incompleto o ambiguo en las notas originales (la transcripción original del pasaje es confusa)
+Si fue pagado por uno solo, el vecino que no lo construyó, aunque no lo haya pagado, es igualmente titular, porque el muro es medianero desde la construcción.
+
+\subsection{Derechos del vecino que no pagó}
+
+El vecino que no contribuyó al gasto sigue siendo copropietario con derechos plenos: como el muro construido por Juan le pertenece a María en un 50\%, ella puede adosar construcciones al muro. En concreto, puede:
+
+\begin{itemize}
+\item anclar construcciones al muro;
+\item elevar construcciones por sobre los 3 metros;
+\item prolongar cimientos hacia abajo;
+\item destruir y reconstruir el muro si es necesario para su obra.
+\end{itemize}
+
+% ------------------------------------------------------------
+% CORNELL CAPÍTULO 2
+% ------------------------------------------------------------
+\section{Cuadro Cornell: clasificación de los muros}
+
+\begingroup
+\small
+\begin{longtable}{L R}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué dos criterios de clasificación se utilizan?} &
+Uno físico (dónde está ubicado el muro en el terreno) y otro jurídico (de quién es el muro). \\[0.8em]
+
+\textbf{¿Qué diferencia hay entre muro incaballado y muro contiguo?} &
+El incaballado se asienta parcialmente en cada inmueble colindante (típicamente 15 cm en cada terreno, la ``pared de 30''); el contiguo se asienta totalmente en uno de los inmuebles, con el filo del muro coincidiendo con el límite separativo. \\[0.8em]
+
+\textbf{¿Qué son los muros de elevación y enterrados?} &
+Muro de elevación: el lindero que excede los 3 metros de altura del muro de cerramiento; hasta 3 m es medianero y lo que supera es muro de elevación. Muro enterrado: el ubicado debajo del nivel del suelo, sin servir de cimiento a una construcción en la superficie. \\[0.8em]
+
+\textbf{¿De quién es el muro medianero?} &
+De ambos propietarios en condominio, por partes iguales (50\%), por ley desde la construcción, aunque el muro no haya sido construido en el terreno de ambos y sin necesidad de acuerdo. \\[0.8em]
+
+\textbf{¿Qué derechos tiene el vecino que no pagó la construcción?} &
+Derechos plenos sobre su 50\% del muro: anclar construcciones, elevar por sobre los 3 metros, prolongar cimientos hacia abajo y destruir y reconstruir el muro si es necesario para su obra. \\[0.8em]
+
+\textbf{¿Cuál es la importancia práctica de distinguir los muros por su ubicación física?} &
+Según las notas, la ubicación (contiguo, incaballado, de elevación, enterrado) determina las obligaciones de pago: en el incaballado se cobra el 50\% del gasto; en el contiguo, el 50\% del gasto y el 50\% del terreno. % TODO: contenido incompleto o ambiguo en las notas originales (este punto figura solo en el cuadro de síntesis de las notas)
+\\
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:} Los muros se clasifican físicamente (lindero, incaballado, contiguo, de elevación, enterrado) y jurídicamente (medianero o privativo). El muro medianero pertenece por ley a ambos vecinos en partes iguales desde que se construye, sin importar quién lo pagó ni dónde se asienta, y el vecino que no contribuyó conserva derechos plenos de uso y construcción sobre él.
+} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+\chapter{Régimen del muro medianero}
+
+\section{Acción de cobro de medianería}
+
+La acción que tiene el vecino que construyó el muro para reclamar la contribución es una de las cuestiones más delicadas del régimen.
+
+\subsection{Nacimiento de la acción (art. 2019)}
+
+\begin{definition}{Acción de medianería (art. 2019)}
+Desde la construcción del muro nace el derecho a reclamar el cobro de la medianería, independientemente de si el vecino usa o no el muro.
+\end{definition}
+
+Quien construye el muro tiene la acción para reclamar el cobro de la medianería desde ese momento, haya utilizado o no el vecino el muro.
+
+\subsection{Mora automática (art. 886)}
+
+La mora es \textbf{automática} en la acción de medianería: no requiere interpelación ni demanda previa.
+% TODO: contenido incompleto o ambiguo en las notas originales (el cuadro de síntesis indica que la acción "requiere demanda formal", lo que se contrapone con la mora automática)
+
+\subsection{Prescripción}
+
+\begin{important}
+La acción de cobro de medianería prescribe a los \textbf{cinco años} desde la construcción del muro. Pasado ese plazo se extingue el derecho a reclamar, incluso aunque el vecino comience a usar el muro posteriormente.
+\end{important}
+
+\begin{example}{Terreno baldío y uso posterior del muro}
+Se construye y paga un muro; no vive nadie al lado (terreno baldío); pasa el tiempo y nadie lo utiliza. A los seis años, un nuevo propietario, o el que existía, comienza a construir y utiliza el muro. La acción de cobro ya está prescripta.
+\end{example}
+
+Aunque el vecino utilice el muro después, la obligación de pago no renace. Si utiliza los cimientos necesarios para la altura de 3 metros y la pared de 30, puede hacerlo porque el muro es suyo en condominio y la acción de cobro está prescripta (art. 2560). La defensa es la \textbf{prescripción liberatoria}, tema ya estudiado en derechos personales.
+
+\section{Régimen especial del muro de elevación}
+
+Los muros que superan los 3 metros de altura tienen un régimen dual. El muro de elevación es el lindero que excede la altura de los 3 metros, sea incaballado o contiguo, en la altura que supera. Si el muro tiene cinco metros, será medianero hasta los 3 y será muro de elevación en los 2 metros que superan.
+
+En el mismo muro conviven dos regímenes jurídicos:
+
+\begin{itemize}
+\item hasta 3 metros: \textbf{medianero};
+\item desde 3 metros hacia arriba: \textbf{privativo} (del constructor).
+\end{itemize}
+
+\subsection{Nacimiento de la obligación en el muro de elevación}
+
+Para la parte que excede los 3 metros, la obligación nace cuando el vecino efectivamente usa esa porción: cuando apoya en el segmento elevado, nace el derecho a reclamar el cobro de la medianería por ese segmento.
+
+\subsection{Muro enterrado}
+
+El muro enterrado sigue un régimen similar: la obligación de pagar nace desde la utilización específica (art. 2019).
+
+\section{Imposibilidad de liberarse de las obligaciones}
+
+Surge la pregunta de si es posible liberarse de la obligación de pagar, originada en la construcción del muro o en los gastos de conservación o reconstrucción, mediante la abdicación o declinación de la parte del condominio. La respuesta es negativa.
+
+Como el muro ya nació medianero, para liberarse habría que transmitir la porción (50\%) al vecino. Toda transmisión requiere nuevos planos y debe realizarse por escritura pública. No es posible simplemente declinar la parte; se trata de un procedimiento costoso.
+
+\section{Cuadro Cornell: régimen del muro medianero}
+
+\begingroup
+\small
+\begin{longtable}{L R}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuándo nace la acción de cobro de medianería?} &
+Desde la construcción del muro (art. 2019), independientemente de que el vecino lo use o no. La mora es automática (art. 886). \\[0.8em]
+
+\textbf{¿Cuál es el plazo de prescripción de la acción de medianería?} &
+Cinco años desde la construcción del muro. Si el vecino comienza a usarlo después de ese plazo, el constructor ya no puede cobrar; la defensa es la prescripción liberatoria (art. 2560). \\[0.8em]
+
+\textbf{¿Qué sucede si un muro supera los 3 metros de altura?} &
+En el mismo muro conviven dos regímenes: hasta 3 m es medianero (ambos son dueños) y lo que supera es privativo del constructor. La obligación de pago por la porción que excede nace cuando el vecino la usa. \\[0.8em]
+
+\textbf{¿Cuándo nace la obligación de pago en el muro enterrado?} &
+Desde la utilización específica (art. 2019). \\[0.8em]
+
+\textbf{¿Puedo declinar mi parte del condominio para no pagar?} &
+No. Para liberarse, debe transmitirse la porción (50\%) al vecino mediante escritura pública, con nuevos planos, lo que es un procedimiento costoso. No se puede simplemente rechazar el condominio. \\
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:} La acción de cobro de medianería nace desde la construcción, con mora automática, y prescribe a los cinco años. En los muros de elevación y enterrados, la obligación de pago por la porción adicional nace con el uso. El condómino no puede liberarse declinando su parte: solo mediante transmisión por escritura pública con nuevos planos.
+} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+\chapter{Presunciones legales y medianería rural}
+
+\section{Presunciones legales y prueba}
+
+Cuando hay construcciones antiguas resulta difícil determinar la verdadera naturaleza jurídica del muro. Los artículos 2010 a 2013 contemplan una serie de presunciones legales que admiten prueba en contrario, pero que son presunciones fuertes.
+
+\subsection{Presunción principal (art. 2010)}
+
+\begin{definition}{Presunción de medianería (art. 2010)}
+A menos que se pruebe lo contrario, un muro lindero entre dos edificios que supera la altura de 3 metros se presume medianero hasta esa altura. La parte que supera los 3 metros se presume privativa del dueño del edificio más alto.
+\end{definition}
+
+\begin{itemize}
+\item Desde el nivel del terreno hasta 3 metros: se presume \textbf{medianero}.
+\item Por encima de 3 metros: se presume \textbf{privativo} del dueño del edificio más alto.
+\end{itemize}
+
+\subsection{Excepciones a las presunciones}
+
+Las presunciones no se aplican cuando hay separación de patios, huertos o jardines (y no de un edificio), o cuando existen documentos o signos que identifiquen la verdadera naturaleza del muro o permitan destruir la presunción. Es decir, no operan cuando:
+
+\begin{itemize}
+\item hay separación clara entre propiedades (patios, huertas, jardines);
+\item existen documentos o signos que identifican la verdadera naturaleza jurídica.
+\end{itemize}
+
+\section{Medianería en zonas rurales}
+
+La medianería rural no se produce mediante muros, sino mediante otras estructuras.
+
+\subsection{Cercas vivas, zanjas y alambrados (arts. 2032 y 2033)}
+
+\begin{definition}{Medianería rural (arts. 2032 y 2033)}
+En predios rurales, la división se efectúa mediante cercas vivas (árboles alineados), zanjas, cercos de alambre u otras estructuras. El titular del derecho real tiene la facultad de levantar o excavar el cerramiento.
+\end{definition}
+
+Es el caso que se observa al costado de una ruta: una línea larga de árboles (cerco vivo), zanjas o alambrados.
+
+\subsection{Condominio de árboles y arbustos (arts. 2034 a 2036)}
+
+\begin{definition}{Árboles y arbustos medianeros (arts. 2034 a 2036)}
+Los árboles y arbustos plantados en la línea divisoria pueden ser medianeros, contiguos o incaballados, según su ubicación, en relación con los muros, cercos y fosos linderos, tanto en predios rurales como urbanos.
+\end{definition}
+
+Si causan perjuicio a cualquiera de los condóminos, este puede exigir en cualquier tiempo su remoción, e incluso podrían ser reemplazados. % TODO: contenido incompleto o ambiguo en las notas originales (el apunte no precisa el alcance del reemplazo)
+
+\section{Cuadro Cornell: presunciones y medianería rural}
+
+\begingroup
+\small
+\begin{longtable}{L R}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué presume el art. 2010 sobre muros de más de 3 metros?} &
+Salvo prueba en contrario, que hasta 3 m el muro es medianero y que lo que supera esa altura es privativo del dueño del edificio más alto. Las presunciones (arts. 2010 a 2013) admiten prueba en contra. \\[0.8em]
+
+\textbf{¿Cuándo no se aplican las presunciones?} &
+Cuando hay separación de patios, huertos o jardines, o cuando documentos o signos identifican la verdadera naturaleza del muro y destruyen la presunción. \\[0.8em]
+
+\textbf{¿Cómo se regula la medianería en zonas rurales?} &
+Arts. 2032 y 2033: mediante cercas vivas (árboles alineados), zanjas, alambrados y otras estructuras. Arts. 2034 a 2036: árboles y arbustos medianeros, contiguos o incaballados. \\[0.8em]
+
+\textbf{¿Puede exigirse la remoción de un árbol medianero?} &
+Sí. Si causa perjuicio a cualquiera de los condóminos, puede exigirse en cualquier tiempo la remoción del árbol o arbusto, e incluso podrían ser reemplazados. \\
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:} Ante la dificultad de probar la naturaleza de los muros antiguos, el art. 2010 presume medianero el muro hasta 3 metros y privativo lo que lo supera, con admisión de prueba en contrario y excepciones. En zonas rurales, la división se realiza con cercas vivas, zanjas y alambrados, y los árboles y arbustos de la línea divisoria pueden ser medianeros, contiguos o incaballados, con posibilidad de exigir su remoción si causan perjuicio.
+} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+% ============================================================
+% SÍNTESIS INTEGRADORA
+% ============================================================
+\chapter{Síntesis integradora}
+
+\begin{important}
+La medianería es una institución del derecho real que limita el derecho de propiedad en favor de la vida urbana moderna. Nace por ley desde la construcción de un muro entre inmuebles colindantes. Sus fundamentos son constitucionales (arts. 18 y 19: privacidad e intimidad), económicos (ahorro de terreno escaso) y técnicos (solidaridad estructural). Ambos propietarios son condóminos con derechos y obligaciones recíprocos, independientemente de quién financió la obra. La ley presume medianería hasta 3 metros y diferencia regímenes especiales para los muros de elevación (mixtos) y enterrados (bajo el nivel del suelo). Las zonas rurales tienen regímenes propios basados en cercas vivas y árboles. La acción de cobro de medianería prescribe a los 5 años.
+\end{important}
+
+El análisis requiere distinguir: (1) la ubicación física del muro (dónde está), (2) la naturaleza jurídica del muro (de quién es) y (3) el régimen aplicable según el tipo de muro. Esta triada analítica permite resolver los conflictos de medianería en la práctica profesional notarial, registral e inmobiliaria.
+
+\end{document}

@@ -1,0 +1,783 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{Acciones Posesorias y su relación con las Acciones Reales}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+\newcommand{\reflexion}{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\renewcommand{\arraystretch}{1.25}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{\reflexion}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derechos Reales'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% CONTENIDO
+% ------------------------------------------------------------
+
+% ============================================================
+\chapter{Concepto y fundamento de las acciones posesorias}
+% ============================================================
+
+\begin{example}{Hilo conductor}
+Un inquilino ocupa un departamento. El dueño, enojado porque el inquilino no pagó, un día entra por la fuerza y cambia la cerradura. El inquilino tiene el \textbf{hecho} de vivir allí (posesión o tenencia); el dueño tiene el \textbf{derecho} de ser propietario. La pregunta que se plantea es quién gana: se trata de comprender cómo el derecho protege el hecho frente al derecho, y cuándo y cómo puede cada uno recuperar lo que le corresponde.
+\end{example}
+
+\section{¿Qué son las acciones posesorias?}
+
+Las \textbf{acciones posesorias} son los medios o herramientas que la ley confiere para defender la relación de poder. Están reguladas en los artículos 2238 a 2246 del Código Civil y Comercial de la Nación (CCyCN).
+
+\begin{formula}{Arts. 2238 a 2246 CCyCN}
+Las acciones posesorias tienen por objeto la protección de las relaciones de poder: la posesión y la tenencia, frente a actos de turbación o de desapoderamiento.
+\end{formula}
+
+Las relaciones de poder estudiadas anteriormente son tres: \textbf{la posesión, la tenencia y los servidores de la posesión}. Respecto de estos últimos, se los reconoce al solo efecto de la defensa privada.
+
+\section{Fundamento: la paz social y la prohibición de la justicia por mano propia}
+
+La razón de ser de estas acciones es un amplio sentido social de defensa del \textbf{orden público} y de la \textbf{paz social}. Lo que el sistema jurídico pretende evitar es la \textbf{justicia por mano propia}, que podría generar un amplio gravamen a toda la sociedad.
+
+\section{Todas las formas de posesión son protegidas}
+
+Al clasificar la posesión se distinguen distintas categorías. Todas ellas son defendidas por las acciones posesorias, porque lo que se protege es la paz social.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.24\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\centering\arraybackslash}p{0.17\textwidth}
+}
+\toprule
+\textbf{Tipo de posesión} & \textbf{Características} & \textbf{¿Protegida por acciones posesorias?} \\
+\midrule
+Legítima & Constituida conforme a la normativa; titularidad propia del derecho real. & \textbf{Sí} \\
+Ilegítima de buena fe & Sin título suficiente; el poseedor cree tener derecho. & \textbf{Sí} \\
+Ilegítima de mala fe simple & Sin título; el poseedor sabe que no tiene derecho. & \textbf{Sí} \\
+Ilegítima viciosa & Adquirida por violencia, clandestinidad o abuso de confianza. & \textbf{Sí} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Incluso el poseedor de mala fe viciosa goza de la protección posesoria frente a terceros que actúen aun con peor derecho o por vías de hecho.
+
+\section{El artículo 2239: un título válido no da la posesión}
+
+\begin{formula}{Art. 2239 CCyCN}
+Un título válido no da la posesión ni la tenencia misma, sino el derecho a requerir el poder sobre la cosa. El que no tiene sino un derecho a la posesión o a la tenencia no puede tomarla; debe demandarla por las vías legales.
+\end{formula}
+
+Este artículo cristaliza uno de los pilares de la materia: \textbf{tener el hecho de la posesión no tiene nada que ver con tener el derecho de poseer}. Se pueden dar cuatro situaciones:
+
+\begin{enumerate}[label=\alph*)]
+    \item Ser titular del dominio y tener la posesión.
+    \item Ser titular del dominio y \textbf{no} tener la posesión (porque se la robaron, la perdieron, etc.).
+    \item Tener la posesión de hecho \textbf{sin} ser titular de ningún derecho real.
+    \item No tener ni la posesión ni el derecho real.
+\end{enumerate}
+
+\section*{Cuadro Cornell: concepto y fundamento}
+\addcontentsline{toc}{section}{Cuadro Cornell: concepto y fundamento}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué son las acciones posesorias?} &
+Son los medios o herramientas que la ley (Arts. 2238 a 2246 CCyCN) confiere para defender la relación de poder (posesión y tenencia) frente a actos de turbación o de desapoderamiento. \\
+
+\textbf{¿Cuáles son las relaciones de poder y para qué se reconoce a los servidores de la posesión?} &
+Son la posesión, la tenencia y los servidores de la posesión. A estos últimos se los reconoce al solo efecto de la defensa privada. \\
+
+\textbf{¿Cuál es el fundamento de las acciones posesorias?} &
+La defensa del orden público y de la paz social. Se busca evitar la justicia por mano propia, que podría generar un amplio gravamen a toda la sociedad. \\
+
+\textbf{¿Se protege solo la posesión legítima?} &
+No. Se protegen todas las formas de posesión: legítima, ilegítima de buena fe, ilegítima de mala fe simple e ilegítima viciosa, porque se protege la paz social. \\
+
+\textbf{¿Qué establece el Art. 2239 CCyCN?} &
+Que un título válido no da la posesión ni la tenencia misma, sino el derecho a requerir el poder sobre la cosa; quien solo tiene un derecho a la posesión o a la tenencia no puede tomarla, sino que debe demandarla por las vías legales. \\
+
+\textbf{¿Qué diferencia hay entre el hecho de poseer y el derecho de poseer?} &
+Son cosas independientes. Pueden darse cuatro situaciones: ser titular del dominio y tener la posesión; ser titular y no tenerla; tener la posesión sin ser titular de ningún derecho real; o no tener ni posesión ni derecho real. \\
+
+\midrule
+
+\multicolumn{2}{X}{
+\textbf{Resumen:}
+Las acciones posesorias protegen las relaciones de poder (posesión y tenencia) por razones de paz social y de prohibición de la justicia por mano propia. Protegen toda forma de posesión, incluso la ilegítima y viciosa. El título no otorga la posesión, sino el derecho a reclamarla por las vías legales: el hecho de poseer y el derecho de poseer son realidades distintas.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{Tipos de lesión: turbación y desapoderamiento}
+% ============================================================
+
+Un poseedor o tenedor puede sufrir dos tipos de lesiones en su relación de poder con la cosa: la \textbf{turbación} y el \textbf{desapoderamiento} (despojo).
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Turbación} & \textbf{Desapoderamiento (despojo)} \\
+\midrule
+El poseedor o tenedor \textbf{no} es excluido absolutamente. Alguien interfiere con su relación de hecho con la cosa, pero no lo desplaza por completo. &
+El poseedor o tenedor es \textbf{excluido absolutamente} de la relación de hecho con la cosa. Pierde toda vinculación fáctica. \\
+\addlinespace
+\textit{Objetivo del turbador:} no necesariamente constituirse en poseedor, pero sí actuar como si tuviera un derecho sobre la cosa. &
+\textit{Objetivo del despojante:} excluir total y definitivamente al poseedor o tenedor. \\
+\addlinespace
+\textbf{Acción que corresponde:} acción de \textbf{mantener} (Art. 2242). &
+\textbf{Acción que corresponde:} acción de \textbf{despojo} (Art. 2241). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Aclaración sobre el concepto de turbación}
+
+No toda molestia constituye turbación en sentido posesorio. No se trata, por ejemplo, de que el ruido en la puerta impida dormir. La turbación es aquella que tiene por finalidad \textbf{controvertir la relación de poder con la cosa}. Es decir, debe existir una intención de ejercer un derecho sobre la cosa ajena.
+
+\begin{example}{Turbación}
+Alguien entra al terreno del poseedor y estaciona su automóvil, o descarga materiales allí. No lo desplaza totalmente, pero se comporta respecto de lo ajeno \textbf{como si fuera el dueño}. Eso es turbación. Cuando los clientes relatan estos casos, la descripción es siempre similar: la persona se comportó como si fuera el dueño.
+\end{example}
+
+\section*{Cuadro Cornell: tipos de lesión}
+\addcontentsline{toc}{section}{Cuadro Cornell: tipos de lesión}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué lesiones puede sufrir un poseedor o tenedor?} &
+Dos: la turbación y el desapoderamiento (despojo). \\
+
+\textbf{¿Qué es la turbación y qué acción corresponde?} &
+Es una lesión parcial: alguien interfiere con la relación de hecho con la cosa sin desplazar por completo al poseedor o tenedor, y actúa como si tuviera un derecho sobre ella. Corresponde la acción de mantener (Art. 2242). \\
+
+\textbf{¿Cuándo no hay turbación?} &
+Una molestia como el ruido que impide dormir no es turbación; esta requiere la finalidad de controvertir la relación de poder con la cosa. \\
+
+\textbf{¿Qué diferencia al despojo de la turbación?} &
+En el despojo el poseedor o tenedor es excluido absolutamente y pierde toda vinculación fáctica con la cosa; el objetivo del despojante es excluirlo total y definitivamente. Corresponde la acción de despojo (Art. 2241). \\
+
+\midrule
+
+\multicolumn{2}{X}{
+\textbf{Resumen:}
+La turbación interfiere parcialmente con la relación de poder (el turbador actúa como si tuviera un derecho sobre la cosa) y se responde con la acción de mantener; el desapoderamiento excluye absolutamente al poseedor o tenedor y se responde con la acción de despojo.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{Área del posesorio y área del petitorio}
+% ============================================================
+
+La relación entre las acciones posesorias (Arts. 2238 a 2246) y las acciones reales (Arts. 2269 a 2276) puede comprenderse distinguiendo dos grandes áreas de protección.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.17\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+ & \textbf{Área del posesorio} & \textbf{Área del petitorio} \\
+\midrule
+\textbf{Acciones} & Acciones posesorias. & Acciones reales. \\
+\textbf{Qué se defiende} & El \textbf{hecho} de la posesión. & El \textbf{derecho} real. \\
+\textbf{Qué se discute} & Hechos, no derechos. & Derechos (el derecho real mismo). \\
+\textbf{Qué debe probarse} & La relación de poder y la turbación o el despojo. & El derecho real (el derecho de poseer). \\
+\textbf{Proceso} & Juicio breve: sumarísimo. & Proceso de conocimiento: amplia prueba. \\
+\textbf{Sentencia} & Provisoria (solo hechos). & Definitiva (derechos). \\
+\textbf{Prescripción} & Un año. & Imprescriptible (por el carácter perpetuo del dominio). \\
+\textbf{Legitimados} & Todos los poseedores, legítimos e ilegítimos, y también los tenedores. & Solo los titulares del derecho real que se ejerce por la posesión. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El plazo de prescripción: un año}
+
+Las acciones posesorias tienen un \textbf{plazo de prescripción de un año}. Si al cabo de ese año no se ha iniciado la acción, prescribe y no puede iniciarse después. El objetivo de la sentencia posesoria es el \textbf{restablecimiento al estado anterior}, y se tramita por el juicio más breve que tenga la jurisdicción.
+
+\section{Sentencia provisoria en lo posesorio, definitiva en lo petitorio}
+
+En las acciones posesorias la sentencia es \textbf{provisoria}, porque solo se discutieron hechos. Ello implica que el titular del derecho real puede, después, iniciar la acción real correspondiente para reclamar su derecho en forma definitiva.
+
+En cambio, si el titular del derecho real inicia directamente la acción real y es vencido, la \textbf{sentencia definitiva} nada más permitirá reclamar: ha perdido su derecho definitivamente. El juego de estas acciones se da muy frecuentemente.
+
+\section{Casos prácticos}
+
+\subsection{Caso 1: Juan, poseedor sin derecho real, es despojado por el propietario}
+
+\begin{example}{Juan y el propietario}
+Juan está en posesión de la cosa. En realidad no es titular del derecho: se comporta como si lo fuera, pero no lo es. Sin embargo, tiene un vínculo directo con la cosa y realiza actos posesorios. Cierto día llega el propietario y lo despoja violentamente.
+\end{example}
+
+El propietario \textbf{tiene} el derecho real (dominio), pero \textbf{no} tiene el derecho a recuperar la posesión en forma directa y por propia mano. Juan, el poseedor sin derecho real, puede iniciar por juicio breve (sumarísimo) una \textbf{acción posesoria de despojo contra el titular de dominio}. Una vez reconocida su relación de hecho por el juez, el propietario deberá restituirle la posesión.
+
+\begin{important}
+La sentencia es provisoria. El propietario, para recuperar la posesión en forma definitiva, deberá iniciar la acción real reivindicatoria.
+\end{important}
+
+\subsection{Caso 2: el propietario puede iniciar ambas acciones; ¿cuál conviene?}
+
+El titular de dominio, al ser titular de un derecho real, puede iniciar las dos: la posesoria y la real. Se plantean dos opciones:
+
+\begin{itemize}
+    \item \textbf{Opción A: inicia la acción posesoria (sumarísima).} Si es vencido porque no logra probar su relación de hecho, puede igualmente iniciar después la acción reivindicatoria (real), porque la sentencia posesoria es provisoria y no hace cosa juzgada sobre el derecho.
+    \item \textbf{Opción B: inicia directamente la acción real (reivindicatoria).} Si es vencido, la sentencia es definitiva. Nada más puede reclamar: ha perdido su derecho de propiedad.
+\end{itemize}
+
+\subsection{Caso 3: el inquilino al que se le cortan los servicios y es expulsado por el propietario}
+
+\begin{example}{El inquilino tenedor}
+El propietario sostiene que el inquilino no pagó y no cumplió; corta la luz y el gas, entra violentamente a la casa y lo saca.
+\end{example}
+
+En este caso, el tenedor (inquilino) puede iniciar una acción posesoria contra el propio dueño para ser restablecido en su situación de hecho.
+
+\section*{Cuadro Cornell: posesorio y petitorio}
+\addcontentsline{toc}{section}{Cuadro Cornell: posesorio y petitorio}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué se discute en el área del posesorio?} &
+Hechos, no derechos: se defiende el hecho de la posesión mediante las acciones posesorias. Debe probarse la relación de poder y la turbación o el despojo. El juicio es sumarísimo, la sentencia es provisoria y la acción prescribe al año. \\
+
+\textbf{¿Qué se discute en el área del petitorio?} &
+El derecho real mismo, mediante las acciones reales. Debe probarse el derecho real (el derecho de poseer). El proceso admite amplia prueba, la sentencia es definitiva y la acción es imprescriptible. \\
+
+\textbf{¿Quién puede iniciar acciones posesorias y quién acciones reales?} &
+Las posesorias, todos los poseedores (legítimos e ilegítimos) y los tenedores. Las reales, solo los titulares del derecho real que se ejerce por la posesión. \\
+
+\textbf{¿Qué ocurre si el titular de dominio inicia primero la acción posesoria y es vencido?} &
+Puede igualmente iniciar después la acción reivindicatoria, porque la sentencia posesoria es provisoria y no hace cosa juzgada sobre el derecho. \\
+
+\textbf{¿Y si inicia directamente la acción real y es vencido?} &
+La sentencia definitiva le cierra toda posibilidad: pierde definitivamente su derecho real. \\
+
+\textbf{¿Cómo se aplica en el caso de Juan, poseedor sin derecho real despojado por el propietario?} &
+Juan puede iniciar una acción posesoria de despojo, por juicio sumarísimo, contra el titular de dominio; el propietario deberá restituirle la posesión. Como la sentencia es provisoria, el propietario deberá iniciar luego la acción real reivindicatoria. \\
+
+\midrule
+
+\multicolumn{2}{X}{
+\textbf{Resumen:}
+En lo posesorio se discuten hechos (juicio sumarísimo, sentencia provisoria, prescripción de un año, legitimados poseedores y tenedores); en lo petitorio se discute el derecho real (amplia prueba, sentencia definitiva, imprescriptible, legitimados los titulares del derecho real). El propietario despojado por mano propia puede ser demandado por el poseedor y luego deberá recurrir a la acción real.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{Las acciones posesorias específicas}
+% ============================================================
+
+\section{Acción de mantener (Art. 2242)}
+
+\begin{formula}{Art. 2242 CCyCN}
+El titular de la acción de mantener la tenencia o la posesión puede pedir que se ordene el cese de la turbación y adoptar las medidas pertinentes para evitar que vuelva a producirse.
+\end{formula}
+
+Esta acción se utiliza cuando existe \textbf{turbación}: el poseedor o tenedor no ha sido excluido totalmente, pero alguien, con intención de poseer, interfiere con su vínculo con la cosa. La sentencia buscada es que \textbf{cese la turbación} y que el juez adopte medidas preventivas para que no vuelva a ocurrir.
+
+Esta acción también se aplica en otros supuestos análogos:
+
+\begin{itemize}
+    \item Cuando exista una amenaza fundada de sufrir un daño.
+    \item Cuando se produzca una obra nueva en terreno lindero que, aunque no se realice en el propio terreno del poseedor, lo afecte de tal manera que se justifique la defensa.
+\end{itemize}
+
+\section{Acción de despojo (Art. 2241)}
+
+\begin{formula}{Art. 2241 CCyCN}
+Acción de despojo: quien ha sido desapoderado de la tenencia o la posesión de un inmueble o de una universalidad de hecho, puede reclamar su restitución.
+\end{formula}
+
+Se utiliza cuando el poseedor o tenedor ha sido despojado totalmente. Su objetivo es \textbf{recuperar la tenencia o la posesión}, ya sea sobre toda la cosa individualmente o sobre una universalidad de hecho (por ejemplo, una manada de ganado o una biblioteca).
+
+La acción se dirige contra:
+
+\begin{itemize}
+    \item El despojante.
+    \item Los herederos del despojante.
+    \item Los sucesores particulares de mala fe.
+    \item Aun el propio dueño, cuando tomó la cosa por su propia mano sin realizar las acciones legales correspondientes.
+\end{itemize}
+
+También se aplica a obras que afecten al poseedor o tenedor, cuando dichas obras se realizan en terrenos vecinos pero generan consecuencias en el terreno del poseedor o tenedor.
+
+\section{Simplificación respecto del Código Civil de Vélez}
+
+El CCyCN \textbf{simplifica las acciones posesorias} en comparación con el Código Civil anterior: regula en base a \textbf{una sola acción para la turbación (mantener) y otra para el despojo}.
+
+\section{Los interdictos en los códigos procesales}
+
+Los códigos procesales, tanto el nacional (CPCCN) como los provinciales, regulan \textbf{interdictos}: trámites muy rápidos para proteger determinadas turbaciones o el despojo. Se mencionan el interdicto de daño temido y el interdicto de obra nueva.
+
+La doctrina discute si los interdictos son herramientas independientes o simplemente la forma procesal en que se tramitan estas acciones posesorias. Se trata de una discusión doctrinaria respecto de la cual, por el momento, basta con saber que existe.
+
+\section*{Cuadro Cornell: acciones específicas}
+\addcontentsline{toc}{section}{Cuadro Cornell: acciones específicas}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Cuándo se usa la acción de mantener (Art. 2242)?} &
+Cuando existe turbación. Se pide que cese la turbación y que se adopten medidas para evitar que vuelva a producirse. También se aplica ante una amenaza fundada de daño y ante una obra nueva en terreno lindero que afecte al poseedor de modo que justifique la defensa. \\
+
+\textbf{¿Cuándo se usa la acción de despojo (Art. 2241) y qué se reclama?} &
+Cuando el poseedor o tenedor fue desapoderado de un inmueble o de una universalidad de hecho. Se reclama la restitución de la tenencia o la posesión. \\
+
+\textbf{¿Contra quién se dirige la acción de despojo?} &
+Contra el despojante, sus herederos, los sucesores particulares de mala fe y aun el propio dueño que tomó la cosa por su propia mano sin realizar las acciones legales correspondientes. \\
+
+\textbf{¿Qué simplificó el CCyCN respecto del Código de Vélez?} &
+Regula una sola acción para la turbación (mantener) y otra para el despojo. \\
+
+\textbf{¿Cuál es la diferencia entre acciones posesorias e interdictos?} &
+Los interdictos son trámites muy rápidos regulados en los códigos procesales (nacional y provinciales), como el de daño temido y el de obra nueva. La doctrina discute si son herramientas independientes o la forma procesal de tramitar las acciones posesorias. \\
+
+\midrule
+
+\multicolumn{2}{X}{
+\textbf{Resumen:}
+El CCyCN prevé una acción de mantener para la turbación (Art. 2242) y una acción de despojo para el desapoderamiento (Art. 2241), esta última dirigida también contra herederos, sucesores de mala fe y el propio dueño que actuó por mano propia. Los interdictos procesales son trámites rápidos cuya naturaleza es discutida por la doctrina.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{Defensa extrajudicial o privada (Art. 2240)}
+% ============================================================
+
+La \textbf{defensa extrajudicial o privada} está regulada en el Art. 2240 del CCyCN y constituye una \textbf{excepción} al principio general de la paz social y la prohibición de la justicia por mano propia.
+
+\begin{formula}{Art. 2240 CCyCN}
+Nadie puede mantener o recuperar la posesión o la tenencia de propia autoridad, excepto cuando debe protegerse y repeler una agresión con el empleo de una fuerza suficiente, en los casos en que los auxilios de la justicia llegarían demasiado tarde. El afectado debe recobrarla sin intervalo de tiempo y sin exceder los límites de la propia defensa.
+\end{formula}
+
+\section{Fundamento de la excepción}
+
+La figura se compara con la \textbf{legítima defensa en el derecho penal}: así como en materia penal existen casos en que la norma es impotente para evitar la reacción del afectado, en materia civil también existen situaciones que, por su virulencia e inmediatez, no pueden ser canalizadas únicamente a través de las vías judiciales.
+
+\section{Requisitos}
+
+\begin{important}
+Todos los requisitos deben darse \textbf{conjuntamente}. No alcanza con que se den algunos ni la mayoría.
+\end{important}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.25\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Requisito} & \textbf{Explicación} \\
+\midrule
+\textbf{Inmediatez} & La reacción debe producirse en el mismo momento de la turbación o el despojo. No puede ser posterior. \\
+\textbf{Proporcionalidad} & La defensa debe ser proporcional al ataque sufrido. No puede excederse en la respuesta. \\
+\textbf{Auxilio tardío} & Los auxilios de la justicia llegarían demasiado tarde. Si pudiera llamarse a la policía o al juzgado y llegar a tiempo, no hay justificación para la defensa privada. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Análisis de la proporcionalidad: el caso del ingeniero}
+
+El requisito de proporcionalidad se ilustra con un caso descripto como tristemente famoso.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la cita de la transcripción del caso y la frase final "paso a cásar" resultan ininteligibles)
+\begin{example}{El caso del ingeniero}
+A un ingeniero le roban sus cosas; se detiene, sigue a los ladrones, dispara y mata. Se plantea si fue legítima defensa. La respuesta es negativa, porque el bien jurídico protegido por la ley es la vida; la actitud había sido \textbf{desproporcionada}.
+\end{example}
+
+La analogía civil es directa: en materia posesoria tampoco puede responderse en forma desproporcionada al ataque sufrido. La defensa debe ser proporcional al bien que se protege y al ataque que se recibe.
+
+\section{Legitimados para la defensa extrajudicial}
+
+La legitimación activa para ejercer la defensa privada del Art. 2240 es \textbf{amplia}:
+
+\begin{itemize}
+    \item Todos los poseedores (con o sin derecho real).
+    \item Los tenedores.
+    \item Los titulares del derecho real.
+    \item Los \textbf{servidores de la posesión}, que se reconocen para la defensa privada.
+\end{itemize}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la justificación del reconocimiento de los servidores de la posesión aparece formulada de manera poco clara)
+\begin{example}{Servidor de la posesión}
+Alguien trabaja en la empresa en la que es empleado y tiene su máquina de escribir, o está en un banco, y alguien pretende robar: el empleado se aferra a la cosa para defenderla.
+\end{example}
+
+\section*{Cuadro Cornell: defensa extrajudicial}
+\addcontentsline{toc}{section}{Cuadro Cornell: defensa extrajudicial}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué es la defensa extrajudicial (Art. 2240)?} &
+Una excepción a la prohibición de mantener o recuperar la posesión o la tenencia de propia autoridad: permite repeler una agresión con fuerza suficiente cuando los auxilios de la justicia llegarían demasiado tarde. \\
+
+\textbf{¿Con qué se compara y cuál es su fundamento?} &
+Con la legítima defensa del derecho penal: hay situaciones que, por su virulencia e inmediatez, no pueden canalizarse únicamente por las vías judiciales. \\
+
+\textbf{¿Qué condiciones deben darse todas juntas?} &
+Inmediatez (reacción en el mismo momento), proporcionalidad (defensa proporcional al ataque) y auxilio tardío (la justicia llegaría demasiado tarde). \\
+
+\textbf{¿Por qué el caso del ingeniero no fue legítima defensa?} &
+Porque el bien jurídico protegido es la vida y su actitud fue desproporcionada. \\
+
+\textbf{¿Quiénes pueden ejercer la defensa privada?} &
+Todos los poseedores (con o sin derecho real), los tenedores, los titulares del derecho real y los servidores de la posesión. \\
+
+\midrule
+
+\multicolumn{2}{X}{
+\textbf{Resumen:}
+La defensa privada del Art. 2240 es una excepción a la justicia por mano propia, comparable a la legítima defensa penal. Exige, conjuntamente, inmediatez, proporcionalidad y auxilio tardío de la justicia, y la puede ejercer una amplia gama de legitimados, incluidos los servidores de la posesión.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{Relación entre acciones posesorias y acciones reales: síntesis final}
+% ============================================================
+
+\begin{important}
+\textbf{«Toda turbación es una disposición en marcha.»} Muchas veces, cuando se está tramitando una acción de mantener por turbación, en el transcurso del proceso ya se ha producido el despojo completo. Quien se atreve a comportarse sobre la cosa como si fuera el dueño, quien da el primer golpe, no necesariamente se detendrá después.
+\end{important}
+
+Las acciones posesorias (área del posesorio) y las acciones reales (área del petitorio) conforman el panorama completo de la protección de la posesión y del derecho real.
+
+\section*{Cuadro Cornell: repaso general}
+\addcontentsline{toc}{section}{Cuadro Cornell: repaso general}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué advertencia práctica se formula respecto de la turbación?} &
+Que toda turbación es una disposición en marcha: durante el trámite de una acción de mantener puede haberse producido ya el despojo completo, pues quien se comporta como dueño no necesariamente se detiene. \\
+
+\textbf{¿Qué defienden las acciones posesorias y qué las acciones reales?} &
+Las posesorias defienden exclusivamente el hecho (la relación de poder); las reales defienden el derecho real mismo. \\
+
+\textbf{¿Qué diferencias de proceso, sentencia y plazo existen entre ambas?} &
+Posesorias: juicio sumarísimo, sentencia provisoria, prescripción de un año. Reales: proceso con amplia prueba, sentencia definitiva, imprescriptibilidad. \\
+
+\textbf{¿Qué riesgo implica confundir posesorio y petitorio?} &
+Puede costar la recuperación del bien y, en el peor escenario, el derecho real mismo (por ejemplo, si se inicia directamente la acción real y se es vencido). \\
+
+\midrule
+
+\multicolumn{2}{X}{
+\textbf{Resumen:}
+Las acciones posesorias constituyen la primera y más veloz línea de defensa de quien, sea o no titular de un derecho real, ve perturbada o extinguida su relación de poder con una cosa. Se justifican en la paz social y en la erradicación de la justicia por mano propia; se tramitan por juicio sumarísimo, su prueba se limita al hecho posesorio y la sentencia es provisoria. Las acciones reales, imprescriptibles, de proceso amplio y sentencia definitiva, son la herramienta para discutir y defender el derecho real en sí mismo. Es preciso dominar ambas esferas para elegir la vía adecuada, y leer la turbación como un despojo en gestación.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}

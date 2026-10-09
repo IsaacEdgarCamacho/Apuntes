@@ -1,0 +1,784 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{Derechos Reales de Garant\'ia}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024--2025}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ------------------------- PORTADA --------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es la forma más segura de convertir los conceptos en criterio propio.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derechos Reales'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------- ÍNDICE ---------------------------
+\tableofcontents
+\clearpage
+
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+\chapter[Fundamentos históricos y conceptuales]{Fundamentos históricos y conceptuales de las garantías}
+
+Este material aborda los fundamentos históricos y dogmáticos de los derechos reales de garantía: hipoteca, prenda y anticresis. Se estudian las disposiciones comunes del Código Civil y Comercial de la Nación (CCyCN, arts.~2184 a 2204), los principios de convencionalidad, accesoriedad, especialidad e indivisibilidad, la figura del propietario no deudor, las garantías sobre créditos determinados e indeterminados (reforma de la ley 27261) y la extinción y cancelación de las garantías reales.
+
+\begin{note}
+\textbf{Relevancia profesional.} Las garantías reales se presentan de manera constante en la práctica jurídica: la compra de una propiedad con crédito hipotecario, el financiamiento empresarial con garantía prendaria o la herencia de un bien gravado exigen explicar, redactar, ejecutar o defender una garantía. Distinguir la \textbf{extinción} de la \textbf{cancelación} puede evitar que un cliente pierda un bien por una hipoteca ya pagada pero no cancelada en el registro. Comprender el principio de \textbf{especialidad} permite redactar garantías que no sean atacadas de nulidad en juicio. Dominar la figura del \textbf{propietario no deudor} permite asesorar correctamente a quien garantiza deudas ajenas.
+\end{note}
+
+\section{Clasificación previa de los derechos reales}
+
+Los derechos reales se clasifican, en primer lugar, en \textbf{derechos reales sobre cosa total o parcialmente propia} y \textbf{derechos reales sobre cosa ajena}. A su vez, los derechos reales sobre cosa ajena se clasifican en \textbf{derechos reales de disfrute} y \textbf{derechos reales de garantía}.
+
+Los derechos de disfrute son \textbf{principales}, al igual que los derechos sobre cosa propia. En cambio, los derechos reales de garantía son siempre y en todos los casos \textbf{accesorios de una obligación}.
+
+\section{Garantías personales y garantías reales}
+
+La distinción entre garantías personales y garantías reales reproduce, en el campo de las garantías, la clásica dualidad entre derechos personales y derechos reales.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{L L}
+\toprule
+\textbf{Garantías personales} & \textbf{Garantías reales} \\
+\midrule
+Ejemplo típico: la fianza. Una persona distinta del deudor garantiza la obligación con todo su patrimonio. &
+Ejemplo típico: la hipoteca. Un bien determinado queda afectado al cumplimiento de una obligación. \\
+\addlinespace
+El patrimonio del garante puede crecer o disminuir; no hay forma de garantizar su inmutabilidad. &
+La cosa determinada queda sujeta al privilegio del acreedor. Este derecho es \textbf{preferente y persecutorio}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El riesgo inherente a la obligación}
+
+El estudio de las garantías se vincula con la necesidad de \textbf{minimizar el riesgo de incumplimiento obligacional}. Existe una relación de \textbf{inherencia} entre el riesgo y la obligación, porque el incumplimiento puede originarse en infinitos factores.
+
+Pueden impedir el cumplimiento de una obligación el caso fortuito, la fuerza mayor y la finitud humana, y también los deudores que, teniendo posibilidad de cumplir, deciden no hacerlo. Todos estos supuestos ratifican que la obligación, desde el momento mismo de su nacimiento, lleva implícito el riesgo del incumplimiento.
+
+\section{Evolución histórica: de la esclavitud por deudas al patrimonio}
+
+La garantía real por excelencia en la antigüedad fue la \textbf{esclavitud por deudas}. El hombre libre, con la categoría que tenía en ese momento histórico, era obligado a someterse a la esclavitud, por sí o a través de su familia. El esclavo era una cosa, susceptible de ser usada, comprada y vendida, de modo que su producido permitía resarcir al acreedor. La esclavitud no era un castigo, sino el medio de resarcir al acreedor.
+
+La reforma histórica más importante fue la abolición de la esclavitud por deudas decretada por el legislador \textbf{Solón} en el siglo VI a.C., considerada tal vez la mayor reforma en materia de garantías en la historia de la humanidad. Dos o tres siglos más tarde, Roma hizo lo propio con la \textbf{Ley Poetelia Papiria}, a partir del año 326 o 313 a.C.
+% TODO: contenido incompleto o ambiguo en las notas originales (el año de la Ley Poetelia Papiria se indica como 326 o 313 a.C.)
+
+A partir de esa abolición surgió la necesidad de encontrar otro mecanismo que garantizara el cumplimiento. La respuesta fue el \textbf{patrimonio del deudor} como garantía común de los acreedores.
+
+\section{El patrimonio como garantía común: arts.~242 y 743 CCyCN}
+
+\begin{quote}
+\textbf{Artículo 242 CCyCN.} \textit{Todos los bienes del deudor están afectados al cumplimiento de sus obligaciones y constituyen la garantía común de sus acreedores, con excepción de aquellos bienes que el Código indique.}
+\end{quote}
+
+Este artículo incorpora \textbf{por primera vez} la garantía de los acreedores como norma expresa en el derecho nacional; antes se la infería del ordenamiento general. Las excepciones son los bienes esenciales para la vida de la persona y para el desarrollo de su actividad profesional o laboral.
+
+\begin{quote}
+\textbf{Artículo 743 CCyCN.} \textit{Los bienes presentes y futuros del deudor constituyen la garantía común de los acreedores.}
+\end{quote}
+
+No solo responden los bienes que el deudor tiene al constituirse la obligación: si el deudor adquiere un bien en el futuro y aún no ha cumplido, ese bien también respalda la obligación. Todos los acreedores concurren en una posición igualitaria.
+
+El concepto de \textbf{acreedor} no se limita al banco. En la obligación alimentaria, por ejemplo, el acreedor es el hijo que se alimenta, y todo el patrimonio del deudor está afectado para garantizar ese crédito.
+
+\section{Igualdad entre acreedores y privilegio}
+
+La \textbf{igualdad entre acreedores es de orden público}. La excepción a ese principio está regulada por la ley y debe surgir de una causa legal o convencional de preferencia; en el caso de la convención, debe estar claramente identificada por la ley.
+
+Los derechos reales de garantía (hipoteca, prenda y anticresis) constituyen un \textbf{privilegio especial} que el titular tiene sobre una cosa de propiedad del deudor. Ese privilegio lo deja a salvo de los vaivenes del patrimonio, de otras deudas y de otras obligaciones que puedan agravar o disminuir su composición.
+
+\section{Cuadro Cornell del Capítulo 1}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Cómo se clasifican los derechos reales y dónde se ubican las garantías?} &
+Se clasifican en derechos reales sobre cosa total o parcialmente propia y derechos reales sobre cosa ajena. Estos últimos se dividen en derechos de disfrute y derechos de garantía. Los derechos de disfrute son principales; los de garantía son siempre accesorios de una obligación. \\[0.6em]
+
+\textbf{¿Qué diferencia hay entre garantías personales y garantías reales?} &
+En la garantía personal (por ejemplo, la fianza) una persona distinta del deudor responde con todo su patrimonio, que puede crecer o disminuir. En la garantía real (por ejemplo, la hipoteca) un bien determinado queda afectado a la obligación y sujeto al privilegio del acreedor, derecho preferente y persecutorio. \\[0.6em]
+
+\textbf{¿Por qué el riesgo es inherente a la obligación?} &
+Porque el incumplimiento puede deberse a infinitos factores (caso fortuito, fuerza mayor, finitud humana, decisión del deudor de no cumplir). La obligación lleva implícito, desde su nacimiento, el riesgo del incumplimiento, y las garantías procuran minimizarlo. \\[0.6em]
+
+\textbf{¿Cuál fue la garantía real por excelencia en la antigüedad y cómo se superó?} &
+La esclavitud por deudas: el hombre libre, por sí o a través de su familia, era sometido a esclavitud para resarcir al acreedor con el producido. Solón la abolió en el siglo VI a.C. en Atenas, y Roma lo hizo con la Ley Poetelia Papiria (326 o 313 a.C.). Surgió entonces el patrimonio del deudor como garantía común. \\[0.6em]
+
+\textbf{¿Qué establecen los arts.~242 y 743 del CCyCN?} &
+Que todos los bienes presentes y futuros del deudor constituyen la garantía común de los acreedores, con excepción de los bienes que el Código indique (esenciales para la vida y el trabajo). Los acreedores concurren en igualdad de condiciones. \\[0.6em]
+
+\textbf{¿Cómo se excepciona la igualdad entre acreedores?} &
+La igualdad es de orden público; solo puede exceptuarse por una causa legal o convencional de preferencia claramente identificada por la ley. Los derechos reales de garantía constituyen un privilegio especial sobre una cosa del deudor. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} Las garantías buscan minimizar el riesgo de incumplimiento inherente a toda obligación. Tras la abolición de la esclavitud por deudas, el patrimonio del deudor pasó a ser la garantía común de los acreedores (arts.~242 y 743 CCyCN), con igualdad entre ellos como regla de orden público. Los derechos reales de garantía son accesorios y otorgan un privilegio especial sobre una cosa determinada, a diferencia de las garantías personales.
+} \\
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+\chapter[Derechos reales de garantía y sus caracteres]{Los derechos reales de garantía y sus caracteres}
+
+\section{Los tres derechos reales de garantía}
+
+Los derechos reales de garantía son la \textbf{hipoteca}, la \textbf{anticresis} y la \textbf{prenda}. Existen también garantías reales especiales, como la hipoteca aeronáutica, la hipoteca naval y la prenda de automotores, reguladas en todos los casos por leyes especiales.
+
+Se trata de derechos reales accesorios, porque dependen siempre de una obligación principal, pero siguen los principios generales del ordenamiento nacional.
+
+La metodología del CCyCN establece una \textbf{parte general} aplicable a todas las garantías reales (arts.~2184 a 2204) y luego normas propias de cada una. Lo mismo sucede con la prenda, que tiene una parte general aplicable a sus distintos tipos.
+
+\section{Caracteres esenciales y naturales}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{L L}
+\toprule
+\textbf{Caracteres esenciales} & \textbf{Caracteres naturales} \\
+\midrule
+Su ausencia torna nula la garantía. &
+La ley los establece, pero las partes pueden pactar en contrario. \\
+\addlinespace
+1) Convencionalidad. 2) Accesoriedad. 3) Especialidad (objetiva y crediticia). &
+Indivisibilidad (las partes pueden pactar su divisibilidad). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Convencionalidad (art.~2185)}
+
+\begin{quote}
+\textbf{Artículo 2185 CCyCN.} \textit{Los derechos reales de garantía solo pueden ser constituidos por contrato celebrado por los legitimados y con las formas que indique la ley.}
+\end{quote}
+
+Los derechos reales de garantía solo pueden constituirse por \textbf{contrato}, únicamente por contrato. Otros ordenamientos jurídicos admiten garantías judiciales y garantías legales; el codificador nacional, tanto Vélez como el Código de 2015, optó por la fuente exclusivamente contractual.
+
+En materia de hipoteca, o de inmuebles como en la anticresis, por el art.~1017 deberá constituirse siempre en \textbf{escritura pública}.
+
+\section{Accesoriedad (art.~2186)}
+
+\begin{quote}
+\textbf{Artículo 2186 CCyCN.} \textit{Los derechos reales de garantía son accesorios del crédito que aseguran. No puede existir un derecho de garantía sin crédito en el que garanticen.}
+\end{quote}
+
+\begin{important}
+La garantía es el accesorio de una obligación. La garantía no es una obligación: es el accesorio de una obligación.
+\end{important}
+
+Existe un vínculo obligacional con tres elementos: sujeto activo, sujeto pasivo y prestación. De manera subyacente a esa relación se constituye una garantía, es decir, un vínculo directo entre el titular del derecho de garantía y una cosa determinada. Esta garantía se pone en movimiento \textbf{ante el incumplimiento} y otorga al acreedor un derecho de privilegio que recae sobre esa cosa.
+
+\section{Especialidad}
+
+El principio de especialidad tiene un doble aspecto.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{L L}
+\toprule
+\textbf{Especialidad objetiva} & \textbf{Especialidad crediticia} \\
+\midrule
+Determinación indubitable del objeto: qué bien específico respalda la obligación. &
+Determinación indubitable del monto: hasta qué suma el acreedor tiene privilegio. \\
+\addlinespace
+Art.~2188: la cosa o el derecho debe ser actual e individualizado en el contrato constitutivo. &
+Art.~2189: debe constar el monto estimado (créditos determinados) o el monto máximo (créditos indeterminados). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{quote}
+\textbf{Artículo 2187 CCyCN.} \textit{La garantía real puede garantizar el puro y simple crédito, el crédito a plazo, el condicional, el eventual, obligaciones de dar, de hacer o de no hacer. En todos los casos, al constituirse la garantía debe individualizarse el crédito a través de sujeto, objeto y causa, con las excepciones admitidas por la ley.}
+\end{quote}
+
+\begin{quote}
+\textbf{Artículo 2188 CCyCN.} \textit{Tanto cosas como derechos pueden constituir el objeto de los derechos reales de garantía. Deben ser actuales y estar individualizados en el contrato constitutivo.}
+\end{quote}
+
+\section{Cuadro Cornell del Capítulo 2}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Cuáles son los derechos reales de garantía y qué normas los rigen?} &
+Hipoteca, anticresis y prenda. También existen la hipoteca aeronáutica, la hipoteca naval y la prenda de automotores, regidas por leyes especiales. El CCyCN prevé una parte general aplicable a todas las garantías reales (arts.~2184 a 2204) y normas propias de cada una. \\[0.6em]
+
+\textbf{¿Cuáles son los caracteres ESENCIALES de las garantías reales?} &
+1) Convencionalidad: solo nacen del contrato (art.~2185). 2) Accesoriedad: dependen de la obligación principal (art.~2186). 3) Especialidad, con doble aspecto: objetiva (identificación del objeto, art.~2188) y crediticia (determinación del monto, art.~2189). Su ausencia torna nula la garantía. \\[0.6em]
+
+\textbf{¿Qué diferencia hay entre caracteres esenciales y naturales?} &
+Los esenciales, si faltan, tornan nula la garantía. Los naturales están establecidos por la ley, pero las partes pueden pactar en contrario; es el caso de la indivisibilidad, cuya divisibilidad puede pactarse. \\[0.6em]
+
+\textbf{¿Por qué las garantías reales solo pueden nacer de un contrato?} &
+Porque el codificador (Vélez y el Código de 2015) optó por la fuente exclusivamente contractual, a diferencia de otros ordenamientos que admiten garantías judiciales y legales. En inmuebles debe constar en escritura pública (art.~1017). \\[0.6em]
+
+\textbf{¿Por qué las garantías reales son ``accesorias''?} &
+Porque dependen siempre de una obligación principal y no pueden existir sin el crédito que garantizan. La garantía es el accesorio de una obligación, no una obligación en sí misma; se pone en movimiento ante el incumplimiento y otorga un privilegio sobre una cosa determinada. \\[0.6em]
+
+\textbf{¿Qué exige el principio de especialidad?} &
+Especialidad objetiva: determinar indubitablemente el bien que respalda la obligación, que debe ser actual e individualizado en el contrato constitutivo (art.~2188). Especialidad crediticia: determinar el monto hasta el cual hay privilegio (art.~2189), individualizando el crédito por sujeto, objeto y causa (art.~2187). \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} La hipoteca, la prenda y la anticresis comparten una parte general (arts.~2184 a 2204). Su validez exige tres caracteres esenciales: convencionalidad, accesoriedad y especialidad (objetiva y crediticia). La indivisibilidad es un carácter natural, modificable por pacto.
+} \\
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 3
+% ============================================================
+\chapter[Especialidad crediticia, reforma e indivisibilidad]{Especialidad crediticia, reforma de la ley 27261 e indivisibilidad}
+
+\section{Importancia práctica de la especialidad crediticia}
+
+\begin{example}{Juan, Fermín y el inmueble}
+Juan es propietario de un inmueble que vale 150.000 dólares. Por el art.~242, todos sus acreedores son quirografarios: si el patrimonio es insuficiente, cobran en proporción a su crédito.
+
+Juan obtiene un crédito de 100.000 dólares y constituye a favor de Fermín una garantía hipotecaria, de modo que Fermín tiene privilegio. Si Juan paga, la garantía se extingue y nada ocurre. Si no paga, Fermín inicia la ejecución. El inmueble se remata en 110.000 dólares: Fermín cobra sus 100.000 con privilegio y los 10.000 restantes pertenecen a Juan, quedando para los demás acreedores quirografarios.
+% TODO: contenido incompleto o ambiguo en las notas originales (el título del caso menciona ``el inmueble en CAVA'')
+
+\textbf{Conclusión:} el privilegio ha reducido enormemente la garantía disponible para los acreedores quirografarios. Por eso es tan importante la especialidad crediticia: los quirografarios necesitan saber cuánto es el privilegio y cuál es el remanente.
+\end{example}
+
+\section{La reforma de la ley 27261}
+
+El art.~2189 original, vigente desde el 1.º de septiembre de 2015, fue \textbf{sustituido} por la ley 27261, que rige desde el 1.º de septiembre de 2016. Esto genera tres regímenes aplicables según la fecha de constitución de la hipoteca.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{L L L}
+\toprule
+\textbf{Código de Vélez (hasta el 31/8/2015)} & \textbf{CCyCN original (1/9/2015 al 31/8/2016)} & \textbf{CCyCN reformado por ley 27261 (desde el 1/9/2016)} \\
+\midrule
+Hipoteca sobre crédito indeterminado: nula (art.~2502 del régimen anterior). &
+Régimen transitorio: normas del nuevo código pendientes de reforma. &
+Se admiten garantías sobre créditos indeterminados bajo requisitos rigurosos. Rige el texto sustituido del art.~2189. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+% TODO: contenido incompleto o ambiguo en las notas originales (régimen del CCyCN original descrito de forma imprecisa; cita del art. 2502)
+
+\section{El art.~2189 (texto según ley 27261)}
+
+\begin{quote}
+\textbf{Artículo 2189 CCyCN (texto ley 27261, vigente desde el 1/9/2016).} \textit{En la constitución de los derechos reales de garantía debe individualizarse el crédito garantizado, indicándose los sujetos, el objeto y la causa. El monto de la garantía debe estimarse en dinero y puede no coincidir con el monto del capital del crédito. Se considera satisfecho el principio de especialidad en cuanto al crédito si la garantía se constituye en seguridad de créditos indeterminados, sea que su causa exista al tiempo de la constitución o posteriormente, siempre que el instrumento constitutivo contenga la indicación del monto máximo garantizado en todo concepto, que la garantía que se constituye es de máximo, y que los créditos garantizados han de nacer dentro del plazo de diez (10) años a contar de la constitución de la garantía.}
+\end{quote}
+
+El nuevo texto habilita dos categorías de créditos.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{L L}
+\toprule
+\textbf{Créditos determinados (art.~2187 y 1.er párr.\ del art.~2189)} & \textbf{Créditos indeterminados (2.º párr.\ del art.~2189, novedad)} \\
+\midrule
+Se individualiza la obligación: sujetos, objeto y causa. &
+La causa puede existir al momento de la constitución o surgir posteriormente. \\
+\addlinespace
+Se estima el monto en dinero; puede no coincidir con el capital del crédito. &
+Debe indicarse el \textbf{monto máximo garantizado} en todo concepto. \\
+\addlinespace
+El privilegio se extiende a capital, intereses, costas y daños posteriores al incumplimiento. &
+Debe indicarse que es una ``garantía de máximo'' y que los créditos nacerán dentro de los 10 años de su constitución. \\
+\addlinespace
+\textbf{Alcance amplio del privilegio.} &
+\textbf{Privilegio solo hasta el monto máximo garantizado; todo excedente es quirografario.} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+La diferencia entre ``monto estimado'' y ``monto máximo'' no es meramente lingüística: expresa un concepto totalmente diferente en cuanto al alcance que tendrá el privilegio en uno y otro caso.
+\end{important}
+
+\subsection{Las ``hipotecas abiertas'' como antecedente}
+
+Las hipotecas abiertas no tenían denominación específica porque no tenían recepción en el ordenamiento. El acreedor pretendía una hipoteca que garantizara todas las obligaciones del deudor. Ello generaba gran inseguridad a los quirografarios, que carecían de respuesta a preguntas como: ¿por qué monto es el privilegio?, ¿cuándo se acaba?, ¿cuál es la obligación?, ¿cómo se identifica si el deudor cumplió o no? Ante esa falta de respuestas, los jueces declaraban la nulidad de estas garantías.
+
+\begin{quote}
+\textbf{Artículo 2190 CCyCN.} \textit{La constitución de la garantía será válida aunque falte alguna especificación, si puede conocerse indubitablemente cuál es la enunciación completa de los parámetros básicos.}
+\end{quote}
+
+\section{Indivisibilidad (carácter natural, art.~2191)}
+
+\begin{definition}{Indivisibilidad}
+Las hipotecas son indivisibles, pero las partes pueden pactar la divisibilidad. La garantía subsiste en cada uno de los bienes afectados a la deuda y en cada parte de ellos: todos están afectados al pago hasta su extinción.
+\end{definition}
+
+\begin{example}{Crédito en 120 cuotas}
+Si se obtiene un crédito bancario en 120 cuotas con garantía hipotecaria, el inmueble sigue gravado tanto cuando se debe la primera cuota como cuando se debe la última. La garantía subsiste hasta la cancelación total.
+\end{example}
+
+Las partes pueden pactar en el instrumento constitutivo que, cuando el deudor haya pagado 50 cuotas, la hipoteca se extinga por ese porcentaje y subsista por la diferencia, pues ello no agravia el orden público.
+
+\begin{example}{Hipoteca sobre dos inmuebles y 240 cuotas}
+En una hipoteca cuyo objeto son dos inmuebles y 240 cuotas, ambos inmuebles están gravados hasta que se cancelen las 240 cuotas; aun para la cuota 239, si se han pagado las anteriores, los dos inmuebles siguen gravados. La garantía y el privilegio no dependen del monto, sino de cómo se va pagando la obligación.
+\end{example}
+
+\section{Cuadro Cornell del Capítulo 3}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Por qué es tan importante la especialidad crediticia?} &
+Porque el privilegio del acreedor hipotecario reduce la garantía disponible para los quirografarios, que necesitan saber cuánto es el privilegio y cuál es el remanente. En el caso de Juan y Fermín, un inmueble rematado en 110.000 dólares con una deuda garantizada de 100.000 deja 10.000 para los demás acreedores. \\[0.6em]
+
+\textbf{¿Qué tres regímenes existen según la fecha de constitución de la hipoteca?} &
+Código de Vélez (hasta el 31/8/2015), donde la hipoteca sobre crédito indeterminado era nula; CCyCN original (1/9/2015 al 31/8/2016); y CCyCN reformado por la ley 27261 (desde el 1/9/2016), que admite garantías sobre créditos indeterminados con requisitos rigurosos. \\[0.6em]
+
+\textbf{¿Qué diferencia hay entre ``monto estimado'' y ``monto máximo garantizado''?} &
+El monto estimado se usa en garantías sobre créditos determinados: puede no coincidir con el capital y el privilegio se extiende también a intereses, costas y daños posteriores. El monto máximo garantizado se usa en garantías de máximo (créditos indeterminados): es el tope del privilegio y todo excedente es quirografario. \\[0.6em]
+
+\textbf{¿Qué son los créditos indeterminados y qué requisitos deben cumplir?} &
+Son aquellos cuya causa puede existir al constituirse la garantía o surgir posteriormente. Deben: (a) indicar el monto máximo garantizado en todo concepto; (b) declararse como garantía de máximo; (c) establecer que los créditos nacerán dentro de los 10 años de la constitución (art.~2189, 2.º párr., texto ley 27261). \\[0.6em]
+
+\textbf{¿Qué eran las hipotecas abiertas y por qué se anulaban?} &
+Eran hipotecas con las que el acreedor pretendía garantizar todas las obligaciones del deudor. Generaban inseguridad a los quirografarios, por falta de respuesta sobre el monto del privilegio, su duración y la obligación garantizada; por eso los jueces declaraban su nulidad. \\[0.6em]
+
+\textbf{¿Por qué la garantía real es indivisible y cuándo pueden las partes cambiar eso?} &
+Porque la garantía subsiste en cada bien afectado y en cada parte de ellos hasta la extinción total de la deuda. Es un carácter natural: las partes pueden pactar la divisibilidad (por ejemplo, extinción parcial al pagar 50 cuotas), pues ello no agravia el orden público. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} La especialidad crediticia protege a los quirografarios al precisar el alcance del privilegio. La ley 27261 sustituyó el art.~2189 e incorporó las garantías sobre créditos indeterminados (de máximo), con privilegio acotado al monto máximo garantizado y créditos que nazcan dentro de los 10 años. La indivisibilidad es un carácter natural que las partes pueden modificar por pacto.
+} \\
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 4
+% ============================================================
+\chapter[Constituyente, propietario no deudor y extinción]{Legitimación, facultades del constituyente, propietario no deudor y extinción}
+
+\section{Legitimación para constituir derechos reales de garantía}
+
+Solo los titulares de derechos reales sobre cosa propia pueden constituir derechos reales de disfrute o de garantía a favor de otro titular. Es excepcional la facultad del titular del derecho de superficie de constituir hipotecas sobre el objeto de su derecho.
+
+El condómino puede constituir un gravamen hipotecario sobre su parte indivisa. Al constituir el derecho real de garantía, el titular \textbf{imperfecciona su dominio}, lo desmembra; por eso el art.~1884 indica que para el titular constituyente existe un gravamen.
+
+\section{Facultades del constituyente (art.~2195)}
+
+\begin{quote}
+\textbf{Artículo 2195 CCyCN.} \textit{El constituyente de la garantía conserva todas las facultades inherentes a su derecho, pero no puede realizar ningún acto que disminuya el valor de la garantía. Si esto ocurre, el acreedor puede requerir la privación de plazo, o bien estimar el valor de la disminución y exigir su depósito, o bien que se otorgue otra garantía suficiente.}
+\end{quote}
+
+Se distinguen dos situaciones.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{L L}
+\toprule
+\textbf{Acto no consumado} & \textbf{Acto consumado} \\
+\midrule
+El acreedor advierte que el constituyente está por realizar un acto que puede afectar el valor de la garantía. &
+El deterioro o acto ya se realizó y el perjuicio está consumado. \\
+\addlinespace
+\textbf{Remedio:} medida de no innovar para detener la disminución del valor. &
+\textbf{Remedio:} caducidad de plazos (exigir el pago total aun sin mora en los servicios), depósito del valor disminuido o nueva garantía suficiente. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Inoponibilidad de los actos que perjudican la garantía (art.~2196)}
+
+\begin{quote}
+\textbf{Artículo 2196 CCyCN.} \textit{En caso de ejecución, son inoponibles al acreedor los actos jurídicos celebrados en perjuicio de la garantía.}
+\end{quote}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{L L}
+\toprule
+\textbf{Locación anterior a la constitución de la hipoteca} & \textbf{Locación posterior a la constitución de la hipoteca} \\
+\midrule
+El adquirente en la subasta adquiere un inmueble ya alquilado y debe respetar el plazo de locación. &
+La locación carece de todo efecto frente al acreedor garantizado; la subasta se realizará con el inmueble libre de ocupantes. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Prohibición del pacto comisorio (art.~2198)}
+
+\begin{quote}
+\textbf{Artículo 2198 CCyCN.} \textit{Es nula la cláusula que permite al titular del derecho de garantía disponer de la cosa por otros medios que los previstos legalmente para la ejecución forzada.}
+\end{quote}
+
+\begin{definition}{Pacto comisorio}
+Cláusula por la cual el acreedor, al constituirse la garantía, establece que si no se cumple la obligación se quedará directamente con la cosa. Se tiene por no escrita.
+\end{definition}
+
+\begin{important}
+La nulidad recae sobre la cláusula específica (el pacto comisorio) y no sobre toda la garantía. Esto contrasta con los caracteres esenciales (convencionalidad, accesoriedad, especialidad), cuya falta torna nula la garantía íntegramente.
+\end{important}
+
+Si la obligación se incumple, el acreedor debe iniciar el proceso de ejecución judicial. El juez, con plena intervención del constituyente y del deudor, determinará el monto de la obligación, el privilegio, la subasta y todo el proceso, lo que impide la ``justicia por mano propia''.
+
+\section{El propietario no deudor (arts.~2199 y 2200)}
+
+En toda garantía real pueden identificarse distintos protagonistas.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{c L L}
+\toprule
+\textbf{Escenario} & \textbf{Actores} & \textbf{Observación} \\
+\midrule
+1 & Juan = deudor y constituyente; Manuel = acreedor hipotecario. &
+El propietario del bien gravado es el mismo deudor. Es el caso más común. \\
+\addlinespace
+2 & Juan = deudor; Manuel = acreedor; Juan padre = constituyente propietario no deudor. &
+Tercero ajeno al vínculo obligacional que constituye el gravamen para garantizar la deuda ajena. \\
+\addlinespace
+3 & Juan = ex deudor y constituyente; Manuel = acreedor; Joaquín = adquirente del inmueble gravado. &
+Adquirente de un bien gravado que no asumió expresamente la deuda; también es propietario no deudor. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{quote}
+\textbf{Artículo 2199 CCyCN.} \textit{Son propietarios no deudores: (a) el tercero ajeno al vínculo obligacional que constituye el gravamen a fin de garantizar la obligación del deudor; (b) el adquirente de un bien gravado que no ha asumido expresamente la deuda.}
+\end{quote}
+
+\begin{quote}
+\textbf{Artículo 2200 CCyCN.} \textit{El propietario no deudor puede, ante el incumplimiento del deudor: (a) satisfacer el pago de la obligación, subrogándose en los derechos del acreedor; (b) oponer las defensas admisibles en el proceso ejecutivo; (c) si el bien es subastado, ejercer el derecho al remanente que exceda el monto del gravamen.}
+\end{quote}
+
+\textbf{Responsabilidad.} El propietario no deudor no tiene obligación de pagar: lo que responde es la cosa. Se subastará la cosa que adquirió, y responde únicamente con el objeto gravado y hasta el monto máximo expresado en el instrumento constitutivo.
+
+\textbf{Buena fe del adquirente.} Quien adquiere un inmueble gravado no es sorprendido en su buena fe, porque los derechos reales inmobiliarios son oponibles a terceros a partir de su inscripción registral. La hipoteca constituida es oponible a terceros desde su inscripción, y la carga surge de las constancias registrales que deben solicitarse antes de realizar la operación.
+
+\textbf{Proceso cuando el deudor no paga:}
+\begin{enumerate}
+    \item El acreedor intima el pago al obligado (el deudor).
+    \item Si el deudor paga, la garantía se extingue.
+    \item Si no paga, el juez da traslado al propietario no deudor.
+    \item El propietario no deudor puede pagar voluntariamente y subrogarse en los derechos del acreedor para repetir lo pagado contra el deudor principal.
+    \item Si no paga, el juez ordena la subasta. El remanente que excede el monto del gravamen pertenece al propietario no deudor, no a los acreedores quirografarios del deudor.
+\end{enumerate}
+
+\section{Extensión de la garantía y subrogación real}
+
+Las garantías se extienden sobre el principal y todos sus accesorios. Si se constituye una hipoteca sobre un inmueble, alcanza también a sus cañerías, paredes y techos.
+
+\begin{definition}{Subrogación real}
+La garantía se traslada de pleno derecho sobre los bienes que sustituyan al gravado. Si hay una hipoteca sobre un inmueble con seguro de incendio y el inmueble se incendia, la garantía subsiste y el privilegio recae sobre la póliza. Lo mismo ocurre ante una indemnización por expropiación.
+\end{definition}
+
+\section{Extinción y cancelación (art.~2204)}
+
+La distinción entre extinción y cancelación es fundamental en la práctica profesional.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{L L}
+\toprule
+\textbf{Extinción de la garantía} & \textbf{Cancelación de la garantía} \\
+\midrule
+Hecho jurídico que produce el cese del derecho real de garantía. &
+Acto jurídico en virtud del cual se deja sin efecto la inscripción de la garantía en el registro. \\
+\addlinespace
+Causas: (a) extinción de la obligación principal; (b) subasta del bien gravado con citación de los titulares; (c) confusión (acreedor = propietario constituyente). &
+Tipos: (a) \textbf{voluntaria}: el acreedor otorga instrumento de igual naturaleza al constitutivo y manifiesta que se extinguió la garantía; (b) \textbf{judicial}: el constituyente, ante la falta de cancelación, la solicita judicialmente. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+Una hipoteca puede estar \textbf{extinguida} (porque la obligación se pagó) pero no \textbf{cancelada} (porque la inscripción registral sigue vigente). En ese caso, al solicitar un certificado, el inmueble aparece como gravado, pues falta inscribir que la garantía se extinguió. Esto genera trabajo adicional, y es habitual que las partes confundan ambos conceptos.
+\end{important}
+
+\section{Cuadro Cornell del Capítulo 4}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Quiénes pueden constituir derechos reales de garantía?} &
+Los titulares de derechos reales sobre cosa propia. Excepcionalmente, el titular del derecho de superficie puede constituir hipotecas sobre el objeto de su derecho, y el condómino puede gravar su parte indivisa. Al constituir la garantía, el titular imperfecciona su dominio. \\[0.6em]
+
+\textbf{¿Qué puede y qué no puede hacer el dueño de una cosa gravada?} &
+Conserva todas las facultades inherentes a su derecho, pero no puede realizar actos que disminuyan el valor de la garantía (art.~2195). Ante un acto no consumado procede la medida de no innovar; ante un acto consumado, la caducidad de plazos, el depósito del valor disminuido o una nueva garantía suficiente. Además, los actos celebrados en perjuicio de la garantía son inoponibles al acreedor en la ejecución (art.~2196). \\[0.6em]
+
+\textbf{¿Qué es el pacto comisorio y cuáles son sus efectos?} &
+Es la cláusula por la cual el acreedor se atribuye la facultad de quedarse directamente con la cosa ante el incumplimiento, sin acudir al proceso judicial. Está prohibido (art.~2198) y la cláusula es nula, pero el resto de la garantía mantiene su validez. \\[0.6em]
+
+\textbf{¿Qué es el ``propietario no deudor''?} &
+Dos figuras (art.~2199): (a) el tercero ajeno al vínculo obligacional que constituye un gravamen para garantizar la deuda de otro; (b) el adquirente de un bien gravado que no asumió expresamente la deuda. Ambos responden con la cosa gravada hasta el monto del gravamen, pero no son deudores de la obligación principal. \\[0.6em]
+
+\textbf{¿Qué puede hacer el propietario no deudor ante la ejecución?} &
+Puede: (a) pagar y subrogarse en los derechos del acreedor para repetir contra el deudor principal; (b) oponer las defensas admisibles en el proceso ejecutivo; (c) si el bien se subasta, reclamar el remanente que exceda el monto del gravamen (art.~2200). \\[0.6em]
+
+\textbf{¿Hasta dónde se extiende la garantía y qué es la subrogación real?} &
+La garantía se extiende al principal y a todos sus accesorios. Por subrogación real, se traslada de pleno derecho a los bienes que sustituyan al gravado, como la póliza de seguro de incendio o la indemnización por expropiación. \\[0.6em]
+
+\textbf{¿Cuál es la diferencia entre ``extinción'' y ``cancelación'' de la garantía?} &
+La extinción es el cese del derecho real de garantía (por extinción de la obligación, subasta o confusión). La cancelación es el acto jurídico registral que deja sin efecto la inscripción, y puede ser voluntaria o judicial. Una hipoteca puede estar extinguida pero no cancelada, por lo que el inmueble aparecerá como gravado en las constancias registrales. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} Los derechos reales de garantía (hipoteca, prenda y anticresis) minimizan el riesgo de incumplimiento al crear un privilegio especial del acreedor sobre una cosa determinada. Su validez exige convencionalidad, accesoriedad y especialidad. La reforma de la ley 27261 incorporó las garantías sobre créditos indeterminados, con privilegio acotado al monto máximo garantizado. El propietario no deudor responde solo con la cosa, el pacto comisorio es nulo y la extinción de la garantía debe distinguirse de su cancelación registral.
+} \\
+\end{longtable}
+
+\end{document}

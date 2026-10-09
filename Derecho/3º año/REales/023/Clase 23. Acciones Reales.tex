@@ -1,0 +1,670 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{Acciones Reales --- Arts. 2247 a 2268 CCyCN}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Cuadro Cornell (tabla real, con corte de página permitido)
+\newenvironment{cornell}{%
+    \par\vspace{0.5em}
+    \begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.28\linewidth}
+                         >{\RaggedRight\arraybackslash}p{0.68\linewidth}@{}}
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endhead
+}{%
+    \bottomrule
+    \end{longtable}
+}
+\newcommand{\cornellsummary}[1]{%
+    \midrule
+    \multicolumn{2}{@{}p{\dimexpr0.96\linewidth+2\tabcolsep\relax}@{}}{%
+        \textbf{Resumen:} #1} \\
+}
+
+% ==================== DOCUMENTO ====================
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender cada concepto es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derechos Reales'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------- ÍNDICE ----------
+\tableofcontents
+
+% ---------- INTRODUCCIÓN ----------
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
+\markboth{Introducción}{Introducción}
+
+Este material desarrolla el sistema de acciones reales del Código Civil y Comercial de la Nación Argentina (arts.\ 2247 a 2268 CCyCN). Se analizan las cuatro acciones reales ---reivindicatoria, negatoria, confesoria y de deslinde---, con sus respectivos ámbitos, legitimados activos y pasivos, los efectos de la sentencia y el complejo juicio de reivindicación de inmuebles.
+
+\section*{Relevancia profesional}
+
+Las acciones reales son las herramientas procesales fundamentales con las que se defiende a un cliente cuando un derecho real ---dominio, usufructo, servidumbre, hipoteca--- es atacado, turbado o desconocido. Sin dominar este esquema no es posible:
+
+\begin{itemize}
+    \item elegir la acción correcta: demandar por reivindicatoria cuando corresponde la negatoria implica la pérdida del proceso;
+    \item asesorar sobre la carga probatoria (la llamada ``prueba diabólica'') y sobre la estrategia de cada caso;
+    \item defender derechos de dominio, garantizar el valor de las hipotecas y proteger servidumbres;
+    \item redactar demandas y contestaciones en juicios petitorios de alta complejidad.
+\end{itemize}
+
+Todo propietario de un inmueble, todo acreedor hipotecario y todo titular de una servidumbre puede ver su derecho amenazado; conocer este sistema permite proteger bienes concretos de personas reales.
+
+\begin{example}{Un campo con cuatro problemas distintos}
+Un propietario de un campo enfrenta cuatro problemas diferentes:
+\begin{itemize}
+    \item un vecino le ocupa el lote por completo: corresponde la \textbf{acción reivindicatoria};
+    \item otro vecino cruza su tierra como si tuviera una servidumbre: corresponde la \textbf{acción negatoria};
+    \item un tercero le impide usar el camino que sí tiene derecho a usar: corresponde la \textbf{acción confesoria};
+    \item un cuarto vecino no sabe dónde termina su terreno y dónde empieza el del propietario: corresponde la \textbf{acción de deslinde}.
+\end{itemize}
+Cada acción es una herramienta distinta para un problema distinto.
+\end{example}
+
+% ==================== CAPÍTULO 1 ====================
+\chapter[Fundamentos de las acciones reales]{Fundamentos de las acciones reales}
+
+\section{La acción como herramienta jurídica}
+
+Las acciones reales están contempladas en el ordenamiento jurídico argentino en los arts.\ 2247 a 2268 del Código Civil y Comercial de la Nación, que constituyen el régimen general de las acciones reales.
+
+Al hablar de acciones reales, posesorias o de cualquier otro tipo, debe tenerse presente que la \textbf{acción} es el medio, la herramienta con que cuenta el titular de un derecho para reclamar la intervención del órgano jurisdiccional a fin de que se le reconozca un derecho que ha sido lesionado o afectado. Es la herramienta que el justiciable pone en marcha en cada proceso.
+
+Las acciones se distinguen según la naturaleza del derecho que protegen: son \textbf{acciones reales} cuando protegen derechos reales, y \textbf{acciones personales} cuando lo que se procura es la defensa de un derecho personal.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.20\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo de acción} & \textbf{Derecho que protege} & \textbf{Ejemplo} \\
+\midrule
+Acción real & Derechos reales (dominio, usufructo, hipoteca, servidumbre, etc.) & Recuperar un inmueble del que se fue despojado \\
+Acción personal & Derechos personales o crediticios & Cobrar una deuda contractual \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Protección de los derechos reales}
+
+Todos los derechos reales ---tanto los derechos reales sobre cosa propia como los derechos reales sobre cosa ajena, ya sean de disfrute o de garantía--- y todas las facultades reconocidas a cada titular encuentran su defensa a través de las acciones reales.
+
+\begin{definition}{Acciones reales (art. 2247 CCyCN)}
+Las acciones reales son los medios de defender en juicio la \textbf{existencia}, \textbf{plenitud} y \textbf{libertad} de los derechos reales. En cada caso se utilizará la acción reivindicatoria, confesoria, negatoria y también la acción de deslinde.
+\end{definition}
+
+\section{Las cuatro acciones reales y su ámbito}
+
+El criterio para identificar qué acción corresponde en cada caso es el \textbf{ámbito} de las acciones reales: cuáles son los derechos que cada acción protege, cuáles son los titulares y respecto de qué lesiones (es decir, quiénes están legitimados activamente) y contra quién debe iniciarse la acción (legitimados pasivos). El art.\ 2248 CCyCN regula la finalidad de las acciones reales y los titulares legitimados para interponerlas y contra quién hacerlo.
+
+\section{Cuadro comparativo del ámbito de cada acción}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.17\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Acción} & \textbf{Lo que protege} & \textbf{Tipo de lesión} & \textbf{Objeto de la sentencia} \\
+\midrule
+Reivindicatoria & Existencia del derecho real & Despojo total de la posesión & Restitución de la cosa \\
+Negatoria & Libertad del derecho real & Turbación: actos posesorios indebidos o más allá del límite & Hacer cesar la turbación \\
+Confesoria & Plenitud del derecho real & Impedimento del ejercicio pleno de derechos inherentes a la posesión & Restablecer el pleno ejercicio \\
+Deslinde & Certeza de los límites & Incertidumbre sobre límites entre fondos contiguos & Delimitar la superficie de cada inmueble \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell: fundamentos de las acciones reales}
+
+\begin{cornell}
+\textbf{¿Qué es una acción real?} &
+Es el medio o herramienta procesal con que cuenta el titular de un derecho real para reclamar la intervención del órgano jurisdiccional a fin de que se le reconozca un derecho que ha sido lesionado o afectado. Se diferencia de la acción personal, que protege derechos personales o crediticios. \\[0.6em]
+
+\textbf{¿Qué defienden las acciones reales según el art.\ 2247 CCyCN?} &
+La existencia, plenitud y libertad de los derechos reales, tanto sobre cosa propia como sobre cosa ajena (de disfrute o de garantía). \\[0.6em]
+
+\textbf{¿Cuáles son las cuatro acciones reales?} &
+Reivindicatoria (defiende la existencia del derecho ante el despojo total), negatoria (defiende la libertad del derecho ante la turbación), confesoria (defiende la plenitud del derecho ante el impedimento) y de deslinde (hace cesar la incertidumbre sobre los límites entre fondos contiguos). \\[0.6em]
+
+\textbf{¿Cómo se identifica qué acción corresponde?} &
+Mediante su ámbito: qué derechos protege cada acción, quiénes son los titulares, respecto de qué lesiones y contra quién se dirige. \\
+
+\cornellsummary{Las acciones reales son los medios procesales para defender en juicio la existencia, plenitud y libertad de los derechos reales (art.\ 2247 CCyCN). Cada una de las cuatro acciones tiene un ámbito propio, definido por el derecho protegido, el tipo de lesión y el objeto de la sentencia.}
+\end{cornell}
+
+% ==================== CAPÍTULO 2 ====================
+\chapter{Acción reivindicatoria}
+
+\section{Concepto y ámbito}
+
+La acción reivindicatoria protege la \textbf{existencia del derecho}. Protege al titular de un derecho real que se ejerce por la posesión y que ha sido despojado totalmente de ella. Se utiliza cuando se ha privado totalmente al titular de su posesión.
+
+\begin{important}
+La reivindicatoria procede ante el despojo \textbf{total} de la posesión: no una simple turbación, sino la pérdida completa del contacto con la cosa.
+\end{important}
+
+\section{Legitimados activos}
+
+Se encuentran legitimados activamente el titular de los derechos reales que se ejercen por la posesión y también el acreedor hipotecario.
+
+El reconocimiento del acreedor hipotecario es muy importante: está facultado para iniciar la acción \textit{iure propio}, es decir, por su propio derecho, porque la garantía que tiene sobre la obligación radica sobre el inmueble. Puede ocurrir que el titular de dominio despojado, que a su vez no ha podido cumplir con la obligación y cuyo inmueble posiblemente sea subastado en poco tiempo, resulte negligente en la defensa de su derecho. En ese caso la ley otorga \textit{iure propio} al acreedor hipotecario la posibilidad de iniciar la reivindicatoria.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Legitimado activo} & \textbf{Fundamento} \\
+\midrule
+Titular del derecho real ejercido por la posesión (dominio, usufructo, uso, habitación, etc.) & Titular despojado que busca recuperar su posesión \\
+Acreedor hipotecario (\textit{iure propio}) & La garantía radica en el inmueble; el deudor puede ser negligente en su defensa \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Legitimados pasivos: poseedor o tenedor}
+
+La acción se dirige contra el \textbf{poseedor} o el \textbf{tenedor}, aunque este último tenga la cosa a nombre del reivindicante. Es decir, puede iniciarse la demanda contra quien tiene una relación de hecho con la cosa, ejerciendo un poder de hecho que no tiene la facultad jurídica de ejercer respecto de ella.
+
+\begin{example}{Demanda contra Diego}
+Quien se encuentra en el inmueble se presume poseedor. Se inicia entonces la acción contra Diego, porque se tomó conocimiento de que es la persona que está en posesión del inmueble.
+\end{example}
+
+La relación de poder que Diego tiene con la cosa se presume posesión, pero puede ocurrir que se trate de un tenedor, aunque el actor no lo sepa. En ese caso, el tenedor que recibe la demanda tiene la \textbf{obligación de nominar}, es decir, de indicar e identificar concretamente contra quién debe dirigirse la acción. Por ejemplo: ``no soy el poseedor, estoy alquilando, soy tenedor y reconozco a tal persona''.
+
+\section{Cosas no reivindicables (art.\ 2253 CCyCN)}
+
+El art.\ 2253 CCyCN enumera las cosas que no son reivindicables:
+
+\begin{itemize}
+    \item los objetos inmateriales;
+    \item las cosas indeterminadas o fungibles;
+    \item los accesorios, si no se reivindica el principal;
+    \item los automotores inscriptos de buena fe, salvo que sean hurtados o robados (en cuyo caso tampoco son reivindicables).
+\end{itemize}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la frase sobre automotores hurtados o robados se conserva tal como figura en el apunte)
+
+\begin{note}
+En materia de automotores se requiere otro complemento normativo para poder interpretar la regla: el Código establece un régimen puntual respecto de ellos, que no se desarrolla en este apunte.
+\end{note}
+
+\section{Efectos de la sentencia (art.\ 2261 CCyCN)}
+
+La sentencia reivindicatoria debe reconocer el derecho: es \textbf{declarativa}, porque declara la existencia del derecho, y es también de \textbf{condena}, porque ordena restituir la cosa y, si fue solicitado, pagar los daños.
+
+\begin{itemize}
+    \item Debe restituirse la cosa principal con sus accesorios.
+    \item En el caso de un inmueble, debe restituirse la posesión del inmueble \textbf{libre de enseres y ocupantes}.
+    \item Corresponde el pago de daños y perjuicios si hubiesen sido solicitados.
+\end{itemize}
+
+\begin{important}
+La indemnización puede pedirse como accesoria de la restitución, o como vía principal sustitutiva cuando ---por algún motivo durante el proceso--- ya no es posible restablecer el vínculo con la cosa, pero el daño persiste.
+\end{important}
+
+\section{Cuadro Cornell: acción reivindicatoria}
+
+\begin{cornell}
+\textbf{¿Cuándo procede la reivindicatoria?} &
+Cuando el titular de un derecho real que se ejerce por la posesión ha sido despojado \textbf{totalmente} de la posesión de la cosa. No basta la turbación: se requiere la pérdida completa del contacto con el bien. \\[0.6em]
+
+\textbf{¿Quiénes pueden iniciarla?} &
+El titular de derechos reales que se ejercen por la posesión y el acreedor hipotecario, que actúa \textit{iure propio} porque la garantía radica sobre el inmueble y el titular despojado puede ser negligente en la defensa. \\[0.6em]
+
+\textbf{¿Contra quién se dirige y qué ocurre si el demandado es tenedor?} &
+Contra el poseedor o el tenedor, aunque este tenga la cosa a nombre del reivindicante. El tenedor demandado tiene la obligación de nominar, indicando contra quién debe dirigirse la acción. \\[0.6em]
+
+\textbf{¿Qué cosas no son reivindicables?} &
+Según el art.\ 2253: objetos inmateriales, cosas indeterminadas o fungibles, accesorios si no se reivindica el principal y automotores inscriptos de buena fe (salvo hurto o robo). \\[0.6em]
+
+\textbf{¿Qué ordena la sentencia en la reivindicatoria?} &
+Es declarativa (reconoce la existencia del derecho) y de condena (ordena restituir la cosa con los accesorios; en inmuebles, libre de enseres y ocupantes; y pagar daños y perjuicios si fueron solicitados). La indemnización puede pedirse como accesoria o como vía principal sustitutiva cuando ya no es posible restablecer el vínculo con la cosa. \\
+
+\cornellsummary{La reivindicatoria protege la existencia del derecho ante el despojo total de la posesión. Pueden iniciarla el titular y, \textit{iure propio}, el acreedor hipotecario; se dirige contra el poseedor o el tenedor. La sentencia es declarativa y de condena, y ordena restituir la cosa con sus accesorios, y en su caso indemnizar.}
+\end{cornell}
+
+% ==================== CAPÍTULO 3 ====================
+\chapter[Acciones negatoria, confesoria y de deslinde]{Acciones negatoria, confesoria y de deslinde}
+
+\section{Acción negatoria (art.\ 2262 CCyCN)}
+
+\subsection{Concepto y ámbito}
+
+La negatoria responde a una lesión menos grave que la reivindicatoria: no hay despojo total de la cosa, pero existe una \textbf{turbación}.
+
+\begin{definition}{Turbación}
+No se trata de una molestia cualquiera (por ejemplo, que hagan ruido en la puerta o impidan dormir). Quien turba manifiesta una intención de poseer: hace algo que nadie haría si no fuera el dueño. El turbador actúa ``como si fuera el dueño'' o ``como si tuviera un derecho que no tiene''. Esta conducta habilita la acción negatoria.
+\end{definition}
+
+El art.\ 2262 CCyCN establece que la acción negatoria protege la \textbf{libertad del derecho real}. Procede cuando el titular de un derecho real es turbado mediante actos que manifiestan una intención de poseer o el ejercicio de derechos más allá de sus límites.
+
+\begin{example}{Servidumbre inexistente}
+Alguien pretende tener un derecho de servidumbre que no tiene: pasa por el inmueble ajeno como si tuviera una servidumbre de paso y no la tiene.
+\end{example}
+
+\begin{example}{Ejercicio más allá de los límites del derecho}
+Quien tiene una servidumbre de paso tiene derecho a pasar, pero en lugar de hacerlo por el lugar en el que está autorizado conforme a su derecho, lo hace por todo el inmueble. Ejerció el derecho más allá de sus límites, y ese ejercicio superior a los límites es el que turba el vínculo de propiedad del titular con la cosa y afecta el libre ejercicio de su derecho.
+\end{example}
+
+\subsection{La turbación como inicio del despojo}
+
+La turbación en muchas ocasiones es un \textbf{despojo en marcha}: lo que comenzó siendo una turbación va aumentando en virulencia. Quien comienza a descargar material en el fondo del terreno del vecino ha pasado un límite, y nada indica que no vaya a continuar. Así aparece, en materia de derechos reales, el despojo y, en materia de violencia, posiblemente la muerte.
+
+\begin{important}
+Progresión: turbación $\rightarrow$ despojo $\rightarrow$ violencia. La negatoria actúa en la primera etapa; no debe esperarse a que la situación escale.
+\end{important}
+
+\subsection{Objeto de la sentencia}
+
+El objeto de la sentencia es \textbf{hacer cesar la turbación}. Si se trata de una servidumbre, se la reduce a sus límites.
+
+\subsection{Legitimados activos}
+
+Son legitimados activos todos los titulares de derechos reales que se ejercen por la posesión, los titulares de derechos reales de servidumbre (cuando se impide el ejercicio) y el acreedor hipotecario.
+
+La legitimación del acreedor hipotecario responde al mismo fundamento que en la reivindicatoria: el objetivo es mantener el valor de la propiedad. Si se trata de una servidumbre de fondo encerrado, en caso de subasta no es lo mismo subastar un fondo con salida a la vía pública que uno sin ella, totalmente inutilizado para la vida humana, animal y comercial.
+
+\section{Acción confesoria (art.\ 2264 CCyCN)}
+
+\subsection{Concepto y carácter residual}
+
+El art.\ 2264 CCyCN establece que la acción confesoria protege la \textbf{plenitud del derecho real}. Procede cuando el titular está impedido de ejercer plenamente los derechos inherentes a su posesión, o cuando se afectan servidumbres activas.
+
+Una guía práctica atribuida al Dr.\ Paños, que se mantuvo aun bajo la regulación del Código de Vélez, indica que cuando el ámbito de la reivindicatoria ---que es preciso--- y el de la negatoria ---que también es preciso--- no son aplicables, todas las demás lesiones corresponden al ámbito de la confesoria. Es, por tanto, un ámbito \textbf{residual}.
+
+\begin{important}
+Criterio práctico: si la lesión no encaja en la reivindicatoria (despojo total) ni en la negatoria (turbación con intención de poseer o ejercicio excesivo), corresponde a la confesoria.
+\end{important}
+
+\subsection{La plenitud en materia de posesión}
+
+La plenitud se afecta cuando otro realiza actos que impiden al titular ejercer libremente sus derechos y poner en acto todas sus facultades. No hay un despojo tan grave ni una turbación en el sentido de la negatoria, pero se impide el ejercicio libre de las facultades.
+
+\begin{example}{Servidumbre activa bloqueada}
+El titular de una servidumbre tiene derecho a pasar, pero no se le permite. Como titular del fondo dominante tiene derecho de paso sobre el fondo sirviente, pero se ha realizado una construcción o una tranquera que se lo impide. Esto es del ámbito de la acción confesoria.
+\end{example}
+
+\begin{example}{Restricciones y límites al dominio por vecindad}
+Las restricciones y límites al dominio relativos a luces, vistas, olores y ruidos son inherentes a la posesión. El titular de dominio cuyo vecino no cumple con estas restricciones (realiza construcciones, ventanas o ruidos pese a no poder hacerlo) queda habilitado para iniciar una acción confesoria contra él para procurar su cese.
+\end{example}
+
+\subsection{Legitimados activos y pasivos}
+
+Son legitimados activos los titulares que ven afectados los derechos inherentes a la posesión, los titulares de servidumbres activas y los acreedores hipotecarios por derecho propio.
+
+La acción se ejerce contra quienes impiden el pleno ejercicio de los derechos reales o de las servidumbres activas.
+
+\section{Comparativa de las tres acciones principales}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}p{0.19\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Supuesto} & \textbf{Acción aplicable} & \textbf{Fundamento} \\
+\midrule
+Un vecino impide usar la servidumbre de paso (pone una tranquera) & Confesoria & Servidumbre activa impedida \\
+Un vecino construye ventanas en una pared medianera violando restricciones & Confesoria & Derechos inherentes a la posesión (vecindad) \\
+Un vecino cruza el fondo como si tuviera una servidumbre que no tiene & Negatoria & Turbación: actúa como si fuera el dueño \\
+Un vecino ocupó el fondo completo & Reivindicatoria & Despojo total de la posesión \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Acción de deslinde}
+
+La acción de deslinde no tiende a restablecer un derecho ni a hacer cesar un ataque, sino a hacer cesar un \textbf{estado de incertidumbre} entre fondos contiguos que no tienen demarcados sus límites.
+
+Existen dos fondos con límites confundidos, imprecisos o inciertos. Quien inicia la acción ---alguno de los titulares o ambos--- procura delimitar, en la superficie de cada inmueble, el límite que se encuentra confundido.
+
+\begin{important}
+Diferencia clave: en el deslinde no hay un ``agresor'' ni un ``atacante''. Hay dos fondos contiguos con límites confundidos. El objeto no es hacer cesar un ataque, sino resolver la incertidumbre sobre los límites.
+\end{important}
+
+En todas las acciones reales, los legitimados activos son siempre titulares de derechos reales: la legitimación activa está en cabeza del titular del derecho real.
+
+\section{Cuadro Cornell: negatoria, confesoria y deslinde}
+
+\begin{cornell}
+\textbf{¿Qué es la turbación y qué acción habilita?} &
+Es la conducta de quien manifiesta una intención de poseer, actuando como si fuera el dueño o como si tuviera un derecho que no tiene, o ejerciendo un derecho más allá de sus límites. Habilita la acción negatoria, que protege la libertad del derecho real. \\[0.6em]
+
+\textbf{¿Qué ordena la sentencia en la negatoria?} &
+Hacer cesar la turbación; si se trata de una servidumbre, reducirla a sus límites. \\[0.6em]
+
+\textbf{¿Por qué actuar tempranamente ante la turbación?} &
+Porque la turbación puede ser un despojo en marcha, que va aumentando en virulencia: turbación, despojo y violencia. \\[0.6em]
+
+\textbf{¿Cuál es la diferencia entre negatoria y confesoria?} &
+Negatoria: el tercero actúa ``como si fuera el dueño'' o ejerce derechos más allá de sus límites (turbación). Confesoria: el tercero impide al titular ejercer plenamente sus derechos inherentes a la posesión o sus servidumbres activas. Según el criterio atribuido al Dr.\ Paños, si la lesión no encaja en la reivindicatoria ni en la negatoria, es ámbito de la confesoria (carácter residual). \\[0.6em]
+
+\textbf{¿Quiénes están legitimados activamente?} &
+En general, los titulares de derechos reales. En la negatoria: titulares de derechos que se ejercen por la posesión, titulares de servidumbre (cuando se impide su ejercicio) y acreedores hipotecarios. En la confesoria: titulares cuyos derechos inherentes a la posesión se ven afectados, titulares de servidumbres activas y acreedores hipotecarios por derecho propio. El acreedor hipotecario actúa para preservar el valor del inmueble que garantiza su crédito. \\[0.6em]
+
+\textbf{¿Para qué sirve la acción de deslinde?} &
+Para hacer cesar un estado de incertidumbre sobre los límites entre dos fondos contiguos cuyos límites están confundidos o imprecisos. No ataca a un agresor: delimita la superficie de cada inmueble. \\
+
+\cornellsummary{La negatoria actúa ante la turbación (intención de poseer o ejercicio más allá de los límites) y busca hacer cesar la turbación; la confesoria, de carácter residual, protege la plenitud del derecho ante el impedimento de su ejercicio, incluidas las servidumbres activas y las restricciones por vecindad; el deslinde no supone un ataque, sino una incertidumbre compartida sobre los límites de fondos contiguos. En todos los casos la legitimación activa corresponde al titular del derecho real y, en supuestos específicos, al acreedor hipotecario.}
+\end{cornell}
+
+% ==================== CAPÍTULO 4 ====================
+\chapter[El juicio de reivindicación de inmuebles]{El juicio de reivindicación de inmuebles}
+
+\section{Complejidad del proceso}
+
+El juicio de reivindicación es aquel mediante el cual se ejerce la acción reivindicatoria. Es un \textbf{juicio petitorio}: la controversia versa sobre derechos. Es posiblemente uno de los juicios de mayor dificultad en el área del derecho, comparable al juicio de simulación o a la acción pauliana en materia de derechos personales, que presentan una gran dificultad probatoria.
+
+Es un caso complejo porque se enfrenta el titular del derecho real contra el poseedor, y la carga de la prueba está íntegramente en cabeza del reivindicante.
+
+\section{La carga probatoria y la ``prueba diabólica''}
+
+En igualdad de condiciones, siempre prevalece el poseedor, aunque se defienda o no, porque juegan en su favor numerosas presunciones: su relación con la cosa se presume posesión, se presume legítima y se presume de buena fe. No tiene que exhibir ni rendir título, porque posee. El reivindicante, en cambio, debe probar todo.
+
+Debe probar su derecho, pero ello no es suficiente: debe probar también que su derecho es mejor que el del poseedor. Y si el poseedor exhibiera algún título, deberá probar además que su derecho es mejor que el que emerge del título exhibido por el poseedor.
+
+\begin{important}
+\textbf{La prueba diabólica.} El reivindicante debe probar: (1) su derecho real; (2) que ese derecho es mejor que el del poseedor; (3) que estuvo en posesión del inmueble y fue despojado. Solo el título no es suficiente.
+\end{important}
+
+Esta dificultad es tal que los franceses ya la llamaban \textbf{prueba diabólica}: no solo debe probarse el derecho mediante el título ---lo más sencillo---, sino también haber estado en posesión del inmueble que hoy se reivindica y del que se fue despojado.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.26\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Carga de la prueba} & \textbf{Reivindicante} & \textbf{Poseedor} \\
+\midrule
+Probar el título & Sí, obligatorio & No: posee y eso lo presume legitimado \\
+Probar posesión anterior & Sí, obligatorio & No necesita probarla \\
+Probar que su derecho es mejor & Sí, obligatorio & No \\
+Presumido de buena fe & No automáticamente & Sí (presunción legal) \\
+Caso especial (Estado reivindicante) & El Estado no prueba (su título emana de la ley) & Debe probar su derecho \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Presunciones del art.\ 2256 CCyCN}
+
+En ayuda del reivindicante frente a la prueba diabólica existe una serie de presunciones, reguladas en el art.\ 2256 CCyCN, que distingue diversos casos posibles según el origen de los títulos que presentan las partes y la situación posesoria.
+
+\subsection{Caso A: ambas partes presentan título del mismo antecesor}
+
+Cuando tanto el reivindicante como el poseedor presentan títulos provenientes de un mismo antecesor, se presume que el derecho está en cabeza de quien primero haya obtenido la tradición. Esta situación es muy difícil que ocurra en la práctica, con los avances producidos en materia registral, por lo que se considera un caso hipotético.
+
+\subsection{Caso B: ambas partes presentan títulos de distintos antecesores}
+
+También prevé el art.\ 2256 el caso en que las dos partes presentan títulos provenientes de distintos antecesores.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte no desarrolla la solución del caso B; la tabla de abajo lo resume como "se analizan los títulos y la posesión")
+
+\subsection{Caso C: el demandado no presenta título}
+
+Cuando el demandado no presenta título existen dos supuestos. Uno es el caso en que el título del reivindicante es \textbf{posterior a la posesión}: en ese caso el título del reivindicante no es suficiente para que prospere la demanda, porque el demandado ya había entrado en posesión de la cosa.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte anuncia dos supuestos pero desarrolla solo uno)
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Situación} & \textbf{Presunción / efecto} \\
+\midrule
+Ambos con título del mismo antecesor & Prevalece quien primero obtuvo la tradición \\
+Ambos con título de distintos antecesores & Se analizan los títulos y la posesión (art.\ 2256 CCyCN) \\
+Demandado sin título; título del reivindicante posterior a la posesión & El título no es suficiente para ganar; prevalece la posesión anterior \\
+Estado como reivindicante & La carga de la prueba se invierte: debe probarla el poseedor \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El Estado como reivindicante}
+
+Cuando el reivindicante es el Estado, como su título emana de la ley, la carga de la prueba la tiene el poseedor. Salvo en ese caso, cuando el reivindicante es cualquier titular de dominio o cualquier particular, toda la carga probatoria recae sobre quien invoca su derecho.
+
+\section{Cuadro Cornell: el juicio de reivindicación}
+
+\begin{cornell}
+\textbf{¿Por qué es tan difícil ganar un juicio reivindicatorio?} &
+Porque es un juicio petitorio en el que el titular del derecho real se enfrenta al poseedor, y la carga de la prueba está íntegramente en cabeza del reivindicante. En igualdad de condiciones prevalece el poseedor, a cuyo favor juegan presunciones: su relación con la cosa se presume posesión, legítima y de buena fe, y no tiene que rendir título. \\[0.6em]
+
+\textbf{¿Qué es la ``prueba diabólica''?} &
+Denominación francesa para la carga probatoria del reivindicante: debe acreditar no solo su título (lo más sencillo), sino también que su derecho es mejor que el del poseedor, que estuvo en posesión del inmueble y que fue despojado. Si el poseedor exhibe título, debe probar además que su derecho es mejor que el que emerge de ese título. \\[0.6em]
+
+\textbf{¿Qué presunciones prevé el art.\ 2256 CCyCN?} &
+Distingue casos según el origen de los títulos. Si ambos tienen título del mismo antecesor, se presume que el derecho está en cabeza de quien primero obtuvo la tradición. Si el demandado no presenta título y el título del reivindicante es posterior a la posesión, ese título no basta para que prospere la demanda. También contempla el caso de títulos de distintos antecesores. \\[0.6em]
+
+\textbf{¿Cuándo se invierte la carga de la prueba?} &
+Solo cuando el reivindicante es el Estado, cuyo título emana de la ley: en ese caso debe probar su derecho el poseedor. Para cualquier particular, la carga recae íntegramente sobre el reivindicante. \\
+
+\cornellsummary{La reivindicación de inmuebles es un juicio petitorio de gran dificultad probatoria: el reivindicante debe probar su derecho, que es mejor que el del poseedor y que estuvo en posesión y fue despojado (prueba diabólica), mientras el poseedor goza de presunciones a su favor. El art.\ 2256 CCyCN prevé presunciones para aliviar esa carga, y solo cuando el reivindicante es el Estado la carga de la prueba recae en el poseedor.}
+\end{cornell}
+
+\end{document}

@@ -1,0 +1,594 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{C\'atedra de Derechos Reales}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{R\'egimen de Protecci\'on de la Vivienda}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{topsep=0.3em,itemsep=0.2em}
+\setlist[enumerate]{topsep=0.3em,itemsep=0.2em}
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced, breakable,
+    title={Definici\'on: #1},
+    fonttitle=\bfseries,
+    colback=blue!3, colframe=blue!50!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{important}{
+    enhanced, breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8, colframe=orange!70!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{example}[1]{
+    enhanced, breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4, colframe=green!40!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{formula}[1]{
+    enhanced, breakable,
+    title={F\'ormula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4, colframe=purple!50!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{exercise}[1]{
+    enhanced, breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5, colframe=gray!60!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{note}{
+    enhanced, breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white, colframe=gray!50,
+    boxrule=0.6pt, arc=2mm
+}
+
+% ==================== CONFIGURACIÓN FINAL ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\begin{document}
+
+% ==================== PORTADA ====================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{1cm}
+{\large \textsc{\universidad}}\\[0.2cm]
+{\large \textsc{\facultad}}\\[0.2cm]
+{\large \carrera}
+
+\vspace{3cm}
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+\rule{0.70\textwidth}{0.5pt}\\[0.5cm]
+{\large Apuntes de estudio}\\[0.5cm]
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+{\large \autor}\\[0.3cm]
+{\large \anio}
+\end{center}
+\vfill
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derechos Reales'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+\end{titlepage}
+
+% ==================== ÍNDICE ====================
+\tableofcontents
+
+% ==================== CONTENIDO ====================
+
+\chapter[Presentaci\'on del tema]{Presentaci\'on del tema}
+
+\section{Alcance de la unidad}
+
+El presente material desarrolla el \textbf{r\'egimen de protecci\'on de la vivienda}, regulado en los art\'iculos 244 a 256 del C\'odigo Civil y Comercial de la Naci\'on (CCyC). Se abordan los siguientes ejes tem\'aticos:
+
+\begin{itemize}
+    \item Fundamentos hist\'oricos y sociales del r\'egimen de protecci\'on de la vivienda.
+    \item La teor\'ia del patrimonio como garant\'ia com\'un de los acreedores (art\'iculo 242 CCyC).
+    \item Antecedentes normativos: de la Ley 14.394 al nuevo r\'egimen del C\'odigo Civil y Comercial.
+    \item Constituci\'on, afectaci\'on y desafectaci\'on del inmueble destinado a vivienda.
+    \item Legitimados, beneficiarios y requisito de habitaci\'on efectiva.
+    \item El principio de subrogaci\'on real.
+    \item Transmisi\'on del inmueble afectado, asentimiento del c\'onyuge o conviviente y grav\'amenes.
+    \item Causas de desafectaci\'on y tensi\'on con el derecho de los acreedores.
+\end{itemize}
+
+\section{Utilidad profesional y personal del r\'egimen}
+
+\textbf{En lo profesional:} quien ejerce la abogac\'ia, la escriban\'ia, la actividad notarial, contable o inmobiliaria necesita conocer este r\'egimen para asesorar correctamente sobre la afectaci\'on de inmuebles, redactar escrituras de constituci\'on, evaluar riesgos crediticios (es decir, si ese inmueble puede servir de garant\'ia o no), representar a acreedores que buscan cobrar una deuda o defender a una familia frente a una ejecuci\'on. Es una herramienta de uso cotidiano en estudios jur\'idicos, escriban\'ias y juzgados de familia y civiles.
+
+\textbf{En lo personal:} el r\'egimen permite proteger la vivienda propia ---o la de la familia--- frente a los avatares de la vida: una quiebra, un despido, una demanda imprevista. Conocerlo significa poder tomar una decisi\'on patrimonial concreta (afectar el inmueble) que puede salvar el techo propio en un momento de crisis econ\'omica personal.
+
+\textbf{Por qu\'e importa:} porque conecta el derecho positivo con un derecho humano fundamental ---el derecho a la vivienda--- y exige comprender la tensi\'on permanente entre proteger al deudor y satisfacer al acreedor, una tensi\'on que atraviesa gran parte del derecho patrimonial.
+
+\section{Hilo conductor de los bloques}
+
+El desarrollo se organiza en cinco bloques que pueden seguirse a trav\'es de un \'unico caso: el de \textbf{Juan}, protagonista de los ejemplos.
+
+\begin{enumerate}
+    \item Por qu\'e el patrimonio entero de Juan ---incluida su casa--- responde por sus deudas (fundamentos).
+    \item C\'omo Juan puede ``poner a salvo'' esa casa afect\'andola al r\'egimen de protecci\'on (constituci\'on de la afectaci\'on).
+    \item A qui\'enes puede proteger Juan con ese acto: su pareja, sus hijos, sus padres (beneficiarios y habitaci\'on).
+    \item Si Juan decide vender esa casa, la protecci\'on no se pierde, sino que ``viaja'' al dinero que recibe a cambio (subrogaci\'on real y transmisi\'on).
+    \item C\'omo y cu\'ando esa protecci\'on puede cancelarse, y qu\'e tensi\'on genera con los acreedores que esperan cobrar (desafectaci\'on y reflexi\'on final).
+\end{enumerate}
+
+La pregunta de fondo que recorre todo el desarrollo es: \textit{¿hasta d\'onde puede el derecho proteger el techo de una persona sin desproteger por completo a quienes le prestaron confianza y dinero?}
+
+% ---------------------------------------------------------------
+\chapter[Fundamentos del r\'egimen]{Fundamentos del r\'egimen de protecci\'on de la vivienda}
+
+\section{El patrimonio como garant\'ia com\'un de las obligaciones}
+
+El r\'egimen de protecci\'on de la vivienda es un r\'egimen de profundo inter\'es social, vinculado con el derecho de todo propietario de afectar el inmueble en el que vive a un r\'egimen especial. Permite proteger ese inmueble de los avatares propios de la vida, que en su devenir genera en cada persona infinidad de obligaciones.
+
+La \textbf{obligaci\'on} es inherente a la vida: trabajar, ejercer la profesi\'on, realizar una actividad comercial, formar una familia, contratar empleados, o incluso da\~nar a otro aun sin intenci\'on de da\~nar, son hechos susceptibles de generar obligaciones de dar, de hacer o de no hacer.
+
+\begin{note}
+As\'i como el riesgo es inherente a la vida, el riesgo es inherente a la obligaci\'on: la finitud humana, los despidos y las pandemias ponen en riesgo el cumplimiento de las obligaciones, generalmente por causas ajenas a la propia voluntad.
+\end{note}
+
+Desde que el mundo occidental decidi\'o prohibir la tortura, los azotes, la esclavitud por deudas y la prisi\'on del deudor incumplidor, se desarroll\'o la \textbf{teor\'ia del patrimonio}: el patrimonio del deudor responde a todas las obligaciones.
+
+\begin{formula}{Art\'iculo 242 CCyC}
+\textit{``Todo el patrimonio del deudor es garant\'ia com\'un de todas sus obligaciones.''}
+\end{formula}
+
+Esto implica que, sin firmar nada en especial, solo por contraer obligaciones, todo el patrimonio queda afectado al cumplimiento de la obligaci\'on. En consecuencia, todo el patrimonio es susceptible de ser \textbf{embargado} y \textbf{ejecutado} (es decir, subastado), incluso el inmueble en el que se vive, porque este es parte de la garant\'ia de todos los acreedores.
+
+\begin{important}
+Como el patrimonio est\'a afectado al cumplimiento de todas las obligaciones, este escenario ha dado lugar a un sistema de protecci\'on especial de la vivienda.
+\end{important}
+
+\section{Origen hist\'orico}
+
+El origen del sistema de protecci\'on de la vivienda se remonta a la d\'ecada de 1930 en los Estados Unidos. El estado de \textbf{Texas} fue el primero en desarrollar un r\'egimen de protecci\'on, porque la debacle econ\'omica y los efectos que la crisis del 30 provoc\'o en las econom\'ias hicieron necesario proteger los inmuebles.
+
+Luego se fueron desarrollando reg\'imenes similares en distintos estados de los Estados Unidos. En la medida en que el derecho a la vivienda se asienta y se corporiza como un derecho humano, el r\'egimen adquiere ra\'igambre internacional.
+
+\section{Antecedentes normativos: de la Ley 14.394 al C\'odigo Civil y Comercial}
+
+Antes del CCyC existi\'o como antecedente el r\'egimen de protecci\'on de la vivienda familiar regulado por la \textbf{Ley 14.394}, de mediados del siglo pasado (1954-1955). Ya desde su nombre se advierte una profunda incidencia en materia de derechos humanos, en tanto el r\'egimen anterior ---vigente hasta poco antes del 1 de agosto de 2015--- protegía la vivienda \'unicamente de aquel que tuviera familia.
+
+Frente a ello se plantean interrogantes sobre la justicia de aquel r\'egimen: ¿aquellos que no tenían familia, no la quisieron o no pudieron tenerla, y aquellos que la perdieron, acaso no tenían derecho a ver protegida su vivienda?
+
+Por ello, el nuevo r\'egimen incorpora toda la normativa en materia de tratados internacionales de derechos humanos, tal como lo expresan los art\'iculos 1 y 2 del CCyC.
+
+\begin{definition}{Ubicaci\'on normativa}
+El r\'egimen de protecci\'on de la vivienda se regula en los art\'iculos 244 a 256 del CCyC, dentro del Cap\'itulo 3, dedicado a los bienes, y protege la vivienda del titular \textbf{tenga o no tenga familia}.
+\end{definition}
+
+\begin{important}
+A diferencia del r\'egimen anterior de la Ley 14.394, que solo amparaba a la familia constituida por matrimonio e hijos, el nuevo r\'egimen protege la vivienda de toda persona, tenga o no tenga familia.
+\end{important}
+
+\subsection*{Cuadro Cornell: fundamentos del r\'egimen}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\textbf{¿Qu\'e es la garant\'ia com\'un de los acreedores?} &
+Conforme el art\'iculo 242 CCyC, todo el patrimonio del deudor ---incluida su vivienda--- responde por todas sus obligaciones, sin necesidad de pactarlo expresamente. \\[0.4em]
+\textbf{¿D\'onde se origina hist\'oricamente la protecci\'on de la vivienda?} &
+En el estado de Texas (Estados Unidos), en la d\'ecada de 1930, como respuesta a la crisis econ\'omica de aquellos a\~nos; luego se extendi\'o a otros estados y adquiri\'o ra\'igambre internacional como derecho humano. \\[0.4em]
+\textbf{¿Qu\'e cambi\'o respecto de la Ley 14.394?} &
+La Ley 14.394 (1954-1955) solo protegía la vivienda de quienes ten\'ian familia constituida. El CCyC (arts. 244 a 256) protege la vivienda de toda persona, tenga o no tenga familia. \\
+\midrule
+\multicolumn{2}{p{0.97\textwidth}}{\textbf{Resumen:} el patrimonio del deudor es garant\'ia com\'un de sus acreedores (art. 242), lo que expone incluso la vivienda; de ah\'i surge, con origen en Texas en la d\'ecada de 1930, un r\'egimen de protecci\'on que el CCyC extiende a toda persona, tenga o no tenga familia.} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+\chapter[Constituci\'on de la afectaci\'on]{Constituci\'on de la afectaci\'on al r\'egimen}
+
+\section{Concepto y efectos}
+
+La \textbf{afectaci\'on} implica que el propietario puede afectar un inmueble que destine a vivienda, ya sea todo el inmueble o una parte, hasta un tope determinado de su valor. A partir de la constituci\'on, el inmueble queda protegido: es \textbf{inembargable e inejecutable} por las deudas que el propietario contraiga posteriormente.
+
+\begin{important}
+La protecci\'on alcanza a todas las deudas de \textbf{causa posterior} a la constituci\'on, no de fecha posterior. Es la fecha de la causa de la obligaci\'on ---no la fecha en que la deuda se torna exigible--- la que determina si el inmueble est\'a o no protegido frente a ese acreedor.
+\end{important}
+
+Es preciso analizar el tema de la causa: el r\'egimen protege de todas aquellas deudas de causa posterior a la constituci\'on, y, a partir de la constituci\'on, la afectaci\'on es \textbf{inoponible a los acreedores de causa anterior}.
+
+\section{Caso pr\'actico: Juan, la locaci\'on comercial y la pandemia}
+
+\begin{example}{Juan, titular de dominio y locatario comercial}
+Juan es titular de dominio de un inmueble en el que vive. Adem\'as, alquila otro inmueble para instalar un comercio; esa locaci\'on la realiza en diciembre del a\~no 2018.
+
+En diciembre del a\~no 2019, Juan toma conocimiento de la existencia de este r\'egimen y afecta su inmueble (el que habita) al r\'egimen de protecci\'on de la vivienda. En ese momento no ten\'ia grandes dificultades econ\'omicas: el comercio funcionaba bien y pagaba regularmente los alquileres.
+
+Posteriormente, los efectos econ\'omicos producidos por una pandemia reducen dr\'asticamente sus ingresos y Juan ya no puede pagar los alquileres.
+\end{example}
+
+\textbf{Primera pregunta:} ¿puede el locador ---acreedor--- embargar y ejecutar el inmueble, siendo que la causa de la contrataci\'on es el contrato celebrado en 2018, aun cuando la deuda sea posterior a marzo de 2020?
+
+\begin{important}
+El locador puede ejecutar el inmueble: el sistema de protecci\'on le es \textbf{inoponible} a este acreedor, porque la causa de la obligaci\'on ---el contrato de locaci\'on--- radica en un tiempo anterior a la constituci\'on de la afectaci\'on. La deuda es de causa anterior, aunque se haga exigible despu\'es.
+\end{important}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte califica la respuesta como ``negativa para el locador'', en el sentido de que la protecci\'on no le es oponible)
+
+\begin{example}{Continuaci\'on del caso: la recuperaci\'on parcial de Juan}
+Juan, con gran esfuerzo, comienza a restablecer su actividad y a regularizar sus obligaciones, entre ellas el alquiler. Pero hay otras deudas que todav\'ia no ha podido cumplir, organizar o pagar.
+\end{example}
+
+\textbf{Segunda pregunta:} ¿pueden los otros acreedores, de causa posterior, ejecutar este inmueble?
+
+No pueden, porque existe la protecci\'on de la vivienda, y ese r\'egimen protege al inmueble de todas las obligaciones de causa posterior.
+
+\begin{important}
+Incluso si un acreedor de causa anterior subasta el inmueble, el \textbf{remanente} de la subasta ---cuando existe una afectaci\'on posterior--- no ingresa libre al patrimonio del deudor, sino que conserva ese ``halo de protecci\'on'' y queda protegido frente a las deudas de causa posterior.
+\end{important}
+
+\subsection{Excepciones a la protecci\'on del remanente}
+
+La protecci\'on no opera frente a:
+
+\begin{enumerate}[label=(\roman*)]
+    \item expensas, cargas y contribuciones;
+    \item obligaciones ya garantizadas con derechos reales de garant\'ia;
+    \item obligaciones que tienen origen en construcciones o mejoras realizadas en la vivienda.
+\end{enumerate}
+
+Para todas las dem\'as obligaciones de causa posterior, el inmueble est\'a protegido a partir de la constituci\'on.
+
+\section{Legitimados y formas de constituci\'on}
+
+Est\'an legitimados para afectar el inmueble:
+
+\begin{itemize}
+    \item el titular de dominio exclusivo;
+    \item los cond\'ominos en su conjunto;
+    \item el titular del derecho de propiedad horizontal o de conjuntos inmobiliarios.
+\end{itemize}
+
+Dentro de las amplias facultades del titular dominial se incluye algo tan importante como esta afectaci\'on: a partir de ella el inmueble queda protegido, pero al mismo tiempo \textbf{sale, de alguna manera, de la vida negocial}. Mientras dure la afectaci\'on el inmueble ser\'a inembargable e inejecutable, lo que tiene consecuencias pr\'acticas en la vida negocial del propietario, en particular respecto de las fianzas y garant\'ias (v\'ease el cap\'itulo final).
+
+\subsection{Formas de constituci\'on}
+
+\begin{itemize}
+    \item \textbf{Por voluntad del propietario}, mediante una instrumentaci\'on con publicidad registral. Si no se hace directamente y se realiza notarialmente, debe hacerse por \textbf{escritura p\'ublica} o por \textbf{testamento}.
+    \item \textbf{Por v\'ia judicial}, solo en el \'ambito del derecho de familia, cuando est\'e comprometido el inter\'es de menores o incapaces, o cuando existan personas con capacidad restringida.
+\end{itemize}
+
+\begin{note}
+En muchas ocasiones el propietario expresa que, mientras \'el est\'e, estar\'a para trabajar y proteger a los suyos, y que si no est\'a... Por ello, muchos clientes deciden la afectaci\'on como una voluntad \textit{post mortem}, mediante testamento.
+\end{note}
+
+\subsection*{Cuadro Cornell: constituci\'on de la afectaci\'on}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\textbf{¿Qu\'e efecto produce la afectaci\'on del inmueble?} &
+El inmueble queda inembargable e inejecutable frente a deudas de causa posterior a la constituci\'on. No protege frente a deudas de causa anterior, aunque se vuelvan exigibles despu\'es. \\[0.4em]
+\textbf{Caso de Juan: ¿puede el locador ejecutar su vivienda?} &
+S\'i: si la deuda de alquiler tiene causa en un contrato anterior a la constituci\'on de la afectaci\'on, el r\'egimen le es inoponible a ese acreedor. Frente a deudas de causa posterior, el inmueble est\'a protegido. \\[0.4em]
+\textbf{¿Qu\'e ocurre con el remanente de una subasta?} &
+Conserva la protecci\'on frente a deudas de causa posterior, salvo expensas, cargas y contribuciones, obligaciones garantizadas con derechos reales de garant\'ia y obligaciones originadas en construcciones o mejoras. \\[0.4em]
+\textbf{¿Qui\'en puede constituir la afectaci\'on y de qu\'e manera?} &
+El titular de dominio exclusivo, los cond\'ominos en conjunto, o el titular de propiedad horizontal o de conjuntos inmobiliarios, mediante escritura p\'ublica, testamento o, en el \'ambito del derecho de familia, v\'ia judicial. \\
+\midrule
+\multicolumn{2}{p{0.97\textwidth}}{\textbf{Resumen:} la afectaci\'on protege el inmueble destinado a vivienda de las deudas de causa posterior a su constituci\'on; es inoponible a acreedores de causa anterior. Se constituye por voluntad (escritura p\'ublica o testamento) o por v\'ia judicial en el \'ambito familiar, y retira el inmueble de la vida negocial.} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+\chapter[Beneficiarios y habitaci\'on]{Beneficiarios y requisito de habitaci\'on}
+
+\section{A qui\'en protege el r\'egimen: los beneficiarios}
+
+La protecci\'on del inmueble destinado a vivienda est\'a vinculada con el derecho a la vivienda. A diferencia del r\'egimen anterior, que solo protegía a la familia constituida ---el matrimonio y los hijos---, hoy, tras el paso hacia el derecho de las familias (el derecho a elegir entre distintos tipos de familias y a protegerse a uno mismo aunque no se tenga familia), es posible afectar el inmueble en el propio beneficio.
+
+\begin{formula}{Art\'iculo 246 CCyC}
+\textit{La afectaci\'on puede realizarse en beneficio del propietario constituyente, de su c\'onyuge, de su conviviente, de sus descendientes o de sus ascendientes, aun cuando no convivan con \'el. Tambi\'en pueden ser beneficiarios los colaterales del propietario hasta el tercer grado.}
+\end{formula}
+
+\begin{itemize}
+    \item La inclusi\'on del \textbf{conviviente} como posible beneficiario era impensada bajo la Ley 14.394, porque el conviviente no formaba parte de las familias reguladas.
+    \item Pueden ser beneficiarios los descendientes y los ascendientes del constituyente, \textbf{aun cuando no convivan} con \'el: se puede afectar un inmueble en protecci\'on de personas que no viven all\'i.
+    \item Pueden designarse como beneficiarios los \textbf{colaterales hasta el tercer grado}, pero en su caso es imprescindible que vivan en el inmueble.
+\end{itemize}
+
+\begin{example}{Juan y la elecci\'on de beneficiarios}
+Juan puede designarse a s\'i mismo como beneficiario, o designar como beneficiarios a su padre y a su nieto, por considerar que son quienes deben estar protegidos, porque tal vez su hijo ya no est\'e. La elecci\'on es discrecional: quien decide afectar o no el inmueble, y en beneficio de qui\'enes, es el propietario.
+\end{example}
+
+\begin{important}
+El requisito de la convivencia se exige \'unicamente para el constituyente y para los colaterales. Respecto de ascendientes o descendientes, la convivencia no es requisito.
+\end{important}
+
+\section{Requisito de habitaci\'on efectiva}
+
+\begin{formula}{Art\'iculo 247 CCyC}
+\textit{Si la afectaci\'on es peticionada por el titular registral, se requiere que al menos uno de los beneficiarios habite el inmueble. En todos los casos, para que los efectos subsistan, basta que uno de ellos permanezca habitando all\'i.}
+\end{formula}
+
+\begin{important}
+Mientras al menos uno de los beneficiarios contin\'ue viviendo en el inmueble, la protecci\'on registral subsiste, aun cuando los dem\'as beneficiarios no habiten all\'i.
+\end{important}
+
+\subsection*{Cuadro Cornell: beneficiarios y habitaci\'on}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\textbf{¿Qui\'enes pueden ser beneficiarios?} &
+El propio constituyente, su c\'onyuge o conviviente, sus descendientes, sus ascendientes (aunque no convivan) y sus colaterales hasta el tercer grado (estos \'ultimos, solo si conviven en el inmueble). \\[0.4em]
+\textbf{¿Es obligatorio habitar el inmueble?} &
+S\'i, para el constituyente y los colaterales; para ascendientes y descendientes no es requisito. Basta que al menos un beneficiario contin\'ue habitando el inmueble para que la protecci\'on subsista (art. 247). \\
+\midrule
+\multicolumn{2}{p{0.97\textwidth}}{\textbf{Resumen:} el r\'egimen protege a toda persona, con o sin familia; el propietario elige discrecionalmente a los beneficiarios (art. 246) y la protecci\'on subsiste mientras al menos uno de ellos habite el inmueble (art. 247).} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+\chapter[Subrogaci\'on real y transmisi\'on]{Subrogaci\'on real, transmisi\'on y asentimiento}
+
+\section{El principio de subrogaci\'on real}
+
+\begin{definition}{Subrogaci\'on real}
+Implica que una cosa, por decisi\'on de la ley, ocupa el lugar jur\'idico que corresponde a otra. En caso de que el inmueble se venda, el precio ocupa su lugar y el precio conserva la protecci\'on.
+\end{definition}
+
+Este principio es muy importante: si Juan ha afectado el inmueble y lo enajena, necesita desafectarlo; en el momento en que lo desafecta, el embargo podr\'ia ingresar. Si lo desafecta y simult\'aneamente lo enajena, el precio percibido ingresar\'ia a su patrimonio y, de no existir la subrogaci\'on real, ser\'ia inmediata e instant\'aneamente embargable y ejecutable.
+
+\begin{important}
+La afectaci\'on de la vivienda que se enajena se transmite a la vivienda que se adquiere, o a los importes que la sustituyen, ya sea en concepto de indemnizaci\'on o de precio.
+\end{important}
+
+\begin{example}{El seguro de incendio}
+Si el inmueble se incendia y se cobra un seguro de incendio, ese dinero ingresar\'ia al patrimonio y ser\'ia garant\'ia com\'un de los acreedores de no existir el principio de subrogaci\'on real, que resulta sumamente importante para el desarrollo de esta protecci\'on a lo largo de la vida del propietario que la ha afectado.
+\end{example}
+
+\section{Transmisi\'on del inmueble afectado y asentimiento}
+
+La transmisi\'on del inmueble afectado puede realizarse por acto \textbf{oneroso} o por acto \textbf{gratuito}. Cuando ha sido afectado en beneficio del c\'onyuge o del conviviente ---que viva en una uni\'on convivencial registrada--- se requiere el \textbf{asentimiento} de este.
+
+Distinci\'on terminol\'ogica central: se requiere \textbf{asentimiento, no consentimiento}, porque el inmueble es de Juan y, si es de Juan, \'el tiene la disposici\'on material y jur\'idica del inmueble. En protecci\'on de otros sistemas de derecho, como el de la familia ---aunque este no es el r\'egimen de protecci\'on de la vivienda familiar---, existen otras normativas que protegen a la familia.
+
+\begin{example}{Juan, propietario exclusivo, y el asentimiento del c\'onyuge}
+Si Juan pretende vender el inmueble del que es propietario exclusivo, perpetuo y en un cien por cien propio, y design\'o como beneficiarios a su c\'onyuge o conviviente, requerir\'a el asentimiento de este. Si el asentimiento no se otorga, lo que la ley protege es la protecci\'on de la vivienda, no el abuso del derecho de quien, por otras cuestiones, pretenda impedir la enajenaci\'on. En ese caso ser\'a necesaria la petici\'on judicial, y el juez evaluar\'a la razonabilidad o no de ese asentimiento remiso.
+\end{example}
+
+\section{Grav\'amenes, frutos y beneficios del r\'egimen}
+
+El inmueble puede gravarse con \textbf{derecho real de hipoteca}: se desafecta el r\'egimen al solo efecto de realizar el grav\'amen hipotecario ---al que, por supuesto, le es inoponible la protecci\'on---. Tambi\'en para este grav\'amen se requiere el asentimiento.
+
+Respecto de los \textbf{frutos} del inmueble afectado, son embargables los frutos civiles, salvo que sean indispensables para las necesidades de los beneficiarios.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.34\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Beneficio o efecto} \\
+\midrule
+Impuesto a la transmisi\'on gratuita de bienes & Exenci\'on luego del fallecimiento del causante \\
+Honorarios profesionales & Reducidos, tanto para la constituci\'on como para la sucesi\'on \\
+Concursos y quiebras & Se manejan siempre sobre valuaciones fiscales cuando el inmueble est\'a afectado al r\'egimen \\
+Frutos civiles & Embargables, salvo que sean indispensables para las necesidades de los beneficiarios \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Cuadro Cornell: subrogaci\'on real y transmisi\'on}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\textbf{¿Qu\'e es el principio de subrogaci\'on real?} &
+Si el inmueble se vende, el precio recibido ---o la indemnizaci\'on o el cobro de un seguro--- ocupa el lugar jur\'idico del inmueble y conserva la protecci\'on, evitando que ese dinero quede inmediatamente embargable. \\[0.4em]
+\textbf{¿Se requiere autorizaci\'on para vender el inmueble afectado?} &
+Si el c\'onyuge o conviviente fue designado beneficiario, se requiere su asentimiento (no consentimiento, porque el bien sigue siendo del propietario). Si se niega, corresponde la v\'ia judicial, donde el juez eval\'ua la razonabilidad del asentimiento remiso. \\[0.4em]
+\textbf{¿Puede gravarse el inmueble con hipoteca?} &
+S\'i, pero se desafecta el r\'egimen al solo efecto de constituir el grav\'amen, al cual la protecci\'on le ser\'a inoponible; tambi\'en aqu\'i se requiere el asentimiento. \\
+\midrule
+\multicolumn{2}{p{0.97\textwidth}}{\textbf{Resumen:} la protecci\'on se traslada al precio, la indemnizaci\'on o la nueva vivienda (subrogaci\'on real). La transmisi\'on, onerosa o gratuita, y la hipoteca requieren el asentimiento del c\'onyuge o conviviente beneficiario; los frutos civiles son embargables salvo que sean indispensables.} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+\chapter[Desafectaci\'on y reflexi\'on final]{Desafectaci\'on y reflexi\'on final}
+
+\section{Causas de desafectaci\'on y cancelaci\'on de la inscripci\'on}
+
+La desafectaci\'on y la cancelaci\'on de la inscripci\'on est\'an reguladas en el art\'iculo 255. Por un lado se desafecta y, por otro, se cancela la inscripci\'on en el registro, porque tanto la afectaci\'on como la cancelaci\'on deben inscribirse para su oponibilidad a terceros.
+
+\begin{important}
+En estos casos la inscripci\'on es \textbf{constitutiva}: solo cuando el tercero toma conocimiento de que el inmueble est\'a afectado al r\'egimen de protecci\'on, esa afectaci\'on le es oponible.
+\end{important}
+
+\begin{formula}{Art\'iculo 255 CCyC}
+La desafectaci\'on procede \'unicamente en los siguientes casos:
+\begin{enumerate}
+    \item A solicitud del constituyente, con el asentimiento del c\'onyuge o conviviente de una uni\'on convivencial inscripta, en el caso de que el propietario haya indicado como beneficiarios a estos.
+    \item A solicitud de la mayor\'ia de los herederos, cuando el r\'egimen subsiste tras el fallecimiento del propietario porque este lo afect\'o en protecci\'on de sus hijos; mientras estos habiten el inmueble el r\'egimen subsiste, salvo que exista una solicitud de la mayor\'ia de los cond\'ominos, computada seg\'un sus partes indivisas.
+    \item A pedido de cualquiera de los interesados o de oficio, si fallece el constituyente y todos los beneficiarios ya no viven en el inmueble (en el caso de ascendientes, descendientes o colaterales, donde el requisito de habitar es diferente).
+    \item En caso de expropiaci\'on, reivindicaci\'on o ejecuci\'on autorizada por la propia normativa ---por ejemplo, el caso de las expensas---, supuestos en los que el r\'egimen de afectaci\'on jam\'as es oponible.
+\end{enumerate}
+\end{formula}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (inciso 2: la relación entre "mayoría de herederos" y "mayoría de condóminos" no está desarrollada; inciso 3: la referencia al requisito de habitar remite a lo explicado sobre habitación efectiva)
+
+\begin{note}
+Si entre los beneficiarios existe un menor o un hijo con capacidad restringida, se trata de un caso concreto que deber\'a resolverse judicialmente.
+\end{note}
+
+\subsection{Inmueble rural}
+
+\begin{formula}{Art\'iculo 256 CCyC}
+Puede afectarse un inmueble rural cuando no exceda la unidad econ\'omica, seg\'un lo que sea previsible o de acuerdo con la normativa local, porque el destino del r\'egimen es siempre habitacional.
+\end{formula}
+
+\section{Tensi\'on con el derecho de los acreedores}
+
+La protecci\'on retira el inmueble del conjunto de bienes afectados a la garant\'ia de todos los acreedores quirografarios, lo que disminuye esa garant\'ia. Surge as\'i la pregunta: ¿no tienen estos acreedores derecho a cobrar? La respuesta es que \textbf{s\'i lo tienen}, pero el ordenamiento ha tenido que decidir: no ha sido posible proteger a todos. Se trata de un desaf\'io del derecho, que impone decidir; y esta decisi\'on, adoptada en todo el derecho occidental, se refleja en figuras semejantes en los distintos sistemas de derecho comparado.
+
+La afectaci\'on tiene \textbf{publicidad registral}, de modo que el acreedor diligente no ser\'a sorprendido en su buena fe: antes de otorgar un cr\'edito obtendr\'a el informe registral, que dar\'a cuenta de que el inmueble est\'a afectado y, por lo tanto, es inembargable e inejecutable.
+
+\begin{example}{La vivienda afectada como garant\'ia}
+Cuando Juan quiera dar una garant\'ia o una fianza y demuestre que tiene la propiedad de un inmueble, si ese inmueble es inembargable e inejecutable no ser\'a apto para afianzar ni una obligaci\'on propia ni una obligaci\'on de terceros. Algunos acreedores de fecha posterior pueden verse afectados al intentar el embargo y la ejecuci\'on y constatar que el inmueble est\'a afectado al r\'egimen.
+\end{example}
+
+\begin{important}
+El r\'egimen de protecci\'on de la vivienda est\'a en tensi\'on con el derecho de los acreedores de causa posterior a la constituci\'on. En esta disyuntiva se ha optado por la protecci\'on de la vivienda.
+\end{important}
+
+\section{Reflexi\'on final}
+
+La vivienda propia, el hogar del propio acreedor, tambi\'en est\'a protegida por este r\'egimen frente a sus otros acreedores, porque la vivienda es el h\'abitat imprescindible para el desarrollo de la vida. Por eso la regulaci\'on no ha mirado solamente al propietario, sino al inter\'es de toda la sociedad: este instituto protege la vivienda de todos. El acceso a la vivienda de todos es, posiblemente, el mayor desaf\'io que se deba enfrentar en el futuro para el desarrollo de la humanidad, con la convicci\'on de que es uno de los caminos hacia una vida m\'as digna y m\'as humana.
+
+\subsection*{Cuadro Cornell: desafectaci\'on y tensi\'on con los acreedores}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\textbf{¿En qu\'e casos procede la desafectaci\'on?} &
+A solicitud del constituyente (con asentimiento si corresponde); a solicitud de la mayor\'ia de los herederos; de oficio o a pedido de interesado si fallece el constituyente y los beneficiarios ya no habitan el inmueble; o en casos de expropiaci\'on, reivindicaci\'on o ejecuci\'on autorizada (art. 255). \\[0.4em]
+\textbf{¿Por qu\'e es constitutiva la inscripci\'on?} &
+Porque solo cuando el tercero toma conocimiento registral de la afectaci\'on, esta le es oponible. \\[0.4em]
+\textbf{¿Qu\'e tensi\'on genera este r\'egimen?} &
+Tensiona la protecci\'on del deudor con el derecho de cobro de los acreedores de causa posterior. El ordenamiento opt\'o por priorizar la protecci\'on de la vivienda, atendiendo al inter\'es social y al derecho a una vivienda digna, con publicidad registral que resguarda la buena fe del acreedor diligente. \\
+\midrule
+\multicolumn{2}{p{0.97\textwidth}}{\textbf{Resumen:} la desafectaci\'on y la cancelaci\'on se inscriben para ser oponibles y proceden solo en los casos enumerados por el art. 255. El r\'egimen prioriza la vivienda sobre el cobro de los acreedores de causa posterior, resguardando su buena fe mediante la publicidad registral.} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+\chapter[S\'intesis final]{S\'intesis final}
+
+El r\'egimen de protecci\'on de la vivienda, regulado en los art\'iculos 244 a 256 del CCyC, es la respuesta del derecho argentino a una tensi\'on estructural: todo el patrimonio del deudor ---incluida su casa--- es garant\'ia com\'un de sus acreedores (art\'iculo 242), pero el acceso a una vivienda digna es, a la vez, un derecho humano reconocido internacionalmente.
+
+A trav\'es de la afectaci\'on ---constituida por escritura p\'ublica, testamento o, excepcionalmente, v\'ia judicial en el \'ambito de familia--- el propietario puede sustraer su inmueble de la ejecuci\'on por deudas de causa posterior, en beneficio propio, de su c\'onyuge o conviviente, de sus ascendientes o descendientes, o de sus colaterales que convivan con \'el.
+
+Esta protecci\'on no es absoluta ni eterna: cede frente a deudas de causa anterior, frente a expensas y obligaciones garantizadas con derechos reales, y puede desafectarse por voluntad del constituyente, de sus herederos, o por disposici\'on legal en casos de expropiaci\'on o ejecuci\'on autorizada. El principio de subrogaci\'on real garantiza que la protecci\'on no se pierda si el inmueble se vende o se indemniza, traslad\'andose al precio o a la suma sustitutiva.
+
+En definitiva, el r\'egimen exige sostener un equilibrio: proteger el techo de las personas sin desconocer por completo el derecho de quienes confiaron y prestaron. El derecho no siempre puede proteger a todos por igual, y en esa disyuntiva ha optado ---con publicidad registral que resguarda la buena fe del acreedor diligente--- por priorizar el derecho a la vivienda como camino hacia una vida m\'as digna.
+
+\end{document}

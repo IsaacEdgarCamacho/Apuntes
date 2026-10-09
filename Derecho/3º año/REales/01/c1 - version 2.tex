@@ -1,0 +1,756 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\carrera}{Derecho Civil --- C\'atedra de Derechos Reales}
+\newcommand{\materia}{Derecho Civil --- Derechos Reales}
+\newcommand{\titulo}{Introducci\'on a la Teor\'ia General de los Derechos Reales}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ==================== CONFIGURACI\'ON ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% Los cap\'itulos se presentan como ``M\'odulo I, II, III''
+\addto\captionsspanish{\renewcommand{\chaptername}{M\'odulo}}
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definici\'on: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={F\'ormula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ==================== CONFIGURACI\'ON FINAL ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\renewcommand{\arraystretch}{1.25}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== DOCUMENTO ====================
+\begin{document}
+
+% ==================== PORTADA ====================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+{\small \textit{Comprender es el primer paso para convertir el estudio en conocimiento.}}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.3cm}
+
+{\normalsize Clase 1 --- M\'odulos I, II y III \\[0.2em]
+Docente: Fari\~na \\[0.2em]
+Marco normativo: C\'odigo Civil y Comercial de la Naci\'on Argentina}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Civil --- Derechos Reales'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ==================== \'INDICE ====================
+\tableofcontents
+
+% ==================== M\'ODULO I ====================
+\chapter[Derechos reales y personales]{Distinci\'on entre Derechos Reales y Personales}
+
+\section{Teor\'ia Cl\'asica del V\'inculo}
+
+El \textbf{C\'odigo Civil y Comercial} vigente adopta la distinci\'on entre \textbf{derechos reales} y \textbf{derechos personales}, conocida como \textbf{Teor\'ia Cl\'asica del V\'inculo}, que es la teor\'ia aplicable en la mayor\'ia de los sistemas occidentales de derecho. En el marco de esta teor\'ia, los derechos personales ---tambi\'en llamados \textbf{derechos obligacionales}--- y los derechos reales ---tambi\'en llamados \textbf{derechos de las cosas}--- presentan una profunda distinci\'on y reciben una regulaci\'on espec\'ifica cada uno.
+
+La teor\'ia distingue los derechos seg\'un el v\'inculo que establecen:
+
+\begin{itemize}
+    \item \textbf{Derechos personales:} v\'inculo entre personas.
+    \item \textbf{Derechos reales:} v\'inculo entre una persona y una cosa.
+\end{itemize}
+
+Ambas categor\'ias integran el patrimonio. El C\'odigo adopta esta teor\'ia porque organiza el sistema patrimonial occidental moderno y permite dar respuestas claras acerca de qui\'en puede exigir qu\'e y sobre qu\'e objeto.
+
+\section{El Derecho Personal (Obligacional)}
+
+\begin{definition}{Obligaci\'on (art. 724 CCyC)}
+\textit{``La obligaci\'on es una relaci\'on jur\'idica en virtud de la cual el acreedor tiene el derecho de exigir del deudor una prestaci\'on destinada a satisfacer un inter\'es l\'icito y, ante el incumplimiento, obtener forzadamente la satisfacci\'on de dicho inter\'es.''}
+\end{definition}
+
+Los derechos personales presentan \textbf{tres elementos esenciales}:
+
+\begin{itemize}
+    \item \textbf{Sujeto activo o acreedor:} quien puede exigir el cumplimiento.
+    \item \textbf{Sujeto pasivo o deudor:} quien debe cumplir la prestaci\'on.
+    \item \textbf{Prestaci\'on:} la conducta debida, que puede ser de dar, de hacer o de no hacer.
+\end{itemize}
+
+El v\'inculo se representa visualmente como una \textbf{ola o v\'inculo circular} que encierra dentro de s\'i al acreedor, al deudor y a la prestaci\'on. Este v\'inculo es \textbf{cerrado}, lo que explica su car\'acter relativo.
+
+\subsection{Caracteres propios de los derechos personales}
+
+\begin{itemize}
+    \item \textbf{Relativos:} el v\'inculo existe solo entre las partes. Un acreedor solo puede exigir el cumplimiento a su propio deudor.
+    \item \textbf{Autonom\'ia de la voluntad:} los particulares pueden crear, modificar y extinguir obligaciones. La ley es supletoria.
+    \item \textbf{Objeto:} una conducta humana (dar, hacer, no hacer).
+    \item \textbf{Fuente:} nacen de hechos o actos jur\'idicos, esencialmente el contrato, y tambi\'en de la obligaci\'on de no da\~nar (responsabilidad civil).
+    \item \textbf{Extinci\'on:} se extinguen por cumplimiento, por prescripci\'on liberatoria u otras formas de extinci\'on de las obligaciones. Son siempre temporales.
+    \item \textbf{No se adquieren} por el mero transcurso del tiempo.
+\end{itemize}
+
+\begin{example}{Obligaci\'on alimentaria}
+El hijo (acreedor alimentario) puede exigir el cumplimiento de la prestaci\'on alimentaria exclusivamente a quienes la ley identifica como obligados (padres, abuelos, etc.). No puede exig\'irsela a un tercero.
+\end{example}
+
+\begin{example}{Cr\'edito}
+El acreedor de un cr\'edito solo puede reclamar el pago a su deudor, no a cualquier persona.
+\end{example}
+
+\begin{example}{Pr\'estamo de dinero (explicaci\'on con el m\'etodo Feynman)}
+Si se prestan \$1.000 a un amigo, se crea un derecho personal: el prestamista (acreedor) puede exigir a su amigo (deudor) que devuelva el dinero (prestaci\'on: dar). Pero solo puede reclam\'arselo a \'el, no al vecino de su amigo. Eso es lo que significa que el derecho personal sea \textbf{relativo}: solo une a dos personas determinadas. Si el deudor no paga y el acreedor no reclama durante a\~nos, el derecho se extingue por prescripci\'on: el tiempo juega en contra del acreedor.
+
+\textbf{Clave:} derecho personal = relaci\'on entre personas = relativo = temporal.
+\end{example}
+
+\section{El Derecho Real}
+
+\begin{definition}{Derecho real (art. 1882 CCyC)}
+\textit{``El derecho real es el poder jur\'idico de estructura legal que se ejerce directamente sobre su objeto en forma aut\'onoma y que le atribuye a su titular las facultades de persecuci\'on y preferencia, y las dem\'as previstas en este c\'odigo.''}
+\end{definition}
+
+El derecho real implica un v\'inculo \textbf{directo e inmediato} entre el \textbf{titular del derecho} y la \textbf{cosa}. Ese v\'inculo es tan intenso que le permite al titular:
+
+\begin{itemize}
+    \item \textbf{Disponer de la cosa u obtener alg\'un beneficio de ella} en forma directa, sin intermediarios.
+    \item \textbf{Perseguir la cosa} en manos de quien se encuentre.
+    \item \textbf{Ser preferido} a cualquier otro que pudiera tener respecto de ella alg\'un derecho real o personal de fecha posterior.
+\end{itemize}
+
+% TODO: contenido incompleto o ambiguo en las notas originales.
+% La autoevaluaci\'on original menciona ``los 2 elementos del derecho real (art. 1882 CCyC)'' pero el apunte no los enumera expl\'icitamente.
+
+\subsection{Caracteres propios de los derechos reales}
+
+\begin{itemize}
+    \item \textbf{Absolutos / erga omnes:} son oponibles a toda la comunidad. Todos deben respetar el derecho del titular.
+    \item \textbf{Estructura legal / orden p\'ublico:} son creados y regulados exclusivamente por la ley. Los particulares no pueden crear ni modificar derechos reales. Esto significa que su regulaci\'on no puede ser modificada por acuerdo de partes y que cualquier acto contrario es nulo.
+    \item \textbf{Objeto:} la cosa (bien material). La relaci\'on es directa entre el titular y la cosa.
+    \item \textbf{Sujeto pasivo:} toda la comunidad, que tiene una obligaci\'on general de no perturbar al titular.
+    \item \textbf{Facultades:} persecuci\'on (\textit{ius persequendi}) y preferencia.
+    \item \textbf{Adquisici\'on:} t\'itulo suficiente m\'as modo (tradici\'on), o prescripci\'on adquisitiva.
+    \item \textbf{Duraci\'on:} pueden ser perpetuos (como el dominio) u otros temporales.
+\end{itemize}
+
+\begin{example}{Compra de una casa (explicaci\'on con el m\'etodo Feynman)}
+Quien compra una casa adquiere el dominio, que es un derecho real. Su relaci\'on no es con una persona espec\'ifica, sino directamente con la casa. Es due\~no: no necesita pedir permiso a nadie para usarla, disfrutarla o venderla.
+
+Si alguien la ocupa ilegalmente y la vende a un tercero, el titular puede perseguirla. Ese tercero deber\'a devolverla, porque el derecho real ``sigue'' a la casa sin importar en qu\'e manos se encuentre. Eso es el \textit{ius persequendi}. Adem\'as, todo el mundo debe respetar la propiedad, no solo una persona: por eso se dice que es \textit{erga omnes} (contra todos).
+
+\textbf{Clave:} derecho real = relaci\'on con la cosa = absoluto = erga omnes = persecuci\'on.
+\end{example}
+
+\section{Cuadro comparativo: derechos reales y personales}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.17\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Caracter\'istica} & \textbf{Derecho personal} & \textbf{Derecho real} \\
+\midrule
+\textbf{V\'inculo} & Entre personas (acreedor--deudor) & Entre persona y cosa \\
+\textbf{Oponibilidad} & Relativo (solo entre partes) & Absoluto (erga omnes) \\
+\textbf{Objeto} & Conducta humana (dar/hacer/no hacer) & Cosa material \\
+\textbf{Sujeto pasivo} & El deudor determinado & Toda la comunidad \\
+\textbf{Regulaci\'on} & Autonom\'ia de la voluntad & Orden p\'ublico / ley \\
+\textbf{Duraci\'on} & Siempre temporal & Pueden ser perpetuos \\
+\textbf{Extinci\'on} & Cumplimiento, prescripci\'on liberatoria & Prescripci\'on adquisitiva, cumplimiento de plazo \\
+\textbf{Ejemplo} & Contrato de compraventa (obligaci\'on de entregar) & Dominio sobre un inmueble \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell del M\'odulo I}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qu\'e es la Teor\'ia Cl\'asica del V\'inculo y por qu\'e la adopta el C\'odigo?} &
+Es la teor\'ia que distingue los derechos seg\'un si el v\'inculo es entre personas (derecho personal) o entre una persona y una cosa (derecho real). El C\'odigo Civil y Comercial la adopta porque organiza el sistema patrimonial occidental moderno y permite dar respuestas claras sobre qui\'en puede exigir qu\'e y sobre qu\'e objeto. Ambos tipos de derechos integran el patrimonio. \\[0.6em]
+
+\textbf{¿Qu\'e es un derecho personal y cu\'ales son sus elementos?} &
+Es el v\'inculo jur\'idico entre un acreedor y un deudor por el cual el primero puede exigir al segundo una prestaci\'on (dar, hacer o no hacer), seg\'un el art. 724 CCyC. Sus tres elementos son: sujeto activo (acreedor), sujeto pasivo (deudor) y prestaci\'on. Es relativo: solo vincula a las partes. \\[0.6em]
+
+\textbf{¿Qu\'e es un derecho real y qu\'e lo diferencia del personal?} &
+Es el poder jur\'idico de estructura legal que se ejerce directamente sobre su objeto en forma aut\'onoma (art. 1882 CCyC). A diferencia del personal, no hay intermediario humano: la relaci\'on es persona--cosa, y es oponible a toda la comunidad (absoluto, \textit{erga omnes}), no solo a una persona determinada. \\[0.6em]
+
+\textbf{¿Por qu\'e los derechos personales son ``relativos'' y los reales ``absolutos''?} &
+Los personales son relativos porque solo vinculan al acreedor con su deudor espec\'ifico. Los reales son absolutos porque el titular puede hacer valer su derecho frente a cualquier persona (\textit{erga omnes}). \\[0.6em]
+
+\textbf{¿Qu\'e significa que los derechos reales sean de ``orden p\'ublico''?} &
+Que su regulaci\'on no puede ser modificada por acuerdo de partes. La ley es la \'unica fuente que puede crear derechos reales y definir su contenido. Cualquier acto contrario es nulo. \\[0.6em]
+
+\textbf{¿Puede una persona crear un nuevo derecho real por contrato?} &
+No. Los derechos reales son de estructura legal: solo la ley puede crearlos (art. 1884 CCyC). Si los particulares intentaran crear uno nuevo, el acto ser\'ia nulo. \\[0.6em]
+
+\textbf{¿Puede un acreedor exigir el cumplimiento de una deuda a cualquier persona?} &
+No. El derecho personal es relativo: el acreedor solo puede exigir la prestaci\'on a su deudor determinado. \\[0.6em]
+
+\textbf{¿Qu\'e significa que un derecho real sea ``erga omnes''?} &
+Que es oponible a todo el mundo. Todos los miembros de la comunidad tienen el deber gen\'erico de respetar el derecho real del titular, no solo una persona determinada. \\
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:}
+La Teor\'ia Cl\'asica del V\'inculo distingue el derecho personal (relaci\'on entre sujetos determinados, relativo, de prestaci\'on dar/hacer/no hacer, temporal, regido por la autonom\'ia de la voluntad) del derecho real (relaci\'on persona--cosa, absoluto o \textit{erga omnes}, con facultades de persecuci\'on y preferencia, regulado exclusivamente por la ley). Esta distinci\'on es la base para comprender los derechos reales.
+} \\
+\bottomrule
+\end{longtable}
+
+% ==================== M\'ODULO II ====================
+\chapter[Regulaci\'on en el CCyC]{Regulaci\'on en el C\'odigo Civil y Comercial}
+
+\section{Estructura del C\'odigo Civil y Comercial}
+
+El \textbf{C\'odigo Civil y Comercial} tiene una \textbf{metodolog\'ia novedosa} respecto del C\'odigo de V\'elez S\'arsfield. Su estructura es la siguiente:
+
+\begin{itemize}
+    \item \textbf{T\'itulo Preliminar:} principios rectores de todo el ordenamiento (buena fe, abuso del derecho, abuso de posici\'on dominante, orden p\'ublico, derechos humanos como fuente e interpretaci\'on).
+    \item \textbf{Libro I:} Parte general (personas, capacidad).
+    \item \textbf{Libro II:} Relaciones de familia.
+    \item \textbf{Libro III:} Derechos personales.
+    \item \textbf{Libro IV:} Derechos reales (arts. 1882 a 2276).
+    \item \textbf{Libro V:} Transmisi\'on de derechos por causa de muerte.
+    \item \textbf{Libro VI:} Disposiciones comunes a derechos reales y personales.
+\end{itemize}
+
+\begin{important}
+El estudio de los derechos reales excede el Libro IV. Deben integrarse el T\'itulo Preliminar, el Libro VI (disposiciones comunes) y el Libro IV espec\'ificamente.
+\end{important}
+
+\section{Art\'iculo 15 --- Titularidad de los bienes}
+
+\begin{quote}
+\textit{``Las personas son titulares de los derechos individuales sobre los bienes que integran su patrimonio.''}
+\end{quote}
+
+El \textbf{patrimonio} de una persona est\'a integrado por \textbf{bienes}, y los bienes comprenden tanto \textbf{derechos personales} como \textbf{derechos reales} y \textbf{cosas materiales}. Ambas categor\'ias conviven en el patrimonio de las personas.
+
+\section{Art\'iculo 16 --- Bienes y cosas}
+
+\begin{quote}
+\textit{``Los derechos pueden recaer sobre bienes susceptibles de valor econ\'omico. Cuando son materiales se llaman cosas. Las disposiciones sobre las cosas se aplican a la energ\'ia y a las fuerzas naturales susceptibles de ser puestas al servicio del hombre.''}
+\end{quote}
+
+Este art\'iculo es \textbf{esencial para comprender el objeto de los derechos reales}: los bienes materiales se llaman \textbf{cosas}, y la energ\'ia y las fuerzas naturales se asimilan a las cosas. El objeto de los derechos reales es la cosa.
+
+Seg\'un el apunte, los \textbf{bienes} son los derechos susceptibles de valor econ\'omico. Cuando esos bienes son materiales (tangibles), se llaman \textbf{cosas}. Toda cosa es un bien, pero no todo bien es una cosa: por ejemplo, un cr\'edito es un bien pero no una cosa.
+
+\section{Art\'iculo 17 --- Derechos sobre el cuerpo humano}
+
+% TODO: contenido incompleto o ambiguo en las notas originales.
+% El texto del art. 17 transcripto en el apunte habla de ``valor comercial'' y agrega el valor ``social'';
+% las preguntas de repaso hablan de ``valor econ\'omico''. Se conservan ambas formulaciones.
+
+\begin{quote}
+\textit{Los derechos sobre el cuerpo humano o sus partes no tienen valor comercial, sino afectivo, cient\'ifico, terap\'eutico, humanitario o social. Su disposici\'on est\'a sujeta a lo dispuesto en las leyes especiales (ej.: genes, \'organos).}
+\end{quote}
+
+Consecuencia directa: \textbf{el cuerpo humano no integra el objeto de los derechos reales}, por carecer de valor econ\'omico. El objeto de los derechos reales requiere ser una cosa con valor econ\'omico.
+
+\section{Cuadro Cornell del M\'odulo II}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿C\'omo est\'a organizado el C\'odigo Civil y Comercial respecto de estos derechos?} &
+Tiene un T\'itulo Preliminar con principios generales y seis libros. El Libro III trata los derechos personales, el Libro IV los derechos reales y el Libro VI contiene disposiciones comunes a ambos. Estudiar derechos reales requiere integrar todos esos libros, no solo el IV. \\[0.6em]
+
+\textbf{¿D\'onde est\'an regulados los derechos reales en el CCyC y qu\'e debe estudiarse?} &
+Principalmente en el Libro IV (arts. 1882 a 2276), pero tambi\'en en el T\'itulo Preliminar (principios generales) y en el Libro VI (disposiciones comunes con derechos personales). El estudio no se limita al Libro IV. \\[0.6em]
+
+\textbf{¿Qu\'e dice el art\'iculo 16 y por qu\'e es clave para los derechos reales?} &
+Dice que los bienes materiales se llaman ``cosas'', y que las disposiciones sobre las cosas se aplican a la energ\'ia y a las fuerzas naturales susceptibles de ser puestas al servicio del hombre. Es esencial porque el objeto de los derechos reales son las cosas materiales: sin entender qu\'e es una ``cosa'' no se puede saber sobre qu\'e recae un derecho real. \\[0.6em]
+
+\textbf{¿Qu\'e diferencia hay entre ``bien'' y ``cosa''?} &
+Los bienes son los derechos susceptibles de valor econ\'omico. Cuando esos bienes son materiales (tangibles), se llaman cosas. Toda cosa es un bien, pero no todo bien es una cosa (un cr\'edito es un bien pero no una cosa). \\[0.6em]
+
+\textbf{¿El cuerpo humano puede ser objeto de un derecho real?} &
+No. El art\'iculo 17 establece que los derechos sobre el cuerpo humano tienen valor afectivo, cient\'ifico, terap\'eutico o humanitario, pero no valor econ\'omico. Por eso quedan fuera del objeto de los derechos reales. \\
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:}
+El CCyC se organiza en un T\'itulo Preliminar y seis libros; los derechos reales se regulan en el Libro IV, pero su estudio debe integrar tambi\'en el T\'itulo Preliminar y el Libro VI. El patrimonio est\'a integrado por bienes (derechos personales, derechos reales y cosas). Los bienes materiales son cosas (art. 16), que constituyen el objeto de los derechos reales; el cuerpo humano no integra ese objeto (art. 17).
+} \\
+\bottomrule
+\end{longtable}
+
+% ==================== M\'ODULO III ====================
+\chapter[Teor\'ia General de los Derechos Reales]{Teor\'ia General de los Derechos Reales}
+
+\section{Art\'iculo 1882 --- Definici\'on legal del derecho real}
+
+La definici\'on del art\'iculo 1882 fue analizada en el M\'odulo I. El \textbf{poder jur\'idico de estructura legal} implica que la \textbf{ley define completamente} qu\'e es el derecho real, cu\'al es su contenido y cu\'ales son sus l\'imites. Los art\'iculos \textbf{1882 a 1891} tratan los principios comunes a todos los derechos reales.
+
+\begin{important}
+Esta parte general es imprescindible: sus principios no se repiten cuando se estudia cada derecho real en particular.
+\end{important}
+
+\section{Art\'iculo 1884 --- Numerus Clausus}
+
+\begin{quote}
+\textit{``La regulaci\'on de los derechos reales en cuanto a sus elementos, contenido, adquisici\'on, constituci\'on, modificaci\'on, transmisi\'on, duraci\'on y extinci\'on est\'a establecida solo por la ley. Es nula la configuraci\'on de un derecho real no previsto en la ley o la modificaci\'on de su estructura.''}
+\end{quote}
+
+Este principio de \textbf{Numerus Clausus} (del lat\'in: ``n\'umero cerrado'') significa que los particulares \textbf{no pueden crear nuevos derechos reales}: solo la ley los crea. La sanci\'on por incumplimiento es la \textbf{nulidad del acto}. Todo lo relativo a los derechos reales ---sus elementos, contenido, adquisici\'on, constituci\'on, modificaci\'on, transmisi\'on, duraci\'on y extinci\'on--- est\'a regulado por la ley. Es una materia de \textbf{orden p\'ublico}.
+
+\begin{example}{La lista cerrada (explicaci\'on con el m\'etodo Feynman)}
+Los derechos reales son una lista cerrada escrita por el Congreso: son 14 y no hay m\'as. Si dos personas firman un contrato en el que dicen ``creamos un nuevo derecho real que se llama semi-dominio'', ese contrato es nulo: no existe. Solo la ley puede crear derechos reales, porque afectan a toda la sociedad (son \textit{erga omnes}): no se puede crear algo que obligue a todos sin que la ley lo autorice.
+
+En cambio, en los derechos personales las partes pueden crear contratos at\'ipicos (originales): all\'i hay libertad. En derechos reales, no.
+
+\textbf{Clave:} Numerus Clausus = lista cerrada por la ley = los particulares no pueden agregar ni modificar.
+\end{example}
+
+\section{Principio de Nemo Plus Iuris}
+
+\begin{definition}{Nemo Plus Iuris}
+Nadie puede transmitir a otro un derecho mejor o m\'as extenso que el que \'el mismo tiene. Quien no tiene el derecho, no puede transmitirlo v\'alidamente.
+\end{definition}
+
+Se trata de un principio de origen romano que limita la transmisi\'on de derechos. Es la base del principio de convalidaci\'on.
+
+\section{Art\'iculo 1885 --- Principio de Convalidaci\'on}
+
+\begin{quote}
+\textit{``Si alguien constituye o transmite un derecho real que no tiene, lo adquiere posteriormente, la constituci\'on o transmisi\'on queda convalidada.''}
+\end{quote}
+
+% TODO: contenido incompleto o ambiguo en las notas originales.
+% El texto del art. 1885 transcripto en el apunte parece omitir un nexo (``y lo adquiere posteriormente''); se conserva tal como figura.
+
+Este principio trabaja junto con el de \textbf{Nemo Plus Iuris}. El esquema es:
+
+\begin{itemize}
+    \item \textbf{Regla general (Nemo Plus Iuris):} nadie puede transmitir un derecho mejor que el que tiene. Si se transmite algo que no se posee, el acto nace \textbf{nulo}.
+    \item \textbf{Excepci\'on (Convalidaci\'on):} si despu\'es de esa transmisi\'on nula el transmitente adquiere el derecho, el acto queda autom\'aticamente \textbf{convalidado} (saneado).
+\end{itemize}
+
+\begin{example}{Transmisi\'on de una cosa sin ser propietario}
+Quien tiene en su poder una cosa pero no tiene la propiedad y la transmite: quien la recibe no puede adquirir la propiedad, porque nadie puede transmitir un derecho mejor que el que tiene (Nemo Plus Iuris). El acto nace nulo. Pero si despu\'es el transmitente adquiere la propiedad de esa cosa, el acto queda convalidado retroactivamente.
+\end{example}
+
+\begin{example}{Venta de la casa del vecino (explicaci\'on con el m\'etodo Feynman)}
+Si alguien ``vende'' la casa de un vecino, esa venta es nula: no puede vender lo que no tiene (Nemo Plus Iuris), y el comprador no recibi\'o nada jur\'idicamente. Pero si despu\'es el vecino deja la casa en herencia a quien la vendi\'o, ahora s\'i es due\~no, y la compra anterior (nula) se convalida: el defecto original desaparece y la transmisi\'on queda sana, como si hubiera sido v\'alida desde el principio. El art\'iculo 1885 prev\'e esto.
+
+\textbf{Clave:} convalidaci\'on = nulidad original que se sana retroactivamente cuando el transmitente adquiere el derecho.
+\end{example}
+
+\section{Persecuci\'on y preferencia (\textit{ius persequendi})}
+
+El titular del derecho real tiene una \textbf{acci\'on de persecuci\'on}: puede \textbf{seguir la cosa en manos de cualquier persona} que la tenga, sin importar si cambi\'o de titular. Se ilustra con una \textbf{flecha que persigue la cosa}, sin importar en qu\'e manos est\'e. Adem\'as, el titular tiene \textbf{preferencia}: su derecho prevalece sobre cualquier otro derecho real o personal de fecha posterior.
+
+Esta es una diferencia clave con los derechos personales, donde no hay persecuci\'on.
+
+\section{Art\'iculo 1887 --- Los 14 derechos reales}
+
+El art\'iculo 1887 enumera \textbf{14 derechos reales}. Solo existen estos y no hay m\'as.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Sobre cosa propia} & \textbf{Sobre cosa ajena} \\
+\midrule
+Dominio &
+Superficie (cuando no existe propiedad superficiaria) \\
+Condominio & Usufructo \\
+Propiedad horizontal & Uso \\
+Conjuntos inmobiliarios & Habitaci\'on \\
+Tiempo compartido & Servidumbre \\
+Cementerio privado & Hipoteca \\
+Superficie (cuando existe propiedad superficiaria) & Anticresis \\
+ & Prenda \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+Regla mnemot\'ecnica propuesta en el apunte para recordar la lista: \textit{Do-Con-PH-CI-TC-CP-Su-Us-U-H-S-Hi-An-P}.
+\end{note}
+
+\section{Art\'iculo 1888 --- Clasificaci\'on}
+
+\subsection{Por la titularidad del objeto}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Sobre cosa propia} & \textbf{Sobre cosa ajena} \\
+\midrule
+Dominio, condominio, propiedad horizontal, conjuntos inmobiliarios, tiempo compartido, cementerio privado, superficie (con propiedad superficiaria). &
+Superficie (sin propiedad superficiaria), usufructo, uso, habitaci\'on, servidumbre, hipoteca, anticresis, prenda. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Los derechos sobre cosa propia recaen sobre cosas del propio titular. Los derechos sobre cosa ajena recaen sobre cosas de otra persona y constituyen una carga o gravamen real para el propietario.
+
+\subsection{Por su funci\'on}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Derechos principales} & \textbf{Derechos accesorios} \\
+\midrule
+Derechos sobre cosa propia y derechos de disfrute sobre cosa ajena (usufructo, servidumbre). Son aut\'onomos: existen por s\'i solos. &
+Derechos reales de garant\'ia: hipoteca, anticresis y prenda. Garantizan una obligaci\'on principal y dependen de ella. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Por el registro}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Sobre cosas registrables} & \textbf{Sobre cosas no registrables} \\
+\midrule
+Su adquisici\'on, transmisi\'on o extinci\'on requiere inscripci\'on en un registro p\'ublico. Inmuebles: Registro de la Propiedad Inmueble. Automotores: Registro de Automotores. &
+Objetos cuya adquisici\'on, transmisi\'on y extinci\'on no requieren inscripci\'on en un registro p\'ublico. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Por su ejercicio}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Ejercidos por la posesi\'on} & \textbf{Ejercidos sin posesi\'on} \\
+\midrule
+Requieren que el titular tenga la cosa bajo su poder de hecho. &
+Se ejercen de otro modo (su desarrollo corresponde al estudio de la posesi\'on). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Hipoteca}
+Una persona es titular de dominio (derecho real sobre cosa propia). Constituye una hipoteca a favor del banco para garantizar un cr\'edito. Ha creado un nuevo derecho real: el banco tiene ahora un derecho real sobre \textit{esa} cosa (hipoteca = derecho real sobre cosa ajena, de garant\'ia, accesorio). Coexisten el dominio (del titular, sobre cosa propia) y la hipoteca (del banco, sobre cosa ajena).
+\end{example}
+
+\section{Adquisici\'on: t\'itulo suficiente y modo}
+
+El derecho real surge de la concurrencia de \textbf{dos elementos}:
+
+\begin{itemize}
+    \item \textbf{T\'itulo suficiente:} el acto jur\'idico (contrato) que da fundamento a la transmisi\'on.
+    \item \textbf{Modo --- tradici\'on:} la entrega efectiva de la cosa. Su estudio en profundidad corresponde a un desarrollo posterior.
+\end{itemize}
+
+Tambi\'en existen otras causas de adquisici\'on: la \textbf{ley} (accesorios indispensables de inmuebles) y la \textbf{prescripci\'on adquisitiva}.
+
+\section{Casos pr\'acticos}
+
+\begin{exercise}{Creaci\'on de un derecho real inexistente}
+\textbf{Enunciado:} Pablo firma un contrato con Marta por el cual se crea un ``derecho real de semi-usufructo'' que no existe en ninguna ley. ¿Qu\'e sucede?
+
+\textbf{Resoluci\'on:} El acto es nulo de pleno derecho (art. 1884 CCyC --- Numerus Clausus). Solo la ley puede crear derechos reales. Los particulares no pueden crear uno que no est\'e en el art\'iculo 1887.
+\end{exercise}
+
+\begin{exercise}{Venta de un inmueble ajeno}
+\textbf{Enunciado:} Juan vende a Mar\'ia un inmueble que en realidad pertenece a Carlos. Despu\'es, Juan hereda ese inmueble de Carlos. ¿Qu\'e pasa con la venta?
+
+\textbf{Resoluci\'on:} Originalmente el acto era nulo (Nemo Plus Iuris: Juan no pod\'ia transmitir lo que no ten\'ia). Pero al heredar el inmueble, la transmisi\'on queda convalidada (art. 1885 CCyC). Mar\'ia es ahora leg\'itima propietaria.
+\end{exercise}
+
+\begin{exercise}{Hipoteca y venta del inmueble hipotecado}
+\textbf{Enunciado:} El banco tiene una hipoteca sobre la casa de Roberto. Roberto vende la casa a Sof\'ia. ¿Puede el banco ejecutar la hipoteca frente a Sof\'ia?
+
+\textbf{Resoluci\'on:} S\'i. La hipoteca es un derecho real que otorga el \textit{ius persequendi}: el banco puede perseguir la cosa en manos de cualquier persona que la tenga, incluyendo a Sof\'ia. Sof\'ia adquiri\'o la casa con la carga hipotecaria.
+\end{exercise}
+
+\section{Cuadro Cornell del M\'odulo III}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿C\'omo define la ley al derecho real (art. 1882)?} &
+Como el poder jur\'idico de estructura legal que se ejerce directamente sobre su objeto en forma aut\'onoma, atribuyendo al titular las facultades de persecuci\'on y preferencia, y las dem\'as previstas en el c\'odigo. Es absoluto (\textit{erga omnes}). \\[0.6em]
+
+\textbf{¿Qu\'e es el ``Numerus Clausus'' y d\'onde est\'a regulado?} &
+Es el principio por el cual solo la ley puede crear derechos reales. Est\'a en el art\'iculo 1884 CCyC. Los particulares no pueden crear nuevos derechos reales ni modificar la estructura de los existentes, bajo pena de nulidad. Es materia de orden p\'ublico. \\[0.6em]
+
+\textbf{¿Qu\'e es el principio ``Nemo Plus Iuris''?} &
+Nadie puede transmitir a otro un derecho mejor o m\'as extenso del que \'el mismo tiene. Si no se es due\~no, no se puede transmitir la propiedad. \\[0.6em]
+
+\textbf{¿Qu\'e es la ``convalidaci\'on'' de un derecho real (art. 1885)?} &
+Si alguien transmite un derecho real que no tiene, el acto nace nulo. Pero si despu\'es esa persona adquiere el derecho, el acto queda autom\'aticamente convalidado (saneado). Es una excepci\'on al Nemo Plus Iuris. \\[0.6em]
+
+\textbf{¿Qu\'e es el ``ius persequendi'' o derecho de persecuci\'on?} &
+La facultad del titular del derecho real de perseguir la cosa en manos de cualquier persona que la tenga, sin importar si cambi\'o de due\~no. El derecho ``sigue'' a la cosa. Adem\'as, el titular tiene preferencia sobre derechos posteriores. \\[0.6em]
+
+\textbf{¿Cu\'antos derechos reales existen y cu\'ales son?} &
+Catorce, enumerados en el art\'iculo 1887: dominio, condominio, propiedad horizontal, conjuntos inmobiliarios, tiempo compartido, cementerio privado, superficie, usufructo, uso, habitaci\'on, servidumbre, hipoteca, anticresis y prenda. \\[0.6em]
+
+\textbf{¿Cu\'al es la diferencia entre derechos reales sobre cosa propia y sobre cosa ajena?} &
+Los derechos sobre cosa propia (dominio, condominio, etc.) recaen sobre cosas del propio titular. Los derechos sobre cosa ajena (hipoteca, usufructo, servidumbre, etc.) recaen sobre cosas de otra persona y constituyen una carga o gravamen real para el propietario. \\[0.6em]
+
+\textbf{¿Qu\'e diferencia hay entre derechos reales principales y accesorios?} &
+Los principales son aut\'onomos: existen por s\'i solos (dominio, usufructo, servidumbre). Los accesorios dependen de una obligaci\'on principal que garantizan: son los de garant\'ia (hipoteca, anticresis, prenda). \\[0.6em]
+
+\textbf{¿La hipoteca y la prenda son derechos reales sobre cosa propia o ajena?} &
+Sobre cosa ajena. Son derechos reales de garant\'ia (accesorios) que recaen sobre la cosa del deudor, en beneficio del acreedor (banco, prestamista). Constituyen una carga o gravamen real. \\[0.6em]
+
+\textbf{¿Qu\'e son los derechos reales sobre cosas registrables?} &
+Aquellos cuya adquisici\'on, transmisi\'on o extinci\'on requiere inscripci\'on en un registro p\'ublico. Los derechos sobre inmuebles se inscriben en el Registro de la Propiedad Inmueble; los de automotores, en el Registro de Automotores. \\[0.6em]
+
+\textbf{¿Puede el banco titular de una hipoteca reclamar el bien hipotecado aunque lo tenga un tercero?} &
+S\'i. La hipoteca otorga el \textit{ius persequendi}: el banco puede perseguir el bien en manos de quien est\'e, aunque el deudor lo haya vendido a un tercero. \\[0.6em]
+
+\textbf{¿C\'omo se adquiere un derecho real?} &
+Por la concurrencia de t\'itulo suficiente (el contrato o acto jur\'idico que fundamenta la transmisi\'on) y modo (tradici\'on, es decir, la entrega de la cosa). Tambi\'en por la ley (accesorios indispensables de inmuebles) y por prescripci\'on adquisitiva. \\
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:}
+Los art\'iculos 1882 a 1891 contienen los principios comunes a todos los derechos reales. Solo la ley crea derechos reales (Numerus Clausus, art. 1884), con sanci\'on de nulidad. Nadie transmite m\'as derecho del que tiene (Nemo Plus Iuris), salvo que el transmitente adquiera luego el derecho y el acto quede convalidado (art. 1885). El titular tiene persecuci\'on y preferencia. El art\'iculo 1887 enumera 14 derechos reales, clasificables seg\'un recaigan sobre cosa propia o ajena, sean principales o accesorios, registrables o no, y ejercidos o no por la posesi\'on. Se adquieren por t\'itulo suficiente y modo.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

@@ -1,0 +1,831 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{Relaciones de Poder, Posesión y Régimen de Cosas Muebles}
+\newcommand{\subtitulo}{Clases 3 y 4}
+\newcommand{\normativa}{Código Civil y Comercial de la Nación Argentina}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024 / 2025}
+% Nota: el apunte no consigna la carrera; no se incluye ese dato.
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\renewcommand{\arraystretch}{1.2}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.4cm}
+
+{\large \subtitulo}
+
+\vspace{0.2cm}
+
+{\normalsize \normativa}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia convierte cada concepto en conocimiento duradero.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+% ============================================================
+% CAPÍTULO 1 — CLASE 3
+% ============================================================
+\chapter[Posesión, tenencia y clasificación]{Relaciones de poder: posesión, tenencia y clasificación de la posesión}
+
+\section{Plataforma conceptual: repaso de contenidos previos}
+
+Los contenidos que se repasan a continuación constituyen la plataforma intelectual imprescindible para comprender el estudio de las relaciones de poder entre las personas y las cosas.
+
+\subsection{Derechos reales y derechos personales}
+
+A diferencia de los derechos personales, que son \textbf{relativos}, los derechos reales son \textbf{absolutos}. Por ese motivo son creados y regulados por la ley y solo pueden ser creados por \textbf{ley federal}: constituyen el modo en que toda la nación regula la relación de poder con la cosa, la propiedad, los límites al dominio y la preeminencia de los derechos colectivos sobre los individuales.
+
+\subsection{Publicidad de los derechos reales}
+
+El vínculo de la persona con la cosa es un poder jurídico de estructura legal que debe ser respetado por la comunidad. Para que ese respeto sea exigible, los derechos reales requieren \textbf{publicidad}:
+
+\begin{itemize}
+    \item \textbf{Publicidad posesoria:} opera para toda clase de cosas.
+    \item \textbf{Publicidad registral:} opera cuando se trata de cosas registrables.
+\end{itemize}
+
+Los efectos de la inscripción registral difieren según la clase de cosa:
+
+\begin{itemize}
+    \item \textbf{Inmuebles:} la inscripción tiene efectos \textbf{declarativos}. El derecho real se adquiere, transmite y extingue fuera del registro; la inscripción se realiza solo para la oponibilidad frente a terceros.
+    \item \textbf{Automotores:} la inscripción es \textbf{constitutiva} del derecho real. Sin inscripción, el derecho no nace.
+\end{itemize}
+
+\subsection{Título suficiente y tradición}
+
+El derecho real se adquiere con \textbf{título suficiente} (el acto causal) y \textbf{tradición} material y efectiva. Esa tradición no puede sustituirse por ninguna fórmula escrita, salvo las excepciones de la \textit{tradición brevi manu} y el \textit{constituto posesorio}.
+
+\section{Las relaciones entre persona y cosa}
+
+El tema central es la identificación de todas las relaciones que existen entre la persona y la cosa. Estas relaciones son \textbf{taxativas}: se denominan y regulan de manera específica y no pueden crearse otras distintas, pues de lo contrario serían nulas. Ello se vincula directamente con el principio de \textit{numerus clausus} del artículo 1884 del Código Civil y Comercial.
+
+\subsection{Relaciones de hecho reconocidas}
+
+Las únicas relaciones de hecho reconocidas por el ordenamiento son:
+
+\begin{itemize}
+    \item la \textbf{yuxtaposición local};
+    \item la \textbf{tenencia};
+    \item la \textbf{posesión}.
+\end{itemize}
+
+\subsection{La yuxtaposición local}
+
+\begin{definition}{Yuxtaposición local}
+Mero \textbf{contacto físico casual} entre una persona y la cosa.
+\end{definition}
+
+Si bien en este contacto existe algo de voluntad (pues sin ella la persona no podría siquiera contactarse con la cosa), esa voluntad no está dirigida hacia la cosa en particular: no es una voluntad querida respecto de esa cosa y no de otra.
+
+\begin{example}{Yuxtaposición local en un colectivo}
+Una persona sube a un colectivo y se apoya sobre un asiento o sobre una barra de seguridad. Sube más gente: se apoya, se sienta, y cuando sube alguien más le cede el asiento porque es su pago, y vuelve a sentarse. Hay un contacto con las cosas, pero no está direccionado por el sujeto a esa cosa y no a otra.
+\end{example}
+
+\subsection{Los servidores de la posesión: dependencia, hospedaje y hospitalidad}
+
+Existen vínculos basados en la \textbf{dependencia}, el \textbf{hospedaje} o la \textbf{hospitalidad}.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.17\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo de vínculo} & \textbf{Ejemplo} & \textbf{Consecuencia jurídica} \\
+\midrule
+\textbf{Dependencia} &
+\textit{El obrero y su máquina de trabajo; el empleado y su computadora. La cuida y la usa todos los días, pero si lo despiden no se la lleva.} &
+El servidor de la posesión no tiene animus ni corpus propio. Posee en nombre del empleador. \\
+\midrule
+\textbf{Hospedaje} &
+\textit{El huésped de un hotel al que le asignan la habitación 22. Si no hay agua, llama al conserje. Si le hubieran dado la habitación 35, esa sería <<su habitación>>.} &
+El vínculo está basado en el hospedaje: el huésped no tiene posesión ni tenencia, solo un contacto derivado del servicio. \\
+\midrule
+\textbf{Hospitalidad} &
+\textit{El amigo que visita una casa y se queda unos días: usa la cama, el baño, la heladera. Cuando se va, no se lleva esas cosas con las que se ha contactado.} &
+El vínculo dura mientras está vigente la relación de hospitalidad. No genera posesión ni tenencia. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Las relaciones de poder en el Código Civil y Comercial}
+
+Las relaciones de poder están reguladas en los artículos 1908 a 1940 del Código Civil y Comercial. Se comparte la postura de los fundamentos del anteproyecto del Código Civil, según los cuales las únicas relaciones de poder que interesan para la teoría posesoria son la \textbf{posesión} y la \textbf{tenencia}, con la adición del \textbf{servidor de la posesión} al solo fin de la defensa extrajudicial.
+
+Esto permite dejar de lado la yuxtaposición local y concentrar el estudio en el \textbf{poseedor}, el \textbf{tenedor} y el \textbf{servidor de la posesión} (este último exclusivamente en lo vinculado con la defensa extrajudicial).
+
+\subsection{La posesión (art. 1909 CCyC)}
+
+\begin{definition}{Posesión (art. 1909 CCyC)}
+Hay posesión cuando una persona, por sí o por medio de otra, ejerce un poder de hecho sobre una cosa, comportándose como titular de un derecho real, lo sea o no.
+\end{definition}
+
+La posesión tiene dos elementos:
+
+\begin{itemize}
+    \item \textbf{Corpus:} el contacto material con la cosa.
+    \item \textbf{Animus (\textit{animus domini}):} el ánimo de dueño. El poseedor se comporta como si la cosa fuera propia, sin reconocer en otro un señorío superior, lo sea o no el dueño.
+\end{itemize}
+
+\subsection{La tenencia (art. 1910 CCyC)}
+
+\begin{definition}{Tenencia (art. 1910 CCyC)}
+Hay tenencia cuando una persona, por sí o por medio de otra, ejerce un poder de hecho sobre la cosa, y se comporta como representante del poseedor.
+\end{definition}
+
+La tenencia tiene un solo elemento: el \textbf{corpus}. No hay animus: el tenedor reconoce en otro la propiedad.
+
+\begin{example}{El inquilino como tenedor}
+El caso típico de tenedor es el inquilino, que tiene la relación directa con la cosa (relación que le confiere numerosos derechos) pero reconoce en otro la propiedad. Por eso paga el alquiler y, si le reclaman daños por desperfectos de la propiedad, responde que la propiedad no es suya y que no es el responsable.
+\end{example}
+
+\subsection{El servidor de la posesión (art. 1911 CCyC)}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el apunte cita el art. 1911 tanto para el servidor de la posesión como para la presunción de posesión)
+\begin{definition}{Servidor de la posesión (art. 1911 CCyC)}
+Quien utiliza una cosa en virtud de una relación de dependencia, hospedaje u hospitalidad se llama en este código servidor de la posesión.
+\end{definition}
+
+\subsection{Ejemplo integrador: tenedor y poseedor}
+
+Las diferencias entre poseedor, tenedor y servidor de la posesión pueden ilustrarse con el caso de un teléfono.
+
+\begin{example}{Juan como tenedor}
+Una persona (A) espera un llamado y debe ausentarse un momento. Se comporta como propietaria del teléfono, lo sea o no. Le pide a Juan que se lo tenga y que, si llaman, avise que ya vuelve. Juan toma el teléfono y lo mantiene en su mano esperando que A regrese.
+
+Mientras tanto llega Carolina, lo ve con el teléfono en la mano y le pide que se lo preste porque perdió el suyo. Juan responde que no puede, porque el teléfono no es suyo sino de A, y que se lo está teniendo hasta que vuelva. Más aún: cuando A regresa y se acerca, Juan espontáneamente extiende la mano con el teléfono y se lo acerca.
+
+\textbf{Juan es el tenedor:} reconoce en otro un señorío superior.
+\end{example}
+
+\begin{example}{Fermín como poseedor}
+A se ausenta y deja el mismo teléfono sobre el escritorio. Fermín se acerca, toma el teléfono, lo guarda en su mochila, sale del aula, habla en el bar, sube al colectivo y lo lleva a su casa.
+
+A diferencia de Juan, Fermín se comporta como si fuera el dueño del teléfono. No reconoce en otro un señorío superior; no reconoció la propiedad de A, pues de haberla reconocido no se lo habría llevado.
+
+\textbf{Fermín es el poseedor:} tiene corpus y animus, y se comporta como propietario, lo sea o no.
+\end{example}
+
+\section{Presunciones posesorias}
+
+La ley resuelve la imposibilidad práctica de conocer el verdadero vínculo que cada persona tiene con las cosas que usa mediante un régimen de presunciones.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el art. 1911 aparece citado con dos contenidos distintos: servidor de la posesión y presunción de posesión)
+\begin{formula}{Presunciones de posesión, legitimidad y buena fe}
+\begin{itemize}
+    \item \textbf{Art. 1911 CCyC (presunción de posesión):} toda relación de poder se presume posesión, excepto prueba en contrario.
+    \item \textbf{Art. 1916 CCyC (presunción de legitimidad):} las relaciones de poder se presumen legítimas, a menos que exista prueba en contrario.
+    \item \textbf{Art. 1919 CCyC (presunción de buena fe):} la posesión se presume de buena fe, a menos que exista prueba en contrario o que el título sea de mala fe.
+\end{itemize}
+\end{formula}
+
+Todo aquel que tiene una relación de hecho con una cosa y se comporta como si fuera el titular del derecho real se presume poseedor, lo sea o no. Esta presunción hace posible la vida en sociedad, pues sería imposible verificar cada relación de poder que se observa cotidianamente: se presume que quien ejerce la relación es poseedor y que su posesión es legítima. Si no existe un interés legítimo en conocer con exactitud el verdadero contenido jurídico de una relación, simplemente se respetan todas y cada una de las múltiples relaciones de hecho observadas.
+
+\subsection{Otras reglas en materia posesoria}
+
+\begin{itemize}
+    \item \textbf{Innecesariedad del título (art. 1917 CCyC):} el poseedor no tiene obligación de producir su título a la posesión, exceptuado el caso en que deba exhibirlo como obligación inherente a su posesión.
+    \item \textbf{Presunción de fecha y extensión (art. 1914 CCyC):} si media título, se presume que la relación de poder comienza desde la fecha del título y tiene la extensión que en él se indica.
+    \item \textbf{Relatividad de los vicios (art. 1921 CCyC):} los vicios de la posesión son relativos respecto de aquel contra quien se ejercen, en todos los casos, sea por el mismo que causa el vicio o por sus agentes, sea contra el poseedor o sus representantes. Aun cuando la posesión sea viciosa, solo puede alegar el vicio quien lo sufrió.
+    \item \textbf{Inmutabilidad de la causa:} nadie puede cambiar por sí mismo la causa de su posesión. Quien comenzó siendo tenedor continúa siendo tenedor; quien era poseedor de mala fe continúa siéndolo.
+\end{itemize}
+
+\section{Clasificación de la posesión}
+
+La posesión se clasifica de la siguiente manera:
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.20\textwidth}
+    >{\raggedright\arraybackslash}p{0.38\textwidth}
+    >{\raggedright\arraybackslash}p{0.30\textwidth}
+}
+\toprule
+\textbf{Tipo de posesión} & \textbf{Definición} & \textbf{Ejemplo} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Tipo de posesión} & \textbf{Definición} & \textbf{Ejemplo} \\
+\midrule
+\endhead
+\textbf{Legítima} &
+Ejercicio de un derecho real adquirido conforme a la ley: título suficiente, modo suficiente y capacidad de ambas partes. &
+\textit{El propietario que compró con escritura pública e hizo tradición.} \\
+\midrule
+\textbf{Ilegítima de buena fe} &
+Sin título suficiente, pero el poseedor cree que tiene derecho a poseer (error excusable). &
+\textit{Quien compra por boleto de compraventa (falta escritura pública). Quien adquiere un libro usado en clase sin saber que era robado.} \\
+\midrule
+\textbf{Ilegítima de mala fe simple} &
+El poseedor duda sobre la legitimidad de su adquisición, pero igualmente adquiere. &
+\textit{Quien compra un Rolex en la facultad de derecho a precio ínfimo, sin preguntarse por qué se lo venden tan barato en ese lugar.} \\
+\midrule
+\textbf{Ilegítima de mala fe viciosa --- muebles} &
+Posesión adquirida mediante vicios específicos en materia de muebles. &
+\textit{Hurto, estafa, abuso de confianza.} \\
+\midrule
+\textbf{Ilegítima de mala fe viciosa --- inmuebles} &
+Posesión adquirida mediante vicios específicos en materia de inmuebles. &
+\textit{Clandestinidad, violencia, abuso de confianza.} \\
+\bottomrule
+\end{longtable}
+
+El vicio que se repite tanto en materia de muebles como de inmuebles es el \textbf{abuso de confianza}.
+
+\begin{example}{Posesión viciosa por abuso de confianza en un inmueble}
+Un propietario presta a un amigo un inmueble que está desocupado y que va a vender prontamente. Cuando llega el momento de informarle que lo vendió y que debe entregar la posesión, el amigo responde que él es poseedor, que tiene animus, que no se lo prestaron sino que se lo enviaron y que allí se queda. Cuando se inicia la demanda, sostiene que es poseedor. Hay una intervención del título basada en un abuso de confianza.
+\end{example}
+
+\section{La defensa de la posesión: fundamento de orden público}
+
+La posesión se protege aunque sea ilegítima o viciosa, por los siguientes fundamentos:
+
+\begin{enumerate}
+    \item Para proteger la persona del poseedor, el anterior y el nuevo.
+    \item Para proteger la paz social, evitando la violencia privada: quien tiene un derecho a la posesión debe recuperarla por vía legal, no por la fuerza.
+    \item Aun el verdadero propietario que toma la posesión por la fuerza puede ser demandado por el poseedor despojado.
+\end{enumerate}
+
+\begin{important}
+\textbf{Se protege la posesión para proteger la paz social.} La carga de la prueba siempre está en quien controvierte la relación de poder, no en el poseedor: el poseedor posee porque posee, y su posesión se presume legítima y de buena fe.
+\end{important}
+
+% ------------------------------------------------------------
+% CORNELL — CAPÍTULO 1
+% ------------------------------------------------------------
+\section{Cuadro Cornell: relaciones de poder, posesión y tenencia}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{\dimexpr0.73\textwidth-2\tabcolsep\relax}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Por qué los derechos reales son absolutos y qué consecuencia tiene ello?} &
+A diferencia de los derechos personales, que son relativos, los derechos reales son absolutos; por eso son creados y regulados por la ley y solo pueden ser creados por ley federal, ya que constituyen el modo en que toda la nación regula la relación de poder con la cosa, la propiedad, los límites al dominio y la preeminencia de los derechos colectivos sobre los individuales. \\
+\midrule
+
+\textbf{¿Qué tipos de publicidad requieren los derechos reales y qué efectos tiene la inscripción registral?} &
+La publicidad posesoria opera para toda clase de cosas y la registral para las cosas registrables. En inmuebles la inscripción tiene efectos declarativos (el derecho se adquiere, transmite y extingue fuera del registro; se inscribe para la oponibilidad frente a terceros). En automotores la inscripción es constitutiva: sin inscripción, el derecho no nace. \\
+\midrule
+
+\textbf{¿Cuáles son las relaciones de hecho entre persona y cosa?} &
+Las únicas tres son: yuxtaposición local (contacto casual, sin voluntad dirigida a la cosa), tenencia (corpus sin animus, reconoce señorío ajeno) y posesión (corpus + animus, se comporta como dueño). Son taxativas, en razón del principio de numerus clausus (art. 1884). \\
+\midrule
+
+\textbf{¿Qué son los servidores de la posesión?} &
+Quienes utilizan una cosa en virtud de una relación de dependencia, hospedaje u hospitalidad (art. 1911). No son poseedores ni tenedores: en la dependencia el servidor no tiene animus ni corpus propio y posee en nombre del empleador; en el hospedaje y la hospitalidad solo hay un contacto derivado del servicio o de la relación vigente. \\
+\midrule
+
+\textbf{¿Qué distingue al poseedor del tenedor?} &
+El animus (animus domini). El poseedor no reconoce en otro un señorío superior y se comporta como propietario, lo sea o no (art. 1909). El tenedor tiene el corpus pero se comporta como representante del poseedor: reconoce la propiedad ajena y, por ejemplo, paga alquiler (art. 1910). \\
+\midrule
+
+\textbf{¿Qué presunciones establece el código en materia posesoria?} &
+Art. 1911: toda relación de poder se presume posesión. Art. 1916: las relaciones de poder se presumen legítimas. Art. 1919: la posesión se presume de buena fe. Todas admiten prueba en contrario, pero la carga de la prueba recae sobre quien controvierte la relación, no sobre el poseedor. \\
+\midrule
+
+\textbf{¿Cómo se clasifica la posesión?} &
+Legítima: ejercicio de un derecho real adquirido según la ley (título + modo + capacidad). Ilegítima de buena fe: sin título suficiente, pero con error excusable (ej.: adquisición por boleto). Ilegítima de mala fe simple: con duda sobre la legitimidad (ej.: comprar un Rolex a precio irrisorio). Ilegítima de mala fe viciosa: adquirida mediante hurto, estafa o abuso de confianza (muebles) / clandestinidad, violencia o abuso de confianza (inmuebles). \\
+\midrule
+
+\textbf{¿Por qué se protege la posesión aunque sea ilegítima?} &
+Porque el fundamento no es la legitimidad del poseedor, sino la paz social y la protección de la persona. Si el derecho no protegiera la posesión ilegítima, cualquiera podría hacer justicia por mano propia. Quien tiene derecho a recuperar la cosa debe iniciar las acciones legales. Incluso el verdadero propietario que toma la posesión por la fuerza puede ser demandado por el poseedor despojado. \\
+\midrule
+
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} Los derechos reales, absolutos y de creación legal, requieren publicidad y se adquieren con título suficiente y tradición. Entre la persona y la cosa existen únicamente tres relaciones de hecho: yuxtaposición local, tenencia y posesión. El Código Civil y Comercial establece un régimen de presunciones (posesión, legitimidad y buena fe) que hace posible la vida en sociedad sin necesidad de conocer el verdadero fundamento jurídico de cada vínculo. La posesión, relación de poder con animus domini, se protege en todas sus formas (legítima, ilegítima de buena fe y aun viciosa) porque su defensa no persigue la justicia abstracta entre partes, sino la paz social y la prevención de la violencia privada.
+} \\
+\bottomrule
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 2 — CLASE 4
+% ============================================================
+\chapter[Dinámica de las relaciones de poder]{Dinámica de las relaciones de poder y régimen de las cosas muebles}
+
+\section{Posesión legítima e ilegítima: se califica el vínculo}
+
+Al distinguir entre posesión legítima e ilegítima debe tenerse presente una aclaración conceptual fundamental.
+
+\begin{important}
+Lo que se califica es el \textbf{vínculo}, no la persona. El derecho no califica a la persona del poseedor (su rostro, su nombre, su historia): califica de legítima o ilegítima el vínculo que la persona tiene con la cosa.
+\end{important}
+
+Una persona puede ser la más honesta del mundo y tener, respecto de una determinada cosa, una posesión ilegítima. O puede ser un reconocido delincuente y, sin embargo, ser poseedor legítimo del inmueble que adquirió con título suficiente y tradición.
+
+\section{Adquisición de las relaciones de poder}
+
+\subsection{Condiciones de la adquisición voluntaria}
+
+\begin{itemize}
+    \item El adquirente debe ser \textbf{capaz}. Conforme al artículo 1922, cuando la adquiere un menor, este no puede tener una edad menor de diez años.
+    \item La cosa debe estar libre de toda otra relación excluyente, lo que se denomina \textbf{posesión vacua} (art. 1926).
+\end{itemize}
+
+\begin{quote}
+\textbf{Art. 1922 CCyC --- Adquisición de poder.} \textit{Para adquirir una relación de poder sobre una cosa, ésta debe ser establecida voluntariamente: a) por sujeto capaz, excepto las personas menores de edad, para quienes es suficiente que tengan diez años; b) por medio de contacto con la cosa, de la posibilidad física de establecerlo, o cuando ella ingresa en el ámbito de custodia del adquirente.}
+\end{quote}
+
+\subsection{Modos de adquisición}
+
+\begin{itemize}
+    \item \textbf{Unilateral:} mediante el apoderamiento.
+    \item \textbf{Bilateral:} la tradición, por excelencia. Según el artículo 1923, una persona (el tradente) entrega a otra (quien la recibe) la cosa, y quien la recibe ocupa la posición que tenía el tradente.
+    \item \textbf{Originaria:} por prescripción adquisitiva, entre otros modos.
+\end{itemize}
+
+\section{Tradición posesoria y tradición traslativa de dominio}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tradición traslativa de dominio} & \textbf{Tradición posesoria (mera)} \\
+\midrule
+Requiere: (1) que sea realizada por el legitimado, es decir, el titular del derecho; (2) título suficiente, entendido como el acto jurídico causal de la transmisión; (3) capacidad de ambas partes. &
+Si no se dan esos requisitos, lo que se transmite es meramente la relación de poder que el tradente tiene con la cosa. Nadie puede transmitir un derecho mejor o más extenso que el que tenía. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Extinción de las relaciones de poder}
+
+\begin{quote}
+\textbf{Art. 1931 CCyC --- Extinción.} \textit{La posesión y la tenencia se extinguen cuando el sujeto que la ejerce: a) se extingue la cosa; b) otro priva al titular de la cosa; c) se ha imposibilitado el ejercicio de la posesión en forma perdurable; d) por el abandono.}
+\end{quote}
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la redacción transcripta del art. 1931 en el apunte presenta una sintaxis inconsistente entre el encabezado y los incisos)
+
+\begin{example}{Extinción por abandono}
+Al caminar por la calle se ve un colchón en la pila de residuos. Nadie guarda un colchón así, lo que hace presumir que ha sido abandonado. Se extingue la relación de poder por el abandono.
+\end{example}
+
+\begin{example}{Extinción por pérdida}
+Si el teléfono se cae al mar cuando su poseedor estaba sacando una foto, es imposible recuperarlo, por lo cual se extingue la relación de poder.
+\end{example}
+
+\section{Efectos de las relaciones de poder}
+
+\subsection{Derechos inherentes a la posesión}
+
+Son aquellos que tiene todo aquel que se encuentra en poder de una cosa, independientemente de si es poseedor o tenedor. Como ejemplo pueden mencionarse los límites al dominio.
+
+\begin{example}{Ventana en pared medianera}
+Un vecino, en su calidad de propietario, tiene amplias facultades, pero también límites: no puede abrir una ventana de vista en la pared medianera. Quien está del otro lado tiene el derecho de que no se construya esa ventana. Obligación y derecho son las dos caras de una misma moneda.
+\end{example}
+
+\subsection{Obligaciones del poseedor y del tenedor}
+
+\begin{quote}
+\textbf{Art. 1933 CCyC.} \textit{El poseedor o tenedor debe restituir la cosa a quien tenga derecho de reclamarla, aunque no se le haya dado a él.}
+\end{quote}
+
+Todo aquel que tiene una relación de poder con la cosa y no tiene derecho real:
+
+\begin{enumerate}
+    \item tiene la \textbf{obligación de restituirla};
+    \item tiene el \textbf{derecho a que le sean restituidas las mejoras} realizadas en la conservación.
+\end{enumerate}
+
+\subsection{La \textit{laudatio auctoris}: obligación del tenedor}
+
+El tenedor tiene la \textbf{obligación legal de identificar al poseedor} (\textit{laudatio auctoris}) cuando recibe una demanda dirigida al propietario, bajo apercibimiento de daños y perjuicios.
+
+\begin{example}{Tenedor que no notifica al propietario}
+El inmueble está ocupado por un inquilino, que es tenedor. Recibe una demanda de reivindicación y sostiene que, como no es el titular del derecho, la demanda no lo afecta: ni la contesta, ni lo hace saber, ni avisa al propietario. Esta conducta es gravísima porque priva al propietario de la posibilidad de defenderse en juicio.
+\end{example}
+
+\section{Intervención del título}
+
+La regla general es que nadie puede cambiar por sí mismo la especie de su relación de poder. El tiempo, la voluntad interna o el pensamiento no modifican el título.
+
+\begin{itemize}
+    \item \textbf{Intervención unilateral del título:} el tenedor, por actos exteriores, manifiesta su voluntad de privar al poseedor de la cosa.
+    \item \textbf{Intervención bilateral del título:} existe acuerdo entre poseedor y tenedor (art. 1915 CCyC).
+\end{itemize}
+
+\begin{example}{Intervención unilateral del título}
+El propietario va a vender la propiedad y la presta a un amigo para que viva allí hasta la venta. Cuando se produce la venta, le pide la desocupación. El amigo responde que supuso otra cosa y que ahora posee, porque posee y su posesión se presume legítima. Ha intervertido unilateralmente el título.
+\end{example}
+
+\begin{example}{Intervención del título con el teléfono}
+Retomando el caso del teléfono: quien lo recibió en tenencia afirma ante quien se lo entregó que nadie se lo dejó y que el teléfono es suyo. Hay un acto exterior. No hay una conversión natural por el transcurso del tiempo ni porque se haya pensado de manera diferente: hay un acto exterior, que es la intervención del título.
+\end{example}
+
+\section{Unión de posesiones}
+
+\begin{quote}
+\textbf{Art. 1901 CCyC --- Unión de posesiones.} \textit{El heredero continúa la posesión de su causante. El sucesor particular puede unir su posesión a la de sus antecesores, siempre que derive inmediatamente de las otras. En la prescripción breve las posesiones unidas deben ser de buena fe y estar unidas por un vínculo jurídico.}
+\end{quote}
+
+La unión de posesiones es una \textbf{suma temporal} del tiempo de dos posesiones de distintos poseedores. Su utilidad es acumular tiempo para alcanzar el número de años requerido para la \textbf{prescripción adquisitiva}. Para la prescripción breve, esas dos posesiones deben ser de buena fe y estar unidas por un vínculo jurídico.
+
+\begin{example}{Unión de posesiones}
+Un poseedor que posee desde hace diez años cede su posesión por escritura pública; el nuevo poseedor acumula ese tiempo de su cedente a su propia posesión para alcanzar los 20 años de la prescripción larga.
+\end{example}
+
+\section{Actos posesorios}
+
+\begin{quote}
+\textbf{Art. 1928 CCyC --- Actos posesorios.} \textit{Constituyen actos posesorios sobre la cosa inmueble: su cultura, percepción de frutos, amojonamiento o impresión de signos materiales, mejora, exclusión de terceros y, en general, su apoderamiento por cualquier modo que se obtenga.}
+\end{quote}
+
+Son actos propios de quien ejerce el animus domini y que un tenedor difícilmente realizaría, como construir o realizar mejoras en el inmueble o hacer plantaciones. Salvo que se tratara de un acto conservatorio, es improbable que un tenedor los realice en un inmueble que no le pertenece y que va a dejar al cabo de dos años o del período locativo pautado.
+
+Quien invoca la posesión debe acreditar que ha tenido la disposición física del inmueble y que esa relación era la propia de un poseedor, es decir, que ha realizado actos que demuestren una intervención material sobre la cosa.
+
+\section{Régimen jurídico de las cosas muebles no registrables}
+
+Este régimen, regulado en los artículos 1894 a 1895 del Código Civil y Comercial, constituye un instituto de importantísimo interés en materia de orden público.
+
+\subsection{Marco previo: clasificación de las cosas}
+
+\begin{itemize}
+    \item Las cosas son \textbf{muebles} o \textbf{inmuebles}.
+    \item Conforme al art. 227, son muebles aquellas que pueden desplazarse, por sí mismas o por una fuerza externa.
+    \item Dentro de las cosas muebles se distinguen las \textbf{registrables} y las \textbf{no registrables}.
+\end{itemize}
+
+\subsection{La adquisición legal del derecho real sobre cosas muebles (art. 1895 CCyC)}
+
+\begin{formula}{Art. 1895 CCyC}
+La posesión de buena fe del subadquirente de cosas muebles no registrables que no sean hurtadas o perdidas es suficiente para adquirir los derechos reales principales, excepto que el verdadero propietario pruebe que la adquisición fue gratuita.
+\end{formula}
+
+Requisitos para la adquisición legal:
+
+\begin{itemize}
+    \item \textbf{Posesión de buena fe} del subadquirente.
+    \item Que la cosa \textbf{no sea hurtada ni perdida}.
+\end{itemize}
+
+Con solo esos dos requisitos, por decisión legal, el poseedor adquiere la propiedad de la cosa y la defiende frente a todos.
+
+\begin{important}
+El \textbf{título oneroso no es requisito} para la adquisición del derecho real sobre la cosa mueble no registrable: el poseedor adquiere la propiedad y la defiende frente a todos, la haya adquirido en forma onerosa o gratuita. El título oneroso solo importa para repeler la acción reivindicatoria del anterior propietario, y en ese caso la carga de la prueba de la gratuidad recae sobre el anterior propietario (quien reivindica), no sobre el poseedor.
+\end{important}
+
+\subsection{Condición de aplicación: desprendimiento voluntario del propietario}
+
+La norma del art. 1895 se aplica cuando el propietario se desprende voluntariamente de la cosa, aunque su voluntad hubiere estado viciada.
+
+En el ejemplo del libro, el propietario lo entregó voluntariamente (lo prestó). La persona que lo recibió abusó de esa confianza, pero el propietario no fue objeto de un robo: la cosa no fue hurtada ni perdida. Quien lo recibió fue tenedor y, defraudando la confianza, lo transmitió a un tercero. A ese tercero se lo denomina \textbf{subadquirente}, y es quien adquiere por la sola reunión de posesión más buena fe de la cosa no robada ni perdida.
+
+\begin{example}{El libro de Derechos Reales}
+Un propietario presta un libro de Derechos Reales a una persona, quien lo tiene cierto tiempo y, defraudando su confianza, lo vende o regala a Juan. A partir de ese momento se produce la tradición y Juan tiene la posesión del libro. Juan tiene buena fe y la cosa no fue robada ni perdida, porque el propietario la entregó por su propia voluntad.
+
+Cierto día el propietario se encuentra con Juan, que tiene el libro en las manos, y lo identifica porque tenía una dedicatoria especial. Cuando dice que el libro es suyo y pretende reivindicarlo, Juan se lo niega y defiende su propiedad: sostiene que el libro se lo vendió o regaló un tercero y que es suyo.
+
+Cada parte tiene su verdad. Dado que no es posible multiplicar los libros (ni, cuando hay un solo inmueble, duplicar la tierra), hay que decidir. El artículo 1895, en consonancia con la mayoría de los ordenamientos modernos, \textbf{sacrifica al propietario y protege al subadquirente}: privilegia la seguridad jurídica de las transacciones y la circulación de los bienes por sobre la seguridad estática del propietario.
+
+La única posibilidad del anterior propietario de recuperar la cosa es probar que la adquisición de Juan fue gratuita, lo cual presenta una dificultad fáctica y jurídica, pues es difícil probar el título gratuito u oneroso de la transmisión.
+\end{example}
+
+\subsection{Seguridad estática y seguridad dinámica}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Seguridad estática} & \textbf{Seguridad dinámica} \\
+\midrule
+Protege al propietario actual: a quien ya tiene el derecho real y desea conservarlo. \textit{En el ejemplo: el propietario del libro.} &
+Protege la circulación de los bienes y la seguridad de las transacciones: a quien adquiere confiando en la apariencia. \textit{En el ejemplo: Juan, el subadquirente de buena fe.} \\
+\midrule
+Favorece la estabilidad del derecho real ya constituido. &
+Favorece el tráfico jurídico y la circulación rápida de las cosas muebles, que no dejan rastro instrumental. \\
+\midrule
+\textbf{El art. 1895 la sacrifica en favor de la seguridad dinámica.} &
+\textbf{El art. 1895 la privilegia.} Esta elección es casi uniforme en los sistemas modernos de derecho occidental. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+El código adopta la máxima \textbf{<<posesión vale título>>} al disponer la adquisición legal de los derechos reales sobre muebles por los subadquirentes de buena fe cuando la cosa no ha sido hurtada ni perdida. Ello pone de manifiesto la profunda incidencia del derecho real en el desarrollo armónico y pacífico en sociedad.
+
+% ------------------------------------------------------------
+% CORNELL — CAPÍTULO 2
+% ------------------------------------------------------------
+\section{Cuadro Cornell: dinámica de las relaciones de poder y cosas muebles}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{\dimexpr0.73\textwidth-2\tabcolsep\relax}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué se califica como legítimo o ilegítimo: la persona o el vínculo?} &
+El vínculo que la persona tiene con la cosa, no la persona del poseedor. Una persona honesta puede tener una posesión ilegítima respecto de una cosa, y un delincuente puede ser poseedor legítimo de un inmueble adquirido con título suficiente y tradición. \\
+\midrule
+
+\textbf{¿Cómo se adquieren las relaciones de poder?} &
+De manera voluntaria, por sujeto capaz (los menores deben tener al menos diez años, art. 1922), sobre una cosa libre de toda otra relación excluyente (posesión vacua, art. 1926). Los modos son: unilateral (apoderamiento), bilateral (tradición, art. 1923) y originaria (por ejemplo, prescripción adquisitiva). \\
+\midrule
+
+\textbf{¿Qué diferencia hay entre tradición traslativa de dominio y tradición posesoria?} &
+La traslativa de dominio requiere que la realice el legitimado, título suficiente y capacidad de ambas partes. Si faltan esos requisitos, solo se transmite la relación de poder que el tradente tenía: nadie puede transmitir un derecho mejor o más extenso que el que tenía. \\
+\midrule
+
+\textbf{¿Cómo se extinguen las relaciones de poder?} &
+Conforme al art. 1931: por extinción de la cosa, porque otro priva al titular de la cosa, por imposibilidad perdurable de ejercer la posesión, o por abandono. Ejemplos: el colchón en la pila de residuos (abandono) y el teléfono que cae al mar (pérdida). \\
+\midrule
+
+\textbf{¿Qué derechos y obligaciones surgen de las relaciones de poder?} &
+Todo quien está en poder de una cosa tiene los derechos inherentes a la posesión (por ejemplo, los límites al dominio). Quien no tiene derecho real debe restituir la cosa a quien tenga derecho de reclamarla (art. 1933) y tiene derecho a que se le restituyan las mejoras de conservación. El tenedor debe identificar al poseedor ante una demanda dirigida al propietario (laudatio auctoris), bajo apercibimiento de daños y perjuicios. \\
+\midrule
+
+\textbf{¿Qué es la intervención del título?} &
+Es el instituto por el cual el tenedor convierte su relación de poder mediante actos exteriores que manifiestan la voluntad de privar al poseedor de la cosa (intervención unilateral), o por acuerdo entre poseedor y tenedor (intervención bilateral, art. 1915). Nadie puede cambiar por sí mismo la especie de su relación de poder: el simple transcurso del tiempo o la voluntad interna no bastan. \\
+\midrule
+
+\textbf{¿Qué es la unión de posesiones y para qué sirve?} &
+Es la suma temporal de las posesiones de dos poseedores distintos, unidas por un vínculo jurídico (art. 1901). Sirve para acumular el tiempo necesario para alcanzar la prescripción adquisitiva. Para la prescripción breve, ambas posesiones deben ser de buena fe. \\
+\midrule
+
+\textbf{¿Qué son los actos posesorios?} &
+Son los actos propios del poseedor con animus domini que un tenedor no realizaría: construir, realizar mejoras, hacer plantaciones, pagar impuestos (art. 1928). Son la prueba material de que una persona ejerce la posesión y no la mera tenencia. \\
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el apunte menciona <<pagar impuestos>> en el cuadro Cornell, pero no figura en el art. 1928 transcripto ni en el desarrollo)
+\midrule
+
+\textbf{¿Qué establece el art. 1895 CCyC?} &
+La posesión de buena fe del subadquirente de cosas muebles no registrables, que no sean hurtadas ni perdidas, es suficiente para adquirir el derecho real. El título oneroso solo importa frente a la acción reivindicatoria del anterior propietario, y la carga de probar la gratuidad recae sobre el reivindicante. La norma consagra la máxima <<posesión vale título>>. \\
+\midrule
+
+\textbf{¿Qué elige el art. 1895: seguridad estática o dinámica?} &
+Seguridad dinámica. El código sacrifica la seguridad del propietario (seguridad estática) en favor de la circulación fluida de los bienes y la protección del subadquirente de buena fe (seguridad dinámica). Esta decisión es casi uniforme en los sistemas jurídicos modernos de derecho occidental. \\
+\midrule
+
+\textbf{¿Cuándo aplica el art. 1895 y cuándo no?} &
+Aplica cuando el propietario se desprende voluntariamente de la cosa (aunque su voluntad esté viciada, como en el abuso de confianza). No aplica si la cosa fue hurtada o perdida: en esos casos el propietario puede reivindicarla incluso del subadquirente de buena fe. \\
+\midrule
+
+\multicolumn{2}{@{}p{\textwidth}@{}}{%
+\textbf{Resumen:} Las relaciones de poder se adquieren, se transmiten y se extinguen conforme a reglas específicas: la tradición posesoria transmite solo la relación de poder del tradente, la intervención del título requiere actos exteriores y la unión de posesiones permite acumular tiempo para la prescripción adquisitiva. En materia de cosas muebles no registrables, el artículo 1895 adopta la máxima \textit{posesión vale título} y opta decididamente por la seguridad dinámica de las transacciones por sobre la seguridad estática del propietario, reconociendo que las cosas muebles circulan con rapidez y sin dejar rastro documental. Todo el sistema apunta a un mismo horizonte: el desarrollo armónico, pacífico y ordenado de la sociedad bajo el amparo del derecho.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

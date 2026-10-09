@@ -1,0 +1,821 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{Propiedad Horizontal}
+\newcommand{\subtitulo}{Arts. 2037--2071 del Código Civil y Comercial de la Nación}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Encabezado y resumen de los cuadros Cornell
+\newcommand{\cornellheader}{%
+    \toprule
+    \textbf{Preguntas / palabras clave} &
+    \textbf{Notas / respuestas} \\
+    \midrule
+}
+\newcommand{\cornellsummary}[1]{%
+    \midrule
+    \multicolumn{2}{p{\dimexpr0.94\textwidth+2\tabcolsep\relax}}{%
+        \textbf{Resumen:} #1
+    } \\
+    \bottomrule
+}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.3cm}
+
+{\normalsize \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+\chapter[Concepto y naturaleza jurídica]{Concepto y naturaleza jurídica del derecho real de propiedad horizontal}
+
+\section{Relevancia práctica de la propiedad horizontal}
+
+La propiedad horizontal es uno de los regímenes jurídicos más presentes en la práctica profesional cotidiana del abogado argentino. En Argentina, la mayoría de la población urbana vive o trabaja en inmuebles sometidos a propiedad horizontal; conocer este derecho en profundidad es conocer el derecho que regula la convivencia cotidiana.
+
+Comprender su funcionamiento permite, entre otras cuestiones:
+
+\begin{itemize}
+    \item asesorar en la compraventa de unidades funcionales, verificando deudas de expensas y reglamentos;
+    \item redactar o revisar reglamentos de copropiedad y contratos de administración;
+    \item iniciar juicios ejecutivos por cobro de expensas con título hábil (certificado de deuda);
+    \item defender o representar consorcistas en conflictos de asamblea, impugnaciones de decisiones y responsabilidad del administrador;
+    \item asesorar sobre la prehorizontalidad cuando el cliente compra en pozo o sobre planos;
+    \item intervenir como administrador judicial en litigios de consorcio;
+    \item articular este derecho con el usufructo, el embargo, la subasta judicial y el régimen de protección de la vivienda.
+\end{itemize}
+
+\section{Dominio y condominio como punto de partida}
+
+El estudio del derecho real de propiedad horizontal, regulado en los Arts.~2037 a 2069 del Código Civil y Comercial de la Nación (CCyCN), requiere distinguirlo previamente del derecho de dominio y del derecho de condominio.
+
+El \textbf{derecho de dominio} tiene un \textbf{titular exclusivo} al que otorga un \textbf{poder directo e inmediato} sobre la cosa, con las facultades de \textit{ius utendi}, \textit{ius fruendi} e \textit{ius abutendi} (uso, goce y disposición). Cuando recae sobre un inmueble, el propietario es dueño de todo lo que existe en él en forma accesoria: el dominio se extiende a todo lo plantado y a todo lo construido.
+
+\subsection{El caso de Juan: del dominio al condominio}
+
+\begin{example}{Juan y sus hijos}
+Juan adquiere un inmueble: un terreno sin construcción. Más adelante lo construye y el dominio se extiende, por supuesto, a lo construido. Después construye sobre esa casa la planta alta: dos departamentos, con la ilusión de que cada uno fuera utilizado un día por uno de sus hijos. El tiempo pasa, los hijos viven allí con sus familias y Juan decide enajenar el departamento a sus hijos.
+\end{example}
+
+En el ámbito de los derechos reales, \textbf{enajenar} se refiere a la transmisión del derecho de dominio, ya sea mediante compraventa, donación o dación en pago.
+
+La pregunta que plantea el caso es si Juan puede hacerlo directamente. Materialmente se observan tres departamentos, pero jurídicamente existe \textbf{un solo inmueble}: los departamentos son, coloquialmente, como habitaciones de un mismo inmueble, el inmueble de Juan. Si los acreedores de Juan lo ejecutan, ejecutarán el inmueble con todo lo plantado y lo construido.
+
+Como titular de dominio, Juan puede disponer de toda la cosa o de una parte ideal (una parte indivisa). Si dona a cada uno de sus hijos un 25\,\% del inmueble, nace el \textbf{derecho real de condominio}, caracterizado por la \textbf{unidad de objeto}, la \textbf{pluralidad de sujetos} y una propiedad que recae sobre \textbf{partes indivisas}: partes ideales que no se corresponden con una parte material determinada. Esto implica que no se ha transmitido un departamento en especial a cada hijo.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Dominio} & \textbf{Condominio} \\
+\midrule
+Titular único & Pluralidad de sujetos \\
+Poder directo e inmediato & Partes indivisas / ideales \\
+Extensión a lo construido y plantado & No se corresponde con una parte material determinada \\
+Un solo inmueble jurídico & Un solo inmueble jurídico (misma unidad de objeto) \\
+\bottomrule
+\end{tabularx}
+\caption{Comparación entre dominio y condominio.}
+\end{table}
+
+\section{El derecho real de propiedad horizontal}
+
+\subsection{Concepto}
+
+La cuestión es de qué manera cada departamento puede pertenecer en propiedad a cada uno de los condóminos. Allí aparece el derecho real de propiedad horizontal, que crea la posibilidad de constituir \textbf{unidades independientes dentro de un mismo inmueble}. Existe un \textbf{dominio exclusivo sobre partes privativas} (en el ejemplo, los departamentos) \textbf{inescindiblemente unido a un condominio sobre las partes comunes}.
+
+\begin{definition}{Propiedad horizontal (Art.~2037 CCyCN)}
+La propiedad horizontal es el derecho real que se ejerce sobre un inmueble propio que otorga a su titular facultades de uso, goce y disposición material y jurídica que se ejercen sobre partes privativas y sobre partes comunes de un edificio, de conformidad con lo que establece este Título y el respectivo reglamento de propiedad horizontal.
+\end{definition}
+
+Un mismo inmueble puede, entonces, ser objeto de dominio, de condominio, o encontrarse afectado a propiedad horizontal. En los dos primeros casos se tiene un inmueble, ya sea al 100\,\% de un titular o en porcentuales ideales en el caso del condominio; en el tercero, un inmueble afectado a propiedad horizontal.
+
+\subsection{Origen normativo}
+
+La propiedad horizontal fue creada por la \textbf{Ley 13.512} en el año 1948 y cumplió una gran función social, porque dio solución a una gran cantidad de situaciones existentes en la época. Antes de su sanción, el Código Civil de Vélez Sársfield prohibía específicamente la división de los inmuebles en forma horizontal, que crea unidades independientes.
+
+La Ley 13.512 fue la primera ley argentina de propiedad horizontal: creó el régimen de propiedad por pisos y departamentos. Su contenido ha sido incorporado y actualizado en los Arts.~2037 a 2069 del CCyCN (Ley 26.994, en vigencia desde agosto de 2015).
+
+\subsection{Inmuebles afectables}
+
+No solo pueden afectarse las propiedades en altura, como en el ejemplo de Juan, sino también aquellas de una sola planta: propiedades con frente y fondo, propiedades llamadas <<en tira>> y los dúplex, que son formas modernas de propiedad horizontal.
+
+\subsection{Trascendencia social del sistema}
+
+El sistema creado por la Ley 13.512 e incorporado al CCyCN es, según se expresa en las notas, una de las mayores creaciones en materia de derechos reales del siglo XX. A 70 años de su creación % TODO: la cifra de años figura así en las notas originales
+queda demostrado que se trata de un sistema de gran trascendencia social que ha superado largamente los objetivos propios de su creación.
+
+Prueba de ello es que las nuevas formas de propiedad incorporadas como derechos reales, como los \textbf{conjuntos inmobiliarios}, son una regulación especial de la propiedad horizontal; por eso se las llama \textbf{propiedades horizontales especiales}.
+
+\section{Cuadro Cornell del Capítulo 1}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\cornellheader
+\endfirsthead
+\cornellheader
+\endhead
+
+\textbf{¿Qué es la propiedad horizontal?} &
+Es un derecho real autónomo (Arts.~2037--2069 CCyCN) que consiste en un dominio exclusivo sobre partes privativas (la unidad funcional) inescindiblemente unido a un condominio sobre las partes comunes. No es simplemente dominio más condominio: es un derecho único con estructura dual. \\[0.8em]
+
+\textbf{¿En qué se diferencia del dominio y del condominio?} &
+El dominio tiene un solo titular y recae sobre la totalidad del inmueble. El condominio tiene pluralidad de sujetos con partes indivisas sobre el todo. La propiedad horizontal permite que cada propietario tenga dominio exclusivo sobre su unidad (por ejemplo, un departamento) y condominio sobre las partes comunes. Vélez Sársfield prohibía este esquema; la Ley 13.512 lo creó en 1948. \\[0.8em]
+
+\textbf{¿Por qué el condominio no permite que cada hijo de Juan tenga su departamento?} &
+Porque en el condominio las partes son indivisas e ideales y no se corresponden con una parte material determinada: donar un 25\,\% a cada hijo no transmite un departamento en especial. Jurídicamente sigue existiendo un solo inmueble. \\[0.8em]
+
+\textbf{¿Qué inmuebles pueden afectarse a propiedad horizontal?} &
+No solo los edificios en altura: también las propiedades de una sola planta (con frente y fondo, en tira) y los dúplex. \\[0.8em]
+
+\textbf{¿Qué son las propiedades horizontales especiales?} &
+Las nuevas formas de propiedad incorporadas como derechos reales, como los conjuntos inmobiliarios, que constituyen una regulación especial de la propiedad horizontal. \\
+
+\cornellsummary{La propiedad horizontal, creada por la Ley 13.512 en 1948 e incorporada al CCyCN en los Arts.~2037 a 2069, articula el dominio exclusivo sobre la unidad funcional con el condominio sobre las partes comunes del edificio, de manera inescindible. Se distingue del dominio (titular único, poder directo e inmediato) y del condominio (pluralidad de sujetos y partes indivisas sobre un solo inmueble). Permite crear unidades independientes dentro de un mismo inmueble, que puede ser en altura o de una sola planta.}
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+\chapter[Afectación y estructura jurídica]{Afectación y estructura jurídica: unidad funcional, partes privativas y partes comunes}
+
+\section{Requisitos para afectar un inmueble}
+
+Para afectar un inmueble a propiedad horizontal debe ser \textbf{material y jurídicamente posible}. Cada unidad funcional debe tener:
+
+\begin{itemize}
+    \item salida independiente a la vía pública;
+    \item acceso común de todos los propietarios a los servicios de agua y tanques;
+    \item cumplimiento de las normativas locales en materia de construcción.
+\end{itemize}
+
+Cuando se trata de inmuebles ya construidos, puede requerirse la realización de obras, lo que implica costos adicionales y, en muchas ocasiones, la imposibilidad material por falta de espacio.
+
+Se distinguen dos tipos de requisitos:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Requisitos administrativos} & \textbf{Requisitos jurídicos} \\
+\midrule
+Plano de construcción habitual & Confección del reglamento de copropiedad \\
+Plano de mensura (esencial) & Escritura pública del reglamento \\
+Aprobación por la municipalidad local & Inscripción en el Registro de la Propiedad Inmueble (constitutiva) \\
+\bottomrule
+\end{tabularx}
+\caption{Requisitos para someter un inmueble a propiedad horizontal.}
+\end{table}
+
+\subsection{El plano de mensura}
+
+El \textbf{plano de mensura} es esencial para la existencia de la propiedad horizontal: sin él no existiría. Divide e individualiza cuáles serán los sectores privativos y los sectores comunes, y cuál es el porcentual que cada parte privativa tiene de propiedad de la cosa común.
+
+\subsection{La inscripción del reglamento}
+
+La inscripción del reglamento de copropiedad en el Registro de la Propiedad Inmueble es \textbf{constitutiva}: hace nacer el estado de propiedad horizontal. Sin inscripción del reglamento, no hay estado de propiedad horizontal.
+
+\section{La unidad funcional como objeto del derecho}
+
+El objeto del derecho real de propiedad horizontal es la \textbf{unidad funcional}, sobre la que recae el dominio exclusivo (parte privativa), inescindiblemente unida a la parte común.
+
+Las unidades funcionales pueden ser departamentos, locales o cocheras; en todos los casos tendrán salida independiente a la vía pública, ya sea en forma directa o por un pasaje común.
+
+\section{Partes comunes (Arts.~2040--2041 CCyCN)}
+
+Las \textbf{partes comunes} son aquellas destinadas a permitir el acceso a las partes privativas (como el ascensor) y a garantizar el funcionamiento del consorcio. Ningún propietario tiene un derecho exclusivo sobre ellas y siempre estarán determinadas en el reglamento.
+
+Puede ocurrir que algunas partes comunes estén destinadas al uso exclusivo de un propietario; por ejemplo, una azotea que es siempre común pero puede estar destinada al uso exclusivo de una unidad funcional.
+
+\begin{formula}{Art.~2041 CCyCN --- Cosas y partes necesariamente comunes}
+Son cosas y partes necesariamente comunes, que no pueden recibir otro destino en el reglamento bajo pena de nulidad:
+\begin{itemize}
+    \item el terreno (siempre común en la propiedad horizontal);
+    \item los muros exteriores del edificio y los que separan cada unidad funcional;
+    \item el piso de cada unidad (que es el techo del vecino del piso inferior);
+    \item el techo de cada unidad (que es el piso del vecino del piso superior).
+\end{itemize}
+\end{formula}
+
+\begin{example}{El octavo piso}
+Quien vive en el octavo piso tiene un piso que es común, porque es el techo del vecino del séptimo; y un techo que es común, porque es el piso del vecino del noveno. Surge entonces la pregunta por el objeto de su derecho real, que se responde con la teoría del cubo de aire.
+\end{example}
+
+\section{La teoría del cubo de aire}
+
+El objeto del derecho de cada titular es el \textbf{cubo de aire}: el volumen interior que el plano de mensura identificó como su unidad funcional (en el ejemplo de las notas, la unidad <<8.º C>>) y que la relación con otras disciplinas, como la arquitectura y la ingeniería, hizo materialmente posible. El Código lo denomina \textbf{<<volumen>>}: un volumen interior.
+
+El titular es dueño, además, de un \textbf{porcentual indiviso} del terreno, que está inescindiblemente unido a la unidad funcional. Si no fuera de esa manera, el titular no tendría ni terreno, ni paredes laterales, ni piso, porque todo ello es común. % TODO: contenido incompleto o ambiguo en las notas originales (la referencia a la terraza del piso 12 y al piso ocho pisos más abajo no es clara)
+
+\section{Cuadro Cornell del Capítulo 2}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\cornellheader
+\endfirsthead
+\cornellheader
+\endhead
+
+\textbf{¿Cuáles son los requisitos para afectar un inmueble?} &
+Debe ser material y jurídicamente posible (salida independiente a la vía pública, acceso común a servicios de agua y tanques, cumplimiento de normas locales de construcción). Administrativos: plano de construcción y plano de mensura (aprobado por la municipalidad). Jurídicos: redacción del reglamento de copropiedad en escritura pública e inscripción constitutiva en el Registro de la Propiedad Inmueble. \\[0.8em]
+
+\textbf{¿Por qué es esencial el plano de mensura?} &
+Porque sin él no existiría la propiedad horizontal: divide e individualiza los sectores privativos y los comunes, y fija el porcentual que cada parte privativa tiene de propiedad de la cosa común. \\[0.8em]
+
+\textbf{¿Qué efecto tiene la inscripción del reglamento?} &
+Es constitutiva: hace nacer el estado de propiedad horizontal. \\[0.8em]
+
+\textbf{¿Cuál es el objeto del derecho real de propiedad horizontal?} &
+La unidad funcional (departamentos, locales, cocheras), sobre la que recae el dominio exclusivo, inescindiblemente unido a la parte común. \\[0.8em]
+
+\textbf{¿Qué es el <<cubo de aire>> y por qué es importante?} &
+Es la teoría que explica el objeto del derecho: el propietario no es dueño de paredes, pisos ni techos (que son comunes), sino del volumen interior que el plano de mensura identificó como su unidad funcional. La arquitectura y la ingeniería hacen materialmente posible ese volumen. \\[0.8em]
+
+\textbf{¿Cuáles son las cosas y partes necesariamente comunes (Art.~2041)?} &
+El terreno, los muros exteriores y los que separan cada unidad funcional, el piso de cada unidad (techo del vecino inferior) y el techo de cada unidad (piso del vecino superior). No pueden recibir otro destino en el reglamento, bajo pena de nulidad. \\
+
+\cornellsummary{Para afectar un inmueble se requieren requisitos administrativos (plano de mensura aprobado) y jurídicos (reglamento de copropiedad en escritura pública, inscripto con efecto constitutivo). El objeto del derecho es la unidad funcional: el <<cubo de aire>> individualizado por el plano de mensura, con dominio exclusivo, inescindiblemente unido al condominio sobre las partes comunes, entre las cuales el terreno, los muros y los pisos y techos de cada unidad son necesariamente comunes.}
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 3
+% ============================================================
+\chapter[El consorcio y las expensas]{El consorcio de propietarios y las expensas}
+
+\section{El consorcio como persona jurídica (Art.~2044 CCyCN)}
+
+Cuando se vende o transmite al menos uno de los departamentos, es decir, cuando hay al menos dos propietarios diferentes, ha nacido el \textbf{consorcio de copropietarios}.
+
+\begin{definition}{Consorcio (Art.~2044 CCyCN)}
+El conjunto de los propietarios de las unidades funcionales constituye la persona jurídica consorcio. Tiene personería jurídica y se rige por las normas del presente Capítulo y las del reglamento de propiedad horizontal.
+\end{definition}
+
+El consorcio está formado por todos los titulares de derechos de propiedad horizontal y es una \textbf{persona jurídica}. Tiene:
+
+\begin{itemize}
+    \item nombre y domicilio;
+    \item capacidad de adquirir derechos y contraer obligaciones;
+    \item una voluntad común, que se forma a partir de las asambleas;
+    \item un órgano ejecutivo, que es el representante legal y pone en acto las decisiones de la asamblea: el \textbf{administrador}.
+\end{itemize}
+
+\section{Responsabilidad de los propietarios (Art.~143 CCyCN)}
+
+Una cuestión discutida es si los consorcistas responden por las obligaciones de la persona jurídica.
+
+\begin{example}{Falla del ascensor}
+Ha fallado el ascensor y un tercero que venía al edificio ha sufrido una tragedia e inició una demanda de daño contra el consorcio. Responde la persona jurídica; su patrimonio está formado por las expensas.
+\end{example}
+
+Se cita la postura de la doctora Marina Mariani de Vidal, con la que el docente manifiesta coincidir: ser propietario no puede ser un velo de indemnidad para no responder por los daños que puede ocasionar la cosa de la propiedad, en virtud de la responsabilidad objetiva estudiada anteriormente.
+
+Se concluye que la responsabilidad de los propietarios es siempre \textbf{subsidiaria e ilimitada}.
+
+\section{Facultades y obligaciones de los propietarios}
+
+Se distinguen las facultades materiales y jurídicas del propietario de sus obligaciones y prohibiciones.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Facultades} & \textbf{Obligaciones y prohibiciones} \\
+\midrule
+Usar y gozar del inmueble (facultades materiales) & Cumplir el reglamento de copropiedad \\
+Enajenar la unidad funcional & Sostener económicamente al consorcio (pagar expensas) \\
+Constituir derechos reales & Permitir el acceso a la unidad para realizar reparaciones \\
+Realizar actos de administración (alquilar) & No destinar la unidad a un fin diferente al admitido por el reglamento \\
+Facultades siempre inescindiblemente unidas a la parte proporcional de la cosa común & No realizar actividades riesgosas o peligrosas que afecten al edificio \\
+\bottomrule
+\end{tabularx}
+\caption{Facultades y obligaciones de los propietarios.}
+\end{table}
+
+El Art.~2069 plasma la facultad del consorcio de accionar para que cesen las infracciones cometidas por los propietarios, pudiendo articularse la vía procesal más rápida.
+
+\begin{example}{Pérdida en un departamento}
+Hay una pérdida en un departamento cuyo titular no permite el acceso, lo que puede provocar directamente una inundación en los pisos inferiores. El consorcio tiene acción, incluso para pedir el desalojo cuando el inmueble está ocupado por terceros.
+\end{example}
+
+\section{Las expensas}
+
+\subsection{Concepto y fundamento (Art.~2048 CCyCN)}
+
+Según la doctora Marina Mariani de Vidal, las expensas son la savia que alimenta al consorcio: sin el sostenimiento de los gastos por parte de todos los propietarios, el sistema consorcial sucumbe. Por eso la normativa de orden público es rigurosa en materia de expensas, lo que explica los grandes privilegios del crédito por expensas.
+
+\begin{example}{Falta de pago de expensas}
+Un consorcio, ante la falta de pago de expensas por la mayoría de los propietarios, no puede pagar la luz que abastece a los servicios comunes: dejarían de funcionar el ascensor, la luz del edificio y el agua. Se plantea entonces cómo ejercerían las facultades propias del derecho de propiedad los titulares que no pueden acceder a su unidad funcional. Las notas proponen los casos de Juan (piso 14, con secuelas de un accidente) y de María (embarazo a término, piso 17, cuyo médico debería subir con un respirador eléctrico por la escalera, sin luz), que muestran la multiplicidad de situaciones que tornan esencial el pago de las expensas.
+\end{example}
+
+\begin{formula}{Art.~2048 CCyCN --- Gastos y contribuciones}
+Cada propietario debe atender los gastos de conservación y reparación de su propia unidad funcional. Asimismo, debe pagar las expensas comunes ordinarias de administración y las extraordinarias de reparación o mejora que resuelva la asamblea, como así también las que, estando determinadas en el reglamento de propiedad, se devengan en forma proporcional a su parte indivisa.
+\end{formula}
+
+\subsection{Tipos de expensas}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Expensas ordinarias} & \textbf{Expensas extraordinarias} \\
+\midrule
+Son las regulares y periódicas & No siempre existen \\
+Sueldo del encargado, luz, gastos de seguridad, seguros, mantenimiento de ascensores & Cambio del sistema de ascensores, portero eléctrico, pintura del edificio \\
+No requieren aprobación previa de la asamblea & En todos los casos deben ser decididas por la asamblea de propietarios \\
+Son liquidadas por el administrador mensualmente & Exceden las facultades ordinarias del administrador \\
+\bottomrule
+\end{tabularx}
+\caption{Expensas ordinarias y extraordinarias.}
+\end{table}
+
+\subsection{Obligados al pago (Arts.~2049 y 2059 CCyCN)}
+
+Están obligados al pago de las expensas:
+
+\begin{itemize}
+    \item los \textbf{propietarios} (obligación esencial e irrenunciable);
+    \item los \textbf{poseedores} por cualquier título (incorporados en el CCyCN);
+    \item los \textbf{usufructuarios}: el propietario tiene la nuda propiedad y también es responsable, y el usufructuario de esa unidad también lo es;
+    \item el \textbf{adquirente} de un departamento: si ese departamento tenía deuda de expensas al momento de la adquisición, el adquirente adquiere también la deuda;
+    \item el \textbf{enajenante}: continúa siendo responsable de las deudas que existían al tiempo de la enajenación.
+\end{itemize}
+
+\begin{important}
+Los \textbf{locatarios} están obligados ante el consorcio al pago de las expensas si se obligaron a pagarlas, en una relación de derecho personal con sus locadores. Si no pagan, será motivo de desalojo. Pero el consorcio \textbf{no tiene acción directa} respecto de los locatarios.
+\end{important}
+
+\subsection{La expensa como obligación \textit{propter rem}}
+
+La expensa es una obligación \textit{propter rem}, aunque la doctrina no acuerda si lo es en sentido propio; según las notas, al menos habría que decir que es una \textit{propter rem} \textit{sui generis}. La característica central de la obligación \textit{propter rem} es que \textbf{sigue a la cosa}. Sin embargo, en las expensas el enajenante no queda desobligado: continúa adeudando.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Adquirente} & \textbf{Enajenante} \\
+\midrule
+Por deudas devengadas \textbf{antes} de su adquisición: responde solo con la cosa & Continúa respondiendo con todo su patrimonio por las deudas anteriores \\
+Por deudas devengadas \textbf{durante} su titularidad: responde con la cosa y con todo su patrimonio & Ya no tiene la cosa: responde exclusivamente con su patrimonio \\
+\bottomrule
+\end{tabularx}
+\caption{Responsabilidad del adquirente y del enajenante por expensas.}
+\end{table}
+
+\begin{example}{Deuda de \$10.000 al enajenar}
+Una unidad (octavo C) tiene una deuda de expensas de \$10.000. Su titular la enajena y la adquiere Juan. Desde el momento mismo de la adquisición, Juan responde por los \$10.000. El enajenante también debe los \$10.000. El consorcio tiene acción contra los dos; quien pague repetirá contra quien corresponda.
+\end{example}
+
+\begin{important}
+\textbf{Inoponibilidad al consorcio.} Todo convenio entre enajenante y adquirente sobre las deudas de expensas es inoponible al consorcio (Art.~2049 CCyCN); por ejemplo, una cláusula en la escritura traslativa de dominio que establezca que el adquirente se hace cargo de la deuda a cambio de pagar menos precio. Ese instrumento es de derecho personal y solo produce efectos entre las partes. El consorcio podrá demandar a ambos: el enajenante responderá con todo su patrimonio (ya no tiene la cosa); el adquirente responderá por las deudas anteriores con la cosa, y por las devengadas durante su titularidad con la cosa y con todo su patrimonio.
+\end{important}
+
+\subsection{El plenario <<Servicios Eficientes c/ Sabrá>> (CNCiv., 1999)}
+
+Se trata de un plenario de la Cámara Civil. Los plenarios tienen aplicación obligatoria para todas las salas de la Cámara, en este caso de la Cámara Civil, por un período de 10 años. El fallo fue muy importante porque, a partir de él, que siguió aplicándose aun después de haber cesado su obligatoriedad, hasta los adquirentes en subasta debían pagar las expensas que no fueran cubiertas con el precio obtenido. % TODO: contenido incompleto o ambiguo en las notas originales (el texto original dice <<precio de las uvas>>)
+
+Es decir: el adquirente en subasta, que se libera de los impuestos y tasas que tenga la propiedad, no se libera de las deudas de expensas cuando el monto obtenido en la subasta no ha sido suficiente para solventarlas.
+
+Al cumplirse los diez años del plenario, en 2009, el Dr. Jorge Alterini, entonces director de la revista La Ley, solicitó al docente un estudio sobre lo ocurrido con esa doctrina una década después. El trabajo, publicado en esa revista, constató que la doctrina no solo era aplicada por todas las salas de la Cámara Civil, sino que también había hecho presencia en la justicia comercial.
+
+\begin{important}
+\textbf{Plenario <<Servicios Eficientes S.A. c/ Sabrá, Victor>> --- CNCiv. (1999).} El adquirente en subasta judicial de una unidad de propiedad horizontal está obligado al pago de las deudas por expensas comunes que graven la unidad subastada, en la medida en que el producido de la subasta sea insuficiente para satisfacerlas. Esta doctrina se mantuvo vigente más allá del plazo de obligatoriedad de los plenarios (10 años) y se extendió a la justicia comercial.
+\end{important}
+
+\subsection{Privilegios y protecciones procesales de la expensa}
+
+El ordenamiento otorga al crédito por expensas los siguientes beneficios:
+
+\begin{itemize}
+    \item \textbf{Prescripción bienal:} el Art.~2562 fijó un plazo de 2 años para ejecutar el cobro de expensas.
+    \item \textbf{Privilegio especial} en las ejecuciones individuales: cuando otros acreedores subastan el inmueble, la expensa tiene privilegio frente a esas deudas.
+    \item No le es oponible la afectación del inmueble al \textbf{régimen de protección de la vivienda} (anterior bien de familia).
+    \item Se autorizan \textbf{intereses punitorios} además de los intereses moratorios.
+    \item \textbf{Procedimiento ejecutivo:} el certificado de deuda expedido por el administrador (actualmente suscripto también por el consejo de propietarios, si existiere) es el título ejecutivo que habilita el embargo de la unidad y la subasta en caso de incumplimiento.
+\end{itemize}
+
+\begin{formula}{Art.~2562 CCyCN --- Prescripción bienal}
+Se prescriben a los dos años: [\ldots] el reclamo de expensas comunes.
+\end{formula}
+
+\section{Cuadro Cornell del Capítulo 3}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\cornellheader
+\endfirsthead
+\cornellheader
+\endhead
+
+\textbf{¿Qué es el consorcio y qué tipo de persona jurídica es?} &
+Es el conjunto de propietarios de las unidades funcionales (Art.~2044 CCyCN). Es una persona jurídica con nombre, domicilio, capacidad de adquirir derechos y contraer obligaciones, patrimonio propio (formado por las expensas), voluntad común (asambleas) y representante legal (administrador). Nace cuando hay al menos dos propietarios diferentes. \\[0.8em]
+
+\textbf{¿Responden los propietarios por las deudas del consorcio?} &
+Frente a un daño, responde en primer lugar la persona jurídica, cuyo patrimonio está formado por las expensas. Conforme a la postura de Mariani de Vidal, ser propietario no es un velo de indemnidad: la responsabilidad de los propietarios es siempre subsidiaria e ilimitada. \\[0.8em]
+
+\textbf{¿Qué puede y qué no puede hacer el propietario?} &
+Puede usar y gozar, enajenar, constituir derechos reales y realizar actos de administración (alquilar), siempre unido a la parte proporcional de la cosa común. Debe cumplir el reglamento, pagar expensas, permitir el acceso para reparaciones, no cambiar el destino admitido por el reglamento y no realizar actividades riesgosas. El consorcio puede accionar para que cesen las infracciones (Art.~2069). \\[0.8em]
+
+\textbf{¿Qué son las expensas y por qué son tan protegidas?} &
+Son la obligación de cada propietario de solventar los gastos de conservación, reparación y funcionamiento del edificio (Art.~2048 CCyCN). Son <<la savia que alimenta al consorcio>> (Mariani de Vidal): sin ellas el sistema colapsa. Por eso tienen prescripción bienal, privilegio especial en ejecuciones, no se les opone el régimen de protección de la vivienda, admiten intereses punitorios y habilitan el procedimiento ejecutivo. \\[0.8em]
+
+\textbf{¿En qué difieren las expensas ordinarias de las extraordinarias?} &
+Las ordinarias son regulares y periódicas, no requieren aprobación previa de la asamblea y las liquida mensualmente el administrador. Las extraordinarias no siempre existen, deben ser decididas por la asamblea en todos los casos y exceden las facultades ordinarias del administrador. \\[0.8em]
+
+\textbf{¿Quiénes están obligados a pagar expensas?} &
+Propietarios, poseedores por cualquier título, usufructuarios, el adquirente (responde por deudas anteriores con la cosa; por las propias, con la cosa y su patrimonio) y el enajenante (continúa respondiendo con todo su patrimonio por las deudas al tiempo de la enajenación). Los locatarios solo se obligan frente a su locador, sin acción directa del consorcio. Todo convenio entre las partes es inoponible al consorcio. \\[0.8em]
+
+\textbf{¿Es la expensa una verdadera obligación \textit{propter rem}?} &
+La doctrina no acuerda si lo es en sentido propio; al menos sería una \textit{propter rem sui generis}. Sigue a la cosa, pero el enajenante no queda desobligado. \\[0.8em]
+
+\textbf{¿Qué estableció el plenario <<Servicios Eficientes c/ Sabrá>> (1999)?} &
+Que el adquirente en subasta judicial está obligado al pago de las deudas por expensas en la medida en que el producido de la subasta sea insuficiente para cubrirlas. La doctrina se mantuvo vigente más allá de su plazo de obligatoriedad y se extendió a la justicia comercial. \\
+
+\cornellsummary{El consorcio es la persona jurídica formada por los propietarios, con patrimonio propio nutrido por las expensas, voluntad colectiva formada en las asambleas y representación legal a través del administrador. La responsabilidad de los propietarios es subsidiaria e ilimitada. La obligación de pagar expensas es una de las más tuteladas del ordenamiento: recae sobre propietarios, poseedores y aun sobre quien ya enajenó la unidad, y goza de privilegio especial, inoponibilidad del régimen de vivienda protegida y procedimiento ejecutivo. El plenario <<Servicios Eficientes c/ Sabrá>> extendió esa protección a las adquisiciones en subasta.}
+\end{longtable}
+
+% ============================================================
+% CAPÍTULO 4
+% ============================================================
+\chapter[Administración, asambleas y extinción]{Administración, asambleas, reglamento, extinción y prehorizontalidad}
+
+\section{El administrador (Art.~2067 CCyCN)}
+
+El administrador es el \textbf{representante legal} del consorcio. Tiene la función de administrar su patrimonio: pagar los impuestos, pagar los sueldos (el encargado, el ayudante si lo hubiera) y convocar a la asamblea, que es donde se forma la voluntad común de la persona jurídica.
+
+Es un \textbf{mandatario} de la persona jurídica que, además de la obligación de rendir cuentas, tiene la responsabilidad propia de todos los mandatarios.
+
+\begin{formula}{Art.~2067 CCyCN --- Obligaciones del administrador}
+Entre las obligaciones del administrador se encuentran: convocar a la asamblea y redactar el orden del día (la identificación clara, concreta y fehaciente de los puntos que van a tratarse); ejecutar las decisiones de la asamblea; recaudar y administrar las expensas ordinarias y las extraordinarias decididas por la asamblea.
+\end{formula}
+
+\section{Las asambleas (Arts.~2058--2063 CCyCN)}
+
+La \textbf{asamblea} es el órgano deliberativo del consorcio y la única vía para resolver los asuntos de interés común: constituye la formación de la voluntad de la persona jurídica. Su decisión es obligatoria no solo para quienes estaban presentes y para quienes no lo estaban, sino también para quienes votaron en contra.
+
+Para que la decisión sea válida y exigible, deben cumplirse los requisitos de mayoría establecidos por el reglamento y la ley, y la asamblea solo puede tratar el orden del día.
+
+\subsection{Tipos de asambleas}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Asamblea ordinaria} & \textbf{Asamblea extraordinaria} \\
+\midrule
+Se reúne al menos una vez al año & Se convoca cuando lo exige la situación \\
+Trata todos los temas regulares de funcionamiento del consorcio & Puede ser convocada por el administrador, por propietarios con más del 5\,\% o autoconvocada \\
+Rendición de cuentas del administrador & Para autoconvocarse se necesitan los 2/3 de la totalidad de propietarios \\
+Evaluación de presupuestos de gastos o reparaciones & Trata temas urgentes o que no admiten demora \\
+\bottomrule
+\end{tabularx}
+\caption{Asambleas ordinarias y extraordinarias.}
+\end{table}
+
+\subsection{Tipos de mayorías}
+
+La \textbf{mayoría absoluta} requiere un <<doble cómputo>>: más del 50\,\% del porcentual y más de la mitad de los votos computados por unidad funcional.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.19\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Mayoría} & \textbf{Descripción} & \textbf{Casos de aplicación} \\
+\midrule
+\textbf{Mayoría absoluta} & Más del 50\,\% del porcentual y más de la mitad de los votos por unidad funcional (doble cómputo) & Obras nuevas o mejoras importantes y costosas \\
+\textbf{Unanimidad} & 100\,\% de los propietarios & Mejoras u obras que afecten la estructura del inmueble en beneficio de uno o pocos; que modifiquen el porcentual de contribución y el porcentual de propiedad; hipotecar el terreno; cambiar el destino de partes comunes \\
+\textbf{Dos tercios} & 2/3 de la totalidad de propietarios & Modificar el reglamento de copropiedad \\
+\textbf{Mayoría de valor} & Más de la mitad del valor del inmueble & Destrucción parcial o total: decidir demolición, venta o reconstrucción del edificio \\
+\bottomrule
+\end{tabularx}
+\caption{Tipos de mayorías en las asambleas.}
+\end{table}
+
+\section{El consejo de copropietarios (Art.~2064 CCyCN)}
+
+El consejo de copropietarios es esencialmente un \textbf{órgano de fiscalización} que controla y acompaña la actividad del administrador. Es un órgano \textbf{facultativo}: puede o no existir. Cuando existe, suscribe el certificado de deuda.
+
+\section{El reglamento de propiedad horizontal (Art.~2056 CCyCN)}
+
+El reglamento de propiedad horizontal es ya un \textbf{contrato}, y un \textbf{contrato de adhesión}, porque cada nuevo propietario adhiere a ese contrato que dio vida al sistema de propiedad horizontal. Regula la vida del consorcio, debe redactarse en escritura pública, rige los derechos y obligaciones de los titulares e integra el título suficiente de la unidad funcional.
+
+\begin{formula}{Art.~2056 CCyCN --- Cláusulas obligatorias del reglamento}
+Son cláusulas obligatorias para la validez del reglamento: la determinación del terreno; las unidades funcionales y las complementarias; la ubicación de las partes privativas; las partes comunes; el porcentual para el pago de las expensas; las facultades de las asambleas; las mayorías requeridas para las distintas decisiones; entre otras.
+\end{formula}
+
+\section{Extinción del sistema de propiedad horizontal}
+
+La propiedad horizontal recae sobre cosas. Si se produce la destrucción del edificio, necesariamente subsistirá un \textbf{condominio sobre el terreno}, porque la propiedad horizontal carece de suelo propio.
+
+Cuando existe destrucción, o un grave deterioro, es función de la \textbf{mayoría que representa más de la mitad del valor del inmueble} resolver la demolición, la reconstrucción o la venta del edificio.
+
+La particularidad es que esta reconstrucción le permite al propietario que votó en contra enajenar su parte; si no hubiera ningún oferente, el consorcio podría llegar a adquirirla.
+
+\section{Régimen de prehorizontalidad (Arts.~2070--2071 CCyCN)}
+
+La prehorizontalidad es una normativa que pretende aplicarse a los contratos de compraventa que realizan las constructoras respecto de unidades que van a ser construidas y luego sometidas a propiedad horizontal. Su objetivo es proteger a estos adquirentes por boleto, que son adquirentes de derechos personales: no pueden adquirir el derecho real porque el inmueble aún no está afectado a propiedad horizontal.
+
+Se le impone al propietario (que suele ser la constructora) la obligación de tener un \textbf{seguro} en favor de los adquirentes.
+
+La prehorizontalidad \textbf{no se aplica} cuando:
+
+\begin{itemize}
+    \item la constitución de la propiedad horizontal resulta de una partición de condominio;
+    \item se trata de inmuebles del dominio privado del Estado;
+    \item se trata de construcciones con financiamiento público o de fideicomisos de organismos oficiales.
+\end{itemize}
+
+\section{Cuadro Cornell del Capítulo 4}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\cornellheader
+\endfirsthead
+\cornellheader
+\endhead
+
+\textbf{¿Cuál es el rol del administrador?} &
+Es el representante legal del consorcio (mandatario). Liquida y recauda expensas, paga sueldos e impuestos, convoca asambleas, redacta el orden del día, ejecuta las decisiones de la asamblea y rinde cuentas. Sus obligaciones están reguladas por la ley y el reglamento (Art.~2067 CCyCN). \\[0.8em]
+
+\textbf{¿Qué tipos de asambleas existen?} &
+La ordinaria se reúne al menos una vez al año, trata los temas regulares y la rendición de cuentas. La extraordinaria se convoca cuando lo exige la situación: puede ser convocada por el administrador, por propietarios con más del 5\,\% o autoconvocada (con los 2/3 de la totalidad de propietarios). \\[0.8em]
+
+\textbf{¿Qué tipos de mayorías existen en las asambleas?} &
+Mayoría absoluta (doble cómputo: más del 50\,\% del porcentual y más de la mitad de los votos por unidad): obras importantes. Unanimidad: obras que afectan la estructura, cambian el porcentual de propiedad, hipotecan el terreno o cambian el destino de partes comunes. Dos tercios: modificar el reglamento. Mayoría de valor (más del 50\,\% del valor): decisiones ante la destrucción del edificio. \\[0.8em]
+
+\textbf{¿Qué es el consejo de copropietarios?} &
+Un órgano facultativo de fiscalización que controla y acompaña la actividad del administrador y, cuando existe, suscribe el certificado de deuda (Art.~2064). \\[0.8em]
+
+\textbf{¿Qué naturaleza tiene el reglamento y qué cláusulas son obligatorias?} &
+Es un contrato de adhesión, redactado en escritura pública, que integra el título suficiente de la unidad funcional. Entre sus cláusulas obligatorias: terreno, unidades funcionales y complementarias, ubicación de las partes privativas, partes comunes, porcentual de expensas, facultades de las asambleas y mayorías requeridas (Art.~2056). \\[0.8em]
+
+\textbf{¿Cómo se extingue el sistema?} &
+Por destrucción del edificio: subsiste un condominio sobre el terreno. La mayoría de valor (más del 50\,\% del valor del inmueble) decide la demolición, venta o reconstrucción. El propietario que votó en contra puede enajenar su parte; si no hay oferentes, el consorcio puede adquirirla. \\[0.8em]
+
+\textbf{¿Qué es la prehorizontalidad?} &
+El régimen de los Arts.~2070--2071 CCyCN que protege a quienes compran unidades en construcción. Como aún no existe el estado de propiedad horizontal, el adquirente solo tiene derechos personales. Se exige al propietario o constructora un seguro en su favor. No se aplica cuando la afectación surge de una partición de condominio, ni en inmuebles del dominio privado del Estado o con financiamiento público. \\
+
+\cornellsummary{La asamblea forma la voluntad del consorcio con mayorías que varían según la trascendencia del acto, y el administrador la ejecuta como representante legal; el consejo de copropietarios es un órgano facultativo de fiscalización y el reglamento, un contrato de adhesión con cláusulas obligatorias. Ante la destrucción del edificio subsiste un condominio sobre el terreno y la mayoría de valor decide su destino. La prehorizontalidad protege a quienes compran en pozo, antes de que nazca el estado de propiedad horizontal, exigiendo al desarrollador un seguro en favor de esos adquirentes.}
+\end{longtable}
+
+\end{document}

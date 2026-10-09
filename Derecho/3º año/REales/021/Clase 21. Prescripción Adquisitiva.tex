@@ -1,0 +1,676 @@
+\documentclass[12pt,oneside]{book}
+
+%==================================================
+% METADATOS
+%==================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{Prescripción Adquisitiva de Inmuebles (Usucapión)}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+%==================================================
+% PAQUETES
+%==================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==================================================
+% CONFIGURACIÓN
+%==================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\renewcommand{\arraystretch}{1.25}
+
+%==================================================
+% COMANDOS
+%==================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Resumen del cuadro Cornell (última fila, ancho completo)
+\newcommand{\cornellresumen}[1]{%
+    \midrule
+    \multicolumn{2}{@{}p{\dimexpr0.95\textwidth+2\tabcolsep\relax}@{}}{%
+        \vspace{0.2em}\textbf{Resumen:} #1\vspace{0.2em}} \\
+    \bottomrule
+}
+
+%==================================================
+% ENTORNOS / CAJAS
+%==================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%==================================================
+% CONFIGURACIÓN FINAL (ENCABEZADOS Y PIES)
+%==================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==================================================
+% DOCUMENTO
+%==================================================
+\begin{document}
+
+%--------------------------------------------------
+% PORTADA
+%--------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%--------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------
+\tableofcontents
+
+%==================================================
+% CAPÍTULO 1
+%==================================================
+\chapter[El tiempo y el derecho]{El tiempo y el derecho: introducción y regulación normativa}
+
+\section{El tiempo como fenómeno jurídico}
+
+La prescripción adquisitiva de inmuebles es un instituto del derecho civil cuyo estudio es, esencialmente, el estudio del \textbf{tiempo} y de sus efectos en el derecho. Se analiza cómo el transcurso del tiempo, combinado con una posesión pública, continua e ininterrumpida, puede transformar a quien carece de derecho sobre una cosa en titular de un derecho real de dominio.
+
+Desde una perspectiva humana, el autor Ashley sostiene que los seres humanos, desde la más remota antigüedad, han mostrado su impotencia ante el tiempo: no es posible detenerlo cuando se es feliz ni acelerarlo cuando se desea que algo concluya. San Agustín denomina a esta vivencia \textbf{tiempo existencial}: el tiempo que se percibe como efímero en los buenos momentos y como eterno en aquellos que se desea que terminen. De cualquier modo, el ser humano es impotente frente a él.
+
+Los juristas no son ajenos a esta realidad. En materia de \textbf{derechos reales}, el tiempo tiene una potencia enorme. También la tiene en los derechos personales, pero allí se manifiesta esencialmente a través de la prescripción liberatoria. En los derechos reales, el tiempo es tan potente que puede convertir a quien tiene solo una \textbf{relación de hecho} con la cosa en \textbf{adquirente de un derecho real}, al cabo de cierto tiempo y bajo determinadas calidades de poder sobre la cosa.
+
+\section{Importancia práctica del instituto}
+
+El instituto es central en el ejercicio profesional del derecho, en estudios jurídicos, escribanías, asesorías municipales y en la práctica notarial, porque con frecuencia el tiempo y la posesión determinan quién tiene derecho sobre un inmueble. Entre las situaciones concretas en que se aplica este conocimiento se encuentran:
+
+\begin{itemize}
+    \item asesorar a un cliente que lleva 15 o 20 años viviendo en un terreno sin escritura;
+    \item defender o atacar una acción reivindicatoria;
+    \item iniciar un juicio de usucapión y producir la prueba documental necesaria;
+    \item evaluar si un título de propiedad tiene defectos de fondo (justo título frente a título suficiente);
+    \item calcular plazos de prescripción considerando suspensiones e interrupciones;
+    \item negociar la compraventa de una posesión y estimar su valor real en el mercado.
+\end{itemize}
+
+La vivienda es el bien más valioso que poseen la mayoría de las familias. Entender la prescripción adquisitiva permite proteger ese patrimonio, sanear títulos imperfectos y brindar seguridad jurídica.
+
+\begin{example}{Don Ramón}
+Don Ramón llegó a un terreno baldío hace 22 años, construyó su casa, pagó algunos impuestos y crió a su familia allí. El dueño original nunca apareció. ¿Puede Don Ramón escriturar?
+
+La respuesta a esta pregunta se construye a lo largo de los temas siguientes: qué es la prescripción adquisitiva y sus fundamentos; cuánto tiempo y con qué calidad de posesión se requiere (prescripción larga); el caso del comprador de buena fe con título imperfecto (prescripción breve); cómo el tiempo puede pausarse o reiniciarse (suspensión e interrupción); y cómo se lleva todo ello a juicio para obtener la escritura.
+\end{example}
+
+\section{Regulación normativa en el Código Civil y Comercial}
+
+La prescripción adquisitiva está regulada en el Código Civil y Comercial de la Nación (CCCN) en dos lugares:
+
+\begin{itemize}
+    \item el \textbf{Libro IV}, dedicado a los derechos reales, que trata la prescripción adquisitiva en los Arts.~1897 a 1907. Es el lugar natural de la regulación, porque el efecto de la relación de poder (la posesión) es tan potente que permite la adquisición del derecho real de dominio o de otros derechos reales;
+    \item el \textbf{Libro V}, que contiene disposiciones comunes en materia de derechos reales y de derechos personales, en los Arts.~2532 a 2565.
+\end{itemize}
+
+\subsection{La regla general: Art. 2565 CCCN}
+
+La regla general surge del Libro V. Los derechos reales se clasifican en principales y accesorios; estos últimos son los de garantía. Todos los demás, ya sean sobre cosa propia o de disfrute sobre cosa ajena, son derechos reales principales.
+
+\begin{formula}{Art. 2565 CCCN}
+Los derechos reales principales se pueden adquirir por prescripción adquisitiva en los términos del Art.~1897, a excepción del derecho real de superficie, que no puede adquirirse por prescripción adquisitiva.
+\end{formula}
+
+Por lo tanto, pueden adquirirse por prescripción adquisitiva el dominio, la propiedad horizontal, los conjuntos inmobiliarios y también los derechos de disfrute sobre cosa ajena. Sin embargo, como los requisitos y el tiempo son los mismos, es muy difícil que alguien inicie un juicio para adquirir, por ejemplo, un usufructo. Por eso se habla usualmente de la prescripción adquisitiva \textbf{de dominio}.
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es la prescripción adquisitiva?} &
+Es el modo por el cual el poseedor de una cosa adquiere un derecho real sobre ella mediante la posesión durante el tiempo fijado por la ley (Art.~1897 CCCN). Opera como un puente entre la relación de hecho (posesión) y el derecho real (dominio). Es un instituto de orden público que consolida situaciones de hecho prolongadas en el tiempo. \\[0.8em]
+
+\textbf{¿Dónde está regulada?} &
+En dos libros del CCCN: el Libro IV (Arts.~1897--1907), que regula los derechos reales y sus efectos, y el Libro V (Arts.~2532--2565), que contiene disposiciones comunes a derechos reales y personales. La regla general que habilita la adquisición por prescripción está en el Art.~2565, que excluye únicamente al derecho real de superficie. \\[0.8em]
+
+\textbf{¿Qué derechos reales pueden adquirirse por prescripción?} &
+Todos los derechos reales principales, salvo la superficie: dominio, propiedad horizontal, conjuntos inmobiliarios y derechos de disfrute sobre cosa ajena. En la práctica se habla de prescripción adquisitiva de dominio. \\
+
+\cornellresumen{El tiempo es especialmente potente en los derechos reales: permite que quien tiene una relación de hecho con la cosa adquiera un derecho real. La prescripción adquisitiva se regula en el Libro IV (Arts.~1897--1907) y en el Libro V (Arts.~2532--2565) del CCCN; el Art.~2565 establece que los derechos reales principales pueden adquirirse por esta vía, salvo la superficie.}
+\end{longtable}
+
+%==================================================
+% CAPÍTULO 2
+%==================================================
+\chapter[Prescripción adquisitiva larga]{Prescripción adquisitiva larga}
+
+\section{Concepto legal y elementos}
+
+\begin{definition}{Prescripción adquisitiva (Art. 1897 CCCN)}
+La prescripción para adquirir es el modo por el cual el poseedor de una cosa adquiere un derecho real sobre ella mediante la posesión durante el tiempo fijado por la ley.
+\end{definition}
+
+El Art.~1897 precisa dos elementos centrales:
+
+\begin{enumerate}
+    \item el \textbf{tiempo}: veinte años, según surge del Art.~1899;
+    \item una \textbf{posesión exigible}, que debe reunir cierta calidad: debe ser \textbf{ostensible} (denominada pública en el Código de Vélez, es decir, no clandestina) y \textbf{continua e ininterrumpida}.
+\end{enumerate}
+
+\begin{formula}{Art. 1899 CCCN}
+El plazo para la prescripción adquisitiva de inmuebles es de veinte (20) años.
+\end{formula}
+
+\section{Requisitos: sin título ni buena fe}
+
+\begin{important}
+En la prescripción larga \textbf{no hace falta justo título ni título de ningún tipo, ni buena fe}. Es un punto que suele confundirse cuando se pregunta por los requisitos.
+\end{important}
+
+La ley exige veinte años de actos posesorios, es decir, veinte años en los que la persona haya tenido una relación de poder con la cosa en forma pública, continua e ininterrumpida. De ninguna manera se requiere la buena fe ni el título.
+
+Respecto de la naturaleza de los poseedores, ninguna persona es siempre buena ni siempre mala; esa calificación excede el ámbito de la ciencia jurídica. Lo que existe es una posesión que en ocasiones es legítima y en otras ilegítima, en ocasiones de buena fe y en otras de mala fe: es la calidad que inviste al poseedor en determinada circunstancia.
+
+\section{Fundamentos del instituto}
+
+Frente a la pregunta de si es posible que quien ingresó sin ningún derecho sobre la cosa llegue a ser el dueño, el instituto se apoya en grandes fundamentos:
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Fundamento} & \textbf{Descripción} \\
+\midrule
+\textbf{Orden público} & Las reglas que dan estabilidad y certeza a toda la sociedad exigen que el derecho de propiedad se defina en algún momento. \\
+\textbf{Seguridad jurídica} & Es necesario que los derechos reales, especialmente el dominio, no queden en un estado de indefinición permanente. \\
+\textbf{Interés general} & La sociedad se beneficia cuando un inmueble tiene un uso productivo y un responsable claro. \\
+\textbf{Función social de la propiedad} & El poseedor que usa el inmueble para vivir, construir, pagar impuestos y contribuir con la comunidad cumple mejor la función social que el propietario ausente. \\
+\textbf{Saneamiento de títulos} & Permite detener la cascada de nulidades e imperfecciones que podrían sucederse en la cadena de transmisiones de un inmueble. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Muchas veces un usurpador puede llegar a adquirir un inmueble a expensas del verdadero propietario. Pero para que esto ocurra debe haber existido necesariamente una \textbf{inacción del propietario} que supere el período exigido por la ley, es decir, los veinte años.
+
+El fundamento es que, a lo largo de esos veinte años, el poseedor ha dado un uso al inmueble: lo utilizó para vivir, para formar una familia, construyó, pagó algunos impuestos, contribuyó con los servicios barriales, envió a sus hijos al colegio cercano, pagó cooperadoras y realizó respecto del inmueble una función de utilidad pública mucho mayor que la del propietario que no estuvo en posesión durante veinte años, no pagó impuestos, no realizó ninguna acción útil respecto de la cosa y no inició ninguna acción para recuperarla.
+
+Es cierto que el poseedor ha ingresado ilegítimamente al inmueble, pero a partir de ese momento el titular dominial (el \textit{dominus}) cuenta con todas las acciones reales y posesorias para recuperar la posesión. Si transcurren veinte años sin que las haya utilizado, el orden público, en virtud de las situaciones beneficiosas para la sociedad que se han producido, tolera que el poseedor sea beneficiado con el derecho real, siempre que se cumplan determinadas condiciones.
+
+\section{Unión de posesiones (Art. 1901 CCCN)}
+
+La unión de posesiones es el instituto que permite \textbf{sumar tiempo} para alcanzar los veinte años exigidos.
+
+\begin{formula}{Art. 1901 CCCN}
+El heredero continúa la posesión de su causante. El sucesor particular puede unir su posesión a la de sus antecesores, siempre que ambas sean de fuente legítima y estén ligadas por un vínculo jurídico.
+\end{formula}
+
+\begin{example}{Juan y la cesión de posesión}
+Juan está en posesión de un inmueble. Lo adquirió mediante un boleto de compraventa y no realizó ninguna acción tendiente a la escrituración, por lo que el titular dominial sigue siendo otra persona. Pasa el tiempo y Juan tiene una posesión de, por ejemplo, seis o siete años. Toda persona puede transmitir lo que tiene: Juan no puede transmitir la cosa, porque no es suya, pero sí puede transmitir la \textbf{posesión}.
+
+Como se trata de inmuebles, la transmisión se realiza siempre mediante una escritura pública de \textbf{cesión de posesión}, que tiene un precio y es totalmente legítima. Sin embargo, no es lo mismo, y es lo que consultan los clientes a los abogados, el precio de una posesión de cinco o seis años, a la que le restan muchos años durante los cuales puede ser reivindicada por el titular dominial, que el de una posesión a la que le falta un año para cumplir los veinte. En este último caso el riesgo es menor, aunque todavía falte un juicio de escrituración.
+\end{example}
+
+\subsection{Requisitos de la unión de posesiones}
+
+\begin{itemize}
+    \item Ambas posesiones deben derivar la una de la otra, en cadena (la que se entrega a quien la recibe).
+    \item Deben ser posesiones del mismo tipo.
+    \item Se aplica al \textbf{sucesor particular}. El heredero no necesita este instituto, porque ocupa el lugar de su causante y continúa teniendo la misma posesión que él.
+    \item No hace falta buena fe ni un nexo jurídico determinado.
+\end{itemize}
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% El Art. 1901 transcripto en las notas exige "vínculo jurídico" y "fuente legítima", mientras que la explicación del docente indica que no hace falta un nexo jurídico determinado. Se conservan ambas formulaciones tal como figuran en el apunte.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+\toprule
+ & \textbf{Heredero} & \textbf{Sucesor particular} \\
+\midrule
+\textbf{¿Necesita unión de posesiones?} & No: continúa automáticamente la posesión del causante. & Sí: debe unir su posesión a la de su antecesor. \\
+\textbf{Vínculo jurídico} & No aplica (ocupa el lugar del causante). & Posesiones del mismo tipo, derivadas la una de la otra. \\
+\textbf{Buena fe requerida} & No aplica. & No es exigible en la prescripción larga. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuáles son los requisitos de la prescripción larga?} &
+Plazo: 20 años (Art.~1899). Posesión: ostensible (pública, no clandestina) y continua e ininterrumpida. No se exige ni justo título ni buena fe. Son suficientes los actos posesorios propios del dueño: construcción, plantación, pago de algún impuesto, conexión de servicios, etc. \\[0.8em]
+
+\textbf{¿Por qué puede ganar un usurpador contra el dueño?} &
+Por los fundamentos de orden público, seguridad jurídica, interés general, función social de la propiedad y saneamiento de títulos. La ley valora que el poseedor haya dado uso efectivo al inmueble durante 20 años (vivir, construir, pagar impuestos, criar una familia) mientras el propietario permaneció inactivo, sin ejercer ninguna acción real o posesoria para recuperar la cosa. \\[0.8em]
+
+\textbf{¿Qué es la unión de posesiones (Art.~1901)?} &
+Es el instituto que permite sumar el tiempo de posesión de distintas personas para alcanzar el plazo legal. Se aplica al sucesor particular, no al heredero, que continúa automáticamente la posesión del causante. Las posesiones deben derivar la una de la otra, en cadena, y ser del mismo tipo. En la prescripción larga no se requiere buena fe. Se instrumenta mediante escritura de cesión de posesión. \\
+
+\cornellresumen{La prescripción larga requiere veinte años de posesión ostensible, continua e ininterrumpida, sin necesidad de título ni de buena fe. Se fundamenta en el orden público, la seguridad jurídica, el interés general, la función social de la propiedad y el saneamiento de títulos, frente a la inacción del propietario durante todo ese plazo. El sucesor particular puede sumar su posesión a la de su antecesor mediante la unión de posesiones; el heredero, en cambio, continúa la posesión de su causante.}
+\end{longtable}
+
+%==================================================
+% CAPÍTULO 3
+%==================================================
+\chapter[Prescripción adquisitiva breve]{Prescripción adquisitiva breve}
+
+\section{Distinción entre prescripción larga y breve}
+
+Existen dos tipos de prescripción adquisitiva, la larga y la breve, muy distintas entre sí en requisitos, en plazos y en objetivo. Lo que ambas comparten es que alguien que no era titular de dominio llega a serlo por intermedio de estos institutos.
+
+\section{Plazo y requisitos}
+
+La prescripción breve tiene un \textbf{plazo de diez años}. La posesión, en todos los casos, debe ser de \textbf{buena fe} y con \textbf{justo título}.
+
+% TODO: contenido incompleto o ambiguo en las notas originales
+% El Art. 1898 (plazo de la prescripción breve) solo aparece citado en el cuadro comparativo del apunte; el texto de la clase no lo transcribe.
+
+\section{El justo título (Art. 1902 CCCN)}
+
+\begin{definition}{Justo título (Art. 1902 CCCN)}
+El justo título es el que tiene por fin transmitir un derecho real principal que se ejerce por la posesión, que está revestido de las condiciones de forma, pero que sin embargo carece de los requisitos de fondo.
+\end{definition}
+
+El \textbf{título suficiente} es el acto jurídico revestido de las condiciones de fondo y de forma. El \textbf{justo título} tiene solo forma y carece de fondo: quien transmitió no era el propietario, o no tenía capacidad. Para que el dominio se transmita realmente, debe ser transmitido por el propietario.
+
+\subsection{El caso del delito: el \textit{non domino}}
+
+\begin{example}{Sustitución de personalidad}
+Alguien se hace pasar por el propietario con documentación falsa y realiza la transmisión de un inmueble. El adquirente ha hecho todo lo exigido: otorgó la escritura pública, realizó estudios de títulos, obtuvo certificados, y el escribano cumplió con todas las formalidades. Sin embargo, existía algo subyacente en el fondo que hace que ese título, que el adquirente cree firmemente suficiente, sea en realidad un justo título, porque faltaban las condiciones de fondo. Por eso este adquirente \textbf{no ha adquirido nada}.
+
+Un día recibe la acción reivindicatoria del propietario, que le pide la restitución del inmueble, y recién entonces se entera. Ambos tienen una razón: al propietario se le ha cometido un delito, pues se transmitió su propiedad por quien no era el dueño (el \textit{non domino}); y el adquirente también tiene derecho, porque adquirió e hizo todo lo que jurídicamente se exige para adquirir una propiedad. Pero existe un solo inmueble.
+\end{example}
+
+\subsection{La solución legal: el factor tiempo}
+
+Frente a este conflicto entre dos derechos sobre un único inmueble, la decisión del orden público (modificable y perfectible) se resuelve mediante una cuestión de \textbf{tiempo}:
+
+\begin{itemize}
+    \item si el titular dominial ejerce la acción reivindicatoria \textbf{antes de los diez años} de la transmisión, el derecho protege al titular de dominio;
+    \item si el reclamo se realiza \textbf{después de los diez años} de la transmisión, el adquirente, que tenía un justo título en lugar de un título suficiente por una falencia en la capacidad o en la legitimidad de quien transmitió, tendrá por adquirido el inmueble.
+\end{itemize}
+
+\section{La buena fe en la prescripción breve}
+
+A diferencia de la prescripción larga, en la prescripción breve la buena fe es \textbf{indefectible}. El adquirente no sabía: adquirió y creyó haber adquirido con un título suficiente, y no pudo vencer el obstáculo que se encontraba en la profundidad del negocio jurídico.
+
+\section{Unión de posesiones en la prescripción breve}
+
+Se requiere que ambas posesiones sean de buena fe y que estén ligadas por un vínculo jurídico, por ejemplo la cesión de posesión. Esto constituye una excepción respecto de la prescripción larga, porque la buena fe del adquirente debe estar acreditada para que la unión de posesiones sea aplicable en este caso.
+
+\section{Cuadro comparativo: prescripción larga y breve}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Característica} & \textbf{Prescripción larga} & \textbf{Prescripción breve} \\
+\midrule
+\textbf{Plazo} & 20 años (Art.~1899) & 10 años (Art.~1898) \\
+\textbf{Justo título} & No es necesario & Sí, obligatorio (Art.~1902) \\
+\textbf{Buena fe} & No es necesaria & Sí, obligatoria \\
+\textbf{Posesión requerida} & Ostensible y continua & Ostensible, continua y de buena fe \\
+\textbf{Origen del poseedor} & Cualquiera (incluso usurpador) & Comprador con título imperfecto \\
+\textbf{Unión de posesiones} & Cadena, sin nexo jurídico especial & Ambas de buena fe, con vínculo jurídico \\
+\textbf{Norma principal} & Arts.~1897 y 1899 CCCN & Arts.~1898 y 1902 CCCN \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuáles son los requisitos de la prescripción breve?} &
+Plazo: 10 años (Art.~1898). Se exige: (1) justo título (Art.~1902): acto con forma pero sin fondo, porque el transmitente no era el verdadero propietario o carecía de capacidad; (2) buena fe: el adquirente creyó haber adquirido con título suficiente. Para la unión de posesiones se requiere que ambas posesiones sean de buena fe y que exista un vínculo jurídico. \\[0.8em]
+
+\textbf{¿Qué es el justo título y cómo se diferencia del título suficiente?} &
+El título suficiente reúne las condiciones de forma y de fondo (transmitente con capacidad y legitimidad). El justo título tiene solo forma y carece de fondo: el transmitente no era el propietario (\textit{non domino}) o no tenía capacidad. Ejemplo: quien adquiere de buena fe un inmueble que alguien vendió haciéndose pasar por el propietario con documentación falsa. El adquirente cumplió todo lo exigido, pero tiene solo un justo título. \\[0.8em]
+
+\textbf{¿Qué ocurre cuando el verdadero propietario reclama el inmueble?} &
+Si la acción reivindicatoria se ejerce antes de los diez años de la transmisión, el derecho protege al titular de dominio. Si se ejerce después de los diez años, el adquirente con justo título tiene por adquirido el inmueble. \\
+
+\cornellresumen{La prescripción breve requiere diez años de posesión de buena fe con justo título, es decir, con un acto que tiene forma pero carece de fondo por no ser el transmitente el verdadero propietario o por falta de capacidad. Resuelve el conflicto entre dos derechos sobre un único inmueble mediante el factor tiempo. A diferencia de la prescripción larga, la buena fe es indefectible, y la unión de posesiones exige buena fe en ambas posesiones y un vínculo jurídico.}
+\end{longtable}
+
+%==================================================
+% CAPÍTULO 4
+%==================================================
+\chapter[Suspensión e interrupción]{Suspensión e interrupción de la prescripción}
+
+El tiempo jurídico no siempre coincide con el tiempo del almanaque. Por ejemplo, la feria judicial hace que ese mes no sea un plazo hábil judicialmente. El derecho interviene en el tiempo a través de dos institutos: la suspensión y la interrupción de la prescripción.
+
+\section{La suspensión}
+
+La suspensión \textbf{detiene el cómputo del tiempo} por el plazo que dura. Se aplica tanto a la prescripción larga como a la breve.
+
+\begin{example}{Línea de tiempo de una suspensión}
+Juan comienza a poseer en el año 2000. En el año 2005 se produce una causal de suspensión, que abre un paréntesis y se cierra en 2010. Ese período, encapsulado entre paréntesis, no se cuenta. Si el paréntesis comprende cinco años, en lugar de llegar a 2020 para computar veinte años será necesario llegar a 2025.
+\end{example}
+
+Las causales de suspensión están indefectiblemente pautadas por la ley y responden a razones consideradas valiosas en la puja entre los distintos derechos, por ejemplo: el matrimonio, la unión convivencial y el vínculo entre incapaces y sus tutores. Cuando existe un vínculo protegido por el Estado entre el titular de dominio y el poseedor, el tiempo que haya durado ese vínculo no se computa.
+
+\section{La interrupción (Art. 2544 CCCN)}
+
+En la interrupción, el plazo comienza a correr y se produce una causa que \textbf{borra todo el tiempo anterior de posesión}. El poseedor vuelve a poseer y comienza a contar de nuevo.
+
+\begin{formula}{Art. 2544 CCCN}
+El curso de la prescripción se interrumpe: a) por petición judicial; b) por pedido de arbitraje; c) por el reconocimiento del derecho de aquel contra quien prescribe, efectuado por el poseedor.
+\end{formula}
+
+La interrupción se produce cuando el titular de dominio ha realizado una acción, como la petición judicial para recuperar la cosa: su pasividad se ve cortada. También se produce por una solicitud de arbitraje o por un reconocimiento por parte del poseedor.
+
+\section{Cuadro comparativo}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.25\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+\toprule
+ & \textbf{Suspensión} & \textbf{Interrupción} \\
+\midrule
+\textbf{Efecto sobre el tiempo acumulado} & Se detiene: el tiempo anterior se \textbf{conserva}. & Se borra: el tiempo anterior se \textbf{pierde}. \\
+\textbf{¿Qué ocurre al cesar la causa?} & El cómputo continúa desde donde se detuvo. & El cómputo comienza desde cero. \\
+\textbf{Causales típicas} & Matrimonio, unión convivencial, tutela de incapaces. & Petición judicial, arbitraje, reconocimiento del poseedor. \\
+\textbf{Norma aplicable} & Arts.~2539--2543 CCCN & Art.~2544 CCCN \\
+\textbf{Aplica a prescripción} & Larga y breve & Larga y breve \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué diferencia hay entre suspensión e interrupción?} &
+Suspensión (Arts.~2539--2543): detiene el cómputo sin borrar el tiempo anterior. Al cesar la causa (por ejemplo, matrimonio, unión convivencial, tutela de incapaces), el plazo continúa desde donde se detuvo. Interrupción (Art.~2544): borra todo el tiempo acumulado y el cómputo comienza desde cero. Causales: petición judicial, solicitud de arbitraje o reconocimiento del derecho por el poseedor. \\[0.8em]
+
+\textbf{¿Qué ocurre con el plazo de veinte años si hay una causal de suspensión?} &
+El período de la suspensión no se cuenta. En el ejemplo de la línea de tiempo, con un paréntesis de cinco años, desde el año 2000 hay que llegar al 2025 y no al 2020. \\
+
+\cornellresumen{La suspensión y la interrupción modifican el tiempo jurídico de la prescripción y se aplican tanto a la larga como a la breve. La suspensión detiene el cómputo y conserva el tiempo ya transcurrido; la interrupción borra todo el tiempo acumulado y obliga a comenzar desde cero. Las causales de interrupción están reguladas en el Art.~2544 CCCN.}
+\end{longtable}
+
+%==================================================
+% CAPÍTULO 5
+%==================================================
+\chapter[El juicio de usucapión]{El juicio de usucapión}
+
+\section{Cómo se hace valer la prescripción}
+
+La adquisición del derecho real se cumple por el mero cumplimiento de los plazos y de la calidad de posesión exigida. Sin embargo, nadie lo sabe: el poseedor no puede transmitir el derecho y sigue siendo poseedor, mientras que en el Registro de la Propiedad Inmueble el inmueble continúa a nombre del titular dominial. Por eso es preciso iniciar el \textbf{juicio de prescripción adquisitiva de inmuebles}, también llamado \textbf{juicio de usucapión}.
+
+\section{Regulación procesal}
+
+\begin{formula}{Ley 14.159, Art. 24}
+El juicio de prescripción adquisitiva de inmuebles se rige por el Art.~24 de la Ley 14.159, tramita por el proceso contradictorio y tiene por objeto hacer cesar el estado de incertidumbre entre la situación registral y la posesión real ejercida.
+\end{formula}
+
+El juicio busca hacer cesar la discordancia entre la relación extrarregistral real, que es la posesión (el verdadero y nuevo titular que carece de título), y la situación registral. Se persigue el reconocimiento judicial del derecho y la inscripción de la sentencia, inscribiendo el dominio por prescripción adquisitiva a nombre del poseedor.
+
+\section{La prueba}
+
+La prueba es fundamental en este juicio, y se trata de una \textbf{prueba compleja}: debe ser amplia e indubitable. Se está controvirtiendo a un titular dominial, que tenía un dominio perpetuo, por lo que el orden público está presente con toda su potencia, tanto en la regulación como en materia de prueba.
+
+La mediación obligatoria no se ha exceptuado en la prescripción adquisitiva. Sin embargo, aunque deba convocarse la mediación, la cuestión no puede resolverse ni siquiera por acuerdo del titular de dominio. Es necesaria, por lo tanto, la realización del juicio y la producción de la prueba.
+
+Se habla de prueba compuesta o compleja, que debe ser insospechada, clara, cabal y convincente. Lo que debe probarse es que han transcurrido los veinte años, y no basta con el cómputo cronológico: es necesario analizar que no haya existido alguna causal de suspensión o de interrupción.
+
+\section{Documentos obligatorios con la demanda}
+
+\begin{enumerate}
+    \item \textbf{Informe de dominio}: indica quién es el titular de dominio del inmueble, a los fines de la oponibilidad a terceros.
+    \item \textbf{Plano de agrimensura con fines de usucapión}: debe estar registrado e inscripto. Es tan importante que su ausencia podría llevar al juez a rechazar in limine la demanda.
+\end{enumerate}
+
+\section{La prueba de los actos posesorios}
+
+El actor debe probar el tiempo y los actos posesorios: haber intervenido, construido, plantado, instalado cañerías, cloacas y agua, y haber pagado impuestos. No es necesario haber pagado todos los impuestos, pero la prueba de impuestos es fundamental, aunque sea de hace quince o veinte años.
+
+\begin{important}
+Pagar todos los impuestos en el presente no sirve de ninguna manera, porque el sello fechador es el de hoy y no demuestra que el poseedor estuviera en el inmueble en ese momento. El pago de impuestos no se valora como una cuestión contributiva o tributaria de buen ciudadano que cumplió con sus deudas, sino como acreditación de que en ese momento la persona ya estaba allí, con intención y comportándose como dueño.
+\end{important}
+
+\section{Reflexión final: el tiempo en el derecho}
+
+Veinte años es mucho tiempo en la vida de las personas y también lo es en la posesión de un inmueble. Toda la prueba que surja a partir de esos veinte años es la que permite fundar una sentencia de prescripción adquisitiva. Si el poseedor logra acreditar que durante veinte años ha poseído la cosa sin reconocer en otro un señorío superior (lo sea o no), comportándose como dueño, esa prueba da lugar a la prescripción adquisitiva de inmuebles.
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cómo se hace valer la prescripción adquisitiva?} &
+A través del juicio de usucapión, regulado por el Art.~24 de la Ley 14.159 (proceso contradictorio). La adquisición opera por el mero transcurso del tiempo con la calidad de posesión requerida, pero no es oponible a terceros sin sentencia judicial y su inscripción en el Registro de la Propiedad Inmueble. Documentos esenciales: informe de dominio y plano de agrimensura con fines de usucapión, registrado. \\[0.8em]
+
+\textbf{¿Qué prueba se requiere en el juicio de usucapión?} &
+Prueba compleja, amplia, indubitable, insospechada y convincente. Debe acreditar: (1) el tiempo transcurrido, sin causas de suspensión ni interrupción; (2) los actos posesorios: construcción, plantación, pago de impuestos históricos (no recientes), conexión de servicios, etc. El pago de impuestos recientes no sirve: debe demostrarse que ya se estaba en el inmueble en la época en que se pagaron. El juez puede rechazar la demanda in limine si falta la documentación obligatoria. \\
+
+\cornellresumen{La prescripción cumplida se hace valer mediante el juicio de usucapión (Ley 14.159, Art.~24), que requiere informe de dominio y plano de agrimensura registrado, y una prueba compleja e indubitable del tiempo transcurrido y de los actos posesorios históricos. La sentencia se inscribe en el Registro de la Propiedad Inmueble.}
+\end{longtable}
+
+%==================================================
+% SÍNTESIS FINAL
+%==================================================
+\chapter[Síntesis final]{Síntesis final}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.95\textwidth}@{}}
+\toprule
+\textbf{Síntesis final} \\
+\midrule
+La prescripción adquisitiva es el instituto por el cual el tiempo, combinado con una posesión de cierta calidad, transforma una relación de hecho en un derecho real. El Código Civil y Comercial regula dos modalidades: la \textbf{prescripción larga} (20 años, sin exigir título ni buena fe), que opera cuando cualquier poseedor, incluso un usurpador, ejerce actos posesorios públicos, continuos e ininterrumpidos; y la \textbf{prescripción breve} (10 años), reservada para quien adquirió de buena fe con justo título, es decir, con un acto que tenía forma pero carecía de fondo por no ser el transmitente el verdadero propietario.
+
+En ambos casos, el tiempo jurídico puede ser modificado por causas de \textbf{suspensión}, que detienen el cómputo sin borrar el tiempo ya transcurrido, o de \textbf{interrupción}, que borran todo el tiempo acumulado y obligan a comenzar desde cero.
+
+Para que la prescripción ya cumplida sea oponible a terceros, es necesario iniciar el \textbf{juicio de usucapión} (Ley 14.159, Art.~24), en el que el poseedor debe producir una prueba compleja, indubitable y cronológicamente coherente de sus actos posesorios históricos. La sentencia judicial que reconoce la prescripción se inscribe en el Registro de la Propiedad Inmueble y otorga al poseedor el título dominial.
+
+El fundamento último del instituto reside en el orden público, la función social de la propiedad y la seguridad jurídica: la ley considera que quien ha dado uso efectivo a un inmueble durante décadas merece ser reconocido como dueño, especialmente cuando el propietario registral no actuó durante todo ese tiempo para recuperar lo suyo. \\
+\bottomrule
+\end{longtable}
+
+\end{document}

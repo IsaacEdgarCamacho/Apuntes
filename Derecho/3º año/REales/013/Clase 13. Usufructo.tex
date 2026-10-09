@@ -1,0 +1,780 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{El Derecho Real de Usufructo}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\renewcommand{\arraystretch}{1.25}
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derechos Reales'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ============================================================
+% ÍNDICE
+% ============================================================
+\tableofcontents
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+
+% ------------------------------------------------------------
+\chapter[Marco clasificatorio y dominio desmembrado]{Marco clasificatorio de los derechos reales y dominio desmembrado}
+% ------------------------------------------------------------
+
+El estudio de los derechos reales de disfrute sobre cosa ajena, en especial el derecho real de usufructo, exige retomar previamente la clasificación de los derechos reales efectuada por el artículo 1888 del Código Civil y Comercial.
+
+\section{Clasificación general de los derechos reales (art. 1888)}
+
+El artículo 1888 distingue fundamentalmente entre:
+
+\begin{itemize}
+    \item \textbf{Derechos reales sobre cosas total o parcialmente propias.}
+    \item \textbf{Derechos reales sobre cosa ajena.}
+\end{itemize}
+
+A su vez, dentro de los derechos sobre cosa ajena se distinguen:
+
+\begin{itemize}
+    \item \textbf{Derechos reales de disfrute} (principales).
+    \item \textbf{Derechos reales de garantía} (accesorios).
+\end{itemize}
+
+\subsection{Carácter principal de los derechos de disfrute}
+
+Así como los derechos sobre cosa propia son derechos principales, también lo son los derechos de disfrute sobre cosa ajena. En cambio, los derechos de garantía son siempre, y en todos los casos, derechos \textbf{accesorios}, precisamente accesorios de la obligación que garantizan.
+
+\subsection{Extensión del derecho según su tipo}
+
+El derecho del titular de dominio recae sobre la cosa, sobre todas las cosas. En cambio:
+
+\begin{itemize}
+    \item En el \textbf{condominio}, el derecho real recae sobre una parte indivisa.
+    \item En la \textbf{propiedad horizontal}, el objeto del derecho es una parte propia privativa, inescindiblemente unida a un porcentaje en la cosa común.
+    \item Lo mismo ocurre en la propiedad horizontal especial de los conjuntos inmobiliarios.
+\end{itemize}
+
+\section{Facultades del titular de dominio}
+
+En todos los casos, los titulares de dominio tienen un gran número de facultades que recaen directamente sobre la cosa que les es propia, sobre el porcentaje en el caso del condominio, o sobre la parte que les pertenece. En cambio, en los derechos reales sobre cosa ajena, el derecho recae siempre sobre una cosa que pertenece en propiedad a otra persona.
+
+El titular de dominio tiene la facultad de:
+
+\begin{itemize}
+    \item \textbf{Usar} la cosa.
+    \item \textbf{Gozar} de los frutos y utilidades.
+    \item \textbf{Disponer} material y jurídicamente de la cosa.
+\end{itemize}
+
+\subsection{Ejercicio de la facultad de disposición}
+
+En el marco de esas facultades, el propietario puede constituir derechos reales. Asimismo, puede administrar la cosa, por ejemplo, celebrando un contrato de locación. Puede donarla, enajenarla, darla en permuta y darla en pago. También puede, conservando la propiedad, constituir derechos de disfrute a favor de otro: es el caso del \textbf{dominio desmembrado}.
+
+\section{Desmembración del dominio y concepto de usufructo}
+
+\subsection{La desmembración del dominio pleno}
+
+Cuando el titular de dominio constituye un usufructo a favor de una persona (el \textbf{usufructuario}), desmembra el dominio pleno que posee sobre la cosa. Al constituirlo, desplaza íntegramente al usufructuario todo el derecho de uso y goce, toda la facultad de usar y gozar la cosa.
+
+El titular de dominio pasa a denominarse \textbf{nudo propietario}. Desde una expresión figurada, sería como si dijera: ``Te lo he dado todo; me he quedado con el corazón vacío; me he quedado con la propiedad desnuda''.
+
+\subsection{Lo que conserva el nudo propietario}
+
+El nudo propietario conserva, sin embargo, algo que no ha delegado: la \textbf{facultad de disponer}. Puede enajenar la cosa, pero si lo hace la transmite juntamente con aquello que tiene (la nuda propiedad), de modo que quien adquiere lo hace como adquirente de la nuda propiedad.
+
+\subsection{Resistencia del usufructo ante el cambio de titularidad}
+
+Se advierte así la fortaleza del usufructo, que continúa hacia su extinción hasta que se cumpla el plazo previsto, sin ser afectado por el cambio de titularidad registral. Por ejemplo, en los inmuebles el usufructo se mantiene vigente incluso cuando la propiedad nuda es transmitida a otra persona.
+
+\subsection{Recuperación del dominio pleno}
+
+Desde el lado del nudo propietario, extinguido el usufructo recupera la facultad de uso y goce que se había desplazado a partir de la constitución, y vuelve a conformarse un dominio pleno respecto de la cosa.
+
+\subsection*{Cuadro Cornell --- Capítulo 1}
+\addcontentsline{toc}{section}{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.26\textwidth}
+    >{\raggedright\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cómo clasifica el art. 1888 a los derechos reales?} &
+Distingue entre derechos reales sobre cosas total o parcialmente propias y derechos reales sobre cosa ajena. Dentro de estos últimos se distinguen los derechos de disfrute (principales) y los de garantía (accesorios). \\
+
+\textbf{¿Por qué los derechos de garantía son siempre accesorios y los de disfrute principales?} &
+Los derechos de garantía son siempre, y en todos los casos, accesorios de la obligación que garantizan. Los derechos de disfrute sobre cosa ajena, al igual que los derechos sobre cosa propia, son derechos principales. \\
+
+\textbf{¿Qué facultades tiene el titular de dominio?} &
+Usar la cosa, gozar de sus frutos y utilidades, y disponer material y jurídicamente de ella. En ejercicio de esas facultades puede constituir derechos reales, administrar la cosa, donarla, enajenarla, permutarla, darla en pago y, conservando la propiedad, constituir derechos de disfrute a favor de otro (dominio desmembrado). \\
+
+\textbf{¿Cómo se produce el desplazamiento de facultades al constituirse un usufructo?} &
+El titular de dominio desmembra su dominio pleno y desplaza íntegramente al usufructuario toda la facultad de usar y gozar la cosa. Pasa a ser nudo propietario. \\
+
+\textbf{¿Qué conserva el nudo propietario?} &
+Conserva la facultad de disponer: puede enajenar la cosa, pero la transmite junto con lo que tiene, la nuda propiedad. Su dominio es ``desnudo''. \\
+
+\textbf{¿Por qué el usufructo se mantiene vigente si el nudo propietario enajena la cosa?} &
+Porque el usufructo continúa hasta su extinción, es decir, hasta que se cumpla el plazo previsto, sin ser afectado por el cambio de titularidad registral. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:}
+Los derechos reales se clasifican (art. 1888) en derechos sobre cosa propia y sobre cosa ajena; entre estos últimos, los de disfrute son principales y los de garantía accesorios. El titular de dominio puede usar, gozar y disponer; al constituir un usufructo desplaza al usufructuario todo el uso y goce y conserva solo la facultad de disponer como nudo propietario. El usufructo subsiste ante la enajenación de la nuda propiedad y, al extinguirse, se recupera el dominio pleno.
+} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+\chapter[Concepto y características del usufructo]{Definición legal y características fundamentales del usufructo}
+% ------------------------------------------------------------
+
+\section{Definición legal}
+
+El derecho real de usufructo confiere a su titular la facultad de usar y gozar la cosa que pertenece a otro, con una gran obligación: el cargo de \textbf{conservar la sustancia}, de no alterar la cosa, de no alterar su materialidad ni su destino. Su obligación principal consiste en restituir la cosa al titular una vez extinguido el usufructo.
+
+\begin{definition}{Usufructo (art. 2129 CCyC)}
+``El usufructo es el derecho real de usar y gozar y disponer jurídicamente de un bien ajeno sin alterar su sustancia''.
+\end{definition}
+
+\subsection{Alteración de la sustancia}
+
+Hay alteración de la sustancia:
+
+\begin{itemize}
+    \item Si se trata de una \textbf{cosa}: cuando se modifica la materia, la forma o el destino.
+    \item Si se trata de un \textbf{derecho}: cuando se lo menoscaba.
+\end{itemize}
+
+\subsection{Alcance de la facultad de disposición del usufructuario}
+
+El artículo 2129 se refiere a la facultad de disponer jurídicamente. Sin embargo, la facultad de disponer de la cosa está en cabeza del nudo propietario: solo el titular del dominio puede disponer de ella.
+
+La facultad a la que alude el artículo 2129, y esto resulta sumamente novedoso en materia de usufructo, es la facultad de disponer de aquello que tiene el usufructuario: el \textbf{derecho de uso y goce temporal} de la cosa. Ese derecho temporal puede ser constituido en forma onerosa o gratuita; cuando nada se dice, se presume oneroso.
+
+\section{Características fundamentales}
+
+\subsection{Temporalidad}
+
+En todos los casos el usufructo es \textbf{temporal}. El tiempo se fija en el momento mismo de la constitución y consta en el instrumento de constitución. Si nada se dice, el usufructo es \textbf{vitalicio}. Se identifica así su carácter temporal, pues si algo es esencialmente vitalicio es la vida humana.
+
+\subsection{Intransmisibilidad a los herederos}
+
+Este derecho temporal, que puede ser constituido en forma onerosa o gratuita, \textbf{no es transmisible a los herederos}.
+
+\subsection*{Cuadro Cornell --- Capítulo 2}
+\addcontentsline{toc}{section}{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.26\textwidth}
+    >{\raggedright\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el usufructo?} &
+Según el art. 2129 CCyC, es el derecho real de usar y gozar y disponer jurídicamente de un bien ajeno sin alterar su sustancia. Es un derecho principal, de disfrute, temporal, que desmembra el dominio pleno. \\
+
+\textbf{¿Cuál es la obligación principal del usufructuario respecto de la cosa?} &
+Conservar la sustancia (no alterar su materialidad ni su destino) y restituir la cosa al titular una vez extinguido el usufructo. \\
+
+\textbf{¿Cómo se define la alteración de la sustancia en una cosa y en un derecho?} &
+En una cosa, hay alteración cuando se modifica la materia, la forma o el destino. En un derecho, cuando se lo menoscaba. \\
+
+\textbf{¿Qué significa la facultad de disponer jurídicamente en el art. 2129?} &
+No se refiere a disponer de la cosa, facultad que corresponde solo al nudo propietario, sino a disponer del derecho de uso y goce temporal que tiene el usufructuario. Ese derecho puede constituirse en forma onerosa o gratuita; si nada se dice, se presume oneroso. \\
+
+\textbf{¿Es temporal el usufructo?} &
+Sí, siempre. El plazo se fija al constituirlo y consta en el instrumento de constitución. Si nada se dice, es vitalicio. \\
+
+\textbf{¿Es transmisible a los herederos?} &
+No. El derecho temporal de usufructo no es transmisible a los herederos. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:}
+El usufructo (art. 2129) permite usar, gozar y disponer jurídicamente de un bien ajeno sin alterar su sustancia. El usufructuario dispone de su derecho de uso y goce temporal, no de la cosa, que queda en cabeza del nudo propietario. Es siempre temporal (vitalicio si nada se dice) y no se transmite a los herederos.
+} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+\chapter[Constitución del usufructo]{Constitución del usufructo: legitimación, sujetos y modos}
+% ------------------------------------------------------------
+
+\section{Legitimación para constituir usufructo}
+
+Constituir un usufructo significa afectar el dominio.
+
+\begin{definition}{Legitimados a constituir (art. 2131 CCyC)}
+``Solo pueden constituir usufructo: (1) el titular de dominio; (2) el titular del derecho real de propiedad horizontal sobre la parte privativa; (3) el condominio respecto de la parte ideal sobre la que recae su derecho real; (4) el superficiario cuando existe propiedad superficiaria''.
+\end{definition}
+
+Pueden constituirlo, por lo tanto:
+
+\begin{itemize}
+    \item El titular de dominio.
+    \item El titular del derecho real de propiedad horizontal.
+    \item El condominio, respecto de la parte ideal sobre la que recae su derecho real.
+    \item El superficiario, cuando existe propiedad superficiaria.
+\end{itemize}
+
+\subsection{Omisión relativa a los conjuntos inmobiliarios}
+
+Los conjuntos inmobiliarios no están identificados explícitamente entre los legitimados a constituir usufructo en el artículo 2131. Fue tema de debate si existe fundamento para que el titular de un conjunto inmobiliario, que es una propiedad horizontal especial, no pueda constituirlo y sí pueda hacerlo el titular de una propiedad horizontal clásica.
+
+Se estima rotundamente que \textbf{no hay diferencia}: puede constituir un usufructo tanto el propietario de un departamento como el de un inmueble de un conjunto inmobiliario. Considerarlo de otra manera resultaría violatorio del \textit{numerus clausus} interpretado, porque el conjunto inmobiliario es esencialmente una propiedad horizontal especial y, como tal, es propiedad horizontal, y se le aplican supletoriamente las normas propias de esta.
+
+\section{Sujetos y beneficiarios del usufructo}
+
+El usufructo puede constituirse a favor de una persona física o de una persona jurídica. También puede constituirse a favor de varias personas en forma simultánea; debe tenerse presente que el fallecimiento de una no ofrece a las otras.
+% TODO: contenido incompleto o ambiguo en las notas originales (la frase "el fallecimiento de una no ofrece a las otras" aparece así en el apunte)
+
+\subsection{Duración según el tipo de sujeto}
+
+\begin{itemize}
+    \item \textbf{Persona física:} será vitalicio o por el plazo por el cual se haya constituido.
+    \item \textbf{Persona jurídica:} si nada se dice, el plazo máximo es de \textbf{50 años}.
+\end{itemize}
+
+\section{Prohibición de constitución judicial}
+
+\begin{important}
+\textbf{Art. 2133 CCyC:} ``En ningún caso puede imponerse judicialmente la constitución de un usufructo. Siempre será su constitución consensual, ya sea por contrato oneroso o gratuito''.
+\end{important}
+
+Además del consenso, existe la posibilidad de constituirlo por acto de última voluntad, es decir, por testamento.
+
+\section{Modos y modalidades de constitución}
+
+\subsection{Formas posibles}
+
+El usufructo puede constituirse:
+
+\begin{itemize}
+    \item Por \textbf{contrato} (oneroso o gratuito).
+    \item Por \textbf{acto de última voluntad} (testamento).
+\end{itemize}
+
+\subsection{Transmisión y reserva de derechos}
+
+Puede darse que lo que se transmita sea el uso y goce a favor de una persona física o jurídica con reserva de la nuda propiedad. Puede también donarse la propiedad con reserva de usufructo para el donante, o bien que un titular de dominio, que tiene todas las facultades sobre sí, decida transmitir a unos la nuda propiedad y a otro el usufructo de la cosa.
+
+\subsection{Modalidades}
+
+El usufructo puede constituirse en forma pura y simple, condicional, sujeta a plazo resolutorio o con algún cargo. No puede, en ningún caso, sujetarse a condiciones o plazos suspensivos, salvo en la constitución testamentaria, cuando la condición o el plazo suspensivo se cumpla antes del fallecimiento del testador.
+
+\subsection*{Cuadro Cornell --- Capítulo 3}
+\addcontentsline{toc}{section}{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.26\textwidth}
+    >{\raggedright\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Quién puede constituir un usufructo?} &
+Según el art. 2131: el titular de dominio; el titular de propiedad horizontal sobre la parte privativa; el condominio sobre su parte ideal; y el superficiario cuando existe propiedad superficiaria. Los titulares de conjuntos inmobiliarios (propiedad horizontal especial) también pueden, por aplicación supletoria de las normas de la propiedad horizontal. \\
+
+\textbf{¿Por qué se sostiene que el titular de un conjunto inmobiliario puede constituir usufructo aunque el art. 2131 no lo mencione?} &
+Porque el conjunto inmobiliario es una propiedad horizontal especial y se le aplican supletoriamente las normas de la propiedad horizontal; considerar lo contrario violaría el \textit{numerus clausus} interpretado. \\
+
+\textbf{¿A favor de quiénes puede constituirse?} &
+A favor de personas físicas o jurídicas, y de varias personas en forma simultánea. \\
+
+\textbf{¿Cuál es el plazo máximo según el usufructuario sea persona física o jurídica?} &
+La persona física: vitalicio o el plazo pactado. La persona jurídica: si nada se dice, máximo 50 años. \\
+
+\textbf{¿Puede un juez imponer la constitución de un usufructo?} &
+Nunca (art. 2133). La constitución es siempre consensual, por contrato oneroso o gratuito, o por acto de última voluntad (testamento). \\
+
+\textbf{¿Qué modalidades admite y cuáles no?} &
+Admite las modalidades pura y simple, condicional, a plazo resolutorio o con cargo. No admite condiciones ni plazos suspensivos, salvo en la constitución testamentaria cuando se cumplan antes del fallecimiento del testador. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:}
+Constituyen usufructo quienes enumera el art. 2131 (con igual solución para los conjuntos inmobiliarios). Puede constituirse a favor de personas físicas o jurídicas (50 años como máximo para estas últimas si nada se dice). Su constitución nunca es judicial: es consensual (contrato) o testamentaria, con modalidades pura y simple, condicional, a plazo resolutorio o con cargo, y sin condición o plazo suspensivo salvo la excepción testamentaria.
+} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+\chapter[Obligaciones y derechos de las partes]{Obligaciones y derechos del usufructuario y del nudo propietario}
+% ------------------------------------------------------------
+
+\section{Obligaciones del usufructuario anteriores al uso y goce}
+
+El usufructuario, que tiene el cargo de conservar la sustancia y la obligación de restituir la cosa al nudo propietario, tiene además otras obligaciones, algunas de ellas anteriores a entrar en el uso y goce de la cosa: el \textbf{inventario} y la \textbf{fianza}.
+
+\subsection{Inventario}
+
+El inventario consiste en inventariar el estado de la cosa, lo que constituye una garantía tanto para el nudo propietario como para el usufructuario.
+
+\begin{itemize}
+    \item Cuando ambas partes son capaces, puede realizarse por \textbf{instrumento privado}.
+    \item Cuando interviene un incapaz, debe realizarse necesariamente por \textbf{escritura pública}.
+\end{itemize}
+
+\subsection{Fianza}
+
+\begin{definition}{Fianza (art. 2139 CCyC)}
+``La fianza es la garantía de que, una vez extinguido el usufructo, el usufructuario restituirá la cosa en el estado de conservación en que debe restituir, en todos los casos es optativa''.
+\end{definition}
+
+\section{Derechos del usufructuario}
+
+Los derechos de usar y gozar le permiten un amplio uso y goce de la cosa. Esto comprende:
+
+\begin{itemize}
+    \item Percibir los frutos, incluidos los frutos civiles, como los alquileres.
+    \item Constituir derechos reales y derechos personales.
+    \item Transmitir el derecho que tiene a otro.
+\end{itemize}
+
+\subsection{Extinción de los derechos constituidos}
+
+Todos los derechos reales y personales constituidos, o la propia transmisión, se extinguen con el usufructo en el tiempo previsto originariamente: un plazo temporal definido o la vida, en el caso de la persona humana, si el usufructo fue vitalicio.
+
+\subsection{Gastos de conservación y mejoras}
+
+El usufructuario tiene la obligación de hacer frente a los gastos que la cosa demande para su conservación.
+% TODO: contenido incompleto o ambiguo en las notas originales (la frase sobre el derecho del propietario y la obligación del usufructuario aparece truncada)
+
+Las mejoras facultativas \textbf{no son indemnizables}.
+
+\subsection{Obligación de pagar expensas}
+
+Se ha incorporado en forma definida la obligación del usufructuario de pagar las expensas cuando se trate del usufructo de un inmueble afectado al régimen de propiedad horizontal.
+
+\section{Ejecutabilidad y carácter patrimonial}
+
+El usufructo puede ejecutarse porque es un derecho real de contenido patrimonial que forma parte del patrimonio del usufructuario. Por lo tanto, puede ser embargado y ejecutado y, en el caso de un inmueble, puede ser adquirido en subasta.
+
+El adquirente en subasta deberá dar garantías de la restitución y adquirirá el usufructo hasta su extinción.
+
+\section{Obligaciones del nudo propietario}
+
+\begin{important}
+\textbf{Art. 2151 CCyC:} ``La obligación principal del nudo propietario es no afectar de ninguna manera el uso y goce del usufructuario. Si lo hiciera, si lo afectara de alguna manera, el usufructuario podría llegar a exigir el cese del usufructo e inclusive dar lugar a la reducción de precio o indemnización''.
+\end{important}
+
+El nudo propietario tiene también derechos que a su vez son obligaciones, identificados en el artículo 2151. Como se adelantó, conserva la facultad de disponer de la cosa material y jurídicamente, pero siempre con una gran limitación: \textbf{no puede afectar el usufructo}.
+
+\subsection*{Cuadro Cornell --- Capítulo 4}
+\addcontentsline{toc}{section}{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.26\textwidth}
+    >{\raggedright\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuáles son las obligaciones del usufructuario anteriores al uso y goce?} &
+El inventario y la fianza. El inventario consiste en inventariar el estado de la cosa y es garantía para ambas partes. \\
+
+\textbf{¿Cómo debe hacerse el inventario?} &
+Por instrumento privado si ambas partes son capaces; por escritura pública si interviene un incapaz. \\
+
+\textbf{¿Qué es la fianza (art. 2139)?} &
+La garantía de que, extinguido el usufructo, el usufructuario restituirá la cosa en el estado de conservación en que debe restituir. En todos los casos es optativa. \\
+
+\textbf{¿Qué derechos tiene el usufructuario?} &
+Amplio uso y goce de la cosa; percibir frutos (incluidos los civiles, como los alquileres); constituir derechos reales y personales; transmitir el derecho que tiene. Todo ello se extingue con el usufructo. \\
+
+\textbf{¿Qué ocurre con las mejoras facultativas y los gastos?} &
+Las mejoras facultativas no son indemnizables. El usufructuario debe hacer frente a los gastos de conservación y, en la propiedad horizontal, pagar las expensas. \\
+
+\textbf{¿Puede ejecutarse el usufructo?} &
+Sí: es un derecho real patrimonial que integra el patrimonio del usufructuario, por lo que puede ser embargado y ejecutado. En un inmueble puede ser adquirido en subasta; el adquirente da garantías de restitución y adquiere el usufructo hasta su extinción. \\
+
+\textbf{¿Cuál es la obligación principal del nudo propietario (art. 2151)?} &
+No afectar de ninguna manera el uso y goce del usufructuario. Si lo hace, el usufructuario puede exigir el cese del usufructo y dar lugar a reducción de precio o indemnización. Conserva la facultad de disponer, pero sin afectar el usufructo. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:}
+Antes del uso y goce, el usufructuario debe hacer inventario (privado o por escritura pública según la capacidad de las partes) y puede otorgar fianza optativa (art. 2139). Tiene amplio uso y goce, percibe frutos, puede constituir derechos y transmitir el suyo; paga gastos de conservación y expensas, y las mejoras facultativas no se indemnizan. El usufructo es patrimonial y ejecutable. El nudo propietario no puede afectar el uso y goce (art. 2151).
+} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+\chapter[Extinción, fortaleza y uso indebido]{Extinción del usufructo, fortaleza del derecho y uso indebido}
+% ------------------------------------------------------------
+
+\section{Extinción del usufructo}
+
+\subsection{Modos de extinción}
+
+\begin{itemize}
+    \item \textbf{Cumplimiento del plazo.} Si el usufructo es vitalicio, también hay plazo, solo que incierto, pues durará lo que dure la vida del usufructuario. En el caso de las personas jurídicas, se extingue por la extinción de la persona jurídica, por el cumplimiento del plazo o, si no se ha pactado un plazo menor, a los 50 años.
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte dice "la vida de los usuarios")
+    \item \textbf{No uso durante diez años.} Es una forma de extinción propia del usufructo.
+    \item \textbf{Uso abusivo.} Si el usufructuario hiciera un uso abusivo y alterara la sustancia, comprobado judicialmente en un proceso específico, a solicitud del nudo propietario podrá decretarse la extinción por falta de conservación de la sustancia o uso abusivo de la cosa.
+\end{itemize}
+
+\subsection{Obligación de restitución}
+
+Cualquiera sea la causa de extinción, el usufructuario tiene la obligación de restituir la cosa y se extinguen todos los derechos reales y personales que hubiese constituido sobre este derecho real de usufructo.
+
+\section{Fortaleza del usufructo y sus implicancias}
+
+\subsection{Poder jurídico y efectos \textit{erga omnes}}
+
+El usufructo es un derecho muy fuerte. Cuando se constituye sobre un inmueble, sobre todo de forma vitalicia, confiere todo el uso y goce. El titular adquiere sobre la cosa un poder jurídico de estructura legal, \textbf{oponible \textit{erga omnes}}, ejercido por la posesión, que le confiere las facultades de \textbf{persecución y preferencia}, además de las facultades propias de los caracteres de este derecho.
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte dice "El usuario adquiere sobre la cosa")
+
+\subsection{Impacto en embargos y ejecuciones}
+
+A partir de la constitución del usufructo, el propietario tiene un \textbf{dominio imperfecto}. Si se embarga y ejecuta su dominio, el adquirente en subasta deberá esperar la finalización, es decir, la extinción del usufructo, para recuperar el uso y goce de la propiedad.
+
+\section{Uso indebido del usufructo: evitar la sucesión}
+
+En los últimos años se ha popularizado la utilización del usufructo con el imaginario social de que es un instituto para evitar la sucesión futura. Es frecuente la consulta de quien quiere donar a un hijo y constituir un usufructo a su favor para vivir hasta su muerte, de modo que, al fallecer, el hijo no deba hacer la sucesión.
+
+\subsection{Desmentida de la teoría popular}
+
+Evitar la sucesión no es la finalidad de este derecho real. Se señalan los siguientes argumentos:
+
+\begin{itemize}
+    \item La vida es finita y el momento de su finitud es incierto: no se puede saber si, donado el inmueble, la muerte del usufructuario ocurrirá primero y quien donó deba hacer su sucesión para que el inmueble vuelva a él.
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte utiliza la expresión "sucesión del dolor")
+    \item No se puede saber si el usufructuario hará uso del derecho de disposición del usufructo que tiene a partir de la regulación de 2015.
+\end{itemize}
+
+\subsection{El derecho de disposición del usufructuario}
+
+Tampoco coincide con la realidad el imaginario de quien constituye el derecho a favor de un familiar o persona determinada con la esperanza de que lo utilice a lo largo de toda su vida: hoy se sabe que es un derecho del cual el usufructuario puede disponer.
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte dice "el propietario puede disponer")
+
+\section{Conclusiones}
+
+El usufructo es un derecho real muy potente que impone una evaluación muy rigurosa y amplia de toda la gama del derecho privado antes de asesorar a un cliente respecto de su constitución.
+
+\subsection*{Cuadro Cornell --- Capítulo 5}
+\addcontentsline{toc}{section}{Cuadro Cornell}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.26\textwidth}
+    >{\raggedright\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cómo se extingue el usufructo?} &
+Por cumplimiento del plazo (cierto, o incierto si es vitalicio); por no uso durante diez años; por uso abusivo comprobado judicialmente, a pedido del nudo propietario; y, en las personas jurídicas, por su extinción o por el plazo de 50 años si no se pactó uno menor. \\
+
+\textbf{¿Qué ocurre al extinguirse el usufructo?} &
+El usufructuario debe restituir la cosa y se extinguen todos los derechos reales y personales constituidos sobre el usufructo. \\
+
+\textbf{¿Por qué se dice que el usufructo es un derecho fuerte?} &
+Es un poder jurídico de estructura legal, oponible \textit{erga omnes}, ejercido por la posesión, con facultades de persecución y preferencia. Confiere todo el uso y goce, sobre todo si es vitalicio. \\
+
+\textbf{¿Qué efecto tiene sobre el embargo y la ejecución del dominio del propietario?} &
+El propietario tiene un dominio imperfecto; el adquirente en subasta debe esperar la extinción del usufructo para recuperar el uso y goce. \\
+
+\textbf{¿Puede usarse el usufructo para evitar la sucesión?} &
+No es su finalidad. El plazo es incierto (depende de la vida del usufructuario), por lo que puede ser necesario hacer su sucesión para que el inmueble vuelva al constituyente; además, desde la regulación de 2015 el usufructuario puede disponer del derecho de usufructo. \\
+
+\textbf{¿Qué exige el usufructo antes de asesorar su constitución?} &
+Una evaluación muy rigurosa y amplia de toda la gama del derecho privado, dada su potencia como derecho real. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:}
+El usufructo se extingue por cumplimiento del plazo, no uso durante diez años o uso abusivo comprobado judicialmente, con restitución de la cosa y extinción de los derechos constituidos sobre él. Es un derecho fuerte, oponible \textit{erga omnes}, que deja al propietario con un dominio imperfecto frente a embargos y ejecuciones. No sirve a la finalidad de evitar la sucesión, dado el plazo incierto y la facultad de disposición del usufructuario, y exige una evaluación rigurosa antes de constituirlo.
+} \\
+\bottomrule
+\end{longtable}
+
+% ============================================================
+% CORNELL FINAL DE REPASO
+% ============================================================
+\chapter{Repaso integrado del usufructo}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.26\textwidth}
+    >{\raggedright\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el usufructo?} &
+Derecho real de usar y gozar y disponer jurídicamente de un bien ajeno sin alterar su sustancia (art. 2129). Es principal, de disfrute y temporal, y desmembra el dominio pleno del propietario. \\
+
+\textbf{¿Qué diferencia hay entre usufructuario y nudo propietario?} &
+El usufructuario tiene la facultad íntegra de uso y goce. El nudo propietario conserva solo la facultad de disponer (puede enajenar), pero no puede usar ni gozar; su dominio es ``desnudo'' e imperfecto. \\
+
+\textbf{¿Quién puede constituirlo y cómo?} &
+Los legitimados del art. 2131 (titular de dominio, de propiedad horizontal, condómino sobre su parte ideal y superficiario). Siempre de forma consensual (contrato oneroso o gratuito) o por testamento; nunca judicialmente (art. 2133). \\
+
+\textbf{¿Es temporal?} &
+Sí, siempre. Si no se fija plazo, es vitalicio. Para personas jurídicas, máximo 50 años si nada se dice. No es transmisible a los herederos. \\
+
+\textbf{¿Cuáles son las obligaciones del usufructuario?} &
+Conservar la sustancia (no alterar materia, forma ni destino); restituir la cosa al final; hacer inventario (privado si las partes son capaces, por escritura pública si interviene un incapaz); fianza optativa (art. 2139); pagar gastos de conservación y expensas en propiedad horizontal. \\
+
+\textbf{¿Qué derechos tiene el usufructuario?} &
+Uso y goce amplio; percibir frutos (civiles y otros); constituir derechos reales y personales; transmitir su derecho; su derecho es patrimonial, embargable y ejecutable. Todo se extingue con el usufructo. \\
+
+\textbf{¿Cuál es la obligación principal del nudo propietario?} &
+No afectar de ninguna manera el uso y goce del usufructuario (art. 2151); si lo hace, el usufructuario puede exigir el cese del usufructo, reducción de precio o indemnización. \\
+
+\textbf{¿Cómo se extingue?} &
+Cumplimiento del plazo (cierto o incierto), no uso durante diez años, uso abusivo comprobado judicialmente y extinción de la persona jurídica usufructuaria. Al extinguirse, se restituye la cosa y caen los derechos constituidos sobre el usufructo. \\
+
+\textbf{¿Sirve para evitar la sucesión?} &
+No es su finalidad. El plazo es incierto y el usufructuario puede disponer del derecho desde 2015. Requiere evaluación rigurosa antes de constituirlo. \\
+
+\midrule
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:}
+El usufructo es un derecho real principal y de disfrute sobre cosa ajena que desmembra el dominio pleno: el usufructuario usa y goza sin alterar la sustancia y el nudo propietario conserva la facultad de disponer. Se constituye siempre por consenso o testamento, nunca judicialmente; es temporal (vitalicio si nada se dice), intransmisible a herederos, oponible \textit{erga omnes} y subsiste ante el cambio de titularidad de la nuda propiedad. Genera obligaciones de conservación, inventario y restitución para el usufructuario y de no afectación del uso y goce para el nudo propietario. Se extingue por plazo, no uso durante diez años o uso abusivo, y no es un instrumento adecuado para evitar la sucesión.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

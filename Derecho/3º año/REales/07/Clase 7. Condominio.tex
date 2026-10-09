@@ -1,0 +1,685 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{Condominio: Concepto, Caracteres, Facultades y Tipos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ============================================================
+% ÍNDICE
+% ============================================================
+\tableofcontents
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+
+% ------------------------------------------------------------
+\chapter[Concepto y caracteres del condominio]{Introducción, concepto y caracteres del condominio}
+% ------------------------------------------------------------
+
+\section{El condominio en el sistema de derechos reales}
+
+El condominio es uno de los catorce derechos reales enumerados en el artículo 1887 del Código Civil y Comercial de la Nación (CCCN). Como tal, comparte los rasgos comunes a todos los derechos reales:
+
+\begin{itemize}
+    \item Es un derecho real sobre cosa propia.
+    \item Es absoluto y de contenido patrimonial.
+    \item Está regulado por normas de orden público.
+    \item Es oponible \textit{erga omnes} a partir de la publicidad. Existen dos tipos de publicidad: la \textbf{publicidad posesoria} y la \textbf{publicidad registral}.
+    \item Se ejerce por la posesión; como tal, se adquiere por \textbf{título suficiente y modo}.
+\end{itemize}
+
+\section{Relevancia práctica del condominio}
+
+El condominio es uno de los derechos reales de mayor aplicación práctica cotidiana. Aparece, entre otras situaciones, en herencias donde varios herederos quedan como titulares de un bien, en parejas que compran un inmueble o un vehículo, en familias que comparten campos o propiedades y en empresas que co-titularizan activos.
+
+Su dominio permite, en el ejercicio profesional:
+
+\begin{itemize}
+    \item asesorar a los clientes sobre sus derechos y obligaciones como condóminos antes de que surja el conflicto;
+    \item redactar convenios de uso y goce que prevengan litigios futuros;
+    \item iniciar o defender acciones de partición en sede judicial;
+    \item resolver conflictos entre condóminos respecto del uso exclusivo y el valor locativo;
+    \item proteger los derechos de los acreedores que quieran ejecutar una parte indivisa.
+\end{itemize}
+
+Cada vez que alguien comparte la titularidad de un bien con otra persona, aparece el condominio: la vida humana genera condominio por herencia, por afecto o por negocio, y el derecho lo regula.
+
+\section{El condominio como derecho autónomo}
+
+El condominio \textbf{no es un derecho de dominio ``de dos''}: es un \textbf{derecho autónomo, con normas propias}.
+
+La diferencia fundamental radica en la \textbf{exclusividad}. En el dominio, el titular es el único dueño. En el condominio aparece el otro y, con él, la posibilidad del conflicto. Por este motivo, la regulación del condominio está plagada de normas y directivas que se aplican cuando surge el conflicto.
+
+\section{La inestabilidad esencial del condominio}
+
+\begin{quote}
+\textit{<<El condominio es esencialmente inestable.>>} --- Vélez Sársfield, codificador del Código Civil histórico.
+\end{quote}
+
+Esta afirmación se fundamenta en que las relaciones humanas son inestables y la finitud es propia de los seres humanos. Resultaría muy difícil que alguien se acerque a un desconocido y le proponga comprar un departamento o un automóvil juntos. Si bien podría pensarse como una forma de inversión, existen otras figuras jurídicas más adecuadas para ello, como las sociedades o los fideicomisos.
+
+El condominio trae consigo una cuestión humana, que es la que el derecho real pretende resolver. Quienes deciden adquirir una cosa en condominio se miran a los ojos al hacerlo, pero con el correr del tiempo pueden no tener el mismo rostro, la misma historia, los mismos afectos ni los mismos intereses. A través de la muerte de alguno de ellos, además, sus herederos ocuparán su lugar.
+
+\section{Caso práctico de referencia: Juan y Carolina}
+
+\begin{example}{Juan y Carolina}
+Juan y Carolina son una pareja que decidió vivir juntos y tienen un proyecto de vida en común. Compraron un departamento en la Ciudad Autónoma de Buenos Aires, donde residen. Con el tiempo, trabajando ambos, deciden comprar además un automóvil, que utilizan de manera compartida según las necesidades cotidianas (trasladarse a la facultad, visitar familiares, etcétera).
+\end{example}
+
+Este caso se retoma a lo largo de los distintos temas para analizar los conflictos que pueden surgir.
+
+\section{Concepto normativo (Art. 1983 CCCN)}
+
+El artículo 1983 ya incorpora todas las disposiciones generales en materia de derechos reales: el condominio es un \textbf{derecho real} (por lo que recae sobre \textbf{cosas}), que pertenece en común a varias personas, como en el caso de Juan y Carolina, y que corresponde a cada una por una \textbf{parte indivisa}.
+
+\begin{definition}{Condominio (Art. 1983 CCCN)}
+Condominio es el derecho real de propiedad sobre una cosa que pertenece en común a varias personas y que corresponde a cada una por una parte indivisa.
+\end{definition}
+
+\subsection{Presunción de partes iguales}
+
+El artículo 1983 agrega que las partes de los condóminos se \textbf{presumen iguales}, salvo que la ley o el título dispongan una proporción diferente. Es posible que, al adquirir el inmueble, uno haya aportado el 70\% y el otro el 30\%, con lo cual cada uno tendrá ese porcentaje como parte ideal. Si el título nada dice, se presume 50\% y 50\%.
+
+\section{Caracteres propios del condominio}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.2\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Carácter} & \textbf{Descripción} & \textbf{Ejemplo (Juan y Carolina)} \\
+\midrule
+Unidad de objeto & Recae sobre una sola cosa (mueble o inmueble). & El auto o el departamento es una sola cosa. \\
+Pluralidad de sujetos & Dos o más titulares del derecho. & Juan y Carolina (o sus herederos). \\
+Partes ideales (indivisas) & Ninguno tiene una parte material determinada. & Ninguno es dueño de las ruedas delanteras ni de las traseras. \\
+\bottomrule
+\end{tabularx}
+\caption{Caracteres propios del condominio}
+\end{table}
+
+\textbf{Partes indivisas.} Un auto es una cosa mueble con cuatro ruedas. Si los condóminos no quisieran continuar juntos y quisieran definir cómo usar la cosa común, no podría resolverse que cada uno se lleve dos ruedas: sería totalmente imposible. El condominio es de ambos, pero ninguno de ellos tuvo jamás ``un auto'' por sí solo: cada uno puede decir que es su auto, pero lo es con otro. El derecho no recae sobre las ruedas delanteras ni sobre las traseras, ni sobre el baño o la cocina del departamento, sino sobre una \textbf{parte indivisa}.
+
+\begin{example}{Fallecimiento de uno de los condóminos}
+Si Carolina fallece y deja tres hijos, el condominio pasa a ser de cuatro personas: Juan, que conserva su mitad, y los tres herederos de Carolina, que comparten la otra mitad en partes iguales por sucesión \textit{mortis causa}.
+\end{example}
+
+% ---- Cornell Capítulo 1 ----
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}!{\vrule width 0.4pt}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el condominio según el Art. 1983 CCCN?} &
+Es el derecho real de propiedad sobre una cosa que pertenece en común a varias personas y corresponde a cada una por una parte indivisa. Las partes se presumen iguales salvo que el título establezca otra proporción. \\[0.8em]
+
+\textbf{¿En qué se diferencia del dominio simple?} &
+El dominio tiene exclusividad: el dueño actúa solo. En el condominio aparece el otro, lo que restringe ciertas facultades y exige regulación de conflictos. No es un dominio ``de dos'': es un derecho autónomo con normas propias. \\[0.8em]
+
+\textbf{¿Por qué Vélez decía que es ``esencialmente inestable''?} &
+Porque las personas y sus relaciones cambian: se separan, fallecen, cambian sus intereses. Los herederos de un condómino ocupan su lugar y no necesariamente querrán seguir en la situación que el causante eligió. \\[0.8em]
+
+\textbf{¿Cuáles son los tres caracteres propios del condominio?} &
+Unidad de objeto (la cosa es una sola), pluralidad de sujetos (dos o más titulares) y partes ideales o indivisas (nadie es dueño de una parte material determinada, sino de una parte indivisa de la cosa). \\[0.8em]
+
+\midrule
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr0.92\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} El condominio es un derecho real autónomo (Art. 1983 CCCN), que recae sobre una sola cosa perteneciente a dos o más personas, cada una de las cuales es titular de una parte indivisa, presumida igual salvo que el título disponga otra proporción. A diferencia del dominio, aparece el otro y con él la posibilidad del conflicto, lo que explica su inestabilidad esencial.} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+\chapter{Facultades de los condóminos}
+% ------------------------------------------------------------
+
+\section{Parte indivisa y cosa en común}
+
+Las facultades de los condóminos dependen de aquello sobre lo que recaen: son \textbf{amplísimas respecto de la parte indivisa} y \textbf{restringidas respecto de la cosa en común}, precisamente porque está el otro.
+
+\section{Facultades sobre la parte indivisa (Art. 1989 CCCN)}
+
+\begin{quote}
+\textbf{Art. 1989 CCCN.} El condómino puede enajenar y gravar su parte indivisa sin el consentimiento de los restantes condóminos. Los acreedores pueden embargarla y ejecutarla sin esperar el resultado de la partición, que les es inoponible.
+\end{quote}
+
+Las facultades que contempla la norma son las siguientes:
+
+\begin{itemize}
+    \item \textbf{Enajenar:} puede vender, donar o transferir su parte indivisa sin pedir autorización a los otros condóminos.
+    \item \textbf{Gravar:} puede constituir una hipoteca u otro gravamen sobre su parte indivisa.
+    \item \textbf{Ser embargado y ejecutado:} los acreedores del condómino pueden embargar su parte proporcional y llevarla a subasta.
+\end{itemize}
+
+Puede enajenar sin la autorización del otro porque, sobre su parte indivisa, las facultades son amplísimas.
+
+\section{Facultades sobre la cosa en común: uso y goce}
+
+Respecto de la cosa en su totalidad, las facultades son más acotadas. El condómino tiene la facultad de \textbf{usar y gozar} la cosa, pero de forma \textbf{conjunta} con los demás y \textbf{sin alterar su destino}. Puede utilizar el bien en forma exclusiva, siempre que no excluya al otro ni cambie el destino del bien.
+
+\section{Convenio de uso y goce exclusivo (Art. 1987 CCCN)}
+
+\begin{quote}
+\textbf{Art. 1987 CCCN.} Los condóminos pueden convenir el uso y goce alternado de la cosa común o que se ejercite de manera exclusiva y excluyente sobre determinadas partes materiales.
+\end{quote}
+
+Esta norma es una de las novedades más importantes del Código Civil y Comercial de 2014. Permite que los condóminos acuerden quién usará qué parte del inmueble, lo que ha sido importante para pacificar una cuestión interna que a veces provocaba conflictos muy serios, sobre todo después del fallecimiento de alguno de ellos. Por ejemplo, personas que durante veinte o treinta años vivieron sin dificultad, y cuando uno muere el otro afirma ser tan dueño de la casa de atrás como de la de adelante.
+
+\begin{example}{Dos casas sobre un terreno en condominio}
+Hay un inmueble (terreno) sobre el que existen dos construcciones: una casa adelante y otra atrás. Aunque a nivel registral es una sola cosa (un solo inmueble), los condóminos pueden convenir que uno use exclusivamente la casa de adelante y el otro la de atrás.
+
+Sin ese convenio, ambos son titulares de una parte indivisa de todo: un poco del terreno, un poco de la casa de adelante y un poco de la de atrás. El artículo 1987 permite pacificar esa situación interna, que históricamente generó conflictos graves, sobre todo tras el fallecimiento de alguno de los condóminos o cuando los herederos pretenden ejercer derechos sobre la totalidad del inmueble.
+\end{example}
+
+\section{Uso exclusivo y excluyente no pactado: el valor locativo (Art. 1988 CCCN)}
+
+\begin{quote}
+\textbf{Art. 1988 CCCN.} El condómino que usa la cosa común en forma exclusiva está obligado, excepto pacto en contrario, a satisfacer una indemnización, desde que el otro condómino lo solicita.
+\end{quote}
+
+Se plantea el supuesto de Juan y Carolina: se separan, Carolina se va del hogar y Juan queda viviendo en el departamento de manera exclusiva. La pregunta es si Carolina puede reclamar alquileres por todos esos años.
+
+\begin{important}
+El \textbf{valor locativo} es el modo en que se denomina, por semejanza, a una compensación como si se pagara un alquiler. Pero el instituto \textbf{no es un alquiler} que paga el condómino: el condómino tiene el derecho de propiedad y utiliza la cosa ejerciendo su facultad de usar y gozar. Si nada se le pide, se presume que lo hace con el consentimiento del otro.
+\end{important}
+
+El mecanismo es el siguiente:
+
+\begin{itemize}
+    \item Si Carolina se va y no notifica fehacientemente, Juan puede usar el inmueble en forma exclusiva sin deber compensación alguna, porque se presume que lo hace con el consentimiento de Carolina.
+    \item El valor locativo (compensación por uso exclusivo y excluyente) \textbf{solo procede desde que Carolina lo notificó fehacientemente}.
+    \item Si Carolina realizó la notificación a los tres días de irse, el valor locativo procederá desde esos tres días.
+    \item Si la notificación se hizo dos o tres años después, solo procederá desde esa fecha: se presume que Juan ejerció el uso exclusivo con consentimiento de Carolina hasta ese momento.
+\end{itemize}
+
+Carolina no está facultada para solicitar esos ``alquileres'' anteriores a la notificación, porque Juan estaba utilizando el inmueble según su facultad de uso y goce como propietario de la parte indivisa.
+
+% ---- Cornell Capítulo 2 ----
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}!{\vrule width 0.4pt}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué puede hacer un condómino con su parte indivisa sin pedir permiso? (Art. 1989)} &
+Puede enajenarla (venderla, donarla) y gravarla (hipotecarla), y puede ser embargada y ejecutada en subasta por sus acreedores. Todo ello sin necesidad de consentimiento de los demás condóminos. \\[0.8em]
+
+\textbf{¿Cómo se usa la cosa en común?} &
+Con uso y goce conjunto con los demás condóminos y sin alterar el destino de la cosa. Puede usarse en forma exclusiva siempre que no excluya al otro ni cambie el destino. \\[0.8em]
+
+\textbf{¿Qué es el convenio de uso exclusivo del Art. 1987?} &
+Es el acuerdo entre condóminos por el cual se ejerce el uso y goce alternado, o de manera exclusiva y excluyente, sobre determinadas partes materiales del bien. Permite pacificar conflictos internos. \\[0.8em]
+
+\textbf{¿Cuándo procede el valor locativo? (Art. 1988)} &
+Cuando un condómino usa la cosa en forma exclusiva y excluyente y el otro condómino lo notifica fehacientemente. Procede solo desde la notificación; sin ella, el uso se presume consentido y no genera compensación. \\[0.8em]
+
+\midrule
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr0.92\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} Las facultades del condómino son amplísimas sobre su parte indivisa (enajenar, gravar, embargo y ejecución sin consentimiento de los demás, Art. 1989) y restringidas sobre la cosa en común (uso y goce conjunto sin alterar el destino). El Art. 1987 permite convenir el uso exclusivo de partes materiales. El valor locativo del Art. 1988 no es un alquiler y procede solo desde la notificación fehaciente del condómino excluido.} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+\chapter[Disposición, gastos y administración]{Disposición jurídica, gastos y administración}
+% ------------------------------------------------------------
+
+\section{Disposición sobre la cosa en común}
+
+Sobre la cosa en su totalidad, ningún condómino puede:
+
+\begin{itemize}
+    \item disponer materialmente de una parte determinada de la cosa sin autorización de los demás;
+    \item realizar actos de disposición jurídica, como alquilarla, sin el consentimiento de la mayoría.
+\end{itemize}
+
+Si son tres condóminos y dos dicen que sí y uno que no, ese uno no tiene derecho a oponerse: excede las facultades de cada condómino individualmente.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte no indica el artículo que fundamenta la regla de la mayoría para los actos de disposición jurídica)
+
+\section{Distribución de gastos}
+
+Los gastos comunes deben ser afrontados por todos los condóminos \textbf{en proporción a su porcentaje de participación}. Si Juan tiene el 70\% y Carolina el 30\%, Juan pagará el 70\% de los gastos y Carolina el 30\%. Si el título nada dice, se presumen partes iguales, con lo cual los gastos también se parten por mitades.
+
+\section{Deudas contraídas por un condómino}
+
+Si un condómino contrata con un tercero (por ejemplo, un servicio de pintura), él es el obligado ante ese tercero. Sin embargo, tiene derecho a recuperar internamente de los demás condóminos la parte que les corresponde según su porcentaje. Esta situación genera debates sobre si los gastos fueron de conservación o de mejora, y si eran necesarios o no.
+
+\section{Administración y régimen de asamblea (Arts. 1993 y 1994 CCCN)}
+
+\begin{quote}
+\textbf{Art. 1994 CCCN.} Cualquier condómino puede convocar a una asamblea de condóminos, citando a los demás en forma fehaciente, indicando la finalidad y con antelación suficiente. La resolución de la mayoría absoluta de los condóminos computada según el valor de las partes indivisas es obligatoria para todos.
+\end{quote}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se menciona el Art. 1993 en el encabezado de la sección, pero el apunte no desarrolla su contenido)
+
+Este régimen presenta dificultades prácticas evidentes, especialmente en condominios con solo dos titulares como Juan y Carolina: no resulta claro cómo convocar a una asamblea ni dónde alcanzar un acuerdo. Si hay empate (uno dice que sí y el otro que no), el artículo 1994 establece que \textbf{decide la suerte}.
+
+El régimen de asamblea tiene utilidad en determinados casos concretos (condominios con varios titulares), pero no es de aplicación amplia para todos los supuestos.
+
+% ---- Cornell Capítulo 3 ----
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}!{\vrule width 0.4pt}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué actos de disposición no puede hacer un condómino por sí solo?} &
+No puede disponer materialmente de una parte determinada de la cosa sin autorización de los demás, ni realizar actos de disposición jurídica (como alquilarla) sin el consentimiento de la mayoría. \\[0.8em]
+
+\textbf{¿Cómo se distribuyen los gastos comunes?} &
+En proporción a la parte indivisa de cada condómino. Si uno tiene 70\% y el otro 30\%, cada uno paga ese porcentaje. Si el título nada dice, se presumen partes iguales (50/50). \\[0.8em]
+
+\textbf{¿Qué ocurre si un condómino contrata con un tercero?} &
+Es el obligado ante el tercero, pero puede recuperar internamente de los demás condóminos la parte que les corresponde según su porcentaje. Se debate si los gastos fueron de conservación o de mejora, y si eran necesarios o no. \\[0.8em]
+
+\textbf{¿Qué pasa si los condóminos no se ponen de acuerdo? (Art. 1994)} &
+Cualquier condómino puede convocar a una asamblea. La decisión se toma por mayoría absoluta computada según el valor de las partes indivisas. Si hay empate, decide la suerte. Es un sistema limitado en la práctica para condominios de solo dos titulares. \\[0.8em]
+
+\midrule
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr0.92\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} Los actos de disposición material de una parte determinada requieren autorización de los demás y los de disposición jurídica requieren el consentimiento de la mayoría. Los gastos se distribuyen según la parte indivisa de cada condómino y el que contrata con un tercero puede recuperar internamente lo que corresponde a los demás. El régimen de asamblea (Art. 1994) decide por mayoría absoluta según el valor de las partes indivisas y, en caso de empate, por suerte.} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------
+\chapter[Tipos de condominio y partición]{Tipos de condominio, indivisión forzosa y partición}
+% ------------------------------------------------------------
+
+\section{Clasificación general}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.18\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo} & \textbf{Definición} & \textbf{Consecuencia} & \textbf{Plazo máximo} \\
+\midrule
+Sin indivisión forzosa & No existe causa legal que impida dividir. & Cualquier condómino puede pedir la partición en cualquier momento. & Sin plazo (acción imprescriptible). \\
+Con indivisión forzosa & Existe una causa legal que restringe la partición. & La partición está temporalmente impedida según la fuente. & Varía: 10 años (convención y testamento), 5 años (sentencia). \\
+\bottomrule
+\end{tabularx}
+\caption{Tipos de condominio}
+\end{table}
+
+La indivisión forzosa surge únicamente de la ley, aunque dentro de ella existen distintas fuentes que se desarrollan a continuación.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se afirma que la indivisión forzosa surge solo de la ley, pero se incluyen entre sus fuentes la convención y los actos de última voluntad)
+
+\section{Condominio sin indivisión forzosa: el derecho de partición}
+
+\begin{quote}
+\textbf{Art. 1996 CCCN.} Todo condómino puede, en cualquier tiempo, pedir la partición de la cosa. La acción es imprescriptible.
+\end{quote}
+
+\begin{quote}
+\textbf{Art. 1999 CCCN.} El derecho a pedir la partición es irrenunciable por tiempo indeterminado.
+\end{quote}
+
+El derecho a pedir la partición tiene dos caracteres fundamentales:
+
+\begin{itemize}
+    \item \textbf{Imprescriptible:} al igual que el dominio es perpetuo, el derecho a pedir la partición nunca se extingue por el transcurso del tiempo.
+    \item \textbf{Irrenunciable por tiempo indeterminado:} no se puede pactar, en forma definitiva, que nunca se pedirá la partición.
+\end{itemize}
+
+\begin{example}{La cláusula prohibitiva de la partición}
+Una pareja llega a la escribanía o al estudio jurídico y dice: ``Queremos comprar este departamento, es el departamento de nuestros sueños, vamos a tener hijos, vamos a vivir acá. Pero queremos incluir una condición: que nunca podamos dividirlo.''
+
+Ese pedido refleja, en el fondo, el deseo de que nunca se separen. Sin embargo, no está en la posibilidad jurídica de quien asesora garantizarlo, porque (a) el derecho a pedir la partición es irrenunciable por tiempo indeterminado y (b) si Carolina muere, resulta dudoso para qué querrían sus herederos tener el departamento con Juan: los condóminos miran el aquí y el ahora.
+\end{example}
+
+\section{Condominio con indivisión forzosa: fuentes}
+
+Dentro del condominio con indivisión forzosa se distingue entre la \textbf{indivisión temporaria}, que tiene un plazo determinado, y la \textbf{indivisión perdurable}, vinculada a la naturaleza del objeto, como en la medianería. Las fuentes de la indivisión temporaria son tres.
+
+\subsection{Fuente 1: la convención (Art. 2000 CCCN)}
+
+\begin{quote}
+\textbf{Art. 2000 CCCN.} Los condóminos pueden convenir suspender la partición por un plazo que no exceda de diez años. Si la convención no fija plazo, o establece un plazo incierto o superior a diez años, se considera celebrada por ese tiempo. El plazo puede renovarse por igual término.
+\end{quote}
+
+Los condóminos pueden acordar no dividir por un período de hasta diez años, renovable. Si Carolina muere, sus herederos deberán cumplir ese pacto, ya que también los obliga.
+
+\subsection{Fuente 2: la sentencia judicial (Art. 2001 CCCN)}
+
+\begin{quote}
+\textbf{Art. 2001 CCCN.} A petición de parte, cuando la partición es nociva para el interés de los condóminos, o de alguno de ellos, el juez puede disponerla con carácter diferido por un plazo que no exceda de cinco años.
+\end{quote}
+
+La sentencia puede operar de dos formas:
+
+\begin{itemize}
+    \item \textbf{Demorar} una partición que no tenía restricción, cuando se demuestra que es perjudicial para todos.
+    \item \textbf{Anticipar} una partición que tenía restricciones, a pedido de quienes acrediten circunstancias graves perjudiciales para sus intereses.
+\end{itemize}
+
+El plazo es de cinco años, renovable judicialmente por otros cinco.
+
+\subsection{Fuente 3: los actos de última voluntad (Art. 2330 CCCN)}
+
+\begin{quote}
+\textbf{Art. 2330 CCCN.} El testador puede imponer a los herederos, aun siendo todos ellos mayores de edad, la indivisión de la herencia o de alguno de los bienes, por un plazo no mayor de diez años.
+\end{quote}
+
+Esta fuente es muy frecuente en la práctica, ya que los testadores suelen incluir disposiciones del tipo ``les dejo todo a mis hijos, pero que nunca lo separen''. Si bien ese deseo es comprensible, el plazo máximo es de diez años y no puede ser indefinido.
+
+\section{Partición nociva}
+
+El concepto de partición nociva existía ya en el Código Civil derogado. El ejemplo clásico es el de un campo sembrado: si uno de los condóminos (o sus herederos) pide la partición en plena cosecha, el otro puede oponerse judicialmente argumentando que la partición sería antieconómica y perjudicial no solo para él, sino para los intereses de todos.
+
+\section{Evolución jurisprudencial: los derechos humanos como fundamento}
+
+\begin{important}
+Ya existen fallos que demoran la partición con fundamento en los derechos humanos, los derechos del niño, los derechos de los ancianos y los derechos de los enfermos.
+\end{important}
+
+Algunos jueces, ante el pedido de partición, la demoran por cinco años y, tras una nueva evaluación, por otros cinco, ya no basándose en que sea perjudicial para los intereses económicos de todos, sino para los intereses del condómino en general: por ejemplo, el condómino anciano o enfermo que vive en el inmueble.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el pasaje original referido al pedido de partición presenta una expresión ininteligible: ``de morán'')
+
+\begin{note}
+No significa que no pueda pedirse la partición conforme a las calidades del otro condómino: la partición es un derecho rotundo. Lo que ocurre es que, ante un caso concreto y determinada prueba, el juez puede demorar la partición o, de alguna manera, anticiparla.
+\end{note}
+
+\section{Tema siguiente}
+
+El condominio de fuente legal (muros, cercos y fosos vinculados con la medianería, Art. 2006 y ss. CCCN) es un tema que fue mencionado pero no desarrollado en estos apuntes. Se trata del condominio de origen legal, que genera importantes conflictos prácticos y cuya regulación es distinta de la del condominio convencional.
+
+% ---- Cornell Capítulo 4 ----
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}!{\vrule width 0.4pt}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuáles son los tipos de condominio?} &
+Con indivisión forzosa (existe una causa que impide temporalmente la partición) y sin indivisión forzosa (cualquier condómino puede pedir la partición en cualquier momento). \\[0.8em]
+
+\textbf{¿Es renunciable el derecho de pedir la partición? (Art. 1999)} &
+No, es irrenunciable por tiempo indeterminado. No puede pactarse en forma definitiva que nunca se pedirá la partición. Sí puede suspenderse temporalmente por convención (hasta 10 años) o por sentencia (hasta 5 años renovables). \\[0.8em]
+
+\textbf{¿Cuáles son las fuentes de indivisión forzosa temporaria?} &
+Tres: (1) convención entre condóminos (Art. 2000): hasta 10 años renovables; (2) sentencia judicial (Art. 2001): hasta 5 años renovables; (3) actos de última voluntad (Art. 2330): hasta 10 años. \\[0.8em]
+
+\textbf{¿Qué es la partición nociva?} &
+Es aquella partición que sería perjudicial para los intereses de los condóminos o de alguno de ellos. El juez puede diferirla hasta 5 años. La jurisprudencia actual también la aplica por razones humanitarias: condóminos ancianos, enfermos o familias con menores que habitan el bien. \\[0.8em]
+
+\textbf{¿La evolución jurisprudencial cambia el derecho a pedir la partición?} &
+No elimina el derecho, que sigue siendo rotundo e imprescriptible. Solo permite que el juez demore su ejecución por un tiempo acotado, con fundamento en derechos humanos, del niño, del anciano o del enfermo, ante un caso concreto y determinada prueba. \\[0.8em]
+
+\midrule
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr0.92\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} El condominio puede ser sin indivisión forzosa, donde cualquier condómino puede pedir la partición en todo momento por ser un derecho imprescriptible e irrenunciable por tiempo indeterminado (Arts. 1996 y 1999), o con indivisión forzosa, cuyas fuentes son la convención (hasta 10 años renovables, Art. 2000), la sentencia judicial por partición nociva (hasta 5 años renovables, Art. 2001) y los actos de última voluntad (hasta 10 años, Art. 2330). La jurisprudencia reciente amplió el concepto de partición nociva con fundamentos de derechos humanos, para demorar, pero no eliminar, el derecho de partición.} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

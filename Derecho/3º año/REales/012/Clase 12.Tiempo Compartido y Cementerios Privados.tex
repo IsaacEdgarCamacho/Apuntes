@@ -1,0 +1,641 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derechos Reales}
+\newcommand{\titulo}{Apuntes de Derechos Reales: Tiempo Compartido y Cementerios Privados}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE Tiempo Compartido y Cementerios Privados}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derechos Reales'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ============================================================
+% ÍNDICE
+% ============================================================
+\tableofcontents
+
+% ============================================================
+% CONTENIDO
+% ============================================================
+\chapter*{Presentación de la unidad}
+\addcontentsline{toc}{chapter}{Presentación de la unidad}
+\markboth{Presentación de la unidad}{Presentación de la unidad}
+
+En esta unidad se desarrollan dos derechos reales regulados por el Código Civil y Comercial de la Nación Argentina (CCyC): el \textbf{tiempo compartido} (arts. 2087 a 2102) y los \textbf{cementerios privados} (arts. 2103 a 2113). Se analizan su regulación normativa, las figuras jurídicas intervinientes, los interrogantes doctrinarios que plantean y la protección que el ordenamiento otorga a los adquirentes y usuarios de estos sistemas.
+
+Ambos temas se vinculan por una misma lógica: quien adquiere una semana en un complejo turístico con tiempo compartido, o una parcela en un cementerio privado, confía en que esa adquisición perdurará. El Código Civil y Comercial intentó dar seguridad jurídica a esas decisiones convirtiéndolas en derechos reales, y esa regulación todavía genera dudas e interrogantes.
+
+\begin{note}
+\textbf{Utilidad profesional.} Quien ejerce la abogacía se enfrenta a clientes que adquieren tiempo compartido turístico o parcelas en cementerios privados sin comprender plenamente sus derechos. Conocer estas figuras permite asesorar sobre los riesgos y garantías legales, redactar o revisar contratos de afectación, detectar irregularidades en la comercialización, actuar en juicio ante ejecuciones hipotecarias que afecten a usuarios e interpretar la ley ante los numerosos interrogantes que esta normativa aún no resuelve. Se trata de una rama del derecho en plena construcción doctrinaria y jurisprudencial.
+\end{note}
+
+% ------------------------------------------------------------
+\chapter{Tiempo compartido}
+% ------------------------------------------------------------
+
+\section{Encuadre legal y enumeración en el Código Civil y Comercial}
+
+El tiempo compartido y el cementerio privado son dos derechos reales regulados por el Código Civil y Comercial.
+
+\begin{important}
+El tiempo compartido se enumera como derecho real en el \textbf{artículo 1887, inciso e)} del CCyC. Su regulación específica se encuentra en los \textbf{artículos 2087 a 2102}.
+\end{important}
+
+\section{Concepto y objeto del tiempo compartido}
+
+Al pensar espontáneamente en el tiempo compartido se lo asocia con el turismo, porque esa es la modalidad comercial conocida. Sin embargo, el Código pretende dar apertura a nuevos tipos de negocios, algunos todavía no desarrollados. Como ejemplo de esa apertura, el tiempo compartido podría utilizarse para un tomógrafo u otro equipamiento costoso de medicina nuclear, conformado bajo este régimen y utilizado por turnos, por un lugar o por otro, durante una semana o período determinado.
+
+\begin{definition}{Tiempo compartido (art. 2087 CCyC)}
+Hay \textbf{tiempo compartido} si uno o más bienes están afectados al uso periódico y por turno para alojamiento, hospedaje, comercio, turismo, industria u otros fines, que ejercen sobre ellos un derecho que los habilita a su uso y goce. Puede recaer sobre \textbf{inmuebles} o sobre \textbf{muebles}.
+\end{definition}
+
+\section{Modalidad comercial conocida: el tiempo compartido turístico}
+
+La modalidad turística es la que funciona en el ámbito de los derechos personales y la que se conoce en la práctica. La persona adquiere, mediante un contrato propio de la esfera del derecho personal, una \textbf{unidad de tiempo}. Esa unidad, generalmente de siete días, le permite utilizar un complejo vacacional siete días por año (o catorce días por año), sin pagar ningún servicio o pagando un costo muy inferior al que implicaría alojarse o vacacionar en esos complejos sin tener el tiempo compartido.
+
+Existen sistemas de tiempo compartido que permiten intercambiar las unidades dentro del país o en el exterior, mediante sistemas como \textbf{Interval}. De este modo, el titular puede, por ejemplo, viajar a destinos como China o Japón intercambiando su unidad de tiempo.
+
+\section{Funcionamiento en el ámbito de los derechos personales: riesgos}
+
+En el ámbito de los derechos personales no han existido dificultades para quienes utilizan el tiempo compartido habitualmente. Sin embargo, como el negocio es llevado adelante por personas jurídicas, pueden producirse situaciones problemáticas: los inmuebles pueden ser subastados o puede existir una quiebra, y entonces el derecho adquirido a perpetuidad o por largos años queda comprometido. Por ello se procuró establecer un marco de regulación que otorgara mayor seguridad.
+
+\begin{important}
+La regulación como derecho real busca proteger a los adquirentes de los avatares propios de las personas jurídicas: \textbf{quiebra, inhibición y subasta} de los inmuebles afectados al sistema.
+\end{important}
+
+\section{Afectación del inmueble al sistema de tiempo compartido}
+
+Cuando el tiempo compartido recae sobre inmuebles, como ocurre con los complejos turísticos, el emprendedor debe afectar el inmueble al sistema mediante un procedimiento formal.
+
+\begin{formula}{Afectación del inmueble (art. 2089 CCyC)}
+El emprendedor debe afectar el inmueble al tiempo compartido, vinculándolo a una finalidad de aprovechamiento periódico. La afectación debe realizarse mediante \textbf{escritura pública}, con \textbf{inscripción registral} para su oponibilidad \textit{erga omnes}.
+\end{formula}
+
+La inscripción registral es relevante frente a terceros: quien pretenda comprar el inmueble para desarrollar allí su propio proyecto, al solicitar el informe registral, verá que el inmueble está afectado únicamente a tiempo compartido.
+
+\section{Figuras jurídicas intervinientes}
+
+\begin{formula}{Sujetos intervinientes (art. 2100 CCyC, según se consigna en las notas)}
+El sistema reconoce las siguientes figuras: el \textbf{propietario} del inmueble, el \textbf{emprendedor} (quien organiza el emprendimiento), el \textbf{comercializador} (quien lo ofrece al mercado), el \textbf{administrador} (que puede ser el propio emprendedor o un tercero) y los \textbf{usuarios} (adquirentes del uso periódico).
+\end{formula}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el art. 2100 se cita en las notas tanto para los sujetos intervinientes como para la relación de consumo)
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Figura} & \textbf{Rol} \\
+\midrule
+\textbf{Propietario} & Titular del inmueble. Es quien puede afectarlo al sistema de tiempo compartido (o el condómino junto a los demás condóminos). \\
+\textbf{Emprendedor} & Quien organiza y gestiona el emprendimiento. Puede afectar el inmueble con autorización del propietario, actuando como mandatario. \\
+\textbf{Comercializador} & Quien ofrece y vende las unidades de tiempo al público. Interviene en la cadena de comercialización. \\
+\textbf{Administrador} & Gestiona el funcionamiento del sistema. Puede ser el propio emprendedor o un tercero designado a tal efecto. \\
+\textbf{Usuarios} & Adquirentes del uso periódico. Son el eslabón final de la cadena y el sujeto que la normativa busca proteger. \\
+\bottomrule
+\end{tabularx}
+\caption{Figuras intervinientes en el tiempo compartido}
+\end{table}
+
+\subsection{Quién puede afectar el inmueble}
+
+Puede afectar el inmueble únicamente el \textit{dominus}: el propietario o el condómino que conforma, con las partes ideales de todos los condóminos, el derecho al todo. El Código también permite que lo afecte el emprendedor que gestione el emprendimiento con autorización del propietario; en ese caso actúa como \textbf{mandatario}. Por lo tanto, quien en definitiva puede afectar el inmueble es el titular del dominio, a través de un administrador.
+
+\section{Interrogantes sobre la naturaleza jurídica del derecho}
+
+El interrogante central de la figura surge al analizar el artículo 2011, referido en las notas como la norma sobre el derecho del adquirente.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el número de artículo 2011 aparece en las notas como "referido en clase"; se conserva tal como figura)
+
+\begin{formula}{Derecho del adquirente (art. 2011, según se consigna en las notas)}
+Al derecho del adquirente del tiempo compartido se le aplican las normas de los derechos reales.
+\end{formula}
+
+A partir de esta redacción se plantean los siguientes interrogantes:
+
+\begin{itemize}
+    \item ¿Se le aplican las normas de los derechos reales, o es un derecho real?
+    \item ¿Cómo se aplica la norma de un derecho real a un derecho personal, o viceversa?
+    \item ¿Por qué ha de ser necesariamente o un derecho real o un derecho personal?
+\end{itemize}
+
+Un segundo interrogante es el de la \textbf{titularidad}: ¿quién es el titular del derecho real? El propietario del inmueble tiene un derecho real, que no se discute, y su inmueble está afectado a un destino de explotación. Pero los usuarios, ¿tienen también un derecho real sobre cosa propia?
+
+\begin{important}
+\textbf{Interrogante central sin resolver:} el Código dice que al derecho del adquirente ``se le aplican las normas de los derechos reales'', pero no queda claro si es un derecho real en sí mismo. Esto generará un extenso trabajo de la doctrina y la jurisprudencia.
+\end{important}
+
+\section{Protección de los usuarios: inoponibilidad de hipotecas y expensas}
+
+Para proteger a los usuarios, el Código establece requisitos al momento de la afectación: el inmueble debe estar \textbf{libre de gravámenes}, y el propietario, el emprendedor, el administrador y el comercializador \textbf{no deben estar inhibidos} para disponer de sus bienes.
+
+Sin embargo, el Código admite que se constituyan hipotecas con posterioridad a la afectación, aclarando que estas no son oponibles a los usuarios.
+
+\begin{formula}{Protección frente a acreedores (art. 2093 CCyC)}
+Los acreedores del propietario no afectan el derecho de los usuarios. Las hipotecas constituidas con posterioridad a la afectación son \textbf{inoponibles} a los usuarios del tiempo compartido.
+\end{formula}
+
+\subsection{Dificultades prácticas de la solución}
+
+Las notas señalan las dificultades prácticas de esta solución. Si se constituye una hipoteca y esta no se paga, el acreedor hipotecario tiene un derecho real, con su preferencia, y puede subastar el inmueble.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el desarrollo del razonamiento sobre el acreedor hipotecario figura de manera fragmentaria)
+
+\begin{example}{Inmueble hipotecado en un emprendimiento}
+Un cliente puede adquirir una unidad en un complejo importante de la zona norte, cuyo inmueble estaba hipotecado. El titular del inmueble lo hipoteca precisamente para realizar el emprendimiento, lo cual resulta muy habitual.
+\end{example}
+
+\subsection{Derechos y deberes de los usuarios}
+
+Los usuarios tienen derechos y deberes. Entre ellos, deben ejercer su uso en la fecha y del modo que correspondan, y pagar las expensas necesarias para el sostenimiento del sistema.
+
+\begin{formula}{Expensas y cobro ejecutivo (arts. 2096-2097 CCyC)}
+Las expensas del tiempo compartido tienen \textbf{cobro ejecutivo}. Los artículos 2096 y 2097 regulan los deberes de los usuarios y las cargas del sistema.
+\end{formula}
+
+\section{Relación de consumo en el tiempo compartido}
+
+El Código incorpora expresamente la regulación del tiempo compartido como una \textbf{relación de consumo}, algo que ya se había incorporado antes del Código por la gran cantidad de problemática que generaba.
+
+\begin{formula}{Relación de consumo (art. 2100 CCyC, según se consigna en las notas)}
+Las relaciones entre el propietario, el emprendedor, el comercializador, el administrador y los usuarios se rigen por las normas que regulan las relaciones de consumo.
+\end{formula}
+
+No resulta difícil interpretar el derecho real junto con la relación de consumo cuando se hace referencia al usuario.
+
+Todos los intervinientes deben cumplir con las normas que regulan el sistema de tiempo compartido, ya sean de carácter nacional, provincial o municipal: la regulación del derecho real es exclusivamente nacional, pero lo que hace al funcionamiento es competencia de las provincias.
+
+\section{Requisito de inscripción y ausencia de ley especial}
+
+\begin{formula}{Requisito previo a la comercialización (art. 2092 CCyC)}
+Con carácter previo a los anuncios y la comercialización de un tiempo compartido, hay que realizar la afectación en un \textbf{registro de prestadores} y en el \textbf{Registro de la Propiedad}. Esa inscripción debe realizarse conforme la ley especial.
+\end{formula}
+
+Según las notas, no existe aún ninguna ley especial. La única ley especial, en caso de considerarse aplicable, es la que regula los tiempos compartidos turísticos; por ello, hasta que aparezca una nueva normativa, serían los únicos que pueden comercializarse o funcionar.
+
+\begin{important}
+La ausencia de ley especial para el registro de prestadores es uno de los mayores obstáculos para la plena operatividad del tiempo compartido como derecho real en el Código Civil y Comercial.
+\end{important}
+
+% ------------------------------------------------------------
+\section{Cuadro Cornell: Tiempo compartido}
+% ------------------------------------------------------------
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\textit{continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué es el tiempo compartido según el CCyC?} &
+Es un derecho real (art. 1887 inc. e), regulado en los arts. 2087 a 2102. Hay tiempo compartido cuando uno o más bienes están afectados al uso periódico y por turno para alojamiento, hospedaje, comercio, turismo, industria u otros fines. Puede recaer sobre inmuebles o muebles. \\[0.8em]
+
+\textbf{¿Cuál es la modalidad más conocida?} &
+El tiempo compartido turístico: el adquirente compra una unidad de tiempo (generalmente 7 o 14 días) que le permite utilizar un complejo vacacional anualmente, pagando un costo muy inferior al del hospedaje convencional. Existen sistemas de intercambio nacional e internacional (por ejemplo, Interval). \\[0.8em]
+
+\textbf{¿Por qué el Código lo reguló como derecho real?} &
+Para proteger a los adquirentes de los riesgos propios de las personas jurídicas: quiebra, inhibición y subasta de los inmuebles. En el régimen de derechos personales, el adquirente quedaba desprotegido ante estas situaciones. \\[0.8em]
+
+\textbf{¿Cómo se afecta un inmueble al tiempo compartido?} &
+Mediante escritura pública e inscripción registral (art. 2089), lo que genera oponibilidad \textit{erga omnes}: cualquier tercero que consulte el registro sabrá que el inmueble está afectado únicamente al tiempo compartido. Al momento de la afectación, el inmueble debe estar libre de gravámenes y los intervinientes no deben estar inhibidos. \\[0.8em]
+
+\textbf{¿Qué figuras intervienen en el tiempo compartido?} &
+El propietario (titular del inmueble), el emprendedor (organiza el emprendimiento), el comercializador (ofrece las unidades al público), el administrador (puede ser el emprendedor o un tercero) y los usuarios (adquirentes del uso periódico). \\[0.8em]
+
+\textbf{¿Qué garantías tiene el usuario frente a los acreedores del propietario?} &
+Las hipotecas constituidas con posterioridad a la afectación son inoponibles a los usuarios (art. 2093). Las expensas tienen cobro ejecutivo (arts. 2096-2097). Las notas señalan, no obstante, dificultades prácticas cuando existe una hipoteca sobre el inmueble. \\[0.8em]
+
+\textbf{¿Cuál es el principal interrogante jurídico del tiempo compartido?} &
+La norma sobre el derecho del adquirente (art. 2011, según las notas) dice que se le aplican las normas de los derechos reales, pero no afirma que sea un derecho real en sí mismo. Surge la duda de si es un derecho real o personal, y quién es el titular del derecho real: el propietario, el usuario o ambos. La cuestión deberá ser resuelta por la doctrina y la jurisprudencia. \\[0.8em]
+
+\textbf{¿Existe relación de consumo? ¿Qué ocurre con la ley especial?} &
+Sí: las relaciones entre los intervinientes y los usuarios se rigen por las normas de consumo. Antes de la comercialización debe realizarse la afectación en un registro de prestadores y en el Registro de la Propiedad conforme la ley especial (art. 2092), pero según las notas no existe aún ninguna ley especial. \\
+
+\midrule
+\multicolumn{2}{p{0.93\textwidth}}{
+\textbf{Resumen:} El tiempo compartido (arts. 2087 a 2102 CCyC) es un derecho real enumerado en el art. 1887 inc. e), que permite el uso periódico y por turnos de bienes inmuebles o muebles. Su regulación como derecho real busca proteger a los adquirentes frente a la quiebra, la inhibición y la subasta. Requiere afectación por escritura pública e inscripción registral, interviene una pluralidad de sujetos y se rige además por las normas de consumo. Persisten interrogantes sobre su naturaleza (derecho real o aplicación de sus normas), sobre la titularidad y sobre la falta de ley especial.
+} \\
+\end{longtable}
+
+% ------------------------------------------------------------
+\chapter{Cementerios privados}
+% ------------------------------------------------------------
+
+\section{Antecedentes históricos: secularización y dominio público}
+
+La organización de los cementerios estuvo antiguamente muy ligada al tema religioso, razón por la cual los cementerios se ubicaban en torno a las iglesias.
+
+A partir de \textbf{1821} se produce en Argentina la \textbf{secularización}: los cementerios pasan a ser parte de la regulación del Estado. Surgen así los \textbf{cementerios públicos}, que pertenecen al dominio público municipal y están destinados a dar sepultura.
+
+El derecho de los particulares sobre las sepulturas en cementerios públicos constituye una \textbf{concesión de uso} de índole administrativa.
+
+\section{Surgimiento y regulación de los cementerios privados}
+
+Con el aumento de la población, los cementerios públicos fueron saturados. Hace alrededor de 50 años comenzaron a desarrollarse estas nuevas formas de negocios que son los \textbf{cementerios privados}.
+
+Las notas observan que la diferencia económica también puede verse en la muerte; se recuerda al respecto el comentario de un colega de Europa, según el cual no cuesta lo mismo una parcela bajo un ciprés que bajo un álamo.
+
+La normativa provincial autoriza expresamente los cementerios privados con fines especulativos.
+
+\begin{note}
+\textbf{Marco normativo provincial (ejemplo).} La Ordenanza General 221 del año 1978 y la Ley 9.000/94 de la Provincia autorizan el establecimiento de cementerios privados con fines especulativos (con fines de lucro), cuyo destino específico es la inhumación de los restos humanos. El poder de policía mortuoria y el servicio de inhumaciones y cremación de restos humanos es ejercido por las municipalidades.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (las notas no indican a qué provincia corresponde el marco normativo citado)
+
+\section{Concepto legal del cementerio privado}
+
+\begin{definition}{Cementerio privado (art. 2113 CCyC)}
+Se consideran \textbf{cementerios privados} a los inmuebles de propiedad privada afectados a la inhumación de restos humanos. Requieren habilitación municipal, cerramiento, y tendrán partes comunes y partes privativas sujetas a indivisión forzosa.
+\end{definition}
+
+El Código ha pretendido regular los cementerios privados como un \textbf{derecho real}, que es el que mayor seguridad confiere.
+
+Respecto de quién puede afectar el inmueble, si bien la ley no lo aclara, serán el titular de dominio y, por extensión, todos los condóminos que conjuntamente representen el cien por ciento de la propiedad.
+
+\section{Partes comunes y parcelas exclusivas}
+
+La estructura del cementerio privado diferencia las partes comunes de las partes privativas. Las partes comunes se encuentran en un estado de \textbf{indivisión forzosa}: las calles internas, los servicios centrales, las capillas.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{XX}
+\toprule
+\textbf{Partes comunes (indivisión forzosa)} & \textbf{Partes exclusivas (dominio privativo)} \\
+\midrule
+Calles y circulaciones internas & Parcelas individuales de sepultura \\
+Servicios centrales & Sepulcros y construcciones individuales \\
+Capillas y lugares de culto & Derecho a inhumar, exhumar y trasladar restos \\
+Instalaciones generales del predio & \\
+\bottomrule
+\end{tabularx}
+\caption{Partes comunes y partes exclusivas del cementerio privado}
+\end{table}
+
+\section{Reglamento de afectación y uso}
+
+El Código establece el contenido mínimo obligatorio del reglamento del cementerio privado.
+
+\begin{formula}{Contenido del reglamento de afectación y uso (art. 2105 CCyC)}
+El reglamento debe contener:
+\begin{itemize}
+    \item descripción del inmueble;
+    \item identificación de las partes y lugares comunes y de los servicios comunes;
+    \item identificación de las parcelas sobre las que recae dominio exclusivo;
+    \item el modo de pago del canon locativo y los gastos;
+    \item las normas de acceso y circulación de titulares y visitantes;
+    \item las normas administrativas sobre inhumaciones, exhumaciones y cremaciones.
+\end{itemize}
+Debe existir obligatoriamente un \textbf{registro de inhumados y de sepulturas}.
+\end{formula}
+
+\begin{important}
+El \textbf{poder de policía mortuoria} está siempre en cabeza del Estado.
+\end{important}
+
+\section{Derechos del titular de la parcela (derecho de sepultura)}
+
+Las facultades que el Código confiere al titular del derecho de sepultura son:
+
+\begin{itemize}
+    \item realizar inhumaciones y exhumaciones;
+    \item realizar reducciones y traslados;
+    \item construir sepulcros, de conformidad con las normas del cementerio y siempre teniendo en cuenta el poder de policía mortuoria.
+\end{itemize}
+
+\section{Inembargabilidad e inejecutabilidad de las parcelas}
+
+Este es uno de los puntos más importantes del sistema, que lo diferencia radicalmente del régimen de derechos personales.
+
+\begin{formula}{Inembargabilidad de las parcelas (art. 2110 CCyC)}
+Las parcelas exclusivas de los cementerios privados son \textbf{inembargables e inejecutables}, salvo por: saldo del precio de compra, precio de construcción de sepulcros, expensas, tasas, impuestos y contribuciones. En esos casos son embargables y ejecutables.
+\end{formula}
+
+\begin{important}
+La inembargabilidad de la parcela es la diferencia fundamental entre el cementerio privado regulado como derecho real y el funcionamiento como derecho personal. Protege el destino del bien frente a deudas del propietario del cementerio. Se señala la trascendencia que esto tiene para quien realiza esta adquisición con miras al descanso eterno.
+\end{important}
+
+\section{Obligaciones del administrador del cementerio}
+
+El administrador del cementerio privado debe mantener la normativa reglamentaria en cuanto a servicios. Debe garantizar el funcionamiento de las instalaciones y de los servicios comunes, para que quien adquirió pueda hacer uso de los servicios para los cuales contrató.
+
+\section{Relación de consumo y aplicación de normas de derechos reales}
+
+\begin{formula}{Relación de consumo (art. 2111 CCyC)}
+La relación entre el propietario y el administrador del cementerio privado y los usuarios se considera \textbf{relación de consumo} y queda sujeta a las normas del derecho del consumidor.
+\end{formula}
+
+\begin{formula}{Aplicación de las normas de derechos reales (art. 2112 CCyC)}
+Al derecho de sepultura se le aplican las normas de los derechos reales.
+\end{formula}
+
+Se plantea nuevamente el mismo interrogante que en el tiempo compartido. Cuando el Código se refiere a derecho real sobre cosa propia, se refiere al titular de dominio, sobre quien no hay duda de que tiene un derecho real sobre cosa propia. Pero respecto del titular del derecho de sepultura, si es un derecho real, ¿por qué habría que aplicarle las normas de los derechos reales?
+
+\begin{important}
+Tanto en el tiempo compartido como en el cementerio privado, el Código usa la misma fórmula: ``se le aplican las normas de los derechos reales'', sin afirmar expresamente que sea un derecho real en sí mismo. Esta ambigüedad es el principal interrogante que deberá resolver la doctrina y la jurisprudencia.
+\end{important}
+
+\section{Consideración final}
+
+Tanto en materia de tiempo compartido como de cementerio privado hay muchos interrogantes que no pueden resolverse en esta etapa y que seguramente serán despejados en el futuro mediante un largo trabajo de la doctrina y la jurisprudencia. Se trata de regulaciones muy novedosas, que requerirán tiempo.
+
+% ------------------------------------------------------------
+\section{Cuadro Cornell: Cementerios privados y visión de conjunto}
+% ------------------------------------------------------------
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\textit{continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Cómo pasaron los cementerios al control estatal y qué naturaleza tiene una parcela en un cementerio público?} &
+Antiguamente estaban ligados a lo religioso y se ubicaban en torno a las iglesias. A partir de 1821 se produce la secularización y pasan a la regulación del Estado. Los cementerios públicos pertenecen al dominio público municipal, y el derecho de los particulares sobre las sepulturas es una concesión de uso de índole administrativa. \\[0.8em]
+
+\textbf{¿Qué es un cementerio privado según el CCyC?} &
+Son inmuebles de propiedad privada afectados a la inhumación de restos humanos (art. 2113). Requieren habilitación municipal y cerramiento, y tienen partes comunes (en indivisión forzosa) y partes privativas (parcelas con dominio exclusivo). Según las notas, la normativa provincial los autoriza con fines de lucro. \\[0.8em]
+
+\textbf{¿Qué debe contener el reglamento del cementerio privado?} &
+Según el art. 2105: descripción del inmueble; identificación de partes comunes y de las parcelas con dominio exclusivo; modo de pago del canon y gastos; normas de acceso y circulación; normas administrativas sobre inhumaciones, exhumaciones y cremaciones. Es obligatorio un registro de inhumados y de sepulturas. \\[0.8em]
+
+\textbf{¿Qué puede hacer el titular de la parcela?} &
+Realizar inhumaciones, exhumaciones, reducciones y traslados, y construir sepulcros conforme a las normas del cementerio y al poder de policía mortuoria, que está siempre en cabeza del Estado. \\[0.8em]
+
+\textbf{¿Cuál es la garantía más importante del cementerio privado como derecho real?} &
+La inembargabilidad e inejecutabilidad de las parcelas (art. 2110). Salvo por saldo del precio de compra, precio de construcción de sepulcros, expensas, tasas, impuestos y contribuciones, la parcela no puede ser embargada ni ejecutada. Esto protege el destino del bien, diferenciándolo del régimen de derechos personales. \\[0.8em]
+
+\textbf{¿Qué debe garantizar el administrador?} &
+Debe mantener la normativa reglamentaria en cuanto a servicios y garantizar el funcionamiento de las instalaciones y de los servicios comunes, para que quien adquirió pueda hacer uso de los servicios contratados. \\[0.8em]
+
+\textbf{¿Los cementerios privados generan relación de consumo?} &
+Sí. El art. 2111 establece que la relación entre el propietario, el administrador y los usuarios se considera relación de consumo y queda sujeta a las normas del derecho del consumidor. El art. 2112 agrega que al derecho de sepultura se le aplican las normas de los derechos reales, lo que genera el mismo interrogante que en el tiempo compartido. \\[0.8em]
+
+\textbf{¿Cuál es el denominador común de ambas figuras?} &
+Ambas son regulaciones novedosas del Código que dotan de seguridad jurídica, mediante la estructura de los derechos reales, a negocios que funcionaban como derechos personales. En ambos casos el Código usa la fórmula ``se le aplican las normas de los derechos reales'' sin resolver del todo si son verdaderos derechos reales. La doctrina y la jurisprudencia tienen un amplio campo de trabajo. \\
+
+\midrule
+\multicolumn{2}{p{0.93\textwidth}}{
+\textbf{Resumen:} Los cementerios privados (arts. 2103 a 2113 CCyC) surgen ante la saturación de los cementerios públicos y el Código los regula como derecho real. Se componen de partes comunes en indivisión forzosa y parcelas exclusivas, y se rigen por un reglamento de afectación y uso con contenido mínimo obligatorio y registro de inhumados y sepulturas. La inembargabilidad e inejecutabilidad de las parcelas, con excepciones, es su garantía principal. La relación con los usuarios es de consumo, y, al igual que en el tiempo compartido, subsiste el interrogante sobre si se trata de un derecho real o de un derecho al que solo se le aplican las normas de los derechos reales.
+} \\
+\end{longtable}
+
+\end{document}
