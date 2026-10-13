@@ -1,0 +1,861 @@
+%==========================================================
+% DOCUMENTCLASS
+%==========================================================
+\documentclass[12pt,oneside]{book}
+
+%==========================================================
+% METADATOS
+%==========================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{La Contestación de la Demanda}
+\newcommand{\subtitulo}{Excepciones, negativa de hechos, prueba y reconvención}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==========================================================
+% PAQUETES
+%==========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==========================================================
+% CONFIGURACIÓN
+%==========================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\captionsetup{font=small,labelfont=bf}
+
+% Encabezados y pies
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% Títulos de capítulo sobrios
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{10pt}%
+  {\parindent 0pt \raggedright \normalfont
+   \Large\bfseries\color{blue!50!black}\thechapter.\quad #1\par\nobreak
+   \vskip 6pt\hrule\vskip 18pt}}
+\makeatother
+
+%==========================================================
+% COMANDOS
+%==========================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%==========================================================
+% ENTORNOS / CAJAS
+%==========================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Cuadro Cornell (tabla real, columna izquierda estrecha, última fila de ancho completo)
+\newenvironment{cornell}{%
+  \begin{longtable}{>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.64\textwidth}}
+  \toprule
+  \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+  \midrule
+  \endhead
+}{%
+  \bottomrule
+  \end{longtable}
+}
+\newcommand{\cornellresumen}[1]{%
+  \midrule
+  \multicolumn{2}{p{\dimexpr0.90\textwidth+2\tabcolsep\relax}}{\textbf{Resumen:} #1} \\
+}
+
+%==========================================================
+% CONFIGURACIÓN FINAL
+%==========================================================
+\sloppy
+
+%==========================================================
+% DOCUMENT
+%==========================================================
+\begin{document}
+
+%----------------------------------------------------------
+% PORTADA
+%----------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.4cm}
+
+{\large \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia convierte cada concepto en una herramienta propia.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%----------------------------------------------------------
+% ÍNDICE
+%----------------------------------------------------------
+\tableofcontents
+\clearpage
+
+%==========================================================
+% CAPÍTULO 1
+%==========================================================
+\chapter[La demanda y la lógica de la defensa]{La demanda y la lógica de la defensa}
+
+\section{Presentación del tema}
+
+Este material se ubica en el momento en que el demandado recibe una demanda y debe decidir cómo responder. Para ordenar la respuesta se propone un mapa mental: primero se revisa si existen defectos de forma que permitan oponer excepciones previas; luego, sobre el fondo, se decide si se niegan los hechos o si se aceptan y se discute su consecuencia jurídica.
+
+A lo largo del desarrollo se tratan el objeto del escrito de contestación (contestar y ofrecer prueba), la obligación de desconocer los documentos y de negar los hechos de manera puntual, el manejo de las pruebas que coinciden con las del actor, la carga de la prueba y la carga dinámica, y los requisitos y la oportunidad de la reconvención. El cierre es una reflexión sobre cómo se aprende el oficio del proceso y por qué conviene estudiar demandas y contestaciones, y no solo sentencias.
+
+\subsection{Utilidad profesional}
+
+Recibir una demanda es el trabajo cotidiano del abogado litigante, y la contestación es el escrito donde se juega buena parte del caso: lo que no se niega se puede tener por reconocido, lo que no se ofrece en ese momento ya no se ofrece, y la reconvención que se olvida obliga a iniciar un juicio nuevo. Este tema aporta:
+
+\begin{enumerate}
+    \item un orden de trabajo para cualquier demanda: \textbf{forma $\rightarrow$ hechos $\rightarrow$ derecho $\rightarrow$ prueba};
+    \item la habilidad de decidir una estrategia, y no solo de redactar;
+    \item criterios prácticos que no están en los manuales, como citar bien a un testigo, cuándo ofrecer una prueba que ya ofreció la otra parte o dónde ubicar la reconvención dentro del escrito.
+\end{enumerate}
+
+\subsection{Utilidad más allá de los tribunales}
+
+Toda discusión seria (un desacuerdo laboral, un contrato, un reclamo de consumo, un conflicto familiar) tiene la misma estructura: alguien cuenta hechos, los apoya en pruebas y los encuadra en una regla; y quien responde puede discutir la forma, negar los hechos o aceptarlos y discutir sus consecuencias. Aprender a separar esas capas enseña a pensar con claridad, a responder punto por punto en lugar de en bloque («niego todo»), a distinguir lo que importa de lo que es ruido y a anticipar cómo reaccionará un tercero que debe decidir.
+
+\subsection{Cómo se relacionan los temas}
+
+\begin{example}{un reclamo de dinero entre amigos}
+Un amigo reclama una deuda de dinero que, según él, nunca fue devuelta. Ese reclamo es la \textbf{demanda}: cuenta unos hechos (se prestó tal suma en tal fecha), los apoya en pruebas (mensajes, un comprobante) y los encuadra en una regla (los préstamos se devuelven) [Capítulo 1].
+
+Antes de discutir si se debe o no, podría plantearse una cuestión previa: «esto no se arregla ante este árbitro», «ya lo discutimos ante otro», «vos no sos quien me prestó» [Capítulo 2: excepciones].
+
+Si se sigue adelante, o bien se niegan los hechos («nunca me prestaste nada») o bien se aceptan y se discute su consecuencia («me lo prestaste, pero fue un regalo») [Capítulo 3: defensa de fondo].
+
+Para eso se necesita un escrito ordenado, que reconozca o desconozca cada papel y niegue cada afirmación de manera concreta [Capítulo 4], sabiendo quién debe probar qué [Capítulo 5].
+
+Y si en realidad fue el amigo quien quedó debiendo por la misma operación, se lo plantea como contrarreclamo dentro de la misma discusión: es la \textbf{reconvención} [Capítulo 5]. Todo se aprende, por último, mirando cómo razonan las partes en la práctica [Capítulo 6].
+\end{example}
+
+\section{Qué es una demanda}
+
+Reducida al mínimo indispensable, la demanda es un \textbf{reclamo}. Ese reclamo es la pretensión: un pedido que se apoya en tres elementos.
+
+\begin{definition}{Pretensión (demanda)}
+Reclamo o pedido que se basa en tres pilares: (1) los \textbf{hechos}, como narración; (2) las \textbf{pruebas}; y (3) el \textbf{derecho}.
+\end{definition}
+
+Este esquema debe estar muy incorporado. Más adelante se analizan otras cuestiones (si las partes están legitimadas o no, qué se reclama, de qué manera), pero frente a una demanda la pregunta central es qué se le opone, si se fuera la otra parte.
+
+\section{Cómo se defiende el demandado}
+
+Frente a la demanda, la actitud del demandado no es simplemente negar, sino \textbf{defender}. Esa defensa se hace a través de la contestación de demanda. El código prevé defensas de \textbf{forma} y de \textbf{fondo}; las defensas de forma son las \textbf{excepciones}.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Defensas de forma (excepciones)} & \textbf{Defensas de fondo} \\
+\midrule
+\textbf{Qué discuten} & Una cuestión técnica: el proceso no está suficientemente acabado o correctamente planteado. & El centro del reclamo: los hechos o el derecho. \\
+\addlinespace
+\textbf{Qué se le dice al juez} & «Hasta que no se resuelva esta cuestión técnica, no podemos seguir adelante.» & «Los hechos no fueron esos» o «los hechos son esos, pero tienen otra consecuencia jurídica». \\
+\addlinespace
+\textbf{Si prosperan} & El planteo del actor puede quedar frustrado o trasladarse a otro lugar. & Se rechaza total o parcialmente la pretensión. \\
+\addlinespace
+\textbf{Regla práctica} & Se plantean primero, pero nunca se deja de defender el fondo. & Se defienden siempre, subsidiariamente si la excepción no prospera. \\
+\bottomrule
+\end{tabularx}
+\caption{Defensas de forma y defensas de fondo (sistematización de lo expuesto sobre los temas de este capítulo y de los dos siguientes).}
+\end{table}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\textbf{¿En qué tres pilares se apoya una pretensión?} &
+Los hechos (la narración), las pruebas y el derecho. La demanda es, en su mínima expresión, un reclamo que se sostiene en esos tres elementos. \\
+\addlinespace
+\textbf{¿Qué es lo primero que debe preguntarse el demandado frente a una demanda?} &
+Qué se le opone: es decir, cómo defenderse. Esa defensa se realiza a través de la contestación de demanda. \\
+\addlinespace
+\textbf{¿Qué defensas prevé el código para el demandado?} &
+Defensas de forma (las excepciones) y defensas de fondo. \\
+\addlinespace
+\textbf{¿En qué se diferencian las defensas de forma y las de fondo?} &
+Las de forma plantean una cuestión técnica (el proceso no está suficientemente acabado o correctamente planteado) y detienen el avance hasta que se resuelva. Las de fondo atacan el centro del reclamo: los hechos o el derecho. \\
+\addlinespace
+\textbf{¿Qué ordena el trabajo ante cualquier demanda?} &
+El orden forma $\rightarrow$ hechos $\rightarrow$ derecho $\rightarrow$ prueba. \\
+\cornellresumen{La demanda es un reclamo apoyado en hechos, pruebas y derecho. El demandado se defiende por la forma (excepciones) o por el fondo (hechos o derecho), siguiendo el orden forma, hechos, derecho y prueba.}
+\end{cornell}
+
+%==========================================================
+% CAPÍTULO 2
+%==========================================================
+\chapter[Defensas de forma: excepciones previas]{Defensas de forma: excepciones previas}
+
+\section{Las excepciones previas}
+
+\subsection{Qué significa interponer una excepción}
+
+\begin{definition}{Excepción previa}
+Planteo por el cual se le dice al juez que existe una cuestión técnica que por algún motivo no está del todo acabada o correctamente planteada, y que hasta que se resuelva no se puede seguir adelante.
+\end{definition}
+
+Al interponer una excepción no se afirma que el otro no tenga razón: se señala un defecto técnico del planteo.
+
+\subsection{Catálogo de excepciones mencionadas}
+
+Las cuestiones técnicas que pueden oponerse son las siguientes.
+
+\begin{itemize}
+    \item \textbf{Incompetencia}: el juez ante quien se demanda no es el competente.
+    \item \textbf{Litispendencia}: ya existe otro juicio igual por esta cuestión.
+    \item \textbf{Falta de legitimación}: la parte que reclama no está legitimada para hacerlo, o el demandado no es la persona a quien debe reclamarse.
+    \item \textbf{Falta de personería}: no se acreditó que se tiene poder suficiente.
+    \item \textbf{Arraigo}.
+    \item \textbf{Prescripción}: lo reclamado está prescripto.
+    \item \textbf{Defecto legal} en el planteo.
+    \item \textbf{Transacción}, como causal de extinción: existe una transacción previa.
+\end{itemize}
+
+\begin{note}
+\textbf{Referencia complementaria: excepciones previas (Código Procesal Civil y Comercial de la Nación, art.~347).}
+% TODO: contenido incompleto o ambiguo en las notas originales (texto abreviado; cotejar con el Código vigente)
+Artículo 347. --- «Sólo se admitirán como previas las siguientes excepciones: 1) Incompetencia. 2) Falta de personería en el demandante, en el demandado o en sus representantes, por carecer de capacidad civil para estar en juicio o de representación suficiente. 3) Falta de legitimación para obrar en el actor o en el demandado, cuando fuere manifiesta, [\ldots] 4) Litispendencia. 5) Defecto legal en el modo de proponer la demanda. 6) Cosa juzgada. 7) Transacción, conciliación y desistimiento del derecho. 8) Prescripción. 9) Arraigo [\ldots]».
+
+Según se aclara en las notas, el docente enumeró estas defensas sin citar el artículo; el texto se transcribe de forma abreviada y debe cotejarse con la edición vigente del Código.
+\end{note}
+
+\subsection{La primera idea para enfrentar una demanda}
+
+Frente a una demanda, lo primero que corresponde verificar es si existe algún defecto de forma que permita defenderse con una excepción. Si el actor no supera la excepción, la cuestión puede quedar allí y, de alguna manera, se gana. Si prospera, por ejemplo, la excepción de incompetencia y el actor debe litigar en otra jurisdicción, esto puede ser una complicación muy grande para él.
+
+\section{Caso: incompetencia territorial}
+
+\begin{example}{los trabajadores del buque y la empresa de Tierra del Fuego}
+En juicios actualmente en trámite contra una empresa en Tierra del Fuego, los actores trabajaban en un barco. Casi todos son correntinos y viajan a hacer la temporada de pesca. Hubo un conflicto y demandaron todos en Capital Federal.
+
+Para demandar en Capital Federal en un juicio laboral, el actor debe acreditar alguna de tres cuestiones, que le otorgan la competencia en esa sede: que trabajó allí, que el contrato se firmó allí o que el domicilio del empleador está allí.
+
+Los actores alegan que la empresa tiene sede en Capital Federal. La demandada acreditó que está inscripta desde hace muchos años en la IGJ de Tierra del Fuego, y no se acredita que se hubiese celebrado o cumplido el contrato en Capital Federal ni que la empresa esté allí. Son muchos los juicios y ya varios tuvieron sentencia: se decreta la \textbf{incompetencia por razón territorial}.
+
+Además, se plantea una segunda incompetencia: el barco ya había salido del puerto, y se sostiene que, una vez que sale del puerto, aunque sea por un instante, corresponde la justicia federal. Los fiscales en sus dictámenes y los jueces en sus resoluciones concluyen que hay incompetencia. Esto es un problema para las personas demandantes y para sus abogados, que ahora deben contactar abogados de la otra jurisdicción.
+\end{example}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Criterio de competencia laboral} & \textbf{Pregunta que debe responder el actor} \\
+\midrule
+\textbf{1. Lugar de trabajo} & ¿Se trabajó en Ciudad Autónoma de Buenos Aires? \\
+\textbf{2. Lugar de celebración del contrato} & ¿El contrato fue firmado en CABA? \\
+\textbf{3. Domicilio del empleador} & ¿El empleador tiene domicilio en CABA? \\
+\bottomrule
+\end{tabularx}
+\caption{Criterios de competencia laboral enunciados en el caso.}
+\end{table}
+
+\section{Por qué excepcionar}
+
+Plantear excepciones previas no sirve solo para ganar tiempo. Permite además una \textbf{organización} de la estrategia: en el caso anterior, a la empresa le conviene litigar en Tierra del Fuego, y si prospera la excepción, esa serie de juicios se traslada allí.
+% TODO: contenido incompleto o ambiguo en las notas originales (el comentario sobre la conveniencia para el propio estudio del docente aparece trunco en el audio)
+
+\begin{important}
+Las excepciones previas no sirven solo para «ganar tiempo»: permiten ordenar la estrategia y, en ciertos casos, trasladar a otra jurisdicción una serie de juicios. Aun así, quien plantea una excepción no debe dejar de defender el fondo, porque si la excepción no prospera tendrá necesariamente que hacerlo.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\textbf{¿Qué se le dice al juez al oponer una excepción?} &
+Que hay una cuestión técnica no acabada o mal planteada y que, hasta que se resuelva, no se puede seguir adelante. No se discute todavía quién tiene razón. \\
+\addlinespace
+\textbf{¿Qué excepciones se mencionaron?} &
+Incompetencia, litispendencia, falta de legitimación, falta de personería, arraigo, prescripción, defecto legal y transacción. \\
+\addlinespace
+\textbf{¿Qué debe verificarse primero frente a una demanda?} &
+Si hay algún defecto de forma que permita defenderse con una excepción; si el actor no la supera, la cuestión puede quedar allí, y si debe litigar en otra jurisdicción puede ser una complicación muy grande para él. \\
+\addlinespace
+\textbf{¿Cuándo puede el actor demandar en CABA en un juicio laboral?} &
+Si trabajó en CABA, si el contrato se firmó allí o si el domicilio del empleador está allí. En el caso del buque no se acreditó ninguno y se decretó la incompetencia territorial. \\
+\addlinespace
+\textbf{¿Excepcionar solo sirve para ganar tiempo?} &
+No. Permite organizar la estrategia y, en ciertos casos, trasladar una serie de juicios a otra jurisdicción. \\
+\addlinespace
+\textbf{¿Se puede abandonar el fondo si se opone una excepción?} &
+No: si la excepción no prospera, necesariamente habrá que defender el fondo. \\
+\cornellresumen{Las excepciones previas plantean una cuestión técnica que detiene el avance del proceso y no discuten quién tiene razón. Se verifican primero, pueden ordenar la estrategia y trasladar juicios (como en el caso de la incompetencia territorial), pero nunca eximen de defender el fondo.}
+\end{cornell}
+
+%==========================================================
+% CAPÍTULO 3
+%==========================================================
+\chapter[Defensas de fondo y manejo de la prueba]{Defensas de fondo y manejo de la prueba}
+
+\section{Defensa de fondo: hechos o derecho}
+
+Al defenderse sobre el fondo, la cuestión más trascendente del reclamo, el demandado enfrenta dos situaciones:
+
+\begin{enumerate}
+    \item \textbf{Negar los hechos}: sostener que los hechos que narró el actor no fueron esos, sino otros, y que por lo tanto tienen otra consecuencia.
+    \item \textbf{Aceptar los hechos} y defenderse a través del derecho: reconocer que pasó lo que dice el actor, pero diferir en qué norma se aplica a esos hechos. Se está de acuerdo con que esos son los hechos, pero se sostiene que a ellos se les asigna una consecuencia jurídica distinta.
+\end{enumerate}
+
+\begin{important}
+\textbf{La gran estructura para contestar una demanda.} Primero se despeja si hay alguna cuestión que tenga que ver con las excepciones, y se la plantea. Siempre que se plantee una excepción, no se debe dejar de lado el fondo: si la excepción no funciona, necesariamente habrá que defenderlo. Cuando se defiende el fondo, primero se miran los hechos: si los hechos son ciertos o no. Si no lo son, lo que se discute es el hecho. Si lo son, se discute su consecuencia jurídica.
+\end{important}
+
+\section{Pruebas comunes a ambas partes}
+
+Con cierta frecuencia las partes presentan las mismas pruebas o algunas iguales; por ejemplo, de cinco testigos, dos o tres son comunes.
+
+\begin{example}{testigos ofrecidos también por el actor}
+Para defenderse, el demandado debe llamar a cinco testigos. Al leer la demanda advierte que el actor, al ofrecer su prueba, ofreció a tres de ellos (Julián, Oscar y Pedro), que también le son útiles al demandado. La pregunta es qué debe hacer.
+\end{example}
+
+La respuesta es \textbf{ofrecerlos igual}. Por un lado, aunque sean los mismos testigos, las preguntas serán distintas según los hechos que cada parte quiera probar: pueden ser las mismas personas, pero según cómo se pregunte y qué opinen, serán favorables a una o a otra parte.
+
+Por otro lado, \textbf{las pruebas son de la causa}: no importa si las presentó una parte o la otra una vez que están incorporadas. Si la prueba la presentó una parte pero se la apropia la otra, no hay nada que hacer. Pero además, el actor puede después desistir de un testigo que ya no le convenga, y si el demandado no lo había ofrecido, se queda sin él.
+
+Esto vale para una pericia o para cualquier otra prueba: aunque sea la misma que se hubiera presentado, debe presentarse también. Si el otro desiste, se puede desistir de esas personas también, pero si no se la ofreció, el otro tiene en su poder algo que se abandonó o que, por negligencia, no se tiene.
+
+\begin{important}
+\textbf{La prueba es de la causa, no de quien la ofrece.} Aun cuando la otra parte haya ofrecido la prueba, eso no significa que después no tenga la facultad de desistir. Por eso, si algo importa o interesa, debe ofrecerse igual: no es superabundante, ya que cada parte manejará la prueba como propia.
+\end{important}
+
+\section{La carga de presentar al testigo}
+
+Respecto de los testigos, hay una carga que debe cumplirse sí o sí: \textbf{notificarlos}. Si no se envía la cédula al testigo (algo que sucede con frecuencia, por ejemplo por conocerlo) y el día de la audiencia este avisa que no puede presentarse, la parte se queda sin ese testigo, y con las preguntas preparadas sin poder usarlas. Si, en cambio, el testigo es conocido y se le avisa del día en que debe presentarse y concurre, no hay problema aunque no esté la cédula.
+
+Otra alternativa, a veces más violenta pero válida, es hacerle firmar al testigo una constancia en la que deja asentado que tomó conocimiento de que determinado día y hora fue citado como testigo en tal causa, en tal juzgado, sito en tal lugar. Se presenta esa constancia al juzgado y no se envía la cédula, porque el testigo ya está notificado. Con todo, \textbf{lo más seguro es la cédula real}.
+
+\begin{important}
+Notificar al testigo es una carga que recae sobre quien lo ofrece. Un testigo que no comparece por falta de notificación hace perder la prueba. Alternativa válida: hacer firmar al testigo una constancia con fecha, hora, causa y juzgado de la citación; lo más seguro sigue siendo la cédula.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\textbf{¿Cómo puede defenderse el demandado sobre el fondo?} &
+Negando los hechos (sosteniendo que fueron otros y que tienen otra consecuencia) o aceptándolos y discutiendo su consecuencia jurídica, es decir, la norma aplicable a esos mismos hechos. \\
+\addlinespace
+\textbf{¿Cómo se estructura la contestación de una demanda?} &
+Primero se despejan y plantean las excepciones (sin dejar de lado el fondo). Luego, sobre el fondo, se miran los hechos: si no son ciertos, se discute el hecho; si lo son, se discute su consecuencia jurídica. \\
+\addlinespace
+\textbf{¿Qué hacer si el actor ofreció los mismos testigos (o pruebas) que el demandado?} &
+Ofrecerlos igual: las preguntas serán distintas según lo que cada parte quiera probar, la prueba es de la causa y el actor puede desistir, dejando al descubierto a quien no la ofreció. \\
+\addlinespace
+\textbf{¿De quién es la prueba?} &
+De la causa, no de quien la ofrece. Aun así, la otra parte conserva la facultad de desistir de la que ofreció. \\
+\addlinespace
+\textbf{¿Qué carga existe respecto de los testigos?} &
+Notificarlos. Se puede hacer con cédula (lo más seguro) o, como alternativa válida, con una constancia firmada por el testigo con fecha, hora, causa y juzgado. Un testigo que no comparece por falta de notificación hace perder la prueba. \\
+\cornellresumen{Sobre el fondo se discuten los hechos o su consecuencia jurídica. En materia de prueba, la prueba es de la causa, por lo que conviene ofrecer incluso la que el actor ya ofreció, y es indispensable asegurar la comparecencia de los testigos notificándolos.}
+\end{cornell}
+
+%==========================================================
+% CAPÍTULO 4
+%==========================================================
+\chapter[El escrito de contestación de demanda]{El escrito de contestación de demanda}
+
+\section{Objeto de la contestación}
+
+El objeto del escrito es \textbf{contestar la demanda y ofrecer prueba}. Es el momento de ofrecer prueba: \textbf{ahora o nunca}.
+
+El paso siguiente son las negativas. Lo que, si no se niega, queda como aceptado, son los \textbf{hechos}.
+
+\section{Desconocer los documentos}
+
+Respecto de la prueba que presentó la otra parte, lo único que puede y debe hacerse en ese momento es desconocer lo \textbf{documental}. El resto (una pericia, un testigo, un oficio) no puede negarse ni desconocerse.
+
+\begin{important}
+Primera cuestión fundamental: desconocer los documentos que la otra parte presentó como prueba. El documento no desconocido se considera reconocido (queda consentido). Después viene la negativa de los hechos.
+\end{important}
+
+\begin{note}
+\textbf{Referencia complementaria: reconocimiento o negativa (CPCCN, art.~356, inc.~1).}
+% TODO: contenido incompleto o ambiguo en las notas originales (texto abreviado; cotejar con el Código vigente)
+Artículo 356. --- «En la contestación opondrá el demandado todas las excepciones o defensas [de fondo] que tuviere [\ldots] y deberá: 1) Reconocer o negar categóricamente cada uno de los hechos expuestos en la demanda, la autenticidad de los documentos acompañados que se le atribuyan y la recepción de las cartas y telegramas a él dirigidos, cuya copia se acompañe. Su silencio, sus respuestas evasivas o la negativa meramente general podrán estimarse como reconocimiento de la verdad de los hechos pertinentes y lícitos a que se refieran. En cuanto a los documentos, se los tendrá por reconocidos o recibidos, según el caso [\ldots]».
+
+Según se aclara en las notas, el docente se refirió a este contenido diciendo que «el código lo dice», sin citar el número; el texto debe cotejarse con la edición vigente del Código.
+\end{note}
+
+\section{La negativa de los hechos}
+
+No conviene negar lo que no tiene sentido negar: hay quienes niegan hasta detalles irrelevantes (por ejemplo, el nombre del actor), y con ello no se gana nada.
+
+Cuando no hay discusión respecto de los hechos, se puede declarar directamente que no son controvertidos porque se concuerda con ellos, y plantear que la situación es una cuestión de derecho en la que se aplica otra norma. Esto procede siempre que no exista controversia sobre los hechos.
+
+\subsection{Cómo se niega}
+
+La negativa se hace \textbf{por cada hecho}, de manera pormenorizada. Por ejemplo: se niega que en fecha determinada sucedió tal cosa; se niega que el actor haya sufrido un accidente; que ese accidente se haya producido en tal lugar; que, como consecuencia del accidente, haya tenido secuelas psicológicas; que haya tenido un golpe que le haya producido una herida cortante; que haya sido pasajero del barco. Cada negativa debe ser \textbf{puntual, clara y precisa}: no se niega en general, ni puede contener más de una negación por negativa.
+
+Si hay una liquidación, se niega cada una de las partidas que la componen.
+
+Decir «desconozco» en lugar de «niego» es absolutamente igual, aunque normalmente se utiliza «niego».
+
+\begin{important}
+La negativa debe ser pormenorizada y por cada hecho; puntual, clara y precisa; con una sola negación por negativa. La negativa general («niego todo aquello que no haya sido expresamente reconocido») no tiene ninguna consecuencia, porque el código lo dice así; puede incluirse, pero no sirve. Al negar puntualmente, cada hecho negado se vincula luego con los hechos controvertidos que se discutirán en la audiencia.
+\end{important}
+
+\subsection{Estructura del escrito de contestación}
+
+Una vez realizada la negativa, sigue la exposición de la realidad de los hechos, que constituye la estrategia y argumentación de la defensa de fondo. El escrito es, en buena medida, un \textbf{espejo de la demanda}: después de la negativa de los hechos va el ofrecimiento de prueba. Con la realidad de los hechos, la negativa y la prueba ofrecida se despliega la argumentación sobre lo ocurrido, para convencer del rechazo de la pretensión.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{0.10\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Orden} & \textbf{Contenido del escrito de contestación} \\
+\midrule
+1 & Excepciones previas (si corresponden) \\
+2 & Objeto: contestar la demanda y ofrecer prueba \\
+3 & Desconocimiento de los documentos presentados por el actor \\
+4 & Negativa puntual de cada hecho (y de cada rubro de la liquidación, si la hay) \\
+5 & Relato de la realidad de los hechos: estrategia y argumentación de la defensa de fondo \\
+6 & Ofrecimiento de prueba \\
+7 & Reconvención, al final y por separado (si corresponde) \\
+\bottomrule
+\end{tabularx}
+\caption{Orden del escrito de contestación («es un espejo de la demanda»).}
+\end{table}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\textbf{¿Cuál es el objeto de la contestación?} &
+Contestar la demanda y ofrecer prueba. Es el momento de ofrecer prueba: «ahora o nunca». \\
+\addlinespace
+\textbf{¿Qué se desconoce y qué se niega?} &
+Se desconocen los documentos que presentó el actor; el documento no desconocido se tiene por reconocido. Se niegan los hechos. Una pericia, un testigo o un oficio no se niegan ni se desconocen. \\
+\addlinespace
+\textbf{¿Qué pasa con lo que no se niega?} &
+Los hechos no negados quedan como aceptados, y los documentos no desconocidos, como reconocidos. \\
+\addlinespace
+\textbf{¿Cómo debe ser la negativa de los hechos?} &
+Puntual, clara, precisa y pormenorizada, por cada hecho, con una sola negación por negativa. \\
+\addlinespace
+\textbf{¿Por qué no sirve la negativa general?} &
+Porque el código establece que las negativas generales no tienen ninguna consecuencia. \\
+\addlinespace
+\textbf{¿Es lo mismo «niego» que «desconozco»?} &
+Sí: es absolutamente igual, aunque normalmente se usa «niego». \\
+\addlinespace
+\textbf{¿Qué ocurre si no hay discusión sobre los hechos?} &
+Se puede declarar que los hechos no son controvertidos y sostener que lo que corresponde aplicar es otra norma, siempre que no haya controversia sobre ellos. \\
+\addlinespace
+\textbf{¿Cuál es el orden del escrito?} &
+Excepciones previas, objeto, desconocimiento de documentos, negativa puntual de los hechos, relato de la realidad de los hechos, ofrecimiento de prueba y, si corresponde, reconvención al final y por separado. \\
+\cornellresumen{La contestación se presenta «ahora o nunca»: contesta la demanda y ofrece prueba. Debe desconocer los documentos del actor y negar los hechos de manera puntual, pormenorizada y categórica, porque lo no negado queda reconocido y la negativa general carece de efectos; luego se expone la realidad de los hechos y se ofrece la prueba.}
+\end{cornell}
+
+%==========================================================
+% CAPÍTULO 5
+%==========================================================
+\chapter[Carga de la prueba y reconvención]{Carga de la prueba y reconvención}
+
+\section{Carga de la prueba y carga dinámica}
+
+\begin{definition}{Derecho dispositivo}
+Se dice que el proceso civil es derecho dispositivo cuando las partes disponen y son ellas quienes proponen las actuaciones.
+\end{definition}
+
+Aunque el proceso sigue siendo dispositivo, en materia de prueba originariamente (cuando se creó el código y durante mucho tiempo) el actor era el encargado de probar; esto ya no se interpreta de manera tan literal. Hoy \textbf{ambas partes} tienen a su cargo probar lo que cada una alega. Es cierto que el actor tiene una carga mayor que, en principio, el demandado, pero conviene relativizar esa carga.
+
+\begin{definition}{Carga dinámica de la prueba}
+El juez puede invertir la carga de la prueba cuando la otra parte está en mejor posición de probar.
+\end{definition}
+
+Aunque la decisión corresponde al juez, la parte debe insistir y aclarar: cuando se considere que el otro está en mejor posición de probar una determinada situación, debe explicarlo y pedir directamente la aplicación de la carga dinámica, exponiendo por qué la otra parte está en mejor situación.
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente dijo no recordar el artículo aplicable; además hay un fragmento inconexo sobre «103 juzgados» y sobre contestar y reconvenir subsidiariamente, que no se incorpora)
+
+\begin{note}
+\textbf{Referencia complementaria: carga de la prueba (CPCCN, art.~377).}
+% TODO: contenido incompleto o ambiguo en las notas originales (cotejar con el Código vigente)
+Artículo 377. --- «Incumbirá la carga de la prueba a la parte que afirme la existencia de un hecho controvertido o de una norma jurídica que no sea de derecho nacional. Cada una de las partes deberá probar el presupuesto de hecho de la norma o normas que invocare como fundamento de su pretensión, defensa o excepción. [\ldots]»
+
+Según se aclara en las notas, el docente dijo no acordarse del número de artículo; el texto debe cotejarse con la edición vigente del Código.
+\end{note}
+
+\begin{example}{responsabilidad médica y carga dinámica de la prueba}
+Una paciente es operada en una clínica de gran tamaño en una intervención que debería ser relativamente sencilla. Al recibir la anestesia presenta un cuadro de presión; se le suministra otra medicación para que baje y queda en un estado casi de coma. Hace tres años de eso, recién está empezando a salir y no se sabe qué secuelas quedarán.
+
+La pregunta es quién está en mejores condiciones de mostrar lo ocurrido. La clínica deberá demostrar que, siendo que la medicina no es una ciencia exacta, llevó a cabo todo con los protocolos necesarios, que se tomaron las previsiones, los análisis previos y el prequirúrgico que correspondía a una persona de esas características, y que, sin embargo, ocurrió algo inesperado. Para el actor, la situación resulta mucho más difícil. Por eso debe invocar, explicar y requerir que la otra parte demuestre lo contrario, porque está en mejores condiciones.
+\end{example}
+
+\section{Requisitos de la reconvención}
+
+\begin{definition}{Reconvención}
+Contrademanda del demandado, que se plantea por los mismos hechos y con la misma persona, y que debe tener relación con la pretensión de la demanda. Con ella el demandado se convierte en una suerte de actor.
+\end{definition}
+
+Para que la reconvención sea viable desde el punto de vista procesal deben darse \textbf{tres elementos}:
+
+\begin{enumerate}
+    \item las \textbf{mismas partes} (sujetos);
+    \item los \textbf{mismos hechos} (identidad de los hechos);
+    \item la \textbf{misma relación jurídica}.
+\end{enumerate}
+
+\begin{example}{el usufructo vitalicio de la pareja}
+Una pareja que convivió muchos años, sin estar casada (unión convivencial), compró varias propiedades. Una de ellas la compra el señor y le constituye un usufructo vitalicio a la señora. La señora reclama que ese usufructo es un acto simulado: no tiene sentido después de haber comprado tantas propiedades juntos; ella no podía en ese momento acreditar sus ingresos y él sí, de modo que el usufructo se constituyó para resguardarla. Pide entonces que se declare que el usufructo nunca reflejó una realidad.
+
+El señor responde que no es así: la propiedad es suya, la compró él. Y reconviene, porque sostiene que pasaron diez años y ella nunca ejerció el usufructo (que se ejerce habitando el lugar, con posesión o percibiendo los frutos), ni lo ejerce.
+
+La cuestión es si se cumplen los requisitos de la reconvención. Los sujetos son los mismos; los hechos son los mismos (identidad de hechos); y se discute la misma relación jurídica: si existe o no el usufructo, que cada parte interpreta de un modo distinto. No se discute otra cosa (por ejemplo, que se deba algo no pagado). Después deberán probarse muchas cosas respecto de los hechos, pero estos elementos permiten reconvenir.
+\end{example}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.21\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Elemento} & \textbf{Pregunta de control} & \textbf{En el caso del usufructo} \\
+\midrule
+\textbf{1. Mismas partes} & ¿Reclaman y reconvienen las mismas personas? & Sí: la señora y el señor. \\
+\addlinespace
+\textbf{2. Mismos hechos} & ¿Hay identidad de los hechos? & Sí: la compra del inmueble y el usufructo. \\
+\addlinespace
+\textbf{3. Misma relación jurídica} & ¿Se discute la misma relación? & Sí: si existe o no el usufructo; ella lo considera simulado, él lo considera no ejercido. \\
+\bottomrule
+\end{tabularx}
+\caption{Requisitos de la reconvención aplicados al ejemplo del usufructo.}
+\end{table}
+
+\begin{note}
+\textbf{Referencia complementaria: reconvención (CPCCN, art.~357).}
+% TODO: contenido incompleto o ambiguo en las notas originales (texto abreviado; cotejar con el Código vigente)
+Artículo 357. --- «Reconvención. Si el demandado reconviniere, deberá hacerlo en el escrito de contestación [\ldots]. La reconvención [será admisible] si las pretensiones deducidas derivaren de la misma relación jurídica o fueren conexas por el objeto o por el título [\ldots]».
+
+Según se aclara en las notas, el docente no citó el artículo; el texto se transcribe de forma abreviada y debe cotejarse con la edición vigente del Código.
+\end{note}
+
+\section{Cómo y cuándo reconvenir}
+
+La reconvención debe hacerse \textbf{en la contestación de demanda}. Si se olvida, habrá que iniciar un juicio nuevo (que irá al mismo juzgado, pero será otro juicio): no se podrá reconvenir.
+
+Hay dos posibilidades de ubicarla. Puede hacerse en el mismo momento en que se contesta, lo cual no se sugiere. Lo recomendable es contestar la demanda y, terminada la contestación, plantear la reconvención: es el mismo documento, pero al final, lo que resulta más claro. Cuando la reconvención se hizo en el medio, en un caso se dio traslado de la contestación pero nunca de la reconvención, y después hubo que resolver el problema, porque no queda claro a veces cuando se hace en el medio.
+
+Al plantearla, hay que acreditar primero los tres supuestos (con claridad sobre por qué se dan) y después lo que se quiere reconvenir.
+
+Debe ofrecerse prueba para ambas cosas: la de la contestación y la de la reconvención. A veces puede ser la misma; no importa, se la menciona dos veces, porque es muy fácil confundirse cuando se habla de las mismas situaciones y, en definitiva, por un lado se defiende y por otro se «recontraataca», convirtiéndose en una suerte de actor, con lo que hay dos objetos.
+
+Respecto del objeto del escrito, puede decirse: «vengo a contestar demanda y a ofrecer prueba y a plantear una reconvención». Se hace toda la contestación hasta el final; luego se dice «ahora planteo la reconvención», se exponen los hechos de la reconvención y se presenta su prueba, y al final se pide que se tenga por contestada la demanda, por ofrecida la prueba, por movida la reconvención y por ofrecida su prueba. Así se hace primero toda la defensa y luego todo el reclamo.
+
+\textbf{No es posible} contestar la demanda y reconvenir en otro momento, porque el plazo para contestar la demanda es de \textbf{15 días}, y se contesta y se reconviene en el mismo plazo. De la reconvención se corre traslado al otro, para que pueda defenderse como si fuera una contestación de demanda (respecto de los documentos, pruebas, etcétera). Recién entonces queda trabada la litis y es posible seguir con el proceso.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+ & \textbf{Contestación de demanda} & \textbf{Reconvención} \\
+\midrule
+\textbf{Posición de la parte} & Defensa. & Contraataque: el demandado se convierte en una suerte de actor. \\
+\addlinespace
+\textbf{Dónde se plantea} & Primera parte del escrito. & Al final del mismo escrito, de manera separada y clara. \\
+\addlinespace
+\textbf{Plazo} & 15 días. & El mismo plazo: debe hacerse en la contestación; si se olvida, hay que iniciar un juicio nuevo. \\
+\addlinespace
+\textbf{Prueba} & Se ofrece su prueba. & Se ofrece su propia prueba (aunque coincida, se la menciona dos veces). \\
+\addlinespace
+\textbf{Pedido final} & Que se tenga por contestada la demanda y ofrecida la prueba. & Que se tenga por movida la reconvención y ofrecida su prueba. \\
+\addlinespace
+\textbf{Qué sigue} & --- & Traslado al actor, que la contesta; recién entonces queda trabada la litis. \\
+\bottomrule
+\end{tabularx}
+\caption{Contestación de demanda y reconvención.}
+\end{table}
+
+\begin{important}
+\textbf{Resumen práctico de la reconvención.} Tres requisitos (mismas partes, mismos hechos, misma relación jurídica). Se plantea únicamente en la contestación de demanda. Conviene ubicarla al final del escrito, con sus propios hechos y su propia prueba, y pedir expresamente que se tenga por movida. Se da traslado al actor y, con su contestación, queda trabada la litis.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\textbf{¿Qué es el derecho dispositivo?} &
+Aquel en el que las partes disponen y son quienes proponen las actuaciones. \\
+\addlinespace
+\textbf{¿Quién debe probar?} &
+Ambas partes deben probar lo que alegan. Originariamente el actor era el encargado de probar, pero ya no se interpreta de manera tan literal; el actor tiene una carga mayor que el demandado, pero esa carga debe relativizarse. \\
+\addlinespace
+\textbf{¿Qué es la carga dinámica de la prueba y cómo se invoca?} &
+Es la facultad del juez de invertir la carga cuando la otra parte está en mejor posición de probar. Conviene invocarla, explicar por qué la otra parte está en mejor situación y pedir su aplicación, por ejemplo en casos de responsabilidad médica. \\
+\addlinespace
+\textbf{¿Qué es reconvenir y cuándo es viable?} &
+Es contrademanda. Es viable cuando se dan tres elementos: mismas partes, mismos hechos y misma relación jurídica (como en el ejemplo del usufructo vitalicio entre convivientes). \\
+\addlinespace
+\textbf{¿Cuándo debe reconvenirse?} &
+Solo en la contestación de demanda y dentro del plazo de 15 días. Si se omite, hay que iniciar otro juicio. \\
+\addlinespace
+\textbf{¿Cómo conviene plantear la reconvención?} &
+Al final del escrito, de manera separada y clara, acreditando primero los tres supuestos, con sus hechos y su prueba propios (aunque coincida con la de la contestación, se menciona dos veces), y pidiendo que se tenga por movida y ofrecida su prueba. \\
+\addlinespace
+\textbf{¿Qué ocurre después de la reconvención?} &
+Se da traslado al actor para que la conteste como una contestación de demanda; recién entonces queda trabada la litis. \\
+\cornellresumen{Ambas partes deben probar lo que alegan, y puede invocarse la carga dinámica cuando la otra parte esté en mejor posición de probar. La reconvención exige mismas partes, mismos hechos y misma relación jurídica; solo procede en la contestación, preferentemente al final del escrito y con prueba propia, y si se omite hay que iniciar otro juicio.}
+\end{cornell}
+
+%==========================================================
+% CAPÍTULO 6
+%==========================================================
+\chapter[Cierre: el oficio del proceso]{Cierre: el oficio del proceso}
+
+\section{Enseñar y aprender el proceso}
+
+En educación se distinguen dos grandes categorías: el \textbf{conductismo}, según el cual se lleva al estudiante «de la mano», y el \textbf{constructivismo}, que en lo ideal consiste en dar herramientas para que el estudiante construya el conocimiento. Sin embargo, el traspaso de conocimientos en la música, en el derecho o en la medicina tiene que ver con la \textbf{transmisión y la experiencia}: se aprende mirando, escuchando e imitando a alguien. De otro modo, el conocimiento sería una cuestión meramente teórica. Esto no menosprecia lo teórico, pero el proceso es un \textbf{oficio} y, como todo oficio, tiene que ver con las manos, aunque sea un oficio intelectual. Por eso sirven las experiencias propias: hablar solo de lo que dijeron otros autores (por ejemplo, Quintiliano) no deja de ser una cadena de transmisión.
+
+\subsection{El proceso como oficio técnico}
+
+\begin{important}
+Para el docente, el gran tecnicismo de los abogados tiene que ver con manejar un proceso. El derecho de fondo no se menosprecia, pero tiene que ver con otra parte, no con la manipulación de ese derecho.
+\end{important}
+
+Un piloto sabe mucho más de derecho aeronáutico que los abogados, porque es lo que hace todos los días; lo que no sabe es, cuando hay un problema, cómo llevarlo adelante. Ese es el trabajo técnico del abogado: escuchar a una persona que tuvo o tiene un conflicto y ver cómo llevarlo al tribunal.
+
+Esta función es absolutamente intelectual, porque consiste en crear o armar una estructura intelectual de cómo llevar adelante una estrategia y cómo llevar la convicción sobre esa estrategia al tercero que va a resolver. Tiene muchos elementos teóricos, pero construidos a través del proceso, que son las reglas con las cuales se puede operar.
+
+\begin{example}{el cuaderno que se llevan delante de todos}
+Puede saberse que alguien se lleva abiertamente el cuaderno de otra persona. Pero hay que encontrar el mecanismo para eso: formarlo, plantearlo, llevarlo y convencer al juez de que debe resolver en consecuencia. Si no, no sirve.
+\end{example}
+
+\section{Estudiar demandas y contestaciones}
+
+Existe una tendencia a hablar de lo que dice el Poder Judicial, con nombre y apellido de quienes resuelven; sin embargo, a un fallo se llega exclusivamente porque hubo quienes litigaron, y los jueces solos no podrían llegar. Por eso conviene estudiar demandas y contestaciones: muchas veces allí está el razonamiento. En el fallo se ve un análisis de lo que los jueces dicen que se dijo; pero hay que ver qué se dijo, qué se probó, qué se presentó y qué pensó quien armó el litigio.
+
+\begin{important}
+Un fallo muestra lo que dicen los jueces, pero no cómo se llegó a él. Conviene estudiar las demandas y las contestaciones: allí está el razonamiento de cada parte, qué se dijo, qué se probó y qué se presentó.
+\end{important}
+
+\begin{example}{un litigio en preparación: la inconstitucionalidad de la ley de emergencia pesquera}
+El docente indica que está preparando un planteo de inconstitucionalidad de la ley de emergencia pesquera. Esa ley rige desde hace más de treinta años y hay aproximadamente seiscientas empresas pesqueras en el país que no pueden hacer muchas cosas, pero hasta ahora ninguna planteó esto. Si prospera, se cae la ley de pesca y todo se redefine; pero si sale, el fallo no mostrará a quien litigó, de ahí la importancia de ver los escritos.
+
+Referencia de la causa indicada: «Pro Sur contra Estado Nacional», expediente 50047/25.
+% TODO: contenido incompleto o ambiguo en las notas originales (la numeración del expediente no resulta del todo clara en el audio)
+\end{example}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\textbf{¿Cómo se aprende el proceso?} &
+Es un oficio técnico: se aprende por transmisión y experiencia, mirando, escuchando e imitando y haciendo, aunque sea un oficio intelectual. \\
+\addlinespace
+\textbf{¿Qué distingue el conductismo del constructivismo?} &
+En el conductismo se lleva al estudiante de la mano; en el constructivismo, idealmente, se le dan herramientas para que construya el conocimiento. \\
+\addlinespace
+\textbf{¿En qué consiste el gran tecnicismo del abogado?} &
+En manejar un proceso: escuchar a quien tiene un conflicto y ver cómo llevarlo al tribunal, armando una estrategia y logrando convicción en el tercero que va a resolver. \\
+\addlinespace
+\textbf{¿Por qué conviene estudiar demandas y contestaciones y no solo fallos?} &
+Porque allí está el razonamiento de cada parte: qué se dijo, qué se probó y qué se presentó. Un fallo muestra lo que dicen los jueces, no cómo se llegó a él. \\
+\cornellresumen{El proceso es un oficio técnico e intelectual que se aprende por transmisión y experiencia. Conviene estudiar el razonamiento de las partes en demandas y contestaciones, y no solo las sentencias.}
+\end{cornell}
+
+\section{Síntesis final}
+
+Ante una demanda, el demandado trabaja en capas. Primero revisa si existe un defecto de forma que permita oponer una excepción previa (incompetencia, litispendencia, falta de legitimación o de personería, arraigo, prescripción, defecto legal, transacción), recordando que la excepción solo plantea una cuestión técnica y que, si no prospera, el fondo deberá defenderse igual. Luego, en la contestación, cuyo objeto es contestar y ofrecer prueba «ahora o nunca», desconoce los documentos del actor, porque el documento no desconocido se tiene por reconocido, y niega los hechos de manera puntual, pormenorizada y categórica, ya que la negativa general carece de efectos. A continuación expone la realidad de los hechos, que es su estrategia y argumentación: o bien discute los hechos, o bien los acepta y discute su consecuencia jurídica.
+
+En materia de prueba, recuerda que esta pertenece a la causa y no a quien la ofrece, por lo que conviene ofrecer incluso la que el actor ya ofreció, y que debe asegurar la comparecencia de sus testigos. Como las dos partes deben probar lo que alegan, puede invocar la carga dinámica cuando la otra esté en mejor posición de probar. Finalmente, si tiene un contrarreclamo con las mismas partes, los mismos hechos y la misma relación jurídica, debe reconvenir en la contestación, preferentemente al final del escrito y con prueba propia, porque de lo contrario deberá iniciar un juicio nuevo. Todo ello se aprende como un oficio, con práctica y estudiando el razonamiento de las partes en demandas y contestaciones, y no solo en las sentencias.
+
+\end{document}
