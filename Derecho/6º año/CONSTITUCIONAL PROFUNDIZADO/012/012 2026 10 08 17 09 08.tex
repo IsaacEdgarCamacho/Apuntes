@@ -1,0 +1,901 @@
+\documentclass[12pt,oneside]{book}
+
+%==================================================================
+% METADATOS
+%==================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Constitucional}
+\newcommand{\titulo}{Apuntes de Derecho Constitucional}
+\newcommand{\subtitulo}{Doctrina de la emergencia \textperiodcentered{} Legitimación y acciones de clase \textperiodcentered{} Expropiación}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==================================================================
+% PAQUETES
+%==================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==================================================================
+% CONFIGURACIÓN
+%==================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==================================================================
+% COMANDOS
+%==================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Fila del cuadro Cornell: pregunta en negrita / respuesta
+\newcommand{\cornellrow}[2]{\textbf{#1} & #2 \\[0.6em]}
+
+%==================================================================
+% ENTORNOS / CAJAS
+%==================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%==================================================================
+% DOCUMENTO
+%==================================================================
+\begin{document}
+
+%------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.4cm}
+
+{\normalsize \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender con constancia es el primer paso para dominar un tema.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Constitucional'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------
+\tableofcontents
+
+%==================================================================
+% INTRODUCCIÓN
+%==================================================================
+\chapter*{Presentación}
+\addcontentsline{toc}{chapter}{Presentación}
+\markboth{Presentación}{Presentación}
+
+Estos apuntes tratan tres grandes ejes: la doctrina de la emergencia, es decir, los requisitos que permiten al Estado restringir temporalmente derechos patrimoniales en una crisis (declaración del Congreso, plazo limitado, finalidad pública, proporcionalidad y respeto de la sustancia del derecho); la legitimación activa y las acciones de clase, que determinan quién puede reclamar ante la Justicia cuando el daño afecta a muchas personas a la vez; y la expropiación, garantía que protege el derecho de propiedad.
+
+\begin{important}
+El hilo conductor de los cuatro bloques es la propiedad. Cada bloque responde a una pregunta distinta de una misma cuestión: \textbf{cuándo se limita la propiedad, quién la defiende y qué compensación corresponde.}
+\end{important}
+
+\begin{itemize}
+    \item \textbf{Bloque 1:} en una crisis, ¿hasta cuándo y bajo qué condiciones puede el Estado retener, por ejemplo, un plazo fijo?
+    \item \textbf{Bloques 2 y 3:} si un mismo problema afecta a miles de ahorristas o de compradores de un mismo producto, ¿quién puede reclamar y cómo, sin que cada uno litigue por separado?
+    \item \textbf{Bloque 4:} si el Estado quiere un inmueble, por ejemplo para abrir una avenida, ¿con qué garantías puede quitarlo a su propietario?
+\end{itemize}
+
+Las reglas estudiadas ofrecen tres herramientas concretas: una lista de control de requisitos para evaluar si una medida de emergencia (un corralito, un canje de deuda) es constitucional o impugnable; un mapa para decidir quién puede demandar y cómo cuando un problema afecta a muchas personas (consumidores, ambiente, bancos, prepagas); y las reglas de la expropiación, útiles tanto para asesorar al propietario (qué puede exigir) como al Estado (qué pasos debe cumplir).
+
+%==================================================================
+% CAPÍTULO 1
+%==================================================================
+\chapter[Doctrina de la emergencia]{Doctrina de la emergencia económica y derecho de propiedad}
+
+Este capítulo sistematiza los requisitos de la doctrina de la emergencia, es decir, las condiciones que debe reunir una restricción transitoria de derechos patrimoniales para ser considerada legítima.
+
+\section{Provisionalidad y plazo fijado}
+
+Un primer requisito es la \textbf{provisionalidad} de las medidas y su \textbf{finitud en el tiempo}: las restricciones de este tipo de derechos solo pueden darse por un plazo breve, determinado y razonablemente limitado.
+
+\section{Emergencia real y declaración del Congreso}
+
+Es presupuesto clave la existencia verdadera de una \textbf{emergencia}, entendida como un estado de conmoción que tenga un efecto económico general. A ello se suma, como \textbf{requisito formal}, su \textbf{declaración por parte del Congreso}.
+
+\section{Intensidad de la restricción: confiscatoriedad y regla del tercio}
+
+La intensidad de la restricción de los derechos se conecta con la \textbf{prohibición de confiscatoriedad}.
+
+A lo largo de su historia, la Corte abordó el tema de la confiscatoriedad en numerosos casos y se refirió al \textbf{33\%} como método de cuantificación, sobre todo cuando se trata de quitas o de potestad tributaria. Sin embargo, no siempre aludió a lo confiscatorio con motivo de esa cuantificación: en otros precedentes lo manifestó con mucha más laxitud, sin aferrarse a la regla del tercio, al considerar la agresión a la propiedad del particular o la suma económica que está en juego en el tributo.
+
+\section{Finalidad pública y proporcionalidad}
+
+Otro elemento es la \textbf{finalidad pública}, es decir, el interés que está detrás de la medida. Debe perseguirse un fin que apunte a aplacar los efectos de la crisis; en general, a conjurarla con el menor daño posible y la menor intromisión posible en los derechos económicos.
+
+Además, debe existir \textbf{proporcionalidad} entre la restricción y la finalidad, que lógicamente es superar la crisis económica; es decir, una relación directa entre ambas.
+
+\section{No degradación de la sustancia del derecho}
+
+Respecto de la intensidad de la restricción, la idea de no confiscatoriedad se lleva a un plano más conceptual y no limitado a los tributos: la licitud de estas medidas se basa no solo en la proporcionalidad y en la persecución de una finalidad pública, sino también en la \textbf{no degradación de la sustancia del derecho}. Se trata de conceptos jurídicos indeterminados. Una medida es proporcionada y razonable en la medida en que no ataca el núcleo del derecho de propiedad y solo prevé restricciones tolerables, sin afectar ni mutar su sustancia.
+
+\subsection{Aplicación al caso de los plazos fijos (Peralta)}
+
+\begin{example}{Caso «Peralta» y los plazos fijos}
+En el caso de los plazos fijos, la Corte sostuvo que la devolución en títulos de deuda expresa el valor del plazo fijo original. La medida solo produce un \textbf{diferimiento en el tiempo} del momento en que puede gozarse del derecho de propiedad, una vez que los títulos venzan y sean percibidos. Esa es la justificación, discutible según el apunte, de que no se degrada la sustancia del derecho.
+\end{example}
+
+\section{Origen legítimo, caso «Galli» y sistematización}
+
+Debe existir un \textbf{origen lícito o legítimo}, bajo el principio de legalidad.
+
+\begin{note}
+\textbf{Constitución Nacional, art.\ 19 (parte final).} «Ningún habitante de la Nación será obligado a hacer lo que no manda la ley, ni privado de lo que ella no prohíbe.»
+\end{note}
+
+\subsection{Los requisitos, en conjunto}
+
+La aplicación legítima de la doctrina de la emergencia exige: declaración del Congreso, configuración fáctica de la emergencia, provisionalidad, plazo cierto y limitado, proporcionalidad y razonabilidad en la aplicación de la medida y no afectación de la sustancia del derecho.
+
+\begin{table}[H]
+\centering
+\caption{Requisitos de la aplicación legítima de la doctrina de la emergencia}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Requisito} & \textbf{Qué exige} \\
+\midrule
+\textbf{Origen legítimo} & Origen lícito o legítimo, bajo el principio de legalidad. \\
+\textbf{Declaración del Congreso} & Declaración formal de la emergencia por el Congreso, como requisito formal. \\
+\textbf{Configuración fáctica de la emergencia} & Existencia verdadera de una emergencia: un estado de conmoción con efecto económico general. \\
+\textbf{Provisionalidad y plazo} & Medidas provisorias, con plazo breve, determinado, cierto y limitado. \\
+\textbf{Finalidad pública} & Conjurar la crisis con el menor daño y la menor intromisión posible en los derechos económicos. \\
+\textbf{Proporcionalidad y razonabilidad} & Relación directa entre la restricción y la finalidad: superar la crisis económica. \\
+\textbf{No confiscatoriedad / no degradación de la sustancia} & No atacar el núcleo del derecho de propiedad; solo restricciones tolerables. Regla del tercio (33\%) en materia tributaria, no siempre aplicada por la Corte. En «Peralta», diferimiento en el tiempo. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{El fallo «Galli»}
+
+En materia de títulos de deuda, las modificaciones fueron sustanciales. En el fallo «Galli», la Corte realiza primero un recuento de la crisis económica (el apunte sitúa el contexto en 2004, con un recorrido ya importante de esa crisis) y señala dos modificaciones del título de deuda:
+
+\begin{itemize}
+    \item ya no está sujeto a \textbf{jurisdicción extranjera}, sino a \textbf{jurisdicción nacional};
+    \item ya no está en \textbf{moneda extranjera}, sino que se produce una \textbf{pesificación}.
+\end{itemize}
+
+La Corte establece que esa pesificación, al ser actualizada mediante el índice denominado \textbf{CER} (coeficiente de estabilización de referencia), es una conversión de moneda extranjera a moneda nacional que no implica una degradación de la sustancia del derecho de propiedad. Lo mismo vale para la condición del título extranjero, eventualmente ejecutable en el exterior: los nuevos títulos que se canjean conllevan estas modificaciones, pero estas no agreden la sustancia del derecho de propiedad.
+% TODO: contenido incompleto o ambiguo en las notas originales (pasaje no identificable en la grabación sobre el recálculo de los bonos en moneda extranjera)
+
+«Galli» resuelve la modificación de bonos de jurisdicción nacional, quizás en moneda extranjera, colocados bajo jurisdicción argentina. Por eso no conllevaron litigios, a diferencia de otros bonos que se ventilaron ante el juzgado del juez Griesa, quien llevó adelante un largo litigio con los denominados fondos buitre y la Argentina.
+
+\begin{note}
+Nota editorial del apunte: la sentencia «Galli» de la Corte Suprema data de 2005; el docente se refiere al contexto de la crisis económica iniciada años antes.
+\end{note}
+
+\begin{important}
+La emergencia solo legitima restringir derechos patrimoniales si se cumplen, \textbf{en conjunto}: origen legítimo, emergencia real declarada por el Congreso, provisionalidad con plazo cierto, finalidad pública, proporcionalidad y razonabilidad, y no degradación de la sustancia del derecho de propiedad.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\cornellrow{¿Qué requisitos exige la doctrina de la emergencia?}{Origen legítimo (legalidad); emergencia real (conmoción con efecto económico general) declarada por el Congreso; provisionalidad con plazo cierto y limitado; finalidad pública; proporcionalidad y razonabilidad; y no degradación de la sustancia del derecho.}
+
+\cornellrow{Provisionalidad y plazo}{Las medidas deben ser transitorias y con un plazo breve y determinado: se limita el tiempo en que los derechos pueden restringirse.}
+
+\cornellrow{Emergencia y declaración del Congreso}{Debe existir verdaderamente un estado de conmoción con efecto económico general, y su declaración por el Congreso es un requisito formal.}
+
+\cornellrow{Confiscatoriedad y regla del tercio}{La Corte usó el 33\% como método de cuantificación, sobre todo en quitas y potestad tributaria, pero no siempre se aferró a esa regla.}
+
+\cornellrow{Finalidad pública y proporcionalidad}{La medida debe intentar conjurar la crisis con el menor daño posible a los derechos económicos y guardar relación directa con ese fin.}
+
+\cornellrow{No degradación de la sustancia (Peralta, Galli)}{La restricción es lícita si no ataca el núcleo del derecho. Peralta: la devolución en títulos de deuda difiere el goce del derecho. Galli: el cambio de jurisdicción y la pesificación con CER no degradaron la sustancia.}
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{\textbf{Resumen:} la emergencia permite restringir derechos patrimoniales únicamente si concurren, en conjunto, origen legítimo, emergencia real declarada por el Congreso, provisionalidad con plazo cierto, finalidad pública, proporcionalidad y razonabilidad, y respeto de la sustancia del derecho de propiedad.} \\
+\end{longtable}
+
+%==================================================================
+% CAPÍTULO 2
+%==================================================================
+\chapter[Legitimación e incidencia colectiva]{Legitimación activa y derechos de incidencia colectiva}
+
+Este capítulo trata la legitimación activa y su ampliación a partir de la reforma de la Constitución y de la jurisprudencia creciente de la Corte.
+
+\section{Legitimación activa y cuestión justiciable}
+
+\begin{definition}{Legitimación activa}
+Aptitud legal para ser parte en juicio, como parte demandante o pretendiente de algún tipo de reconocimiento o restablecimiento de un derecho con incidencia jurídica.
+\end{definition}
+
+La legitimación activa es un presupuesto clave para tener por configurada una controversia jurídica. Junto con el sujeto legitimado pasivamente, constituye uno de los dos presupuestos esenciales de lo que la jurisprudencia de la Corte ha denominado una \textbf{cuestión justiciable}: que alguien pueda hacer valer válidamente, en el marco de un proceso judicial, un derecho o una pretensión jurídica susceptible de ser resuelta en el ámbito judicial.
+
+\section{Del control difuso a los derechos de incidencia colectiva}
+
+Ya desde antes de la reforma constitucional hubo casos que cuestionaban lo propio del \textbf{control de constitucionalidad difuso}. Según su presupuesto tradicional, las acciones judiciales ventiladas en este sistema \textbf{no tienen efecto erga omnes a priori}: aun cuando tengan importancia como fijación de una postura constitucional, incluso si provienen de la Corte, proyectan sus efectos solo a las partes en juicio.
+
+Sin embargo, los procesos judiciales son cada vez más complejos. Además, existe una mayor demanda social, que ha llevado a intervenciones del Poder Judicial en casos que décadas atrás quizás hubieran sido desestimados; es decir, hay una mayor proactividad judicial. En este contexto, la reforma constitucional establece los \textbf{derechos de incidencia colectiva}, que amplían la legitimación de los sujetos.
+
+\subsection{La materia ambiental}
+
+Uno de los desarrollos más robustos de la ampliación de la legitimación activa se dio en materia medioambiental. Un medio ambiente limpio, saludable y no expuesto a contaminación es un bien jurídico tutelado en la Constitución, pero resulta inasible individualmente: se proyecta sobre la comunidad de personas que viven en un determinado ámbito geográfico, lo que implica una \textbf{cotitularidad}.
+
+A diferencia de las acciones meramente individuales típicas, donde la acción se dirige contra un demandado y excluye a otros titulares porque responde a una titularidad privada única, exclusiva y excluyente, en las materias con bienes jurídicos de apropiación colectiva ese concepto entra en crisis. Ya antes de la reforma había acciones que proyectaban sus efectos sobre una pluralidad de sujetos, con independencia de quién las iniciara, como en el tema de las toninas overas, los casos de contaminación medioambiental y los aumentos tarifarios. Tendían a contradecir el concepto clásico de control constitucional difuso.
+
+Así aparecen, sobre todo en nuevos ámbitos del derecho como el ambiental y la defensa del consumidor, litigios complejos y numerosos, con muchos demandados y muchos actores, o incluso de ambos lados.
+
+En materia ambiental, la Ley General del Ambiente sostiene:
+
+\begin{itemize}
+    \item el \textbf{principio precautorio}, clave para estimular la aplicación de medidas cautelares, bajo la idea de prevención del daño;
+    \item la \textbf{solidaridad intergeneracional}, entre sociedades que, trascendiendo los tiempos actuales, se unen en la defensa de bienes colectivos como el medio ambiente sano y limpio;
+    \item la explotación de los recursos naturales con un régimen seguro para la salud de los ciudadanos.
+\end{itemize}
+
+El derecho ambiental y la defensa del consumidor son dos claros ejemplos de áreas donde puede haber una pluralidad de sujetos.
+
+\begin{note}
+\textbf{Ley 25.675, General del Ambiente, art.\ 4 (principio precautorio).} «Cuando haya peligro de daño grave o irreversible la ausencia de información o certeza científica no deberá utilizarse como razón para postergar la adopción de medidas eficaces, en función de los costos, para impedir la degradación del medio ambiente.»
+\end{note}
+
+\begin{note}
+\textbf{Constitución Nacional, art.\ 41 (primer párrafo).} «Todos los habitantes gozan del derecho a un ambiente sano, equilibrado, apto para el desarrollo humano y para que las actividades productivas satisfagan las necesidades presentes sin comprometer las de las generaciones futuras; y tienen el deber de preservarlo. El daño ambiental generará prioritariamente la obligación de recomponer, según lo establezca la ley.»
+
+\textit{Los textos normativos de estas notas se incorporan en el apunte como referencia complementaria; el docente los menciona sin leerlos.}
+\end{note}
+
+\section{Sujetos legitimados: defensor del pueblo y asociaciones}
+
+La Constitución, al hablar de derechos de incidencia colectiva, amplió la legitimación activa e incorporó taxativamente dos nuevos sujetos jurídicos: el \textbf{defensor del pueblo} y las \textbf{asociaciones}.
+
+\begin{note}
+\textbf{Constitución Nacional, art.\ 43, segundo párrafo.} «Podrán interponer esta acción contra cualquier forma de discriminación y en lo relativo a los derechos que protegen al ambiente, a la competencia, al usuario y al consumidor, así como a los derechos de incidencia colectiva en general, el afectado, el defensor del pueblo y las asociaciones que propendan a esos fines, registradas conforme a la ley, la que determinará los requisitos y formas de su organización.»
+\end{note}
+
+\subsection{El defensor del pueblo}
+
+La Constitución de 1994 califica al defensor del pueblo como \textbf{figura federal} y como legitimado activo, sin necesidad de que se agrupen individualmente los verdaderos perjudicados. Por su propia definición legal, tiene aptitud para demandar o, eventualmente, denunciar y seguir acciones judiciales en resguardo de derechos de incidencia colectiva.
+
+Su designación requiere una \textbf{mayoría agravada}: los dos tercios de los miembros de la Cámara. Por ello, desde hace varios años no hay un defensor del pueblo designado a nivel federal. Existen, en cambio, defensores del pueblo de los organismos provinciales, que podrán tener legitimación activa frente a derechos de incidencia colectiva en tanto no traspasen el ámbito de su jurisdicción.
+
+\begin{note}
+\textbf{Constitución Nacional, art.\ 86 (extracto).} «El Defensor del Pueblo tiene legitimación procesal. Es designado y removido por el Congreso con el voto de las dos terceras partes de los miembros presentes de cada una de las Cámaras.»
+\end{note}
+
+\subsection{Las asociaciones}
+
+Las asociaciones son figuras jurídicas de plano intermedio, porque no dependen de un reconocimiento o designación pública: son, por ejemplo, asociaciones de consumidores o de defensa del medio ambiente. Para analizar adecuadamente su legitimación activa debe examinarse su \textbf{estatuto constitutivo}, a fin de verificar si hay correspondencia entre la acción que encamina (por ejemplo, una asociación medioambiental) y su \textbf{objeto social}, así como su \textbf{historial de intervención}.
+
+La Corte y la jurisprudencia actual no obligan a una vecindad geográfica lisa y llana, pero es importante conocer el alcance de la asociación que invoca un derecho de incidencia colectiva: debe estar constituida en la región geográfica de intervención o, por lo menos, tener un historial de intervención y participación en las jurisdicciones en las que pueda accionar.
+
+\section{El fallo «Halabi»: bienes colectivos e intereses individuales homogéneos}
+
+En el fallo «Halabi», la Corte amplió la legitimación activa y distinguió dos categorías de derechos de incidencia colectiva.
+
+\subsection{Primera categoría: derechos de incidencia colectiva sobre bienes colectivos}
+
+Son los casos del medio ambiente: una acción por contaminación, por deterioro del medio ambiente o por sobreexplotación de determinados recursos. Son derechos de incidencia colectiva, así denominados por la Constitución y las normas inferiores, y además versan sobre un \textbf{bien colectivo}: aunque el medio ambiente esté muchas veces circunscripto a una zona geográfica de influencia, no permite pensar en la exclusión de otros sujetos si se demanda en función de él. Hay cotitularidad: todos respiran el mismo aire y se sitúan en un mismo medio geográfico.
+
+También se menciona como ejemplo la defensa del consumidor en general, donde puede haber afectaciones múltiples, por ejemplo respecto de un contrato de consumo por adhesión con utilización muy vasta ante una pluralidad de consumidores. Son bienes de incidencia y apreciación colectiva, porque una misma clase de sujetos coparticipa del uso y goce de ese derecho: el medio ambiente sano, la no contaminación, el acceso a agua potable, la explotación de determinados recursos.
+
+En estos supuestos, según el caso «Halabi», los \textbf{titulares} son:
+
+\begin{itemize}
+    \item el \textbf{damnificado directo}, que puede además representar a su clase de sujetos damnificados;
+    \item las \textbf{asociaciones} (por ejemplo, de medio ambiente o de defensa del consumidor) con coincidencia en su objeto social y en su intervención con este tipo de derechos;
+    \item el \textbf{defensor del pueblo}, aunque hace muchos años no se cuente con este vehículo procesal.
+\end{itemize}
+
+Estas tres figuras se dan, en el máximo grado de ampliación, en los derechos de incidencia colectiva sobre bienes colectivos.
+
+\subsection{Segunda categoría: derechos de incidencia colectiva sobre intereses individuales homogéneos}
+
+La Corte manifestó en «Halabi» que existe otra clase de derecho de incidencia colectiva, referida a efectos jurídicos que pueden dirigirse a una pluralidad de sujetos: los derechos de incidencia colectiva sobre \textbf{intereses o bienes individuales homogéneos}.
+
+La diferencia con los bienes colectivos radica en que, por su apropiación y por la relación jurídica entre el sujeto particular y el bien jurídico, no son bienes de apropiación colectiva. Son intereses individuales \textbf{homogéneos} porque se originan frente a un \textbf{mismo presupuesto fáctico}: mediante una cuestión de hecho que debe analizarse, todos los derechos individuales pueden resultar de interés homogéneo por el origen del eventual daño que los afecta. El ejemplo se desarrolla en el capítulo siguiente.
+
+\begin{table}[H]
+\centering
+\caption{Las dos categorías de derechos de incidencia colectiva según «Halabi»}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Criterio} & \textbf{Sobre bienes colectivos} & \textbf{Sobre intereses individuales homogéneos} \\
+\midrule
+\textbf{Naturaleza del bien} & Bien de apropiación colectiva; no excluye a otros sujetos (cotitularidad). & Derechos individuales; no son bienes de apropiación colectiva. \\
+\textbf{Elemento unificador} & Todos participan del mismo bien: el mismo aire, la misma tierra, el mismo agua. & Un mismo presupuesto fáctico que origina el eventual daño. \\
+\textbf{Ejemplos} & Medio ambiente sano, no contaminación, agua potable, explotación de recursos. & Autos con el mismo defecto de fabricación; cobros indebidos por comisiones, hoteles, prepagas. \\
+\textbf{Legitimados} & Damnificado directo, asociaciones con objeto social coincidente y defensor del pueblo. & Asociaciones de consumidores registradas, mediante la acción de clase. \\
+\textbf{Rasgo jurídico central} & Cotitularidad: una sentencia no excluye a los demás titulares. & Prueba y responsabilidad comunes; el daño se cuantifica individualmente. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+«Halabi» distingue dos categorías de derechos de incidencia colectiva: sobre bienes colectivos (como el ambiente) y sobre intereses individuales homogéneos (como los de los compradores de un mismo producto defectuoso). La diferencia está en la apropiación del bien y en el origen común del daño.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\cornellrow{Legitimación activa y cuestión justiciable}{Es la aptitud legal para ser parte demandante; junto con la legitimación pasiva, es presupuesto de una cuestión justiciable.}
+
+\cornellrow{¿Por qué entra en crisis el control difuso clásico?}{Porque las sentencias solo alcanzan a las partes, mientras que el ambiente y el consumo afectan a pluralidades de sujetos; la reforma de 1994 introdujo los derechos de incidencia colectiva.}
+
+\cornellrow{¿Quiénes están legitimados según la Constitución?}{El defensor del pueblo (figura federal, designado por dos tercios, hoy sin titular) y las asociaciones, cuyo estatuto, objeto social e historial de intervención deben corresponder con el reclamo; «Halabi» suma al damnificado directo.}
+
+\cornellrow{«Halabi»: ¿qué dos categorías de derechos distingue?}{Derechos de incidencia colectiva sobre bienes colectivos (cotitularidad, como el ambiente) y sobre intereses individuales homogéneos (un mismo hecho origina daños individuales).}
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{\textbf{Resumen:} la reforma de 1994 y «Halabi» ampliaron la legitimación activa. Los derechos de incidencia colectiva pueden recaer sobre bienes colectivos o sobre intereses individuales homogéneos, y los sujetos legitimados son el afectado, el defensor del pueblo y las asociaciones registradas.} \\
+\end{longtable}
+
+%==================================================================
+% CAPÍTULO 3
+%==================================================================
+\chapter[Acciones de clase]{Acciones de clase y procesos colectivos}
+
+\section{El ejemplo de Volkswagen: un mismo presupuesto fáctico}
+
+\begin{example}{Defecto de fabricación en un modelo de automóvil}
+Una empresa que fabrica un auto muy popular, el Gol de Volkswagen, determina que durante seis meses un desperfecto en su planta de montaje hizo que ese modelo saliera defectuoso. El defecto no es notorio al inicio del consumo del bien, pero con el tiempo puede originar problemas: en el ejemplo, la suspensión se desgasta mucho más rápido y dentro de un año habrá que cambiarla. El caso se sitúa en la planta de Zárate, entre mayo de 2025 y febrero de 2026. La pregunta es cómo reparar los daños y concentrar la cuestión en un solo proceso.
+% TODO: contenido incompleto o ambiguo en las notas originales (el ejemplo menciona distintos períodos: 2025--2026; febrero de 2025 a marzo de 2026 al definir la clase; 2008--2015 en otra ilustración)
+\end{example}
+
+Se menciona, como apreciación sobre el daño, que a la empresa puede resultarle más económico reparar el defecto que retirar todo del mercado.
+
+\subsection{La respuesta: un proceso colectivo}
+
+La respuesta es un \textbf{proceso colectivo}, a raíz de «Halabi» y de las acordadas posteriores. No existe un derecho colectivo a tener el auto: es un derecho de índole individual. Pero hay un \textbf{mismo presupuesto fáctico} que origina un eventual daño: lo registrado en la planta de ensamblaje durante seis meses, donde existía un problema en ciernes para toda esa producción.
+
+Lo más racional es un proceso colectivo en el que puedan ser citados, o por lo menos inicialmente representados, todos los potenciales dueños de los vehículos vendidos en ese período. Mediante un sistema jurídico de notificaciones, la empresa, en conjunción con las concesionarias, puede identificar a todos los damnificados.
+
+El interés individual es homogéneo porque el hecho originador del daño es el mismo. Para determinar la responsabilidad de la empresa, los extremos jurídicos serán iguales en todos los casos y se usará el mismo tipo de prueba: cómo fue la planta de ensamblaje, si la empresa incurrió en alguna inobservancia de sus procesos y el resultado de todos los vehículos que salieron en ese período. Por ejemplo, una pericial de ingeniería para ver si el ensamblaje fue correctamente realizado o si hay un desperfecto que configura un vicio redhibitorio susceptible de ser resarcido. Habrá un único juicio, complejo o no, y se determinará si la empresa es responsable o no.
+
+\subsection{Lo común y lo individual: la cuantificación del daño}
+
+Solo después de esa determinación jurídica, que es la más importante y se apoya en prueba común, cada caso debe analizar el daño y la forma de resarcirlo. Por ejemplo, no es lo mismo el caso de quien tiene el vehículo estacionado y recién ahora evidencia un excesivo desgaste de la suspensión, que el de otra persona para quien las consecuencias fueron significativas, incluso la pérdida de un familiar en un accidente originado en el defecto.
+
+Quien tuvo un daño menor podrá pedir el reemplazo del auto y quizás una compensación por el tiempo en que se vio privado de usarlo o por haberlo llevado al taller; quien tuvo un accidente vial tendrá un resarcimiento mucho mayor. El proceso se compone de un tema común (la responsabilidad de la empresa por la producción con desperfectos) y, luego, se resuelve individualmente qué debe pagarse en cada caso.
+
+\begin{table}[H]
+\centering
+\caption{Qué es común y qué es individual en el proceso colectivo (ejemplo Volkswagen)}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}p{0.13\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Etapa} & \textbf{Carácter} & \textbf{Contenido} \\
+\midrule
+\textbf{Hecho originador} & Común & Producción defectuosa en la planta durante seis meses. \\
+\textbf{Prueba de la responsabilidad} & Común & Pericial de ingeniería sobre el ensamblaje y los procesos de la empresa. \\
+\textbf{Sentencia sobre la responsabilidad} & Común & Se determina si la empresa es responsable o no. \\
+\textbf{Cuantificación del daño} & Individual & Reemplazo o reparación, privación de uso, o resarcimiento mayor por un accidente. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{La acción de clase: asociaciones, registro, certificación y exclusión}
+
+\subsection{Quién puede llevar la acción}
+
+Estas acciones las puede llevar una \textbf{asociación de defensa del consumidor}. En el ámbito de la Subsecretaría de Defensa del Consumidor, a nivel nacional, existe un \textbf{registro de asociaciones de defensa del consumidor}. Son asociaciones generalmente civiles, con estatuto, forma de votación y participación mediante asamblea, objetivos propios y forma de elección de autoridades. Estar inscripta en ese registro es un presupuesto clave: quien no esté inserto en él, al menos a nivel federal o interjurisdiccional, no puede promover acciones de clase.
+
+En ese ámbito se brindan capacitaciones para asociaciones y se hacen planes y programas de difusión de los derechos del consumidor; como contrapartida, las asociaciones son legitimadas activas para discutir procesos como el del ejemplo de Volkswagen. Plantean entonces la \textbf{acción de clase}, que es un proceso colectivo. Las asociaciones pueden litigar tanto en sede administrativa como en sede judicial, y debe haber correspondencia entre su objeto social y el reclamo que formulan.
+
+\begin{note}
+\textbf{Registro Público de Procesos Colectivos (referencia complementaria del apunte).} Las acciones de clase, como tienen efectos para toda la clase determinada, deben registrarse en el registro de acciones colectivas, de modo que cada proceso que se exterioriza como acción de clase esté publicado y se conozcan los procesos colectivos. La Corte Suprema creó este registro por la Acordada 32/2014 y reglamentó los procesos colectivos por la Acordada 12/2016.
+\end{note}
+
+La acción de clase tiene una determinada legitimación activa, que es representada por la asociación, y en ella debe determinarse la \textbf{clase}. Para que un proceso colectivo se inscriba en el registro, uno de los puntos centrales es establecer de forma muy concreta cuáles son los eventuales demandados, es decir, contra quién se acciona.
+
+\subsection{Denominación: derecho y acción}
+
+El derecho en cuestión es un derecho de incidencia colectiva sobre intereses individuales homogéneos, pero la acción judicial se llama \textbf{acción de clase}, porque el demandante representa a la clase de sujetos activos. Al tratarse de procesos amplios y de multiplicidad de sujetos, debe estar claramente establecido a quiénes se incorpora a la clase, es decir, quiénes participan de la clase de sujetos que está siendo demandada o que es actora.
+
+\subsection{Cómo se define la clase}
+
+\begin{example}{Definición de la clase en el caso del automóvil}
+Una forma de determinar la clase podría ser: todos los propietarios de autos Volkswagen adquiridos entre febrero de 2025 y marzo de 2026 que no sean 4x4 y que correspondan a los modelos A, B y C.
+\end{example}
+
+Con esa definición se determina a quiénes representa la parte actora en el pleito. Una vez reconocida y registrada la clase, la actora es la representante de todos los sujetos que compraron ese auto. Cuando llega la sentencia de fondo, la asociación representa a esa clase, debe notificarla de la sentencia y ordenar el cumplimiento.
+
+Existe un interés económico evidente: quien defiende una clase de sujetos puede llevar adelante la acción y cobrará honorarios importantes, porque si hay muchos actores y muchos demandados el pleito crece en tamaño y en eventuales indemnizaciones. La idea es reunir a todos los damnificados y realizar, en una misma acción, un proceso colectivo que asegure una sentencia para todos los titulares del bien jurídico agraviado.
+
+\subsection{Si la acción colectiva es rechazada y el período de exclusión}
+
+Frente a la consulta sobre si, rechazada la acción colectiva, cada individuo queda habilitado para accionar individualmente, el apunte desarrolla el siguiente punto: la acción de clase intenta sumar flexibilidades para posibilitar reclamos múltiples, pero \textbf{no es obligatoria} ni una imposición.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se responde de forma explícita qué ocurre con el reclamo individual si la acción colectiva es rechazada)
+
+Los procesos de acción de clase tienen dos hitos importantes al inicio:
+
+\begin{enumerate}
+    \item La \textbf{certificación y registro de la clase}: se determina quiénes son los sujetos que podrán reclamar (por ejemplo, todos los titulares que hayan comprado de primera mano un modelo determinado en una ciudad determinada entre ciertos meses). Queda así certificada una clase individualizada jurídicamente y se registra la acción en el registro de la Corte, para dar publicidad a todos los reclamos de multiplicidad de sujetos.
+    \item En paralelo, el juez otorga un plazo, un \textbf{período ventana} (de exclusión), para quienes no quieran estar incluidos en la clase: pueden accionar por su propio interés en un proceso individual o llegar a un acuerdo entre tres o cuatro.
+\end{enumerate}
+
+Un ejemplo son los cobros indebidos de comisiones: si una asociación de defensa de consumidores presentó una acción y planteó bien el tema, la sentencia se ejecutará contra todos los que participan de esa clase.
+
+\begin{table}[H]
+\centering
+\caption{Etapas de la acción de clase}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Etapa} & \textbf{Qué ocurre} \\
+\midrule
+\textbf{1. Legitimación} & Una asociación de defensa del consumidor inscripta en el registro de la Subsecretaría de Defensa del Consumidor, con objeto social coincidente con el reclamo. \\
+\textbf{2. Determinación de la clase} & Se define con precisión quiénes la integran y contra quién se acciona (por ejemplo, propietarios de ciertos modelos adquiridos en un período determinado). \\
+\textbf{3. Certificación y registro} & El juez certifica la clase y la acción se anota en el registro de procesos colectivos para darle publicidad. \\
+\textbf{4. Período de exclusión} & El juez otorga un plazo para que quien no quiera integrar la clase accione individualmente. \\
+\textbf{5. Sentencia común} & Se determina la responsabilidad con prueba común; la asociación representa a la clase, la notifica y ordena el cumplimiento. \\
+\textbf{6. Cuantificación individual} & Cada integrante acredita su daño y recibe la indemnización que le corresponde. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Finalidad: disciplinar el mercado y reducir costos}
+
+La acción de clase busca motivar, mediante un incentivo económico, una suerte de control frente a las grandes empresas. La idea, seguida en Estados Unidos, parte de que los distintos mercados están generalmente manejados por empresas de gran porte, con gran poder económico y disuasivo, por lo que se necesita un mecanismo para «disciplinar el mercado» y limitar abusos de posiciones dominantes. Las acciones de clase permiten concentrar la prueba en un mismo proceso y, declarada una eventual responsabilidad, cada parte acredita su daño para obtener un resarcimiento.
+
+\subsection{El ejemplo del hotel en Estados Unidos}
+
+\begin{example}{Cobro incorrecto en un hotel}
+Es común, en Estados Unidos, que quien se hospedó en un hotel reciba por correo, seis meses después, un cheque, porque el hotel registraba mal los pagos de las habitaciones y cobraba, por ejemplo, un impuesto incorrecto. Detrás hay un abogado o una abogada que ve un interés económico y de litigio y que puede accionar por toda la clase, en lugar de por una sola persona.
+\end{example}
+
+Esto genera un mayor atractivo para iniciar acciones judiciales: una cosa es litigar contra una multinacional por dos personas con un interés económico muy pequeño, y otra es reunir esos reclamos mínimos y proyectarlos por todos los usuarios que, por ejemplo, fueron a un hotel determinado entre dos años determinados y a quienes se liquidó mal un concepto. La clase es mucho más atractiva, y el abogado representa a un grupo más amplio. La acción de clase es, así, un instrumento que intenta disciplinar acciones abusivas de supermercados, bancos, aseguradoras y oficinas comerciales, donde generalmente no hay tiempo para entablar una respuesta o iniciar una demanda efectiva y los casos suelen llevar tiempo.
+
+\subsection{La reducción de los costos de transacción}
+
+El otro punto clave es la reducción de los \textbf{costos de transacción}. Quien tuviera que reclamar por la liquidación mal hecha de una noche, que son unos pocos pesos, no pagaría un abogado ni esperaría los tiempos judiciales ni afrontaría el mantenimiento del juicio. En cambio, en una acción de clase los gastos se reparten: un grupo de sujetos representados por un estudio jurídico o por una asociación de usuarios y consumidores realiza la acción para todos los titulares que hayan adquirido, por ejemplo, vehículos de una marca entre ciertos años en una región.
+
+Si cada persona tuviera que ir sola con su demanda, no habría atractivo económico ni jurídico para hacerlo. Los que ganan el juicio por la asociación pueden enterarse recién cuando deben cobrar, porque, si bien el juez da un plazo a quienes quedan fuera de la acción, nadie está pendiente de las notificaciones del registro de acciones de clase.
+
+Son procesos colectivos cuyos efectos recaen sobre una pluralidad de sujetos, pero con cada sentencia particular, porque cada sentencia fija para cada parte la indemnización debida, y eso es individual. Generalmente los llevan adelante asociaciones de consumidores inscriptas en el registro de la Subsecretaría de Defensa del Consumidor. Si se certifica la clase, tanto la medida cautelar como una eventual sentencia de condena (por ejemplo, el pago de una diferencia a cada parte) alcanzan a todo el universo de sujetos legitimados, lo cual da atractivo al abogado que lleva adelante la acción. El factor desencadenante de la responsabilidad es el mismo para todos; luego de una misma argumentación común sobre quién es responsable, cada uno cuantifica su daño individualmente.
+
+\begin{important}
+La acción de clase concentra la prueba en un solo proceso, reparte los gastos, vuelve económicamente atractivo reclamar sumas pequeñas contra grandes empresas y funciona como instrumento para disciplinar abusos de mercado. La responsabilidad se decide una sola vez; el daño se cuantifica caso por caso.
+\end{important}
+
+\section{El fallo «Halabi»: hechos y efecto erga omnes}
+
+El fallo «Halabi» tenía como origen una ley votada por el Congreso, y su cuestionamiento se refiere al alcance de la sentencia. La sentencia invalidó una ley que ordenaba que las telefónicas y las empresas de internet guardaran, por un tiempo muy extenso, cualquier interacción de correos o comunicaciones públicas en las redes, para entregarlas ante un pedido por seguridad. La Corte dictaminó que era ilegítima porque implicaba una posibilidad de censura previa y de establecer escuchas telefónicas sin orden judicial. Dio \textbf{efecto erga omnes} a la declaración de invalidez del decreto regulatorio de la ley, pero estableció que, para un caso determinado, serán ciertos sujetos los que deberán cumplir con el restablecimiento del derecho de que se trate.
+
+\begin{note}
+\textbf{Caso «Halabi» (referencia complementaria del apunte).} La Corte Suprema declaró la inconstitucionalidad de la ley 25.873 y de su decreto reglamentario 1563/04, sobre conservación de datos de tráfico de comunicaciones, y fijó los requisitos de las acciones de clase («Halabi, Ernesto c/ P.E.N.», 2009).
+\end{note}
+
+\section{Límites de la legitimación: los excombatientes de Malvinas y la soberanía}
+
+El caso de los excombatientes de Malvinas pone en cuestión la legitimación activa. Los actores invocaban que estaba en juego un tema de soberanía. La Corte sostuvo que, si bien el uso y goce de la soberanía es colectivo y los ciudadanos coparticipan de ella, es un \textbf{atributo del Estado} y, por lo tanto, no podía ser reclamado por el grupo de excombatientes.
+
+Esta posición es discutible: cabe preguntarse hasta qué punto hay una individualidad en los intereses que hacen al resguardo de la soberanía, y lo importante en este tipo de derecho es establecer su real alcance. Se le cuestiona a la Corte que, si bien es un atributo del Estado, una tesis demasiado formalista conduciría a pensar que solo el Estado puede invocar la nulidad, lo que restringe enormemente cualquier planteo.
+
+El medio ambiente es un tema clave: en sus efectos nocivos tiende a ser expansivo e interjurisdiccional. Sin embargo, a veces el agravio ambiental está muy circunscripto a una zona geográfica, y lo que se intenta es que, como dice la Corte, cada conflicto jurídico se ventile ante los verdaderos jueces de la causa, es decir, aquellos que pueden resguardar los intereses de la persona de que se trate.
+
+\subsection{Observaciones sobre el momento de la sentencia}
+
+Se señaló que, por ser la legitimación activa un presupuesto esencial de la configuración de una cuestión justiciable, debería resolverse al inicio, y que la Corte se demoró muchos meses en pronunciarse. Más allá de la sobrecarga de trabajo, cuestiones tan preliminares deberían tender a tener pronunciamientos rápidos.
+
+Por otra parte, aunque la soberanía sea estatal, el pueblo no delibera ni gobierna sino a través de sus representantes. La soberanía, que reside originalmente en los ciudadanos, permitiría pensar que estos también pueden cuestionar temas sensibles; una extrema formalidad llevaría a que nadie pueda cuestionar, porque la soberanía es tan general que nadie puede apropiarse de una parte de ella. Quizás la solución sea maximizar las vías de impugnación, ampliando el concepto de legitimación activa. Se trata de temas candentes y complejos.
+
+\begin{note}
+\textbf{Constitución Nacional, art.\ 22.} «El pueblo no delibera ni gobierna, sino por medio de sus representantes y autoridades creadas por esta Constitución. Toda fuerza armada o reunión de personas que se atribuya los derechos del pueblo y peticione a nombre de éste, comete delito de sedición.»
+\end{note}
+
+\section{Conceptos a dominar y acciones colectivas en la actualidad}
+
+Se destaca como fundamental el buen manejo de los conceptos del fallo y la comprensión de la diferencia entre una demanda o un amparo medioambiental, típico caso de bienes de apropiación colectiva, y la acción de clase, así como dónde están las diferencias más importantes.
+
+\subsection{Ejemplos actuales}
+
+Hay un número muy activo de asociaciones registradas en la Subsecretaría de Defensa del Consumidor con aptitud legal para plantear acciones de clase; muchas litigan contra grandes empresas de alcance interjurisdiccional, como grandes bancos.
+
+\begin{itemize}
+    \item \textbf{Endeudamiento y financiamiento:} ante el endeudamiento creciente mediante planes de ahorro o de adquisición de productos en cuotas, y ante la oferta de bienes con financiamiento por parte de casas de electrodomésticos o grandes tiendas de retail, cuya sofisticación de intereses puede llevar a deudas considerables, muchas asociaciones han accionado. Piden la devolución de lo cobrado de más y la modificación de los contratos de adhesión para evitar situaciones de captación tan directa.
+    \item \textbf{Prepagas:} tras una liberalización de la cuota de las prepagas, se iniciaron varios procesos colectivos por pagos indebidos en cuotas que habían aumentado excesivamente; muchos se litigan mediante acciones de clase.
+\end{itemize}
+
+\begin{important}
+Hay que distinguir con claridad el amparo ambiental (bienes de apropiación colectiva, con cotitularidad) de la acción de clase (intereses individuales homogéneos, con un hecho común y daño individual). En la práctica actual, las asociaciones litigan sobre todo contra bancos, tiendas con financiamiento, planes de ahorro y prepagas.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\cornellrow{Ejemplo Volkswagen: ¿qué se prueba en común y qué individualmente?}{Un defecto en la planta durante seis meses: la responsabilidad se prueba una sola vez (pericial de ingeniería) y luego cada afectado cuantifica su daño.}
+
+\cornellrow{¿Qué es la acción de clase?}{Proceso colectivo promovido por una asociación inscripta en el registro de la Subsecretaría de Defensa del Consumidor; exige determinar la clase, certificarla, registrarla y abrir un plazo para quienes quieran quedar afuera.}
+
+\cornellrow{¿Para qué sirve la acción de clase?}{Disciplina el mercado, concentra la prueba, baja los costos de transacción y vuelve atractivo reclamar sumas pequeñas (ejemplos: hoteles en Estados Unidos, comisiones bancarias, planes de ahorro, prepagas).}
+
+\cornellrow{Efecto de la sentencia en «Halabi»}{Se declaró la invalidez de una ley sobre conservación de datos de comunicaciones, con efecto erga omnes para la declaración de invalidez del decreto regulatorio de la ley; para cada caso concreto se determinan los sujetos obligados a restablecer el derecho.}
+
+\cornellrow{Límite de la legitimación: Malvinas}{La Corte consideró la soberanía un atributo del Estado y rechazó el reclamo de los excombatientes; se señaló que una tesis demasiado formalista restringe los planteos.}
+
+\cornellrow{¿Qué diferencia un amparo ambiental de una acción de clase?}{El amparo ambiental recae sobre bienes de apropiación colectiva, con cotitularidad; la acción de clase, sobre intereses individuales homogéneos con un hecho común y daño individual.}
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{\textbf{Resumen:} la acción de clase, promovida por asociaciones registradas, concentra la prueba de la responsabilidad en un único proceso y deja la cuantificación del daño para cada afectado, lo que reduce costos y permite disciplinar abusos de mercado; la legitimación tiene límites, como lo muestra el caso de los excombatientes de Malvinas.} \\
+\end{longtable}
+
+%==================================================================
+% CAPÍTULO 4
+%==================================================================
+\chapter[Expropiación]{Expropiación: límite y garantía del derecho de propiedad}
+
+\section{Propiedad inviolable y bases de la expropiación}
+
+Nadie puede ser desapoderado de los bienes de su propiedad sin una \textbf{sentencia} dictada al efecto, lo que se relaciona con la ley de expropiación: solo mediante sentencia o mediante un proceso de expropiación puede alguien ser desapoderado de sus bienes.
+
+\begin{note}
+\textbf{Constitución Nacional, art.\ 17 (primer párrafo).} «La propiedad es inviolable, y ningún habitante de la Nación puede ser privado de ella, sino en virtud de sentencia fundada en ley. La expropiación por causa de utilidad pública, debe ser calificada por ley y previamente indemnizada.»
+\end{note}
+
+La expropiación requiere una \textbf{declaración de utilidad pública} por parte del Congreso. Es, de algún modo, como el instituto de la legítima apropiación: legítima porque, cumpliendo determinados pasos, el Ejecutivo puede expropiar.
+
+\section{El procedimiento expropiatorio: la intervención de los tres poderes}
+
+Intervienen los tres poderes del Estado:
+
+\begin{itemize}
+    \item El \textbf{Poder Legislativo} emite la declaración de utilidad pública, porque es una ley formal.
+    \item El \textbf{Poder Ejecutivo} pone en ejecución la ley, que establece el destino y define el bien sujeto a expropiación. Inicia los mecanismos para expropiarlo: cita a los particulares que están en poder del bien y puede abrirse un período denominado \textbf{avenimiento}, es decir, un acuerdo por el cual, con una bonificación, los eventuales propietarios ceden el bien a la entidad estatal. Luego realiza la \textbf{afectación} del bien.
+    \item El \textbf{Poder Judicial} interviene si hay un conflicto por el precio: lo dirime y fija el monto a pagar luego de intervenir el Tribunal de Tasaciones.
+\end{itemize}
+
+La Constitución prevé como garantía el \textbf{pago previo}. Si hay acuerdo entre el particular y el Estado, este hace la oferta, genera el pago y se queda con el bien, con lo que queda perfeccionada la expropiación. Hay un incentivo económico para arribar a un avenimiento; si no, la alternativa es la discusión judicial.
+
+\begin{table}[H]
+\centering
+\caption{La intervención de los tres poderes en la expropiación}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.20\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Poder} & \textbf{Su intervención} \\
+\midrule
+\textbf{Legislativo} & Emite la declaración de utilidad pública mediante una ley formal, que define el destino y el bien sujeto a expropiación. \\
+\textbf{Ejecutivo} & Pone en ejecución la ley: cita a los particulares, promueve el avenimiento, ofrece y paga, y realiza la afectación del bien. \\
+\textbf{Judicial} & Si hay conflicto por el precio, lo dirime; fija el monto a pagar luego de intervenir el Tribunal de Tasaciones. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{La indemnización: valor objetivo y daño emergente}
+
+El monto a pagar lo fija el juez, luego de intervenir el Tribunal de Tasaciones. La ley establece que no puede pagarse más allá del \textbf{precio objetivo} del bien: se indemniza el precio de mercado. No hay lucro cesante ni otros ítems resarcitorios, ni valores sentimentales. La ley prevé el \textbf{daño emergente}, es decir, el daño que emerge de forma directa del desapoderamiento del bien.
+
+\begin{note}
+\textbf{Ley 21.499 de Expropiaciones, art.\ 10.} «La indemnización sólo comprenderá el valor objetivo del bien y los daños que sean una consecuencia directa e inmediata de la expropiación. No se tomará en cuenta circunstancias de carácter personal, valores afectivos, ganancias hipotéticas, el mayor valor que pueda conferir al bien la obra que se ejecutará, ni el lucro cesante.»
+
+\textit{Texto transcripto en el apunte como referencia complementaria; el docente describe su contenido sin leerlo.}
+\end{note}
+
+\section{¿Qué puede expropiarse?}
+
+Puede expropiarse cualquier bien exterior a la persona, conforme a las definiciones de propiedad: un bien inmueble, un bien mueble o un derecho. Por ejemplo, el derecho de propiedad sobre una obra escrita: si el gobierno quiere someterla al dominio público, expropia los derechos de su titular de derecho de autor para hacerla pública. También pueden expropiarse acciones de una empresa, como ocurrió con YPF, cuyo 51\% de las acciones en manos de particulares fue expropiado. En definitiva, puede expropiarse todo derecho de propiedad susceptible de apreciación pecuniaria: derechos intelectuales, derechos de titularidad, bienes muebles, bienes inmuebles y acciones.
+
+\begin{table}[H]
+\centering
+\caption{Bienes expropiables según los ejemplos del apunte}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Tipo de bien} & \textbf{Ejemplo} \\
+\midrule
+\textbf{Bien inmueble} & Terrenos, casas. \\
+\textbf{Bien mueble} & Cualquier cosa mueble susceptible de apreciación pecuniaria. \\
+\textbf{Derecho intelectual} & Derecho de autor sobre una obra escrita que el gobierno quiere someter al dominio público. \\
+\textbf{Acciones de una empresa} & El 51\% de las acciones de YPF. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+\textbf{Caso YPF (referencia complementaria del apunte).} La expropiación del 51\% del capital accionario de YPF S.A. se dispuso por la ley 26.741 (2012).
+\end{note}
+
+\section{El proyecto sobre lucro cesante y el fallo «Elortondo»}
+
+La garantía consiste en la intervención de los tres poderes del Estado y el pago previo en compensación. Hubo un proyecto del Ejecutivo que incluía como ítem resarcible de la expropiación el \textbf{lucro cesante}, con algún tipo de límite. El lucro cesante son las ventajas económicas de las que el propietario se vio privado de acceder con motivo de la expropiación; incluirlo es una forma de incrementar el valor de la expropiación para desalentarla. Sin embargo, al día de hoy rige todavía el concepto de que solo se indemniza el \textbf{daño emergente}, no el lucro.
+
+Se recordó el fallo del propietario que no quería ceder su casa para abrir la Avenida de Mayo, identificado como «Municipalidad con el Elortondo». El docente anticipó que enviará ejemplos y que se repasará y sentarán las bases del instituto expropiatorio en la clase siguiente.
+% TODO: contenido incompleto o ambiguo en las notas originales (el desarrollo del fallo «Elortondo» queda pendiente)
+
+\begin{note}
+\textbf{Caso «Municipalidad de la Capital c/ Elortondo» (referencia complementaria del apunte).} Fallo clásico (1888) vinculado con la expropiación de un inmueble para la apertura de la Avenida de Mayo.
+\end{note}
+
+El concepto general es el resguardo del derecho de propiedad, que solo puede ser quitado al particular con indemnización previa.
+
+\begin{important}
+La expropiación exige tres elementos: declaración de utilidad pública por ley del Congreso, ejecución por el Ejecutivo e intervención judicial si hay conflicto de precio, y pago previo del valor objetivo del bien más el daño emergente, sin lucro cesante.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\textit{Continúa en la página siguiente}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\cornellrow{Expropiación y los tres poderes}{El Legislativo declara la utilidad pública por ley; el Ejecutivo la ejecuta (avenimiento, afectación); el Judicial resuelve el conflicto de precio con el Tribunal de Tasaciones.}
+
+\cornellrow{Indemnización expropiatoria}{Pago previo del valor objetivo (precio de mercado) y daño emergente; no se indemniza el lucro cesante ni valores sentimentales, aunque hubo un proyecto del Ejecutivo para incluirlo.}
+
+\cornellrow{¿Qué puede expropiarse?}{Inmuebles, muebles, derechos (como el derecho de autor) y acciones de empresas, como el 51\% de YPF.}
+
+\midrule
+\multicolumn{2}{p{0.92\textwidth}}{\textbf{Resumen:} la expropiación garantiza que nadie pierda su propiedad sin utilidad pública declarada por ley, intervención de los tres poderes y pago previo del valor objetivo más el daño emergente, sin lucro cesante.} \\
+\end{longtable}
+
+%==================================================================
+% SÍNTESIS GENERAL
+%==================================================================
+\chapter*{Síntesis general}
+\addcontentsline{toc}{chapter}{Síntesis general}
+\markboth{Síntesis general}{Síntesis general}
+
+Los contenidos estudiados articulan una misma preocupación: cómo se protege el derecho de propiedad frente al poder estatal y frente a los grandes actores del mercado.
+
+Primero, la doctrina de la emergencia permite restringir derechos patrimoniales solo si hay una emergencia real declarada por el Congreso, un plazo cierto, una finalidad pública, proporcionalidad y respeto de la sustancia del derecho, como ilustran «Peralta» y «Galli».
+
+Segundo, la legitimación activa se amplió con la reforma de 1994 y con «Halabi»: los derechos de incidencia colectiva pueden recaer sobre bienes colectivos (ambiente) o sobre intereses individuales homogéneos, donde la acción de clase, promovida por asociaciones registradas, concentra la prueba de la responsabilidad y deja la cuantificación del daño para cada afectado, reduciendo costos y disciplinando abusos.
+
+Tercero, la expropiación garantiza que nadie pierda su propiedad sin utilidad pública declarada por ley, intervención de los tres poderes y pago previo del valor objetivo más el daño emergente, sin lucro cesante.
+
+\end{document}
