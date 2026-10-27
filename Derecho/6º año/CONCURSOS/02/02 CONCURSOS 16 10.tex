@@ -1,0 +1,849 @@
+%==============================================================
+% DOCUMENTCLASS
+%==============================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================
+% METADATOS
+%==============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Concursos y Quiebras}
+\newcommand{\titulo}{Presupuesto subjetivo, sobreendeudamiento y crédito responsable}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================
+% PAQUETES
+%==============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================
+% CONFIGURACIÓN
+%==============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================
+% COMANDOS
+%==============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%==============================================================
+% ENTORNOS / CAJAS
+%==============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Caja complementaria para transcripciones literales de normas
+\newtcolorbox{norma}[1]{
+    enhanced,
+    breakable,
+    title={#1},
+    fonttitle=\bfseries,
+    colback=yellow!4,
+    colframe=yellow!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+%==============================================================
+% CONFIGURACIÓN FINAL
+%==============================================================
+\renewcommand{\arraystretch}{1.25}
+
+%==============================================================
+% DOCUMENTO
+%==============================================================
+\begin{document}
+
+%--------------------------------------------------------------
+% PORTADA
+%--------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es comprender para poder ayudar.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%--------------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------------
+\tableofcontents
+
+%--------------------------------------------------------------
+% CONTENIDO
+%--------------------------------------------------------------
+
+%==============================================================
+\chapter[Introducción a la materia]{Introducción a la materia}
+%==============================================================
+
+\section{El derecho en la vida cotidiana}
+
+El derecho atraviesa la vida de todas las personas, aun de quienes no ejercen la abogacía. Se recuerda una frase de Nino según la cual el derecho \textbf{es como el aire}: está en todos lados. Cotidianamente se celebran contratos y se actúa como consumidor, de modo que el conocimiento jurídico constituye una oportunidad laboral y, sobre todo, una herramienta para ayudar a otros.
+
+\section{Enfoque práctico}
+
+La ley debe ser leída por cada estudiante; el desarrollo de la materia no consiste en recitar su texto, sino en observar lo que ocurre en la realidad y en la práctica, es decir, en los expedientes. Ese es el objetivo desde el cual se aborda el contenido, de modo que luego pueda volcarse lo que sucede en la práctica en los trabajos propios.
+
+\section{Relación con las distintas orientaciones}
+
+Aunque se trata de una materia obligatoria, mantiene relación con la mayoría de las orientaciones y atraviesa a todas ellas:
+
+\begin{itemize}
+    \item \textbf{Laboral:} comprende todo lo relativo a los trabajadores en una empresa en crisis.
+    \item \textbf{Penal:} existen temas vinculados con la parte penal. Un ejemplo es la \textbf{calificación de conducta}, prevista en la ley de concursos anterior (Ley 19.551), que \textbf{no es lo mismo} que la quiebra fraudulenta, cuestión propia del derecho penal.
+\end{itemize}
+
+\section{Presupuestos del concurso y alerta temprana}
+
+El tema de los presupuestos es fundamental en la materia. El \textbf{presupuesto objetivo} es la cesación de pagos, prevista en el artículo 1 de la Ley 24.522 (norma de contexto, estudiada previamente).
+
+\begin{norma}{Art. 1 · Ley 24.522 — Cesación de pagos (presupuesto objetivo)}
+\textbf{ARTICULO 1°.- Cesación de pagos.} El estado de cesación de pagos, cualquiera sea su causa y la naturaleza de las obligaciones a las que afecto, es presupuesto para la apertura de los concursos regulados en esta ley, sin perjuicio de lo dispuesto por los artículos 66 y 69.
+
+\textbf{Universalidad.} El concurso produce sus efectos sobre la totalidad del patrimonio del deudor, salvo las exclusiones legalmente establecidas respecto de bienes determinados.
+% TODO: la expresión «a las que afecto» se reproduce tal como figura en las notas originales
+\end{norma}
+
+En doctrina se trabaja actualmente la \textbf{alerta temprana}: se procura evitar la cesación de pagos y que el deudor pueda presentarse sin estar efectivamente en ese estado. Existen numerosos proyectos y trabajos sobre el tema.
+
+\section{Persona humana sobreendeudada}
+
+Una línea de trabajo central es la de la \textbf{persona humana sobreendeudada}. Se utiliza la expresión «persona humana» y no «consumidor», porque el consumidor puede ser una persona jurídica. Este tema se vincula también con la situación de las empresas.
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Por qué se dice que el derecho «es como el aire»?} &
+Porque el derecho atraviesa a todas las personas: se celebran contratos y se es consumidor todos los días, aunque no se ejerza la abogacía. Conocerlo es una oportunidad laboral y una herramienta para ayudar a otros. \\
+\addlinespace
+
+\textbf{¿Cuál es el enfoque de la materia?} &
+Práctico: la ley se lee por cuenta propia y se trabaja lo que sucede en la realidad y en los expedientes. \\
+\addlinespace
+
+\textbf{¿Qué relación tiene la materia con las orientaciones?} &
+Atraviesa a la mayoría de ellas. En Laboral, por los trabajadores en una empresa en crisis; en Penal, por temas como la calificación de conducta (prevista en la Ley 19.551), distinta de la quiebra fraudulenta. \\
+\addlinespace
+
+\textbf{¿Cuál es el presupuesto objetivo y qué es la alerta temprana?} &
+El presupuesto objetivo es la cesación de pagos (art. 1, Ley 24.522). La alerta temprana busca evitar la cesación de pagos para que el deudor pueda presentarse sin estar efectivamente en ella. \\
+\addlinespace
+
+\textbf{¿Por qué se habla de «persona humana» y no de «consumidor»?} &
+Porque el consumidor puede ser una persona jurídica. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Resumen:} El derecho atraviesa la vida cotidiana y la materia se aborda con enfoque práctico, a partir de los expedientes. Se vincula con diversas orientaciones (Laboral, Penal). El presupuesto objetivo es la cesación de pagos y se discute la alerta temprana; el eje de trabajo es la persona humana sobreendeudada.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Presupuesto subjetivo]{Presupuesto subjetivo: ¿quiénes pueden concursarse?}
+%==============================================================
+
+\section{Concepto de presupuesto subjetivo}
+
+El presupuesto subjetivo se encuentra en el \textbf{artículo 2} de la Ley 24.522 y hace referencia a \textbf{quién es el sujeto concursable}, es decir, a quién se le puede pedir el concurso y quién puede estar en un concurso preventivo o en una quiebra.
+
+\begin{definition}{Presupuesto subjetivo}
+Determinación de quién es el \textbf{sujeto concursable} (legitimado pasivo): quién puede ser declarado en concurso preventivo o en quiebra.
+\end{definition}
+
+Debe distinguirse del \textbf{legitimado activo}, que es quien puede pedir el concurso y que se regula en el artículo 5.
+
+\begin{important}
+El presupuesto subjetivo implica que \textbf{casi todos somos sujetos concursables}: son muy pocas las excepciones de quienes no pueden estar en un concurso. Cualquier persona puede estar en un concurso preventivo o tener una quiebra.
+\end{important}
+
+\begin{norma}{Art. 2 · Ley 24.522 — Sujetos comprendidos}
+\textbf{ARTICULO 2°.- Sujetos comprendidos.} Pueden ser declaradas en concurso las personas de existencia visible, las de existencia ideal de carácter privado y aquellas sociedades en las que el Estado Nacional, Provincial o municipal sea parte, cualquiera sea el porcentaje de su participación.
+
+Se consideran comprendidos:
+
+1) El patrimonio del fallecido, mientras se mantenga separado del patrimonio de sucesores.
+
+2) Los deudores domiciliados en el extranjero respecto de bienes existentes en el país.
+
+No son susceptibles de ser declaradas en concurso, las personas reguladas por Leyes Nros. 20.091, 20.321 y 24.241, así como las excluidas por leyes especiales
+\end{norma}
+
+\begin{norma}{Art. 5 · Ley 24.522 — Sujetos (legitimación para pedir el concurso preventivo)}
+\textbf{ARTICULO 5°.- Sujetos.} Pueden solicitar la formación de su concurso preventivo las personas comprendidas en el Artículo 2, incluidas las de existencia ideal en liquidación.
+\end{norma}
+
+\begin{note}
+La norma conserva la terminología anterior («existencia visible» / «existencia ideal»); en la exposición se emplea la terminología actual del Código Civil y Comercial («persona humana» / «persona jurídica»).
+\end{note}
+
+\section{Sujetos comprendidos}
+
+Todos somos sujetos concursables, desde una \textbf{persona humana}, sea comerciante o no. Esto se modificó respecto de la ley anterior (Ley 19.551), que solamente habilitaba a quienes eran comerciantes. Las \textbf{personas jurídicas} también pueden concursarse: no solamente las regulares, es decir, las registradas, sino también las \textbf{sociedades de la Sección IV}. Asimismo, pueden concursarse las \textbf{sociedades en las que el Estado participe}, ya sea nacional, provincial o municipal.
+
+\begin{table}[H]
+\centering
+\caption{Régimen anterior y régimen vigente: ¿quiénes pueden concursarse?}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Ley 19.551 (anterior)} & \textbf{Ley 24.522 (vigente)} \\
+\midrule
+\textbf{Personas humanas} & Solamente los comerciantes. & Todas, sean o no comerciantes. \\
+\textbf{Personas jurídicas} & No expuesto en la clase. & Regulares (registradas) y sociedades de la Sección IV (no regulares). \\
+\textbf{Sociedades con participación estatal} & No expuesto en la clase. & Nacional, provincial o municipal. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Supuestos especiales}
+
+La ley prevé dos supuestos especiales, que \textbf{no son excepciones}:
+
+\begin{enumerate}
+    \item \textbf{Patrimonio del fallecido:} si una persona falleció y tenía deudas, los herederos pueden pedir el concurso preventivo sobre el patrimonio de esa persona fallecida.
+    \item \textbf{Bienes situados en el país de sujetos del extranjero:} se trata de sujetos que no tienen domicilio en el país pero que poseen bienes que se administran en él; también sobre esos bienes se puede concursar.
+\end{enumerate}
+
+\begin{norma}{Art. 8 · Ley 24.522 — Personas fallecidas}
+\textbf{ARTICULO 8°.- Personas fallecidas.} Mientras se mantenga la separación patrimonial, cualquiera de los herederos puede solicitar el concurso preventivo en relación al patrimonio del fallecido. La petición debe ser ratificada por los demás herederos, dentro de los TREINTA (30) días. Omitida la ratificación, se aplica el último párrafo del Artículo 6.
+\end{norma}
+
+\section{Sujetos excluidos}
+
+Existen tres supuestos de sujetos que no pueden concursarse:
+
+\begin{enumerate}
+    \item Las \textbf{entidades bancarias o financieras}.
+    \item Las \textbf{compañías de seguro}.
+    \item Las \textbf{AFJP}, que eran compañías de seguro de jubilación privada. Su régimen está derogado, aunque todavía no fueron eliminadas del texto de la ley.
+\end{enumerate}
+
+\subsection{Fundamento de la exclusión}
+
+La exclusión se explica por la \textbf{confianza}. Si se permitiera concursar a un banco, nadie depositaría su dinero en él. La Ley de Entidades Financieras (Ley 21.526) establece expresamente que estas entidades no son sujetos concursables, y se trata de una \textbf{norma de orden público} que apunta a la confianza que se tiene en esas entidades. Si esa confianza se pierde porque se habilita su concursamiento, el sistema financiero no resistiría, ya que nadie dejaría sus ahorros en las entidades.
+
+\begin{table}[H]
+\centering
+\caption{Sujetos concursables, supuestos especiales y sujetos excluidos}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Categoría} & \textbf{Quiénes} & \textbf{Fundamento / observación} \\
+\midrule
+\textbf{Sujetos concursables} & Personas humanas (comerciantes o no); personas jurídicas regulares; sociedades de la Sección IV; sociedades con participación estatal. & Son «casi todos»: las excepciones son muy pocas. \\
+\textbf{Supuestos especiales (no son excepciones)} & Patrimonio del fallecido; bienes en el país de sujetos sin domicilio en el país. & Los herederos pueden pedir el concurso sobre el patrimonio del causante; los bienes administrados en el país pueden concursarse. \\
+\textbf{Sujetos excluidos} & Entidades bancarias o financieras (Ley 21.526); compañías de seguro; AFJP (régimen derogado, aún nombrado en la ley). & Norma de orden público que protege la confianza en el sistema financiero. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{norma}{Otras normas mencionadas (sin cita de artículo)}
+\begin{itemize}
+    \item \textbf{Ley 21.526 (Ley de Entidades Financieras):} dispone que las entidades financieras no son sujetos concursables; se la considera norma de orden público.
+    \item \textbf{Ley 19.551:} ley de concursos anterior, que habilitaba solamente a los comerciantes y que preveía la calificación de conducta.
+    \item \textbf{Sección IV de la Ley General de Sociedades:} sociedades no constituidas regularmente, que pueden ser concursadas.
+\end{itemize}
+\end{norma}
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el presupuesto subjetivo y dónde se regula?} &
+Es la pregunta por quién es el sujeto concursable, es decir, quién puede estar en un concurso preventivo o en una quiebra. Se encuentra en el art. 2 de la Ley 24.522. Se distingue del legitimado activo (quien pide el concurso), previsto en el art. 5. \\
+\addlinespace
+
+\textbf{¿Quiénes pueden ser concursados?} &
+Casi todos: personas humanas (sean o no comerciantes), personas jurídicas regulares o de la Sección IV y sociedades con participación estatal nacional, provincial o municipal. La Ley 19.551 solo habilitaba a los comerciantes. \\
+\addlinespace
+
+\textbf{¿Qué son los supuestos especiales?} &
+El patrimonio del fallecido (los herederos pueden pedir el concurso) y los bienes ubicados en el país de sujetos sin domicilio en él. No son excepciones. \\
+\addlinespace
+
+\textbf{¿Quiénes están excluidos y por qué?} &
+Entidades bancarias o financieras (Ley 21.526), compañías de seguro y las AFJP (régimen derogado pero aún nombrado en la ley). Fundamento: norma de orden público basada en la confianza en el sistema financiero. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Resumen:} El presupuesto subjetivo (art. 2, Ley 24.522) responde a la pregunta de quién puede ser concursado. La regla es la concursabilidad amplia; a ella se suman dos supuestos especiales (patrimonio del fallecido y bienes en el país). Las exclusiones (bancos y entidades financieras, aseguradoras y AFJP) se fundan en la confianza pública en el sistema.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Casos: Banco Patricios y Wenance]{Casos de análisis: Banco Patricios y Wenance}
+%==============================================================
+
+\section{El caso del Banco Patricios}
+
+Frente a la pregunta sobre qué ocurre si un banco tiene problemas, se relató la experiencia del Banco Patricios, entidad en la que la docente trabajó entre 1994 y 1998, primero en el área de Legales y luego en Asesoría Letrada, en la Casa Central.
+
+Los hechos relatados fueron los siguientes:
+
+\begin{itemize}
+    \item El banco había sido comprado unos años antes y atravesaba una situación complicada.
+    \item Se negoció con el Banco Mayo para ver cómo funcionar en conjunto; el Banco Mayo también se encontraba en una situación delicada.
+    \item Uno de los directivos acudió al gobierno para obtener algún apoyo, pero el resultado fue que \textbf{no había arreglo ni posibilidad}.
+    \item Al día siguiente, la entidad fue sacada de la cámara compensadora: ya no podía funcionar ni pagar cheques. \textbf{El banco cerró}.
+    \item Los sueldos del personal se pagaban en cuentas del propio banco; algunos lograron retirar su dinero, pero la mayoría no.
+\end{itemize}
+
+\begin{important}
+Las entidades bancarias \textbf{no se pueden concursar, pero sí entran en una etapa de liquidación}: terminan liquidándose y lo que se hace es liquidar el dinero.
+\end{important}
+
+En ese momento existía un seguro de depósitos muy pequeño, que ni siquiera cubría el monto que cada persona podía tener depositado (según se indicó, la cobertura se amplió con posterioridad). Tras la caída del Banco Patricios, \textbf{cayó} --- no de manera tan inmediata --- \textbf{el Banco Mayo}. A partir de entonces todas las entidades bancarias sufrieron \textbf{desconfianza}, porque la gente empezó a pensar que «el colchón funcionaba bien». Aunque las entidades mantienen fondos para resguardar los depósitos, el caso ilustra por qué la exclusión de los bancos se funda en la confianza: se sostuvo que ninguna entidad bancaria resistiría un concurso. Se hizo referencia también al «corralito» como antecedente de desesperación de los depositantes.
+
+\section{El caso Wenance}
+
+\textbf{Wenance} es una fintech que hoy está concursada. Los hechos expuestos fueron:
+
+\begin{enumerate}
+    \item Wenance inició su concurso preventivo en la provincia de Buenos Aires, en San Isidro.
+    \item La jueza \textbf{rechazó} la presentación, por considerar que correspondía a las excepciones: se trataba de una entidad financiera y, por lo tanto, no era sujeto concursable.
+    \item La resolución fue apelada por el estudio que lleva el caso. La \textbf{Cámara} resolvió que \textbf{sí es sujeto concursable}: si bien la excepción rige respecto de las entidades bancarias y financieras previstas en la Ley 21.526, las fintech \textbf{no están incluidas en la Ley de Entidades Financieras} (cuando esa ley se sancionó, no existían).
+    \item La Cámara devolvió las actuaciones a primera instancia con la orden de abrir el concurso.
+    \item La jueza sostuvo entonces que la presentación \textbf{no cumplía con todos los requisitos del artículo 11}. Nuevamente se apeló y finalmente se abrió el concurso preventivo.
+\end{enumerate}
+
+\begin{important}
+Según se expuso, Wenance es el primer caso en el país en que se permitió transitar un concurso preventivo a un sujeto que, en la opinión de la docente, no sería concursable.
+\end{important}
+
+\begin{norma}{Art. 11 · Ley 24.522 — Requisitos del pedido (texto según Ley 26.684)}
+\textbf{ARTICULO 11.- Requisitos del pedido.} Son requisitos formales de la petición de concurso preventivo:
+
+1) Para los deudores matriculados y las personas de existencia ideal regularmente constituidas, acreditar la inscripción en los registros respectivos. Las últimas acompañarán, además, el instrumento constitutivo y sus modificaciones y constancia de las inscripciones pertinentes. Para las demás personas de existencia ideal, acompañar, en su caso, los instrumentos constitutivos y sus modificaciones, aun cuando no estuvieron inscriptos.
+
+2) Explicar las causas concretas de su situación patrimonial con expresión de la época en que se produjo la cesación de pagos y de los hechos por los cuales ésta se hubiera manifestado.
+
+3) Acompañar un estado detallado y valorado del activo y pasivo actualizado a la fecha de presentación, con indicación precisa de su composición, las normas seguidas para su valuación, la ubicación, estado y gravámenes de los bienes y demás datos necesarios para conocer debidamente el patrimonio. Este estado de situación patrimonial debe ser acompañado de dictamen suscripto por contador público nacional.
+
+4) Acompañar copia de los balances u otros estados contables exigidos al deudor por las disposiciones legales que rijan su actividad, o bien los previstos en sus estatutos o realizados voluntariamente por el concursado, correspondientes a los TRES (3) últimos ejercicios. En su caso, se deben agregar las memorias y los informes del órgano fiscalizador.
+
+5) Acompañar nómina de acreedores, con indicación de sus domicilios, montos de los créditos, causas, vencimientos, codeudores, fiadores o terceros obligados o responsables y privilegios. Asimismo, debe acompañar un legajo por cada acreedor, en el cual conste copia de la documenta sustentatoria de la deuda denunciada, con dictamen de contador público sobre la correspondencia existente entre la denuncia del deudor y sus registros contables o documentación existente y la inexistencia de otros acreedores en registros o documentación existente. Debe agregar el detalle de los procesos judiciales o administrativos de carácter patrimonial en trámite o con condena no cumplida, precisando su radicación.
+
+6) Enumerar precisamente los libros de comercio y los de otra naturaleza que lleve el deudor, con expresión del último folio utilizado, en cada caso, y ponerlos a disposición del juez, junto con la documentación respectiva.
+
+7) Denunciar la existencia de un concurso anterior y justificar, en su caso, que no se encuentra dentro del período de inhibición que establece el artículo 59, o el desistimiento del concurso si lo hubiere habido.
+
+8) Acompañar nómina de empleados, con detalle de domicilio, categoría, antigüedad y última remuneración recibida. Deberá acompañarse también declaración sobre la existencia de deuda laboral y de deuda con los organismos de la seguridad social certificada por contador público.
+
+El escrito y la documentación agregada deben acompañarse con DOS (2) copias firmadas. Cuando se invoque causal debida y válidamente fundada, el juez debe conceder un plazo improrrogable de DIEZ (10) días, a partir de la fecha de la presentación, para que el interesado dé cumplimiento total a las disposiciones del presente artículo.
+% TODO: el texto del art. 11 se reproduce literalmente (incluida la expresión «documenta sustentatoria») según las notas originales
+\end{norma}
+
+\begin{norma}{Art. 13 · Ley 24.522 — Término y rechazo}
+\textbf{ARTICULO 13.- Término.} Presentado el pedido o, en su caso, vencido el plazo que acuerde el juez, éste se debe pronunciar dentro del término de CINCO (5) días.
+
+\textbf{Rechazo.} Debe rechazar la petición, cuando el deudor no sea sujeto susceptible de concurso preventivo, si no se ha dado cumplimiento al artículo 11, si se encuentra dentro del período de inhibición que establece el artículo 59, o cuando la causa no sea de su competencia. La resolución es apelable.
+\end{norma}
+
+\begin{note}
+Los artículos 11 y 13 fundamentan, respectivamente, los rechazos por incumplimiento de los requisitos de la presentación y por no ser el deudor sujeto susceptible de concurso preventivo, mencionados en el caso. Los dictámenes de contador de los incisos 3 y 5 del art. 11 son los que el art. 289 exime en los pequeños concursos.
+\end{note}
+
+\subsection{Los límites de la interpretación judicial}
+
+El caso invita a pensar hasta dónde se puede permitir que el juez interprete. La interpretación de la norma es su función; sin embargo, \textbf{una cosa es interpretar y otra es salirse de lo que dice la norma}. Se sostuvo que, en primera instancia, la jueza efectuó una interpretación acorde con la realidad: se trata de una entidad financiera, esté o no enumerada expresamente en la ley.
+
+Se subrayó además que las leyes no se modifican al ritmo de la realidad y que, cuando cambia una situación (como ocurre con las AFJP), deben modificarse las normas para que no queden desactualizadas: \textbf{el derecho siempre va por detrás de la realidad}. Por ello, debe atenderse a cuál es efectivamente la actividad desarrollada.
+
+\subsection{La perspectiva de los acreedores}
+
+La docente actúa en estos procesos como abogada de acreedores. En el caso, los acreedores son inversores: personas que, por ejemplo, cobraron una indemnización y la invierten para obtener rendimiento y evitar que la inflación desvalorice el dinero. Durante la discusión se señaló que, con la inflación sostenida durante años, el dinero se evapora.
+
+Se mencionó también, como observación de una participante, que Mercado Libre tendrá estatus de banco, aunque los empleados no pasarían a ser bancarios sino que tendrían otro estatus.
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué ocurre cuando cae un banco?} &
+No se concursa: se liquida. En el Banco Patricios, tras no lograr apoyo oficial ni una solución conjunta con el Banco Mayo, la entidad fue sacada de la cámara compensadora y cerró. El seguro de depósitos era escaso y la desconfianza se extendió a todo el sistema, como muestra la posterior caída del Banco Mayo. \\
+\addlinespace
+
+\textbf{¿Qué enseña el caso Patricios sobre la exclusión de los bancos?} &
+Que la exclusión se funda en la confianza: ante su pérdida, los depositantes retiran sus ahorros y ninguna entidad bancaria resistiría. \\
+\addlinespace
+
+\textbf{¿Por qué es relevante el caso Wenance?} &
+Una fintech pidió concurso preventivo en San Isidro; la jueza lo rechazó por asimilarla a entidad financiera, pero la Cámara revocó: no figura en la Ley 21.526 y es sujeto concursable. Luego la jueza cuestionó el cumplimiento del art. 11, pero finalmente se abrió el concurso. Es el primer caso en el país en que se admitió a un sujeto que la docente considera no concursable. \\
+\addlinespace
+
+\textbf{¿Cuál es el límite de la interpretación judicial?} &
+El juez interpreta la norma, pero una cosa es interpretar y otra es salirse de lo que dice. La ley va por detrás de la realidad y debe actualizarse cuando cambian las situaciones. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Resumen:} Los bancos no se concursan pero sí se liquidan; la caída del Banco Patricios y luego del Banco Mayo ilustra que la confianza es el fundamento de la exclusión. En el caso Wenance, la Cámara consideró que una fintech no integra la Ley 21.526 y es sujeto concursable, lo que plantea el límite entre interpretar la norma y apartarse de ella.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Persona humana sobreendeudada]{La persona humana sobreendeudada}
+%==============================================================
+
+\section{Pequeños concursos}
+
+Todas las personas humanas son sujetos concursables, y la ley prevé un procedimiento prácticamente igual para una persona humana que para una gran empresa. Los artículos 288 y 289 regulan los \textbf{pequeños concursos}, en los que entraría la persona humana. Son solo dos artículos dentro del régimen de concursos, y la modificación del procedimiento es mínima: se exime, por ejemplo, de dos informes específicos de contador. El procedimiento es el mismo, aunque los sujetos no son los mismos.
+
+\begin{norma}{Art. 288 · Ley 24.522 — Pequeños concursos y quiebras: concepto (texto según Ley 27.170)}
+\textbf{Capítulo IV — De los pequeños concursos y quiebras}
+
+\textbf{Concepto:} Artículo 288: A los efectos de esta ley se consideran pequeños concursos y quiebras aquellos en los cuales se presente, en forma indistinta cualquiera de estas circunstancias:
+
+1. Que el pasivo denunciado no alcance el equivalente a trescientos (300) salarios mínimos vitales y móviles.
+
+2. Que el proceso no presente más de veinte 20) acreedores quirografarios.
+
+3. Que el deudor no posea más de veinte (20) trabajadores en relación de dependencia sin necesidad de declaración judicial.
+% TODO: «veinte 20)» se reproduce con la errata original del texto oficial (Ley 27.170)
+\end{norma}
+
+\begin{norma}{Art. 289 · Ley 24.522 — Pequeños concursos y quiebras: régimen aplicable}
+\textbf{ARTICULO 289.- Régimen aplicable.} En los presentes procesos no serán necesarios los dictámenes previstos en el artículo 11, incisos 3 y 5, la constitución de los comités de acreedores y no regirá el régimen de supuestos especiales previstos en el artículo 48 de la presente ley. El controlador del cumplimiento del acuerdo estará a cargo del síndico en caso de no haberse constituido comité de acreedores.
+\end{norma}
+
+Se distingue entre dos situaciones. Por un lado, la persona humana que tiene un emprendimiento, donde interviene el «riesgo empresarial». Por otro, la persona humana sin ningún tipo de organización: son \textbf{todas las personas}, que pueden, por ejemplo, tomar un crédito para irse de vacaciones y, al regresar, encontrarse con que la empresa cerró, no pagó la indemnización y no consiguen trabajo, de modo que el banco pide la quiebra. Hoy hay muchas personas sobreendeudadas en estado de insolvencia porque necesitan endeudarse incluso para comer o para afrontar una enfermedad.
+
+\begin{table}[H]
+\centering
+\caption{Persona humana y gran empresa frente al mismo procedimiento}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Persona humana (sin organización)} & \textbf{Gran empresa / emprendimiento} \\
+\midrule
+\textbf{Procedimiento} & Entra en «pequeños concursos»; el trámite es casi el mismo (se la exime de dos informes de contador). & Procedimiento general de la ley. \\
+\textbf{Naturaleza del sujeto} & Somos todos nosotros: cualquiera puede endeudarse, por ejemplo, para viajar o para comer. & Tiene una organización y asume el «riesgo empresarial». \\
+\textbf{Preocupación expuesta} & No resulta razonable aplicar casi el mismo procedimiento que a una empresa. & No expuesta como problema en la clase. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Buena fe y mala fe}
+
+Existen deudores de \textbf{buena fe} y de \textbf{mala fe}: «hay de todo». Se reconoce expresamente que hay deudores de mala fe, tema que se desarrollará más adelante, y se aclara que la docente trabaja con frecuencia del lado del acreedor.
+
+El caso de la persona humana genera, sin embargo, una preocupación particular: se plantea si no podría establecerse un procedimiento diferente para ella. La persona humana de buena fe que tiene deudas y no puede pagarlas porque se quedó sin trabajo o porque tiene un familiar enfermo sufre además un fuerte impacto psicológico. Se cuestiona si debe seguir previéndose un procedimiento igual para todos.
+
+\section{Edictos y acceso al concurso}
+
+Una de las exigencias de la ley cuando un deudor pide su concurso es la \textbf{publicación de edictos} sobre el proceso concursal, lo cual resulta muy costoso. Un deudor sin recursos puede no poder afrontarlos.
+
+Se refirió un fallo, que se estima del año 2023 (el nombre de la causa no se identifica en las notas), en el que una persona pidió su concurso preventivo y el juez la consideró desistida del proceso porque no publicó los edictos, al no poder pagarlos. La Cámara intervino, con un voto de Alejandra Tévez que sostuvo que no correspondía tener por desistido el concurso, porque ese deudor no podía pagar los edictos. Se planteó que debe pensarse otra forma, dado que, de lo contrario, sería como \textbf{inhabilitar la posibilidad de que quien quiere reestructurar sus deudas lo haga}.
+
+\begin{important}
+La exigencia de publicar edictos puede impedir el acceso al concurso a quien carece de recursos. Corresponde pensar alternativas para no inhabilitar la posibilidad de reestructurar las deudas.
+\end{important}
+
+\section{Reformas y derecho comparado}
+
+La docente informó que presentó un proyecto de ley en el Senado, que fue recibido por el equipo de asesores de una senadora; no se sabe si tendrá tratamiento. Se indicó además que muchos autores trabajan sobre el tema y que en distintas comisiones de Diputados existe un dictamen de mayoría y dos de minoría, cuyo análisis todavía no se había realizado. La materia se vincula con cuestiones sociológicas y con el derecho de familia.
+
+En el \textbf{derecho comparado}, España tomó en 2022 las directrices de la Unión Europea y sancionó una modificación de su ley que habilita la \textbf{EPI}.
+
+\begin{definition}{EPI (exoneración del pasivo insatisfecho)}
+Mecanismo incorporado en España en 2022, siguiendo directrices de la Unión Europea, que responde a la idea de que, si no hay posibilidad de pagar, debe hacerse un corte a la deuda.
+\end{definition}
+
+Se reconoce que la idea genera resistencia, pues «las deudas son para ser pagadas», pero se plantea si, cuando no hay chance ni posibilidades de pago, corresponde mantener atada de por vida a una persona que no puede pagar: en algún momento debe hacerse un corte.
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué son los pequeños concursos?} &
+Arts. 288 y 289: pasivo inferior a 300 salarios mínimos, hasta 20 acreedores quirografarios o hasta 20 trabajadores (cualquiera de las circunstancias). Se eximen los dictámenes de contador del art. 11, incisos 3 y 5, y los comités de acreedores. El resto del procedimiento es casi igual al de una gran empresa. \\
+\addlinespace
+
+\textbf{¿Por qué preocupa la persona humana sobreendeudada?} &
+Porque cualquiera puede endeudarse (por vacaciones, por salud o para comer) y quedar sin empleo, y la ley la somete a un procedimiento casi igual al de una gran empresa. Se propone pensar un procedimiento diferenciado, distinguiendo siempre entre deudores de buena y de mala fe. \\
+\addlinespace
+
+\textbf{¿Qué problema generan los edictos?} &
+Su costo puede impedir el acceso al concurso. Un fallo de Cámara, estimado del año 2023, con voto de Alejandra Tévez, sostuvo que no corresponde dar por desistido al deudor que no puede pagarlos y que deben buscarse alternativas. \\
+\addlinespace
+
+\textbf{¿Qué es la EPI?} &
+La exoneración del pasivo insatisfecho, incorporada en España en 2022 siguiendo directrices de la Unión Europea. Responde a la idea de que, sin posibilidad de pago, debe existir un corte a la deuda. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Resumen:} La ley somete a la persona humana, con mínimas diferencias, al mismo procedimiento que a una gran empresa (pequeños concursos). Esto genera problemas como el costo de los edictos y motiva proyectos de reforma y la consideración del modelo español de la EPI, sin perder de vista la distinción entre deudores de buena y de mala fe.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Crédito responsable]{Debate: crédito responsable}
+%==============================================================
+
+\section{Responsabilidad de bancos y financieras}
+
+Se planteó el interrogante de si existe responsabilidad de las entidades bancarias, financieras y fintech en el otorgamiento de créditos. Las posiciones expuestas en el debate fueron:
+
+\begin{itemize}
+    \item \textbf{Hay responsabilidad.} Deberían realizarse estudios de análisis previos; resulta excesivamente libre el otorgamiento de créditos a personas que incluso podían obtenerlos por teléfono. Si la persona se va a endeudar de todos modos, se la endeuda peor y queda atada de por vida.
+    \item \textbf{Mal diseño del sistema.} Se señaló que un cliente de muchos años, a quien se ofrecían créditos todos los meses, ve cerradas todas las puertas cuando le ocurre algo circunstancial, mientras que se otorgan créditos a personas que usan nombres de familiares y no pagan.
+    \item \textbf{Perspectiva de consumo.} En demandas de consumidores por sobreendeudamiento e intereses se incluye como rubro la responsabilidad del banco, también en sentido jurídico: otorgar el crédito sin el análisis adecuado. Se indicó que la ley establece que quien otorga el crédito debe hacerlo de manera responsable.
+\end{itemize}
+
+\section{Tasas de interés y rol del Estado}
+
+Se señaló que, al comparar la tasa de interés con los aumentos de sueldo, resulta imposible regularizarse en cuanto uno se atrasa un poco. Una participante ejemplificó con una tasa de tarjeta del 88\,\% frente a un plazo fijo que paga el 20: allí aparecen la \textbf{tasa activa} y la \textbf{tasa pasiva}, con una diferencia que se consideró injustificable.
+
+También se planteó una \textbf{responsabilidad estatal}: el Estado debería regular esa diferencia, aspecto con el que coincidió la docente, cuya investigación se desarrolla desde hace quince años. Se mencionó, asimismo, que en \textbf{Chile} existe una reglamentación sobre el crédito responsable, tema que se discute bastante en doctrina.
+
+\subsection{Cambio de mirada de la docente}
+
+\begin{table}[H]
+\centering
+\caption{Cambio de mirada sobre la responsabilidad en el otorgamiento de créditos}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Momento} & \textbf{Postura} & \textbf{Razones expuestas} \\
+\midrule
+\textbf{Tesis de maestría (hace más de una década)} & Dudaba de que los bancos pudieran tener responsabilidad por otorgar un crédito. & Había trabajado en un banco; algunos autores ya mencionaban la responsabilidad, pero «hacía ruido». \\
+\textbf{Hoy} & Sí hay responsabilidad cuando el crédito no se otorga de forma responsable. & Pasaron muchas cosas: el crédito es, entre comillas, mucho más fácil y accesible, y eso provocó más sobreendeudamiento. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Registro único y crédito informal}
+
+Parte del proyecto presentado por la docente consiste en la creación de un \textbf{registro único de todos los préstamos} que se toman. El Banco Central tiene su registro, pero existe además mucho crédito informal. La propuesta es «blanquear» todo, incluso mediante una tecnología más resguardada como blockchain.
+
+El problema del sobreendeudamiento radica en que a una persona se le otorga un crédito y se le descuenta el 30\,\% de sus ingresos, luego otro, y otro más; al no haber una visión de conjunto, la persona termina \textbf{cobrando nada}, ni siquiera su salario. Un registro único permitiría establecer un límite al otorgamiento.
+
+Se reconoció, sin embargo, una dificultad: ello podría frenar el otorgamiento de créditos, y si una persona lo necesita para comer, no se pretende quitarle esa oportunidad. La docente indicó que sigue investigando, que no hay una sola solución y que, si es necesario sacar un crédito para comer, algo no está funcionando bien. Los prestamistas informales difícilmente quieran registrar sus operaciones; aun así, se postula la responsabilidad de quien no controló ni informó. Otro participante advirtió que, del otro lado, también hay oportunistas, y que existen grupos que estafan a los bancos.
+
+\section{Préstamos digitales y testimonios}
+
+Se reiteró que hay deudores de buena fe, a quienes se quiere ayudar, y de mala fe. Se mencionó un comentario difundido según el cual se obtiene un préstamo en una empresa como Mercado Pago, se solicita luego la baja y nadie cobra; se aclaró que ello no es así, pues quienes prestan tienen los datos y sí buscarán cobrar.
+
+Surge entonces la pregunta de \textbf{por qué se otorga un préstamo a quien se sabe que no tiene nada}. Las respuestas expuestas fueron:
+
+\begin{itemize}
+    \item Porque las entidades son irresponsables y saben que, tarde o temprano, algo cobran; el monto del préstamo puede ser pequeño.
+    \item Porque las tasas de interés son tan altas que quienes llegan a pagar cubren toda la pérdida: el riesgo está \textbf{actuariado}.
+\end{itemize}
+
+\begin{example}{Compra de una plancha con tarjeta de supermercado}
+Una participante compró una plancha en cuotas con la tarjeta de un supermercado; costó \$3.000. Sobrevino la pandemia y dejó de poder ejercer su oficio. En un año, la deuda era de \$16.000, y terminó pagando \$84.000, razón por la cual no tiene más tarjetas.
+\end{example}
+
+Otro participante preguntó si, de no tener ningún bien, conviene no pagar, dado que el día de mañana no le otorgarían un crédito para una casa; señaló que depende de la deuda. La docente observó que el monto es relativo según la persona y el fin, y que existen préstamos que se pagan día por día, lo que hace que la persona ni siquiera advierta lo que está pagando. Se indicó que la problemática no es exclusiva del país sino mundial, y que hay mucha legislación al respecto.
+
+\begin{table}[H]
+\centering
+\caption{Perspectivas expuestas en el debate sobre crédito y sobreendeudamiento}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Perspectiva} & \textbf{Argumento central} & \textbf{Observación o contraargumento} \\
+\midrule
+\textbf{Responsabilidad de las entidades} & Otorgar créditos sin análisis adecuado, incluso por teléfono, endeuda de por vida; el sistema está mal diseñado. & La ley indica que el crédito debe otorgarse de manera responsable. \\
+\textbf{Responsabilidad estatal} & Hay una diferencia enorme entre la tasa activa y la pasiva; el Estado debería regular. & Se critica la falta de capacitación de los asesores en la función pública. \\
+\textbf{Deudores de mala fe} & Existen oportunistas y grupos que estafan sistemáticamente a las entidades. & Se distingue siempre entre deudores de buena y de mala fe. \\
+\textbf{Registro único de préstamos} & Evitaría que los descuentos de múltiples créditos dejen al deudor sin ingresos. & Podría frenar el crédito a quien lo necesita para comer; el crédito informal difícilmente se registre. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Inteligencia artificial y comercio agéntico}
+
+Se planteó si la \textbf{inteligencia artificial} podría ayudar a advertir que no se otorgue más crédito a una persona porque ya está «al tope» de endeudamiento.
+
+\begin{definition}{Comercio agéntico}
+Modalidad en la que la inteligencia artificial, además de dar respuestas sobre algo particular, compara productos, determina dónde conviene comprar e incluso realiza la compra, avanzando en acciones por cuenta de la persona.
+\end{definition}
+
+Un participante precisó que en el comercio agéntico se automatiza la compra y la recepción, y la persona es reemplazada por un bot que no necesariamente realizará un análisis profundo. Se mencionó además a Mercado Libre y los modelos de inteligencia artificial que realizan simulaciones de créditos.
+
+Otro participante sostuvo que lo ocurrido en el otorgamiento de créditos no constituye un error de las entidades, sino que detrás hay millones de dólares en modelización y simulaciones, comparables a lo que ocurre con los seguros. Señaló que existe un nivel enorme de \textbf{trazabilidad}: empresas que tokenizan los pagos con un historial de más de un año, scoring crediticio, informes del Banco Central y de otras empresas financieras, y perfiles elaborados mediante inteligencia artificial con numerosos parámetros, incluso la voz, para prever si la persona pagará. Concluyó que, al tener todas las herramientas para prevenir el sobreendeudamiento, la responsabilidad es de las entidades.
+
+\begin{important}
+La inteligencia artificial plantea una pregunta abierta: ¿puede prevenir la insolvencia, advirtiendo cuándo una persona ya está al tope, o la agravaría al automatizar el crédito y el consumo? La docente dejó la pregunta para que cada estudiante llegue a su propia conclusión.
+\end{important}
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Hay responsabilidad de las entidades por otorgar créditos?} &
+Según las posiciones expuestas, sí cuando el crédito se otorga sin análisis adecuado; se indicó que la ley establece que quien otorga el crédito debe hacerlo de manera responsable. La docente cambió su postura inicial: hoy sostiene que hay responsabilidad cuando no se otorga de forma responsable, porque el crédito es más fácil y accesible y ello provocó más sobreendeudamiento. \\
+\addlinespace
+
+\textbf{¿Qué son la tasa activa y la tasa pasiva y qué rol cabe al Estado?} &
+Se señaló una enorme diferencia entre ambas (por ejemplo, 88\,\% en tarjeta frente al 20 de un plazo fijo, según una participante). Se sostuvo que el Estado debería regular esa diferencia. En Chile hay una reglamentación sobre crédito responsable. \\
+\addlinespace
+
+\textbf{¿Qué propone la docente respecto del registro de préstamos?} &
+Un registro único de todos los préstamos, incluso informales, que permita limitar el otorgamiento y evitar la acumulación de descuentos sobre el salario. Se reconoce que podría frenar el crédito a quien lo necesita para comer. \\
+\addlinespace
+
+\textbf{¿Por qué se presta a quien no puede pagar?} &
+Porque las entidades saben que, tarde o temprano, algo cobran y porque las tasas son tan altas que quienes pagan cubren toda la pérdida («está actuariado»). \\
+\addlinespace
+
+\textbf{¿Qué rol puede tener la inteligencia artificial?} &
+Puede advertir que una persona ya está al tope de endeudamiento, pero el comercio agéntico y el scoring plantean si prevendría o agravaría la insolvencia. Queda como pregunta abierta. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Resumen:} El debate llevó el tema al crédito responsable: responsabilidad de las entidades, diferencia entre tasa activa y pasiva y rol del Estado, propuesta de un registro único de préstamos, distinción entre deudores de buena y de mala fe y rol de la inteligencia artificial. Son cuestiones que quedan abiertas para la reflexión.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Repaso integrador]{Repaso integrador}
+%==============================================================
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Quién puede ser declarado en concurso?} &
+Casi todos: personas humanas (comerciantes o no), personas jurídicas regulares, sociedades de la Sección IV y sociedades con participación estatal (art. 2, Ley 24.522), más los supuestos especiales del patrimonio del fallecido y los bienes en el país. \\
+\addlinespace
+
+\textbf{¿Quiénes están excluidos y cómo se resuelve su crisis?} &
+Bancos y entidades financieras, aseguradoras y AFJP, por razones de confianza pública. En el caso de los bancos, la vía es la liquidación. \\
+\addlinespace
+
+\textbf{¿Qué enseñan los casos Patricios y Wenance?} &
+Que la ley siempre va por detrás de la realidad y que los jueces deben interpretar sin apartarse de la norma. \\
+\addlinespace
+
+\textbf{¿Qué problemas plantea la persona humana sobreendeudada?} &
+Sometimiento, con mínimas diferencias, al mismo procedimiento que una gran empresa; costo de los edictos; propuestas de reforma y modelo español de la EPI. \\
+\addlinespace
+
+\textbf{¿Qué temas quedan abiertos en el debate sobre crédito responsable?} &
+Tasas, registro único, deudores de buena y de mala fe e inteligencia artificial. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Síntesis final:} La clase desarrolló el presupuesto subjetivo, es decir, quiénes pueden ser declarados en concurso. La regla es amplia: personas humanas, jurídicas, sociedades irregulares y con participación estatal pueden concursarse, y a ellas se suman el patrimonio del fallecido y los bienes situados en el país. Las únicas exclusiones relevantes (bancos y entidades financieras, aseguradoras y AFJP) se fundan en la confianza pública, como mostró la caída del Banco Patricios, y se resuelven por la vía de la liquidación. Los casos reales (Patricios y Wenance) enseñaron que la ley siempre va por detrás de la realidad y que los jueces deben interpretar sin apartarse de la norma. El segundo eje fue la persona humana sobreendeudada: la ley la somete, con mínimas diferencias, al mismo procedimiento que a una gran empresa (pequeños concursos), lo que genera problemas como el costo de los edictos y motiva proyectos de reforma y el modelo español de la EPI. El debate final llevó el tema al crédito responsable: tasas, registro único, deudores de buena y de mala fe e inteligencia artificial, preguntas que quedan abiertas.} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

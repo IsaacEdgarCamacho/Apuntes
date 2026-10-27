@@ -1,0 +1,883 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\departamento}{Derecho Comercial}
+\newcommand{\materia}{Concursos y Quiebras}
+\newcommand{\titulo}{Apuntes de Concursos y Quiebras}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Fila del cuadro Cornell: pregunta (negrita) | respuesta
+\newcommand{\cornellrow}[2]{\textbf{#1} & #2 \\ \midrule}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\renewcommand{\arraystretch}{1.25}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \departamento}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Concursos y Quiebras'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% CONTENIDO
+% ------------------------------------------------------------
+
+% ============================================================
+\chapter[Encuadre de la materia]{Encuadre de la materia y método de estudio}
+% ============================================================
+
+La materia estudia la ley 24.522, una ley de procedimiento. Los apuntes de este capítulo recogen las orientaciones metodológicas sobre cómo abordar su estudio.
+
+\section{Cómo estudiar una ley de procedimiento}
+
+La ley de concursos y quiebras regula básicamente \textbf{dos procesos largos}: el \textbf{concurso} y la \textbf{quiebra}. Al estudiarlos se advierte que algunos aspectos son parecidos a lo ya visto en materias previas, otros son iguales y otros son totalmente diferentes.
+% TODO: contenido incompleto o ambiguo en las notas originales (la referencia a la materia previa fue inaudible)
+
+Se trata de procedimientos con \textbf{etapas}. Como recomendación de estudio, conviene elaborar un \textbf{mapa conceptual o gráfico} que muestre cómo se compone el expediente, paso por paso:
+\begin{itemize}
+    \item primero se realiza una presentación;
+    \item frente a esa presentación, el juez puede tomar dos alternativas: hacer lugar o rechazar;
+    \item si rechaza, se plantea qué ocurre en ese caso; si aprueba, se pasa al paso siguiente, y así sucesivamente.
+\end{itemize}
+
+Comprender la estructura del procedimiento ayuda a entender cómo se compone el expediente y qué viene después de qué.
+
+\section{Qué debe comprenderse}
+
+El trabajo de investigación que se desarrolla durante la cursada se presenta por escrito y se defiende oralmente. En esa defensa pueden formularse preguntas sobre cualquier aspecto del procedimiento (concurso o quiebra), no solo sobre el tema elegido. Por ejemplo, quien trabaje sobre créditos laborales dentro de un concurso preventivo debe poder responder sobre el procedimiento general.
+
+No se trata de saber todos los artículos, sino de comprender:
+\begin{itemize}
+    \item cuándo opera cada procedimiento;
+    \item cómo es el procedimiento y qué ocurre dentro de cada etapa;
+    \item qué es necesario probar y qué es necesario entender;
+    \item cómo se actúa desde el lado del concursado y desde el lado de los acreedores.
+\end{itemize}
+
+\section{Lo que no es necesario memorizar}
+
+\begin{important}
+\textbf{Números de artículo.} No es necesario memorizarlos, porque son muchos. Se indican para que el estudiante sepa dónde ir a leer cada tema (por ejemplo, dónde está la parte de efectos y dónde la del período informativo).
+
+\textbf{Plazos.} Tampoco es necesario memorizarlos: salvo algunos específicos que se señalarán, la mayoría de los plazos legales no se cumplen en la práctica. Las resoluciones judiciales ya fijan las fechas importantes dentro del expediente (por ejemplo, aunque un artículo establezca 15 días, el juez indica la fecha límite). Sí deben conocerse los plazos \textbf{perentorios}, que serán señalados.
+\end{important}
+
+Lo central es entender cómo es el procedimiento y qué viene después de qué, para ordenar el expediente. Los plazos y los números de artículo no son lo central.
+
+\section{Material de estudio}
+
+Se recomienda estudiar con una \textbf{ley comentada} o con un \textbf{manual de concursos}; no hay un autor específico. No se recomiendan los resúmenes, porque pueden contener imprecisiones y ser muy breves. La jurisprudencia no se trabaja mediante lectura de fallos: cuando un tema la requiera, se la menciona con un breve resumen, y la atención debe centrarse en la ley. Con la ley es suficiente como material para las clases.
+
+\section{Cuadro Cornell del capítulo}
+
+{\RaggedRight
+\begin{longtable}{
+    >{\RaggedRight\arraybackslash}p{0.26\textwidth}
+    >{\RaggedRight\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cornellrow{¿Cuáles son los dos procesos largos que regula la ley?}{El concurso y la quiebra. Son procedimientos con etapas, por lo que conviene representarlos mediante un mapa conceptual: presentación, decisión del juez (hacer lugar o rechazar) y pasos siguientes en cada caso.}
+
+\cornellrow{¿Qué debe entenderse de la ley?}{Cuándo opera cada procedimiento, cómo es, qué ocurre en cada etapa, qué se necesita probar y qué se necesita entender, tanto desde el lado del concursado como desde el lado de los acreedores.}
+
+\cornellrow{¿Qué no hace falta memorizar?}{Los números de artículo (se indican para saber dónde leer cada tema) y la mayoría de los plazos legales, porque no se cumplen en la práctica y el juez fija las fechas en el expediente. Sí importan los plazos perentorios que se señalen.}
+
+\cornellrow{¿Con qué material conviene estudiar?}{Con una ley comentada o un manual de concursos. No se recomiendan los resúmenes por posibles imprecisiones.}
+
+\multicolumn{2}{p{0.92\textwidth}}{%
+\textbf{Resumen:} la ley de concursos y quiebras se estudia comprendiendo la secuencia de etapas de los procesos (concurso y quiebra), más que memorizando artículos y plazos; un mapa conceptual del expediente ayuda a lograrlo, y el material recomendado es una ley comentada o un manual.} \\
+\bottomrule
+\end{longtable}
+}
+
+% ============================================================
+\chapter[Insolvencia y remedios]{Insolvencia y herramientas de la ley}
+% ============================================================
+
+\section{El crédito y la insolvencia}
+
+La ley de concursos y quiebras prevé varios procedimientos relacionados con la \textbf{insolvencia} de una persona. La economía necesita el crédito, y la gestión del crédito es una herramienta necesaria. Esto lleva a que exista una deuda y, en la práctica, una posible insolvencia del deudor. Frente a ella, la ley ofrece básicamente \textbf{tres remedios o soluciones}.
+
+\section{Ejecución individual y ejecución colectiva}
+
+Ante el no pago de un cliente existen dos alternativas: la \textbf{vía individual} (intimar para que pague o para iniciar un proceso de ejecución individual) y las alternativas que brinda la ley de concursos y quiebras, que se desarrollan de manera \textbf{colectiva}.
+
+\begin{example}{una deuda de un millón de pesos}
+Se vende mercadería por un millón de pesos y el cliente no paga. La alternativa que parece única es intimar para poder iniciar la ejecución individual; pero existe también la vía colectiva de la ley de concursos y quiebras.
+\end{example}
+
+Los procesos de la ley son procesos de \textbf{ejecución colectiva}: uno o varios acreedores actúan sobre el patrimonio del deudor de una manera diferente a la vía individual. No se trata de determinar cuál es mejor, peor, más rápida o menos rápida: son principios diferentes y cuestiones totalmente diferentes.
+
+\subsection{La regla en la acción individual}
+
+\begin{example}{los cinco acreedores}
+El deudor debe a cinco proveedores y se sigue la vía individual. Si existe un privilegio, este rige. Si los cinco son quirografarios y nadie tiene privilegio, cobra primero \textbf{el más rápido}: el que primero intima, inicia la acción y traba el embargo. No importa que a otro se le debiera desde hacía un año.
+\end{example}
+
+En la vía individual, entonces, no importa que la deuda con otro acreedor fuera anterior ni que fuera de mayor monto: importa quién inició más rápido la acción.
+
+\subsection{La regla en el concurso y la quiebra}
+
+En el concurso y en la quiebra esa regla no se cumple. Sí existe un régimen de \textbf{privilegios}: cobran primero los privilegiados (por ejemplo, los acreedores laborales, que gozan de privilegio, tema que se verá en su momento). Pero el haber iniciado primero la acción no cuenta dentro del concurso ni de la quiebra.
+
+Además, en la ejecución individual cada acreedor defiende lo suyo: el bien que consigue es para su deuda. En el concurso y la quiebra, lo que se obtenga como mayor activo beneficia a \textbf{todos los acreedores}, no solo a quien interpuso la acción. Qué herramienta puede implementarse y cuál es la mejor opción depende de cada situación particular.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.2\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Aspecto} & \textbf{Ejecución individual} & \textbf{Ejecución colectiva (concurso / quiebra)} \\
+\midrule
+\textbf{Quién cobra primero} & El acreedor más rápido: quien intima, inicia la acción y traba el embargo (salvo privilegio). & Cobran primero los privilegiados; luego, todos en igualdad. No importa quién inició antes la acción. \\
+\textbf{Antigüedad o monto de la deuda} & No decide. & Tampoco decide. \\
+\textbf{Beneficio de lo obtenido} & Cada acreedor defiende lo suyo; el bien embargado es para su deuda. & Lo que se obtiene como mayor activo beneficia a todos los acreedores. \\
+\textbf{Naturaleza} & Proceso entre un acreedor y el deudor. & Uno o varios acreedores sobre el patrimonio del deudor, de manera colectiva. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Los tres remedios frente a la insolvencia}
+
+La ley ofrece tres procesos diferentes: el concurso preventivo, la quiebra y el acuerdo preventivo extrajudicial (APE).
+
+\subsection{Primer remedio: el concurso preventivo}
+
+El concurso preventivo busca una \textbf{reestructuración patrimonial}. El deudor tiene muchos acreedores y llegó a una situación de insolvencia financiera o económica, en la que no puede pagar. El concurso busca que el deudor se ponga de acuerdo con sus acreedores y \textbf{reestructure la deuda}, para poder seguir adelante con su actividad, con el normal desenvolvimiento de los negocios y de las empresas.
+
+\begin{example}{reestructuración de un pasivo}
+Si se debe un millón y no se puede pagar un millón, se propone pagar una parte ahora y otra más adelante. Eso significa un concurso preventivo: una reestructuración del pasivo para poder seguir con la actividad.
+\end{example}
+
+Se trata de una renegociación de la deuda, \emph{como si fuese} un plan de pagos, pero no exactamente un plan de pagos, porque este implicaría pagar todo, lo que en los concursos en general no sucede (puede pagarse, por ejemplo, la mitad en una sola cuota). Lo que se busca es lograr un \textbf{acuerdo preventivo}: renegociar con los acreedores para que la deuda cambie. Por eso se reestructura el pasivo: en vez de deber cinco millones, se pasa a deber, por ejemplo, dos.
+
+\begin{example}{la fábrica de calzado}
+Una fábrica de calzado tiene 600 empleados y debe un millón a cada uno de cinco proveedores (material sintético, cordones, cierre, suela y pegamento). No es que no quiera pagar: la mercadería importada la desplaza del mercado y no puede competir. Necesita seguir adelante, por lo que se sienta con cada proveedor y propone, por ejemplo, pagar 300 ahora y 200 más en un año.
+\end{example}
+
+\subsection{Segundo remedio: la quiebra}
+
+La quiebra es muy diferente: \textbf{no busca seguir adelante}. La insolvencia existe en ambos procedimientos, pero en la quiebra el deudor llegó a un punto en el que no puede continuar con su actividad y, además, tiene deudas. Se trata de un \textbf{proceso de liquidación colectivo}: se venden los bienes del deudor y, con lo que se obtenga, se va pagando, o se intenta pagar, a todos los acreedores.
+
+Cuando la quiebra afecta a una persona jurídica, es su punto final: se produce la liquidación y disolución de la sociedad, que muere y no renace. En las personas humanas, en cambio, es la inhabilitación, que es por tiempo determinado. La quiebra es, por ello, mucho más gravosa. Si bien ambos procedimientos hacen frente a la insolvencia, tienen finalidades totalmente diferentes.
+
+En cuanto a las partes, hay pluralidad de acreedores y también puede haber pluralidad de deudores, pero el deudor que solicita es siempre uno: el procedimiento es voluntario y lo solicita el propio deudor. Siempre habrá un deudor con uno o más acreedores y con un pasivo con el que no puede cumplir regularmente.
+% TODO: contenido incompleto o ambiguo en las notas originales (la docente afirma que el procedimiento es voluntario y que lo solicita el propio deudor al explicar la quiebra; el apunte no desarrolla el supuesto de quiebra pedida por otros sujetos)
+
+\subsection{Tercer remedio: el acuerdo preventivo extrajudicial (APE)}
+
+El APE es como un concurso: busca lo mismo, reestructurar el pasivo y reorganizar las deudas para seguir adelante con la actividad. Pero casi todo el procedimiento se desarrolla de manera \textbf{extrajudicial}, mediante negociaciones privadas e independientes que el deudor realiza con sus acreedores. Una vez que las negociaciones están preparadas, se acude a sede judicial, porque se necesita la \textbf{homologación} del juez para que el acuerdo tenga fuerza de sentencia. En el concurso preventivo todo está judicializado; en el APE el juez interviene solo en esa última parte.
+
+\begin{important}
+Los tres grandes procedimientos de la ley, que ayudan a afrontar la insolvencia, son: el \textbf{concurso preventivo}, la \textbf{quiebra} y el \textbf{APE} (acuerdo preventivo extrajudicial).
+\end{important}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.15\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Característica} & \textbf{Concurso preventivo} & \textbf{Quiebra} & \textbf{APE} \\
+\midrule
+\textbf{Finalidad} & Reestructurar el pasivo para seguir adelante con la actividad. & Liquidar: ya no se busca seguir adelante. & Reestructurar el pasivo, igual que el concurso. \\
+\textbf{Naturaleza} & Proceso colectivo, judicializado. & Proceso de liquidación colectivo (venta de bienes). & Negociación privada y extrajudicial; el juez interviene solo al final. \\
+\textbf{Rol del juez} & Interviene durante todo el trámite. & Interviene durante todo el trámite. & Homologa el acuerdo para darle fuerza de sentencia. \\
+\textbf{Efecto final} & Acuerdo preventivo con los acreedores. & Pago con lo obtenido de la venta; en la persona jurídica, disolución. & Acuerdo homologado. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{¿Por qué negociar? Las dos caras del acuerdo}
+
+Para entender el acuerdo preventivo hay que mirar los dos lados: por qué el deudor reestructuraría su pasivo y por qué el acreedor aceptaría.
+
+\subsection{El lado del deudor}
+
+Reestructurar el pasivo no es tan ligero de armar. Si la jugada sale mal y los acreedores rechazan la propuesta (por ejemplo, un pago del 15\,\% y el resto en diez años), el camino es la \textbf{quiebra}, que es definitiva: no hay forma de volver atrás. Un concurso preventivo que no avanza ni llega a un acuerdo con los acreedores tiene como consecuencia la quiebra.
+
+La ley prevé los comportamientos fraudulentos y los evalúa: al iniciarse la quiebra se realiza un análisis o investigación para saber si el deudor preparó el expediente para dejar de pagar a los acreedores. El \textbf{fraude} es un delito penal, de modo que el asunto puede pasar de la justicia comercial a la penal. Se analizan, además, los actos anteriores a la solicitud.
+
+\begin{example}{actos sospechosos antes de la quiebra}
+Si el deudor donó sus bienes, o los vendió a cualquier precio para preparar el terreno de modo que, al llegar la quiebra, no tenga nada, todo ello se analiza y se evalúa.
+\end{example}
+
+\subsection{La votación}
+
+No se exige \textbf{unanimidad} para obtener el acuerdo preventivo. Si de diez acreedores uno acepta la propuesta y otro la rechaza, el resultado depende de las mayorías exigidas: hay una \textbf{doble mayoría}, que además depende de cuánto se debe a cada uno. Es una mayoría compleja que se estudiará más adelante.
+
+\subsection{El lado del acreedor}
+
+El acreedor aceptaría para \textbf{poder cobrar algo}. Si dice que no, existe la posibilidad de que se quede en cero, aun teniendo en un juicio ordinario una sentencia favorable. En la quiebra, además, se subastan o rematan los bienes y el precio no es el correcto: siempre será un precio ínfimo.
+
+Hay otras consideraciones: si el acreedor vende regularmente grandes montos al deudor, no querrá perder ese importe de su facturación, porque la caída de un cliente así también lo afecta. En la negociación inciden cuánto se puede pagar, qué se puede atrasar y cuánto, cuánto cobra el acreedor por mes, cuánto atraso hay y si la deuda es lo único que se le debe. Para el acreedor también hay riesgo: la deuda y los intereses; si se perdonan intereses, puede negociarse.
+
+Como el proceso de la ley 24.522 es colectivo, el rango de negociación es menor (aunque existe) y todo afecta al conjunto de los acreedores.
+
+\begin{important}
+Para entender el acuerdo hay que mirar ambas caras. El deudor debe medir el riesgo de la quiebra (definitiva, más gravosa y sujeta a investigación por fraude). El acreedor debe medir que, si rechaza, puede quedarse en cero o cobrar un precio ínfimo en una subasta, y que además puede perder un cliente. Y como el proceso es colectivo, cada negociación afecta al conjunto de los acreedores.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+{\RaggedRight
+\begin{longtable}{
+    >{\RaggedRight\arraybackslash}p{0.26\textwidth}
+    >{\RaggedRight\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cornellrow{¿Quién cobra primero en la ejecución individual y en la colectiva?}{En la individual cobra primero el acreedor más rápido (salvo privilegio): intima, inicia la acción y traba el embargo, sin importar la antigüedad ni el monto de la deuda. En la colectiva (concurso o quiebra) cobran primero los privilegiados y luego todos en igualdad; no importa quién inició antes la acción.}
+
+\cornellrow{¿A quién beneficia lo obtenido en cada tipo de ejecución?}{En la individual, cada acreedor defiende lo suyo y el bien embargado es para su deuda. En la colectiva, lo que se obtiene como mayor activo beneficia a todos los acreedores.}
+
+\cornellrow{¿Cuáles son los tres remedios frente a la insolvencia?}{Concurso preventivo (reestructurar el pasivo mediante un acuerdo para seguir con la actividad), quiebra (liquidación colectiva mediante la venta de bienes) y APE (negociación privada y extrajudicial que solo se homologa judicialmente al final).}
+
+\cornellrow{¿Qué busca el concurso preventivo?}{Una reestructuración patrimonial: que el deudor se ponga de acuerdo con sus acreedores y reestructure la deuda, para continuar con su actividad. Se parece a un plan de pagos, pero no lo es exactamente, porque en general no se paga todo.}
+
+\cornellrow{¿En qué se diferencia la quiebra?}{No busca seguir adelante, sino liquidar. Se venden los bienes del deudor y con lo obtenido se paga a los acreedores. En la persona jurídica implica liquidación y disolución definitivas; en la persona humana, inhabilitación por tiempo determinado.}
+
+\cornellrow{¿Qué particularidad tiene el APE?}{Casi todo el procedimiento es extrajudicial y privado; el deudor negocia con sus acreedores y recién al final acude al juez, que homologa el acuerdo para darle fuerza de sentencia.}
+
+\cornellrow{¿Por qué un acreedor aceptaría reestructurar y un deudor evitaría la quiebra?}{El acreedor prefiere cobrar algo antes que quedarse en cero o recibir un precio ínfimo en una subasta, y quizás quiere conservar a un cliente. El deudor evita la quiebra, que es definitiva, más gravosa y expone a investigación por fraude.}
+
+\cornellrow{¿Se exige unanimidad para el acuerdo preventivo?}{No. Se requiere una doble mayoría, que depende además de cuánto se debe a cada acreedor; es una mayoría compleja que se estudiará más adelante.}
+
+\multicolumn{2}{p{0.92\textwidth}}{%
+\textbf{Resumen:} frente a la insolvencia, la ley ofrece un tratamiento colectivo distinto de la ejecución individual, donde cobra el más rápido. Los tres remedios son el concurso preventivo y el APE (que reestructuran el pasivo para continuar la actividad, el primero totalmente judicializado y el segundo extrajudicial con homologación final) y la quiebra (liquidación colectiva). El acuerdo exige mirar los riesgos de deudor y acreedor, y no requiere unanimidad.} \\
+\bottomrule
+\end{longtable}
+}
+
+% ============================================================
+\chapter[Principios de la ley]{Principios de la ley de concursos y quiebras}
+% ============================================================
+
+Los principios son los fundamentos que deben estar presentes \textbf{durante todo el proceso}, y rigen para los tres procedimientos de la ley 24.522 (concurso preventivo, quiebra y APE).
+
+\begin{important}
+\textbf{Los principios son seis; los presupuestos son dos.} Los autores mencionan los cuatro primeros; algunos agregan los dos últimos, que a veces no se ven en los manuales o en la ley comentada. Para la docente, los principios son estos seis.
+\end{important}
+
+\section{Principio de universalidad}
+
+Está previsto en el artículo 1 de la ley. Según el texto leído en clase:
+
+\begin{quote}
+``El concurso produce sus efectos sobre la totalidad del patrimonio del deudor, salvo las exclusiones legalmente establecidas sobre determinados bienes.''
+\end{quote}
+
+La universalidad implica que quedan afectados \textbf{todos los bienes del deudor}. No es posible afectar solo la parte que corresponde al negocio: todos los bienes quedan afectados al procedimiento, ya sea concurso o quiebra. Existen bienes \textbf{inembargables} (excluidos legalmente), que se verán con detalle; salvo esos bienes específicos, todo está afectado al cumplimiento del procedimiento.
+% TODO: contenido incompleto o ambiguo en las notas originales (intervención parcialmente inaudible sobre el tema de los alimentos)
+
+\section{Principio de igualdad}
+
+Todos los acreedores deben ser tratados con igualdad: \textbf{``iguales entre iguales''}, según la doctrina. No importa que un acreedor haya iniciado primero la acción.
+
+La expresión se explica porque existen \textbf{privilegios}: un acreedor privilegiado cobra antes que un quirografario. Esa protección o prioridad puede provenir de garantías (recursos que brinda el sistema legal para estar más protegido) o de la naturaleza de la obligación. Por ejemplo, el acreedor laboral goza de privilegio no porque lo haya constituido un contrato particular, sino por la naturaleza de la obligación.
+
+Por eso hay igualdad entre iguales: dentro de los privilegiados, todos son considerados iguales, y dentro de los quirografarios, todos son considerados iguales. No importa que a uno se le deba desde antes, que se le deba más dinero o que haya iniciado primero la acción: esos criterios no rigen dentro de la ley. La igualdad rige en los tres procedimientos y durante todo el proceso, con alguna excepción que se verá más adelante.
+
+\section{Principio de colectividad}
+
+La colectividad se refiere a los \textbf{acreedores}: quiénes pueden participar del procedimiento. Participan los cinco acreedores del ejemplo y otros que cumplan la condición legal. Según lo explicado en clase:
+
+\begin{quote}
+Participan del concurso todos los acreedores de título o causa anterior a la fecha de presentación del concurso.
+\end{quote}
+
+La deuda posterior no es una deuda concursal; esos acreedores deberán esperar a que se solucione el concurso preventivo o llegue a su término.
+
+\begin{important}
+Se toma la fecha de \textbf{presentación}, no la de apertura. El deudor puede presentarse al concurso, pero el juez puede aceptar o rechazar; si aprueba, existe la fecha de apertura. Esa fecha importa, pero no para determinar quiénes participan: para ello importa la fecha de presentación.
+\end{important}
+
+Interesa participar porque, aunque un acreedor no participe, \textbf{se le aplicará igualmente lo que se resuelva} en el concurso si su causa o título es anterior a la fecha de presentación. Por ejemplo, si otro acreedor acepta una quita del 15\,\% y el acreedor no participa ni vota, igual se le aplica lo resuelto. Por eso conviene participar, ingresar al expediente, votar y opinar sobre si se está de acuerdo con la negociación.
+
+\section{Principio de unicidad}
+
+Hay un \textbf{solo proceso concursal}: una sola quiebra, un solo concurso. No pueden darse varios a la vez.
+
+\begin{example}{negocios en tres jurisdicciones}
+Un deudor con negocios en Capital, Córdoba y Santa Fe no puede abrir un proceso en cada jurisdicción. Es un proceso \textbf{por deudor}, no por jurisdicción.
+\end{example}
+
+Uno de los efectos de tener un concurso abierto, que se verá más adelante, es la \textbf{atracción}: todos los procesos de índole patrimonial son atraídos al juez del concurso o de la quiebra, sin importar dónde tramiten (otro juzgado u otra jurisdicción). El juez del concurso debe estar al tanto de todas las cuestiones patrimoniales, ya sea que el deudor sea actor o demandado, y de cualquier cambio en su patrimonio. Esto ocurre también con los nuevos procesos.
+
+\section{Principio de oficiosidad}
+
+Los procedimientos se desarrollan en sede judicial, con juez, pero existe una persona que ayuda al juez y a los demás en la consecución del expediente: el \textbf{síndico}. El síndico controla, está a cargo de informes y presentaciones, y verifica lo que hace el deudor, en cada etapa del proceso.
+
+La oficiosidad significa que el \textbf{impulso} del proceso no está a cargo del deudor ni del acreedor, sino del \textbf{juez o del síndico}. Esto tampoco ocurre en la ejecución individual.
+
+\section{Principio de inquisitoriedad}
+
+Se relaciona con la participación activa y consiste en el \textbf{deber de investigar}. El juez y el síndico tienen la capacidad, o la obligación, de investigar lo que realmente sucede. No se quedan con lo que denuncia el deudor ni con lo que denuncian los acreedores: deben investigar la realidad, por ejemplo, para saber si el deudor no pagó por falta de voluntad y luego pretende reestructurar.
+
+Estos dos últimos principios (oficiosidad e inquisitoriedad) no son mencionados por todos los autores, pero deben exigirse, porque en varios artículos la ley otorga la capacidad de investigar y de impulsar permanentemente el proceso.
+
+\section{Cuadro resumen de los principios}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\centering\arraybackslash}p{0.07\textwidth}
+    >{\raggedright\arraybackslash}p{0.2\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{N.º} & \textbf{Principio} & \textbf{Idea central} \\
+\midrule
+1 & Universalidad & Todo el patrimonio del deudor queda afectado, salvo bienes excluidos por ley. \\
+2 & Igualdad & Trato igualitario: ``iguales entre iguales'' (privilegiados con privilegiados, quirografarios con quirografarios). \\
+3 & Colectividad & Participan todos los acreedores con título o causa anterior a la presentación. \\
+4 & Unicidad & Un solo proceso por deudor, no por jurisdicción; atracción de los procesos patrimoniales. \\
+5 & Oficiosidad & El impulso del proceso corre por cuenta del juez y del síndico. \\
+6 & Inquisitoriedad & El juez y el síndico tienen el deber de investigar lo que realmente sucede. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell del capítulo}
+
+{\RaggedRight
+\begin{longtable}{
+    >{\RaggedRight\arraybackslash}p{0.26\textwidth}
+    >{\RaggedRight\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cornellrow{¿Cuántos principios y cuántos presupuestos hay?}{Seis principios (universalidad, igualdad, colectividad, unicidad, oficiosidad e inquisitoriedad) y dos presupuestos (objetivo y subjetivo). Los principios rigen en los tres procedimientos y durante todo el proceso.}
+
+\cornellrow{¿Qué establece el principio de universalidad?}{Que el concurso produce sus efectos sobre la totalidad del patrimonio del deudor, salvo las exclusiones legalmente establecidas (bienes inembargables). No puede afectarse solo la parte del negocio.}
+
+\cornellrow{¿Qué significa ``iguales entre iguales''?}{Todos los acreedores son tratados con igualdad, pero los privilegiados cobran antes que los quirografarios; dentro de cada categoría todos son iguales. No importan la antigüedad, el monto de la deuda ni quién inició primero la acción.}
+
+\cornellrow{¿Quiénes participan del concurso según el principio de colectividad?}{Todos los acreedores de título o causa anterior a la fecha de presentación (no de apertura). La deuda posterior no es concursal.}
+
+\cornellrow{¿Qué ocurre con el acreedor que no participa?}{Igualmente se le aplica lo resuelto en el concurso si su causa o título es anterior a la fecha de presentación; por eso conviene participar y votar.}
+
+\cornellrow{¿Qué implica el principio de unicidad?}{Un solo proceso por deudor, no por jurisdicción. Como efecto, los procesos patrimoniales son atraídos al juez del concurso o de la quiebra.}
+
+\cornellrow{¿Quién impulsa el proceso y quién investiga?}{El impulso (oficiosidad) está a cargo del juez y del síndico, no de deudor o acreedores. El juez y el síndico tienen además el deber de investigar lo que realmente sucede (inquisitoriedad), sin limitarse a lo que denuncian las partes.}
+
+\multicolumn{2}{p{0.92\textwidth}}{%
+\textbf{Resumen:} seis principios rigen todos los procedimientos de la ley: universalidad (todo el patrimonio), igualdad (iguales entre iguales, con privilegios), colectividad (acreedores con causa anterior a la presentación), unicidad (un proceso por deudor), oficiosidad (impulso del juez y del síndico) e inquisitoriedad (deber de investigar).} \\
+\bottomrule
+\end{longtable}
+}
+
+% ============================================================
+\chapter[Presupuesto objetivo]{Los presupuestos: la cesación de pagos}
+% ============================================================
+
+Los \textbf{presupuestos} son las cuestiones esenciales que deben estar presentes para poder iniciar un concurso, una quiebra o un APE. Pueden ser de dos tipos: \textbf{objetivo} o \textbf{subjetivo}. Los principios aplican a toda la ley en todos sus pasos (salvo alguna excepción, como la que se da en la igualdad); los presupuestos son los requisitos para iniciar los procedimientos.
+
+\section{El presupuesto objetivo: concepto de cesación de pagos}
+
+El presupuesto objetivo es tan importante que está previsto en el artículo 1 de la ley. Según el texto leído en clase:
+
+\begin{quote}
+``En estado de cesación de pagos, cualquiera sea su causa y la naturaleza de las obligaciones a las que afecte, es presupuesto para la apertura de los concursos regulados en esta ley, [salvo algunas cuestiones].''
+\end{quote}
+% TODO: contenido incompleto o ambiguo en las notas originales (la docente cita el artículo 1 con salvedades que desarrolla luego como excepciones; la redacción literal debe cotejarse con el texto de la ley)
+
+\begin{note}
+La docente menciona que existen salvedades (``algunas cuestiones''), que se desarrollan más adelante como excepciones. Se recomienda cotejar la redacción literal con el texto vigente de la ley 24.522.
+\end{note}
+
+\subsection{No es una cuestión de ``más pasivo que activo''}
+
+La cesación de pagos se relaciona con \textbf{no poder hacer frente al cumplimiento de las obligaciones exigibles}. No siempre tiene que ver con tener un pasivo mayor que el activo: se la vincula con la incapacidad de pago y la \textbf{falta de liquidez}.
+
+\begin{example}{el castillo en Escocia}
+Se tiene un castillo de gran valor, con 123 habitaciones, en Escocia; sería fácil encontrar compradores y se tiene mucho patrimonio. Pero no se puede pagar a los acreedores lo que se les debe. No se trata de falta de activo, sino de falta de liquidez; puede ser más o menos momentánea.
+\end{example}
+
+\begin{definition}{insolvencia financiera e insolvencia económica}
+Según lo explicado en clase, lo \textbf{financiero} tiene que ver con la falta de liquidez; lo \textbf{económico} tiene que ver con el patrimonio. Se puede tener muchos activos; si no son liquidables, hay un problema financiero: no se puede pagar ahora, aunque haya activo.
+\end{definition}
+
+Los activos pueden ser bienes o también créditos por cobrar. Del mismo modo, puede haber deuda que no es exigible o deuda incobrable.
+
+\section{Evolución de la teoría de la cesación de pagos}
+
+El concepto de cesación de pagos cambió mucho desde el comienzo de la ley. Para la docente, es un concepto que ha quedado antiguo y la ley en general necesita una actualización urgente.
+
+\subsection{Primera teoría: cesación de pagos como incumplimiento}
+
+La teoría restringida sostenía que la cesación de pagos era sinónimo de incumplimiento: se estaba en cesación de pagos cuando se incumplía una obligación. Se abandonó rápidamente: un incumplimiento aislado (por ejemplo, olvidar pagar la tarjeta de crédito o la factura del gas) no ocasiona una cesación de pagos.
+
+\subsection{Segunda teoría: serie de incumplimientos}
+
+La teoría intermedia sostuvo que no es un incumplimiento, sino una \textbf{serie de incumplimientos}. Salvó el obstáculo anterior, pero seguía relacionando la cesación de pagos con el incumplimiento, por lo que también quedó antigua.
+
+\begin{example}{indicios sin incumplimiento}
+Una deuda no está vencida (por ejemplo, vence el mes siguiente), pero el acreedor no encuentra al deudor, que no responde mensajes ni correos, y tampoco lo encuentra en su casa; esto da un indicio. En otro caso, el acreedor ve que el deudor, que decía fabricar zapatos, vende a 15.000 pesos la máquina para pegar suelas traída de Alemania el mes anterior, y se entera de que donó a su hermana la casa de la playa. Formalmente el deudor no incumplió, pero eso no significa que no esté en cesación de pagos.
+\end{example}
+
+\subsection{Teoría actual: estado patrimonial general y permanente}
+
+La doctrina cambió: habla de un \textbf{estado patrimonial} que afecta todo el patrimonio, que es \textbf{permanente} (no un problema transitorio) y que no se reduce a un incumplimiento. Se \textbf{exterioriza mediante hechos reveladores}. El incumplimiento (la mora) es lo más fácil de advertir, pero no es lo único que puede demostrar la insolvencia.
+
+\begin{definition}{cesación de pagos (definición práctica)}
+Estado general y permanente que afecta a todo el patrimonio, en el cual el deudor no puede hacer frente al cumplimiento de sus obligaciones exigibles; se exterioriza mediante hechos reveladores y no se reduce al mero incumplimiento.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.17\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Teoría} & \textbf{Qué sostiene} & \textbf{Por qué se abandonó o qué aporta} \\
+\midrule
+\textbf{Restringida} & Cesación de pagos = incumplimiento de una obligación. & Se abandonó rápido: un olvido (tarjeta, factura del gas) no es insolvencia. \\
+\textbf{Intermedia} & Cesación de pagos = serie de incumplimientos. & Salva el obstáculo anterior, pero sigue atada al incumplimiento; también quedó antigua. \\
+\textbf{Actual} & Estado patrimonial general y permanente, exteriorizado mediante hechos reveladores. & Incluye casos sin incumplimiento (deuda no vencida con indicios graves). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Hechos reveladores de la cesación de pagos}
+
+Los hechos reveladores están previstos en los artículos 78 y 79. Según la lectura realizada en clase:
+
+\begin{quote}
+Pueden ser considerados hechos reveladores del estado de cesación de pagos, entre otros:
+\begin{enumerate}
+    \item Reconocimiento judicial o extrajudicial del propio deudor.
+    \item Mora en el cumplimiento de una obligación.
+    \item Ocultación o ausencia del deudor o de los administradores de la sociedad, en su caso, sin dejar representante con facultades y medios suficientes para cumplir sus obligaciones.
+    \item Clausura de la sede de la administración o del establecimiento donde el deudor desarrolle su actividad.
+    \item Venta a precio vil, ocultación o entrega de bienes en pago.
+    \item Revocación judicial de actos realizados en fraude de los acreedores, o cualquier medio ruinoso o fraudulento empleado para obtener recursos.
+\end{enumerate}
+\end{quote}
+% TODO: contenido incompleto o ambiguo en las notas originales (la lectura en el audio fue parcialmente inaudible; la redacción se reconstruyó a partir de lo leído y comentado)
+
+\begin{note}
+La lectura en el audio fue parcialmente inaudible; la redacción se reconstruyó a partir de lo leído y comentado por la docente (seis ítems). Se recomienda cotejar con el texto vigente de la ley 24.522.
+\end{note}
+
+\subsection{Comentarios a cada hecho revelador}
+
+\begin{itemize}
+    \item \textbf{Reconocimiento judicial o extrajudicial:} el propio deudor manifiesta que está en cesación de pagos.
+    \item \textbf{Mora en el cumplimiento:} el incumplimiento más fácil de advertir.
+    \item \textbf{Ocultación o ausencia:} si el deudor se va y no aparece, los acreedores no pueden quedarse tranquilos pensando que volverá y pagará.
+    \item \textbf{Clausura de la sede:} por ejemplo, la oficina o fábrica donde no hay empleados ni máquinas funcionando.
+    \item \textbf{Venta a precio vil:} rematar los bienes a un precio que no es real (como vender a 15.000 pesos una máquina de valor muy superior).
+    \item \textbf{Revocación judicial de actos en fraude:} actos en fraude de acreedores, o cualquier medio ruinoso o fraudulento empleado para obtener recursos.
+\end{itemize}
+
+\begin{important}
+La enumeración es \textbf{enunciativa, no taxativa}: la ley menciona algunas situaciones, pero puede haber más; toda situación que demuestre que el deudor no va a pagar puede serlo. El incumplimiento no es suficiente por sí solo, y puede haber otras cuestiones, ajenas al incumplimiento, que igualmente lleven a la cesación de pagos, porque esta es un estado general y permanente que afecta a todo el patrimonio.
+\end{important}
+
+\subsection{Un concepto que necesita reforma}
+
+Los autores señalan que el concepto quedó vago o impreciso y que quizás debería regularse también el \textbf{estado previo} a la cesación de pagos, para actuar de manera preventiva. En la práctica, muchos concursos preventivos terminan en quiebra porque se llegó tarde. Por eso se habla de la necesidad de una reforma urgente, para que los concursos no terminen en su mayoría en quiebra.
+
+\section{Excepciones al requisito de la cesación de pagos}
+
+Para el concurso preventivo o la quiebra es necesario estar en cesación de pagos, salvo excepciones. Son \textbf{cuatro}, que se estudiarán con detalle más adelante.
+
+\subsection{Primera excepción: agrupamientos económicos}
+
+La ley permite que un agrupamiento económico se presente en concurso preventivo aun cuando algunos de sus integrantes no estén en cesación de pagos, siempre que \textbf{uno sí lo esté}. La razón es que la cesación de pagos de un integrante influye en los demás y puede provocarles una insolvencia o dificultad económica o financiera.
+
+\begin{example}{el grupo económico de tres}
+Tres personas forman un grupo económico. Una está en cesación de pagos y las otras dos no. La ley habilita a las otras dos a presentarse en concurso preventivo, aun sin estar en cesación de pagos, porque la situación de la primera las afecta. Al presentarse, piden concurso preventivo en caso de agrupamiento económico, porque el otro ya inició el proceso.
+\end{example}
+
+Un agrupamiento económico puede darse, por ejemplo, por tener el mismo CEO, empleados en común o contratos en común, o por trabajar de manera agrupada. A veces se habla de cadena productiva y a veces no: no es necesario que haya producción conjunta, pero sí un agrupamiento económico. Los requisitos se verán más adelante.
+
+\subsection{Segunda excepción: el garante}
+
+Cuando el deudor principal entra en concurso preventivo, el \textbf{garante} queda habilitado para presentar su propio concurso sin estar en cesación de pagos. La cesación de pagos es del deudor principal y puede llegar a provocar, potencialmente, la del garante, que todavía no la tiene.
+
+\begin{example}{la fianza en un contrato de locación}
+Una persona es garante (fiador) de un contrato de locación. Si el locatario entra en concurso preventivo, el garante, que había previsto cubrir esa deuda, se ve afectado. La garantía puede ser cualquiera (por ejemplo, real), no solo la fianza.
+\end{example}
+
+\subsection{Tercera excepción: el APE}
+
+La ley, al definir el APE, habla de dificultades económicas y financieras \emph{o} cesación de pagos. La doctrina ha asumido que en el APE puede haber una \textbf{instancia anterior} a la cesación de pagos: no es excluyente que el deudor esté en cesación de pagos; basta que atraviese dificultades económicas o financieras, como paso previo.
+
+\subsection{Cuarta excepción: concursos decretados en el exterior}
+
+Quien tiene abierto un concurso en el extranjero puede solicitar su concurso preventivo en la Argentina aunque no esté en cesación de pagos, si tiene bienes en el país. Debe haber un proceso similar abierto en el extranjero.
+
+\begin{example}{el concurso abierto en Uruguay}
+Una persona con bienes y actividad comercial en Uruguay tiene allí un concurso decretado. Puede presentarse en la Argentina y decir que tiene bienes en el país y quiere solicitar su concurso preventivo; no está en cesación de pagos, pero ya tiene abierto el concurso en el extranjero.
+\end{example}
+
+Según la docente, se menciona la causa y ese proceso, y la presentación queda habilitada ante el ``concurso declarado en el estado extranjero, artículo 4''. Es la excepción que menos se estudia.
+
+\begin{important}
+Si el deudor no se encuentra en alguna de estas cuatro situaciones (agrupamiento económico, garante, APE y concurso decretado en el exterior), \textbf{debe demostrar la cesación de pagos}.
+\end{important}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\centering\arraybackslash}p{0.07\textwidth}
+    >{\raggedright\arraybackslash}p{0.25\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{N.º} & \textbf{Excepción} & \textbf{Idea clave} \\
+\midrule
+1 & Agrupamiento económico & El grupo puede presentarse aunque algunos integrantes no estén en cesación de pagos, si uno sí lo está y los afecta. \\
+2 & Garante & El garante del deudor concursado puede presentarse sin estar en cesación de pagos. \\
+3 & APE & Basta una dificultad económica o financiera: instancia previa a la cesación de pagos. \\
+4 & Concurso en el exterior & Quien ya tiene un concurso abierto en el extranjero puede pedir el concurso preventivo en el país (artículo 4). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Prueba de la cesación de pagos y fecha de inicio}
+
+El deudor debe explicar \textbf{por qué} llegó al estado de insolvencia y \textbf{desde cuándo}. Es tan importante que el juez puede \textbf{rechazar la presentación} si considera que la cesación de pagos no está debidamente probada.
+
+\begin{example}{causa de la cesación de pagos en el calzado}
+Una resolución de ARCA establece una subvención a la importación de calzado proveniente de Chile; el fabricante no puede competir. Eso provocó la cesación de pagos, y puede indicarse desde cuándo.
+\end{example}
+
+\begin{example}{otras posibles causas}
+Una boutique que vende muy bien ve afectadas sus ventas porque se abre un salón al lado; una enfermedad grave del titular que requiere su tiempo y dinero; la pandemia (restaurante, cine, teatro); la contratación de un director comercial que vendía por debajo del costo; la suba o baja del dólar; la suba del petróleo. Todo aquello que pueda generar la cesación de pagos debe explicarse y demostrarse al juez: qué la provocó y desde cuándo.
+\end{example}
+
+\subsection{La fecha y el análisis de actos sospechosos}
+
+Entre la causa y la presentación al concurso o a la quiebra normalmente pasa un tiempo: no es automático, porque el deudor intenta muchas alternativas antes (por ejemplo, usar las mismas máquinas para fabricar otro producto). No se trata de un intervalo de tiempo determinado; lo que el juez puede observar es la \textbf{causa de origen} que se invoca.
+
+Muchas veces se observa la fecha cuando se considera que no es válida y que hay un artilugio, porque más adelante se analizan los actos para ver si hay fraude. La \textbf{fecha de cesación de pagos} es sumamente importante porque, a partir de ella, se cuenta \textbf{hacia atrás} para los actos que se analizarán: si se fija una fecha muy anterior, después pueden analizarse muchos más actos.
+
+\begin{important}
+Debe estar debidamente probada la cesación de pagos y también la fecha. La fecha no es del tipo ``el 15 de diciembre de 2021'': es una \textbf{época}, por ejemplo ``el primer trimestre de este año''. Debe estar expresada de manera simplificada.
+\end{important}
+
+\section{Presupuesto subjetivo}
+
+El presupuesto subjetivo quedó pendiente y se desarrollará en la clase siguiente, junto con el resto de los temas, incluido el análisis del expediente paso a paso.
+
+\section{Cuadro Cornell del capítulo}
+
+{\RaggedRight
+\begin{longtable}{
+    >{\RaggedRight\arraybackslash}p{0.26\textwidth}
+    >{\RaggedRight\arraybackslash}p{0.66\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cornellrow{¿Qué es un presupuesto y cuáles hay?}{Son las cuestiones esenciales que deben estar presentes para iniciar un concurso, una quiebra o un APE. Hay dos: objetivo y subjetivo (este último quedó pendiente para la clase siguiente).}
+
+\cornellrow{¿Qué es la cesación de pagos?}{Estado patrimonial general y permanente en el que el deudor no puede hacer frente a sus obligaciones exigibles. Se vincula con la falta de liquidez, no con tener ``más pasivo que activo'' (ejemplo del castillo en Escocia). Es el presupuesto objetivo previsto en el artículo 1.}
+
+\cornellrow{¿Cuál es la diferencia entre insolvencia financiera y económica?}{Lo financiero tiene que ver con la falta de liquidez; lo económico, con el patrimonio. Con muchos activos no liquidables hay problema financiero: no se puede pagar ahora, aunque haya activo.}
+
+\cornellrow{¿Por qué incumplir no equivale a estar en cesación de pagos?}{La teoría restringida la equiparó al incumplimiento y la intermedia a una serie de incumplimientos; ambas quedaron superadas. Un incumplimiento aislado, como un olvido, no implica cesación de pagos. Hoy se la entiende como un estado que se exterioriza mediante hechos reveladores, incluso sin incumplimiento (deuda no vencida con indicios graves).}
+
+\cornellrow{¿Cuáles son los hechos reveladores?}{Reconocimiento judicial o extrajudicial, mora, ocultación o ausencia del deudor, clausura de la sede, venta a precio vil u ocultación de bienes, revocación de actos en fraude o medios ruinosos. La enumeración es enunciativa, no taxativa.}
+
+\cornellrow{¿Cuándo se puede entrar al concurso sin estar en cesación de pagos?}{Cuatro excepciones: agrupamiento económico, garante del concursado, APE (basta dificultad económica o financiera) y concurso decretado en el exterior (artículo 4). Fuera de ellas debe demostrarse la cesación de pagos.}
+
+\cornellrow{¿Qué debe probar el deudor ante el juez?}{La cesación de pagos, su causa (por qué) y su fecha aproximada (desde cuándo), expresada como época. El juez puede rechazar la presentación si no está debidamente probada.}
+
+\cornellrow{¿Por qué importa la fecha de cesación de pagos?}{Porque desde ella se cuenta hacia atrás para analizar los actos posibles de fraude; una fecha muy anterior permite analizar muchos más actos.}
+
+\multicolumn{2}{p{0.92\textwidth}}{%
+\textbf{Resumen:} el presupuesto objetivo es la cesación de pagos: un estado patrimonial general y permanente de imposibilidad de afrontar las obligaciones exigibles, que se revela mediante hechos (enumeración enunciativa) y no se reduce al incumplimiento. Admite cuatro excepciones; fuera de ellas debe probarse, con su causa y su fecha aproximada, siendo la fecha relevante para el análisis de actos sospechosos.} \\
+\bottomrule
+\end{longtable}
+}
+
+\end{document}

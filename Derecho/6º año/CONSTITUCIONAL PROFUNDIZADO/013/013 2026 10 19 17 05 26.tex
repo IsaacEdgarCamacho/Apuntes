@@ -1,0 +1,1075 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Constitucional Profundizado}
+\newcommand{\titulo}{Derechos de tercera generaci\'on: el derecho del consumidor}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\addto\captionsspanish{\renewcommand{\contentsname}{\'Indice}}
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% Encabezados de capítulo sobrios
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+  {\parindent\z@ \raggedright \normalfont
+   \Large\bfseries \thechapter.\quad #1\par\nobreak
+   \vskip 1em}}
+\renewcommand{\@makeschapterhead}[1]{%
+  {\parindent\z@ \raggedright \normalfont
+   \Large\bfseries #1\par\nobreak
+   \vskip 1em}}
+\makeatother
+
+% Encabezados y pies
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Capítulo sin numerar, con entrada en el índice y encabezado
+\newcommand{\capsin}[2]{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#2}{#2}%
+}
+
+% Columnas auxiliares para tablas
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{B}[1]{>{\bfseries\raggedright\arraybackslash}p{#1}}
+
+% Medidas del cuadro Cornell
+\newlength{\cqw}
+\newlength{\cnw}
+\newlength{\csw}
+\AtBeginDocument{%
+  \setlength{\cqw}{0.26\textwidth}%
+  \setlength{\cnw}{0.62\textwidth}%
+  \setlength{\csw}{\dimexpr\cqw+\cnw+2\tabcolsep\relax}%
+}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definici\'on: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={F\'ormula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia convierte los conceptos en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% PRESENTACIÓN
+% ------------------------------------------------------------
+\capsin{Presentaci\'on de la clase}{Presentaci\'on de la clase}
+
+Clase del 26 de octubre de 2026.
+
+La clase estuvo dedicada a los \textbf{derechos de tercera generaci\'on}, en particular a los \textbf{derechos del consumidor}. Se explic\'o por qu\'e la reforma constitucional de 1994 abandon\'o la ficci\'on de igualdad entre empresa y consumidor, qu\'e establece el \textbf{art\'iculo 42 de la Constituci\'on Nacional}, c\'omo el \textbf{an\'alisis econ\'omico del derecho} explica las fallas del mercado y c\'omo el caso \textbf{Halabi (2009)} habilit\'o las \textbf{acciones colectivas} para que reclamar sea posible aun por montos peque\~nos.
+
+Los contenidos se organizan en cinco bloques:
+
+\begin{itemize}
+    \item \textbf{Bloque I:} por qu\'e el consumidor necesita protecci\'on.
+    \item \textbf{Bloque II:} qu\'e derechos le reconoce el art\'iculo 42.
+    \item \textbf{Bloque III:} qu\'e debe hacer el Estado para garantizarlos.
+    \item \textbf{Bloque IV:} por qu\'e el mercado falla y c\'omo lo corrige el derecho.
+    \item \textbf{Bloque V:} c\'omo se reclama en forma colectiva: el caso Halabi.
+\end{itemize}
+
+\section*{C\'omo se relacionan los temas: un solo ejemplo cotidiano}
+
+Si al revisar el resumen de una tarjeta aparece un \textbf{cargo de 10.000 pesos} que no se reconoce, ese mismo cargo atraviesa los cinco bloques de la clase:
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.22\textwidth} Y@{}}
+\toprule
+\textbf{Bloque} & \textbf{El cargo de 10.000 pesos a la luz del tema} \\
+\midrule
+I. Fundamentos & \'{}Por qu\'e el consumidor est\'a en desventaja? Porque la empresa sabe m\'as y tiene m\'as recursos: hay asimetr\'ia y vulnerabilidad estructural. \\
+\addlinespace
+II. Art\'iculo 42 (derechos) & \'{}Qu\'e derecho protege al consumidor? Sus intereses econ\'omicos y el derecho a una informaci\'on veraz y adecuada frente a un cobro indebido. \\
+\addlinespace
+III. Art\'iculo 42 (Estado) & \'{}Qui\'en vigila el mercado donde nace el cargo? El Estado: competencia, control de monopolios y asociaciones de consumidores. \\
+\addlinespace
+IV. An\'alisis econ\'omico & \'{}Por qu\'e la empresa se anima a cobrarlo y el consumidor no reclama? Riesgo moral y costos de transacci\'on: pelear 10.000 pesos sale m\'as caro que el cargo. \\
+\addlinespace
+V. Halabi & \'{}C\'omo se recupera? Con la acci\'on colectiva que consagr\'o el caso Halabi: 10.000 pesos por 100.000 afectados s\'i justifican un juicio. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+\chapter{Fundamentos de la defensa del consumidor}
+
+\section{Las tres generaciones de derechos y el plan de la clase}
+
+Los derechos se clasifican en generaciones. Los de \textbf{primera generaci\'on} son los derechos civiles y pol\'iticos; los de \textbf{segunda generaci\'on}, los derechos sociales, econ\'omicos, gremiales, sindicales y del trabajo; y los de \textbf{tercera generaci\'on}, los derechos del consumidor y del medio ambiente.
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.30\textwidth} Y@{}}
+\toprule
+\textbf{Generaci\'on} & \textbf{Derechos que comprende} \\
+\midrule
+Primera generaci\'on & Derechos civiles y pol\'iticos. \\
+Segunda generaci\'on & Derechos sociales, econ\'omicos, gremiales, sindicales y del trabajo. \\
+Tercera generaci\'on & Derechos del consumidor y derechos del medio ambiente. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+El estudio de los derechos de tercera generaci\'on comienza por los derechos del consumidor. Si el tiempo lo permite, se abordar\'a tambi\'en la unidad referida a los derechos ambientales.
+
+\subsection{\texorpdfstring{\'{}Cu\'ando se plasmaron en la Constituci\'on?}{Cuando se plasmaron en la Constitucion?}}
+
+Exist\'ian precedentes, incluso de la d\'ecada de 1980, en materia de medio ambiente.% TODO: contenido incompleto o ambiguo en las notas originales (referencia inaudible en la grabaci\'on)
+{} No ocurr\'ia lo mismo con los derechos consumeriles, que se encontraban en la legislaci\'on de fondo: el C\'odigo Civil y el anteriormente denominado C\'odigo Comercial.
+
+Los derechos de tercera generaci\'on fueron incorporados y tuvieron su auge con la \textbf{reforma de la Constituci\'on de 1994}, que marc\'o una bisagra fundamental y un cambio dram\'atico en la tutela de los derechos personales y patrimoniales.
+
+El constitucionalismo social y los derechos de tercera generaci\'on desplazaron la concepci\'on tradicional del derecho privado cl\'asico, que no contemplaba como tal el derecho del consumidor.% TODO: contenido incompleto o ambiguo en las notas originales (la frase original califica al derecho privado cl\'asico como ``m\'as privativo de este tipo de derechos'')
+
+\section{La reforma de 1994 y el fin de la ficci\'on de la igualdad formal}
+
+La visi\'on anterior a la reforma de 1994 se sustentaba en una ficci\'on: una \textbf{igualdad formal} absoluta entre las partes contratantes. Daba lo mismo una empresa que un consumidor individual, lo cual en muchos casos no era cierto, pues se supon\'ia una condici\'on de reciprocidad entre consumidor y productor.
+
+Esa ficci\'on fue dejada de lado y dio paso al reconocimiento expreso de la \textbf{vulnerabilidad estructural del consumidor} en el mercado contempor\'aneo, en una relaci\'on de consumo.
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.18\textwidth} Y Y@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Antes de la reforma de 1994} & \textbf{Despu\'es de la reforma de 1994} \\
+\midrule
+Concepci\'on & Derecho privado cl\'asico, que no contemplaba como tal el derecho del consumidor. & Constitucionalismo social: derechos de tercera generaci\'on incorporados a la Constituci\'on. \\
+\addlinespace
+Supuesto sobre las partes & Ficci\'on de una igualdad formal absoluta entre las partes contratantes: daba lo mismo una empresa que un consumidor. & Reconocimiento expreso de la vulnerabilidad estructural del consumidor en la relaci\'on de consumo. \\
+\addlinespace
+D\'onde se regulaba & En la legislaci\'on de fondo: el C\'odigo Civil y el anteriormente denominado C\'odigo Comercial. & En la Constituci\'on Nacional (art\'iculo 42). \\
+\addlinespace
+Resultado & Se supon\'ia una reciprocidad que en muchos casos no era cierta. & Se busca dejar de lado la asimetr\'ia y proteger a la parte m\'as fr\'agil. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+\section{La asimetr\'ia de la relaci\'on de consumo y la finalidad de la defensa del consumidor}
+
+El punto central de los derechos del consumidor es dejar de lado la \textbf{asimetr\'ia} propia de la relaci\'on de consumo, en la cual quien tiene mayores recursos y artilugios para dominar la relaci\'on es el productor, mientras que el consumidor es la parte m\'as fr\'agil. All\'i aparece la tem\'atica de la defensa del consumidor, que pasa a consagrarse en la Constituci\'on Nacional con la reforma de 1994.
+
+La defensa del consumidor no constituye un mero mecanismo asistencial del consumidor ni una intervenci\'on extremadamente dirigista del Estado, sino una \textbf{garant\'ia institucional indispensable}. Su finalidad, en un Estado de derecho, en un sistema de divisi\'on de poderes y en un sistema republicano, es lograr la eficiencia, la transparencia y la existencia misma de un mercado libre y competitivo.
+
+\begin{important}
+La defensa del consumidor \textbf{no} es un mero mecanismo asistencial ni una intervenci\'on dirigista del Estado: es una \textbf{garant\'ia institucional indispensable} para lograr eficiencia, transparencia y la existencia misma de un mercado libre y competitivo, dentro de un Estado de derecho, de divisi\'on de poderes y republicano.
+\end{important}
+
+\section{Cuadro Cornell: Bloque I}
+
+{\small
+\begin{longtable}{p{\cqw}!{\vrule}p{\cnw}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{\'{}Qu\'e son los derechos de tercera generaci\'on y cu\'ando se incorporaron a la Constituci\'on?} &
+Son los \textbf{derechos del consumidor y del medio ambiente}. Los de primera generaci\'on son los civiles y pol\'iticos; los de segunda, los sociales, econ\'omicos, gremiales, sindicales y del trabajo.
+Tuvieron su auge con la \textbf{reforma de 1994}, que marc\'o una bisagra en la tutela de los derechos personales y patrimoniales. \\
+\addlinespace
+
+\textbf{\'{}Por qu\'e cambi\'o el paradigma con la reforma de 1994?} &
+Antes regía la \textbf{ficci\'on de una igualdad formal absoluta} entre empresa y consumidor. Despu\'es se reconoce la \textbf{vulnerabilidad estructural} del consumidor y la \textbf{asimetr\'ia} de la relaci\'on de consumo. \\
+\addlinespace
+
+\textbf{\'{}Cu\'al es la finalidad de la defensa del consumidor?} &
+No es un mero mecanismo asistencial ni una intervenci\'on dirigista: es una \textbf{garant\'ia institucional indispensable} para lograr eficiencia, transparencia y la existencia misma de un mercado libre y competitivo, en un Estado de derecho republicano. \\
+
+\midrule
+\multicolumn{2}{p{\csw}}{\textbf{Resumen:} Los derechos del consumidor y del medio ambiente integran la tercera generaci\'on de derechos y alcanzaron su auge con la reforma de 1994. Esa reforma reemplaz\'o la ficci\'on de igualdad formal entre las partes por el reconocimiento de la vulnerabilidad estructural del consumidor y de la asimetr\'ia de la relaci\'on de consumo. La defensa del consumidor es una garant\'ia institucional indispensable para un mercado libre, transparente y competitivo.} \\
+\bottomrule
+\end{longtable}}
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+\chapter{Art\'iculo 42: derechos sustantivos fundamentales}
+
+\section{Fundamento normativo y estructura del art\'iculo 42}
+
+El n\'ucleo normativo en el que se basan los derechos y la defensa del consumidor se encuentra en el novedoso \textbf{art\'iculo 42 de la Constituci\'on Nacional}, cuyo texto es el siguiente:
+
+\begin{quote}
+Los consumidores y usuarios de bienes y servicios tienen derecho, en la relaci\'on de consumo, a la protecci\'on de su salud, seguridad e intereses econ\'omicos; a una informaci\'on adecuada y veraz; a la libertad de elecci\'on, y a condiciones de trato equitativo y digno.
+
+Las autoridades proveer\'an a la protecci\'on de esos derechos, a la educaci\'on para el consumo, a la defensa de la competencia contra toda forma de distorsi\'on de los mercados, al control de los monopolios naturales y legales, al de la calidad y eficiencia de los servicios p\'ublicos, y a la constituci\'on de asociaciones de consumidores y de usuarios.
+
+La legislaci\'on establecer\'a procedimientos eficaces para la prevenci\'on y soluci\'on de conflictos, y los marcos regulatorios de los servicios p\'ublicos de competencia nacional, previendo la necesaria participaci\'on de las asociaciones de consumidores y usuarios y de las provincias interesadas, en los organismos de control.
+\end{quote}
+
+El art\'iculo 42 puede subdividirse en dos categor\'ias:
+
+\begin{itemize}
+    \item \textbf{Subtipo A:} los \textbf{derechos sustantivos fundamentales} (o esenciales) del derecho del consumidor.
+    \item \textbf{Subtipo B:} los \textbf{mandatos de actuaci\'on estatal concretos}, que constituyen la fase activa y operan tanto en la v\'ia administrativa como en la v\'ia judicial, es decir, si cabe la reclamaci\'on del derecho del consumidor ante los tribunales.
+\end{itemize}
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.34\textwidth} Y@{}}
+\toprule
+\textbf{Categor\'ia del art\'iculo 42} & \textbf{Contenido} \\
+\midrule
+Subtipo A: derechos sustantivos fundamentales &
+\begin{minipage}[t]{\linewidth}\vspace{-0.6em}
+\begin{enumerate}[nosep,leftmargin=*]
+\item Protecci\'on de la salud y seguridad.
+\item Intereses econ\'omicos.
+\item Informaci\'on veraz y adecuada.
+\item Trato equitativo y digno.
+\end{enumerate}\end{minipage} \\
+\addlinespace
+Subtipo B: mandatos de actuaci\'on estatal concretos (v\'ia administrativa y v\'ia judicial) &
+\begin{minipage}[t]{\linewidth}\vspace{-0.6em}
+\begin{enumerate}[nosep,leftmargin=*]
+\item Defensa de la competencia.
+\item Control de monopolios.
+\item Educaci\'on para el consumo.
+\item Participaci\'on social.
+\end{enumerate}\end{minipage} \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+\section{Protecci\'on de la salud y la seguridad}
+
+El primer derecho sustantivo fundamental es la \textbf{protecci\'on de la salud y la seguridad} del consumidor: tutela de la integridad f\'isica y preventiva frente a productos y servicios riesgosos.
+
+Antes de la reforma constitucional, la relaci\'on de consumo se conceb\'ia bajo la ficci\'on de que consumidor y productor actuaban en igualdad de condiciones. Despu\'es de la reforma se procura un marco de racionalidad y veracidad, en el cual el consumidor es un simple consumidor atomizado y el productor puede ser una gran empresa con m\'as recursos. De hecho se da as\'i una \textbf{asimetr\'ia}: toda la informaci\'on que puede tener un consumidor es infinitamente peque\~na en funci\'on de lo que puede manejar un productor.
+
+\section{Intereses econ\'omicos}
+
+El segundo derecho sustantivo fundamental son los \textbf{intereses econ\'omicos}: protecci\'on frente a cobros indebidos, cl\'ausulas abusivas y pr\'acticas enga\~nosas.
+
+\section{Informaci\'on veraz y adecuada}
+
+El tercer derecho sustantivo fundamental es la \textbf{informaci\'on veraz y adecuada}. Su sentido es achicar la asimetr\'ia de recursos y de informaci\'on propia de la relaci\'on de consumo: un simple consumidor frente a un universo de productores. Se da tambi\'en la \textbf{asimetr\'ia de la informaci\'on}, pues el consumidor est\'a atomizado entre millones de consumidores.
+
+Un producto, una cadena de producci\'on o un servicio puede tener lo que se denomina un \textbf{v\'icio redhibitorio} o \textbf{v\'icio oculto}. Esto es propio del mercado de escala: el consumidor no tiene c\'omo saber si existe un v\'icio oculto; quien lo sabe es el productor. Por eso la finalidad de este derecho es \textbf{achicar la asimetr\'ia de la informaci\'on a favor del consumidor}, por ser la parte m\'as fr\'agil, m\'as endeble o m\'as desinformada.
+
+Esto implica un \textbf{deber expl\'icito de proveer datos comprensibles para neutralizar la asimetr\'ia de la informaci\'on} y, adem\'as, la regla de que \textbf{en caso de duda se decide a favor del consumidor}.
+
+\begin{important}
+Informaci\'on veraz y adecuada: deber expl\'icito de proveer datos comprensibles para neutralizar la asimetr\'ia informativa, achic\'andola a favor del consumidor, que es la parte m\'as fr\'agil y m\'as desinformada. \textbf{En caso de duda, a favor del consumidor.}
+\end{important}
+
+\section{Trato equitativo y digno}
+
+El cuarto derecho sustantivo fundamental es el \textbf{trato equitativo y digno}: prohibici\'on de pr\'acticas vejatorias o discriminatorias en la relaci\'on de consumo.
+
+\subsection{La relaci\'on m\'edica como relaci\'on de consumo: la ley 24.240}
+
+A partir de 1994, una relaci\'on de tipo m\'edico privada (una prepaga o una obra social, p\'ublica, privada, semip\'ublica o semiprivada) entra dentro de la normativa de la \textbf{ley 24.240}, que regula la defensa del consumidor. Esto ocurre independientemente, o coexistentemente, con que se trate de una relaci\'on profesional m\'edica o de pr\'actica m\'edica: tambi\'en constituye una \textbf{relaci\'on de consumo}. En consecuencia, la ley 24.240 se aplica a la relaci\'on de consumo prestacional m\'edica, llegado el caso, con la ejecuci\'on y el cumplimiento de las normas de un contrato, es decir, de una relaci\'on contractual.
+
+Quien recibe una prestaci\'on m\'edica bajo una relaci\'on de consumo est\'a, as\'i, protegido frente a la pr\'actica vejatoria o discriminatoria. Es propio de la pr\'actica profesional que, en las relaciones de consumo de prestaciones m\'edicas, la empresa tienda, bajo determinadas circunstancias, a ser restrictiva en el otorgamiento de ciertas prestaciones.
+
+\begin{example}{la pr\'otesis y las maniobras dilatorias}
+En el tipo de casos que se denominan \emph{amparos de salud}, una persona debe someterse a la implantaci\'on de una pr\'otesis. Existen el contrato, la relaci\'on y la asistencia, pero al momento de concretar la pr\'actica m\'edica comienzan las \textbf{maniobras dilatorias}: que la pr\'otesis no se consigue, que debe tener determinadas caracter\'isticas, etc. Esto se encuadra dentro de lo que es una pr\'actica vejatoria o dilatoria (tal vez no discriminatoria, pero s\'i tendiente a demorar la pr\'actica), y responde a una relaci\'on estrictamente de costos.
+
+No es lo mismo implantar una pr\'otesis gen\'erica de fabricaci\'on nacional que una pr\'otesis con determinado n\'umero, tipo de fabricaci\'on y material, que puede costar diez veces m\'as. La empresa de prestaci\'on m\'edica realiza un c\'alculo de costo-beneficio: pagar el menor costo y mantener el m\'as alto \'indice de lucratividad. Esto no es intr\'insecamente negativo; son los costos.% TODO: contenido incompleto o ambiguo en las notas originales (pasaje ininteligible en la grabaci\'on)
+\end{example}
+
+La empresa realiza lo que se denomina un \textbf{c\'alculo de costo actuarial}. Ante una pr\'actica onerosa, si hubiera diez personas a las que debe realizarla y la realizara a las diez, entrar\'ia en falencia y en quebranto econ\'omico. Se calcula entonces a qui\'en se le realizar\'a la pr\'actica: a quien haya presentado un reclamo, ya sea en la v\'ia administrativa o posteriormente en la v\'ia judicial. A las personas que no reclaman se les aplican maniobras dilatorias u otro tratamiento que no implique la pr\'otesis en s\'i. Esto encuadra dentro de las pr\'acticas vejatorias, que la ley de defensa del consumidor tiende a morigerar y a evitar.
+
+\begin{important}
+La empresa de salud calcula costos actuariales: ante una pr\'actica onerosa, la realiza a quien reclama y dilata o sustituye el tratamiento a quien no lo hace. Eso es una \textbf{pr\'actica vejatoria} que la ley de defensa del consumidor busca morigerar y evitar.
+\end{important}
+
+\section{Repaso de los derechos sustantivos y ejemplos pr\'acticos}
+
+Los derechos sustantivos fundamentales son: (1) protecci\'on de la salud y la seguridad frente a productos que puedan producir da\~no sobre la salud; (2) intereses econ\'omicos: protecci\'on frente a cobros indebidos, cl\'ausulas abusivas y pr\'acticas enga\~nosas; (3) informaci\'on veraz y adecuada; (4) trato equitativo y digno.
+
+\begin{example}{el cargo ignorado en la tarjeta de cr\'edito}
+En el resumen de un usuario de tarjeta de cr\'edito aparece un monto insignificante cuyo origen se desconoce. Para un consumidor individual el perjuicio es menor, pero cuando el mismo cargo recae sobre millones de consumidores, aun cien o mil pesos configuran una pr\'actica de alta lucratividad. Si uno solo reclama, no pasa nada; el problema surge cuando reclaman los millones de consumidores que detectan ese \'item.
+\end{example}
+
+\begin{example}{el alquiler de autos y la cl\'ausula abusiva}
+En el alquiler de un autom\'ovil sin chofer (empresas como Rent a Car y otras)% TODO: contenido incompleto o ambiguo en las notas originales (pasaje poco claro en la grabaci\'on)
+{} se exige una tarjeta de cr\'edito para acceder a la prestaci\'on. Un caso concreto: quien alquil\'o un auto circula por una ruta provincial y una piedrilla impacta sobre el parabrisas. Terminado el contrato, la empresa le exige 500.000 pesos para reponerlo. Surge entonces la pregunta por el seguro que debe tener todo auto para la cobertura de da\~no a terceros. Ocurre que la empresa, a efectos de lucrar, contrat\'o un seguro que no tiene ese tipo de cobertura y, en el mismo contrato, establece que quien debe hacerse cargo es el contratante.
+
+La l\'ogica es que las empresas buscan la cobertura m\'as m\'inima y quien debe hacerse cargo es el contratante del servicio. Este caso ilustra la protecci\'on frente a cobros indebidos, cl\'ausulas abusivas y pr\'acticas enga\~nosas.
+\end{example}
+
+\begin{example}{los tecnicismos y la informaci\'on comprensible}
+A veces el contrato est\'a plagado de tecnicismos extremos, de modo que la persona contrata un servicio pero no sabe cu\'al es la finalidad de la contrataci\'on en s\'i. Esto ilustra la informaci\'on veraz y adecuada como deber expl\'icito de proveer datos comprensibles.
+\end{example}
+
+El \'ultimo derecho, trato equitativo y digno (prohibici\'on de pr\'acticas vejatorias o discriminatorias en la relaci\'on de consumo), se ilustra con el ejemplo de salud antes desarrollado.
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.20\textwidth} Y Y@{}}
+\toprule
+\textbf{Derecho sustantivo} & \textbf{Qu\'e protege} & \textbf{Ejemplo de la clase} \\
+\midrule
+1. Salud y seguridad & Tutela de la integridad f\'isica y preventiva frente a productos y servicios riesgosos. & Productos que puedan producir da\~no sobre la salud. \\
+\addlinespace
+2. Intereses econ\'omicos & Protecci\'on frente a cobros indebidos, cl\'ausulas abusivas y pr\'acticas enga\~nosas. & Cargo insignificante en la tarjeta; seguro del auto de alquiler sin cobertura. \\
+\addlinespace
+3. Informaci\'on veraz y adecuada & Deber expl\'icito de proveer datos comprensibles; en caso de duda, a favor del consumidor. & Contratos plagados de tecnicismos. \\
+\addlinespace
+4. Trato equitativo y digno & Prohibici\'on de pr\'acticas vejatorias o discriminatorias en la relaci\'on de consumo. & Pr\'otesis demorada por la prepaga. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+\section{Cuadro Cornell: Bloque II}
+
+{\small
+\begin{longtable}{p{\cqw}!{\vrule}p{\cnw}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{\'{}C\'omo se estructura el art\'iculo 42 de la Constituci\'on Nacional?} &
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Subtipo A:} derechos sustantivos fundamentales (salud y seguridad; intereses econ\'omicos; informaci\'on veraz y adecuada; trato equitativo y digno).
+\item \textbf{Subtipo B:} mandatos de actuaci\'on estatal en la v\'ia administrativa y judicial (defensa de la competencia; control de monopolios; educaci\'on para el consumo; participaci\'on social).
+\end{itemize} \\
+\addlinespace
+
+\textbf{\'{}Qu\'e abarca cada derecho sustantivo?} &
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Salud y seguridad:} tutela preventiva de la integridad f\'isica frente a productos y servicios riesgosos.
+\item \textbf{Intereses econ\'omicos:} protecci\'on frente a cobros indebidos, cl\'ausulas abusivas y pr\'acticas enga\~nosas.
+\item \textbf{Informaci\'on:} datos comprensibles para neutralizar la asimetr\'ia; en caso de duda, a favor del consumidor.
+\item \textbf{Trato digno:} prohibici\'on de pr\'acticas vejatorias o discriminatorias.
+\end{itemize} \\
+\addlinespace
+
+\textbf{\'{}C\'omo opera el trato digno en una relaci\'on m\'edica?} &
+La \textbf{ley 24.240} alcanza a prepagas y obras sociales. Si la empresa dilata una pr\'otesis costosa, aplica un \textbf{c\'alculo de costo actuarial}: cumple con quien reclama y dilata con quien no lo hace. Eso es una pr\'actica vejatoria. \\
+
+\midrule
+\multicolumn{2}{p{\csw}}{\textbf{Resumen:} El art\'iculo 42 organiza la protecci\'on del consumidor en derechos sustantivos fundamentales (salud y seguridad, intereses econ\'omicos, informaci\'on veraz y adecuada, trato equitativo y digno) y mandatos de actuaci\'on estatal. La relaci\'on m\'edica privada es una relaci\'on de consumo regida por la ley 24.240, y dilatar prestaciones seg\'un un c\'alculo de costo actuarial constituye una pr\'actica vejatoria.} \\
+\bottomrule
+\end{longtable}}
+
+% ============================================================
+% CAPÍTULO 3
+% ============================================================
+\chapter{Art\'iculo 42: mandatos de actuaci\'on estatal}
+
+Los \textbf{mandatos de actuaci\'on estatal} se ejercen tanto en la v\'ia administrativa como en la v\'ia judicial, a efectos de efectivizar la pr\'actica de la relaci\'on de consumo.
+
+\section{Defensa de la competencia}
+
+El primer mandato es la \textbf{defensa de la competencia}: obligaci\'on de neutralizar distorsiones del mercado y abuso de posici\'on dominante. Se trata de un concepto econ\'omico relacionado con el derecho.
+
+\begin{definition}{monopolio}
+Es aquel oferente que, de forma individual, produce una determinada cantidad de un determinado bien, y para el cual no hay otro par que produzca el mismo bien.
+\end{definition}
+
+Que exista un monopolio no es intr\'insecamente malo: puede deberse a innovaciones tecnol\'ogicas o a la regulaci\'on del Estado que consagra a una determinada persona o grupo como prestador. Tampoco el titular de un bien monop\'olico fija siempre un precio indeterminado o infinito: si lo hiciera, por m\'as que tenga un monopolio, no tendr\'ia mercado.
+
+El problema surge cuando, a partir del monopolio, se tiene una pr\'actica distorsiva y se adquieren los beneficios del monopolio sin ning\'un costo. Quien resulta perjudicado es el simple consumidor atomizado. La defensa de la competencia tiende a achicar, suavizar y disminuir esas asimetr\'ias a favor de una pr\'actica monop\'olica, porque no se considera deseable que toda la econom\'ia se maneje en niveles de transacciones monop\'olicas.
+
+\begin{definition}{posici\'on dominante}
+Es, por ejemplo, tener un monopolio; pero no es solamente un monopolio: puede ser tambi\'en un duopolio, cuando dos oferentes se ponen de acuerdo en establecer un precio y la cantidad de un determinado bien.
+\end{definition}
+
+\section{Control de monopolios: monopolios naturales y monopolios legales}
+
+El segundo mandato es el \textbf{control de monopolios}: regulaci\'on estricta sobre monopolios naturales y legales en servicios p\'ublicos. Existen dos tipos de monopolios, naturales y legales (``legales'' en el sentido de legalidad, no de ilegalidad), mencionados en el art\'iculo 42. Que un prestador sea monop\'olico no es intr\'insecamente malo; ni el monopolio natural ni el legal lo son, pero existen y deben ser controlados.
+
+\subsection{El monopolio natural}
+
+\begin{definition}{monopolio natural}
+Es el que se da por una determinada pr\'actica inventiva, por creatividad en el proceso o en el producto, que hace que un solo prestador sea el capaz de brindar ese producto o servicio debido a su eficiencia, competencia, inventiva y creatividad aplicada a la forma de producci\'on de bienes o servicios. No hay rivales o competencia, no porque est\'e prohibida la competencia o la rivalidad, sino porque ese prestador es el m\'as innovador.
+\end{definition}
+
+\begin{example}{el proceso de asistencia jur\'idica sobre quiebra de empresas}
+Una persona crea, mediante un proceso determinado, una prestaci\'on de servicios de protecci\'on para abogados que no tiene otra competencia: lo patent\'o, lo registr\'o y es el \'unico prestador de un proceso que sirve para la asistencia jur\'idica sobre quiebra de empresas. Los dem\'as no est\'an en condiciones de desarrollar el mismo producto, porque no tienen esa creatividad, inventiva e iniciativa.
+
+Se plantea si es intr\'insecamente malo que sea el \'unico que lo presta. En la clase se sostuvo que no lo es, en tanto est\'e encuadrado en el derecho de protecci\'on del consumidor y no haya distorsi\'on del mercado. Antes de esa creaci\'on no exist\'ia el producto ni el proceso, por lo cual el creador puede poner el precio que quiera. El l\'imite es la \textbf{demanda}: puede fijar un precio exorbitante, pero si el mercado est\'a dispuesto a pagar solo una suma muy inferior, no hay demanda. Per se no tendr\'a otro l\'imite, porque responde a la l\'ogica de un producto que no tiene otra prestaci\'on y, por lo tanto, no tiene rival. Se se\~nal\'o, sin embargo, que a quien tiene un monopolio puede ponerse un l\'imite o tope a lo que cobra, como regla de la vida en sociedad.% TODO: contenido incompleto o ambiguo en las notas originales (intervenci\'on parcialmente inaudible; el l\'imite o tope al precio queda planteado sin desarrollo)
+\end{example}
+
+\begin{example}{Google}
+Google fue, en su momento, un t\'ipico monopolio natural, porque era el m\'as eficiente, el m\'as innovador, el m\'as instant\'aneo y el m\'as usado. Hab\'ian existido otros buscadores, pero dentro de la oferta y la demanda general de buscadores, Google representaba el 99,99\,\% de lo que la gente usaba. Era as\'i porque era el m\'as innovador, el m\'as creativo y el que invert\'ia en tecnolog\'ia y en proceso, lo que hac\'ia que la propia demanda de los consumidores lo usara casi unilateralmente.
+\end{example}
+
+\begin{note}
+En la grabaci\'on el docente menciona ``servidores que se llamaban Linux o similares''; por el contexto se entiende que se refiere a otros buscadores de la \'epoca.
+\end{note}
+
+\begin{example}{los autos voladores}
+Otro caso de monopolio natural por innovaci\'on es el de las empresas con autos que vuelan: Tesla, y otra empresa que habr\'ia fabricado tambi\'en este tipo de veh\'iculos, cuyo nombre no se recuerda en la clase. Hasta ahora es una prestaci\'on monop\'olica.% TODO: contenido incompleto o ambiguo en las notas originales (nombre de la segunda empresa no recordado)
+\end{example}
+
+\begin{note}
+El ejemplo de los autos voladores es ilustrativo: lo relevante es la l\'ogica de un monopolio que surge de la innovaci\'on.
+\end{note}
+
+\subsection{El monopolio legal}
+
+\begin{definition}{monopolio legal}
+Es aquel que, a partir de la intervenci\'on del Estado en su funci\'on administrativa o jurisdiccional, se consagra, establece o corona como el \'unico prestador de un servicio o producto. Se constituye a trav\'es de la materializaci\'on de la pr\'actica administrativa del Estado.
+\end{definition}
+
+Es el Estado el que decide qui\'en ser\'a el prestador de determinada l\'inea de ferrocarriles, cu\'antos ser\'an los prestadores de gas domiciliario o de electricidad domiciliaria y, en su momento, qui\'enes ser\'ian los prestadores del servicio telef\'onico.
+
+Para determinado tipo de prestaciones resulta \textbf{antiecon\'omico e ineficiente}, e incluso destructivo, que haya m\'as de un prestador. No es eficiente que haya tres o cuatro l\'ineas de ferrocarril paralelas para garantizar la competencia. Tampoco es eficiente que haya cuatro o cinco tendidos de servicio el\'ectrico, o de televisi\'on por cable, en un barrio de la periferia. En la Ciudad Aut\'onoma de Buenos Aires el servicio el\'ectrico es subterr\'aneo, pero en el conurbano viene a trav\'es de postes de luz, y tambi\'en la televisi\'on por cable. Cuatro o cinco tendidos de electricidad o de cable ser\'ian antieficientes, antiecon\'omicos y peligrosos; lo mismo vale para cuatro o cinco l\'ineas de red de gas natural en la misma vereda.
+
+Por una cuesti\'on de escala resulta m\'as eficiente, a trav\'es de la intervenci\'on estatal en su funci\'on administrativa, establecer qui\'enes ser\'an los \'unicos prestadores de determinados bienes y servicios, porque responde a una l\'ogica de escala y resulta m\'as seguro. Esto opera a trav\'es de un monopolio legal, que es la licencia de la regulaci\'on estatal. Por ejemplo, se establece que una empresa servir\'a la energ\'ia el\'ectrica domiciliaria desde la avenida C\'ordoba hacia el norte hasta el \'ultimo punto del pa\'is, y otra desde la avenida C\'ordoba hacia el sur hasta Ushuaia. Esto es independiente del producto que se brinde (l\'inea f\'errea, tel\'efono, electricidad) y no est\'a determinado por la inventiva o creatividad del producto o servicio, sino por la intervenci\'on del Estado a trav\'es de su funci\'on administrativa de regulaci\'on.
+
+\begin{example}{la telefon\'ia en las d\'ecadas del 80 y del 90}
+En la d\'ecada del 80 y parte de la del 90, las viviendas se vend\'ian con una diferencia de precio seg\'un tuvieran o no tel\'efono: una casa sin tel\'efono val\'ia cierta suma% TODO: contenido incompleto o ambiguo en las notas originales (cifra no audible en la grabaci\'on)
+{} y una casa con tel\'efono, bastante m\'as. La gente no ten\'ia acceso a algo tan b\'asico como una l\'inea telef\'onica, que era un diferenciante exclusivo. El \'unico prestador era el Estado, que ten\'ia la empresa de tel\'efonos pero no instalaba tel\'efonos (paradoja). En la d\'ecada del 90 se privatiz\'o, pas\'o de manos del Estado a manos privadas y baj\'o el precio del producto: tener tel\'efono dej\'o de ser una excepci\'on y pas\'o a ser algo de mercado.
+
+De este modo el Estado incid\'ia en el mercado inmobiliario, seg\'un decidiera d\'onde instalar la l\'inea telef\'onica. El Estado estableci\'o el precio del tel\'efono, que no se correspond\'ia con un precio de mercado sino con un privilegio. La trampa es la regulaci\'on: el que regula es el que impone el precio, lo que dio lugar a corrupci\'on y transacciones an\'omalas.
+\end{example}
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.20\textwidth} Y Y@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Monopolio natural} & \textbf{Monopolio legal} \\
+\midrule
+Origen & La inventiva, la creatividad y la innovaci\'on en el proceso o en el producto. & La intervenci\'on del Estado en su funci\'on administrativa (o jurisdiccional), que lo consagra como \'unico prestador. \\
+\addlinespace
+Por qu\'e no hay rivales & No porque est\'e prohibida la competencia, sino porque es el m\'as innovador y eficiente. & Porque el Estado establece qui\'enes ser\'an los \'unicos prestadores, por escala, eficiencia y seguridad. \\
+\addlinespace
+L\'imite del precio & La demanda: puede fijar el precio que quiera, pero sin demanda no hay mercado. & La regulaci\'on estatal (``el que regula es el que impone el precio''). \\
+\addlinespace
+Ejemplos de la clase & Google; Tesla (autos voladores); el proceso patentado de asistencia jur\'idica. & Ferrocarriles, gas y electricidad domiciliaria, telefon\'ia en su momento. \\
+\addlinespace
+\'{}Es intr\'insecamente malo? & No es intr\'insecamente malo, pero existe y debe ser controlado. & No es intr\'insecamente malo, pero existe y debe ser controlado. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+\section{Educaci\'on para el consumo y participaci\'on social}
+
+El tercer mandato es la \textbf{educaci\'on para el consumo}: formaci\'on ciudadana para la toma de decisiones informadas.
+
+El cuarto mandato es la \textbf{participaci\'on social}: creaci\'on e intervenci\'on de asociaciones de consumidores en entes reguladores de servicios. Se les brind\'o legitimaci\'on activa para tener la representaci\'on colectiva; as\'i lo denomina la Constituci\'on: ``asociaciones que propendan a esos fines''. Son asociaciones de consumidores, por ejemplo, de energ\'ia el\'ectrica de la provincia de Buenos Aires, de servicios de salud o de renta de alquiler. Son agrupaciones gremiales que tienden a proteger los derechos del consumidor y la relaci\'on de consumo.
+
+\begin{note}
+La expresi\'on ``asociaciones que propendan a esos fines'' corresponde al art\'iculo 43 de la Constituci\'on Nacional (amparo); el art\'iculo 42, por su parte, prev\'e la constituci\'on de asociaciones de consumidores y de usuarios y su participaci\'on en los organismos de control.
+\end{note}
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.22\textwidth} Y Y@{}}
+\toprule
+\textbf{Mandato de actuaci\'on estatal} & \textbf{Contenido} & \textbf{Idea clave} \\
+\midrule
+1. Defensa de la competencia & Obligaci\'on de neutralizar distorsiones del mercado y abuso de posici\'on dominante. & Monopolio, duopolio y posici\'on dominante. \\
+\addlinespace
+2. Control de monopolios & Regulaci\'on estricta sobre monopolios naturales y legales en servicios p\'ublicos. & Monopolio natural (innovaci\'on) y monopolio legal (regulaci\'on estatal). \\
+\addlinespace
+3. Educaci\'on para el consumo & Formaci\'on ciudadana para la toma de decisiones informadas. & Consumidores que deciden con informaci\'on. \\
+\addlinespace
+4. Participaci\'on social & Creaci\'on e intervenci\'on de asociaciones de consumidores en entes reguladores de servicios. & Legitimaci\'on activa y representaci\'on colectiva. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+\section{Cuadro Cornell: Bloque III}
+
+{\small
+\begin{longtable}{p{\cqw}!{\vrule}p{\cnw}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{\'{}Qu\'e es la defensa de la competencia y qu\'e es una posici\'on dominante?} &
+Obligaci\'on estatal de \textbf{neutralizar distorsiones del mercado y abuso de posici\'on dominante}. La posici\'on dominante puede ser un monopolio o un duopolio que acuerda precio y cantidad. \\
+\addlinespace
+
+\textbf{\'{}Qu\'e diferencia hay entre monopolio natural y monopolio legal?} &
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Natural:} nace de la inventiva y la innovaci\'on (Google). Su l\'imite es la demanda.
+\item \textbf{Legal:} el Estado, en su funci\'on administrativa, consagra un \'unico prestador por escala, eficiencia y seguridad (ferrocarril, gas, electricidad, tel\'efonos).
+\item Ninguno es intr\'insecamente malo, pero ambos deben ser controlados.
+\end{itemize} \\
+\addlinespace
+
+\textbf{\'{}Qu\'e son la educaci\'on para el consumo y la participaci\'on social?} &
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Educaci\'on:} formaci\'on ciudadana para decidir de manera informada.
+\item \textbf{Participaci\'on social:} asociaciones de consumidores con legitimaci\'on activa y representaci\'on colectiva en los entes reguladores.
+\end{itemize} \\
+
+\midrule
+\multicolumn{2}{p{\csw}}{\textbf{Resumen:} Los mandatos de actuaci\'on estatal del art\'iculo 42 son la defensa de la competencia, el control de monopolios, la educaci\'on para el consumo y la participaci\'on social. El monopolio no es intr\'insecamente malo: puede ser natural (por innovaci\'on) o legal (por regulaci\'on estatal), y en ambos casos debe ser controlado para evitar distorsiones y abusos de posici\'on dominante.} \\
+\bottomrule
+\end{longtable}}
+
+% ============================================================
+% CAPÍTULO 4
+% ============================================================
+\chapter{El enfoque del an\'alisis econ\'omico del derecho}
+
+\section{Libre mercado y derechos del consumidor: \texorpdfstring{\'{}}{}conceptos antag\'onicos?}
+
+La c\'atedra ense\~na derecho constitucional sin dejar de tener presente el \textbf{an\'alisis econ\'omico del derecho}, y es una de las pocas c\'atedras que adopta ese enfoque.
+
+En el manual, el titular de la c\'atedra examina la regulaci\'on constitucional del mercado desde la perspectiva de interrelacionar el an\'alisis econ\'omico del derecho y la teor\'ia constitucional. Demuestra que las libertades de mercado y los derechos del consumidor no son conceptos antag\'onicos (contrarios o enemigos), sino \textbf{complementarios}: relaci\'on de consumo, derechos del consumidor y libertad de mercado.
+
+La existencia de la libertad de mercado no significa la indefensi\'on del consumidor, porque all\'i el derecho constitucional aplica la defensa del consumidor (art\'iculo 42 y los derechos antes vistos) junto a una econom\'ia libre.
+
+Se trata de una \textbf{posici\'on doctrinaria}. Es posible estar a favor de una econom\'ia totalmente centralizada o estatizada, o de una de libre mercado; no es una cuesti\'on de decir que est\'a bien o mal. Dentro de la concepci\'on de la c\'atedra, la econom\'ia m\'as adecuada es una econom\'ia de libre mercado, pero eso no significa que el consumidor est\'e indefenso: tiene, por parte de la reforma de 1994, ciertas garant\'ias. Por eso no son enemigas la libertad de mercado y los derechos del consumidor. Es una posici\'on opinable, ilustrada con los ejemplos de la funci\'on administrativa que distingue monopolio natural y monopolio legal.
+
+\begin{important}
+Las libertades de mercado y los derechos del consumidor \textbf{no son conceptos antag\'onicos, sino complementarios}. La libertad de mercado no significa la indefensi\'on del consumidor: el art\'iculo 42 y las garant\'ias de la reforma de 1994 conviven con una econom\'ia libre. Es una posici\'on doctrinaria y, por lo tanto, opinable.
+\end{important}
+
+\section{Asimetr\'ia informativa y fallas de mercado}
+
+Desde la perspectiva econ\'omica de la teor\'ia constitucional de la defensa del consumidor, se analizan cuatro escenarios, cada uno con un diagn\'ostico de mercado y una respuesta constitucional.
+
+\subsection{Escenario 1: asimetr\'ia informativa}
+
+La asimetr\'ia informativa es un concepto econ\'omico. Diagn\'ostico de mercado: el proveedor posee informaci\'on completa sobre costos, riesgos y fallas. El consumidor act\'ua con una \textbf{racionalidad limitada}: no tiene idea del precio, del costo ni de las fallas del producto.
+
+Respuesta constitucional: exigencia de informaci\'on objetiva, veraz, detallada y gratuita del producto, para nivelar la negociaci\'on (la relaci\'on de consumo).
+
+\begin{example}{la composici\'on de un zapato o de un alimento}
+La informaci\'on debe ser objetiva: en un zapato, qu\'e parte es de cuero y qu\'e parte sint\'etica; en un alimento, con qu\'e est\'a compuesto. De lo contrario existe asimetr\'ia de informaci\'on y no se sabe qu\'e se est\'a consumiendo.
+\end{example}
+
+\subsection{Escenario 2: fallas de mercado y barreras}
+
+Diagn\'ostico: existencia de oligopolios y monopolios de hecho, y barreras de entrada que anulan la libre elecci\'on y la competencia.
+
+\begin{definition}{oligopolio y barrera de entrada}
+Un oligopolio es cuando hay dos o tres oferentes, y un monopolio es cuando hay uno solo; ``de hecho'' significa concreto. Las barreras de entrada impiden que ingrese otro prestador y anulan la libre elecci\'on entre m\'as oferentes.
+\end{definition}
+
+Respuesta constitucional: deber de las autoridades de tutelar la competencia objetiva e impedir el abuso de posici\'on dominante.
+
+Puede pensarse que una posici\'on dominante solo corresponde a empresas privadas, pero tambi\'en puede haber abuso de posici\'on dominante cuando una empresa estatal es la \'unica que presta un servicio de manera monop\'olica. No es que, per se, por ser privada una empresa act\'ue de forma depredatoria y, por ser estatal, de forma ben\'evola: la empresa estatal \'unica tambi\'en puede actuar de forma depredatoria, eliminando la competencia. Los remedios constitucionales, frente a un oligopolio o a un monopolio, p\'ublico o privado, tienden a controlarlo y a permitir la competencia; por eso una econom\'ia de libre mercado no es necesariamente antag\'onica de los derechos del consumidor.
+
+\section{Costos de transacci\'on y servicios cautivos}
+
+\subsection{Escenario 3: costos de transacci\'on}
+
+\begin{definition}{costo de transacci\'on}
+Es el hecho de pagar un costo por una decisi\'on, ya sea individual o grupal; pagar el costo de las propias decisiones es un costo de transacci\'on. Vivir implica costos de transacci\'on, que todos pagan, consciente o inconscientemente, en la vida y en la econom\'ia.
+\end{definition}
+
+Como ilustraci\'on, quien dedica su tiempo a una clase podr\'ia estar haciendo otra cosa: paga un costo, pero tambi\'en tiene un incentivo, que es aprobar la materia.
+
+Diagn\'ostico: litigar de forma individual por da\~nos de bajo monto genera un costo superior al perjuicio sufrido. El t\'ermino econ\'omico es \textbf{costo de dispersi\'on}.
+
+\begin{example}{los 10.000 pesos}
+Un abogado es convocado para litigar en defensa del consumidor de una persona a quien, hace cinco a\~nos, Telef\'onica de Argentina coloc\'o un cargo indebido en su tarjeta de cr\'edito. Tras establecerse el derecho del consumidor, corresponde devolverle el monto retenido ilegal o arbitrariamente: 10.000 pesos. Al abogado no le conviene iniciar una causa por ese monto; si lo hace, ser\'a para ganar imagen o por bondad.
+
+La variable econ\'omica cambia si, en lugar de una persona, hay 100.000: $10.000 \times 100.000$. A trav\'es de una \textbf{acci\'on colectiva}, a partir del caso de una persona, se reunen todos los de su tipo: litigar de forma individual no sirve, pero litigar de forma colectiva sirve al abogado, al consumidor y a todos los consumidores en igual situaci\'on. Cuando un consumidor plantea que le cargan de m\'as en un servicio de ese tipo, es seguro que hay muchas otras personas en la misma situaci\'on, y eso permite ir a buscar al resto. Esto se conoce como \textbf{acci\'on de clase}.
+\end{example}
+
+Respuesta constitucional: reorganizaci\'on de incentivos procesales para evitar la impunidad de conductas il\'icitas sistem\'aticas: \textbf{acci\'on de amparo colectivo}.
+
+\subsection{Escenario 4: fallas de informaci\'on en servicios}
+
+Diagn\'ostico: sistemas cautivos en servicios p\'ublicos, donde el usuario no posee sustitutos inmediatos en el mercado.
+
+Respuesta constitucional: participaci\'on de los usuarios en marcos regulatorios y control de calidad y eficiencia de la prestaci\'on. Ejemplos: audiencias p\'ublicas cuando se va a aumentar una tarifa (servicio de \'omnibus, de gas, de tel\'efono), marcos regulatorios y entes regulatorios.
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.2}\footnotesize
+\begin{tabularx}{\textwidth}{@{}B{0.17\textwidth} Y Y Y@{}}
+\toprule
+\textbf{Escenario} & \textbf{Diagn\'ostico de mercado} & \textbf{Respuesta constitucional} & \textbf{Ejemplo de la clase} \\
+\midrule
+1. Asimetr\'ia informativa & El proveedor posee informaci\'on completa sobre costos, riesgos y fallas; el consumidor act\'ua con racionalidad limitada. & Exigencia de informaci\'on objetiva, veraz, detallada y gratuita del producto, para nivelar la negociaci\'on. & Composici\'on de un alimento; materiales de un zapato. \\
+\addlinespace
+2. Fallas de mercado y barreras & Oligopolios y monopolios de hecho, y barreras de entrada que anulan la libre elecci\'on y la competencia. & Deber de las autoridades de tutelar la competencia objetiva e impedir el abuso de posici\'on dominante. & Posici\'on dominante tanto privada como estatal. \\
+\addlinespace
+3. Costos de transacci\'on & Litigar de forma individual por da\~nos de bajo monto genera un costo superior al perjuicio sufrido (costo de dispersi\'on). & Reorganizaci\'on de incentivos procesales para evitar la impunidad de conductas il\'icitas sistem\'aticas: acci\'on de amparo colectivo. & Los 10.000 pesos multiplicados por 100.000 afectados. \\
+\addlinespace
+4. Fallas de informaci\'on en servicios & Sistemas cautivos en servicios p\'ublicos, donde el usuario no posee sustitutos inmediatos en el mercado. & Participaci\'on de los usuarios en marcos regulatorios y control de calidad y eficiencia de la prestaci\'on. & Audiencias p\'ublicas ante un aumento de tarifas. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+\section{Dimensi\'on microecon\'omica de la eficiencia}
+
+Cuando una empresa externaliza costos imponiendo cargos indebidos o fabricando productos defectuosos, sabiendo que los consumidores no la demandar\'an individualmente, se produce una \textbf{distorsi\'on de la eficiencia}.
+
+El remedio constitucional consiste en que el derecho interviene \textbf{redistribuyendo las cargas de informaci\'on y el riesgo}, asegurando que los precios reflejen los verdaderos costos sociales de producci\'on. Esto se logra mediante dos mecanismos.
+
+\begin{definition}{eficiencia informativa}
+Es un m\'etodo: reducir el costo de adquisici\'on de la informaci\'on para el consumidor incrementa la competencia entre los diferentes oferentes y fuerza y obliga a la mejora sustancial en la calidad global del producto.
+\end{definition}
+
+La eficiencia informativa obliga a informar c\'omo se fabric\'o un producto (el proceso, el tiempo, las garant\'ias y dem\'as), lo que reduce la asimetr\'ia de la informaci\'on. El consumidor puede elegir por precios, por productos y por cantidad: adquirir el m\'as barato, sabiendo que tiene menor calidad pero le sirve m\'as para esa adquisici\'on, o el m\'as caro, que tiene m\'as durabilidad.
+
+\begin{definition}{riesgo moral corporativo (\emph{moral hazard})}
+La falta de mecanismos colectivos efectivos (es decir, de control) induce al productor a incurrir en peque\~nas conductas il\'icitas masivas de car\'acter lucrativo, denominadas \textbf{da\~nos hormiga}.
+\end{definition}
+
+No se trata de una falla estructural ostensible, visible o total, sino imperceptible, pero ponderada dentro del sistema de producci\'on. Como el productor sabe que no habr\'a defensa del consumidor ni control del producto,% TODO: contenido incompleto o ambiguo en las notas originales (pasaje poco claro sobre organismos y normas de control)
+{} estructuralmente tiene una falla, pero le sirve en la ponderaci\'on de costos y beneficios: produce algo defectuoso porque eso est\'a ponderado en los costos, y no tiene control, penalidad ni riesgo de control.
+
+En s\'intesis, el art\'iculo 42 aporta normativa constitucional, conceptos constitucionales que unen el derecho y la econom\'ia, y doctrina de la teor\'ia constitucional para dar soluci\'on a estos problemas de los derechos del consumidor.
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.22\textwidth} Y Y@{}}
+\toprule
+\textbf{Mecanismo} & \textbf{En qu\'e consiste} & \textbf{Efecto} \\
+\midrule
+Eficiencia informativa & Reducir el costo de adquisici\'on de la informaci\'on para el consumidor. & Incrementa la competencia entre los productores y fuerza la mejora sustancial en la calidad global del producto. \\
+\addlinespace
+Riesgo moral corporativo (\emph{moral hazard}) & La falta de mecanismos colectivos efectivos de control induce al productor a incurrir en peque\~nas conductas il\'icitas masivas de car\'acter lucrativo (da\~nos hormiga). & El defecto o el cargo indebido queda ponderado dentro de los costos del sistema de producci\'on, porque no hay penalidad ni riesgo de control. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+\section{Cuadro Cornell: Bloque IV}
+
+{\small
+\begin{longtable}{p{\cqw}!{\vrule}p{\cnw}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{\'{}Se oponen la libertad de mercado y los derechos del consumidor?} &
+No: son \textbf{complementarios}. La libertad de mercado no implica la indefensi\'on del consumidor. Es una posici\'on doctrinaria, opinable. \\
+\addlinespace
+
+\textbf{\'{}Cu\'ales son los cuatro escenarios del an\'alisis econ\'omico?} &
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{1. Asimetr\'ia informativa:} respuesta, informaci\'on objetiva, veraz, detallada y gratuita.
+\item \textbf{2. Fallas de mercado y barreras:} respuesta, tutela de la competencia y freno al abuso de posici\'on dominante (p\'ublico o privado).
+\item \textbf{3. Costos de transacci\'on:} respuesta, incentivos procesales y amparo colectivo.
+\item \textbf{4. Fallas de informaci\'on en servicios:} respuesta, participaci\'on de usuarios (audiencias p\'ublicas) y control de calidad.
+\end{itemize} \\
+\addlinespace
+
+\textbf{\'{}Qu\'e es el costo de dispersi\'on?} &
+Litigar individualmente por da\~nos de bajo monto cuesta m\'as que el perjuicio sufrido. Con 10.000 pesos por 100.000 afectados, la \textbf{acci\'on colectiva} s\'i resulta conveniente. \\
+\addlinespace
+
+\textbf{\'{}Qu\'e son la eficiencia informativa y el riesgo moral corporativo?} &
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Eficiencia informativa:} reducir el costo de adquirir informaci\'on incrementa la competencia y mejora la calidad.
+\item \textbf{Riesgo moral corporativo} (\emph{moral hazard}): sin controles colectivos efectivos, el productor comete peque\~nas conductas il\'icitas masivas y lucrativas (\textbf{da\~nos hormiga}) porque ya las pondera como costo.
+\end{itemize} \\
+
+\midrule
+\multicolumn{2}{p{\csw}}{\textbf{Resumen:} Desde el an\'alisis econ\'omico del derecho, libertad de mercado y defensa del consumidor son complementarias. El derecho corrige asimetr\'ias informativas, fallas de mercado, costos de transacci\'on y fallas de informaci\'on en servicios, y desactiva el riesgo moral corporativo que alimenta los da\~nos hormiga, redistribuyendo las cargas de informaci\'on y de riesgo.} \\
+\bottomrule
+\end{longtable}}
+
+% ============================================================
+% CAPÍTULO 5
+% ============================================================
+\chapter{El caso Halabi y las acciones colectivas}
+
+\section{El caso Halabi (2009)}
+
+El fallo \textbf{``Halabi, Ernesto c/ Poder Ejecutivo Nacional''} (Corte Suprema de Justicia de la Naci\'on, 2009) constituye un hito procedimental indispensable para entender los derechos constitucionales del consumidor.
+
+Se trataba de un abogado que hab\'ia tenido un problema con su l\'inea de tel\'efono: se la hab\'ian intervenido, es decir, lo escuchaban ilegalmente. El planteo no se dio solo por la parte penal, sino por la parte de defensa del consumidor, porque era usuario de un servicio telef\'onico.
+
+Exist\'ia una \textbf{omisi\'on legislativa} de regulaci\'on de procesos colectivos. Por un solo caso no val\'ia la pena, pero eran 100.000 casos de servicio telef\'onico con ese problema, y all\'i s\'i: la ecuaci\'on econ\'omica se une al respeto de los derechos. La Corte sent\'o una doctrina jur\'idica de valor normativo directo.
+
+Hasta 2009 estaba incorporado el art\'iculo 42 de la Constituci\'on Nacional, pero no establec\'ia este subtipo. En Halabi se construye conceptualmente la doctrina de los \textbf{intereses individuales homog\'eneos}, que no est\'a nombrada as\'i en la Constituci\'on ni en la Ley de Defensa del Consumidor.
+
+\begin{definition}{construcci\'on pretoriana}
+Es una construcci\'on conceptual elaborada por la Corte Suprema. En 2009 la Corte incorpor\'o al derecho argentino un concepto del derecho norteamericano que en Estados Unidos ya exist\'ia, seg\'un lo expuesto, desde la d\'ecada final de los 80: las \emph{class actions} o \textbf{acciones de clase}.% TODO: contenido incompleto o ambiguo en las notas originales (la fecha se atribuye al docente con la expresi\'on ``dice'')
+\end{definition}
+
+\begin{note}
+Las acciones de clase federales norteamericanas se regulan de forma moderna desde la Regla 23 (1966); el docente alude de manera general a su existencia previa en ese sistema.
+\end{note}
+
+La acci\'on de clase se ejemplifica as\'i: Halabi no era el \'unico usuario de tel\'efono, pero estaba nominalmente determinado. Un n\'umero de tel\'efono correspond\'ia a Halabi y no hab\'ia otra persona con ese mismo n\'umero, lo que hac\'ia que esa relaci\'on de consumo fuera perfectamente individualizable. Hay millones de usuarios de tel\'efono, pero cada uno tiene un n\'umero propio. Es una relaci\'on que se puede determinar, a diferencia del derecho ambiental, que es indeterminado porque afecta a muchas personas pero a ning\'un particular espec\'ificamente.
+
+\section{Intereses individuales homog\'eneos y clasificaci\'on de los derechos}
+
+\begin{definition}{inter\'es individual homog\'eneo}
+Inter\'es en una relaci\'on de consumo (por ejemplo, el usuario de una l\'inea de tel\'efono) que es:
+\begin{itemize}[nosep]
+\item \textbf{Individual}, porque es claramente determinado el titular del consumo; es nominativo, individualizado.
+\item \textbf{Homog\'eneo}, porque no son solo uno sino millones; la homogeneidad est\'a dada por el tipo de producto del cual son titulares (en el caso, usuarios de tel\'efono). Cada titular puede identificarse individualmente en ese conglomerado.
+\end{itemize}
+\end{definition}
+
+En el derecho ambiental esto es dif\'icil: no se puede establecer cu\'anto afect\'o una contaminaci\'on a cada persona, de modo que el bien es \textbf{indivisible}. En el derecho de consumo, en cambio, la relaci\'on de consumo es \textbf{divisible}.
+
+La Corte distingue as\'i tres categor\'ias de derechos:
+
+\begin{enumerate}[label=\textbf{\Alph*.}]
+\item \textbf{Derechos subjetivos individuales.} Clasificaci\'on tradicional, de titularidad exclusiva, divisibles y ejercidos de manera personal e individual por el afectado.
+\item \textbf{Derechos de incidencia colectiva sobre bienes colectivos.} Recaen sobre bienes indivisibles que pertenecen a la comunidad: medio ambiente, patrimonio hist\'orico, una plaza, un r\'io que ``es de todos, pero no es de nadie''. Es lo opuesto al caso Halabi: all\'i hay un titular de una l\'inea de tel\'efono; en un r\'io, no se puede determinar qu\'e parte es de cada uno.
+\item \textbf{Derechos de incidencia colectiva sobre intereses individuales homog\'eneos.} Derechos individuales divisibles lesionados por una causa o hecho com\'un indivisible. Se da en una relaci\'on de consumo; por ejemplo, los cobros indebidos en una tarjeta o en un servicio, como el cargo de la tarifa de electricidad cobrado a un mill\'on de personas y que luego se declar\'o que no correspond\'ia.
+\end{enumerate}
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.24\textwidth} Y Y@{}}
+\toprule
+\textbf{Categor\'ia (Halabi)} & \textbf{Caracter\'isticas} & \textbf{Ejemplo de la clase} \\
+\midrule
+A. Derechos subjetivos individuales & Clasificaci\'on tradicional; titularidad exclusiva; divisibles; ejercidos de manera personal e individual por el afectado. & El titular de una l\'inea de tel\'efono individualizado. \\
+\addlinespace
+B. Derechos de incidencia colectiva sobre bienes colectivos & Recaen sobre bienes indivisibles que pertenecen a la comunidad: ``es de todos, pero no es de nadie''. & Medio ambiente, patrimonio hist\'orico, una plaza, un r\'io. \\
+\addlinespace
+C. Derechos de incidencia colectiva sobre intereses individuales homog\'eneos & Derechos individuales divisibles lesionados por una causa o hecho com\'un indivisible. La homogeneidad est\'a dada por el tipo de producto del que son titulares. & Cobro indebido de un cargo de tarifa de electricidad a un mill\'on de personas. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+\begin{center}
+{\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}B{0.20\textwidth} Y Y@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Relaci\'on de consumo (inter\'es individual homog\'eneo)} & \textbf{Derecho ambiental (bien colectivo)} \\
+\midrule
+Titulares & Determinados: se los puede identificar individualmente. & Indeterminados: afecta a muchas personas, pero a ning\'un particular espec\'ificamente. \\
+\addlinespace
+Divisibilidad & Divisible: se puede establecer la afectaci\'on de cada uno. & Indivisible: no se puede establecer cu\'anto afect\'o la contaminaci\'on a cada uno. \\
+\addlinespace
+Fuente de la homogeneidad & El tipo de producto del cual son titulares (usuarios de tel\'efono). & El bien pertenece a la comunidad: es de todos y no es de nadie. \\
+\bottomrule
+\end{tabularx}}
+\end{center}
+
+\section{S\'intesis de la defensa del consumidor}
+
+Integrando la doctrina procesal de Halabi, la perspectiva institucional del manual y el art\'iculo 42 de la Constituci\'on Nacional, se concluye que las acciones colectivas en materia de consumo operan como una \textbf{herramienta procesal clave} que resuelve las fallas del sistema judicial tradicional, que no las ten\'ia en cuenta, y convierte las cl\'ausulas constitucionales en \textbf{garant\'ias efectivas y operativas} en una relaci\'on de consumo.
+
+\begin{important}
+Las acciones colectivas son una \textbf{herramienta procesal clave} que resuelve las fallas del sistema judicial tradicional y convierte las cl\'ausulas constitucionales en \textbf{garant\'ias efectivas y operativas} en la relaci\'on de consumo.
+\end{important}
+
+\section{Cuadro Cornell: Bloque V}
+
+{\small
+\begin{longtable}{p{\cqw}!{\vrule}p{\cnw}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{\'{}Qu\'e resolvi\'o el caso Halabi (2009)?} &
+Ante una \textbf{omisi\'on legislativa} de procesos colectivos, la Corte construy\'o la doctrina de los \textbf{intereses individuales homog\'eneos}, una \emph{construcci\'on pretoriana} inspirada en las \emph{class actions} norteamericanas. \\
+\addlinespace
+
+\textbf{\'{}Qu\'e es un inter\'es individual homog\'eneo?} &
+Es individual porque el titular del consumo est\'a determinado, y homog\'eneo porque son millones de titulares del mismo tipo de producto (por ejemplo, usuarios de tel\'efono). La relaci\'on de consumo es divisible. \\
+\addlinespace
+
+\textbf{\'{}Qu\'e tipos de derechos distingue Halabi?} &
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{A.} Derechos subjetivos individuales (divisibles, titularidad exclusiva).
+\item \textbf{B.} Derechos de incidencia colectiva sobre bienes colectivos (indivisibles: ambiente, r\'io, plaza).
+\item \textbf{C.} Derechos de incidencia colectiva sobre intereses individuales homog\'eneos (divisibles, causa com\'un indivisible: consumo).
+\end{itemize} \\
+\addlinespace
+
+\textbf{\'{}C\'omo se vuelve efectiva la cl\'ausula constitucional?} &
+Las acciones colectivas son una \textbf{herramienta procesal clave} que resuelve las fallas del sistema judicial tradicional y convierte las cl\'ausulas constitucionales en \textbf{garant\'ias efectivas y operativas}. \\
+
+\midrule
+\multicolumn{2}{p{\csw}}{\textbf{Resumen:} Como el costo de litigar individualmente por montos bajos supera el perjuicio, el caso Halabi (2009) incorpor\'o las acciones colectivas mediante la categor\'ia de los intereses individuales homog\'eneos. La Corte distingui\'o derechos individuales, derechos de incidencia colectiva sobre bienes colectivos y derechos de incidencia colectiva sobre intereses individuales homog\'eneos, y las acciones colectivas convierten las cl\'ausulas constitucionales en garant\'ias efectivas y operativas.} \\
+\bottomrule
+\end{longtable}}
+
+% ============================================================
+% SÍNTESIS FINAL
+% ============================================================
+\capsin{S\'intesis final de la clase}{S\'intesis final de la clase}
+
+La clase mostr\'o c\'omo la reforma constitucional de 1994 reemplaz\'o la ficci\'on de una igualdad formal entre empresa y consumidor por el reconocimiento de la vulnerabilidad estructural del consumidor. El art\'iculo 42 organiza esa protecci\'on en dos planos: derechos sustantivos (salud y seguridad, intereses econ\'omicos, informaci\'on veraz y trato digno) y mandatos de actuaci\'on estatal (defensa de la competencia, control de monopolios naturales y legales, educaci\'on para el consumo y participaci\'on social).
+
+Desde el an\'alisis econ\'omico del derecho, se sostiene que libertad de mercado y defensa del consumidor son complementarias: el derecho corrige asimetr\'ias informativas, fallas de mercado, costos de transacci\'on y fallas de informaci\'on, y desactiva el riesgo moral corporativo que alimenta los da\~nos hormiga. Como el costo de litigar individualmente por montos bajos supera el perjuicio, el caso Halabi (2009) incorpor\'o las acciones colectivas mediante la categor\'ia de los intereses individuales homog\'eneos, y con ello las acciones colectivas convierten las cl\'ausulas constitucionales en garant\'ias efectivas y operativas.
+
+Para el repaso se indic\'o consultar el manual, la Constituci\'on y los conceptos vistos en la clase.
+
+% ============================================================
+% MATERIAL COMPLEMENTARIO
+% ============================================================
+\capsin{Material complementario: utilidad de los contenidos}{Utilidad de los contenidos}
+
+Los apuntes originales incluyen una reflexi\'on sobre la utilidad profesional y personal de lo visto en la clase.
+
+\section*{En la vida profesional}
+
+\begin{itemize}
+\item \textbf{Litigar con estrategia.} Amparos de salud (pr\'otesis, prepagas), cobros indebidos y cl\'ausulas abusivas; y entender por qu\'e mil reclamos de 10.000 pesos conviene transformarlos en una acci\'on colectiva.
+\item \textbf{Asesorar a empresas.} Saber qu\'e exige el art\'iculo 42 (informaci\'on comprensible, trato digno, contratos sin cl\'ausulas abusivas) evita sanciones y reclamos masivos. El riesgo moral y los ``da\~nos hormiga'' son riesgos legales reales.
+\item \textbf{Argumentar mejor.} El an\'alisis econ\'omico del derecho (costos de transacci\'on, asimetr\'ia informativa, incentivos) brinda un lenguaje que entienden jueces, empresas y reguladores.
+\item \textbf{Moverse en el \'ambito regulatorio.} Audiencias p\'ublicas, entes reguladores, defensa de la competencia y asociaciones de consumidores son escenarios donde se ejerce la profesi\'on.
+\end{itemize}
+
+\section*{En la vida personal}
+
+\begin{itemize}
+\item \textbf{Todos los d\'ias se es consumidor.} Tarjeta, prepaga, telefon\'ia, alquiler de autos, servicios: permite reconocer un cobro indebido, una cl\'ausula abusiva o un contrato incomprensible.
+\item \textbf{Saber qu\'e se puede exigir.} Informaci\'on veraz y gratuita, trato digno y, en caso de duda, una interpretaci\'on a favor del consumidor; y se puede reclamar colectivamente aunque el monto sea peque\~no.
+\end{itemize}
+
+\section*{\texorpdfstring{\'{}Es \'util? S\'i, y por qu\'e}{Es util? Si, y por que}}
+
+\begin{itemize}
+\item \textbf{Porque es transversal.} Se aplica a salud, bancos, seguros, telecomunicaciones y servicios p\'ublicos: casi cualquier cliente ser\'a, a la vez, consumidor.
+\item \textbf{Porque convierte la teor\'ia en herramienta.} El caso Halabi muestra c\'omo una cl\'ausula constitucional se vuelve garant\'ia operativa a trav\'es de un proceso.
+\item \textbf{Porque entrena una forma de pensar.} Ver las normas como incentivos (qui\'en gana, qui\'en paga, qui\'en reclama) mejora el razonamiento jur\'idico en cualquier rama del derecho.
+\end{itemize}
+
+\end{document}

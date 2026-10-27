@@ -1,0 +1,911 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Concursos y Quiebras}
+\newcommand{\titulo}{Período informativo y verificación de créditos}
+\newcommand{\subtitulo}{Artículos 32 a 38 y 56 de la Ley 24.522}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Apuntes de Concursos y Quiebras: Período informativo y verificación de créditos},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Columnas para los cuadros Cornell
+\newcolumntype{Q}{>{\raggedright\arraybackslash}p{0.28\textwidth}}
+\newcolumntype{W}{>{\raggedright\arraybackslash}p{\dimexpr0.72\textwidth-4\tabcolsep\relax}}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Caja para transcribir el texto de los artículos de ley citados en las notas
+\newtcolorbox{legal}[1]{
+    enhanced,
+    breakable,
+    title={#1},
+    fonttitle=\bfseries\small,
+    fontupper=\small,
+    colback=olive!4,
+    colframe=olive!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ==================== DOCUMENTO ====================
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.3cm}
+
+{\large \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Concursos y Quiebras'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------- ÍNDICE ----------
+\tableofcontents
+
+% ---------- VISIÓN GENERAL ----------
+\chapter*{Visión general}
+\addcontentsline{toc}{chapter}{Visión general}
+\markboth{Visión general}{Visión general}
+
+Cuando una empresa o una persona entra en concurso preventivo, sus acreedores no cobran automáticamente: primero deben ser reconocidos. Estos apuntes explican cómo se logra ese reconocimiento a través de la \textbf{verificación de créditos} y qué ocurre después con cada pedido: el control de los demás acreedores, el informe del síndico, la decisión del juez y la posibilidad de revisarla. Se trabajan los artículos 32 a 38 y 56 de la Ley 24.522.
+
+El material se organiza en cuatro bloques:
+
+\begin{itemize}
+    \item \textbf{Bloque I:} período informativo; verificación tempestiva y tardía; diferencias de forma, patrocinio, arancel y costas.
+    \item \textbf{Bloque II:} los tres requisitos que no pueden faltar: monto (capital e intereses), causa y privilegio.
+    \item \textbf{Bloque III:} facultades del síndico, período de observación o impugnación, informe individual y resolución verificatoria.
+    \item \textbf{Bloque IV:} efectos de la resolución, incidente de revisión, plazo de 20 días y plenario Rafiki.
+\end{itemize}
+
+\begin{note}
+Los textos legales se reproducen según la versión recogida en las notas originales (con las modificaciones de la Ley 27.170 para el artículo 32). Conviene cotejarlos con el texto vigente antes de citarlos.
+\end{note}
+
+\section*{Relación entre los temas: un ejemplo cotidiano}
+
+\begin{example}{El restaurante que cierra}
+Un restaurante cierra y le debe dinero a muchos proveedores. El juez fija una fecha límite para que cada proveedor se anote en una lista (Bloque I). Al anotarse, el proveedor completa una ficha con tres datos clave: cuánto se le debe (con intereses), por qué se le debe y si tiene alguna garantía (Bloque II). Después, el administrador revisa la ficha; los demás proveedores y el dueño pueden examinarla y marcar errores, y el administrador elabora un informe sobre cada ficha (Bloque III). Por último, el juez decide si acepta el pedido y, si el proveedor no está de acuerdo, dispone de 20 días para solicitar que revise su decisión (Bloque IV). Cada bloque es un paso del mismo camino: anotarse, completar bien, ser controlado y ser reconocido.
+\end{example}
+
+\section*{Utilidad práctica, aprendizajes transversales y errores frecuentes}
+
+La verificación de crédito es la única vía para que un acreedor (proveedor, trabajador, banco, locador) participe y cobre en el concurso de su deudor. Quien asesora al acreedor debe saber qué presentar, ante quién y hasta cuándo; quien asesora al concursado debe saber revisar los legajos y observar créditos indebidos durante el período de observación. Los contadores y administradores participan como síndicos o asesores de empresas en crisis, y el informe individual (uno por cada verificación) es su herramienta de trabajo. Como la verificación tempestiva no exige abogado ni contador, un acreedor puede defender personalmente su crédito.
+
+Errores concretos que se pagan caros:
+
+\begin{itemize}
+    \item pedir «intereses» como en una demanda, de modo que solo se verifique el capital;
+    \item calcular intereses más allá de la fecha de presentación del concurso;
+    \item no pedir expresamente el privilegio de una hipoteca y ser verificado como quirografario;
+    \item dejar vencer los 20 días del incidente de revisión.
+\end{itemize}
+
+Aprendizajes que atraviesan todo el tema: (1) en el derecho, lo que no se pide expresamente no se reconoce; (2) los plazos son perentorios y deben contarse con precisión; (3) una afirmación sin documentación respaldatoria vale muy poco.
+
+% =====================================================
+% BLOQUE I
+% =====================================================
+\chapter[Período informativo y verificación]{Bloque I — Período informativo y clases de verificación}
+
+\section{Apertura y concepto del período informativo}
+
+\begin{definition}{Período informativo}
+Etapa del concurso en la que los acreedores se presentan para que su crédito sea reconocido y así poder participar del proceso concursal. El medio para lograrlo es la \textbf{verificación de crédito}.
+\end{definition}
+
+\section{Verificación tempestiva y verificación tardía}
+
+\subsection{El plazo lo fija el juez en la resolución de apertura}
+
+Para verificar el crédito existe un plazo determinado en la resolución de apertura del concurso preventivo: en ella el juez establece hasta cuándo los acreedores pueden presentarse a verificar su crédito.
+
+\begin{legal}{Ley 24.522 — Art. 14 (extracto: incisos 3 y 9) · Resolución de apertura}
+ARTICULO 14.- Resolución de apertura. Contenido. Cumplidos en debido tiempo los requisitos legales, el juez debe dictar resolución que disponga: [\dots] 3) La fijación de una fecha hasta la cual los acreedores deben presentar sus pedidos de verificación al síndico, la que debe estar comprendida entre los QUINCE (15) y los VEINTE (20) días, contados desde el día en que se estime concluirá la publicación de los edictos. [\dots] 9) Las fechas en que el síndico deberá presentar el informe individual de los créditos y el informe general. [\dots]
+\end{legal}
+
+\subsection{Las dos modalidades}
+
+\begin{definition}{Verificación tempestiva}
+Verificación que el acreedor realiza antes del vencimiento de la fecha fijada en la resolución de apertura; es la verificación oportuna, la que determina el artículo 32.
+\end{definition}
+
+\begin{definition}{Verificación tardía}
+Verificación que se realiza una vez vencido el plazo fijado en la apertura (por ejemplo, porque el acreedor no se enteró o se le pasó la fecha). Se rige por el artículo 56. El plazo general es de \textbf{dos años}, computados desde la fecha de la presentación del concurso.
+\end{definition}
+
+\subsection{El plazo especial o excepcional del artículo 56}
+
+La ley establece en el artículo 56 un plazo especial o excepcional para el caso en que el acreedor necesita contar con una sentencia judicial que reconozca su crédito. No todos los acreedores tienen un crédito exigible desde el inicio.
+
+\begin{example}{Proceso de daños y perjuicios contra el concursado}
+Si el acreedor inició un proceso de daños y perjuicios contra el concursado, hasta que no se reconozca que este debe pagar la indemnización y no se determine el monto (el \emph{quántum}, que fija la sentencia), el acreedor no cuenta con un crédito exigible. En ese caso necesita la sentencia firme, y la ley le concede un plazo de \textbf{seis meses} desde que la sentencia queda firme.
+\end{example}
+
+Así, la verificación tardía habilita no solo a los acreedores a quienes se les pasó la fecha, sino también a aquellos que necesitaban una sentencia para que su crédito fuera reconocido y poder luego verificarlo en el concurso.
+
+\begin{important}
+Plazos de la verificación tardía: dos años desde la presentación del concurso (regla general) y seis meses desde que queda firme la sentencia, cuando el título verificatorio es una sentencia dictada por otro tribunal en las excepciones del artículo 21 (plazo excepcional del artículo 56).
+\end{important}
+
+\begin{legal}{Ley 24.522 — Art. 56 · Aplicación a todos los acreedores (verificación tardía)}
+ARTICULO 56.- Aplicación a todos los acreedores. El acuerdo homologado produce efectos respecto de todos los acreedores quirografarios cuyos créditos se hayan originado por causa anterior a la presentación, aunque no hayan participado en el procedimiento. También produce iguales efectos respecto de los acreedores privilegiados verificados, en la medida en que hayan renunciado al privilegio. Son absolutamente nulos los beneficios otorgados a los acreedores que excedan de lo establecido en el acuerdo para cada categoría.
+
+Socios solidarios. El acuerdo se extiende a los socios ilimitadamente responsables, salvo que, como condición del mismo, se estableciera mantener su responsabilidad en forma más amplia respecto de todos los acreedores comprendidos en él.
+
+Verificación tardía. Los efectos del acuerdo homologado se aplican también a los acreedores que no hubieran solicitado verificación, una vez que hayan sido verificados. El pedido de verificación tardía debe deducirse por incidentes mientras tramite el concurso o, concluido éste, por la acción individual que corresponda, dentro de los dos años de la presentación en concurso. Si el título verificatorio fuera una sentencia de un juicio tramitado ante un tribunal distinto que el del concurso, por tratarse de una de las excepciones previstas en el artículo 21, el pedido de verificación no se considerará tardío, si, no obstante haberse excedido el plazo de dos años previsto en el párrafo anterior, aquél se dedujere dentro de los seis meses de haber quedado firme la sentencia. Vencidos esos plazos prescriben las acciones del acreedor, tanto respecto de los otros acreedores como del concursado, o terceros vinculados al acuerdo, salvo que el plazo de prescripción sea menor. Cuando la verificación tardía tramite como incidente durante el concurso, serán parte en dicho incidente el acreedor y el deudor, debiendo el síndico emitir un informe una vez concluido el período de prueba. Los acreedores verificados tardíamente no pueden reclamar de sus coacreedores lo que hubieren percibido con arreglo al acuerdo, y el juez fijará la forma en que se aplicarán los efectos ya ocurridos, teniendo en cuenta la naturaleza de las prestaciones.
+
+{\footnotesize\itshape Artículo sustituido por art. 5.º de la Ley 26.086.}
+\end{legal}
+
+\section{Diferencias entre ambas verificaciones: ante quién, patrocinio, arancel y costas}
+
+\subsection{Primera diferencia: la forma de presentación y el patrocinio letrado}
+
+La \textbf{verificación tempestiva} se presenta ante el síndico, en su oficina, con original y dos copias. El síndico revisa los originales, les coloca un sello de recepción, los devuelve al acreedor y conserva las dos copias.
+
+La \textbf{verificación tardía}, en cambio, se realiza mediante un \textbf{incidente de verificación tardía}, es decir, en un proceso judicial. Por tratarse de un proceso judicial, requiere \textbf{patrocinio letrado}. En ese incidente se corre traslado tanto al síndico como al concursado y el juez resuelve.
+
+En la verificación tempestiva no se necesita abogado. Esto implica un costo menos para el acreedor: cualquier acreedor puede presentarse a verificar su crédito sin ser abogado ni contador y sin contar con uno; solo debe presentarse y pedir la verificación.
+
+\subsection{Segunda diferencia: el arancel}
+
+En la verificación de crédito el acreedor debe pagar únicamente un \textbf{arancel} equivalente al 10\,\% del salario mínimo, vital y móvil (SMVM). A la fecha de la clase, la docente situó el SMVM por debajo de 400.000 pesos (aproximadamente 391.000), valor que se modifica mes a mes.
+
+El arancel se abona respecto de los créditos \textbf{mayores a tres SMVM} y que \textbf{no sean laborales}. No pagan arancel los créditos menores a tres SMVM ni los créditos laborales. El texto del arancel se encuentra en el artículo 32, que se transcribe en la sección~\ref{sec:art32}.
+
+\subsection{Tercera diferencia: las costas}
+
+La regla general en un proceso judicial es que las costas las paga el vencido. En la verificación tardía esa regla se altera: \textbf{las costas se imponen al acreedor, aun cuando haya vencido y haya alcanzado un resultado favorable}.
+
+El fundamento, que no está en la ley, sería que el acreedor no verificó de forma tempestiva cuando debía hacerlo. La solución es discutible, por ejemplo cuando el acreedor sostiene que no le llegó la carta certificada, lo que remite a la responsabilidad o no del síndico.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Verificación tempestiva y verificación tardía}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash\bfseries}p{2.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Verificación tempestiva} & \textbf{Verificación tardía} \\
+\midrule
+Cuándo se hace & Antes del vencimiento del plazo fijado en la resolución de apertura (oportuna). & Después del vencimiento: hasta 2 años desde la presentación del concurso; o 6 meses desde la sentencia firme en el caso excepcional. \\
+\addlinespace
+Artículo & Artículo 32 de la Ley 24.522. & Artículo 56 de la Ley 24.522. \\
+\addlinespace
+Ante quién / cómo & Ante el síndico, en su oficina, con original y dos copias; el síndico sella los originales y se queda con las copias. & Mediante un incidente de verificación tardía, en un proceso judicial. \\
+\addlinespace
+Patrocinio letrado & No es necesario: el acreedor puede presentarse personalmente. & Es necesario, por tratarse de un proceso judicial. \\
+\addlinespace
+Arancel & 10\,\% del SMVM, para créditos mayores a 3 SMVM y no laborales. & Rige también el arancel del artículo 32. \\
+\addlinespace
+Costas & Solo se abona el arancel; no se imponen costas al acreedor. & Se imponen al acreedor, aun si obtiene un resultado favorable. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Contenido común de la verificación: datos del acreedor, domicilio y forma}
+
+Existen elementos que toda verificación debe tener, tanto en la modalidad tempestiva como en la tardía:
+
+\begin{itemize}
+    \item \textbf{Datos del acreedor}, acompañados de la documentación respaldatoria que los acredite. Si el acreedor es una sociedad, debe acompañar el estatuto, el contrato social y las actas; si actúa a través de apoderado, el poder.
+    \item \textbf{Constitución de domicilio}, siempre dentro del radio del juzgado. En el proceso judicial (verificación tardía) es habitual, pero también debe constituirse en la verificación tempestiva.
+    \item \textbf{Tres requisitos que no pueden faltar:} monto, causa y privilegio (este último, en caso de que el acreedor lo tenga).
+\end{itemize}
+
+\subsection{Forma del escrito de verificación}
+
+La verificación de crédito puede hacerse bajo cualquier formalidad: como una carta («Señor síndico», «Estimado síndico») o con el formato de una demanda judicial. Muchos síndicos envían un formulario para que los acreedores lo completen (nombre y apellido, monto, etc.); esto les alivia el trabajo porque recibe todo estructurado de la misma forma. Si cada acreedor presenta su escrito a su manera, el síndico debe leer cada verificación completa, aunque sea extensa.
+
+\begin{important}
+Toda verificación debe contener los datos del acreedor (con su documentación respaldatoria), la constitución de domicilio y, sin excepción, tres requisitos: \textbf{monto}, \textbf{causa} y \textbf{privilegio}.
+\end{important}
+
+\section{Cuadro Cornell del Bloque I}
+
+\begin{longtable}{QW}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el período informativo y cómo participa el acreedor?} &
+Es la etapa en la que los acreedores se presentan para que su crédito sea reconocido y poder participar del concurso. Lo hacen mediante la verificación de crédito, dentro del plazo que fija el juez en la resolución de apertura (art. 14, inc. 3). \\
+\addlinespace
+
+\textbf{Verificación tempestiva vs. tardía} &
+Tempestiva: antes del vencimiento del plazo, ante el síndico, sin abogado (art. 32). Tardía: después del vencimiento, por incidente judicial, con patrocinio letrado y costas al acreedor (art. 56). \\
+\addlinespace
+
+\textbf{¿Qué plazos rigen la verificación tardía?} &
+Dos años desde la presentación del concurso; seis meses desde que queda firme la sentencia, cuando el título es una sentencia de otro tribunal en las excepciones del art. 21 (plazo excepcional del art. 56). \\
+\addlinespace
+
+\textbf{Arancel de la verificación} &
+10\,\% del salario mínimo, vital y móvil, que se suma al crédito. No lo pagan los créditos laborales ni los menores a 3 salarios mínimos, vitales y móviles (art. 32). \\
+\addlinespace
+
+\textbf{¿Qué debe contener siempre una verificación?} &
+Datos del acreedor con su documentación respaldatoria, constitución de domicilio (dentro del radio del juzgado) y los tres requisitos esenciales: monto, causa y privilegio. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{%
+\textbf{Resumen:} El período informativo es la etapa en que los acreedores logran el reconocimiento de su crédito mediante la verificación. Puede hacerse a tiempo (ante el síndico, sin abogado, con arancel) o tarde (por incidente, con patrocinio letrado y costas al acreedor). En ambos casos debe incluir datos del acreedor, domicilio, monto, causa y privilegio.
+} \\
+\bottomrule
+\end{longtable}
+
+% =====================================================
+% BLOQUE II
+% =====================================================
+\chapter[Monto, causa y privilegio]{Bloque II — Requisitos de fondo: monto, causa y privilegio}
+
+\section{El monto: capital e intereses}
+
+En una demanda judicial se reclama, por ejemplo, la suma de 500.000 pesos «con más intereses y costas hasta el efectivo pago». No se practica liquidación de intereses (salvo a los efectos del pago de la tasa de justicia), porque los intereses se devengan hasta el efectivo pago y no se sabe cuándo este ocurrirá.
+
+En la verificación de crédito la situación es distinta: los intereses quedaron \textbf{suspendidos a la fecha de la presentación del concurso}. Por ello el acreedor ya conoce los intereses que tiene a su favor y debe \textbf{hacer la liquidación de intereses}.
+
+\begin{legal}{Ley 24.522 — Art. 19 (primer párrafo) · Intereses}
+ARTICULO 19.- Intereses. La presentación del concurso produce la suspensión de los intereses que devengue todo crédito de causa o título anterior a ella, que no esté garantizado con prenda o hipoteca. Los intereses de los créditos así garantizados, posteriores a la presentación, sólo pueden ser reclamados sobre las cantidades provenientes de los bienes afectado a la hipoteca o a la prenda.
+\end{legal}
+
+\begin{example}{Consignación del monto en la verificación}
+El acreedor solicita la verificación de su crédito por la suma de 500.000 pesos, con más 100.000 pesos en concepto de intereses.
+\end{example}
+
+Si el acreedor solo escribe «con más intereses», como en una demanda, nadie hará la liquidación por él y se le verificará únicamente el monto de capital. Es un error frecuente, incluso entre abogados, porque se razona con la estructura de una demanda judicial y se omite este detalle propio de la materia concursal.
+
+\begin{important}
+En la verificación los intereses deben liquidarse y consignarse expresamente (capital + intereses), porque quedaron suspendidos a la fecha de la presentación del concurso. Si solo se pide «con más intereses», se verifica únicamente el capital.
+\end{important}
+
+\section{La tasa de interés, el corte a la fecha de presentación y el arancel}
+
+\subsection{La tasa}
+
+En el fuero comercial se aplica la \textbf{tasa activa del Banco de la Nación Argentina}.
+
+Ante la consulta sobre qué ocurre si el contrato pactó intereses (por ejemplo, 3\,\% o 5\,\% mensual), la docente explica que probablemente esos intereses se reduzcan a la tasa activa. Aunque ella prioriza lo pactado por las partes, el proceso concursal busca la igualdad entre los acreedores, por lo que los intereses deben calcularse con la misma tasa para todos; como cada acreedor puede tener tasas diferentes, se aplica la que se establece en ese fuero.
+
+\begin{note}
+\textbf{Observación práctica de la docente.} Cuando el cliente tiene pactada una tasa mayor a la activa, la docente señala lo que ella suele hacer en esos casos (según el monto y las circunstancias), aclarando que no afirma que sea lo correcto: no exponer en la verificación una tasa que no corresponde. No consigna, por ejemplo, «liquidación al 5\,\% mensual», porque eso motiva la observación. Consigna el capital, los intereses con su monto y la fecha de corte, sin indicar la tasa. Reconoce que, si alguien realiza el cálculo, la liquidación saltará como mal hecha, pero en la práctica no siempre ocurre.
+\end{note}
+% TODO: contenido incompleto o ambiguo en las notas originales (pasaje sobre si, no siendo advertida la liquidación, los intereses son o no recalculados)
+
+La docente agrega que no es algo demasiado llamativo y que revisar cada liquidación exige un control individual de cada verificación; pero cualquier acreedor puede observar y el propio síndico puede hacer el cálculo, hoy mucho más fácil que años atrás (por ejemplo, con una planilla de cálculo). Presenta esta estrategia como una posibilidad y no como algo seguro.
+
+\subsection{El corte a la fecha de presentación}
+
+Otro error frecuente es no cortar los intereses en la fecha correcta: se calculan hasta la fecha de la verificación o se extiende el plazo. Los intereses deben calcularse \textbf{a la fecha de la presentación del concurso}, y conviene consignar esa fecha en la verificación.
+
+\begin{example}{Liquidación con fecha de corte}
+Supóngase que el concurso se presentó el 1 de marzo de 2026. La verificación consigna: capital, 500.000 pesos; intereses al 1 de marzo, 100.000 pesos.
+\end{example}
+
+\subsection{El arancel}
+
+Si corresponde pagar arancel, este también se suma al monto reclamado, porque se supone que luego se devuelve; en todo caso, suma al monto que se está reclamando.
+
+\begin{important}
+Tasa: en el fuero comercial se aplica la tasa activa del Banco de la Nación Argentina, porque el concurso busca la igualdad entre los acreedores. Corte: los intereses se calculan hasta la fecha de la \emph{presentación} del concurso (no hasta la apertura ni hasta la verificación). Arancel: si corresponde pagarlo, se suma al monto reclamado.
+\end{important}
+
+\section{La causa: créditos anteriores a la presentación y títulos de crédito}
+
+\subsection{El corte temporal: causa o título anterior a la presentación}
+
+La causa es el origen del crédito. Solo pueden presentarse los acreedores cuyo título, causa u origen sea \textbf{anterior a la fecha de la presentación del concurso}. El corte lo determina la fecha de la presentación; no la apertura ni la verificación (muchos acreedores verifican créditos nacidos incluso después de la presentación). Los demás créditos se denominan \textbf{postconcursales}.
+
+El acreedor debe describir la causa, es decir, explicar el origen del crédito, y acompañar la documentación respaldatoria. En cualquier proceso dentro del concurso, la prueba es únicamente \textbf{documental}.
+
+\subsection{La regla especial para los títulos de crédito}
+
+Los títulos de crédito (pagaré, cheque, letra de cambio) son títulos abstractos: están desvinculados de la causa. Años atrás se podía verificar un crédito con solo un pagaré o un cheque. Esto generó abusos: los deudores entregaban pagarés o cheques a amigos y conocidos para que se presentaran a verificar, de modo que, llegado el momento de votar la propuesta, contaban con muchos acreedores favorables al deudor. La propuesta del deudor podía ser abusiva y terminar afectando a los acreedores reales, que no la aceptaban pero quedaban frente a una mayoría de acreedores ficticios que sí la aceptaban. Incluso se llegaba a iniciar un juicio ejecutivo para verificar con la sentencia, de modo que todo pareciera en orden.
+
+A raíz de ello se dictaron dos fallos plenarios, uno de 1979 y otro de 1980 (sobre pagaré y sobre cheque; en clase se identificó uno como «Translínea», con «Electrodine»). Ambos sostienen la misma doctrina.
+% TODO: contenido incompleto o ambiguo en las notas originales (carátulas exactas de los plenarios de 1979 y 1980; verificar en la fuente jurisprudencial antes de citarlos)
+
+\begin{definition}{Doctrina de los plenarios de 1979 y 1980}
+Quien pretenda verificar un crédito instrumentado en un título de crédito (pagaré, letra de cambio, cheque u otro) debe igualmente acreditar la causa, más allá de la característica abstracta de esos títulos. La causa debe acreditarse con prueba documental (por ejemplo, una factura o un contrato): no basta con mencionar por qué se emitió el título.
+\end{definition}
+
+\subsection{Fallos posteriores que moderan los plenarios}
+
+Han aparecido otros fallos, no plenarios, que sin desvirtuar la doctrina moderaron sus efectos. Se ocuparon de situaciones en las que existe un origen que no está instrumentado con documental: en ellas un indicio puede ser suficiente para demostrar la emisión o el libramiento de este tipo de títulos. Los plenarios se mantienen.
+
+Frente a la pregunta de si entonces la causa importa o no en los títulos de crédito, la docente aclara que lo que el plenario exige es la acreditación documental de la causa. Existían, además, acreedores reales que no podían acreditarla documentalmente y que resultaban afectados; apelaban y, en algunos casos (no muchos), se admitió su situación.
+
+\begin{important}
+Solo verifican los créditos de causa o título anterior a la presentación del concurso (los posteriores son postconcursales). Aun tratándose de pagarés, cheques o letras, debe acreditarse la causa con prueba documental (doctrina de los plenarios de 1979 y 1980); en el concurso la prueba es únicamente documental.
+\end{important}
+
+\section{El privilegio y el artículo 32}
+\label{sec:art32}
+
+El tercer requisito es el privilegio, en caso de que el acreedor lo tenga. Los privilegios son los determinados en la Ley de Concursos y Quiebras, \textbf{no} los del Código Civil.
+
+Si el acreedor tiene un privilegio, debe solicitar la verificación como acreedor privilegiado, es decir, pedir que se le reconozca ese privilegio. Si no lo tiene, será quirografario y, si no lo pidió, no ocurre nada: se lo reconoce como acreedor quirografario.
+
+\begin{example}{Acreedor hipotecario que no pide el privilegio}
+Un acreedor presenta la verificación con una escritura de hipoteca y explica que la causa es una hipoteca, pero no solicita que se reconozca su crédito como privilegiado especial, pensando que la documentación acompañada basta. El acreedor hipotecario es privilegiado, tanto en el Código Civil y Comercial como en la Ley de Concursos, y tiene un privilegio especial sobre el bien. Sin embargo, al no haberlo pedido, se lo reconocerá como quirografario aun cuando la documentación acredite el privilegio: es una omisión que nadie salva.
+\end{example}
+
+La docente señala que el acreedor podría haber renunciado a su privilegio, razón por la cual es necesario que lo pida expresamente. Si no lo pide, el crédito se reconoce como quirografario aun cuando surja de una escritura con hipoteca; la vía posterior para remediar esta situación se desarrolla más adelante en la materia.
+% TODO: contenido incompleto o ambiguo en las notas originales (la vía posterior para corregir la omisión no se especifica en este apunte)
+
+\begin{important}
+El privilegio debe solicitarse expresamente. Aunque la documentación acompañada demuestre una hipoteca, si el acreedor no pide el reconocimiento del privilegio especial será verificado como quirografario, y esa omisión no la salva nadie.
+\end{important}
+
+\subsection{El texto del artículo 32}
+
+El artículo 32 establece los requisitos de la verificación. La verificación tempestiva se hace ante el síndico (artículo 32); la tardía, por incidente (artículo 56), con los mismos datos, patrocinio letrado, traslado al síndico y al concursado, y resolución del juez.
+
+\begin{legal}{Ley 24.522 — Art. 32 · Solicitud de verificación}
+ARTICULO 32.- Solicitud de verificación. Todos los acreedores por causa o título anterior a la presentación y sus garantes, deben formular al síndico el pedido de verificación de sus créditos, indicando monto, causa y privilegios. La petición debe hacerse por escrito, en duplicado, acompañando los títulos justificativos, con dos (2) copias firmadas y debe expresar el domicilio que constituya a todos los efectos del juicio. El síndico devuelve los títulos originales, dejando en ellos constancia del pedido de verificación y su fecha. Puede requerir la presentación de los originales cuando lo estime conveniente. La omisión de presentarlos obsta a la verificación.
+
+Efectos: El pedido de verificación produce los efectos de la demanda judicial, interrumpe la prescripción e impide la caducidad del derecho y de la instancia.
+
+Arancel: Por cada solicitud de verificación de crédito que se presente, el acreedor, sea tempestivo, incidental o tardío, pagará al síndico un arancel equivalente al diez por ciento (10\%) del salario mínimo vital y móvil que se sumará a dicho crédito. El síndico afectará la suma recibida a los gastos que le demande el proceso de verificación y confección de los informes, con cargo de oportuna rendición de cuentas al juzgado quedando el remanente como suma a cuenta de honorarios a regularse por su actuación. Exclúyase del arancel a los créditos de causa laboral, y a los equivalentes a menos de tres (3) salarios mínimos vitales y móviles, sin necesidad de declaración judicial.
+
+{\footnotesize\itshape Texto según art. 1.º de la Ley 27.170 (B.O. 08/09/2015).}
+\end{legal}
+
+\section{Cuadro Cornell del Bloque II}
+
+\begin{longtable}{QW}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Por qué hay que liquidar los intereses en la verificación?} &
+Porque quedaron suspendidos a la fecha de presentación del concurso (art. 19). Si solo se pide «con más intereses», se verifica únicamente el capital. \\
+\addlinespace
+
+\textbf{¿Qué tasa se usa y hasta cuándo se calculan los intereses?} &
+Tasa activa del Banco de la Nación Argentina (fuero comercial), por la igualdad entre acreedores. Los intereses se cortan en la fecha de la presentación del concurso. El arancel, si corresponde, se suma al monto. \\
+\addlinespace
+
+\textbf{¿Qué créditos pueden verificar? ¿Y los títulos de crédito?} &
+Los de causa o título anterior a la presentación (los posteriores son postconcursales). Pagarés, cheques y letras igualmente requieren acreditar la causa con prueba documental, según los plenarios de 1979 y 1980. \\
+\addlinespace
+
+\textbf{¿Qué pasa si no pido el privilegio?} &
+Aunque la documentación pruebe una hipoteca, el crédito se verifica como quirografario: el privilegio debe solicitarse expresamente y nadie salva esa omisión. Los privilegios son los de la Ley de Concursos y Quiebras. \\
+\addlinespace
+
+\textbf{¿Qué establece el artículo 32?} &
+Que los acreedores deben formular al síndico el pedido de verificación indicando monto, causa y privilegios, por escrito, con copias y domicilio constituido; el pedido produce los efectos de la demanda judicial y fija el arancel. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{%
+\textbf{Resumen:} La verificación debe indicar monto (capital más intereses liquidados hasta la fecha de presentación, con tasa activa del Banco de la Nación Argentina), causa (anterior a la presentación y acreditada con prueba documental, incluso en los títulos de crédito) y privilegio (que debe pedirse expresamente). Lo que no se pide, no se reconoce.
+} \\
+\bottomrule
+\end{longtable}
+
+% =====================================================
+% BLOQUE III
+% =====================================================
+\chapter[Control de los créditos e informe del síndico]{Bloque III — Control de los créditos y el informe del síndico}
+
+\section{Facultades de información del síndico (artículo 33)}
+
+Presentada la verificación, el artículo 33 otorga al síndico la facultad de pedir más información, tanto al deudor como al acreedor, cuando algo no le cierra o necesita documentación o información adicional para entender el motivo de la presentación.
+
+\begin{legal}{Ley 24.522 — Art. 33 · Facultades de información}
+ARTICULO 33.- Facultades de información. El síndico debe realizar todas las compulsas necesarias en los libros y documentos del concursado y, en cuanto corresponda, en los del acreedor. Puede, asimismo, valerse de todos los elementos de juicio que estime útiles y, en caso de negativa a suministrarlos, solicitar del juez de la causa las medidas pertinentes. Debe conservar el legajo por acreedor presentado por el concursado, incorporando la solicitud de verificación y documentación acompañada por el acreedor, y formar y conservar los legajos correspondientes a los acreedores no denunciados que soliciten la verificación de sus créditos. En dichos legajos el síndico deberá dejar constancia de las medidas realizadas.
+\end{legal}
+
+\section{Período de observación o impugnación (artículo 34)}
+
+Vencido el período de verificación (período informativo), comienza el \textbf{período de observación o impugnación} de los créditos. Tanto el concursado como cualquier acreedor pueden presentarse en las oficinas del síndico, pedir los legajos de cada verificación y observar o impugnar las que lo merezcan. Allí es donde pueden aparecer, por ejemplo, los errores en los intereses o los pedidos improcedentes.
+
+Es importante tanto para el concursado como para los acreedores: significa poner «otros ojos» para ayudar al síndico, quien luego deberá presentar un informe y a quien pueden escapársele cuestiones.
+
+\begin{legal}{Ley 24.522 — Art. 34 · Período de observación de créditos}
+ARTICULO 34.- Período de observación de créditos. Durante los DIEZ (10) días siguientes al vencimiento del plazo para solicitar la verificación, el deudor y los acreedores que lo hubieren hecho podrán concurrir al domicilio del síndico, a efectos de revisar los legajos y formular por escrito las impugnaciones y observaciones respecto de las solicitudes formuladas. Dichas impugnaciones deberán ser acompañadas de DOS (2) copias y se agregarán al legajo correspondiente, entregando el síndico al interesado constancia que acredite la recepción, indicando día y hora de la presentación. Dentro de las CUARENTA Y OCHO (48) horas de vencido el plazo previsto en el párrafo anterior, el síndico presentará al juzgado un juego de copias de las impugnaciones recibidas para su incorporación al legajo previsto en el artículo 279. Los trabajadores de la concursada que no tuvieren el carácter de acreedores tendrán derecho a revisar los legajos y ser informados por el síndico acerca de los créditos insinuados.
+
+{\footnotesize\itshape Párrafo final incorporado por Ley 26.684.}
+\end{legal}
+
+\section{El informe individual (artículo 35)}
+
+Concluido el período de observación e impugnación, el síndico debe elaborar el \textbf{informe individual}. Su fecha de presentación también se determina en la resolución de apertura (art. 14). Se llama «individual» porque se hace un informe por cada una de las verificaciones presentadas: si hay 20.000 acreedores, son 20.000 informes. El síndico dispone de 20 días para hacerlo.
+
+La carga de trabajo es considerable cuando los acreedores son muchos. En los concursos grandes, las sindicaturas son estudios contables; existen distintas categorías de síndicos, y los profesionales independientes pueden actuar en los procesos más chicos.
+% TODO: contenido incompleto o ambiguo en las notas originales (pasaje poco audible sobre la organización de las sindicaturas en procesos grandes)
+
+\begin{legal}{Ley 24.522 — Art. 35 · Informe individual}
+ARTICULO 35.- Informe individual. Vencido el plazo para la formulación de observaciones por parte del deudor y los acreedores, en el plazo de VEINTE (20) días, el síndico deberá redactar un informe sobre cada solicitud de verificación en particular, el que deberá ser presentado al juzgado. Se debe consignar el nombre completo de cada acreedor, su domicilio real y el constituido, monto y causa del crédito, privilegio y garantías invocados; además, debe reseñar la información obtenida, las observaciones que hubieran recibido las solicitudes, por parte del deudor y de los acreedores, y expresar respecto de cada crédito, opinión fundada sobre la procedencia de la verificación del crédito y el privilegio. También debe acompañar una copia, que se glosa al legajo a que se refiere el artículo 279, la cual debe quedar a disposición permanente de los interesados para su examen, y copia de los legajos.
+\end{legal}
+
+\subsection{Las tres partes del informe individual}
+
+El informe individual se divide en tres partes:
+
+\begin{table}[H]
+\centering
+\small
+\caption{Las tres partes del informe individual del síndico}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash\bfseries}p{1.3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Parte} & \textbf{Contenido} & \textbf{Observación} \\
+\midrule
+1.ª & Resumen o «punteo» de la verificación presentada: quién es el acreedor, monto, privilegio, domicilio constituido y documentación presentada. & Muchos síndicos envían un formulario para que los acreedores lo completen; esto les alivia el trabajo. \\
+\addlinespace
+2.ª & Observaciones o impugnaciones recibidas: quién observó y cuál es la causal de cada una; si no hubo, se consigna «no tuvo observaciones». & Si tuvo varias, el síndico explica cada una. \\
+\addlinespace
+3.ª & Opinión del síndico sobre si es aconsejable tener el crédito por verificado o no. & El síndico opina, recomienda, aconseja; no resuelve. Resuelve el juez. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La tercera parte es la más importante: el síndico toma el análisis que realizó sobre la verificación y sobre las observaciones y da su parecer respecto del crédito.
+
+\section{La resolución verificatoria (artículo 36)}
+
+Con el informe individual presentado, el \textbf{juez} dicta la \textbf{resolución verificatoria} (artículo 36). También su fecha está indicada con precisión en la resolución de apertura (por ejemplo, el miércoles 5 de agosto).
+
+El juez resuelve según haya habido o no observaciones:
+
+\begin{itemize}
+    \item Si la verificación \textbf{no fue observada ni impugnada} ni por el concursado ni por ningún acreedor, el juez la declara \textbf{verificada} (si la estima procedente) y la resolución hace cosa juzgada, salvo dolo.
+    \item Si \textbf{hubo observaciones}, el juez declara el crédito \textbf{admisible} o \textbf{inadmisible}.
+\end{itemize}
+
+Esta resolución es \textbf{inapelable}. Por eso la que declara verificado hace cosa juzgada y no puede revisarse, salvo dolo (artículo 38).
+
+\begin{table}[H]
+\centering
+\small
+\caption{Cómo puede resolver el juez en la resolución verificatoria (art. 36)}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash\bfseries}p{3.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Situación del crédito} & \textbf{Resolución del juez} & \textbf{Efecto / vía posterior} \\
+\midrule
+Sin observaciones ni impugnaciones (ni del concursado ni de acreedores) & Lo declara VERIFICADO (si lo estima procedente). & Cosa juzgada, salvo dolo (art. 37; acción por dolo, art. 38). \\
+\addlinespace
+Con observaciones o impugnaciones & Lo declara ADMISIBLE o INADMISIBLE. & Resolución inapelable; se habilita el incidente de revisión (art. 37). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{legal}{Ley 24.522 — Art. 36 · Resolución judicial (resolución verificatoria)}
+ARTICULO 36.- Resolución judicial. Dentro de los DIEZ (10) días de presentado el informe por parte del síndico, el juez decidirá sobre la procedencia y alcances de las solicitudes formuladas por los acreedores. El crédito o privilegio no observados por el síndico, el deudor o los acreedores es declarado verificado, si el juez lo estima procedente. Cuando existan observaciones, el juez debe decidir declarando admisible o inadmisible el crédito o el privilegio. Estas resoluciones son definitivas a los fines del cómputo en la evaluación de mayorías y base del acuerdo, sin perjuicio de lo dispuesto en el artículo siguiente.
+\end{legal}
+
+El síndico aconseja; el juez resuelve. La resolución verificatoria se dicta en la fecha precisa fijada en la resolución de apertura y no es apelable.
+
+\section{Cuadro Cornell del Bloque III}
+
+\begin{longtable}{QW}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{Art. 33 — Facultades de información} &
+El síndico puede pedir información y documentación adicional al deudor y al acreedor, y compulsar sus libros y documentos. \\
+\addlinespace
+
+\textbf{Art. 34 — Período de observación} &
+Vencido el plazo de verificación, el concursado y los acreedores que verificaron revisan los legajos y presentan observaciones o impugnaciones por escrito: «otros ojos» para ayudar al síndico. \\
+\addlinespace
+
+\textbf{Art. 35 — Informe individual} &
+Un informe por cada verificación, en la fecha fijada en la apertura. Tres partes: (1) resumen del pedido, (2) observaciones recibidas, (3) opinión del síndico. El síndico aconseja; no resuelve. \\
+\addlinespace
+
+\textbf{Art. 36 — Resolución verificatoria} &
+El juez resuelve en la fecha precisa fijada en la apertura: declara verificado el crédito no observado; declara admisible o inadmisible el observado. Es inapelable. \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{%
+\textbf{Resumen:} Presentada la verificación, el síndico puede pedir información (art. 33); el concursado y los acreedores pueden observar o impugnar (art. 34); el síndico presenta un informe individual con su opinión (art. 35) y el juez dicta la resolución verificatoria (art. 36), que declara verificado, admisible o inadmisible cada crédito.
+} \\
+\bottomrule
+\end{longtable}
+
+% =====================================================
+% BLOQUE IV
+% =====================================================
+\chapter[Efectos, revisión y notificación]{Bloque IV — Efectos, revisión y notificación de la resolución}
+
+\section{Efectos de la resolución (artículos 37 y 38): el incidente de revisión}
+
+Si el crédito es declarado admisible o inadmisible, el artículo 37 establece que la resolución es inapelable, pero habilita a cualquier interesado a iniciar un \textbf{incidente de revisión}: no se puede apelar, pero sí pedir la revisión.
+
+Ante la pregunta de si, siendo inapelable la resolución, se trataría de un recurso extraordinario, la docente aclara que no: el incidente de revisión está previsto en la propia Ley de Concursos y Quiebras y lo que se busca es que el juez, por contrario imperio, revoque su propia decisión. Todos los recursos y todo lo procedimental en esta materia se rigen por la ley de concursos y quiebras, y no por el código procesal, porque está todo regulado en ella.
+
+En síntesis: si hubo observación y el crédito fue declarado admisible o inadmisible, como no puede apelarse se habilita el incidente de revisión. Si no hubo observación, la resolución hace cosa juzgada, porque previamente no hubo ningún cuestionamiento.
+
+\begin{note}
+La docente destaca que los artículos 36 y 37 y el incidente de revisión son de conocimiento imprescindible.
+\end{note}
+
+\begin{legal}{Ley 24.522 — Art. 37 · Efectos de la resolución (incidente de revisión)}
+ARTICULO 37.- Efectos de la resolución. La resolución que declara verificado el crédito y, en su caso, el privilegio, produce los efectos de la cosa juzgada, salvo dolo. La que lo declara admisible o inadmisible puede ser revisada a petición del interesado, formulada dentro de los VEINTE (20) días siguientes a la fecha de la resolución prevista en el artículo 36. Vencido este plazo, sin haber sido cuestionada, queda firme y produce también los efectos de la cosa juzgada, salvo dolo.
+\end{legal}
+
+\begin{legal}{Ley 24.522 — Art. 38 · Invocación de dolo. Efectos}
+ARTICULO 38.- Invocación de dolo. Efectos. Las acciones por dolo a que se refiere el artículo precedente tramitan por vía ordinaria ante el juzgado del concurso, y caducan a los NOVENTA (90) días de la fecha en que se dictó la resolución judicial prevista en el artículo 36. La deducción de esta acción no impide el derecho del acreedor a obtener el cumplimiento del acuerdo, sin perjuicio de las medidas precautorias que puedan dictarse.
+\end{legal}
+
+\section{Quién puede iniciar el incidente de revisión y el plazo de 20 días}
+
+\subsection{Legitimados}
+
+Según el artículo 37, cualquier parte interesada puede iniciar el incidente de revisión:
+
+\begin{itemize}
+    \item si el crédito fue declarado \textbf{admisible}, el \textbf{concursado}, porque es a quien afecta;
+    \item si fue declarado \textbf{inadmisible}, el \textbf{acreedor} afectado.
+\end{itemize}
+
+\subsection{El plazo y el plenario Rafiki: ¿días hábiles o corridos?}
+
+La ley establece que el incidente puede iniciarse dentro de los \textbf{20 días siguientes a la fecha de la resolución verificatoria}. Una de las cuestiones en discusión era si esos días eran hábiles o corridos, y un fallo plenario resolvió la cuestión.
+
+En clase se plantearon argumentos en ambos sentidos. A favor de los días corridos se sostuvo que, de no serlo, la ley habría aclarado que son hábiles conforme el código procesal. A favor de los días hábiles se argumentó que se trata de días procesales (de lunes a viernes; sábados y domingos no se puede presentar).
+
+La docente explica que la regla general en materia procesal son los días hábiles; el código aclara cuando son corridos, y si el legislador hubiera querido días corridos lo habría incorporado expresamente. El plenario \textbf{Rafiki} establece que son \textbf{días hábiles}.
+
+El inconveniente estaba en el término «siguientes», que no se usa en todas las materias: muchos jueces entendieron que eran días corridos, porque de otro modo no se explicaría por qué el legislador hizo esa aclaración. Pero los días corridos traen un perjuicio, sobre todo para el acreedor, que para verificar no necesita patrocinio letrado: si fueran corridos, se le vencería el plazo con facilidad.
+% TODO: contenido incompleto o ambiguo en las notas originales (grafía de «Rafiki» y carátula completa del plenario; verificar en la fuente jurisprudencial)
+
+\begin{important}
+Plazo del incidente de revisión (art. 37): 20 días siguientes a la fecha de la resolución verificatoria. Según el plenario Rafiki, son \textbf{días hábiles}, porque la regla general en materia procesal son los días hábiles y el acreedor puede actuar sin patrocinio letrado. Legitimados: el concursado si el crédito fue declarado admisible; el acreedor, si fue declarado inadmisible.
+\end{important}
+
+\section{El plenario Rafiki: cómputo del plazo y notificación por ministerio de la ley}
+
+El plenario Rafiki, además de establecer que los días son hábiles, determina desde cuándo se cuentan, según la fecha en que se dicte la resolución respecto de la fecha prevista en la apertura. El acreedor conoce la fecha prevista por los edictos y por la carta certificada que le envía el síndico.
+
+\subsection{Resolución dictada en la fecha prevista}
+
+Si la resolución estaba prevista para el miércoles 5 de agosto y salió ese día, los 20 días se computan a partir del jueves 6, contando días hábiles.
+
+\subsection{Resolución dictada con fecha anterior a la prevista}
+
+Si la resolución prevista para el 5 de agosto salió, por ejemplo, el miércoles 1 de abril, el acreedor, que sabía que saldría el 5 de agosto, iba ese día a mirar el expediente; si veía que le había salido mal, iniciaba el incidente de revisión y se lo rechazaban por extemporáneo, porque los 20 días contados desde el 1 de abril ya habían vencido.
+
+Rafiki resolvió que, si la resolución sale con anterioridad, el cómputo se hace \textbf{desde la fecha que estaba prevista}: aun cuando haya salido el 1 de abril, los 20 días se computan como si hubiese salido el 5 de agosto.
+
+\subsection{Resolución dictada con fecha posterior a la prevista}
+
+Si la resolución sale después (por ejemplo, el miércoles 5 de octubre), Rafiki dispuso que se \textbf{notifica por ministerio de la ley}. En clase se discutió si el cómputo debía hacerse desde la fecha de salida de la resolución o desde la notificación por ministerio de la ley, y esta fue la solución adoptada.
+
+\subsection{¿Qué significa «notificación por ministerio de la ley»?}
+
+Significa que el acreedor queda notificado por nota, en los días de notificación (martes y viernes). Si la resolución salió el miércoles 5 de octubre, queda notificada el viernes 7 de octubre, y el plazo empieza a computarse desde el primer día hábil siguiente (el lunes).
+
+La «nota» es la constancia que se deja en el expediente cuando quien fue a verlo no pudo hacerlo porque no estaba en letra. Quien deja nota asienta que no pudo ver el expediente; en ese caso, la resolución no queda notificada, aunque haya salido el día 5, y habría que esperar al siguiente día de notificación (el martes), y así sucesivamente. Por eso no necesariamente el viernes 7 queda notificado.
+
+\begin{legal}{Ley 24.522 — Art. 26 · Notificaciones: regla general}
+ARTICULO 26.- Regla general. Desde la presentación del pedido de formación de concurso preventivo, el deudor o sus representantes deben comparecer en secretaría los días de notificaciones. Todas las providencias se consideran notificadas por ministerio de la ley, salvo que el compareciente deje constancia de su presencia y de no haber podido revisar el expediente, en el correspondiente libro de secretaria.
+\end{legal}
+
+\subsection{El expediente electrónico y la «nota»}
+
+La docente señala que este régimen debería cambiar. Existen numerosos fallos de provincia que han dispuesto que la nota que se deja hoy en los expedientes electrónicos no tiene validez, porque el expediente y la resolución están disponibles. Sin embargo, el código no se modificó, lo cual genera inseguridad jurídica.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Cómputo del plazo de 20 días del incidente de revisión según el plenario Rafiki (días hábiles)}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash\bfseries}p{3.3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Supuesto} & \textbf{Fecha prevista / fecha real} & \textbf{Cómo se computan los 20 días} \\
+\midrule
+La resolución sale en la fecha prevista & Prevista: miércoles 5 de agosto. Sale: miércoles 5 de agosto. & Desde el día siguiente (jueves 6), contando días hábiles. \\
+\addlinespace
+La resolución sale antes de la fecha prevista & Prevista: 5 de agosto. Sale: miércoles 1 de abril. & El cómputo se hace desde la fecha prevista, como si hubiese salido el 5 de agosto. \\
+\addlinespace
+La resolución sale después de la fecha prevista & Prevista: 5 de agosto. Sale: miércoles 5 de octubre. & Desde que queda notificada por ministerio de la ley (por ejemplo, viernes 7), empezando a contar el primer día hábil siguiente; salvo que el interesado haya dejado nota de no haber podido ver el expediente. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{La crítica de la docente a este aspecto del plenario}
+
+La docente coincide con Rafiki en que los días son hábiles, pero no está muy de acuerdo con la solución que adopta para la notificación. Su objeción se centra en los acreedores que no tienen abogado: el concursado, en cambio, sigue el expediente y debe seguirlo (casi todas las resoluciones en el concurso se notifican por ministerio de la ley, salvo casos particulares). El problema son los acreedores sin patrocinio letrado, que no conocen las nociones de nota y ministerio de la ley. Un acreedor que fue el 5 de agosto y no encontró la resolución, si esta salió con fecha anterior, debía ir todos los martes y viernes al expediente a dejar nota para dejar constancia de que no le quedó notificada.
+
+En clase se observó que hoy cualquier persona, aun sin representación, puede acceder al expediente por vía digital; la docente coincide en que, en ese sentido, las cosas mejoraron, y aclara que Rafiki es un plenario vigente, anterior al expediente electrónico.
+
+\subsection{Propuestas para mejorar la notificación}
+
+\begin{itemize}
+    \item \textbf{Cédula a todos los acreedores,} informando que la resolución salió con determinada fecha (no por edicto, porque los edictos no los lee nadie). Se observó que es una forma más cara, y la docente supone que el plenario no la aceptó por la duda sobre quién las haría: el juzgado, el síndico (que ya tiene mucho trabajo) o el abogado del concursado.
+    \item \textbf{Cédula solo a los acreedores declarados inadmisibles,} propuesta que la docente formula como una idea reciente: los verificados son la mayoría y ya hay cosa juzgada; los admisibles los sigue el concursado; el problema son los inadmisibles, que no son tantos.
+    \item \textbf{Notificación electrónica} (por ejemplo, mediante un domicilio electrónico constituido, o por aplicaciones de gestión judicial que concentran las notificaciones). La docente indica que esto requiere una modificación legislativa y menciona la existencia de una comisión a la que se le pidió un proyecto, con 60 días para presentarlo.
+\end{itemize}
+% TODO: contenido incompleto o ambiguo en las notas originales (no se precisa a qué proyecto de reforma se refiere la comisión mencionada)
+
+\section{Cómputo definitivo del plazo}
+
+Cuando la resolución sale con fecha posterior a la prevista, el cómputo se hace desde la notificación por ministerio de la ley. Por ejemplo, el viernes 7 queda efectivamente notificada si el expediente estaba en letra y el acreedor no dejó nota; el plazo empieza a computarse el primer día hábil siguiente, es decir, a partir del lunes.
+
+\section{Cuadro Cornell del Bloque IV}
+
+\begin{longtable}{QW}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{Art. 37 — Efectos e incidente de revisión} &
+Lo verificado hace cosa juzgada, salvo dolo (art. 38, acción por dolo). Lo admisible o inadmisible puede revisarse por incidente dentro de los 20 días siguientes: el concursado si fue admisible; el acreedor si fue inadmisible. \\
+\addlinespace
+
+\textbf{¿Qué es el incidente de revisión?} &
+Un incidente previsto en la propia ley de concursos, por el cual el juez, por contrario imperio, revoca su propia decisión. No es un recurso extraordinario; los recursos y el procedimiento se rigen por la ley de concursos y no por el código procesal. \\
+\addlinespace
+
+\textbf{Plenario Rafiki: ¿cómo se cuentan los 20 días?} &
+Son días hábiles. Si la resolución sale antes de la fecha prevista, se cuenta desde la fecha prevista. Si sale después, se cuenta desde que queda notificada por ministerio de la ley (días de notificación: martes y viernes; excepto que se deje nota de no haber podido ver el expediente). \\
+\addlinespace
+
+\textbf{¿Qué es la notificación por ministerio de la ley y qué es la nota?} &
+Las providencias se consideran notificadas por ministerio de la ley, salvo que el compareciente deje constancia de su presencia y de no haber podido revisar el expediente (art. 26). Esa constancia es la «nota». \\
+\addlinespace
+
+\textbf{Crítica de la docente al plenario} &
+Perjudica al acreedor sin patrocinio letrado, que no domina las nociones de nota y ministerio de la ley. Propone, por ejemplo, notificar por cédula al menos a los acreedores declarados inadmisibles, o admitir notificaciones electrónicas (requiere reforma legislativa). \\
+
+\midrule
+\multicolumn{2}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{%
+\textbf{Resumen:} La resolución verificatoria es inapelable. Lo verificado hace cosa juzgada, salvo dolo; lo admisible o inadmisible puede revisarse por incidente dentro de los 20 días hábiles siguientes. El plenario Rafiki precisó el cómputo en función de la fecha prevista y de la notificación por ministerio de la ley.
+} \\
+\bottomrule
+\end{longtable}
+
+% =====================================================
+% SÍNTESIS FINAL
+% =====================================================
+\chapter*{Síntesis final}
+\addcontentsline{toc}{chapter}{Síntesis final}
+\markboth{Síntesis final}{Síntesis final}
+
+La verificación de créditos es la puerta de entrada de los acreedores al concurso preventivo. Se hace durante el período informativo: a tiempo (tempestiva), ante el síndico, sin abogado y pagando solo un arancel; o tarde, por incidente, con patrocinio letrado y costas a cargo del acreedor.
+
+En ambos casos el pedido debe contener los datos del acreedor, el domicilio y tres requisitos indispensables: el \textbf{monto} (capital más intereses liquidados hasta la fecha de presentación), la \textbf{causa} (anterior a la presentación y acreditada con prueba documental, incluso en los títulos de crédito) y el \textbf{privilegio}, que debe solicitarse expresamente.
+
+Luego el síndico puede pedir información (art. 33), el concursado y los acreedores pueden observar o impugnar (art. 34), el síndico presenta un informe individual con su opinión (art. 35) y el juez dicta la resolución verificatoria (art. 36), que declara verificado, admisible o inadmisible cada crédito y no es apelable.
+
+Lo verificado hace cosa juzgada, salvo dolo; lo admisible o inadmisible puede revisarse por incidente dentro de los 20 días hábiles siguientes, cuyo cómputo precisó el plenario Rafiki en función de la fecha prevista y de la notificación por ministerio de la ley.
+
+\begin{important}
+La lección práctica: lo que no se pide, no se reconoce, y los plazos no perdonan.
+\end{important}
+
+\end{document}
