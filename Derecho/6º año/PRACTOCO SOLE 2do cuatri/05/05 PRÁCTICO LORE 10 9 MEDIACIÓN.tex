@@ -1,0 +1,621 @@
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Consultorio Jurídico Gratuito}
+\newcommand{\materia}{Clínica Jurídica}
+\newcommand{\titulo}{Apuntes de Clínica Jurídica}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2024}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{topsep=0.3em,itemsep=0.2em}
+\setlist[enumerate]{topsep=0.3em,itemsep=0.2em}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced, breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3, colframe=blue!50!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{important}{
+    enhanced, breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8, colframe=orange!70!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{example}[1]{
+    enhanced, breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4, colframe=green!40!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{formula}[1]{
+    enhanced, breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4, colframe=purple!50!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{exercise}[1]{
+    enhanced, breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5, colframe=gray!60!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{note}{
+    enhanced, breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white, colframe=gray!50,
+    boxrule=0.6pt, arc=2mm
+}
+
+% Cuadro Cornell (tabla real, columna izquierda estrecha)
+\newenvironment{cornell}{%
+  \par\smallskip
+  \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}
+                    >{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+  \toprule
+  \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+  \midrule
+  \endhead
+}{%
+  \bottomrule
+  \end{longtable}
+}
+\newcommand{\cornellresumen}[1]{%
+  \midrule
+  \multicolumn{2}{@{}p{0.96\textwidth}@{}}{\textbf{Resumen:} #1} \\
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ---------------- PORTADA ----------------
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{1cm}
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+{\large \carrera}
+
+\vspace{3cm}
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+\textit{Comprender cada etapa del proceso es el primer paso para ejercer con seguridad y criterio.}
+
+\vspace{1.2cm}
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+{\large \autor}
+
+\vspace{0.3cm}
+{\large \anio}
+\end{center}
+\vfill
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Clínica Jurídica'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+\end{titlepage}
+
+% ---------------- ÍNDICE ----------------
+\tableofcontents
+
+% ============================================================
+% INTRODUCCIÓN
+% ============================================================
+\chapter*{Presentación}
+\addcontentsline{toc}{chapter}{Presentación}
+\markboth{Presentación}{Presentación}
+
+Estos apuntes abordan los procedimientos y etapas centrales de la práctica jurídica en el ámbito del Derecho de Familia, con especial énfasis en la \textbf{mediación extrajudicial} como paso previo a la demanda, los \textbf{requisitos formales de la demanda judicial}, las figuras del \textbf{abogado apoderado} y \textbf{patrocinante}, el \textbf{gestor procesal} y el proceso de \textbf{sorteo y radicación} de causas ante el Poder Judicial de la Nación.
+
+Los temas se enlazan como etapas de un proceso real: primero se intenta la mediación; si fracasa o hay acuerdo parcial, se redacta y presenta la demanda; esta debe sortearse y radicarse. En cada paso intervienen distintos roles (patrocinante, apoderado, gestor procesal) y distintas obligaciones formales.
+
+\begin{note}
+Los conocimientos tratados constituyen el trabajo cotidiano de un estudio jurídico o consultorio. La mediación es obligatoria antes de demandar en materias civiles y de familia; la demanda es el acto fundacional de todo litigio, y un error de forma la vuelve nula.
+\end{note}
+
+% ============================================================
+% CAPÍTULO 1: MEDIACIÓN
+% ============================================================
+\chapter{Mediación prejudicial}
+\markboth{Mediación prejudicial}{Mediación prejudicial}
+
+\section{El sistema de mediación obligatoria y el registro de mediaciones}
+
+\subsection{Organización interna: el registro}
+
+Todas las mediaciones que se realicen deben registrarse en un sistema. El personal del consultorio, incluidos los estudiantes, debe estar registrado en el sistema de mediación para poder participar en las audiencias; si no lo está, las mediaciones quedan asignadas de forma irregular.
+
+\textbf{Las actas no pueden ser firmadas por los estudiantes}: deben firmarlas los consultantes.
+
+\subsection{Elección del mediador de confianza}
+
+En el ejercicio profesional resulta conveniente trabajar con un \textbf{mediador o mediadora de confianza}, ya sea por su forma de trabajar, por su modo de mediar o por su cercanía. Es más práctico: se le comunican los datos requeridos por correo electrónico y el mediador se ocupa del trámite; el abogado, luego, abona las cartas documento.
+
+\subsection{Centros de mediación disponibles}
+
+\begin{itemize}
+    \item \textbf{Centro de mediación nacional}: depende del Estado. Su ventaja es que \textbf{no se pagan las cartas documento}.
+    \item En otros centros (por ejemplo, en la UA) sí se cobra la carta documento, y cada mediador cobra lo que considera.
+    \item Lo que se cobra como patrocinantes a los consultantes, en situaciones de mucha vulnerabilidad, es la carta documento.
+    \item \textbf{Córdoba}: se encuentra en período de prueba. Antes funcionaba muy bien; actualmente no se sabe. Algunas veces funcionó bien y otras no hay experiencia suficiente. Resulta útil, sobre todo tratándose de un patrocinio gratuito.
+\end{itemize}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (nombre del centro nacional y del "centro Córdoba")
+
+\section{Notificación de la mediación: la carta documento}
+
+\subsection{¿Cómo se notifica?}
+
+La mediación se notifica \textbf{únicamente por carta documento}, tal como lo establece la ley. La carta documento es enviada por el mediador designado.
+
+\begin{important}
+\textbf{Ley de Mediación Prejudicial Obligatoria.} La notificación de la citación a mediación se realiza únicamente mediante carta documento enviada por el/la mediador/a designado/a. La carta debe incluir el listado de los mediadores que siguen en la lista, para el caso de que alguna de las partes plantee objeción fundada.
+\end{important}
+
+\subsection{Designación del mediador y derecho de objeción}
+
+Cada mediador debe citar a los que le siguen en la lista, por si alguna de las partes tiene objeción con el mediador que cita primero. \textbf{Una carta documento de mediación que no incluya a los mediadores siguientes está mal enviada.}
+
+Por ejemplo, si el cliente tuvo una relación sentimental con la mediadora o le debe dinero, debe oponerse a esa mediación y contactarse, \textbf{dentro de los 5 días} de recibida la carta documento, con el mediador que sigue, cuyos datos deben figurar en la carta.
+
+\begin{important}
+\textbf{Plazo de objeción.} Dentro de los 5 días hábiles de recibida la carta documento, la parte que tenga objeción fundada debe contactarse con el mediador que sigue en la lista. No hace falta dar explicaciones: simplemente se renuncia a la designación del/la mediador/a original y se acepta al siguiente.
+\end{important}
+
+\subsection{Uso estratégico de la objeción}
+
+La objeción también se utiliza para \textbf{ganar tiempo}. Es una práctica que puede usarse o no: quien necesite ganar tiempo puede pedir la mediación con el mediador que sigue, sin dar explicaciones, por incompatibilidad o por otra razón. Por ejemplo: ``Renuncio a la designación de la doctora tal, que es la primera, y asumo la mediación con el que le sigue''. Esa carta documento debe contestarse.
+
+\section{Desarrollo de la audiencia de mediación}
+
+\subsection{Regla general: ambas partes deben concurrir con abogado}
+
+A la audiencia debe concurrir cada parte con su abogado. Si una parte concurre sin abogado, se puede solicitar otra fecha o también cerrar la mediación. Debe tenerse cuidado, porque a veces esta situación se utiliza para retrasar el proceso: se mencionó el caso de una parte que concurría siempre sin abogado para dilatar, cuando ya se sabía que no iba a arreglar. En ese supuesto la mediación puede cerrarse.
+
+\subsection{Límite razonable de audiencias}
+
+Hay abogados que fijan segunda, tercera o cuarta audiencia. La práctica expuesta es \textbf{no fijar más de dos audiencias}: si en dos mediaciones no se avanzó nada, no se va a avanzar.
+
+La mediación es un proceso. Muchas veces las partes llegan muy enojadas y, cuando se inicia la demanda, en la primera audiencia ya está todo más calmo y se puede arreglar allí. El hecho de no arreglar en mediación no impide arreglar más adelante.
+
+\subsection{Incomparecencia del cliente propio}
+
+Si el cliente no concurre a una mediación ya programada, el abogado \textbf{renuncia}. En el consultorio rige la regla de que, si el consultante no va y no avisa, se renuncia automáticamente y sin preguntar, por considerarlo una falta de respeto. Se reconocen situaciones de emergencia o complicaciones, que se evalúan.
+
+\section{Cierre de la mediación: acuerdo y homologación}
+
+\subsection{¿Qué hacer con el acuerdo alcanzado?}
+
+Si ambas partes concurren con abogado y hay acuerdo, este debe \textbf{homologarse} para darle fuerza ejecutoria. Se presenta una pequeña demanda que relata lo ocurrido (``Fuimos a audiencia tal fecha con tal persona y se llegó a este acuerdo, el cual solicito que se homologue'') y se ofrece como prueba el acuerdo firmado. Si hay menores involucrados, interviene la \textbf{Defensoría}; por ejemplo, en un tema como alimentos.
+
+\begin{important}
+\textbf{¿Para qué homologar?} La homologación judicial del acuerdo de mediación le otorga fuerza ejecutoria. Si hay incumplimiento, ya existe un expediente donde denunciarlo y ejecutar el cobro sin necesidad de iniciar un nuevo juicio ordinario.
+\end{important}
+
+\subsection{Consecuencias del incumplimiento}
+
+Si hay incumplimiento del acuerdo, ya existe un expediente donde denunciarlo. En la práctica expuesta, cuando hay acuerdo se lo homologa y el trabajo termina allí; por honorario, la carpeta se archiva a los 3 meses si no hay novedades. Si hay incumplimiento, ya se cuenta con la homologación.
+
+\subsection{El acuerdo debe ser redactado con precisión}
+
+Un acuerdo no consiste en ir y firmarlo: es pensarlo todo para que el cliente no vuelva por algo mal hecho. Conviene dejar todo previsto en el acuerdo. En épocas de mucha inflación era muy difícil hacer un acuerdo, por lo que se incluían cláusulas. Trabajar bien un acuerdo evita mucho trabajo posterior que no se puede cobrar y ahorra tiempo.
+
+\subsection{Resultados posibles de la mediación}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Resultado} & \textbf{¿Qué procede?} & \textbf{Plazo para demandar} \\
+\midrule
+Acuerdo total & Homologación judicial & No aplica (proceso concluido) \\
+Acuerdo parcial & Homologación por los puntos acordados. Demanda por los puntos no acordados & 6 meses desde el cierre de la mediación \\
+Sin acuerdo / incomparecencia & Habilitación de la vía judicial (demanda) & 6 meses desde el cierre de la mediación (ante la duda, contar el plazo más corto) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+\textbf{Criterio sobre plazos: siempre el más corto.} Ante la duda, se toma el plazo más corto: si no se sabe si un plazo vence a los tres o a los seis días, se toman los tres. Los plazos se cuestionan durante toda la vida profesional.
+\end{important}
+
+\section{Acuerdo parcial y reconvención en mediación}
+
+Existen dos formas de terminar la mediación distintas del acuerdo total: el acuerdo parcial y la reconvención.
+
+\subsection{Acuerdo parcial: claridad en el acta}
+
+Por ejemplo, se media por régimen de comunicación y alimentos; las partes se ponen de acuerdo en el régimen de comunicación y no en los alimentos. Se iniciará juicio por lo que no hubo acuerdo (los alimentos).
+
+Es muy importante que \textbf{el acta quede clara}, sobre todo en temas patrimoniales, como la división de sociedades conyugales (``el auto quedó en el medio, no me dijiste nada del auto''). Hay que detallar bien sobre qué se cerró el acuerdo y sobre qué no, para poder iniciar la demanda sin problema.
+
+\subsection{¿Qué es reconvenir en mediación?}
+
+\begin{definition}{Reconvención en mediación}
+Cambiar o ampliar el objeto de la mediación: una parte tiene un reclamo y la otra reclama algo distinto. No se demanda sobre el mismo tema, sino que se \textbf{amplía el objeto de la mediación}.
+\end{definition}
+
+\begin{example}{Reconvención por régimen de comunicación}
+Llega una citación por alimentos y el cliente (a veces el padre, que debe dinero) solicita reconvenir por régimen de comunicación. La mediación, que era solo por alimentos, termina con un acuerdo de alimentos y régimen de comunicación.
+\end{example}
+
+\begin{important}
+\textbf{Requisito para reconvenir.} La otra parte debe prestar su conformidad. Si dice que no, no hay reconvención posible y se deberá iniciar una mediación separada por el nuevo objeto.
+\end{important}
+
+\subsection{Cuándo conviene reconvenir}
+
+\begin{example}{Mediación por desalojo}
+En una mediación por desalojo, en la que el padre y su familia quieren la casa donde viven la madre y sus hijos, se concurre a la audiencia y se manifiesta que no se van a retirar, pero que se quiere reconvenir por alimentos. En parte se hace para poner nerviosa a la otra parte, ya que lo de alimentos ya está iniciado y no hace falta, pero se solicita igual.
+\end{example}
+
+En general, en familia se reconviene porque evita al abogado propio y al de la otra parte tener que ir a otra mediación (que se fijaría a los 10 o 15 días) o a un juicio: ``cerremos el desalojo y sigamos hablando de los alimentos''. Reconvenir es, por lo general, una buena idea, aunque a veces no conviene, como en el caso del ejemplo.
+
+Si la otra parte se niega, \textbf{el mediador no puede apartarse del objeto inicial}: debe seguir mediando por ese objeto y cerrarlo por el objeto inicial. Entonces debe pedirse otra mediación y hacer todo el camino de vuelta (mediación, carta documento) por el objeto que se quiso reconvenir. Reconvenir ahorra mucho tiempo.
+
+\section{Confidencialidad en la mediación}
+
+\subsection{Todo lo que ocurre en la mediación es confidencial}
+
+Todo lo que sucede en las mediaciones es confidencial. Cuando la negociación avanza pero aún no está para cerrar, puede proponerse un \textbf{cuarto intermedio} (por ejemplo, de 5 o 10 días) para que los abogados, y a veces directamente las partes, conversen. \textbf{La confidencialidad se mantiene} durante esos días.
+
+Debe tenerse especial cuidado en los cuartos intermedios y cuando se habla fuera de la audiencia. Se relató el caso de una persona que, en una conciliación de Coprec (consumidor) y enojada con un banco porque el ofrecimiento era muy bajo, comenzó a escribirle al abogado de la otra parte y, paralelamente, envió una carta documento diciendo cosas dichas en la mediación. El abogado le contestó que la confidencialidad se mantiene y que ello podía derivar en daños y perjuicios.
+
+\begin{important}
+\textbf{Principio de confidencialidad en la mediación.} Todo lo expresado durante el proceso de mediación es estrictamente confidencial. No puede ser utilizado como prueba en el juicio posterior. En la demanda solo se puede consignar ``no habiéndose llegado a un acuerdo'' o ``habiéndose llegado a un acuerdo parcial'', sin revelar el contenido de las negociaciones.
+\end{important}
+
+\subsection{Consecuencias de violar la confidencialidad}
+
+La violación de la confidencialidad es \textbf{causal de denuncia ante el Colegio de Abogados}, tanto para el abogado como para el mediador, que es responsable de que no se filtre nada.
+
+\begin{example}{Mediadora sancionada}
+En el consultorio se debió denunciar a una mediadora y el Colegio la sancionó porque transcribió todo lo ocurrido en la audiencia. El otro abogado lo transcribió en la demanda y el juzgado dio traslado. Se consideró un hecho serio.
+\end{example}
+
+\begin{example}{Abogada y programa de televisión}
+Una abogada muy mediática relató en un programa de televisión lo que un acusado de violación a una menor en otro país le había dicho en la entrevista. Se le suspendió la matrícula por 2 años. Se sostuvo que, aun en un caso así, lo correcto es decir que no se acepta el caso y retirarse; y, si se habla públicamente, decir solamente que ``no nos pusimos de acuerdo en la estrategia'', sin detalles de la reunión.
+\end{example}
+
+\subsection{Cómo mencionar la mediación en la demanda}
+
+En la demanda no puede consignarse, por ejemplo, ``habiendo ido a mediación, me dijo que no me iba a pagar \$2.000 pero me quería pagar \$1.000''. Solo se pone ``no habiendo llegado a un acuerdo'' o ``habiendo llegado a un acuerdo parcial''.
+
+Puede utilizarse alguna frase general (por ejemplo, que no hubo acuerdo con respecto a lo económico por insuficiencia), lo cual no es lo mismo que contar lo ocurrido en la mediación. Hay una diferencia grande entre eso y decir ``me ofreció \$2.000 cuando yo quería \$5.000''.
+
+Debe recordarse siempre a los clientes que \textbf{lo que pasa en la mediación se queda en la mediación}: no es prueba ni son hechos, es una negociación.
+
+% ---------------- CORNELL CAP. 1 ----------------
+\section{Cuadro Cornell: mediación prejudicial}
+
+\begin{cornell}
+\textbf{¿Cómo se notifica la mediación?} &
+Únicamente por carta documento enviada por el/la mediador/a designado/a. La carta debe incluir el listado de los mediadores que siguen en la lista, para el caso de objeción fundada. Una carta que no los incluya está mal enviada. \\[0.6em]
+
+\textbf{¿Qué es el derecho de objeción y cuál es su plazo?} &
+Es la posibilidad de rechazar al mediador que cita primero (por ejemplo, por una relación sentimental o una deuda con él). Debe ejercerse dentro de los 5 días de recibida la carta documento, contactando al mediador que sigue en la lista. No hace falta dar explicaciones, y también se usa para ganar tiempo. \\[0.6em]
+
+\textbf{¿Qué ocurre si una parte concurre sin abogado?} &
+Se puede pedir otra fecha o cerrar la mediación, con cuidado de que no se use para dilatar. Se recomienda no fijar más de dos audiencias. Si el propio cliente no concurre sin avisar, en el consultorio se renuncia automáticamente. \\[0.6em]
+
+\textbf{¿Por qué se debe homologar el acuerdo?} &
+Para darle fuerza ejecutoria: si hay incumplimiento, ya existe un expediente donde denunciarlo y ejecutar el cobro. Si hay menores involucrados, interviene la Defensoría. \\[0.6em]
+
+\textbf{¿Qué procede si el acuerdo es parcial o no hay acuerdo?} &
+Acuerdo parcial: homologación de los puntos acordados y demanda por los no acordados, con un acta clara. Sin acuerdo o incomparecencia: se habilita la vía judicial. En ambos casos, el plazo indicado es de 6 meses desde el cierre de la mediación; ante la duda, se cuenta el plazo más corto. \\[0.6em]
+
+\textbf{¿Qué es reconvenir en mediación y qué requiere?} &
+Ampliar el objeto de la mediación con un reclamo distinto. Requiere la conformidad de la otra parte; si se niega, el mediador debe cerrar por el objeto inicial y hay que iniciar otra mediación por el nuevo objeto. \\[0.6em]
+
+\textbf{¿Qué es la confidencialidad y qué consecuencias tiene violarla?} &
+Todo lo ocurrido en la mediación es confidencial y no es prueba. En la demanda solo se consigna que no hubo acuerdo o que hubo acuerdo parcial. Su violación es causal de denuncia ante el Colegio de Abogados, tanto para el abogado como para el mediador. \\
+\cornellresumen{La mediación es la primera etapa del proceso: se notifica por carta documento, admite objeción dentro de los 5 días, se desarrolla con confidencialidad y se cierra con acuerdo homologado (total o parcial) o con habilitación de la vía judicial, dentro del plazo de 6 meses indicado en las notas, contando ante la duda el más corto.}
+\end{cornell}
+
+% ============================================================
+% CAPÍTULO 2: DEMANDA
+% ============================================================
+\chapter{La demanda judicial}
+\markboth{La demanda judicial}{La demanda judicial}
+
+\section{Requisitos formales de la demanda: art. 330 CPCCN}
+
+\subsection{El artículo 330 como guía obligatoria}
+
+Después de la mediación corresponde la demanda, cuyos requisitos están establecidos en el \textbf{artículo 330}. Si falta alguno de ellos, la demanda es \textbf{nula}, pues el artículo dice ``bajo pena de nulidad''. Al redactar una demanda se lee el artículo 330 y se consigna todo lo que indica.
+
+\begin{important}
+\textbf{Art. 330 CPCCN. Requisitos de la demanda.} La demanda debe contener, bajo pena de nulidad: 1) nombre y domicilio del demandante; 2) nombre y domicilio del demandado; 3) la cosa demandada, designándola con toda exactitud; 4) los hechos en que se funde, explicados claramente; 5) el derecho expuesto sucintamente; 6) la petición en términos claros y positivos. También debe incluir los documentos probatorios y el ofrecimiento de prueba.
+\end{important}
+
+\begin{example}{Demanda sin demandado}
+En una demanda se omitió, por cortar y pegar, consignar contra quién se dirigía. El juzgado indicó que se leyera el inciso 2 del artículo 330 (nombre del demandado). Se calificó como una desprolijidad y falta de trabajo. Para evitarlo: leer el artículo 330 y consignar cada sujeto, y leer y releer la demanda antes de mandarla a corregir.
+\end{example}
+
+\section{Abogado apoderado y abogado patrocinante}
+
+\subsection{La distinción fundamental}
+
+La demanda siempre la firma el abogado, ya sea como \textbf{apoderado} (cuando tiene poder) o como \textbf{patrocinante} (cuando no lo tiene).
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Característica} & \textbf{Apoderado} & \textbf{Patrocinante} \\
+\midrule
+¿Tiene poder notarial? & Sí (poder especial ante escribano público) & No \\
+¿Quién firma los escritos? & El abogado solo (+ la parte en algunos casos) & El abogado y la parte (siempre juntos) \\
+Honorarios & Se regula más honorario (más responsabilidad) & Honorario estándar \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{El poder especial en procesos de familia}
+
+Para ser apoderado se necesita un \textbf{poder ante escribano público}, que puede ser general o especial. En los procesos de familia debe ser \textbf{especial}: debe indicar el objeto para el cual se otorga (alimentos, régimen de comunicación, sucesiones) y sirve solo para eso. Se rechaza a quien se presente en familia con un poder general de justicia.
+
+\subsection{Práctica del consultorio}
+
+Si el abogado no tiene poder, es patrocinante y firman el abogado y la parte, que firman todo. Se recomienda no llevar un juicio sin que el cliente se entere, aun siendo apoderado: la comunicación con el cliente debe ser constante. Hay clientes que viajan y dejan un poder antes de irse, lo que resulta mucho más práctico.
+
+\section{El gestor procesal: art. 48 CPCCN}
+
+\subsection{¿Cuándo se usa?}
+
+Cuando la parte no puede firmar y hay vencimiento, existe en el código una figura llamada \textbf{gestor procesal} (artículo 48).
+
+\begin{important}
+\textbf{Art. 48 CPCCN. Gestor procesal.} Cuando hubiere peligro de perjuicio en la demora, podrá admitirse la comparecencia en juicio de quien no presentare la representación o el poder necesarios, con cargo de que lo haga dentro del plazo de 40 días hábiles. Transcurrido ese plazo sin que se presentare la ratificación, quedará nulo todo lo actuado y el gestor pagará las costas causadas.
+\end{important}
+
+\subsection{Funcionamiento actual (virtualidad)}
+
+Antes de la virtualidad, el cliente debía concurrir personalmente al juzgado a ratificar dentro de los 40 días. Actualmente se le envía el escrito, lo imprime, lo firma, lo devuelve y luego el abogado lo presenta. Se utiliza mucho cuando el cliente no puede concurrir y hay vencimiento.
+
+Si el abogado no presenta un escrito por no tener la firma y hay vencimiento, la \textbf{responsabilidad profesional} es suya: es el abogado quien debe solucionarlo.
+
+\section{Firmas, responsabilidad profesional y firma digital}
+
+\subsection{Regla del consultorio: firma presencial}
+
+Los consultantes deben concurrir a firmar los escritos en el consultorio, en presencia del equipo. En los estudios ocurre algo similar; puede haber más confianza con algún cliente para que envíe el escrito firmado y luego lo traiga, pero hay muchas demandas rechazadas, y confirmadas por la cámara, en las que se anuló todo lo hecho porque se firmaron escritos digitalmente que luego no se ratificaron.
+
+\subsection{El peligro de la firma incrustada}
+
+Si se incrusta la firma de un cliente en un escrito y la contraparte afirma que esa firma no es del cliente o que está incrustada, el juzgado ordena en 48 horas presentar el escrito firmado por el cliente. Si se presenta uno firmado por el propio abogado, este comete además un delito. Si la firma no coincide con el escrito verdadero, \textbf{se cae todo el proceso y hay responsabilidad profesional}.
+
+\begin{important}
+\textbf{Riesgo de la firma digital incrustada.} Incrustar la firma de un cliente en un escrito judicial sin su presencia puede configurar un delito de falsificación de instrumento público, además de generar nulidad del proceso y responsabilidad disciplinaria del abogado ante el Colegio de Abogados.
+\end{important}
+
+Durante la pandemia se hizo mucho esto y trajo muchos problemas. Si hay que incrustar la firma porque vence un plazo, es mucho mejor enviar el escrito para que el cliente lo imprima, lo firme y lo devuelva. Si el juzgado otorga un plazo muy corto (24 o 48 horas) no hay tiempo de buscar al cliente: debe tenerse ya el papel firmado para presentar. Como la matrícula del docente y de los demás docentes está en juego, se pide respetar la regla a rajatabla: cada consultante debe firmar en el consultorio; si no puede, se evalúa qué hacer, pero no debe resolverse por cuenta propia, porque la cuestión de la firma parece menor y no lo es.
+
+% ---------------- CORNELL CAP. 2 ----------------
+\section{Cuadro Cornell: la demanda judicial}
+
+\begin{cornell}
+\textbf{¿Qué exige el art. 330 CPCCN bajo pena de nulidad?} &
+Nombre y domicilio del demandante y del demandado; la cosa demandada designada con exactitud; los hechos explicados claramente; el derecho expuesto sucintamente; y la petición en términos claros y positivos. También debe incluir los documentos probatorios y el ofrecimiento de prueba. \\[0.6em]
+
+\textbf{¿Cuál es la diferencia entre apoderado y patrocinante?} &
+El apoderado tiene poder notarial especial ante escribano público; el patrocinante no tiene poder y firma siempre junto con la parte. El apoderado tiene más responsabilidad y se regula más honorario. En familia el poder debe ser especial. \\[0.6em]
+
+\textbf{¿Qué es el gestor procesal (art. 48 CPCCN)?} &
+Permite la comparecencia en juicio de quien no presenta la representación o el poder necesarios cuando hay peligro de perjuicio en la demora, con cargo de ratificación dentro de los 40 días hábiles. Si no se ratifica, queda nulo todo lo actuado y el gestor paga las costas. \\[0.6em]
+
+\textbf{¿Qué riesgos implica la firma digital incrustada?} &
+Si la contraparte cuestiona la firma, el juzgado ordena en 48 horas presentar el escrito firmado por el cliente. Puede configurar un delito de falsificación, generar nulidad del proceso y responsabilidad disciplinaria y profesional. \\
+\cornellresumen{La demanda debe cumplir el art. 330 CPCCN bajo pena de nulidad. El abogado la firma como apoderado (con poder especial) o como patrocinante (junto con la parte). El gestor procesal (art. 48) permite actuar ante un vencimiento con ratificación en 40 días hábiles. Las firmas deben ser auténticas y, en el consultorio, presenciales, para evitar nulidades y responsabilidades.}
+\end{cornell}
+
+% ============================================================
+% CAPÍTULO 3: SORTEO Y RADICACIÓN
+% ============================================================
+\chapter{Sorteo y radicación de la causa}
+\markboth{Sorteo y radicación}{Sorteo y radicación}
+
+\section{Sorteo de la demanda}
+
+\subsection{El proceso de sorteo electrónico}
+
+Una vez que se tiene la demanda firmada y con la prueba, debe sortearse. El sorteo se realiza mediante una casilla electrónica, a la que se envía un \textbf{formulario} muy simple, de tres o cuatro campos, que incluye el \textbf{código del juicio}.
+
+\subsection{El código del juicio}
+
+Todos los juicios tienen un código, que se obtiene del Colegio Público de Abogados (buscando ``objeto de juicio civil'').
+
+\subsection{¿Qué sucede después del sorteo?}
+
+Completado el formulario, el sistema devuelve el número de expediente, aunque no es obligatorio que lo devuelva.
+
+\begin{important}
+\textbf{¿Qué hacer si no llega el número de expediente?} Si no reciben el número de expediente después del sorteo, deben consultar al equipo docente para que verifique en el sistema del PJN, en el apartado ``Radicaciones''.
+\end{important}
+
+\section{Radicación y seguimiento de la causa}
+
+\subsection{Cómo verificar la radicación en el PJN}
+
+Los estudiantes deben avisar al equipo docente por un tema de clave. Los docentes verifican en el PJN, en ``Favoritos relacionados -- Radicaciones'' (margen derecho superior), que figure ``Juicio radicado''.
+
+\subsection{Tiempo esperado para la radicación}
+
+Si entre el sorteo y la aparición de la radicación pasan más de \textbf{24 o 48 horas}, hay un problema en el proceso (algo enviado mal, una respuesta no advertida en el correo, etc.). No se debe sortear y esperar que envíen el número: hay que ir a verlo. Las radicaciones, en general, tardan no más de 2 horas; en términos de día judicial (de 7:30 a 13:30), si se sortea a la 1, al día siguiente a las 8:30 ya está. Si tarda más, se debe avisar al equipo docente.
+
+% TODO: contenido ambiguo en las notas originales (el apunte menciona "no más de 2 horas" y también "24 o 48 horas" como umbral de problema)
+
+% ---------------- CORNELL CAP. 3 ----------------
+\section{Cuadro Cornell: sorteo y radicación}
+
+\begin{cornell}
+\textbf{¿Cómo se sortea una demanda?} &
+Con la demanda firmada y con la prueba, se completa un formulario electrónico (tres o cuatro campos) en la casilla, incluyendo el código del juicio, que se obtiene del Colegio Público de Abogados. \\[0.6em]
+
+\textbf{¿Qué hacer si no llega el número de expediente?} &
+Consultar al equipo docente para que verifique en el PJN, apartado ``Radicaciones''. \\[0.6em]
+
+\textbf{¿Cuánto tarda la radicación y cuándo hay un problema?} &
+En general no más de 2 horas (en términos de día judicial, de 7:30 a 13:30). Si pasan más de 24 o 48 horas, hay un problema en el proceso y hay que ir a verlo. \\
+\cornellresumen{Una vez firmada la demanda con su prueba, se sortea mediante un formulario electrónico con el código del juicio. La radicación debe verificarse en el PJN (Radicaciones, ``Juicio radicado''); si demora más de 24 o 48 horas, hay un problema.}
+\end{cornell}
+
+% ============================================================
+% CAPÍTULO 4: CASO PRÁCTICO
+% ============================================================
+\chapter{Segmento práctico: atención a una consultante}
+\markboth{Atención a una consultante}{Atención a una consultante}
+
+\section{Contexto del caso}
+
+Durante la clase ingresa una consultante al consultorio. Se trata de un caso de derecho de familia en el que la señora se encuentra en un proceso judicial en curso. Su hija fue separada de su cuidado por decisión judicial y ella busca asesoramiento para revertir esa situación. El equipo docente y los estudiantes presencian y participan de la entrevista.
+
+\section{Situación de la causa}
+
+Hay medidas vigentes sin plazo. Se realizó un examen psiquiátrico-interdisciplinario, cuyo resultado fue que la consultante no necesita internación y no presenta riesgos. Los demás informes de otros organismos dieron lo contrario: el de la Defensoría y el de la entrevista con su hija, en la que la niña dice que está bien con el padre.
+
+\begin{note}
+El criterio expuesto es no trabajar con teorías ni intentar ``desenmascarar'' a nadie, sino \textbf{trabajar con lo que hay en la causa}.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la frase "Vemos hacer la diferencia del expediente" no se comprende)
+
+\section{Indicación del equipo: iniciar tratamiento}
+
+Se indica iniciar \textbf{tratamiento psicológico y psiquiátrico} (tratamiento, no informe), para demostrar que la consultante está apta para cuidar a su hija. Se sostiene que nada cambiará si no inicia tratamiento, y que no se trata de obedecer sino de demostrar aptitud. Se aclara que acudir al psiquiatra no implica una condición extrema: a veces se concurre por estrés que impide dormir o por angustia, y no hay ninguna vergüenza en ello.
+
+\section{La orden judicial sobre la mascota}
+
+Existía un plazo de 5 días para decidir si se entregaba la mascota. Debe entregarse: si no, concurrirá la policía a buscarla, en una situación comparable a un allanamiento. Se propone que la consultante indique a una persona de confianza que la entregue antes. Además, la intervención policial no la beneficia en el proceso, porque se dirá que la niña tiene su mascota y la madre no se la da.
+
+\section{Recomendación final}
+
+La consultante debe informar cómo va a entregar el animal y entregarlo voluntariamente. Como alternativa, se mencionó que podría contestarse en el expediente que el animal no puede trasladarse; se señaló que es lo único que se le dice al respecto. Se observa que la consultante, preocupada por estar con su hija, hace todo lo que le indican (concurre al psicólogo y al psiquiatra en la audiencia). El objetivo es iniciar el tratamiento y mostrar al juez que está en condiciones de tener a su hija.
+
+\section{Cuadro Cornell: atención a una consultante}
+
+\begin{cornell}
+\textbf{¿Qué se indicó respecto del tratamiento?} &
+Iniciar tratamiento psicológico y psiquiátrico (no un informe), para demostrar que la consultante está apta para cuidar a su hija; no se trata de obedecer sino de demostrar aptitud. \\[0.6em]
+
+\textbf{¿Cómo se cumple la orden judicial sobre la mascota?} &
+Debe entregarse; de lo contrario irá la policía, situación que no beneficia a la consultante en el proceso. Se propone que una persona de confianza la entregue antes. \\[0.6em]
+
+\textbf{¿Con qué elementos se trabaja en el caso?} &
+Solo con lo que consta en la causa, sin teorías. \\
+\cornellresumen{La consultante debe iniciar tratamiento psicológico y psiquiátrico para demostrar su aptitud y cumplir voluntariamente la orden de entregar la mascota, trabajando con lo que consta en la causa.}
+\end{cornell}
+
+\end{document}

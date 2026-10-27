@@ -1,0 +1,1009 @@
+%==============================================================
+% DOCUMENTCLASS
+%==============================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================
+% METADATOS
+%==============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el nombre de la materia no figura de forma expresa; se toma de las
+%  reiteradas referencias a "el práctico" presentes en las notas)
+\newcommand{\materia}{Práctico}
+\newcommand{\titulo}{Apuntes de Práctico}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================
+% PAQUETES
+%==============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================
+% CONFIGURACIÓN
+%==============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+\addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% Encabezados y pies
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% Títulos de capítulo más sobrios
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{10pt}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \large\bfseries\color{blue!50!black}\@chapapp\space \thechapter
+      \par\nobreak\vskip 4pt
+    \fi
+    \interlinepenalty\@M
+    \LARGE \bfseries #1\par\nobreak
+    \vskip 18pt
+  }}
+\makeatother
+
+%==============================================================
+% COMANDOS
+%==============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Anchos de las columnas del cuadro Cornell
+\newlength{\cornellizq}
+\newlength{\cornellder}
+\AtBeginDocument{%
+  \setlength{\cornellizq}{0.27\textwidth}%
+  \setlength{\cornellder}{\dimexpr\textwidth-\cornellizq-4\tabcolsep\relax}%
+}
+
+%==============================================================
+% ENTORNOS / CAJAS
+%==============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Cuadro Cornell (tabla real: columna izquierda estrecha, derecha amplia,
+% última fila a ancho completo con el resumen)
+\newenvironment{cornell}
+{\begin{longtable}{>{\columncolor{gray!10}\raggedright\arraybackslash}p{\cornellizq}>{\raggedright\arraybackslash}p{\cornellder}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\footnotesize\itshape Continúa en la página siguiente} \\
+\endfoot
+\endlastfoot}
+{\end{longtable}}
+
+%==============================================================
+% DOCUMENTO
+%==============================================================
+\begin{document}
+
+%--------------------------------------------------------------
+% PORTADA
+%--------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{5cm}
+
+{\Huge \textbf{\titulo}}
+
+\vspace{1cm}
+
+\textit{Comprender con paciencia es el primer paso para actuar con criterio.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%--------------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------------
+\tableofcontents
+\clearpage
+
+%==============================================================
+% CONTENIDO
+%==============================================================
+
+%--------------------------------------------------------------
+\chapter[Notificaciones y diligencias]{Notificaciones y diligencias en la práctica profesional}
+%--------------------------------------------------------------
+
+\section{Control de las notificaciones}
+
+Las notificaciones requieren un control atento por parte del profesional, porque un defecto en ellas puede derivar en una nulidad. Según lo expuesto, las notificaciones practicadas «bajo responsabilidad» se anulan con posterioridad y no de manera inmediata: la anulación se produce cuando el proceso ya avanzó, y una nulidad en ese momento puede acarrear \textbf{pérdida de gestión y de tiempo}.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el fragmento inicial está cortado; no se distingue con claridad el sentido de "bajo responsabilidad" ni qué ocurre si la nulidad se declarara de inmediato)
+
+El grado de control que se dedica a cada notificación depende de su \textbf{envergadura e importancia}. El \textbf{traslado de la demanda}, por ejemplo, debe examinarse con especial cuidado.
+
+\begin{example}{Notificación de honorarios a los herederos}
+Cuando fallece la persona responsable de pagar unos honorarios, corresponde notificar a sus herederos, lo que exige localizarlos. Esta tarea se presenta, por ejemplo, en el marco de una declaratoria de herederos, y puede resultar trabajosa.
+\end{example}
+
+\section{Oficial notificador y oficial de justicia}
+
+Se sugiere conocer la oficina de notificaciones: obtener su domicilio y su número de contacto, concurrir y hablar con el oficial notificador para acordar la diligencia. En cuanto a los oficiales de justicia, las notas indican que suele haber un horario en el que se los encuentra para pactar las diligencias.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la frase sobre el horario de los oficiales de justicia está incompleta)
+
+Se trata de dos figuras diferentes, que no deben confundirse.
+
+\begin{definition}{Oficial de justicia}
+El oficial de justicia \textbf{gestiona los mandamientos}. Su intervención es muy importante cuando debe practicarse un \textbf{embargo domiciliario} o un \textbf{desalojo}.
+\end{definition}
+
+\section{El desalojo en la práctica}
+
+\subsection{Dinámica del proceso}
+
+A modo de contraste, el docente señaló que en Estados Unidos, país de tradición anglosajona, el desalojo funciona de manera más expeditiva: no se sigue un juicio como el local y, ante la falta de pago, interviene la policía.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la explicación sobre el sistema estadounidense está fragmentada)
+
+En el régimen local, aunque se supone que el procedimiento actual es más rápido, el juicio de desalojo puede demorar.
+
+\begin{example}{Juicio de desalojo sin oposición}
+Un juicio de desalojo comenzó en febrero y la sentencia se dictó en agosto. La persona demandada no se defendió, no se presentó, fue notificada y quedó declarada rebelde. Aun así, la sentencia tardó varios meses.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (las notas mencionan "más de 100 meses", cifra incompatible con las fechas indicadas)
+\end{example}
+
+Otro aspecto señalado es que el desalojo, que antes no tenía mediación, \textbf{ahora la tiene}; el docente calificó esa modificación como una medida populista de este gobierno.
+
+\subsection{Ejecución del desalojo: costos y gestiones}
+
+Dictada la sentencia, el desalojo debe hacerse efectivo y esto \textbf{tiene costos}. Aunque interviene la fuerza pública, la diligencia no la lleva a cabo la policía por sí sola. Deben tenerse en cuenta:
+
+\begin{itemize}
+    \item \textbf{Cerrajero:} es necesario conseguir uno dispuesto a participar. Los cerrajeros suelen no querer intervenir en diligencias judiciales porque temen ser citados a declarar y perder tiempo.
+    \item \textbf{Flete:} se requiere para el traslado de los bienes.
+    \item \textbf{Gastos vinculados con el oficial de justicia y con la policía:} el desalojo se hace con el auxilio de la fuerza pública. El docente aclaró que no debe entenderse como una coima, pero advirtió que estos gastos existen.
+\end{itemize}
+
+Según la resistencia del ocupante o del exinquilino, puede ser preferible \textbf{negociar} con él, aun cuando ello implique pagarle para que se retire. El docente lo presentó como una de las paradojas de la profesión, que muchas veces no se imaginan ni se miden de antemano. También indicó que el costo total puede llegar a ser considerable en comparación con el del juicio.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la comparación de costos con "los honorarios del juicio" es confusa en la transcripción)
+
+\section{Averiguar lo que no está escrito}
+
+\begin{note}
+El docente señaló que, con la experiencia, dejó de ser tan estricto respecto de que todo deba hacerse de una determinada manera, aclarando que no se trata de proceder de forma irregular. En la práctica hay aspectos de gestión que no están escritos en ningún texto y que el profesional debe \textbf{averiguar}.
+\end{note}
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Por qué debe controlarse con atención una notificación y de qué depende el grado de control?} &
+Porque un defecto en la notificación puede acarrear una nulidad, con la consiguiente pérdida de gestión y de tiempo si se declara cuando el proceso ya avanzó. El grado de control depende de la envergadura e importancia de la notificación; el traslado de la demanda se examina con particular cuidado. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué recomendación se formula respecto de la oficina de notificaciones?} &
+Obtener el domicilio y el número de la oficina, concurrir y hablar con el oficial notificador para acordar la diligencia. Respecto de los oficiales de justicia, existe un horario en el que se los encuentra para pactar diligencias. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué función cumple el oficial de justicia y por qué es importante?} &
+Gestiona los mandamientos. Su intervención es muy importante en el embargo domiciliario y en el desalojo. Es una figura diferente de la del oficial notificador. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué cambio se señaló respecto de la mediación en el desalojo?} &
+Antes el desalojo no tenía mediación y ahora la tiene; el docente calificó esa medida como populista. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué costos y gestiones implica ejecutar un desalojo?} &
+Conseguir un cerrajero dispuesto a participar, contratar un flete y afrontar gastos vinculados con el oficial de justicia y la policía, ya que se actúa con el auxilio de la fuerza pública. La policía no lo hace por sí sola. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Por qué puede convenir negociar con el ocupante o exinquilino?} &
+Según su resistencia, negociar con él, incluso pagándole para que se retire, puede resultar preferible a continuar por la vía judicial; el docente lo presentó como una paradoja de la profesión. \\
+\addlinespace
+\midrule
+\rowcolor{blue!5}
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr\cornellizq+\cornellder+2\tabcolsep\relax}}{%
+\textbf{Resumen.} Las notificaciones deben controlarse en proporción a su importancia, con especial cuidado en el traslado de la demanda. El oficial de justicia gestiona los mandamientos y es clave en embargos domiciliarios y desalojos. Ejecutar un desalojo implica costos y gestiones concretas (cerrajero, flete, gastos vinculados con la fuerza pública), y a veces resulta preferible negociar. En la práctica hay aspectos que no están escritos y que el profesional debe averiguar.} \\
+\bottomrule
+\end{cornell}
+
+%--------------------------------------------------------------
+\chapter[Reclamos de daños y seguro]{Reclamos de daños, pluspetición inexcusable y seguro de responsabilidad civil}
+%--------------------------------------------------------------
+
+\section{Un reclamo por accidente múltiple}
+
+\begin{example}{Accidente múltiple en ruta con pluralidad de damnificados}
+Un colega de una localidad de Santa Fe contactó al docente por un juicio originado en la provincia de Buenos Aires: un \textbf{accidente múltiple} (un choque en ruta, con tres vehículos involucrados y varios damnificados). Los choques en ruta suelen ser mortales o de alto impacto en lesiones. Los datos del caso son los siguientes:
+\begin{itemize}
+    \item La compañía de seguros invoca un \textbf{límite de cobertura} de responsabilidad civil (el monto no se consigna en las notas).
+    \item Algunos damnificados no sufrieron muerte ni lesiones conocidas, pero no se sabe qué lesiones tienen porque no hay peritaje; existe una causa penal con algunas pericias, pero no mecánicas.
+    \item Un damnificado reclama \textbf{100 millones de pesos}, que el docente estimó en alrededor de un millón de dólares.
+    \item El asegurado se encuentra preocupado por la magnitud de los reclamos.
+\end{itemize}
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (se menciona "20 millones contra 15, no hay forma de competir" sin aclarar a qué montos se refiere)
+\end{example}
+
+Para conocer el alcance real de los reclamos hay que \textbf{atravesar el proceso}, de modo que las pretensiones se «sinceren». Se plantea la necesidad de realizar la audiencia con todo el universo de damnificados, determinar hasta dónde alcanza el seguro y evaluar un acuerdo, en el que el asegurado debería aportar algo.
+
+\section{Pluspetición inexcusable}
+
+El docente se refirió al fenómeno de la \textbf{pluspetición inexcusable}. Cuando las personas cuentan con \textbf{beneficio de litigar sin gastos}, los abogados son muy proclives a no quedarse cortos; pero no se trata de no quedarse corto con el reclamo, sino de \textbf{exacerbarlo}.
+
+\begin{important}
+Aunque la persona tenga beneficio de litigar sin gastos, \textbf{el abogado no está exento}: puede llegar a tener responsabilidad por exacerbar el reclamo.
+\end{important}
+
+El docente indicó que procura cultivar la \textbf{prudencia}: no se trata de pedir de menos cuando no corresponde, pero tampoco de perseguir un enriquecimiento sin causa. El objetivo es que la persona reciba la \textbf{reparación}.
+
+\section{Reparación plena e integral}
+
+Al preguntarse cómo se califica la reparación en materia civil, se plantea la expresión \emph{reparación integral}. El docente explicó que el Código Civil no sigue esa expresión, sino otra: \textbf{reparación plena}.
+
+\begin{definition}{Reparación plena}
+Expresión que sigue el Código Civil. Según el entendimiento del docente, es \textbf{menos que la reparación integral}; la integral tiene un alcance mayor.
+\end{definition}
+
+El docente aclaró que esta es su interpretación («yo entiendo que es así») y que en una oportunidad la consultó con otro profesor. Señaló, además, que a quienes tuvieron una formación anterior les cuesta a veces recapitular en el Código, que es muy bueno pero tiene otros paradigmas.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (no se precisa el alcance de la reparación integral ni la respuesta del profesor consultado)
+
+\section{Incapacidad y muerte: costo de la indemnización}
+
+\begin{important}
+Una \textbf{incapacidad} puede resultar más onerosa que una \textbf{muerte}. La persona que queda en situación de incapacidad debe ser sostenida durante toda la vida; el fallecimiento da lugar a una indemnización que se paga una sola vez, mientras que la incapacidad se proyecta y se prolonga durante años.
+\end{important}
+
+\section{Seguro de responsabilidad civil}
+
+\begin{definition}{Seguro de responsabilidad civil (objetivo)}
+Su objetivo es \textbf{mantener indemne al asegurado}.
+\end{definition}
+
+\section{Derecho del consumidor}
+
+Las notas señalan que en el derecho de los consumidores rige también el beneficio de justicia gratuita.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la frase sobre el beneficio "por caso" está incompleta en la transcripción)
+El docente manifestó que procura analizar y ser criterioso: si no se analiza, se queda con eslóganes; es necesario ir al tema de fondo.
+
+\subsection{Obsolescencia programada y percibida}
+
+\begin{definition}{Obsolescencia programada}
+Situación en la que el producto está diseñado para \textbf{dejar de funcionar}. Ejemplo mencionado: un lavarropa cuyo diseño hace que se funda y no ande más.
+\end{definition}
+
+\begin{definition}{Obsolescencia percibida}
+Situación en la que el producto \textbf{funciona}, pero ha pasado de moda y por eso deja de resultar útil o valioso. Ejemplo mencionado: un iPhone fuera de moda.
+\end{definition}
+
+El docente indicó que la expresión «percibida» es una adaptación del inglés, cuyo original es \emph{perceived obsolescence}.
+
+\section{Previsión de juicios en los balances}
+
+Las empresas deben \textbf{previsionar} en sus balances los juicios en que intervienen, y solicitan a su abogado información sobre ellos. Cuando no se dispone de una pericia que determine un valor actualizado, el abogado informa el \textbf{monto de la demanda}.
+
+\begin{example}{Accidente entre unidades de camiones}
+El docente es abogado de dos empresas de camiones: una es titular del tractor y otra del semirremolque. Chocaron con otro vehículo y una persona damnificada inició juicio. Las empresas sostienen que el damnificado se vino contra el camión. Los seguros desaparecieron y el docente teme que un día salga una sentencia condenatoria de un monto muy elevado (mencionó 100 millones).
+\end{example}
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (no se aclara el monto que la empresa previsiona ni el estado actual de cada empresa)
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Qué características tenía el caso del accidente múltiple?} &
+Un choque en ruta con tres vehículos y varios damnificados; un seguro de responsabilidad civil con límite de cobertura; ausencia de peritaje sobre las lesiones (hay una causa penal, sin pericias mecánicas); y un damnificado que reclama 100 millones de pesos. El asegurado se encuentra preocupado. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Cómo se determina el alcance real de los reclamos?} &
+Hay que atravesar el proceso para que las pretensiones se sinceren; se plantea una audiencia con todos los damnificados, ver hasta dónde alcanza el seguro y evaluar un acuerdo en el que el asegurado aporte algo. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué es la pluspetición inexcusable y qué responsabilidad implica para el abogado?} &
+Es el fenómeno por el cual, cuando la persona tiene beneficio de litigar sin gastos, los abogados tienden a no quedarse cortos y exacerban el reclamo. El beneficio no exime al abogado, que puede tener responsabilidad. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Cuál es el objetivo del reclamo según el criterio de prudencia expuesto?} &
+Que la persona reciba la reparación, sin buscar un enriquecimiento sin causa y sin pedir de menos cuando no corresponde. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué diferencia hay entre reparación plena y reparación integral?} &
+El Código Civil sigue la expresión reparación plena, que según el entendimiento del docente es menos que la integral; la integral tiene un alcance mayor. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Por qué una incapacidad puede ser más onerosa que una muerte?} &
+Porque la persona con incapacidad debe ser sostenida toda la vida, mientras que la indemnización por fallecimiento se paga una sola vez. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Cuál es el objetivo del seguro de responsabilidad civil?} &
+Mantener indemne al asegurado. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué distingue la obsolescencia programada de la percibida?} &
+En la programada el producto está diseñado para dejar de funcionar (por ejemplo, un lavarropa); en la percibida el producto funciona pero pasó de moda (por ejemplo, un iPhone). \\
+\addlinespace
+\midrule
+\rowcolor{blue!5}
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr\cornellizq+\cornellder+2\tabcolsep\relax}}{%
+\textbf{Resumen.} En reclamos con múltiples damnificados es necesario atravesar el proceso para sincerar las pretensiones y evaluar hasta dónde alcanza el seguro. La pluspetición inexcusable consiste en exacerbar el reclamo y puede generar responsabilidad del abogado aun con beneficio de litigar sin gastos. La prudencia apunta a la reparación, no al enriquecimiento sin causa. El Código Civil sigue la reparación plena. La incapacidad puede ser más onerosa que la muerte. El seguro de responsabilidad civil busca mantener indemne al asegurado. La obsolescencia puede ser programada o percibida.} \\
+\bottomrule
+\end{cornell}
+
+%--------------------------------------------------------------
+\chapter[Protección del inmueble ocupado]{Protección del inmueble ocupado: vías civiles y protección penal}
+%--------------------------------------------------------------
+
+\section{Vías civiles para recuperar la posesión}
+
+Frente a la consulta de cómo recuperar un inmueble ocupado por otras personas, se señalan las \textbf{acciones posesorias} y el \textbf{interdicto}, existiendo distintos grados de protección.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.24\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Vía} & \textbf{Características según las notas} \\
+\midrule
+Interdicto &
+Se lo llama también «policial», entre comillas, pero se hace en la acción civil. Protege la posesión y también la tenencia. Tiene caducidad de un año: si se tolera la posesión o la tenencia por más de un año, el interdicto caduca. \\
+\addlinespace
+Acción posesoria &
+Es la opción con que se cuenta cuando el interdicto ha caducado. \\
+\addlinespace
+Acción reivindicatoria &
+Requiere el derecho real de propiedad. La posesión es un derecho real, pero si no se tiene el derecho real de propiedad no puede ejercerse la reivindicatoria. \\
+\bottomrule
+\end{tabularx}
+\caption*{Grados de protección civil del inmueble ocupado.}
+\end{table}
+
+\section{Protección penal en las usurpaciones}
+
+En materia de usurpaciones en la provincia de Buenos Aires, además de las vías civiles hay que considerar también la \textbf{protección penal}.
+
+\begin{itemize}
+    \item Existen artículos del Código Procesal Penal (que también están en el Código Procesal de la Nación) que posibilitan \textbf{recuperar el inmueble incluso antes del procesamiento del imputado}, con el estado de sospecha. Se recomienda revisar esos artículos.
+    \item En la provincia de Buenos Aires rige el \textbf{principio acusatorio}: el fiscal hace muchas cosas, incluso puede indagar, a diferencia de lo que ocurría en el viejo código procesal de la Nación.
+    % TODO: contenido incompleto o ambiguo en las notas originales
+    % (la frase sobre lo que puede hacer el fiscal está fragmentada en la transcripción)
+    \item Las medidas de coerción se revisan por el \textbf{juez de garantías}.
+    \item La medida de recuperación del inmueble tiene carácter \textbf{cautelar}. El docente no recordó con precisión si puede ordenarla el fiscal o si debe dictarla el juez de garantías.
+    % TODO: contenido incompleto o ambiguo en las notas originales
+    % (queda sin resolver quién ordena la cautelar: fiscal o juez de garantías)
+\end{itemize}
+
+La protección penal era antes mucho más difícil, pero ahora está bastante más aceptada.
+
+\begin{example}{Boleto de compraventa falso}
+Un caso clásico es el del ocupante que exhibe un boleto de compraventa falso y sostiene: «yo compré».
+\end{example}
+
+\begin{example}{Conflicto familiar con imputación de usurpación}
+En un asunto de familia, la madre denunció al hijo, que estaba en el inmueble y a quien quería retirar; intervino la policía, lo sacó del lugar y se le imputó usurpación.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el relato es fragmentario y no queda claro quién ocupaba el inmueble ni cómo se resolvió)
+\end{example}
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Qué vías civiles existen para recuperar un inmueble ocupado?} &
+El interdicto, la acción posesoria y la acción reivindicatoria, que son distintos grados de protección. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué características tiene el interdicto?} &
+Se lo llama también «policial», entre comillas, pero se hace en la acción civil. Protege la posesión y la tenencia. Caduca al año si se tolera la posesión o la tenencia por más de un año. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué ocurre cuando el interdicto caduca?} &
+Se cuenta con la opción de la acción posesoria. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Cuándo no puede ejercerse la reivindicatoria?} &
+Cuando no se tiene el derecho real de propiedad; la posesión es un derecho real, pero no habilita por sí sola esta acción. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué protección penal existe frente a las usurpaciones en la provincia de Buenos Aires?} &
+Artículos del Código Procesal Penal (también presentes en el Código Procesal de la Nación) permiten recuperar el inmueble aun antes del procesamiento del imputado, con el estado de sospecha. Las medidas de coerción se revisan por el juez de garantías, y rige el principio acusatorio. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Quién ordena la cautelar de recuperación del inmueble?} &
+El docente no recordó con precisión si puede ordenarla el fiscal o si debe dictarla el juez de garantías. \\
+\addlinespace
+\midrule
+\rowcolor{blue!5}
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr\cornellizq+\cornellder+2\tabcolsep\relax}}{%
+\textbf{Resumen.} Para recuperar un inmueble ocupado existen tres grados de protección civil: interdicto (caduca al año), acción posesoria y reivindicatoria (requiere derecho real de propiedad). A ello se suma la protección penal en usurpaciones, que en la provincia de Buenos Aires permite recuperar el inmueble aun antes del procesamiento del imputado, y que hoy está más aceptada que antes.} \\
+\bottomrule
+\end{cornell}
+
+%--------------------------------------------------------------
+\chapter[Prueba testimonial y diligencia]{Actividad probatoria: notificación de testigos y diligencia}
+%--------------------------------------------------------------
+
+\section{Notificación del testigo por escrito}
+
+El docente compartió un escrito con el que se notificó a un testigo, omitiendo los nombres de las partes. En él se \textbf{transcribió todo lo que el juzgado había indicado como relevante} en la providencia. La providencia se copia entera para el testigo, quien la firma, y luego se incorpora al escrito que se presenta.
+
+\subsection{Medios de notificación}
+
+La providencia ordenatoria de la prueba permite elegir el medio de notificación, en concordancia con el Código, que admite notificar al testigo:
+
+\begin{itemize}
+    \item por \textbf{cédula};
+    \item por \textbf{carta documento};
+    \item por \textbf{escrito}, o por un escrito firmado por el testigo.
+\end{itemize}
+
+El docente considera el escrito el modo \textbf{más expeditivo} y el que da más \textbf{proximidad} con el testigo, ya que permite hablar con él. Además, evita los problemas de la cédula cuando el testigo reside en la provincia de Buenos Aires o en otra provincia.
+
+\subsection{Por qué es una buena práctica notificar al testigo}
+
+El docente señaló que, en materia laboral, al menos el juzgado al que hizo referencia indica que el oferente debe traer al testigo a la primera audiencia y que, si el testigo no comparece, lo tiene \textbf{asumido}: deberá traerlo a la segunda audiencia y, si no lo trae, \textbf{lo pierde}.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (no queda claro si esta regla proviene de la práctica de un juzgado en particular o de una norma)
+
+Por una cuestión de praxis profesional, el docente notifica al testigo, de modo que este ya esté en conocimiento de que debe presentarse. Si luego el testigo no se presenta por un imponderable (por ejemplo, una situación repentina de salud o un problema insuperable que impide la conexión), puede plantearse esa circunstancia; esto evita que después se diga que se perdió al testigo. En cambio, si no se lo notificó desde el inicio, se comienza con problemas frente al juzgado en la actividad probatoria.
+
+\begin{important}
+La \textbf{diligencia} es un motor en la actividad probatoria. Lo contrario es la \textbf{negligencia}, que expone al riesgo de perder la prueba.
+\end{important}
+
+\subsection{Recomendaciones para audiencias virtuales}
+
+En las audiencias por medios virtuales (Meet u otras plataformas), se recomienda que el testigo cuente con un \textbf{celular conectado a la red}, además de la computadora: si se corta la luz y el módem queda sin energía, sin una alternativa el testigo se pierde. También debe tener datos disponibles.
+
+\begin{example}{Testigos en un juicio laboral virtual}
+El docente asesoró en la parte técnica a quien llevaba un juicio laboral con audiencias virtuales. Cada testigo contó con un celular con datos como respaldo para el caso de un corte de luz, y así no se perdió ningún testigo: todos declararon.
+\end{example}
+
+\subsection{Testigo con impedimento laboral}
+
+Cuando el testigo indica que en el día y hora de la audiencia está trabajando, el juzgado puede otorgarle un \textbf{certificado} para justificar su ausencia, dado que se considera una \textbf{carga pública}.
+
+\section{Acuse de negligencia y plazo de prueba}
+
+\begin{example}{Reclamo de facturas y acuse de negligencia (caso del docente)}
+En un juicio de reclamo de facturas, se puso el foco en producir la pericia contable, considerada la «prueba de oro»; las demás pruebas quedaron en paralelo y no se produjeron. La contraparte (respecto de la cual la compañía de seguros sería quien debe pagar la factura) acusó la negligencia de las pruebas pericial, informática, testimonial e informativa, por haber vencido el plazo de prueba. Al verificar el expediente, el docente encontró que se había dado traslado del acuse y armó la contestación.
+\end{example}
+
+Los argumentos expuestos frente a ese acuse fueron los siguientes:
+
+\begin{itemize}
+    \item Es cierto que el plazo de prueba venció, pero la \textbf{pericial contable}, respecto de la cual la demandada no se agravió, ya se había producido; e incluso la prueba de la demandada se produjo después del vencimiento.
+    \item El \textbf{plazo de prueba} es un plazo de \textbf{orden} (ordenatorio), y no un plazo fatal o perentorio, según se entiende en la jurisprudencia y en la doctrina.
+    \item El acuse llegó inmediatamente después de producida la pericial contable.
+\end{itemize}
+
+\begin{definition}{Plazo de prueba (según la exposición)}
+Es un plazo de \textbf{orden}. Por eso, el hecho de que haya vencido no significa que automáticamente deba considerarse que hay negligencia.
+\end{definition}
+
+El docente citó lo que sostiene el profesor Gozaíni: no debe tomarse la cuestión de manera general, sino que hay que analizar \textbf{según las circunstancias del caso}.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el apellido del autor figura transcripto como "Gozain"; no se indica la obra)
+
+\begin{important}
+Para valorar una aparente negligencia hay que ver, en cada caso:
+\begin{itemize}
+    \item cómo se produjo y en qué contexto ocurre la situación de aparente negligencia o desidia;
+    \item si hay \textbf{abandono real} de la prueba;
+    \item si la prueba pendiente es un \textbf{obstáculo} para que el proceso siga hacia su definición.
+\end{itemize}
+\end{important}
+
+En el caso relatado, la impresión del docente es que no había tal obstáculo, porque el acuse vino inmediatamente después de producida la pericial contable.
+
+\begin{note}
+Como recomendación práctica, el docente señaló que cuando el expediente figura a despacho, su experiencia indica que algo pasó, y por eso conviene acercarse al juzgado.
+\end{note}
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Cómo se notifica a un testigo y qué medios admite el Código?} &
+Puede notificarse por cédula, por carta documento o por escrito, incluido un escrito firmado por el testigo. La providencia ordenatoria de la prueba permite elegir el medio. El docente prefiere el escrito, en el que transcribe la providencia y que el testigo firma. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Por qué conviene el escrito firmado por el testigo?} &
+Es el modo más expeditivo, da más proximidad con el testigo y evita los problemas de la cédula cuando este reside en otra jurisdicción. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Por qué es buena práctica notificar al testigo?} &
+Porque el testigo queda en conocimiento de que debe presentarse; si no comparece por un imponderable puede plantearse esa circunstancia, y no se comienza con problemas frente al juzgado en la actividad probatoria. Según el juzgado aludido, si el testigo no comparece a la primera audiencia debe traerse a la segunda, y si no se lo trae se lo pierde. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué principio rige la actividad probatoria?} &
+La diligencia, que es un motor de la actividad probatoria. Su contrario, la negligencia, genera el riesgo de perder la prueba. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué recaudo se recomienda para las audiencias virtuales?} &
+Que el testigo tenga un celular conectado a la red y con datos, además de la computadora, por si se corta la luz. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué ocurre si el testigo no puede asistir por trabajo?} &
+El juzgado puede otorgarle un certificado, porque se considera una carga pública. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué naturaleza tiene el plazo de prueba y qué consecuencia tiene?} &
+Es un plazo de orden, no fatal ni perentorio. Su vencimiento no implica automáticamente negligencia. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Cómo se valora una aparente negligencia probatoria?} &
+Según las circunstancias del caso: el contexto en que se produce, si hay abandono real de la prueba y si la prueba pendiente es un obstáculo para que el proceso avance hacia su definición. \\
+\addlinespace
+\midrule
+\rowcolor{blue!5}
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr\cornellizq+\cornellder+2\tabcolsep\relax}}{%
+\textbf{Resumen.} Notificar al testigo, preferentemente por escrito firmado, es una buena práctica que evita perder la prueba y responde al principio de diligencia. Para audiencias virtuales conviene contar con un celular con datos como respaldo. El plazo de prueba es de orden: su vencimiento no configura por sí solo negligencia, que debe evaluarse según las circunstancias (abandono real y obstáculo para la definición del proceso).} \\
+\bottomrule
+\end{cornell}
+
+%--------------------------------------------------------------
+\chapter[Notificación por ministerio de la ley]{Notificación por ministerio de la ley, días de nota y actitud frente a las providencias}
+%--------------------------------------------------------------
+
+\section{El significado de «notifíquese»}
+
+Cuando un despacho no dice «notifíquese», la notificación se produce por \textbf{nota} o \textbf{ministerio de la ley}. Según la práctica forense, la expresión «notifíquese» es una forma abreviada de decir \textbf{«notifíquese por cédula o personalmente»}.
+
+\begin{definition}{Notificación personal}
+Significa que \textbf{cualquier parte interesada puede ir y notificarse}. Hoy en día puede hacerse en el expediente virtual; antes se hacía concurriendo al expediente físico.
+\end{definition}
+
+Los juzgados suelen consignar «notifíquese por cédula o personalmente», por ejemplo en los traslados de demanda, porque de otro modo podría pensarse que la otra parte espera una cédula que nunca le llega. Esto permite las \textbf{notificaciones espontáneas}: muchas contrapartes se notifican por sí mismas y, por ejemplo, acusan la \textbf{caducidad de la instancia} o contestan la demanda, para salir del estado de indefinición que produce que la parte aparentemente interesada en la marcha del proceso no notifique. Existen partes que especulan: una envía la cédula cuando lo decide, mientras que la otra, que sabe de la existencia del juicio, también espera. El docente lo comparó con un juego de ajedrez o de estrategia.
+
+\subsection{Cómo notificarse espontáneamente en el expediente digital}
+
+En el Poder Judicial de la Nación (PJN) se ve la \textbf{grilla de los movimientos} del expediente y existe una opción de \textbf{«presentar escrito»}, con la que se ingresa un escrito digital; por esa vía se presenta el escrito por el cual se manifiesta la notificación espontánea. El docente indicó que este manejo se aprende con la profesora o los profesores de la comisión, quienes muestran dónde hacer clic para ingresar el escrito.
+
+\section{Regla y excepción: ministerio de la ley y cédula}
+
+\begin{formula}{Regla de notificación}
+\textbf{La regla es la notificación por ministerio de la ley}. \textbf{La excepción es la notificación por cédula}, que se reserva para los actos procesales que la ley considera más relevantes, porque el derecho de defensa lo requiere.
+\end{formula}
+
+El art.~135 del Código (si el docente no se equivoca) enumera los actos procesales que se notifican por cédula. Un acuse de negligencia no figura entre ellos, de modo que se notifica por ministerio de la ley.
+
+\section{El régimen de días de nota}
+
+El docente describió el régimen nacional de la siguiente manera:
+
+\begin{itemize}
+    \item Los \textbf{días de nota} son los \textbf{martes y viernes}.
+    \item Si el expediente \textbf{está en letra} en el día de nota, la parte se considera notificada; si \textbf{no está en letra} (por ejemplo, si está a despacho), no se considera notificada.
+    \item Cuando el expediente está a despacho, se \textbf{deja nota} en la solapa respectiva del proceso: en la pantalla del expediente, arriba está la grilla de movimientos y abajo las notas.
+    \item Al dejar nota, la notificación se produce el siguiente día de nota: el martes siguiente, salvo que sea feriado, en cuyo caso pasa al viernes.
+    \item Una providencia dictada en un día de nota \textbf{no se notifica ese mismo día}, porque pudo haberse dictado por la tarde.
+\end{itemize}
+
+\begin{important}
+Hay que tener cuidado: hay expedientes que aparecen en letra por la mañana y por la tarde están a despacho. La posibilidad de dejar nota se corta a las 20 horas. Esto no significa estar pendiente permanentemente del sistema, pero a veces hay que seguirlo. El docente mencionó un sistema llamado «Lexi».
+\end{important}
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el nombre del sistema figura transcripto como "Lexi"; el horario inicial para dejar nota no está precisado)
+
+\begin{example}{Memorial declarado extemporáneo}
+Un juzgado declaró extemporánea la contestación de un memorial. El docente presentó un escrito con las notas que había dejado durante dos o tres semanas para demostrar que no era extemporánea. El juzgado le dio la razón, dejó sin efecto lo resuelto y consideró por contestado el memorial.
+\end{example}
+
+El docente explicó que dejar nota es un \textbf{ritual puesto en función del derecho de defensa}: aunque hoy el expediente esté visible las 24 horas, todos los días del año, se mantiene el ritual porque quien deja nota no tiene acceso realmente a todo el expediente.
+
+\section{Plazos y proceso laboral}
+
+En el proceso civil y comercial, el plazo para contestar el traslado en el caso analizado es de \textbf{cinco días}. En el proceso laboral el plazo es de \textbf{tres días}.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la frase sobre los plazos en el proceso laboral es confusa en la transcripción; el docente indica que habría que verificarlo)
+
+Respecto del proceso laboral:
+
+\begin{itemize}
+    \item La ley de organización y procedimiento laboral (transcripta como «183345») fue reformada por la \textbf{ley de modernización}, que introduce la caducidad de la instancia.
+    % TODO: contenido incompleto o ambiguo en las notas originales
+    % (el número de la ley figura transcripto como "183345"; se recomienda verificarlo)
+    \item Al pie de la ley hay un artículo que se refiere a los artículos del \textbf{Código Procesal Civil y Comercial} que son aplicables o compatibles; algunos están expresos y otros se refieren a cualquier otra disposición compatible. Por eso hay que hacer una \textbf{integración normativa}: mirar cómo interactúan las normas.
+    \item Hay que tener cuidado con el impulso: según lo comentado, el juzgado ya no libra la cédula (por ejemplo, para intimar al perito) y es la parte quien debe hacerla.
+    % TODO: contenido incompleto o ambiguo en las notas originales
+    % (el fragmento sobre la cédula y la intimación al perito está incompleto)
+\end{itemize}
+
+\section{Actitudes frente a una providencia}
+
+Frente a una providencia que confiere traslado existen dos actitudes básicas:
+
+\begin{itemize}
+    \item \textbf{Resistir}, es decir, contestar.
+    \item \textbf{Consentir}: no hacer nada equivale a consentir.
+\end{itemize}
+
+\begin{definition}{Allanamiento}
+Es un modo anormal (anticipado) de terminación del proceso. Según el entendimiento del docente, debe ser \textbf{expreso}; no se presume por silencio. Puede ser total o parcial: por ejemplo, ante una demanda, puede no haber motivo para disentir, o la discrepancia puede no pasar por lo sustancial, dando lugar a un allanamiento parcial.
+\end{definition}
+
+El docente aclaró que habría que verificar en el Código Procesal si el allanamiento debe ser expreso, y que el tema no era objeto de la reunión.
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{¿Cuándo se notifica por ministerio de la ley y cuándo por cédula?} &
+La regla es la notificación por ministerio de la ley; la excepción es la cédula, reservada para los actos procesales más relevantes, porque el derecho de defensa lo requiere. El art.~135 del Código enumera los actos que se notifican por cédula. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué significa que un despacho diga «notifíquese»?} &
+Es una forma abreviada de «notifíquese por cédula o personalmente». Notificarse personalmente significa que cualquier parte interesada puede notificarse, hoy en el expediente virtual. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué es una notificación espontánea y para qué se usa?} &
+Es la notificación que hace por sí misma una parte. Se utiliza, por ejemplo, para acusar la caducidad de la instancia o contestar la demanda y salir del estado de indefinición del proceso. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Cómo funciona el régimen de días de nota?} &
+Los días de nota son los martes y viernes. Si el expediente está en letra, la parte se considera notificada; si no lo está, se deja nota y la notificación se produce el siguiente día de nota (el viernes si el martes es feriado). Una providencia dictada en día de nota no se notifica ese día. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Por qué se mantiene el ritual de dejar nota?} &
+Porque es un ritual puesto en función del derecho de defensa, dado que quien deja nota no tiene acceso realmente a todo el expediente, aunque este sea visible las 24 horas. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué plazos se indicaron para contestar el traslado?} &
+Cinco días en el proceso civil y comercial y, según se indicó, tres días en el proceso laboral (dato a verificar). \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué implica la integración normativa en el proceso laboral?} &
+Que la ley de procedimiento laboral remite a artículos aplicables del Código Procesal Civil y Comercial, por lo que hay que mirar cómo interactúan las normas. La ley de modernización introdujo la caducidad de la instancia. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué actitudes son posibles frente a una providencia y qué es el allanamiento?} &
+Resistir (contestar) o consentir (no hacer nada). El allanamiento es un modo anormal de terminación del proceso; según el docente debe ser expreso y puede ser total o parcial. \\
+\addlinespace
+\midrule
+\rowcolor{blue!5}
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr\cornellizq+\cornellder+2\tabcolsep\relax}}{%
+\textbf{Resumen.} La regla es la notificación por ministerio de la ley y la excepción, la cédula. Cuando el despacho no dice «notifíquese», rige el régimen de días de nota (martes y viernes), cuyo ritual protege el derecho de defensa. El proceso laboral exige integración normativa con el Código Procesal. Frente a una providencia se puede resistir o consentir, y el allanamiento debe ser expreso según el docente.} \\
+\bottomrule
+\end{cornell}
+
+%--------------------------------------------------------------
+\chapter[Casos prácticos]{Casos prácticos: negligencia de la prueba pericial y caducidad de la prueba informativa}
+%--------------------------------------------------------------
+
+\section{Caso 1: acuse de negligencia de la pericial mecánica}
+
+\subsection{Enunciado}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.24\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Fecha} & \textbf{Hecho} \\
+\midrule
+Audiencia del art.~360 &
+Se abre la causa a prueba. Se ordenan, entre otras, la prueba testimonial y la pericial mecánica. \\
+\addlinespace
+25 de junio &
+Se lleva a cabo la audiencia de testigos. Declaran tres testigos; dos no pudieron ser notificados. Se pide nueva audiencia. \\
+\addlinespace
+4 de agosto de 2026 &
+Se acusa la negligencia de la pericial mecánica. Se sostiene que el perito, debidamente notificado a su domicilio electrónico, no aceptó el cargo y que la parte no pidió nada al respecto; además, que el plazo de prueba es de 40 días y se encuentra vencido. El juzgado provee el mismo día: traslado del acuse de negligencia. La providencia la firma el secretario. \\
+\addlinespace
+14 de agosto &
+Fecha fijada para la nueva audiencia de testigos. \\
+\bottomrule
+\end{tabularx}
+\caption*{Cronología del caso 1.}
+\end{table}
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la fecha de la audiencia del art. 360 del caso 1 no se distingue con claridad en la transcripción)
+
+\begin{exercise}{Caso 1}
+\begin{enumerate}
+    \item ¿Cómo y cuándo se notifica el despacho que da traslado del acuse de negligencia?
+    \item ¿Qué puede hacer usted ante el mismo y, en su caso, qué plazo tiene?
+    \item Confeccione una breve pieza procesal al respecto, simulando encabezamiento, argumentación, petición, etcétera.
+\end{enumerate}
+\end{exercise}
+
+\subsection{Análisis: quién firma y cómo se notifica}
+
+El secretario está habilitado para firmar traslados. Existen artículos que establecen las facultades del juez, del secretario y del prosecretario (el docente mencionó los arts.~34, 35 y 36 del Código, referidos a las facultades ordenatorias e instructorias), que conviene repasar.
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (la numeración de los artículos mencionados figura confusa en la transcripción)
+
+Como el despacho no dice «notifíquese», se notifica por \textbf{ministerio de la ley}, según el art.~135. La providencia se dictó el 4 de agosto, que era martes (día de nota); por lo tanto no se notifica ese día. El docente consideró adecuada la fecha del \textbf{viernes 7 de agosto}, siempre que el expediente estuviera en letra; si estaba a despacho, se deja nota en la solapa respectiva y la notificación se produce el siguiente día de nota. El plazo indicado es de cinco días.
+
+Ante la providencia se puede resistir (contestar) o consentir; el docente indicó que en el caso lo lógico sería \textbf{resistir}.
+
+\subsection{Análisis: ¿quién tiene la carga de impulsar el sorteo de un nuevo perito?}
+
+La pregunta central es quién tenía la carga de pedir que se volviera a sortear al perito de la pericial mecánica. En principio, quien tiene la carga de impulsar la prueba es quien la ofreció. Sin embargo, aparece un ingrediente de \textbf{actuación de oficio}.
+
+\begin{formula}{Art. 469 del Código (aceptación del perito)}
+Si el perito no aceptare o no concurriere en el plazo fijado, que es de 3 días, el juez nombrará otro en su reemplazo \textbf{de oficio y sin otro trámite}.
+\end{formula}
+
+Es decir, ante la falta de aceptación del perito, la carga de reemplazarlo parece recaer en el juez, dentro de sus facultades y potestades. En este punto, el docente se remitió a los arts.~34 a 36.
+
+El proceso civil combina el \textbf{principio dispositivo} con la \textbf{instrucción}: el juez sigue siendo un juez instructor, que tiene que instruir. Se busca la \textbf{verdad material}, algo más difícil en el proceso civil, y forjar su \textbf{íntima convicción}. El docente aclaró que la íntima convicción no es subjetiva ni algo que se siente «en el pecho»: tiene una lógica. El Código Civil y Comercial establece que el juez debe alcanzar una \textbf{decisión razonablemente fundada}; no dice que deba ser conforme a derecho, como decía el código de Vélez, sino \textbf{razonablemente fundada}, es decir, con lógica.
+
+\begin{important}
+Se combinan, por un lado, el \textbf{impulso de oficio} y, por otro, la \textbf{potestad judicial}, que parece haberse omitido. El docente sugirió preparar una pieza para resistir el acuse siguiendo esta línea argumental y compartirla en la próxima reunión.
+\end{important}
+
+\begin{note}
+El docente relató que, en un juicio propio, resistió con este argumento y le respondieron que el impulso era suyo; perdió la pericial mecánica, aunque señaló que no le interesaba tanto porque estaba jugando con una estrategia. Evalúa replantearlo ante la Cámara.
+\end{note}
+
+\section{Caso 2: caducidad de la prueba informativa}
+
+\subsection{Enunciado}
+
+\begin{exercise}{Caso 2}
+Usted es abogado de la parte demandada en un juicio de reivindicación inmobiliaria. El 21 de mayo de 2026 se lleva a cabo la audiencia del art.~360 y se abre la causa a prueba. Se ordenan, entre otras medidas, pedidos de informes al Registro de la Propiedad Inmueble y a otro organismo, correspondientes a la prueba de la parte actora. La parte actora libra los oficios. Usted advierte que los oficios no han sido contestados y plantea la caducidad de la prueba informativa. El juzgado provee: «De la caducidad de la prueba informativa, traslado, notifíquese». La providencia la firma el secretario.
+
+¿Cómo y cuándo se notifica el despacho? ¿Qué puede hacer usted ante el mismo y, en su caso, qué plazo tiene?
+\end{exercise}
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el segundo organismo al que se dirige el pedido de informes y la fecha en que se libran los oficios figuran confusos en la transcripción)
+
+\subsection{Análisis}
+
+\begin{itemize}
+    \item \textbf{Redacción del despacho.} El despacho utiliza la expresión «notifíquese», lo que obliga a verificar el art.~135, ya que el juzgado pudo haberse equivocado al usar esa expresión en lugar de determinar cómo debía notificarse. Si se está interesado, puede plantearse que el despacho está mal redactado y solicitar que se lo rectifique.
+    \item \textbf{Caducidad y negligencia.} A diferencia de la \textbf{negligencia}, que \textbf{se sustancia}, la \textbf{caducidad} es \textbf{automática}. Por eso el juzgado debió haberla decretado y no sustanciarla. Puede plantearse esa cuestión al juzgado; el desafío, según el docente, consiste en \textbf{cómo pedirlo}.
+    \item \textbf{«Trampa» del enunciado.} El docente advirtió que el planteo tiene una trampa, vinculada con lo ocurrido con los oficios. Las notas indican que la caducidad de la prueba informativa puede ocurrir, pero que la situación cambia si la parte actora reitera los oficios.
+    % TODO: contenido incompleto o ambiguo en las notas originales
+    % (la explicación de la "trampa" está fragmentada; no queda claro qué dato falta en el enunciado)
+\end{itemize}
+
+\begin{note}
+Ambos casos quedaron planteados para ser trabajados y compartidos en la siguiente reunión.
+\end{note}
+
+\section{Cuadro Cornell}
+
+\begin{cornell}
+\textbf{Caso 1: ¿cómo se notifica el traslado del acuse de negligencia?} &
+Por ministerio de la ley, porque el despacho no dice «notifíquese» y el acuse de negligencia no figura entre los actos del art.~135 que se notifican por cédula. La providencia del 4 de agosto (martes, día de nota) no se notifica ese día; se toma el viernes 7 de agosto si el expediente está en letra, o se deja nota si está a despacho. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{Caso 1: ¿quién firma el traslado?} &
+El secretario está habilitado para firmar traslados. Conviene repasar los artículos que distribuyen las facultades de juez, secretario y prosecretario. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{Caso 1: ¿quién tiene la carga de pedir un nuevo sorteo del perito?} &
+En principio, quien ofreció la prueba. Pero el art.~469 dispone que, si el perito no acepta o no concurre en el plazo de 3 días, el juez nombra otro de oficio y sin otro trámite, por lo que aparece un componente de oficio. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Cómo se combinan el principio dispositivo y la instrucción del juez?} &
+El proceso civil mezcla ambos: el juez sigue siendo instructor, busca la verdad material y forja su íntima convicción, que no es subjetiva sino lógica. Debe alcanzar una decisión razonablemente fundada. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{¿Qué línea argumental se sugiere para resistir el acuse de negligencia del caso 1?} &
+Combinar el impulso de oficio con la potestad judicial que parece haberse omitido. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{Caso 2: ¿qué diferencia hay entre negligencia y caducidad en este planteo?} &
+La negligencia se sustancia; la caducidad es automática, por lo que el juzgado debió decretarla y no sustanciarla. \\
+\addlinespace
+\midrule[0.3pt]
+\textbf{Caso 2: ¿qué observación se formula sobre la redacción del despacho?} &
+Dice «notifíquese»; se debe mirar el art.~135, y si el juzgado se equivocó puede pedirse la rectificación del despacho. \\
+\addlinespace
+\midrule
+\rowcolor{blue!5}
+\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr\cornellizq+\cornellder+2\tabcolsep\relax}}{%
+\textbf{Resumen.} En el caso 1, el traslado del acuse de negligencia se notifica por ministerio de la ley (viernes 7 de agosto si el expediente está en letra) y puede resistirse argumentando que, según el art.~469, el reemplazo del perito corresponde al juez de oficio, en el marco de sus facultades instructorias. En el caso 2, se distingue la negligencia (que se sustancia) de la caducidad (automática), y se advierte que el despacho «notifíquese» debe examinarse a la luz del art.~135.} \\
+\bottomrule
+\end{cornell}
+
+%--------------------------------------------------------------
+\chapter[Material complementario]{Material complementario: certificados médicos (art. 210 de la Ley de Contrato de Trabajo)}
+%--------------------------------------------------------------
+
+\section{El certificado médico digital}
+
+En el marco de una consulta sobre un certificado médico que solo tenía un sello y no tenía firma, se preguntó cómo debe ser hoy el certificado y si cumple con el art.~210 de la Ley de Contrato de Trabajo (LCT). En un primer momento el docente dudó de que existiera una norma que impusiera el formato digital; la lectura del artículo permitió verificarlo.
+
+Se leyó el art.~210 de la LCT con la modificación de la ley de modernización (la ley se transcribe como «27802»).
+% TODO: contenido incompleto o ambiguo en las notas originales
+% (el número de la ley de modernización figura transcripto como "27802"; se recomienda verificarlo)
+
+\begin{formula}{Art. 210 de la LCT (texto leído en clase)}
+Los certificados médicos que el trabajador presente para justificar inasistencias por enfermedad o accidente inculpable deberán contener el \textbf{diagnóstico médico, el tratamiento y la cantidad de días de reposo laboral} indicados, y ser emitidos en todo el territorio nacional por profesionales médicos habilitados para el ejercicio de la medicina y \textbf{firmados digitalmente} a través de plataformas autorizadas por la ley 27553 y su reglamentación.
+
+El trabajador está obligado a someterse al control que se efectúe por el facultativo designado por el empleador. En caso de discrepancia insalvable entre el diagnóstico inicial y el control médico realizado por el empleador, se podrá recurrir a una junta médica en institución oficial, en las jurisdicciones en las que la autoridad administrativa hubiere habilitado esta opción, o requerir dictamen de institutos públicos o privados de reconocida trayectoria y solvencia técnica, cuyo costo de intervención en este último caso deberá ser asumido por el empleador.
+\end{formula}
+
+El docente señaló que la norma contiene información tradicional, ya que la discrepancia siempre se resolvía con una junta médica, aunque había que ver si efectivamente se llegaba a ella. Concluyó que el certificado médico es \textbf{digital}.
+
+\end{document}

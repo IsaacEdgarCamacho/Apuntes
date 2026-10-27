@@ -1,0 +1,884 @@
+%==============================================================
+% DOCUMENTCLASS
+%==============================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================
+% METADATOS
+%==============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\carrera}{Carrera de Abogacía \textperiodcentered{} Ciclo de Práctica Profesional}
+\newcommand{\materia}{Práctica Procesal Civil y Comercial}
+\newcommand{\titulo}{La audiencia preliminar, la carga de la prueba y los medios probatorios}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================
+% PAQUETES
+%==============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================
+% CONFIGURACIÓN
+%==============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+%==============================================================
+% COMANDOS
+%==============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%==============================================================
+% ENTORNOS / CAJAS
+%==============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%==============================================================
+% CONFIGURACIÓN FINAL
+%==============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================
+% DOCUMENT
+%==============================================================
+\begin{document}
+
+%--------------------------------------------------------------
+% PORTADA
+%--------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%--------------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------------
+\tableofcontents
+
+%--------------------------------------------------------------
+% CONTENIDO
+%--------------------------------------------------------------
+
+%==============================================================
+\chapter*{Presentación}
+\addcontentsline{toc}{chapter}{Presentación}
+\markboth{Presentación}{Presentación}
+%==============================================================
+
+Estos apuntes corresponden a la unidad temática \textbf{La prueba en el proceso ordinario}, del Ciclo de Práctica Profesional de la Carrera de Abogacía. El desarrollo sigue el hilo de un caso real: un expediente judicial utilizado como guía por la práctica profesional. Armar ese expediente puede pensarse como reconstruir, en orden, todos los mensajes de una discusión importante antes de tomar una decisión: primero se advierte qué se dijo (los escritos), después qué quedó realmente en discusión (los hechos controvertidos) y, por último, qué se puede demostrar y con qué (la prueba).
+
+Los siete bloques siguientes respetan ese orden: la audiencia que organiza el proceso; los tiempos y las nulidades que pueden torcerlo; la caducidad de la instancia; la responsabilidad civil como caso de estudio; los medios de prueba que la sostienen; los recursos, principios y jurisprudencia probatoria; y, por último, el marco normativo que hoy encuadra ese recorrido.
+
+\section*{Utilidad profesional del contenido}
+
+Este material no describe teoría abstracta: reconstruye el razonamiento real que hace un abogado litigante frente a un expediente concreto, desde que recibe una demanda hasta que discute qué prueba se admite en la audiencia preliminar. Ese razonamiento ---qué plazo corre, qué se pierde si no se actúa a tiempo, qué hay que probar y cómo--- es el que un profesional aplica en el ejercicio de la abogacía, sea en un estudio jurídico, en un juzgado o de forma independiente.
+
+Su utilidad excede lo profesional, porque entrena una forma de pensar: distinguir lo que se puede probar de lo que solo se afirma, entender que los plazos y las formas son la garantía de que todos actúen bajo las mismas reglas, y anticipar las consecuencias de actuar tarde o de manera imprecisa. Comprender cómo se construye una prueba ---incluida la prueba digital, como un WhatsApp o un correo electrónico--- es además una competencia cada vez más necesaria en cualquier conflicto que deba sostenerse con evidencia.
+
+El valor del material consiste en ofrecer un ensayo general, con un expediente real, de las decisiones estratégicas que definen si un derecho puede hacerse valer o se pierde por no haberlo demostrado a tiempo y en debida forma.
+
+%==============================================================
+\chapter[Audiencia preliminar y etapa probatoria]{La audiencia preliminar y la etapa probatoria}
+%==============================================================
+
+La actividad práctica de partida consistió en la reconstrucción de un expediente judicial real, utilizado como caso guía del curso. El expediente de trabajo estaba integrado por la demanda, la contestación, el primer despacho del juzgado y el acta de la audiencia final. El objetivo fue que quienes se incorporaban al curso vieran de manera concreta cómo se compagina, se coteja y se lee un expediente en papel, más allá de la versión digital que pudieran tener.
+
+\section{La reconstrucción del expediente judicial}
+
+Al reorganizar las hojas del expediente se advierte la importancia de su orden material: las fojas más recientes deben poder agregarse con facilidad a medida que se producen los actos procesales, de modo que el expediente quede ordenado y a la vista de todos.
+
+En el expediente se encontraba, en primer lugar, la audiencia del artículo 360 del Código Procesal Civil y Comercial de la Nación (CPCCN), con su acta, y luego la audiencia de posiciones y la audiencia de testigos. En la experiencia del curso se fue más allá de lo que estrictamente prevé el Código, integrando en una sola instancia la prueba oral dentro de la audiencia del artículo 360. Se señaló, asimismo, que en la copia disponible probablemente faltaba la prueba documental.
+
+\section{La audiencia del artículo 360 del CPCCN}
+
+El Código organiza la audiencia en torno a tres ejes principales: la identificación de los \textbf{hechos controvertidos}, los \textbf{medios de prueba} ---con sus atributos de pertinencia y conducencia--- y la posibilidad de alcanzar \textbf{alternativas conciliatorias}. De ellos, el que más interesa en la etapa probatoria es el referido a la prueba.
+
+\begin{formula}{Artículo 360 del CPCCN}
+A los fines de la etapa probatoria, el juez debe citar a las partes a una audiencia que preside con carácter \textbf{indelegable}. En dicho acto:
+\begin{enumerate}
+    \item invita a las partes a una conciliación o a otra forma de solución del conflicto, pudiendo derivarlas a mediación;
+    \item recibe las manifestaciones de las partes sobre la apertura o la prescindencia de la prueba;
+    \item fija los hechos articulados que resulten conducentes para la decisión del juicio;
+    \item recibe la prueba confesional ofrecida;
+    \item provee las pruebas que considere admisibles, concentrando en una sola audiencia la prueba testimonial; y
+    \item si correspondiere, decide que la cuestión debe resolverse como de puro derecho, quedando la causa concluida para definitiva.
+\end{enumerate}
+\end{formula}
+
+\subsection{Por qué la conciliación se ubica en este momento}
+
+El Código ubica la posibilidad de conciliar en este momento del proceso y no antes porque, cuando las partes comienzan a analizar cuáles son los hechos controvertidos y de qué medios de prueba disponen, se sinceran frente a esa realidad, y ese sinceramiento facilita la conciliación. Las partes pasan de sostener posiciones a evaluar sus posibilidades, lo que permite trabajar sobre los intereses en juego, lógica análoga a la de la mediación.
+
+En la mediación las partes llegan con \textbf{posiciones}, es decir, posturas, y después el mediador trabaja sobre los \textbf{intereses} para buscar los puntos de convergencia que permitan hacer aflorar, hipotéticamente, un eventual acuerdo conciliatorio.
+
+\section{Hechos controvertidos y proceso de puro derecho}
+
+Lo que justifica la existencia de una etapa de prueba es la existencia de hechos controvertidos entre las partes.
+
+\begin{definition}{Causa de puro derecho}
+Cuando no hay hechos controvertidos entre las partes, la causa se declara de puro derecho. En tales casos la controversia suele girar en torno a un aspecto estrictamente jurídico ---la interpretación o aplicación de una norma--- y no sobre los hechos del caso.
+\end{definition}
+
+A continuación se reconstruye, en orden cronológico, la totalidad de escritos y actos que pueden integrar un proceso de conocimiento, más allá del esquema básico de demanda y contestación, antes de retomar específicamente la etapa probatoria en los capítulos siguientes.
+
+%--------------------------------------------------------------
+\section*{Cuadro Cornell: audiencia preliminar y etapa probatoria}
+\addcontentsline{toc}{section}{Cuadro Cornell: audiencia preliminar y etapa probatoria}
+%--------------------------------------------------------------
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué funciones cumple la audiencia preliminar del art.\ 360 del CPCCN?} &
+Es presidida por el juez con carácter indelegable. En ella se invita a las partes a conciliar (pudiendo derivarlas a mediación), se reciben sus manifestaciones sobre la apertura o prescindencia de la prueba, se fijan los hechos conducentes, se recibe la prueba confesional, se proveen las pruebas admisibles concentrando la testimonial en una sola audiencia y, si corresponde, se decide que la cuestión es de puro derecho. \\
+
+\textbf{¿Cuáles son sus tres ejes principales?} &
+La identificación de los hechos controvertidos, los medios de prueba (con sus atributos de pertinencia y conducencia) y las alternativas conciliatorias. \\
+
+\textbf{¿Por qué la conciliación se propone en esta audiencia y no antes?} &
+Porque al analizar los hechos controvertidos y los medios de prueba disponibles, las partes se sinceran frente a su realidad y pasan de sostener posiciones a evaluar sus posibilidades, lo que facilita trabajar sobre los intereses, como en la mediación. \\
+
+\textbf{¿Qué justifica la etapa de prueba y cuándo una causa es de puro derecho?} &
+La etapa de prueba se justifica por la existencia de hechos controvertidos. Si no los hay, la causa se declara de puro derecho: la discusión es solo jurídica y la causa queda concluida para definitiva. \\
+
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} la audiencia del art.\ 360 del CPCCN concentra la fijación de los hechos controvertidos, la discusión sobre la prueba y la oportunidad de conciliar. Sin hechos controvertidos no hay etapa probatoria y la causa se resuelve como de puro derecho.
+} \\
+
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Excepciones, plazos y nulidades]{Excepciones, plazos y nulidades procesales}
+%==============================================================
+
+\section{Estructura del proceso: demanda, contestación y reconvención}
+
+Si bien el esquema básico de un proceso adversarial se reduce a demanda y contestación, un proceso ordinario puede incluir además otros actos: la reconvención y los hechos nuevos.
+
+\begin{definition}{Reconvención}
+Contrademanda que el demandado puede deducir en el juicio ordinario; origina un traslado al actor de lo que se le contrademanda.
+\end{definition}
+
+Los \textbf{hechos nuevos} pueden generar una contingencia posterior conectada con la audiencia del artículo 360. Correr traslado significa abrir la cuestión a la otra parte, para luego resolver sobre la admisión o no de esos hechos nuevos.
+
+Esta situación se distingue de la de los procesos especiales ---como el juicio de alimentos---, donde el demandado tiene una defensa reducida y no existe, en sentido estricto, una contestación de demanda equiparable a la del proceso ordinario.
+
+\section{Plazos procesales y excepciones de previo pronunciamiento}
+
+En el proceso ordinario, el demandado tiene \textbf{quince días} para contestar la demanda. Los plazos se computan siempre en \textbf{días hábiles}. Las excepciones de previo y especial pronunciamiento se oponen dentro de los primeros \textbf{diez días} del plazo de contestación. Esta distinción entre el plazo total de quince días y el específico de diez para excepciones es central en el análisis de la estrategia defensiva.
+
+Cuando el cliente consulta al abogado ya avanzado el plazo ---por ejemplo, en el décimo día---, las posibilidades de oponer excepciones previas quedan muy restringidas. Por eso, al recibir una demanda y contar con ese plazo de diez días, el análisis se centra en las excepciones, dado que se dispone de quince días para contestar.
+
+\begin{important}
+\textbf{Lógica temporal del proceso: cinco, diez y quince días.}
+\begin{itemize}
+    \item \textbf{Cinco días:} es central verificar si existieron vicios en el procedimiento, lo que puede dar lugar a una nulidad.
+    \item \textbf{Diez días:} se concentra el análisis y la oposición de excepciones previas.
+    \item \textbf{Quince días:} debe quedar resuelta la contestación de la demanda.
+\end{itemize}
+\end{important}
+
+\subsection{Excepciones que se analizan al recibir una demanda}
+
+Las principales excepciones que un abogado evalúa al recibir una demanda son:
+
+\begin{itemize}
+    \item la \textbf{prescripción};
+    \item la \textbf{incompetencia};
+    \item la \textbf{falta de legitimación}, susceptible de oponerse tanto como excepción de previo y especial pronunciamiento como defensa de fondo.
+\end{itemize}
+
+La prescripción tiene la particularidad de no ser necesariamente una excepción de previo y especial pronunciamiento: también puede oponerse dentro del plazo general para contestar la demanda.
+
+\section{Nulidades procesales y vicios del procedimiento}
+
+El proceso, en tanto acto jurídico complejo, está sujeto a reglas cuyo incumplimiento puede dar lugar a la nulidad. A veces se dan errores en el procedimiento que pueden dar lugar a la nulidad, por lo que es necesario verificar si en el procedimiento existen vicios. Sin embargo, la nulidad procesal no opera de manera automática ni por la sola infracción formal.
+
+\begin{formula}{Artículos 169, 170 y 172 del CPCCN}
+\begin{itemize}
+    \item \textbf{Art.\ 169:} ningún acto procesal será declarado nulo si la ley no prevé expresamente esa sanción, aunque la nulidad procede igualmente cuando el acto carece de los requisitos indispensables para alcanzar su finalidad; tampoco se declara la nulidad si, pese a la irregularidad, el acto logró de todos modos su finalidad.
+    \item \textbf{Art.\ 170:} la nulidad no puede declararse cuando el acto fue consentido, incluso tácitamente; hay consentimiento tácito cuando no se promueve el incidente de nulidad dentro de los cinco días siguientes al conocimiento del acto.
+    \item \textbf{Art.\ 172:} quien promueve el incidente debe expresar el perjuicio sufrido y el interés concreto que lo lleva a pedir la declaración, mencionando las defensas que se vio privado de oponer.
+\end{itemize}
+\end{formula}
+
+Estos requisitos responden a un principio central de la materia: la nulidad no procede por la nulidad misma, sino que exige un \textbf{perjuicio concreto y actual}. Si no hay un daño, si no hay un perjuicio, no se puede invocar la nulidad.
+
+\begin{example}{Nulidad por vicio en la notificación del domicilio}
+La nulidad de la notificación es un ejemplo típico: el actor puede no conocer con precisión el domicilio real del demandado, o, tratándose de una persona jurídica, puede discutirse si corresponde notificar en la sede social o en el domicilio de una sucursal donde se generó el conflicto.
+
+Si se notifica ``bajo responsabilidad'' y luego el demandado se presenta invocando que tomó conocimiento del juicio por otra vía ---por ejemplo, al trabarse una medida cautelar sobre su cuenta bancaria--- y niega residir en el domicilio notificado, deberá acreditar cómo tomó conocimiento del proceso y no haber convalidado el vicio dejando transcurrir el plazo de cinco días previsto para el consentimiento tácito de los actos procesales.
+\end{example}
+
+\subsection{Mediación previa y retrogradación del proceso}
+
+Si se comprueba que no se cumplió debidamente con la etapa de mediación previa, el proceso puede verse obligado a retrogradar. Esa etapa no puede saltearse aun cuando el demandado exhiba escasa disposición a llegar a un acuerdo: la mediación requiere un verdadero trabajo de persuasión y de transformación de las posturas de las partes orientado a la autocomposición, y su omisión puede ser causal de nulidad.
+
+\subsection{Derecho de defensa en juicio}
+
+La falta de contestación en término se vincula con la pérdida de la garantía de defensa en juicio consagrada en el artículo 18 de la Constitución Nacional. Si el plazo para contestar la demanda transcurre sin que el demandado actúe, esa garantía queda sin ejercerse, sin que ello implique necesariamente que el actor tenga razón sobre el fondo del reclamo.
+
+%--------------------------------------------------------------
+\section*{Cuadro Cornell: excepciones, plazos y nulidades}
+\addcontentsline{toc}{section}{Cuadro Cornell: excepciones, plazos y nulidades}
+%--------------------------------------------------------------
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué escritos y actos integran el proceso ordinario?} &
+Además de la demanda y la contestación, pueden darse la reconvención (que origina traslado al actor) y los hechos nuevos, que pueden generar una contingencia posterior vinculada a la audiencia del art.\ 360. \\
+
+\textbf{¿Cómo se organiza el plazo para contestar la demanda?} &
+El demandado cuenta con quince días hábiles para contestar; dentro de los primeros diez días puede oponer excepciones de previo y especial pronunciamiento (prescripción, incompetencia, falta de legitimación, entre otras). La prescripción también puede oponerse dentro del plazo general de contestación. \\
+
+\textbf{¿Qué significa la secuencia de cinco, diez y quince días?} &
+Cinco días para verificar vicios del procedimiento (posible nulidad), diez para analizar y oponer excepciones previas, y quince para contestar la demanda. \\
+
+\textbf{¿Cuándo procede declarar una nulidad procesal?} &
+Cuando el acto carece de los requisitos indispensables para alcanzar su finalidad, no fue consentido (expresa o tácitamente, dentro de los cinco días de conocido) y quien la plantea acredita un perjuicio concreto y las defensas que se vio privado de oponer (arts.\ 169, 170 y 172 del CPCCN). No hay nulidad por la nulidad misma. \\
+
+\textbf{¿Qué sucede si no se cumplió la mediación previa?} &
+El proceso puede verse obligado a retrogradar; su omisión puede ser causal de nulidad, aun cuando el demandado exhiba escasa disposición a acordar. \\
+
+\textbf{¿Con qué garantía se vincula la falta de contestación en término?} &
+Con la defensa en juicio (art.\ 18 de la Constitución Nacional): al vencer el plazo sin actuar, la garantía queda sin ejercerse, sin que ello implique que el actor tenga razón sobre el fondo. \\
+
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} la estrategia defensiva se organiza en tres plazos (cinco, diez y quince días hábiles): control de vicios, excepciones previas y contestación. La nulidad exige perjuicio concreto, ausencia de consentimiento y expresión de las defensas omitidas.
+} \\
+
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[La caducidad de la instancia]{La caducidad de la instancia}
+%==============================================================
+
+\section{La caducidad de la instancia principal}
+
+Al recibir una demanda puede ocurrir que en algún momento anterior del proceso se haya producido la caducidad de la instancia sin que la parte perjudicada la invoque, purgando así ese vicio con su propia actitud procesal.
+
+El plazo genérico de inactividad que da lugar a la caducidad en el juicio ordinario es de \textbf{seis meses}. Ese lapso, que a priori puede parecer extenso, transcurre con más rapidez de lo que se supone.
+
+\section{Caducidad de la reconvención y prescripción}
+
+\begin{example}{Un caso real de caducidad de la reconvención}
+Se trata de un juicio iniciado en 2023 y todavía en trámite ---sin que se hubiera celebrado aún la audiencia del artículo 360---, en el que se actuaba por una persona jurídica que había deducido reconvención contra el actor.
+
+Al advertir que se aproximaba el vencimiento del plazo de seis meses sin actividad impulsora de esa instancia reconvencional ---mientras en paralelo continuaba la notificación de otros demandados---, se presentó un escrito solicitando que se proveyera la reconvención, que el juzgado no había despachado formalmente. El actor, sin advertir ese escrito impulsorio, planteó la caducidad de la reconvención; el juzgado hizo lugar a la defensa de quien reconvino, por entender que su presentación había tenido carácter impulsorio, y evitó así la caducidad de esa instancia paralela.
+\end{example}
+
+La especulación consiste en observar y esperar el momento de actuar, pero esa especulación no puede omitir una carga propia.
+
+La reconvención constituye una \textbf{instancia paralela} a la de la demanda principal, atada a la suerte de esta última: si caduca la instancia principal, arrastra consigo todo el proceso, incluida la reconvención, por esa relación de dependencia. Si el reconviniente hubiera optado por deducir una demanda autónoma en lugar de reconvenir, el riesgo de perder la instancia por caducidad no se habría trasladado del mismo modo al reclamo principal.
+
+\begin{important}
+\textbf{Efecto de la caducidad de instancia sobre la prescripción.} Según el Código Civil y Comercial, cuando se produce la caducidad de la instancia, la demanda interruptiva de la prescripción se tiene por no sucedida.
+
+Esto puede resultar decisivo en un reclamo, por ejemplo, de cobro de pesos, cuyo plazo de prescripción se ha acortado con la legislación vigente: si la demanda se declara caduca, el efecto interruptivo que esa presentación había producido sobre la prescripción desaparece, con lo cual, al intentar replantear el reclamo, la acción puede encontrarse ya prescripta.
+\end{important}
+
+Por razones de tiempo, el expediente utilizado como caso guía prescindió en gran medida del tratamiento detallado de las excepciones, aunque estas se mencionaron y se explicaron conceptualmente, para dar paso al análisis central: qué debía probarse en ese caso concreto y con qué medios.
+
+%--------------------------------------------------------------
+\section*{Cuadro Cornell: la caducidad de la instancia}
+\addcontentsline{toc}{section}{Cuadro Cornell: la caducidad de la instancia}
+%--------------------------------------------------------------
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué efectos produce la inactividad procesal prolongada?} &
+En el juicio ordinario, el plazo genérico de inactividad que da lugar a la caducidad de la instancia es de seis meses, lapso que transcurre más rápido de lo que parece. \\
+
+\textbf{¿Qué relación existe entre la instancia principal y la reconvención?} &
+La reconvención es una instancia paralela atada a la suerte de la principal: si caduca la instancia principal, arrastra todo el proceso, incluida la reconvención. Con una demanda autónoma el riesgo no se trasladaría del mismo modo al reclamo principal. \\
+
+\textbf{¿Cómo se evitó la caducidad en el caso relatado?} &
+Mediante un escrito que solicitaba proveer la reconvención; el juzgado entendió que tenía carácter impulsorio y rechazó la caducidad planteada por el actor. \\
+
+\textbf{¿Cómo repercute la caducidad sobre la prescripción?} &
+La demanda interruptiva de la prescripción se tiene por no sucedida; al replantear el reclamo, la acción puede encontrarse ya prescripta. \\
+
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} la inactividad de seis meses produce la caducidad de la instancia; la reconvención depende de la suerte de la instancia principal, y la caducidad priva de efecto interruptivo a la demanda, con riesgo de prescripción de la acción.
+} \\
+
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Responsabilidad civil y carga de la prueba]{Responsabilidad civil y carga de la prueba}
+%==============================================================
+
+La prueba se ofrece, en principio, en los escritos básicos del proceso: la demanda y la contestación. Se ofrece en función de los \textbf{hechos}.
+
+\section{Fundamentos de la responsabilidad civil}
+
+El caso guía se ubica en el ámbito de los daños entre propiedades vecinas, no en el supuesto más habitual de siniestros de automotores.
+
+\begin{important}
+El daño es el pilar de la responsabilidad civil. Si no hay daño, no hay responsabilidad civil.
+\end{important}
+
+Cuando el actor reclama la responsabilidad civil del demandado, tiene a su cargo demostrar, en primer lugar, la existencia del \textbf{daño} ---elemento central de la pretensión--- y, a continuación, el \textbf{nexo de causalidad} entre ese daño y el obrar u omisión del demandado. También corresponde acreditar la existencia de un \textbf{obrar antijurídico}, puesto que si esa antijuridicidad no se prueba puede configurarse una causa de justificación, como la legítima defensa.
+
+\begin{note}
+\textbf{Presupuestos de la responsabilidad civil.} La responsabilidad civil se estructura sobre cuatro presupuestos que el actor debe, en principio, demostrar: el daño, el hecho generador, el nexo de causalidad entre ambos y la antijuridicidad de la conducta del demandado. A ellos se suma el \textbf{factor de atribución}, que determina bajo qué título responde el demandado, cuestión que adquiere especial relieve cuando se aplica un régimen de responsabilidad objetiva.
+\end{note}
+
+\section{Responsabilidad objetiva y factores de eximición}
+
+El Código Civil y Comercial vigente ---heredero, con importantes modificaciones, del Código Civil originario, que rigió durante gran parte de los siglos XIX y XX y sirvió de modelo para la legislación de otros países de la región--- incorporó la noción de \textbf{responsabilidad objetiva}, complementando el régimen tradicional de responsabilidad subjetiva basado en la culpa. Antes la responsabilidad era eminentemente subjetiva; la responsabilidad objetiva, que ahora parece más frecuente, alteró en alguna medida las cargas probatorias.
+
+Bajo el régimen de responsabilidad objetiva, el autor ---o presunto autor--- del daño puede eximirse de responder demostrando la \textbf{fractura del nexo de causalidad}, es decir, acreditando que el daño se produjo por:
+
+\begin{itemize}
+    \item el hecho de un tercero por el cual no debe responder;
+    \item caso fortuito o fuerza mayor; o
+    \item el hecho de la propia víctima.
+\end{itemize}
+
+\begin{important}
+Se habla de \textbf{hecho} y no de \textbf{culpa} del damnificado, porque el análisis es independiente de todo componente subjetivo. Antes, en el Código de Vélez, se hablaba de culpa; ahora se habla de hecho. Bajo este régimen, la prueba de las eximentes no está a cargo del actor, sino de quien pretende liberarse de responsabilidad.
+\end{important}
+
+\section{El silencio del demandado y la rebeldía}
+
+La carga probatoria del actor subsiste incluso frente a la falta de contestación de demanda. La ausencia de respuesta del demandado no exime al actor de probar el hecho que sustenta su reclamo.
+
+\begin{formula}{Artículo 356, inciso 1º, del CPCCN: silencio del demandado}
+En la contestación, el demandado debe reconocer o negar categóricamente cada uno de los hechos expuestos en la demanda. Su silencio, sus respuestas evasivas o su negativa meramente general podrán estimarse como reconocimiento de los hechos pertinentes y lícitos a que se refieran.
+
+Ese reconocimiento presunto no exime al actor de la carga de probar los hechos: la presunción alcanza al reconocimiento de los hechos, pero no suple la actividad probatoria que la ley pone en cabeza de quien afirma.
+\end{formula}
+
+\subsection{La rebeldía}
+
+La rebeldía constituye un \textbf{plus probatorio} distinto: cuando queda declarada y firme, puede operar, en caso de duda, como presunción de verdad de los hechos afirmados por la parte no rebelde. Llegar a ese estado exige recaudos formales estrictos: no basta con la falta de comparecencia, sino que es necesario notificar la declaración de rebeldía mediante una \textbf{doble notificación} y permitir que dicha declaración quede consentida y firme.
+
+%--------------------------------------------------------------
+\section*{Cuadro Cornell: responsabilidad civil y carga de la prueba}
+\addcontentsline{toc}{section}{Cuadro Cornell: responsabilidad civil y carga de la prueba}
+%--------------------------------------------------------------
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué debe demostrar quien reclama responsabilidad civil?} &
+El daño (pilar de la responsabilidad), el hecho generador, el nexo de causalidad entre ambos y la antijuridicidad de la conducta del demandado; si esta no se prueba, puede configurarse una causa de justificación como la legítima defensa. \\
+
+\textbf{¿Qué es el factor de atribución?} &
+El elemento que determina bajo qué título responde el demandado; adquiere especial relieve en el régimen de responsabilidad objetiva. \\
+
+\textbf{¿Cómo puede eximirse de responder el demandado en la responsabilidad objetiva?} &
+Probando la fractura del nexo causal: hecho de un tercero por el cual no debe responder, caso fortuito o fuerza mayor, o hecho de la propia víctima. La prueba de la eximente corresponde a quien pretende liberarse. \\
+
+\textbf{¿Por qué se habla de ``hecho'' y no de ``culpa'' de la víctima?} &
+Porque el análisis es independiente de todo componente subjetivo: es el hecho el que fractura el nexo causal. \\
+
+\textbf{¿El silencio del demandado exime de probar al actor?} &
+No. El art.\ 356 del CPCCN permite estimar reconocidos los hechos pertinentes y lícitos ante el silencio, respuestas evasivas o negativa general, pero la carga de probar sigue en cabeza del actor. \\
+
+\textbf{¿Qué efecto tiene la rebeldía?} &
+Declarada y firme, puede operar en caso de duda como presunción de verdad de los hechos de la parte no rebelde; exige doble notificación y que la declaración quede consentida y firme. \\
+
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} el actor debe probar daño, hecho generador, nexo causal y antijuridicidad; en la responsabilidad objetiva el demandado prueba las eximentes. El silencio del demandado no libera al actor de la carga probatoria; solo la rebeldía declarada y firme puede operar, en caso de duda, como presunción de verdad.
+} \\
+
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Los medios de prueba en la práctica]{Los medios de prueba en la práctica}
+%==============================================================
+
+Se retoma el caso guía ---una controversia entre propiedades vecinas en la que el actor imputaba al demandado la realización de obras antirreglamentarias que le habrían causado daños materiales y afectación psicofísica--- para reconstruir, medio por medio, cómo se planificó la prueba de los hechos invocados: que el demandado realizaba obras antirreglamentarias y que esas obras damnificaron al actor.
+
+\section{Prueba testimonial e informativa}
+
+Para acreditar la existencia de las obras antijurídicas se recurrió, en primer lugar, a la \textbf{prueba informativa}, mediante oficios dirigidos al gobierno de la ciudad, que supuestamente debía haber inspeccionado el inmueble y contar con actuaciones administrativas al respecto. En segundo lugar, se recurrió a la \textbf{prueba testimonial}, con testigos que podían dar cuenta de la obra en ejecución.
+
+\begin{formula}{Artículo 333 del CPCCN: ofrecimiento de la prueba}
+Con la demanda, la reconvención y sus contestaciones debe acompañarse la prueba documental y ofrecerse todas las demás pruebas de que las partes intentaren valerse. En lo que respecta a la prueba testimonial, debe indicarse qué extremos se pretenden probar con la declaración de cada testigo. Tratándose de prueba pericial, la parte interesada debe proponer los puntos de pericia.
+\end{formula}
+
+Desde un criterio práctico, no basta con anunciar que se ofrece un testigo: hace falta anticipar sobre qué hechos concretos declarará esa persona, porque de otro modo la prueba testimonial puede resultar de escasa utilidad o directamente inconducente.
+
+\section{Prueba pericial y puntos de pericia}
+
+Puede tratarse de un arquitecto o de un ingeniero. El arquitecto interviene en lo relativo al diseño y la estética de la construcción, y el ingeniero en los costos o los cálculos; se señaló que los abogados conocen esta distinción por experiencia, ya que no existe una materia que explique en detalle qué establece cada perito.
+
+Además del daño material atribuido a las obras, el actor había invocado un daño a su integridad psicofísica, lo que exigía sumar un perito idóneo en esa materia. La elección del tipo de perito adecuado a cada rubro reclamado ---material, psicológico, contable, informático--- es una \textbf{decisión estratégica} que condiciona directamente el resultado de la prueba.
+
+\begin{important}
+\textbf{Puntos de pericia.} Fijarlos correctamente es uno de los aspectos más difíciles de la actividad probatoria. No alcanza con ofrecer genéricamente una prueba pericial: es necesario formular preguntas precisas al perito ---por ejemplo, qué construcción realizó el demandado, cómo la llevó a cabo, cuándo la ejecutó y qué consecuencias produjo sobre la propiedad del actor---, porque una pregunta mal formulada puede inutilizar la prueba.
+
+Además, el demandado también controla los puntos de pericia propuestos por la contraparte y puede impugnarlos al contestar la demanda, de modo que la tarea de definir la pericia involucra a ambas partes.
+\end{important}
+
+\section{La prueba electrónica: WhatsApp, audios y correos}
+
+La prueba de mensajes de WhatsApp, correos electrónicos y audios es cada vez más frecuente en litigios de defensa del consumidor y en reclamos surgidos de intercambios previos a la demanda. Se envía al juzgado como archivo adjunto, pero el juzgado solo admite PDF. El profesional informático evalúa que el código binario corresponda a los mensajes, y ese algoritmo permite verificar que efectivamente se recibió ese texto en ese teléfono.
+
+\begin{example}{Cómo se acredita un WhatsApp en juicio}
+El circuito habitual para incorporar mensajes de WhatsApp como prueba es el siguiente:
+\begin{enumerate}
+    \item se descarga el archivo original desde el teléfono ---o desde la copia en la nube, si el dispositivo original ya no está disponible---;
+    \item se remite al juzgado en formato PDF junto con el archivo digital;
+    \item un perito informático evalúa el código binario del archivo para verificar que su contenido coincide con las capturas de pantalla acompañadas y que no fue alterado, por ejemplo, mediante inteligencia artificial.
+\end{enumerate}
+Este trabajo suele ser dificultoso, sobre todo con toda la sucesión de comunicaciones, cuando quien debe aportar la prueba no maneja con soltura las herramientas digitales (por ejemplo, una persona mayor), lo que exige asistirlo paso a paso en la descarga y conversión del archivo.
+\end{example}
+
+En el sistema de gestión judicial, los archivos suelen presentarse en dos modalidades: una para visualizar el contenido directamente y otra para descargarlo. Esta última es la única disponible cuando se trata de audio o video ---por ejemplo, en las audiencias que se graban sin transcribirse---, ya que el juzgado convierte luego ese archivo al formato aceptado por el sistema.
+
+\section{La elección del perito idóneo}
+
+Frente a un daño psicológico invocado por el actor, se plantea qué perito corresponde: un psicólogo o un psiquiatra. Se consideró que corresponde el \textbf{psicólogo}, fundamentalmente porque es quien generalmente administra el tratamiento terapéutico.
+
+Los pasos a seguir son: pedir el sorteo de un perito, conocer la especialidad, elegir correctamente, pedir la designación y fijar los puntos de pericia.
+
+En las causas de determinación de la capacidad suele intervenir un equipo interdisciplinario y no un único perito. La correcta elección de la especialidad pericial ---y no solo la formulación de los puntos de pericia--- es una decisión que condiciona el éxito de toda la prueba.
+
+%--------------------------------------------------------------
+\section*{Cuadro Cornell: los medios de prueba en la práctica}
+\addcontentsline{toc}{section}{Cuadro Cornell: los medios de prueba en la práctica}
+%--------------------------------------------------------------
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué debe indicarse al ofrecer un testigo o un perito?} &
+Para el testigo, los extremos que se pretenden probar con su declaración; para la pericia, los puntos de pericia con precisión (art.\ 333 del CPCCN). Sin ello, la prueba puede resultar inconducente o inutilizarse. \\
+
+\textbf{¿Con qué medios se probaron las obras en el caso guía?} &
+Prueba informativa (oficios al gobierno de la ciudad) y prueba testimonial (testigos que podían dar cuenta de la obra en ejecución). \\
+
+\textbf{¿Por qué son decisivos los puntos de pericia?} &
+Porque una pregunta mal formulada puede inutilizar la prueba; además, el demandado controla los puntos propuestos y puede impugnarlos al contestar la demanda. \\
+
+\textbf{¿Cómo se acredita en juicio un mensaje de WhatsApp?} &
+Descargando el archivo original del dispositivo o de la nube, remitiéndolo al juzgado en PDF junto con el archivo digital y sometiéndolo a un peritaje informático sobre el código binario que verifique que el contenido coincide y no fue alterado. \\
+
+\textbf{¿Qué perito corresponde según el daño invocado?} &
+Debe elegirse la especialidad según el rubro (material, psicológico, contable, informático). Para el daño psicológico se consideró al psicólogo; se pide el sorteo, la designación y se fijan los puntos de pericia. \\
+
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} cada hecho se prueba con el medio adecuado (informativa, testimonial, pericial, electrónica). El ofrecimiento exige precisión (extremos de cada testigo, puntos de pericia), y la elección de la especialidad del perito es una decisión estratégica que condiciona el resultado.
+} \\
+
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Recursos, principios y jurisprudencia probatoria]{Recursos, principios y jurisprudencia probatoria}
+%==============================================================
+
+\section{La inapelabilidad de las resoluciones sobre prueba}
+
+Durante la audiencia del artículo 360, o al proveer la prueba con posterioridad a ella, el juez admite ciertos medios probatorios y rechaza otros. Frente a ese rechazo se plantea qué remedio procesal tiene la parte perjudicada.
+
+La apelación ante la cámara no procede en principio. El incidente tiene que versar sobre otra materia y, en principio, no sobre la prueba. Lo que corresponde pedir al juez es la \textbf{reposición}: señalar que la medida desestimada es conducente e indispensable para el derecho de defensa.
+
+\begin{formula}{Artículo 379 del CPCCN: inapelabilidad}
+Serán inapelables las resoluciones del juez sobre producción, denegación y sustanciación de las pruebas. Si se hubiere negado alguna medida, la parte interesada podrá solicitar a la cámara que la diligencie cuando el expediente le fuere remitido para que conozca del recurso contra la sentencia definitiva.
+\end{formula}
+
+Esto significa que la parte debe sobrellevar todo el proceso sin la prueba y solo al apelar la sentencia definitiva puede pedir a la cámara que abra la prueba por ser relevante. Este mecanismo de replanteo obliga a demostrar, en la instancia de apelación, que si esa medida se hubiera producido el resultado del pleito habría podido ser distinto. Esta situación es particularmente exigente para la estrategia probatoria.
+
+\section{Principios de pertinencia, conducencia y amplitud probatoria}
+
+El límite que tiene el juez frente al principio de \textbf{amplitud probatoria} está dado por la posibilidad de descartar medidas superfluas o meramente dilatorias. La prueba testimonial es de naturaleza subjetiva, apoyada en la percepción de los sentidos del testigo, mientras que la prueba pericial es de carácter técnico.
+
+\begin{example}{Testigo versus perito en la reconstrucción de un hecho}
+En un ejemplo clásico de accidentología vial, un testigo puede declarar sobre lo que percibió con sus sentidos, pero si se dio vuelta recién al escuchar el ruido, no fue testigo visual del hecho en sí. En cambio, un perito mecánico puede establecer, a partir de los rastros y daños de los vehículos, cuál impactó a cuál y estimar la velocidad a partir del hundimiento producido, aun sin haber presenciado el episodio.
+\end{example}
+
+El estudio más profundo del principio de amplitud probatoria se vincula con la noción de \textbf{verdad material} y con el \textbf{derecho de acceso a la justicia}: si se restringe la posibilidad probatoria se restringe la posibilidad de acceder a la justicia y de hacer valer los derechos, porque si estos están atados a que pueda probarse, restringir la prueba restringe indirectamente la posibilidad de obtener una respuesta jurisdiccional.
+
+\begin{note}
+\textbf{Actividad asignada.} Se asignó a dos alumnas investigar la doctrina y la jurisprudencia existentes sobre los principios de pertinencia, conducencia y amplitud de la prueba, para compartirlas con el resto del curso en una clase posterior.
+\end{note}
+
+\section{Jurisprudencia sobre apertura de prueba en cámara}
+
+Se reunieron dos fallos vinculados a la posibilidad ---excepcional--- de que la cámara de apelaciones intervenga en cuestiones probatorias. Este tipo de jurisprudencia es escasa, precisamente porque el artículo 379 del CPCCN restringe severamente la apelabilidad de las decisiones sobre prueba. Cabe preguntarse por qué a veces llega a la cámara un tema de prueba y cómo llegó.
+
+\begin{note}
+\textbf{Actividad asignada: investigación jurisprudencial.}
+\begin{itemize}
+    \item Un alumno debe analizar un fallo relacionado con un tema de defensa del consumidor que, según se explicó, habría llegado a la cámara de apelaciones por vía de un recurso contra una sanción administrativa, lo que explicaría por qué en ese caso sí se debatió una cuestión probatoria en la alzada.
+    \item Otro alumno debe estudiar un fallo de un tribunal provincial vinculado con prueba informática.
+\end{itemize}
+En ambos casos se pidió identificar cómo llegó la cuestión probatoria a la cámara, dado que es una situación excepcional dentro del régimen de inapelabilidad.
+\end{note}
+
+%--------------------------------------------------------------
+\section*{Cuadro Cornell: recursos, principios y jurisprudencia probatoria}
+\addcontentsline{toc}{section}{Cuadro Cornell: recursos, principios y jurisprudencia probatoria}
+%--------------------------------------------------------------
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Puede apelarse una resolución que rechaza una prueba?} &
+En principio no: el art.\ 379 del CPCCN declara inapelables las resoluciones sobre producción, denegación y sustanciación de la prueba. \\
+
+\textbf{¿Qué puede hacer la parte frente al rechazo de una prueba?} &
+Pedir la reposición ante el juez, señalando que la medida es conducente e indispensable para el derecho de defensa. El incidente debe versar sobre otra materia, no sobre la prueba. Si se negó una medida, puede solicitar a la cámara que la diligencie cuando conozca del recurso contra la sentencia definitiva. \\
+
+\textbf{¿Qué debe demostrarse ante la cámara al replantear la prueba?} &
+Que, de haberse producido la medida, el resultado del pleito habría podido ser distinto. \\
+
+\textbf{¿Qué es la amplitud probatoria y por qué importa?} &
+Es el principio de acceso amplio a los medios de prueba; restringirlo restringe indirectamente el acceso a la justicia. Su límite es que el juez puede descartar medidas superfluas o meramente dilatorias. \\
+
+\textbf{¿Qué diferencia hay entre testigo y perito?} &
+El testigo declara sobre lo que percibió con sus sentidos (prueba subjetiva); el perito aporta una apreciación técnica y puede reconstruir el hecho sin haberlo presenciado. \\
+
+\textbf{¿Cuándo interviene la cámara en materia de prueba?} &
+Excepcionalmente, por la severa restricción del art.\ 379; la jurisprudencia es escasa. Se asignó investigar cómo llegaron a la cámara dos casos concretos. \\
+
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} las resoluciones sobre prueba son inapelables; el remedio inmediato es la reposición y el replanteo ante la cámara solo procede al apelar la sentencia definitiva, demostrando que la prueba habría cambiado el resultado. La amplitud probatoria, vinculada al acceso a la justicia, solo cede frente a medidas superfluas o dilatorias.
+} \\
+
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Contexto normativo y actualidad jurídica]{Contexto normativo y actualidad jurídica}
+%==============================================================
+
+\section{Los DNU, sus límites constitucionales y la actualización normativa}
+
+Al hilo de la investigación jurisprudencial encomendada, se comentó una noticia reciente sobre un pronunciamiento de la Corte Suprema de Justicia de la Nación que ponía límites a los decretos de necesidad y urgencia (DNU). El caso fue reconstruido de memoria: se ubicaba en el ámbito de la lealtad comercial y se vinculaba con un decreto dictado durante la presidencia de Mauricio Macri que había modificado la competencia judicial para revisar sanciones administrativas.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el decreto y el fallo se identificaron en clase de manera aproximada, sin número exacto ni fecha completa)
+\begin{note}
+\textbf{Precisión del decreto y del fallo comentados en clase.} El decreto fue identificado en clase de manera aproximada, sin precisar su número exacto ni la fecha completa del pronunciamiento de la Corte. Según la verificación posterior consignada en las notas originales, se trata del Decreto de Necesidad y Urgencia 274/2019, que había modificado el régimen de Lealtad Comercial (ley 22.802) y asignado a la Cámara Nacional de Apelaciones en lo Civil y Comercial Federal ---en lugar de la Cámara en lo Contencioso Administrativo Federal, prevista originalmente por el Congreso--- la competencia para revisar las sanciones aplicadas bajo ese régimen.
+
+En agosto de 2026, la Corte Suprema declaró la inconstitucionalidad del artículo 53 de ese decreto, en una causa derivada de una sanción a una cadena de supermercados por diferencias entre el precio exhibido en góndola y el cobrado en caja. El Tribunal sostuvo que la regulación de la competencia de los tribunales federales corresponde con carácter exclusivo y excluyente al Congreso, y que el Poder Ejecutivo no había acreditado la existencia de una situación de necesidad y urgencia que justificara modificarla por decreto.
+\end{note}
+
+Respecto del estándar que la Corte suele exigir para la validez de un DNU, estos deben verse como \textbf{excepcionales}, dado que en todos los gobiernos democráticos, de cualquier signo político, ha existido un uso bastante extendido de esta herramienta.
+
+En el mismo intercambio se mencionaron otros dos decretos como ejemplos de la persistencia, en el ordenamiento argentino, de normas de origen no parlamentario que continúan aplicándose: el DNU 70/2023, que modificó, entre otras materias, el régimen de los contratos de locación, y el decreto-ley que rige la letra de cambio y el pagaré, todavía vigente pese a datar de un gobierno de facto.
+
+\subsection{La ley de honorarios profesionales vigente}
+
+La ley 21.839, sancionada en 1978, rigió durante décadas la regulación de honorarios de abogados y procuradores hasta ser reemplazada por la ley 27.423, sancionada en 2017, que introdujo la \textbf{Unidad de Medida Arancelaria (UMA)} como parámetro de actualización de los honorarios regulados. La ley 27.423 se aplica a la actividad profesional ante la justicia nacional y federal ---incluidos, en gran medida, los tribunales nacionales con asiento en la Ciudad Autónoma de Buenos Aires---, mientras que la justicia local de la Ciudad cuenta con su propio régimen arancelario.
+
+\subsection{El procedimiento laboral y sus reformas recientes}
+
+En el fuero laboral, el juzgado ya no impulsa de oficio por la ley de modernización. Antes, si el demandado no daba los datos de contacto, se presumía lo que decía el actor conforme al artículo 55 de la Ley de Contrato de Trabajo.
+
+El artículo 55 de la Ley de Contrato de Trabajo establece una presunción a favor de los dichos del trabajador cuando el empleador no exhibe la documentación laboral que la ley pone a su cargo. Ese régimen se encuentra hoy atravesado por las reformas en materia de modernización laboral, cuyo alcance exacto ---se reconoció expresamente--- no estaba completamente actualizado al momento de la clase. Se vinculó esta cuestión con la ley 18.345, de Organización y Procedimiento de la Justicia Nacional del Trabajo, conocida como la ``LO'', y se explicó que las reformas recientes eliminaron en gran medida el impulso procesal de oficio que tradicionalmente caracterizaba al fuero laboral, trasladando esa carga a las partes, tal como ya ocurre en el proceso civil y comercial.
+
+Se trata de un terreno normativo en movimiento, que exige actualización constante por parte del profesional en ejercicio.
+
+%--------------------------------------------------------------
+\section*{Cuadro Cornell: contexto normativo y actualidad jurídica}
+\addcontentsline{toc}{section}{Cuadro Cornell: contexto normativo y actualidad jurídica}
+%--------------------------------------------------------------
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.67\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué límite fijó la Corte Suprema a los DNU en materia de competencia judicial?} &
+Según las notas, en agosto de 2026 declaró inconstitucional el art.\ 53 del DNU 274/2019, que había modificado por decreto la competencia para revisar sanciones de lealtad comercial, al sostener que esa materia corresponde con carácter exclusivo y excluyente al Congreso y que no se acreditó una situación de necesidad y urgencia. \\
+
+\textbf{¿Cómo deben considerarse los DNU?} &
+Como herramientas excepcionales, pese al uso bastante extendido que han tenido en todos los gobiernos democráticos. \\
+
+\textbf{¿Qué ejemplos se dieron de normas de origen no parlamentario aún vigentes?} &
+El DNU 70/2023 (que modificó, entre otras materias, el régimen de locaciones) y el decreto-ley de letra de cambio y pagaré, vigente pese a datar de un gobierno de facto. \\
+
+\textbf{¿Qué ley rige hoy los honorarios de abogados y procuradores ante la justicia nacional y federal?} &
+La ley 27.423 (2017), que reemplazó a la ley 21.839 (1978) e introdujo la UMA como parámetro de actualización; la justicia local de la Ciudad tiene su propio régimen arancelario. \\
+
+\textbf{¿Qué cambió en el procedimiento laboral?} &
+Las reformas recientes eliminaron en gran medida el impulso procesal de oficio, trasladando esa carga a las partes, como en el proceso civil y comercial; el alcance sobre el art.\ 55 de la LCT quedó señalado como no actualizado. \\
+
+\midrule
+
+\multicolumn{2}{p{0.94\textwidth}}{
+\textbf{Resumen:} la Corte, según las notas, limitó el uso de DNU para alterar la competencia judicial, que corresponde al Congreso. Además, el régimen de honorarios (ley 27.423) y el procedimiento laboral (reformas recientes) forman un marco en permanente actualización que exige revisar las fuentes antes de aconsejar a un cliente.
+} \\
+
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter*{Síntesis final}
+\addcontentsline{toc}{chapter}{Síntesis final}
+\markboth{Síntesis final}{Síntesis final}
+%==============================================================
+
+Las notas reconstruyeron, a partir de un expediente real, el itinerario completo que recorre un litigio civil desde la demanda hasta la etapa probatoria: primero, los plazos y las excepciones que definen la estrategia inicial del demandado; luego, las nulidades y la caducidad de instancia como riesgos que pueden torcer el proceso si no se vigilan con cuidado; después, un caso de responsabilidad civil entre propiedades vecinas que sirvió para fijar qué debe probarse ---daño, nexo causal y antijuridicidad--- y con qué medios ---testimonios, oficios, pericias y prueba electrónica--- se prueba en la práctica.
+
+El hilo conductor es uno solo: \textbf{en el proceso civil, un derecho que no puede probarse en tiempo y forma es, a los efectos prácticos, un derecho que se pierde}. Por eso la audiencia del artículo 360 concentra tanto poder de decisión, por eso las resoluciones sobre prueba son en principio inapelables, y por eso el marco normativo que regula todo esto ---desde los decretos de necesidad y urgencia hasta las leyes de honorarios y de procedimiento laboral--- está en permanente actualización, lo que exige del abogado en ejercicio una revisión constante de sus fuentes antes de aconsejar a un cliente.
+
+\end{document}
