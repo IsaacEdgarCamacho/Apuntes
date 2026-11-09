@@ -1,0 +1,817 @@
+\documentclass[12pt,oneside]{book}
+
+%==================================================================
+% METADATOS
+%==================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Contratos}
+\newcommand{\titulo}{Compraventa: definición, caracterización y obligaciones de las partes}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==================================================================
+% PAQUETES
+%==================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==================================================================
+% CONFIGURACIÓN
+%==================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+%==================================================================
+% COMANDOS
+%==================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%==================================================================
+% ENTORNOS / CAJAS
+%==================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Caja para el texto de artículos normativos citados en los apuntes
+\newtcolorbox{norma}[1]{
+    enhanced,
+    breakable,
+    title={#1},
+    fonttitle=\bfseries,
+    colback=orange!4,
+    colframe=orange!60!black!80,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+%==================================================================
+% CONFIGURACIÓN FINAL
+%==================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\renewcommand{\arraystretch}{1.25}
+
+%==================================================================
+\begin{document}
+%==================================================================
+
+%------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Contratos'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\mainmatter
+
+%==================================================================
+% CAPÍTULO 1
+%==================================================================
+\chapter[Importancia, regulación y definición]{Importancia, regulación y definición de la compraventa}
+
+\section{Por qué interesa la regulación de la compraventa}
+
+La regulación del contrato de compraventa resulta de particular interés por dos razones.
+
+\subsection{Es el contrato de cambio más habitual}
+
+La compraventa es el \textbf{contrato de cambio más habitual}: se utiliza prácticamente todos los días y, en algún momento de la jornada, es seguro que se celebra. En otro momento histórico ese lugar pudo haberlo ocupado la permuta; en la actualidad lo ocupa la compraventa. Comprar una lapicera, por ejemplo, ya constituye un contrato de compraventa.
+
+\subsection{Sus normas se aplican subsidiariamente a otros contratos}
+
+Las normas de la compraventa se aplican \textbf{subsidiariamente} a numerosos contratos: muchos contratos regulados por el Código Civil y Comercial contienen un artículo que establece que lo no previsto en su capítulo se rige por las normas de la compraventa. Existe así una remisión casi natural de esos contratos hacia la compraventa.
+
+\begin{norma}{Art. 1175.- Norma supletoria (permuta) --- texto de referencia}
+En todo lo no previsto por el presente Capítulo se aplican supletoriamente las normas de la compraventa.
+\end{norma}
+
+\begin{norma}{Art. 1187.- Definición (locación), párrafo segundo --- texto de referencia}
+Al contrato de locación se aplica en subsidio lo dispuesto con respecto al consentimiento, precio y objeto del contrato de compraventa.
+\end{norma}
+
+Ambos artículos ejemplifican la técnica legislativa de remisión a la compraventa; se incorporan como textos de referencia, ya que en las notas originales se alude a la técnica sin citar el número de artículo.
+
+\begin{important}
+Dos razones explican el interés del contrato: \textbf{(1)} es el contrato de cambio más habitual y \textbf{(2)} sus normas se aplican subsidiariamente a muchos otros contratos regulados por el Código.
+\end{important}
+
+\section{Fuente normativa}
+
+El contrato de compraventa está regulado en el \textbf{Código Civil y Comercial}. Su regulación comienza en el \textbf{art.~1123} y abarca una gran cantidad de artículos.
+
+\section{Definición legal: el art.~1123}
+
+\begin{norma}{Art. 1123.- Definición}
+Hay compraventa si una de las partes se obliga a transferir la propiedad de una cosa y la otra a pagar un precio en dinero.
+\end{norma}
+
+Del texto legal se desprenden los siguientes aspectos:
+
+\begin{itemize}
+    \item Se trata de una \textbf{obligación}: el Código no habla de entregar una cosa determinada, sino de \textbf{obligarse} a transferir la propiedad de la cosa.
+    \item El Código no exige que la obligación se cumpla o se materialice; se refiere al \textbf{mero compromiso}, a la \textbf{asunción de la obligación}.
+    \item El precio debe ser \textbf{en dinero}.
+\end{itemize}
+
+\subsection{Definiciones propuestas y comparación con el Código}
+
+Se confrontó el texto del art.~1123 con definiciones espontáneas formuladas al comenzar el análisis.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Fuente} & \textbf{Definición} & \textbf{Observación} \\
+\midrule
+Primera definición propuesta &
+La obligación de transferir una cosa a cambio de un precio. &
+Falta precisar que el precio debe ser \textbf{en dinero}, como advierte la propia autora de la definición. \\
+
+Segunda definición propuesta &
+Entregar. &
+El contrato no consiste en entregar, sino en \textbf{asumir obligaciones}: del contrato emergen obligaciones. \\
+
+Código (art.~1123) &
+Una de las partes se obliga a transferir la propiedad de una cosa y la otra a pagar un precio en dinero. &
+Habla de \textbf{obligarse} (asunción), no del cumplimiento material. Se discute el término <<propiedad>>. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{¿«Propiedad» o «dominio»?}
+
+Se discute si el término <<propiedad>> del art.~1123 es correcto o si el Código debió utilizar el término <<dominio>>.
+
+\begin{definition}{Propiedad y dominio}
+\textbf{Propiedad} es el género y \textbf{dominio} la especie: propiedad es un concepto más amplio que dominio. El \textbf{dominio} es un derecho real que recae sobre una cosa. Entre ambos términos existe, por lo tanto, una relación de especie.
+\end{definition}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se mencionó que el Código equipararía propiedad y dominio, pero no se identificó el artículo)
+En el desarrollo de la clase se sostuvo, en un primer momento, que el término es correcto porque el Código equipararía dominio y propiedad; no se identificó la norma en la que esa equiparación se establecería, y se retomó la relación de género y especie entre ambos términos.
+
+\subsection{Primera postura: la definición es correcta}
+
+Quienes consideran correcta la definición del Código (que utiliza <<propiedad>>) se apoyan en dos argumentos:
+
+\begin{enumerate}
+    \item \textbf{Lenguaje corriente.} En el lenguaje común y cotidiano, quien adquiere una cosa adquiere la propiedad: <<yo tengo la propiedad de tal cosa>> es entendido por todos como ser dueño de la cosa.
+    \item \textbf{Alcance más amplio del término.} Si el Código hubiera dicho <<dominio>>, habrían quedado supuestos sin abarcar. Como \textbf{propiedad} es género y es más amplio, permite abarcar otros supuestos que no responden al dominio: el \textbf{condominio}, la \textbf{propiedad horizontal}, la \textbf{superficie} y los \textbf{conjuntos inmobiliarios}.
+\end{enumerate}
+
+\subsection{Segunda postura: debió decir «dominio»}
+
+Esta postura sostiene que, tratándose del contrato de cambio más habitual y de aquel al que más se recurre por las normas de remisión, no corresponde basarse en el lenguaje corriente sino en la ley, con un vocabulario lo más técnico posible. El argumento <<la gente lo entiende>> no resulta válido para este contrato.
+
+Si se pretende que, por medio del contrato, el adquirente obtenga el \textbf{dominio} ---es decir, las mayores facultades que pueden ejercerse sobre la cosa---, correspondía utilizar la palabra <<dominio>>.
+
+Respecto del argumento de los supuestos que quedarían sin contemplar, esta postura responde que carece de fundamento, porque el artículo inmediato siguiente los contempla.
+
+\begin{norma}{Art. 1124.- Aplicación supletoria a otros contratos}
+Las normas de este Capítulo se aplican supletoriamente a los contratos por los cuales una parte se obliga a:
+
+a) transferir a la otra derechos reales de condominio, propiedad horizontal, superficie, usufructo o uso, o a constituir los derechos reales de condominio, superficie, usufructo, uso, habitación, conjuntos inmobiliarios o servidumbre, y dicha parte, a pagar un precio en dinero;
+
+b) transferir la titularidad de títulos valores por un precio en dinero.
+\end{norma}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la lectura en clase del art. 1124 fue parcialmente inaudible; el texto se toma del recuadro normativo del apunte)
+
+Por consiguiente, el art.~1124 aplica el régimen de la compraventa al condominio, la propiedad horizontal y la superficie, de modo que el argumento de que esos supuestos quedarían fuera de la normativa no es tal. Además, el artículo \textbf{enumera numerosos derechos reales y no enumera el dominio}: no cabría entender que justamente el dominio quede afuera.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+ & \textbf{Postura 1: <<propiedad>> es correcto} & \textbf{Postura 2: debió decir <<dominio>>} \\
+\midrule
+\textbf{Argumento principal} &
+Responde al \textbf{lenguaje corriente}: quien adquiere una cosa adquiere la propiedad y todos entienden que es dueño. &
+No hay que basarse en el lenguaje corriente sino en la \textbf{ley}; en este contrato hay que ser lo más técnico posible. \\
+
+\textbf{Alcance} &
+<<Propiedad>> es género y es más amplio: abarca condominio, propiedad horizontal, superficie y conjuntos inmobiliarios, que <<dominio>> dejaría sin cubrir. &
+Si se pretende que el adquirente obtenga las mayores facultades sobre la cosa, debió usarse la palabra \textbf{dominio}. \\
+
+\textbf{Respuesta a la otra postura} &
+Se le responde que el art.~1124 ya contempla esos supuestos. &
+El art.~1124 enumera muchos derechos reales y \textbf{no enumera el dominio}: no cabe entender que justo el dominio quede afuera. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Definición a la que arriba la clase}
+
+Reemplazando únicamente la palabra <<propiedad>> por <<dominio>>, se formuló la siguiente definición.
+
+\begin{definition}{Contrato de compraventa}
+Hay contrato de compraventa cuando una parte asume la obligación de transmitir el \textbf{dominio} de una cosa y la otra, la de pagar un \textbf{precio en dinero} por ella.
+\end{definition}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Por qué interesa especialmente la regulación de la compraventa?} &
+Porque es el \textbf{contrato de cambio más habitual} (se celebra prácticamente todos los días; comprar una lapicera ya es compraventa) y porque sus normas se aplican \textbf{subsidiariamente} a muchos otros contratos, que remiten a ella (por ejemplo, la permuta y la locación). \\[0.8em]
+
+\textbf{¿Dónde está regulada la compraventa?} &
+En el Código Civil y Comercial, a partir del \textbf{art.~1123}, con una gran cantidad de artículos dedicados al contrato. \\[0.8em]
+
+\textbf{¿Qué dice el art.~1123?} &
+Hay compraventa si una de las partes \textbf{se obliga a transferir la propiedad de una cosa} y la otra \textbf{a pagar un precio en dinero}. Se refiere a la asunción de la obligación y no a su cumplimiento material. \\[0.8em]
+
+\textbf{¿Qué diferencia hay entre «propiedad» y «dominio»?} &
+Propiedad es el \textbf{género} y dominio la \textbf{especie}. El dominio es un derecho real que recae sobre una cosa; propiedad es un término más amplio. \\[0.8em]
+
+\textbf{¿Qué sostienen las dos posturas sobre el término «propiedad»?} &
+\textbf{Postura 1:} es correcto, pues responde al lenguaje corriente y, por ser más amplio, abarca condominio, propiedad horizontal, superficie y conjuntos inmobiliarios. \textbf{Postura 2:} debió decir <<dominio>>, porque en este contrato hay que ser técnico, y el art.~1124 ya contempla esos otros supuestos sin enumerar el dominio. \\[0.8em]
+
+\textbf{¿Qué establece el art.~1124?} &
+Aplica supletoriamente las normas de la compraventa a los contratos que transfieren o constituyen otros derechos reales (condominio, propiedad horizontal, superficie, usufructo, uso, habitación, conjuntos inmobiliarios, servidumbre) a cambio de un precio en dinero, y a la transmisión de la titularidad de títulos valores por un precio en dinero. \\[0.8em]
+
+\textbf{¿Cómo se define la compraventa según la clase?} &
+Hay compraventa cuando una parte asume la obligación de transmitir el \textbf{dominio} de una cosa y la otra, la de pagar un \textbf{precio en dinero} por ella. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.94\textwidth}@{}}{
+\textbf{Resumen:} La compraventa es el contrato de cambio más habitual y sus normas se aplican subsidiariamente a muchos otros contratos; se regula en el Código Civil y Comercial desde el art.~1123. El Código la define por la asunción de las obligaciones de transferir la propiedad de una cosa y de pagar un precio en dinero. Frente a la discusión entre <<propiedad>> y <<dominio>>, se adoptó la definición que habla de transmitir el \textbf{dominio} a cambio de un \textbf{precio en dinero}.
+} \\
+\bottomrule
+\end{longtable}
+
+%==================================================================
+% CAPÍTULO 2
+%==================================================================
+\chapter[Elementos esenciales y nacimiento]{Elementos esenciales y nacimiento del contrato}
+
+\section{Obligaciones principales y elementos esenciales}
+
+De la definición de la compraventa surgen:
+
+\begin{itemize}
+    \item las \textbf{dos obligaciones principales}: transmitir el dominio y pagar el precio;
+    \item los \textbf{dos elementos esenciales}: la \textbf{cosa} y el \textbf{precio en dinero}.
+\end{itemize}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasaje inaudible; la nota editorial original reconstruye esta conclusión)
+
+\subsection{El nombre del contrato no lo define}
+
+Si un escrito está titulado <<compraventa>> pero de él no emergen las dos obligaciones principales con los dos elementos esenciales, no será una compraventa bajo ningún punto de vista: será otra cosa, por más que las partes lo titulen como tal.
+
+\begin{norma}{Art. 1127.- Naturaleza del contrato --- texto de referencia}
+El contrato no debe ser juzgado como de compraventa, aunque las partes así lo estipulen, si para ser tal le falta algún requisito esencial.
+\end{norma}
+
+Las notas expresan esta idea sin citar el número del artículo; se incorpora el texto legal como referencia.
+
+\section{Cuándo nace el contrato}
+
+El contrato nace cuando \textbf{ambas partes asumen las obligaciones}, independientemente del momento en que deban cumplirse.
+
+Esto significa que las obligaciones no necesariamente deben cumplirse en forma simultánea a su asunción. Pueden cumplirse en simultáneo si así se pacta, pero también puede pactarse, por ejemplo, que el pago se realice dentro de un año o en cuotas a lo largo de cinco años.
+
+Lo esencial es que exista la \textbf{asunción de la obligación}. Por ello, desde la firma el contrato tiene \textbf{efectos obligacionales} y no traslativos del dominio.
+
+\begin{important}
+\begin{enumerate}
+    \item Si faltan las dos obligaciones principales o los dos elementos esenciales, no hay compraventa aunque el escrito se titule así.
+    \item El contrato nace con la \textbf{asunción} de las obligaciones, aunque el cumplimiento sea posterior (pago a un año, en cuotas a cinco años, etc.).
+    \item Desde la firma, el contrato produce efectos \textbf{obligacionales}, no traslativos del dominio.
+\end{enumerate}
+\end{important}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué obligaciones y elementos surgen de la definición?} &
+Dos \textbf{obligaciones principales} (transmitir el dominio y pagar el precio) y dos \textbf{elementos esenciales} (la cosa y el precio en dinero). \\[0.8em]
+
+\textbf{¿Qué ocurre si un escrito titulado «compraventa» no contiene esas obligaciones y elementos?} &
+No es una compraventa bajo ningún punto de vista, sino otra cosa, aunque las partes lo titulen así (art.~1127: el contrato no debe ser juzgado como de compraventa si le falta algún requisito esencial). \\[0.8em]
+
+\textbf{¿Cuándo nace el contrato?} &
+Cuando ambas partes \textbf{asumen} las obligaciones, independientemente del momento en que deban cumplirse. \\[0.8em]
+
+\textbf{¿Deben cumplirse las obligaciones en simultáneo con su asunción?} &
+No necesariamente. Pueden cumplirse en simultáneo si así se pacta, o puede acordarse, por ejemplo, el pago dentro de un año o en cuotas a cinco años. \\[0.8em]
+
+\textbf{¿Qué efectos produce el contrato desde la firma?} &
+Efectos \textbf{obligacionales} y no traslativos del dominio. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.94\textwidth}@{}}{
+\textbf{Resumen:} La compraventa se configura por dos obligaciones principales y dos elementos esenciales (cosa y precio en dinero); sin ellos no hay compraventa aunque el escrito así se titule. El contrato nace con la asunción de las obligaciones, aunque su cumplimiento sea posterior, y desde la firma produce efectos obligacionales y no traslativos del dominio.
+} \\
+\bottomrule
+\end{longtable}
+
+%==================================================================
+% CAPÍTULO 3
+%==================================================================
+\chapter[Caracterización del contrato]{Caracterización del contrato de compraventa}
+
+\section{Clasificación del contrato}
+
+Para caracterizar el contrato se lo encuadra en las categorías contractuales: nominado o innominado, bilateral o unilateral, conmutativo o aleatorio, formal o no formal.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Categoría} & \textbf{Criterio} & \textbf{Aplicación a la compraventa} \\
+\midrule
+\textbf{Bilateral} &
+Emergen obligaciones para ambas partes. &
+Vendedor: transmitir el dominio; comprador: pagar el precio (además de otras obligaciones). \\
+
+\textbf{Nominado y típico} &
+Tiene un nombre y está regulado por la ley. &
+Se llama <<compraventa>> y está regulado desde el art.~1123. \\
+
+\textbf{Oneroso} &
+La prestación de uno tiene como correlato la contraprestación del otro: el sacrificio de uno se corresponde con el del otro. &
+Cada parte soporta un sacrificio que se corresponde con el de la otra. \\
+
+\textbf{Conmutativo} &
+En teoría, cada parte conoce ventajas ciertas: desde la celebración se sabe el sacrificio que representa y la ventaja, en principio razonable. &
+Las partes conocen desde el inicio su sacrificio y su ventaja. \\
+
+\textbf{Formal / no formal} &
+Cuestión abierta. &
+Ver la sección siguiente. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+La onerosidad se distingue de la bilateralidad: esta última se refiere a que emergen obligaciones para ambas partes, mientras que la onerosidad refiere a la correspondencia entre el sacrificio de una parte y el de la otra.
+\end{note}
+
+\section{¿Es formal el contrato de compraventa de inmuebles?}
+
+La resolución de la cuestión de si el contrato es formal o no formal se desarrollará a lo largo de tres clases (la de la presente exposición, la siguiente y la posterior); en este punto se expone el estado inicial del debate.
+
+\subsection{El principio de libertad de formas}
+
+En principio existe \textbf{libertad de formas} en el ordenamiento jurídico: puede celebrarse el contrato que se desee, bajo la forma que se desee, en tanto no se exija una forma en particular. La libertad de formas es la norma general; la exigencia de una forma, la excepción.
+
+Frente a la postura de que el contrato sería formal por la necesidad de inscripción en el registro, se respondió que la inscripción corresponde a una \textbf{etapa posterior} y no hace a la forma del contrato.
+
+\subsection{¿De dónde surge la discusión?}
+
+La definición del contrato establece que una parte se obliga a transferir la propiedad: es posible obligarse sin transmitir. El contrato tiene efectos obligacionales y no traslativos de por sí; importa la asunción de la obligación para que el contrato quede configurado, independientemente del momento en que se cumpla. Pareciera existir, así, una diferenciación temporal entre el contrato en sí y la transmisión del dominio.
+
+Sin embargo, muchas personas están firmemente convencidas de que el contrato de compraventa de inmuebles es formal; no se trata de una postura descabellada. Se basan principalmente en el art.~1017.
+
+\begin{norma}{Art. 1017.- Escritura pública}
+Deben ser otorgados por escritura pública:
+
+a) los contratos que tienen por objeto la adquisición, modificación o extinción de derechos reales sobre inmuebles. Quedan exceptuados los casos en que el acto es realizado mediante subasta proveniente de ejecución judicial o administrativa;
+
+b) los contratos que tienen por objeto derechos dudosos o litigiosos sobre inmuebles;
+
+c) todos los actos que sean accesorios de otros contratos otorgados en escritura pública;
+
+d) los demás contratos que, por acuerdo de partes o disposición de la ley, deben ser otorgados en escritura pública.
+\end{norma}
+
+Según este artículo, los contratos deben celebrarse por escritura pública si tienen por objeto la transmisión de derechos reales sobre inmuebles; si se atiende solo a esa norma, podría concluirse que el contrato es formal. En cambio, si se atiende a la definición del contrato y al principio general de libertad de formas, pareciera que esa postura no tiene razón. El tema quedó en suspenso para resolverse en las clases siguientes.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+ & \textbf{Sí sería formal} & \textbf{No sería formal (por ahora)} \\
+\midrule
+\textbf{Fundamento} &
+El art.~1017 exige escritura pública para los contratos cuyo objeto es la adquisición, modificación o extinción de derechos reales sobre inmuebles. &
+La definición del contrato es \textbf{obligacional}: se obliga a transferir, pero puede obligarse sin transmitir; rige el principio de \textbf{libertad de formas}. \\
+
+\textbf{Observación} &
+Es una postura sostenida por mucha gente; <<no es una locura>>. &
+La inscripción registral es una etapa \textbf{posterior}; no hace a la forma del contrato. \\
+
+\textbf{Estado del debate} &
+Queda en suspenso. &
+Se resolverá en las próximas clases. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+La regla general es la \textbf{libertad de formas}; la exigencia de forma es la excepción. El art.~1017 lleva a muchos a sostener que la compraventa de inmuebles es formal, pero la definición obligacional del contrato sugiere lo contrario. El debate permanece abierto.
+\end{important}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Por qué la compraventa es un contrato bilateral?} &
+Porque de él emergen obligaciones para ambas partes. \\[0.8em]
+
+\textbf{¿Por qué es nominado y típico?} &
+Porque tiene un nombre (compraventa) y está regulado por la ley. \\[0.8em]
+
+\textbf{¿Qué significa que sea oneroso?} &
+La prestación de uno tiene como correlato la contraprestación del otro: el sacrificio de uno se corresponde con el del otro. \\[0.8em]
+
+\textbf{¿Qué significa que sea conmutativo?} &
+Desde la celebración las partes conocen el sacrificio que el contrato representa y la ventaja, en principio razonable. \\[0.8em]
+
+\textbf{¿Qué rige en materia de formas?} &
+El principio de \textbf{libertad de formas}: puede celebrarse el contrato bajo la forma que se desee, salvo que se exija una forma en particular (excepción). \\[0.8em]
+
+\textbf{¿Por qué se discute si la compraventa de inmuebles es formal?} &
+El art.~1017 exige escritura pública para los contratos que tienen por objeto la adquisición, modificación o extinción de derechos reales sobre inmuebles. Pero la definición del contrato es obligacional (puede obligarse sin transmitir) y rige la libertad de formas; además, la inscripción registral es una etapa posterior. El debate quedó abierto. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.94\textwidth}@{}}{
+\textbf{Resumen:} La compraventa es un contrato bilateral, nominado y típico, oneroso y conmutativo. En cuanto a su forma, rige como regla la libertad de formas, pero el art.~1017 lleva a muchos a sostener que la compraventa de inmuebles es formal; la cuestión quedó planteada como debate abierto.
+} \\
+\bottomrule
+\end{longtable}
+
+%==================================================================
+% CAPÍTULO 4
+%==================================================================
+\chapter[Obligaciones de las partes]{Obligaciones del vendedor y del comprador}
+
+Si bien se identificaron las dos obligaciones principales del contrato, ellas no son las únicas obligaciones que las partes tienen.
+
+\section{Obligaciones del vendedor}
+
+\subsection{Entregar la cosa en el estado convenido}
+
+Un inmueble puede encontrarse en mal estado; por ello conviene individualizarlo y detallar su estado en el contrato. Si el estado o los elementos del inmueble no se detallan, la omisión puede modificar el objeto de la compra. Se señaló también que, si el inmueble está deteriorado, el precio se relaciona con una futura inversión.
+
+\begin{example}{detallar el estado del inmueble}
+Hacer un inventario, sacar fotos y agregarlas al contrato.
+\end{example}
+
+\subsection{Entregar con todos sus accesorios y libre de toda relación de poder}
+
+El inmueble debe entregarse \textbf{con todos sus accesorios} y \textbf{libre de toda relación de poder}, salvo pacto contrario.
+
+\begin{norma}{Art. 1140.- Entrega de la cosa --- texto de referencia}
+La cosa debe entregarse con sus accesorios, libre de toda relación de poder y de oposición de tercero.
+\end{norma}
+
+Las notas explican este contenido sin citar el número del artículo, aclarando que opera <<salvo pacto contrario>>.
+
+\textbf{Accesorios.} La noción de accesorio se vincula, por un lado, con la \textbf{adhesión a la cosa} (el accesorio está adherido a la cosa) y, por otro, con el \textbf{destino}. Se mencionaron como ejemplos que no pueden llevarse el vendedor: las lámparas, las cortinas, los inodoros y la cocina. Respecto de la cocina, se entendió que en la vivienda es un \textbf{accesorio indispensable}.
+
+Se planteó además que la \textbf{comercialización} del inmueble (publicación con fotos, persianas, llaves, cocina) lleva a entender que todo lo publicado es lo que se compra. La cuestión que se planteó es cómo diferenciar lo accesorio de lo amoblado.
+
+\begin{example}{los aires acondicionados}
+Los aires acondicionados constituyen un problema actual: antes podían ser un artefacto de lujo que las casas no tenían, y hoy casi todas las viviendas lo poseen. La pregunta es si son un accesorio propio de la cosa que se transmite o si son como el televisor o la cama (que el vendedor se lleva). Se vincula con la adhesión a la cosa. Existe discusión en ambos sentidos: puede sostenerse que el propietario debe dejarlos, o bien que son como la heladera, que <<está enchufada>>.
+\end{example}
+
+\textbf{Libre de toda relación de poder.} Las relaciones de poder son la \textbf{tenencia}, la \textbf{posesión} y la \textbf{ocupación}; la cosa debe entregarse libre de ocupantes. Esto no impide vender un inmueble alquilado: puede venderse, pues la entrega libre de ocupantes rige salvo pacto contrario.
+
+\begin{important}
+El inmueble se entrega \textbf{con todos sus accesorios} (criterios: adhesión a la cosa y destino) y \textbf{libre de toda relación de poder} (tenencia, posesión, ocupantes), salvo pacto contrario. Si el estado o los elementos del inmueble importan, conviene \textbf{detallarlos en el contrato} (inventario y fotos agregadas).
+\end{important}
+
+\subsection{Evicción y saneamiento}
+
+En los contratos onerosos se debe \textbf{evicción}, que consiste en garantizar que el adquirente no sufra perjuicio. Se mencionó la evicción y el saneamiento como obligación del vendedor y su relación con el derecho y la legitimación.
+
+\subsection{Gastos de entrega, estudio de títulos y tributos}
+
+El vendedor tiene a su cargo los \textbf{gastos de entrega}, el \textbf{estudio de títulos} y los \textbf{tributos de la transferencia}. El estudio de títulos lo paga el vendedor, según lo establece el Código (ley de fondo).
+
+\begin{norma}{Art. 1138.- Gastos de entrega --- texto de referencia}
+Excepto pacto en contrario, están a cargo del vendedor los gastos de la entrega de la cosa vendida y los que se originen en la obtención de los instrumentos referidos en el artículo 1137. En la compraventa de inmuebles también están a su cargo los del estudio del título y sus antecedentes y, en su caso, los de mensura y los tributos que graven la venta.
+\end{norma}
+
+Se ejemplificó que, si el vendedor es una sociedad y resulta aplicable el impuesto a las ganancias, debe pagarlo el vendedor, conforme a la ley del impuesto a las ganancias y al Código. Todos los gastos previos a la escrituración están a cargo de la parte vendedora: certificados, estudio de títulos, informes (estado parcelario, planos). Aunque la norma no lo dijera, así sería por tratarse de gastos previos a la entrega. El vendedor, por más que venda, tiene gastos de entrega.
+
+\subsection{El deber de cooperar}
+
+El vendedor tiene el \textbf{deber de cooperar}: aportar el título para poder escriturar y, en general, brindar toda la colaboración para que la operación se lleve adelante.
+
+\begin{norma}{Art. 1137.- Obligación de transferir --- texto de referencia}
+El vendedor debe transferir al comprador la propiedad de la cosa vendida. También está obligado a poner a disposición del comprador los instrumentos requeridos por los usos o las particularidades de la venta, y a prestar toda cooperación que le sea exigible para que la transferencia dominial se concrete.
+\end{norma}
+
+\begin{example}{falta de cooperación}
+Si el vendedor no aporta el título de propiedad, no puede hacerse la escritura. Tampoco si no quiere firmar o si no completa la planilla de datos requerida. Sin la información necesaria, la parte compradora no podrá pagar el precio y, por lo tanto, tampoco podrá cumplir su obligación.
+\end{example}
+
+\subsection{Recibir el precio y la cuestión del recibo}
+
+Se mencionó la obligación de recibir el precio. Se señaló que esa obligación ya no figura expresamente en el Código (antes sí figuraba) y que, al tratar el precio, se analizará la ausencia del recibo: si es observable o no.
+
+\begin{example}{cláusula de precio sin recibo}
+Una cláusula del precio que establece: <<La presente venta se realiza por pesos cuarenta mil, que se entregan en este acto>>, pero omite la oración en la que el vendedor declara que lo recibe de conformidad y otorga recibo. Su necesidad y las implicancias de su omisión se analizarán al tratar el precio.
+\end{example}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la obligación de recibir el precio y el alcance de la ausencia de recibo quedaron pendientes de tratamiento en el apartado sobre el precio)
+
+\section{Obligaciones del comprador}
+
+El comprador debe \textbf{pagar el precio} en tiempo y forma, y \textbf{recibir la cosa}; este último punto queda sujeto a discusión.
+
+\begin{norma}{Art. 1141.- Enumeración (obligaciones del comprador) --- texto de referencia}
+Son obligaciones del comprador:
+
+a) pagar el precio en el lugar y tiempo convenidos. Si nada se pacta, se entiende que la venta es de contado;
+
+b) recibir la cosa y los documentos vinculados con el contrato. Esta obligación de recibir consiste en realizar todos los actos que razonablemente cabe esperar del comprador para que el vendedor pueda efectuar la entrega, y hacerse cargo de la cosa;
+
+c) pagar los gastos de recibo, incluidos los de testimonio de la escritura pública y los demás posteriores a la venta.
+\end{norma}
+
+Las notas anticipan las obligaciones de pagar y recibir sin citar el número del artículo.
+
+\section{Cuadro resumen de las obligaciones}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Parte} & \textbf{Obligaciones mencionadas} \\
+\midrule
+\textbf{Vendedor} &
+\begin{itemize}[nosep,leftmargin=*]
+    \item Transmitir el dominio de la cosa (obligación principal).
+    \item Entregar la cosa en el estado convenido, con todos sus accesorios y libre de toda relación de poder (salvo pacto contrario).
+    \item Responder por evicción y saneamiento (contratos onerosos).
+    \item Pagar los gastos de entrega, el estudio de títulos y los tributos de la transferencia, y los certificados e informes previos a la escrituración.
+    \item Cooperar para que la operación se concrete (aportar título, firmar, completar datos).
+    \item Recibir el precio: la obligación ya no figura expresamente en el Código; se verá su relación con el recibo al tratar el precio.
+\end{itemize} \\
+\midrule
+\textbf{Comprador} &
+\begin{itemize}[nosep,leftmargin=*]
+    \item Pagar el precio, en tiempo y forma.
+    \item Recibir la cosa (punto que queda para discusión).
+\end{itemize} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+Temas que continúan: la transmisión del dominio y otros instrumentos previos o relacionados con la compraventa (reserva, boleto), y la continuación del debate sobre la forma del contrato.
+\end{note}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué debe entregar el vendedor?} &
+El inmueble en el estado convenido, \textbf{con todos sus accesorios} (adhesión a la cosa y destino) y \textbf{libre de toda relación de poder} (tenencia, posesión, ocupantes), salvo pacto contrario. Conviene detallar el estado con inventario y fotos agregadas al contrato. \\[0.8em]
+
+\textbf{¿Puede venderse un inmueble alquilado?} &
+Sí. La entrega libre de ocupantes rige salvo pacto contrario. \\[0.8em]
+
+\textbf{¿Qué son los accesorios y por qué generan conflicto?} &
+Se vinculan con la adhesión a la cosa y con el destino (la cocina es un accesorio indispensable en la vivienda). Los aires acondicionados son un caso discutido: se debate si son accesorios o si son como la heladera, que está enchufada. \\[0.8em]
+
+\textbf{¿Qué es la evicción?} &
+En los contratos onerosos se debe evicción y saneamiento: garantizar que el adquirente no sufra perjuicio. \\[0.8em]
+
+\textbf{¿Qué gastos están a cargo del vendedor?} &
+Los gastos de entrega, el estudio de títulos y los tributos de la transferencia (art.~1138), además de los certificados e informes previos a la escrituración. \\[0.8em]
+
+\textbf{¿En qué consiste el deber de cooperar?} &
+En colaborar para que la operación se concrete (art.~1137): aportar el título, firmar y completar los datos requeridos. Sin esa colaboración no puede hacerse la escritura ni el comprador puede pagar el precio. \\[0.8em]
+
+\textbf{¿Qué ocurre con la obligación de recibir el precio?} &
+Ya no figura expresamente en el Código (antes sí). Su relación con el recibo se analizará al tratar el precio. \\[0.8em]
+
+\textbf{¿Qué debe el comprador?} &
+\textbf{Pagar el precio} en tiempo y forma y \textbf{recibir} la cosa (este último punto queda para discusión). El art.~1141 incluye también pagar los gastos de recibo. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.94\textwidth}@{}}{
+\textbf{Resumen:} Además de transmitir el dominio, el vendedor debe entregar la cosa con sus accesorios y libre de toda relación de poder, responder por evicción y saneamiento, cargar con los gastos de entrega, el estudio de títulos y los tributos, y cooperar para que la operación se concrete. El comprador debe pagar el precio en tiempo y forma y recibir la cosa. Continuarán la transmisión del dominio, la reserva, el boleto y el debate sobre la forma.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}
