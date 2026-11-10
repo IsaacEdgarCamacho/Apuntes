@@ -1,0 +1,915 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Contratos en los espacios de integración: formación del contrato, ley aplicable y autonomía de la voluntad}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% Filas del cuadro Cornell
+\newcommand{\cornellstart}{%
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.26\textwidth}%
+                  >{\raggedright\arraybackslash}p{\dimexpr0.74\textwidth-2\tabcolsep\relax}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+}
+\newcommand{\cq}[2]{\textbf{#1} & #2 \\[0.6em]}
+\newcommand{\cornellend}[1]{%
+\midrule
+\multicolumn{2}{@{}p{\textwidth}@{}}{\textbf{Resumen:} #1} \\
+\bottomrule
+\end{longtable}
+}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{2.5cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho de la Integración'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% CONTENIDO
+% ------------------------------------------------------------
+
+\chapter[Presentación del tema]{Presentación del tema}
+
+\section{Objeto de la exposición}
+
+El tema parte de una pregunta previa: si el contrato es materia de los órganos de integración o si regularlo implicaría una intromisión en aquello que los Estados no delegaron. La conclusión es que sí lo es, porque el mercado común mueve bienes, servicios, trabajo y capitales mediante contratos.
+
+A continuación se analiza \textbf{cuándo existe un contrato a distancia}, a partir de la oferta, la aceptación y las teorías sobre el momento y el lugar de su perfeccionamiento. Se muestra que \textbf{los Estados del Mercosur no coinciden} en esta materia y que no existe una norma regional común, y se explica cómo se suplen esos vacíos con los \textbf{Tratados de Montevideo}. El desarrollo cierra con las tres leyes que gobiernan un contrato internacional (existencia, forma y fondo) y con la \textbf{autonomía de la voluntad}, material y conflictual.
+
+\section{Utilidad profesional del tema}
+
+Antes de discutir quién debe qué, hay que saber si el contrato existe, desde cuándo y bajo qué ley. Es el primer filtro de cualquier conflicto con una contraparte de otro país. Esto se manifiesta en distintos ámbitos:
+
+\begin{itemize}
+    \item \textbf{Asesoramiento y litigio:} el mismo intercambio de mensajes puede cerrar el contrato en un país y no en otro. Quien lo detecta a tiempo define el plazo de entrega, la mora y la defensa posible.
+    \item \textbf{Redacción preventiva:} permite pactar el momento y el lugar de celebración, la ley aplicable y la forma, y así evitar la discusión antes de que nazca.
+    \item \textbf{Práctica notarial y registral:} un inmueble situado en Argentina exige escritura pública e inscripción, aunque el acuerdo se haya firmado en el exterior.
+    \item \textbf{Vida cotidiana:} cada compra online o acuerdo por WhatsApp o correo electrónico plantea la misma pregunta: ¿cuándo quedó obligada una persona?
+\end{itemize}
+
+\begin{note}
+El uso directo de los Tratados de Montevideo se concentra en comercio exterior y en estudios con clientes de la región. El método (existencia, forma, fondo) sirve en cualquier contrato.
+\end{note}
+
+\section{Relación entre los bloques: un ejemplo cotidiano}
+
+\begin{example}{La panadería y el molino}
+Una panadería de Buenos Aires le compra harina por WhatsApp a un molino de Asunción. Los cuatro bloques del tema son las cuatro preguntas que aparecen, en orden, cuando algo sale mal con esa compra:
+\begin{itemize}
+    \item \textbf{Bloque I:} ¿puede el Mercosur dictar las reglas de esa compra, o sería meterse donde los Estados no lo autorizaron?
+    \item \textbf{Bloque II:} ¿hubo realmente contrato? Si la panadería escribió «mándenme 500 kilos» y el molino respondió «ok», ¿quedó cerrado cuando el molino envió el mensaje (un tilde), cuando le llegó (dos tildes grises) o cuando lo leyó (tildes azules)?
+    \item \textbf{Bloque III:} cada país responde de manera distinta y el Mercosur no tiene una regla común, por lo que se aplican los Tratados de Montevideo.
+    \item \textbf{Bloque IV:} si el contrato existe, ¿qué ley decide si se hizo con la forma correcta y qué ley rige los derechos y las obligaciones? ¿Pudieron las partes elegirla?
+\end{itemize}
+\end{example}
+
+% ============================================================
+\chapter[Competencia de la integración]{Competencia de la integración en materia contractual}
+
+\section{La cuestión previa: ¿incumbe a la integración?}
+
+En la parte especial del derecho de la integración, el tema que se desarrolle debe ser realmente incumbencia del área de integración. Esto responde al límite a la invasión y a la intromisión en cuestiones que no fueron entregadas a los órganos de integración. Por ello, lo primero que debe cuestionarse es si el asunto compete al órgano de integración.
+
+\begin{important}
+Antes de analizar cualquier tema especial, hay que preguntarse si fue delegado a los órganos de integración. Existe un \textbf{límite a la invasión y a la intromisión} en materias que los Estados no entregaron.
+\end{important}
+
+\section{El contrato como incumbencia de la integración económica}
+
+En los espacios de integración económica, el contrato es una incumbencia de los órganos de integración. Es importante que a nivel regional se establezca una normativa uniforme y armónica; qué tipo de normativa corresponde se analiza más adelante.
+
+Un área de integración debería establecer estas normas con una pauta mínima y con amplio respeto por la autonomía de la voluntad. Así, por ejemplo, si se trata del contrato de trabajo, corresponde regular el contrato de trabajo.
+
+En un mercado común se produce la transferencia de bienes y servicios, y esta se instrumenta normalmente mediante contratos. El contrato es, por lo tanto, un instrumento importante del que se vale el intercambio de bienes, de servicios, de trabajo y de capitales.
+
+\begin{important}
+El contrato es el instrumento del intercambio de \textbf{bienes, servicios, trabajo y capitales}. Por eso los órganos de integración tienen competencia para regularlo dentro del área de integración.
+\end{important}
+
+\section{Aspectos del contrato que hay que regular}
+
+Al hablar de normas para las contrataciones dentro de un área de integración, la pregunta es si se trata de una sola ley o de varias, y en qué aspectos hay que ordenar el contrato para determinar la normativa aplicable a cada uno. No se trata solamente de los derechos y obligaciones de las partes (trabajador y empleador, comprador y vendedor): también hay que considerar las cuestiones que pueden influir en la \textbf{validez} o en la \textbf{existencia misma} del contrato.
+
+\begin{note}
+La jurisdicción queda para un momento posterior del desarrollo; en este punto se trata de la ley aplicable.
+\end{note}
+
+\section{Cuadro Cornell: competencia de la integración}
+
+\cornellstart
+\cq{¿Les compete a los órganos de integración regular los contratos?}{Sí. En un mercado común circulan bienes, servicios, trabajo y capitales, y eso se instrumenta mediante contratos. Antes de tratar cualquier tema hay que preguntarse si fue delegado, por el \textbf{límite a la intromisión} en lo que los Estados no entregaron.}
+\cq{¿Una sola ley o varias?}{Varias. Hay que distinguir la \textbf{existencia} del contrato, su \textbf{validez formal} y su \textbf{validez sustancial} (derechos, obligaciones, capacidad, objeto). Cada cuestión puede regirse por una ley distinta.}
+\cq{¿Qué normativa debería establecer un área de integración?}{Una normativa uniforme y armónica, con pauta mínima y amplio respeto por la autonomía de la voluntad.}
+\cornellend{En un espacio de integración económica el contrato es el instrumento del intercambio de bienes, servicios, trabajo y capitales, por lo que su regulación compete a los órganos de integración, siempre que se trate de materias delegadas por los Estados. Regular un contrato internacional exige ordenar más de una cuestión: su existencia, su validez formal y su validez sustancial.}
+
+% ============================================================
+\chapter[Formación del contrato]{Formación del contrato}
+
+\section{Concepto de contrato}
+
+Los derechos y obligaciones que nacen de un contrato presuponen determinar qué es un contrato: su objeto es crear, regular, modificar, extinguir y transferir relaciones jurídicas.
+
+\begin{formula}{Código Civil y Comercial de la Nación, art. 957 — Definición}
+Contrato es el acto jurídico mediante el cual dos o más partes manifiestan su consentimiento para crear, regular, modificar, transferir o extinguir relaciones jurídicas patrimoniales.
+\tcblower
+\textit{Texto incorporado como referencia en el apunte original; el apunte señala que se refiere a esta definición sin citar el número de artículo.}
+\end{formula}
+
+\subsection{«Dos o más partes»}
+
+La expresión «dos o más partes» admite que una parte tenga pluralidad de intereses o de componentes. En un contrato de dos partes, si uno de los contratantes cuenta con un aval o garante, este sigue siendo parte del lado vendedor o del lado comprador.
+
+\subsection{«Contenido patrimonial»}
+
+El Código Civil y Comercial incluye la expresión «con contenido patrimonial», que antes no figuraba en el término contrato en general. Anteriormente se consideraba contrato todo acuerdo de voluntades tendiente a establecer derechos y obligaciones entre las partes, tuviera contenido económico o no. Ahora el término contrato es de contenido patrimonial.
+
+En derecho internacional privado, esto constituye un tema de \textbf{calificaciones}: para utilizar el término contrato debe haber contenido patrimonial; de lo contrario, se trata de un «acuerdo».
+
+\begin{example}{Régimen de visitas}
+Un convenio sobre régimen de visitas es un acuerdo de régimen de visitas. No puede utilizarse el término contrato, porque el término contrato es siempre de contenido patrimonial.
+\end{example}
+
+Dado que el contrato es un acuerdo de voluntades, lo primero que debe establecerse es si el contrato existe, es decir, si se ha dado el acuerdo de voluntades expresado en manifestaciones de voluntad.
+
+\section{Oferta y aceptación}
+
+\subsection{Las dos manifestaciones de voluntad}
+
+Una parte realiza una propuesta u oferta, y la otra puede aceptarla o no. Estas son las dos manifestaciones de voluntad que intervienen en la formación del contrato.
+
+\subsection{Requisitos de la oferta}
+
+Para que una expresión de voluntad constituya una oferta debe tener determinadas características. Debe estar efectuada en condiciones tales que al destinatario no le quede la más mínima duda de qué es lo que se le propone.
+
+\begin{important}
+\textbf{Requisitos de la oferta}
+\begin{enumerate}
+    \item \textbf{Específica y concreta}, no vaga.
+    \item \textbf{Cierta:} el destinatario sabe exactamente qué se le propone; debe establecerse bien el objeto de la contratación.
+    \item \textbf{Completa:} establece todos los elementos necesarios del contrato (objeto, precio y características del contrato).
+    \item \textbf{Seria:} es una propuesta firme, no sujeta a condicionamientos.
+    \item \textbf{Dirigida} a una o varias personas determinadas o determinables.
+\end{enumerate}
+\end{important}
+
+\begin{example}{La casa sin precisar}
+«Te dejo la casa. Pagame 10.000 pesos y después me pagás 2.000 por mes durante 5 años.» No se dijo qué tipo de casa, y el tipo de contrato resulta incierto: puede ser una compraventa o una locación. No queda concretamente establecido qué se propone.
+
+Del mismo modo, invitar a alguien «unos días» a una casa deja sin determinar cuántos días y desde cuándo hasta cuándo. La propuesta debe ser concreta y cierta, y sus términos deben ser claros.
+\end{example}
+
+\begin{example}{Los volantes «sujeto a disponibilidad»}
+Los volantes que dicen «sujeto a disponibilidad» o «hasta agotar stock» no constituyen ofertas, sino publicidad. El interesado no sabe cuánto stock existe ni cuánto se vendió, y no tiene asegurado que, si pide un producto, se lo vayan a dar: puede responderse que se terminó y ofrecerse otro parecido.
+\end{example}
+
+\subsection{Oferta al público: invitación a ofertar}
+
+La oferta hecha al público en general constituye, según el Código, una invitación a hacer ofertas. Quien ve un cartel es invitado a ir a comprar, y la otra parte cerrará el contrato cuando decida venderle. Si a una manifestación de voluntad le falta alguno de los requisitos de la oferta, no es una oferta, sino una invitación a ofertar.
+
+\begin{formula}{CCyC, art. 972 — Oferta}
+La oferta es la manifestación dirigida a persona determinada o determinable, con la intención de obligarse y con las precisiones necesarias para establecer los efectos que debe producir de ser aceptada.
+\end{formula}
+
+\begin{formula}{CCyC, art. 973 — Invitación a ofertar}
+La oferta dirigida a personas indeterminadas es considerada como invitación para que hagan ofertas, excepto que de sus términos o de las circunstancias de su emisión resulte la intención de contratar del oferente. En este caso, se la entiende emitida por el tiempo y en las condiciones admitidas por los usos.
+\tcblower
+\textit{Textos incorporados como referencia en el apunte original; el apunte señala que se describen estas reglas sin citar los números de artículo.}
+\end{formula}
+
+\subsection{La aceptación y la contraoferta}
+
+La aceptación debe ser lisa y llana, es decir, replicar exactamente los términos de la oferta; no puede cambiar nada. Si cambia algo, se convierte en contraoferta: pasa a ser una nueva oferta y todavía no hay contrato, pues el oferente original debe aceptarla.
+
+\begin{formula}{CCyC, art. 978 — Aceptación}
+Para que el contrato se concluya, la aceptación debe expresar la plena conformidad con la oferta. Cualquier modificación a la oferta que su destinatario hace al manifestar su aceptación, no vale como tal, sino que importa la propuesta de un nuevo contrato, pero las modificaciones pueden ser admitidas por el oferente si lo comunica de inmediato al aceptante.
+\end{formula}
+
+\subsection{Primero: ¿existe el contrato?}
+
+Lo primero que debe determinarse en materia de contratos es si el contrato existe: si las manifestaciones entre las partes reunieron todos los requisitos necesarios para constituir una oferta y una aceptación. Solo después corresponde considerar la autonomía de la voluntad y los derechos y obligaciones.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}L{0.17\textwidth}L{0.42\textwidth}L{0.33\textwidth}@{}}
+\toprule
+\textbf{Manifestación} & \textbf{Qué es} & \textbf{Efecto} \\
+\midrule
+\textbf{Oferta} & Propuesta específica, cierta, completa, seria y dirigida a persona determinada o determinable. & Si la acepta el destinatario sin cambios, hay contrato. \\
+\textbf{Invitación a ofertar} & Propuesta al público en general o sin alguno de los requisitos (volantes, carteles, «sujeto a disponibilidad»). & No obliga. El contrato se cierra cuando el otro decide vender. \\
+\textbf{Aceptación} & Respuesta lisa y llana que replica exactamente los términos de la oferta. & Concluye el contrato. \\
+\textbf{Contraoferta} & Respuesta que cambia algo de la oferta. & Pasa a ser una nueva oferta. Todavía no hay contrato. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Contratos a distancia}
+
+En un área de integración, entre distintos Estados, se dan normalmente los supuestos de contrato a distancia. Estos contratos ya habían sido regulados por Vélez (que pensaba en el caballo); hoy se piensa en internet, pero sigue siendo un contrato a distancia.
+
+Un contrato a distancia implica que las partes están en Estados diferentes, es decir, en espacios diferentes. Pero no implica solamente una situación espacial, con regulación distinta: también implica una situación \textbf{temporal}. Si se envía una carta con una oferta, la oferta se realiza en un momento y la aceptación en otro.
+
+\begin{definition}{Contrato entre presentes}
+Contrato en el que ambas partes están en el mismo lugar y en el mismo momento: hay inmediatez entre la manifestación de la voluntad de uno y la del otro.
+\end{definition}
+
+En el contrato a distancia, en cambio, las partes están distantes espacialmente y también temporalmente.
+
+\subsection{El medio de comunicación como criterio}
+
+Frente a la objeción de que los mecanismos electrónicos permiten una conexión simultánea, se señala que todo depende del \textbf{medio} de comunicación. Si se utiliza un medio de comunicación ininterrumpido, como una videoconferencia en la que ambas partes están conectadas aunque distantes, la manifestación de la voluntad prácticamente no difiere, y equivale a un contrato entre presentes.
+
+Si en cambio existe cierto plazo, aunque sea una fracción de segundos, y la comunicación es interrumpida, se trata de un contrato entre ausentes. Por ejemplo, si se envía un correo electrónico y el destinatario lo recibe y lo abre cuatro segundos después, el medio de comunicación sigue siendo interrumpido y el contrato es entre ausentes.
+
+Sobre esta base se propuso, en una ponencia, cambiar la denominación por \textbf{contratos simultáneos} y \textbf{contratos no simultáneos}. Sin embargo, el tiempo sirve para saber en qué momento se perfeccionó el contrato, es decir, a partir de qué momento existe; pero el \textbf{lugar} sigue siendo importante para determinar qué ley se aplica a la formación del contrato. Por ello se retorna a la distinción tradicional entre contratos entre presentes y entre ausentes, ya que es necesario conocer la ley que regula la formación del contrato y si el contrato existe.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}L{0.16\textwidth}L{0.37\textwidth}L{0.37\textwidth}@{}}
+\toprule
+ & \textbf{Entre presentes (simultáneo)} & \textbf{Entre ausentes (no simultáneo)} \\
+\midrule
+\textbf{Lugar} & Las partes están en el mismo lugar o conectadas sin interrupción. & Las partes están en Estados o espacios distintos. \\
+\textbf{Tiempo} & Hay inmediatez entre la manifestación de uno y la del otro. & Hay un intervalo, aunque sea de segundos, y el medio es interrumpido. \\
+\textbf{Ejemplos} & Contrato celebrado cara a cara. Videoconferencia. & Carta. Correo electrónico (cuatro segundos de diferencia). WhatsApp, según el caso. \\
+\textbf{Utilidad de la distinción} & El tiempo permite saber en qué momento se perfeccionó el contrato; el lugar permite saber qué ley rige su formación y si el contrato existe. & Igual que en los contratos entre presentes: el tiempo fija el momento del perfeccionamiento y el lugar fija la ley aplicable a la formación. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte indica que WhatsApp es entre ausentes "según el caso", sin precisar los criterios)
+
+\section{Teorías sobre el perfeccionamiento del contrato a distancia}
+
+\subsection{Teoría de la aceptación (o de la declaración)}
+
+El contrato se perfecciona cuando el aceptante acepta. Esta teoría fue criticada porque el oferente ni siquiera se entera de que ya tiene una obligación o un derecho. La teoría sí exige la aceptación, pero no requiere que esta se comunique al otro; por eso resulta inviable y es una teoría meramente teórica.
+
+\subsection{Teoría de la remisión (o expedición)}
+
+El contrato se perfecciona cuando el aceptante \textbf{envía} la aceptación. Si bien existe cierto momento de incertidumbre para el oferente, la ventaja es que se define con certeza el momento: si la aceptación sale por correo postal, tiene el sello del correo; si sale por correo electrónico, figura en la casilla la fecha en que salió. Se sabe así cuándo se perfeccionó el contrato y dónde: en el lugar del que sale la aceptación.
+
+\begin{example}{La carta que queda en borradores}
+Quien recibió la oferta pudo haber redactado la aceptación y dejarla en la bandeja de borradores, para enviarla pasado mañana o cuando una secretaria pudiera enviarla; si la aceptación salió recién a los tres días, recién a los tres días se perfeccionó el contrato.
+\end{example}
+
+En las teorías de la aceptación y de la remisión varía el tiempo, pero el lugar del perfeccionamiento es el mismo: el país donde se produce la aceptación.
+
+La teoría de la remisión estaba en el Código de Vélez, lo cual era lógico porque el sello del correo daba fecha cierta. Vélez no pensó en WhatsApp ni en el correo electrónico.
+
+\subsection{Teoría de la recepción}
+
+El contrato se perfecciona cuando el oferente \textbf{recibe} la aceptación. Un ejemplo vigente es el aviso de entrega del correo, que se firma al recibir y da también fecha cierta. Aquí el contrato se perfecciona en un momento distinto y en un lugar distinto: cambia el país de celebración del contrato.
+
+\subsection{El caso del náufrago: remisión frente a recepción}
+
+\begin{example}{El náufrago}
+Un hombre abre cartas en una isla desierta; la respuesta con la que se perfeccionaba el contrato, enviada por avión, cayó en el medio del océano. ¿Existe contrato?
+
+Si se aplica la teoría de la \textbf{remisión}, el contrato se perfeccionó cuando se subieron las cosas al avión: aunque el avión se haya caído, el contrato existe. Si se aplica la teoría de la \textbf{recepción}, el contrato nunca existió.
+\end{example}
+
+Aun existiendo el contrato, la parte puede alegar caso fortuito o fuerza mayor: el aceptante mandó la aceptación, pero el oferente no sabía que debía enviar la mercadería porque nunca le llegó la respuesta. Pero en ese caso se está en \textbf{responsabilidad contractual}. En cambio, bajo la teoría de la recepción, en ese mismo supuesto se está en \textbf{responsabilidad extracontractual}, porque el contrato todavía no se perfeccionó.
+
+\begin{important}
+\textbf{Teoría de la remisión:} el contrato ya existe cuando se envió la aceptación. Si la aceptación se pierde, hay responsabilidad \textbf{contractual}, y el oferente puede alegar caso fortuito o fuerza mayor.
+
+\textbf{Teoría de la recepción:} si la aceptación nunca llega, el contrato nunca existió. La responsabilidad, en su caso, es \textbf{extracontractual}.
+\end{important}
+
+El Código Civil y Comercial argentino adopta hoy la \textbf{teoría de la recepción}: el contrato se perfecciona cuando el oferente recibe la aceptación.
+
+\begin{formula}{CCyC, art. 971 — Formación del consentimiento}
+Los contratos se concluyen con la recepción de la aceptación de una oferta o por una conducta de las partes que sea suficiente para demostrar la existencia de un acuerdo.
+\end{formula}
+
+\begin{formula}{CCyC, art. 980 — Perfeccionamiento}
+La aceptación perfecciona el contrato: a) entre presentes, cuando es manifestada; b) entre ausentes, si es recibida por el proponente durante el plazo de vigencia de la oferta.
+\end{formula}
+
+\begin{formula}{CCyC, art. 983 — Recepción de la manifestación de la voluntad}
+A los fines de este Capítulo se considera que la manifestación de voluntad de una parte es recibida por la otra cuando ésta la conoce o debió conocerla, trátese de comunicación verbal, de recepción en su domicilio de un instrumento pertinente, o de otro modo útil.
+\tcblower
+\textit{Textos incorporados como referencia en el apunte original; el apunte señala que se afirma que el Código adopta la teoría de la recepción sin citar los artículos.}
+\end{formula}
+
+\subsection{Teoría del conocimiento (cognición o información)}
+
+No basta con que la aceptación haya llegado al oferente: este debe además \textbf{tomar conocimiento} de ella, es decir, leerla. En comunicaciones electrónicas, la analogía es la de WhatsApp: con un tilde gris se perfeccionaría el contrato según la teoría de la remisión; con dos tildes grises, que indican que el otro recibió el mensaje, según la teoría de la recepción (permite probar que se recibió y que el contrato existe); y solo cuando los tildes se ponen azules se perfecciona según la teoría del conocimiento, en los países que la regulan. Por correo electrónico, el equivalente es la «confirmación de lectura» o «confirmación de recepción», que el destinatario debe dar para asegurar que realmente abrió el mensaje. El contrato se perfecciona recién cuando el oferente toma conocimiento de la aceptación.
+
+Bajo esta teoría el aceptante queda algo desprotegido: aunque el oferente haya recibido la aceptación y exista aviso de entrega, no hay modo de saber si la leyó. Al discutir cuál teoría es mejor, algunos señalan que se estaría protegiendo a quien tuvo la intención de ofrecer el contrato, y que una vez enviada la aceptación «ya está».
+
+Se planteó, además, que la respuesta del aceptante podría ser una negativa o introducir cambios: si bastara la mera recepción para perfeccionar el contrato y la respuesta modificara los términos, no habría perfeccionamiento sino una contraoferta. Por eso existen tantas teorías.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la objeción del estudiante sobre la negativa del aceptante no explicita a qué teoría se refiere)
+
+\subsection{Teoría del conocimiento presunto (cognición presunta)}
+
+Es una combinación de las dos anteriores: el contrato se perfecciona desde el momento en que el oferente toma conocimiento de la aceptación, pero la ley \textbf{presume} que tomó conocimiento desde el momento en que la recibió.
+
+Esa presunción cae si ocurre algo totalmente ajeno a las posibilidades del oferente y fuera de su control. Por ejemplo, si el oferente estaba en un lugar donde se produjeron dos terremotos en cinco minutos y no sabe dónde están su computadora ni su teléfono celular, es imposible que haya tomado conocimiento. Al caer la presunción, el contrato no queda perfeccionado.
+
+\begin{important}
+En esta teoría la fuerza mayor no se toma como eximente de responsabilidad contractual, sino como causa de \textbf{inexistencia del contrato}: ni siquiera hubo contrato.
+\end{important}
+
+\subsection{Lugar de perfeccionamiento y Convención de Viena}
+
+Desde la recepción en adelante, el país en que se perfecciona el contrato es aquel en el que el oferente tiene domicilio, residencia o establecimiento.
+
+La Convención de Compraventa Internacional de Mercaderías dispone que el contrato se perfecciona cuando surte efecto la aceptación, y que la aceptación surte efecto cuando es recibida por el oferente: la Convención de Compraventa también adopta la recepción.
+
+\begin{formula}{Convención de Viena de 1980 (compraventa internacional de mercaderías), art. 18, inc. 2}
+La aceptación de la oferta surtirá efecto en el momento en que la indicación de asentimiento llegue al oferente.
+\end{formula}
+
+\begin{formula}{Convención de Viena de 1980, art. 23}
+El contrato se perfeccionará en el momento de surtir efecto la aceptación de la oferta conforme a lo dispuesto en la presente Convención.
+\tcblower
+\textit{Textos incorporados como referencia en el apunte original. El apunte indica que la Convención fue aprobada en Argentina por la ley 22.765.}
+\end{formula}
+
+Según el desarrollo, Uruguay y Argentina adoptan la teoría de la recepción; Venezuela, la del conocimiento; y Paraguay, la de la remisión. Cada país tiene un criterio distinto para establecer si existe o no el contrato.
+
+\begin{note}
+\textbf{Nota editorial.} Junto con la mención de Venezuela, la fuente registra un término ininteligible que no pudo identificarse; se lo omite para no atribuir a un país un criterio que no quedó claro.
+\end{note}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}L{0.14\textwidth}L{0.16\textwidth}L{0.15\textwidth}L{0.24\textwidth}L{0.18\textwidth}@{}}
+\toprule
+\textbf{Teoría} & \textbf{Momento del perfeccionamiento} & \textbf{Lugar (país)} & \textbf{Observaciones} & \textbf{Quién la adopta / WhatsApp} \\
+\midrule
+\textbf{Aceptación (declaración)} & Cuando el aceptante acepta. & País donde se produce la aceptación. & Criticada: el oferente no se entera. Inviable, «pura teoría». & --- \\
+\addlinespace
+\textbf{Remisión (expedición)} & Cuando el aceptante envía la aceptación. & País de donde sale la aceptación. & Fecha cierta (sello del correo, fecha del mail). Estaba en el Código de Vélez. & Paraguay. WhatsApp: un tilde. \\
+\addlinespace
+\textbf{Recepción} & Cuando el oferente recibe la aceptación. & País del oferente (domicilio, residencia o establecimiento). & Fecha cierta (aviso de entrega). Si la aceptación nunca llega, no hay contrato. & Argentina (CCyC), Uruguay y Convención de Viena. WhatsApp: dos tildes grises. \\
+\addlinespace
+\textbf{Conocimiento (cognición o información)} & Cuando el oferente toma conocimiento de la aceptación. & País del oferente. & El aceptante queda desprotegido: nunca sabe si el otro la leyó. & Venezuela. WhatsApp: tildes azules. \\
+\addlinespace
+\textbf{Conocimiento presunto} & Desde que se toma conocimiento, que la ley presume desde la recepción. & País del oferente. & Mezcla de las dos anteriores. La presunción cae ante un hecho ajeno e inevitable (fuerza mayor): entonces no hay contrato. & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Cuadro Cornell: formación del contrato}
+
+\cornellstart
+\cq{¿Qué es un contrato (art. 957 CCyC)?}{Acto jurídico en que dos o más partes manifiestan su consentimiento para crear, regular, modificar, transferir o extinguir relaciones jurídicas \textbf{patrimoniales}. Sin contenido patrimonial se habla de «acuerdo» (por ejemplo, el régimen de visitas).}
+\cq{¿Cuáles son los requisitos de la oferta?}{Específica y concreta, cierta, completa (objeto, precio y características), seria (firme, sin condicionamientos) y dirigida a persona determinada o determinable.}
+\cq{¿Qué diferencia hay entre oferta e invitación a ofertar?}{La propuesta al público o sin algún requisito (volantes «sujeto a disponibilidad», carteles) es invitación a ofertar: no obliga. El contrato se cierra cuando el otro decide vender.}
+\cq{¿Qué es una aceptación y qué es una contraoferta?}{La aceptación debe ser lisa y llana, igual a la oferta. Si cambia algo, es una contraoferta, pasa a ser una nueva oferta y todavía no hay contrato.}
+\cq{¿Qué diferencia hay entre contrato entre presentes y entre ausentes?}{Entre presentes hay inmediatez; a distancia, las partes están separadas en el espacio y en el tiempo. Importa el \textbf{medio}: una videoconferencia equivale a presentes; un mail, aunque llegue en segundos, es entre ausentes. El tiempo da el momento de perfeccionamiento; el lugar, la ley de la formación.}
+\cq{¿Cuáles son las teorías sobre el perfeccionamiento?}{\textbf{Aceptación:} cuando se acepta. \textbf{Remisión:} cuando se envía. \textbf{Recepción:} cuando el oferente la recibe. \textbf{Conocimiento:} cuando la lee. \textbf{Conocimiento presunto:} se presume desde la recepción, salvo hecho ajeno e inevitable.}
+\cq{¿Cómo se relacionan las teorías con los tildes de WhatsApp?}{Un tilde: remisión. Dos tildes grises: recepción. Tildes azules: conocimiento.}
+\cq{¿Qué teoría adoptan el CCyC y la Convención de Viena?}{La \textbf{recepción} (CCyC arts. 971, 980 y 983; Convención de Viena de 1980, arts. 18.2 y 23). Paraguay (remisión) y Venezuela (conocimiento) tienen otro criterio.}
+\cq{¿Qué diferencia práctica hay entre remisión y recepción (caso del náufrago)?}{Con remisión el contrato existe aunque la aceptación se pierda (responsabilidad contractual, con posible caso fortuito). Con recepción nunca existió (responsabilidad extracontractual). La fuerza mayor en el conocimiento presunto se usa para negar la existencia del contrato.}
+\cornellend{El primer paso al analizar un contrato es determinar si existe: debe haber oferta (con sus cinco requisitos) y aceptación lisa y llana. En los contratos entre ausentes, el momento y el lugar del perfeccionamiento dependen de la teoría adoptada (aceptación, remisión, recepción, conocimiento o conocimiento presunto); Argentina, mediante el CCyC y la Convención de Viena, adopta la recepción.}
+
+% ============================================================
+\chapter[Mercosur y Tratados de Montevideo]{El vacío del Mercosur y los Tratados de Montevideo}
+
+\section{Asimetrías entre los Estados y necesidad de una norma común}
+
+Es necesario que el Mercosur dicte una norma relativa al contrato. Si no se sabe si el contrato existe, un juez argentino puede decir que sí, uno paraguayo puede decir que no, o que sí existe pero desde antes, de modo que se habría incumplido el tiempo de entrega.
+
+La competencia de la integración en esta materia no solo es posible, sino necesaria: al haber asimetrías entre los derechos internos de los Estados en cuanto al momento y al lugar de celebración de un contrato, los comerciantes negocian y, ante un problema, se elaboran versiones para sostener una teoría u otra.
+
+\begin{important}
+La competencia de la integración en materia contractual no es solo posible: es \textbf{necesaria}. Si cada Estado fija de modo distinto el momento y el lugar de celebración, los comerciantes no pueden saber a qué atenerse.
+\end{important}
+
+\begin{example}{Un mismo contrato, tres respuestas}
+Se inicia una demanda ante un juez que aplica la teoría del conocimiento presunto: no hubo caso fortuito ni fuerza mayor y el contrato se perfeccionó cuando se recibió la aceptación. Un juez de Paraguay, que sigue la teoría de la remisión, dirá que el contrato se perfeccionó 15 días antes, porque la aceptación salió en tal fecha, y que por lo tanto la contraparte entendía que había enviado la mercadería.
+
+Según dónde se inicie la acción, el juez aplicará su propia teoría y puede cambiar los términos: puede decir que no hay contrato o, si lo hay, que se celebró hace 10 días o ayer. Eso cambia totalmente el planteo.
+\end{example}
+
+\begin{note}
+\textbf{Nota editorial.} En la fuente se atribuye a Paraguay la «teoría de la aceptación», pero antes se lo había ubicado en la \textbf{remisión}, y el ejemplo (la aceptación «salió» en tal fecha) corresponde a esa teoría. Se transcribe «remisión» por coherencia.
+\end{note}
+
+\section{Los Tratados de Montevideo como solución supletoria}
+
+El Tratado de Montevideo de 1889 vincula a Argentina con algunos países asociados: con Bolivia y con Colombia, y a Uruguay con Bolivia. El Tratado de Montevideo de Derecho Civil de 1940 vincula a Argentina con Uruguay y con Paraguay. No vincula con Brasil, que no fue parte, ni con Venezuela, que tiene el Código de Bustamante y Sirvén.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (los Estados vinculados por cada tratado se enumeran de oído, según la nota editorial)
+
+Si hay un conflicto entre empresas, una en Argentina y otra en Uruguay, que hicieron un acuerdo basado en preferencias y normativas del Mercosur, no hay norma del Mercosur aplicable pero sí el Tratado de Montevideo, que será el aplicado. Si existiera una normativa específica del Mercosur, esta debería prevalecer.
+
+La falta de normativa del Mercosur no obedece a una abundancia de normas; al contrario, falta regulación del contrato. Es necesario ponerse de acuerdo en el momento y el lugar en que se celebra el contrato; de lo contrario, para un país puede haber negocio y para otro no.
+
+Argentina utiliza los Tratados de Montevideo con Paraguay, Uruguay y Bolivia; no puede hacerlo con Brasil ni con Venezuela, que no son parte. Los tratados tienen distintos aspectos (contratos, relaciones laborales, entre otros): no es un único tratado, sino que se fueron agregando aspectos distintos, que no son iguales.
+
+\begin{note}
+\textbf{Nota editorial.} Los Estados vinculados por cada tratado se enumeran de oído. Sobre la relación entre ambos, conviene recordar que el Tratado de 1889 quedó sin efecto entre Argentina, Paraguay y Uruguay por haber ratificado estos tres Estados el Tratado de Derecho Civil Internacional de 1940, que es el aplicable entre ellos.
+\end{note}
+
+\subsection{Origen de los Tratados de Montevideo}
+
+Los Tratados de Montevideo se elaboraron en el primer y segundo Congreso Sudamericano de Derecho Internacional Privado. El objetivo era hacer un código de derecho internacional privado para Sudamérica. Al trabajar, se advirtió que un documento que reuniera todo no sería ratificado por nadie, pues a algunos Estados no les gustaría la parte de derecho de familia, a otros la de derecho penal, etc. Por ello se elaboraron distintos tratados por materia: derecho civil, derecho comercial, propiedad literaria y artística, derecho procesal, derecho penal. Cada tratado regula todos los temas de su materia (por ejemplo, el de familia: matrimonio, minoridad, adopción), de modo que un Estado puede no ratificar uno y sí ratificar el de contratos.
+
+\subsection{El Código de Sánchez de Bustamante y Sirvén (1928)}
+
+En 1928, en Cuba, otra reunión elaboró el Código de Sánchez de Bustamante y Sirvén, ratificado por Brasil y por Venezuela. Muchas de sus normas no resuelven nada. Por ejemplo, si dispone que en materia de capacidad se resolverá según la ley personal, «nacionalidad o domicilio, según corresponda», queda sin resolver qué corresponde: un Estado dirá domicilio y Brasil dirá nacionalidad.
+
+Se dejaron fórmulas tan amplias para que los Estados las firmaran que en realidad no brindan una solución. Los Tratados de Montevideo, en cambio, son «savinianos puros»: quien no coincida con la teoría saviniana les encontrará objeciones.
+
+\begin{note}
+\textbf{Nota editorial.} El Código Bustamante fue aprobado en 1928 en la VI Conferencia Internacional Americana celebrada en La Habana; en el desarrollo se lo menciona como «reunión en Cuba».
+\end{note}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}L{0.17\textwidth}L{0.20\textwidth}L{0.26\textwidth}L{0.27\textwidth}@{}}
+\toprule
+\textbf{Instrumento} & \textbf{Origen} & \textbf{Estados vinculados} & \textbf{Características} \\
+\midrule
+\textbf{Tratados de Montevideo de 1889} & Primer Congreso Sudamericano de Derecho Internacional Privado. & Argentina con Bolivia y Colombia; Uruguay con Bolivia (países asociados). & Un tratado por materia (civil, comercial, procesal, penal, etc.), para que cada Estado ratifique los que le convengan. \\
+\addlinespace
+\textbf{Tratados de Montevideo de 1940} & Segundo Congreso Sudamericano de Derecho Internacional Privado. & Argentina, Uruguay y Paraguay. No Brasil (no fue parte) ni Venezuela. & Savinianos «puros»: determinan qué ley rige cada aspecto o cada tema. \\
+\addlinespace
+\textbf{Código Bustamante (1928)} & Reunión de La Habana (Cuba). & Ratificado por Brasil y por Venezuela. & Fórmulas amplias que no resuelven (por ejemplo, capacidad: «nacionalidad o domicilio, según corresponda»). \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Armonía legislativa y ley del Estado de donde parte la oferta}
+
+Los Tratados determinan qué ley rige cada aspecto o cada tema. En materia de formación del contrato, disponen que la formación o celebración se rige por la ley del Estado de donde parte la oferta.
+
+\begin{formula}{Tratado de Derecho Civil Internacional de Montevideo de 1940, art. 42}
+La perfección de los contratos celebrados por correspondencia o por mandatario, se rige por la ley del lugar del cual partió la oferta aceptada.
+\tcblower
+\textit{Texto incorporado como referencia en el apunte original. El Tratado de 1889 contiene una regla análoga: «La perfección de los contratos celebrados por correspondencia o mandatario se rige por la ley del lugar del cual partió la oferta». El apunte señala que se la describe sin citar el número de artículo.}
+\end{formula}
+
+El Tratado no toma ninguno de los criterios de las teorías anteriores: dice «de donde parte la oferta», no de dónde parte la aceptación. No significa que el contrato se perfeccione cuando parte la oferta, sino que se aplica la ley del Estado de donde partió la oferta. Si la oferta parte de Paraguay, que aplica la teoría de la remisión, se aplicará esa teoría; si parte de Uruguay, se aplicará la teoría de la recepción. La solución no es la misma: el Tratado da el punto de conexión que remite al Estado donde hay que buscar la regla.
+
+\begin{important}
+El Tratado no fija una regla común sobre cuándo se perfecciona el contrato: da un \textbf{punto de conexión} (la ley del Estado de donde partió la oferta) que remite al derecho de ese Estado. Cada Estado aplica su propia teoría, y la solución puede variar según de dónde parta la oferta. Eso es \textbf{armonía legislativa}. La \textbf{uniformidad} exigiría una misma regla para todos los Estados.
+\end{important}
+
+Cuando no hay posibilidad de aplicar un tratado (por ejemplo, entre Brasil, que no forma parte, y Paraguay), el juez aplica su norma de conflicto y adopta su propia teoría, porque no hay un tratado ni un derecho de integración que unifique el criterio.
+
+Un espacio de integración, un mercado común, quiere mover la economía, y el instrumento base para hacerlo es el contrato, ya sea con autonomía, escrito, virtual o verbal: el contrato es acuerdo de dos voluntades.
+
+\subsection{Primero, la existencia del contrato}
+
+Lo primero que debe tenerse claro es qué ley se aplica a la existencia, formación o celebración del contrato, porque para estar obligado a algo primero hubo que celebrar el contrato. Si el contrato no existe porque, por ejemplo, el avión cayó y la aceptación nunca llegó, no corresponde analizar nada más.
+
+Las reglas de donde parte la oferta aceptada están en el Tratado de Montevideo, normativa que se aplica ante la laguna, cuando no hay nada en el Mercosur. Sirve entre los países asociados y con Uruguay y Paraguay, pero no con Brasil ni con Venezuela.
+
+Una vez que se sabe que el contrato existe, se determinan la oferta y sus elementos, la aceptación, qué teoría se aplicaba y dónde se celebró el contrato. Esta primera cuestión corresponde a la formación, celebración o perfeccionamiento del contrato.
+
+\section{Cuadro Cornell: el vacío del Mercosur y los Tratados de Montevideo}
+
+\cornellstart
+\cq{¿Por qué el Mercosur necesita una norma común sobre contratos?}{Un juez argentino, uno paraguayo y uno uruguayo pueden decidir que hay contrato, que no lo hay o que se celebró en otra fecha. Esa inseguridad impide planificar los negocios.}
+\cq{¿Qué son los Tratados de Montevideo y el Código Bustamante?}{Tratados por materia (1889 y 1940), savinianos. Para Argentina, el de 1940 rige con Uruguay y Paraguay. Brasil y Venezuela no son parte, y tienen el Código Bustamante (1928), de fórmulas amplias que no resuelven.}
+\cq{¿Qué ley rige la existencia del contrato según Montevideo?}{La ley del Estado de donde partió la oferta aceptada (art. 42 del Tratado de 1940).}
+\cq{¿Armonía o uniformidad legislativa?}{Montevideo da un punto de conexión, no una regla común: es \textbf{armonía}, no uniformidad.}
+\cq{¿Qué ocurre si no hay tratado aplicable?}{El juez aplica su norma de conflicto y adopta su propia teoría, porque no hay tratado ni derecho de integración que unifique el criterio.}
+\cornellend{El Mercosur no tiene una norma común sobre contratos, y los Estados difieren en el momento y el lugar en que lo consideran perfeccionado. Para suplir ese vacío se recurre a los Tratados de Montevideo, que solo vinculan a algunos países y que ofrecen armonía legislativa (la ley del Estado de donde partió la oferta) y no uniformidad.}
+
+% ============================================================
+\chapter[Tres leyes y autonomía de la voluntad]{Las tres leyes y la autonomía de la voluntad}
+
+\section{Validez formal del contrato}
+
+Una vez que se sabe que el contrato existe, el segundo aspecto es su validez formal: si se hizo según las formas que establece la ley aplicable. Hay contratos formales y no formales, y distintas clasificaciones de formas (formalidades auténticas, formalidades para la existencia y para la prueba).
+
+\subsection{Regla general: la ley del lugar de celebración}
+
+Como principio general en derecho internacional privado, las formas de cualquier acto jurídico, incluso los contratos, se rigen por la ley del lugar de su celebración. Una vez determinado dónde se perfeccionó el contrato (donde se recibió la aceptación), esa ley establece la forma que debe tener: si puede ser verbal o debe ser escrito, si intervienen testigos, si debe celebrarse ante escribano público o juez de paz.
+
+Este principio viene de la primera escuela estatutaria italiana. Quedan así establecidas una ley para saber si existe el contrato y si se celebró, y otra para saber si cumplió las formas requeridas por el lugar de celebración.
+
+\begin{note}
+\textbf{Nota editorial.} En la fuente se ubica la primera escuela estatutaria italiana en el «siglo XI». La doctrina la sitúa habitualmente entre los siglos XIII y XIV (glosadores y posglosadores). La regla atribuida a esa escuela es el principio \textit{locus regit actum}.
+\end{note}
+
+\subsection{Excepción: la forma impuesta como condición absoluta}
+
+Cuando existe una forma que no es solo para la prueba, sino absolutamente exigida, de modo que sin ella el acto no vale, rige una excepción. El ejemplo en la ley argentina es la venta de inmuebles, que se hace por escritura pública, no por boleto de compraventa.
+
+\begin{example}{Inmueble en la Argentina, contrato firmado en Brasil}
+El boleto de compraventa es una obligación de escriturar, pero no transfiere el dominio. El contrato de venta no se celebra sin escritura pública; sin ella no hay transferencia de dominio, sino solo una obligación personal de hacerlo en el futuro.
+
+Si el inmueble está en la República Argentina, hay que inscribirlo en la República Argentina, aunque el contrato se haya hecho en Brasil y allí se permita hacerlo con un apretón de manos. Para que surta efecto como venta, deberá tener escritura pública, tradición e inscripción en el registro.
+\end{example}
+
+\begin{formula}{CCyC, art. 1017, inc. a) — Escritura pública}
+Deben ser otorgados por escritura pública: a) los contratos que tienen por objeto la adquisición, modificación o extinción de derechos reales sobre inmuebles. Quedan exceptuados los casos en que el acto es realizado mediante subasta proveniente de ejecución judicial o administrativa.
+\tcblower
+\textit{Texto incorporado como referencia en el apunte original; el apunte señala que se refiere a esta exigencia sin citar el artículo.}
+\end{formula}
+
+\section{Validez sustancial: tres cuestiones, tres leyes}
+
+Una vez que se sabe que el contrato existe y es formalmente válido, corresponde la ley de la validez sustancial: los derechos y obligaciones, la capacidad de las partes, todo lo relativo a la sustancia del contrato, y si el contrato tiene un objeto lícito. Normalmente se habla de esta al decir «la ley aplicable al contrato», pero existen las dos leyes anteriores, que pueden ser distintas.
+
+Una ley puede determinar el lugar de celebración y otra la forma que debe tener. Una vez que se sabe que existe y que es formalmente válido, se analizan cuestiones como quién es culpable, si se debe o no, o si la tasa de interés es usuraria o está dentro de lo que la ley permite; esto se rige por la ley aplicable a la sustancia del contrato.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}L{0.09\textwidth}L{0.17\textwidth}L{0.24\textwidth}L{0.38\textwidth}@{}}
+\toprule
+\textbf{Orden} & \textbf{Cuestión} & \textbf{Pregunta} & \textbf{Ley que la rige} \\
+\midrule
+\textbf{1.º} & Existencia y formación & ¿Hubo oferta y aceptación? ¿Dónde y cuándo se perfeccionó? & En el Mercosur no hay norma común. Con los países vinculados rige el Tratado de Montevideo: la ley del Estado de donde partió la oferta aceptada. \\
+\addlinespace
+\textbf{2.º} & Validez formal & ¿Se cumplieron las formas exigidas? & Como regla, la ley del lugar de celebración. Excepción: forma exigida bajo pena de invalidez, como la escritura pública para inmuebles ubicados en la Argentina. \\
+\addlinespace
+\textbf{3.º} & Validez sustancial & ¿Qué derechos y obligaciones hay? ¿Capacidad? ¿Objeto lícito? ¿La tasa es usuraria? & La ley aplicable a la sustancia del contrato: la elegida por las partes si cabe la autonomía, o la que el Estado fija si no la ejercieron. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Autonomía de la voluntad}
+
+\subsection{Dentro o fuera del ámbito de la autonomía}
+
+En materia contractual rige, como criterio general, el principio de la autonomía de la voluntad; casi no existen países que no la acepten. Pero aun cuando se acepte la autonomía de la voluntad, el Estado establece la ley aplicable al fondo del contrato para el caso de que las partes no hayan hecho uso de ella. Existen entonces dos posibilidades: que se entre en el ámbito de la autonomía de la voluntad o que se esté fuera de ese ámbito.
+
+\subsection{Autonomía material}
+
+Dentro del ámbito de la autonomía de la voluntad se distinguen la autonomía material y la autonomía conflictual.
+
+\begin{definition}{Autonomía material}
+Posibilidad de las partes de establecer derechos y obligaciones, de regular su conducta.
+\end{definition}
+
+\begin{example}{El contrato de alquiler}
+Al firmar un contrato de compraventa o de alquiler y comprometerse a vivir en buenas condiciones en el departamento por el período de 3 años y a pagar un monto mensual, se establecen derechos y obligaciones para las partes: el locatario se compromete a pagar; el locador, a no ingresar al inmueble a su voluntad y a permitir el uso y goce; se pacta quién repara el techo y quién paga la luz. Todo esto es autonomía material.
+
+Si hay atraso, puede pactarse una cláusula penal: «te voy a cobrar un 30\% de interés por cada día que te atrases». Eso también es autonomía material: establecimiento de derechos y obligaciones.
+\end{example}
+
+Si alguien cuestiona que el 30\% de interés diario es una barbaridad, se trata de usura. La autonomía se evalúa conforme a una determinada ley aplicable: la medida y la extensión de la autonomía de la voluntad están reguladas por la ley, es decir, si se puede acordar cualquier cosa o existen límites.
+
+\subsection{Las dos posturas doctrinales sobre el origen de la autonomía}
+
+La doctrina se dividió durante siglos entre dos posturas.
+
+\textbf{Postura del derecho natural.} La autonomía de la voluntad es inescindible, una característica esencial del ser humano: el hombre nace libre y tiene derecho a pactar lo que quiera. El límite está en no dañar al tercero y no afectar lo público; mientras las partes estén de acuerdo, nadie puede intervenir. La autonomía es un derecho natural, dado por Dios (libre albedrío).
+
+\textbf{Postura legalista.} La autonomía no puede ser absoluta. Para hablar de autonomía, del poder de ser libre y pactar lo que se quiera, es necesario un contexto social: quien está solo en una isla no se cuestiona si es autónomo ni si tiene derecho frente al otro. En una estructura social, la autonomía viene de la ley. Existe un ámbito de normas imperativas y otro de normas facultativas, que las partes pueden dejar de lado para pactar otra cosa; frente a las normas imperativas no hay posibilidad de ejercer la autonomía. La autonomía viene dada por el legislador y su extensión está dada por la ley.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}L{0.18\textwidth}L{0.38\textwidth}L{0.36\textwidth}@{}}
+\toprule
+ & \textbf{Postura del derecho natural} & \textbf{Postura legalista} \\
+\midrule
+\textbf{Origen} & Es inherente al ser humano: «el hombre nace libre»; viene dada por Dios (libre albedrío). & Nace en un contexto social y viene de la ley: la otorga el legislador. \\
+\addlinespace
+\textbf{Alcance} & Absoluto: las partes pactan lo que quieran. & Limitado: depende de lo que la ley permita. \\
+\addlinespace
+\textbf{Límites} & No dañar al tercero ni afectar lo público. & Las normas imperativas (frente a las facultativas, que pueden dejarse de lado). \\
+\addlinespace
+\textbf{Validez de la cláusula del 30\%} & Lo determinan las partes: lo pactado vale. & La determina la ley aplicable. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{formula}{CCyC, art. 958 — Libertad de contratación}
+Las partes son libres para celebrar un contrato y determinar su contenido, dentro de los límites impuestos por la ley, el orden público, la moral y las buenas costumbres.
+\end{formula}
+
+\begin{formula}{CCyC, art. 959 — Efecto vinculante}
+Todo contrato válidamente celebrado es obligatorio para las partes. Su contenido sólo puede ser modificado o extinguido por acuerdo de partes o en los supuestos en que la ley lo prevé.
+\tcblower
+\textit{Textos incorporados como referencia en el apunte original, a propósito de la idea de que el acuerdo de partes «tiene la misma fuerza que la ley», sujeto a límites.}
+\end{formula}
+
+\subsection{El caso del mercader de Venecia}
+
+\begin{example}{El mercader de Venecia}
+En la Edad Media, la actividad principal de ciertas personas era ser prestamistas, actividad mal vista por la nobleza. Un joven rico solicita un préstamo a un prestamista al que había humillado y tratado mal. El prestamista acepta prestar sin garante, pero pone una cláusula penal: si en algún momento el deudor no paga, el prestamista queda facultado a tomar una onza de carne de la parte de su cuerpo que elija. Un amigo ofrece ser garante, pero el prestamista no lo quiere: quiere la cláusula. El deudor firma.
+
+Se hunden los tres barcos del deudor, que no tiene forma de vender la mercadería y pagar. El prestamista lleva el contrato a la justicia, a la lex mercatoria, y reclama; el deudor quiere pagar y tiene la plata, pero el prestamista no quiere el dinero sino el cumplimiento del contrato.
+\end{example}
+
+El acuerdo de partes es respetable como la ley misma y tiene la misma fuerza que ella: el deudor sabía lo que firmaba, aunque lo que menos pensó era que se iban a hundir los barcos.
+
+La solución del caso, según se explicó, se encuentra en los propios términos del contrato. El tribunal dice que el prestamista puede tomar la carne, pero no más de lo pactado; si cobrara más, habría un perjuicio y un abuso de su derecho. Además, la cláusula habla de carne, no autoriza a derramar sangre, y mucho menos a quitar la vida, porque eso sería tomar más de lo que dice la cláusula penal.
+
+Lo que importa es que el caso se resuelve con los propios términos del contrato: qué permitía y qué no permitía hacer. No se recurrió a la ley, a los principios de orden público ni a la moral y las buenas costumbres, sino al contrato. Eso es \textbf{autonomía absoluta de la voluntad}: si las partes lo pactaron conscientemente, se aplica.
+
+Hoy, algunos sostienen que la autonomía no existe como autonomía de la voluntad, sino que lo que existe es libertad de contratación, que siempre se mueve en el marco de la ley. Por eso pueden ponerse límites, y aquí aparecen los límites a la autonomía de la voluntad.
+
+\begin{note}
+\textbf{Nota editorial.}
+\textbf{1. Obra.} El relato corresponde a \textit{El mercader de Venecia}, de Shakespeare (prestamista: Shylock; deudor: Antonio). En la obra la cláusula penal habla de una \textbf{libra} de carne, no de una onza; se transcribe «onza» porque así figura en la exposición.
+\textbf{2. Historia.} La explicación económica de la expulsión de los judíos de España en 1492, que se dio de modo coloquial, es una simplificación. Esa decisión tuvo causas religiosas y políticas complejas. El comentario no forma parte del contenido jurídico.
+\textbf{3. Sentencia.} En la obra, el fallo que impide cortar «de más» y derramar sangre lo dicta Porcia, disfrazada de abogado. En la exposición se lo cuenta como resolución del tribunal.
+\end{note}
+
+\section{Autonomía material y autonomía conflictual}
+
+\begin{definition}{Autonomía conflictual}
+Posibilidad de las partes de acordar cómo resolver el caso de conflicto, es decir, de determinar la ley aplicable al contrato.
+\end{definition}
+
+La autonomía material consiste en crear los derechos y las obligaciones; la autonomía conflictual consiste en disponer, por ejemplo, que «este contrato se va a regir por la ley de Chile» o «por la ley venezolana».
+
+\textbf{Brasil} admite la autonomía material, pero niega la autonomía conflictual: no se puede elegir la ley aplicable al contrato. Pueden pactarse las estipulaciones del contrato en base a lo que la ley permite, pero no elegir otra ley para que regule el contrato.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}L{0.16\textwidth}L{0.39\textwidth}L{0.37\textwidth}@{}}
+\toprule
+ & \textbf{Autonomía material} & \textbf{Autonomía conflictual} \\
+\midrule
+\textbf{Qué permite} & Crear los derechos y las obligaciones; regular la conducta de las partes. & Elegir la ley que rige el contrato. \\
+\addlinespace
+\textbf{Ejemplo} & Alquiler por 3 años, pago mensual, reparación del techo, cláusula penal del 30\%. & «Este contrato se va a regir por la ley de Chile» o «por la ley venezolana». \\
+\addlinespace
+\textbf{Control} & La extensión de la autonomía la fija una ley aplicable (por ejemplo, la usura). & Depende de que el Estado la admita. \\
+\addlinespace
+\textbf{Brasil} & La admite. & La niega: las partes no pueden elegir otra ley. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Contenido pendiente de desarrollo}
+
+Si bien no existe normativa del Mercosur en la materia, la Unión Europea sí cuenta con normativa: el reglamento de Roma sobre derecho aplicable a las obligaciones contractuales. Queda por analizar cómo acepta la autonomía de la voluntad y qué ley se aplica a falta de autonomía.
+
+\begin{note}
+\textbf{Nota editorial.} El «reglamento de Roma» mencionado es el Reglamento (CE) n.º 593/2008 sobre la ley aplicable a las obligaciones contractuales (Roma I). Será objeto de la próxima clase.
+\end{note}
+
+\section{Cuadro Cornell: las tres leyes y la autonomía de la voluntad}
+
+\cornellstart
+\cq{¿Qué ley rige la validez formal?}{Regla general: ley del lugar de celebración (\textit{locus regit actum}). Excepción: forma exigida como condición absoluta; un inmueble en la Argentina requiere escritura pública, tradición e inscripción (art. 1017 CCyC).}
+\cq{¿Qué cuestiones se analizan, y en qué orden, en un contrato internacional?}{Primero, la existencia y formación; segundo, la validez formal; tercero, la validez sustancial (derechos, obligaciones, capacidad, objeto lícito). Cada una puede regirse por una ley distinta.}
+\cq{¿De dónde viene la autonomía de la voluntad?}{Dos posturas: es un derecho natural previo a la ley, o viene del legislador y está limitada por normas imperativas. El caso del mercader de Venecia ilustra la autonomía absoluta: se resolvió por los términos del contrato.}
+\cq{¿Qué es la autonomía material y qué es la conflictual?}{Material: crear derechos y obligaciones (con el límite de la ley, por ejemplo la usura). Conflictual: elegir la ley aplicable.}
+\cq{¿Qué postura tiene Brasil?}{Admite la autonomía material y niega la conflictual.}
+\cq{¿Qué falta ver?}{El Reglamento de Roma I de la Unión Europea: cómo admite la autonomía de la voluntad y qué ley se aplica a falta de elección.}
+\cornellend{El análisis de un contrato internacional debe seguir un orden: primero, si \textbf{existe}; segundo, si cumplió las \textbf{formas} de la ley del lugar de celebración (con excepciones como la escritura pública para inmuebles argentinos); tercero, qué ley rige su \textbf{sustancia}, donde juega la autonomía de la voluntad. Esa autonomía puede entenderse como un derecho natural o como una concesión de la ley, y se divide en material (crear derechos y obligaciones) y conflictual (elegir la ley aplicable), que Brasil no admite.}
+
+\end{document}

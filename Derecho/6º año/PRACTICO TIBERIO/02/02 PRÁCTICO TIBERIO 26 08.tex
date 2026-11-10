@@ -1,0 +1,878 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\catedra}{Cátedra de Derecho Procesal Civil y Comercial}
+\newcommand{\comision}{Comisión de Prácticas Profesionales}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\titulo}{Clase Práctica --- La Prueba en el Proceso Civil}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \catedra}
+
+\vspace{0.2cm}
+
+{\large \comision}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\tableofcontents
+
+% ------------------------------------------------------------
+% CONTENIDO
+% ------------------------------------------------------------
+
+% ============================================================
+\chapter[Presentación]{Presentación de la clase práctica}
+% ============================================================
+
+\section{Objeto de la clase}
+
+La clase práctica aborda el \textbf{régimen de la prueba en el proceso civil y comercial} desde una mirada integral. Se trabajan cuatro grandes ejes:
+
+\begin{itemize}
+    \item la producción de la prueba antes del inicio del proceso (medidas cautelares, diligencias preliminares y prueba anticipada);
+    \item el control judicial de su valoración a través de la sana crítica racional;
+    \item las vías para replantear la prueba denegada ante la Cámara de Apelaciones;
+    \item los institutos de caducidad y negligencia probatoria, que sancionan la inactividad de las partes.
+\end{itemize}
+
+Se analizan artículos concretos del Código Procesal Civil y Comercial (en adelante, CPCC) --- arts.\ 163, 195, 260, 326, 365, 384, 432 y 453 ---, el art.\ 804 del Código Civil y Comercial de la Nación (CCyC) y jurisprudencia sobre replanteo de prueba, enlazados con casos prácticos de la experiencia profesional.
+
+\section{Utilidad para la práctica profesional}
+
+El manejo de la prueba es la \textbf{columna vertebral del litigio}. Un abogado que no sabe cuándo solicitar una medida cautelar, anticipar una prueba en riesgo, argumentar la sana crítica frente a un testigo parcial o acusar la negligencia de la contraparte, puede perder casos que en el derecho de fondo tenía ganados.
+
+Los contenidos son transferibles a tareas profesionales cotidianas:
+
+\begin{itemize}
+    \item redactar un ofrecimiento de prueba testimonial con los recaudos del art.\ 453;
+    \item calcular el plazo de un oficio y de su reiteratorio;
+    \item decidir si conviene desistir de una prueba propia;
+    \item construir el capítulo de replanteo de prueba en una expresión de agravios.
+\end{itemize}
+
+Además, la materia enseña a pensar el proceso de manera estratégica, leyendo el expediente como una construcción de <<ladrillos>> que no admite errores.
+
+\section{Articulación de los bloques temáticos}
+
+La prueba puede pensarse como el combustible de un vehículo que atraviesa cuatro estaciones:
+
+\begin{enumerate}
+    \item \textbf{Bloque I --- La prueba antes del proceso} (Unidades 1 a 3). Antes de iniciar el proceso, el abogado debe asegurar la prueba de urgencia mediante una medida cautelar o una prueba anticipada.
+    \item \textbf{Bloque II --- Control judicial de la prueba y sana crítica} (Unidades 4 a 6). Una vez iniciado el proceso, el juez controla el uso de la prueba mediante la sana crítica.
+    \item \textbf{Bloque III --- La prueba en segunda instancia} (Unidades 7 a 9). Si la prueba se pierde o se deniega injustamente, la Cámara puede reabrir la producción en casos excepcionales.
+    \item \textbf{Bloque IV --- Caducidad y negligencia probatoria} (Unidades 10 a 12). Quien no impulsa su prueba a tiempo la pierde por caducidad o negligencia.
+\end{enumerate}
+
+Los cuatro bloques representan las cuatro etapas de la vida de una misma prueba: nace, se controla, se defiende y, si no se cuida, se pierde.
+
+% ============================================================
+\chapter[Bloque I --- La prueba antes del proceso]{Bloque I --- La prueba antes del proceso}
+% ============================================================
+
+\section{Unidad 1 --- Medidas cautelares y fundamentación probatoria}
+
+\textbf{Pregunta guía:} ¿puede una medida cautelar sostenerse sin prueba testimonial previa?
+
+En la fundamentación de las medidas cautelares, los arts.\ 195 y siguientes del CPCC --- en especial el art.\ 197 --- aluden a la \textbf{prueba testimonial} como una posibilidad que no se produce dentro del proceso, sino \textbf{extrajudicialmente}, y que sirve para respaldar la procedencia de la medida cautelar.
+
+Este punto suele perderse de vista porque se asume que las cautelares se sostienen únicamente por la fuerza del título invocado.
+
+\begin{example}{los alimentos provisionales}
+Se pueden solicitar alimentos provisionales porque existe una norma que acompaña esos pedidos y, además, un \textbf{título muy fuerte: el vínculo}. Cuando existe un vínculo filiatorio o conyugal que opera como título robusto, el peticionante generalmente prescinde de otros elementos probatorios para dotar a la cautelar del requisito de procedencia.
+
+En otros supuestos es necesario acudir a las normas genéricas: las medidas cautelares admiten distintos supuestos --- por ejemplo, el embargo preventivo --- que pueden solicitarse en la misma petición de demanda.
+\end{example}
+
+Las medidas cautelares cumplen dos finalidades centrales:
+
+\begin{itemize}
+    \item \textbf{asegurar el resultado del proceso};
+    \item lograr una \textbf{respuesta jurisdiccional urgente}, como ocurre con los alimentos provisorios, cuando el peticionante no puede esperar el dictado de la sentencia.
+\end{itemize}
+
+\subsection{Duración de los juicios de alimentos y estructura asimétrica}
+
+Aunque el proceso de alimentos no debería durar mucho tiempo, en la práctica el juicio de alimentos se extiende, según se expuso, por años. La prueba en el juicio de alimentos debería ser urgente.
+
+Esta dinámica se modifica porque se trata de procesos con \textbf{estructura asimétrica}: a diferencia de los procesos con estructura simétrica --- donde actor y demandado están en igualdad de armas ---, en los procesos de familia el actor goza de cierto favorecimiento probatorio y el demandado tiene a su cargo una carga probatoria reforzada (en las palabras utilizadas en la clase, <<una refección probatoria>>) si no colabora procesalmente.
+
+El Código Civil y Comercial se ocupó de reivindicar el \textbf{principio de colaboración procesal} en materia de familia, incursionando en cuestiones procesales que tradicionalmente quedaban reservadas al Código Procesal, con una mirada renovada orientada a dotar al derecho de fondo de una potencia necesaria.
+
+\begin{important}
+\textbf{Idea central de la Unidad 1.} La prueba no comienza en la etapa procesal de prueba: puede y debe pensarse desde el inicio mismo del proceso, incluso antes de él, a través de las medidas cautelares y su fundamentación extrajudicial.
+\end{important}
+
+\section{Unidad 2 --- Diligencias preliminares y prueba anticipada}
+
+\textbf{Pregunta guía:} ¿cuándo se puede anticipar la producción de una prueba?
+
+La prueba puede producirse incluso antes del inicio formal del proceso. Se distinguen dos institutos: las \textbf{diligencias preliminares} y la \textbf{prueba anticipada}.
+
+Las diligencias preliminares pueden constituir también un anticipo probatorio, cuando las condiciones del proceso imponen la producción de una medida urgente porque existe una prueba que puede perderse. Por ejemplo:
+
+\begin{itemize}
+    \item un testigo que debe declarar antes de tiempo por una circunstancia personal particular;
+    \item el riesgo de que una pericia se frustre porque la cosa a peritar puede desaparecer o el lugar puede alterarse.
+\end{itemize}
+
+\subsection{¿Puede incorporarse una declaración testimonial extrajudicial?}
+
+Se plantea si es posible tomar una declaración testimonial extrajudicial y luego incorporarla al proceso, más allá de cuando el proceso la autoriza. Un ejemplo es el de un testigo que va a viajar al extranjero, sin riesgo de vida, frente a lo cual el abogado corre el riesgo de perder la posibilidad de contar con ese testigo en la etapa de prueba.
+
+Se mencionó la posibilidad de tomar una declaración en una escribanía, y también la existencia de pericias caligráficas extrajudiciales. Su límite es que \textbf{no tienen el mismo valor} que la prueba judicial: en el caso del testigo, la otra parte puede repreguntarle, y quien declaró en una escribanía no tuvo oportunidad de ejercer el derecho de defensa ni la fiscalización de la prueba.
+
+La respuesta normativa se encuentra en la \textbf{prueba anticipada} del art.\ 326 del CPCC, aplicable, por ejemplo, al testigo que está por morir por una enfermedad terminal.
+
+\begin{formula}{Art.\ 326 CPCC --- Prueba anticipada}
+\textit{<<Los que sean o vayan a ser parte de un proceso de conocimiento y tuvieren motivos justificados para temer que la producción de sus pruebas pudiera resultar imposible o muy dificultosa en el período de prueba, podrán solicitar que se produzcan anticipadamente las siguientes:}
+
+\textit{1) Declaración de algún testigo de muy avanzada edad, gravemente enfermo o próximo a ausentarse del país.}
+
+\textit{2) Reconocimiento judicial o dictamen pericial para hacer constar la existencia de documentos, o el estado, calidad o condición de cosas o de lugares.}
+
+\textit{3) Pedido de informes.}
+
+\textit{4) La exhibición, resguardo o secuestro de documentos concernientes al objeto de la pretensión, conforme lo dispuesto por el artículo 325.}
+
+\textit{La absolución de posiciones podrá pedirse únicamente en proceso ya iniciado, como pedido de medidas preliminares o sólo en caso urgente.>>}
+\end{formula}
+
+\subsection{Diferencia entre diligencias preliminares y prueba anticipada}
+
+\begin{itemize}
+    \item Las \textbf{diligencias preliminares} propiamente dichas son necesarias, por ejemplo, para acreditar un aspecto de la personalidad del demandado y orientar la acción.
+    \item La \textbf{prueba anticipada} del art.\ 326 responde a la lógica del riesgo de pérdida o de dificultad de producción de la prueba en el período probatorio.
+\end{itemize}
+
+\subsection{El beneficio de litigar sin gastos como incidente probatorio previo}
+
+Existe un incidente vinculado que suele trabajarse en la práctica: el \textbf{beneficio de litigar sin gastos}. En ese incidente se toma prueba testimonial que luego se ratifica en el juicio principal. Debe tenerse presente este incidente porque la falta de pago de la tasa de justicia puede ser un impedimento para acceder a la justicia.
+
+En la práctica, la prueba testimonial se toma extrajudicialmente y luego se ratifica, quedando muchas veces la ratificación condicionada a que la demandada no la objete cuando se le corre traslado de la producción de la prueba para su fiscalización: si no la objeta, la prueba se incorpora.
+
+Esta lógica se vincula con una política judicial de descongestión de los juzgados: la prueba testimonial se toma extrajudicialmente y se ratifica después, quedando la incorporación definitiva sujeta a la actitud de la contraparte.
+
+\section{Unidad 3 --- El abogado como investigador extrajudicial}
+
+\textbf{Pregunta guía:} ¿cómo se reconstruyen los hechos antes de demandar?
+
+Buena parte del trabajo del abogado consiste en \textbf{investigar}, de manera similar a un detective, antes incluso de poder encuadrar jurídicamente un reclamo.
+
+\begin{example}{el informe de dominio para identificar al propietario de un vehículo}
+Un cliente relata que fue chocado por un automóvil determinado del que solo conoce el dominio. La medida consiste en solicitar un informe al registro de la propiedad. Si el cliente solo cuenta con una dirección --- por ejemplo, un domicilio en calle Sarmiento 435 ---, es necesario recurrir a informes de catastro o del registro de la propiedad para determinar la titularidad del dominio, dado que hoy la mayoría de estas gestiones ya no se realizan de manera presencial.
+\end{example}
+
+Existe una diferencia entre la formación teórica y la práctica profesional: muchas cosas teóricas son muy importantes porque dan el soporte general y el conocimiento, pero luego se necesita el plano concreto, la situación concreta, y hay aspectos que se descubren con el correr del tiempo.
+
+\subsection{La historia clínica en el juicio de mala praxis}
+
+\begin{example}{simulacro de juicio de mala praxis}
+En una actividad realizada con una comisión anterior se simuló un juicio de mala praxis médica. La pieza fundamental para determinar si existió o no mala praxis es la \textbf{historia clínica}, que será el elemento central. Puede realizarse alguna pericia extrajudicial --- no en sentido estricto --- para examinar al damnificado o, con los elementos disponibles, tratar de dilucidar qué ocurrió con la intervención.
+\end{example}
+
+La historia clínica digital plantea un desafío contemporáneo frente a la historia clínica en soporte papel. Actualmente puede encontrarse en un portal al que se accede con un código de usuario. Respecto de la posibilidad de que sea manipulada, se señaló que desde el punto de vista informático puede determinarse si fue manipulada o no.
+
+\begin{example}{referencia de actualidad: los audios de Andis}
+Para ilustrar el desafío técnico de acreditar manipulaciones digitales se mencionó la controversia sobre unos audios --- conocidos públicamente como <<los audios de Andis>> --- que habrían sido modificados, discusión que llevaba ya un par de años. Este tipo de casos exige a los abogados confiar en peritos ingenieros informáticos para determinar qué ocurrió realmente con el soporte digital.
+\end{example}
+
+Para poder trabajar la demanda se necesita la historia clínica. Muchas veces el cliente solo cuenta con un resumen de historia clínica, que es lo que se entregaba antes. \textbf{Un resumen no es lo mismo que la historia clínica}: la secuencia de la historia clínica muchas veces es esclarecedora para el resultado del pleito. Para obtener la historia clínica completa suele ser necesario recurrir a una \textbf{prueba anticipada}.
+
+\begin{example}{secuestro de la historia clínica y garantía de defensa en juicio}
+En un caso de la práctica profesional se promovió una diligencia preliminar para secuestrar una historia clínica sin dar previa intervención al hospital o clínica, por el riesgo de que la documentación fuera alterada. La medida se ordenó con auxilio de la fuerza pública y oficial de justicia, dando intervención al defensor oficial para resguardar la garantía de defensa en juicio, que debe estar presente aunque sea de modo larvado o mínimo.
+\end{example}
+
+Todo lo desarrollado --- cautelares, diligencias preliminares, prueba anticipada e investigación extrajudicial --- ocurre \textbf{antes de la etapa de prueba} habitualmente identificada, es decir, antes de la audiencia del art.\ 360 del CPCC.
+
+\subsection{La prueba se piensa desde la consulta}
+
+La prueba se piensa desde la \textbf{primera consulta} del cliente. En la mediación, el cliente a veces rechaza una propuesta razonable y exige llegar hasta el final. Frente a ello, la pregunta del abogado es: <<¿qué prueba tiene?>>.
+
+\begin{example}{el testigo que no recordaba los hechos}
+Al consultar previamente a un testigo, este no recordaba con precisión los hechos relevantes ni las fechas exactas. Esto expone la fragilidad de la prueba testimonial y obliga al abogado a advertir al cliente cuándo conviene o no litigar.
+\end{example}
+
+\subsection{Caso de defensa del consumidor: la compra no entregada}
+
+\begin{example}{compra por internet no entregada}
+Una clienta realizó una compra por internet de \$60.000 y no recibió el producto. Fracasó la conciliación por incomparecencia de la proveedora y la clienta consultó si debía iniciar un juicio. En los montos menores surge el dilema de si vale la pena litigar (por ejemplo, ante una máquina expendedora que no entrega un producto de \$5.000). En el caso, el abogado intervino formalmente invocando el art.\ 37 de la ley 23.969 del Colegio Público de Abogados, logrando destrabar la situación.
+% TODO: contenido incompleto o ambiguo en las notas originales (número de ley y artículo citados tal como figuran en el apunte)
+\end{example}
+
+En materia de derecho del consumidor se señaló que, si el consumidor pone el producto a disposición y el proveedor no lo retira ni lo sustituye, existe también una suerte de incumplimiento, porque el proveedor está obligado: si ofrece un talle, debe tener un stock racional.
+
+\begin{definition}{principio de prueba por escrito}
+Elemento --- por ejemplo, una conversación de chat --- que goza de cierto favorecimiento o auspicio procesal, sin ser por sí solo prueba plena.
+\end{definition}
+
+Por analogía con el proceso penal, \textbf{la denuncia es prueba}: la gente no denuncia porque sí, salvo en un caso patológico. La denuncia puede constituir prueba y permite, de algún modo, una plataforma para continuar.
+
+% ------------------------------------------------------------
+% CORNELL BLOQUE I
+% ------------------------------------------------------------
+\section{Cuadro Cornell --- Bloque I}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cómo se fundamenta una medida cautelar?} &
+Puede fundarse en prueba testimonial extrajudicial (arts.\ 195 y ss., en especial art.\ 197 CPCC), sin necesidad de producirla en el proceso, o directamente en un título fuerte, como el vínculo familiar en los alimentos provisorios. \\[0.6em]
+
+\textbf{¿Cuáles son las finalidades de las medidas cautelares?} &
+Asegurar el resultado del proceso u obtener una respuesta jurisdiccional urgente, como en los alimentos provisorios, cuando el peticionante no puede esperar la sentencia. \\[0.6em]
+
+\textbf{¿Qué significa que el proceso de familia tenga estructura asimétrica?} &
+A diferencia de los procesos con estructura simétrica (igualdad de armas), el actor goza de cierto favorecimiento probatorio y el demandado tiene a su cargo una carga probatoria reforzada si no colabora procesalmente. El CCyC reivindicó el principio de colaboración procesal en materia de familia. \\[0.6em]
+
+\textbf{¿Qué es la prueba anticipada?} &
+Es la producción de prueba antes o fuera de la etapa procesal ordinaria, cuando hay motivos justificados para temer que resulte imposible o muy dificultosa en el período de prueba (art.\ 326 CPCC): testigo de muy avanzada edad, gravemente enfermo o próximo a ausentarse del país; reconocimiento judicial o dictamen pericial; pedido de informes; exhibición, resguardo o secuestro de documentos. \\[0.6em]
+
+\textbf{¿Qué diferencia hay entre diligencias preliminares y prueba anticipada?} &
+Las diligencias preliminares sirven, por ejemplo, para acreditar un aspecto de la personalidad del demandado y orientar la acción. La prueba anticipada apunta a preservar un medio de prueba en riesgo de pérdida o de dificultad de producción futura. \\[0.6em]
+
+\textbf{¿Qué valor tiene una declaración testimonial tomada en una escribanía?} &
+No tiene el mismo valor que la prueba judicial: la otra parte no pudo repreguntar y no hubo oportunidad de ejercer el derecho de defensa ni la fiscalización. \\[0.6em]
+
+\textbf{¿Qué incidencia tiene el beneficio de litigar sin gastos en la prueba testimonial?} &
+En ese incidente se toma prueba testimonial extrajudicialmente que luego se ratifica en el juicio principal; la ratificación queda sujeta a que la demandada no la objete al correrle traslado. \\[0.6em]
+
+\textbf{¿Qué rol cumple el abogado como investigador extrajudicial?} &
+Antes de demandar indaga mediante informes de dominio, catastro o registro de la propiedad y gestiona el resguardo de prueba sensible, como la historia clínica, incluso mediante diligencias preliminares de secuestro con intervención del defensor oficial para garantizar la defensa en juicio. \\[0.6em]
+
+\textbf{¿Qué es el principio de prueba por escrito?} &
+Un elemento (por ejemplo, una conversación de chat) que goza de cierto favorecimiento procesal sin ser por sí solo prueba plena. \\
+
+\midrule
+\multicolumn{2}{@{}p{\dimexpr0.92\textwidth+2\tabcolsep\relax}@{}}{%
+\textbf{Resumen:} La prueba no comienza en la etapa de prueba: se piensa desde la primera consulta. Las cautelares pueden fundarse en prueba extrajudicial o en un título fuerte; la prueba anticipada (art.\ 326 CPCC) permite producir prueba en riesgo antes del período probatorio; y las diligencias preliminares y la investigación extrajudicial del abogado --- informes, historia clínica completa, secuestro con defensor oficial --- preparan el reclamo respetando siempre la garantía de defensa en juicio.
+} \\
+\bottomrule
+\end{longtable}
+
+% ============================================================
+\chapter[Bloque II --- Control judicial y sana crítica]{Bloque II --- Control judicial de la prueba y sana crítica}
+% ============================================================
+
+\section{Unidad 4 --- Facultades probatorias del juez y la sana crítica}
+
+\textbf{Pregunta guía:} ¿qué límites tiene el juez al apreciar la prueba?
+
+Un aporte inicial sostuvo que la prueba es una facultad privativa del juez y que, por excepción, se abre a prueba en Cámara; que se trata de las pruebas que el juez estime convenientes, que no deben ser inconducentes ni inoperantes, sino coherentes con el objeto reclamado.
+
+Se precisó el contexto de esa afirmación: las pruebas son, en principio, un \textbf{resorte de las partes}, y luego el juzgado es quien decide. El principio importante en materia probatoria es el de la \textbf{sana crítica}: según el caso, lo que el juez aprecie determina la prueba necesaria para la resolución.
+
+\begin{formula}{Art.\ 163, inc.\ 5 (segundo párrafo) CPCC}
+\textit{<<Las presunciones no establecidas por ley constituirán prueba cuando se funden en hechos reales y probados y cuando por su número, precisión, gravedad y concordancia produjeren convicción según la naturaleza del juicio, de conformidad con las reglas de la sana crítica.>>}
+\end{formula}
+
+Las presunciones no figuran en el elenco clásico de medios de prueba, pero constituyen en la práctica una herramienta central, vinculada a la fórmula de \textbf{presunciones graves, precisas y concordantes}. Deben estar sostenidas en hechos acreditados que permitan forjar la convicción con razonabilidad.
+
+\begin{important}
+\textbf{Idea central de la Unidad 4.} El ofrecimiento y la producción de la prueba son, en principio, un resorte de las partes; lo que corresponde privativamente al juez es la valoración final conforme a las reglas de la sana crítica, cuyo fundamento normativo se ubica en el art.\ 163 del CPCC, al regular el contenido de la sentencia.
+\end{important}
+
+\section{Unidad 5 --- Valoración de la prueba testimonial}
+
+\textbf{Pregunta guía:} ¿cuánto vale el testimonio de una sola persona?
+
+La prueba testimonial tiene un \textbf{componente subjetivo}, porque proviene de un sujeto cuyas percepciones están atravesadas por su mirada particular. Se diferencia de la prueba pericial, más aséptica, que cuenta con una apoyatura técnica y objetiva.
+
+La sana crítica funciona como una directiva legal para que el juez no exorbite ni minimice el valor de un testimonio. Cobran relevancia las \textbf{generales de la ley}.
+
+\begin{example}{el testigo que no sabía si era <<acreedor>>}
+Conforme a las generales de la ley se preguntaba a un testigo si era acreedor o deudor de alguna de las partes. El testigo tenía en curso un juicio contra el demandado, pero no comprendía que ello lo convertía en un <<pretenso acreedor>>, por lo que no lo manifestaba espontáneamente. Conclusión: hay que preguntar mejor (<<¿tiene juicio con alguna de las partes?>>) para que la persona pueda exteriorizarlo, y el juez debe apreciarlo para ver si el testimonio está teñido de parcialidad.
+\end{example}
+
+La mayoría de los testigos tiene algún vínculo con las partes --- de allí que se los proponga ---, y el juez debe analizar la declaración a la luz de ese posible interés, incluyendo la hipótesis extrema de que el testigo espere una recompensa del resultado del pleito.
+
+En cuanto a los límites de la sana crítica, se citó a Zaine, según quien las reglas de la sana crítica, en cuya virtud los jueces deben formar su convicción respecto de la prueba rendida, son \textbf{simples preceptos de sentido común}, que solo se infringen cuando se las violenta hasta el absurdo.
+% TODO: contenido incompleto o ambiguo en las notas originales (nombre del autor citado tal como figura en el apunte)
+
+\begin{example}{sentencia revocada por <<fracturar la lógica>>}
+En un caso de la práctica profesional varios testigos declararon en un sentido claro respecto de la actividad del actor, pero el juez de primera instancia interpretó esa prueba <<de una manera totalmente distorsiva>> y rechazó la pretensión. La Cámara sostuvo que el análisis de la prueba se había hecho <<fracturando la lógica>>, perdiendo de vista el sentido común, y revirtió la decisión. La irrazonabilidad en el análisis puede ser clave en el resultado.
+\end{example}
+
+\section{Unidad 6 --- Hechos nuevos y hechos sobrevinientes}
+
+\textbf{Pregunta guía:} ¿hasta cuándo puedo incorporar un hecho al proceso?
+
+\begin{formula}{Art.\ 365 CPCC --- Hechos nuevos}
+\textit{<<Cuando con posterioridad a la contestación de la demanda o reconvención ocurriere o llegare a conocimiento de las partes algún hecho que tuviese relación con la cuestión que se ventila, podrán alegarlo hasta cinco días después de notificada la audiencia prevista en el artículo 360.>>}
+\end{formula}
+
+Este artículo fija el \textbf{límite temporal} para incorporar hechos nuevos al debate. Existe además otra categoría distinta: los \textbf{hechos sobrevinientes}, que pueden ser ponderados por el juez incluso más allá de ese límite, en tanto resulten debidamente probados durante la sustanciación del juicio.
+
+\begin{formula}{Art.\ 163, inc.\ 6 (segunda parte) CPCC}
+\textit{<<La sentencia podrá hacer mérito de los hechos constitutivos, modificativos o extintivos, producidos durante la sustanciación del juicio y debidamente probados, aunque no hubiesen sido invocados oportunamente como hechos nuevos.>>}
+\end{formula}
+
+El juez tiene aquí una verdadera facultad de incorporar hechos sobrevinientes, pero esta atribución es delicada porque implica una suerte de intervención más allá de lo pedido por las partes (\textit{extra petita}), lo que reabre un debate histórico sobre el rol del juez en el proceso.
+
+\subsection{Juez árbitro y juez instructor}
+
+Por paralelismo con el proceso penal, se discute si el juez debe mantenerse como una suerte de árbitro entre las partes --- el llamado juez de garantías, que existe más en la provincia de Buenos Aires ---, o si debe actuar como el juez federal, que escucha al fiscal y luego dispone su propia medida. En este último caso el juez se involucra en la pesquisa misma, lo que puede alterar el equilibrio entre las partes.
+
+\subsection{Medidas para mejor proveer}
+
+Las medidas para mejor proveer son un recurso de los jueces que puede \textbf{suplir la negligencia probatoria de las partes}: el juez advierte que el abogado de una de las partes fue deficiente y, por considerar que existe una situación de injusticia, dispone una medida para mejor proveer.
+
+Las facultades (en rigor, potestades) judiciales que habilitan al juez a disponer medidas de oficio se ubican en los arts.\ 35 y siguientes del CPCC --- en especial el art.\ 36 ---. Estas potestades \textbf{deben ejercerse respetando el derecho de defensa de las partes}, pues de lo contrario el juez podría desequilibrar el proceso e incluso incurrir en prejuzgamiento.
+
+\begin{important}
+\textbf{Idea central de la Unidad 6.} El juez instructor --- quien dispone medidas para mejor proveer o incorpora hechos sobrevinientes --- actúa dentro de un límite estricto: no puede convertirse en supridor de la negligencia de una de las partes sin poner en riesgo su imparcialidad y el equilibrio procesal. Por ello, la mejor defensa profesional sigue siendo la formación técnica del abogado, y no la expectativa de una intervención judicial de oficio.
+\end{important}
+
+% ------------------------------------------------------------
+% CORNELL BLOQUE II
+% ------------------------------------------------------------
+\section{Cuadro Cornell --- Bloque II}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es la sana crítica y dónde está regulada?} &
+Es la regla de valoración racional de la prueba por parte del juez, basada en el sentido común y la lógica. Su base normativa se ubica en el art.\ 163 inc.\ 5 del CPCC, al referirse a la fuerza probatoria de las presunciones judiciales. \\[0.6em]
+
+\textbf{¿Qué corresponde a las partes y qué al juez en materia de prueba?} &
+El ofrecimiento y la producción de la prueba son, en principio, un resorte de las partes; la valoración final conforme a la sana crítica corresponde privativamente al juez. \\[0.6em]
+
+\textbf{¿Cuándo constituyen prueba las presunciones?} &
+Cuando se fundan en hechos reales y probados y, por su número, precisión, gravedad y concordancia, producen convicción según la naturaleza del juicio y las reglas de la sana crítica (art.\ 163 inc.\ 5): presunciones graves, precisas y concordantes. \\[0.6em]
+
+\textbf{¿Cómo se valora la prueba testimonial?} &
+A través de las generales de la ley (vínculo con las partes, interés en el pleito) y de la sana crítica. El juez debe evaluar la posible parcialidad del testigo sin caer en un análisis distorsivo o carente de sentido común, bajo riesgo de que la sentencia sea revocada por irrazonabilidad. \\[0.6em]
+
+\textbf{¿Hasta cuándo se pueden alegar hechos nuevos?} &
+Hasta cinco días después de notificada la audiencia del art.\ 360 (art.\ 365 CPCC). \\[0.6em]
+
+\textbf{¿Qué diferencia hay entre hechos nuevos y hechos sobrevinientes?} &
+Los hechos nuevos deben alegarse dentro del límite del art.\ 365. Los sobrevinientes, producidos durante la sustanciación del juicio y debidamente probados, pueden ser merituados en la sentencia aunque no hayan sido invocados oportunamente como hechos nuevos (art.\ 163 inc.\ 6). \\[0.6em]
+
+\textbf{¿Puede el juez producir prueba de oficio?} &
+Sí, mediante medidas para mejor proveer (arts.\ 35 y 36 CPCC), pero con prudencia, respetando el derecho de defensa, para no suplir la negligencia probatoria de una parte ni incurrir en prejuzgamiento. \\
+
+\midrule
+\multicolumn{2}{@{}p{\dimexpr0.92\textwidth+2\tabcolsep\relax}@{}}{%
+\textbf{Resumen:} La producción de la prueba es resorte de las partes; la valoración es del juez y se rige por la sana crítica (art.\ 163 CPCC), entendida como preceptos de sentido común. En la prueba testimonial deben ponderarse las generales de la ley y la posible parcialidad. Los hechos nuevos se alegan hasta cinco días después de notificada la audiencia del art.\ 360; los sobrevinientes pueden ser merituados en la sentencia. Las potestades de oficio de los arts.\ 35 y 36 deben respetar el derecho de defensa.
+} \\
+\bottomrule
+\end{longtable}
+
+% ============================================================
+\chapter[Bloque III --- La prueba en segunda instancia]{Bloque III --- La prueba en segunda instancia}
+% ============================================================
+
+\section{Unidad 7 --- Apertura a prueba en Cámara}
+
+\textbf{Pregunta guía:} ¿puede la Cámara producir prueba que el juez rechazó?
+
+La Cámara es un lugar previsto \textbf{para decidir y no para probar}: la prueba se tiene que producir en primera instancia. Sin embargo, a veces en primera instancia no se pudo producir la prueba, y queda la alternativa de una etapa probatoria muy reducida, prevista en el art.\ 260, inc.\ 2, del CPCC.
+
+\begin{formula}{Art.\ 260, inc.\ 2 CPCC}
+Corresponde \textit{<<indicar las medidas probatorias denegadas en primera instancia, o respecto de las cuales hubiese mediado declaración de negligencia, o que hubiere interés en replantear en los términos de los artículos 379 y 385. La petición será fundada y resuelta sin sustanciación alguna.>>}
+\end{formula}
+
+La norma distingue dos supuestos que suelen confundirse: la \textbf{prueba denegada} y la prueba respecto de la cual \textbf{medió declaración de negligencia}. No es lo mismo.
+
+\begin{example}{la pericia <<superflua>> y la propia negligencia del abogado}
+Caso hipotético: se solicita una pericia para acreditar determinada prueba de audios incorporada al proceso, pero el juez la califica de superflua e innecesaria. En otro escenario, el juez admite producir la prueba y es el propio abogado quien no la impulsa; en ese caso hubo negligencia en la producción de la prueba, y se abre la pregunta de si en Cámara puede lograrse que se lo excuse de esa negligencia.
+\end{example}
+
+\begin{important}
+La negligencia probatoria es fuente de responsabilidad del abogado y se ubica entre los escenarios de riesgo procesal más concretos, junto con la caducidad de instancia y la prescripción.
+\end{important}
+
+\section{Unidad 8 --- Jurisprudencia sobre replanteo de prueba}
+
+\textbf{Pregunta guía:} ¿por qué se rechazó el replanteo si el testigo era clave?
+
+\subsection{Testigos en extraña jurisdicción: tomo y folio}
+
+En un primer fallo, la actora pretendía que se tomara un testimonio en otra jurisdicción --- en <<Santa Campana>> ---, pero no se establecieron los tomos y folios de los abogados autorizados para intervenir allí. El detalle de los autorizados, efectuado por la actora en el petitorio de demanda, fue juzgado insuficiente por la jueza de grado por no haberse indicado las matrículas: se pedía autorizar a los abogados con sus nombres, pero sin tomo y folio. La prueba fue denegada y la Cámara también desestimó el pedido de replanteo de la prueba formulado por la actora, por entender que era necesario cumplir las formalidades del artículo.
+
+\begin{formula}{Art.\ 453 CPCC --- Testigos domiciliados fuera de la jurisdicción del juzgado}
+\textit{<<Si en el escrito de ofrecimiento de prueba la parte hubiese manifestado que los testigos deban declarar fuera del lugar del juicio, acompañará el interrogatorio e indicará los nombres de las personas autorizadas para intervenir en el trámite del exhorto u oficio, quienes deberán ser abogados o procuradores con matrícula en la jurisdicción del tribunal requerido, excepto cuando las leyes locales autorizaren a otras personas. Los comisionados podrán sustituir la autorización. No se admitirá la prueba si en el escrito no se cumplieran dichos requisitos.>>}
+\end{formula}
+
+Para cumplir diligencias en otra jurisdicción --- oficios, exhortos, inscripciones --- corresponde observar los recaudos de la \textbf{Ley 22.172}, que instrumenta el convenio de reconocimiento de documentos judiciales entre provincias previsto constitucionalmente. Antes de este convenio, inscribir una medida en otra provincia era <<misión imposible>>, casi como inscribirla en otro país.
+
+\begin{example}{impacto de la virtualidad en la prueba testimonial a distancia}
+En la actualidad la mayoría de los testigos a distancia declaran por videollamada, lo que morigera --- aunque no elimina --- la exigencia del art.\ 453. En un caso de la práctica, los testigos de un viajante de comercio se encontraban en Salta, Jujuy y Mendoza, y fue necesario trasladarse a esas provincias para producir la prueba, porque el juzgado --- de la Provincia de Buenos Aires, con vista de causa presencial --- no había previsto que declararan por otro medio. La vista de causa en la Provincia de Buenos Aires todavía se realiza con presencia física de todos.
+\end{example}
+
+\section{Unidad 9 --- Recursos directos y control judicial suficiente}
+
+\textbf{Pregunta guía:} ¿qué pasa cuando un recurso directo no tiene primera instancia?
+
+\begin{definition}{recurso directo}
+Proceso que, por disposición legal, se sustancia directamente ante la Cámara, sin primera instancia.
+\end{definition}
+
+En un segundo fallo, vinculado a una sanción disciplinaria, se trató de un recurso directo contra el Colegio Público de Abogados de la Capital Federal, tramitado ante la Cámara Contencioso Administrativo Federal, Sala V --- cámara de alzada de las decisiones del Colegio ---. Fueron denegadas la prueba testimonial y el careo planteado.
+
+Este fallo permite retomar el principio de \textbf{amplitud probatoria} como garantía del derecho de defensa, y el carácter excepcional que debe tener la restricción judicial de la prueba.
+
+\begin{definition}{control judicial suficiente}
+Según los fundamentos citados del fallo, la apertura a prueba impone una exigencia que hace a la plenitud del control que ejercen los jueces sobre la administración pública. Conforme a la reiterada jurisprudencia de la Corte, requiere que se brinde la oportunidad de plantear con amplitud el debate de las pruebas, ya que solo así se garantiza que la tutela judicial sea efectiva. El fallo agregó que denegar la prueba impide al particular probar los hechos en que apoya su impugnación o los elementos de juicio que faciliten la dilucidación de la cuestión sustancial que se discute.
+\end{definition}
+
+Pese a la contundencia de estos fundamentos --- y a que se trataba de un recurso directo, sin primera instancia, donde con mayor razón debía garantizarse un espacio de prueba ---, el tribunal igualmente denegó tanto la prueba testimonial como el careo.
+
+\textbf{Amplitud probatoria y restricción judicial.} El juez es restrictivo en materia de prueba, pero quien litiga goza, en principio, de amplitud para transitar el proceso con posibilidades de demostrar lo que pretende. Por eso los jueces, para rechazar un punto de pericia, no pueden decir automáticamente que no quieren tanta prueba o tantos testigos porque congestiona el juzgado. Debe tenerse cuidado con la restricción.
+
+\subsection{Otro fallo}
+
+En un tercer fallo se dio lugar a que se presentaran pruebas en Cámara, pero luego se las denegaron; fue muy parecido, no se abrió la prueba. Se mencionó además que había prueba informática de un Superior Tribunal de Provincia.
+% TODO: contenido incompleto o ambiguo en las notas originales (alcance del fallo y de la prueba informática mencionada)
+
+\subsection{El replanteo en la expresión de agravios}
+
+En la expresión de agravios puede incluirse un \textbf{capítulo preliminar} dedicado al replanteo de pruebas y a la fundamentación de las apelaciones concedidas con efecto diferido, tema bastante álgido para los abogados. Si no hay necesidad de replanteo de prueba, solo se hace la expresión de agravios de fondo, pues el análisis generalmente pasa por una apreciación desviada, errónea o gravemente arbitraria de la prueba que determinó una decisión adversa a la pretensión.
+
+\begin{important}
+\textbf{Idea central del Bloque III.} El replanteo de prueba en Cámara es una vía excepcional y de interpretación restrictiva: exige identificar con precisión si la prueba fue denegada, declarada negligente o simplemente no ofrecida a tiempo, y requiere cumplir estrictamente los recaudos formales de ofrecimiento (como el art.\ 453). La amplitud probatoria es un principio a favor de quien litiga, y su restricción injustificada compromete la garantía de defensa en juicio y el control judicial suficiente.
+\end{important}
+
+% ------------------------------------------------------------
+% CORNELL BLOQUE III
+% ------------------------------------------------------------
+\section{Cuadro Cornell --- Bloque III}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuándo se abre a prueba en Cámara?} &
+Excepcionalmente, conforme al art.\ 260 inc.\ 2 CPCC, cuando la prueba fue denegada en primera instancia, declarada negligente o existe interés en replantearla (arts.\ 379 y 385). La petición es fundada y se resuelve sin sustanciación. La Cámara está prevista para decidir, no para probar. \\[0.6em]
+
+\textbf{¿Qué diferencia hay entre prueba denegada y prueba declarada negligente?} &
+Son dos supuestos distintos del art.\ 260 inc.\ 2 y no deben confundirse. \\[0.6em]
+
+\textbf{¿Qué requisitos exige la prueba testimonial en extraña jurisdicción?} &
+El art.\ 453 CPCC exige acompañar el interrogatorio e indicar los nombres de los abogados o procuradores autorizados a intervenir en el exhorto u oficio, con matrícula en la jurisdicción requerida (en el caso analizado, tomo y folio). Si no se cumplen, la prueba no se admite. Además deben observarse los recaudos de la Ley 22.172. \\[0.6em]
+
+\textbf{¿Qué es un recurso directo?} &
+Un proceso que por disposición legal se sustancia directamente ante la Cámara, sin primera instancia. \\[0.6em]
+
+\textbf{¿Qué es el control judicial suficiente?} &
+Es el estándar según el cual debe brindarse la oportunidad de plantear con amplitud el debate probatorio, como condición de la tutela judicial efectiva; denegar la prueba impide al particular probar los hechos en que apoya su impugnación. \\[0.6em]
+
+\textbf{¿Qué principio rige la restricción judicial de la prueba?} &
+El juez es restrictivo, pero quien litiga goza de amplitud probatoria como garantía del derecho de defensa; no puede denegarse prueba solo por congestión del juzgado. \\[0.6em]
+
+\textbf{¿Cómo se articula el replanteo de prueba con la expresión de agravios?} &
+Mediante un capítulo preliminar sobre replanteo de pruebas y fundamentación de las apelaciones concedidas con efecto diferido; si no hace falta replanteo, solo se expresan agravios de fondo sobre la apreciación errónea o arbitraria de la prueba. \\
+
+\midrule
+\multicolumn{2}{@{}p{\dimexpr0.92\textwidth+2\tabcolsep\relax}@{}}{%
+\textbf{Resumen:} La Cámara decide más que prueba; el replanteo del art.\ 260 inc.\ 2 es excepcional y restrictivo, y exige distinguir prueba denegada de prueba declarada negligente y cumplir los recaudos formales, como los del art.\ 453 y la Ley 22.172 para testigos en otra jurisdicción. La amplitud probatoria y el control judicial suficiente protegen la defensa en juicio y la tutela judicial efectiva.
+} \\
+\bottomrule
+\end{longtable}
+
+% ============================================================
+\chapter[Bloque IV --- Caducidad y negligencia]{Bloque IV --- Caducidad y negligencia probatoria}
+% ============================================================
+
+\section{Unidad 10 --- Caducidad y negligencia: dos institutos distintos}
+
+\textbf{Pregunta guía:} ¿cuál es la diferencia entre caducar y ser negligente?
+
+Caducidad y negligencia son \textbf{institutos diversos y diferentes}. Cada medio probatorio tiene su propio supuesto de caducidad, que debe buscarse e identificarse en la norma: confesional, testimonial, informativa y pericial.
+
+\begin{definition}{caducidad probatoria}
+Los supuestos de caducidad significan que no se generó el desenvolvimiento necesario para que la prueba se produjera.
+\end{definition}
+
+\begin{example}{caducidad en la prueba confesional}
+Hay que citar al absolvente para que comparezca, pues si no comparece puede darse el escenario de la confesión ficta. A su vez, quien pone las posiciones (el ponente) debe realizar determinados actos para que el absolvente pueda absolver.
+\end{example}
+
+\begin{formula}{Art.\ 432 CPCC --- Caducidad de la prueba testimonial}
+Es el artículo que alude expresamente a la caducidad de la prueba testimonial, con varios supuestos para analizar en detalle.
+\end{formula}
+
+El art.\ 384 del CPCC se vincula con la negligencia probatoria.
+
+\begin{important}
+\textbf{Idea central de la Unidad 10.} La caducidad opera por el mero incumplimiento u omisión de un acto necesario para el desarrollo de la prueba --- es prácticamente automática ---, mientras que la negligencia requiere una valoración sobre la falta de impulso diligente de la parte interesada en la prueba. Ambos institutos generalmente necesitan ser invocados por la parte contraria para que el juzgado los declare.
+\end{important}
+
+\section{Unidad 11 --- Prueba informativa: plazos y reiteratorios}
+
+\textbf{Pregunta guía:} ¿cómo se cuenta el plazo para pedir un oficio reiteratorio?
+
+En la prueba informativa --- oficios dirigidos a entidades u organismos --- el plazo para que la entidad conteste el oficio está hoy uniformado en \textbf{10 días hábiles} (antes había diferencias). Vencido ese plazo, la parte cuenta con \textbf{cinco días} para solicitar el reiteratorio.
+
+\begin{exercise}{cómputo de plazos del oficio vencido al reiteratorio}
+\textbf{Primer supuesto.} Vencidos los 10 días hábiles sin respuesta de la entidad oficiada, suponiendo que el vencimiento operó un lunes, el plazo de 5 días hábiles para solicitar el reiteratorio comienza a correr a partir del martes siguiente, sin contar sábados y domingos por ser inhábiles.
+
+\textbf{Segundo supuesto (notificación por Ministerio de la Ley).} Si el juez ordena hacer el oficio reiteratorio un viernes, la parte se considera notificada recién el martes siguiente --- primer día de nota hábil posterior ---, y desde allí comienzan a correr los 5 días para confeccionar el nuevo oficio.
+
+\textbf{Matiz práctico.} Si una providencia se dicta y se deja <<nota>> durante la tarde, después de cierto horario, no se tiene por notificada ese mismo día, porque el sistema permite dejar nota hasta las 20 horas.
+
+Es necesario ser riguroso y llevar un registro de los plazos, porque la contraparte puede estar atenta para pedir la caducidad.
+\end{exercise}
+
+Si la entidad tampoco contesta el reiteratorio, corresponde reiterar todo el ciclo. Existen además vías adicionales de presión frente al incumplimiento persistente.
+
+El art.\ 804 del Código Civil y Comercial se ocupó de este tema --- las sanciones conminatorias frente al incumplimiento de deberes de colaboración procesal, como la falta de contestación de oficios ---.
+
+\begin{note}
+Se recomendó la lectura del art.\ 804 del CCyC, porque el Código Civil y Comercial incursionó en este tema.
+\end{note}
+
+\subsection{El rol activo del abogado frente a los plazos}
+
+En el proceso laboral existe un plazo legal de 60 días para determinada etapa, pero ese plazo tiende a prolongarse si la parte interesada no insta activamente al juzgado. Por ello el abogado debe asumir un rol \textbf{fiscalizador y controlador} para lograr remover obstáculos al avance del proceso, por ejemplo respecto de medidas de prueba que no se han producido y de las que quizá deba desistir.
+% TODO: contenido incompleto o ambiguo en las notas originales (etapa a la que corresponde el plazo de 60 días)
+
+\section{Unidad 12 --- Estrategia procesal ante pruebas comunes}
+
+\textbf{Pregunta guía:} ¿puedo desistir de mi prueba y acusar negligencia a la vez?
+
+\subsection{El caso del escrito extraviado}
+
+\begin{example}{estrategia paso a paso ante un escrito no agregado al expediente}
+Se requirió localizar una demanda firmada cinco años antes, correspondiente a un expediente que el juzgado no parecía tener intención de resolver rápidamente, por existir una cuestión compleja de cosa juzgada vinculada a otro proceso anterior donde no se había alcanzado siquiera la etapa de prueba. Al indagar en el expediente digital se advirtió que la demanda original nunca había quedado agregada al sistema informático, probablemente por un error de carga ocurrido durante la pandemia. El abogado, como depositario del escrito firmado, reconoció allí una eventual fuente de responsabilidad profesional.
+
+Se encontró el escrito firmado en soporte físico, se lo escaneó y se lo subió al expediente, sin acompañar en el mismo acto la petición de que el juzgado resolviera el fondo, para no generar una presión excesiva sobre el tribunal en un único acto. El juzgado había calificado la actuación previa como <<deficitaria>> y ordenado subsanarla; se resolvió con una redacción neutra (<<acompaño escrito>>), evitando el término usado por el juzgado.
+\end{example}
+
+\begin{example}{<<el proceso se construye con ladrillos>>: preclusión}
+Tras el proveído que tuvo por cumplida la subsanación, se utilizó una imagen para explicar el principio de \textbf{preclusión procesal}: como un ladrillo al que se le puso cemento y que ya fraguó, la otra parte no puede decir nada. Transcurrido el plazo para que la contraparte objetara sin que lo hiciera, recién correspondía presentar el nuevo pedido de resolución del fondo, avanzando paso a paso sin exponerse a un rechazo por defectos de forma.
+\end{example}
+
+\subsection{Número de testigos: \textit{testis unus, testis nullus}}
+
+Contar con tres testigos ya declarados --- de un total de cinco a ocho ofrecidos --- resulta suficiente para no quedar en el escenario del testigo único, según el adagio latino \textit{testis unus, testis nullus} (<<testigo único, testigo nulo>>). Se trata de un principio relativo: la jurisprudencia indica que un único testigo, si es convincente, puede ser valorado con las reglas de la sana crítica. Se agregó que el número sí importa, en línea con la fórmula de las presunciones graves, precisas y concordantes, que exige pluralidad.
+
+En cuanto a la cantidad de testigos admitida en juicios ordinarios, se mencionó ocho y luego que el juzgado indica cinco a lo sumo, con la posibilidad de llegar hasta ocho. Con cinco ofrecidos, si declaran tres, no se queda en el testigo único.
+% TODO: contenido incompleto o ambiguo en las notas originales (cantidad máxima de testigos admitida)
+
+\subsection{¿Desistir de una prueba propia y acusar negligencia en simultáneo?}
+
+\begin{example}{pericia informática innecesaria}
+Se había ofrecido una pericia informática para acreditar el envío de facturas por correo electrónico, pero la testigo contable reveló que las facturas también constaban en los libros contables, por lo que la pericia resultaba innecesaria. Se planteó desistir de esa prueba pericial y, a la vez, acusar la negligencia de la contraparte, que tampoco había impulsado la misma medida.
+
+La pregunta quedó abierta: ¿puede hacerse en simultáneo, o se interpretará como un acto sorpresivo? ¿Debe desistirse, esperar que se consolide el desistimiento --- pasados cinco días --- y recién entonces pedir la negligencia?
+\end{example}
+
+La cuestión no fue resuelta y se dejó como tarea de investigación, junto con el análisis de los supuestos normativos de caducidad y negligencia (arts.\ 384 y 432 CPCC).
+
+\begin{important}
+\textbf{Idea central del Bloque IV.} La caducidad y la negligencia probatoria exigen del abogado un control minucioso y constante de los plazos procesales --- especialmente en la prueba informativa --- y una decisión estratégica informada sobre cuándo desistir de una prueba propia, cuándo acusar la negligencia de la contraria y cómo evitar que ambos actos, combinados, sean interpretados como sorpresivos por el tribunal.
+\end{important}
+
+% ------------------------------------------------------------
+% CORNELL BLOQUE IV
+% ------------------------------------------------------------
+\section{Cuadro Cornell --- Bloque IV}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué diferencia hay entre caducidad y negligencia probatoria?} &
+La caducidad opera casi automáticamente por el incumplimiento u omisión de un acto necesario para el desarrollo de la prueba (por ejemplo, art.\ 432 CPCC para la testimonial). La negligencia requiere una valoración sobre la falta de impulso diligente de la parte interesada (art.\ 384 CPCC). Ambas generalmente deben ser invocadas por la contraparte. \\[0.6em]
+
+\textbf{¿Cómo se computan los plazos de la prueba informativa?} &
+El plazo uniforme para contestar un oficio es de 10 días hábiles; vencido, la parte cuenta con 5 días hábiles para solicitar el reiteratorio, contados desde la notificación (por ejemplo, por Ministerio de la Ley) de la providencia que lo ordena, sin contar días inhábiles. \\[0.6em]
+
+\textbf{¿Qué ocurre si la entidad no contesta el reiteratorio?} &
+Corresponde reiterar todo el ciclo; además, el art.\ 804 CCyC se ocupa de las sanciones conminatorias por incumplimiento de deberes de colaboración. \\[0.6em]
+
+\textbf{¿Qué es el principio de preclusión?} &
+Cada acto procesal firme funciona como un ladrillo que ya fraguó: transcurrido el plazo para objetar sin que la otra parte lo haga, esta ya no puede decir nada. \\[0.6em]
+
+\textbf{¿Cuánto vale un testigo único?} &
+Rige \textit{testis unus, testis nullus} como principio relativo: la jurisprudencia admite que un único testigo convincente sea valorado con la sana crítica; el número importa, en línea con las presunciones graves, precisas y concordantes. \\[0.6em]
+
+\textbf{¿Puedo desistir de una prueba propia y acusar negligencia a la contraparte en simultáneo?} &
+Es un interrogante estratégico abierto: existe el riesgo de que el tribunal interprete la combinación de ambos actos como sorpresiva, por lo que cabe evaluar si conviene esperar a que se consolide el desistimiento antes de acusar la negligencia. \\
+
+\midrule
+\multicolumn{2}{@{}p{\dimexpr0.92\textwidth+2\tabcolsep\relax}@{}}{%
+\textbf{Resumen:} Caducidad y negligencia son institutos distintos: la primera es casi automática; la segunda exige valorar la falta de impulso. Ambas suelen requerir invocación de la contraparte, de modo que el abogado debe controlar rigurosamente los plazos --- sobre todo los de oficios y reiteratorios --- y decidir con criterio estratégico cuándo desistir y cuándo acusar negligencia.
+} \\
+\bottomrule
+\end{longtable}
+
+% ============================================================
+\chapter[Síntesis final]{Síntesis final}
+% ============================================================
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuál es el recorrido completo de la prueba en el proceso civil?} &
+La prueba nace antes del litigio (cautelares fundadas extrajudicialmente y prueba anticipada del art.\ 326), se controla mediante la sana crítica (art.\ 163), se defiende ante la Cámara mediante el replanteo excepcional del art.\ 260 inc.\ 2 y, si no se cuida, se pierde por caducidad o negligencia. \\[0.6em]
+
+\textbf{¿Cuál es el hilo conductor de la clase?} &
+La responsabilidad profesional: la prueba se piensa desde la primera consulta, se construye sin confiar en que el juez supla las omisiones y se defiende con control minucioso de cada plazo. \\
+
+\midrule
+\multicolumn{2}{@{}p{\dimexpr0.92\textwidth+2\tabcolsep\relax}@{}}{%
+\textbf{Resumen:} Cada decisión estratégica --- anticipar, replantear, desistir, acusar negligencia --- puede ser la que decida el resultado del pleito.
+} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

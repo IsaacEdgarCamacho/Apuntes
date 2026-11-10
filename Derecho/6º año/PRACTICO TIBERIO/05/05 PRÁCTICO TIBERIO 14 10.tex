@@ -1,0 +1,948 @@
+\documentclass[12pt,oneside]{book}
+
+%==================================================================
+% METADATOS
+%==================================================================
+% TODO: la universidad no figura en las notas originales; se utiliza la indicada por defecto.
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\titulo}{Práctica profesional: clausura de la etapa de prueba y alegatos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+\newcommand{\fechaclase}{14 de octubre de 2026}
+
+%==================================================================
+% PAQUETES
+%==================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==================================================================
+% CONFIGURACIÓN
+%==================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\renewcommand{\arraystretch}{1.2}
+
+% Encabezados y pies
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==================================================================
+% COMANDOS
+%==================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+%==================================================================
+% ENTORNOS / CAJAS
+%==================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Caja adicional para la transcripción de normas legales presentes en el apunte
+\newtcolorbox{norma}[1]{
+    enhanced,
+    breakable,
+    title={Norma: #1},
+    fonttitle=\bfseries,
+    colback=brown!5,
+    colframe=brown!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% Cuadro Cornell (tabla real: columna izquierda estrecha, derecha amplia, resumen a todo el ancho)
+\newenvironment{cornell}
+{\begin{longtable}{@{}L{0.27\textwidth}|L{\dimexpr0.73\textwidth-2\tabcolsep-\arrayrulewidth\relax}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas (continuación)} \\
+\midrule
+\endhead}
+{\bottomrule
+\end{longtable}}
+
+\newcommand{\cornellrow}[2]{\textbf{#1} & #2 \\ \midrule}
+\newcommand{\cornellresumen}[1]{\multicolumn{2}{@{}p{\textwidth}@{}}{\textbf{Resumen:} #1} \\}
+
+%==================================================================
+\begin{document}
+%==================================================================
+
+%------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es el camino más seguro hacia la comprensión.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------
+\tableofcontents
+
+%------------------------------------------------------------------
+% PRESENTACIÓN
+%------------------------------------------------------------------
+\chapter*{Presentación de los temas}
+\addcontentsline{toc}{chapter}{Presentación de los temas}
+\markboth{Presentación de los temas}{}
+
+Este material corresponde a la clase de Práctica Profesional del \fechaclase. Estudia qué ocurre cuando termina la prueba en un proceso civil y comercial: cómo se \textbf{clausura la etapa}, quién firma cada despacho y qué remedio procede en cada caso, cuándo queda \textbf{consentido} el auto, cuánto dura el \textbf{plazo común para alegar} y cómo conviene presentar el alegato. Además, repasa los plazos del Ministerio Público, las vías para cuestionar pericias y testimonios, los cambios en los procesos penales y el armado, en equipo, del alegato y de la sentencia.
+
+\begin{important}
+Saber \textbf{quién firmó un despacho} define qué recurso se interpone; contar bien un plazo evita que un auto quede \textbf{consentido}; y un alegato bien pensado es la última oportunidad de convencer al juez antes de la sentencia. Estos temas aparecen en cada expediente real y en cada práctica profesional.
+
+La lección de fondo sirve en cualquier trabajo: \textbf{«la cosa se rige por lo escrito»}. Leer quién firma, anotar cada vencimiento en la agenda y no confiar en promesas verbales evita perder derechos, dinero o credibilidad; y los plazos pesan más sobre el abogado que sobre los demás.
+\end{important}
+
+\begin{example}{Cómo se relacionan los bloques: la entrega final de un trabajo de la facultad}
+Todos los bloques de este material son etapas de una misma entrega:
+\begin{itemize}
+    \item \textbf{Bloque 1:} hay una fecha de cierre y alguien certifica qué se entregó y qué falta (clausura y certificación). Importa quién firma esa constancia, porque de ello depende a quién y cómo se reclama.
+    \item \textbf{Bloque 2:} cerrada la entrega, se avisa y corre un plazo para hacer observaciones (notificación, consentimiento y plazo para alegar). Si se deja pasar, ya no se puede reclamar.
+    \item \textbf{Bloque 3:} en la vida real los plazos pesan distinto: quien litiga tiene tres días y el otro tiene semanas; además, las reglas pueden cambiar a mitad de cursada (nuevos procesos penales).
+    \item \textbf{Bloque 4:} antes de la defensa se revisan los informes de especialistas (peritos), los testimonios y la intervención de quienes controlan (Ministerio Público).
+    \item \textbf{Bloque 5:} se prepara la defensa del trabajo en equipo (alegato) y otra persona evalúa y pone la nota (sentencia).
+\end{itemize}
+\end{example}
+
+%==================================================================
+% CAPÍTULO 1
+%==================================================================
+\chapter[Clausura y firma de despachos]{La clausura de la etapa de prueba y la firma de los despachos}
+
+%------------------------------------------------------------------
+\section{Planteo del práctico: alegato, partes y plazos del código}
+
+El práctico se plantea a partir de la asignación de los roles para el alegato de la parte actora y de la parte demandada. El alegato constituye una oportunidad para continuar con la argumentación y tratar de convencer al órgano judicial de que otorgue la razón a la parte, de modo que prospere, según el caso, la demanda o la defensa (contestación).
+
+Se planteó cómo se articulan hoy los seis días que el código otorga a una parte y a la otra. Cuando el procedimiento era escrito, esta cuestión resultaba más preocupante. El tema se vincula con el \textbf{auto de clausura de la etapa} y se desarrolla en las secciones siguientes.
+
+%------------------------------------------------------------------
+\section{Clausura de la etapa de prueba, certificación del juzgado y negligencia}
+
+\subsection{El equilibrio entre el impulso de parte y las potestades del juez}
+
+La prueba es una etapa densa, y en determinado momento el código alude a una iniciativa del juzgado. El sistema se apoya, por un lado, en el \textbf{impulso de parte} —en el ámbito civil y comercial y, ahora, también en el laboral—. Ha cambiado la tónica, y rige el \textbf{principio dispositivo}; pero el código otorga además al juez \textbf{potestades instructorias}, que se ubican en los artículos 34 y siguientes.
+
+\begin{norma}{Artículos 34 y siguientes del CPCCN}
+Referencia citada sin lectura del texto: deberes y facultades de los jueces (potestades instructorias), que conviven con la vigencia del principio dispositivo.
+\end{norma}
+
+\subsection{El pedido de clausura y la certificación}
+
+Se llega así al momento en que, más por iniciativa de las partes, se pide la \textbf{clausura de la etapa}. Este pedido suele ir acompañado de algo que no está en el código: un \textbf{certificado o certificación} del juzgado sobre las pruebas producidas y, eventualmente, sobre las pruebas pendientes. Generalmente lo emite el prosecretario.
+
+Esto se conecta con la \textbf{negligencia}: a veces aflora que una medida de prueba no se produjo, porque el juzgado, al certificar, alerta que no se produjo tal medida. Entonces la parte interesada en que se clausure la etapa puede pedir la negligencia respecto de esa medida que quedó pendiente. En lo que sigue se supone que se emite el certificado y que se deja constancia de que las pruebas están producidas.
+
+%------------------------------------------------------------------
+\section{¿Quién firma los despachos? El artículo 38 ter}
+
+\subsection{El rol del prosecretario y del secretario}
+
+El código habla habitualmente del juez y, en ocasiones, del secretario (por ejemplo, en los artículos 34 y siguientes); la figura del prosecretario permanece más oculta, pero tiene un rol relevante.
+
+Cuando el secretario o el prosecretario firma un despacho y las partes están en desacuerdo, \textbf{no puede interponerse la reposición}. La reposición sirve para que el juez revoque por contrario imperio una decisión suya. Si la decisión emanó del prosecretario o del secretario, hay que pedirle al juez que la deje sin efecto, y eso es peligroso: si el juez la ratifica, \textbf{no hay recurso}.
+
+Esto es especialmente relevante porque la etapa de prueba es una etapa de vías recursivas restringidas: rige el principio de \textbf{inapelabilidad}, y lo único que queda es, en general, la reposición. Por eso es fundamental saber quién firma los despachos.
+
+\subsection{Las cédulas electrónicas y la identificación del firmante}
+
+En las cédulas no siempre estaba claro quién había firmado el despacho. Antes se adjuntaba directamente la providencia o el resolutorio y había que revisar quién lo había firmado. Desde que se modificó el sistema informático de las cédulas electrónicas, el sistema obliga a transcribir la providencia y a indicar quién la firma, además de adjuntar el despacho. No alcanza con transcribir el auto sin más: al menos debe indicarse «juez» o «juez y secretario».
+
+La razón es que el destinatario puede decir «la firmó el secretario, estoy en desacuerdo y pido que se deje sin efecto». No es lo mismo si la firma el juez (corresponde la reposición) que si la firma el prosecretario o el secretario (el remedio se rige por el artículo 38 ter). Cada vez hay más delegación: los jueces delegan incluso la firma.
+
+\begin{norma}{Artículo 38 ter --- Código Procesal Civil y Comercial de la Nación}
+«Dentro del plazo de tres días, las partes podrán requerir al juez que deje sin efecto lo dispuesto por el secretario, el prosecretario administrativo o el jefe de despacho. Este pedido se resolverá sin substanciación. La resolución será inapelable.»
+
+\textit{(Texto según Ley 25.488, tal como se consigna en el apunte. En clase se mencionó el artículo sin leerlo; el texto se transcribe del ordenamiento vigente.)}
+\end{norma}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{L{0.20\textwidth} L{0.30\textwidth} Y}
+\toprule
+\textbf{Si el despacho lo firma\ldots} & \textbf{Remedio procesal} & \textbf{Observación} \\
+\midrule
+\textbf{El juez} & Reposición (revocatoria por contrario imperio). & En la etapa de prueba rige la inapelabilidad: la reposición es, en general, lo único que queda. \\
+\textbf{El secretario o el prosecretario} & Pedido al juez de que lo deje sin efecto (art. 38 ter). & Es peligroso: si el juez lo ratifica, no hay recurso. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Las providencias menores y el consentimiento}
+
+Las providencias que el código incluye en el elenco de las que pueden firmar el prosecretario y el secretario se pierden de vista porque parecen menores. Un simple «agréguese» puede no convenir: por ejemplo, puede agregarse una documental fuera de la etapa procesal oportuna, cuando debía acompañarse con la demanda o con la contestación. Una parte puede incorporar algo fuera de oportunidad y, si la otra no reacciona, se le dirá después «usted lo consintió». La palabra \textbf{consentido} aparece permanentemente en los procesos.
+
+\begin{example}{La prórroga de plazo que nadie contestó}
+En una causa se dictó un despacho que reanudaba un plazo hasta determinada fecha, porque las partes venían negociando. Luego las partes presentaron un escrito en el que decían prorrogarlo. El juzgado no se hizo eco del escrito y respondió «lo proveído a fojas», fórmula bastante críptica que obliga a leer el expediente para saber qué ocurrió.
+
+Después una de las partes no cumplió dentro de ese plazo y se le dijo que su presentación era extemporánea. Ella respondió que habían presentado un escrito en conjunto, invocando la voluntad común de las partes y la teoría de los propios actos. A la otra parte le convenía hacer mutis por el foro y no dijo nada. El argumento era atendible: había existido un consentimiento, porque la parte no había vuelto a decir nada sobre esa presentación, confiando en que existía un escrito común.
+\end{example}
+
+\begin{example}{La anécdota del «quedate tranquilo»}
+Algo semejante ocurre en la vida cotidiana: ante «hoy llegué tarde», se responde «no te preocupes, no hay problema». Una persona recién incorporada a un trabajo faltó un día porque debió atender a su madre, que había tenido una descompensación, y se le dijo «quedate tranquila». No manejaba un sistema de personal en el que había que registrar un aviso. Se le inició un sumario por inasistencia, con la consecuencia de que su hoja de servicio quedó manchada; la jefa que le había dicho que no se preocupara ya no estaba.
+
+Muchas veces hay buena fe y sale bien, pero otras veces no. Por eso conviene llevar una vida rigurosa: la cosa se rige por lo escrito.
+\end{example}
+
+\begin{important}
+\textbf{Lo que se rige es lo escrito.} Ante promesas verbales o silencios convenientes de la contraparte o del juzgado, lo que cuenta es lo que consta por escrito: el consentimiento puede perjudicar a quien confió.
+\end{important}
+
+Ante cada despacho hay que preguntarse quién lo firma. Los \textbf{traslados}, por ejemplo, los firma en general el secretario, según el código. Hay que estar atento, porque puede ocurrir que no correspondiera el traslado: cuando se esperaba una resolución, otro traslado dilata y prolonga el procedimiento.
+
+%------------------------------------------------------------------
+\section{¿Quién firma la clausura? Práctica forense y arcaísmo normativo}
+
+En el escenario del cierre de la etapa hay que ver quién firma la providencia. La clausura de la etapa debería firmarla el juez, salvo que, al revisar el elenco de providencias delegadas (art. 38 ter), resulte que puede firmarla el secretario. Al buscar en el código la norma sobre esta oportunidad, se advierte que el prosecretario, incluso sin petición de parte, agrega los cuadernos de prueba.
+
+\begin{note}
+Nota del apunte: en la grabación se propone primero el artículo 459 y luego se corrige. El artículo que regula esta oportunidad es el \textbf{482} (alegatos); el 459 corresponde a la prueba pericial.
+\end{note}
+
+Antes se armaban los cuadernos de prueba. Esto muestra el \textbf{arcaísmo normativo}.
+
+\begin{definition}{Arcaísmo normativo}
+Situación en la que las normas dicen una cosa y la práctica es otra.
+\end{definition}
+
+Un ejemplo es el recurso de inconstitucionalidad que, según un colega, ``ahora hay que presentar'' aunque no figure en el código, que solo habla del recurso extraordinario. Esas prácticas se instalan: son \textbf{práctica forense}, y la práctica forense también es una norma, una fuente del derecho, con la que hay que convivir.
+
+\begin{important}
+\textbf{La práctica forense también es fuente del derecho.} Aunque el código no lo prevea (certificación del juzgado, cuadernos de prueba, recursos instalados por la práctica), el litigante debe convivir con esos usos porque los tribunales los aplican.
+\end{important}
+
+\subsection{Cómo discrepar con el auto de clausura}
+
+Los autos de los tribunales se escriben con un estilo fijo: «Clausúrase la etapa de prueba». Si a una parte le quedó una medida o prueba pendiente, discrepa con el auto: sostiene que la clausura se precipitó respecto de esa medida y pide que se revoque. Si lo firmó el prosecretario, hay que verificar con cuidado quién lo firmó, porque el código establece la pauta de que lo firma el prosecretario.
+
+Hay que seguir estas cuestiones y pedir correctamente, porque a veces el juzgado responde «no corresponde», «no hay lugar» o «no ha lugar»; es una respuesta clásica y muy repetitiva de tribunales.
+
+\subsection{«Ocurra por la vía y forma que corresponda»}
+
+Otra fórmula ritual de tribunales es «ocurra por la vía y forma que corresponda». Deja sin precisar a dónde hay que ir y cómo; la respuesta implícita es que la parte tiene que saberlo.
+
+%------------------------------------------------------------------
+\section{Un caso real de la justicia provincial: la citación en garantía y la revocatoria}
+
+El siguiente relato de experiencia propia de litigio muestra por qué hay que impugnar a tiempo una resolución que parece menor.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el comienzo del relato es parcialmente inaudible en la grabación)
+\begin{example}{El juicio laboral de la provincia de Buenos Aires y la citación de la ART}
+Se trataba de un juicio laboral de 2016, es decir, de diez años de trámite, iniciado contra una empresa. La provincia de Buenos Aires admite objetos múltiples: en este caso, despido y accidente de trabajo juntos, que son dos juicios diversos pero con una misma raíz, la relación laboral. En ese juicio hubo una nulidad por una mala notificación, por lo que cayó un pedido de rebeldía que se había formulado contra la demandada.
+
+El abogado se presentó por la demandada. El cliente no tenía información sobre el accidente. La parte actora había invocado que la ART era Provincia, y el cliente señaló que era Prevención. Se pidió entonces la \textbf{citación en garantía} de Prevención. Hubo conversaciones y una audiencia conciliatoria, y el juzgado no dispuso nada sobre la citación.
+
+Luego la parte actora pidió la apertura a prueba y se notificó la resolución. El riesgo era que, al no existir citación a la ART, se considerara que la demandada no tenía cobertura. Si el abogado consentía, perdía la posibilidad de cuestionarlo; por eso debía pedir la \textbf{revocatoria}. Además, se trataba de un tribunal colegiado ante el cual no podía apelar: debería ir con recursos extraordinarios a la Suprema Corte, porque por encima del tribunal no hay una cámara.
+
+Si no se pide la revocatoria, la consecuencia es previsible: sale la sentencia, se condena al cliente y había una ART. El abogado tendría que explicar que asistió la demanda y que después el tribunal tomó otro camino.
+\end{example}
+
+Esto muestra que quien litiga debe estar alerta todo el tiempo, mirar los expedientes siempre y, en particular, el día de nota.
+
+\begin{important}
+\textbf{El litigante debe estar siempre alerta.} Si no se pide la revocatoria a tiempo, la omisión se paga después. Hay que mirar los expedientes, sobre todo el día de nota.
+\end{important}
+
+%------------------------------------------------------------------
+\section{Cuadro Cornell: clausura de la etapa de prueba y firma de los despachos}
+
+\begin{cornell}
+\cornellrow{¿Qué es la clausura de la etapa de prueba y qué la acompaña?}{Es el auto que cierra la etapa probatoria, normalmente a pedido de parte. Se acompaña de una certificación del juzgado ---que no está en el código--- sobre las pruebas producidas y las pendientes, emitida generalmente por el prosecretario. Si quedó una medida pendiente, puede pedirse la negligencia, o la parte afectada puede discrepar con el auto y pedir su revocación.}
+\cornellrow{¿Por qué importa quién firma el despacho? (art. 38 ter)}{Porque define el remedio. Si firma el juez, procede la reposición; si firma el secretario o el prosecretario, se pide al juez que lo deje sin efecto (art. 38 ter: tres días, sin sustanciación y con resolución inapelable). Es peligroso porque, si el juez lo ratifica, no hay recurso. Cada vez hay más delegación de firma.}
+\cornellrow{¿Qué significa «consentir» y por qué es riesgoso?}{Un auto no impugnado a tiempo queda consentido y ya no puede discutirse. Se ilustra con la prórroga de plazo y con el «quedate tranquilo»: la cosa se rige por lo escrito y las promesas verbales no protegen.}
+\cornellrow{¿Qué valor tiene la práctica forense?}{Aunque el código no la prevea (certificaciones, cuadernos de prueba, recursos instalados por los usos), la práctica forense es una fuente del derecho y el litigante debe convivir con ella. Frente a respuestas como «no ha lugar» o «ocurra por la vía y forma que corresponda», hay que saber qué pedir y cómo.}
+\cornellrow{¿Qué riesgo corre quien consiente una resolución que lo perjudica?}{Pierde la posibilidad de cuestionarla. En el caso del juicio laboral provincial, no pedir la revocatoria de lo resuelto sobre la citación en garantía de la ART podía conducir a una condena sin cobertura, sin recurso ordinario posible ante un tribunal colegiado.}
+\cornellresumen{La clausura de la etapa de prueba no es un trámite menor. Hay que fijarse quién firma cada despacho, porque de ello depende el remedio (reposición o art. 38 ter), y recordar que los autos se consienten si no se impugnan a tiempo. La práctica forense es fuente del derecho y la regla de fondo es que la cosa se rige por lo escrito.}
+\end{cornell}
+
+%==================================================================
+% CAPÍTULO 2
+%==================================================================
+\chapter[Consentimiento y plazo de alegar]{Notificación, consentimiento y plazo para alegar}
+
+%------------------------------------------------------------------
+\section{Notificación del auto de clausura y artículo 482}
+
+Existe cierto automatismo normativo: los autos se consienten. Si, por ejemplo, el 14 de octubre se clausura la etapa, resulta relevante cómo se notifica la clausura: algunos juzgados envían la cédula el mismo día y otros indican que la parte debe notificar como corresponde. Cabe preguntarse si la notificación es por ministerio de la ley o por cédula; para ello hay que mirar el código.
+
+El artículo que regula esta oportunidad es el 482 (alegatos).
+
+% TODO: contenido incompleto o ambiguo en las notas originales (en el apunte los corchetes de la norma figuran tal como se leyó en clase)
+\begin{norma}{Artículo 482 --- CPCCN (lectura completa en clase)}
+«Producida la prueba, el prosecretario administrativo, sin necesidad de gestión alguna de los interesados o sin sustanciarla si se hiciere, ordenará que se agregue al expediente [los cuadernos de prueba]. Cumplido este trámite, el prosecretario administrativo pondrá los autos en secretaría para alegar. Esta providencia se notificará por cédula y una vez firme se entregará el expediente a los letrados por su orden y por el plazo de seis días a cada uno, sin necesidad de petición escrita y bajo su responsabilidad, para presentar el escrito alegando sobre el mérito de la prueba. Se considerará como una sola parte a quienes actúen bajo representación común. Si transcurrido el plazo el expediente no hubiese sido devuelto, la parte que lo retuviese perderá el derecho de alegar, sin que se requiera intimación. El plazo para presentar el alegato es común.»
+
+\textit{(Texto según la lectura realizada en clase, con corrección de transcripción.)}
+\end{norma}
+
+La providencia se notifica entonces por cédula y debe \textbf{quedar firme}: ese es el tema más importante, porque ese plazo es el que después empieza a correr. La expresión «por su orden» no es general en el código: aparece en dos momentos, la declaración de puro derecho y este momento.
+
+\subsection{La declaración de puro derecho}
+
+La declaración de puro derecho se dicta cuando la causa se declara de puro derecho, antes de la etapa de prueba, en la audiencia.
+
+Que una de las partes no conteste la demanda no exime al actor de la prueba: el actor, de todos modos, debe probar. A veces la cuestión está regida por la documental y, al estar regida por ella, el silencio implica reconocimiento. Interesan dos artículos de la primera parte del proceso.
+
+\begin{norma}{Artículo 330 --- Forma de la demanda (CPCCN)}
+«La demanda será deducida por escrito y contendrá: 1) El nombre y domicilio del demandante. 2) El nombre y domicilio del demandado. 3) La cosa demandada, designándola con toda exactitud. 4) Los hechos en que se funde, explicados claramente. 5) El derecho expuesto sucintamente, evitando repeticiones innecesarias. 6) La petición en términos claros y positivos.»
+
+\textit{(Mencionado como «el escrito base del actor»; el texto se transcribe del código vigente.)}
+\end{norma}
+
+\begin{norma}{Artículo 356 --- Contestación de la demanda (CPCCN)}
+«En la contestación opondrá el demandado todas las excepciones o defensas que, según este Código, no tengan el carácter de previas. Deberá, además: 1) Reconocer o negar categóricamente cada uno de los hechos expuestos en la demanda, la autenticidad de los documentos acompañados que se le atribuyeren y la recepción de las cartas y telegramas a él dirigidos, cuyas copias se acompañen. Su silencio, sus respuestas evasivas o la negativa meramente general podrán estimarse como reconocimiento de la verdad de los hechos pertinentes y lícitos a que se refieran. En cuanto a los documentos, se los tendrá por reconocidos o recibidos, según el caso. 2) Especificar con claridad los hechos que alega como fundamento de su defensa. 3) Observar, en lo aplicable, los requisitos prescriptos en el artículo 330.»
+
+\textit{(Mencionado como «el escrito del demandado»; el texto se transcribe del código vigente.)}
+\end{norma}
+
+El demandado se defiende siempre con el artículo 356: reconocer o desconocer los hechos y la documental. Las consecuencias son las siguientes: la falta de desconocimiento de la documental puede significar \textbf{reconocimiento ficto automático}, pero no así de los hechos, que quedan sujetos a la prueba que debe producir el actor. Incluso en la hipótesis de rebeldía el actor no está exento de probar, porque la rebeldía no altera el curso regular del proceso; sin embargo, en caso de duda sobre el alcance de la prueba, la rebeldía gravita favorablemente [para el actor].
+
+\begin{important}
+\textbf{Los dos artículos que no hay que perder de vista:} el 330 (demanda y todos los escritos) y el 356 (contestación). Quien es demandado debe mirar el 356: es su marco de actuación fundamental.
+\end{important}
+
+\subsection{El silencio: «el que calla otorga»}
+
+Para el lenguaje común, «el que calla otorga»; para lo jurídico, que quien calla otorgue depende siempre de las circunstancias del caso. Hay determinados supuestos del código en los que el silencio puede significar reconocimiento, pero principalmente, en el ámbito probatorio, está la \textbf{confesional}: quien calla frente a la confesional reconoce, porque tenía que decir si era cierto o no. Es raro que ocurra, porque en la audiencia se le advierte que debe contestar. Son ámbitos limitados.
+
+\subsection{Si no hay hechos controvertidos, no hay etapa de prueba}
+
+Si no hay hechos controvertidos, \textbf{no hay etapa de prueba}. Si la discusión es solo jurídica, la cuestión se resuelve mediante la declaración de \textbf{puro derecho}: corre un traslado por su orden (actor, demandado o demandados, pues puede haber consorcio) y se pasa a dictar sentencia. Es como un alegato sobre el derecho: como no hay discusión sobre los hechos, se discute la aplicación del derecho y las consecuencias que le asigna cada parte. En el alegato tras la prueba se está en una oportunidad análoga, pero porque se produjo la prueba.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{L{0.20\textwidth} Y Y}
+\toprule
+\textbf{Aspecto} & \textbf{Declaración de puro derecho} & \textbf{Alegato tras la prueba} \\
+\midrule
+\textbf{Presupuesto} & No hay hechos controvertidos, por lo tanto no hay etapa de prueba. & Se produjo la prueba y se clausuró la etapa. \\
+\textbf{Sobre qué se discute} & Sobre la aplicación del derecho y sus consecuencias. & Sobre el mérito de la prueba producida y sobre el derecho. \\
+\textbf{Plazos} & Traslado «por su orden» (actor, demandado o demandados). & Seis días por su orden; el plazo para presentar el alegato es común. \\
+\textbf{Paso siguiente} & Se pasa a dictar sentencia. & Se pasa a dictar sentencia. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%------------------------------------------------------------------
+\section{¿Cuándo queda firme el auto? ¿Tres o cinco días?}
+
+\subsection{Del expediente en papel al expediente digital}
+
+La cuestión de cuándo consiente el auto se ha planteado siempre y se vincula con el sistema escrito. Hasta hace poco había expedientes con actuaciones no totalmente digitalizadas; antes de llegar a este momento conviene pedir al juzgado que las digitalice, sobre todo al sacar expedientes suspendidos o paralizados. En los contradictorios es raro que queden suspendidos, porque de lo contrario se produce la caducidad.
+
+\begin{example}{La sucesión de cuatro cuerpos}
+Para estudiar una sucesión se extrajeron del archivo cuatro cuerpos, unas 800 fojas. El juzgado puso a un empleado a escanear los cuatro cuerpos y los subió al sistema.
+\end{example}
+
+En los expedientes contradictorios, en cambio, esto es raro. Hubo muchos expedientes mixtos en la pandemia y la pospandemia (2021 y 2022 sobre todo), porque la digitalización absoluta comenzó en agosto de 2020. Hasta entonces se llevaba un escrito en papel al juzgado y se asumía el compromiso de digitalizarlo y subirlo al sistema dentro de las 48 horas. Cuando se precipitó la pandemia, la Corte dispuso en agosto de 2020 que todo fuera digital, pero había un acumulado.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el plazo de 48 horas figura con duda: «creo»)
+\begin{example}{El alegato con el expediente que el juzgado no quería digitalizar}
+En un proceso ordinario (2022--2023), el juzgado no quería digitalizar el expediente, de modo que hubo que ir a buscarlo en un contexto de clausura de etapa con notificación. La pregunta que se planteó fue: ¿cuándo consintió este auto?
+\end{example}
+
+\subsection{El debate: tres días o cinco días}
+
+Parece un tema menor, pero los plazos son importantes: si no se presenta la apelación dentro de los cinco días, se consiente la sentencia, que queda firme y es cosa juzgada. En un proceso ordinario puede razonarse que el plazo es de cinco días. La pregunta siguiente es qué se puede hacer contra el auto: reposición o apelación. Dado que en la etapa de prueba no se puede apelar, el plazo depende de los remedios disponibles: si solo cabe la reposición, tres días; si cabe apelar, podrían ser cinco.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{L{0.22\textwidth} Y}
+\toprule
+\textbf{Posición} & \textbf{Fundamento} \\
+\midrule
+\textbf{Tres días} & Si en la etapa de prueba rige la inapelabilidad y el único remedio posible es la reposición, el plazo sería de tres días. \\
+\textbf{Cinco días} & Se trata de un proceso ordinario; si se puede apelar son cinco días; y aun contra una providencia puede plantearse una nulidad, y las nulidades se plantean en cinco días. Es la posición a la que se adhiere: «yo creo más en los 5 días». \\
+\textbf{Práctica de los juzgados} & Para evitar la duda, algunos juzgados consignan expresamente «habiendo transcurrido 5 días» al declarar consentido el auto. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Se remite a la doctrina (Falcón, Rojas, Arazi) y se recomienda buscar en algún código procesal qué dice sobre este plazo. Por suerte ya no existe el retiro del expediente que generaba estas cuestiones, aunque el tema subsiste en alguna medida.
+
+\subsection{El expediente en papel: retirarlo y devolverlo}
+
+Durante los primeros seis días el actor podía retirar el expediente físico, llevarlo a su casa o estudio, analizarlo, fotocopiarlo o escanearlo, y debía devolverlo. Si no lo reintegraba al cabo de los seis días, o lo reintegraba tarde, se producía la pérdida del plazo.
+
+\begin{example}{El abogado que llegó tarde a devolver el expediente}
+En la mesa de entradas, a un abogado que venía a devolver el expediente se le dijo que debió devolverlo el día anterior. Él respondió que tenía las dos primeras horas. Se le explicó que esas dos primeras horas eran para presentar el escrito y que la devolución del expediente era hasta las 13:30. La consecuencia de no devolver el expediente era la pérdida del plazo.
+\end{example}
+
+Para el actor era importante saber cuándo empezaban a correr los seis días: si al cabo del tercer día o del quinto. Había que ir al juzgado a buscar el expediente, lo que implicaba un esfuerzo.
+
+\begin{example}{El expediente de seis cuerpos atado con hilo de cáñamo}
+Se retiró un expediente de seis cuerpos, atado con hilo de cáñamo, para llevarlo por la calle hasta la oficina, con la responsabilidad de no perder nada, porque se había anotado en el libro lo que se llevaba, con las fojas. Había que devolverlo el sexto día.
+\end{example}
+
+Si el juzgado no aclaraba en la providencia el plazo, quedaba el debate entre tres o cinco días, sobre el que opinan distintos autores.
+
+\subsection{La notificación electrónica y el consentimiento «para todos»}
+
+Hoy la notificación es electrónica, o la efectúa el propio letrado: ¿cuándo consiente? Persiste el tema de la cédula: cuando uno firma la cédula, implica que se está notificando. Con domicilio real, la cédula puede recibirse dentro de unos diez días.
+
+\begin{example}{La sentencia notificada al rebelde}
+Se notifica una sentencia a un rebelde. Según las normas de rebeldía, se notifica en el domicilio real al rebelde que nunca constituyó domicilio. Quien quiere apelar envía la cédula un martes, la firma y la lleva al juzgado, y debe apelar en cinco días: le vence el martes de la semana próxima. Al demandado rebelde le vencerá cuando le llegue la cédula, es decir, cuando venga la constancia de que la recibió. El plazo queda así disociado.
+\end{example}
+
+En cambio, en el caso del auto de clausura de la etapa, el consentimiento es \textbf{para todos}, aunque quien firme la cédula sea una de las partes. Con el papel, la cédula se firmaba un día, se dejaba en el juzgado y los demandados se notificaban en días distintos. Hoy la ventaja del sistema informático es que el demandado está notificado el mismo día que el actor: el plazo queda emparejado para todos.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{L{0.20\textwidth} Y Y}
+\toprule
+\textbf{Aspecto} & \textbf{Expediente en papel} & \textbf{Expediente digital} \\
+\midrule
+\textbf{Notificación} & Cédulas que se diligenciaban en días distintos para cada parte. & El demandado queda notificado el mismo día que el actor; el plazo está «emparejado» para todos. \\
+\textbf{Acceso al expediente} & Se retiraba físicamente (a casa o al estudio) y debía devolverse el sexto día, antes de las 13:30. & Ya no se retira el expediente. \\
+\textbf{Plazo para alegar} & Seis días por su orden para cada letrado, en función del retiro. & Subsiste un plazo de doce días en total para alegar. \\
+\textbf{Riesgo principal} & Perder el derecho de alegar por devolver tarde el expediente. & Discutir desde cuándo se considera consentido el auto (tres o cinco días). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%------------------------------------------------------------------
+\section{El plazo común de doce días, el litisconsorcio y la estrategia del alegato}
+
+Superada la discusión sobre tres o cinco días, empiezan los seis días para cada uno, pero esto también es relativo: antes estaba en función del retiro del expediente, y como este ya no se retira, el código quedó con un plazo de \textbf{doce días} en definitiva para alegar. Si bien cada parte tiene seis días por su orden, el plazo se considera \textbf{común} para presentar el alegato (véase el texto del artículo 482 transcripto más arriba).
+
+\begin{example}{Las compañías de seguros y la representación común}
+Se planteó el caso de las compañías de seguros que defienden a los asegurados. Generalmente la representación es común: una representación por el asegurado y otra por el seguro, pero ejercida por el mismo apoderado. No había entonces seis días por un codemandado y seis por otro, sino un solo plazo. Hubo pérdidas del derecho de alegar por no interpretar correctamente esto: se retenía el expediente especulando con que había dos plazos de seis días porque eran dos representaciones, pero como la representación era común, el plazo era uno solo.
+\end{example}
+
+\subsection{El plazo de doce días}
+
+Gran parte de esto quedó arcaico; lo que subsiste es el plazo de doce días. En el escenario clásico, con actor y demandado, es un plazo generoso, si se considera que los plazos suelen ser de diez días como máximo.
+
+Eso no significa que el actor deba presentar el alegato dentro de los seis días: no puede especular, pero puede presentarlo o tomarse más tiempo, por ejemplo para elaborarlo, para leerlo en pantalla o imprimirlo, o para comparar su carpeta con el expediente. Es de buena práctica llevar una carpeta con lo que se va guardando de lo que se presentó. Cada uno tiene su método, y quien depende solo del archivo digital corre el riesgo de que la computadora se rompa sin respaldo en la nube; también se confía en la web de tribunales, que a veces falla.
+
+\subsection{Litisconsorcio: ¿doce, dieciocho o veinticuatro días?}
+
+Subsiste una especulación posible en el plazo cuando hay litisconsorcio. Si hay al menos dos partes, el plazo podría no ser de doce días sino de dieciocho o veinticuatro, según cómo sea el litisconsorcio.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (no se explica cómo se computa en cada tipo de litisconsorcio)
+
+\subsection{El riesgo de presentar el alegato demasiado pronto}
+
+Hay quienes presentan el alegato dentro de los primeros seis días. El juzgado lo sube al sistema, y el demandado puede ver qué dijo el actor y hacerle una \textbf{réplica velada o encubierta}. Por eso hay que tener cuidado con precipitar el alegato por desconfianza hacia el juzgado.
+
+Históricamente los juzgados no agregaban el escrito hasta que no salía el despacho, porque ello era ventilar lo que ocurría en el expediente; de lo contrario, la otra parte lo miraba y replicaba o refutaba. En la mayoría de los juzgados el escrito queda en despacho y sale junto con la providencia: por ejemplo, un escrito presentado el 8 de octubre puede hacerse visible el 14 junto con la providencia de ese día. Pero con el alegato solo se dispone «agréguese». Agregar el alegato antes del vencimiento del plazo es una actuación incorrecta del juzgado, y el litigante debe estar alerta.
+
+\begin{example}{El escrito que se olvidó de presentar}
+Una parte demandada redactó un escrito al segundo día de notificada, decidió no presentarlo todavía para especular con el plazo y se olvidó de hacerlo. Luego se le reprochó no haberlo subido, cuando solo faltaban un par de clics. Pasan esas cosas: hay que tener una buena agenda, con todos los vencimientos presentes, tanto en papel como en formato electrónico.
+\end{example}
+
+Quien no quiere acelerar el proceso puede tomarse todo el tiempo, pero hay que tener cuidado con jugar con esto: al cliente no se le puede decir «estoy con muchas cosas».
+
+\begin{important}
+\textbf{Plazo común de doce días y agenda de vencimientos.} El alegato se presenta en un plazo común (seis más seis, doce días en total en la práctica actual). Presentarlo antes permite que la contraparte lo lea y lo replique; presentarlo al final exige una agenda rigurosa para no olvidarse.
+\end{important}
+
+%------------------------------------------------------------------
+\section{Cuadro Cornell: notificación, consentimiento y plazo para alegar}
+
+\begin{cornell}
+\cornellrow{¿Cómo se notifica la providencia que pone los autos para alegar? (art. 482)}{Por cédula. Una vez firme (consentida), se abre el plazo de seis días por su orden para cada letrado, y el plazo para presentar el alegato es común. Quien retenía el expediente más allá del plazo perdía el derecho de alegar, sin necesidad de intimación.}
+\cornellrow{¿Qué papel cumplen los arts. 330 y 356 y el silencio de las partes?}{El 330 es el escrito base del actor y el 356 el del demandado (reconocer o negar hechos y documental). El silencio sobre la documental puede ser reconocimiento; sobre los hechos, no: el actor debe probar, incluso en rebeldía. Si no hay hechos controvertidos no hay etapa de prueba y se declara la causa de puro derecho.}
+\cornellrow{¿El auto queda consentido a los tres o a los cinco días?}{Depende de los remedios posibles. Si solo cabe la reposición (inapelabilidad en la prueba), podrían ser tres días; si cabe apelación o nulidad, cinco. Se adhiere a los cinco días y se recuerda que algunos juzgados lo aclaran en la providencia («habiendo transcurrido 5 días»).}
+\cornellrow{¿Qué cambió del expediente en papel al digital?}{Antes se retiraba el expediente y debía devolverse el sexto día antes de las 13:30; las cédulas llegaban en días distintos. Hoy no se retira y todos quedan notificados el mismo día, por lo que subsiste un plazo total de doce días para alegar.}
+\cornellrow{¿Cuánto dura el plazo para alegar y qué pasa con el litisconsorcio?}{Seis días por su orden para cada parte, pero el plazo es común: doce días en total. Quienes actúan con representación común son una sola parte, de modo que no suman plazos. Con litisconsorcio podría discutirse una extensión (dieciocho o veinticuatro días), según su estructura.}
+\cornellrow{¿Conviene presentar el alegato antes del vencimiento?}{Presentarlo antes evita olvidos, pero permite que la contraparte lo lea y lo replique de modo velado. Presentarlo al final exige una agenda rigurosa de vencimientos y no confiar en la memoria.}
+\cornellresumen{Notificada por cédula la providencia que pone los autos para alegar (art. 482), el auto debe quedar firme; se discute si el consentimiento se produce a los tres o a los cinco días, y se adhiere a los cinco. Se abre un plazo común de doce días que, en el expediente digital, ya no depende del retiro del expediente, y que exige agenda rigurosa y una estrategia sobre cuándo presentar el alegato, con atención a la réplica de la contraparte.}
+\end{cornell}
+
+%==================================================================
+% CAPÍTULO 3
+%==================================================================
+\chapter[Plazos y procesos penales]{Los plazos en la vida real y los nuevos procesos penales}
+
+%------------------------------------------------------------------
+\section{«Los plazos son más para nosotros que para el juzgado»}
+
+A partir del ejemplo del tiempo que se toman otros operadores, se relata una experiencia reciente con una fiscalía. Algunos pasajes del relato son parcialmente inaudibles en la grabación.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasajes parcialmente inaudibles)
+\begin{example}{El dictamen del fiscal y los tres días para pedir su revisión}
+Una causa había estado ocho meses en la fiscalía. Desde allí se llamó al abogado para informarle que se le enviaría por correo electrónico un dictamen, y se le indicó que tenía tres días para pedir su revisión. El dictamen tenía una parte favorable y una parte desfavorable. Los tres días corrían desde ese momento, sin siquiera contar con el fin de semana.
+
+El caso se agravaba porque, según el relato, no se contaba con poder, por lo que había que pedir a la parte que lo firmara. La agenda ya estaba cerrada con los temas pendientes de la semana y hubo que hacer un hueco para un dictamen de cincuenta carillas, en medio de llamadas, reclamos y escritos con vencimiento. La fiscalía había tenido ocho meses; el abogado, tres días.
+\end{example}
+
+\begin{important}
+\textbf{Los plazos pesan más sobre el abogado que sobre el juzgado.} El abogado debe cumplir plazos breves y perentorios, mientras que otros operadores (fiscalías, defensorías) pueden demorar semanas o meses en dictaminar.
+\end{important}
+
+Se plantea una situación semejante en el práctico: se presentó un escrito y pasaron semanas porque pasó en vista a la Defensoría. Se preguntó cuánto tiempo tiene la Defensoría para dictaminar; se respondió que cinco días, y se preguntó por el fundamento. Se anticipó que el Ministerio Público tiene una ley de actuación; el tema se retoma al tratar el Ministerio Público.
+
+%------------------------------------------------------------------
+\section{El cambio de paradigma procesal penal: del sistema escrito al acusatorio}
+
+La parte penal del tema aparece en un ejemplo concreto: cuando se informó que se podía pedir la revisión del dictamen, se advirtió que esa vía es de la ciudad y no existe en el código nacional. Una fiscalía nacional y una fiscalía de la ciudad indicaron que estaban aplicando el \textbf{código procesal federal}. El nacional trabaja con el código nacional, pero se está incorporando el federal, porque parece que se están mezclando los procedimientos y se está pasando al \textbf{principio acusatorio}. Por ello existe ahora la posibilidad de pedir al fiscal general que revise el dictamen del fiscal, dada la estructura jerárquica del Ministerio Público. Se abren escenarios más desafiantes por los cambios de transferencia de competencias y de nuevas normas.
+
+\subsection{La experiencia con el sistema escrito y el sistema oral}
+
+Cuando se comenzó a ejercer la profesión regía el código de procedimiento escrito, con juez de instrucción y juez de sentencia como figuras clásicas.
+
+Todo eso rigió hasta 1992. Con el código nuevo, de sistema oral, coexistieron procesos escritos y orales: algunos imputados pedían ser juzgados con el procedimiento escrito, con el código viejo, y otros pasaban al sistema nuevo. Había que navegar a dos aguas.
+
+Ahora se vive nuevamente un cambio de paradigma: del sistema inquisitivo mixto que inauguró el código de 1992 (Código Procesal Penal de la Nación) al sistema acusatorio del \textbf{Código Procesal Penal Federal}, que rige en algunas provincias y para el fuero federal. Parece que ahora se impone también en el fuero nacional, que está en extinción de alguna manera porque se están transfiriendo las competencias a la ciudad.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{L{0.30\textwidth} Y}
+\toprule
+\textbf{Sistema} & \textbf{Características mencionadas} \\
+\midrule
+\textbf{Procedimiento escrito (antes del 92)} & Código de procedimiento escrito; juez de instrucción y juez de sentencia como figuras clásicas. \\
+\textbf{Sistema inquisitivo mixto (Código Procesal Penal de la Nación, 1992)} & Sistema oral, con coexistencia de procesos escritos y orales durante la transición: el imputado podía optar por seguir con el código viejo. \\
+\textbf{Sistema acusatorio (Código Procesal Penal Federal)} & Rige en algunas provincias y en el fuero federal; se impone ahora en el fuero nacional, en extinción por la transferencia de competencias a la ciudad. Estructura jerárquica del Ministerio Público: posibilidad de pedir al fiscal general que revise el dictamen del fiscal. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Una instrucción «desformalizada»: la experiencia en la fiscalía de la ciudad}
+
+En la ciudad, cuando se necesita una causa penal para un reclamo por daños, se le pide a la fiscalía; esta envía todo \textbf{atomizado}, como un conjunto de archivos por correo electrónico. No hay expediente. Se explica que, según el código, la instrucción es \textbf{desformalizada}. En materia penal, la formalidad sirve para prestar la garantía del juicio, del debido proceso; la que es desformalizada es la instrucción.
+
+\begin{example}{La «declaración testimonial» que era una entrevista policial}
+Un empleado de la fiscalía indicó que ya había enviado las declaraciones testimoniales. Al verificar en la fiscalía, la supuesta declaración testimonial era una entrevista que la policía le había hecho al testigo y que había firmado la policía; no figuraba la firma del testigo. Para la fiscalía, ya era el momento y ya contaban con el elemento de convicción. Se planteó entonces cómo se impugnan las declaraciones testimoniales.
+\end{example}
+
+\begin{example}{La declaración tomada en un salón de trabajo}
+En la fiscalía de la ciudad se tomó una declaración con tres sillas dispuestas: el testigo adelante, el abogado atrás, la defensa, y en otros escritorios el resto del personal de la fiscalía trabajando. Era como un salón donde todos trabajaban al mismo tiempo que se tomaba la declaración.
+\end{example}
+
+Todo esto es novedoso y se empieza a vivir a partir de ahora, con estos nuevos fenómenos.
+
+%------------------------------------------------------------------
+\section{Cuadro Cornell: plazos en la práctica y procesos penales}
+
+\begin{cornell}
+\cornellrow{¿Por qué los plazos son más para el abogado que para el juzgado?}{Porque el abogado debe cumplir plazos breves y perentorios (por ejemplo, tres días para pedir la revisión de un dictamen de cincuenta carillas), mientras que otros operadores, como una fiscalía o una defensoría, pueden demorar semanas o meses en dictaminar.}
+\cornellrow{¿Qué cambia con el paso al sistema acusatorio?}{Pasa del sistema escrito y del inquisitivo mixto de 1992 al acusatorio del Código Procesal Penal Federal, con transferencia de competencias a la ciudad. Hay fiscalías con instrucción desformalizada y la posibilidad de pedir al fiscal general que revise el dictamen del fiscal.}
+\cornellrow{¿Qué significa que la instrucción sea «desformalizada»?}{En materia penal, la formalidad es para prestar la garantía del juicio y del debido proceso; la instrucción es la desformalizada. Se manifiesta en la ausencia de expediente (los archivos llegan atomizados por correo) y en actos como declaraciones tomadas en entrevistas firmadas por la policía.}
+\cornellrow{¿Qué antes y después se marca alrededor de 1992?}{Hasta 1992 regía el procedimiento escrito, con juez de instrucción y juez de sentencia. Con el código de 1992 coexistieron procesos escritos y orales y el imputado podía optar por el sistema anterior; ahora se avanza hacia el acusatorio.}
+\cornellresumen{El abogado trabaja con plazos cortos y rígidos, mientras otros operadores pueden demorar mucho más. En paralelo, el proceso penal pasa del sistema escrito y del inquisitivo mixto al acusatorio, con transferencia de competencias a la ciudad, instrucción desformalizada y mayor jerarquía en el Ministerio Público.}
+\end{cornell}
+
+%==================================================================
+% CAPÍTULO 4
+%==================================================================
+\chapter[Prueba y Ministerio Público]{Prueba pericial y testimonial, alegato anticipado y Ministerio Público}
+
+%------------------------------------------------------------------
+\section{La prueba pericial: pedido de explicaciones, impugnación y nulidad}
+
+Se planteó si a los peritos se los puede citar, dado que está previsto en el código. Se respondió que esa decisión corresponde al tribunal y que los peritos, generalmente, contestan por escrito.
+
+\begin{example}{La pericia que «no se impugna»}
+Un colega relató un caso, aparentemente de la provincia de Buenos Aires, en el que planteó la impugnación de la pericia y se le respondió que la pericia no se impugna: se piden explicaciones. El código provincial tiene diferencias con el nacional: no usa la palabra impugnación, sino la palabra explicaciones.
+\end{example}
+
+El pedido de explicaciones tiene como balance final que el perito no da la explicación; entonces puede sostenerse que la pericia carece de eficacia técnica o científica. En el ámbito nacional la \textbf{impugnación} está más instalada, incluso en la práctica, es decir, los juzgados tienen la convicción de que se puede impugnar. También se puede plantear la \textbf{nulidad de la pericia} cuando es deficiente, carece de rigor técnico o no contesta los puntos de pericia. Pero esto es más desafiante, porque se trata de una nulidad intrínseca del acto; por eso se confía más en la impugnación.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{L{0.20\textwidth} Y Y}
+\toprule
+\textbf{Vía} & \textbf{Cuándo se usa / características} & \textbf{Observaciones} \\
+\midrule
+\textbf{Impugnación de la pericia} & Cuestionar el dictamen pericial. & En el ámbito nacional está más instalada, incluso en la práctica; se confía más en esta vía. \\
+\textbf{Pedido de explicaciones} & Es la expresión que utiliza el código procesal provincial. & Si el perito no explica, puede sostenerse que la pericia carece de eficacia técnica o científica. \\
+\textbf{Nulidad de la pericia} & Pericia deficiente, sin rigor técnico, o que no contesta los puntos de pericia. & Es más desafiante: se trata de una nulidad intrínseca del acto. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{El trabajo del perito y la insistencia de los abogados}
+
+A veces los abogados insisten sobre el perito porque no conviene lo que dice, no porque diga una barbaridad. Algunos pedidos le requieren que haga algo que, según él, no es su función: el perito responde que debe hacer un análisis sobre la documentación que se le suministra y que, si no se le suministra, lo dice; tampoco es la policía, no puede secuestrar. A veces los abogados se ponen pesados, porque saben que esa prueba es relevante para uno y para otro lado.
+
+%------------------------------------------------------------------
+\section{La prueba testimonial: oposición a preguntas, incidencia y alegato sobre la idoneidad}
+
+Se consultó cómo se impugna una testimonial y el tema de las tachas: si se hace en la audiencia o en el alegato. Hay que separar dos escenarios. En la audiencia se puede \textbf{oponerse a las preguntas}, porque el testigo declara; frente a lo que diga el testigo, poco se puede hacer en la audiencia. Hay testigos que son «hábiles declarantes», y en los expedientes previsionales se ha planteado el tema de testigos que se usaban para varias causas. Hay que tener cuidado con los testigos y ver hasta dónde se pregunta: siempre está la pregunta de una de las partes y la actitud de la otra.
+
+\subsection{La oposición a la pregunta indicativa}
+
+Una parte puede oponerse a la pregunta y se le pregunta el motivo; por ejemplo, que es indicativa. No hay traslado, pero la otra parte puede sostener la pregunta, argumentando que no es indicativa y que se pregunta sobre una circunstancia. Esta discusión no transcurre delante del testigo: se lo retira de la audiencia o se lo ubica en una sala informática de espera, si es digital.
+
+El debate concluye con una decisión del juez: «la pregunta se hace» o «la pregunta no se hace». La parte que pregunta siempre tiene derecho a \textbf{reformular la pregunta}. Hay además una \textbf{incidencia}, y puede haber costas en las incidencias.
+
+\subsection{Si no se objetaron las preguntas: el alegato}
+
+Si el testigo declaró y no se objetaron las preguntas, no hubo incidencia, y se llega al alegato; allí la parte se explaya: el testigo faltó a la verdad, declaró sobre algo que no vio, etc. Así ocurre en el proceso civil y comercial.
+
+En el proceso laboral, el alegato sobre los testigos es un \textbf{alegato de idoneidad}, no un alegato sobre el fondo; tiene un plazo de tres días. El alegato sobre el fondo se presenta en la oportunidad general, y el proceso laboral también tiene el alegato sobre el fondo, con cierta analogía con el civil. Se encargó verificar si este régimen de tres días subsiste o fue modificado por la ley de modernización laboral, porque estas normas se aplican a los procesos en trámite, y puede ocurrir que ahora se haya pasado todo al final.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (en la grabación se escucha «27812» para la ley de modernización laboral y «1845» para la ley de procedimiento laboral; se presume la Ley 18.345; la numeración debe verificarse)
+\begin{note}
+La numeración de las leyes laborales figura en el apunte tal como se escucha en la grabación («27812» y «1845»; se presume la Ley 18.345) y conviene verificarla. Se dijo que hay cosas que la ley de modernización laboral no modificó en la ley de procedimiento laboral.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasajes inaudibles; no queda claro qué parte no alegó «sobre la atención»)
+\begin{example}{Las testimoniales virtuales en un juicio laboral y la audiencia en Carnaval}
+En un juicio reciente con declaraciones testimoniales virtuales, el testigo se comunicaba y se le cortaba la conexión. La parte demandada no alegó nada sobre la atención. El abogado estaba preparado para que se dijera que el testigo era empleado, que lo habían echado, que tenía juicio o reclamo y que por eso no era imparcial.
+
+Se había tocado la norma, así como las normas sobre la ausencia de impulso de oficio, que hace que todo quede caduco, de modo que hay que mirar el procedimiento. La demandada solicitó que los testigos se trasladaran a la segunda audiencia, porque sabía que la primera había sido fijada para un día de Carnaval (8 de febrero). Fijar una audiencia de testigos en febrero es una forma de que los testigos no vayan o no estén, porque mucha gente se toma vacaciones en ese mes.
+\end{example}
+
+%------------------------------------------------------------------
+\section{Presentar el alegato antes del vencimiento: «no se agregue», testado, invisibilización y desglose}
+
+Una práctica es presentar el alegato antes, por ejemplo dos días antes, por temor a olvidarse, a que algo falle o a no poder subirlo después por un viaje u otra circunstancia. Entonces se pide en el petitorio que \textbf{no se agregue} hasta que estén cumplidos los plazos, es decir, hasta que venzan los plazos para las restantes partes. Esto sigue siendo muy útil.
+
+Si el juzgado lo agrega igual, puede pedirse que se \textbf{invisibilice} el escrito, es decir, que se lo ponga invisible. Algunos juzgados responden que «eso no existe».
+
+\subsection{El testado de los escritos}
+
+Antes existía el \textbf{testado}: cuando una parte decía algo improcedente en un escrito, se pedía el testado, y el juzgado podía hacer lugar. El escrito quedaba tachado en los párrafos improcedentes.
+
+\begin{definition}{Testado}
+Tachadura, en el escrito en papel, de los párrafos improcedentes, a pedido de la otra parte y con lugar del juzgado.
+\end{definition}
+
+Como hoy todo es digital, esto no existe más. La pregunta es entonces si corresponde pedir la invisibilización o el \textbf{desglose}; pero el desglose no es posible en el expediente digital, porque una vez que el sistema incorpora el escrito, no puede retirarse. El juzgado puede ponerlo no visible para una de las partes; esto se ve más con las posiciones, que se suben y no aparecen, o se suben en el acto de la audiencia. Se menciona un despacho que avisa que se subió el alegato, para que las partes sepan que está agregado.
+
+El escrito, además, figura en la \textbf{bandeja}, lo que da tranquilidad: el sistema antes no permitía ver que un escrito estaba en bandeja, pero fue mejorando para que todos vean que, al enviar un escrito, queda allí pendiente.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{L{0.20\textwidth} Y Y}
+\toprule
+\textbf{Mecanismo} & \textbf{Contexto} & \textbf{Situación actual} \\
+\midrule
+\textbf{Testado} & Expediente en papel: se tachaban los párrafos improcedentes del escrito. & No existe más, porque todo es digital. \\
+\textbf{Desglose} & Retirar un escrito del expediente. & No es posible en el expediente digital: una vez que el sistema incorpora el escrito, no se puede retirar. \\
+\textbf{Invisibilización} & Pedir que el escrito se agregue pero no sea visible hasta el vencimiento de los plazos. & Algunos juzgados lo hacen; otros responden que «no existe eso». Se usa sobre todo con las posiciones. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%------------------------------------------------------------------
+\section{El Ministerio Público: plazos, representación complementaria y artículo 103 del Código Civil y Comercial}
+
+Se retoma lo dicho sobre los plazos de los funcionarios públicos. Los funcionarios públicos tienen los mismos plazos: el fiscal es parte en el proceso y el defensor de menores también, y deben estar sujetos a los plazos. Hay un artículo del código procesal que lo dice, más allá de lo que dicen las leyes del Ministerio Público; pero esas leyes dicen muchas cosas y el tema se pierde, además de ser leyes para el Ministerio Público. Se prefiere el código procesal, porque se refiere a todo el mundo, mientras que la ley para el Ministerio Público habla de las prerrogativas y de todo lo demás.
+
+El artículo es el \textbf{159}; en la grabación se propone primero el 139 («copias de contenido reservado») y luego se corrige.
+
+\begin{norma}{Artículo 159 --- CPCCN (lectura parcial en clase)}
+«El Ministerio Público y los funcionarios [\ldots] para cualquier proceso estarán sometidos a las reglas [\ldots]»
+
+\textit{(Se leyó solo este fragmento y se lo explicó como la regla que somete al Ministerio Público a los mismos plazos que las partes. Se recomienda consultar la redacción completa del artículo.)}
+\end{norma}
+
+Cuando el dictamen está semanas en la Defensoría, conviene invocar este artículo. Si se responde que hay cien causas por día, se contesta que también quien litiga lleva muchas, pero que la norma dice cinco días y la parte está esperando.
+
+La intervención del Ministerio Público está, históricamente, en el Código Civil y Comercial, y de alguna manera tiene relevancia. En algunas constituciones provinciales el Ministerio Público está en la Constitución como \textbf{órgano extrapoder}; la Constitución Nacional no lo estableció así, pero en la provincia de Buenos Aires, según se entiende, sí.
+
+\subsection{La representación complementaria}
+
+La representación que hace el Ministerio Público se llama \textbf{complementaria}.
+
+\begin{definition}{Representación complementaria}
+Los incapaces, los menores, etc., tienen la representación de sus representantes legales y, complementariamente, la del Ministerio Público. Antes era el artículo 59 del Código de Vélez; hoy es el artículo 103 del Código Civil y Comercial.
+\end{definition}
+
+\begin{norma}{Artículo 103 --- Código Civil y Comercial de la Nación: Actuación del Ministerio Público}
+«La actuación del Ministerio Público respecto de personas menores de edad, incapaces y con capacidad restringida, puede ser, en el ámbito judicial, complementaria o principal. a) Es complementaria en todos los procesos en los que se encuentran involucrados intereses de personas menores de edad, incapaces y de personas con capacidad restringida; la falta de intervención causa la nulidad relativa del acto. b) Es principal: i) cuando los derechos de los representados están comprometidos, y existe inacción de los representantes; ii) cuando el objeto del proceso es exigir el cumplimiento de los deberes de los representantes; iii) cuando carecen de representante legal y es necesario proveer la representación. En el ámbito extrajudicial, el Ministerio Público actúa ante la ausencia, carencia o inacción de los representantes legales, cuando están comprometidos los derechos sociales, económicos y culturales.»
+
+\textit{(Mencionado en clase sin lectura; el texto se transcribe del código vigente.)}
+\end{norma}
+
+\begin{norma}{Artículo 59 --- Código Civil de Vélez Sarsfield (derogado)}
+«Además de los representantes necesarios, los incapaces son promiscuamente representados por el Ministerio de Menores, que será parte legítima y esencial en todo asunto judicial o extrajudicial, de jurisdicción voluntaria o contenciosa, en que los incapaces demanden o sean demandados, o en que se trate de las personas o bienes de ellos, bajo pena de nulidad de todo acto y de todo juicio que hubiere lugar sin su participación.»
+
+\textit{(Antecedente mencionado en clase; el texto se transcribe del Código Civil derogado.)}
+\end{norma}
+
+Muchas veces esta representación complementaria alarga los procesos, los prolonga y los enlentece, por lo que hay que tener cuidado. Pueden invocarse la falta de recursos, de personal o de medios técnicos limitados, pero eso no cambia la regla sobre los plazos.
+
+\begin{important}
+\textbf{Los plazos alcanzan también al Ministerio Público.} El fiscal y el defensor de menores son parte en el proceso y están sometidos a las mismas reglas de plazos que las demás partes (art.~159 CPCCN). Su representación es complementaria (art.~103 CCyCN; antes, art.~59 del Código de Vélez), pero puede alargar los procesos.
+\end{important}
+
+%------------------------------------------------------------------
+\section{Cuadro Cornell: pericia, testigos, alegato anticipado y Ministerio Público}
+
+\begin{cornell}
+\cornellrow{¿Cómo se cuestiona una pericia?}{Hay tres vías: la impugnación (más instalada en el ámbito nacional), el pedido de explicaciones (término del código provincial; si el perito no explica, se puede sostener su falta de eficacia técnica o científica) y la nulidad de la pericia (deficiente o sin rigor; más desafiante, por ser una nulidad intrínseca del acto).}
+\cornellrow{¿Cómo se cuestiona a un testigo?}{En la audiencia solo se puede objetar las preguntas (por ejemplo, por indicativas); el juez decide si se hace o no, la parte puede reformular y la discusión es una incidencia que puede generar costas. Si no se objetó, la idoneidad del testigo se cuestiona en el alegato; en el proceso laboral el alegato de idoneidad es de tres días, aunque debe verificarse tras la ley de modernización.}
+\cornellrow{¿Qué se puede pedir si el alegato se agrega antes de tiempo?}{Se puede pedir en el petitorio que no se agregue hasta que venzan los plazos de las restantes partes; si se agrega igual, que se invisibilice. En el expediente digital ya no existen el testado ni el desglose, y algunos juzgados responden que la invisibilización «no existe».}
+\cornellrow{¿Tiene el Ministerio Público los mismos plazos que las partes? (arts. 159 CPCCN y 103 CCyCN)}{Sí: el fiscal y el defensor son parte y están sometidos a las mismas reglas de plazos (art. 159, leído parcialmente en clase).}
+\cornellrow{¿Qué es la representación complementaria?}{Es la que ejerce el Ministerio Público respecto de incapaces y menores, junto a la de sus representantes legales (art. 103 CCyCN; antes, art. 59 del Código de Vélez). Puede alargar los procesos.}
+\cornellresumen{Frente a una pericia hay que elegir entre impugnación, pedido de explicaciones y nulidad; frente a un testigo, se objetan las preguntas en la audiencia y se cuestiona su idoneidad en el alegato. Presentar el alegato antes de tiempo exige pedir que no se agregue, y los plazos alcanzan también al Ministerio Público, cuya representación complementaria puede demorar los procesos. «Los plazos son más para nosotros que para el juzgado».}
+\end{cornell}
+
+%==================================================================
+% CAPÍTULO 5
+%==================================================================
+\chapter[Alegato, equipo y sentencia]{Cierre del práctico: trabajo en equipo, alegato y sentencia}
+
+%------------------------------------------------------------------
+\section{Balance del trabajo grupal sobre los alegatos}
+
+Al cierre del práctico se revisó cómo se trabajó en los alegatos: quiénes los elaboraron, quiénes debatieron y qué aportó cada integrante. Se advirtió que el trabajo en equipo es difícil, como ya se experimentó al trabajar la demanda y la contestación.
+
+En esas ocasiones se distribuyeron tareas: algunos grupos se concentraron en el \textbf{objeto}, que debe ser muy preciso; otros señalaron que los \textbf{hechos} son mucho más difíciles, porque requieren escribir mucho más, y que la \textbf{prueba} es un conjunto muy extenso. El capítulo de responsabilidad, por ejemplo, adquiere importancia cuando se habla de daño.
+
+%------------------------------------------------------------------
+\section{La estructura del alegato, la hoja en blanco y el uso de modelos}
+
+En una clase anterior se especuló sobre una estructura posible del alegato.
+
+\begin{important}
+\textbf{Estructura posible del alegato.}
+\begin{enumerate}
+    \item Reseña de lo que pasó en el proceso.
+    \item Análisis de la prueba producida.
+    \item Conclusiones.
+\end{enumerate}
+Para llegar a las conclusiones hay que haber construido antes los otros dos capítulos; por eso el trabajo en equipo exige coordinar quién redacta cada parte.
+\end{important}
+
+Cada uno trabaja su parte, pero en las organizaciones y en los equipos hay que hacerlo en conjunto. Se destacó la utilidad de subir los alegatos para que todos puedan leerlos, pensarlos y comentarlos («me gustó el alegato», «habría puesto algo más», «habría hecho hincapié en esto»), y de no quedarse en el microclima de quien quiere leerlos. Es fácil criticar; lo desafiante es estar frente a la apertura del escrito y escribir.
+
+Por eso existen los \textbf{modelos}, a los que se recurre, y por eso se busca hoy la inteligencia artificial para preguntar «¿cómo hago un escrito?»: muchas veces se está perdido. Antes era la hoja en blanco, la situación del escritor, a quien le brotan las ideas; al abogado también le brotan ideas, aunque a veces no resulten conducentes.
+
+%------------------------------------------------------------------
+\section{La sentencia: artículos 160 y siguientes}
+
+Tras los alegatos, hay que hacer la \textbf{sentencia del caso}; de lo contrario, faltaría esa pieza. Se prevé traer para la próxima clase la sentencia que hicieron compañeros de otros años, porque todos los años se elabora una sentencia, de modo que servirá para ver la estructura.
+
+Antes no era tan fácil como ahora: hoy se carga la información y el buscador devuelve una sentencia; pero hay que tener cuidado, pues puede ser, por ejemplo, una sentencia de tribunales de otro país. La sentencia la elaboran quienes no trabajaron en los alegatos, para participar con honestidad. Se recomienda armar un grupo de cada comisión para participar en la factura de la sentencia.
+
+\begin{norma}{Artículos 160 y siguientes --- CPCCN}
+Referencia citada sin lectura del texto: normas sobre la sentencia. Se recomienda leerlas para identificar las partes de la sentencia que el grupo deberá redactar.
+\end{norma}
+
+\begin{note}
+El apunte indica que la grabación se interrumpe durante la organización de los grupos para la sentencia.
+\end{note}
+
+%------------------------------------------------------------------
+\section{Cuadro Cornell: alegato, trabajo en equipo y sentencia}
+
+\begin{cornell}
+\cornellrow{¿Cómo se reparte el trabajo en un alegato hecho en equipo?}{Hay que coordinar quién redacta cada parte, porque las conclusiones requieren haber construido antes los otros capítulos. El trabajo en equipo es difícil: en la demanda y la contestación, unos se concentraron en el objeto (que debe ser muy preciso), otros señalaron que los hechos son más difíciles y que la prueba es muy extensa.}
+\cornellrow{¿Cómo se organiza un alegato frente a la hoja en blanco?}{Una estructura posible es: reseña de lo ocurrido en el proceso, análisis de la prueba y conclusiones. Los modelos y, hoy, la inteligencia artificial ayudan frente a la hoja en blanco, aunque hay que tener cuidado con lo que devuelven.}
+\cornellrow{¿Cuáles son las partes de una sentencia? (arts. 160 y siguientes)}{Las notas no las enumeran: indican leer los artículos 160 y siguientes del código, buscando los que se refieren específicamente a la sentencia, para identificar sus partes.}
+\cornellresumen{El práctico se cierra con el trabajo en equipo del alegato (reseña, prueba y conclusiones) y con la redacción de la sentencia del caso, para la cual se recomienda leer los artículos 160 y siguientes. La enseñanza central de toda la clase es que «la cosa se rige por lo escrito»: hay que leer, anotar y verificar siempre.}
+\end{cornell}
+
+\end{document}

@@ -1,0 +1,974 @@
+\documentclass[12pt,oneside]{book}
+
+% ==========================================================
+% METADATOS
+% ==========================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\materia}{Contrato de Compraventa}
+\newcommand{\titulo}{El precio: requisitos, acciones y redacci\'on de la cl\'ausula}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==========================================================
+% PAQUETES
+% ==========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Apuntes de \materia: \titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==========================================================
+% CONFIGURACI\'ON
+% ==========================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\addto\captionsspanish{\renewcommand{\contentsname}{\'Indice}}
+
+% ==========================================================
+% COMANDOS
+% ==========================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ==========================================================
+% ENTORNOS / CAJAS
+% ==========================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definici\'on: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={F\'ormula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Caja para el texto de normas legales reproducidas en el apunte
+\newtcolorbox{norma}[1]{
+    enhanced,
+    breakable,
+    title={#1},
+    fonttitle=\bfseries,
+    colback=yellow!4,
+    colframe=yellow!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+% ==========================================================
+% CONFIGURACI\'ON FINAL
+% ==========================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\begin{document}
+
+% ==========================================================
+% PORTADA
+% ==========================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{3.5cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender cada concepto es el primer paso para dominar la materia.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ==========================================================
+% \'INDICE
+% ==========================================================
+\tableofcontents
+
+% ==========================================================
+% CONTENIDO
+% ==========================================================
+
+% ----------------------------------------------------------
+\chapter[Introducci\'on y panorama]{Introducci\'on: alcance, utilidad y panorama del tema}
+% ----------------------------------------------------------
+
+\section{Alcance del tema}
+
+Este material completa el estudio del \textbf{precio} en el contrato de compraventa. Se analiza el precio en dinero (y por qu\'e las criptomonedas lo dejan fuera), el precio \textbf{cierto} ---determinado o determinable--- seg\'un los arts.~1133 a 1136, las reglas especiales para inmuebles cuando la superficie real difiere de la pactada (margen del 5\,\%) y el precio \textbf{serio}, con sus patolog\'ias (irrisorio, vil y simulado) y las acciones de lesi\'on (art.~332) y simulaci\'on (arts.~333 a 337). Cierra con las formas de cumplir la obligaci\'on de pago y la redacci\'on pr\'actica de la cl\'ausula de precio.
+
+\section{Utilidad profesional}
+
+\begin{itemize}
+    \item \textbf{Redactar y revisar boletos y escrituras.} La cl\'ausula de precio es la obligaci\'on esencial del contrato: si est\'a mal redactada, el negocio puede discutirse o anularse.
+    \item \textbf{Detectar alertas.} Precios <<de papel>>, contradocumentos o personas interpuestas: reconocer las se\~nales antes de firmar o autorizar.
+    \item \textbf{Negociar y asesorar compraventas de inmuebles.} Saber cu\'ando conviene pactar por el todo o por metro cuadrado, qu\'e margen del 5\,\% protege a cada parte y cu\'ando se puede resolver.
+    \item \textbf{Cuidar la responsabilidad profesional.} Abogados, escribanos y tasadores no son <<simples espectadores>>: deben indagar y advertir.
+    \item \textbf{Prevenir y resolver conflictos.} Lesi\'on, simulaci\'on e imprevisi\'on: qui\'en puede ejercerlas, c\'omo se prueban y qu\'e efectos tienen.
+\end{itemize}
+
+\section{Utilidad m\'as all\'a de la profesi\'on}
+
+Casi todas las personas compran, venden o heredan en alg\'un momento un bien de alto valor (vivienda, terreno, auto), y el precio es el coraz\'on de ese acuerdo. Entender estas reglas ayuda a no pagar de m\'as ni cobrar de menos por diferencias de metros, a no firmar cifras que luego puedan anularse y a exigir cl\'ausulas claras. Adem\'as, el m\'etodo de las cinco preguntas (qui\'en, qu\'e, c\'omo, cu\'ando y d\'onde) sirve para ordenar cualquier acuerdo de negocios, de pr\'estamos o familiar.
+
+\section{Panorama: cinco preguntas que ordenan el estudio del precio}
+
+El estudio del precio puede ordenarse en cinco preguntas, en el orden en que se enfrentan al fijarlo:
+
+\begin{enumerate}
+    \item \textbf{¿En qu\'e se paga?} El precio debe ser dinero; las criptomonedas no alcanzan.
+    \item \textbf{¿C\'omo se fija la cifra?} O ya est\'a escrita, o se pacta un m\'etodo objetivo (por ejemplo, el promedio de tres tasaciones).
+    \item \textbf{¿Y si los metros no coinciden?} Arts.~1135 y 1136 y el margen del 5\,\%.
+    \item \textbf{¿Es justa y real?} No puede ser irrisoria, vil ni simulada; de lo contrario aparecen la lesi\'on y la simulaci\'on.
+    \item \textbf{¿C\'omo se paga y c\'omo se escribe?} Tiempo, modo y la cl\'ausula que responde qui\'en, qu\'e, c\'omo, cu\'ando y d\'onde.
+\end{enumerate}
+
+\begin{example}{Luc\'ia vende su monoambiente de Palermo}
+Los cinco pasos anteriores son las preguntas que Luc\'ia y el comprador enfrentan, en orden, al fijar el precio: primero, en qu\'e se paga; segundo, c\'omo se fija la cifra (o ya est\'a escrita, o se pacta un m\'etodo objetivo, como el promedio de tres tasaciones); tercero, qu\'e pasa si el departamento mide distinto de lo creído; cuarto, si esa cifra es justa y real; quinto, c\'omo se paga y c\'omo se escribe.
+\end{example}
+
+% ----------------------------------------------------------
+\chapter[Precio en dinero y precio cierto]{El precio en dinero y el precio cierto}
+% ----------------------------------------------------------
+
+\section{La descripci\'on del inmueble y la superficie total}
+
+Al describir un inmueble que tiene diferentes medidas, lo m\'as importante es consignar siempre la \textbf{superficie total}. Despu\'es se indican las superficies parciales: cubierta, descubierta o semicubierta.
+
+\begin{note}
+Los ejercicios de parcial son de dos tipos: descripci\'on de inmueble y descripci\'on de cl\'ausulas de precio.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (intercambio parcialmente inaudible sobre el orden de los ejercicios del parcial)
+
+\section{El precio en dinero: el caso de las criptomonedas}
+
+El precio debe ser \textbf{en dinero}. Cuando se pacta pagar con criptomonedas (por ejemplo, Bitcoin), el contrato \textbf{no es una compraventa}, sino un \textbf{contrato innominado}. Si bien se puede comprar con Bitcoin, esto no se ajusta al concepto de precio ni cumple el requisito de que sea dinero, porque no es una moneda emitida por una autoridad bancaria, sino un sistema completamente abstracto y descentralizado, paralelo a la moneda nacional, el peso. La naturaleza jur\'idica que se asigne a la criptomoneda determinar\'a la naturaleza jur\'idica del contrato.
+
+\begin{important}
+Pactar el pago en criptomonedas no configura una compraventa: la cripto no es dinero de curso legal emitido por una autoridad. El contrato es innominado.
+\end{important}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasaje inaudible sobre el caso de los d\'olares, visto en la clase anterior)
+
+Los otros dos requisitos del precio son que sea \textbf{cierto} y \textbf{serio}.
+
+\section{Precio cierto: determinado o determinable (art.~1133)}
+
+\subsection{Concepto}
+
+Que el precio sea cierto significa que est\'e \textbf{determinado} al momento de celebrarse el contrato o que sea \textbf{determinable}. Es determinable cuando se establecen pautas suficientes y objetivas para su posterior designaci\'on. Esto est\'a regulado en los arts.~1133 a 1136 del C\'odigo Civil y Comercial.
+
+Se exige por razones de \textbf{seguridad jur\'idica}: ambas partes deben saber cu\'al es la prestaci\'on de la otra. En la compraventa de un inmueble, entregar el dinero es la contraprestaci\'on, porque el objeto es el inmueble.
+
+\begin{example}{tres tasaciones en Palermo}
+Quien quiere vender un monoambiente en Palermo y no sabe qu\'e precio ponerle puede acordar que el valor se designe en referencia a un promedio de tres tasaciones de la zona (de otros tres departamentos en la misma zona). Esa es una pauta objetiva para la posterior designaci\'on del precio.
+\end{example}
+
+\subsection{Texto del art.~1133}
+
+\begin{norma}{Art.~1133 --- Determinaci\'on del precio}
+El precio es determinado cuando las partes lo fijan en una suma que el comprador debe pagar, cuando se deja su indicaci\'on a la apreciaci\'on de un tercero designado o cuando lo sea con referencia a otra cosa cierta. En cualquier otro caso se entiende que hay precio v\'alido si las partes previeron el procedimiento para determinarlo.
+\end{norma}
+
+El art\'iculo contempla, entonces, las siguientes formas de tener un precio v\'alido:
+
+\begin{enumerate}
+    \item cuando lo acuerdan las partes (suma fija);
+    \item cuando lo designa un tercero, por ejemplo, un tasador;
+    \item cuando se lo designa en relaci\'on a otra cosa cierta;
+    \item en cualquier otro caso, si las partes previeron el procedimiento para determinarlo con posterioridad.
+\end{enumerate}
+
+Si el precio no se fija en el boleto de compraventa, puede designarse en \'este el procedimiento para fijarlo con posterioridad.
+
+\section{Precio determinado por un tercero (art.~1134)}
+
+\begin{norma}{Art.~1134 --- Precio determinado por un tercero}
+El precio puede ser determinado por un tercero designado en el contrato o despu\'es de su celebraci\'on. Si las partes no llegan a un acuerdo sobre su designaci\'on o sustituci\'on, o si el tercero no quiere o no puede realizar la determinaci\'on, el precio lo fija el juez por el procedimiento m\'as breve que prevea la ley local.
+\end{norma}
+
+El tercero debe aceptar el mandato que se le confiere. Si no lo acepta, o las partes no lo sustituyen por otra persona, el precio puede ser fijado por el juez: el negocio no se frustra.
+
+\subsection{Si el tercero designado no cumple: el sustituto}
+
+El tercero designado puede no aceptar nunca o no aparecer. Por ejemplo, si se establece que el precio lo designar\'a determinado martillero y, llegado el momento de pagar, el martillero no aparece, no est\'a obligado: es un negocio ajeno a \'el y no una obligaci\'on asumida por \'el. Por eso, si se designa un tercero, la sugerencia es \textbf{designar siempre un sustituto} para el eventual caso de que el primero no acepte o no pueda (``lo designar\'a tal, o lo designaremos de tal manera, el promedio de tal cosa'').
+
+Si el tasador cobra honorarios, en cambio, \textbf{s\'i est\'a obligado}: ya acept\'o un contrato.
+
+Cuando se designa al tercero sin establecer ninguna otra pauta, el tercero puede designar el precio que quiera: las partes depositaron su confianza en \'el y manifestaron su voluntad en ese sentido, por lo que no podr\'ia reclam\'arsele despu\'es.
+
+\section{Precio determinable: pautas objetivas}
+
+Cuando el precio es cierto pero determinable, no se establece la suma hoy, pero se deben fijar \textbf{criterios suficientes y concretos} que permitan establecerlo luego. Las pautas pueden ser todas las que las partes quieran, o designar a una persona para que fije el precio estableci\'endole pautas objetivas (por ejemplo, tres tasaciones de la zona; o ser m\'as concreto: tres tasaciones de determinados martilleros y el promedio de ellas, o la m\'as alta, ser\'a el precio).
+
+\begin{important}
+Cuando el precio es determinable no queda abierto ni sujeto a un <<despu\'es vemos>>: se fijar\'a despu\'es, pero hoy se sabe c\'omo se establecer\'a. Las pautas deben ser concretas e indubitables.
+\end{important}
+
+\subsection{El precio de otra cosa: el trigo en el mercado de Rosario}
+
+Tambi\'en puede establecerse el precio en funci\'on del precio de otra cosa en determinado momento. Por ejemplo, el precio de tantas toneladas de trigo en el mercado de Rosario en tal d\'ia. Es un mecanismo que hace al precio cierto pero determinable: hoy no se conoce, pero se sabr\'a en esa fecha averiguando cu\'anto vale en ese mercado.
+
+Cuando el precio se establece con relaci\'on a otra cosa, es necesario \textbf{individualizar bien esa otra cosa}, sin dudas, y tambi\'en \textbf{la fecha} del valor de esa cosa, porque la tonelada puede valer hoy un monto y ma\~nana otro.
+
+\section{Precio cierto y determinado: suma fija y principio nominalista}
+
+Si el precio es cierto y determinado, las partes expresan hoy una cifra concreta a la que se obligan, lo que es lo habitual (por ejemplo, un departamento por \$50.000). La cifra queda inamovible: no hay mecanismo de actualizaci\'on y rige el \textbf{principio nominalista}, es decir, la \textbf{prohibici\'on de indexaci\'on}. Es la cifra que se hubiera pactado.
+
+Por eso el mercado inmobiliario es un mercado dolarizado: no se suelen ofrecer los inmuebles en pesos, tal vez por tratarse de una moneda que no fluct\'ua tanto.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+ & \textbf{Precio determinado} & \textbf{Precio determinable} \\
+\midrule
+\textbf{Qu\'e es} & Una suma fija expresada hoy en el contrato. & No se fija la suma hoy, pero se establecen pautas objetivas y concretas para designarla despu\'es. \\
+\textbf{Efecto} & La cifra queda inamovible: principio nominalista y prohibici\'on de indexar. & La cifra se conocer\'a en el futuro aplicando las pautas pactadas (tercero, promedio de tasaciones, precio de otra cosa). \\
+\textbf{Condici\'on} & Que las partes la acuerden. & Que las pautas sean concretas e indubitables; si hay un tercero, conviene designar un sustituto. \\
+\bottomrule
+\end{tabularx}
+\caption*{Comparaci\'on entre precio determinado y precio determinable.}
+\end{table}
+
+\section{Modificaci\'on del precio por adenda}
+
+Como regla general, el precio determinado que acuerdan las partes es esa suma fija, a menos que las partes acuerden otra cosa: son las partes del contrato las que deciden cu\'ales son las cl\'ausulas. Es frecuente que se modifique alguna cl\'ausula del boleto de compraventa. Por ejemplo, si se hab\'ia fijado que el precio lo determinar\'ia un tasador y esto result\'o excesivamente oneroso para ambas partes, por \textbf{adenda} puede modificarse la cl\'ausula de precio y fijarse un precio determinado para la compraventa.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el pasaje sobre precio irrisorio, vil y compra por un monto inaudible queda incompleto en el apunte)
+
+% ----------------------------------------------------------
+% CORNELL CAPITULO 2
+% ----------------------------------------------------------
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Qu\'e superficie debe consignarse siempre al describir un inmueble?} &
+La superficie total. Despu\'es se indican las parciales: cubierta, descubierta, semicubierta. \\[0.8em]
+
+\textbf{¿Pagar con Bitcoin convierte el contrato en una compraventa?} &
+No. Es un contrato innominado: la criptomoneda no es dinero emitido por una autoridad bancaria, sino un sistema abstracto y descentralizado, paralelo al peso. \\[0.8em]
+
+\textbf{¿Cu\'ales son los tres requisitos del precio?} &
+Que sea en dinero, cierto (determinado o determinable) y serio. \\[0.8em]
+
+\textbf{¿Qu\'e es el precio cierto? (arts.~1133 a 1136)} &
+Es el precio determinado al celebrar el contrato o determinable mediante pautas objetivas y suficientes. Se exige por seguridad jur\'idica: ambas partes deben saber cu\'al es la prestaci\'on de la otra. \\[0.8em]
+
+\textbf{¿Qu\'e formas de determinar el precio prev\'e el art.~1133?} &
+Por acuerdo de las partes (suma fija); por la apreciaci\'on de un tercero designado (por ejemplo, un tasador); con referencia a otra cosa cierta (por ejemplo, toneladas de trigo en el mercado de Rosario un d\'ia determinado); y, en cualquier otro caso, si las partes previeron el procedimiento para determinarlo. \\[0.8em]
+
+\textbf{¿Qu\'e pasa si el tercero no acepta o no puede? (art.~1134)} &
+El precio lo fija el juez por el procedimiento m\'as breve que prevea la ley local; el negocio no se frustra. Conviene designar un sustituto. Si el tercero cobra honorarios, est\'a obligado porque acept\'o un contrato. \\[0.8em]
+
+\textbf{¿Qu\'e es el principio nominalista?} &
+Si el precio es una suma fija, queda inamovible: no hay actualizaci\'on ni indexaci\'on. Por eso el mercado inmobiliario suele ofrecerse en d\'olares. \\[0.8em]
+
+\textbf{¿Qu\'e pautas valen para un precio determinable?} &
+Las que las partes quieran, mientras sean concretas e indubitables; si se refiere a otra cosa, debe individualizarse bien esa cosa y la fecha del valor. Por adenda las partes pueden modificar la cl\'ausula de precio. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Resumen:} el precio debe ser en dinero (por eso el pago en criptomonedas genera un contrato innominado), cierto y serio. Es cierto cuando est\'a determinado (suma fija, sujeta al principio nominalista) o es determinable mediante pautas objetivas e indubitables: acuerdo de partes, designaci\'on de un tercero (con sustituto o, en su defecto, el juez) o referencia a otra cosa cierta.} \\
+\end{longtable}
+
+% ----------------------------------------------------------
+\chapter[Precio en inmuebles: superficie]{Precio en inmuebles: diferencias de superficie}
+% ----------------------------------------------------------
+
+Los arts.~1135 y 1136 regulan dos situaciones diferentes, seg\'un el precio se haya convenido o no por unidad de medida de superficie. La expresi\'on <<unidad de medida de superficie>> se refiere a metros cuadrados.
+
+\section{Precio no convenido por unidad de medida (art.~1135)}
+
+\begin{norma}{Art.~1135 --- Precio no convenido por unidad de medida de superficie}
+Si el objeto principal de la venta es una fracci\'on de tierra, aunque est\'e edificada, no habiendo sido convenido el precio por unidad de medida de superficie y la superficie de terreno tiene una diferencia mayor del cinco por ciento con la acordada, el vendedor o el comprador, seg\'un los casos, tiene derecho de pedir el ajuste de la diferencia. El comprador que por aplicaci\'on de esta regla debe pagar un mayor precio puede resolver la compra.
+\end{norma}
+
+\subsection{Funcionamiento del margen del 5\,\%}
+
+Si se vende una fracci\'on de terreno, aunque est\'e construida, las partes pueden fijar un \textbf{precio total} por el inmueble (precio global, por la cosa entera, y no por metro cuadrado). El C\'odigo juega con una diferencia del \textbf{5\,\%}, para m\'as o para menos, que funciona como l\'imite de lo permitido.
+
+\begin{example}{inmueble de 100\,m\textsuperscript{2} por \$200.000}
+Se acuerda la compraventa de un inmueble de 100\,m\textsuperscript{2} por \$200.000. Si en el estado parcelario surge que el inmueble tiene 110\,m\textsuperscript{2}, la diferencia es de m\'as del 5\,\%.
+\end{example}
+
+\begin{itemize}
+    \item Si el inmueble tiene \textbf{m\'as} metros cuadrados, el vendedor puede pedir un ajuste proporcional del precio al comprador. Si el comprador debe pagar un precio mayor, puede \textbf{resolver} la compra como consecuencia de ese ajuste.
+    \item Si el inmueble tiene \textbf{menos} metros de los acordados, el comprador puede pedir una reducci\'on del precio.
+\end{itemize}
+
+El comprador, ante el pedido de ajuste, puede decir que no tiene m\'as dinero para pagar y resolver el contrato. Seg\'un lo expuesto en clase, lo mismo a la inversa: si tiene menos metros, el comprador pide una reducci\'on del precio porque est\'a pagando m\'as dinero por menos metros, y en ese caso tambi\'en el vendedor puede resolver la compra.
+
+\begin{note}
+El texto del art.~1135 solo atribuye expresamente la facultad de resolver al comprador que, por el ajuste, debe pagar un mayor precio. Se recomienda contrastar con el docente el alcance de la resoluci\'on por el vendedor mencionada en este pasaje.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (alcance de la resoluci\'on por el vendedor)
+
+\begin{example}{precio global y diferencia de superficie}
+El comprador acepta la compra por \$200.000 creyendo, en los tratos preliminares, que el inmueble tiene 80\,m\textsuperscript{2}. Hecho el estado parcelario y visto el t\'itulo, resulta que tiene 100\,m\textsuperscript{2}: tiene m\'as metros y supera el 5\,\%. Como el precio no se fij\'o por unidad de medida sino de manera global, el ajuste es \textbf{facultativo}: las partes pueden ajustar el precio en m\'as o en menos seg\'un la diferencia. Si el comprador debiera desembolsar m\'as dinero, puede resolver el contrato y no debe nada: su resoluci\'on est\'a causada.
+\end{example}
+
+\subsection{Por qu\'e puede cambiar la superficie}
+
+La superficie real del inmueble puede diferir de la indicada, entre otras razones, porque:
+
+\begin{itemize}
+    \item mucha gente no tiene a mano el t\'itulo antecedente, en el que siempre constan las medidas del inmueble;
+    \item el inmueble se compr\'o hace muchos a\~nos y se midi\'o de una determinada manera, y luego se construy\'o sobre \'el. Por ejemplo, se compra una casa solo con patio y despu\'es se hace un quincho o se termina ocupando una porci\'on de terreno, expandiendo el terreno de alguna manera, de modo que al vender resultan muchos m\'as metros de los que dice el t\'itulo;
+    \item pudieron unificarse parcelas: quien es titular de dos parcelas dentro de un mismo lote y decide unificarlas para vender el lote junto tendr\'a muchos m\'as metros que los que indicaba su t\'itulo antecedente;
+    \item puede no tenerse el t\'itulo antecedente y deber pedirse luego un segundo testimonio;
+    \item el vendedor puede no haber sabido con exactitud cu\'antos metros ten\'ia su terreno.
+\end{itemize}
+
+La superficie real la determina el \textbf{certificado catastral} y el \textbf{estado parcelario} que realiza el agrimensor al momento de la venta. El certificado debe estar vigente, no ser de hace diez a\~nos, porque la situaci\'on del inmueble puede cambiar. En el caso de un lote de terreno, es necesario hacer s\'i o s\'i un estado parcelario para que un agrimensor verifique cu\'antos metros tiene el inmueble.
+
+\section{Precio convenido por unidad de medida (art.~1136)}
+
+\begin{norma}{Art.~1136 --- Precio convenido por unidad de medida de superficie}
+Si el precio es convenido por unidad de medida de superficie, el precio total es el que resulta en funci\'on de la superficie real del inmueble. Si lo vendido es una extensi\'on determinada, y la superficie total excede en m\'as de un cinco por ciento a la expresada en el contrato, el comprador tiene derecho a resolver.
+\end{norma}
+
+\begin{example}{departamento a \$1.000 el metro cuadrado}
+Si el metro cuadrado se vende a \$1.000, y el departamento tiene 100\,m\textsuperscript{2} o 120\,m\textsuperscript{2}, el comprador se compromete a abonar por metro cuadrado: siempre ser\'a \$1.000 por 100 o \$1.000 por 120. Se paga sobre la \textbf{superficie real} del inmueble.
+\end{example}
+
+La particularidad es que, si se vende una extensi\'on determinada y la superficie total excede m\'as del 5\,\%, el comprador tambi\'en tiene derecho a resolver la compra. Siempre juega un l\'imite, para m\'as o para menos: si la diferencia es del 2\,\%, 3\,\% o 4\,\%, no se aplican estas reglas.
+
+\begin{important}
+En el primer caso (art.~1135) el inmueble se vende a un precio determinado o determinable, pero por la cosa entera. En el segundo (art.~1136) el precio se determina por metro cuadrado, y lo que determina el precio total es la superficie real del inmueble.
+\end{important}
+
+\section{Cuadro comparativo: arts.~1135 y 1136}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Criterio} & \textbf{Art.~1135: precio NO convenido por unidad de medida} & \textbf{Art.~1136: precio convenido por unidad de medida} \\
+\midrule
+\textbf{C\'omo se fija el precio} & De manera global, por la cosa entera (ej.: inmueble de 100\,m\textsuperscript{2} por \$200.000). & Por unidad de medida (ej.: \$1.000 por metro cuadrado). \\
+\textbf{Precio final} & El pactado, salvo ajuste si la diferencia supera el 5\,\%. & El que resulta de la superficie real del inmueble. \\
+\textbf{Margen} & Diferencia mayor al 5\,\%, para m\'as o para menos. & Excedente de m\'as del 5\,\% sobre la extensi\'on expresada. \\
+\textbf{Ajuste} & Facultativo: las partes <<pueden>> pedirlo. & Es un deber: el precio debe ajustarse a la superficie real. \\
+\textbf{Resoluci\'on} & El comprador que, por el ajuste, deba pagar m\'as puede resolver. & Si se vende una extensi\'on determinada y excede m\'as del 5\,\%, el comprador puede resolver. \\
+\textbf{Diferencias menores} & Con diferencias del 2\,\%, 3\,\% o 4\,\% no se aplican estas reglas. & \'Idem: no se aplican estas reglas. \\
+\bottomrule
+\end{tabularx}
+\caption*{Comparaci\'on entre los arts.~1135 y 1136 del C\'odigo Civil y Comercial.}
+\end{table}
+
+% ----------------------------------------------------------
+% CORNELL CAPITULO 3
+% ----------------------------------------------------------
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Qu\'e ocurre si el inmueble vendido <<por el todo>> tiene m\'as o menos metros? (art.~1135)} &
+Si la superficie difiere en m\'as del 5\,\% de la acordada, el vendedor o el comprador, seg\'un el caso, puede pedir el ajuste de la diferencia. El ajuste es facultativo. El comprador que por el ajuste deba pagar un mayor precio puede resolver la compra. \\[0.8em]
+
+\textbf{¿C\'omo se calcula el precio total si se pact\'o por metro cuadrado? (art.~1136)} &
+El precio total resulta de la superficie real del inmueble (por ejemplo, \$1.000 por 100\,m\textsuperscript{2} o por 120\,m\textsuperscript{2}). Si se vende una extensi\'on determinada y la superficie excede en m\'as del 5\,\% la expresada en el contrato, el comprador puede resolver. \\[0.8em]
+
+\textbf{¿Qu\'e efecto tiene una diferencia menor al 5\,\%?} &
+Con diferencias del 2\,\%, 3\,\% o 4\,\% no se aplican estas reglas. \\[0.8em]
+
+\textbf{¿Qu\'e diferencia hay entre el ajuste del art.~1135 y el del art.~1136?} &
+En el art.~1135 (precio global) el ajuste es facultativo; en el art.~1136 (precio por unidad de medida) el precio debe ajustarse a la superficie real. \\[0.8em]
+
+\textbf{¿Qu\'e documentos determinan la superficie real?} &
+El certificado catastral y el estado parcelario realizado por el agrimensor; el certificado debe estar vigente. El t\'itulo antecedente indica las medidas, pero estas pueden haber cambiado (construcciones, ocupaci\'on de terreno, unificaci\'on de parcelas). \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Resumen:} en los inmuebles, los arts.~1135 y 1136 regulan las diferencias de superficie superiores al 5\,\%. Con precio global el ajuste es facultativo; con precio por metro cuadrado el precio se calcula sobre la superficie real. En ambos casos puede resolver el comprador seg\'un el supuesto previsto. Con diferencias menores al 5\,\% no se aplican estas reglas.} \\
+\end{longtable}
+
+% ----------------------------------------------------------
+\chapter[Precio serio: lesi\'on y simulaci\'on]{El precio serio: lesi\'on y simulaci\'on}
+% ----------------------------------------------------------
+
+\section{Precio serio: irrisorio, vil y simulado}
+
+El tercer requisito del precio es que sea \textbf{serio}: debe guardar una correcta relaci\'on con el objeto. Este requisito no est\'a en el C\'odigo, sino que es \textbf{doctrinario}, y se funda tambi\'en en la causa del contrato y en su car\'acter oneroso, donde cada prestaci\'on (entregar la cosa a cambio de dinero) se justifica: el dinero, en el valor de la cosa. Como regla, el precio debe guardar relaci\'on con el objeto. Pueden darse tres situaciones: precio irrisorio, precio vil y precio simulado.
+
+\begin{important}
+No se puede poner como precio lo que a una parte se le ocurra. No da lo mismo vender un inmueble de dos ambientes que uno de cuatro, un departamento que una casa. Tiene que haber un equilibrio entre las prestaciones que haga a la onerosidad del contrato y que lo haga un contrato de compraventa: el vendedor transmite el dominio a cambio de un precio en dinero por esa cosa puntual. Por eso el precio tiene que guardar relaci\'on necesariamente con la cosa.
+\end{important}
+
+\subsection{Primera situaci\'on: precio irrisorio}
+
+El precio es \textbf{irrisorio} cuando es totalmente desproporcionado y solo se puso en la cl\'ausula del contrato para rellenarla. La consecuencia es que, en realidad, no hay precio y, por ende, puede declararse la \textbf{nulidad} del contrato por falta de un elemento esencial: la contraprestaci\'on, en este caso, el precio.
+
+\subsection{Segunda situaci\'on: precio vil}
+
+El precio es \textbf{vil} cuando es inferior al del mercado sin llegar a ser completamente desproporcionado y rid\'iculo. La consecuencia es que hay compraventa, pero puede ser atacada por la \textbf{acci\'on de lesi\'on}.
+
+\subsection{Tercera situaci\'on: precio simulado}
+
+El precio es \textbf{simulado} cuando en el contrato figura un precio acorde al valor de mercado, pero ese precio no se paga, o bien las partes firman un contradocumento en el que el vendedor le devuelve el dinero al comprador. Se celebra un acto jur\'idico bajo la apariencia de otro: simulaci\'on. Por ejemplo, se celebra una compraventa cuando en realidad se est\'a donando, como en el caso de una donaci\'on de padres a hijos. La consecuencia es que se ataca por la \textbf{acci\'on de simulaci\'on}.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Supuesto} & \textbf{Qu\'e es} & \textbf{Consecuencia} \\
+\midrule
+\textbf{Precio irrisorio} & Precio totalmente desproporcionado, puesto solo para rellenar la cl\'ausula. & En realidad no hay precio: nulidad del contrato por falta de un elemento esencial. \\
+\textbf{Precio vil} & Precio inferior al de mercado, sin llegar a ser completamente desproporcionado y rid\'iculo. & Hay compraventa, pero puede ser atacada por la acci\'on de lesi\'on. \\
+\textbf{Precio simulado} & Figura un precio acorde al mercado, pero no se paga o hay un contradocumento que devuelve el dinero. & Se ataca por la acci\'on de simulaci\'on (acto celebrado bajo la apariencia de otro). \\
+\bottomrule
+\end{tabularx}
+\caption*{Precio irrisorio, vil y simulado.}
+\end{table}
+
+\section{Acci\'on de lesi\'on (art.~332)}
+
+La lesi\'on se aplica a todos los actos jur\'idicos y permite pedir la nulidad o el reajuste del contrato de compraventa.
+
+\begin{norma}{Art.~332 --- Lesi\'on}
+Puede demandarse la nulidad o la modificaci\'on de los actos jur\'idicos cuando una de las partes, explotando la necesidad, debilidad s\'iquica o inexperiencia de la otra, obtuviera por medio de ellos una ventaja patrimonial evidentemente desproporcionada y sin justificaci\'on.
+
+Se presume, excepto prueba en contrario, que existe tal explotaci\'on en caso de notable desproporci\'on de las prestaciones.
+
+El afectado tiene opci\'on para demandar la nulidad o un reajuste equitativo del convenio, pero la primera de estas acciones se convierte en acci\'on de reajuste si \'este es ofrecido por el demandado al contestar la demanda.
+
+S\'olo el lesionado o sus herederos pueden ejercer la acci\'on.
+\end{norma}
+
+\subsection{Elemento objetivo}
+
+Una de las partes obtiene una \textbf{ventaja patrimonial evidente y desproporcionada} y esa ventaja \textbf{no tiene justificaci\'on}.
+
+\subsection{Elemento subjetivo}
+
+La parte lesionada se encuentra en un \textbf{estado de inferioridad}: una necesidad, una debilidad ps\'iquica o inexperiencia. En la compraventa, el comprador puede obtener una ventaja patrimonial excesiva y desproporcionada. Este elemento subjetivo \textbf{se tiene que probar}.
+
+\begin{example}{aprovechamiento de la situaci\'on del vendedor}
+Quien vende es una persona con capacidad restringida, un menor de edad o una persona que tiene necesidad de vender el inmueble por alguna situaci\'on particular, por ser una persona muy mayor. El comprador se aprovecha de esa situaci\'on para que, en vez de negociar la venta por \$200.000, se venda por \$80.000. Debe haber una desproporci\'on muy grande entre el precio y la cosa, y debe probarse que el vendedor ten\'ia, por ejemplo, una debilidad ps\'iquica, una necesidad o inexperiencia.
+\end{example}
+
+\subsection{Efectos: nulidad o reajuste}
+
+En la acci\'on de lesi\'on se puede pedir la \textbf{nulidad} del contrato o su \textbf{reajuste}. El lesionado puede demandar a quien se aprovech\'o de su situaci\'on, y el demandado puede ofrecer proceder al reajuste del contrato. No hace falta que el negocio se frustre: el demandado puede ofrecer el reajuste y el negocio no se frustra.
+
+\section{El precio y el rol del escribano}
+
+\subsection{Autorizante, no simple espectador}
+
+El precio lo eligen las partes: es un acuerdo de voluntades entre vendedor y comprador, y el escribano no se mete en su designaci\'on. Pero el precio que designen \textbf{no puede ser cualquier cosa}: debe ser ajustado y guardar razonabilidad con la cosa que se transmite. La consecuencia jur\'idica de consignar un precio alarmante, que puede ser irrisorio o vil, es grave, porque puede declararse la nulidad del contrato.
+
+Si alguien alega, por ejemplo, que se aprovecharon de su padre y que este no pudo haber vendido por esa suma, se cita a todos para investigar qu\'e pas\'o con el negocio jur\'idico: si estaba bien, si era un negocio real. Puede estar causado (por ejemplo, porque el inmueble est\'a destruido, se exhiben fotos o se ve la publicaci\'on en internet de que efectivamente vale eso), y si se encuentra justificado, puede ser v\'alido.
+
+El escribano es \textbf{autorizante} del instrumento: las partes firman y \'el lo autoriza. No es un simple espectador del negocio. Su asesoramiento, deber y funci\'on notarial es m\'as que redactar el instrumento y autorizar: es un trabajo m\'as complejo y amplio.
+
+\subsection{Precio menor declarado para pagar menos impuestos}
+
+Si las partes quieren declarar un precio menor ante el escribano para no pagar impuestos, las consecuencias jur\'idicas son las ya descriptas: no da lo mismo y no pueden hacer lo que se les ocurra. El escribano debe tener la autoridad para decir que no autoriza si le quedan dudas. Tambi\'en es com\'un que se pretenda hacer el valor de la escritura menor para no pagar tanto, pero esto no se ajusta al valor inmobiliario de referencia. El escribano debe \textbf{indagar}, preguntar de qu\'e se trata y por qu\'e: puede estar justificado, por ejemplo, porque el inmueble est\'e destruido.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasaje inaudible: \"A m\'i me quedan dudas sobre [...]\")
+
+\subsection{El valor inmobiliario de referencia (VIR)}
+
+En las escriban\'ias se saca siempre el \textbf{VIR} del inmueble, es decir, el \textbf{valor inmobiliario de referencia}, que el Estado (en este caso, el Gobierno de la Ciudad) establece como una valuaci\'on del inmueble. Se busca por el n\'umero de partida inmobiliaria y arroja cu\'anto vale el inmueble, en pesos, para el Estado. El precio de la venta \textbf{nunca puede ser menor} a ese valor.
+
+\subsection{Negocios familiares y prueba de la lesi\'on}
+
+En los negocios familiares es habitual que el precio sea menor al de mercado, porque hay otras cuestiones afectivas involucradas, y puede ser real; si se indaga y consulta por qu\'e es ese precio, puede encontrarse la respuesta. Si el negocio est\'a causado y es real, prospera. La aplicaci\'on de la teor\'ia de la lesi\'on es \textbf{extrema}: se requiere una gran desproporci\'on y un aprovechamiento que se debe probar, y el juez debe declararla una vez probada.
+
+Para estos casos, una forma de regular que el pago no sea inmediato es la hipoteca, entre otras alternativas.
+
+\section{Acci\'on de simulaci\'on (arts.~333 a 337)}
+
+La simulaci\'on tambi\'en se aplica a todos los actos jur\'idicos y se configura cuando las partes celebran un acto jur\'idico bajo la apariencia de otro. Ejemplo t\'ipico: se celebra una compraventa, pero en realidad es una donaci\'on.
+
+\begin{norma}{Art.~333 --- Caracterizaci\'on}
+La simulaci\'on tiene lugar cuando se encubre el car\'acter jur\'idico de un acto bajo la apariencia de otro, o cuando el acto contiene cl\'ausulas que no son sinceras, o fechas que no son verdaderas, o cuando por \'el se constituyen o transmiten derechos a personas interpuestas, que no son aquellas para quienes en realidad se constituyen o transmiten.
+\end{norma}
+
+\begin{norma}{Art.~334 --- Simulaci\'on l\'icita e il\'icita}
+La simulaci\'on il\'icita o que perjudica a un tercero provoca la nulidad del acto ostensible. Si el acto simulado encubre otro real, \'este es plenamente eficaz si concurren los requisitos propios de su categor\'ia y no es il\'icito ni perjudica a un tercero. Las mismas disposiciones rigen en el caso de cl\'ausulas simuladas.
+\end{norma}
+
+\subsection{Simulaci\'on l\'icita e il\'icita}
+
+Se debe diferenciar la simulaci\'on l\'icita de la il\'icita, que es la que importa a efectos del tercero. La \textbf{simulaci\'on l\'icita} es aquella que no perjudica a ning\'un tercero ni persigue un fin il\'icito. La \textbf{simulaci\'on il\'icita} es lo contrario: se perjudica a un tercero y puede perseguirse tambi\'en un fin il\'icito.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+ & \textbf{Simulaci\'on l\'icita} & \textbf{Simulaci\'on il\'icita} \\
+\midrule
+\textbf{Perjuicio a terceros} & No se perjudica a ning\'un tercero. & Se perjudica a un tercero. \\
+\textbf{Fin perseguido} & No persigue un fin il\'icito. & Puede llegar a perseguir tambi\'en un fin il\'icito. \\
+\textbf{Inter\'es para el estudio} & Menor relevancia pr\'actica. & Es la que importa a efectos del tercero afectado (por ejemplo, acreedores o hijos). \\
+\bottomrule
+\end{tabularx}
+\caption*{Simulaci\'on l\'icita e il\'icita.}
+\end{table}
+
+\subsection{Ejemplos de simulaci\'on il\'icita planteados}
+
+\begin{example}{beneficiar m\'as a un hijo}
+Un padre quiere beneficiar m\'as a un hijo y, en realidad, se lo est\'a donando, engrosando m\'as su patrimonio, perjudicando al resto de los hijos. Despu\'es est\'a la porci\'on leg\'itima que le corresponde a cada uno.
+\end{example}
+
+\begin{example}{hacerse insolvente}
+Se vende, o a lo mejor se dona a un amigo, los inmuebles: se celebra una compraventa pero en realidad se est\'a donando porque se tienen muchas deudas y el patrimonio es prenda com\'un de todos los acreedores. As\'i, los acreedores no pueden cobrarse del patrimonio. Esta ser\'ia una simulaci\'on il\'icita.
+\end{example}
+
+\begin{note}
+Se discuti\'o el caso de quien tiene cinco hijos, dona a dos, y los otros tres firman como que recibieron dinero y no recibieron nada. Seg\'un lo expuesto en clase, si los otros tambi\'en firman que recibieron el dinero, en el acto no hay simulaci\'on: lo que existe es una manifestaci\'on no sincera, que es otra cosa. Se se\~nal\'o la diferencia, vista en Notarial, entre hechos aut\'enticos y autenticados: se trata de una manifestaci\'on, una cl\'ausula, pero el contrato de donaci\'on en s\'i no est\'a simulando otro. Tambi\'en se aclar\'o que donar para eludir acreedores es un acto de donaci\'on, mientras que la simulaci\'on es dar a un negocio la apariencia de otro.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasajes confusos o inaudibles en la discusi\'on sobre donaci\'on para eludir acreedores y sobre la parte del caso de los cinco hijos)
+
+\subsection{Escrituras de sinceramiento y mandato oculto}
+
+En las escriban\'ias es habitual que, por \'epocas, haya <<oleadas>> de \textbf{escrituras de sinceramiento}: se hab\'ian puesto inmuebles a nombre de otra persona, no para perjudicar a acreedores sino por una cuesti\'on meramente patrimonial, y luego se hace el acto de sinceramiento por un \textbf{mandato oculto}. Es otro ejemplo de simulaci\'on.
+
+\begin{example}{mandato oculto}
+Una persona compra un inmueble, pero en realidad el dinero es de otra. Entre ambas firman un contradocumento en el que quien aport\'o el dinero le encarga a la otra comprar el inmueble mediante un \textbf{mandato sin representaci\'on}. Si hubiera un poder, el inmueble ir\'ia a nombre del poderdante; como no hay poder, se lo llama \textbf{mandato oculto}.
+\end{example}
+
+\subsection{Acci\'on de los terceros y prueba por cualquier medio}
+
+\begin{norma}{Art.~336 --- Acci\'on de terceros}
+Los terceros cuyos derechos o intereses leg\'itimos son afectados por el acto simulado pueden demandar su nulidad. Pueden acreditar la simulaci\'on por cualquier medio de prueba.
+\end{norma}
+
+Si se dona un inmueble bajo la apariencia de una venta a un tercero para perjudicar a los acreedores, estos pueden probar la simulaci\'on por \textbf{cualquier medio}, y la demanda se hace para que puedan cobrarse del patrimonio.
+
+\subsection{Acci\'on entre las partes y contradocumento}
+
+El apunte reproduce el art.~335, comprendido en el rango 333 a 337 citado en clase.
+
+\begin{norma}{Art.~335 --- Acci\'on entre las partes}
+Los que otorgan un acto simulado il\'icito o que perjudica a terceros no pueden ejercer acci\'on alguna el uno contra el otro sobre la simulaci\'on, excepto que las partes no puedan obtener beneficio alguno de las resultas del ejercicio de la acci\'on de simulaci\'on. La simulaci\'on alegada por las partes debe probarse mediante el respectivo contradocumento. Puede prescindirse de \'el, cuando la parte justifica las razones por las cuales no existe o no puede ser presentado y median circunstancias que hacen inequ\'ivoca la simulaci\'on.
+\end{norma}
+
+\subsection{El tercero de buena fe}
+
+\begin{norma}{Art.~337 --- Efectos frente a terceros. Deber de indemnizar}
+La simulaci\'on no puede oponerse a los acreedores del adquirente simulado que de buena fe hayan ejecutado los bienes comprendidos en el acto.
+
+La acci\'on del acreedor contra el subadquirente de los derechos obtenidos por el acto impugnado s\'olo procede si adquiri\'o por t\'itulo gratuito, o si es c\'omplice en la simulaci\'on.
+
+El subadquirente de mala fe y quien contrat\'o de mala fe con el deudor responden solidariamente por los da\~nos causados al acreedor que ejerci\'o la acci\'on, si los derechos se transmitieron a un adquirente de buena fe y a t\'itulo oneroso, o de otro modo se perdieron para el acreedor. El que contrat\'o de buena fe y a t\'itulo gratuito con el deudor, responde en la medida de su enriquecimiento.
+\end{norma}
+
+El C\'odigo protege siempre al \textbf{tercero adquirente de buena fe}, siempre que haya hecho todo lo que estaba a su alcance para conocer la verdadera situaci\'on del inmueble, como el \textbf{estudio de t\'itulos} y la visita al inmueble. Si la otra persona tiene conocimiento de la simulaci\'on, la situaci\'on cambia: tiene que tener conocimiento de ella. Se plante\'o el caso de quien dona sus inmuebles bajo la apariencia de una venta y el adquirente los vende luego a un tercero: si el tercero no conoc\'ia la simulaci\'on, queda protegido.
+
+Un error u omisi\'on de un antecedente surgir\'a del estudio de t\'itulos. Tambi\'en es una alarma que debe activarse siempre un precio bajo: cu\'al es el VIR, a cu\'anto se vendi\'o y por qu\'e se hizo.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasajes inaudibles o confusos en la discusi\'on sobre el tercero de buena fe)
+
+% ----------------------------------------------------------
+% CORNELL CAPITULO 4
+% ----------------------------------------------------------
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Puede ponerse cualquier cifra como precio?} &
+No. El precio debe ser serio: guardar relaci\'on con la cosa. Es un requisito doctrinario, fundado en la causa y en la onerosidad del contrato. \\[0.8em]
+
+\textbf{¿C\'omo se vulnera el precio serio?} &
+Con precio irrisorio (nulidad: en realidad no hay precio), vil (hay compraventa atacable por la acci\'on de lesi\'on) o simulado (se ataca por la acci\'on de simulaci\'on). \\[0.8em]
+
+\textbf{¿Qu\'e requisitos tiene la lesi\'on? (art.~332)} &
+Objetivo: ventaja patrimonial evidentemente desproporcionada y sin justificaci\'on. Subjetivo: explotaci\'on de la necesidad, debilidad ps\'iquica o inexperiencia del otro, que debe probarse. Solo el lesionado o sus herederos pueden ejercer la acci\'on. \\[0.8em]
+
+\textbf{¿Qu\'e efectos tiene la acci\'on de lesi\'on?} &
+Nulidad o reajuste equitativo. El demandado puede ofrecer el reajuste al contestar la demanda, y entonces la acci\'on de nulidad se convierte en acci\'on de reajuste. \\[0.8em]
+
+\textbf{¿Qu\'e debe hacer el escribano frente a un precio que despierta dudas?} &
+No fija el precio, pero como autorizante no es simple espectador: debe indagar, consultar el VIR (valor inmobiliario de referencia) y negarse a autorizar si hay dudas o engaño. El precio nunca puede ser menor al VIR. En negocios familiares un precio menor puede estar justificado; la lesi\'on es de aplicaci\'on extrema y exige prueba. \\[0.8em]
+
+\textbf{¿Qu\'e sucede cuando un contrato esconde otro acto distinto? (arts.~333 a 337)} &
+Hay simulaci\'on: se celebra un acto bajo la apariencia de otro (por ejemplo, una compraventa que oculta una donaci\'on). Puede ser l\'icita (sin perjuicio a terceros ni fin il\'icito) o il\'icita (perjudica a un tercero). \\[0.8em]
+
+\textbf{¿C\'omo se prueba la simulaci\'on?} &
+Entre las partes, mediante contradocumento (art.~335), salvo que se justifique por qu\'e no existe y haya circunstancias que hagan inequ\'ivoca la simulaci\'on. Los terceros afectados (por ejemplo, acreedores) pueden probarla por cualquier medio (art.~336). \\[0.8em]
+
+\textbf{¿Qu\'e es el mandato oculto?} &
+Un ejemplo de simulaci\'on: quien aporta el dinero encarga a otra persona comprar el inmueble mediante un mandato sin representaci\'on, firmado en un contradocumento; por eso el inmueble no va a nombre del poderdante. \\[0.8em]
+
+\textbf{¿Qui\'en es el tercero de buena fe protegido?} &
+El tercero adquirente que hizo todo lo que estaba a su alcance para conocer la verdadera situaci\'on del inmueble, como el estudio de t\'itulos. Un precio bajo es una alarma: debe verificarse el VIR, a cu\'anto se vendi\'o y por qu\'e. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Resumen:} el precio es serio cuando guarda relaci\'on razonable con la cosa. Si es irrisorio hay nulidad; si es vil, puede atacarse por lesi\'on (art.~332), que exige ventaja desproporcionada y explotaci\'on de la necesidad, debilidad ps\'iquica o inexperiencia; si es simulado, por simulaci\'on (arts.~333 a 337), con protecci\'on del tercero de buena fe. El escribano, como autorizante, no fija el precio pero debe indagar frente a cifras sospechosas.} \\
+\end{longtable}
+
+% ----------------------------------------------------------
+\chapter[Cumplimiento y redacci\'on del precio]{Cumplimiento y redacci\'on de la cl\'ausula de precio}
+% ----------------------------------------------------------
+
+\section{Repaso integrador}
+
+Se vio que el precio debe ser \textbf{en dinero}: en funci\'on de la naturaleza jur\'idica que se d\'e a la criptomoneda ser\'a la naturaleza jur\'idica que se asigne al contrato. Luego, que debe ser \textbf{cierto}: determinado (suma fija, inamovible; principio nominalista, prohibici\'on de indexar) o determinable (pautas objetivas y concretas para una posterior designaci\'on, las que se quiera, mientras sean indubitables). Se vieron tambi\'en los criterios espec\'ificos que da el C\'odigo respecto a los inmuebles: fijar el precio por unidad de medida o no fijarlo por unidad de medida, y las consecuencias jur\'idicas en uno u otro caso cuando hay diferencia de metraje (cuando no se fija por unidad de medida es facultativo ajustar el precio; en el otro caso es un deber: <<debe ajustarse el precio>>). Por \'ultimo, el requisito de que sea \textbf{serio}, con la teor\'ia de la lesi\'on y la simulaci\'on: no da lo mismo cualquier cifra, debe guardar razonabilidad con la cosa que se obliga a transmitir el otro.
+
+\section{Teor\'ia de la imprevisi\'on}
+
+En los contratos de ejecuci\'on continuada rige la \textbf{teor\'ia de la imprevisi\'on}: cuando llega el momento de cumplir la obligaci\'on de una de las partes, esta se torna \textbf{excesivamente onerosa} por causas ajenas y excepcionales (extraordinarias), y la prestaci\'on resulta desproporcionada en funci\'on de la prestaci\'on recibida. En ese caso se puede pedir judicialmente un ajuste o adecuaci\'on.
+
+\begin{example}{pr\'estamo en d\'olares}
+Se paga una cuota de un pr\'estamo en d\'olares y el d\'olar pasa de 30 pesos a 600. Eventualmente, el ajuste se pedir\'a invocando esta teor\'ia, y se decidir\'a si se cumplen o no los requisitos.
+\end{example}
+
+\section{Modalidades de pago}
+
+Los tres requisitos mencionados son los requisitos para que haya precio. Para ejecutar y cumplir la obligaci\'on concreta de pagar el precio existen distintas \textbf{modalidades}, que surgen del acuerdo de voluntades, en cuanto al \textbf{tiempo} y al \textbf{modo}:
+
+\begin{itemize}
+    \item \textbf{Tiempo:} antes, en el momento o despu\'es.
+    \item \textbf{Modo:} en efectivo, por dep\'osito, por transferencia.
+\end{itemize}
+
+No debe dejarse abierto ni posponerse su definici\'on al momento posterior a la celebraci\'on del contrato. Se trata de la \textbf{obligaci\'on esencial} de una de las partes y no debe dejar lugar a dudas: no se la debe dejar a la interpretaci\'on futura de alguien ni tener que volver a hablar. Al firmar un contrato debe quedar perfectamente claro y establecido a qu\'e se obliga cada uno.
+
+\section{Las cinco preguntas de la obligaci\'on}
+
+\begin{important}
+Regla mnemot\'ecnica del docente (no surge de ninguna norma; es un modo personal de acordarse y prestar atenci\'on al redactar cl\'ausulas): al describir una obligaci\'on, idealmente se deben responder cinco preguntas: \textbf{\'qui\'en debe y a qui\'en?}, \textbf{\'qu\'e debe?}, \textbf{\'c\'omo lo debe?}, \textbf{\'cu\'ando lo debe?} y \textbf{\'d\'onde lo debe?} Si la cl\'ausula de precio responde las cinco, est\'a completa.
+\end{important}
+
+\subsection{Respondiendo las cinco preguntas, una por una}
+
+\begin{itemize}
+    \item \textbf{¿Qui\'en debe a qui\'en?} El comprador al vendedor.
+    \item \textbf{¿Qu\'e?} La cifra: el precio (por ejemplo, \$200.000 o \$100.000).
+    \item \textbf{¿C\'omo?} En efectivo, por transferencia o por dep\'osito.
+    \item \textbf{¿Cu\'ando?} Antes, durante o despu\'es. Por ejemplo: antes de la escritura se abon\'o una parte y el saldo en la escritura; o todo en la escritura; o en la escritura una parte y el saldo en el futuro, en cuotas; o los tres momentos juntos (una parte antes, una parte hoy y otra parte ma\~nana). Cuando el pago es a futuro, en cuotas, interesa especialmente: cu\'ando vencen, qu\'e d\'ia, qu\'e implicancia tiene el atraso, si hay intereses punitorios, moratorios o compensatorios, y qu\'e pasa si el d\'ia de vencimiento es feriado o inh\'abil.
+    \item \textbf{¿D\'onde?} Tiene v\'inculo con el \'cu\'ando. Si es en efectivo y en el momento, es en ese acto, ante el escribano. Si es antes, puede ser en el momento en que se firm\'o el boleto de compraventa, por ejemplo. Si es despu\'es, en el domicilio del acreedor, por ejemplo, el del vendedor.
+\end{itemize}
+
+Para el caso de que el d\'ia de vencimiento fuera feriado o inh\'abil, debe aclararse expresamente que la obligaci\'on vencer\'a el d\'ia h\'abil inmediato siguiente.
+
+\begin{important}
+Cuando se redacta la obligaci\'on de pagar el precio, por ser la principal, no deben quedar dudas; si se pueden responder las cinco preguntas, la cl\'ausula est\'a completa.
+\end{important}
+
+\section{La Ley 25.345 y la bancarizaci\'on de los pagos}
+
+\begin{norma}{Ley 25.345 --- Bancarizaci\'on de pagos}
+Norma citada en clase sin mención de art\'iculo. Seg\'un lo explicado: existe una ley que establece que, en el pa\'is, todos los pagos deben ser bancarizados para que valgan; si no, el vendedor puede decir que nunca le pagaron. La excepci\'on mencionada es la transferencia de inmuebles y de derechos reales sobre inmuebles, cuando el pago se efect\'ua ante el escribano.
+\end{norma}
+
+El pago se estructura ante el escribano; en este caso se pueden hacer pagos en efectivo.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte registra el pasaje sobre pagos en efectivo con una frase truncada)
+
+\section{Ejercicio: redacci\'on de la cl\'ausula de precio}
+
+\begin{exercise}{cl\'ausula de precio b\'asica}
+Redactar la cl\'ausula de precio m\'as b\'asica, respondiendo las cinco preguntas: momento escriturario, se paga todo hoy; la escritura es de 50.000; se abona en efectivo. Todo hoy, en la escritura, \$50.000, se abona en efectivo.
+\end{exercise}
+
+\section{Comentarios y correcciones a las cl\'ausulas redactadas}
+
+\subsection{Primera cl\'ausula}
+
+Cl\'ausula le\'ida: <<El precio total y convenido es de [...] 50.000, que el comprador abona al vendedor en este acto, en dinero en efectivo, que el vendedor recibe conforme>>.
+
+La redacci\'on es habitual en una escritura de compraventa y est\'a bien. No es necesario poner <<convenido>>, <<de conformidad>>, etc\'etera: puede hacerse m\'as llana y m\'as b\'asica, y quedar\'a perfecta: <<El precio es de tanto, que el comprador abona al vendedor en este acto, en efectivo>>. Respecto de si se debe aclarar la moneda (por ejemplo, que son d\'olares estadounidenses), s\'i, porque pueden ser otros.
+
+\subsection{Cifra en letras y entre par\'entesis}
+
+El docente no sugiere poner la cifra en letras y entre par\'entesis: si bien vale lo escrito en letras, al tratarse de la cl\'ausula esencial del contrato puede haber un error al tipear (por ejemplo, poner un cero m\'as). No lo ve necesario, aunque aclara que puede dejarse y que no est\'a mal.
+
+\subsection{Segunda cl\'ausula: <<ante m\'i>>, <<a entera satisfacci\'on>>, recibo y evicci\'on}
+
+Se plantea que <<ante m\'i>> no corresponde, porque el pago se hace en el acto; <<en este acto>> es suficiente.
+
+Cl\'ausula le\'ida: <<El precio total y convenido por las partes asciende a la suma de d\'olares estadounidenses 50.000, importe que la parte compradora abona a la parte vendedora en este acto, en efectivo, a entera satisfacci\'on de la parte vendedora, sin tener nada m\'as que reclamar, otorgando suficiente recibo y carta de pago en forma, oblig\'andose por evicci\'on y saneamiento en forma de ley>>.
+
+Comentarios del docente:
+
+\begin{itemize}
+    \item <<Total y convenido>> es adorno: se puede dejar o no.
+    \item <<A entera satisfacci\'on de la parte vendedora>> tambi\'en es adorno: puede sacarse porque despu\'es se indica que se otorga recibo. Puede dejarse, pero no es obligatorio. Conviene resaltar lo esencial y distinguirlo de lo que solo hace m\'as linda la redacci\'on.
+    \item <<Otorgando suficiente recibo y carta de pago en forma>>: puede decirse m\'as corto, <<otorgando recibo por la totalidad del precio>>.
+    \item <<Oblig\'andose por evicci\'on y saneamiento conforme a derecho>>: es otra cl\'ausula que incluso puede omitirse, porque ya rige por ley: todo contrato oneroso la contiene como obligaci\'on por defecto. En la cl\'ausula de precio no ir\'ia: est\'a de m\'as, aunque tampoco estar\'ia mal.
+\end{itemize}
+
+\subsection{Denominaciones de las partes y forma de escribir el precio}
+
+Pueden usarse <<parte vendedora>> y <<parte compradora>>, o bien <<vendedor>> y <<comprador>>; tambi\'en <<el se\~nor Mengano al se\~nor Fulano>>, o <<el nombrado en primer t\'ermino al nombrado en segundo t\'ermino>>. Escribir <<d\'olares 50.000>> o <<50.000 d\'olares>> es lo mismo.
+
+\subsection{Tercera redacci\'on: <<Precio y pago>>}
+
+Se ley\'o una redacci\'on titulada <<Precio y pago>> que inclu\'ia el d\'ia de hoy, 5 de noviembre. La direcci\'on de la escriban\'ia no es necesario ponerla (puede ponerse si se quiere). Con <<en este acto>> ya no hay dudas de en qu\'e momento se est\'a pagando.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (fragmentos inaudibles en la lectura de la tercera redacci\'on)
+
+\subsection{May\'usculas y negrita en el precio}
+
+El docente explica que la may\'uscula y la negrita en el precio es una pr\'actica propia del \'ambito notarial, para visualizar y encontrar m\'as r\'apido las cosas en la escritura.
+
+\begin{note}
+Antes el docente desaconsej\'o repetir la cifra en letras entre par\'entesis (riesgo de discordancia); al cierre explica que, en la escritura, el precio se destaca con may\'uscula y negrita para ubicarlo r\'apidamente. Se recomienda confirmar con el docente el criterio exacto.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (criterio exacto sobre may\'usculas, negrita y cifra en letras)
+
+\begin{important}
+Una cl\'ausula sencilla y completa indica el precio, la moneda, que se abona <<en este acto>> y la forma de pago (efectivo). Lo esencial es el precio; el resto (f\'ormulas como <<total y convenido>> o <<a entera satisfacci\'on>>) es adorno que puede dejarse u omitirse. La obligaci\'on de evicci\'on y saneamiento rige por ley en todo contrato oneroso, por lo que no es necesario mencionarla en la cl\'ausula de precio.
+\end{important}
+
+% ----------------------------------------------------------
+% CORNELL CAPITULO 5
+% ----------------------------------------------------------
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Cu\'ando puede ajustarse una obligaci\'on que se volvi\'o excesivamente onerosa?} &
+En los contratos de ejecuci\'on continuada, si la obligaci\'on se vuelve excesivamente onerosa por causas ajenas y extraordinarias (teor\'ia de la imprevisi\'on), puede pedirse judicialmente un ajuste o adecuaci\'on. \\[0.8em]
+
+\textbf{¿Qu\'e modalidades de pago existen?} &
+Surgen del acuerdo de voluntades: en cuanto al tiempo (antes, en el momento o despu\'es) y al modo (efectivo, dep\'osito, transferencia). No debe dejarse abierta ni posponerse su definici\'on, por ser la obligaci\'on esencial. \\[0.8em]
+
+\textbf{¿Qu\'e debe responder una cl\'ausula que describe una obligaci\'on de pago?} &
+Las cinco preguntas: qui\'en debe y a qui\'en, qu\'e, c\'omo, cu\'ando y d\'onde. En el <<cu\'ando>>: vencimientos, intereses punitorios o moratorios y qu\'e sucede si el d\'ia es feriado o inh\'abil (vence el d\'ia h\'abil inmediato siguiente). \\[0.8em]
+
+\textbf{¿Qu\'e establece la Ley 25.345?} &
+Que los pagos deben ser bancarizados para que valgan, salvo las transferencias de inmuebles y derechos reales sobre inmuebles cuando el pago se efect\'ua ante el escribano. \\[0.8em]
+
+\textbf{¿C\'omo se redacta la cl\'ausula de precio m\'as b\'asica?} &
+Indicando el precio, la moneda, que se abona <<en este acto>> y en efectivo. Fórmulas como <<total y convenido>> o <<a entera satisfacci\'on>> son adorno. \\[0.8em]
+
+\textbf{¿Qu\'e conviene incluir y qu\'e omitir en la cl\'ausula de precio?} &
+Conviene destacar lo esencial. Puede omitirse la evicci\'on y el saneamiento, porque rigen por ley en todo contrato oneroso; <<recibo>> es m\'as corto que <<suficiente recibo y carta de pago en forma>>. No es necesario indicar la direcci\'on de la escriban\'ia. \\
+
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{%
+\textbf{Resumen:} la obligaci\'on de pago debe describirse respondiendo qui\'en, qu\'e, c\'omo, cu\'ando y d\'onde, sin dejar abiertos tiempo ni modo. La cl\'ausula de precio puede redactarse de forma simple, destacando lo esencial y omitiendo adornos. La teor\'ia de la imprevisi\'on permite pedir el ajuste de obligaciones de ejecuci\'on continuada que se vuelven excesivamente onerosas por causas ajenas y extraordinarias.} \\
+\end{longtable}
+
+\end{document}

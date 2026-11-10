@@ -1,0 +1,1292 @@
+%==============================================================
+% DOCUMENTCLASS
+%==============================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================
+% METADATOS
+%==============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Concursos y Quiebras}
+\newcommand{\titulo}{El concurso preventivo}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================
+% PAQUETES
+%==============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================
+% CONFIGURACIÓN
+%==============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+%==============================================================
+% COMANDOS
+%==============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{Q}{>{\raggedright\arraybackslash}p{0.25\textwidth}}
+\newcolumntype{N}{>{\raggedright\arraybackslash}p{0.68\textwidth}}
+
+%==============================================================
+% ENTORNOS / CAJAS
+%==============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Texto literal de artículos de la ley citados en el apunte (marco sobrio).
+\newtcolorbox{norma}[1]{
+    enhanced,
+    breakable,
+    title={#1},
+    fonttitle=\bfseries\small,
+    coltitle=black,
+    colbacktitle=gray!12,
+    colback=white,
+    colframe=gray!55,
+    boxrule=0.5pt,
+    arc=1mm,
+    fontupper=\small,
+    left=6pt,
+    right=6pt,
+    top=4pt,
+    bottom=4pt
+}
+
+%==============================================================
+% CONFIGURACIÓN FINAL
+%==============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================
+% DOCUMENT
+%==============================================================
+\begin{document}
+
+%--------------------------------------------------------------
+% PORTADA
+%--------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.3cm}
+
+{\large Ley 24.522, arts. 3 a 25}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es convertir la comprensión en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Concursos y Quiebras'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%--------------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------------
+\tableofcontents
+
+%--------------------------------------------------------------
+% CONTENIDO
+%--------------------------------------------------------------
+
+%==============================================================
+\chapter*{Presentación del tema}
+\markboth{Presentación del tema}{Presentación del tema}
+\addcontentsline{toc}{chapter}{Presentación del tema}
+%==============================================================
+
+\textbf{Tema:} el concurso preventivo: competencia, solicitud de apertura, resolución del juez y efectos de la apertura sobre el concursado, los acreedores y los contratos (Ley 24.522, arts. 3 a 25).
+
+\textbf{Institución:} Facultad de Derecho, Universidad de Buenos Aires. \textbf{Fecha de elaboración del apunte:} 25 de octubre de 2026.
+
+\section*{Panorama general}
+
+El material recorre, paso a paso, cómo nace un concurso preventivo. Se analiza \textbf{dónde} se presenta (juez competente y domicilio), \textbf{quién} puede pedirlo (sólo el deudor, por sí o por apoderado con poder especial, con ratificaciones dentro de 30 días), \textbf{qué} debe acompañar (requisitos formales del art.~11), \textbf{cómo decide el juez} (cinco días y cuatro causales taxativas de rechazo) y \textbf{qué ocurre una vez abierto}: administración vigilada del concursado, actos prohibidos y sujetos a autorización, pronto pago laboral, suspensión de intereses, continuación de contratos y servicios públicos.
+
+\section*{Importancia práctica}
+
+El concurso preventivo es la herramienta con la que una empresa o una persona en crisis intenta no quebrar; por eso quien asesore a comerciantes, sociedades, trabajadores o acreedores se encuentra con él tarde o temprano. En este procedimiento los errores formales tienen consecuencias graves: un poder que no es especial, una ratificación fuera de los 30 días, un acreedor mal denunciado o un acto realizado sin autorización pueden terminar en desistimiento, un año de inhibición, actos ineficaces o incluso la quiebra.
+
+Tres utilidades concretas:
+\begin{enumerate}
+    \item \textbf{Asesorar al deudor:} armar una solicitud completa y a tiempo (art.~11) evita el rechazo, y entender el régimen de autorizaciones evita actos ineficaces.
+    \item \textbf{Defender al acreedor o al trabajador:} saber cómo se enteran del concurso (edictos y carta del síndico), que pueden participar aunque no hayan sido denunciados y cómo funciona el pronto pago laboral.
+    \item \textbf{Seguir la causa:} la resolución de apertura fija las fechas del proceso, de modo que los plazos se leen en la resolución y no se calculan de memoria.
+\end{enumerate}
+
+\section*{Hilo conductor: el viaje de un comerciante}
+
+Un comerciante tiene el negocio en la Capital, un acreedor grande en Santiago y otro en Córdoba, y ya no llega a pagar. (I) Primero debe saber \textit{dónde} presentarse y que sólo él puede hacerlo; (II) luego \textit{prepara y firma} el escrito con todos sus requisitos; (III) el juez \textit{decide} en cinco días y, si abre el concurso, se avisa a los acreedores; (IV) si cambia de idea, puede \textit{desistir}, con consecuencias; y (V) mientras dure el trámite sigue trabajando, pero \textit{vigilado}, con reglas para sus actos, sus acreedores y sus contratos.
+
+%==============================================================
+\chapter[Competencia y acceso]{Competencia y acceso al concurso preventivo}
+%==============================================================
+
+\section{Competencia territorial y domicilio del deudor}
+
+\subsection{La pregunta práctica: ¿dónde se tramita el concurso?}
+
+Una persona puede tener la sede de sus negocios en la Capital, su acreedor más grande en Santiago y otro acreedor en Córdoba. Surge entonces la pregunta de dónde se tramitará el concurso y dónde se proyectará; para responderla existen reglas de competencia.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se menciona un supuesto en el que no se cumple el art. 3 y se rige por el art. 2, sin precisar cuál es).
+Existe un supuesto, que se desarrolla más adelante, en el que no se cumple el artículo 3 y se rige por el artículo 2. El artículo 3 contempla, en primer término, a la persona física, y de allí la necesidad de definir cómo se determina el domicilio en cada caso.
+
+\begin{norma}{Ley 24.522 · Art. 3° — Juez competente}
+Corresponde intervenir en los concursos al juez con competencia ordinaria, de acuerdo a las siguientes reglas:
+\begin{enumerate}[label=\arabic*),leftmargin=*]
+    \item Si se trata de personas de existencia visible, al del lugar de la sede de la administración de sus negocios; a falta de éste, al del lugar del domicilio.
+    \item Si el deudor tuviere varias administraciones es competente el juez del lugar de la sede de la administración del establecimiento principal; si no pudiere determinarse esta calidad, el que hubiere prevenido.
+    \item En caso de concurso de personas de existencia ideal de carácter privado regularmente constituidas, y las sociedades en que el Estado Nacional, Provincial o Municipal sea parte ---con las exclusiones previstas en el Artículo 2--- entiende el juez del lugar del domicilio.
+    \item En el caso de sociedades no constituidas regularmente, entiende el juez del lugar de la sede; en su defecto, el del lugar del establecimiento o explotación principal.
+    \item Tratándose de deudores domiciliados en el exterior, el juez del lugar de la administración en el país; a falta de éste, entiende el del lugar del establecimiento, explotación o actividad principal, según el caso.
+\end{enumerate}
+\end{norma}
+
+\begin{norma}{Ley 24.522 · Art. 2° — Sujetos comprendidos}
+Pueden ser declaradas en concurso las personas de existencia visible, las de existencia ideal de carácter privado y aquellas sociedades en las que el Estado Nacional, Provincial o Municipal sea parte, cualquiera sea el porcentaje de su participación. Se consideran comprendidos:
+\begin{enumerate}[label=\arabic*),leftmargin=*]
+    \item El patrimonio del fallecido, mientras se mantenga separado del patrimonio de sucesores.
+    \item Los deudores domiciliados en el extranjero respecto de bienes existentes en el país.
+\end{enumerate}
+No son susceptibles de ser declaradas en concurso, las personas reguladas por Leyes Nros. 20.091, 20.321 y 24.241, así como las excluidas por leyes especiales.
+\end{norma}
+
+\subsection{La regla según el tipo de sujeto}
+
+\begin{itemize}
+    \item \textbf{Persona física:} el domicilio que figure en su documento.
+    \item \textbf{Persona jurídica:} el que surja de su contrato social.
+    \item \textbf{Sociedad no regularmente constituida} (sociedad de la sección cuarta, a la que le falta alguna regularidad): si no tiene contrato social, el domicilio puede acreditarse con cualquier documento que lo pruebe.
+\end{itemize}
+
+\subsection{Supuestos especiales: deudor en el extranjero, patrimonio del fallecido y varias sedes}
+
+\textbf{Deudor domiciliado en el extranjero.} Una persona domiciliada en el extranjero puede pedir su concurso en el país por los bienes que tenga en él. Como no tiene domicilio en nuestro país, se tiene en cuenta el lugar de quien administre esos bienes en el país, y siempre habrá un administrador de ellos.
+
+\textbf{Patrimonio de una persona fallecida.} Es también un sujeto concursable, un sujeto especial. Los herederos pueden elegir el último domicilio del causante o bien el lugar donde se encuentre la mayoría de sus bienes.
+
+\textbf{Regla general.} Fuera de los sujetos especiales, siempre se trata del domicilio de la persona. Si es una persona jurídica con varias sedes o sucursales, siempre se toma la sede principal de los negocios.
+
+\subsection{Cuadro comparativo: ¿qué domicilio se toma en cada caso?}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.27\textwidth} Y Y}
+\toprule
+\textbf{Sujeto} & \textbf{Domicilio / sede que determina la competencia} & \textbf{Cómo se acredita} \\
+\midrule
+\textbf{Persona física} & El domicilio que figure en su documento & Documento de identidad \\
+\textbf{Persona jurídica} & El que surja de su contrato social & Contrato social \\
+\textbf{Sociedad no regularmente constituida (sección cuarta)} & Su domicilio, aunque le falte regularidad & Cualquier documento que acredite el domicilio \\
+\textbf{Deudor domiciliado en el extranjero} & Quien administre sus bienes en el país (siempre habrá un administrador) & Administración de los bienes ubicados en el país \\
+\textbf{Patrimonio de una persona fallecida} & A elección de los herederos: último domicilio del causante o donde esté la mayoría de los bienes & Elección de los herederos \\
+\textbf{Persona jurídica con varias sedes o sucursales} & La sede principal de los negocios & Sede principal \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\medskip
+El apunte remite, para este tema, a la lectura del capítulo 3 del material de la materia.
+
+\section{Quién inicia el concurso preventivo y para qué}
+
+Definidos los principios, los presupuestos y la autoridad ante la cual se tramita el concurso, corresponde analizar cómo se inicia.
+
+\subsection{¿Quién puede iniciarlo? Sólo el deudor}
+
+El concurso preventivo lo puede iniciar el \textbf{deudor}; un acreedor, en cambio, puede pedir la \textbf{quiebra}. Esta es una de las principales diferencias entre ambos procesos. En la Argentina, a la fecha de elaboración del apunte, el concurso preventivo sólo lo puede solicitar el propio deudor, que se presenta ante el juez competente a pedir la apertura.
+
+\subsection{Finalidad y oportunidad}
+
+La \textbf{finalidad} del concurso preventivo es evitar la quiebra del deudor. La \textbf{oportunidad} para presentarlo es antes de la quiebra. Se trata de un proceso que busca el acuerdo entre el deudor y los acreedores para superar el estado de cesación de pagos y evitar la quiebra.
+
+Para iniciarlo hay \textbf{requisitos sustanciales} y \textbf{requisitos formales}, que se desarrollan en el capítulo siguiente.
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{QN}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué juez es competente y cómo se define el domicilio?} &
+Rige el art.~3. Persona física: el domicilio de su documento. Persona jurídica: el de su contrato social (o cualquier documento que pruebe el domicilio, si es una sociedad no regularmente constituida). Si tiene varias sedes o sucursales, la sede principal de los negocios. \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué domicilio se toma en los supuestos especiales?} &
+Deudor en el extranjero: el de quien administre sus bienes en el país, que siempre existirá. Patrimonio del fallecido: a elección de los herederos, el último domicilio del causante o el lugar donde esté la mayoría de los bienes. \\
+\addlinespace[0.6em]
+
+\textbf{¿Quién puede pedir el concurso preventivo y para qué?} &
+Sólo el deudor, ante el juez competente, y antes de la quiebra. Un acreedor sólo puede pedir la quiebra. Su finalidad es evitar la quiebra mediante un acuerdo con los acreedores que permita superar la cesación de pagos. \\
+\midrule
+
+\multicolumn{2}{p{\dimexpr0.93\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} el concurso preventivo lo inicia únicamente el deudor, antes de la quiebra, con el fin de evitarla mediante un acuerdo con sus acreedores. La competencia se determina por el domicilio o la sede principal de los negocios según el tipo de sujeto, con reglas particulares para el deudor domiciliado en el extranjero y para el patrimonio del fallecido.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Requisitos de la solicitud]{Requisitos de la solicitud de concurso preventivo}
+%==============================================================
+
+\section{Requisitos sustanciales (arts. 5 a 10)}
+
+Los requisitos sustanciales tienen que ver, sobre todo, con quién puede solicitar el concurso: el propio deudor o un apoderado con facultades suficientes.
+
+\begin{norma}{Ley 24.522 · Art. 5° — Sujetos}
+Pueden solicitar la formación de su concurso preventivo las personas comprendidas en el Artículo 2, incluidas las de existencia ideal en liquidación.
+\end{norma}
+
+\subsection{Personas físicas}
+
+Las personas físicas pueden solicitarlo por sí mismas o por un apoderado con facultad especial.
+
+\subsection{Personas jurídicas}
+
+En el caso de las personas jurídicas, lo solicita el representante legal, por resolución del órgano de administración, y esa resolución debe ser ratificada dentro del plazo de 30 días.
+
+\begin{norma}{Ley 24.522 · Art. 6° — Personas de existencia ideal. Representación y ratificación}
+Tratándose de personas de existencia ideal, privadas o públicas, lo solicita el representante legal, previa resolución, en su caso, del órgano de administración. Dentro de los TREINTA (30) días de la fecha de la presentación, deben acompañar constancia de la resolución de continuar el trámite, adoptada por la asamblea, reunión de socios u órgano de gobierno que corresponda, con las mayorías necesarias para resolver asuntos ordinarios. No acreditado este requisito, se produce de pleno derecho la cesación del procedimiento, con los efectos del desistimiento de la petición.
+\end{norma}
+
+\textbf{Sociedades.} Quien se presenta es el presidente del directorio, porque representa a la sociedad. Se presenta con una copia del acta de directorio que lo autoriza a hacerlo y, dentro de los 30 días, debe presentar una copia del acta de asamblea, ya que la voluntad corresponde a los socios. Si no presenta la copia del acta de asamblea, rige la consecuencia prevista en el art.~6: la cesación del procedimiento con los efectos del desistimiento.
+
+\subsection{Incapaces e inhabilitados}
+
+Lo solicita el representante legal y, dentro del plazo de 30 días, la solicitud debe ser ratificada por el juez que declaró la incapacidad. El mismo criterio se aplica a las personas con capacidad restringida: lo pide el tutor a cargo de esa incapacidad, y la ratificación la efectúa el juez que dictaminó la incapacidad o la inhabilitación, también dentro de los 30 días.
+
+\begin{norma}{Ley 24.522 · Art. 7° — Incapaces e inhabilitados}
+En casos de incapaces o inhabilitados, la solicitud debe ser efectuada por sus representantes legales y ratificada, en su caso, por el juez que corresponda, dentro de los TREINTA (30) días contados desde la presentación. La falta de ratificación produce los efectos indicados en el último párrafo del artículo anterior.
+\end{norma}
+
+\subsection{Patrimonio de una persona fallecida}
+
+Lo puede solicitar cualquiera de los herederos y, dentro del plazo de 30 días, debe ser ratificado por el resto de los herederos. Si se inicia el concurso, debe estar hecha la declaratoria de herederos, ya que es preciso saber quiénes son todos los herederos; el apunte menciona un plazo de 30 días para la declaratoria.
+
+\begin{norma}{Ley 24.522 · Art. 8° — Personas fallecidas}
+Mientras se mantenga la separación patrimonial, cualquiera de los herederos puede solicitar el concurso preventivo en relación al patrimonio del fallecido. La petición debe ser ratificada por los demás herederos, dentro de los TREINTA (30) días. Omitida la ratificación, se aplica el último párrafo del Artículo 6.
+\end{norma}
+
+\subsection{La ratificación es un plazo perentorio: consecuencias}
+
+A diferencia de otros plazos del proceso, que en la práctica suelen no cumplirse, los plazos de ratificación deben cumplirse porque son \textbf{perentorios}. Si el plazo vence y no se presentó la ratificación, el procedimiento se considera desistido y no se puede volver a presentar el pedido durante \textbf{un año}. La sanción se explica porque el deudor puso en marcha todo el aparato judicial y luego no ratificó. Las reglas anteriores están en los arts.~5 a 8.
+
+\begin{important}
+\textbf{Plazo perentorio de 30 días (arts.~6, 7 y 8).} La ratificación del pedido (por la asamblea, el juez o los demás herederos, según el caso) debe presentarse dentro de los 30 días. Si no se acredita, cesa el procedimiento con los efectos del desistimiento y, durante un año, no se puede volver a pedir el concurso preventivo.
+\end{important}
+
+\subsection{Poder especial: el mandato judicial común no alcanza}
+
+Es habitual que el cliente contrate a su abogado y le diga que quiere unirse en concurso; quien se presenta entonces es el abogado y no el cliente. El mandato judicial que los clientes firman habitualmente para ser representados \textbf{no es suficiente} para este fin. Se requiere un \textbf{poder especial} que aclare que se lo representa para iniciar el concurso preventivo. No alcanza con un poder general de administración. La razón es que se trata de un procedimiento muy delicado: si el concurso no llega a buen término, puede terminar en la quiebra de la persona, lo que resulta sumamente gravoso, y en la quiebra opera una presunción de fraude.
+
+\begin{norma}{Ley 24.522 · Art. 9° — Representación voluntaria}
+La apertura del concurso preventivo puede ser solicitada, también por apoderado con facultad especial.
+\end{norma}
+
+\begin{example}{el cliente que contrata a su abogado}
+Una persona física decide unirse en concurso y le dice a su abogado: «me quiero unir en concurso». Quien se presenta es el abogado, no la persona. El mandato judicial común no sirve para esto: hace falta un poder especial que diga expresamente que se lo representa para iniciar el concurso preventivo, porque se trata de un procedimiento muy delicado cuyo fracaso puede derivar en la quiebra.
+\end{example}
+
+\begin{exercise}{Para reflexionar}
+¿Qué le diría a un cliente que llega con un mandato judicial común y quiere presentar su concurso ya mismo? ¿Qué documentos le pediría?
+\end{exercise}
+
+\section{Requisitos formales (arts. 11 y 12)}
+
+\subsection{Panorama del artículo 11}
+
+Los requisitos formales están en el art.~11, que es largo y tiene numerosos incisos. Se refieren básicamente a lo que debe presentar cada sujeto al solicitar el concurso. Por ejemplo, los comerciantes matriculados deben acreditar la inscripción en los registros correspondientes. En cuanto a las personas jurídicas, la ley distingue las regularmente constituidas de las que no lo están: las primeras deben acreditar la inscripción en los registros y acompañar el instrumento constitutivo y las inscripciones pertinentes; las segundas, el instrumento constitutivo.
+
+\begin{norma}{Ley 24.522 · Art. 11 — Requisitos del pedido}
+Son requisitos formales de la petición de concurso preventivo:
+\begin{enumerate}[label=\arabic*),leftmargin=*]
+    \item Para los deudores matriculados y las personas de existencia ideal regularmente constituidas, acreditar la inscripción en los registros respectivos. Las últimas acompañarán, además, el instrumento constitutivo y sus modificaciones y constancia de las inscripciones pertinentes. Para las demás personas de existencia ideal, acompañar, en su caso, los instrumentos constitutivos y sus modificaciones, aun cuando no estuvieren inscriptos.
+    \item Explicar las causas concretas de su situación patrimonial con expresión de la época en que se produjo la cesación de pagos y de los hechos por los cuales ésta se hubiera manifestado.
+    \item Acompañar un estado detallado y valorado del activo y pasivo actualizado a la fecha de presentación, con indicación precisa de su composición, las normas seguidas para su valuación, la ubicación, estado y gravámenes de los bienes y demás datos necesarios para conocer debidamente el patrimonio. Este estado de situación patrimonial debe ser acompañado de dictamen suscripto por contador público nacional.
+    \item Acompañar copia de los balances u otros estados contables exigidos al deudor por las disposiciones legales que rijan su actividad, o bien los previstos en sus estatutos o realizados voluntariamente por el concursado, correspondientes a los TRES (3) últimos ejercicios. En su caso, se deben agregar las memorias y los informes del órgano fiscalizador.
+    \item Acompañar nómina de acreedores, con indicación de sus domicilios, montos de los créditos, causas, vencimientos, codeudores, fiadores o terceros obligados o responsables y privilegios. Asimismo, debe acompañar un legajo por cada acreedor, en el cual conste copia de la documentación sustentatoria de la deuda denunciada, con dictamen de contador público sobre la correspondencia existente entre la denuncia del deudor y sus registros contables o documentación existente y la inexistencia de otros acreedores en registros o documentación existente. Debe agregar el detalle de los procesos judiciales o administrativos de carácter patrimonial en trámite o con condena no cumplida, precisando su radicación.
+    \item Enumerar precisamente los libros de comercio y los de otra naturaleza que lleve el deudor, con expresión del último folio utilizado, en cada caso, y ponerlos a disposición del juez, junto con la documentación respectiva.
+    \item Denunciar la existencia de un concurso anterior y justificar, en su caso, que no se encuentra dentro del período de inhibición que establece el artículo 59, o el desistimiento del concurso si lo hubiere habido.
+    \item Acompañar nómina de empleados, con detalle de domicilio, categoría, antigüedad y última remuneración recibida. Deberá acompañarse también declaración sobre la existencia de deuda laboral y de deuda con los organismos de la seguridad social certificada por contador público. \textit{(Inciso incorporado por art. 1° de la Ley N° 26.684)}
+\end{enumerate}
+El escrito y la documentación agregada deben acompañarse con DOS (2) copias firmadas. Cuando se invoque causal debida y válidamente fundada, el juez debe conceder un plazo improrrogable de DIEZ (10) días, a partir de la fecha de la presentación, para que el interesado dé cumplimiento total a las disposiciones del presente artículo.
+\end{norma}
+
+\subsection{Causas de la situación patrimonial y cesación de pagos (art. 11, inc. 2)}
+
+El art.~11 exige expresar las causas concretas de la situación patrimonial que lleva al concurso preventivo, la época en que se produjo el estado de cesación de pagos y los hechos que lo revelaron. Estos hechos se vinculan con el art.~79.
+
+\begin{norma}{Ley 24.522 · Art. 79 — Hechos reveladores}
+Pueden ser considerados hechos reveladores del estado de cesación de pagos, entre otros:
+\begin{enumerate}[label=\arabic*),leftmargin=*]
+    \item Reconocimiento judicial o extrajudicial del mismo, efectuado por el deudor.
+    \item Mora en el cumplimiento de una obligación.
+    \item Ocultación o ausencia del deudor o de los administradores de la sociedad, en su caso, sin dejar representante con facultades y medios suficientes para cumplir sus obligaciones.
+    \item Clausura de la sede de la administración o del establecimiento donde el deudor desarrolle su actividad.
+    \item Venta a precio vil, ocultación o entrega de bienes en pago.
+    \item Revocación judicial de actos realizados en fraude de los acreedores.
+    \item Cualquier medio ruinoso o fraudulento empleado para obtener recursos.
+\end{enumerate}
+\end{norma}
+
+Todo esto debe estar dentro de la solicitud que presenta el deudor. Si no se expone por qué está en cesación de pagos, desde cuándo y qué la generó, la solicitud es rechazada. El apunte vincula esta exigencia con el presupuesto objetivo.
+
+\subsection{Consecuencias del incumplimiento: rechazo y plazo de 10 días}
+
+Cuando el pedido llega al juez para que lo apruebe o lo rechace, una de las causas de rechazo es que no se cumplan los incisos del art.~11. Algunas cuestiones pueden ser subsanables, en el sentido de que el juez otorga un plazo extra; pero si rechaza, el rechazo es definitivo. Si no se cumplen los incisos del art.~11, el juez puede dar un plazo de \textbf{10 días} para subsanar, \textbf{siempre que la causa sea fundada}.
+
+\subsection{Activo y pasivo, balances, nómina de acreedores y libros}
+
+Debe acompañarse:
+\begin{itemize}
+    \item un estado detallado del activo y del pasivo, con dictamen de contador público nacional;
+    \item copia de los balances de los últimos tres ejercicios;
+    \item una nómina de acreedores, con un legajo por cada uno;
+    \item la enumeración de los libros de comercio, que se ponen a disposición del juez: en la solicitud sólo se los enumera, indicando cuáles son los libros en uso y el último folio y asiento realizado, y se entregan después;
+    \item la nómina de empleados.
+\end{itemize}
+
+El inciso 5 es muy importante. El deudor debe detallar todos los acreedores, con sus datos: desde cuándo existe la deuda, por qué se generó, si es capital o intereses, y los procesos judiciales o administrativos abiertos, es decir, toda cuestión de contenido patrimonial que deba. También debe indicar si es garante, deudor solidario o codeudor de alguien.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se afirma que los acreedores laborales son «acreedores iguales» sin aclarar a qué se refiere).
+Los acreedores laborales pueden incluirse junto con los demás acreedores o por separado; el apunte señala que son «acreedores iguales». Debe indicarse cuáles son empleados y, si hay acreedores laborales que ya no son empleados, cuánto se les debe y por qué concepto (aguinaldo, vacaciones, sueldo, indemnizaciones de despido), todo bien detallado.
+
+\subsection{El acreedor que no fue denunciado}
+
+\begin{example}{tres acreedores, pero se denuncian sólo dos}
+El deudor debe a tres acreedores, pero en la solicitud que presenta sólo denuncia a dos y olvida al tercero. ¿Ese tercero no podrá participar? Podrá participar. No es un acreedor denunciado, pero puede participar; cómo se entera se explica en el capítulo siguiente.
+\end{example}
+
+No se puede ocultar a un acreedor; si bien el deudor puede hacerlo, y muchas veces sucede, se supone que los demás acreedores se enterarán por los medios de publicidad que se verán más adelante.
+
+También debe denunciarse la existencia de un concurso anterior, si lo hay, y justificarse que no se está en período de inhibición. Estos son los incisos más importantes del art.~11.
+
+\subsection{Plazo de gracia de 10 días y plazo de inhibición de un año}
+
+Si hay algo para corregir, el juez puede dar un plazo de 10 días, siempre que se trate de una causa fundada.
+
+A veces no se trata solamente de algo para subsanar. Por ejemplo, el estado valorizado del activo y del pasivo debe estar \textbf{actualizado al momento de la solicitud} (no sirve el del año anterior) y acompañado de un dictamen profesional, es decir, del visto bueno del contador.
+
+\begin{example}{el contador que se enferma}
+El contador demora, se enfermó o se fue de vacaciones. El deudor puede pedir un plazo de gracia, \textbf{improrrogable}, de 10 días, por una sola vez y justificado. Si el contador está enfermo, se piden, por ejemplo, 5 días y en ese plazo se presenta la documentación. Eso sí se puede hacer.
+\end{example}
+
+\textbf{Plazo de inhibición.} Si el deudor se presentó y por algún motivo desistió, no puede volver a presentarse hasta dentro de un año. Si lo hace, le rechazarán la solicitud y deberá esperar otro año; por eso debe tener en cuenta esas fechas.
+
+Una razón posible de que el plazo de gracia sea improrrogable es que, si el deudor está en dificultades económicas y financieras, se le debe dar un plazo para reponerse, pero no muy largo, porque de lo contrario se pasaría directamente a la quiebra.
+
+\subsection{Repaso de los artículos 6 a 10 y del artículo 11}
+
+Los artículos que se refieren a los requisitos sustanciales, en cuanto a los sujetos y los apoderados, son los arts.~6, 7, 8 y 9. Los requisitos formales están en el art.~11, y los sustanciales en los arts.~5 a 9. El art.~10 establece un límite temporal: el concurso preventivo puede pedirse hasta que se decrete la quiebra. Este tema se retoma al estudiar la quiebra y los recursos frente a la sentencia.
+
+\begin{norma}{Ley 24.522 · Art. 10 — Oportunidad de la presentación}
+El concurso preventivo puede ser solicitado mientras la quiebra no haya sido declarada.
+\end{norma}
+
+El art.~11 contiene los requisitos que sí o sí deben cumplirse en la solicitud de apertura, incluida la presentación de las dos copias y el plazo ya señalado.
+
+\subsection{Domicilio procesal (art. 12)}
+
+El art.~12, que bien podría ser un inciso del art.~11, establece que deben constituir domicilio procesal tanto el concursado como los administradores o representantes, en el caso de las personas jurídicas.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el pasaje oral sobre el domicilio procesal es confuso).
+Si no se constituye domicilio procesal, se considera como tal los estrados judiciales: la persona se tiene por notificada en los estrados. Constituirlo es una cuestión que beneficia al propio deudor, para que la notificación le llegue rápido.
+
+\begin{norma}{Ley 24.522 · Art. 12 — Domicilio procesal}
+El concursado y en su caso, los administradores y los socios con responsabilidad ilimitada, deben constituir domicilio procesal en el lugar de tramitación del juicio. De no hacerlo en la primera presentación, se lo tendrá por constituido en los estrados del juzgado, para todos los efectos del concurso.
+\end{norma}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{QN}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{Requisitos sustanciales: ¿quién presenta según el tipo de sujeto?} &
+Persona física: por sí o por apoderado con facultad especial. Persona jurídica: su representante legal, previa resolución del órgano de administración. Incapaces o inhabilitados: su representante legal. Fallecido: cualquiera de los herederos. (Arts.~5 a 9.) \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué es la ratificación y qué pasa si no se cumple?} &
+Es la confirmación del pedido dentro de 30 días: por la asamblea (personas jurídicas), por el juez que declaró la incapacidad o por los demás herederos. El plazo es perentorio: si se omite, cesa el procedimiento con los efectos del desistimiento y no se puede volver a presentar durante un año. \\
+\addlinespace[0.6em]
+
+\textbf{¿Por qué no alcanza el mandato judicial común?} &
+Porque el concurso es un procedimiento muy delicado: si fracasa puede terminar en quiebra. Se necesita un poder especial que diga expresamente que se representa al cliente para iniciar el concurso preventivo; un poder general de administración no sirve (art.~9). \\
+\addlinespace[0.6em]
+
+\textbf{Requisitos formales del art.~11: ¿qué debe acompañar el deudor?} &
+Inscripciones y documentos constitutivos; explicación de las causas de la situación patrimonial y época de la cesación de pagos; estado de activo y pasivo actualizado con dictamen de contador público; balances de los últimos tres ejercicios; nómina de acreedores con un legajo por cada uno; enumeración de libros; denuncia de concursos anteriores; nómina de empleados (inc.~8). Escrito y documentación con dos copias firmadas. \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué pasa si falta algún requisito del art.~11?} &
+Con causa fundada, el juez concede un plazo improrrogable de 10 días, por única vez, para completarlo (por ejemplo, si el contador se enfermó). Si no se subsana, queda configurada la causal de rechazo del art.~13, inc.~3. \\
+\addlinespace[0.6em]
+
+\textbf{¿Hasta cuándo puede solicitarse el concurso preventivo?} &
+Hasta que se decrete la quiebra (art.~10). Quien desistió no puede volver a presentarse durante un año. \\
+\addlinespace[0.6em]
+
+\textbf{¿Para qué sirve el domicilio procesal (art.~12)?} &
+El concursado y los administradores deben constituirlo. Si no lo hacen, se los tiene por notificados en los estrados del juzgado, lo que perjudica al propio deudor porque la notificación no le llega rápido. \\
+\midrule
+
+\multicolumn{2}{p{\dimexpr0.93\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} el pedido lo presenta el deudor por sí, por apoderado con poder especial o por su representante legal, y debe ratificarse dentro de 30 días cuando se trata de sociedades, incapaces o herederos, bajo pena de desistimiento y un año de inhibición. El escrito debe cumplir los requisitos formales del art.~11, con dictamen contable, nómina completa de acreedores y explicación de la cesación de pagos; el juez puede conceder un plazo único e improrrogable de 10 días para subsanar. El concursado debe constituir domicilio procesal.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Decisión, notificación y desistimiento]{Apertura del concurso: decisión del juez, notificación y desistimiento}
+%==============================================================
+
+\section{Aceptar o rechazar el pedido (art. 13)}
+
+\subsection{Plazo de 5 días y cuatro causales taxativas de rechazo}
+
+Una vez presentado el pedido, el juez tiene \textbf{5 días} para resolver si lo aprueba o no. % TODO: contenido incompleto o ambiguo en las notas originales (se afirma que esos 5 días «no se cumplen» sin desarrollar la idea).
+El apunte señala que ese plazo de cinco días no se cumple.
+
+Las causales de rechazo son \textbf{cuatro} y son \textbf{taxativas}: no se puede agregar otra, es decir que, para rechazar, el juez debe fundarse en alguno de estos cuatro supuestos. No puede rechazar, por ejemplo, porque «no le gustó tal cosa». La resolución que rechaza puede ser apelada por el deudor.
+
+\begin{norma}{Ley 24.522 · Art. 13 — Término y rechazo}
+\textbf{Término.} Presentado el pedido o, en su caso, vencido el plazo que acuerde el juez, éste se debe pronunciar dentro del término de CINCO (5) días.
+
+\textbf{Rechazo.} Debe rechazar la petición, cuando el deudor no sea sujeto susceptible de concurso preventivo, si no se ha dado cumplimiento al artículo 11, si se encuentra dentro del período de inhibición que establece el artículo 59, o cuando la causa no sea de su competencia. La resolución es apelable.
+\end{norma}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.32\textwidth} Y}
+\toprule
+\textbf{Causal de rechazo (art. 13)} & \textbf{Explicación} \\
+\midrule
+\textbf{1. Sujeto no concursable} & El deudor no es un sujeto susceptible de concurso preventivo (presupuesto subjetivo). \\
+\textbf{2. Incompetencia} & La causa no es de competencia del juez ante quien se presentó. \\
+\textbf{3. Incumplimiento del art.~11} & No se cumplieron los requisitos formales del escrito (por ejemplo, no explicar la cesación de pagos). \\
+\textbf{4. Período de inhibición} & El deudor se presentó dentro del año de inhibición. \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\begin{important}
+\textbf{Las causales son taxativas.} El juez sólo puede rechazar por alguna de las cuatro causales del art.~13; no puede agregar otra. La resolución de rechazo es apelable por el deudor.
+\end{important}
+
+\subsection{La crítica de la doctrina: ¿por qué no figura la cesación de pagos?}
+
+Muchos autores cuestionan que el legislador no incluya, entre las causales de rechazo, que no se encuentre debidamente probada la cesación de pagos, siendo un elemento tan importante, previsto en el art.~1. Algunos se preguntan si fue un olvido; otros responden que no lo fue, porque la cesación de pagos está dentro del art.~11, inc.~2. Pero también los demás supuestos están dentro del art.~11, y el período de inhibición también se relaciona con ese régimen, por lo que siempre queda la duda. Por eso se afirma que se necesita una reforma, ya que hay cuestiones poco claras.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (intervención de un estudiante sobre los motivos de apelación, poco inteligible en la grabación; se omite).
+
+\subsection{El presupuesto subjetivo: sujetos que no pueden concursarse}
+
+Los principios y los presupuestos se aplican a todo proceso, tanto al concurso como a la quiebra; lo que se analiza ahora es cómo se inicia un concurso. En relación con el presupuesto subjetivo hubo mucho debate, por ejemplo respecto de las AFJP, que en algún momento se presentaron, o de un banco: no se puede. Allí aparece el rechazo y la posibilidad de solicitar su revisión. El sistema confía en que el deudor sea responsable, pero puede pasar que se presente un sujeto que no puede concursarse.
+
+\section{Resolución de apertura del concurso (art. 14)}
+
+\subsection{Qué ocurre si no hay rechazo}
+
+Si no se configura ninguna de las cuatro causales de rechazo, el juez declara la apertura del concurso mediante una resolución, regulada en el art.~14, que contiene numerosos incisos.
+
+\begin{norma}{Ley 24.522 · Art. 14 — Resolución de apertura. Contenido}
+Cumplidos en debido tiempo los requisitos legales, el juez debe dictar resolución que disponga:
+\begin{enumerate}[label=\arabic*),leftmargin=*]
+    \item La declaración de apertura del concurso preventivo, expresando el nombre del concursado y, en su caso, el de los socios con responsabilidad ilimitada.
+    \item La designación de audiencia para el sorteo del síndico.
+    \item La fijación de una fecha hasta la cual los acreedores deben presentar sus pedidos de verificación al síndico, la que debe estar comprendida entre los QUINCE (15) y los VEINTE (20) días, contados desde el día en que se estime concluirá la publicación de los edictos.
+    \item La orden de publicar edictos en la forma prevista por los artículos 27 y 28, la designación de los diarios respectivos y, en su caso, la disposición de las rogatorias necesarias.
+    \item La determinación de un plazo no superior a los TRES (3) días, para que el deudor presente los libros que lleve referidos a su situación económica, en el lugar que el juez fije dentro de su jurisdicción, con el objeto de que el secretario coloque nota datada a continuación del último asiento, y proceda a cerrar los espacios en blanco que existieran.
+    \item La orden de anotar la apertura del concurso en el Registro de Concursos y en los demás que corresponda, requiriéndose informe sobre la existencia de otros anteriores.
+    \item La inhibición general para disponer y gravar bienes registrables del deudor y, en su caso, los de los socios ilimitadamente responsables, debiendo ser anotadas en los registros pertinentes.
+    \item La intimación al deudor para que deposite judicialmente, dentro de los TRES (3) días de notificada la resolución, el importe que el juez estime necesario para abonar los gastos de correspondencia.
+    \item Las fechas en que el síndico deberá presentar el informe individual de los créditos y el informe general.
+    \item La fijación de una audiencia informativa que se realizará con cinco (5) días de anticipación al vencimiento del plazo de exclusividad previsto en el artículo 43. Dicha audiencia deberá ser notificada a los trabajadores del deudor mediante su publicación por medios visibles en todos sus establecimientos. \textit{(Inciso sustituido por art. 2° de la Ley N° 26.684)}
+    \item Correr vista al síndico por el plazo de diez (10) días, el que se computará a partir de la aceptación del cargo, a fin de que se pronuncie sobre: a) Los pasivos laborales denunciados por el deudor; b) Previa auditoría en la documentación legal y contable, informe sobre la existencia de otros créditos laborales comprendidos en el pronto pago. \textit{(Inciso sustituido por art. 3° de la Ley N° 26.684)}
+    \item El síndico deberá emitir un informe mensual sobre la evolución de la empresa, si existen fondos líquidos disponibles y el cumplimiento de las normas legales y fiscales. \textit{(Inciso incorporado por art. 2° de la Ley N° 26.086)}
+    \item La constitución de un comité de control, integrado por los tres (3) acreedores quirografarios de mayor monto, denunciados por el deudor y un (1) representante de los trabajadores de la concursada, elegido por los trabajadores. \textit{(Inciso incorporado por art. 4° de la Ley N° 26.684)}
+\end{enumerate}
+\end{norma}
+
+\subsection{Contenido de la resolución: inciso por inciso}
+
+La resolución debe contener, entre otros elementos:
+\begin{itemize}
+    \item la \textbf{declaración de apertura}, con el nombre del concursado y, en su caso, el de los socios con responsabilidad ilimitada;
+    \item la designación de una \textbf{audiencia para sortear al síndico}, que es el auxiliar del juez que sigue de cerca todo el proceso;
+    \item la orden de \textbf{publicar edictos}, con indicación de los diarios en que deben publicarse; es una de las formas de notificar;
+    \item una \textbf{fecha para que los acreedores presenten sus pedidos de verificación} al síndico. Es sumamente importante: la verificación de créditos es la manera que tienen los acreedores de entrar al proceso y de opinar después si quieren llegar a un acuerdo. No es necesario calcular los plazos a partir de la apertura (15 a 20 días): el juez fija en la resolución las fechas necesarias;
+    \item un plazo no superior a \textbf{3 días} para que el deudor presente los libros referidos a su situación económica ante el juez;
+    \item la orden de \textbf{anotar la apertura} en el Registro de Concursos;
+    \item la \textbf{inhibición general} para disponer y gravar los bienes registrables del deudor;
+    \item la intimación al deudor, también dentro de 3 días, para que \textbf{deposite los gastos de correspondencia};
+    \item las fechas en que el síndico presentará el \textbf{informe individual y el informe general};
+    \item la fijación de una \textbf{audiencia informativa}, con 5 días de anticipación al vencimiento del período de exclusividad;
+    \item el \textbf{informe mensual} del síndico sobre la evolución de la empresa, fondos líquidos y cumplimiento de normas legales y fiscales (inciso incorporado posteriormente);
+    \item la constitución del \textbf{comité de control}.
+\end{itemize}
+
+Dentro del concurso hay varios procesos encadenados: después de la verificación vienen el informe individual, luego el general y luego el período de exclusividad. Con las fechas de todo ya fijadas, deudor y acreedores pueden programar lo que deben presentar.
+
+\subsection{Informe mensual del síndico y comité de control provisorio}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el pasaje oral confunde la numeración de los incisos 12 y 13 del art. 14).
+Los incisos 12 y 13 del art.~14 disponen el informe mensual del síndico y la constitución de un comité de control, integrado por los tres acreedores de mayor monto denunciados por el deudor y un representante de los trabajadores de la concursada.
+
+Ese comité ayuda al síndico, pero en realidad sus integrantes defienden sus propios derechos. Es importante que sea un \textbf{comité provisorio}, porque el proceso recién comienza: los acreedores de «mayor monto» son los denunciados por el deudor, pero puede que luego se modifique la integración al ingresar al proceso un acreedor que no estaba denunciado. Siempre habrá un representante de los acreedores laborales, para que estén debidamente representados.
+
+\begin{important}
+\textbf{Comité de control provisorio (art.~14, inc.~13).} Está integrado por los tres acreedores quirografarios de mayor monto \textit{denunciados por el deudor} y un representante de los trabajadores. Es provisorio porque, al verificarse créditos de acreedores no denunciados, la integración puede cambiar (el art.~42 prevé luego el comité definitivo).
+\end{important}
+
+\subsection{Inciso 11: vista al síndico por los créditos laborales}
+
+El inciso 11 ordena correr vista al síndico para que, dentro de los 10 días, se expida sobre los pasivos laborales denunciados por el deudor y, previa auditoría de la documentación legal y contable, informe la existencia de otros créditos laborales. Esto es importante por lo que se explica al tratar el pronto pago.
+
+Los acreedores laborales son privilegiados no por un privilegio constitutivo, sino por la \textbf{naturaleza alimentaria} de su crédito; al ser privilegiados, cobran primero. Por eso, en un plazo rápido, apenas se sortea el síndico y asume, debe expedirse acerca de cuáles son los créditos laborales.
+
+\subsection{Alcance del pago a los acreedores laborales}
+
+En el concurso la empresa no cierra: sigue funcionando o intenta seguir. El apunte plantea que pueden adeudarse, por ejemplo, aguinaldo y vacaciones no gozadas, el último mes de sueldo o varios meses, pero no indemnización, porque la empresa no va a cerrar. A los acreedores laborales se les paga primero, pero no necesariamente todo ni la indemnización completa; cómo se paga y con qué fondo se paga se explica más adelante.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (aquí se afirma que no corresponde indemnización, pero al tratar el pronto pago se incluyen indemnizaciones por despido; el art. 16 enumera varias indemnizaciones).
+\begin{note}
+En este punto el apunte no concilia dos formulaciones: al exponer el alcance del pago laboral se afirma que no corresponde indemnización porque la empresa no cierra, mientras que al tratar el pronto pago se incluyen créditos por indemnización por despido y el texto del art.~16 enumera diversas indemnizaciones.
+\end{note}
+
+\subsection{Apelabilidad de la resolución de apertura}
+
+A diferencia de la resolución de rechazo, la resolución de apertura es \textbf{inapelable}.
+
+\begin{important}
+\textbf{Rechazo vs.\ apertura.} La resolución que \textit{rechaza} el pedido es apelable por el deudor (art.~13). La resolución que \textit{abre} el concurso (art.~14), según la explicación del apunte, es inapelable.
+\end{important}
+
+\begin{exercise}{Para reflexionar}
+Si un acreedor no fue denunciado por el deudor, ¿cómo se entera del concurso y qué puede hacer para participar?
+\end{exercise}
+
+\section{Notificaciones: edictos y cartas certificadas (arts. 27 y 29)}
+
+Hay dos formas de notificar la apertura del concurso, ambas dentro de plazos de 5 días.
+
+\subsection{Primera forma: los edictos}
+
+Dentro de los 5 días de notificada la resolución de apertura, el concursado tiene la obligación de publicar edictos durante 5 días en el diario de publicaciones legales de la jurisdicción (el Boletín Oficial) y en otro diario de amplia circulación. Los edictos deben contener:
+\begin{itemize}
+    \item la identificación del deudor;
+    \item el lugar del juicio y su radicación;
+    \item el nombre y domicilio del síndico;
+    \item la intimación a los acreedores para verificar sus créditos;
+    \item el plazo y domicilio para la verificación.
+\end{itemize}
+Si el deudor no cumple con esto, se tiene por desistido el pedido de concurso.
+
+\begin{norma}{Ley 24.522 · Art. 27 — Edictos}
+La resolución de apertura del concurso preventivo se hace conocer mediante edictos que deben publicarse durante CINCO (5) días en el diario de publicaciones legales de la jurisdicción del juzgado, y en otro diario de amplia circulación en el lugar del domicilio del deudor, que el juez designe. Los edictos deben contener los datos referentes a la identificación del deudor y de los socios ilimitadamente responsables; los del juicio y su radicación; el nombre y domicilio del síndico, la intimación a los acreedores para que formulen sus pedidos de verificación y el plazo y domicilio para hacerlo. Esta publicación está a cargo del deudor y debe realizarse dentro de los CINCO (5) días de haberse notificado la resolución.
+\end{norma}
+
+\subsection{Finalidad de los edictos}
+
+Los edictos tienen dos finalidades: que los \textbf{acreedores} tomen conocimiento del concurso y asistan a verificar sus créditos, y que los \textbf{terceros} conozcan la existencia del concurso para extremar sus cuidados cuando quieran establecer una relación comercial con quien está concursado.
+
+\subsection{Segunda forma: la carta certificada del síndico}
+
+Dentro de los 5 días de la primera publicación de los edictos, el síndico envía una carta certificada a cada acreedor comunicando la apertura del concurso.
+
+\begin{norma}{Ley 24.522 · Art. 29 — Carta a los acreedores e integrantes del comité de control}
+Sin perjuicio de lo dispuesto en los artículos 27 y 28, el síndico debe enviar a cada acreedor denunciado y a los miembros del comité de control, carta certificada en la cual le haga conocer la apertura del concurso, incluyendo los datos sucintos de los requisitos establecidos en los incisos 1 y 3 del artículo 14, su nombre y domicilio y las horas de atención, la designación del juzgado y secretaría actuantes y su ubicación y los demás aspectos que estime de interés para los acreedores. La correspondencia debe ser remitida dentro de los cinco (5) días de la primera publicación de edictos. La omisión en que incurra el síndico, respecto del envío de las cartas, no invalida el proceso. \textit{(Artículo sustituido por art. 8° de la Ley N° 26.684)}
+\end{norma}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} Y Y Y}
+\toprule
+\textbf{Forma} & \textbf{Quién la realiza y plazo} & \textbf{Detalle} & \textbf{Finalidad} \\
+\midrule
+\textbf{Edictos} & El concursado (a su cargo), dentro de los 5 días de notificada la resolución & Se publican durante 5 días en el diario de publicaciones legales y en otro de amplia circulación & Que los acreedores verifiquen sus créditos y que los terceros extremen sus cuidados \\
+\textbf{Carta certificada} & El síndico, dentro de los 5 días de la primera publicación de edictos & A cada acreedor denunciado y a los miembros del comité de control & Comunicar la apertura (su omisión no invalida el proceso) \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\subsection{El acreedor no denunciado y la necesidad de actualizar la publicidad}
+
+Si el deudor denunció sólo a algunos acreedores, ¿cómo se entera el acreedor no denunciado? La respuesta se vincula con la publicación de edictos y con la necesidad de una reforma, porque en la práctica no es habitual que las personas lean los edictos. Además, los acreedores, para participar del proceso concursal, no requieren en principio asistencia letrada. Un comerciante puede no tener indicios del concurso: no se trata de una ejecución y el concurso no requiere incumplimiento.
+
+Cuando el juez aprueba la solicitud del deudor, emite edictos y sortea síndico; una de las primeras tareas del síndico es enviar una carta a los acreedores notificando la apertura. Pero el legislador dispuso que, si el síndico omite enviar las cartas, no hay consecuencia ni sanción: no provoca la nulidad del proceso. Por eso incluso los acreedores denunciados pueden no enterarse, aunque enviar las cartas es el primer trabajo del síndico.
+
+Al leer una ley de procedimiento conviene entender lo que dice y sus implicancias, con una mirada crítica: esta parte de las notificaciones y de la publicidad del proceso necesita una actualización tecnológica.
+
+\section{Finalización anticipada: desistimiento voluntario y forzoso}
+
+\subsection{Dos tipos de finalización}
+
+El desistimiento es una forma de finalización del concurso preventivo y es de dos tipos: el \textbf{sancionatorio} (o forzoso) y el \textbf{voluntario}.
+\begin{itemize}
+    \item El \textbf{sancionatorio} se produce cuando la ley impone una sanción al concursado que incurre en un incumplimiento.
+    \item El \textbf{voluntario} se produce cuando el propio concursado solicita al juez el desistimiento del pedido de concurso. Sólo puede pedirlo hasta el día en que comienza el período de exclusividad.
+\end{itemize}
+
+\begin{norma}{Ley 24.522 · Art. 30 — Sanción (desistimiento forzoso)}
+En caso de que el deudor no cumpla lo dispuesto en los incisos 5 y 8 del artículo 14 y en los artículos 27 y 28 primer párrafo, se lo tiene por desistido.
+\end{norma}
+
+\begin{norma}{Ley 24.522 · Art. 31 — Desistimiento voluntario. Inadmisibilidad}
+\textbf{Desistimiento voluntario.} El deudor puede desistir de su petición hasta la primera publicación de edictos, sin requerir conformidad de sus acreedores. Puede desistir, igualmente, hasta el día indicado para el comienzo del período de exclusividad previsto en el artículo 43 si, con su petición, agrega constancia de la conformidad de la mayoría de los acreedores quirografarios que representen el SETENTA Y CINCO POR CIENTO (75\%) del capital quirografario. Para el cálculo de estas mayorías se tienen en cuenta, según el estado de la causa: a los acreedores denunciados con más los presentados a verificar, si el desistimiento ocurre antes de la presentación del informe del artículo 35; después de presentado dicho informe, se consideran los aconsejados a verificar por el síndico; una vez dictada la sentencia prevista en el artículo 36, deberán reunirse las mayorías sobre los créditos de los acreedores verificados o declarados admisibles por el juez. Si el juez desestima una petición de desistimiento por no contar con suficiente conformidad de acreedores, pero después ésta resultare reunida, sea por efecto de las decisiones sobre la verificación o por nuevas adhesiones, hará lugar al desistimiento, y declarará concluido el concurso preventivo.
+
+\textbf{Inadmisibilidad.} Rechazada, desistida o no ratificada una petición de concurso preventivo, las que se presenten dentro del año posterior no deben ser admitidas, si existen pedidos de quiebra pendientes.
+\end{norma}
+
+\begin{note}
+\textbf{Aclaración normativa.} El art.~31 permite desistir libremente hasta la primera publicación de edictos; entre ese momento y el comienzo del período de exclusividad, el desistimiento requiere la conformidad de acreedores quirografarios que representen el 75\% del capital quirografario. Desde el comienzo de la exclusividad ya no se puede desistir voluntariamente.
+\end{note}
+
+El desistimiento implica que por un año no se puede volver a pedir un concurso preventivo.
+
+\subsection{¿Por qué desistiría el deudor?}
+
+Como causas posibles de desistimiento voluntario o de no continuidad del trámite, el apunte menciona:
+\begin{itemize}
+    \item que el representante, por ejemplo el presidente del directorio, lo pida y luego no se alcancen las mayorías en el acta de asamblea, con lo cual se considera desistido;
+    \item que el deudor resuelva su situación económica, aunque no es tan frecuente;
+    \item que cambie de opinión y decida ir directamente a otra vía;
+    \item que su situación mejore: por ejemplo, que le llegue una herencia o que cobre un crédito incobrable; o que espere la declaratoria de herederos y no salga, o tenga un problema en la causa de familia.
+\end{itemize}
+Todo puede pasar, aunque quizás no sea lo más frecuente.
+
+\textbf{¿Es necesario solicitar el desistimiento?} En el voluntario, sí: lo solicita el deudor que quiere desistir. El forzoso opera cuando el deudor, por ejemplo, no cumplió un requisito, porque la ley impone una sanción al concursado por el incumplimiento; por ejemplo, no depositar el valor para que se publiquen los edictos.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.16\textwidth} Y Y}
+\toprule
+ & \textbf{Desistimiento voluntario} & \textbf{Desistimiento sancionatorio (forzoso)} \\
+\midrule
+\textbf{Quién lo origina} & El propio concursado solicita al juez el desistimiento & La ley impone la sanción por un incumplimiento del concursado \\
+\textbf{Ejemplos} & Cambió de opinión; mejoró su situación (herencia, cobró un incobrable); no obtuvo las mayorías en la asamblea & No ratificar dentro de los 30 días; no depositar el importe para publicar los edictos \\
+\textbf{Oportunidad} & Hasta el día en que comienza el período de exclusividad & Cuando se verifica el incumplimiento \\
+\textbf{Consecuencia} & Por un año no se puede volver a pedir concurso preventivo & Por un año no se puede volver a pedir concurso preventivo \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\subsection{¿Puede el deudor «saltearse» el año de inhibición?}
+
+El art.~10 establece un límite temporal: el concurso puede pedirse hasta que se declare la quiebra. Se plantea entonces si, quien tuvo su solicitud rechazada y quedó inhibido por un año, puede pedir el concurso dentro de ese año si un acreedor pide la quiebra. La respuesta es que \textbf{no}: dentro de ese año, si un acreedor pide la quiebra, el deudor no puede pedir el concurso, porque está dentro del período de inhibición. Muchas veces se intenta, pero se lo rechazan.
+
+\begin{important}
+\textbf{Inhibición de un año y pedido de quiebra (arts.~10 y 31).} El concurso preventivo puede pedirse hasta que se declare la quiebra. Pero quien vio rechazada, desistida o no ratificada su petición no puede presentar otra dentro del año posterior si existen pedidos de quiebra pendientes. No se puede «saltear» la inhibición esperando que un acreedor pida la quiebra.
+\end{important}
+
+\subsection{¿Por qué podría no aprobarse la decisión en la sociedad?}
+
+La decisión no la toma el directorio sino la asamblea, y puede no alcanzarse la mayoría necesaria por algún motivo: un socio dijo que votaría a favor y al momento de la votación se arrepintió, cambió de opinión o recibió asesoramiento legal diferente. El apunte señala que esto ocurre con frecuencia cuando se recibe asesoramiento jurídico, porque a veces el abogado propone administrar la situación de otra manera, y el socio cambia de postura.
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{QN}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Cuándo y por qué puede rechazar el juez el pedido?} &
+Debe resolver dentro de cinco días. Sólo hay cuatro causales, y son taxativas: sujeto no concursable, incompetencia, incumplimiento del art.~11 o período de inhibición. La resolución que rechaza es apelable por el deudor; la que abre el concurso es inapelable. \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué dispone la resolución de apertura (art.~14)?} &
+Declara la apertura, sortea al síndico, fija fechas (verificación, informes individual y general, audiencia informativa), ordena edictos, anota en el Registro de Concursos, decreta la inhibición general, intima a depositar gastos y a presentar libros, manda al síndico a pronunciarse sobre créditos laborales en 10 días, ordena informes mensuales y constituye el comité de control provisorio. \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué es el comité de control y por qué es provisorio?} &
+Lo integran los tres acreedores quirografarios de mayor monto denunciados por el deudor y un representante de los trabajadores. Es provisorio porque la integración puede cambiar cuando ingresan al proceso acreedores no denunciados. \\
+\addlinespace[0.6em]
+
+\textbf{¿Cómo se notifica la apertura?} &
+Con edictos publicados por 5 días, a cargo del deudor, dentro de los 5 días de notificada la resolución, y con carta certificada del síndico dentro de los 5 días de la primera publicación. Los edictos informan a los acreedores y alertan a los terceros. Si el deudor no publica, se lo tiene por desistido. \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué ocurre con el acreedor que el deudor no denunció?} &
+Puede participar igual, aunque no figure en la nómina. Se entera por los edictos y, en principio, por la carta del síndico, cuya omisión no invalida el proceso. Por eso se habla de la necesidad de una actualización tecnológica de las notificaciones. \\
+\addlinespace[0.6em]
+
+\textbf{Desistimiento voluntario y forzoso: ¿en qué se distinguen?} &
+El voluntario lo pide el propio concursado (cambió de idea, mejoró su situación, no logró mayorías); el forzoso o sancionatorio lo impone la ley ante un incumplimiento (no ratificar, no depositar los edictos). En ambos casos hay un año de inhibición para volver a presentarse. \\
+\addlinespace[0.6em]
+
+\textbf{¿Puede «saltearse» la inhibición si un acreedor pide la quiebra?} &
+No. El concurso puede pedirse hasta la declaración de quiebra (art.~10), pero dentro del año de inhibición el pedido no se admite si existen pedidos de quiebra pendientes (art.~31). \\
+\midrule
+
+\multicolumn{2}{p{\dimexpr0.93\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} el juez tiene cinco días para resolver y sólo puede rechazar por cuatro causales taxativas. Si abre el concurso, sortea al síndico, fija las fechas del proceso, ordena edictos y constituye un comité de control provisorio. La apertura se notifica por edictos a cargo del deudor y por carta certificada del síndico. El deudor puede desistir voluntariamente, y la ley impone el desistimiento ante ciertos incumplimientos; en ambos casos rige la inhibición de un año.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Efectos de la apertura]{Efectos de la apertura del concurso preventivo}
+%==============================================================
+
+Se analiza cómo impacta la apertura del concurso preventivo respecto del concursado, de los acreedores y de los contratos.
+
+\section{Efectos respecto del concursado (arts. 15 a 17 y 25)}
+
+\subsection{Concurso y quiebra: finalidades distintas}
+
+El concurso y la quiebra tienen finalidades diferentes. El concurso busca seguir adelante con la actividad comercial, reestructurando el pasivo. La quiebra termina por completo la actividad que se desarrolla: se cierra, se disuelve y se liquida.
+
+\subsection{Administración vigilada o atenuada (art. 15)}
+
+El primer efecto respecto del concursado es que \textbf{mantiene la administración de sus negocios}: conserva la administración de su patrimonio, bajo la vigilancia del síndico.
+
+\begin{norma}{Ley 24.522 · Art. 15 — Administración del concursado}
+El concursado conserva la administración de su patrimonio bajo la vigilancia del síndico.
+\end{norma}
+
+El síndico es un contador público que acompaña todo el proceso concursal. Es un auxiliar del juez, controla que se cumplan los principios del proceso y procura proteger los derechos de los acreedores; por eso controla la administración de los negocios del deudor. Se habla por ello de \textbf{administración vigilada o atenuada}: el concursado sigue administrando, pero hay actos que no puede realizar y otros que sólo puede hacer con autorización judicial, regulados en el art.~16.
+
+\textbf{El síndico.} El sorteo del síndico es comparable al sorteo de un perito. El síndico puede excusarse si considera que tiene algún problema. Pueden ser individuales (síndicos más pequeños, contadores que manejan en general los concursos y quiebras pequeños) o estudios contables grandes, para grandes concursos y quiebras.
+% TODO: contenido incompleto o ambiguo en las notas originales (el cierre de este pasaje oral es ininteligible; se omite).
+
+\subsection{Estructura del artículo 16}
+
+El art.~16 reúne varios contenidos. La primera parte regula los \textbf{actos prohibidos}; la parte media regula el \textbf{pronto pago laboral} (que se analiza al tratar los efectos sobre los acreedores); y la última parte regula los \textbf{actos sujetos a autorización}.
+
+\begin{norma}{Ley 24.522 · Art. 16 — Actos prohibidos · Pronto pago · Actos sujetos a autorización}
+\textbf{Actos prohibidos.} El concursado no puede realizar actos a título gratuito o que importen alterar la situación de los acreedores por causa o título anterior a la presentación.
+
+\textbf{Pronto pago de créditos laborales.} Dentro del plazo de diez (10) días de emitido el informe que establece el artículo 14 inciso 11), el juez del concurso autorizará el pago de las remuneraciones debidas al trabajador, las indemnizaciones por accidentes de trabajo o enfermedades laborales y las previstas en los artículos 132 bis, 212, 232, 233 y 245 a 254, 178, 180 y 182 del Régimen de Contrato de Trabajo aprobado por la ley 20.744; las indemnizaciones previstas en la ley 25.877, en los artículos 1° y 2° de la ley 25.323; en los artículos 8°, 9°, 10, 11 y 15 de la ley 24.013; en el artículo 44 y 45 de la ley 25.345; en el artículo 52 de la ley 23.551; y las previstas en los estatutos especiales, convenios colectivos o contratos individuales, que gocen de privilegio general o especial y que surjan del informe mencionado en el inciso 11 del artículo 14. Para que proceda el pronto pago de crédito no incluido en el listado que establece el artículo 14 inciso 11), no es necesaria la verificación del crédito en el concurso ni sentencia en juicio laboral previo. Previa vista al síndico y al concursado, el juez podrá denegar total o parcialmente el pedido de pronto pago mediante resolución fundada, sólo cuando existiere duda sobre su origen o legitimidad, se encontraren controvertidos o existiere sospecha de connivencia entre el peticionario y el concursado. En todos los casos la decisión será apelable. La resolución judicial que admite el pronto pago tendrá efectos de cosa juzgada material e importará la verificación del crédito en el pasivo concursal. La que lo deniegue, habilitará al acreedor para iniciar o continuar el juicio de conocimiento laboral ante el juez natural. No se impondrán costas al trabajador en la solicitud de pronto pago, excepto en el caso de connivencia, temeridad o malicia. Los créditos serán abonados en su totalidad, si existieran fondos líquidos disponibles. En caso contrario y hasta que se detecte la existencia de los mismos por parte del síndico se deberá afectar el tres por ciento (3\%) mensual del ingreso bruto de la concursada. El síndico efectuará un plan de pago proporcional a los créditos y sus privilegios, no pudiendo exceder cada pago individual en cada distribución un monto equivalente a cuatro (4) salarios mínimos vitales y móviles. Excepcionalmente el juez podrá autorizar, dentro del régimen de pronto pago, el pago de aquellos créditos amparados por el beneficio y que, por su naturaleza o circunstancias particulares de sus titulares, deban ser afectados a cubrir contingencias de salud, alimentarias u otras que no admitieran demoras. En el control e informe mensual, que la sindicatura deberá realizar, incluirá las modificaciones necesarias, si existen fondos líquidos disponibles, a los efectos de abonar la totalidad de los prontos pagos o modificar el plan presentado.
+
+\textbf{Actos sujetos a autorización.} Debe requerir previa autorización judicial para realizar cualquiera de los siguientes actos: los relacionados con bienes registrables; los de disposición o locación de fondos de comercio; los de emisión de debentures con garantía especial o flotante; los de emisión de obligaciones negociables con garantía especial o flotante; los de constitución de prenda y los que excedan de la administración ordinaria de su giro comercial. La autorización se tramita con audiencia del síndico y del comité de control; para su otorgamiento el juez ha de ponderar la conveniencia para la continuación de las actividades del concursado y la protección de los intereses de los acreedores. \textit{(Artículo sustituido por art. 5° de la Ley N° 26.684)}
+\end{norma}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} Y Y}
+\toprule
+\textbf{Parte del art.~16} & \textbf{Contenido} & \textbf{Consecuencia} \\
+\midrule
+\textbf{Primera parte: actos prohibidos} & Actos a título gratuito y actos que alteren la situación de los acreedores por causa o título anterior a la presentación & Ineficaces de pleno derecho (art.~17) \\
+\textbf{Parte media: pronto pago} & Pago rápido de los créditos laborales & Se desarrolla en la sección sobre los efectos respecto de los acreedores \\
+\textbf{Última parte: actos sujetos a autorización} & Bienes registrables, fondos de comercio, debentures y obligaciones negociables con garantía especial o flotante, prenda, actos que excedan el giro ordinario & Previa autorización judicial, con audiencia del síndico y del comité de control \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\subsection{Actos prohibidos y su ineficacia de pleno derecho}
+
+El concursado no puede realizar \textbf{actos a título gratuito}; es decir, no puede hacer donaciones. Si extrajera bienes de su patrimonio estaría perjudicando a sus acreedores. Tampoco puede realizar actos \textbf{que importen alterar la situación de los acreedores por causa o título anterior a la fecha de presentación} del concurso. El apunte señala que esta parte del artículo resulta difícil de entender.
+
+\begin{example}{privilegiar a un acreedor después de presentarse}
+El deudor dijo que tenía tres acreedores: uno privilegiado y dos quirografarios. Una vez presentado el concurso, no puede otorgar un privilegio a otro de ellos, porque violaría el principio de igualdad. No puede alterar la condición de los acreedores: si uno es privilegiado, es privilegiado; si no lo era, no. % TODO: contenido incompleto o ambiguo en las notas originales (el apunte agrega que el acto «pudo haberse hecho antes» de la presentación, sin precisar más).
+El apunte agrega que el acto pudo haberse realizado antes de la presentación, pero no una vez abierto el concurso.
+\end{example}
+
+\begin{example}{la prenda o la hipoteca «para que te quedes tranquilo»}
+El deudor le debe un millón de pesos por facturas de honorarios a un acreedor y le dice: «quedate tranquilo, te hago una prenda». Así el acreedor pasa a ser privilegiado; si le dice «te hago una hipoteca», pasa a ser hipotecario. Está totalmente prohibido alterar la situación de los acreedores por causa o título anterior a la fecha de presentación del concurso preventivo.
+\end{example}
+
+Si el concursado realiza alguno de estos actos, se consideran \textbf{ineficaces de pleno derecho}, como si no los hubiera realizado, sin importar la buena fe ni ninguna otra circunstancia. El apunte cita en este punto los arts.~17, 118 y 119. Los actos realizados en violación de la primera parte del art.~16 son ineficaces de pleno derecho.
+
+\begin{norma}{Ley 24.522 · Art. 17 — Actos ineficaces · Separación de la administración · Limitación}
+\textbf{Actos ineficaces.} Los actos cumplidos en violación a lo dispuesto en el Artículo 16 son ineficaces de pleno derecho respecto de los acreedores.
+
+\textbf{Separación de la administración.} Además, cuando el deudor contravenga lo establecido en los Artículos 16 y 25 cuando oculte bienes, omita las informaciones que el juez o el síndico le requieran, incurra en falsedad en las que produzca o realice algún acto en perjuicio evidente para los acreedores, el juez puede separarlo de la administración por auto fundado y designar reemplazante. Esta resolución es apelable al solo efecto devolutivo, por el deudor. Si se deniega la medida puede apelar el síndico. El administrador debe obrar según lo dispuesto en los artículos 15 y 16.
+
+\textbf{Limitación.} De acuerdo con las circunstancias del caso, el juez puede limitar la medida a la designación de un coadministrador, un veedor o un interventor controlador, con las facultades que disponga. La providencia es apelable en las condiciones indicadas en el segundo párrafo. En todos los casos, el deudor conserva en forma exclusiva la legitimación para obrar, en los actos del juicio que, según esta ley, correspondan al concursado.
+\end{norma}
+
+\subsection{Actos sujetos a autorización judicial}
+
+La última parte del art.~16 se refiere a los actos que requieren autorización. Si bien a veces se habla de «aprobación del síndico», el síndico no aprueba nada: ayuda, colabora y recibe las peticiones y solicitudes del deudor, pero quien aprueba es el \textbf{juez}. En la práctica, casi siempre (el apunte menciona el 99,9\% de los casos) el juez hace lo que dice el síndico, porque este conoce el día a día; su recomendación no es vinculante, pero tiene mucho peso.
+
+El concursado debe requerir previa autorización judicial para realizar cualquiera de los siguientes actos:
+\begin{itemize}
+    \item los relacionados con bienes registrables (por ejemplo, vender cualquier bien registrable);
+    \item los de disposición o locación de fondos de comercio;
+    \item los de emisión de debentures con garantía especial o flotante;
+    \item los de emisión de obligaciones negociables con garantía especial o flotante;
+    \item los de constitución de prenda;
+    \item los que excedan la administración ordinaria de su giro comercial (todos aquellos actos que exceden el giro comercial normal, por ejemplo vender o comprar un bien).
+\end{itemize}
+
+Todos estos actos se solicitan al juez, mediante el síndico, antes de realizarlos. La autorización se tramita con audiencia del síndico y del comité de control provisorio, y para otorgarla el juez pondera la conveniencia para la continuación de las actividades del concursado y la protección de los intereses de los acreedores.
+
+Esta exigencia se relaciona con el riesgo: si el deudor ya está en cesación de pagos y va a realizar un acto con riesgo financiero o económico, se procura que otra persona lo apruebe, ya que no ha tomado buenas decisiones hasta el momento.
+
+\subsection{Viajes al exterior (art. 25)}
+
+El concursado no puede salir del país sin notificarlo al juez. La regla distingue según el plazo de ausencia: si es \textbf{menor a 40 días}, sólo se notifica al juez las fechas y el plazo; si es \textbf{superior a 40 días}, se debe pedir autorización judicial, y se debe justificar el motivo (por ejemplo, un procedimiento médico, o la operación de un familiar que vive en el exterior). La razón es que el concursado debe estar disponible por si el juez necesita alguna aclaración o documentación.
+
+\begin{norma}{Ley 24.522 · Art. 25 — Viaje al exterior}
+El concursado y, en su caso, los administradores y socios con responsabilidad ilimitada de la sociedad concursada, no pueden viajar al exterior sin previa comunicación al juez del concurso, haciendo saber el plazo de la ausencia, el que no podrá ser superior a CUARENTA (40) días corridos. En caso de ausencia por plazos mayores, deberá requerir autorización judicial.
+\end{norma}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.30\textwidth} Y}
+\toprule
+\textbf{Duración del viaje al exterior} & \textbf{Qué debe hacer el concursado} \\
+\midrule
+\textbf{Menos de 40 días} & Sólo comunicar al juez las fechas y el plazo de la ausencia \\
+\textbf{Más de 40 días} & Pedir autorización judicial y justificar el motivo \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\subsection{Sanciones por infringir el régimen (art. 17)}
+
+El art.~17 regula las consecuencias de realizar actos prohibidos o actos que requieren autorización sin ella, o de infringir el art.~25. El juez puede adoptar medidas que varían según la gravedad de lo que haya hecho el deudor: no es lo mismo donar un bien que olvidarse de notificar un viaje de una semana.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}p{0.23\textwidth} Y}
+\toprule
+\textbf{Gravedad} & \textbf{Medida (art.~17)} & \textbf{En qué consiste} \\
+\midrule
+\textbf{Más grave} & Reemplazante & Se separa al concursado de la administración de sus negocios y se nombra a otra persona en su lugar \\
+\textbf{Intermedia} & Coadministrador & Una persona (distinta del síndico, que tiene muchas causas) coadministra junto con el deudor \\
+\textbf{Más leve} & Veedor o interventor controlador & No administra: fiscaliza de cerca lo que hace el deudor, sin necesidad de firmar con él cada acto \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\medskip
+Estas personas también son sorteadas.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (en la exposición oral se mencionó «el 15 y el 25»; el texto del art. 17 se refiere a los arts. 16 y 25).
+\begin{note}
+\textbf{Precisión normativa.} En el apunte se mencionó que las sanciones se aplican cuando se infringe «el 15 y el 25»; el texto del art.~17 se refiere a la contravención de los \textbf{arts.~16 y 25} (además de ocultar bienes, omitir informaciones, falsedad o actos en perjuicio evidente de los acreedores).
+\end{note}
+
+\subsection{Preguntas sobre el viaje al exterior y el poder especial}
+
+\textbf{¿Puede el concursado otorgar un poder especial a alguien para que lo represente cuando viaja más de 40 días?} Sí podría, pero igualmente debe justificarlo; hay una exigencia estricta de que esté disponible, y en la quiebra es peor. Aquí entra en conflicto el derecho constitucional de libre circulación; pero si el concurso va mal, se va a la quiebra, donde hay una presunción de fraude.
+
+Si el concursado debe grandes sumas a sus acreedores y quiere irse dos meses a Europa, el juez le pide que lo justifique: quien no puede pagar y viaja de paseo debe dar explicaciones. Por eso la ley limita el viaje y exige justificación; el juez no rechaza «porque sí». El apunte observa que son pocos los casos vistos, porque nadie quiere cargar con la acusación de no respetar un principio constitucional; es una cuestión delicada.
+
+\begin{exercise}{Para reflexionar}
+Si un concursado quiere vender un inmueble para pagar a un proveedor, ¿qué pasos debe seguir y por qué?
+\end{exercise}
+
+\section{Efectos respecto de los acreedores (arts. 16 y 19)}
+
+\subsection{El pronto pago laboral (art. 16, parte media)}
+
+El pronto pago es una herramienta, un beneficio que otorga la ley a los acreedores laborales: se los categoriza como privilegiados para que cobren más rápido su crédito, atendiendo al carácter alimentario de ese crédito y a que son el eslabón más débil de la cadena. Se deja de lado, en este caso, el \textbf{principio de igualdad}: los trabajadores no eran privilegiados y sin embargo se los considera como tales. El apunte entiende que está bien hacerlo, por la naturaleza alimentaria del crédito y la desigualdad entre las partes, que se busca atenuar.
+
+\begin{important}
+\textbf{Fundamento del pronto pago.} Carácter alimentario del crédito laboral y desigualdad entre las partes (el trabajador es «el eslabón más débil de la cadena»). Por eso se deja de lado, en este caso, el principio de igualdad entre acreedores.
+\end{important}
+
+\subsection{¿Qué se incluye en el pronto pago?}
+
+Se incluyen todas las deudas generadas por una relación laboral. No se trata sólo de empleados activos: también se incluyen créditos por indemnización por despido, por trabajo en negro, cuestiones médicas, ART, y en general todos los créditos laborales que no corresponden a un empleado activo. Los rubros incluidos pueden ir modificándose y no están establecidos en esta ley, porque otras leyes crean indemnizaciones nuevas o amplían las existentes; por ejemplo, durante la pandemia había que pagar doble indemnización en caso de despido.
+
+\subsection{Dos maneras de obtener el pronto pago: de oficio y a pedido de parte}
+
+El art.~16 prevé dos maneras de establecer el pronto pago: \textbf{de oficio} y \textbf{a pedido de parte}.
+
+\textbf{Pronto pago de oficio.} Una vez que el síndico toma sus funciones, tiene un plazo para cotejar todos los acreedores laborales existentes, sin que nadie deba solicitar nada. El síndico toma la nómina de acreedores laborales de la solicitud del art.~11 y verifica si es correcta o está incompleta; realiza una especie de auditoría en la sede social del concursado para comprobar que no haya otros acreedores. Una vez que dictamina cuáles son, pide al juez que autorice el pago. Puede incluir créditos no denunciados por el deudor, si los encuentra. Tiene 10 días desde que acepta el cargo. Se da traslado al deudor, para que sepa a quién se incluyó y a quién no. En esta instancia \textbf{no hay etapa probatoria}: no se puede probar nada ni pedir testigos.
+
+\textbf{Pronto pago a pedido de parte.} El trabajador puede únicamente solicitar ser incluido si no lo fue de oficio. El inconveniente es que sólo puede probar con \textbf{prueba documental}, y en general no se dispone de ella: casi siempre hacen falta testigos o prueba informativa, por lo que es raro que el trabajador reúna pruebas suficientes.
+
+\textbf{¿El trabajador en negro, o registrado precariamente, pierde su derecho?} No. Debe acudir al fuero laboral, lo cual no es rápido. Hasta que no tenga sentencia laboral no puede volver al concurso; con sentencia laboral, verifica el crédito. En el pronto pago no se admiten testigos ni este tipo de pruebas. Cuando se plantea si la existencia de un juicio laboral suspende el concurso, la respuesta es que, con la sentencia en mano, se verifica el crédito; el apunte advierte que, entretanto, el trabajador puede llegar cuando ya no puede votar, o a cobrar menos o más tarde. En el aula se planteó este problema como una desprotección de los trabajadores y se mencionaron, como posibles soluciones, una reserva de fondos o un seguro de caución, señalándose que una reserva podría resultar injusta para los acreedores que ya verificaron su crédito.
+
+\subsection{Causales por las que el juez puede denegar el pronto pago}
+
+Si el trabajador presenta el pedido a pedido de parte, el juez puede rechazarlo en tres situaciones:
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.36\textwidth} Y}
+\toprule
+\textbf{Situación en que el juez puede denegar (art.~16)} & \textbf{Comentario del apunte} \\
+\midrule
+\textbf{Dudas sobre el origen o la legitimidad del crédito} & Es habitual que existan dudas sobre el origen \\
+\textbf{Crédito controvertido} & Es casi siempre controvertido: si el deudor niega que sea acreedor y el trabajador afirma que lo es, hay controversia \\
+\textbf{Sospecha de connivencia entre el peticionario y el concursado} & Acuerdo entre deudor y trabajador; es difícil de probar \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\medskip
+Como la connivencia es difícil de probar, el juez suele rechazar por controversia. El apunte observa que no sería ilógico, porque el trámite concursal ya demora mucho y no conviene sumar la lentitud del fuero laboral; se prefiere que el crédito se resuelva en el fuero laboral y que luego se presente en el concurso.
+
+\subsection{Con qué fondos se paga: 3\% de la facturación bruta y tope de cuatro SMVM}
+
+En ambos casos el pronto pago laboral se paga con el \textbf{3\% de la facturación bruta} del concursado: mensualmente se destina ese porcentaje a pagar a los acreedores laborales. El art.~16 aclara que no puede exceder cada pago individual el equivalente a \textbf{cuatro salarios mínimos, vitales y móviles}. Esta regla tiene una excepción: si el acreedor laboral necesita cobrar todo junto, porque la facturación lo permite y tiene un problema de salud u otra necesidad, y lo justifica, puede recibir más de cuatro salarios mínimos, vitales y móviles.
+
+\begin{important}
+\textbf{Régimen de pago del pronto pago (art.~16).} Si hay fondos líquidos disponibles, se pagan en su totalidad; si no, se afecta el 3\% mensual del ingreso bruto de la concursada. Cada pago individual no puede exceder cuatro salarios mínimos, vitales y móviles, salvo autorización excepcional del juez, debidamente justificada (por ejemplo, contingencias de salud, alimentarias u otras que no admitan demora).
+\end{important}
+
+\subsection{Suspensión de intereses (art. 19)}
+
+La \textbf{presentación} del concurso (no la apertura) produce la suspensión de los intereses que devengue todo crédito de causa o título anterior a ella que no esté garantizado por prenda o hipoteca. Los créditos quirografarios suspenden los intereses a partir de la fecha de \textbf{presentación}; el apunte insiste en remarcarlo porque suele decirse «apertura».
+
+\begin{norma}{Ley 24.522 · Art. 19 — Intereses · Deudas no dinerarias}
+\textbf{Intereses.} La presentación del concurso produce la suspensión de los intereses que devengue todo crédito de causa o título anterior a ella, que no esté garantizado con prenda o hipoteca. Los intereses de los créditos así garantizados, posteriores a la presentación, sólo pueden ser reclamados sobre las cantidades provenientes de los bienes afectados a la hipoteca o a la prenda.
+
+\textbf{Deudas no dinerarias.} Las deudas no dinerarias son convertidas, a todos los fines del concurso, a su valor en moneda de curso legal, al día de la presentación o al del vencimiento, si fuere anterior, a opción del acreedor. Las deudas en moneda extranjera se calculan en moneda de curso legal, a la fecha de la presentación del informe del síndico previsto en el artículo 35, al solo efecto del cómputo del pasivo y de las mayorías. Quedan excluidos de la disposición precedente los créditos laborales correspondientes a la falta de pago de salarios y toda indemnización derivada de la relación laboral. \textit{(Párrafo incorporado por art. 6° de la Ley N° 26.684)}
+\end{norma}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (fragmentos ininteligibles en la grabación sobre los intereses y la posibilidad de acordar; se omiten).
+La suspensión de intereses es, por un lado, injusta para el acreedor, pero por otro tiene lógica: si el deudor no puede pagar todo lo que debe, no cabría exigirle además intereses. Es un efecto sumamente importante en materia de verificación de créditos.
+
+Esta suspensión \textbf{no se aplica} a los acreedores hipotecarios ni prendarios, porque se cobran de los propios bienes que tienen en garantía; tampoco corre para los créditos laborales, según jurisprudencia y doctrina.
+
+\begin{example}{el concurso que se presenta «por sorpresa»}
+% TODO: contenido incompleto o ambiguo en las notas originales (el ejemplo oral está fragmentado).
+El apunte ilustra el impacto del concurso sobre terceros con una situación cotidiana: el deudor llama a su acreedor, a quien le debe un millón, y le anuncia que su abogado le aconsejó presentar su concurso preventivo. El acreedor responde que el deudor le había dicho que le iba a pagar; el acreedor pensaba usar ese pago para una cuota de un crédito que había sacado con garantía de su casa. El ejemplo muestra que los efectos del concurso no recaen sólo sobre el concursado, sino también sobre las demás personas.
+\end{example}
+
+\begin{important}
+\textbf{Suspensión de intereses (art.~19).} Se suspenden desde la \textit{presentación} (no desde la apertura) para los créditos quirografarios. No se suspenden para los créditos con garantía prendaria o hipotecaria (que se cobran de los bienes gravados) ni para los créditos laborales.
+\end{important}
+
+\subsection{Deudas no dinerarias y deudas en moneda extranjera (art. 19)}
+
+Las deudas no dinerarias, por ejemplo en especie, se convierten a valor de moneda de curso legal al día de la presentación del concurso o al del vencimiento de la deuda, si este fuera anterior a la presentación. Es necesario saber cuánto se debe en pesos para conocer cuánto se debe a cada acreedor y luego calcular las mayorías. El apunte aclara que el artículo no se refiere a la moneda extranjera sino a deudas no dinerarias. El «o» significa que \textbf{decide el acreedor}, no el deudor; el valor es la cotización en bolsa.
+
+\begin{example}{la deuda de 100 kg de harina}
+Si la deuda consiste en 100 kg de harina, se considera la cotización en bolsa y se elige la fecha que más convenga: la de presentación o, si es anterior, la de vencimiento. Esto lo decide el acreedor, no el deudor.
+\end{example}
+
+Las deudas en moneda extranjera se calculan en moneda de curso legal a la fecha de presentación del informe del síndico del art.~35. Esa fecha ya se conoce, porque la resolución de apertura del art.~14 indica cuándo se presentará ese informe.
+
+\begin{norma}{Ley 24.522 · Art. 35 — Informe individual}
+Vencido el plazo para la formulación de observaciones por parte del deudor y los acreedores, en el plazo de VEINTE (20) días, el síndico deberá redactar un informe sobre cada solicitud de verificación en particular, el que deberá ser presentado al juzgado. Se debe consignar el nombre completo de cada acreedor, su domicilio real y el constituido, monto y causa del crédito, privilegio y garantías invocados; además, debe reseñar la información obtenida, las observaciones que hubieran recibido las solicitudes, por parte del deudor y de los acreedores, y expresar respecto de cada crédito, opinión fundada sobre la procedencia de la verificación del crédito y el privilegio. También debe acompañar una copia, que se glosa al legajo a que se refiere el artículo 279, la cual debe quedar a disposición permanente de los interesados para su examen, y copia de los legajos.
+\end{norma}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.27\textwidth} Y >{\raggedright\arraybackslash}p{0.14\textwidth}}
+\toprule
+\textbf{Tipo de deuda} & \textbf{Cómo se convierte a pesos} & \textbf{Quién opta} \\
+\midrule
+\textbf{Deuda no dineraria (por ejemplo, en especie)} & Al valor en moneda de curso legal al día de la presentación o al del vencimiento, si éste fuere anterior & El acreedor \\
+\textbf{Deuda en moneda extranjera} & A moneda de curso legal a la fecha de presentación del informe del síndico (art.~35), al solo efecto del cómputo del pasivo y de las mayorías & --- \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\begin{exercise}{Para reflexionar}
+¿Por qué se justifica apartarse del principio de igualdad entre acreedores en el caso del pronto pago laboral?
+\end{exercise}
+
+\section{Efectos respecto de los contratos en curso y los servicios públicos (art. 20)}
+
+\subsection{Contratos con prestaciones recíprocas pendientes}
+
+Los contratos en ejecución pueden seguir adelante. Para ello debe haber alguna obligación pendiente de ejecución, es decir, prestaciones pendientes que sean \textbf{recíprocas}, tanto del deudor como de la contraparte. El deudor solicita autorización al juez, a través del síndico, para continuar con el contrato.
+
+\begin{norma}{Ley 24.522 · Art. 20 — Contratos con prestación recíproca pendiente · Servicios públicos}
+El deudor puede continuar con el cumplimiento de los contratos en curso de ejecución, cuando hubiere prestaciones recíprocas pendientes. Para ello debe requerir autorización del juez, quien resuelve previa vista al síndico. La continuación del contrato autoriza al cocontratante a exigir el cumplimiento de las prestaciones adeudadas a la fecha de presentación en concurso bajo apercibimiento de resolución. Las prestaciones que el tercero cumpla después de la presentación en concurso preventivo, y previo cumplimiento de lo dispuesto en este precepto, gozan del privilegio previsto por el artículo 240. La tradición simbólica anterior a la presentación, no importa cumplimiento de la prestación a los fines de este artículo. Sin perjuicio de la aplicación del artículo 753 del Código Civil, el tercero puede resolver el contrato cuando no se le hubiere comunicado la decisión de continuarlo, luego de los treinta (30) días de abierto el concurso. Debe notificar al deudor y al síndico.
+
+\textbf{Servicios públicos.} No pueden suspenderse los servicios públicos que se presten al deudor por deudas con origen en fecha anterior a la de la apertura del concurso. Los servicios prestados con posterioridad a la apertura del concurso deben abonarse a sus respectivos vencimientos y pueden suspenderse en caso de incumplimiento mediante el procedimiento previsto en las normas que rigen sus respectivas prestaciones. En caso de liquidación en la quiebra, los créditos que se generen por las prestaciones mencionadas en el párrafo anterior gozan de la preferencia establecida por el artículo 240. \textit{(Artículo sustituido por art. 7° de la Ley N° 26.684)}
+\end{norma}
+
+Si se sigue adelante con el contrato y el concursado no cumple sus prestaciones, el art.~20 otorga al cocontratante un \textbf{privilegio de cobro}: el cocontratante tuvo la buena voluntad de continuar y, estando ya abierto el concurso, resultaría injusto que quedara sin protección. El privilegio recae sólo sobre esa nueva deuda.
+
+\subsection{Servicios públicos: luz, gas, agua}
+
+El art.~20 dispone que no pueden suspenderse los servicios públicos (luz, gas, agua) que se presten al deudor por deudas con origen en fecha anterior a la apertura. Lo anterior no puede cortarse. Los servicios nuevos sí pueden suspenderse si no se pagan, aunque en general no ocurre, porque el síndico controla la administración y el concurso busca seguir adelante con las actividades comerciales: si no se paga la luz, la actividad no puede continuar, y por eso el síndico controla estas cuestiones.
+
+\begin{important}
+\textbf{Servicios públicos (art.~20).} No pueden suspenderse los servicios públicos por deudas anteriores a la apertura. Los servicios posteriores deben pagarse a su vencimiento y pueden suspenderse si hay incumplimiento. Los créditos por prestaciones posteriores gozan de privilegio (art.~240) si se liquida en la quiebra.
+\end{important}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{QN}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué significa «administración vigilada o atenuada»?} &
+El concursado conserva la administración de su patrimonio, pero bajo la vigilancia del síndico (art.~15). Hay actos que no puede realizar y otros que sólo puede hacer con autorización del juez, quien decide previa audiencia del síndico y del comité de control; la opinión del síndico pesa mucho pero no es vinculante. \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué finalidad distingue al concurso de la quiebra?} &
+El concurso busca seguir con la actividad comercial reestructurando el pasivo; la quiebra termina la actividad, que se cierra, se disuelve y se liquida. \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué actos están prohibidos y qué efecto tienen?} &
+Los actos a título gratuito y los que alteren la situación de los acreedores por causa o título anterior a la presentación (por ejemplo, otorgar una prenda o hipoteca a un acreedor quirografario). Son ineficaces de pleno derecho, sin importar la buena fe (arts.~16 y 17). \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué actos requieren autorización judicial y qué pasa con los viajes?} &
+Los relativos a bienes registrables, disposición o locación de fondos de comercio, debentures y obligaciones negociables con garantía especial o flotante, prenda y todo lo que exceda la administración ordinaria. Viajes al exterior: menos de 40 días se comunican; más de 40 días requieren autorización y justificación (art.~25). \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué medidas puede tomar el juez si el concursado infringe las reglas?} &
+Según la gravedad (art.~17): designar un reemplazante (la más grave), un coadministrador (intermedia) o un veedor o interventor controlador (la más leve). \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué es el pronto pago laboral y cómo funciona?} &
+Es el beneficio por el que los créditos laborales se pagan más rápido, por su carácter alimentario, apartándose del principio de igualdad. Procede de oficio (el síndico audita y pide autorización al juez, sin etapa probatoria) o a pedido del trabajador, que sólo puede probar con documental. Se paga con fondos líquidos o con el 3\% mensual de la facturación bruta, con tope de cuatro SMVM por pago, salvo excepción justificada. \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué efectos tiene la presentación sobre los intereses y las deudas?} &
+Desde la presentación se suspenden los intereses de los créditos quirografarios (no los hipotecarios, prendarios ni laborales). Las deudas no dinerarias se convierten a pesos a opción del acreedor (presentación o vencimiento anterior); las deudas en moneda extranjera, a la fecha del informe del art.~35. \\
+\addlinespace[0.6em]
+
+\textbf{¿Qué pasa con los contratos en curso y con los servicios públicos?} &
+Los contratos con prestaciones recíprocas pendientes pueden continuar con autorización judicial, con privilegio para las nuevas prestaciones. Los servicios públicos no pueden cortarse por deudas anteriores a la apertura (art.~20). \\
+\midrule
+
+\multicolumn{2}{p{\dimexpr0.93\textwidth+2\tabcolsep\relax}}{%
+\textbf{Resumen:} desde la apertura, el concursado sigue administrando pero bajo vigilancia: no puede hacer actos gratuitos ni alterar la situación de los acreedores, necesita autorización para los actos relevantes y debe comunicar o pedir permiso para viajar, bajo riesgo de medidas graduadas del juez. Los acreedores laborales cuentan con el pronto pago, los intereses quirografarios se suspenden desde la presentación y las deudas se cuantifican en pesos para calcular mayorías. Los contratos en curso pueden continuar con autorización, protegiendo a quien siguió cumpliendo, y los servicios públicos no pueden cortarse por deudas anteriores.} \\
+\bottomrule
+\end{longtable}
+
+%==============================================================
+\chapter[Síntesis final y temas pendientes]{Síntesis final y temas pendientes}
+%==============================================================
+
+\section{Síntesis final}
+
+El concurso preventivo es un camino reservado al deudor para evitar la quiebra, y se recorre en etapas encadenadas. Primero se determina el juez competente según el domicilio y el tipo de sujeto (art.~3). Luego el deudor, por sí o por apoderado con poder especial, presenta un escrito con todos los requisitos del art.~11, ratificando su voluntad dentro de 30 días cuando se trata de sociedades, incapaces o herederos; los plazos son perentorios y su incumplimiento equivale a desistir, con un año de inhibición.
+
+El juez tiene cinco días para resolver y sólo puede rechazar por cuatro causales taxativas; si abre el concurso, sortea al síndico, fija las fechas del proceso, ordena edictos y constituye un comité de control provisorio.
+
+Desde la apertura, el concursado sigue administrando, pero bajo vigilancia: no puede hacer actos gratuitos ni alterar la situación de los acreedores, necesita autorización para los actos relevantes y debe comunicar o pedir permiso para viajar. Los acreedores quedan sujetos a un régimen especial: los laborales cuentan con el pronto pago, los intereses quirografarios se suspenden desde la presentación y las deudas se cuantifican en pesos para calcular mayorías. Los contratos en curso pueden continuar con autorización, protegiendo a quien siguió cumpliendo, y los servicios públicos no pueden cortarse por deudas anteriores.
+
+En conjunto, la ley busca equilibrar tres intereses: la continuidad de la actividad, la igualdad entre acreedores y la protección de los más débiles.
+
+\section{Temas pendientes}
+
+Quedó pendiente el tratamiento de los juicios contra el concursado y el fuero de atracción, por la extensión del material. El apunte registra como temas para la clase siguiente:
+\begin{enumerate}
+    \item Efecto de la apertura sobre los juicios contra el concursado y el fuero de atracción (art.~21).
+    \item Verificación de créditos, informe individual e informe general del síndico.
+    \item Período de exclusividad y audiencia informativa.
+    \item Recursos frente a la declaración de quiebra.
+\end{enumerate}
+
+\end{document}

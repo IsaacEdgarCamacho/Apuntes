@@ -1,0 +1,803 @@
+\documentclass[12pt,oneside]{book}
+
+% ================= METADATOS =================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Carrera de Abogacía}
+\newcommand{\materia}{Concursos y Quiebras}
+\newcommand{\titulo}{La quiebra: vías de acceso, sentencia y recursos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ================= PAQUETES =================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[top=2.5cm,bottom=2.5cm,left=3cm,right=2.5cm,headheight=15pt]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ================= CONFIGURACIÓN =================
+\graphicspath{{./img/}{./graficos/}{./figuras/}}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{topsep=0.3em,itemsep=0.2em}
+\setlist[enumerate]{topsep=0.3em,itemsep=0.2em}
+\clubpenalty=10000
+\widowpenalty=10000
+
+% ================= COMANDOS =================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Texto legal citado en el apunte
+\newenvironment{articulo}[1]
+  {\begin{quote}\small\textbf{#1}\par\smallskip}
+  {\end{quote}}
+\newcommand{\inciso}[2]{\par\noindent\hangindent=1.2em\hangafter=1 #1)~#2}
+
+% ================= CAJAS =================
+\newtcolorbox{definition}[1]{enhanced,breakable,title={Definición: #1},fonttitle=\bfseries,colback=blue!3,colframe=blue!50!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{important}{enhanced,breakable,title={Importante},fonttitle=\bfseries,colback=yellow!8,colframe=orange!70!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{example}[1]{enhanced,breakable,title={Ejemplo: #1},fonttitle=\bfseries,colback=green!4,colframe=green!40!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{formula}[1]{enhanced,breakable,title={Fórmula / Regla: #1},fonttitle=\bfseries,colback=purple!4,colframe=purple!50!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{exercise}[1]{enhanced,breakable,title={Ejercicio: #1},fonttitle=\bfseries,colback=gray!5,colframe=gray!60!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{note}{enhanced,breakable,title={Nota},fonttitle=\bfseries,colback=white,colframe=gray!50,boxrule=0.6pt,arc=2mm}
+
+% ================= CONFIGURACIÓN FINAL =================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+\begin{document}
+
+% ================= PORTADA =================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{1cm}
+{\large \textsc{\universidad}}\\[0.2cm]
+{\large \textsc{\facultad}}\\[0.2cm]
+{\large \carrera}
+
+\vspace{3cm}
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+{\large \autor}
+
+\vspace{0.3cm}
+{\large \anio}
+\end{center}
+\vfill
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+\end{titlepage}
+
+% ================= ÍNDICE =================
+\tableofcontents
+
+% ================= INTRODUCCIÓN =================
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
+\markboth{Introducción}{Introducción}
+
+Los presentes apuntes abordan la quiebra, el proceso más gravoso de la ley concursal: una liquidación colectiva que pone fin a la actividad mercantil. Se estudian las vías de acceso (indirecta, directa necesaria, directa voluntaria y por extensión), los requisitos y la prueba del pedido, la sentencia de quiebra con sus dos caminos paralelos (trámite y liquidación inmediata) y los recursos para atacarla: conversión, reposición, levantamiento sin trámite e incompetencia.
+
+\section*{Utilidad profesional y cotidiana}
+
+\textbf{En lo profesional:} es la herramienta que utiliza el abogado o la abogada tanto del acreedor (qué probar y con qué documental para pedir la quiebra y cobrar) como del deudor (cómo defenderse: convertir, reponer, depositar o plantear la incompetencia). Los plazos de 5 y 10 días hacen que un error se pague muy caro.
+
+\textbf{En la vida cotidiana:} cualquiera puede ser acreedor (un cheque rechazado, un cliente que no paga) o deudor. Saber que existe un camino ordenado de cobro y de defensa cambia las decisiones.
+
+\textbf{Utilidad práctica:} la quiebra es el último escenario y, una vez que llega, se cobra poco o nada: el valor está en prevenir. Documentar la mora (carta documento, cheque rechazado) y vigilar la salud financiera de quien adeuda son hábitos que protegen el patrimonio propio y el de los clientes.
+
+\section*{Relación entre los bloques: un ejemplo cotidiano}
+
+\begin{example}{Lucas, dueño de una ferretería}
+Lucas compra mercadería a un proveedor y deja de pagar.
+\begin{itemize}
+    \item \textbf{Bloque I:} ¿por qué caminos Lucas puede terminar en quiebra? (un concurso que fracasa, un pedido directo o una extensión).
+    \item \textbf{Bloque II:} su proveedor la pide y debe probar su crédito exigible y la mora de Lucas; o Lucas, desbordado, la pide él mismo.
+    \item \textbf{Bloque III:} el juez dicta la sentencia y, a la vez, se verifican los créditos y se liquida la mercadería.
+    \item \textbf{Bloque IV:} Lucas se defiende: convierte la quiebra en concurso, repone, deposita lo reclamado o discute que el juez sea el competente.
+\end{itemize}
+Los cuatro bloques constituyen un mismo recorrido: cómo se llega, quién lo pide, qué ocurre y cómo se frena.
+\end{example}
+
+\begin{note}
+Los textos legales transcriptos en estos apuntes corresponden a la Ley 24.522 (Ley de Concursos y Quiebras, LCQ), según constan en el material de origen. Conviene cotejarlos con la versión vigente al momento de estudiar.
+\end{note}
+
+% =====================================================
+\chapter[Concepto y vías de acceso]{Bloque I: Concepto y vías de acceso a la quiebra}
+% =====================================================
+
+\section{La quiebra: un proceso de liquidación colectivo}
+
+La quiebra es el otro proceso regulado por la ley concursal. Resulta mucho más gravosa que el concurso preventivo y pone punto final a la actividad mercantil.
+
+\begin{definition}{Quiebra}
+Proceso de \textbf{liquidación colectivo} que persigue liquidar los bienes del deudor y, con lo obtenido de las ventas, pagar a los acreedores.
+\end{definition}
+
+Antes de analizar las características del proceso, corresponde estudiar las vías por las cuales se puede llegar a la quiebra.
+
+\begin{important}
+La quiebra es un proceso de liquidación colectivo: se liquidan los bienes del deudor y con lo obtenido se paga a los acreedores. A diferencia del concurso preventivo, pone punto final a la actividad mercantil.
+\end{important}
+
+\section{Quiebra indirecta (art. 77 LCQ)}
+
+La \textbf{quiebra indirecta} es la que se produce a raíz de un concurso preventivo que ha fracasado. Se regula a partir del artículo 77.
+
+\begin{articulo}{Ley 24.522, art. 77 --- Casos}
+La quiebra debe ser declarada:
+\inciso{1}{En los casos previstos por los Artículos 46, 47, 48, incisos 2) y 5), 51, 54, 61 y 63.}
+\inciso{2}{A pedido del acreedor.}
+\inciso{3}{A pedido del deudor.}
+\end{articulo}
+
+\subsection{Cuándo fracasa el concurso preventivo}
+
+El fracaso del concurso preventivo no se limita a la falta de mayorías, aunque esta sea la causal que primero viene a la mente. El artículo 77 remite a otros artículos sin nombrar una por una las causales. Las principales son:
+
+\begin{itemize}
+    \item \textbf{No se alcanzan las mayorías necesarias}, no hubo propuestas, o el deudor las presentó fuera de término, pasado el período de exclusividad.
+    \item \textbf{Se obtuvieron las mayorías}, pero algún acreedor impugnó el acuerdo o solicitó su nulidad.
+    \item \textbf{El acuerdo fue homologado}, pero el deudor no lo cumplió.
+    \item \textbf{Falta de pago de los honorarios del síndico:} en el auto homologatorio el juez regula lo que cobra el síndico; si este no percibe los honorarios, puede solicitar la quiebra por falta de pago.
+\end{itemize}
+
+\begin{articulo}{Ley 24.522, art. 54 (norma vinculada) --- Honorarios}
+Los honorarios a cargo del deudor son exigibles a los NOVENTA (90) días contados a partir de la homologación, o simultáneamente con el pago de la primera cuota a alguna de las categorías de acreedores que venciere antes de ese plazo.
+
+La falta de pago habilita a solicitar la declaración en quiebra.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 63 (norma vinculada) --- Pedido y trámite}
+Cuando el deudor no cumpla el acuerdo total o parcialmente, incluso en cuanto a las garantías, el juez debe declarar la quiebra a instancia de acreedor interesado, o de los controladores del acuerdo. Debe darse vista al deudor y a los controladores del acuerdo. La quiebra debe declararse también, sin necesidad de petición, cuando el deudor manifieste en el juicio su imposibilidad de cumplir el acuerdo, en lo futuro.
+
+La resolución es apelable; pero el recurso no suspende el cumplimiento de las medidas impuestas por los Artículos 177 a 199.
+\end{articulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.3\textwidth}}
+\toprule
+\textbf{Causal de quiebra indirecta (según el apunte)} & \textbf{Referencia del art. 77, inc. 1} \\
+\midrule
+No se obtienen las mayorías; no hay propuestas o se presentan fuera del período de exclusividad & Arts. 46, 47 y 48 (incs. 2 y 5) \\
+Se obtienen las mayorías pero un acreedor impugna el acuerdo y la impugnación prospera & Art. 51 \\
+El síndico no percibe sus honorarios y pide la quiebra por falta de pago & Art. 54 \\
+Un acreedor solicita la nulidad del acuerdo & Art. 61 \\
+El acuerdo es homologado pero el deudor no lo cumple & Art. 63 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Quiebra directa: necesaria y voluntaria}
+
+La quiebra puede ser también \textbf{directa}, lo que la diferencia del concurso. Admite dos modalidades:
+
+\begin{itemize}
+    \item \textbf{Necesaria:} es la solicitada por un acreedor.
+    \item \textbf{Voluntaria:} es la presentada por el propio deudor.
+\end{itemize}
+
+Los requisitos de cada una se desarrollan en el Bloque II.
+
+\section{Quiebra por extensión}
+
+La tercera vía es la \textbf{quiebra por extensión}. Siempre requiere una \textbf{quiebra principal}, a partir de la cual la quiebra se extiende a otra persona. La extensión puede ser de dos maneras:
+
+\begin{itemize}
+    \item \textbf{Por el sujeto (quiebra refleja):} se vincula con el presupuesto subjetivo. Cuando corresponde a una sociedad con responsabilidad ilimitada, los socios responden con todo su patrimonio, por lo cual la quiebra se les extiende, ya que también es de ellos.
+    \item \textbf{Extensión propiamente dicha (arts. 160, 161 y siguientes):} se extiende generalmente con un fin sancionatorio. Cuando alguien tiene responsabilidad o incidencia en haber provocado la quiebra principal, corresponde extendérsela.
+\end{itemize}
+
+El tema se profundiza en una clase posterior; aquí interesa ver cómo se llega a la quiebra.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Vía de acceso} & \textbf{Origen} & \textbf{Dato clave} \\
+\midrule
+\textbf{Indirecta} & Concurso preventivo que fracasó (arts. 77 y ss.) & Siempre hay un concurso preventivo previo \\
+\textbf{Directa necesaria} & La solicita un acreedor & Debe probar crédito exigible y cesación de pagos \\
+\textbf{Directa voluntaria} & La presenta el propio deudor & Prevalece sobre la pedida por acreedor \\
+\textbf{Por extensión} & Se extiende desde una quiebra principal a otra persona & Refleja (socios ilimitados) o propiamente dicha (fin sancionatorio, arts. 160 y 161) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+Hay tres maneras de llegar a la quiebra: indirecta (concurso fracasado), directa (necesaria o voluntaria) y por extensión (siempre exige una quiebra principal).
+\end{important}
+
+\subsection*{Cuadro Cornell: Bloque I}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\textbf{¿Qué es la quiebra y qué persigue?} & Es un proceso de liquidación colectivo, mucho más gravoso que el concurso preventivo: pone punto final a la actividad mercantil. Se liquidan los bienes del deudor y con lo obtenido se paga a los acreedores. \\[0.4em]
+\textbf{¿Por cuáles vías se llega a la quiebra?} & Tres: indirecta (concurso preventivo fracasado), directa (necesaria, pedida por un acreedor; o voluntaria, pedida por el deudor) y por extensión (siempre exige una quiebra principal). \\[0.4em]
+\textbf{¿Qué es la quiebra indirecta y cuáles son sus causales?} & Se origina en un concurso preventivo que fracasó (art. 77): falta de mayorías, ausencia de propuestas o propuestas fuera del período de exclusividad, impugnación o nulidad del acuerdo, incumplimiento del acuerdo homologado, o falta de pago de los honorarios del síndico. \\[0.4em]
+\textbf{¿Qué es la quiebra por extensión?} & Una quiebra que se extiende desde una principal a otra persona. Puede ser refleja (socios con responsabilidad ilimitada) o la extensión propiamente dicha (arts. 160 y 161), generalmente con fin sancionatorio. \\
+\midrule
+\multicolumn{2}{@{}p{0.95\textwidth}@{}}{\textbf{Resumen:} la quiebra es un proceso de liquidación colectivo que pone fin a la actividad mercantil. Se accede a ella por tres vías: indirecta (concurso fracasado), directa (necesaria o voluntaria) y por extensión (requiere siempre una quiebra principal).} \\
+\bottomrule
+\end{longtable}
+
+% =====================================================
+\chapter[Quiebra directa: pedido y prueba]{Bloque II: Quiebra directa: pedido, prueba y prevención}
+% =====================================================
+
+\section{Legitimación del acreedor (art. 80 LCQ)}
+
+La quiebra directa necesaria es la solicitada por el acreedor, a partir del artículo 80. No cualquier acreedor puede solicitar la quiebra del deudor: debe tener un \textbf{crédito exigible}, cualquiera sea su causa o naturaleza.
+
+En el concurso preventivo, los acreedores que poseían un título de crédito debían demostrar la causa en la verificación de créditos, pese a la abstracción del título. \textbf{En la quiebra no es necesario demostrar la causa}: los títulos de crédito vuelven a ser abstractos. Basta demostrar que el crédito es exigible.
+
+\begin{articulo}{Ley 24.522, art. 80 --- Petición del acreedor}
+Todo acreedor cuyo crédito sea exigible, cualquiera sea su naturaleza y privilegio, puede pedir la quiebra.
+
+Si, según las disposiciones de esta ley, su crédito tiene privilegio especial, debe demostrar sumariamente que los bienes afectados son insuficientes para cubrirlo. Esta prueba no será necesaria, si se tratare de un crédito de causa laboral.
+\end{articulo}
+
+Un acreedor privilegiado sí puede pedir la quiebra, pero debe demostrar la insuficiencia del bien afectado; de lo contrario, ejecutaría la garantía.
+
+\begin{example}{El acreedor hipotecario}
+Un acreedor tiene una hipoteca sobre un inmueble de un millón de dólares. Si el deudor no paga, no tendría sentido pedir la quiebra: conviene ejecutar la hipoteca, que es mucho más rápido.
+\end{example}
+
+\begin{important}
+Para pedir la quiebra: crédito exigible (sin importar naturaleza ni privilegio). Si el privilegio es especial, hay que probar sumariamente que el bien afectado no alcanza (salvo crédito laboral). No se debe acreditar la causa del título de crédito.
+\end{important}
+
+\section{Prueba del pedido de quiebra}
+
+El acreedor debe probar de manera sumaria:
+\begin{enumerate}
+    \item la existencia y exigibilidad de su \textbf{crédito};
+    \item que el deudor está en \textbf{cesación de pagos}, pues los principios y presupuestos rigen para todos los procesos concursales;
+    \item que el deudor es \textbf{sujeto concursable} (no es una entidad financiera ni una entidad de seguros).
+\end{enumerate}
+
+La ley concursal, en general, solo acepta \textbf{prueba documental}; no se admiten testigos, dado que un tercero debe probar algo de otra persona. Ejemplos de documental: un cheque rechazado (que acredita un crédito exigible) o un certificado de deuda. La consulta de la Central de Deudores del BCRA fue mencionada en clase como indicio de cesación de pagos.
+
+La forma más fácil y obvia de probar la cesación de pagos es la \textbf{mora}: se intimó al deudor (carta documento) y no pagó. Puede invocarse cualquier otro hecho revelador que exteriorice la cesación de pagos.
+
+\begin{articulo}{Ley 24.522, art. 83 --- Pedido de acreedores}
+Si la quiebra es pedida por acreedor, debe probar sumariamente su crédito, los hechos reveladores de la cesación de pagos, y que el deudor está comprendido en el Artículo 2.
+
+El juez puede disponer de oficio las medidas sumarias que estime pertinentes para tales fines y, tratándose de sociedad, para determinar si está registrada y, en su caso, quiénes son sus socios ilimitadamente responsables.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 79 --- Hechos reveladores}
+Pueden ser considerados hechos reveladores del estado de cesación de pagos, entre otros:
+\inciso{1}{Reconocimiento judicial o extrajudicial del mismo, efectuado por el deudor.}
+\inciso{2}{Mora en el cumplimiento de una obligación.}
+\inciso{3}{Ocultación o ausencia del deudor o de los administradores de la sociedad, en su caso, sin dejar representante con facultades y medios suficientes para cumplir sus obligaciones.}
+\inciso{4}{Clausura de la sede de la administración o del establecimiento donde el deudor desarrolle su actividad.}
+\inciso{5}{Venta a precio vil, ocultación o entrega de bienes en pago.}
+\inciso{6}{Revocación judicial de actos realizados en fraude de los acreedores.}
+\inciso{7}{Cualquier medio ruinoso o fraudulento empleado para obtener recursos.}
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 78 --- Prueba de cesación de pagos}
+El estado de cesación de pagos debe ser demostrado por cualquier hecho que exteriorice que el deudor se encuentra imposibilitado de cumplir regularmente sus obligaciones, cualquiera sea el carácter de ellas y las causas que lo generan.
+
+Pluralidad de acreedores. No es necesaria la pluralidad de acreedores.
+\end{articulo}
+
+\begin{important}
+El acreedor prueba, solo con prueba documental: (1) su crédito exigible, (2) la cesación de pagos del deudor ---la forma más simple es la mora--- y (3) que el deudor es sujeto concursable. No se admiten testigos.
+\end{important}
+
+\section{Quiebra voluntaria}
+
+\subsection{Comentario práctico}
+
+Aunque no surge de la ley, se señala que si el deudor pide su propia quiebra, las chances de cobrar son escasas: en general ya no tiene muchos bienes ni quiere seguir trabajando. A veces es una táctica: se recurre a la quiebra voluntaria para luego celebrar algún acuerdo privado dentro de la quiebra, como forma de presionar a los acreedores.
+
+\subsection{Prevalencia sobre el pedido del acreedor}
+
+Si existe una quiebra pedida por un acreedor y otra pedida por el deudor, \textbf{siempre prevalece la solicitada por el deudor}.
+
+\begin{articulo}{Ley 24.522, art. 82 --- Petición del deudor}
+La solicitud del deudor de su propia quiebra prevalece sobre el pedido de los acreedores, cualquiera sea su estado, mientras no haya sido declarada.
+
+En caso de personas de existencia ideal, se aplica lo dispuesto por el Artículo 6. Tratándose de incapaces se debe acreditar la previa autorización judicial.
+\end{articulo}
+
+\subsection{Requisitos del escrito de solicitud}
+
+La solicitud se realiza siempre a través de un representante legal y debe cumplir los requisitos del artículo 11, los mismos que rigen para la solicitud de apertura del concurso preventivo. La única diferencia es que, si se omite alguno de los incisos del artículo 11, \textbf{no se produce el desistimiento} de la solicitud: el juez intima al deudor a complementar lo que falte.
+
+\begin{articulo}{Ley 24.522, art. 86 --- Pedido del deudor. Requisitos}
+La solicitud de quiebra por el deudor se debe acompañar con los requisitos indicados en el Artículo 11 incisos 2, 3, 4 y 5 y, en su caso, los previstos en los incisos 1, 6 y 7 del mismo, sin que su omisión obste a la declaración de quiebra.
+
+El deudor queda obligado a poner todos sus bienes a disposición del juzgado en forma apta para que los funcionarios del concurso puedan tomar inmediata y segura posesión de los mismos.
+
+En caso de sociedades, las disposiciones de este artículo se aplican a los socios ilimitadamente responsables que hayan decidido o suscriban la petición, sin perjuicio de que el juez intime a los restantes su cumplimiento, luego de decretada la quiebra.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 11 --- Requisitos del pedido (concurso preventivo)}
+Son requisitos formales de la petición de concurso preventivo:
+\inciso{1}{Para los deudores matriculados y las personas de existencia ideal regularmente constituidas, acreditar la inscripción en los registros respectivos. Las últimas acompañarán, además, el instrumento constitutivo y sus modificaciones y constancia de las inscripciones pertinentes. Para las demás personas de existencia ideal, acompañar, en su caso, los instrumentos constitutivos y sus modificaciones, aun cuando no estuvieran inscriptos.}
+\inciso{2}{Explicar las causas concretas de su situación patrimonial con expresión de la época en que se produjo la cesación de pagos y de los hechos por los cuales ésta se hubiera manifestado.}
+\inciso{3}{Acompañar un estado detallado y valorado del activo y pasivo actualizado a la fecha de presentación, con indicación precisa de su composición, las normas seguidas para su valuación, la ubicación, estado y gravámenes de los bienes y demás datos necesarios para conocer debidamente el patrimonio. Este estado de situación patrimonial debe ser acompañado de dictamen suscripto por contador público nacional.}
+\inciso{4}{Acompañar copia de los balances u otros estados contables exigidos al deudor por las disposiciones legales que rijan su actividad, o bien los previstos en sus estatutos o realizados voluntariamente por el concursado, correspondientes a los TRES (3) últimos ejercicios. En su caso, se deben agregar las memorias y los informes del órgano fiscalizador.}
+\inciso{5}{Acompañar nómina de acreedores, con indicación de sus domicilios, montos de los créditos, causas, vencimientos, codeudores, fiadores o terceros obligados o responsables y privilegios. Asimismo, debe acompañar un legajo por cada acreedor, en el cual conste copia de la documentación sustentatoria de la deuda denunciada, con dictamen de contador público sobre la correspondencia existente entre la denuncia del deudor y sus registros contables o documentación existente y la inexistencia de otros acreedores en registros o documentación existente. Debe agregar el detalle de los procesos judiciales o administrativos de carácter patrimonial en trámite o con condena no cumplida, precisando su radicación.}
+\inciso{6}{Enumerar precisamente los libros de comercio y los de otra naturaleza que lleve el deudor, con expresión del último folio utilizado, en cada caso, y ponerlos a disposición del juez, junto con la documentación respectiva.}
+\inciso{7}{Denunciar la existencia de un concurso anterior y justificar, en su caso, que no se encuentra dentro del período de inhibición que establece el artículo 59, o el desistimiento del concurso si lo hubiere habido.}
+\inciso{8}{Acompañar nómina de empleados, con detalle de domicilio, categoría, antigüedad y última remuneración recibida. Deberá acompañarse también declaración sobre la existencia de deuda laboral y de deuda con los organismos de la seguridad social certificada por contador público.}
+
+El escrito y la documentación agregada deben acompañarse con DOS (2) copias firmadas.
+
+Cuando se invoque causal debida y válidamente fundada, el juez debe conceder un plazo improrrogable de DIEZ (10) días, a partir de la fecha de la presentación, para que el interesado dé cumplimiento total a las disposiciones del presente artículo.
+\end{articulo}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.19\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Quiebra necesaria (pide el acreedor)} & \textbf{Quiebra voluntaria (pide el deudor)} \\
+\midrule
+Quién la solicita & Un acreedor con crédito exigible & El propio deudor, por medio de su representante legal \\
+Qué debe presentar o probar & Crédito exigible (prueba sumaria), cesación de pagos y sujeto concursable; solo prueba documental & Escrito conforme al artículo 11, con todos sus incisos \\
+Si hay un pedido de cada tipo & Cede & Prevalece siempre la voluntaria \\
+Omisión de requisitos & El pedido debe cumplir los requisitos probatorios & No trae aparejado el desistimiento: el juez intima a completar \\
+Comentario práctico & Probar la mora es lo más simple y obvio & Pocas chances de cobrar; a veces es una táctica de presión para un acuerdo privado \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Prevención y estrategia del acreedor}
+
+Resulta muy importante, de manera preventiva, estar al tanto de quién nos debe y de su salud financiera, consultando periódicamente, por ejemplo, el informe de la Central de Deudores. Cuando el deudor ya está en mora, la medida tiene poco sentido.
+
+La razón es que, una vez alcanzada esa instancia, cualquier camino elegido resulta insatisfactorio: ya sea terminarla por un acuerdo o esperar a que concluya y se realice la subasta, se cobrará poco o nada, más aún si existen acreedores privilegiados o muchos trabajadores.
+
+\begin{important}
+La mejor estrategia del acreedor es preventiva: monitorear periódicamente la salud financiera del deudor. Una vez que se llega a la quiebra, cualquier camino implica cobrar poco o nada.
+\end{important}
+
+\subsection*{Cuadro Cornell: Bloque II}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\textbf{¿Quién puede pedir la quiebra necesaria y qué debe tener?} & Un acreedor con crédito exigible, sea cual fuere su naturaleza o privilegio (art. 80). Si el privilegio es especial, debe demostrar sumariamente que el bien afectado no alcanza (salvo crédito laboral). No debe acreditar la causa del título de crédito. \\[0.4em]
+\textbf{¿Qué debe probar el acreedor y cómo?} & Su crédito (de manera sumaria), la cesación de pagos del deudor y que es sujeto concursable, únicamente con prueba documental. La mora es la forma más fácil y obvia de probar la cesación de pagos (carta documento, cheque rechazado). \\[0.4em]
+\textbf{¿Qué particularidades tiene la quiebra voluntaria?} & La pide el deudor por medio de un representante legal, con los requisitos del art. 11. Prevalece siempre sobre la pedida por un acreedor. Si omite incisos, el juez intima a completarlos y no hay desistimiento. En la práctica, hay pocas chances de cobrar y a veces es una táctica de presión. \\[0.4em]
+\textbf{¿Qué debe hacer el acreedor para prevenir?} & Monitorear de manera periódica la salud financiera de quien le debe: cuando ya está en mora, cualquier camino implica cobrar poco o nada. \\
+\midrule
+\multicolumn{2}{@{}p{0.95\textwidth}@{}}{\textbf{Resumen:} la quiebra necesaria exige un acreedor con crédito exigible que pruebe, solo con documental, su crédito, la cesación de pagos (la mora es lo más simple) y que el deudor es sujeto concursable. La quiebra voluntaria prevalece siempre sobre la pedida por acreedor. La mejor estrategia del acreedor es preventiva.} \\
+\bottomrule
+\end{longtable}
+
+% =====================================================
+\chapter[La sentencia de quiebra]{Bloque III: La sentencia de quiebra}
+% =====================================================
+
+\section{La sentencia: el proceso empieza por el final (art. 88 LCQ)}
+
+Cualquiera sea la vía de acceso, el juez comienza el proceso con una sentencia: el \textbf{decreto de quiebra}. Esto es particular, porque normalmente se lleva adelante una causa para obtener una sentencia al final; aquí se \textbf{empieza por el final}.
+
+El decreto de quiebra, regulado en el artículo 88, establece de manera definitiva que la persona está en quiebra. Da inicio a un proceso liquidatorio de los bienes, colectivo y forzoso, en el cual se liquidan los bienes de una persona y con lo obtenido se paga a todos los acreedores (con causa o título anterior a la quiebra).
+
+\begin{important}
+El proceso de quiebra comienza con una sentencia (el decreto de quiebra, art. 88). Es un proceso colectivo y forzoso de liquidación para pagar a todos los acreedores de causa o título anterior.
+\end{important}
+
+\section{Los dos caminos paralelos}
+
+Una vez dictada la sentencia, se dan \textbf{dos caminos paralelos}, que corren simultáneamente hasta el pago y la conclusión o clausura del proceso:
+
+\begin{enumerate}
+    \item \textbf{Trámite administrativo-judicial.} En la quiebra directa comienza el proceso de verificación de créditos para saber quiénes son los acreedores y cuánto es el pasivo. Se sortea el síndico y se revisan los acreedores laborales.
+    \item \textbf{Liquidación de los bienes.} Se procede de manera simultánea a liquidar los bienes, sin esperar la tramitación completa. No es desde el instante inicial, pues debe haberse sorteado el síndico, quien cumple un rol muy activo: toma la legitimación del fallido, que ya no puede realizar ningún acto (los que realice son ineficaces), y se hace cargo de la administración de los negocios de manera inmediata. El síndico liquida o manda liquidar los bienes.
+\end{enumerate}
+
+La razón de la liquidación inmediata es proteger los derechos de los acreedores: si se esperara toda la tramitación, los acreedores que tenían poco terminarían con aún menos. Esto no significa que se pague de inmediato al acreedor, sino que se comienza a liquidar; algunos bienes se liquidarán más rápido que otros. Lo obtenido se deposita en cuentas judiciales. Los efectos de la liquidación se profundizan en una clase posterior.
+
+\begin{example}{Los bienes perecederos}
+Si el fallido tiene bienes perecederos, esperar a que pase todo el trámite sería perjudicar aún más a los acreedores, que cobrarían casi nada. Por eso se venden de inmediato. Lo mismo ocurre con artículos de temporada o con aquellos que tienen una oportunidad de venta: se venden sin esperar a determinar cuántos acreedores existen.
+\end{example}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Camino 1: Trámite administrativo-judicial} & \textbf{Camino 2: Liquidación de bienes} \\
+\midrule
+Verificación de créditos para saber quiénes son los acreedores & Liquidación inmediata, en paralelo, para proteger a los acreedores \\
+Cálculo del pasivo; sorteo del síndico; revisión de acreedores laborales & El síndico liquida o manda liquidar; los bienes perecederos y de temporada se venden de inmediato \\
+Lo realiza el síndico, que toma la legitimación del fallido & Lo realiza el síndico, que se hace cargo de la administración de los negocios \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+La sentencia es el ``disparador'' de dos caminos simultáneos que corren hasta el pago y la conclusión o clausura del proceso: el trámite administrativo-judicial y la liquidación de bienes. El síndico cumple un rol muy activo.
+\end{important}
+
+\subsection{¿Puede haber un acuerdo privado?}
+
+Un acuerdo privado, uno a uno, entre un acreedor y el deudor (una reorganización o refinanciación de la deuda) es posible, pero no constituye un proceso. Cuando se trata de concurso o de quiebra, el proceso es siempre \textbf{colectivo}: se deben incluir todos los acreedores y alcanzar determinadas mayorías. El acuerdo dentro de la quiebra, que constituye una forma de concluirla, requiere unanimidad y es más complejo; no puede concluirse algo que no se inició, es decir, requiere que exista la quiebra.
+
+La quiebra es un proceso sumamente más gravoso: si el deudor es una persona jurídica, se liquida y se disuelve la persona jurídica. En la quiebra permanece ``prendida la luz'' de posible fraude: por qué no se pagó a los acreedores y cómo se llegó a esa situación.
+
+Respecto de la relación entre concurso y quiebra, en la quiebra indirecta siempre hay un concurso preventivo previo; el orden inverso (quiebra y luego concurso) es posible mediante la conversión, que se analiza en el Bloque IV.
+
+\section{Contenido de la sentencia y presupuesto subjetivo}
+
+\subsection{Qué debe contener el decreto de quiebra}
+
+El contenido del decreto aplica a todas las quiebras. Comprende, entre otros aspectos: la individualización del fallido (y, si es una sociedad, de los socios con responsabilidad ilimitada, a quienes se extiende la quiebra); la inscripción de la inhibición de bienes; y el sorteo del síndico.
+
+A partir de la sentencia, el deudor tiene prohibido realizar pagos (el pago realizado es ineficaz de pleno derecho) y cualquier acto de administración y de disposición, que pasan a cargo del síndico. Además: no puede salir del país (con un límite que se desarrolla en una clase posterior); se intercepta su correspondencia; debe constituir domicilio procesal; debe entregar los libros de comercio, para verificar el último asiento inscripto; debe entregar todos sus bienes o indicar dónde están y si tienen algún gravamen; y se designa a alguien para realizar un inventario de los bienes disponibles.
+
+\begin{articulo}{Ley 24.522, art. 88 --- Contenido}
+La sentencia que declare la quiebra debe contener:
+\inciso{1}{Individualización del fallido y, en caso de sociedad la de los socios ilimitadamente responsables;}
+\inciso{2}{Orden de anotar la quiebra y la inhibición general de bienes en los registros correspondientes;}
+\inciso{3}{Orden al fallido y a terceros para que entreguen al síndico los bienes de aquél;}
+\inciso{4}{Intimación al deudor para que cumpla los requisitos a los que se refiere el Artículo 86 si no lo hubiera efectuado hasta entonces y para que entregue al síndico dentro de las VEINTICUATRO (24) horas los libros de comercio y demás documentación relacionada con la contabilidad;}
+\inciso{5}{La prohibición de hacer pagos al fallido, los que serán ineficaces;}
+\inciso{6}{Orden de interceptar la correspondencia y de entregarla al síndico;}
+\inciso{7}{Intimación al fallido o administradores de la sociedad concursada, para que dentro de las CUARENTA Y OCHO (48) horas constituyan domicilio procesal en el lugar de tramitación del juicio, con apercibimiento de tenerlo por constituido en los estrados del juzgado;}
+\inciso{8}{Orden de efectuar las comunicaciones necesarias para asegurar el cumplimiento del Artículo 103.}
+\inciso{9}{Orden de realización de los bienes del deudor y la designación de quien efectuará las enajenaciones.}
+\inciso{10}{Designación de un funcionario que realice el inventario correspondiente en el término de TREINTA (30) días, el cual comprenderá sólo rubros generales.}
+\inciso{11}{La designación de audiencia para el sorteo del síndico.}
+
+Supuestos especiales. En caso de quiebra directa o cuando se la declare como consecuencia del incumplimiento del acuerdo o la nulidad, la sentencia debe fijar la fecha hasta la cual se pueden presentar las solicitudes de verificación de los créditos ante el síndico, la que será establecida dentro de los VEINTE (20) días contados desde la fecha en que se estime concluida la publicación de los edictos, y para la presentación de los informes individual y general, respectivamente.
+\end{articulo}
+
+\begin{note}
+Se recomienda la lectura completa del artículo 88: en clase se mencionaron solo los puntos principales de la sentencia.
+\end{note}
+
+\subsection{¿Quiénes pueden ser declarados en quiebra?}
+
+Puede pedirse la quiebra o el concurso de \textbf{cualquier persona}. Respecto de un asalariado, existen bienes inembargables y bienes que no lo son: si hay salario, puede tomarse el porcentaje máximo legal, dejando al deudor lo necesario para subsistir. Aun así, el costo del trámite es muy alto y debe evaluarse el salario.
+
+El presupuesto subjetivo es cualquier persona física o jurídica privada que no sea entidad bancaria o entidad de seguros. No está limitado a quien tenga matrícula, sea empresario o desarrolle una actividad mercantil: puede ser un simple consumidor o un ama de casa que ni siquiera tenga salario.
+
+\begin{articulo}{Ley 24.522, art. 2 --- Sujetos comprendidos}
+Pueden ser declaradas en concurso las personas de existencia visible, las de existencia ideal de carácter privado y aquellas sociedades en las que el Estado Nacional, Provincial o Municipal sea parte, cualquiera sea el porcentaje de su participación.
+
+Se consideran comprendidos:
+\inciso{1}{El patrimonio del fallecido, mientras se mantenga separado del patrimonio de los sucesores.}
+\inciso{2}{Los deudores domiciliados en el extranjero respecto de bienes existentes en el país.}
+
+No son susceptibles de ser declaradas en concurso, las personas reguladas por Leyes Nros. 20.091, 20.321 y 24.241, así como las excluidas por leyes especiales.
+\end{articulo}
+
+\begin{important}
+El presupuesto subjetivo es amplio: cualquier persona física o jurídica privada, aunque no sea empresaria ni tenga matrícula ni salario. Quedan afuera las entidades bancarias y de seguros.
+\end{important}
+
+\subsection*{Cuadro Cornell: Bloque III}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\textbf{¿Cómo comienza el proceso de quiebra?} & Con una sentencia, el decreto de quiebra (art. 88): se empieza por el final. Establece de manera definitiva que la persona está en quiebra, e individualiza al fallido, ordena la inhibición general, prohíbe pagos al fallido, intercepta correspondencia y ordena realizar los bienes, entre otros puntos. \\[0.4em]
+\textbf{¿Qué son los dos caminos paralelos?} & Tras la sentencia corren en simultáneo el trámite administrativo-judicial (verificación de créditos, pasivo, sorteo del síndico) y la liquidación inmediata de los bienes. El síndico tiene un rol muy activo. Los bienes perecederos se venden de inmediato. \\[0.4em]
+\textbf{¿Se puede hacer un acuerdo privado con un acreedor?} & Sí, como refinanciación uno a uno, pero fuera del proceso. La quiebra y el concurso son siempre colectivos: incluyen a todos los acreedores y requieren mayorías (o unanimidad en el acuerdo dentro de la quiebra). \\[0.4em]
+\textbf{¿Quién puede ser declarado en quiebra?} & Cualquier persona física o jurídica privada, aunque no sea empresaria ni tenga matrícula o salario. Quedan excluidas las entidades bancarias y de seguros (presupuesto subjetivo, art. 2). \\
+\midrule
+\multicolumn{2}{@{}p{0.95\textwidth}@{}}{\textbf{Resumen:} el proceso comienza al revés de lo habitual: con una sentencia, el decreto de quiebra del artículo 88, que dispara dos caminos simultáneos, el trámite administrativo-judicial y la liquidación inmediata de los bienes a cargo de un síndico muy activo. Puede ser declarada en quiebra cualquier persona física o jurídica privada, salvo entidades bancarias y de seguros.} \\
+\bottomrule
+\end{longtable}
+
+% =====================================================
+\chapter[Recursos contra la sentencia]{Bloque IV: Recursos contra la sentencia de quiebra}
+% =====================================================
+
+Frente a la sentencia que dicta el juez se pueden interponer determinados recursos, que buscan hacer caer esa sentencia. Se estudian el recurso de conversión, el de reposición, el levantamiento sin trámite y la incompetencia.
+
+\section{Recurso de conversión (arts. 90 a 93 LCQ)}
+
+\subsection{Concepto, plazo y requisitos}
+
+\begin{definition}{Recurso de conversión}
+Instituto mediante el cual se busca transformar la quiebra en concurso preventivo, que resulta mucho más ligero y conveniente para el deudor.
+\end{definition}
+
+Se solicita dentro de los \textbf{10 días} de la \textbf{última publicación de edictos} (plazo que debe cumplirse). El peticionante debe ser sujeto concursable. En el mismo escrito debe cumplir con todos los requisitos del artículo 11, pues en definitiva solicita el concurso preventivo.
+
+Tiene lógica, ya que el concurso solamente puede ser pedido por el propio deudor: frente a la quiebra pedida por un acreedor, el deudor que quiere seguir con su actividad mercantil puede pedir el concurso.
+
+\subsection{¿Procede también en la quiebra voluntaria?}
+
+El deudor puede pedir la conversión en la quiebra necesaria (pedida por el acreedor) y también en la voluntaria. Esto último es controvertido y la ley no lo dice. Generó conflicto en la jurisprudencia, hasta que apareció el fallo ``Fujol'', que sostuvo que la ley no lo prohíbe: muchos invocaban la teoría de los actos propios, pero la mayoría de los jueces consideró que, como la ley no limita la conversión a la quiebra necesaria, no corresponde agregar requisitos que el legislador no incluyó. La circunstancia puede ser sobreviniente (por ejemplo, una herencia recibida a los 5 días de pedida la quiebra). El único requisito es cumplir con el artículo 11; de lo contrario, se rechaza.
+
+% TODO: contenido incompleto o ambiguo en las notas originales: el nombre exacto del fallo ``Fujol'' proviene de una transcripción automática y debe verificarse.
+
+\subsection{Cuándo no procede y qué efecto tiene}
+
+No procede cuando:
+\begin{itemize}
+    \item la quiebra proviene de un incumplimiento de acuerdo;
+    \item se pidió estando en trámite el concurso preventivo, sin que haya finalizado;
+    \item el deudor se encuentra dentro del período de inhibición (en ese caso se rechaza).
+\end{itemize}
+
+Si se hace lugar al recurso, en la misma resolución se dispone la apertura del concurso, con la resolución del artículo 14. La conversión se puede realizar \textbf{una sola vez}: si el concurso vuelve a terminar en quiebra, no podrá pedirse de nuevo. Si ya se hubiera sorteado un síndico, este es el mismo que continúa.
+
+\begin{articulo}{Ley 24.522, art. 90 --- Conversión a pedido del deudor}
+El deudor que se encuentre en las condiciones del Artículo 5 puede solicitar la conversión del trámite en concurso preventivo, dentro de los DIEZ (10) días contados a partir de la última publicación de los edictos a que se refiere el Artículo 89.
+
+Deudores comprendidos. Este derecho corresponde también a los socios cuya quiebra se decrete conforme al Artículo 160.
+
+Deudor excluido. No puede solicitar la conversión el deudor cuya quiebra se hubiere decretado por incumplimiento de un acuerdo preventivo o estando en trámite un concurso preventivo, o quien se encuentre en el período de inhibición establecido en el Artículo 59.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 91 --- Efectos del pedido de conversión}
+Presentado el pedido de conversión el deudor no podrá interponer recurso de reposición contra la sentencia de quiebra; si ya lo hubiese interpuesto, se lo tiene por desistido sin necesidad de declaración judicial.
+
+El pedido de conversión no impide la continuación del planteo de incompetencia formulado conforme a los Artículos 100 y 101.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 92 --- Requisitos}
+El deudor debe cumplir los requisitos previstos en el Artículo 11 al hacer su pedido de conversión o dentro del plazo que el juez fije conforme a lo previsto en el Artículo 11, último párrafo.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 93 --- Efectos del cumplimiento de los requisitos}
+Vencido el plazo fijado según el Artículo anterior, el juez deja sin efecto la sentencia de quiebra y dicta sentencia conforme lo dispuesto en los Artículos 13 y 14. Sólo puede rechazar la conversión en concurso preventivo por no haberse cumplido los requisitos del Artículo 11.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 14 --- Resolución de apertura. Contenido}
+Cumplidos en debido tiempo los requisitos legales, el juez debe dictar resolución que disponga:
+\inciso{1}{La declaración de apertura del concurso preventivo, expresando el nombre del concursado y, en su caso, el de los socios con responsabilidad ilimitada.}
+\inciso{2}{La designación de audiencia para el sorteo del síndico.}
+\inciso{3}{La fijación de una fecha hasta la cual los acreedores deben presentar sus pedidos de verificación al síndico, la que debe estar comprendida entre los QUINCE (15) y los VEINTE (20) días, contados desde el día en que se estime concluirá la publicación de los edictos.}
+\inciso{4}{La orden de publicar edictos en la forma prevista por los artículos 27 y 28, la designación de los diarios respectivos y, en su caso, la disposición de las rogatorias, necesarias.}
+\inciso{5}{La determinación de un plazo no superior a los TRES (3) días, para que el deudor presente los libros que lleve referidos a su situación económica, en el lugar que el juez fije dentro de su jurisdicción, con el objeto de que el secretario coloque nota datada a continuación del último asiento, y proceda a cerrar los espacios en blanco que existieran.}
+\inciso{6}{La orden de anotar la apertura del concurso en el Registro de Concursos y en los demás, que corresponda, requiriéndose informe sobre la existencia de otros anteriores.}
+\inciso{7}{La inhibición general para disponer y gravar bienes registrables del deudor y, en su caso, los de los socios ilimitadamente responsables, debiendo ser anotadas en los registros pertinentes.}
+\inciso{8}{La intimación al deudor para que deposite judicialmente, dentro de los TRES (3) días de notificada la resolución, el importe que el juez estime necesario para abonar los gastos de correspondencia.}
+\inciso{9}{Las fechas en que el síndico deberá presentar el informe individual de los créditos y el informe general.}
+\inciso{10}{La fijación de una audiencia informativa que se realizará con cinco (5) días de anticipación al vencimiento del plazo de exclusividad previsto en el artículo 43. Dicha audiencia deberá ser notificada a los trabajadores del deudor mediante su publicación por medios visibles en todos sus establecimientos.}
+\inciso{11}{Correr vista al síndico por el plazo de diez (10) días, el que se computará a partir de la aceptación del cargo, a fin de que se pronuncie sobre: a) Los pasivos laborales denunciados por el deudor; b) Previa auditoría en la documentación legal y contable, informe sobre la existencia de otros créditos laborales comprendidos en el pronto pago.}
+\inciso{12}{El síndico deberá emitir un informe mensual sobre la evolución de la empresa, si existen fondos líquidos disponibles y el cumplimiento de las normas legales y fiscales.}
+\inciso{13}{La constitución de un comité de control, integrado por los tres (3) acreedores quirografarios de mayor monto, denunciados por el deudor y un (1) representante de los trabajadores de la concursada, elegido por los trabajadores.}
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 59, último párrafo (norma vinculada) --- Inhibición para nuevo concurso}
+El deudor no podrá presentar una nueva petición de concurso preventivo hasta después de transcurrido el plazo de UN (1) año contado a partir de la fecha de la declaración judicial de cumplimiento del acuerdo preventivo, ni podrá convertir la declaración de quiebra en concurso preventivo.
+\end{articulo}
+
+\begin{important}
+La conversión transforma la quiebra en concurso preventivo: 10 días desde la última publicación de edictos, cumpliendo el art. 11; procede en la quiebra necesaria y también en la voluntaria; no procede si la quiebra deriva de incumplimiento de acuerdo, con concurso en trámite o dentro del período de inhibición; se puede usar una sola vez.
+\end{important}
+
+\section{Recurso de reposición (arts. 94 y 95 LCQ)}
+
+El recurso de reposición busca \textbf{dejar sin efecto la sentencia}: que el juez la revoque. Se interpone siempre ante el mismo juez que dictó el decreto de quiebra y lo promueve el deudor.
+
+\begin{itemize}
+    \item \textbf{Plazo:} 5 días, contados desde la última publicación de edictos o desde que el deudor tomó conocimiento de la sentencia (por ejemplo, la clausura del establecimiento comercial o la incautación de bienes).
+    \item \textbf{Partes:} el deudor, el acreedor que pidió la quiebra y el síndico.
+    \item \textbf{Fundamento:} solo la falta de los presupuestos sustanciales, sea el objetivo o el subjetivo. En cuanto al objetivo, significa que el deudor no está en cesación de pagos. Se prueba únicamente por escrito, mediante prueba documental.
+    \item \textbf{Trámite:} por vía incidental. El juez tiene 10 días para pronunciarse. La resolución es apelable.
+\end{itemize}
+
+\begin{articulo}{Ley 24.522, art. 94 --- Reposición}
+El fallido puede interponer recurso de reposición cuando la quiebra sea declarada como consecuencia de pedido de acreedor. De igual derecho puede hacer uso el socio ilimitadamente responsable, incluso cuando la quiebra de la sociedad de la que forma parte hubiera sido solicitada por ésta sin su conformidad.
+
+El recurso debe deducirse dentro de los CINCO (5) días de conocida la sentencia de quiebra o, en defecto de ese conocimiento anterior, hasta el QUINTO día posterior a la última publicación de edictos en el diario oficial que corresponda a la jurisdicción del juzgado.
+
+Se entiende conocimiento del fallido, el acto de clausura o el de incautación de sus bienes.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 95 --- Causal. Partes}
+El recurso sólo puede fundarse en la inexistencia de los presupuestos sustanciales para la formación del concurso.
+
+Al resolver, el juez debe valorar todas las circunstancias de la causa principal y sus incidentes.
+
+Son parte en el trámite de reposición el fallido, el síndico y el acreedor peticionante. El juez dictará resolución en un plazo máximo de DIEZ (10) días desde que el incidente se encontrare en condiciones de resolver.
+\end{articulo}
+
+\begin{important}
+La reposición busca que el mismo juez revoque la sentencia: 5 días desde la última publicación de edictos o desde el conocimiento (clausura o incautación); solo se funda en la falta de presupuestos sustanciales (objetivo o subjetivo), con prueba documental; tramita por incidente y el juez resuelve en 10 días; es apelable.
+\end{important}
+
+\section{Levantamiento de la quiebra sin trámite (art. 96 LCQ)}
+
+Es una \textbf{variante del recurso de reposición}: también busca revocar la sentencia de quiebra, pero de forma mucho más rápida, sin abrir ni sustanciar un incidente. Su finalidad es frenar la liquidación de los bienes, que puede comenzar de inmediato tras la sentencia.
+
+El mecanismo consiste en que el deudor se presente ante el juez y realice un \textbf{depósito judicial} del valor reclamado, más gastos y costas procesales y especiales. Con ese depósito el deudor sale de la situación de cesación de pagos, se revoca la sentencia y se interrumpen los efectos de la quiebra. El depósito no implica necesariamente pagar al acreedor. Hay dos modalidades:
+
+\begin{itemize}
+    \item \textbf{Depósito en pago:} el deudor reconoce judicialmente la deuda (por ejemplo, no pagó por olvido, pero debe) y deposita para que se revoque la sentencia.
+    \item \textbf{Depósito a embargo:} el acreedor reclama una deuda que el deudor sostiene que no debe. Para no perder tiempo discutiendo (mientras se inicia la liquidación y se aplican los efectos del desapoderamiento y la falta de legitimación procesal), deposita para demostrar que no está en cesación de pagos, sin que ello constituya un pago.
+\end{itemize}
+
+\begin{example}{Lucas pide la quiebra}
+Lucas, acreedor, pide la quiebra del deudor. El deudor sostiene que ya le había pagado, o bien que debe pero quiere seguir adelante. Ante la liquidación inmediata, en lugar de abrir un incidente, deposita el valor que reclama Lucas más gastos y costas, en pago o a embargo, para que se levante la quiebra y no se remate nada.
+\end{example}
+
+\subsection{Alcances y limitaciones}
+
+\begin{itemize}
+    \item El levantamiento interrumpe la liquidación, pero \textbf{no la de los bienes perecederos}. Si se vendieron bienes y luego se levanta la quiebra, el deudor podría demandar por daños y perjuicios. Los trámites administrativos continúan, porque no se sabe cómo se resolverá.
+    \item Si algún contrato se resolvió por la sentencia de quiebra, \textbf{no renace}. Por ello existen requisitos exigentes al momento en que el acreedor solicita la quiebra.
+    \item Lo que se deposita no es solo el importe reclamado: el juez agrega lo correspondiente a gastos judiciales. Debe cubrirse todo.
+    \item Si se había sorteado un síndico y luego se obtiene la conversión, es el mismo síndico el que continúa.
+\end{itemize}
+
+\begin{articulo}{Ley 24.522, art. 96 --- Levantamiento sin trámite}
+El juez puede revocar la declaración de quiebra sin sustanciar el incidente si el recurso de reposición se interpone por el fallido con depósito en pago, o a embargo, del importe de los créditos con cuyo cumplimiento se acreditó la cesación de pagos y sus accesorios.
+
+Pedidos en trámite. Debe depositar también los importes suficientes para atender a los restantes créditos invocados en pedidos de quiebra en trámite a la fecha de la declaración, con sus accesorios, salvo que respecto de ellos se demuestre prima facie, a criterio del juez, la ilegitimidad del reclamo y sin perjuicio de los derechos del acreedor cuyo crédito no fue impedimento para revocar la quiebra.
+
+Depósito de gastos. La resolución se supedita en su ejecución al depósito por el deudor, dentro de los CINCO (5) días, de la suma que se fije para responder a los gastos causídicos.
+
+Apelación. La resolución que deniegue la revocación inmediata es apelable únicamente por el deudor al solo efecto devolutivo y se debe resolver por la alzada sin sustanciación.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 97 --- Efectos de la interposición}
+La interposición del recurso no impide la prosecución del proceso, salvo en cuanto importe disposición de bienes y sin perjuicio de la aplicación del Artículo 184.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 98 --- Efecto de la revocación}
+La revocación de la sentencia de quiebra hace cesar los efectos del concurso.
+
+No obstante, los actos legalmente realizados por el síndico y la resolución producida de los contratos en curso de ejecución son oponibles al deudor, aun cuando los primeros consistieren en disposiciones de bienes en las condiciones del Artículo 184.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 99 --- Daños y perjuicios contra el peticionario}
+Revocada la sentencia de quiebra, quien la peticionó con dolo o culpa grave es responsable por los daños y perjuicios causados al recurrente. La acción tramita por ante el juez del concurso.
+\end{articulo}
+
+\begin{important}
+El levantamiento sin trámite es una variante veloz de la reposición: se deposita judicialmente el monto reclamado más gastos y costas, ya sea en pago (reconoce la deuda) o a embargo (cuestiona la deuda). Frena la liquidación, salvo la de bienes perecederos; los trámites administrativos siguen. Los contratos ya resueltos no renacen.
+\end{important}
+
+\section{Incompetencia (arts. 100 y 101 LCQ)}
+
+La incompetencia está comprendida entre los recursos, pero \textbf{no busca revocar la sentencia}. Procede cuando se pidió la quiebra ante un juez que no es el competente, el juez natural de la causa. Las reglas de competencia son las del artículo 3 (competencia ordinaria y territorial). Si hubo un error en cuanto al domicilio o a la sede principal, se recurre a este remedio procesal.
+
+Solo busca \textbf{direccionar la causa} al juez que corresponda según las reglas de competencia; no cambia en nada la sentencia.
+
+\begin{itemize}
+    \item \textbf{Plazo:} 5 días desde que se tomó conocimiento de la quiebra o 5 días después de la última publicación de edictos.
+    \item \textbf{Trámite:} por vía incidental.
+    \item \textbf{Quién la plantea:} generalmente el deudor, que es quien conoce la situación (frecuente cuando existe más de una sede). El propio juez también puede declararse incompetente.
+    \item \textbf{Validez de lo actuado:} todo lo realizado por el juez incompetente es válido; no cae nada de lo que haya resuelto y se mantiene la eficacia de todos sus actos. Solo se encauza la causa al juez competente.
+\end{itemize}
+
+\begin{example}{El establecimiento principal}
+Un acreedor solicita la quiebra ante el juez de Santiago del Estero, donde trabaja con el deudor, creyendo que allí está el establecimiento principal; en realidad el establecimiento principal está en Capital. El deudor, que lo sabe, plantea la incompetencia.
+\end{example}
+
+\begin{articulo}{Ley 24.522, art. 3 --- Juez competente}
+Corresponde intervenir en los concursos al juez con competencia ordinaria, de acuerdo a las siguientes reglas:
+\inciso{1}{Si se trata de personas de existencia visible, al del lugar de la sede de la administración de sus negocios; a falta de éste, al del lugar del domicilio.}
+\inciso{2}{Si el deudor tuviere varias administraciones es competente el juez del lugar de la sede de la administración del establecimiento principal; si no pudiere determinarse esta calidad, lo es el juez que hubiere prevenido.}
+\inciso{3}{En caso de concurso de personas de existencia ideal de carácter privado regularmente constituidas, y las sociedades en que el Estado Nacional, Provincial o Municipal sea parte -con las exclusiones previstas en el Artículo 2- entiende el juez del lugar del domicilio.}
+\inciso{4}{En el caso de sociedades no constituidas regularmente, entiende el juez del lugar de la sede; en su defecto, el del lugar del establecimiento o explotación principal.}
+\inciso{5}{Tratándose de deudores domiciliados en el exterior, el juez del lugar de la administración en el país; a falta de éste, entiende el del lugar del establecimiento, explotación o actividad principal, según el caso.}
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 100 --- Incompetencia}
+En igual término que el indicado en el Artículo 94, el deudor y cualquier acreedor, excepto el que pidió la quiebra, pueden solicitar se declare la incompetencia del juzgado para entender en la causa.
+
+Son parte los indicados en el Artículo 95 y, en su caso, el acreedor que planteó la incompetencia.
+\end{articulo}
+
+\begin{articulo}{Ley 24.522, art. 101 --- Petición y admisión. Efectos}
+Esta petición no suspende el trámite del concurso si el deudor está inscrito en el Registro Público de Comercio de la jurisdicción del juzgado. En ningún caso cesa la aplicación de los efectos de la quiebra.
+
+La resolución que admite la incompetencia del juzgado ordena el pase del expediente a que corresponda, siendo válidas las actuaciones que se hubieren cumplido hasta entonces.
+\end{articulo}
+
+\begin{important}
+La incompetencia no busca hacer caer la sentencia sino encauzar la causa al juez competente según las reglas del artículo 3. Plazo de 5 días, vía incidental, y todo lo actuado por el juez incompetente conserva su validez. Lo suele plantear el deudor.
+\end{important}
+
+\section{Cuadro comparativo de los recursos}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.13\textwidth} >{\raggedright\arraybackslash}p{0.19\textwidth} >{\raggedright\arraybackslash}p{0.19\textwidth} >{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.11\textwidth}@{}}
+\toprule
+\textbf{Recurso} & \textbf{Qué busca} & \textbf{Plazo} & \textbf{Fundamento o requisito} & \textbf{Normas} \\
+\midrule
+\endhead
+\small\textbf{Conversión} & \small Transformar la quiebra en concurso preventivo & \small 10 días desde la última publicación de edictos & \small Sujeto concursable; cumplir el art. 11; no procede en incumplimiento de acuerdo, concurso en trámite o inhibición & \small Arts. 90 a 93 \\[0.4em]
+\small\textbf{Reposición} & \small Dejar sin efecto (revocar) la sentencia & \small 5 días desde la última publicación de edictos o el conocimiento & \small Solo falta de presupuestos sustanciales (objetivo o subjetivo); prueba documental; vía incidental & \small Arts. 94 y 95 \\[0.4em]
+\small\textbf{Levantamiento sin trámite} & \small Revocar la sentencia de forma rápida, sin incidente & \small Variante de la reposición & \small Depósito judicial en pago o a embargo, más gastos y costas & \small Arts. 96 a 99 \\[0.4em]
+\small\textbf{Incompetencia} & \small Enviar la causa al juez competente (no cambia la sentencia) & \small 5 días desde el conocimiento o la última publicación de edictos & \small Error en la sede o domicilio; vía incidental; los actos cumplidos conservan validez & \small Arts. 3, 100 y 101 \\
+\bottomrule
+\end{longtable}
+
+\subsection*{Cuadro Cornell: Bloque IV}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\textbf{¿Qué es el recurso de conversión?} & Transforma la quiebra en concurso preventivo. 10 días desde la última publicación de edictos; el deudor debe cumplir el art. 11. Procede en la quiebra necesaria y en la voluntaria; no procede si la quiebra viene de un incumplimiento de acuerdo, con concurso en trámite o en período de inhibición. Se usa una sola vez (arts. 90 a 93). \\[0.4em]
+\textbf{¿Qué es el recurso de reposición?} & Busca que el mismo juez revoque la sentencia. 5 días desde la última publicación de edictos o desde el conocimiento (clausura o incautación). Se funda solo en la falta de presupuestos sustanciales, con prueba documental, por vía incidental; el juez resuelve en 10 días y es apelable (arts. 94 y 95). \\[0.4em]
+\textbf{¿Qué es el levantamiento sin trámite?} & Variante veloz de la reposición: se deposita judicialmente el monto reclamado más gastos y costas, en pago (se reconoce la deuda) o a embargo (se discute la deuda). Frena la liquidación, salvo la de bienes perecederos; los trámites administrativos continúan (arts. 96 a 99). \\[0.4em]
+\textbf{¿Qué es la incompetencia?} & Un remedio procesal cuando se pidió la quiebra ante un juez que no es el natural (art. 3). No hace caer la sentencia: solo envía la causa al juez competente. Plazo de 5 días, vía incidental, y todo lo actuado por el juez incompetente conserva su validez (arts. 100 y 101). \\
+\midrule
+\multicolumn{2}{@{}p{0.95\textwidth}@{}}{\textbf{Resumen:} contra la sentencia de quiebra el deudor cuenta con cuatro herramientas de plazos breves: la conversión en concurso preventivo (10 días), la reposición por falta de presupuestos (5 días), el levantamiento sin trámite mediante depósito en pago o a embargo y la incompetencia, que solo reencauza la causa al juez natural.} \\
+\bottomrule
+\end{longtable}
+
+% ================= SÍNTESIS FINAL =================
+\chapter[Síntesis final]{Síntesis final}
+
+La quiebra es un proceso de liquidación colectivo y forzoso que pone fin a la actividad mercantil y busca pagar a los acreedores con lo obtenido de la venta de los bienes del deudor. Se llega a ella por tres vías: indirecta, cuando un concurso preventivo fracasa; directa, por pedido de un acreedor (que debe probar con documental su crédito exigible, la cesación de pagos ---la mora es lo más simple--- y que el deudor es sujeto concursable) o del propio deudor, que prevalece siempre; y por extensión, a partir de una quiebra principal.
+
+El proceso comienza al revés de lo habitual: con una sentencia, el decreto de quiebra del artículo 88, que dispara dos caminos simultáneos, el trámite administrativo-judicial y la liquidación inmediata de los bienes a cargo de un síndico muy activo. Contra esa sentencia el deudor cuenta con cuatro herramientas de plazos breves: la conversión en concurso preventivo (10 días), la reposición por falta de presupuestos (5 días), el levantamiento sin trámite mediante depósito en pago o a embargo y la incompetencia, que solo reencauza la causa al juez natural.
+
+La enseñanza práctica es que la defensa del crédito se gana antes: vigilar la salud financiera del deudor y documentar la mora.
+
+\end{document}

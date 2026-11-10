@@ -1,0 +1,917 @@
+\documentclass[12pt,oneside,a4paper]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Compraventa Inmobiliaria}
+\newcommand{\titulo}{Obligación principal del comprador: el precio en dinero}
+\newcommand{\subtitulo}{Del peso al Bitcoin: criptoactivos en la escritura de compraventa}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+\addto\captionsspanish{\renewcommand{\chaptername}{Bloque}}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ==================== CONFIGURACIÓN FINAL ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+\begin{document}
+
+% ==================== PORTADA ====================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{2.5cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.4cm}
+
+{\large \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{\small Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ==================== ÍNDICE ====================
+\tableofcontents
+
+% ==================== CONTENIDO ====================
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
+\markboth{Introducción}{Introducción}
+
+\section{¿De qué trató la clase?}
+
+La clase cerró la obligación principal del vendedor (describir con precisión el lote y la unidad funcional en la escritura) y abrió la \textbf{obligación principal del comprador}: pagar el precio. La ley exige que el precio sea \textbf{en dinero, cierto y serio}; la clase profundizó el primero y se preguntó qué es el dinero, cómo cambió la regulación de la moneda extranjera (arts.~765 y 766 CCyC y DNU 70/2023) y qué sucede cuando alguien quiere pagar un inmueble con Bitcoin u otros criptoactivos: calificación del contrato, impuestos, prevención del lavado, cotización, billeteras y efectos en el régimen patrimonial del matrimonio.
+
+\section{¿Para qué sirve esto en la vida profesional?}
+
+Para redactar y controlar la \textbf{cláusula del precio}, que es el corazón económico de cualquier escritura. Quien sepa describir bien el inmueble, fijar la moneda de pago, prever la cotización y proteger a las partes y a sí mismo (responsabilidad solidaria frente al fisco y deberes de prevención del lavado) tiene una ventaja real como escribano, abogado o asesor inmobiliario. Además, los clientes ya llegan con criptoactivos: saber calificarlos evita errores de impuestos, nulidades y reclamos.
+
+\section{¿Es útil para la vida personal? ¿Por qué?}
+
+Cualquier persona que compre, venda o herede un inmueble paga un precio, elige una moneda y asume riesgos de valor. Entender por qué <<dólar>> y <<Bitcoin>> no son lo mismo ante la ley, qué es una billetera, qué prueba una transferencia y cómo se divide lo ganado durante el matrimonio ayuda a decidir mejor, a no firmar a ciegas y a proteger el propio patrimonio. La regla de oro de la clase aplica a todo: \textbf{confianza y buena fe se construyen con documentación}.
+
+\section{Cómo se relacionan los temas: un ejemplo cotidiano}
+
+Marta quiere comprarle a Juan el departamento 1 de un edificio y le ofrece pagarle con Bitcoin. El desarrollo de la clase sigue ese caso:
+
+\begin{itemize}
+    \item \textbf{Bloque 1:} primero hay que saber qué se compra: describir bien el lote y la unidad.
+    \item \textbf{Bloque 2:} después, cuánto y en qué: el precio debe ser dinero, cierto y serio, y hay que saber qué moneda se debe.
+    \item \textbf{Bloque 3:} ¿el Bitcoin cuenta como dinero? De ello depende si el contrato es compraventa, permuta o innominado.
+    \item \textbf{Bloque 4:} si se acepta, hay que escribirlo: billeteras, cotización, red, controles de lavado e impuestos.
+    \item \textbf{Bloque 5:} como Marta está casada, hay que saber si ese Bitcoin es propio o ganancial.
+    \item \textbf{Bloque 6:} la mejor forma de entenderlo es probarlo con 10 pesos.
+\end{itemize}
+
+\begin{note}
+Los textos de los artículos se transcriben del Código Civil y Comercial (CCyC) tal como se leyeron en la clase; conviene cotejarlos con la edición vigente. Los nombres de los docentes y de los alumnos se omiten; las expresiones <<la docente>>, <<la escribana invitada>> y <<el escribano invitado>> designan a quienes expusieron. La atribución de cada intervención entre las dos personas invitadas se reconstruyó por contexto.
+% TODO: contenido incompleto o ambiguo en las notas originales (atribución de intervenciones entre los dos invitados reconstruida por contexto)
+\end{note}
+
+% ---------------------------------------------------------------
+\chapter{Cierre de la obligación del vendedor: describir el inmueble}
+\markboth{Bloque 1: describir el inmueble}{Bloque 1: describir el inmueble}
+
+\section{Unidad 1. Orientación de los lados del lote: la flecha del norte inclinada}
+
+El ejercicio de redacción de la descripción de un lote traía un plano con una \textbf{flecha del norte inclinada}, y debía traducirse esa inclinación a la orientación de cada lado.
+
+\subsection{Cómo traspolar la flecha a los lados}
+
+Cuando la flecha está inclinada, hay que \textbf{traspolar los vértices a sus lados}. Si el norte apunta en una dirección, el este, el sur y el oeste quedan determinados a partir de ella. Si el norte y el oeste coinciden en un mismo extremo del lote, ese lado es necesariamente el \textbf{noroeste}. Se sigue luego con los demás costados: el lado en que coinciden el norte y el este es el noreste, el lado en que coinciden el sur y el este es el sudeste, y así sucesivamente. Se describe por orden, preferentemente en el sentido de las agujas del reloj, aunque puede hacerse en el orden que se prefiera.
+
+\begin{important}
+\textbf{Regla práctica de la orientación.} Cuando la flecha del norte viene inclinada, hay que traspolar los vértices a sus lados: se extiende la flecha hacia todos los vértices para ver dónde quedan el norte, el sur, el este y el oeste, y recién después se nombra cada lado.
+
+Resultado del ejercicio, en el sentido de las agujas del reloj: frente al \textbf{noroeste}, costado al \textbf{noreste}, lado inferior al \textbf{sudeste} y el otro costado al \textbf{sudoeste}.
+\end{important}
+
+\subsection{La superficie total del lote}
+
+En la descripción del lote \textbf{hay que consignar la superficie total}. En el ejercicio resultaba una cifra poco redonda (alrededor de 173) porque los lados eran distintos a propósito: los costados tenían medidas de 11 y 10.
+% TODO: contenido incompleto o ambiguo en las notas originales (cifra de superficie total aproximada: "algo de 173")
+
+\section{Unidad 2. Qué va en letras y qué va en números en la descripción del lote}
+
+En la descripción del lote se consignan \textbf{en letras} la ubicación del inmueble (la altura), la totalidad de la superficie y el número de lote; en la clase se aclaró que el número de lote se escribe en letra.
+% TODO: contenido incompleto o ambiguo en las notas originales (la regla sobre qué datos del lote van en letras y cuáles en números surge de un intercambio informal)
+
+\section{Unidad 3. Descripción de la unidad funcional (UF)}
+
+\subsection{Cláusula de la unidad funcional}
+
+\begin{example}{cláusula de la unidad funcional leída en clase}
+<<Juan Pérez transmite por contrato de venta a Marta Martínez el inmueble de la siguiente manera: la unidad funcional número uno, ubicada en la planta baja, integrante del edificio ``Iniciativa'', con frente a la calle Charcas número dos mil veinte, entre las calles [nombres ininteligibles en la grabación]. Datos catastrales: Circunscripción 5, Sección 10, Manzana 15, Parcela 3. La unidad consta de las siguientes superficies: una superficie cubierta de 50\,m\textsuperscript{2}, una superficie semicubierta de 5\,m\textsuperscript{2}, una superficie descubierta de 5\,m\textsuperscript{2}, lo que hace a una superficie total de 60\,m\textsuperscript{2}, y le corresponde un porcentual de 1 entero con 75 centésimos por ciento (1,75\,\%).>>
+\end{example}
+
+Se puede consignar el \textbf{porcentual en números}. Es necesario indicar que las medidas de la unidad funcional \textbf{surgen del reglamento de propiedad horizontal}: en general todos lo consignan, para dejar asentado que las medidas del lote general surgen del reglamento.
+
+\subsection{Orientación de los lados de la unidad funcional}
+
+Se aplica el mismo método: se extiende la flecha del norte desde los vértices para determinar dónde están el norte, el sur, el este y el oeste, y después se ubican los lados. En el ejercicio, el frente iba al noroeste y los demás lados al noreste, al sudeste y al sudoeste. Aunque los lados sean distintos o la flecha esté más inclinada hacia uno, siempre se resuelve si se sabe dónde están los puntos cardinales.
+
+\subsection{Qué va en letras y qué va en números en la unidad funcional}
+
+\begin{itemize}
+    \item En letras: la calle y el número, el piso, la superficie total y las superficies parciales. La calle va siempre en letras.
+    \item En números: la nomenclatura catastral.
+    \item Se puede consignar por las dos vías, letras y números, sin que ello genere problema. En cambio, \textbf{sí hay problema si se equivoca} y se escribe en números lo que debe ir en letras.
+    \item Las medidas del lote no se transcriben en la descripción de la unidad funcional: se escribe la UF.
+\end{itemize}
+
+\begin{important}
+\textbf{Cierre de la obligación del vendedor.} Con esto terminan las obligaciones principales del vendedor referidas a la cosa: transmitir el dominio y describir e individualizar correctamente el inmueble en el instrumento. A partir de aquí se pasa a la obligación principal del comprador.
+\end{important}
+
+% ---------------------------------------------------------------
+\chapter{Obligación principal del comprador: pagar el precio}
+\markboth{Bloque 2: el precio y la moneda}{Bloque 2: el precio y la moneda}
+
+\section{Unidad 4. El precio y sus tres requisitos}
+
+La obligación principal del comprador es \textbf{pagar el precio}. El precio no es cualquier cosa: la ley establece requisitos especiales, que son tres. Deben reunirse sí o sí para que el precio sea precio y, por ende, para que la transmisión del dominio a cambio de él sea compraventa.
+
+\begin{formula}{art.~1123 CCyC. Definición de compraventa}
+<<Hay compraventa si una de las partes se obliga a transferir la propiedad de una cosa y la otra a pagar un precio en dinero.>>
+\end{formula}
+
+\begin{important}
+\textbf{Los tres requisitos del precio:} 1.~En dinero. 2.~Cierto. 3.~Serio.
+
+Sin los tres no hay <<precio>> en sentido jurídico y, por tanto, no hay compraventa. En esta clase se desarrolla el primer requisito (dinero); los otros dos quedan para una clase posterior.
+\end{important}
+
+\section{Unidad 5. ¿Qué es el dinero?}
+
+Aunque el requisito parezca el más sencillo, la pregunta es qué es el dinero. En la clase surgieron respuestas como <<la moneda de curso legal>> (con la consecuencia de que entonces los dólares no serían dinero) y <<es fungible>>.
+
+De lo que no hay duda es de que \textbf{no existe una definición jurídica de dinero}: leyendo todos los artículos del Código no se encuentra una. Tampoco hay duda de que el dinero puede ser \textbf{objeto de un contrato} (como en un mutuo o préstamo de dinero) y de que puede ser una \textbf{medida de valor}.
+
+\begin{definition}{concepto de dinero (propuesta de la docente)}
+El dinero es un \textbf{bien de valor patrimonial abstracto}, que puede ser objeto de un contrato o medida de valor.
+
+Es \textbf{abstracto} porque interesa más por lo que representa que por lo que efectivamente es: interesa más lo que se puede hacer con él que lo que es materialmente.
+\end{definition}
+
+\begin{example}{el billete de 1.000 y el de 10.000}
+El billete de 1.000 pesos seguramente lleve el mismo costo de elaboración que el de 10.000 y, sin embargo, no valen lo mismo. Por eso interesa más lo que se puede hacer con él, lo que representa y lo que efectivamente vale, que lo que efectivamente es.
+\end{example}
+
+Se distingue la \textbf{moneda de curso legal}, que se entiende como el peso argentino, de la \textbf{moneda extranjera}, que es toda moneda emitida por una autoridad monetaria extranjera.
+
+\section{Unidad 6. Las cuatro etapas de regulación de la moneda: arts.~765 y 766 CCyC y DNU 70/2023}
+
+A lo largo de la historia, en el derecho argentino las obligaciones de dar dinero fueron reguladas de manera \textbf{cíclica}, porque se fue y se vino con normas de soberanía del Estado. Hay cuatro etapas, y hoy se vuelve a una etapa en la que ya se estuvo.
+
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.24\textwidth}>{\RaggedRight\arraybackslash}p{0.33\textwidth}>{\RaggedRight\arraybackslash}p{0.33\textwidth}@{}}
+\toprule
+\textbf{Etapa} & \textbf{Régimen} & \textbf{Consecuencia para el deudor} \\
+\midrule
+\endhead
+1.ª Código de Vélez originario &
+Las obligaciones en moneda extranjera se consideraban de dar cosa. &
+Se podía liberar entregando pesos argentinos: <<me obligaban en dólares y entregaba pesos; me lo permitió la ley>>. \\
+\addlinespace
+2.ª Reconocimiento como obligación dineraria &
+La moneda extranjera se reconoce como obligación dineraria, no de dar cosa. &
+Debía devolver la moneda pactada: dólares si se obligó en dólares; euros si en euros. \\
+\addlinespace
+3.ª CCyC, primera versión (2015 a 2023) &
+Arts.~765 y 766 en su redacción original: obligación de dar cosa en moneda extranjera. &
+El deudor podía cumplir dando pesos argentinos. \\
+\addlinespace
+4.ª CCyC según el DNU 70/2023 (actual) &
+Obligación dineraria en la moneda pactada. &
+Debe cumplir con la moneda pactada. No puede entregar pesos, salvo acuerdo de voluntades posterior. \\
+\bottomrule
+\end{longtable}
+
+\subsection{La tercera etapa: el texto original de los arts.~765 y 766}
+
+Cuando se lea el Código, debe leerse la \textbf{versión actual} de estos artículos.
+
+\begin{formula}{art.~765 CCyC, texto original (2015)}
+<<ARTÍCULO 765.- Concepto. La obligación es de dar dinero si el deudor debe cierta cantidad de moneda, determinada o determinable, al momento de constitución de la obligación. Si por el acto por el que se ha constituido la obligación, se estipuló dar moneda que no sea de curso legal en la República, la obligación debe considerarse como de dar cantidades de cosas y el deudor puede liberarse dando el equivalente en moneda de curso legal.>>
+\end{formula}
+
+\begin{formula}{art.~766 CCyC. Obligación del deudor}
+<<ARTÍCULO 766.- Obligación del deudor. El deudor debe entregar la cantidad correspondiente de la especie designada, tanto si la moneda tiene curso legal en la República como si no lo tiene.>>
+\end{formula}
+
+La versión original del art.~765 establecía que, si el deudor se obligaba en moneda extranjera, se consideraba una obligación de dar cosa y podía cumplir dando pesos argentinos. Esto generó mucha discusión doctrinaria, por varios motivos:
+
+\begin{enumerate}
+    \item Remitía a las obligaciones de dar cosas, que no tienen una regulación actual: remitía a una normativa que ya no existía.
+    \item Lo denominaba <<moneda>> y, al mismo tiempo, remitía a la obligación de dar cosas: era una contradicción del propio artículo.
+    \item Chocaba con el artículo inmediato siguiente (art.~766), que decía que el deudor cumple si cumple con la prestación pactada: el 765 permitía liberarse en pesos y el 766 exigía devolver la moneda pactada.
+    \item Si se transfiere una cosa a cambio de moneda extranjera, eso sería una permuta, que tiene otra regulación en otra sección del Código.
+    \item Se discutía si el permiso dado al deudor para liberarse en pesos era renunciable o no, es decir, si la norma era de orden público.
+\end{enumerate}
+
+\begin{note}
+\textbf{Práctica notarial frente al art.~765 original.} En el ámbito notarial se entendía prácticamente que el 765 era renunciable y se armaban cláusulas extensas en las que se decía que la moneda pactada era esencial para el contrato, por lo cual no era posible entregar pesos. Se entendía a la moneda extranjera como definitivamente moneda, con lo cual no era permuta, sino compraventa.
+\end{note}
+
+\subsection{La cuarta etapa: el DNU 70/2023}
+
+El DNU 70/2023 modificó ambos artículos. La regulación actual es: la persona puede obligarse en moneda extranjera, se considera \textbf{obligación dineraria} y debe cumplirse con la \textbf{moneda pactada}. No se pueden entregar pesos; por supuesto que, si hay acuerdo de voluntades posterior, mientras haya acuerdo se puede modificar. Jurídicamente, quien se obligó en dólares, euros, libras o la moneda que sea, debe abonar esa moneda.
+
+\begin{formula}{art.~765 CCyC, versión actual según el DNU 70/2023}
+<<ARTÍCULO 765.- Concepto. La obligación es de dar dinero si el deudor debe cierta cantidad de moneda, determinada o determinable, al momento de constitución de la obligación, sea o no de curso legal en el país. El deudor sólo se libera dando la cantidad de la moneda pactada. Los jueces no pueden modificar la forma de pago o la moneda pactada por las partes.>>
+\end{formula}
+
+Hasta aquí se estudió el dinero tradicional. A continuación empiezan a jugar otros medios de intercambio: las criptomonedas, que fueron desarrolladas por los dos escribanos invitados.
+
+% ---------------------------------------------------------------
+\chapter{Criptoactivos: ¿son dinero? ¿Qué contrato se celebra?}
+\markboth{Bloque 3: criptoactivos}{Bloque 3: criptoactivos}
+
+\section{Unidad 7. El planteo del caso: comprar un inmueble pagando con Bitcoin}
+
+El caso planteado: una persona va a la escribanía y dice que quiere comprar un inmueble; viene ahorrando con Bitcoin hace mucho tiempo, compró Bitcoin a buen valor y ahora puede comprar un inmueble con criptoactivos, y el vendedor también es bitcoiner y acepta que le paguen en Bitcoin.
+
+\textbf{Volatilidad.} El valor depende de la oferta del mercado: un Bitcoin adquirido antes de 2020 a 300 dólares tiene hoy una valuación de alrededor de 60 mil dólares. Hubo grandes caídas en el tiempo (antes de 2018, después de 2020, después de 2023). Para los bitcoiners, sin embargo, sigue siendo un Bitcoin, sin importar cuánto valga.
+
+\textbf{Cómo se inicia la compraventa.} La compraventa nace con una \textbf{reserva}; normalmente sigue un \textbf{refuerzo}, es factible que haya un \textbf{boleto de compraventa}, y finalmente la escritura. Se verifica el objeto, se lo individualiza correctamente (incluso, si no hay título antecedente, leyendo el plano), y al llegar a la parte del precio hay que calificarlo de entrada. Según la definición de dinero dada al comienzo, el Bitcoin \textbf{no es dinero}, porque no está constituido como dinero sino más bien como cosa.
+
+\section{Unidad 8. Criptomoneda: un género con muchas especies y sin definición legal}
+
+No hay respuesta al 100\,\% porque \textbf{no hay normativa vigente}. ARCA se atrevió a definir parcialmente qué es criptomoneda y la CNV también dio algunas definiciones, pero ninguno dice qué es cripto, porque definir también limita (si es esto, no es esto, y no se puede tributar respecto de esto), y dejan el panorama abierto.
+
+Se la compara con \textbf{género y especie}: no todo es lo mismo.
+
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.22\textwidth}>{\RaggedRight\arraybackslash}p{0.72\textwidth}@{}}
+\toprule
+\textbf{Término} & \textbf{Qué es (según lo explicado en clase)} \\
+\midrule
+\endhead
+Criptomoneda & Es el género. No se dice <<definiendo>>, porque no hay atrevimiento: la definición que se busca hoy no existe. \\
+\addlinespace
+Bitcoin & Especie de criptomoneda; la más conocida. \\
+\addlinespace
+Ether & Otra especie; corre sobre su propia cadena de bloques, Ethereum. Son las dos más conocidas. \\
+\addlinespace
+NFT & Tokens: otro tipo de criptoactivo. \\
+\bottomrule
+\end{longtable}
+
+\begin{example}{actualidad: el robo en Binance}
+Binance es una wallet (billetera) a la que se le robó mucho dinero: <<seis mil millones de dólares se robaron en veinte minutos>>. Este caso se retoma más adelante.
+\end{example}
+
+\section{Unidad 9. Volatilidad, confianza y cláusulas prudentes}
+
+\textbf{¿Cómo se define el precio en la escritura} si las partes pactan intercambiar la unidad funcional por un Bitcoin? Una posibilidad es fijarlo con lo que cotiza el Bitcoin en ese momento; otra, congelar el precio. Pero congelar el precio de un activo que diez años atrás valía 300 y hoy vale 60.000, conociendo su volatilidad, implica riesgo: puede bajar 10.000 mañana y otros 10.000 la semana siguiente. Quien conoce la volatilidad puede pactarlo en criptomonedas (<<va a equivaler a un Bitcoin y yo me la aguanto>>), porque mañana puede valer 10.000 menos y pasado puede valer 10.000 más.
+
+Frente al riesgo de burbujas financieras se respondió que quien pacta conoce los riesgos: hay \textbf{buena fe por ambas partes} y comunión de voluntades de comprador y vendedor. La burbuja financiera también se da cuando se pacta en dólares y hay una crisis financiera; por eso no se comercializa en pesos: \textbf{no hay confianza en la moneda de curso legal}. Lo mismo ocurre con la criptomoneda, y es donde hay que empezar a convenir qué se quiere y qué no. Se mencionaron como ejemplos de pérdida de confianza el Austral, la libra en Inglaterra y, veinte años atrás (2001), quien depositó dólares y le cancelaron un inmueble de 30.000 dólares con 30.000 pesos.
+
+Por eso, a pesar del DNU de 2023, los escribanos siguen poniendo muchas cuestiones en su cláusula, aun cuando estén derogadas: reconocen la \textbf{teoría de la imprevisión} y establecen dónde pueden o no cancelar con otra moneda.
+
+\begin{important}
+\textbf{Enseñanza notarial.} No se hace porque no se quiera redactar, sino porque se conoce el país en el que se vive y esta cuestión cíclica. Es mejor tener de más en las cláusulas que de menos: cuando todo está bien, nadie hace uso de nada.
+\end{important}
+
+Se señaló además que el Código reformó estos dos artículos importantes por medio de un DNU, y que la pirámide jurídica es cuestionable.
+
+\section{Unidad 10. ¿Es dinero un Bitcoin? Posturas, Jornadas Nacionales y funciones del dinero}
+
+Ante la pregunta de si, \emph{yendo al hueso}, un Bitcoin es dinero, los alumnos respondieron en general que no. Se señaló que hasta hace un año atrás podía considerarse dinero por el caso de El Salvador.
+
+\subsection{Reconocimiento y emisión estatal}
+
+Se dijo que el dinero debe ser moneda de curso legal o reconocida por otro país, emitida por otro país (así se explicó para el dólar). El peso es reconocido en Argentina; del dólar hay una \textbf{bimonetariedad simulada}. El Salvador y la República Centroafricana son los dos países que reconocen al Bitcoin como moneda y sus bancos centrales lo emiten, porque \emph{minan}: no se imprime, sino que se mina de acuerdo con una cuenta matemática, una resolución, en la que el que gana se lleva un premio, que es la creación de ese plus de Bitcoin. Entonces habría reconocimiento estatal y emisión por parte del Estado, y sería <<precio Bitcoin>>, en principio. Se habla en condicional porque esta definición proviene de las Jornadas.
+
+\subsection{Jornadas Nacionales de Derecho Civil 2024: <<sí es dinero>>}
+
+En 2024 se realizaron las Jornadas Nacionales de Derecho Civil en Pilar. Se decidió \textbf{por mayoría que era dinero}, lo contrario de lo que opinaban los alumnos. Entonces el Bitcoin era moneda de curso legal en El Salvador y en la República Centroafricana; eso cambió, y habría que ver cómo se votaría ahora. Los puntos más fuertes de la mayoría eran que dos Estados lo emitían. Esa teoría se debilita cuando El Salvador arregla parte de su deuda con el Fondo Monetario Internacional y este le pide cortar aquella emisión, porque para el FMI no es dinero: queda solamente la República Centroafricana.
+
+\begin{important}
+\textbf{Criterio para considerarlo precio.} Si tiene los caracteres esenciales (emisión de un país y reconocimiento estatal), puede considerárselo precio y otorgarse una compraventa con sustento jurídico. Si no, será permuta, y habrá que ver si es cosa según la definición vista.
+
+Las conclusiones de las Jornadas fueron que \textbf{algunas criptomonedas pueden considerarse dinero}: hay que ver cada una.
+\end{important}
+
+Los expositores señalaron que tienen una posición tomada que no adelantaron, para que los alumnos llegaran a una conclusión propia.
+
+\subsection{La otra postura: el criptoactivo como <<cosa>>}
+
+Hubo otra postura, que \textbf{no se aprobó}, con fundamentos considerados fuertes. Se basaba en que lo que se consideraba cosa fue cambiando: el Código de Vélez originario hablaba de las cosas en razón de la \textbf{corporalidad} (un atributo físico); con la reforma de 1968 cambia la definición y habla de \textbf{bienes materiales}. La postura sostenía que hubo una voluntad legislativa de pasar de la corporalidad a la materialidad, más amplia. Dentro de los bienes materiales (las cosas) estarían los corpóreos (un mueble, un auto) y también los no corpóreos: criptomonedas, energía.
+
+\begin{formula}{art.~16 CCyC. Bienes y cosas}
+<<ARTÍCULO 16.- Bienes y cosas. Los derechos referidos en el primer párrafo del artículo 15 pueden recaer sobre bienes susceptibles de valor económico. Los bienes materiales se llaman cosas. Las disposiciones referentes a las cosas son aplicables a la energía y a las fuerzas naturales susceptibles de ser puestas al servicio del hombre.>>
+
+La energía está expresamente establecida en el art.~16 como cosa. Esta postura tiene un fundamento fuerte, pero no fue la que se receptó.
+\end{formula}
+
+\subsection{Funciones del dinero}
+
+Si se piensa el dinero en cuanto a su funcionalidad (no la cuestión política, sino qué función tiene), se establecieron tres características que algo debe tener para ser dinero:
+
+\begin{enumerate}
+    \item \textbf{Unidad de cuenta:} que permita contar.
+    \item \textbf{Reserva de valor:} que se pueda ahorrar en eso.
+    \item \textbf{Medio de pago / unidad de cambio:} que permita pagar cosas.
+\end{enumerate}
+
+Como ejemplo del tercero se mencionó que hay un antecedente histórico en el que se vendieron pizzas por Bitcoin, y la posibilidad de pagar en el supermercado con una tarjeta asociada a criptomonedas. Se aclaró que lo que hacen esas plataformas es una \textbf{pasarela de pago}: se tienen depositadas criptomonedas, a las que se les adjudica un valor conforme al mercado y se convierten; se paga con cripto, pero quien recibe no recibe estrictamente cripto (hay otras que permiten recibir cripto también).
+
+\section{Unidad 11. En la práctica: ¿quién vende un inmueble por un Bitcoin?}
+
+En la realidad, nadie vende su inmueble por un Bitcoin: \textbf{no es que se esté negado, sino que es cultural}. Los inmuebles se venden en dólares, y también en euros, en libras, en yuanes, e incluso podría aceptarse un bono del Tesoro de Estados Unidos antes que un bono argentino (<<después vemos si es compraventa o no>>).
+
+Por geopolítica, El Salvador y la República Centroafricana no pesan mucho; si hubiera sido Estados Unidos el que lo aceptaba, sería distinto. Dentro de los caracteres señalados se tiene la unidad de medida y también reconocimiento y emisión estatal. En El Salvador se podía comprar leche por 0,32 Bitcoin: cuando hay esa facilidad de cambio, se lo hace moneda.
+
+\begin{example}{analogía local: cuasimonedas provinciales}
+Los Lecop y los patacones eran monedas emitidas por el Estado provincial. Más recientemente, en La Rioja, los <<chachos>>: se vende una casa por un <<chacho>>. Son las preguntas que los expositores se hicieron en su momento respecto de la definición.
+\end{example}
+
+\begin{important}
+\textbf{Conclusión de los expositores.} Habrá compraventa, entienden, solamente cuando se tenga esencialmente Bitcoin; hay que ver algunos otros casos.
+\end{important}
+
+\section{Unidad 12. Las stablecoins: el caso del USDT}
+
+USD son dólares; \textbf{USDT} es el dólar en token. El USDT no reemplaza al dólar: tiene una \textbf{paridad ficticia de uno a uno}. La empresa Tether, que lo emite, dice que por cada emisión de criptomoneda \emph{stablecoin} (moneda estable) cuando deposita un dólar emite un USDT. Para Tether y para quienes comercializan con él en el día a día, es moneda. Sin embargo, \textbf{no cumple los requisitos} vistos.
+
+Se concluyó tajantemente que moneda no es, pero se le reconoce una \textbf{paridad uno a uno ficta}: no se conoce a Tether ni se abre su bóveda para ver si tiene la paridad, así como tampoco se va al Tesoro de Estados Unidos a verificar que tenga los dólares emitidos. Es ficta, pero se reconoce y se confía: \textbf{la confianza lo es todo en el mercado}.
+
+\subsection{Confianza, valor y adaptación}
+
+\begin{itemize}
+    \item Hay gente que confía y la mayoría no; quienes están en el ecosistema sí comprarán.
+    \item Muchas stablecoins han perdido el \textbf{peg} (estar pegadas uno a uno). Algunas son en dólares, otras en oro u otro bien; hay que ver qué hay detrás y si se confía o no.
+    \item Estados Unidos también tiene más deuda que sustento y, sin embargo, el dólar está establecido como moneda mundial: hay una \textbf{construcción social del valor}. El dólar también viene con inflación y se confía igual.
+    \item Bitcoin nació en 2008, es decir, tiene casi veinte años.
+    \item Se observó que, en un mundo que se adapta rápido (por ejemplo, a la inteligencia artificial), sobre este tema se viene escuchando desde antes y la gente sigue sin interactuar; muchas criptomonedas desaparecieron en el medio.
+\end{itemize}
+
+\section{Unidad 13. ¿Qué contrato se celebra? Compraventa, permuta, cesión o contrato innominado}
+
+La calificación del criptoactivo (dinero, cosa, energía, bien inmaterial) define el \textbf{tipo de contrato}: si es cosa y hay un inmueble por un lado y una cosa por el otro, hay una \textbf{permuta}; si se lo considera dinero, puede ser una \textbf{compraventa}. Hay quienes dicen que es una \textbf{cesión de derechos} (se transmitiría el dominio mediante una cesión de derechos); algunos dicen que es cesión y permuta; y otros, postura a la que adhieren los expositores, dicen que es un \textbf{contrato innominado}: no hay que clasificarlo como compraventa ni como permuta, porque el Código admite contratos innominados y es efectiva la transmisión de un inmueble a cambio de criptomonedas.
+
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.17\textwidth}>{\RaggedRight\arraybackslash}p{0.38\textwidth}>{\RaggedRight\arraybackslash}p{0.38\textwidth}@{}}
+\toprule
+\textbf{Calificación} & \textbf{Cuándo se sostiene} & \textbf{Observación en clase} \\
+\midrule
+\endhead
+Compraventa &
+Si la criptomoneda se considera dinero (emisión y reconocimiento estatal). &
+Hoy, según los expositores, solo en el caso de Bitcoin, con reservas. \\
+\addlinespace
+Permuta &
+Si la criptomoneda se considera cosa (bien material no corpóreo). &
+Postura que no fue la receptada en las Jornadas de 2024, pero con fundamento fuerte. \\
+\addlinespace
+Cesión de derechos &
+Se transmite el dominio mediante una cesión de derechos; hay quienes dicen <<cesión y permuta>>. &
+Postura minoritaria mencionada. \\
+\addlinespace
+Contrato innominado &
+No hay calificación codificada: entra en el residual de los contratos innominados. &
+Postura a la que adhieren los expositores. \\
+\bottomrule
+\end{longtable}
+
+\begin{formula}{art.~1126 CCyC. Compraventa y permuta (complemento; no fue citado textualmente en clase)}
+<<Si el precio consiste parte en dinero y parte en otra cosa, el contrato es de permuta si es mayor el valor de la cosa, y de compraventa en los demás casos.>>
+% TODO: contenido incompleto o ambiguo en las notas originales (el art. 1126 figura como complemento del apunte, no citado en la clase)
+\end{formula}
+
+En el contrato innominado, el vendedor transmite el dominio a la compradora y ella transmite al vendedor los derechos sobre determinada criptomoneda. Como no hay una calificación codificada, entra en el residual de contrato innominado: hay una transmisión de dominio con una contraprestación de algo; normalmente es precio, pero en este caso es otra cosa, porque no se la puede calificar como precio por lo visto.
+
+\subsection{Consecuencias impositivas de la calificación}
+
+La calificación tiene efectos en otras cuestiones. Si se considera permuta, hay un cálculo para el impuesto de sellos llamado \textbf{semisuma}: el fisco cobra menos, porque se considera cosa y se aplica la norma de permuta.
+
+Los escribanos son \textbf{solidariamente responsables}: además de redactar contratos son agentes de retención o de recaudación de ARCA. El fisco indica cómo retener ante cada contrato; por ejemplo, en un préstamo dinerario se retiene, en capital, el 1\,\% y en provincia el 1,2\,\%; para la compraventa se retiene básicamente el 2,7\,\% cuando el inmueble es por debajo de determinado valor. Cuando hay una compraventa por un precio, ese precio se calcula conforme al dólar Banco Nación o lo que paguen las partes, el que sea de mayor valor: \textbf{el fisco no va a perder nunca}.
+
+\begin{example}{numérico de la semisuma}
+Si hay un inmueble de 10 por un lado y, por el otro, un bien de 2, la semisuma dice que se tributa sobre la mitad de la suma:
+\[
+\frac{10 + 2}{2} = 6.
+\]
+Se paga la mitad de lo que se pagaría con dos compraventas. Frente a la pregunta <<¿va a perder el fisco?>>, la respuesta es que el fisco pierde alguna vez y, como los escribanos son solidariamente responsables, son cuidadosos al calificar este tipo de cosas.
+\end{example}
+
+\begin{important}
+\textbf{Responsabilidad del escribano.} El fisco va a preguntar al escribano cómo y por qué; salvo que lo justifique absolutamente bien y que no se lo puedan refutar, tendrá que poner el extra que no cobró al fisco. Por eso es importante la calificación y se hace hincapié en cómo se califica cada criptomoneda, precio, etcétera.
+\end{important}
+
+% ---------------------------------------------------------------
+\chapter{Cómo se individualiza, se redacta y se controla el precio en criptoactivos}
+\markboth{Bloque 4: individualizar y controlar el pago}{Bloque 4: individualizar y controlar el pago}
+
+\section{Unidad 14. Individualizar el pago: cuentas bancarias vs.\ billeteras, blockchain y hash}
+
+Cuando el pago es con dinero, se individualizan cuentas bancarias (entidad bancaria, CBU, titulares). Cuando es con criptomonedas, se individualizan \textbf{las direcciones de las billeteras virtuales} que tienen esa criptomoneda.
+
+\subsection{Billeteras calientes y frías}
+
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.17\textwidth}>{\RaggedRight\arraybackslash}p{0.38\textwidth}>{\RaggedRight\arraybackslash}p{0.38\textwidth}@{}}
+\toprule
+& \textbf{Billetera caliente (hot wallet)} & \textbf{Billetera fría (cold wallet)} \\
+\midrule
+\endhead
+\textbf{Conexión} &
+Conectada a internet; puede estar en el celular, con acceso fácil de cualquiera, inclusive del hacker. &
+Desconectada de todo; solo se conecta en el momento en que se accede a ella. \\
+\addlinespace
+\textbf{Seguridad} &
+Menor. Es lo que pasó con Binance: tenía una hot wallet con miles de millones de dólares; un hacker entró y se robó 6.000 millones de dólares en 20 minutos. &
+Mayor: no hay forma de llegar a ella. Distintas medidas de seguridad; no se le da acceso a la red. \\
+\addlinespace
+\textbf{Analogía} &
+La billetera de mano, que pueden robar en cualquier lado: donde se tiene el dinero hoy. &
+Una caja fuerte donde nadie tiene acceso salvo el titular, cuando quiere. \\
+\addlinespace
+\textbf{Soporte típico} &
+Aplicación en el celular. &
+Dispositivos tipo pendrive. \\
+\bottomrule
+\end{longtable}
+
+\subsection{La blockchain, los exploradores de bloques y el hash}
+
+En criptomoneda todo se maneja por \textbf{cadena de bloques (blockchain)}. La transacción se anota en la blockchain cuando se transfiere de la wallet de A a la wallet de B. Así como el banco da un comprobante de transferencia, hay un comprobante de transferencia en la blockchain, al que se puede dar seguimiento: que salió y que entró.
+
+La blockchain es un registro, como un libro contable o libro diario. Se llama <<cadena de bloques>> porque las transacciones se registran en bloques entrelazados entre sí que forman una cadena. Los \textbf{exploradores de bloques} permiten ver los movimientos: colocando el número de billetera (dirección) arrojan los movimientos de esa dirección y todos los históricos de lo ocurrido en la red.
+
+Se puede ingresar con la dirección o, una vez que se transacciona de una billetera de origen a una de destino, con el \textbf{hash de la transacción}: un identificador (ID) de esa transacción, un número largo alfanumérico. Es como el número de transferencia bancaria. Con el hash, ingresado en el explorador, se puede verificar que la transacción se hizo, entre qué billeteras y en qué momento.
+
+\begin{definition}{equivalencias para recordar}
+\begin{itemize}
+    \item CBU o cuenta bancaria $\rightleftarrows$ \textbf{dirección de la billetera}.
+    \item Comprobante o número de transferencia $\rightleftarrows$ \textbf{hash de la transacción}.
+    \item Libro contable o registro $\rightleftarrows$ \textbf{blockchain}, consultable con un explorador de bloques.
+\end{itemize}
+\end{definition}
+
+\section{Unidad 15. Qué se escribe en la cláusula de precio}
+
+En la cláusula de precio se consigna el tipo de moneda (para individualizar cuál es, porque hay distintos tipos), la cantidad, el valor y el momento de la cotización, y la individualización de la wallet, que es fundamental: sin saber de dónde sale ni adónde llega, no hay individualización. También la modalidad (si es fría o caliente) y la \textbf{red}, porque a veces la misma moneda (por ejemplo, USDT) permite transferir por diferentes redes (Ethereum, Tron, etc.), y de la red depende el explorador en el que se la podrá identificar.
+
+\begin{important}
+\textbf{Elementos de la individualización del precio en cripto:}
+\begin{enumerate}
+    \item Tipo de criptomoneda.
+    \item Cantidad.
+    \item Cotización (valor y su momento).
+    \item Billeteras de origen y de destino (direcciones).
+    \item Red (blockchain) por la que se transfiere.
+    \item Modalidad de la billetera (caliente o fría), como dato de riesgo.
+\end{enumerate}
+\end{important}
+
+\section{Unidad 16. Prevención del lavado de activos y debida diligencia}
+
+Los abogados y los escribanos son \textbf{sujetos obligados} y deben prevenir el lavado de activos. Individualizar la wallet, con sus distintas direcciones, permite indagar si esas direcciones estuvieron vinculadas a operaciones sospechosas. Existen páginas donde se puede verificar eso.
+
+\begin{example}{los fondos robados}
+De los 6.000 millones robados, ya hay 4.000 millones congelados. Si un escribano tiene a un vendedor cuya wallet tuvo contacto inmediatamente anterior con alguna de las billeteras marcadas como peligrosas, debe denunciarlo automáticamente. Por eso es importante la prevención, tanto por los sujetos que deben informar (reportan mensualmente) como por la gente.
+\end{example}
+
+Si no se verifica de dónde venían las direcciones, puede ocurrir que hubieran sido producto de lavado por el contacto con otras direcciones. A veces se hace lo que se llama \textbf{hop}: un salto entre direcciones, con muchas transferencias en el medio hasta llegar a la dirección. Si quien vendió por un Bitcoin quiere luego depositarlo en una plataforma y esta, que también es sujeto obligado y hizo su debida diligencia, detecta que dos o tres direcciones atrás estuvo en una marcada como peligrosa, \textbf{posiblemente responderá el escribano} por no haber hecho la debida diligencia, y puede generar un perjuicio a la persona.
+
+\subsection{¿La billetera debe estar descripta con CBU o registrada ante la CNV?}
+
+Describir la wallet con una CBU \textbf{no es obligatorio}. Una plataforma como Lemon es un \textbf{PSAV} (proveedor de servicios de activos virtuales), dentro de la normativa de la CNV. Constituir una sociedad con criptoactivos en vez de con dinero es posible, y en ese caso es obligatorio hacerlo desde una wallet que guarde esos activos y que esté anotada dentro de un PSAV: ese es el patrimonio que cubrirá a los acreedores si a la sociedad le pasa algo.
+
+Si el cliente viene con dinero depositado en un exchange, se supone que este hizo cierta debida diligencia antes, lo que constituye un plus. Es comparable con el banco argentino: si se tienen 100.000 dólares en un banco, al ser sujeto obligado, se pide la extracción bancaria o el comprobante de transferencia, porque se supone que el banco hizo su debida diligencia; se puede ir más atrás si algo parece raro. Si viene de un PSAV hay más tranquilidad que si viene de una wallet fría que no se mueve hace mucho tiempo.
+
+\section{Unidad 17. La cotización: fija, fuente, fecha de cierre y fisco}
+
+Una vez individualizado todo, queda bien individualizado el precio. En la cotización puede haber una \textbf{cotización fija}: un Bitcoin vale 60.000 y se asume el riesgo; la unidad funcional equivale a un Bitcoin; o la unidad funcional vale 60.000 dólares y se permite que se pague con criptomonedas, y si al momento de la escritura la cripto bajó a 40, habrá que pagar un Bitcoin y medio (40 más el medio de otro) para cumplir con los 60.000 dichos en los instrumentos previos (reserva, refuerzo, etc.).
+
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.22\textwidth}>{\RaggedRight\arraybackslash}p{0.38\textwidth}>{\RaggedRight\arraybackslash}p{0.30\textwidth}@{}}
+\toprule
+\textbf{Modalidad} & \textbf{Cómo se pacta} & \textbf{Quién asume la volatilidad} \\
+\midrule
+\endhead
+Cantidad fija de cripto &
+<<La unidad funcional equivale a 1 Bitcoin.>> &
+Cada parte <<se la aguanta>>: el vendedor gana o pierde según suba o baje el Bitcoin. \\
+\addlinespace
+Precio fijo en dólares, pagadero en cripto &
+<<La unidad vale US\$\,60.000 y se paga en criptomonedas.>> Si el cripto baja, hay que entregar más unidades (1,5 en el ejemplo). &
+Recae sobre el comprador, que debe completar hasta cubrir el valor pactado. \\
+\bottomrule
+\end{longtable}
+
+Tienen mucha relevancia los instrumentos previos, las \textbf{tratativas precontractuales}, para prever quién asume en definitiva los riesgos de la volatilidad. Se mencionó que hay antecedentes de compraventas con el precio en dólares, porque el criptoactivo por ahí se desconoce; antes había que reportarlo sí o sí, y ahora hay un enfoque basado en el riesgo de la persona. Con criptomonedas el riesgo es alto y, en consecuencia, hay más medidas.
+
+\subsection{¿Dónde se toma la cotización?}
+
+No hay una cotización oficial, como sí la hay para el dólar (Banco de la Nación, precio tipo vendedor del día anterior). Hay páginas donde consultar cotizaciones (por ejemplo, por \emph{market cap}) y \textbf{todo eso debe consignarse en la escritura}: de dónde se saca la cotización. Tampoco hay un cierre; el cierre puede estipularse en los instrumentos: al momento de la firma de la reserva, del refuerzo, del boleto de compraventa o de la compraventa misma, con lo cual se achica la volatilidad.
+
+Para una moneda descentralizada se coloca la cotización como en el dólar (<<precio de 100 pesos a la cotización del dólar Banco Nación tipo vendedor del día de ayer>>), pero con CoinMarketCap u otra página conocida. Se incorpora la \textbf{captura de pantalla} de la cotización al momento de firmar la escritura, para dejar constancia: se construye la buena fe no solo de las partes, sino también del profesional, que fue diligente al asesorar.
+
+Se observó que los jóvenes, que se supone están en el mundo cripto, confían más en el dólar que en un activo no regulado por ningún Estado: son construcciones de confianza.
+
+\subsection{El fisco nunca pierde}
+
+\begin{important}
+\textbf{Cotización para las partes vs.\ cotización para el fisco.} Una cosa son las partes y otra el fisco, que no acepta lo pactado. Si las partes tomaron la cotización de la reserva o del boleto y al día de la escritura la cotización fue más alta, para las partes será la pactada, pero para el fisco será la que más beneficiosa le sea.
+
+Ejemplo de la clase: si las partes tomaron 60 y el día de la escritura fue 63, para las partes será una, y para el fisco se hará la cotización al 63 y se pagarán impuestos sobre esa \textbf{base imponible}.
+\end{important}
+
+\section{Unidad 18. Billeteras pseudónimas, trazabilidad y labor del escribano en cada etapa}
+
+Las direcciones de las billeteras \textbf{no tienen nombre: todo es seudónimo}. No es como una cuenta bancaria, cuyo titular es una persona determinada. Corresponde al escribano identificar a la persona que manifiesta ser titular; no se puede verificar en ningún lado la titularidad, es una \textbf{manifestación} de la persona, pero permite ponerle nombre a esa dirección. Las transacciones posteriores también sirven, porque puede hacerse una \textbf{trazabilidad} de todas las criptomonedas a través de las diferentes direcciones verificables en una blockchain.
+
+\begin{important}
+\textbf{Resumen de los expositores.} Hay poca construcción legislativa y mucha construcción doctrinaria. Los doctrinarios reconocen que hoy la criptomoneda es un \textbf{modo de cancelación de obligaciones}, independientemente de cuál, y hay que buscar el encuadre jurídico más adecuado para ejercer la profesión con responsabilidad.
+\end{important}
+
+Se puede dejar una \textbf{constancia especial}: que el escribano asesoró a las partes, explicó la volatilidad, explicó que se tomará la cotización de determinado momento y que todos están de acuerdo. Forma parte de construir que se hizo bien y responsablemente el trabajo.
+
+\textbf{¿Qué pasa si el vendedor pierde valor a los pocos días?} Si se hace la compraventa por un inmueble a 60.000 a la cotización del momento y a los tres días el Bitcoin bajó diez veces (ahora vale 10.000), lo que corresponde es asesorar respecto del riesgo y la volatilidad. Hay criptomonedas muy volátiles y otras más estables, pero algunas supuestamente estables pierden el nivel.
+
+\subsection{Resumen de la labor notarial, etapa por etapa}
+
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.30\textwidth}>{\RaggedRight\arraybackslash}p{0.64\textwidth}@{}}
+\toprule
+\textbf{Etapa} & \textbf{Qué se hace} \\
+\midrule
+\endhead
+Previa (precontractual y contratos preliminares) &
+Reserva, refuerzo y boleto: se acuerda qué cotización se va a tomar, quién va a asumir el riesgo y desde qué direcciones hasta qué direcciones se va a transferir, y por qué red. \\
+\addlinespace
+La escritura &
+Se vuelca todo en la cláusula del precio. También la cotización que se ofrece desde ya al fisco. \\
+\addlinespace
+Posterior &
+Constancias de la transacción (hash), confirmaciones en la red y, en su caso, notas marginales con constancias notariales. \\
+\bottomrule
+\end{longtable}
+
+\section{Unidad 19. Hash posterior, notas marginales y confirmaciones de la red}
+
+El hash de la transacción solo se tiene \textbf{una vez que se postula la transacción}; en la práctica es posterior a la firma de la escritura o a la inscripción. Por eso se coloca mediante \textbf{notas marginales con constancias notariales}: materialmente no iría en la cláusula de precio, que se redacta antes.
+
+Recapitulando el precio: se pasó por la individualización propia, pensando en pesos, dólares o criptomonedas, ya sea en wallets frías o calientes; hay redes en las que se anotan las transferencias (blockchain, Ethereum, Tron), y es importante la individualización.
+
+\begin{important}
+\textbf{Confirmaciones de la red.} La transacción no se anota en la red en el momento en que se hace la transferencia: tiene que haber \textbf{confirmaciones}. Se sugiere que haya \textbf{seis confirmaciones mínimas} dentro de la red para decir que quedó firme y que se anotó correctamente en la cadena de bloques.
+
+Las confirmaciones son bloques: se cierra el bloque en el que está la transacción y luego hay otros bloques superiores para que sea sólida. Se calcula que tiene que haber más o menos seis bloques, que duran más o menos 10 minutos cada uno. Hay que esperar un poco para decir que quedó confirmada.
+\end{important}
+
+% ---------------------------------------------------------------
+\chapter{Criptoactivos y régimen patrimonial del matrimonio}
+\markboth{Bloque 5: cripto y matrimonio}{Bloque 5: cripto y matrimonio}
+
+\section{Unidad 20. Cripto adquiridas antes o durante el matrimonio: carácter propio o ganancial}
+
+Si el comprador es casado y dice que adquirió las criptomonedas antes de casarse, lo que adquiere (el inmueble) sería \textbf{bien propio, si el dinero era propio}. Para probarlo, hay que probar las fechas en que compró y la fecha en que se casó. Para comprobar la fecha se tiene la dirección de la wallet y la red en que se adquirieron; con la dirección se hace la búsqueda y aparece en qué fecha y a qué hora se anotó en la blockchain la transacción, lo que da buena fe respecto del momento de la adquisición. La persona manifiesta que esa dirección le pertenece, porque, al ser seudónimos, las wallets no tienen titularidad. Se mencionó el caso de un político que dijo tener 250.000 en criptomoneda y pareció poder probarlo ante la justicia; esto hace también a la buena fe.
+
+\begin{formula}{art.~466 CCyC. Prueba del carácter propio o ganancial}
+<<ARTÍCULO 466.- Prueba del carácter propio o ganancial. Se presume, excepto prueba en contrario, que son gananciales todos los bienes existentes al momento de la extinción de la comunidad. Respecto de terceros, no es suficiente prueba del carácter propio la confesión de los cónyuges.
+
+Para que sea oponible a terceros el carácter propio de los bienes registrables adquiridos durante la comunidad por inversión o reinversión de bienes propios, es necesario que en el acto de adquisición se haga constar esa circunstancia, determinándose su origen, con la conformidad del otro cónyuge. Si falta la conformidad, el adquirente puede requerir una declaración judicial del carácter propio del bien, de la que se debe tomar nota marginal en el instrumento por el que se documentó la adquisición.>>
+\end{formula}
+
+El art.~466 exige que conste la causa de dónde se adquirió, cómo y en qué momento. Eso se puede probar desde los exploradores, yendo hacia atrás, y la conformidad también debe venir del cónyuge.
+
+\textbf{Si el vendedor es casado}, y compró el inmueble siendo casado, hay que requerir el \textbf{asentimiento del cónyuge}, y también determinar el carácter de las criptomonedas que tiene. La escritura es la fuente para probar en un futuro, en un divorcio, que son gananciales, porque están individualizadas por la dirección. Por eso es tan importante identificar qué dirección va y qué dirección viene.
+
+\section{Unidad 21. Suba de valor vs.\ frutos: ¿es ganancial la mera fluctuación?}
+
+\subsection{La consulta y el caso práctico}
+
+Se planteó si el criptoactivo calificaría como bien ganancial, entendiéndolo como una suerte de acción, y qué ocurre con los frutos o con lo que crezca (como un alquiler: la propiedad es propia, pero los frutos entran como bien ganancial). Se señaló que sobre esto se han escrito trabajos y se aprobaron conclusiones en la Convención Notarial de este año, publicadas en la página del Colegio. El tema es la conceptualización.
+
+\begin{example}{el Bitcoin comprado soltero}
+Se adquiere un Bitcoin siendo soltero, en 2020, a 300; en 2021 la persona se casa, y hoy vale 60.000. Toda esa suba de valor ocurrió cuando era casada. ¿Es propio? ¿Es ganancial? Se respondió, en primera instancia, que ganancial; la respuesta de la docente invitada fue que \emph{sigue siendo un Bitcoin}.
+\end{example}
+
+\begin{formula}{art.~464, inc.~k, CCyC. Valores mobiliarios propios (referencia de la docente invitada)}
+<<ARTÍCULO 464.- Bienes propios. Son bienes propios de cada uno de los cónyuges: [\ldots] k) los valores nuevos y otros acrecimientos de los valores mobiliarios propios, sin perjuicio de la recompensa debida a la comunidad por el valor de las inversiones hechas para suscribirlos; [\ldots]>>
+
+Si se quiere hacer la asociación con las acciones, esa es la relación que se toma: qué pasa si se tenían acciones siendo soltero y aumentan de valor. Esa suba o baja de valor no es una cuestión unánime.
+\end{formula}
+
+Una doctrinaria sostiene que esa suba de valor es \textbf{ganancial}, porque también es considerada ganancia a nivel ejecutivo (fiscal). En las jornadas de la Convención Notarial se votó que la \textbf{mera suba de valor no es un fruto}, sino una fluctuación de precio; en consecuencia, el bien sigue manteniendo, por el art.~464 inc.~k, el carácter de propio si era propio, o de ganancial si era ganancial. Si el vendedor recibió los Bitcoin siendo casado y después sube el precio, <<ganó la comunidad>>.
+
+\begin{important}
+\textbf{Distinción entre fluctuación y fruto.}
+\begin{itemize}
+    \item \textbf{Mera fluctuación de valor:} no es fruto; el bien conserva su carácter (propio sigue propio; ganancial sigue ganancial).
+    \item \textbf{Frutos o ganancias generadas:} si se invirtió, se hizo \emph{staking} o \emph{trading} de manera activa, hay una ganancia: es un fruto y sería ganancial.
+\end{itemize}
+\end{important}
+
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.30\textwidth}>{\RaggedRight\arraybackslash}p{0.34\textwidth}>{\RaggedRight\arraybackslash}p{0.30\textwidth}@{}}
+\toprule
+\textbf{Situación} & \textbf{Carácter} & \textbf{Fundamento citado en clase} \\
+\midrule
+\endhead
+Bitcoin comprado soltero, que luego sube de valor &
+Propio (la suba no es fruto). &
+Art.~464 inc.~k; conclusión de la Convención Notarial. \\
+\addlinespace
+Bitcoin recibido siendo casado, que luego sube &
+Ganancial: <<ganó la comunidad>>. &
+Misma regla. \\
+\addlinespace
+Ganancias por staking o trading activo &
+Frutos: gananciales. &
+Distinción entre fluctuación y fruto. \\
+\addlinespace
+Postura doctrinaria disidente &
+La suba de valor es ganancial (también es ganancia en el ámbito fiscal). &
+No fue la votada en la Convención. \\
+\bottomrule
+\end{longtable}
+
+\subsection{El problema esencial: la calificación}
+
+El problema esencial es la \textbf{calificación}: al no haber una calificación legislativa, no se sabe si llamarlo cosa, derechos o ahorros. Dentro del patrimonio, no hay dudas; por eso ARCA obliga a declararlo. Esa fue una definición del fisco: <<esto es parte del patrimonio y por eso hay que declararlo>>. Todo esto está en plena construcción, y la mayoría entra por lo doctrinario y por la costumbre; si se empezara a negociar todo con criptomoneda, empezarían a pasar cosas alrededor de eso, porque la \textbf{costumbre es fuente del derecho}.
+
+% ---------------------------------------------------------------
+\chapter{Recomendaciones prácticas y cierre}
+\markboth{Bloque 6: recomendaciones y cierre}{Bloque 6: recomendaciones y cierre}
+
+\section{Unidad 22. Aprender haciendo y conclusiones finales}
+
+Los conceptos son abstractos. Se sugirió abrir una cuenta en cualquier plataforma y \textbf{comprar 10 pesos argentinos en cripto} para entender qué es una wallet y qué es una dirección. Para esa suma no es esperable que ARCA diga algo. Se mencionó Binance, que reforzará sus medidas de seguridad por el robo sufrido. A veces, para entender cómo funciona, hay que hacerlo.
+
+Se señaló también que el mundo cripto está muy vinculado con los delitos, pero que ello no implica que el activo sea ilícito: así como Pablo Emilio Escobar Gaviria tenía miles de millones de dólares y no por eso el dólar es una moneda con la que se cometan delitos, <<no todo es lo que nos venden>>.
+
+\begin{important}
+\textbf{Cierre de la clase: lo que hay que llevarse.} Se puede transferir un inmueble a cambio de criptomonedas. La discusión está en si se trata de una compraventa, una permuta o un contrato innominado, en función de la naturaleza jurídica que se le dé a la cripto; de eso derivará el contrato de que se trate. Pero definitivamente se puede transferir el dominio de un inmueble a cambio de esto, y se puede realizar la escritura sin ningún tipo de problema.
+
+El modo de identificar el precio, en la cláusula segunda: el tipo de cripto, la cantidad, la cotización y de dónde sale, de dónde sale y adónde ingresa, para identificar a los sujetos, vendedor y comprador.
+\end{important}
+
+% ==================== CORNELL ====================
+\clearpage
+\chapter*{Resumen Cornell}
+\addcontentsline{toc}{chapter}{Resumen Cornell}
+\markboth{Resumen Cornell}{Resumen Cornell}
+
+Preguntas disparadoras a la izquierda, desarrollo a la derecha y síntesis integradora al pie.
+
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.27\textwidth}>{\RaggedRight\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Qué requisitos debe reunir el precio?} &
+Tiene que ser \textbf{en dinero, cierto y serio} (art.~1123 CCyC: <<pagar un precio en dinero>>). Sin ellos no hay precio y, por tanto, no hay compraventa. En la clase se desarrolló el primero. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Cómo se describe el lote o la UF en la escritura?} &
+Con ubicación, linderos y orientación de los lados (se extiende la flecha del norte a todos los vértices), superficies y nomenclatura catastral. La calle, el número y las superficies van en letras; la nomenclatura, en números. Las medidas de la UF surgen del reglamento de propiedad horizontal. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Qué es el dinero?} &
+No hay definición jurídica. Se lo puede definir como un bien de valor patrimonial abstracto: interesa por lo que representa más que por lo que es. Puede ser objeto de un contrato (mutuo) o medida de valor. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Cuáles son las cuatro etapas de regulación de la moneda extranjera?} &
+1)~Vélez: dar cosa, se paga en pesos. 2)~Obligación dineraria: se paga en la moneda pactada. 3)~CCyC 2015--2023: arts.~765 y 766 originales, dar cosa. 4)~DNU 70/2023: dineraria; se debe la moneda pactada. La regulación es cíclica. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Qué problemas tenía el art.~765 original?} &
+Remitía a normas inexistentes (dar cosas), llamaba <<moneda>> a lo que trataba como <<cosa>>, chocaba con el art.~766, planteaba una permuta si se transfería una cosa a cambio de moneda extranjera y no aclaraba si era renunciable. En la práctica notarial se pactaba que la moneda era esencial. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Es dinero un Bitcoin?} &
+Discutido. Las Jornadas Nacionales de Derecho Civil 2024 votaron por mayoría que algunas criptomonedas pueden ser dinero. Requisitos señalados: emisión estatal y reconocimiento, y funciones de unidad de cuenta, reserva de valor y medio de cambio. Postura contraria, no receptada: es cosa (art.~16 CCyC). \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Y el USDT y otras stablecoins?} &
+No son moneda por falta de los caracteres esenciales; tienen una paridad uno a uno ficta, basada en la confianza. Algunas han perdido el peg. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Qué contrato se celebra si se paga con cripto?} &
+Compraventa (si es dinero), permuta (si es cosa), cesión o contrato innominado, postura que adoptan los expositores. La calificación incide en el impuesto de sellos (semisuma en la permuta) y en la responsabilidad solidaria del escribano. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Cómo se individualiza el pago en cripto?} &
+Con tipo de cripto, cantidad, cotización, direcciones de billetera de origen y destino y red. El hash identifica la transacción, se obtiene después y se consulta en un explorador de bloques. Billeteras calientes (en línea) y frías (desconectadas). \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Qué controles debe hacer el escribano?} &
+Como sujeto obligado, debe aplicar debida diligencia: verificar que las direcciones no estén vinculadas a fondos ilícitos (también por hops). Un PSAV registrado ante la CNV reduce el riesgo; una wallet fría inactiva exige más análisis. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Cómo se fija la cotización?} &
+Puede pactarse una cantidad fija de cripto o un precio fijo en dólares. Se indica la fuente (p.~ej., CoinMarketCap), la fecha de cierre y se guarda captura de pantalla. Para el fisco rige la cotización más beneficiosa para él al momento de la escritura. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Cuándo queda firme la transferencia?} &
+Tras unas seis confirmaciones (unos 10 minutos por bloque). El hash se incorpora mediante nota marginal o constancia notarial. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Cómo se prueba cuándo se adquirió un cripto, si hay matrimonio?} &
+Con la dirección de la wallet y la red: el explorador muestra fecha y hora de la transacción. Se vincula con el art.~466 CCyC (constancia del origen, conformidad del cónyuge y presunción de ganancialidad) y con el asentimiento del cónyuge al vender. \\
+\addlinespace
+\cmidrule{1-2}
+\textbf{¿Es ganancial la suba de valor?} &
+La Convención Notarial votó que la mera fluctuación no es fruto: el bien conserva su carácter (art.~464 inc.~k). Los frutos (staking, trading activo) sí son gananciales. Hay doctrina disidente. \\
+\midrule
+\multicolumn{2}{@{}p{0.93\textwidth}@{}}{%
+\textbf{Síntesis final.} La clase completa la secuencia de la compraventa inmobiliaria: después de describir con exactitud el inmueble (orientación, superficies, letras y números), se pasa a la obligación principal del comprador, el precio, que debe ser en dinero, cierto y serio. Como el Código no define el dinero, se lo entiende como un bien de valor patrimonial abstracto, y se repasa cómo la regulación de la moneda extranjera osciló entre la obligación de dar cosa y la dineraria hasta el régimen actual del DNU 70/2023: se debe la moneda pactada. Con ese marco, los expositores plantean el caso de pagar con criptoactivos. No hay norma que los defina; la doctrina y las Jornadas de 2024 admiten que algunos puedan ser dinero si hay emisión y reconocimiento estatal, pero la calificación del contrato sigue abierta (compraventa, permuta o innominado), con efectos directos en el impuesto de sellos y en la responsabilidad solidaria del escribano. Lo que sí es claro es que se puede transferir un inmueble a cambio de criptomonedas, y que la seguridad jurídica se construye con documentación: individualizar el tipo de cripto, la cantidad, la cotización y su fuente, las billeteras y la red, dejar constancia del hash y de las confirmaciones, aplicar la debida diligencia contra el lavado de activos y probar el carácter propio o ganancial con la trazabilidad de la blockchain. Todo se apoya en la buena fe, en el asesoramiento sobre la volatilidad y en la costumbre como fuente del derecho.} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

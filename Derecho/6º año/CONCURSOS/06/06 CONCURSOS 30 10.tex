@@ -1,0 +1,931 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================================================================
+% METADATOS
+% ==================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Derecho Comercial \textperiodcentered{} Derecho Concursal}
+\newcommand{\materia}{Concursos y Quiebras}
+\newcommand{\titulo}{Apuntes de Concursos y Quiebras}
+\newcommand{\subtitulo}{Salvataje de terceros \textperiodcentered{} Concurso por agrupamiento \textperiodcentered{} Acuerdo Preventivo Extrajudicial (APE)}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{Noviembre de 2026}
+
+% ==================================================================
+% PAQUETES
+% ==================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Apuntes de Concursos y Quiebras},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================================================================
+% CONFIGURACIÓN
+% ==================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==================================================================
+% COMANDOS
+% ==================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% ==================================================================
+% ENTORNOS / CAJAS
+% ==================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ==================================================================
+% CONFIGURACIÓN FINAL
+% ==================================================================
+\renewcommand{\arraystretch}{1.25}
+
+% ==================================================================
+\begin{document}
+% ==================================================================
+
+% ------------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE Apuntes de Clase}
+
+\vspace{0.4cm}
+
+{\large \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Concursos y Quiebras'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------------
+\tableofcontents
+
+% ==================================================================
+% CONTENIDO
+% ==================================================================
+
+% ------------------------------------------------------------------
+\chapter[Panorama general]{Panorama general: caminos para evitar la quiebra}
+% ------------------------------------------------------------------
+
+Cuando una empresa o una persona deja de poder pagar sus deudas, la ley ofrece varios caminos antes de llegar a la quiebra. Estos apuntes estudian tres de ellos, que sirven para \textbf{salvar la actividad económica} y ordenar la relación entre el deudor y sus acreedores.
+
+\section{Los tres institutos estudiados}
+
+\begin{itemize}
+    \item \textbf{Salvataje de terceros (art.~48 de la Ley de Concursos y Quiebras):} si el deudor no consigue las conformidades de sus acreedores en el período de exclusividad, en lugar de ir a la quiebra puede intervenir un tercero que compre la sociedad. Se salva la empresa, no al deudor.
+    \item \textbf{Concurso por agrupamiento (arts.~65 a 67):} varias empresas que forman un grupo económico permanente se presentan juntas, con un expediente por cada integrante, una sola sindicatura y la posibilidad de proponer un pago unificado o individual.
+    \item \textbf{Acuerdo Preventivo Extrajudicial, APE (arts.~69 y siguientes):} el deudor negocia por fuera del juicio con sus acreedores y después solicita al juez que homologue el acuerdo, para que obligue también a quienes no lo firmaron.
+\end{itemize}
+
+Se incluyen además un debate sobre créditos laborales y una mirada crítica sobre la cesación de pagos.
+
+\section{Hilo conductor}
+
+El hilo conductor de los tres institutos es \textbf{evitar la quiebra y conservar la empresa}, por caminos distintos según el momento y el tipo de deudor.
+
+\begin{example}{cadena de panaderías familiar}
+Una cadena de panaderías familiar no logra pagar a sus proveedores. Los tres institutos son tres respuestas posibles a esa misma crisis:
+\begin{enumerate}
+    \item \textbf{APE:} el dueño habla con los proveedores, arma un acuerdo por fuera del juicio y después pide que el juez lo homologue.
+    \item \textbf{Concurso por agrupamiento:} si las panaderías son sociedades distintas del mismo grupo, se presentan juntas y deciden si negocian como grupo o cada una por su lado.
+    \item \textbf{Salvataje:} si en el concurso no se consiguen las conformidades, en lugar de la quiebra un tercero puede comprar la sociedad y mantener abiertas las panaderías y los puestos de trabajo.
+\end{enumerate}
+\end{example}
+
+\section{Utilidad en el ejercicio profesional}
+
+Quien ejerza como abogado, contador, administrador o asesor de empresas se encontrará con clientes que ``ya no llegan a fin de mes''. Lo primero que se necesita es \textbf{conocer qué opciones existen antes de la quiebra} y cuál conviene según el caso:
+
+\begin{itemize}
+    \item Si el cliente tiene \textbf{acreedores que aceptan negociar sin juicio}, el camino es el APE.
+    \item Si el cliente es \textbf{parte de un grupo de empresas} vinculadas, se evalúa el concurso por agrupamiento y, dentro de él, si conviene una propuesta unificada o individual (una mala elección puede hundir a todo el grupo).
+    \item Si el concurso fracasa y se trata de una \textbf{sociedad grande}, el salvataje puede ser la última oportunidad para conservar la fuente de trabajo.
+\end{itemize}
+
+También sirve para asesorar a \textbf{acreedores} (firmar o no, y a quién aceptarle), a \textbf{trabajadores} (que pueden participar del salvataje mediante una cooperativa de trabajo) y a \textbf{inversores} que quieran comprar empresas en crisis.
+
+\begin{note}
+Las deudas, los acuerdos y las segundas oportunidades forman parte de la vida de cualquier persona humana: un despido, una crisis económica o un emprendimiento que sale mal pueden llevar al sobreendeudamiento. Entender cómo funciona la negociación con los acreedores, qué mayorías se necesitan y qué ocurre si el acuerdo no se homologa permite tomar mejores decisiones. Además, la ley no es un texto cerrado: se puede pensar, criticar y mejorar.
+\end{note}
+
+% ------------------------------------------------------------------
+\chapter[Salvataje de terceros]{Salvataje de terceros}
+% ------------------------------------------------------------------
+
+\section{Concepto y finalidad}
+
+Quien ha transitado el concurso preventivo sabe que, cuando el deudor no alcanza las conformidades de sus acreedores, la consecuencia aparente es la quiebra. Sin embargo, la ley prevé un \textbf{supuesto o procedimiento especial}, el salvataje de terceros (también llamado \textit{cramdown}), que habilita, para determinados sujetos, una alternativa a la quiebra.
+
+\begin{definition}{Salvataje de terceros}
+Instituto por el cual un tercero interesado \textbf{compra la sociedad} (sus cuotas sociales o acciones) en lugar de que el deudor vaya a la quiebra. Su finalidad es que el deudor, en lugar de la quiebra, pueda ser ``salvado'' por un tercero (art.~48).
+\end{definition}
+
+\begin{important}
+El salvataje no ``perdona'' al deudor: un tercero adquiere la sociedad. Por eso \textbf{se salva la empresa, no al deudor}, que queda desprendido de sus acciones o cuotas. Se salva a la empresa en términos de mantener la fuente de trabajo.
+\end{important}
+
+\begin{note}
+El artículo 48 es un artículo muy extenso y denso, que ``va y viene''. Se recomienda su lectura posterior apoyándose en un esquema del proceso completo. Se señaló además que es un tema de interés para quienes aún no definieron su tema de investigación: se expresó la opinión de que hay aspectos del instituto que podrían mejorarse, y que muchos concursos terminan en salvataje.
+\end{note}
+
+\section{Presupuestos de procedencia}
+
+Para que se habilite el salvataje deben darse \textbf{dos presupuestos}, ambos en forma conjunta.
+
+\subsection{Presupuesto subjetivo: quiénes pueden acceder}
+
+Los sujetos concursables habilitados para el salvataje son únicamente las \textbf{sociedades por acciones}, la \textbf{SRL} y las \textbf{sociedades donde el Estado sea parte}. Además, los artículos 288 y 289, que regulan los pequeños concursos, los excluyen del salvataje. Se trata, entonces, de un instituto pensado solamente para las grandes empresas.
+
+\begin{note}
+Queda planteada una pregunta para reflexionar: ¿por qué una pyme no podría estar en un salvataje?
+\end{note}
+
+\subsection{Presupuesto objetivo: en qué circunstancias}
+
+El presupuesto objetivo consiste en \textbf{no haber alcanzado las conformidades} de los acreedores en el período de exclusividad. Este período busca justamente llegar a un acuerdo; si no se logra, en lugar de la quiebra se abre el salvataje.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}YY@{}}
+\toprule
+ & \textbf{Presupuesto subjetivo} & \textbf{Presupuesto objetivo} \\
+\midrule
+\textbf{Pregunta que responde} & ¿Quiénes pueden estar en salvataje? & ¿En qué circunstancias se entra en salvataje? \\
+\textbf{Contenido} & Sociedades por acciones, SRL y sociedades donde el Estado es parte. Quedan excluidos los pequeños concursos (arts.~288 y 289). & No haber alcanzado las conformidades de los acreedores durante el período de exclusividad. \\
+\textbf{Idea de fondo} & Instituto pensado solamente para las grandes empresas. & Si no se llega a un acuerdo, en lugar de la quiebra se abre el salvataje. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Registro, inscripción y valuación}
+
+El procedimiento es extenso. Sus etapas son las siguientes.
+
+\subsection{Apertura del registro}
+
+Habilitado el salvataje, el juez debe abrir, dentro del plazo de \textbf{dos días}, un registro para que se inscriban los interesados en adquirir la empresa. Pueden participar terceros en general (cualquiera que tenga interés en comprar la sociedad), acreedores y trabajadores, incluso los trabajadores organizados a través de una \textbf{cooperativa de trabajo}.
+
+\subsection{Inscripción y depósito}
+
+Los interesados tienen \textbf{cinco días} para inscribirse. Quienes se inscriban deben depositar una suma determinada para los gastos de los edictos; quien se inscribió pero no realizó el depósito se considera como si no se hubiese inscripto. Si nadie se inscribió, o si los inscriptos no pagaron, se va a la quiebra.
+
+\subsection{El evaluador y el valor de la sociedad}
+
+Si hay inscriptos, se designa un \textbf{evaluador}, quien determina el valor de las cuotas sociales o de las acciones, según el tipo de sociedad. No se limita a considerar activos y pasivos: analiza además el \textbf{valor de mercado} que efectivamente tiene la sociedad, pues una empresa con muchos pasivos y pocos activos puede tener proyección. El evaluador debe determinar cuánto vale hoy realmente la sociedad en el mercado.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la secuencia entre inscripción, designación del evaluador y valuación fue expuesta con una aclaración oral que no precisa si la evaluación se realiza solo si hay inscriptos).
+
+La evaluación puede ser \textbf{observada}: el deudor puede considerar que se fijó un valor muy bajo, y los terceros, uno muy alto. La ley habilita una etapa de observación, pero \textbf{define el juez}, sin que haya sustanciación sobre el tema.
+
+Una vez cumplida esa etapa, el juez determina el valor y le \textbf{adiciona un 4\%}, a los efectos de solventar los gastos del proceso concursal. Con la evaluación realizada, los terceros interesados conocen el valor de la sociedad. Este puede ser positivo, pero también \textbf{negativo}: en lugar de pagar algo, la sociedad puede tener un valor negativo (lo que se desarrolla al tratar el pago).
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.8cm}Y@{}}
+\toprule
+\textbf{Plazo o etapa} & \textbf{Qué ocurre} \\
+\midrule
+\textbf{2 días} & El juez abre el registro de interesados en adquirir la empresa. \\
+\textbf{5 días} & Plazo para inscribirse. Los inscriptos deben depositar una suma para los gastos de edictos; sin depósito, se considera que no se inscribieron. \\
+\textbf{Sin inscriptos o sin depósito} & Se va a la quiebra. \\
+\textbf{Evaluación} & El evaluador determina el valor de las cuotas o acciones (activos, pasivos y valor de mercado). La valuación puede observarse, pero define el juez. \\
+\textbf{Valor fijado + 4\%} & El juez adiciona un 4\% para solventar los gastos del proceso concursal. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Propuestas, negociación y mayorías}
+
+\subsection{Período de propuestas y negociación}
+
+Se abre una etapa, asimilable al período de exclusividad, que la ley denomina de \textbf{propuesta y negociación}. En ella, todos los interesados que se registraron pueden realizar propuestas a los acreedores del deudor. Se habilita también que \textbf{el deudor vuelva a participar} y haga una propuesta a sus acreedores, lo que constituye una nueva oportunidad: puede mejorar su propuesta y obtener el resultado esperado. Se señaló que la valoración de esta posibilidad queda librada a la opinión de cada uno.
+
+\subsection{Decisión de los acreedores}
+
+Cada interesado (y el propio deudor) presenta a los acreedores su propuesta de pago. Los acreedores pueden aceptarle a todos o solo a quien deseen; si todos ofrecen lo mismo, el acreedor puede firmar a todos.
+
+\begin{example}{decisión del acreedor}
+Si todos los interesados presentan el 40\% y la misma propuesta, el acreedor puede firmar a todos. Otro acreedor puede preferir que el deudor mantenga su empresa, por ejemplo porque el deudor es su único cliente. Y si el tercero interesado es de la competencia, circunstancia que la ley no impide, esa propuesta puede no convenirle. La decisión es propia del acreedor, que pondrá en la balanza múltiples factores.
+\end{example}
+
+\subsection{Mayorías y quién gana}
+
+Los acreedores firman las conformidades. Se requiere la misma mayoría que en el concurso preventivo: la \textbf{doble mayoría}.
+
+\begin{formula}{mayoría y ganador del salvataje}
+\textbf{Mayoría:} mayoría absoluta de acreedores que representen las dos terceras partes del capital computable.
+
+\textbf{Ganador:} el primero que presenta en el expediente las conformidades con las mayorías necesarias.
+\end{formula}
+
+\begin{important}
+La ley no dice ``el que mejor propuesta hizo'' ni ``el que más conformidades tuvo''; nada de eso es tenido en cuenta. Solo importa quién presenta primero en el expediente las mayorías mínimas necesarias. En un caso hubo bastante discusión en el expediente porque dos habían presentado la propuesta y hubo que determinar quién la presentó primero.
+\end{important}
+
+El primero en presentar puede ser tanto el deudor como un tercero interesado. Si fue el deudor, se aplica el \textbf{artículo 52}, que se vio en concurso preventivo: se termina homologando y tiene los mismos efectos que un acuerdo homologado, como si hubiese sido el concurso preventivo normal.
+
+\section{Pago, efectos y reflexión crítica}
+
+Si el ganador es un tercero, se tiene en cuenta si las cuotas sociales o las acciones tenían un saldo positivo o negativo.
+
+\subsection{Valor negativo}
+
+El juez, en la resolución que homologa el acuerdo con los acreedores, ordena \textbf{solamente la transmisión o transferencia} de las cuotas sociales o acciones. Lo único que el tercero debe cumplir es el acuerdo que hizo con los acreedores.
+
+\subsection{Valor positivo}
+
+Sobre el valor positivo se descuenta lo que corresponda del pasivo por el acuerdo realizado por el tercero. El valor neto que debe pagar puede abonarse de dos formas:
+
+\begin{enumerate}
+    \item \textbf{Pago del 25\% y saldo:} abona el 25\% en el momento en que el juez declara que obtuvo las conformidades, y dispone de un plazo de \textbf{10 días} para pagar el saldo pendiente.
+    \item \textbf{Reducción del monto:} obtiene una reducción con la conformidad de las \textbf{dos terceras partes del capital social} de la sociedad que adquiere; es decir, los socios deben aceptar esa reducción.
+\end{enumerate}
+
+\begin{note}
+Se expresó una objeción personal respecto de la reducción. En una sociedad con tres socios o accionistas de igual participación y con problemas societarios, el tercero podría tener relación con dos de ellos, que aceptan la reducción y perjudican al tercero que no la acepta. Aunque se exigen dos terceras partes, en cuestiones societarias a veces hay mucho conflicto entre los socios. Se destacó, además, que el valor positivo puede ser incluso menor al determinado en la evaluación inicial.
+\end{note}
+
+\subsection{Finalización del salvataje}
+
+Realizado el pago, \textbf{finaliza el salvataje}. Las acciones o cuotas sociales se transfieren al tercero después del pago y el acuerdo tiene los mismos efectos que un acuerdo homologado. Si el ganador no pagó, se va nuevamente a la quiebra.
+
+\begin{important}
+Si el ganador no paga, no se da una nueva oportunidad a los otros interesados: se va \textbf{directamente a la quiebra}.
+\end{important}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.6cm}YY@{}}
+\toprule
+\textbf{Escenario} & \textbf{Qué ocurre} & \textbf{Pago / efecto} \\
+\midrule
+\textbf{Gana el deudor} & Presenta primero las conformidades. & Se aplica el art.~52; se homologa como un acuerdo de concurso preventivo. \\
+\textbf{Gana un tercero, valor negativo} & La sociedad vale menos de lo que debe. & El juez ordena la transferencia de cuotas o acciones. El tercero solo cumple el acuerdo con los acreedores. \\
+\textbf{Gana un tercero, valor positivo (opción A)} & Se descuenta del valor lo que se paga del pasivo por el acuerdo. & Paga el 25\% cuando el juez declara las conformidades y el saldo dentro de los 10 días. \\
+\textbf{Gana un tercero, valor positivo (opción B)} & Obtiene una reducción del monto. & Requiere la conformidad de las dos terceras partes del capital social de la sociedad que adquiere. \\
+\textbf{El ganador no paga} & No se cumple el pago. & Se va directamente a la quiebra. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Reflexión: salvar la empresa no es salvar al deudor}
+
+El salvataje puede pensarse desde la idea de dar varias oportunidades y de que se salve la empresa. Pero salvar la empresa no es salvar al deudor, quien queda desprendido de sus acciones: es salvar a la empresa en términos de mantener la \textbf{fuente de trabajo}. Se señaló que la situación de los trabajadores está muy observada y tratada por la ley de concursos y quiebras, lo que hace al tema de especial interés para quienes cursan derecho laboral.
+
+\section{Debate: créditos laborales y quiebra}
+
+\subsection{El planteo}
+
+Se analizó un fallo reciente con el cual se expresó total desacuerdo. En una sentencia firme de un juicio laboral se establecieron intereses; al irse a la quiebra el empleador, y concurrir el trabajador a la quiebra, se le redujeron los intereses. La cuestión planteada es por qué se reducirían los intereses de quien tiene sentencia firme en un juicio laboral. Se admitió que ello puede responder al principio de la \textit{par condicio}.
+
+Se leyó un comentario de un grupo profesional que habla de la ``industria del juicio laboral'':
+
+\begin{quote}
+\textit{``El conjunto de acreedores no tiene por qué asumir las consecuencias de un pleito mal defendido o mal juzgado en sede laboral.''}
+\end{quote}
+
+\subsection{La posición expresada}
+
+\begin{itemize}
+    \item Se coincide en que hay jueces que juzgan mal, pero se cuestiona que se trate la sentencia como ``mal juzgada'' cuando existe una sentencia con autoridad de cosa juzgada: de lo contrario, se pregunta qué ocurre con la \textbf{seguridad jurídica}.
+    \item Se admitió que es posible que un trabajador, sabiendo que el empleador se iba a la quiebra, no haya dejado perder el juicio; pero eso no justifica hablar de ``mal juzgado''.
+    \item Se sostuvo que los abogados de empresas y los de trabajadores (o los de derecho comercial y los de laboral) deben mirar para el mismo lado: el abogado debe buscar siempre la \textbf{seguridad jurídica}, la \textbf{igualdad} y procurar \textbf{proteger a la parte más débil}. Cada uno decide si acepta o no un caso, y todos tienen derecho a su defensa.
+    \item Se mencionó otro comentario crítico sobre el fuero laboral y la ``industria del juicio'', no solo en materia laboral sino en general.
+\end{itemize}
+
+\subsection{Intervenciones desde la perspectiva empresarial}
+
+Se expusieron experiencias de empleadores (un negocio con 150 empleados durante 25 años de actividad, una empresa de taxis, pizzerías) que refirieron gastos considerables en juicios, y se planteó que el empresario también tiene gente que pagar, compromisos y cargas sociales, por lo que el juez debe evaluar bien cada situación. Se coincidió en que, aun modificando la ley laboral para evitar la ``industria del juicio'', el problema subsiste mientras no lleguen a los cargos jueces que realmente hagan su trabajo. Se cuestionó además la independencia judicial por vínculos entre jueces y poder político.
+
+% ------------------------------------------------------------------
+\section{Cuadro Cornell: salvataje de terceros}
+% ------------------------------------------------------------------
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el salvataje de terceros y para qué sirve?} &
+Es un procedimiento especial (art.~48) que se abre cuando el deudor no consigue las conformidades en el período de exclusividad. En lugar de la quiebra, un tercero compra la sociedad (cuotas o acciones) para salvar la empresa y mantener la fuente de trabajo. Se salva la empresa, no al deudor. \\
+\midrule
+
+\textbf{¿Quiénes pueden acceder y cuándo? (presupuestos)} &
+\textit{Subjetivo:} sociedades por acciones, SRL y sociedades donde el Estado es parte; quedan excluidos los pequeños concursos (arts.~288 y 289). \textit{Objetivo:} no haber alcanzado las conformidades en el período de exclusividad. \\
+\midrule
+
+\textbf{¿Cómo es el procedimiento del salvataje?} &
+El juez abre un registro en 2 días; los interesados tienen 5 días para inscribirse y depositar para edictos. Si no hay inscriptos, quiebra. Se designa un evaluador, que valúa la sociedad (activo, pasivo y valor de mercado); el juez define el valor y suma un 4\% para gastos. Luego vienen las propuestas y la negociación. \\
+\midrule
+
+\textbf{¿Quién gana el salvataje y cómo se paga?} &
+Gana el primero que presenta en el expediente las conformidades con las mayorías necesarias (mayoría absoluta de acreedores con dos tercios del capital computable). Si gana el deudor, se aplica el art.~52. Si el valor es negativo, se transfieren cuotas o acciones y el tercero cumple el acuerdo. Si es positivo: 25\% al momento de la declaración de conformidades y saldo en 10 días, o reducción con la conformidad de dos tercios del capital social. Si no paga, quiebra. \\
+\midrule
+
+\textbf{¿Qué se debatió sobre los créditos laborales con sentencia firme?} &
+Se cuestionó que en la quiebra del empleador se reduzcan los intereses de un crédito laboral con sentencia firme, invocando la seguridad jurídica y la protección de la parte más débil. Se contrapusieron las experiencias empresariales sobre la ``industria del juicio'' laboral, con la necesidad de que los jueces evalúen bien cada caso. \\
+\midrule
+
+\multicolumn{2}{@{}p{0.93\textwidth}@{}}{%
+\textbf{Resumen:} el salvataje es la última oportunidad de las grandes sociedades que no lograron conformidades: el tercero que presente primero las conformidades compra la sociedad, y se salva la empresa y sus puestos de trabajo, no al deudor.} \\
+\bottomrule
+\end{longtable}
+\renewcommand{\arraystretch}{1.25}
+
+% ------------------------------------------------------------------
+\chapter[Concurso por agrupamiento]{Concurso por agrupamiento}
+% ------------------------------------------------------------------
+
+\section{Concepto y beneficios}
+
+\begin{definition}{Concurso por agrupamiento}
+Concurso solicitado por dos o más personas, físicas o jurídicas, independientes, que integran entre sí un \textbf{grupo económico de forma permanente}.
+\end{definition}
+
+Según la doctrina, para que exista un grupo o conjunto económico debe haber, entre las personas que lo forman, una \textbf{interdependencia permanente}. El principal beneficio es que \textbf{facilita la tramitación} de los procesos concursales. Está regulado en los \textbf{artículos 65 a 67}.
+
+\section{Requisitos}
+
+Se requieren, sí o sí, tres requisitos.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.8cm}Y@{}}
+\toprule
+\textbf{Requisito} & \textbf{Contenido} \\
+\midrule
+\textbf{1. Prueba del grupo} & Debe probarse la existencia y exteriorización del grupo económico; si no, el juez puede desestimar el concurso. \\
+\textbf{2. Cesación de pagos} & Basta con que uno solo de los miembros esté en cesación de pagos. \\
+\textbf{3. Todos los miembros} & Deben estar incluidos todos los miembros del grupo: ``nos vamos todos o nos caemos todos''. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Aclaraciones}
+
+\begin{example}{grupo de cinco empresas con una sola en cesación de pagos}
+Si en un grupo de cinco empresas solo una está en cesación de pagos, es necesario que las cuatro restantes también acepten ir al concurso como agrupamiento. Si una no aceptó, no puede ir como grupo y solamente se habilita la que está en cesación de pagos. No pueden estar en concurso dos de tres o dos de cinco: tiene que ser todo el grupo económico.
+\end{example}
+
+\textbf{Acreedores de las demás empresas.} Cada empresa tiene su propio concurso con sus propios acreedores: se abre un proceso por cada integrante del grupo, y cada acreedor debe verificar en cada uno de esos procesos.
+
+\textbf{Fundamento de la excepción.} En los grupos económicos suele haber préstamos entre las empresas. Si una no le paga a otra integrante del grupo que todavía no está en cesación de pagos, esta puede terminar en cesación de pagos. Por ello la ley permite que empresas del grupo entren en el proceso sin estar en cesación de pagos. Al tratar el presupuesto objetivo (artículo primero) se señaló que las \textbf{excepciones son dos}: el concurso por agrupamiento y el APE.
+
+\section{Competencia y procedimiento}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.2cm}Y@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Cómo se resuelve} \\
+\midrule
+\textbf{Juez competente} & El de la persona integrante del grupo que tenga el mayor activo. \\
+\textbf{Apertura} & Un proceso por cada integrante del grupo económico. \\
+\textbf{Verificación de créditos} & Cada acreedor verifica en el proceso que le corresponde. \\
+\textbf{Informe individual} & Uno por cada concursado. \\
+\textbf{Informe general} & Unificado para todos. \\
+\textbf{Sindicatura} & Única para todo el agrupamiento. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Propuestas y mayorías (art.~67)}
+
+Existen dos tipos de propuesta: \textbf{unificada} o \textbf{individual}.
+
+\begin{definition}{Propuesta unificada}
+Propuesta que trata de forma unificada \textbf{el pasivo de todos los integrantes} del grupo económico.
+\end{definition}
+
+En la propuesta individual, cada concursado presenta propuestas a sus propios acreedores.
+
+\subsection{Mayorías}
+
+El artículo 67 establece qué mayoría debe obtener el concursado para que se apruebe la propuesta. Es la misma mayoría que en el concurso preventivo, con una opción adicional.
+
+\begin{formula}{mayorías del art.~67}
+El concursado debe lograr \textbf{una de estas dos mayorías}:
+\begin{enumerate}[label=\alph*)]
+    \item la conformidad de la mayoría absoluta de los acreedores que representen las dos terceras partes del capital computable dentro de cada una de las categorías; o
+    \item la conformidad de al menos el 75\% del total del capital con derecho a voto, que no sea menor al 50\% del capital dentro de cada categoría.
+\end{enumerate}
+\end{formula}
+
+Si no se llega a la doble mayoría, la ley otorga esta opción diferente: quien logró el 75\% sobre el total de los acreedores y por lo menos el 50\% en cada una de las categorías igualmente ve aprobada su propuesta. En esta alternativa se considera solamente el capital, es decir, solo el pasivo.
+
+\subsection{Consecuencias del fracaso y estrategia}
+
+\begin{itemize}
+    \item \textbf{Propuesta unificada:} si fracasa, el juez declara la quiebra de \textbf{todos} los integrantes.
+    \item \textbf{Propuesta individual:} cada concursado presenta propuestas a sus acreedores y se requiere la misma mayoría; si no se obtiene, solo se declara la quiebra de ese concursado.
+\end{itemize}
+
+\begin{important}
+Debe pensarse muy bien la estrategia. A veces se opta por la unificada porque, de cinco integrantes, hay uno que quizás no alcanzaría las mayorías y se busca salvarlo: las otras cuatro hacen fuerza con los acreedores para lograrlo. Pero con la unificada pueden ir todos a la quiebra, sin distinción. La individual resulta mejor cuando se sabe que, yendo juntos, no los van a salvar: por lo menos alguien se salva. Por eso la ley da otra posibilidad de mayorías: se conocen las consecuencias de no alcanzarlas.
+\end{important}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}YY@{}}
+\toprule
+ & \textbf{Propuesta unificada} & \textbf{Propuesta individual} \\
+\midrule
+\textbf{Qué hace} & Trata el pasivo de todos los integrantes del grupo de manera única. & Cada concursado presenta propuestas a sus propios acreedores. \\
+\textbf{Mayoría exigida} & Mayoría absoluta de acreedores con dos tercios del capital computable en cada categoría, o 75\% del capital con derecho a voto y al menos 50\% en cada categoría. & La misma mayoría (art.~67), con la misma alternativa del 75\% y el 50\%. \\
+\textbf{Si fracasa} & El juez declara la quiebra de todos los integrantes. & Se declara la quiebra solo de ese concursado. \\
+\textbf{Ventaja} & Permite ayudar a quien no alcanzaría las mayorías por sí solo. & Alguien se salva, aunque otro no consiga las mayorías. \\
+\textbf{Riesgo} & Pueden caer todos juntos. & Quien no logra la mayoría no recibe el apoyo del resto. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ------------------------------------------------------------------
+\section{Cuadro Cornell: concurso por agrupamiento}
+% ------------------------------------------------------------------
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el concurso por agrupamiento y qué requisitos tiene?} &
+Lo solicitan dos o más personas independientes que integran un grupo económico permanente (interdependencia permanente). Requisitos: probar la existencia y exteriorización del grupo, que al menos un miembro esté en cesación de pagos y que estén incluidos todos los miembros del grupo. \\
+\midrule
+
+\textbf{¿Qué juez interviene y cómo se tramita el agrupamiento?} &
+Es competente el juez de quien tenga el mayor activo del grupo. Hay un proceso por cada integrante, cada acreedor verifica en el proceso que le corresponde, hay un informe individual por concursado, un informe general unificado y una sola sindicatura. \\
+\midrule
+
+\textbf{¿Propuesta unificada o individual? (art.~67)} &
+La unificada trata el pasivo de todos de manera única; si fracasa, quiebra de todos. La individual se presenta por concursado; si fracasa, quiebra solo de ese concursado. Mayorías: absoluta de acreedores con dos tercios del capital computable por categoría, o 75\% del capital con derecho a voto y al menos 50\% en cada categoría. \\
+\midrule
+
+\multicolumn{2}{@{}p{0.93\textwidth}@{}}{%
+\textbf{Resumen:} el concurso por agrupamiento permite que un grupo económico permanente se presente en conjunto, con un proceso por integrante y una sindicatura única, y exige decidir con estrategia entre la propuesta unificada (que salva a todos o los hunde a todos) y la individual.} \\
+\bottomrule
+\end{longtable}
+\renewcommand{\arraystretch}{1.25}
+
+% ------------------------------------------------------------------
+\chapter[Acuerdo Preventivo Extrajudicial]{Acuerdo Preventivo Extrajudicial (APE)}
+% ------------------------------------------------------------------
+
+\section{Concepto y presupuestos}
+
+\begin{definition}{Acuerdo Preventivo Extrajudicial (APE)}
+Contrato en el cual el deudor ofrece a sus acreedores un acuerdo para superar el estado de cesación de pagos. Lo importante es que \textbf{se evita el proceso concursal}; aun así, sin haber proceso concursal, puede someterse a homologación judicial.
+\end{definition}
+
+\subsection{Presupuesto objetivo (art.~69)}
+
+El presupuesto objetivo es que el deudor se encuentre en estado de \textbf{cesación de pagos} o en una situación de \textbf{dificultades económicas o financieras de carácter general}; es decir, un estado de \textbf{preinsolvencia}. No hace falta estar en cesación de pagos: los presupuestos empiezan a correr antes. Como se vio en el artículo primero, las excepciones al presupuesto objetivo son dos: el concurso por agrupamiento y el APE.
+
+\subsection{Presupuesto subjetivo}
+
+Pueden pedir el APE los mismos sujetos que podrían pedir el proceso concursal.
+
+\section{Forma y presentación (art.~72)}
+
+\subsection{Forma del acuerdo}
+
+El acuerdo puede celebrarse por \textbf{instrumento público} o por \textbf{instrumento privado}; en este último caso debe estar certificado por escribano público.
+
+\subsection{Presentación al juez para la homologación}
+
+Celebrado el acuerdo, el deudor debe presentarlo al juez para su homologación. El artículo 72 detalla qué debe presentarse además del acuerdo:
+
+\begin{itemize}
+    \item un \textbf{estado detallado del activo y del pasivo};
+    \item un \textbf{listado de los acreedores};
+    \item un \textbf{listado de los juicios o procesos administrativos} en trámite o con condena;
+    \item la \textbf{enumeración de los libros de comercio};
+    \item el \textbf{monto del capital} que representan los acreedores que firmaron el acuerdo.
+\end{itemize}
+
+\begin{important}
+El listado de acreedores es relevante para las mayorías. En el APE \textbf{no hay instancia de verificación de créditos}: solo existe la denuncia del deudor. Se acompaña un informe de un contador para darle cierta fuerza y relevancia, pero no hay verificación.
+\end{important}
+
+\section{Mayorías, publicación y oposición}
+
+\subsection{Mayoría necesaria}
+
+Para homologar el acuerdo se requiere la \textbf{mayoría absoluta de los acreedores que representen las dos terceras partes del pasivo total}. Ese total es el total de los acreedores que el deudor denuncia.
+
+\subsection{Publicación}
+
+Como en el concurso preventivo, debe publicarse por \textbf{cinco días} en el Boletín Oficial y en algún diario de gran circulación del lugar donde se realiza el acuerdo.
+
+\subsection{Oposición y homologación}
+
+Si se cumplen todos los requisitos, se homologa el acuerdo, que es \textbf{oponible a todos los acreedores quirografarios de causa o título anterior a la presentación}; es decir, se aplica incluso a quien no aparecía en la lista. Hay un período de oposición de \textbf{10 días}, en el que pueden oponerse los acreedores no incluidos o cuando hay ocultación o exageración del pasivo. La ley habilita también a observar u oponerse a quienes hayan firmado y estado de acuerdo con la propuesta, si encontraron algo que no les cierra. Si no hubo oposición, o se rechazó, se homologa el acuerdo.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.8cm}Y@{}}
+\toprule
+\textbf{Etapa} & \textbf{Plazo / contenido} \\
+\midrule
+\textbf{Publicación} & Cinco días en el Boletín Oficial y en un diario de gran circulación del lugar. \\
+\textbf{Mayoría para homologar} & Mayoría absoluta de acreedores que representen dos tercios del pasivo total (el denunciado por el deudor). \\
+\textbf{Oposición} & 10 días. Pueden oponerse acreedores no incluidos o por ocultación o exageración del pasivo, incluso quienes firmaron. \\
+\textbf{Prueba} & 10 días. \\
+\textbf{Resolución} & 10 días más. \\
+\textbf{Efecto} & El acuerdo homologado es oponible a todos los acreedores quirografarios de causa o título anterior a la presentación, figuren o no en la lista. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Acuerdo no homologado y acreedores privilegiados}
+
+\subsection{Qué ocurre si el acuerdo no se homologa}
+
+Si el acuerdo se llevó a homologación y el juez no lo homologa (por oposición u otra causa), \textbf{el deudor debe igualmente cumplirlo}: acordó con esos acreedores y ellos aceptaron la propuesta, por lo que es un \textbf{contrato válido} entre las partes que lo celebraron, aunque no haya sido homologado y no tenga efectos para todos los acreedores.
+
+\subsection{La cláusula de ineficacia}
+
+Con frecuencia el deudor incorpora una cláusula según la cual, si el acuerdo no es homologado cuando se presenta a homologación, no será obligatorio para los acreedores que firmaron. Es la única excepción y debe haberse dejado \textbf{expresamente} establecida en el contrato; de lo contrario, es un contrato válido contra el deudor.
+
+\begin{note}
+El deudor, al realizar el APE, busca frenar los reclamos de los acreedores. Algunos aceptarán y otros no. Si debiera cumplir el acuerdo mientras otros acreedores le rematan los bienes, no le conviene, y quizás termine presentándose en concurso preventivo. Por eso el deudor establece que, si no se homologa y no tiene efecto para todos, no pagará a quienes firmaron, aunque estén acordados.
+\end{note}
+
+\subsection{Acreedores privilegiados}
+
+El deudor puede hacer el acuerdo solo con los quirografarios. Con los privilegiados \textbf{nunca es obligatorio} acordar. Generalmente el deudor lo hace igualmente porque quiere evitar que le rematen el inmueble u otros bienes, pero no es obligatorio.
+
+\begin{important}
+Un APE no homologado sigue siendo un contrato válido entre quienes lo firmaron, salvo que el deudor haya pactado expresamente una cláusula que lo deje sin efecto si no se homologa. Los acreedores privilegiados no están obligados a participar del acuerdo.
+\end{important}
+
+\section{Casos: Banco Hipotecario y fintech}
+
+\subsection{El caso del Banco Hipotecario}
+
+Se refirió un caso importante sobre el APE: el del Banco Hipotecario, cuando el instituto del APE recién surgía. % TODO: contenido incompleto o ambiguo en las notas originales (no se precisa el año del caso).
+El Banco Hipotecario solicitó su APE, aunque las entidades financieras bancarias no son sujetos concursables.
+
+\begin{itemize}
+    \item \textbf{Fundamento del banco:} la Ley de Entidades Financieras establece que no pueden presentarse en concurso preventivo (habla de concursos y quiebras), pero no menciona el APE.
+    \item \textbf{Decisión de la Corte:} rechazó el APE, por tratarse de un sujeto no habilitado para pedir un proceso concursal. Si bien la Ley de Entidades Financieras no lo dice expresamente, se agregó que el APE no existía cuando se sancionó esa ley. Se rechazó porque no es sujeto concursable.
+\end{itemize}
+
+\subsection{El caso de una fintech (Wenance)}
+
+Wenance, una fintech, terminó abriendo su concurso preventivo. El juez de primera instancia había rechazado la presentación por considerar que no era sujeto concursable, pero la \textbf{Cámara revocó}: sostuvo que sí es sujeto concursable, porque las fintech no son entidades financieras de las comprendidas en la Ley de Entidades Financieras.
+
+\begin{note}
+Se expresó desacuerdo con esa solución: se opinó que tampoco las fintech deberían presentarse, o que se debería abrir el espectro para todos.
+\end{note}
+
+% ------------------------------------------------------------------
+\section{Cuadro Cornell: Acuerdo Preventivo Extrajudicial}
+% ------------------------------------------------------------------
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es el APE y cuáles son sus presupuestos?} &
+Es un contrato por el cual el deudor ofrece un acuerdo a sus acreedores para superar la cesación de pagos, evitando el proceso concursal y con posibilidad de homologación judicial. Presupuesto objetivo (art.~69): cesación de pagos o dificultades económicas o financieras de carácter general (preinsolvencia). Subjetivo: los mismos sujetos que pueden pedir el concurso. \\
+\midrule
+
+\textbf{¿Cómo se presenta y se homologa un APE?} &
+Se instrumenta por instrumento público o privado con certificación notarial. Se presenta (art.~72) con estado de activo y pasivo, listado de acreedores, juicios, libros de comercio y monto del capital firmante, más informe de contador. No hay verificación. Mayoría: absoluta de acreedores con dos tercios del pasivo total denunciado. Publicación por 5 días; oposición 10 días, prueba 10 y resolución 10. \\
+\midrule
+
+\textbf{¿Qué pasa si el APE no se homologa?} &
+Sigue siendo un contrato válido entre las partes que lo firmaron, salvo que el deudor haya pactado expresamente que no obliga si no se homologa. Con los acreedores privilegiados nunca es obligatorio hacer un acuerdo. \\
+\midrule
+
+\textbf{¿Pueden pedir APE las entidades financieras y las fintech?} &
+El Banco Hipotecario pidió un APE y la Corte lo rechazó por no ser sujeto concursable. En el caso de una fintech (Wenance), la Cámara revocó el rechazo y la consideró sujeto concursable. Se expresó desacuerdo: se propuso que no se presenten o que se abra el espectro a todos. \\
+\midrule
+
+\multicolumn{2}{@{}p{0.93\textwidth}@{}}{%
+\textbf{Resumen:} el APE permite negociar por fuera del juicio y, mediante la homologación (mayoría absoluta de acreedores con dos tercios del pasivo, publicación y período de oposición), extender el acuerdo a todos los acreedores quirografarios; si no se homologa, sigue siendo un contrato válido salvo cláusula en contrario.} \\
+\bottomrule
+\end{longtable}
+\renewcommand{\arraystretch}{1.25}
+
+% ------------------------------------------------------------------
+\chapter[Reflexiones críticas y otros criterios]{Reflexiones críticas y otros criterios}
+% ------------------------------------------------------------------
+
+\section{La cesación de pagos como requisito}
+
+\begin{definition}{Cesación de pagos}
+Estado del patrimonio que no permite hacer frente a las obligaciones.
+\end{definition}
+
+\subsection{Mirada crítica}
+
+Se expresó una mirada crítica sobre la exigencia de cesación de pagos. Respecto del APE, se consideró adecuado permitir que un deudor que atraviesa una situación económica y financiera difícil, y que hoy no puede hacer frente a sus obligaciones, arregle con sus acreedores y lleve luego el acuerdo a homologación sin necesidad de estar en cesación de pagos. Se señaló que mucha doctrina ya se inclina en ese sentido.
+
+Se sostuvo que, hoy, la exigencia de cesación de pagos hace que las personas lleguen al concurso con ``el agua hasta el cuello'' y terminen usándolo sin poder salvarse. Por ello se consideró una solución habilitar también un concurso preventivo sin cesación de pagos, como ocurre con el APE, pensando en las grandes empresas y en las empresas en general, que atraviesan situaciones muy complejas.
+
+\subsection{Objeción: manipulación del deudor}
+
+Se planteó la objeción de que ello podría promover la manipulación por parte del deudor. La respuesta expresada fue que ``hecha la ley, hecha la trampa'': esa posibilidad ya existe con la cesación de pagos, cuya determinación por el juez es difícil. Se sostuvo que, así como hay malos deudores, hay muy buenos deudores y empresas que necesitan una solución que hoy la ley de concursos no les da; y que muchas veces los jueces rechazan la presentación porque no hay cesación de pagos. Cómo se demuestra la cesación de pagos fue señalado como un tema de investigación con abundante material.
+
+\section{Pequeños concursos y personas humanas}
+
+Se expresó que la justicia debería ser igual para pequeños y para grandes. Los artículos 288 y 289 regulan los pequeños concursos, pensados para pequeños deudores, pero siguen \textbf{casi el mismo procedimiento} que el de una gran empresa.
+
+Ante la pregunta sobre las personas humanas, se respondió que también se sigue casi el mismo procedimiento: una persona humana que se quedó sin trabajo y no puede pagar sus deudas puede estar en un proceso de concurso o quiebra con el mismo procedimiento que una gran empresa, pese a que no es la misma persona ni dejó de pagar por los mismos motivos.
+
+\begin{note}
+Se destacó la necesidad de pensar y buscar soluciones, sin quedarse en el texto de la ley: la ley puede modificarse, y conviene que se modifique siempre para bien.
+\end{note}
+
+\section{Humanización del proceso y rol judicial}
+
+Se mencionó como tema de reflexión la \textbf{humanización del proceso}: pensar el derecho a partir de la persona humana y de las soluciones, y salirse de la ley. Se señaló que en el país se empezaron a dar pasos en ese sentido. Se recomendó una exposición de la jurista Aída Kemelmajer de Carlucci sobre la \textbf{interpretación de los jueces}: hasta dónde pueden interpretar y hasta dónde se puede salir de la norma.
+
+\section{Crédito de causa o título anterior}
+
+Ante una consulta sobre un posible tema de investigación (crédito por causa anterior al concurso y fecha posterior), se indicó que la ley lo determina expresamente.
+
+\begin{important}
+La ley dice: título o causa anterior a la fecha de presentación del concurso. Un crédito devengado con anterioridad pero que se paga después es \textbf{concursal}. Debe tener título o causa anterior: si el pago es posterior pero la causa se originó con anterioridad a la presentación del concurso, es un crédito concursal.
+\end{important}
+
+Se animó a buscar la problemática que presenta este criterio, incluso con fundamentos o derecho comparado.
+
+% ------------------------------------------------------------------
+\section{Cuadro Cornell: reflexiones críticas y otros criterios}
+% ------------------------------------------------------------------
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\textbf{¿Qué es la cesación de pagos y qué crítica se le formuló como requisito?} &
+Es el estado del patrimonio que no permite hacer frente a las obligaciones. Se sostuvo que exigirla hace que las personas lleguen al concurso sin poder salvarse, y que sería una solución habilitar el concurso preventivo sin cesación de pagos, como ocurre con el APE. Frente a la objeción de manipulación, se respondió que ya existe con la cesación de pagos. \\
+\midrule
+
+\textbf{¿Qué se señaló sobre los pequeños concursos y las personas humanas?} &
+Los arts.~288 y 289 siguen casi el mismo procedimiento que el de una gran empresa; una persona humana puede transitar el mismo proceso. Se invitó a pensar soluciones y a no quedarse con el texto de la ley, que puede modificarse. \\
+\midrule
+
+\textbf{¿Cuándo un crédito es concursal?} &
+Cuando tiene título o causa anterior a la presentación del concurso, aunque se pague después. \\
+\midrule
+
+\multicolumn{2}{@{}p{0.93\textwidth}@{}}{%
+\textbf{Resumen:} por debajo de las reglas técnicas, se invitó a pensar críticamente la ley (la exigencia de cesación de pagos, la exclusión de las pymes del salvataje, el tratamiento de los pequeños concursos y de las personas humanas) y a buscar soluciones en lugar de limitarse a aplicar normas.} \\
+\bottomrule
+\end{longtable}
+\renewcommand{\arraystretch}{1.25}
+
+% ------------------------------------------------------------------
+\chapter[Síntesis general]{Síntesis general}
+% ------------------------------------------------------------------
+
+Los apuntes mostraron tres caminos que la ley concursal ofrece para evitar la quiebra y conservar la empresa:
+
+\begin{itemize}
+    \item El \textbf{APE} permite negociar por fuera del juicio y, mediante la homologación (mayoría absoluta de acreedores con dos tercios del pasivo, publicación y período de oposición), extender el acuerdo a todos los acreedores quirografarios; si no se homologa, sigue siendo un contrato válido salvo cláusula en contrario.
+    \item El \textbf{concurso por agrupamiento} permite que un grupo económico permanente se presente en conjunto, con un proceso por integrante y una sindicatura única, y exige decidir con estrategia entre la propuesta unificada (que salva a todos o los hunde a todos) y la individual.
+    \item El \textbf{salvataje de terceros} es la última oportunidad de las grandes sociedades que no lograron conformidades: el tercero que presente primero las conformidades compra la sociedad, y se salva la empresa y sus puestos de trabajo, no al deudor.
+\end{itemize}
+
+Más allá de las reglas técnicas, el material invita a pensar críticamente la ley, a buscar soluciones en lugar de limitarse a aplicar normas y a priorizar la seguridad jurídica y la protección de la parte más débil, incluidos los trabajadores.
+
+\end{document}

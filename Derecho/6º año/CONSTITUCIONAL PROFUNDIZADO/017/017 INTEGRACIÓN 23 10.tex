@@ -1,0 +1,951 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\carrera}{Carrera de Derecho}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Insolvencia transfronteriza: quiebras dentro de un área de integración}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ==================== CONFIGURACIÓN FINAL ====================
+\renewcommand{\arraystretch}{1.25}
+
+% ==================== DOCUMENTO ====================
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho de la Integración'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------- ÍNDICE ----------
+\tableofcontents
+\clearpage
+
+% ==================== CONTENIDO ====================
+
+% ==================== CAPÍTULO 1 ====================
+\chapter[El planteo del problema]{El planteo del problema}
+
+\section{La insolvencia en las áreas de integración}
+
+\subsection{Planteo del tema}
+
+El tema de la insolvencia está directamente relacionado con las áreas de integración. En un área de integración se facilita la contratación dentro del área \textbf{sin discriminar}: es a eso a lo que se aspira, tanto cuando se actúa como consumidor o usuario como cuando se lo hace desde la óptica de un empresario o de un inversor. La idea es que estas relaciones no se desarrollen con disparidad de tratamientos. Por eso se habla de mecanismos de \textbf{armonización legislativa} o de \textbf{uniformidad legislativa}, y se plantea cuál de ellos resulta más conveniente.
+
+\subsection{La pregunta central: ¿qué ocurre cuando el comerciante cae en insolvencia?}
+
+Durante la constitución de un área de integración se permite el libre tránsito de mercadería y del comercio, y el libre establecimiento de inversiones de empresas provenientes de un Estado miembro en igualdad de condiciones con una empresa local, a la que además se le da el mismo tratamiento fiscal. Si todo ello se permite, junto con la igualdad de trato en el comercio, cabe preguntarse qué ocurre si, en algún momento, una de esas empresas o comerciantes entra en estado de insolvencia.
+
+La cuestión es si, mientras el comerciante está \textit{in bonis} (es decir, en cumplimiento de su actividad), se mantiene la igualdad de trato, y si ante el retraso de pagos, un posible concurso o la insolvencia se deben \emph{cambiar las reglas del juego} o garantizarse también la igualdad de trato en la instancia de la insolvencia.
+
+Si se garantizó que el comerciante extranjero podía instalarse, y que los consumidores extranjeros podían comprar respecto de una empresa instalada en el país en igualdad de condiciones que un comerciante o consumidor local, al momento de la insolvencia no puede decirse: «cobran primero los acreedores locales». Una preferencia de pago de ese tipo equivale a cambiar las reglas del juego.
+
+\begin{important}
+Si en la actividad normal del comerciante (\textit{in bonis}) el área de integración garantiza libre tránsito, libre establecimiento e igualdad de trato, \textbf{no puede cambiar las reglas del juego cuando ese comerciante cae en insolvencia}: la insolvencia es una continuidad de la actividad económica y debe tener reglas claras.
+\end{important}
+
+Por eso el tema de la insolvencia en un ámbito de integración es muy importante y debe ser tratado y regulado. Es una continuidad de la actividad económica, que puede resultar beneficiosa o puede no resultar tan óptima, con la posibilidad de demoras, de insolvencia o de \textit{falimento}.
+
+\section{Seguridad jurídica: armonización y uniformidad}
+
+Aunque no se alcance la igualdad de trato (que sería lo óptimo), al menos debería haber \textbf{reglas claras}: quien invierte o comercia dentro de un área de integración debe saber, al momento de hacerlo, cuáles son las reglas del juego a las que se somete. No debería ocurrir que, ante un fracaso, un retraso o una insolvencia, las partes queden sometidas a la normativa interna de cada país, con reglas distintas en Brasil, en Uruguay, en Argentina o en Venezuela.
+
+No es lo mismo establecer pautas uniformes que criterios armónicos (armonización, armonía, uniformidad). Decir «hasta acá llegamos; a partir de acá cada uno aplica sus propias normas» \textbf{no garantiza seguridad jurídica}. Quien contrata sin esa garantía lo hará «con cierto miedo» y no invertirá si ve que el Estado puede cambiarle las reglas de juego en el futuro.
+
+Por lo tanto, la insolvencia es un tema atinente a un área de integración, \textbf{a ser regulado por los órganos de integración} con las pautas que consideren oportunas, pero que necesariamente deben ponerse de acuerdo.
+
+\section{Los tratados vigentes sobre insolvencia}
+
+La regulación de una situación de insolvencia es compleja, como se vio en Derecho Internacional Privado respecto de la insolvencia en el ámbito internacional. Se plantea entonces si pueden aplicarse las mismas pautas de una insolvencia internacional a una insolvencia dentro de un área de integración, o si es necesario crear reglas específicas para ella.
+
+Como respuesta se mencionó la aplicación de los Tratados de Montevideo de 1889 y de 1940, vigentes.
+
+\begin{note}
+\textbf{Normas mencionadas: tratados de Montevideo.}
+\begin{itemize}
+    \item Tratado de Montevideo de Derecho Comercial Terrestre de \textbf{1940}.
+    \item Tratado de Montevideo de Derecho Comercial de \textbf{1889}.
+    \item Los dos regulan la \textbf{insolvencia comercial}.
+    \item Tratado de Derecho Procesal Civil, que regula la \textbf{insolvencia civil}, es decir, la del no comerciante.
+\end{itemize}
+Estos tratados abordan la materia desde la óptica del derecho internacional, en Estados Partes, pero desde la óptica de un derecho internacional.
+\end{note}
+
+La pregunta que queda planteada es si las mismas reglas o los mismos criterios de solución serían aplicables al Mercosur.
+
+\section{El debate: ¿mismas reglas o reglas propias?}
+
+\subsection{La cuestión planteada}
+
+La pregunta es si pueden aplicarse a una insolvencia regional las mismas normativas de la insolvencia internacional. No se trata solamente de buscar la norma aplicable al caso: una ley de insolvencia pensada para regir el ámbito internacional parte de determinados criterios, y corresponde preguntarse si deben adoptarse los mismos criterios en una órbita de integración o si habría que analizar otros principios y otros criterios de determinación de la ley aplicable y de reconocimiento del extranjero.
+
+El tema de la clase se formuló así: \textbf{insolvencia transfronteriza, quiebras dentro de un área de integración}. Interesa determinar si resulta necesario, dentro de un área de integración, dictar una normativa propia (a nivel de tratado, protocolo o derecho derivado, elaborada por los órganos del Mercosur) que regule el procedimiento de insolvencia, o si pueden utilizarse las disposiciones internas sobre insolvencia internacional o los tratados vigentes sobre esa materia.
+
+\subsection{Posiciones expuestas}
+
+\begin{itemize}
+    \item \textbf{A favor de usar las mismas normas:} se sostuvo que, tratándose de un tema comercial, por lo general no hay mucho cambio en materia de comercio; podría utilizarse la normativa existente y no sería tan importante no haber regulado la materia. Se admitió que, en campos puntuales no regulados por esa normativa (por ejemplo, el aduanero o el de impuestos), podría regularse dentro de un ámbito regional.
+    \item \textbf{A favor de normas específicas:} se sostuvo que deberían crearse normas más específicas entre los países de la integración, y no utilizar algo tan universal, por ejemplo normas de la Unión Europea.
+\end{itemize}
+
+Se recordó que, aunque no se forma parte de la Unión Europea, existen acuerdos internacionales que regulan la insolvencia: los Tratados de Montevideo y el \textbf{Código de Sánchez de Bustamante y Sirvén} (Código Bustamante). La pregunta es entonces si pueden aplicarse o si deben crearse reglas propias, y, de optarse por reglas propias, qué principios o criterios convendría mantener en una insolvencia internacional pero no serían admisibles en una insolvencia regional.
+
+\subsection{Los créditos del Estado por impuestos}
+
+Otro punto planteado es el de los créditos que el Estado tiene por impuestos. Una vez abierto el concurso preventivo o decretada la quiebra de una empresa local, ¿cómo se verificarían los créditos de un Estado extranjero por impuestos no tributados? ¿Hay diferencia? ¿Se puede o no se puede discriminar?
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la cuestión de los créditos fiscales queda planteada sin respuesta en el apunte)
+
+\section{Cuadro Cornell del capítulo 1}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Por qué debe regularse la insolvencia dentro de un área de integración?} &
+Porque el área garantiza al comerciante \textit{in bonis} libre tránsito de mercaderías, libre establecimiento de inversiones e igualdad de trato (incluso fiscal) con la empresa local. Cambiar las reglas del juego al caer en insolvencia sería injusto para el empresario, para los demás comerciantes y para los consumidores que contrataron bajo otras reglas. La insolvencia es la continuidad de la actividad económica y debe tener reglas claras. \\
+
+\textbf{¿Qué diferencia hay entre armonizar y uniformar, y por qué importa la seguridad jurídica?} &
+Quien invierte o contrata necesita saber desde el inicio qué reglas lo alcanzarán. Si ante un fracaso cada Estado aplica su normativa interna (distinta en Brasil, Uruguay, Argentina o Venezuela), no hay seguridad jurídica y se contrata «con cierto miedo». Por eso es un tema de los órganos de integración, que deben ponerse de acuerdo. \\
+
+\textbf{¿Qué normas existen hoy sobre insolvencia internacional?} &
+Los Tratados de Montevideo de 1889 y 1940 (insolvencia comercial), el tratado de derecho procesal civil (insolvencia civil, del no comerciante) y el Código de Bustamante. Todos regulan desde la óptica del derecho internacional. \\
+
+\textbf{¿Mismas reglas o reglas propias para el área?} &
+Se debatió: una posición sostuvo que, por ser un tema comercial, pueden usarse las mismas normas; otra, que hacen falta normas específicas (por tratado, protocolo o derecho derivado). Se planteó además el caso de los créditos fiscales de un Estado extranjero: ¿puede discriminárselos? \\
+
+\midrule
+
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:}
+Si el área de integración garantiza libre circulación e igualdad de trato mientras el comerciante cumple, no puede cambiar las reglas cuando deja de cumplir. La seguridad jurídica exige reglas claras y acordadas por los órganos de integración. Existen tratados sobre insolvencia internacional (Montevideo, Bustamante), pero se discute si sus criterios sirven para el ámbito regional.
+} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 2 ====================
+\chapter[Internacional y regional]{Insolvencia internacional e insolvencia regional}
+
+\section{Qué principios cambian: reciprocidad e igualdad de trato}
+
+Se planteó como principio propio de la insolvencia regional la \textbf{igualdad de trato}, frente a la \textbf{reciprocidad}, a la que normalmente se supedita el tratamiento del acreedor extranjero en la insolvencia internacional.
+
+En una quiebra internacional no se sabe con qué acreedores de qué países, ni con empresas de qué Estado, se va a producir el vínculo; tampoco se sabe qué sistema jurídico tiene el otro Estado ni si dará igualdad de trato a los acreedores nacionales. Por eso se exige igualdad de trato como condición: si se abre una insolvencia en el país, el acreedor extranjero puede verificar su crédito siempre y cuando el acreedor argentino pueda verificar en el otro país en igualdad de condiciones. De no haber igualdad, el acreedor extranjero puede resultar postergado y cobrar sobre el saldo de la insolvencia.
+
+En la insolvencia interna, en cambio, existe una ley con reglas que se aplican a todos los involucrados por igual: no se da distinto tratamiento al acreedor de Tucumán que al de Santa Cruz, ni según la empresa estuviera radicada en Avellaneda, en La Boca o en Rosario. Se conocen los requisitos y no se distingue en el trato.
+
+En la insolvencia internacional no se pueden prever todos los países con los que el deudor se vinculará (en cada caso se negocia con una empresa francesa, otra uruguaya o una de Mozambique), por lo que no es posible tomar todas las previsiones al inicio. Por las dudas, las leyes de insolvencia del mundo establecen algunos principios o criterios. En la ley argentina, el \textbf{artículo 4} contempla la postergación del acreedor extranjero, que cobrará sobre el saldo.
+
+\begin{note}
+\textbf{Ley de Concursos y Quiebras (Ley 24.522), art. 4 --- texto oficial.} El texto se reproduce tal como figura en el apunte original (Biblioteca Electrónica de AFIP); en la clase se remitió al artículo sin leerlo.
+
+\textbf{ARTÍCULO 4.- Concursos declarados en el extranjero.} La declaración de concurso en el extranjero es causal para la apertura del concurso en el país, a pedido del deudor o del acreedor cuyo crédito debe hacerse efectivo en la República Argentina. Sin perjuicio de lo dispuesto en los tratados internacionales, el concurso en el extranjero, no puede ser invocado contra los acreedores cuyos créditos deban ser pagados en la República Argentina, para disputarles derechos que éstos pretenden sobre los bienes existentes en el territorio ni para anular los actos que hayan celebrado con el concursado.
+
+\textbf{Pluralidad de concursos.} Declarada también la quiebra en el país, los acreedores pertenecientes al concurso formado en el extranjero actuarán sobre el saldo, una vez satisfechos los demás créditos verificados en aquélla.
+
+\textbf{Reciprocidad.} La verificación del acreedor cuyo crédito es pagadero en el extranjero y que no pertenezca a un concurso abierto en el exterior, está condicionada a que se demuestre que, recíprocamente, un acreedor cuyo crédito es pagadero en la República Argentina puede verificarse y cobrar --- en iguales condiciones --- en un concurso abierto en el país en el cual aquel crédito es pagadero.
+
+\textbf{Paridad en los dividendos.} Los cobros de créditos quirografarios con posterioridad a la apertura del concurso nacional, efectuados en el extranjero, serán imputados al dividendo correspondiente a sus beneficiarios por causas de créditos comunes. Quedan exceptuados de acreditar la reciprocidad los titulares de créditos con garantía real.
+\end{note}
+
+Una vez liquidada la quiebra local, el acreedor extranjero cobra sobre el saldo; el acreedor nacional cobra primero. Para verificar en igualdad de condiciones con el acreedor local, el acreedor extranjero debe demostrar que existe igualdad de trato en la ley de su país: si su ley discrimina, no hay razón para que la ley local lo trate igual. Estos principios parecen lógicos en una insolvencia internacional porque no se puede saber, al abrirse la insolvencia, qué normativas entrarán en juego.
+
+\section{Insolvencia internacional e insolvencia regional}
+
+En una quiebra regional se está en un espacio de integración en el que \textbf{ya se sabe quiénes son los socios}: por ejemplo, Argentina estará vinculada con acreedores o deudores de Uruguay, Paraguay, Venezuela o Brasil, dentro del espacio de integración económica del Mercosur. Ya se establecieron algunas reglas de juego y se conoce lo que dice la ley de insolvencia brasileña o la uruguaya.
+
+Por lo tanto, no cabría mantener las previsiones propias de la insolvencia internacional: habría que partir de la \textbf{igualdad de trato} y de la \textbf{libertad de tránsito} que rigen dentro del ámbito de integración económica. Las normas discriminadoras no deberían aplicarse. Debería crearse una normativa de insolvencia que recepte los principios que rigen ese área:
+
+\begin{itemize}
+    \item si hay igualdad de trato, debe haberla también al momento de la insolvencia;
+    \item si hay libre circulación y se puede instalar y moverse, el crédito pagadero en un Estado podrá verificarse en el otro;
+    \item debe reconocerse la autoridad del síndico extranjero si actúa en el país, porque no se puede desconocer la autoridad de un socio.
+\end{itemize}
+
+Las normativas deberían receptar características más propias de una insolvencia local o nacional (una misma regla para todo el territorio) que de una quiebra internacional. Esto no significa aplicar la ley de quiebras argentina, porque Brasil sostendría que se aplique la suya: hay que coordinarse y acordar parámetros iguales en cualquiera de los Estados, si la insolvencia se caracteriza como regional.
+
+\begin{table}[H]
+\centering
+\caption{Insolvencia internacional vs. insolvencia regional}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Criterio} & \textbf{Insolvencia internacional} & \textbf{Insolvencia regional} \\
+\midrule
+\textbf{Vínculos con otros Estados} & No se pueden conocer de antemano: hoy una empresa francesa, mañana una uruguaya, pasado una de Mozambique. & Los socios ya se conocen: Argentina, Uruguay, Paraguay, Venezuela, Brasil. \\
+\textbf{Reglas del juego de los otros Estados} & Se ignora qué sistema jurídico tiene el otro Estado ni si dará igualdad de trato. & Ya se conocen (por ejemplo, la ley de insolvencia brasileña o la uruguaya). \\
+\textbf{Criterio frente al acreedor extranjero} & Reciprocidad: se condiciona la verificación y se posterga su cobro sobre el saldo. & Igualdad de trato: las normas discriminadoras no deberían aplicarse. \\
+\textbf{Verificación de créditos} & Condicionada a acreditar reciprocidad. & El crédito pagadero en un Estado puede verificarse en el otro. \\
+\textbf{Síndico extranjero} & --- & Debe reconocerse su autoridad: no se puede desconocer a un socio. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Calificación: insolvencia nacional, internacional o regional}
+
+Lo primero que plantea el tema de la insolvencia es el de las \textbf{calificaciones} (tema de Derecho Internacional Privado): hay que definir si la situación falimentaria se entiende como nacional, internacional o regional.
+
+\begin{itemize}
+    \item Es \textbf{nacional} (local) si todos sus elementos se dan dentro de la frontera del Estado: el deudor, sus acreedores y su patrimonio se encuentran en el país. Se rige por la ley local.
+    \item Si el deudor tiene un patrimonio internacionalmente disperso, se trata de una insolvencia \textbf{transfronteriza}. Entonces corresponde preguntarse si se la piensa en un ámbito universal (internacional) o si, aunque traspasa las fronteras del Estado nacional, se limita al área de integración económica: en ese caso no es nacional ni internacional, sino \textbf{regional}.
+\end{itemize}
+
+La insolvencia regional no es puramente local: tiene aspectos de transnacionalidad y un patrimonio internacionalmente disperso. Pero tampoco puede tratarse al extranjero «como si no se lo conociera», porque no es un extraño sino un socio: involucra a partes con las cuales se acordó la igualdad de trato, que constituye un eje en el tratamiento dentro del estado de insolvencia.
+
+\begin{table}[H]
+\centering
+\caption{Calificación de la insolvencia}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Tipo} & \textbf{Dónde se dan los elementos} & \textbf{Tratamiento} \\
+\midrule
+\textbf{Nacional (local)} & Deudor, acreedores y patrimonio dentro de la frontera de un mismo Estado. & Se rige por la ley local. \\
+\textbf{Internacional (transfronteriza universal)} & Patrimonio internacionalmente disperso, en un ámbito universal. & Reglas de la insolvencia internacional (reciprocidad). \\
+\textbf{Regional (transfronteriza limitada)} & Traspasa la frontera del Estado, pero se limita al área de integración económica. & No es puramente local ni internacional: los socios reciben igualdad de trato. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El patrimonio y el lugar de pago}
+
+\begin{definition}{Patrimonio}
+Composición de derechos y obligaciones: deudas, acreencias y bienes. El patrimonio está formado por un \textbf{activo} y un \textbf{pasivo}. El \textbf{activo} es todo lo que se tiene, sean bienes (las maquinarias de la empresa, los inmuebles) o créditos a favor: todo lo que se tiene y lo que se debe cobrar. El \textbf{pasivo} es todo lo que se debe, todas las obligaciones.
+\end{definition}
+
+Muchas veces la insolvencia transfronteriza se define por la existencia de bienes situados en distintos territorios, pero esa no es la única forma de entenderla: lo relevante es la existencia de un patrimonio transnacional. Un ejemplo de activo es la mercadería vendida que se cobrará en 15 días: constituye un crédito que se cobrará dentro de un determinado plazo.
+
+\subsection{Cuándo el patrimonio es regional y cuándo es internacional}
+
+\begin{example}{el pago en Miami o en Nueva York frente al pago en Uruguay}
+Si todos los bienes están dentro de un área de integración y los deudores del comerciante le pagarán dentro del área, el patrimonio es regional. Pero si el pago se efectúa mediante transferencia bancaria o depósito en Miami o en un banco de Nueva York, ese acreedor está fuera del área de integración: el crédito se cancela afuera y el patrimonio es internacional, no regional. En cambio, aunque se haya contratado con una empresa brasileña, si el comerciante abrió una cuenta bancaria en Uruguay y el pago se hará por depósito bancario en Uruguay, el lugar de pago del crédito sigue estando dentro del territorio de integración.
+\end{example}
+
+Así, son acreedores locales (dentro del área de integración) todos aquellos a quienes se debe pagar dentro de ella, aunque la empresa sea francesa, italiana o estadounidense. Si la empresa se comprometió a pagar dentro del área de integración económica a un acreedor de la República Argentina, su crédito es un crédito regional.
+
+\begin{important}
+«La extranjería o nacionalidad del acreedor [\ldots], en realidad, lo que calificamos como local o extranjero es el crédito, no al acreedor». Se lo califica según el \textbf{lugar de pago} o el lugar de cobro, no según la nacionalidad o el domicilio del deudor, del acreedor o de la empresa.
+\end{important}
+
+\subsection{La insolvencia regional: activo y pasivo dentro del área}
+
+Se califica como \textbf{regional} la insolvencia cuando:
+
+\begin{itemize}
+    \item todos los bienes están en alguno de los países miembros del área de integración;
+    \item todos los acreedores del deudor (quienes le deben a él) han fijado lugar de pago en la República Argentina o en alguno de los Estados parte del Mercosur;
+    \item todas las obligaciones del deudor deben cancelarse dentro del ámbito de integración económica.
+\end{itemize}
+
+Si, por el contrario, el deudor debe una obligación de entregar mercadería en Italia, ese acreedor no es mercosuriano sino internacional, porque la obligación tiene lugar de cancelación en el extranjero. Cuando la totalidad del activo y la totalidad del pasivo se encuentran en los Estados parte de la integración, la insolvencia es regional y puede aplicarse a todos las mismas reglas del juego; no se aplicará al italiano la misma regla que al uruguayo, porque aquel no es parte del ámbito de integración.
+
+\subsection{Los Estados asociados}
+
+Respecto de un Estado asociado (por ejemplo, Colombia): si hubiera una normativa de integración (que no la hay) y el Estado asociado la hubiera aceptado, se le aplicaría, porque, aunque no es un socio pleno, se asoció y se comprometió.
+
+\section{Conclusión: es un tema de los órganos de integración}
+
+Debe regularse la insolvencia dentro de un ámbito de integración para mantener el mismo trato que se dio cuando las empresas actuaban de modo solvente, habitual y cumpliendo sus obligaciones, momento en que se aceptaba la libre circulación, el establecimiento en otro Estado en igualdad de situación, la inversión extranjera y la igualdad de trato.
+
+\begin{important}
+«No cabe que le cambie las reglas del juego si entra en estado de cesación de pagos, porque no sería justo ni para el propio empresario ni para el resto de los comerciantes o los consumidores que se relacionaron con ellos con otras reglas de juego». La insolvencia es un tema de incumbencia de los órganos de integración.
+\end{important}
+
+No es fácil elaborar una normativa que tenga exactamente las mismas reglas de juego. Para abordarlo se desarrolla a continuación la noción general de insolvencia.
+
+\section{Cuadro Cornell del capítulo 2}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué es la reciprocidad y cómo se relaciona con el art. 4 de la Ley 24.522?} &
+En la insolvencia internacional no se sabe con qué Estados ni sistemas jurídicos se vinculará el deudor; por eso se condiciona la verificación del acreedor extranjero a la reciprocidad y se lo posterga: cobra sobre el saldo, después de los acreedores locales. \\
+
+\textbf{¿Por qué la insolvencia regional no se rige igual que la internacional?} &
+Porque en el área los socios ya se conocen y ya se pactaron reglas: corresponde la igualdad de trato, el crédito pagadero en un Estado puede verificarse en otro, las normas discriminadoras no deben aplicarse y debe reconocerse la autoridad del síndico extranjero. Hay que coordinarse para fijar parámetros iguales en todos los Estados. \\
+
+\textbf{¿Cuándo una insolvencia es nacional, internacional o regional?} &
+\textbf{Nacional:} deudor, acreedores y patrimonio dentro de un Estado (ley local). \textbf{Internacional:} patrimonio internacionalmente disperso. \textbf{Regional:} traspasa las fronteras del Estado pero se limita al área de integración. \\
+
+\textbf{¿Qué convierte a un crédito en regional?} &
+El \textbf{lugar de pago}, no la nacionalidad del acreedor. Pagar en Miami o Nueva York lo vuelve internacional; pagar en una cuenta en Uruguay lo mantiene regional. Cuando todo el activo y todo el pasivo están en los Estados parte, la insolvencia es regional y se aplican las mismas reglas a todos. \\
+
+\textbf{¿Qué ocurre con los Estados asociados?} &
+No hay normativa de integración sobre insolvencia; si existiera y el Estado asociado la aceptó, se le aplicaría: no es socio pleno, pero se asoció y se comprometió. \\
+
+\textbf{¿Por qué debe regularse la insolvencia en el ámbito de integración?} &
+Para mantener el mismo trato dado cuando el comerciante actuaba con normalidad. Es un tema de incumbencia de los órganos de integración. \\
+
+\midrule
+
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:}
+En la insolvencia internacional rigen la reciprocidad y la postergación del acreedor extranjero (art. 4 de la Ley 24.522); en la regional, donde los socios se conocen, rige la igualdad de trato. Para calificar la insolvencia como nacional, internacional o regional, importa el lugar de pago de los créditos y no la nacionalidad del acreedor.
+} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 3 ====================
+\chapter[Noción de insolvencia]{Noción de insolvencia}
+
+\section{Qué significa estar insolvente}
+
+Una primera forma de definir la insolvencia es «no tener para pagar las deudas». Otra, muy difundida entre autores y profesores, es «cuando el pasivo supera el monto del activo». Sin embargo, se sostiene aquí que alguien cae en insolvencia cuando entra en estado de \textbf{cesación de pagos}. Para precisar qué significa ese estado, se analizan primero el activo y el pasivo.
+
+\section{Activo y pasivo: corriente y no corriente}
+
+\subsection{Activo y pasivo corrientes y no corrientes}
+
+Activo y pasivo se dividen en activo corriente y no corriente, y pasivo corriente y no corriente. Lo que distingue a unos de otros es el \textbf{ejercicio financiero}:
+
+\begin{itemize}
+    \item El \textbf{activo corriente} es aquello que se tiene o se va a tener dentro del ejercicio financiero (en el corto plazo, lo que se va a cobrar).
+    \item El \textbf{activo no corriente} es aquello que se cobrará o recibirá fuera del ejercicio financiero, por ejemplo dentro de un año y medio. Ejemplos: un departamento que se viene pagando y que se entregará dentro de varios años; una maquinaria comprada por \textit{leasing} que se entregará dentro de dos años (es un activo, pero no corriente, porque no se puede disponer de él hasta entonces).
+    \item El \textbf{pasivo corriente} son las deudas que deben pagarse dentro de ese ejercicio financiero.
+    \item El \textbf{pasivo no corriente} son las deudas que se pagarán después, por ejemplo en uno o dos años.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Partidas corrientes y no corrientes}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Partida} & \textbf{Qué es} & \textbf{Ejemplo dado} \\
+\midrule
+\textbf{Activo corriente} & Lo que se tiene o se va a tener, o lo que van a pagar, dentro del ejercicio financiero (corto plazo). & Mercadería vendida que se cobrará en 15 días. \\
+\textbf{Activo no corriente} & Lo que se va a cobrar o recibir fuera del ejercicio financiero. & Un departamento que se viene pagando; una maquinaria comprada por \textit{leasing} que se entrega dentro de dos años. \\
+\textbf{Pasivo corriente} & Las deudas que se deben pagar dentro del ejercicio financiero. & Lo que se debe pagar en los próximos 12 meses de un crédito hipotecario. \\
+\textbf{Pasivo no corriente} & Las deudas que se pagarán después, dentro de uno o dos años. & Lo que falta pagar del crédito hipotecario. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{el crédito hipotecario}
+Quien sacó un crédito hipotecario por \$50.000 no debe pagar esa suma al día siguiente. Tiene un pasivo de \$50.000, pero lo que debe pagar mensualmente es otra cosa: el \textbf{pasivo corriente} es lo que debe pagar en esos 12 meses, y el \textbf{no corriente} es lo que falta.
+\end{example}
+
+\subsection{Por qué «pasivo mayor que activo» es una idea ficticia}
+
+Decir que el pasivo supera el activo es, en realidad, algo ficticio. En rigor, habría que tomar el pasivo corriente y compararlo con el activo corriente. Si el pasivo corriente es bajo, la mayor parte del pasivo es no corriente y el activo corriente es alto, el comerciante cobrará dentro del año financiero más dinero del que debe y, por lo tanto, no estará en estado de cesación de pagos: podrá cumplir puntualmente sus pagos. Luego se coteja el activo no corriente con el pasivo no corriente, según las fechas en que se irá cobrando y pagando.
+
+Comparar pasivo con activo en general no es exacto, porque puede haber un pasivo grande simplemente por tener muchos créditos: si siempre se cumplió, el banco confía y da crédito. Se tiene un gran pasivo, pero nunca se cae en cesación de pagos, porque se sabe manejar.
+
+\begin{example}{la tarjeta de crédito}
+Al comprar con tarjeta de crédito, se considera cuándo se va a cobrar el sueldo y se decide si financiar la compra en 12 meses o en tres cuotas. Conviene financiarla en 12 cuotas, porque con los próximos pagos del sueldo se van cancelando las cuotas; si se hiciera en un solo pago, no se podría pagar la tarjeta. Puede ocurrir que la deuda sea mayor que el sueldo, pero, como se financió y se cumplen los pagos con lo que se cobra mensualmente, nunca se cae en cesación de pagos. En cambio, quienes «tarjetean» una y otra vez y pagan el mínimo, endeudándose, sí caen en estado de cesación de pagos.
+\end{example}
+
+Lo que hay que tener en cuenta son el pasivo no corriente con el activo no corriente, juntos. Comparar pasivo con activo es muy fácil, pero hay que «hilar un poco más fino»: no siempre un gran pasivo significa insolvencia. Puede ser que se haya recibido mucho crédito para invertir y producir más; al año siguiente, cuando haya que seguir pagando las cuotas, la producción habrá aumentado y se podrán cubrir. Se seguirá en estado \textit{in bonis}, de crédito, sin ser insolvente, porque se siguen cumpliendo regularmente las obligaciones.
+
+Por eso, quien analice una situación de insolvencia (para decidir si dar crédito o si firmar un compromiso y acuerdo de pago) no debe fijarse solamente en si el balance está «en rojo o en verde», sino que debe mirar, en realidad, el activo corriente: es posible que el deudor salga del estado de insolvencia porque lo que va a cobrar dentro de unos años le permita cancelar. Así se distingue un \textbf{pasaje transitorio} de una real \textbf{insolvencia irremontable}.
+
+\begin{important}
+No siempre que hay un gran pasivo hay insolvencia: hay que «hilar más fino». Importa si el deudor cumple regularmente sus obligaciones, y se distingue un pasaje transitorio de una insolvencia irremontable.
+\end{important}
+
+\section{Cómo determinan los Estados la insolvencia}
+
+Lo primero que hay que mirar es cómo el Estado determina que alguien ha caído en insolvencia. Algunos ordenamientos jurídicos establecen que, presentando los últimos tres balances, si el pasivo es superior al activo, es suficiente para que pueda solicitarse el estado de cesación de pagos o insolvencia. Es un criterio muy general y objetivo: si los últimos tres balances dieron negativo, el comerciante puede pedir su insolvencia.
+
+En el derecho argentino, en cambio, hay que \textbf{probar el estado de cesación de pagos}, que es algo más fáctico. No quiere decir que el pasivo sea superior al activo: quiere decir que el comerciante no ha podido cumplir regularmente con sus obligaciones durante un período más o menos prolongado.
+
+\begin{example}{el deudor que «te va pateando»}
+Un deudor al que se le dio a pagar a 60 días dice: «te doy la mitad ahora, pero la otra mitad recién el mes que viene». Es decir, se le dio financiación y no cumple regularmente su compromiso: va postergando, sigue acumulando deuda, sigue negociando y comprometiéndose, se sigue endeudando y nunca termina de cancelar lo que tiene. Es lo que ocurre con la tarjeta de crédito cuando se paga el mínimo: si además están asociados a débito automático la luz o el gas, ingresan nuevas deudas mientras se sigue pagando el mínimo. Se acumula deuda anterior al mismo tiempo que entra deuda nueva, y se entra en estado de insolvencia, porque se está en estado de cesación de pagos: no se paga la totalidad de lo que se debe en tiempo y forma.
+\end{example}
+
+Lo que hay que hacer es cancelar la deuda a la fecha de vencimiento. No importa si se debe más de lo que se tiene, porque eso tiene que ver con el cruce de activo corriente y no corriente: lo que importa es cumplir la obligación en término. Quien cumple en término no entra en cesación de pagos. Un pasivo alto solo evidencia que se trata de alguien que, para el mercado, tiene crédito y credibilidad, y al que se le sigue extendiendo crédito porque paga regularmente. Así, cuando alguien paga en tiempo y forma y en su totalidad la tarjeta durante un año, el banco suele subir el monto del crédito: permite que el pasivo sea mayor que el activo porque hasta ahora se financió bien. A veces no importa tanto lo que se tiene y lo que se debe, sino cómo se va financiando.
+
+Para el ordenamiento jurídico pueden adoptarse distintos criterios objetivos para determinar el estado de insolvencia: el estado de cesación de pagos; que el pasivo sea mayor que el activo; que los últimos tres balances den resultado negativo. A partir de ahí se analiza cómo se lo regula.
+
+\begin{table}[H]
+\centering
+\caption{Criterios para determinar la insolvencia}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Criterio} & \textbf{Cómo se determina} & \textbf{Observación} \\
+\midrule
+\textbf{Cesación de pagos} & Se prueba que el comerciante no ha podido cumplir regularmente sus obligaciones durante un período más o menos prolongado. & Es lo que se exige en el derecho argentino: «algo más fáctico». Quien cumple en término no entra en cesación de pagos, aunque su pasivo sea alto. \\
+\textbf{Pasivo mayor que activo} & Se compara el total del pasivo con el total del activo. & Es «muy fácil», pero «ficticio»: hay que mirar el pasivo corriente frente al activo corriente y cómo se financia el deudor. \\
+\textbf{Tres balances negativos} & Se presentan los últimos tres balances; si los tres dan negativo, se puede pedir la insolvencia. & «Algo bien objetivo»: es el criterio de algunos ordenamientos jurídicos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+La cesación de pagos no equivale a que el pasivo supere el activo: se configura cuando el comerciante no cumple regularmente, en tiempo y forma, sus obligaciones durante un período más o menos prolongado. «Si vos cumplís tus obligaciones en término, no entrás en estado de cesación de pagos».
+\end{important}
+
+\section{Cuadro Cornell del capítulo 3}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué es estar insolvente?} &
+No tener para pagar las deudas. Muchos autores dicen «pasivo superior al activo»; aquí se prefiere hablar de \textbf{estado de cesación de pagos}. \\
+
+\textbf{¿Qué son el activo y el pasivo corrientes y no corrientes?} &
+\textbf{Corriente:} lo que se cobra o se paga dentro del ejercicio financiero. \textbf{No corriente:} fuera de él. Quien cobrará en el año más de lo que debe no cae en cesación de pagos, aunque su pasivo total supere su activo. \\
+
+\textbf{¿Qué diferencia hay entre cesación de pagos, pasivo mayor que activo y tres balances?} &
+\textbf{Cesación de pagos:} incumplimiento regular, durante un período más o menos prolongado (criterio del derecho argentino). \textbf{Pasivo mayor que activo:} criterio simple y «ficticio». \textbf{Tres balances negativos:} criterio objetivo de otros ordenamientos. \\
+
+\textbf{¿Qué muestran los ejemplos de la tarjeta de crédito y la hipoteca?} &
+Financiar en 12 cuotas y pagar en término no es cesación de pagos, aunque se deba más que el sueldo; «tarjetear» y pagar el mínimo mientras entran deudas nuevas sí lo es. El banco que sube el límite a quien cumple muestra que importa cómo se financia, no solo cuánto se debe. \\
+
+\textbf{¿Qué distingue un pasaje transitorio de una insolvencia irremontable?} &
+Hay que mirar el activo corriente y las fechas de cobro y pago: es posible que el deudor salga del estado de insolvencia con lo que va a cobrar. \\
+
+\midrule
+
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:}
+Estar insolvente significa estar en cesación de pagos, es decir, no cumplir regularmente en término las obligaciones, y no simplemente tener más pasivo que activo. Un gran pasivo puede convivir con el cumplimiento regular; por eso hay que analizar activo y pasivo corriente y no corriente y cómo se financia el deudor.
+} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 4 ====================
+\chapter[Evolución histórica]{Evolución histórica de la insolvencia}
+
+\section{El buen hombre de negocios y el origen de la quiebra}
+
+\subsection{Honrar el crédito}
+
+Históricamente se entendía que no era propio de un \textbf{buen hombre de negocios} no dar cumplimiento regularmente a sus obligaciones. Ser buen hombre de negocios era \textbf{honrar el crédito}: si alguien financiaba o daba crédito, se honraba la palabra pagando el crédito recibido, en tiempo y forma. El mercado veía el incumplimiento con tal gravedad que implicaba que no se podía confiar en quien no pagaba sus compromisos a tiempo.
+
+\begin{example}{la mercadería que no se paga a fin de mes}
+Quien vende mercadería y financia al comprador («pagámelo a fin de mes») pensaba pagar con ese dinero la materia prima con la que había elaborado la mercadería. Si llegado fin de mes el comprador no paga, el vendedor no puede pagar la materia prima. No es algo meramente transitorio: se genera una situación de incertidumbre dentro del mercado. Es importante que cada actor cumpla en tiempo y forma con sus compromisos; si no, la ecuación se desdibuja.
+\end{example}
+
+\begin{example}{el trabajo como factor económico}
+El trabajo es un factor económico. Si se paga un salario como contraprestación de un trabajo y el trabajador no va a trabajar, el empleador debe pagarle igual sin obtener el beneficio como contraposición, y a fin de mes no tendrá la mercadería para vender ni la riqueza suficiente para pagar el sueldo. En la pequeña economía ocurre lo mismo que en la gran empresa: cuando una de las partes no cumple su obligación, genera inestabilidad, incertidumbre y complejidad que, según el tamaño, pueden ser mayores o menores (no es lo mismo faltar por una gripe que no ir a trabajar durante dos meses).
+\end{example}
+
+\subsection{La quiebra como castigo: desterrar del mercado}
+
+Originariamente se entendía que la gravedad del incumplimiento del buen hombre de negocios implicaba, como castigo, \textbf{desterrarlo del mercado}: no podía seguir considerándose con derecho a ser negociante y a estar en el mercado a quien no honraba su palabra, su crédito ni sus obligaciones.
+
+\begin{example}{origen de las palabras «quiebra» y «bancarrota»}
+Las palabras \textit{quiebra} y \textit{bancarrota} definen literalmente lo que ocurría en los mercados medievales: cuando un comerciante dejaba de cumplir sus obligaciones, el puesto que tenía en la feria se rompía. Al verse roto el banco donde intercambiaba bienes y servicios, se daba publicidad de que no estaba pagando. \textbf{Banca rota}: se le rompía el puesto de negocios y no se lo dejaba trabajar más en la feria, y los demás feriantes advertían que no pagaba. La palabra \textit{quiebra} proviene también de allí: se hacían públicos sus incumplimientos y, al quebrarlo, se lo sacaba del mercado, porque no era una persona de fiar ni un buen hombre de negocios.
+\end{example}
+
+\begin{definition}{Quiebra}
+Liquidación de la empresa. La ley de quiebra tiene por objetivo liquidar todo el activo (cobrar todo lo que el deudor tenga por cobrar y rematar todos sus bienes) y, con el producido, cancelar en alguna proporción, como lo establezca la ley, sus deudas. Se decreta además la \textbf{inhabilitación para ejercer el comercio}: se excluye al deudor del mercado.
+\end{definition}
+
+\section{La vieja ley de quiebras: inhabilitación, culpa y dolo}
+
+\begin{note}
+\textbf{Norma mencionada: la «vieja ley de quiebras».} «Nuestra vieja ley de quiebras disponía que la inhabilitación para ejercer el comercio era de \textbf{10 años}». Esa ley también calificaba la conducta del deudor, distinguiendo la insolvencia culposa de la insolvencia dolosa o fraudulenta, y remitía la causa a juicio penal si el juez advertía fraude. El apunte no consigna número de ley ni artículos.
+\end{note}
+
+La inhabilitación para ejercer el comercio era de 10 años. Durante ese lapso no se volvía a tener crédito ni se podía operar en el mercado ni abrir otra empresa: el deudor quedaba registrado como insolvente y no podía, por ejemplo, abrir otra empresa con otro nombre.
+
+La vieja ley calificaba la conducta del deudor, distinguiendo:
+
+\begin{itemize}
+    \item la insolvencia \textbf{culposa}, cuando el deudor había caído en insolvencia por incompetencia;
+    \item la insolvencia \textbf{dolosa}, cuando durante el procedimiento el juez advertía mecanismos fraudulentos para caer en insolvencia.
+\end{itemize}
+
+\begin{example}{la insolvencia fraudulenta}
+El deudor toma créditos con una cuñada o un sobrino, que se presentan como acreedores; son créditos ficticios (se firma un pagaré al sobrino sin deberle realmente ese dinero). El pasivo parece mayor que el activo, se decreta la quiebra y no se le paga a nadie porque el activo es poco; pero ese poco activo se liquida entre el sobrino y la cuñada, y el deudor recupera su propio dinero. Al acreedor verdadero se le paga, por ejemplo, el 10 \% de lo que debía cobrar, porque se inventaron deudas inexistentes.
+\end{example}
+
+La diferencia con quien simplemente «tarjeteó» y pagó el mínimo sin advertir que acumulaba deuda es que, en el caso fraudulento, no hay incompetencia sino fraude: por ejemplo, quien se endeuda al máximo sabiendo que le cortarán el crédito, le anularán la tarjeta y lo incluirán en el Veraz, pero ya se equipó con televisión y heladera.
+
+Si el juez de la quiebra entendía que había quiebra fraudulenta, además de hacer la liquidación remitía la causa a \textbf{juicio penal}: el deudor podía ser juzgado por fraude y terminar preso. Las consecuencias del juicio de quiebra por no haberse comportado como buen hombre de negocios y haber desestabilizado el mercado eran graves: se liquidaba todo, no se permitía ejercer el comercio durante 10 años y, si había conductas no claras, se remitía a la causa penal.
+
+\begin{table}[H]
+\centering
+\caption{Insolvencia culposa e insolvencia dolosa en la vieja ley de quiebras}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Insolvencia culposa} & \textbf{Insolvencia dolosa o fraudulenta} \\
+\midrule
+\textbf{Origen} & Incompetencia o desprolijidad: por ejemplo, quien tarjetea y paga el mínimo sin darse cuenta de que acumula deuda. & Mecanismos fraudulentos: créditos ficticios, pagarés a familiares, deudas inventadas para cobrar uno mismo el activo. \\
+\textbf{Consecuencias} & Liquidación del activo e inhabilitación para ejercer el comercio durante 10 años. & Las mismas, y además el juez remitía la causa a juicio penal por fraude, con riesgo de prisión. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Caso fortuito y fuerza mayor: la segunda oportunidad}
+
+Con el tiempo se advirtió que no siempre que se cae en insolvencia se es un estafador o un incompetente. A veces ocurren situaciones imposibles de prever, aun para el previsor: \textbf{casos fortuitos} o de \textbf{fuerza mayor}, que llevan a la insolvencia a quien se comportó como un buen hombre de negocios.
+
+\begin{example}{la inundación y la cosecha perdida}
+Ante una inundación, si se muere ahogado el ganado y se pudre toda la siembra, algo totalmente fuera de control hace que, llegado el momento de pagar a quien vendió la semilla, no se pueda hacer porque no hubo cosecha. No es que no se haya sido previsor: se pudo haber tomado un seguro de riesgo, pero no para perder el 100 \%. Por ejemplo, si se esperaba que la cosecha rindiera un 70 \% y hubiera un 30 \% de pérdida, se contrata un seguro de caución por ese 30 \%.
+\end{example}
+
+\begin{example}{la pandemia y el bar que no podía abrir}
+Si durante la pandemia no se permitía abrir el bar, no se podía vender. El café comprado debía pagarse igual, y también la luz, el gas, los sueldos de los empleados y el local, sin poder realizar una sola venta. No era previsible que apareciera un virus que tendría a todos encerrados durante dos años.
+\end{example}
+
+Otros ejemplos de situaciones fuera de control son el corralito financiero, la hiperinflación o una depreciación monetaria importante. En estos casos la quiebra resultaría injusta, porque el deudor se comportó como buen hombre de negocios, tomó todas las previsiones y, sin embargo, no pudo cumplir normalmente sus compromisos.
+
+Aparece así otra noción: la insolvencia no implica la quiebra. A veces se da en situaciones que habilitan a dar al insolvente una \textbf{segunda oportunidad}.
+
+\begin{important}
+Insolvencia no es sinónimo de quiebra. Cuando la insolvencia obedece a casos fortuitos o de fuerza mayor (inundaciones, pandemia, corralito, hiperinflación), el insolvente merece una segunda oportunidad.
+\end{important}
+
+\section{El concurso preventivo}
+
+Aparece entonces el \textbf{concurso preventivo}. En lugar de verificar el no pago y decretar la quiebra con todas sus consecuencias, la ley admite que, dándose el estado de cesación de pagos por circunstancias totalmente extrañas al deudor, se abra un procedimiento concursal en el cual se permita \textbf{renegociar las deudas con los acreedores}, establecer nuevas condiciones de pago y suspender los pagos por algún tiempo.
+
+\begin{itemize}
+    \item \textbf{Tiempo de espera:} por ejemplo, durante dos años no se pagan las deudas. Ello permite seguir operando; se adquirirá nueva deuda que deberá cancelarse en tiempo y forma, y se irá cobrando, lo que permite volver a un flujo normal de fondos y recomponer el activo.
+    \item \textbf{Cancelación sin intereses:} quienes verifican en tiempo el crédito cobran capital sin actualización, porque no se actualiza la suma a la fecha del efectivo pago; se frena el cómputo de intereses durante todo el proceso concursal. La deuda se paga a capital histórico, para que no engrose.
+    \item \textbf{Concordatos, acuerdos prejudiciales y acuerdos de quita:} se quita parte del capital. Por ejemplo, el deudor no deberá pagar el 100 \% sino solamente el 60 \% de su deuda.
+\end{itemize}
+
+Dentro del procedimiento de insolvencia se abre la etapa concursal, en la que deudor y acreedores pueden celebrar este tipo de acuerdos para recomponer la situación hasta levantar la insolvencia y que el deudor vuelva a negociar. Si durante esta etapa el deudor no cubre los pagos que se había comprometido a hacer, o adquiere deudas nuevas (con lo cual aumenta su pasivo y no su activo), \textbf{se decreta la quiebra}.
+
+Hay así una cierta consideración hacia el deudor, a quien se permite recomponerse. Por eso la ley argentina se llama \textbf{Ley de Concursos y Quiebras}: hay una etapa concursal en la que se permiten acuerdos preconcursales y extrajudiciales, concordatos y otras situaciones para recomponer. Si no se recompone, quiebra.
+
+\begin{note}
+\textbf{Norma mencionada: Ley de Concursos y Quiebras (Ley 24.522).} Se explica la estructura de la ley: una etapa concursal (acuerdos preconcursales y extrajudiciales, concordatos, quitas y esperas) y, si el deudor no se recompone, la quiebra. En este tramo no se citan artículos.
+\end{note}
+
+\begin{table}[H]
+\centering
+\caption{Concurso preventivo y quiebra}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Aspecto} & \textbf{Concurso preventivo} & \textbf{Quiebra} \\
+\midrule
+\textbf{Finalidad} & Dar una segunda oportunidad: que el deudor se recomponga y vuelva al comercio en óptimas condiciones. & Liquidar la empresa y excluirla del mercado. \\
+\textbf{Cuándo corresponde} & Cuando la insolvencia se debe a circunstancias fuera del control del deudor (caso fortuito, fuerza mayor). & Cuando el deudor incumple gravemente o fracasa el concurso (no cumple los pagos comprometidos o adquiere nuevas deudas). \\
+\textbf{Herramientas} & Renegociación con los acreedores; tiempo de espera (por ejemplo, dos años sin pagar); quita (por ejemplo, pagar el 60 \% del capital); sin intereses, a capital histórico; concordatos y acuerdos preconcursales o extrajudiciales. & Liquidación de todo el activo, remate de bienes y cancelación del pasivo en la proporción que fije la ley. \\
+\textbf{Consecuencia} & El deudor sigue operando y recompone su activo. & Inhabilitación para ejercer el comercio (10 años, en la vieja ley). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell del capítulo 4}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Por qué históricamente se excluía del mercado al comerciante que no pagaba?} &
+Porque no honrar el crédito era una falta grave que generaba incertidumbre y se castigaba excluyendo al comerciante del mercado. «Bancarrota» viene del banco roto en la feria medieval. La quiebra liquida la empresa, cancela el pasivo con el activo e inhabilita para ejercer el comercio. \\
+
+\textbf{¿En qué se diferenciaban la insolvencia culposa y la dolosa?} &
+Con la vieja ley, la inhabilitación era de 10 años. Se distinguía la insolvencia culposa (incompetencia) de la dolosa (fraude, por ejemplo créditos ficticios a familiares), que se remitía a juicio penal. \\
+
+\textbf{¿Debe terminar en quiebra todo el que cae en insolvencia?} &
+No. No toda insolvencia es culpa del deudor: inundaciones, pandemia, corralito, hiperinflación. Insolvencia no implica necesariamente quiebra: se admite una segunda oportunidad. \\
+
+\textbf{¿Qué herramientas da el concurso preventivo para evitar la quiebra?} &
+Procedimiento para renegociar con los acreedores: tiempo de espera (por ejemplo, dos años sin pagar), pago sin intereses a capital histórico, quitas (por ejemplo, pagar el 60 \%), concordatos y acuerdos preconcursales o extrajudiciales. Si el deudor incumple o adquiere nuevas deudas, se decreta la quiebra. De ahí el nombre de la Ley de Concursos y Quiebras. \\
+
+\midrule
+
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:}
+La insolvencia se trató primero como castigo al «mal comerciante» (quiebra, inhabilitación de 10 años, posible juicio penal por fraude). Luego se reconoció que hay insolvencias por caso fortuito o fuerza mayor, lo que dio lugar a la segunda oportunidad del concurso preventivo; si el deudor no se recompone, se decreta la quiebra.
+} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 5 ====================
+\chapter[Terceros y mercado]{Terceros y mercado}
+
+\section{Los trabajadores y la retracción del consumo}
+
+La evolución de la institución de la insolvencia no terminó allí: con el tiempo se advirtió que, cuando se produce una insolvencia o un concurso, no se afecta solamente al deudor y a sus acreedores, sino que hay \textbf{terceros involucrados} que también deben considerarse.
+
+Los empleados se consideran desde dos puntos de vista distintos:
+
+\begin{itemize}
+    \item Son \textbf{acreedores}: brindaron su trabajo y se les debe el sueldo, por lo que entran en la etapa de acuerdo entre deudor y acreedores.
+    \item Entran además en otra evaluación económica, como \textbf{consumidores}: sin sueldo ni trabajo, dejan de consumir o gastan mucho menos (se priorizan los insumos básicos, como evitar que corten la luz).
+\end{itemize}
+
+Cuando una empresa cierra y despide personal, aunque haya sido acreedor privilegiado y hubiera cobrado su sueldo, sigue siendo personal desempleado que deja de consumir. Esto provoca una \textbf{retracción del consumo}, que es importante marcar porque deja de circular la riqueza.
+
+\begin{example}{el «tapadito» del año pasado}
+Quien en lugar de comprar una prenda nueva reutiliza el abrigo del año anterior, porque no le alcanza, hace que el vendedor de abrigos venda menos: ese dinero se destinará a la leche, la luz y el pan.
+\end{example}
+
+El impacto depende de la envergadura de la empresa: no es lo mismo que quiebre el almacenero de la esquina (que deja sin trabajo a él mismo, al despachante y al chico del reparto) que una gran empresa que deje a 1000 o 2000 personas en la calle. Hay así alguien más que sufre, que no es acreedor: el mercado, por la retracción del consumo.
+
+\begin{important}
+Los empleados son, a la vez, acreedores (por el sueldo adeudado) y consumidores: al quedar desempleados consumen menos, y esa retracción del consumo frena la circulación de la riqueza. El impacto depende de la envergadura de la empresa que quiebra.
+\end{important}
+
+\section{El Estado: acreedor y ente recaudador}
+
+El Estado también se ve afectado de diversas maneras. En primer lugar, como \textbf{acreedor}: la empresa le debía impuestos, y al liquidarse los bienes puede cobrar parte de su deuda impositiva o no cobrar nada. En segundo lugar, se lo entiende como \textbf{ente recaudador}.
+
+\subsection{Menos ingresos para el Estado}
+
+Si la empresa quiebra, el Estado ya no cobrará ingresos brutos ni impuesto a las ganancias: hay un contribuyente menos que aporta a las arcas públicas y el Estado tiene menos ingresos para su presupuesto. Una cosa es cuánto dejaría de ingresar por un almacenero y otra por una multinacional.
+
+Por eso, a veces los Estados salen con más urgencia a sacar de la crisis a grandes empresas que a una pyme o a un pequeño comerciante: la repercusión en el mercado y la inestabilidad en la economía son muy superiores en el caso de la gran empresa.
+
+\subsection{Más gastos para el Estado}
+
+Al mismo tiempo que disminuyen sus ingresos, el Estado tiene más gastos. Si la empresa despide personal, la indemnización se paga en la quiebra, pero los trabajadores cobrarán durante un año el \textbf{seguro de desempleo}, que paga el Estado y que equivale a menos que lo que cobraban en actividad. El Estado deja de cobrar ganancias, ingresos brutos, IVA y otros tributos, y a la vez debe hacerse cargo del seguro de desempleo y de la cobertura médica de esas personas, que irán al hospital público.
+
+\begin{table}[H]
+\centering
+\caption{Cómo afecta la insolvencia de una empresa al Estado}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Efecto} & \textbf{Descripción} \\
+\midrule
+\textbf{Como acreedor} & La empresa le debía impuestos y, tras la liquidación, puede cobrar parte o nada de esa deuda. \\
+\textbf{Menos ingresos} & Hay un contribuyente menos: ya no cobra ingresos brutos, impuesto a las ganancias ni IVA. \\
+\textbf{Más gastos} & Debe pagar el seguro de desempleo (menor que el salario) y hacerse cargo del gasto médico en el hospital público. \\
+\textbf{Según la envergadura} & El impacto de una multinacional es muy superior al de un almacenero: por eso el Estado actúa con más urgencia ante la crisis de una gran empresa. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El mercado: oferta, demanda y precios}
+
+Al desaparecer una empresa que produce un bien o un servicio, \textbf{disminuye la oferta} de ese bien o servicio en el mercado.
+
+\begin{example}{si cerrara Coca-Cola}
+Si cerrara Coca-Cola (de la que también forma parte otra marca de bebidas), la oferta se trasladaría a otro productor, como Manaos. Pero cabe preguntarse si la planta de ese otro productor está preparada para absorber la producción que ya no daría Coca-Cola, y si no le costaría un tiempo (maquinaria, personal). Durante ese plazo habría menos oferta de un determinado bien y la misma cantidad de reclamo de comerciantes y de intención de consumo.
+\end{example}
+
+Si hay mucha demanda y poca oferta, \textbf{suben los precios}. El mercado sufre porque, cuando desaparece un productor de bienes o servicios, la oferta disminuye y la demanda permanece igual.
+
+\begin{example}{de colchones de lana a colchones de espuma}
+No hay problema cuando una empresa transmuta su producción hacia algo que el mercado reclama: antes los colchones eran de lana, ahora son de espuma, y la empresa dejó de fabricar los de lana para fabricar colchones de espuma o inflables. La situación problemática es otra: desaparece una empresa, el mercado sigue con su reclamo e intención de compra iguales y no encuentra oferta suficiente, por lo que los precios suben.
+\end{example}
+
+\begin{important}
+Cuando desaparece un productor y la demanda se mantiene, la oferta cae y los precios suben. Distinto es el caso de la empresa que transmuta su producción hacia lo que el mercado reclama: ahí no hay problema.
+\end{important}
+
+\section{Mantener la unidad productiva: el salvataje}
+
+Todo esto, y otras situaciones, hace que el Estado se plantee que ya no es una cuestión solamente de si el deudor era culpable o inocente, ni de darle una oportunidad mediante acuerdos al comerciante que entró en crisis por razones fuera de su dominio. Lo que interesa es el impacto que provoca la desaparición de esa fuente de producción de ingresos, de productos y de servicios, y las alteraciones de mercado que el Estado debe tratar de evitar.
+
+Ya no importa solamente que los acreedores se pongan de acuerdo con su deudor, sino \textbf{minimizar el impacto de la insolvencia en el mercado}. Ya no se regula solo como una relación entre deudor y acreedores: se procura mantener una \textbf{unidad de producción económicamente activa en funcionamiento}.
+
+\begin{important}
+La evolución de la insolvencia pasó del castigo al deudor, a la segunda oportunidad y, finalmente, a la protección del mercado: el Estado busca minimizar el impacto de la insolvencia y mantener en funcionamiento una unidad de producción económicamente activa.
+\end{important}
+
+Aparecen así otras instituciones dentro de la ley de quiebras, como el \textit{cram down} o \textbf{salvataje}: fracasado el concurso, correspondería decretar la quiebra; pero, como ello puede traer las consecuencias que se quieren evitar, la ley de quiebras prevé otra instancia más: que un tercero compre es[\ldots]
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la grabación se interrumpe y la frase sobre el salvataje queda inconclusa)
+
+\begin{note}
+\textbf{Final de la grabación.} La transcripción se interrumpe en este punto, con la frase inconclusa («que un tercero compre es\ldots»). El tramo final de la clase no consta en la grabación, por lo que no se reconstruye.
+
+\textbf{Nota de contexto del redactor del apunte original (no expuesta en la clase):} el instituto conocido como «salvataje» o \textit{cram down} se encuentra en el art. 48 de la Ley 24.522 («Supuestos especiales»): en ciertas sociedades, vencido el período de exclusividad sin acuerdo preventivo, no se declara la quiebra, sino que se abre un registro para que acreedores, la cooperativa de trabajo u otros terceros interesados en adquirir las acciones o cuotas del capital social puedan formular propuestas de acuerdo.
+\end{note}
+
+\section{Cuadro Cornell del capítulo 5}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.65\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Por qué una insolvencia afecta a quienes no son deudor ni acreedor?} &
+Los trabajadores son acreedores (por el sueldo) y consumidores: sin ingresos gastan menos, hay retracción del consumo y deja de circular la riqueza. \\
+
+\textbf{¿Cómo afecta la insolvencia al Estado y por qué actúa con más urgencia ante una gran empresa?} &
+El Estado es acreedor de impuestos y ente recaudador: cobra menos (ingresos brutos, ganancias, IVA) y gasta más (seguro de desempleo, salud pública). Actúa con más urgencia ante la crisis de una gran empresa que de una pyme por la mayor repercusión en el mercado. \\
+
+\textbf{¿Qué ocurre con los precios cuando desaparece una empresa productora?} &
+Menos oferta con la misma demanda hace subir los precios (ejemplo: Coca-Cola y Manaos). Distinto es el caso de la empresa que transmuta su producción hacia lo que el mercado reclama. \\
+
+\textbf{¿Por qué hoy importa más conservar la empresa que castigar al deudor? ¿Qué es el salvataje o \textit{cram down}?} &
+El interés pasó del deudor a minimizar el impacto de la insolvencia y mantener la unidad productiva en funcionamiento. El salvataje es una instancia posterior al fracaso del concurso; la grabación se interrumpe al comenzar a explicarlo. \\
+
+\midrule
+
+\multicolumn{2}{p{0.92\textwidth}}{
+\textbf{Resumen:}
+La insolvencia afecta a trabajadores, al Estado y al mercado (oferta, demanda y precios). Por eso el objetivo actual es minimizar el impacto de la insolvencia y mantener viva la unidad productiva, lo que da lugar a instituciones como el salvataje.
+} \\
+\end{longtable}
+
+% ==================== SÍNTESIS GENERAL ====================
+\chapter[Síntesis final]{Síntesis final}
+
+La clase mostró que la insolvencia no es un asunto privado entre un deudor y sus acreedores, sino un problema central de cualquier área de integración: si el Mercosur garantiza libre circulación e igualdad de trato mientras el comerciante cumple, no puede cambiar las reglas cuando deja de cumplir, y por eso la regulación de la insolvencia incumbe a los órganos de integración.
+
+Para distinguir entre insolvencia nacional, internacional y regional, el criterio decisivo es el \textbf{lugar de pago de los créditos} y no la nacionalidad de los acreedores; y en el espacio regional, donde los socios se conocen, la igualdad de trato reemplaza a la reciprocidad y a la postergación del acreedor extranjero propias de la insolvencia internacional (art. 4 de la Ley 24.522).
+
+Luego se precisó que estar insolvente significa estar en \textbf{cesación de pagos} (no cumplir regularmente en término) y no simplemente tener más pasivo que activo.
+
+La evolución histórica fue del castigo al «mal comerciante» (quiebra, inhabilitación, juicio penal) a la segunda oportunidad del concurso preventivo y, finalmente, a la protección del mercado, porque la caída de una empresa afecta a trabajadores, al Estado, a los precios y a la oferta. Hoy el objetivo es minimizar ese impacto y mantener viva la unidad productiva.
+
+\end{document}

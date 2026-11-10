@@ -1,0 +1,903 @@
+\documentclass[12pt,oneside]{book}
+
+% ==========================================================
+% METADATOS
+% ==========================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho de la Integración}
+\newcommand{\titulo}{Jurisdicción directa, prórroga y cooperación judicial en el espacio de integración (Mercosur)}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==========================================================
+% PAQUETES
+% ==========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==========================================================
+% CONFIGURACIÓN
+% ==========================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==========================================================
+% COMANDOS
+% ==========================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% ==========================================================
+% ENTORNOS / CAJAS
+% ==========================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Cuadro Cornell (tabla real, columna izquierda estrecha, resumen a ancho completo)
+\newenvironment{cornell}{%
+    \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.67\textwidth}@{}}
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endhead
+}{%
+    \end{longtable}
+}
+\newcommand{\cornellrow}[2]{\textbf{#1} & #2 \\[0.6em]}
+\newcommand{\cornellresumen}[1]{%
+    \midrule
+    \multicolumn{2}{@{}p{\dimexpr0.95\textwidth+2\tabcolsep\relax}@{}}{\textbf{Resumen:} #1} \\
+    \bottomrule
+}
+
+% ==========================================================
+% CONFIGURACIÓN FINAL
+% ==========================================================
+\begin{document}
+
+% ==========================================================
+% PORTADA
+% ==========================================================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{0.5cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{2.2cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{0.8cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de «\materia» no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ==========================================================
+% ÍNDICE
+% ==========================================================
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+% ==========================================================
+% CONTENIDO
+% ==========================================================
+
+% ----------------------------------------------------------
+\chapter[Encuadre y punto de partida]{Encuadre y punto de partida}
+% ----------------------------------------------------------
+
+\section{De los Estados a los particulares}
+
+\subsection{Del conflicto entre Estados al conflicto entre particulares}
+
+El estudio de la \textbf{jurisdicción} comienza con un cambio de enfoque. Hasta este punto solo se había abordado la \textit{solución de conflictos} entre los Estados, referida a la interpretación y aplicación del derecho de la integración. En ese ámbito se analizó cómo se resolvían tales conflictos y quién era competente para hacerlo: se trataba de una competencia absoluta del tribunal, con posibilidad de prórroga y de recurrir al arbitraje.
+
+El enfoque que se desarrolla ahora es distinto: \textbf{¿quién es el juez competente cuando existen conflictos entre particulares} relativos a una contratación, o a una cuestión vinculada con el espacio de integración\textbf{?}
+
+\subsection{Jurisdicción local, internacional y de integración}
+
+Al hablar de jurisdicción pueden plantearse interrogantes como quién es el juez competente o cómo se solicita jurisdicción para las medidas cautelares. Si se toman en cuenta solamente los intereses de un Estado, los criterios de regulación son distintos de los que rigen en el ámbito internacional, donde se considera que pueden existir varios jueces competentes o que otro sistema jurídico se considere competente de manera exclusiva.
+
+La jurisdicción en el ámbito de la integración ocupa un lugar \textbf{intermedio}: traspasa la frontera del Estado, pero no llega a un ámbito internacional, porque se sabe exactamente quiénes son los socios y qué criterios de asignación de jurisdicción existen para cada uno de los temas que hacen a la integración. No es lo mismo que cuando no se sabe con quién se establecerá el vínculo ni entre quiénes se da la relación jurídica: en el espacio de integración las posibilidades respecto de los derechos vinculados son acotadas.
+
+\subsection{Delimitación de la cuestión}
+
+Cuando se habla de jurisdicción, lo primero que corresponde precisar es a qué jurisdicción se hace referencia. La pregunta es: ¿quién es competente, y para qué? Para \textbf{solucionar un conflicto entre particulares dentro del área de integración, en alguna de las materias que son ámbito de competencia o de regulación del espacio de integración}.
+
+Por ejemplo, la evaluación de un patrimonio queda fuera del ámbito de la integración, mientras que una cuestión de materia laboral, como la de si correspondían o no vacaciones, sí se encuentra dentro de él.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la materia laboral se menciona aquí como incluida en la integración; más adelante el contrato de trabajo figura entre las materias excluidas del Protocolo de Buenos Aires)
+
+\section{Alcance material y espacial de la integración}
+
+\subsection{Materias que no forman parte de la integración}
+
+No corresponde determinar en este marco quién es el juez competente para otorgar una adopción: una adopción internacional no tiene juez competente dentro de un marco de integración. La razón es que los niños no son parte del mercado común y, por lo tanto, los órganos de la integración no tienen facultades para legislar sobre ese tema. Por la misma razón tampoco pueden crear jurisdicción que resuelva conflictos de patria potestad, de matrimonio o de familia.
+
+\subsection{Materias que sí se regulan}
+
+La materia sobre la que se regula en el espacio de integración depende del tipo o modelo de integración. En un ámbito de integración como el \textbf{mercado común} no se trata la adopción, ni el juez competente en materia de familia, ni en materia penal. Los temas se limitan a:
+
+\begin{itemize}
+    \item negocios y contratos;
+    \item cuestiones laborales, porque tienen que ver con un mercado;
+    \item inversiones, porque tienen que ver con el mercado;
+    \item en general, todas las cuestiones que tengan que ver con el mercado.
+\end{itemize}
+
+Los temas sobre los cuales los órganos de la integración pueden regular, atribuir y asignar jurisdicción, decidir si se admite o no la prórroga y establecer el procedimiento de cooperación dentro del área son solamente aquellos que tienen que ver con negocios, contratos y relaciones laborales, que es la materia que tienen establecida.
+
+\subsection{Alcance espacial}
+
+Las materias reguladas trascienden las fronteras del Estado, pero la cuestión a debatir se limita al ámbito de integración. Si se supera ese ámbito, es decir, si hay otros participantes fuera del área de integración, deben aplicarse normas de \textbf{jurisdicción internacional}. Por eso se habla de una jurisdicción \textbf{regional}.
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\cornellrow{¿Qué abarca la jurisdicción en un espacio de integración?}{Se ocupa de \textbf{quién es el juez competente cuando hay un conflicto entre particulares} (o el Estado actuando como particular) vinculado con el mercado común. Quedan fuera familia, adopción, patria potestad y materia penal. Si participan sujetos de fuera del área, se aplican normas de jurisdicción internacional.}
+\cornellrow{¿Qué diferencia a la jurisdicción de integración de la local y de la internacional?}{Es un ámbito \textbf{intermedio}: traspasa la frontera del Estado, pero se conocen los socios y los criterios de asignación de jurisdicción para cada tema, por lo que las posibilidades son acotadas.}
+\cornellrow{¿Sobre qué materias pueden regular los órganos de la integración?}{Solo sobre las que tienen que ver con el mercado: negocios, contratos, relaciones laborales e inversiones. Pueden regular jurisdicción, prórroga y cooperación únicamente en esos temas.}
+\cornellresumen{La jurisdicción en el espacio de integración responde a la pregunta de quién es competente, y para qué, en un conflicto entre particulares vinculado con las materias propias del mercado común. Es una jurisdicción regional e intermedia entre la local y la internacional, limitada a negocios, contratos, relaciones laborales e inversiones.}
+\end{cornell}
+
+% ----------------------------------------------------------
+\chapter[Jurisdicción directa]{Jurisdicción directa}
+% ----------------------------------------------------------
+
+\section{Concepto y fuente de la jurisdicción directa}
+
+\subsection{Qué es la jurisdicción directa}
+
+\begin{definition}{Jurisdicción directa}
+Hace referencia a qué tipo de magistrados o autoridades tienen \textbf{competencia natural}, es decir, aquellos que deben entender y resolver un conflicto entre partes.
+\end{definition}
+
+En el ámbito de la integración, la cuestión consiste en determinar quién es la autoridad con potestad para entender y resolver un conflicto entre particulares. Se trata de particulares, o del Estado cuando actúa como particular: si una aerolínea estatal realiza comercio, está actuando como particular. Esta jurisdicción está determinada por la ley.
+
+\subsection{La competencia deriva de la ley}
+
+La competencia de los jueces deriva de la ley: pueden hacer lo que la ley dice y no pueden hacer aquello para lo cual la ley no les otorgó jurisdicción.
+
+\subsection{Las facultades del magistrado}
+
+El magistrado o autoridad tiene las facultades de la \textit{notio}, la \textit{vocatio}, el \textit{iudicium}, la \textit{coertio} y la \textit{executio}. Estas comprenden el poder de conocer, de abocarse a la solución del problema y de decidir. Además, los magistrados tienen el \textbf{monopolio de la fuerza pública del Estado}, por lo que su decisión puede ejecutarse forzosamente cuando la parte no quiere cumplirla voluntariamente.
+
+\section{Competencia y armonización legislativa}
+
+\subsection{Competencia territorial y material}
+
+Estas facultades se ejercen dentro de un ámbito de competencia territorial y material, lo que lleva a hablar de juez competente en materia de contratos, en materia laboral y en materia de familia (esta última no corresponde al espacio de integración). Se considera la competencia entre países miembros del espacio de integración; es decir, se trata de competencia territorial y competencia material.
+
+\subsection{Armonización legislativa}
+
+En el ámbito de la integración, los Estados deben ponerse de acuerdo sobre quién es el juez competente en cada una de estas áreas. Esto conduce a la \textbf{armonización legislativa}, y plantea los siguientes interrogantes:
+
+\begin{itemize}
+    \item si se lo hará mediante \textbf{uniformidad} o mediante \textbf{armonía};
+    \item si se lo hará mediante un \textbf{tratado} o un \textbf{protocolo};
+    \item si se le dará al órgano la facultad de dictar \textbf{derecho derivado} para que, mediante una resolución, una decisión o un reglamento, designe o establezca las reglas de atribución de jurisdicción dentro del área de integración.
+\end{itemize}
+
+\section{Rigidez de la jurisdicción directa}
+
+La jurisdicción directa no tiene nada en contra: cada tema establece quién es el juez competente, y eso ya está determinado por la ley. Distinto es el grado de rigidez, que depende de si las jurisdicciones son \textbf{exclusivas, únicas o concurrentes}, y de otros factores propios de cada tema.
+
+\begin{itemize}
+    \item Hay temas en los que se prevén varias jurisdicciones y elige el actor, de modo que no es una regla tan rígida.
+    \item En otros, la ley dispone una única solución. Por ejemplo, es competente el juez del último domicilio del causante, y no puede elegirse otro: no es posible pretender que la sucesión se tramite en otro lugar.
+\end{itemize}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\cornellrow{¿Qué es la jurisdicción directa y de dónde viene la competencia?}{Es la del \textbf{juez natural}: la autoridad con competencia para entender y resolver el conflicto. Su competencia deriva de la ley (fuente interna o convencional): puede hacer lo que la ley dice y no lo que la ley no le otorgó.}
+\cornellrow{¿Qué facultades tiene el magistrado?}{\textit{Notio, vocatio, iudicium, coertio} y \textit{executio}: el poder de conocer, de abocarse a la solución del problema y de decidir, junto con la coerción y la ejecución. Tiene el \textbf{monopolio de la fuerza pública del Estado}, por lo que su decisión puede ejecutarse forzosamente.}
+\cornellrow{¿Cómo se fijan las reglas de jurisdicción en la integración?}{Por \textbf{armonización legislativa}: se acuerda quién es competente en cada área (territorio y materia) mediante un tratado, un protocolo o derecho derivado (resolución, decisión o reglamento de un órgano).}
+\cornellrow{¿Qué tan rígida es la jurisdicción directa?}{Depende de si las jurisdicciones son exclusivas, únicas o concurrentes. En algunos temas hay varias jurisdicciones posibles y elige el actor; en otros la ley fija una sola (por ejemplo, el juez del último domicilio del causante).}
+\cornellresumen{La jurisdicción directa corresponde al juez natural, cuya competencia deriva de la ley y que conserva las facultades de conocer, decidir y ejecutar con el auxilio de la fuerza pública. En la integración, los Estados acuerdan por armonización legislativa quién es competente en cada materia y territorio, con mayor o menor rigidez según el tema.}
+\end{cornell}
+
+% ----------------------------------------------------------
+\chapter[Prórroga de jurisdicción]{Prórroga de jurisdicción}
+% ----------------------------------------------------------
+
+\section{Concepto y autonomía de la voluntad}
+
+Prorrogar es extender. El juez competente proviene de la ley; en la prórroga, en cambio, las partes, en uso de la \textbf{autonomía de la voluntad}, designan otro tercero. Al plantearse el tema del arbitraje en materia contractual, se señaló que este es prórroga de jurisdicción y no una cuestión de ley de arbitraje.
+
+\begin{definition}{Prórroga de jurisdicción}
+Es cuando las partes, de común acuerdo, en aquellos temas en los que el ordenamiento jurídico lo permite, sacan el conflicto de la competencia del juez establecido por ley y lo llevan a otro juez o a un árbitro, un tercero, para que lo resuelva. No es la voluntad de uno, sino la de las dos partes: atribuyen el conocimiento y la solución de su conflicto a un tercero que no era el que indicaba la ley.
+\end{definition}
+
+La prórroga puede consistir en que otro juez prorrogue el territorio. El juez tiene \textit{notio, vocatio, iudicium, coertio} y \textit{executio} dentro de determinados temas y en un determinado territorio, y eso lo establece la ley (fuente interna o convencional, según el sistema). La jurisdicción del tercero, en cambio, depende de \textbf{la voluntad de las partes}. El documento que le otorga esa jurisdicción es el \textbf{acuerdo de prórroga}.
+
+\section{Claridad y validez del acuerdo de prórroga}
+
+Para saber si un juez tiene jurisdicción se verifica la ley: que esté vigente, que designe a ese tribunal y no a otro, y que no exista un planteo de inconstitucionalidad, pues las intervenciones de los magistrados dependen de la ley. Lo mismo ocurre con el acuerdo: si la competencia del magistrado o del árbitro depende del acuerdo, \textbf{el acuerdo debe ser claro respecto de las atribuciones que le otorga}. Así como la competencia material de un juez es una determinada, el acuerdo debe ser claro en cuanto a qué problemas se encarga resolver. La intención de las partes respecto de la prórroga debe surgir con claridad de la expresión de la autonomía de la voluntad.
+
+\begin{example}{cláusula de prórroga defectuosa}
+Una cláusula que dice «cualquier conflicto emanado del cumplimiento de este contrato será resuelto por los tribunales arbitrales de París» no permite determinar a quién se dio jurisdicción. Debería decir, por ejemplo, «a la Cámara de Comercio», y concretamente a la Cámara de Comercio de Buenos Aires o a la que corresponda. Es necesario ser concreto respecto de a quién se otorga la jurisdicción, para no generar conflictos sobre si esa era o no la intención de las partes.
+\end{example}
+
+Por ello adquieren peso las cuestiones de \textbf{validez} e \textbf{interpretación} de la norma, sea un acuerdo o sea una ley: debe ser clara para determinar la jurisdicción. Tanto la autoridad designada por ley como la designada por acuerdo entienden y resuelven, pero la autoridad de esta depende del acuerdo y la de aquella depende de la ley.
+
+\section{Prórroga a favor de un juez o de un árbitro}
+
+La prórroga puede hacerse a favor de un juez o a favor de un árbitro.
+
+\begin{itemize}
+    \item Si se prorroga a favor de un \textbf{juez} (prórroga territorial), este, por ser funcionario judicial del Estado, conserva el auxilio de la fuerza pública: tiene \textit{coertio} y \textit{executio}, es decir, el poder de coerción y de ejecución forzosa.
+    \item El \textbf{árbitro}, que es un privado, carece de esa facultad: puede disponer una medida de fuerza, pero no puede ejecutarla. Si dispone un embargo, debe pedir al juez del lugar que lo ejecute. Lo que no tiene es el auxilio de la fuerza pública; en lo demás, ambos se encuentran en igualdad.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Prórroga a favor de un juez o de un árbitro}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Juez (prórroga territorial)} & \textbf{Árbitro} \\
+\midrule
+Naturaleza & Funcionario judicial del Estado & Un privado \\
+Origen de su poder & Acuerdo de las partes sobre una competencia que ya existe en la ley & Acuerdo de las partes (prórroga de jurisdicción) \\
+\textit{Coertio} y \textit{executio} & Las conserva: tiene el auxilio de la fuerza pública & Carece de ellas: puede disponer una medida, pero no ejecutarla \\
+Embargo u otra medida de fuerza & La dispone y la ejecuta & La dispone, pero debe pedir al juez del lugar que la ejecute \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Normalmente, quien prorroga a favor de un árbitro lo hace porque tiene la intención de cumplir, porque tiene certeza de que la otra parte comparte esa idea de cumplir lo que el árbitro decida, o porque ya se ha entregado algo en garantía. Hay una pequeña ventaja a favor: quien va a resolver fue elegido por las partes y no es alguien desconocido. En contra juega la falta del poder de ejecución: debe solicitarse cooperación judicial para tomar una medida cautelar respecto de las personas o los bienes, o para ejecutar forzosamente el laudo.
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\cornellrow{¿Qué es la prórroga de jurisdicción?}{Es cuando las partes, \textbf{de común acuerdo} y en los temas en que el ordenamiento lo permite, sacan el conflicto del juez establecido por ley y lo llevan a otro juez o a un árbitro. La jurisdicción de este tercero depende de la voluntad de las partes, expresada en el \textbf{acuerdo de prórroga}.}
+\cornellrow{¿Qué exige el acuerdo de prórroga?}{\textbf{Claridad} sobre a quién se da la jurisdicción y sobre qué conflictos. Ejemplo: «tribunales arbitrales de París» es ambiguo; hay que designar con precisión (por ejemplo, una Cámara de Comercio concreta). Se analizan validez e interpretación.}
+\cornellrow{¿En qué se diferencia pactar un juez de pactar un árbitro?}{El juez conserva \textit{coertio} y \textit{executio} (auxilio de la fuerza pública). El árbitro, que es un privado, puede disponer medidas, pero \textbf{no ejecutarlas}: debe pedir cooperación judicial. Suele elegirse cuando hay voluntad de cumplir o garantías previas.}
+\cornellresumen{La prórroga permite a las partes, mediante un acuerdo claro y en los temas en que se admite, elegir a un juez o a un árbitro distinto del que designa la ley. La jurisdicción del tercero depende del acuerdo, y la diferencia central entre juez y árbitro es que este no puede ejecutar y necesita la cooperación de un juez.}
+\end{cornell}
+
+% ----------------------------------------------------------
+\chapter[Jurisdicción indirecta y cooperación judicial]{Jurisdicción indirecta y cooperación judicial}
+% ----------------------------------------------------------
+
+\section{Jurisdicción indirecta: juez requirente y juez requerido}
+
+\subsection{Concepto}
+
+\begin{definition}{Jurisdicción indirecta}
+Es la que ejerce el juez que interviene en un proceso judicial \textit{indirectamente}, realizando actos jurisdiccionales concretos, de naturaleza procesal, en un proceso en el que no participa. No lleva adelante el procedimiento ni lo resuelve. Se inscribe en el ámbito de la \textbf{cooperación judicial}, internacional o nacional.
+\end{definition}
+
+La ley o el acuerdo tienen un ámbito territorial de actividad: la jurisdicción fue dada en un territorio, no universalmente. Si una medida, o algún trámite del proceso autorizado por acuerdo, debe ejecutarse en territorio extranjero, se solicita a las autoridades competentes de ese Estado \textbf{cooperación judicial}: que realicen un acto jurisdiccional en su territorio, porque el juez del proceso no es competente para hacerlo, ya que la ley no lo autoriza. Se trata de un pedido.
+
+El \textbf{juez requerido} es quien tiene la jurisdicción indirecta. El \textbf{juez requirente} es el que tiene la jurisdicción directa, es decir, el juez natural que debía intervenir.
+
+\begin{table}[H]
+\centering
+\caption{Jurisdicción directa y jurisdicción indirecta}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Jurisdicción directa} & \textbf{Jurisdicción indirecta} \\
+\midrule
+Quién la ejerce & El juez natural, que debía intervenir en el conflicto (juez requirente) & El juez al que se le pide un acto procesal (juez requerido) \\
+Participación en el proceso & Lleva adelante el procedimiento y lo resuelve & No participa del proceso: realiza un acto procesal concreto en su territorio \\
+Fuente de su poder & La ley (o el acuerdo de prórroga) & El pedido del juez requirente, dentro del marco de la cooperación judicial \\
+Marco en el que opera & Jurisdicción en sentido pleno & Cooperación judicial internacional \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{El árbitro y la necesidad de un magistrado}
+
+El árbitro tiene el poder de llevar adelante las medidas y puede disponerlas, pero al momento de ejecutarlas, en otro territorio o en el mismo, necesita la intervención de un magistrado de ese territorio. Ese juez requerido ejerce entonces, en el expediente, jurisdicción en forma indirecta. El directo es el juez natural que tenía que intervenir; el indirecto es el juez requerido.
+
+\subsection{Ejemplo: el traslado de la demanda}
+
+\begin{example}{traslado de la demanda}
+Si el demandado vive en Brasil, el oficial notificador de la República Argentina no viajará a Brasil. Por ello se realiza un \textbf{exhorto} solicitando que se lo notifique allí.
+\end{example}
+
+\section{Vías de comunicación: exhorto, rogatoria y autoridad central}
+
+\subsection{Qué significa «exhorto»}
+
+\begin{definition}{Exhorto}
+La palabra \textbf{exhorto} significa \textit{pedido}. No designa un procedimiento específico: se trata de un pedido.
+\end{definition}
+
+Muchos docentes usan el término para referirse al documento, el papel escrito, pero la palabra está mal utilizada, ya que el tratado puede pactar otra cosa. El pedido puede hacerse de manera telefónica o por correo electrónico, según lo que autorice el reglamento. Antes, los exhortos internacionales tenían sellos, legalizaciones, etcétera, que era el defecto de la práctica habitual; hoy existen múltiples procedimientos para tramitar medidas entre distintos países. La forma del documento, sus características y sus requisitos dependen de si existe o no un acuerdo.
+
+\subsection{La rogatoria}
+
+No es posible ir a otro Estado diciendo «hagan lo que yo digo»: es necesario pedir. Por eso se habla de \textbf{rogatoria}: se ruega, por favor, que se ponga el auxilio de la fuerza pública y toda la autoridad del Estado requerido a disposición del juez requirente.
+
+\subsection{La vía de transmisión y la autoridad central}
+
+Un tratado puede establecer que la comunicación entre tribunales se haga por vía diplomática, por vía consular, o crear la figura de la \textbf{autoridad central}.
+
+\begin{definition}{Autoridad central}
+Es un organismo administrativo. El juez de un Estado envía el exhorto a la autoridad central de su Estado; esta lo envía a la autoridad central del Estado requerido, y esa autoridad central lo remite al juez que resulte competente, según el territorio, para ejecutar la medida. Es una vía administrativa pero segura, porque todas son oficinas públicas. El trámite que va por esta vía también es un exhorto.
+\end{definition}
+
+\section{Los tres ejes de la jurisdicción}
+
+Al hablar de jurisdicción en general deben abordarse tres temas:
+
+\begin{enumerate}
+    \item \textbf{Quién es el juez competente} para entender, reconocer y ejecutar una medida (jurisdicción directa).
+    \item \textbf{La prórroga}: si existe la posibilidad de que las partes, en ese tema, elijan quién será la autoridad, pública o privada, que resuelva el conflicto.
+    \item \textbf{La jurisdicción indirecta}: si se trata de algo que excede las fronteras del Estado, cómo se articula la colaboración o cooperación judicial internacional, es decir, qué ocurre cuando algo del procedimiento debe llevarse a cabo fuera del territorio del Estado.
+\end{enumerate}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\cornellrow{¿Qué es la jurisdicción indirecta?}{Es la del \textbf{juez requerido}: no resuelve el conflicto, pero realiza un acto procesal en su territorio a pedido del \textbf{juez requirente} (que tiene jurisdicción directa). Es la base de la \textbf{cooperación judicial internacional}.}
+\cornellrow{¿Qué son el exhorto, la rogatoria y la autoridad central?}{\textit{Exhorto} significa pedido; \textit{rogatoria}, ruego de auxilio. Pueden tramitarse por vía diplomática, consular o por una \textbf{autoridad central} (organismo administrativo que canaliza el pedido de forma oficial y segura).}
+\cornellrow{¿Qué tres temas hay que analizar en toda jurisdicción?}{(1) Quién es el \textbf{juez competente}; (2) si cabe la \textbf{prórroga}; (3) cómo se hace la \textbf{cooperación} cuando algo debe cumplirse fuera del territorio.}
+\cornellresumen{La jurisdicción indirecta es la del juez requerido, que realiza un acto procesal en su territorio a pedido del juez requirente. El pedido, llamado exhorto o rogatoria, puede transitar por vía diplomática, consular o por una autoridad central. Toda jurisdicción debe analizarse en tres ejes: juez competente, prórroga y cooperación.}
+\end{cornell}
+
+% ----------------------------------------------------------
+\chapter[Control del juez requerido y grados de cooperación]{Control del juez requerido y grados de cooperación}
+% ----------------------------------------------------------
+
+\section{Soberanía y control del juez requerido}
+
+\subsection{La cooperación como cuestión de soberanía}
+
+El juez requerido, o indirecto, es aquel al que se le pide que ponga \textbf{el aparato judicial y el aparato represivo a disposición de otro juez}. A nivel de soberanía, esa cooperación es muy importante, y también lo son la forma de establecerla y los parámetros que se fijen. Se suelen distinguir \textbf{tres niveles de cooperación}.
+
+\subsection{Lo que el juez requerido puede y no puede hacer}
+
+Lo que se le pide al juez requerido es que diga sí o no. No puede decir «en esto sí, en esto no», ni «yo lo haría de esta manera»; \textbf{no puede meterse en el fondo de la cuestión}. Puede reconocer que el requirente es competente y colaborar con su proceso, pero no puede negarse por razones de fondo. Lo que puede decidir es si presta o no la cooperación, según exista o no reglamentación.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la frase sobre decidir «según tenga o no reglamento» es poco clara)
+
+Algunos plantean el tema desde la soberanía del Estado: el juez requerido puede decidir, porque eso depende de él. Desde el punto de vista internacional, las relaciones internacionales requieren, para el buen desarrollo del procedimiento, que las partes cooperen. Normalmente, en un nivel de integración existirá alguna normativa, protocolo o reglamento que lo disponga. Cuando un tratado internacional regula la cooperación, dice qué requisitos debe tener el requerimiento para que proceda, porque los Estados se han puesto de acuerdo en que deben cooperar.
+
+\subsection{Cuando no hay tratado: el derecho interno}
+
+En el ordenamiento interno, el código procesal establece los requisitos de la cooperación judicial internacional y la trata como un tema procesal; por lo tanto, el procedimiento está en cada uno de los códigos procesales de las provincias, que en general dicen lo mismo. Como primera medida se evalúa que la requisitoria, el pedido, provenga de autoridad competente: lo primero que analiza el juez requerido es que el juez requirente sea \textbf{internacionalmente competente} en ese tema.
+
+\section{Sistemas de control de la jurisdicción}
+
+Existen \textbf{tres sistemas} para controlar la jurisdicción del juez requirente.
+
+\begin{itemize}
+    \item \textbf{Sistema unilateral (simple).} Se controla que sea juez competente según una única ley: la suya. Si su ley le da jurisdicción para eso, el juez requerido debe reconocer que es competente.
+    \item \textbf{Sistema unilateral doble.} Se tiene en cuenta solamente que su ley le otorgue jurisdicción, pero el requerido puede negarse si el tema fue regulado en su Estado con jurisdicción exclusiva. Por ejemplo, si la ley del requirente da jurisdicción sobre un inmueble, pero la ejecución de un derecho real sobre un inmueble ubicado en la República Argentina es competencia exclusiva del juez argentino del lugar de ubicación, el requerido entiende que la ley del requirente le da jurisdicción, pero que en ese caso existe jurisdicción exclusiva. Si se tratara de un bien mueble (el embargo de una cuenta bancaria o de un automotor) no habría problema. Es unilateral, pero doble, porque se mira también la ley propia para ver que no disponga otra cosa de forma obligatoria y exclusiva.
+    \item \textbf{Sistema doble (bilateral).} No basta con que el requirente haya sido designado competente internacionalmente por su ley: se examina qué dice la ley del requerido. Si esta no le otorga jurisdicción, no se la reconoce. \textbf{Este es el sistema que tiene la República Argentina}: el control de la jurisdicción del juez requirente se hace, en primer lugar, conforme a la ley argentina.
+\end{itemize}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el audio del ejemplo de inmuebles y muebles es confuso; se reconstruyó según el contexto)
+
+\begin{table}[H]
+\centering
+\caption{Sistemas de control de la jurisdicción del juez requirente}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}YY}
+\toprule
+\textbf{Sistema} & \textbf{Qué ley se controla} & \textbf{Particularidad} \\
+\midrule
+Unilateral simple & Una única ley: la del juez requirente & Si su ley le da jurisdicción, el juez requerido debe reconocerla \\
+Unilateral doble & La ley del requirente, con un límite & El requerido puede negarse si el tema está regulado en su Estado con jurisdicción exclusiva (por ejemplo, derechos reales sobre inmuebles) \\
+Doble (bilateral) & La ley del requirente y la del requerido & No basta que su ley lo designe competente: la ley del requerido debe darle la misma jurisdicción. Es el sistema argentino \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{control doble}
+Supóngase que la ley argentina dice «domicilio del demandado» y la ley extranjera dice «lugar de ejecución», y que tanto el lugar de ejecución como el domicilio del demandado están en aquel país. El punto de conexión es distinto, pero el juez es, en definitiva, el mismo que se estaba otorgando: no hay conflicto. Del mismo modo, si ambas leyes dicen «domicilio», la competencia queda reconocida. Esto es el control doble, el sistema que utiliza la República Argentina desde su derecho interno.
+\end{example}
+
+\section{Deber de cooperación y requisitos de la medida}
+
+\subsection{¿Cooperación facultativa o imperativa?}
+
+Si hay tratado, la cuestión depende del tratado. Si no lo hay, debe verse qué dice la ley nacional respecto de la cooperación. El Código Civil y Comercial argentino \textbf{pone en cabeza del juez argentino el deber de cooperación en asuntos internacionales}: es el deber del juez de cooperar con la jurisdicción extranjera. Antes podía adoptarse el criterio de someterlo a reciprocidad (se coopera si el otro coopera, o en la medida en que haya un acuerdo). Ahora el deber está en cabeza del juez por disposición de su código civil: aunque el otro juez no coopere, el juez argentino tiene la obligación de cooperar, aunque no haya acuerdo, en los términos de lo que controla de la cooperación.
+
+\begin{formula}{art. 2611 del Código Civil y Comercial de la Nación (cooperación jurisdiccional)}
+«Sin perjuicio de las obligaciones asumidas por convenciones internacionales, los jueces argentinos deben brindar amplia cooperación jurisdiccional en materia civil, comercial y laboral.»
+\end{formula}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente describe el deber de cooperación sin citar el número de artículo; se recomienda verificar el texto en la norma oficial vigente)
+
+\subsection{Requisitos que se verifican}
+
+Se verifica que la cooperación o la sentencia recaiga sobre una \textbf{acción personal}, o sobre una acción real sobre una \textbf{cosa mueble} que haya sido trasladada a la República con posterioridad al inicio de la demanda o durante la tramitación del proceso. Las acciones reales sobre inmuebles son de jurisdicción exclusiva de los jueces de la República: por eso debe tratarse de una acción personal, o real sobre cosas muebles. Si se trata de un inmueble, aunque la acción sea personal, rige la distinción señalada.
+
+La exigencia de que el mueble haya sido trasladado con posterioridad al planteo del conflicto se explica porque, de otro modo, el juez extranjero habría sido competente desde el principio: ya asumió su jurisdicción, y luego el bien (por ejemplo, un automotor que estaba en Brasil y pasó a Misiones) fue trasladado.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el fundamento del traslado posterior del mueble se expone de manera oral y no del todo clara)
+
+El análisis se refiere al ámbito procesal civil y comercial; el Código Penal queda fuera del tema.
+
+\begin{formula}{art. 517 del Código Procesal Civil y Comercial de la Nación (fuerza ejecutoria de sentencias extranjeras)}
+«Las sentencias de tribunales extranjeros tendrán fuerza ejecutoria en los términos de los tratados celebrados con el país de que provengan. Cuando no hubiese tratados, serán ejecutables si concurriesen los siguientes requisitos:
+\begin{enumerate}
+    \item Que la sentencia, con autoridad de cosa juzgada en el Estado en que se ha pronunciado, emane de tribunal competente según las normas argentinas de jurisdicción internacional y sea consecuencia del ejercicio de una acción personal, o de una acción real sobre un bien mueble si éste ha sido trasladado a la República durante o después del juicio tramitado en el extranjero;
+    \item Que la parte demandada contra la cual se pretende ejecutar la sentencia hubiese sido personalmente citada y se haya garantizado su defensa;
+    \item Que la sentencia reúna los requisitos necesarios para ser considerada como tal en el lugar en que hubiere sido dictada y las condiciones de autenticidad exigidas por la ley nacional;
+    \item Que la sentencia no afecte los principios de orden público del derecho argentino;
+    \item Que la sentencia no sea incompatible con otra pronunciada, con anterioridad o simultáneamente, por un tribunal argentino.»
+\end{enumerate}
+\end{formula}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente enumera estos requisitos sin leer el artículo; se recomienda verificar la redacción y numeración en el texto oficial vigente)
+
+\subsection{Litispendencia y cosa juzgada}
+
+Se verifica además que \textbf{no haya litispendencia ni cosa juzgada}: el juez requerido controla que no exista en su Estado un juicio anterior sobre la misma cuestión. El código procesal dispone que, si el juez nacional está interviniendo y el proceso está en trámite, o ya hay cosa juzgada, no se da lugar a la medida, pues si interviene es porque consideró que tenía jurisdicción: da preferencia a la jurisdicción nacional frente a la internacional. El Código Civil y Comercial, en cambio, establece que la preferencia la tiene el juez que previno, es decir, el juicio iniciado primero, con otros requisitos. Se indicó que el tema se profundiza en Derecho Internacional Privado.
+
+En síntesis, los requisitos son: que el requirente sea competente; el tipo de causa de que se trate; que no haya litispendencia ni cosa juzgada; y que lo solicitado no viole el orden público argentino.
+
+\subsection{No se revisa el fondo, pero sí la notificación}
+
+\begin{important}
+El juez requerido no mira el fondo de la cuestión ni el expediente del juez extranjero. Solo presta atención a un tema: que el demandado haya sido \textbf{debidamente notificado}.
+\end{important}
+
+Los tratados internacionales suelen decir «debidamente notificado» o «legalmente notificado», pero en el derecho argentino ambos términos se entienden como \textbf{personalmente}: se considera que, en materia procesal, la notificación personal de la demanda hace al debido proceso y a la garantía de la defensa en juicio. Por eso es una cuestión de \textbf{orden público procesal}.
+
+La notificación «personal» es la dirigida a un domicilio donde la ley presupone que, a todos los efectos legales, la persona va a estar o se la puede encontrar. Si alguien no cambió su domicilio, lo que se notifique allí vale como notificación personal, porque declaró que ese era su domicilio legal, aunque no esté en él. Se la llama personal porque se entiende que garantiza que la persona toma conocimiento de que alguien la está demandando.
+
+En este control, el juez requerido \textbf{no puede requerir la cédula de notificación}, porque implicaría exigir un trámite que se hace en el país extranjero, con su forma propia (allí puede notificarse, por ejemplo, por telegrama). Una notificación en mano a una persona que estaba autorizada también es personal. Debe surgir de la requisitoria que el demandado tuvo oportunidad de ejercer su defensa: por ejemplo, si surge del documento que contestó la demanda o que ofreció prueba. No puede imponerse al extranjero el mismo tipo de notificación que existe en el derecho propio: debe surgir que el demandado tuvo derecho de defensa, que fue personalmente notificado, o que el oficial notificador dejó constancia de la notificación. No se admiten las notificaciones meramente ficticias.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el audio de la frase sobre notificaciones ficticias es confuso; se interpreta como su exclusión)
+
+Aunque no puede entrar en la sustancia, el juez requerido tampoco puede hacer cualquier cosa: verifica que se respeten determinadas garantías y que no se violen principios de orden público, y, cumplido esto, presta la colaboración.
+
+\section{Los tres grados de cooperación judicial}
+
+La cooperación puede generar tres niveles o grados. El criterio es el \textbf{grado de intervención de la facultad ejecutoria o de coerción del Estado}.
+
+\subsection{Primer grado: baja intervención de la fuerza pública}
+
+La cooperación de \textbf{primer grado} implica baja intervención de la facultad ejecutoria o de coerción del Estado. Ejemplos:
+
+\begin{itemize}
+    \item La \textbf{notificación de demandas}. Si el demandado tiene domicilio en la República, se envía a alguien para que lo notifique; si se niega a firmar, queda notificado. No se ejerció ninguna fuerza pública sobre él.
+    \item La \textbf{prueba documental o informativa}: que se envíe copia certificada de un acta de matrimonio o de un poder general para negocios registrado ante el escribano; un informe de un privado; un informe de dominio sobre un bien. Son medidas que se ejecutan en el territorio y no requieren uso de fuerza pública.
+    \item Las \textbf{testimoniales}, que suelen ubicarse en este nivel porque la fuerza pública es mínima, casi imperceptible. Cuando el testigo está en el territorio de otro país, el juez requirente envía el pliego de interrogatorio al juez requerido, quien intima al testigo a presentarse en su juzgado para declarar; le formula las preguntas del pliego, sin poder ampliarlo, y transcribe las respuestas, sin agregar apreciaciones personales sobre el testigo.
+\end{itemize}
+
+En las testimoniales hay un mínimo ejercicio de fuerza pública. El acusado puede elegir no declarar, porque nadie puede ser obligado a declarar contra sí mismo; el testigo, en cambio, está obligado a comparecer y a declarar con verdad, y puede ser objeto de un juicio por falso testimonio. Está obligado a comparecer bajo apercibimiento de requerir el auxilio de la fuerza pública: si no comparece, en la segunda audiencia lo busca la policía. Pero ese ejercicio de fuerza pública es casi imperceptible y la presión se levanta de inmediato una vez que el testigo declara.
+
+\subsection{Segundo grado: medidas cautelares reversibles}
+
+Las de \textbf{segundo grado} implican un auxilio de fuerza pública algo más riguroso, pero \textbf{reversible}: existe la posibilidad de volver atrás. Son las \textbf{medidas cautelares}: un embargo preventivo, una hipoteca, una inhibición provisoria para hacer determinada cosa, una inhabilitación para salir del país por un número de días, entre otras. Si el otro paga, se levanta el embargo o la hipoteca. Se trata de medidas sin condena.
+
+Hay efectiva coerción y uso de la fuerza (se impide salir del país, se impide usar el patrimonio, se congelan fondos, se traba un embargo preventivo), pero la medida no es permanente: cuando hay sentencia, el embargo preventivo se transforma en embargo ejecutivo; y si no, pasado el tiempo, se levanta.
+
+\subsection{Tercer grado: ejecución irreversible}
+
+La de \textbf{tercer grado} es la ejecución: ya se trabó el embargo sobre los fondos y el juez ordenó transferirlos a la cuenta abierta para el juzgado en la causa; ya se remató la propiedad. No hay vuelta atrás: si se quiere recuperar lo ejecutado, debe hacerse un reclamo aparte. Esto tiene que ver con el \textbf{grado de disposición}.
+
+\begin{table}[H]
+\centering
+\caption{Grados de cooperación judicial}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.16\textwidth}YYY}
+\toprule
+\textbf{Grado} & \textbf{Intensidad de la coerción} & \textbf{Reversibilidad} & \textbf{Ejemplos} \\
+\midrule
+Primer grado & Baja o casi imperceptible & No hay efectos que revertir & Notificación de la demanda; copia certificada de documentos; informe de dominio; testimoniales \\
+Segundo grado & Auxilio de la fuerza pública más riguroso & Reversible: la medida puede levantarse & Embargo preventivo; hipoteca; inhibición; prohibición de salir del país \\
+Tercer grado & Ejecución plena & Irreversible & Transferencia de fondos a la cuenta del juzgado; remate de la propiedad \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Por eso los tratados y acuerdos establecen qué tipo de requisitos se exigen, y por eso el control de la competencia es distinto en un ámbito internacional, donde se controla por la ley propia, que dentro de un área de integración.
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\cornellrow{¿Qué puede y qué no puede hacer el juez requerido?}{Puede controlar requisitos, pero \textbf{no revisa el fondo} del asunto: decide sí o no. Si hay tratado, este fija los requisitos; si no, rige el derecho interno.}
+\cornellrow{¿Qué sistemas hay para controlar la jurisdicción del juez requirente?}{\textbf{Unilateral simple} (solo su ley), \textbf{unilateral doble} (su ley, salvo jurisdicción exclusiva del requerido) y \textbf{doble} (debe darle jurisdicción también la ley del requerido). Argentina utiliza el control doble.}
+\cornellrow{¿Está obligado a cooperar el juez argentino?}{Sí. El Código Civil y Comercial pone en cabeza del juez el \textbf{deber de cooperación jurisdiccional}, aun sin reciprocidad ni acuerdo (art. 2611).}
+\cornellrow{¿Qué requisitos se miran para dar curso a una medida o sentencia extranjera?}{Competencia del requirente; \textbf{acción personal} (o real sobre un mueble trasladado al país); ausencia de litispendencia y cosa juzgada; respeto del \textbf{orden público}; y \textbf{notificación personal} con garantía de defensa, sin revisar el fondo.}
+\cornellrow{¿Qué son los tres grados de cooperación?}{\textbf{Primer grado:} baja o casi nula coerción (notificaciones, documentos, testimoniales). \textbf{Segundo grado:} coerción reversible (medidas cautelares). \textbf{Tercer grado:} ejecución irreversible (transferencia de fondos, remate).}
+\cornellresumen{El juez requerido no revisa el fondo, pero controla la competencia del requirente según distintos sistemas (Argentina aplica el control doble), el tipo de acción, la ausencia de litispendencia y cosa juzgada, el orden público y la notificación personal, que es una cuestión de orden público procesal. El Código Civil y Comercial impone un deber de cooperación. La cooperación se clasifica en tres grados según la intensidad y reversibilidad de la coerción.}
+\end{cornell}
+
+% ----------------------------------------------------------
+\chapter[El marco del Mercosur: Buenos Aires y Santa María]{El marco del Mercosur: Protocolos de Buenos Aires y Santa María}
+% ----------------------------------------------------------
+
+\section{Cómo la integración simplifica el control de jurisdicción}
+
+Dentro de un área de integración, los Estados acuerdan quién será el juez competente para cada tema. Por ejemplo, en materia contractual, el juez competente es el que ellos han acordado. Cuando al juez requerido le llega un pedido de ese juez, \textbf{no analiza según sus propias normas si tenía competencia}: ello fue acordado. Por eso, el análisis de la competencia del juez requirente por parte del juez requerido prácticamente no existe: se aplica un reglamento, se exigen determinados requisitos y, si el juez competente es el que indica el protocolo, el control queda cumplido.
+
+Fuera de la integración, entre las primeras cosas que se verifican está que quien solicita la medida sea juez y, además, tenga jurisdicción. Las tres formas de controlarla son: según su ley; según su ley sin que se violen las jurisdicciones exclusivas propias; o directamente por la norma de conflicto propia (por ejemplo, «juez del domicilio»: si el demandado está domiciliado en el Estado requerido, el requirente es competente; si no, no se lo reconoce).
+
+En cambio, si a nivel de integración se reguló la jurisdicción directa mediante un tratado, un reglamento o un protocolo, el juez que participa indirectamente \textbf{no controla conforme a su propia ley}, sino conforme a lo que dice el tratado. La misma ley que le da jurisdicción al requirente es la que habilita al requerido a controlar que haya asumido bien la jurisdicción. Por eso se dice que se trata de un control de jurisdicción con una única ley: \textbf{la ley de origen}, que es la misma que la ley de destino.
+
+\section{El Protocolo de Buenos Aires de 1994}
+
+\subsection{Identificación del protocolo}
+
+En materia de jurisdicción, en el Mercosur no se cuenta con derecho derivado; el instrumento es el \textbf{Protocolo de Buenos Aires de 1994}, denominado \textit{Protocolo sobre jurisdicción internacional en materia contractual}, del 5 de agosto de 1994. El docente duda entre distintas formulaciones del título (por ejemplo, «sobre jurisdicción internacional en materia de contratos civiles y comerciales»).
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente duda entre varias formulaciones del título del protocolo; el fragmento «no hay [normas de derecho derivado en esta materia]» es una reconstrucción de un pasaje inaudible)
+
+Como ayuda para relacionar los datos, se recordó que quien presidía el Mercosur en ese momento era el representante argentino y que la sede de las reuniones del Consejo debía estar en el lugar de quien ejercía la presidencia.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la respuesta del alumno sobre el lugar de la firma es inaudible)
+
+\subsection{Ámbito material}
+
+El ámbito material del juez directo son \textbf{los contratos civiles y comerciales}. Se limitó así el protocolo, lo cual tiene lógica dentro de un área de integración.
+
+\section{Materias excluidas del Protocolo}
+
+El artículo 2 excluye numerosos acuerdos en materia comercial o económica, porque técnicamente no tienen que ver con un mercado común, o por la complejidad del tema. Quedan fuera:
+
+\begin{enumerate}
+    \item \textbf{Familia, sucesiones y alimentos}: por ejemplo, los acuerdos matrimoniales, la división de bienes en un divorcio, el acuerdo de alimentos y el acuerdo en materia de sucesiones (cómo se reparte la herencia). Aunque se trate de materia patrimonial y contractual, no tiene que ver con un mercado común.
+    \item \textbf{Quiebras}: son un tema complejo, en el que no se quiso avanzar. Se hizo referencia a que en quiebras podían celebrarse acuerdos preventivos extrajudiciales entre las partes, que también quedan excluidos.
+    \item \textbf{Títulos valores y derecho cambiario}: por tratarse de una materia muy específica.
+    \item \textbf{Contrato de transporte}: el comité trabajaba con subcomisiones, y la subcomisión de transporte elaboraba normativa sobre el transporte multimodal y el transporte de mercaderías. Se entendió que debía dejarse el tema aparte, porque esa subcomisión se encargaría específicamente de él.
+    \item \textbf{Contratos de trabajo, de seguro y de consumo}: quedan excluidos el contrato laboral, el contrato de seguro y el contrato de compraventa de consumo o contrato de consumidor.
+\end{enumerate}
+
+\begin{note}
+La exclusión de los contratos de trabajo plantea una tensión que el docente señala: si el mercado común es de libre circulación de factores de producción, la exclusión parece vaciar el tratado.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente expone el contenido del artículo 2 sin leerlo textualmente; se recomienda cotejar la enumeración con el texto oficial del Protocolo)
+
+\subsection{Qué queda dentro: la lógica del protocolo}
+
+Lo que quedó es el comercio entre empresarios y empresas: importación y exportación. El protocolo apuntó a los \textbf{negocios internacionales}, en este ámbito empresarial. Los demás temas fueron trabajados por las subcomisiones, que eran once; una de ellas trabajaba sobre derecho de consumo.
+
+\begin{table}[H]
+\centering
+\caption{Ámbito material del Protocolo de Buenos Aires}
+\small
+\begin{tabularx}{\textwidth}{YY}
+\toprule
+\textbf{Incluido} & \textbf{Excluido} \\
+\midrule
+Contratos civiles y comerciales entre empresarios y empresas & Familia, sucesiones y alimentos \\
+Importación y exportación; negocios internacionales & Quiebras y acuerdos preventivos extrajudiciales \\
+El Estado cuando actúa como particular & Títulos valores y derecho cambiario \\
+Relaciones propias de un mercado empresarial & Contratos de transporte, de trabajo, de seguro y de consumo \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El Protocolo de Santa María sobre consumo}
+
+La subcomisión sobre derecho de consumo elaboró el \textbf{Protocolo de Santa María}, que establecía quién era el juez competente en materia de contratos de consumo y \textbf{no permitía la prórroga}.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente ubica el protocolo en 1995; la nota de edición del apunte indica que habría sido suscripto en 1996)
+
+Fue aprobado y ratificado por todos los Estados, pero \textbf{no está vigente}, porque supeditó su entrada en vigor: el protocolo tiene el ciclo de aprobación completo, pero subordinó su vigencia a que se emitiera la norma sobre defensa de los derechos del consumidor. El docente califica esa condición como una «locura», porque una cosa no tenía que ver con la otra (facilitar el acceso a la justicia no depende de qué ley se aplique). La condición era que, cuando se lograra una ley, código o norma de fondo sobre derechos del consumidor, entraran en vigencia ambas. Esa ley de fondo nunca existió y, hasta hoy, no existe.
+
+\begin{important}
+El Protocolo de Santa María está aprobado y ratificado, pero \textbf{no está vigente}: él mismo pospuso su entrada en vigor a la existencia de una ley de fondo sobre defensa del consumidor, que no existe.
+\end{important}
+
+\begin{table}[H]
+\centering
+\caption{Protocolo de Buenos Aires y Protocolo de Santa María}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Protocolo de Buenos Aires (1994)} & \textbf{Protocolo de Santa María} \\
+\midrule
+Materia & Contratos civiles y comerciales entre empresarios & Contratos de consumo \\
+Prórroga de jurisdicción & Regula la prórroga & No la permitía \\
+Estado de vigencia & Vigente & Aprobado y ratificado, pero no vigente \\
+Motivo & Es el instrumento para el ámbito empresarial & Su entrada en vigor quedó supeditada a una ley de defensa del consumidor que nunca existió \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El Protocolo de Buenos Aires deja afuera numerosas cuestiones y comprende fundamentalmente la \textbf{negociación internacional}: lo que tiene que ver con el mercado, con las empresas y con el Estado cuando actúa como particular, pero no cuando se trata de consumo, que corresponde al Protocolo de Santa María.
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\cornellrow{¿Qué cambia dentro de un área de integración?}{Como los Estados ya acordaron quién es el juez competente, el juez requerido \textbf{casi no controla la competencia} del requirente: se aplica una única ley, la del protocolo (ley de origen igual a ley de destino).}
+\cornellrow{¿Qué regula el Protocolo de Buenos Aires (1994)?}{La jurisdicción internacional en \textbf{materia contractual civil y comercial}: jurisdicción directa, prórroga y criterios de competencia. Apunta a los negocios internacionales entre empresarios.}
+\cornellrow{¿Qué materias excluye?}{Familia y sucesiones (incluidos alimentos), quiebras, títulos valores y derecho cambiario, transporte, contratos de trabajo, de seguro y de consumo. Se excluyeron por complejidad o por contar con subcomisiones específicas.}
+\cornellrow{¿Qué pasó con el Protocolo de Santa María (consumo)?}{No permitía la prórroga. Fue aprobado y ratificado, pero \textbf{no está vigente}: condicionó su entrada en vigor a una ley de defensa del consumidor que nunca existió.}
+\cornellresumen{Dentro de la integración el control se simplifica porque los Estados acordaron de antemano quién es el juez competente. El Protocolo de Buenos Aires (1994) lo hace para los contratos civiles y comerciales entre empresarios, con exclusiones como familia, quiebras, transporte, trabajo, seguros y consumo; el Protocolo de Santa María, sobre consumo, no está vigente.}
+\end{cornell}
+
+% ----------------------------------------------------------
+\chapter[Cooperación en el Mercosur: Las Leñas y Buenos Aires]{Cooperación en el Mercosur: Las Leñas y el Protocolo de Buenos Aires}
+% ----------------------------------------------------------
+
+\section{Qué regula el Protocolo de Buenos Aires y cómo se relaciona con Las Leñas}
+
+El Protocolo de Buenos Aires regula contratos civiles y comerciales, con las exclusiones ya vistas. \textbf{Regula los tres aspectos de la jurisdicción sobre los contratos}: la jurisdicción directa, la prórroga y la jurisdicción indirecta. Sin embargo, la \textbf{colaboración o cooperación judicial internacional} se realiza a través de otro protocolo, al que el Protocolo de Buenos Aires remite: el \textbf{Protocolo de Las Leñas}, que regula la cooperación y las medidas cautelares. Allí se prevé la cooperación de primer y de segundo grado, y también lo relativo a la ejecución.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la nota de edición del apunte indica que la cooperación y asistencia jurisdiccional se regula en el Protocolo de Las Leñas (1992) y que las medidas cautelares cuentan con un protocolo específico (Ouro Preto, 1994); el docente los menciona de forma conjunta)
+
+\section{La autoridad central}
+
+El Protocolo de Las Leñas crea la \textbf{figura de la autoridad central}. El Estado requirente envía el exhorto a su autoridad central; esta lo envía a la autoridad central del Estado requerido, y esta lo envía al juez competente, de grado, materia y territorio.
+
+Con esto se evitan la protocolización, la legalización y trámites semejantes, porque el pedido circula por un canal oficial y seguro. El juez requerido no necesita asegurarse de que el requirente era juez competente: si la autoridad central le remitió el pedido, es porque sabía que era juez y que fue designado conforme a la ley. Algunas cuestiones se simplifican.
+
+\section{Igualdad de trato, gastos y procedimiento aplicable}
+
+El protocolo establece la \textbf{igualdad de trato}: no pueden imponerse gastos. La medida que adopte el juez requerido sigue el \textbf{procedimiento del Estado requerido}: el derecho procesal que se utiliza para ejecutarla es el del país requerido, y no el del requirente; por ejemplo, la forma de trabar un embargo se determina según la ley local.
+
+Si el requirente necesitara un procedimiento especial o distinto para la traba de las medidas o para una ejecución, debe hacerse cargo de los gastos que demande. En principio no corresponde pedir costas ni gastos: es cooperación entre socios, gratuita para ambos.
+
+\section{La remisión al Protocolo de Buenos Aires}
+
+El docente indica que, al final, «creo que es el artículo 11» del Protocolo de Buenos Aires, un artículo breve, dispone que la jurisdicción del juez que deba determinarse en el Protocolo de Las Leñas será establecida en el Protocolo de Buenos Aires.
+
+\begin{formula}{art. 11 del Protocolo de Buenos Aires (según el docente)}
+La competencia del juez requirente, a los fines de la cooperación regulada por el Protocolo de Las Leñas, se determina por las reglas del Protocolo de Buenos Aires.
+\end{formula}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente cita el artículo de memoria y sin leerlo textualmente; se recomienda verificar numeración y redacción en el texto oficial)
+
+Para supervisar la medida, la competencia se determina por el Protocolo de Buenos Aires: se verifica quién es el juez competente en materia de contratos y, si la medida proviene de ese juez, puede ejecutarse. Cuando se trata de jurisdicción indirecta, el Protocolo de Las Leñas regula el modo de proceder (interviene la autoridad central, rige la igualdad de trato, no se piden gastos), pero, respecto de cómo se evalúa la competencia de quien solicita la medida, remite a los criterios de atribución de competencia en materia de contratos. Si el requerimiento, tramitado por la autoridad central conforme a Las Leñas, proviene del juez que el Protocolo de Buenos Aires indica como competente, no se aplica el criterio interno, sino esa norma que el requerido comparte con el requirente. El docente aclara que este punto se profundiza en la clase siguiente.
+
+\begin{table}[H]
+\centering
+\caption{Protocolo de Buenos Aires y Protocolo de Las Leñas}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}YY}
+\toprule
+\textbf{Aspecto} & \textbf{Protocolo de Buenos Aires} & \textbf{Protocolo de Las Leñas} \\
+\midrule
+Objeto & Jurisdicción directa y prórroga en contratos civiles y comerciales & Cooperación judicial: jurisdicción indirecta y medidas cautelares \\
+Qué determina & Quién es el juez competente (juez requirente) & Cómo se tramita el pedido: autoridad central, igualdad de trato, sin gastos \\
+Relación entre ambos & Sus criterios se aplican para controlar la competencia del juez requirente & Remite al Protocolo de Buenos Aires para evaluar esa competencia \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Lecturas y continuidad del tema}
+
+Se indicó la lectura del Protocolo de Las Leñas, donde se encuentra lo relativo a las medidas cautelares. Los temas siguientes son la jurisdicción directa y la prórroga en el Protocolo de Buenos Aires y el \textbf{Reglamento de Bruselas} sobre jurisdicción internacional en la Unión Europea, con lo que se contará con normas en las dos áreas.
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\cornellrow{¿Cómo se articulan Las Leñas y Buenos Aires?}{Las Leñas regula la cooperación (autoridad central, igualdad de trato, sin gastos, procedimiento del Estado requerido). Para evaluar la competencia del requirente \textbf{remite a Buenos Aires} (el docente lo ubica en el artículo 11).}
+\cornellrow{¿Qué efecto tiene la autoridad central en Las Leñas?}{El pedido circula por un canal oficial y seguro: se evitan la protocolización y la legalización, y el juez requerido no necesita asegurarse de que el requirente era juez competente.}
+\cornellrow{¿Qué establece la igualdad de trato?}{Que no pueden imponerse gastos; la medida sigue el procedimiento del Estado requerido. Si se necesita un procedimiento especial, quien lo pide asume los gastos.}
+\cornellrow{¿Qué sigue en la próxima clase?}{Leer Las Leñas; ver jurisdicción directa y prórroga en el Protocolo de Buenos Aires y el \textbf{Reglamento de Bruselas} sobre jurisdicción internacional en la Unión Europea.}
+\cornellresumen{El Protocolo de Buenos Aires regula los tres aspectos de la jurisdicción contractual y remite al Protocolo de Las Leñas para la cooperación. Las Leñas organiza el trámite mediante la autoridad central, la igualdad de trato y el procedimiento del Estado requerido, y para controlar la competencia del requirente remite a los criterios de Buenos Aires.}
+\end{cornell}
+
+% ----------------------------------------------------------
+\chapter[Material complementario: riesgo empresario y valor]{Material complementario: acciones, criptomonedas y riesgo empresario}
+% ----------------------------------------------------------
+
+Durante la clase surgió una digresión, relacionada solo indirectamente con el tema central, a propósito de los mercados financieros. Se conservan aquí los puntos de contenido expuestos por el docente.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el audio de este tramo es parcialmente inaudible; solo se conserva lo comprensible)
+
+\section{Criptomonedas}
+
+El docente señala que las criptomonedas no tienen una regulación específica y que no se sabe qué naturaleza jurídica tienen. Se trata de algo a lo que se le dio un valor y que se utiliza para el intercambio, pero que no está emitido por ningún Estado. Frente a quienes sostienen que la criptomoneda tiene valor, el docente se cuestiona qué respaldo tiene: no está respaldada en oro ni en plata. No existe un valor de respaldo: el valor surge simplemente de la oferta y la demanda de un bien intangible que nadie regula. En cambio, en el papel moneda, se supone que hay fondos en el Banco Central que respaldan el valor. Por ello el docente cuestiona su naturaleza jurídica: sería una moneda particular, que no es emitida por nadie y no tiene respaldo alguno.
+
+\section{Acciones y riesgo empresario}
+
+La acción es distinta, porque corresponde a una empresa que produce, vende o presta un servicio y que reparte dividendos de las ganancias que obtiene. Para que el titular pierda todos sus fondos tendría que quebrar y desaparecer la empresa. La garantía de las acciones son los bienes de la empresa y la expectativa de ganancia que ofrece su operatoria.
+
+Quien compra acciones se pone como empresario, adquiere una cuota parte de la empresa y \textbf{asume el riesgo} de ganar o perder según el funcionamiento de esta. Ese es el riesgo de ser empresario: el trabajador cobra su sueldo a fin de mes, mientras que el empresario asume el riesgo y pone los bienes a disposición. Se habla de riesgo y de plusvalía, y se sostiene que la ganancia del empresario está en el riesgo. El mercado de acciones, además, está regulado: es un mercado cerrado con reglas y pautas.
+
+\section{La crisis de los tulipanes}
+
+\begin{example}{la primera gran crisis de mercado}
+Según el relato del docente, la primera gran crisis de mercado ocurrió en Holanda, por la compraventa de bulbos de tulipán. Era una flor extraña, difícil de cultivar, de la que solo disponían las mansiones y los reyes. El precio comenzó a subir y se produjo una corrida: la gente vendía sus casas y sus bienes para comprar un bulbo, porque se esperaba que mañana valiera el triple. Un día la demanda desapareció, porque quienes podían comprar ya tenían los jardines llenos, y quebró la bolsa. Quienes habían vendido su casa por un bulbo no pudieron recuperarla. La crisis se explica porque ese valor estaba basado solo en oferta y demanda.
+\end{example}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{cornell}
+\cornellrow{¿Qué respalda el valor de una acción y el de una criptomoneda?}{La acción tiene como garantía los bienes de la empresa y la expectativa de ganancia de su operatoria. La criptomoneda no tiene un valor de respaldo: su valor resulta de la oferta y la demanda de un bien intangible no regulado ni emitido por ningún Estado.}
+\cornellrow{¿Qué significa el riesgo empresario?}{Quien compra acciones asume el riesgo de ganar o perder según el funcionamiento de la empresa, a diferencia del trabajador asalariado, que cobra su sueldo.}
+\cornellrow{¿Qué ocurrió en la crisis de los tulipanes?}{Se produjo una corrida por los bulbos de tulipán en Holanda, con precios crecientes; al desaparecer la demanda quebró la bolsa. Ese valor estaba basado solo en oferta y demanda.}
+\cornellresumen{La digresión muestra que el valor basado solo en oferta y demanda, sin respaldo, es frágil (crisis de los tulipanes), y que el empresario asume el riesgo de ganar o perder, a diferencia del trabajador asalariado.}
+\end{cornell}
+
+\end{document}
