@@ -1,0 +1,1014 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Concursos y Quiebras}
+\newcommand{\titulo}{El acuerdo preventivo: categorías, mayorías, homologación, impugnación y nulidad}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,provide=*]{babel}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced, breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3, colframe=blue!50!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{important}{
+    enhanced, breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8, colframe=orange!70!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{example}[1]{
+    enhanced, breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4, colframe=green!40!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{formula}[1]{
+    enhanced, breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4, colframe=purple!50!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{exercise}[1]{
+    enhanced, breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5, colframe=gray!60!black,
+    boxrule=0.8pt, arc=2mm
+}
+\newtcolorbox{note}{
+    enhanced, breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white, colframe=gray!50,
+    boxrule=0.6pt, arc=2mm
+}
+% Texto textual de una norma citada en el apunte
+\newtcolorbox{norma}[1]{
+    enhanced, breakable,
+    title={#1},
+    fonttitle=\bfseries\small,
+    fontupper=\small,
+    colback=black!2, colframe=black!55,
+    boxrule=0.5pt, arc=1mm
+}
+
+% ==================== CONFIGURACIÓN FINAL ====================
+\sloppy
+
+\begin{document}
+
+% ==================== PORTADA ====================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{1cm}
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+\parbox{0.85\textwidth}{\centering {\LARGE \titulo}}
+
+\vspace{0.8cm}
+\textit{\small Estudiar con constancia es el camino para convertir el esfuerzo en saber.}
+
+\vspace{1.2cm}
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+{\large \autor}
+
+\vspace{0.3cm}
+{\large \anio}
+\end{center}
+\vfill
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Concursos y Quiebras'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+\end{titlepage}
+
+% ==================== ÍNDICE ====================
+\tableofcontents
+\clearpage
+
+% ==================== CONTENIDO ====================
+\chapter[Introducción]{Introducción al acuerdo preventivo}
+
+\section{Panorama general}
+
+Cerrada la etapa de verificación de créditos, el concurso preventivo continúa hasta su final. El deudor agrupa a sus acreedores en \textbf{categorías}, negocia durante el \textbf{período de exclusividad} (mediante propuestas de quita y espera) y debe reunir una \textbf{doble mayoría} en cada categoría. Si lo logra, el juez \textbf{homologa} el acuerdo, que se impone a todos los acreedores comprendidos y produce \textbf{novación}. Si no lo logra, la regla es la quiebra, salvo el \textbf{salvataje} y la \textbf{imposición del acuerdo}. Finalmente, el acuerdo puede caer por \textbf{impugnación} (cinco días) o por \textbf{nulidad} (seis meses).
+
+\begin{note}
+\textbf{Marco normativo:} Ley 24.522 de Concursos y Quiebras (arts.\ 36 a 63) y modificatorias. Los artículos se reproducen en este documento según el texto de la Ley 24.522 consultado en fuentes oficiales (Ley 24.522 y modificatorias, leyes 25.589, 26.086 y 26.684); conviene cotejarlos con la versión vigente publicada en Infoleg antes de citarlos en un escrito.
+\end{note}
+
+\section{Cómo se relacionan los temas: la panadería de barrio}
+
+El apunte propone una analogía para ordenar las etapas.
+
+\begin{example}{La panadería de barrio}
+Una panadería no puede pagar sus deudas (al banco, a los proveedores de harina, a los empleados).
+\begin{enumerate}[label=\textbf{\Alph*.}]
+    \item Primero se confirma quién le debe realmente a quién.
+    \item La dueña arma <<mesas>> (bancos, harineros, empleados) y el síndico revisa sus cuentas.
+    \item Negocia una oferta con cada mesa y necesita que en \textbf{cada una} voten a favor la mayoría de las personas \textbf{y} de la plata.
+    \item Si no lo consigue, la panadería cierra (quiebra), salvo excepciones.
+    \item Si lo consigue, el juez controla que no haya trampa y los acreedores pueden objetar.
+    \item Firme el acuerdo, la deuda se renegocia y el expediente se cierra.
+\end{enumerate}
+\end{example}
+
+\section{Mapa normativo}
+
+El recorrido puede ordenarse según los siguientes temas y artículos de referencia: clasificación, mayorías, homologación, efectos, novación, conclusión, nulidad e incumplimiento.
+
+\begin{center}
+\begin{tabularx}{0.9\textwidth}{Y l}
+\toprule
+\textbf{Tema} & \textbf{Artículos de referencia} \\
+\midrule
+Clasificación y agrupamiento de acreedores & Arts.\ 41 y 42 \\
+Mayorías & Art.\ 45 \\
+Homologación & Art.\ 52 \\
+Efectos de la homologación & Arts.\ 55, 56, 59 \\
+Novación & Art.\ 55 \\
+Conclusión del concurso & Art.\ 59 \\
+Nulidad & Arts.\ 60 a 62 \\
+Incumplimiento & Arts.\ 63 y 64 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Utilidad del tema}
+
+\begin{itemize}
+    \item \textbf{Si se asesora al deudor:} la categorización de acreedores decide si la empresa llega a un acuerdo o a la quiebra; es <<la carta que mejor tiene el deudor>>.
+    \item \textbf{Si se asesora a un acreedor:} permite leer una propuesta, pedir información (informe general), votar con criterio y respetar plazos que no perdonan (20 días, 5 días, 6 meses).
+    \item \textbf{Si se es contador, síndico, juez, funcionario o trabajador:} explica quién controla (comité), quién cobra (honorarios, créditos laborales) y cuándo termina la intervención.
+\end{itemize}
+
+\begin{note}
+El tema es útil incluso fuera del tribunal: enseña a \textbf{negociar una deuda} con información (¿puede cumplir?, ¿ofrece poco teniendo mucho?), a distinguir un problema de \textbf{liquidez} de uno de \textbf{rentabilidad}, y a entender que \textbf{un plazo mal contado puede hacer perder un derecho}. Son decisiones que toda persona o emprendimiento enfrenta alguna vez: cobrar menos hoy para no perderlo todo mañana.
+\end{note}
+
+% ==================== CAPÍTULO 2 ====================
+\chapter[Verificación y categorización]{Del cierre de la verificación a la categorización de acreedores}
+
+\section{La resolución verificatoria (art.\ 36)}
+
+Con la última parte de la etapa de verificación de créditos, en la que el acreedor tiene la carga de presentarse para participar, se dicta la \textbf{resolución verificatoria} del artículo 36: el auto judicial que establece quién participará en el concurso y quién no logró acreditar la existencia de su crédito. Se trata de una etapa donde los \textbf{plazos importan} de manera decisiva.
+
+La resolución distingue a los acreedores que pasaron sin observaciones, a los que pasaron con observaciones que fueron desestimadas y a los que quedaron afuera. Con ella se sabe quiénes son verdaderamente los acreedores del deudor.
+
+\begin{norma}{Ley 24.522, art.\ 36 --- Resolución judicial}
+Dentro de los DIEZ (10) días de presentado el informe por parte del síndico, el juez decidirá sobre la procedencia y alcances de las solicitudes formuladas por los acreedores. El crédito o privilegio no observados por el síndico, el deudor o los acreedores es declarado verificado, si el juez lo estima procedente.
+
+Cuando existan observaciones, el juez debe decidir declarando admisible o inadmisible el crédito o el privilegio.
+
+Estas resoluciones son definitivas a los fines del cómputo en la evaluación de mayorías y base del acuerdo, sin perjuicio de lo dispuesto en el artículo siguiente.
+\end{norma}
+
+\section{El incidente de revisión (art.\ 37)}
+
+La resolución verificatoria no es apelable: en general no hay apelaciones dentro del área de concursos y quiebras, pero sí es susceptible de \textbf{revisión} mediante el \textbf{incidente de revisión}. Este incidente tiene un plazo firme de \textbf{veinte días}. La forma de contar esos veinte días no surge de la ley, sino de un fallo.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se identifica el fallo que fija el cómputo del plazo)
+
+Si el plazo se pasa por no saber contarlo, no queda a quién recurrir. Es la \textbf{última oportunidad} de entrar al concurso como acreedor, y lo que importa es que el acreedor pueda votar, afirmativa o negativamente, el acuerdo preventivo, que es lo que se busca con el concurso.
+
+\begin{norma}{Ley 24.522, art.\ 37 --- Efectos de la resolución}
+La resolución que declara verificado el crédito y, en su caso, el privilegio, produce los efectos de la cosa juzgada, salvo dolo. La que lo declara admisible o inadmisible puede ser revisada a petición del interesado, formulada dentro de los VEINTE (20) días siguientes a la fecha de la resolución prevista en el artículo 36. Vencido este plazo, sin haber sido cuestionada, queda firme y produce también los efectos de la cosa juzgada, salvo dolo.
+\end{norma}
+
+\begin{important}
+El incidente de revisión (20 días) es la última oportunidad de ingresar al concurso como acreedor con derecho a voto. El cómputo del plazo lo fija la jurisprudencia, no la ley: contarlo mal puede dejar al acreedor sin acuerdo en el cual votar.
+\end{important}
+
+\section{El período de exclusividad}
+
+Terminada la etapa informativa comienza la etapa planificatoria.
+
+\begin{definition}{Período de exclusividad}
+Es el período más largo de todo el concurso, durante el cual el deudor concursado se sienta a formular propuestas a todos sus acreedores y a negociar el acuerdo preventivo. Dura \textbf{noventa días} como mínimo y puede extenderse hasta \textbf{ciento veinte} en grandes concursos (muchos acreedores, muchos trabajadores, cuando lo amerita).
+\end{definition}
+
+\begin{norma}{Ley 24.522, art.\ 43 (primer párrafo) --- Período de exclusividad. Propuestas de acuerdo}
+Dentro de los noventa (90) días desde que quede notificada por ministerio de la ley la resolución prevista en el artículo anterior, o dentro del mayor plazo que el juez determine en función al número de acreedores o categorías, el que no podrá exceder los treinta (30) días del plazo ordinario, el deudor gozará de un período de exclusividad para formular propuestas de acuerdo preventivo por categorías a sus acreedores y obtener de éstos la conformidad según el régimen previsto en el artículo 45.
+\end{norma}
+
+\section{Categorización de acreedores (art.\ 41)}
+
+Lo primero que debe hacer el deudor es \textbf{clasificar y agrupar} a los acreedores en categorías. El artículo 41 impone esta categorización como obligatoria y exige \textbf{como mínimo tres categorías}.
+
+El artículo sugiere categorías (quirografarios, laborales, privilegiados y, si existen, créditos subordinados), pero esas cuatro son \textbf{sugeridas, no obligatorias}: lo único exigido es el mínimo de tres. Puede agruparse en quirografarios y privilegiados, o subdividir los quirografarios (por ejemplo, financieros, de materia prima, de servicios). No se obliga a una categorización particular, pero sí es obligatorio categorizar.
+
+La categorización debe estar \textbf{fundada}: por ejemplo, se agrupan dos acreedores por ser ambos bancarios, o por haber provisto ambos materia prima. Es posible opinar acerca de la clasificación, aunque no es frecuente que alguien objete su agrupamiento.
+% TODO: contenido incompleto o ambiguo en las notas originales (fragmento poco audible en esta parte del apunte)
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{3.2cm} P{3.6cm} Y}
+\toprule
+\textbf{Categoría} & \textbf{Carácter según el art.\ 41} & \textbf{Observación} \\
+\midrule
+Quirografarios & Mínima (obligatoria) & Pueden subdividirse: financieros, materia prima, servicios, etc. \\
+Quirografarios laborales & Mínima, si existieren & Créditos de los trabajadores sin privilegio. \\
+Privilegiados & Mínima (obligatoria) & Pueden contemplarse categorías dentro de ellos. \\
+Subordinados & Sugerida: si existen & Acreedores que pactaron postergar sus derechos frente a otras deudas. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{norma}{Ley 24.522, art.\ 41 --- Clasificación y agrupamiento de acreedores en categorías}
+Dentro de los DIEZ (10) días contados a partir de la fecha en que debe ser dictada la resolución prevista en el artículo 36, el deudor debe presentar a la sindicatura y al juzgado una propuesta fundada de agrupamiento y clasificación en categorías de los acreedores verificados y declarados admisibles, la naturaleza de las prestaciones correspondientes a los créditos, el carácter de privilegiados o quirografarios, o cualquier otro elemento que razonablemente, pueda determinar su agrupamiento o categorización, a efectos de poder ofrecerles propuestas diferenciadas de acuerdo preventivo.
+
+La categorización deberá contener, como mínimo, el agrupamiento de los acreedores en TRES (3) categorías: quirografarios, quirografarios laborales -si existieren- y privilegiados, pudiendo -incluso- contemplar categorías dentro de estos últimos.
+
+Créditos subordinados. Los acreedores verificados que hubiesen convenido con el deudor la postergación de sus derechos respecto de otras deudas, integrarán en relación con dichos créditos una categoría.
+\end{norma}
+
+\section{La estrategia del agrupamiento}
+
+El agrupamiento es la parte más importante y definitoria del concurso para el deudor, porque las \textbf{mayorías} necesarias para obtener el acuerdo deben cumplirse \textbf{dentro de todas y cada una de las categorías}. Se trata de un juego de ajedrez, y la movida del agrupamiento es la más estratégica que tiene el deudor.
+
+Si el deudor sabe que un acreedor (por ejemplo, un banco) se opondrá al acuerdo y votará por la quiebra, no conviene agruparlo con otro acreedor pequeño: debe incluirlo en una categoría con otros acreedores de más capital, de modo que su voto no pese tanto en la votación. Esa agrupación debe fundarse (por ejemplo, en que todos los integrantes tienen más de doscientos días de mora). En general, el juez no suele objetar negativamente la agrupación, porque se sabe que es la estrategia del deudor y no está mal; de otro modo, no tendría sentido esta instancia previa a la quiebra. Todos quieren evitar la quiebra: el deudor, los acreedores, el Estado y los trabajadores; nadie quiere que una empresa se disuelva y se liquide.
+
+Si el deudor no presenta el agrupamiento no hay una consecuencia negativa inmediata: lo hace el juez. Pero en ese caso el concurso no será más que una antesala de la quiebra, porque si el deudor no juega la mejor carta que tiene, no estaría poniendo buena voluntad.
+
+\begin{important}
+El agrupamiento es la \textbf{jugada estratégica} del deudor: como las mayorías se exigen \textbf{en cada categoría}, una mala agrupación puede llevar a la quiebra. Debe estar \textbf{fundada}; y si el deudor no agrupa, lo hace el juez, lo cual muestra poca voluntad de acuerdo.
+\end{important}
+
+\section{Resolución de categorización y comité de control (art.\ 42)}
+
+Una vez firme la categorización, el juez dicta la \textbf{resolución definitiva de categorización}, que fija los grupos de acreedores. En esta instancia ya están determinados todos los acreedores y se forma el \textbf{comité de control definitivo}.
+
+En la resolución de apertura (art.\ 14) ya se había constituido un comité provisorio, porque todavía no se conocía a todos los acreedores ni quién era el de mayor monto. El comité definitivo se compone del \textbf{acreedor de mayor monto de cada grupo} y de \textbf{dos acreedores laborales}, para que los trabajadores estén representados. Con tres categorías (el mínimo legal) son tres acreedores más dos laborales: cinco integrantes, que ayudan al síndico y controlan que no se perjudiquen sus derechos; son los acreedores quienes tienen más interés.
+
+Si la empresa tiene trabajadores, en esta instancia siempre habrá acreedores laborales (algún salario, alguna indemnización, a veces cargas sociales); son siempre hasta dos. El criterio del mayor monto rige para los acreedores comunes: los laborales no se eligen por monto.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{2.4cm} Y Y}
+\toprule
+\textbf{Aspecto} & \textbf{Comité provisorio (art.\ 14, inc.\ 13)} & \textbf{Comité definitivo (art.\ 42)} \\
+\midrule
+Momento & Resolución de apertura del concurso. & Resolución que fija las categorías. \\
+Integración & Los tres quirografarios de mayor monto denunciados por el deudor y un representante de los trabajadores. & Como mínimo un acreedor por categoría (el de mayor monto) y dos nuevos representantes de los trabajadores. \\
+Por qué es provisorio o definitivo & Todavía no se conoce a todos los acreedores. & Ya están determinados todos los acreedores y sus categorías. \\
+Función & Órgano de información y consejo. % TODO: contenido incompleto o ambiguo en las notas originales (esta función no se desarrolla en la exposición)
+ & Ayuda al síndico y controla que no se perjudiquen sus derechos. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{norma}{Ley 24.522, art.\ 14, inciso 13 --- Resolución de apertura (comité provisorio)}
+13) La constitución de un comité de control, integrado por los tres (3) acreedores quirografarios de mayor monto, denunciados por el deudor y un (1) representante de los trabajadores de la concursada, elegido por los trabajadores.
+\end{norma}
+
+\begin{norma}{Ley 24.522, art.\ 42 --- Resolución de categorización}
+Dentro de los diez (10) días siguientes a la finalización del plazo fijado en el artículo 40, el juez dictará resolución fijando definitivamente las categorías y los acreedores comprendidos en ellas.
+
+Constitución del comité de control. En dicha resolución el juez designará a los nuevos integrantes del comité de control, el cual quedará conformado como mínimo por un (1) acreedor por cada categoría de las establecidas, debiendo integrar el mismo necesariamente el acreedor de mayor monto dentro de la categoría y por dos (2) nuevos representantes de los trabajadores de la concursada, elegidos por los trabajadores, que se incorporarán al ya electo conforme el artículo 14, inciso 13. El juez podrá reducir la cantidad de representantes de los trabajadores cuando la nómina de empleados así lo justifique. A partir de ese momento cesarán las funciones de los anteriores integrantes del comité que representan a los acreedores.
+\end{norma}
+
+\section{El informe general del síndico (art.\ 39)}
+
+Respecto del orden de los artículos: el 36 es la resolución verificatoria; el 37, el incidente de revisión; el 38 trata del dolo y no fue explicado. El artículo 39 está ubicado antes de lo que corresponde a su desarrollo: viene después del 41 (agrupamiento de acreedores) y del 42 (resolución en que se fijan las categorías).
+
+El artículo 39 prevé un \textbf{informe general} a cargo del síndico, que refleja una \textbf{radiografía económico-financiera} del deudor: pasivos, activos, a quién y cuánto debe, cuántos bienes tiene. Sirve, para empezar, para evitar que el deudor se desprenda de sus bienes, aunque el deudor ya tenía la obligación de presentar estados valorizados de activos y pasivos. Además, esa planilla da pautas para decidir si se acepta o no el acuerdo, y permite al síndico formarse opinión sobre la viabilidad de lo que propone el concursado, tanto en lo que ofrece como en su posible cumplimiento.
+
+\begin{example}{Evaluación de una oferta con el informe general}
+Si a un acreedor se le debe un millón de dólares y se le ofrecen 900.000, mirará el cuadro y se preguntará de dónde saldrán los 900.000: se le propone algo que luego no se cumplirá. Al revés, si se le ofrecen apenas 10.000, se preguntará por qué se ofrece tan poco si hay mucho dinero. En ambos casos sirve conocer la situación financiera y económica actualizada.
+\end{example}
+
+\begin{norma}{Ley 24.522, art.\ 39 --- Oportunidad y contenido del informe general}
+Treinta (30) días después de presentado el informe individual de los créditos, el síndico debe presentar un informe general, el que contiene:
+
+1) El análisis de las causas del desequilibrio económico del deudor.
+
+2) La composición actualizada y detallada del activo, con la estimación de los valores probables de realización de cada rubro, incluyendo intangibles.
+
+3) La composición del pasivo, que incluye también, como previsión, detalle de los créditos que el deudor denunciara en su presentación y que no se hubieren presentado a verificar, así como los demás que resulten de la contabilidad o de otros elementos de juicio verosímiles.
+
+4) Enumeración de los libros de contabilidad, con dictamen sobre la regularidad, las deficiencias que se hubieran observado, y el cumplimiento de los artículos 43, 44 y 51 del Código de Comercio.
+
+5) La referencia sobre las inscripciones del deudor en los registros correspondientes y, en caso de sociedades, sobre las del contrato social y sus modificaciones, indicando el nombre y domicilio de los administradores y socios con responsabilidad ilimitada.
+
+6) La expresión de la época en que se produjo la cesación de pagos, hechos y circunstancias que fundamenten el dictamen.
+
+7) En caso de sociedades, debe informar si los socios realizaron regularmente sus aportes, y si existe responsabilidad patrimonial que se les pueda imputar por su actuación en tal carácter.
+
+8) La enumeración concreta de los actos que se consideren susceptibles de ser revocados, según lo disponen los artículos 118 y 119.
+
+9) Opinión fundada respecto del agrupamiento y clasificación que el deudor hubiere efectuado respecto de los acreedores.
+
+10) Deberá informar, si el deudor resulta pasible del trámite legal prevenido por el Capítulo III de la ley 25.156, por encontrarse comprendido en el artículo 8° de dicha norma.
+\end{norma}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}P{0.26\textwidth}P{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\textbf{¿Qué sucede después de la resolución verificatoria (art.\ 36) y cómo se la cuestiona?} &
+El juez declara quiénes participan. No hay apelación común: se revisa mediante el \textbf{incidente de revisión (art.\ 37)}, dentro de \textbf{20 días}, cuyo cómputo fija la jurisprudencia. Es la última chance de entrar al concurso con voto. \\[0.6em]
+\textbf{Período de exclusividad} &
+Etapa más larga del concurso: \textbf{90 días}, ampliable hasta \textbf{120} en grandes concursos. El deudor negocia y ofrece propuestas a los acreedores (art.\ 43). \\[0.6em]
+\textbf{Categorización de acreedores (arts.\ 41 y 42)} &
+Obligatoria y fundada, con \textbf{mínimo tres categorías} (quirografarios, quirografarios laborales y privilegiados; subordinados si existen). Las categorías sugeridas no son obligatorias. Si el deudor no agrupa, lo hace el juez. El juez fija las categorías de modo definitivo. \\[0.6em]
+\textbf{¿Por qué agrupar es una <<jugada de ajedrez>>?} &
+Porque las mayorías se exigen \textbf{en cada categoría}: conviene diluir a un acreedor hostil con otros de más capital. Una mala agrupación puede llevar a la quiebra. \\[0.6em]
+\textbf{Comité de control (arts.\ 14 inc.\ 13 y 42)} &
+El \textbf{provisorio} surge con la apertura; el \textbf{definitivo} reúne al acreedor de mayor monto de cada categoría y representantes de los trabajadores. Ayuda al síndico y controla que no se perjudiquen los derechos de los acreedores. \\[0.6em]
+\textbf{Informe general del síndico (art.\ 39)} &
+<<Radiografía económico-financiera>>: activo, pasivo, causas del desequilibrio, cesación de pagos y opinión sobre el agrupamiento. Permite al acreedor evaluar si la propuesta es seria y viable. \\
+\midrule
+\multicolumn{2}{@{}P{\dimexpr0.92\textwidth+2\tabcolsep\relax}@{}}{%
+\textbf{Resumen:} Tras la resolución verificatoria y la eventual revisión en 20 días, el deudor dispone del período de exclusividad (90 a 120 días) y debe agrupar a sus acreedores en al menos tres categorías fundadas, decisión estratégica porque las mayorías se exigen en cada una. El juez fija las categorías, se constituye el comité de control definitivo y el informe general del síndico permite evaluar la viabilidad de las propuestas.} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 3 ====================
+\chapter[Negociación y mayorías]{Negociación, mayorías y falta de mayorías}
+
+\section{Las propuestas de acuerdo: quita y espera (art.\ 43)}
+
+Dentro del período de exclusividad, una vez ordenados los acreedores, comienzan las negociaciones. El deudor puede ofrecer a sus acreedores \textbf{cualquier cosa que sea legal}.
+
+\begin{definition}{Quita y espera}
+\textbf{Quita:} el acreedor condona parte de la deuda. \textbf{Espera:} la deuda se refinancia. Es la propuesta más frecuente en la práctica.
+\end{definition}
+
+\begin{example}{Propuesta de quita y espera}
+Si se debe un millón, se puede ofrecer pagar 500.000 pesos; o pagar primero 50.000, otros 50.000 en seis meses y otros 50.000 en doce meses.
+\end{example}
+
+En algún momento hubo un tope máximo de quita y un tope máximo de espera; hoy \textbf{no hay topes}.
+% TODO: contenido incompleto o ambiguo en las notas originales (no se precisa el año en que existieron los topes)
+Rige la autonomía de la voluntad: pueden ofrecerse participaciones en la empresa, acciones, bienes, y también emitirse obligaciones negociables. Todo depende del caso.
+
+\begin{norma}{Ley 24.522, art.\ 43 (segundo y siguientes párrafos) --- Contenido de las propuestas}
+Las propuestas pueden consistir en quita, espera o ambas; entrega de bienes a los acreedores; constitución de sociedad con los acreedores quirografarios, en la que éstos tengan calidad de socios; reorganización de la sociedad deudora; administración de todos o parte de los bienes en interés de los acreedores; emisión de obligaciones negociables o debentures; emisión de bonos convertibles en acciones; constitución de garantías sobre bienes de terceros; cesión de acciones de otras sociedades; capitalización de créditos, inclusive de acreedores laborales, en acciones o en un programa de propiedad participada, o en cualquier otro acuerdo que se obtenga con conformidad suficiente dentro de cada categoría, y en relación con el total de los acreedores a los cuales se les formulará propuesta.
+
+Las propuestas deben contener cláusulas iguales para los acreedores dentro de cada categoría, pudiendo diferir entre ellas.
+
+El deudor puede efectuar más de una propuesta respecto de cada categoría, entre las que podrán optar los acreedores comprendidos en ellas.
+
+El acreedor deberá optar en el momento de dar su adhesión a la propuesta.
+
+La propuesta no puede consistir en prestación que dependa de la voluntad del deudor.
+\end{norma}
+
+\section{Cómo evalúa un acreedor la propuesta}
+
+Un acreedor puede aceptar cobrar menos porque el concurso preventivo busca \textbf{seguir adelante con la actividad}. Si el deudor representa, por ejemplo, el 80\,\% de la facturación del acreedor, a este no le interesa que aquel desaparezca. También puede ocurrir que la empresa haya tenido malos resultados por una conducción deficiente, pero que el negocio sea rentable o se prevea un alza: hay que evaluarlo.
+
+A veces el no pago es un tema \textbf{financiero} pero no \textbf{económico}: la empresa tiene activos y negocios, pero no liquidez. La quiebra, en cambio, es un proceso liquidatorio de los bienes, que generalmente se liquidan bajo subasta, y la subasta nunca alcanza el valor real; además se suman los gastos del proceso. Distinto es el caso de quien otorgó un préstamo con garantía.
+
+Por eso es importante el \textbf{asesoramiento legal}: muchas empresas pequeñas carecen de él por cuestiones de presupuesto y terminan perdiendo más. A un concurso se llega mucho mejor asesorado.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{2.6cm} Y Y}
+\toprule
+\textbf{Criterio} & \textbf{Acuerdo preventivo} & \textbf{Quiebra} \\
+\midrule
+Finalidad & Seguir adelante con la actividad. & Proceso liquidatorio de los bienes. \\
+Valor de los bienes & Se preserva el negocio en marcha (clientes, proveedores, facturación). & Generalmente se liquida bajo subasta, y la subasta nunca alcanza el valor real. \\
+Costos & Quita y espera pactadas con los acreedores. & Se suman todos los gastos del proceso: el acreedor cobra menos. \\
+Interés del acreedor & Puede convenirle aceptar si el deudor es un cliente relevante (p.\ ej., 80\,\% de su facturación) o si el problema es financiero y no económico. & Perjudica a todos: deudor, acreedores, Estado y trabajadores. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{important}
+Un acreedor puede \textbf{aceptar cobrar menos} porque el concurso busca la \textbf{continuidad de la actividad}: si el problema del deudor es de \textbf{liquidez} (financiero) y no de \textbf{rentabilidad} (económico), y la quiebra rinde menos por la subasta y los gastos, el acuerdo puede ser la mejor salida. El \textbf{asesoramiento legal} temprano mejora el resultado.
+\end{important}
+
+\section{Publicidad, modificación y audiencia informativa}
+
+Las propuestas se formulan por grupo de acreedores: a cada categoría se le propone algo distinto. Cada una debe ser informada en el expediente, porque los demás acreedores querrán compararlas (<<al otro grupo le ofrecieron tanto y a mí otra cosa>>). A un acreedor siempre le conviene ser el último al que se le ofrezca, pero el plazo de exclusividad vence y no puede dejarse para el último momento. Además, una vez alcanzadas las mayorías, el acuerdo se impone incluso a quien votó en contra. No es necesario aceptar de inmediato, pero tampoco esperar al último momento.
+
+Las propuestas pueden modificarse hasta veinte días antes del vencimiento de la exclusividad, informando siempre la propuesta modificada en el expediente.
+% TODO: contenido incompleto o ambiguo en las notas originales (la explicación oral habla de veinte días antes del vencimiento; el art. 43 reproducido fija como límite la celebración de la audiencia informativa)
+Un acreedor no puede impugnar la propuesta hecha a otro grupo; sí puede pedir que se mejore la propia.
+
+\begin{norma}{Ley 24.522, art.\ 43 (últimos párrafos) --- Publicidad y modificación de la propuesta}
+El deudor deberá hacer pública su propuesta presentando la misma en el expediente con una anticipación no menor a veinte días (20) del vencimiento del plazo de exclusividad. Si no lo hiciere será declarado en quiebra, excepto en el caso de los supuestos especiales contemplados en el artículo 48.
+
+El deudor podrá presentar modificaciones a su propuesta original hasta el momento de celebrarse la Junta Informativa prevista en el artículo 45, penúltimo párrafo.
+\end{norma}
+
+\subsection{La audiencia informativa}
+
+\begin{definition}{Audiencia informativa}
+Audiencia que se solicita al juez antes del vencimiento de la exclusividad, siempre que no se hayan obtenido las conformidades, con la presencia del concursado, el síndico, el comité de control y todo acreedor que quiera participar. Se realiza \textbf{cinco días antes} del vencimiento: en el día 85 si el plazo es de noventa, y en el 115 si es de ciento veinte.
+\end{definition}
+
+El juez procura saber por qué no se llega a las mayorías (¿se ofrece poco?, ¿los acreedores están enojados con el deudor?) y trata de conciliar a las partes para obtenerlas y evitar la quiebra. Si ya se obtuvieron las mayorías, no se realiza, porque su único fin es lograrlas. El juez se interioriza así de cómo marchan las negociaciones.
+
+\section{Las mayorías para el acuerdo (art.\ 45)}
+
+Las mayorías se regulan en el artículo 45 y conforman un régimen de \textbf{mayoría agravada}, porque exige dos condiciones.
+
+\begin{definition}{Doble mayoría (art.\ 45)}
+Mayoría absoluta de acreedores quirografarios, verificados o declarados admisibles (cantidad de acreedores), que represente además las dos terceras partes del capital quirografario computable, \textbf{dentro de todas y cada una de las categorías}.
+\end{definition}
+
+\begin{formula}{Requisitos de la doble mayoría}
+\begin{align*}
+\text{Personas:}\quad & \text{más de la mitad de los acreedores de la categoría}\\
+\text{Capital:}\quad & \tfrac{2}{3}\ \text{del capital computable de la categoría}
+\end{align*}
+\end{formula}
+
+No se habla de privilegiados: votan los quirografarios verificados o declarados admisibles, porque son los únicos que pueden participar del concurso; los inadmisibles quedan afuera.
+
+\subsection{¿Qué significa <<mayoría absoluta>>?}
+
+\begin{definition}{Mayoría absoluta}
+Más de la mitad. No debe confundirse con <<la mitad más uno>>, que es más exigente; en el país la postura es <<más de la mitad>>.
+\end{definition}
+
+\begin{example}{Once acreedores}
+Con 11 acreedores, la mitad no es 6,5 sino 5 y medio. Como no puede partirse a un acreedor, más de la mitad son seis. En cambio, la mitad más uno serían siete.
+\end{example}
+
+\subsection{¿Por qué una doble mayoría? Todas y cada una de las categorías}
+
+La doble mayoría debe darse en todas y cada una de las categorías. Si el deudor tiene diez categorías y en una no llega, se va a la quiebra. De allí la importancia de la estrategia del agrupamiento: si se agrupó mal, no se llegará. El artículo 45 exige que se represente las dos terceras partes del capital computable \textbf{dentro de cada categoría}, no sobre el total.
+
+La razón es proteger a los acreedores: sin esta exigencia, el deudor podría decidir pagar 100.000 a quien le debe un millón. Algo debe complicarse al deudor. Si no se llega a las mayorías, salvo excepciones, el camino es la quiebra indirecta por fracaso del concurso preventivo.
+
+\begin{norma}{Ley 24.522, art.\ 45 --- Plazo y mayorías para la obtención del acuerdo para acreedores quirografarios}
+Para obtener la aprobación de la propuesta de acuerdo preventivo, el deudor deberá acompañar al juzgado, hasta el día del vencimiento del período de exclusividad, el texto de la propuesta con la conformidad acreditada por declaración escrita con firma certificada por ante escribano público, autoridad judicial, o administrativa en el caso de entes públicos nacionales, provinciales o municipales, de la mayoría absoluta de los acreedores dentro de todas y cada una de las categorías, que representen las dos terceras partes del capital computable dentro de cada categoría. Sólo resultarán válidas y computables las conformidades que lleven fecha posterior a la última propuesta o su última modificación presentada por el deudor en el expediente.
+
+La mayoría de capital dentro de cada categoría se computa teniendo en consideración la suma total de los siguientes créditos:
+
+a) Quirografarios verificados y declarados admisibles comprendidos en la categoría;
+
+b) Privilegiados cuyos titulares hayan renunciado al privilegio y que se hayan incorporado a esa categoría de quirografarios;
+
+c) El acreedor admitido como quirografario, por habérsele rechazado el privilegio invocado, será excluido de integrar la categoría, a los efectos del cómputo, si hubiese promovido incidente de revisión, en los términos del artículo 37.
+
+Se excluye del cómputo al cónyuge, los parientes del deudor dentro del cuarto grado de consanguinidad, segundo de afinidad o adoptivos, y sus cesionarios dentro del año anterior a la presentación. Tratándose de sociedades no se computan los socios, administradores y acreedores que se encuentren respecto de ellos en la situación del párrafo anterior, la prohibición no se aplica a los acreedores que sean accionistas de la concursada, salvo que se trate de controlantes de la misma.
+
+El deudor deberá acompañar, asimismo, como parte integrante de la propuesta, un régimen de administración y de limitaciones a actos de disposición aplicable a la etapa de cumplimiento, y la conformación de un comité de control que actuará como controlador del acuerdo, que sustituirá al comité constituido por el artículo 42, segundo párrafo. La integración del comité deberá estar conformada por acreedores que representen la mayoría del capital, y permanecerán en su cargo los representantes de los trabajadores de la concursada.
+
+Con cinco (5) días de anticipación al vencimiento del plazo del período de exclusividad, se llevará a cabo la audiencia informativa con la presencia del juez, el secretario, el deudor, el comité provisorio de control y los acreedores que deseen concurrir. En dicha audiencia el deudor dará explicaciones respecto de la negociación que lleva a cabo con sus acreedores, y los asistentes podrán formular preguntas sobre las propuestas.
+
+Si con anterioridad a la fecha señalada para la audiencia informativa, el deudor hubiera obtenido las conformidades previstas por el artículo 45, y hubiera comunicado dicha circunstancia al juzgado, acompañando las constancias, la audiencia no se llevará a cabo.
+\end{norma}
+
+\section{Ejemplo numérico de la doble mayoría}
+
+\begin{example}{Categoría de seis acreedores quirografarios}
+Una categoría de quirografarios tiene seis acreedores: al primero se le deben 500, al segundo 300 y a los otros cuatro cantidades chicas; en total, la categoría suma \$\,1.200. Para llegar a la mayoría de personas se necesitan \textbf{cuatro} acreedores; para la de capital, \$\,800, que son las dos terceras partes de \$\,1.200.
+
+Con los dos primeros se llega a \$\,800, pero no se cumple: hacen falta cuatro acreedores a favor que sumen los \$\,800. Sumando los cuatro pequeños se llega a 400; sumando al de 300, a 700. Por lo tanto, si el acreedor de 500 no dice que sí, se va a la quiebra.
+\end{example}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{2.8cm} P{2.8cm} Y}
+\toprule
+\textbf{Acreedor} & \textbf{Crédito (\$)} & \textbf{¿Qué pasa si vota que sí?} \\
+\midrule
+1 & 500 & Sin él no se llega a los \$\,800 de capital: es indispensable. \\
+2 & 300 & Con los acreedores 1 y 2 se alcanzan \$\,800, pero son solo 2 de 6 acreedores: falta la mayoría absoluta de personas. \\
+3, 4, 5 y 6 & 100 c/u (400 en total) & Los cuatro <<chiquitos>> suman solo \$\,400. Con el acreedor 2 llegan a \$\,700: todavía no alcanza el 2/3. \\
+Total de la categoría & 1.200 & Requisito personas: 4 de 6 acreedores (más de la mitad). Requisito capital: \$\,800 (2/3 de \$\,1.200). \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Este ejemplo muestra el \textbf{segundo motivo} de la doble mayoría: que estén representados los acreedores de menor capital. Sin la doble exigencia, el deudor podría ofrecer cualquier cosa a los pequeños y solo le servirían los de mayor monto. Esto debe darse en todas las categorías, sean cien o diez. La doble exigencia protege siempre al acreedor, chico o grande.
+
+Las conformidades pueden obtenerse hasta el día 90 o 120, según el período de exclusividad. Una vez alcanzadas las mayorías, se informa al juzgado para que el acuerdo sea homologado.
+
+\begin{definition}{Homologación}
+Aprobación judicial; el visto bueno del acuerdo.
+\end{definition}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{2.8cm} Y Y}
+\toprule
+\textbf{Requisito} & \textbf{Qué se mide} & \textbf{Fundamento} \\
+\midrule
+1.º Mayoría de personas & Mayoría absoluta de acreedores quirografarios (más de la mitad, no <<la mitad más uno>>). & Que no decidan unos pocos acreedores grandes. \\
+2.º Mayoría de capital & Las 2/3 partes del capital computable. & Proteger a los acreedores y evitar que el deudor pague <<cualquier cosa>> a quien le deba mucho. \\
+Alcance & Ambas mayorías, en todas y cada una de las categorías. & Si en una sola categoría no se llega: quiebra (salvo excepciones). \\
+Quiénes votan & Quirografarios verificados o declarados admisibles. Los privilegiados no votan, salvo renuncia al privilegio. & Solo ellos participan del concurso. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{important}
+\textbf{Doble mayoría (art.\ 45):} mayoría absoluta de acreedores \textbf{y} dos tercios del capital, \textbf{dentro de todas y cada una de las categorías}. Protege a los acreedores de menor capital y vuelve decisivo el agrupamiento.
+\end{important}
+
+\section{Si no se obtienen las mayorías: quiebra indirecta y excepciones}
+
+Si el período de exclusividad termina sin las conformidades del artículo 45, el deudor va a la \textbf{quiebra} (quiebra indirecta por fracaso del concurso preventivo), con dos excepciones.
+
+\begin{norma}{Ley 24.522, art.\ 46 --- No obtención de la conformidad}
+Si el deudor no presentara en el expediente, en el plazo previsto, las conformidades de los acreedores quirografarios bajo el régimen de categorías y mayorías previstos en el artículo anterior, será declarado en quiebra, con excepción de lo previsto en el Artículo 48 para determinados sujetos.
+\end{norma}
+
+\subsection{Primera excepción: el salvataje (art.\ 48)}
+
+Vencido el período de exclusividad sin mayorías, el juez verifica si el deudor es un sujeto susceptible de \textbf{salvataje} (\emph{cram down}). Si lo es, no declara la quiebra, sino que abre el proceso de salvataje. Su desarrollo completo excede el contenido de este apunte.
+
+\begin{norma}{Ley 24.522, art.\ 48 (extracto) --- Supuestos especiales}
+En el caso de sociedades de responsabilidad limitada, sociedades por acciones, sociedades cooperativas, y aquellas sociedades en que el Estado nacional, provincial o municipal sea parte, con exclusión de las personas reguladas por las leyes 20.091, 20.321, 24.241 y las excluidas por leyes especiales, vencido el período de exclusividad sin que el deudor hubiera obtenido las conformidades previstas para el acuerdo preventivo, no se declarará la quiebra, sino que:
+
+1) Apertura de un registro. Dentro de los dos (2) días el juez dispondrá la apertura de un registro en el expediente para que dentro del plazo de cinco (5) días se inscriban los acreedores, la cooperativa de trabajo conformada por trabajadores de la misma empresa --incluida la cooperativa en formación-- y otros terceros interesados en la adquisición de las acciones o cuotas representativas del capital social de la concursada, a efectos de formular propuesta de acuerdo preventivo. Al disponer la apertura del registro el juez determinará un importe para afrontar el pago de los edictos. Al inscribirse en el registro, dicho importe deberá ser depositado por los interesados en formular propuestas de acuerdo.
+
+2) Inexistencia de inscriptos. Si transcurrido el plazo previsto en el inciso anterior no hubiera ningún inscripto el juez declarará la quiebra.
+
+[\ldots] (Los incisos 3 a 8 regulan la valuación de las cuotas o acciones, la negociación, la audiencia informativa y el acuerdo obtenido por un tercero.)
+\end{norma}
+
+\subsection{Segunda excepción: la imposición del acuerdo (art.\ 52)}
+
+La otra excepción es la \textbf{imposición del acuerdo}, vinculada con las facultades homologatorias del juez: el poder de imponer el acuerdo en algunas situaciones aun cuando no se hayan obtenido las mayorías necesarias. Sus requisitos se desarrollan en el capítulo siguiente.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{2.8cm} P{1.6cm} Y}
+\toprule
+\textbf{Excepción} & \textbf{Artículo} & \textbf{Idea central} \\
+\midrule
+Salvataje (\emph{cram down}) & 48 & Si el deudor es un sujeto susceptible (S.R.L., S.A., cooperativas, sociedades con participación estatal), no se declara la quiebra: se abre un registro para que terceros o acreedores presenten propuestas. \\
+Imposición del acuerdo & 52 & El juez, mediante sus facultades homologatorias, puede imponer el acuerdo aunque no se hayan alcanzado las mayorías en todas las categorías. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{important}
+\textbf{Regla:} sin las mayorías del art.\ 45, quiebra indirecta por fracaso del concurso preventivo. \textbf{Únicas excepciones:} el \textbf{salvataje} (art.\ 48) y la \textbf{imposición del acuerdo} (art.\ 52).
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}P{0.26\textwidth}P{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\textbf{Quita y espera: ¿qué puede ofrecer el deudor?} &
+\textbf{Cualquier cosa legal} (autonomía de la voluntad): quitas, esperas, participaciones, acciones, bienes, obligaciones negociables. Hoy \textbf{no hay topes}. Las propuestas se informan en el expediente y pueden diferir entre categorías. \\[0.6em]
+\textbf{¿Por qué un acreedor aceptaría cobrar menos?} &
+Porque el concurso busca la \textbf{continuidad}; la quiebra liquida bajo subasta (nunca al valor real) y suma gastos. Hay que distinguir el problema \textbf{financiero} del \textbf{económico}. \\[0.6em]
+\textbf{Audiencia informativa} &
+Cinco días antes del vencimiento (día 85 u 115). El juez, el deudor, el síndico, el comité y los acreedores interesados concilian para lograr las mayorías. No se realiza si ya se obtuvieron. \\[0.6em]
+\textbf{Mayorías (art.\ 45)} &
+\textbf{Doble mayoría}: mayoría absoluta de acreedores quirografarios (más de la mitad, no <<la mitad más uno>>) \textbf{y} dos tercios del capital computable, \textbf{en todas y cada una de las categorías}. Protege a los acreedores de menor capital. \\[0.6em]
+\textbf{Sin mayorías: ¿qué pasa?} &
+Quiebra indirecta por fracaso del concurso preventivo, salvo dos excepciones: \textbf{salvataje (art.\ 48, \emph{cram down})} e \textbf{imposición del acuerdo (art.\ 52)}. \\
+\midrule
+\multicolumn{2}{@{}P{\dimexpr0.92\textwidth+2\tabcolsep\relax}@{}}{%
+\textbf{Resumen:} El deudor negocia propuestas de quita y espera sin otro límite que la legalidad. El acuerdo exige doble mayoría (mayoría absoluta de acreedores y dos tercios del capital) en todas y cada una de las categorías, lo que protege a los acreedores de menor capital. Si no se logra, la regla es la quiebra indirecta, salvo el salvataje y la imposición del acuerdo.} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 4 ====================
+\chapter[Impugnación, nulidad y homologación]{Impugnación, nulidad y homologación del acuerdo}
+
+\section{Vías por las que el acuerdo puede fracasar}
+
+Aun obtenidas las mayorías, el acuerdo puede fracasar por una \textbf{impugnación} o por una \textbf{nulidad}, ambas siempre a pedido de parte, o por el ejercicio de las \textbf{facultades homologatorias} del juez (\emph{cram down power}). No es necesario memorizar los números de artículo, pero sí conocer las dos situaciones en que, habiendo mayorías, alguien logra hacer caer el acuerdo preventivo.
+
+\section{La impugnación del acuerdo (art.\ 50)}
+
+\textbf{Legitimados.} Pueden impugnar los acreedores con derecho a voto, es decir, verificados o declarados admisibles, y quienes tengan un incidente en trámite: de revisión o por verificación tardía (presentación después del plazo). Como estos incidentes a veces demoran, puede ocurrir que el acreedor no haya sido tomado en cuenta para las mayorías.
+
+\textbf{Causales.} El artículo 50 establece las \textbf{únicas causas} en que puede fundarse:
+\begin{enumerate}
+    \item \textbf{Error en el cómputo de la mayoría necesaria}: por ejemplo, un acreedor no fue tenido en cuenta porque no se le verificó, o presentó incidente de revisión.
+    \item \textbf{Falta de representación de acreedores} que concurran a formar mayoría en las categorías: la cuestión formal.
+    \item \textbf{Exageración fraudulenta del pasivo}: se incluyeron como acreedores a quienes no lo eran para manejar las mayorías.
+    \item \textbf{Ocultación o exageración fraudulenta del activo}: para que el acreedor crea que el deudor podrá cumplir lo ofrecido, y no es verdad.
+    \item \textbf{Inobservancia de las formas esenciales} para la celebración del acuerdo. Esta causal solo puede invocarse por los acreedores que \textbf{no hayan prestado su conformidad}: quien votó que sí consintió. Es la única con esa limitación; para las demás puede impugnar quien votó afirmativamente.
+\end{enumerate}
+
+\textbf{Plazo.} Es muy breve: \textbf{cinco días} desde la notificación de la obtención del acuerdo, que se hace por ministerio de la ley, desde que se informó al expediente que se obtuvieron las mayorías.
+
+\textbf{Efectos.} Si el juez hace lugar a la impugnación, declara la quiebra (salvo salvataje) y no homologa el acuerdo, pues rechaza la existencia de acuerdo. Si la rechaza por improcedente, procede a la homologación del acuerdo preventivo.
+
+\begin{norma}{Ley 24.522, art.\ 49 --- Existencia de acuerdo}
+Dentro de los tres (3) días de presentadas las conformidades correspondientes, el juez dictará resolución haciendo saber la existencia de acuerdo preventivo.
+\end{norma}
+
+\begin{norma}{Ley 24.522, art.\ 50 --- Impugnación}
+Los acreedores con derecho a voto, y quienes hubieren deducido incidente, por no haberse presentado en término, o por no haber sido admitidos sus créditos quirografarios, pueden impugnar el acuerdo, dentro del plazo de cinco (5) días siguiente a que quede notificada por ministerio de la ley la resolución del artículo 49.
+
+Causales. La impugnación solamente puede fundarse en:
+
+1) Error en cómputo de la mayoría necesaria.
+
+2) Falta de representación de acreedores que concurran a formar mayoría en las categorías.
+
+3) Exageración fraudulenta del pasivo.
+
+4) Ocultación o exageración fraudulenta del activo.
+
+5) Inobservancia de formas esenciales para la celebración del acuerdo.
+
+Esta causal sólo puede invocarse por parte de acreedores que no hubieren presentado conformidad a las propuestas del deudor, de los acreedores o de terceros.
+\end{norma}
+
+\begin{norma}{Ley 24.522, art.\ 51 --- Resolución}
+Tramitada la impugnación, si el juez la estima procedente, en la resolución que dicte debe declarar la quiebra. Si se tratara de sociedad de responsabilidad limitada, sociedad por acciones y aquellas en que tenga participación el Estado nacional, provincial o municipal, se aplicará el procedimiento previsto en el artículo 48, salvo que la impugnación se hubiere deducido contra una propuesta hecha por aplicación de este procedimiento.
+
+Si la juzga improcedente, debe proceder a la homologación del acuerdo.
+
+Ambas decisiones son apelables, al solo efecto devolutivo; en el primer caso, por el concursado y en el segundo por el acreedor impugnante.
+\end{norma}
+
+\section{La nulidad del acuerdo homologado (art.\ 60)}
+
+El acuerdo homologado puede ser declarado nulo por cualquier acreedor en un plazo de \textbf{seis meses}, que se cuentan desde el auto que dispone la homologación. La nulidad solo puede fundarse en el \textbf{dolo} empleado para exagerar el pasivo, reconocer o aparentar privilegios inexistentes o constituidos ilícitamente, o exagerar el activo, descubiertos después del plazo del artículo 50: el acreedor debe haberse enterado luego de vencido el plazo de impugnación, pues de lo contrario habría debido impugnar. No pueden pedirla ni el síndico, ni el juez, ni el concursado; solo los acreedores verificados o declarados admisibles.
+
+Si se hace lugar a la nulidad, la misma resolución debe disponer la quiebra del deudor. La nulidad tiene además otro aspecto relativo a la novación, que se trata en este capítulo.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{2.6cm} Y Y}
+\toprule
+\textbf{Aspecto} & \textbf{Impugnación (art.\ 50)} & \textbf{Nulidad (art.\ 60)} \\
+\midrule
+Momento & Antes de la homologación del acuerdo. & Después de la homologación. \\
+Plazo & Cinco (5) días desde la notificación (por ministerio de la ley) de la resolución del art.\ 49. & Seis (6) meses desde el auto que dispone la homologación. \\
+Quiénes pueden pedirla & Acreedores con derecho a voto, y quienes tengan incidente de revisión o de verificación tardía en trámite. & Cualquier acreedor comprendido; no el síndico, ni el juez, ni el concursado. \\
+Causales & Cinco, taxativas: error de cómputo; falta de representación; exageración fraudulenta del pasivo; ocultación o exageración del activo; inobservancia de formas esenciales. & Solo el dolo (pasivo exagerado, privilegios inexistentes, activo exagerado u ocultado) descubierto después del plazo del art.\ 50. \\
+Efecto si prospera & Quiebra (salvo salvataje); no se homologa. & Quiebra del deudor; el acuerdo cae. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{norma}{Ley 24.522, art.\ 60 --- Sujetos y término. Causal}
+El acuerdo homologado puede ser declarado nulo, a pedido de cualquier acreedor comprendido en él, dentro del plazo de caducidad de SEIS (6) meses, contados a partir del auto que dispone la homologación del acuerdo.
+
+Causal. La nulidad sólo puede fundarse en el dolo empleado para exagerar el pasivo, reconocer o aparentar privilegios inexistentes o constituidos ilícitamente, y ocultar o exagerar el activo, descubiertos después de vencido el plazo del Artículo 50.
+\end{norma}
+
+\begin{norma}{Ley 24.522, art.\ 61 --- Sentencia: quiebra}
+La sentencia que decrete la nulidad del acuerdo debe contener la declaración de quiebra del deudor y las medidas del Articulo 177. Es apelable, sin perjuicio del inmediato cumplimiento de las medidas de los Artículos 177 a 199.
+\end{norma}
+
+\begin{norma}{Ley 24.522, art.\ 62 (extracto) --- Otros efectos de la nulidad}
+La nulidad del acuerdo produce, además, los siguientes efectos:
+
+1) Libera al fiador que garantizó su cumplimiento.
+
+2) Los acreedores recuperan los derechos que tenían antes de la apertura del concurso. Si hubieren recibido pagos a cuenta del cumplimiento del acuerdo, tienen derecho a cobrar en proporción igual a la parte no cumplida. [\ldots]
+
+3) Son nulas las demás medidas adoptadas en cumplimiento del acuerdo, en cuanto satisfagan los créditos comprendidos en él.
+
+4) Los acreedores recuperan el privilegio al que han renunciado para votar el acuerdo.
+
+[\ldots]
+\end{norma}
+
+\section{La homologación y las facultades homologatorias (art.\ 52)}
+
+Si se alcanzaron las mayorías, se informan al juez con las conformidades para que verifique y homologue. Si no hubo observaciones ni impugnación, o fueron desestimadas o rechazadas, el juez \textbf{debe homologar}. La homologación es indispensable para que el acuerdo sea \textbf{válido y exigible}; funciona como la sentencia que le da fuerza legal.
+
+\subsection{El poder de no homologar (\emph{cram down power} negativo)}
+
+El juez puede \textbf{no homologar} el acuerdo cuando lo considera:
+\begin{itemize}
+    \item \textbf{Abusivo}: el juez pide al concursado que mejore su propuesta; incluye quitas o esperas desmedidas. Aunque no hay un límite legal, rige una razonabilidad.
+    \item \textbf{Discriminatorio}: favorece a algunos acreedores y a otros no.
+    \item \textbf{Fraudulento}: cuando verifica que las mayorías se obtuvieron de manera fraudulenta.
+\end{itemize}
+
+\begin{example}{Propuesta abusiva y discriminatoria}
+Se ofrece pagar el 80 a una categoría de acreedores y el 10 a otra (discriminatorio); o se propone pagar <<en cincuenta años>> (espera desmedida).
+\end{example}
+
+Esta facultad se aplica de manera excepcional: debe ser algo muy evidente, porque de lo contrario el juez estaría yendo contra la autonomía de la voluntad de las personas; si el acreedor dijo que sí, se supone que fue asesorado y sabía lo que votaba. Por eso no se ve con frecuencia en la práctica, y se señaló que muchas veces no se utiliza el artículo 52 porque no prosperaría.
+
+\subsection{El poder de imponer el acuerdo (\emph{cram down power} positivo)}
+
+El juez también puede \textbf{imponer} el acuerdo aun sin las mayorías en todas las categorías, siempre que concurran \textbf{todos} los requisitos del artículo 52, inciso 2, parte b):
+\begin{enumerate}[label=\roman*)]
+    \item aprobación por al menos una de las categorías de quirografarios;
+    \item conformidad de por lo menos las tres cuartas partes del capital quirografario;
+    \item no discriminación contra las categorías disidentes: el acreedor disidente puede elegir entre las propuestas acordadas con las categorías que aprobaron;
+    \item que el acreedor disidente reciba por lo menos lo que recibiría en la quiebra.
+\end{enumerate}
+
+Para verificar este último requisito ayuda el informe general del artículo 39. La imposición nunca puede hacerse a un acreedor privilegiado (el art.\ 52 lo dice respecto de los acreedores con privilegio especial que no hubieran aceptado). El juez, con estas herramientas, valora siempre procurando evitar la quiebra, que es una situación grave: se terminan los contratos laborales, se liquida la sociedad y se liquidan los bienes.
+% TODO: contenido incompleto o ambiguo en las notas originales (se plantea la duda sobre qué ocurre si el deudor luego no cumple, sin respuesta clara)
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{3cm} Y}
+\toprule
+\textbf{Facultad del juez} & \textbf{Cuándo procede} \\
+\midrule
+No homologar & Cuando la propuesta es \textbf{abusiva} (quitas o esperas desmedidas), \textbf{discriminatoria} (80\,\% a una categoría y 10\,\% a otra) o \textbf{fraudulenta} (mayorías obtenidas con fraude). Debe verificarse la situación; se aplica de manera excepcional, por respeto a la autonomía de la voluntad. \\
+Imponer el acuerdo & Aunque no se logren las mayorías en todas las categorías, si se cumplen \textbf{todos} los requisitos: (i) aprobación por al menos una categoría de quirografarios; (ii) conformidad de al menos 3/4 del capital quirografario; (iii) no discriminación contra las categorías disidentes; (iv) pago no inferior al que obtendrían en la quiebra. Nunca puede imponerse a privilegiados con privilegio especial. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{norma}{Ley 24.522, art.\ 52 --- Homologación}
+No deducidas impugnaciones en término, o al rechazar las interpuestas, el juez debe pronunciarse sobre la homologación del acuerdo.
+
+1. Si considera una propuesta única, aprobada por las mayorías de ley, debe homologarla.
+
+2. Si considera un acuerdo en el cual hubo categorización de acreedores quirografarios y consiguiente pluralidad de propuestas a las respectivas categorías:
+
+a) Debe homologar el acuerdo cuando se hubieran obtenido las mayorías del artículo 45 o, en su caso, las del artículo 67;
+
+b) Si no se hubieran logrado las mayorías necesarias en todas las categorías, el juez puede homologar el acuerdo, e imponerlo a la totalidad de los acreedores quirografarios, siempre que resulte reunida la totalidad de los siguientes requisitos:
+
+i) Aprobación por al menos una de las categorías de acreedores quirografarios;
+
+ii) Conformidad de por lo menos las tres cuartas partes del capital quirografario;
+
+iii) No discriminación en contra de la categoría o categorías disidentes. Entiéndese como discriminación el impedir que los acreedores comprendidos en dicha categoría o categorías disidentes puedan elegir --después de la imposición judicial del acuerdo-- cualquiera de las propuestas, únicas o alternativas, acordadas con la categoría o categorías que las aprobaron expresamente. En defecto de elección expresa, los disidentes nunca recibirán un pago o un valor inferior al mejor que se hubiera acordado con la categoría o con cualquiera de las categorías que prestaron expresa conformidad a la propuesta;
+
+iv) Que el pago resultante del acuerdo impuesto equivalga a un dividendo no menor al que obtendrían en la quiebra los acreedores disidentes.
+
+3. El acuerdo no puede ser impuesto a los acreedores con privilegio especial que no lo hubieran aceptado.
+
+4. En ningún caso el juez homologará una propuesta abusiva o en fraude a la ley.
+\end{norma}
+
+\section{Efectos de la homologación (arts.\ 52, 55, 56 y 59)}
+
+La homologación produce cuatro efectos, todos sumamente importantes.
+
+\subsection{Primer efecto: imposición del acuerdo a todos los acreedores (art.\ 56)}
+
+Obtenidas las mayorías y homologado, el acuerdo se impone a \textbf{todos} los acreedores, hayan votado a favor o en contra, y hayan participado o no del concurso: quien es acreedor comprendido sufre igualmente sus efectos. Este efecto es controvertido.
+
+\subsection{Segundo efecto: novación (art.\ 55)}
+
+\begin{definition}{Novación}
+Reemplazo de una obligación por otra. La homologación del acuerdo genera novación de las obligaciones anteriores al concurso.
+\end{definition}
+
+\begin{example}{El millón de dólares}
+A un acreedor se le debía un millón de dólares y se pactó pagarle 100.000. Con la homologación ya no se debe un millón sino 100.000. Si el deudor incumple a los treinta días y se decreta la quiebra, el acreedor se presenta en ella por 100.000, no por el millón: aceptó que fueran 100.000.
+\end{example}
+
+El único caso en que no opera la novación es cuando se decreta la \textbf{nulidad}, que hace recuperar los derechos anteriores. Se planteó que en algunos casos el juez no puede homologar, pero se aclaró que la novación opera igualmente, por lo que debe tenerse mucho cuidado con la imposición.
+% TODO: contenido incompleto o ambiguo en las notas originales (intervención de un alumno con fragmento poco claro sobre los casos en que el juez no homologa)
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{4cm} P{3.4cm} Y}
+\toprule
+\textbf{Situación} & \textbf{Deuda} & \textbf{Qué se puede reclamar} \\
+\midrule
+Antes de la homologación & \$\,1.000.000 (ejemplo) & El crédito completo, con las limitaciones propias del concurso. \\
+Después de la homologación (novación) & \$\,100.000 & Se extingue la deuda anterior y nace una nueva obligación por lo pactado. \\
+Si el deudor incumple y se decreta la quiebra & \$\,100.000 & El acreedor concurre a la quiebra por \$\,100.000, no por el millón original. \\
+Si se declara la nulidad del acuerdo & \$\,1.000.000 & Es el único caso en que no opera la novación: los acreedores recuperan sus derechos anteriores. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Tercer efecto: cesa la intervención del síndico y se regulan honorarios}
+
+Obtenido el acuerdo cesa la intervención del síndico y, en el mismo acto, el juez \textbf{regula sus honorarios}, que recién entonces se pagan por todo su trabajo.
+
+El síndico es contador público nacional con al menos cinco años de antigüedad en la matrícula. Se designa por \textbf{sorteo}, al inicio del expediente; la empresa nunca lo elige, porque es un auxiliar de justicia. En los grandes concursos suele ser un estudio contable, ya que un solo contador no podría hacerse cargo; los contadores individuales se ocupan de los pequeños concursos y quiebras.
+
+\subsection{Cuarto efecto: conclusión del concurso}
+
+Una vez alcanzado el acuerdo, concluye el concurso preventivo.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{P{1.2cm} P{3.4cm} Y P{1.6cm}}
+\toprule
+\textbf{N.º} & \textbf{Efecto} & \textbf{Qué implica} & \textbf{Art.} \\
+\midrule
+1 & Imposición del acuerdo & Alcanza a todos los acreedores comprendidos, hayan votado o no, hayan participado o no. & 56 \\
+2 & Novación & Reemplaza la obligación anterior por la pactada; salvo nulidad. & 55 \\
+3 & Cesa la intervención del síndico & Se regulan sus honorarios en el mismo acto. & 54 y 59 \\
+4 & Conclusión del concurso & Se da por terminado el concurso preventivo una vez ejecutadas las medidas de cumplimiento. & 59 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Incumplimiento del acuerdo}
+
+El incumplimiento posterior lleva a la quiebra (arts.\ 63 y 64), pero solo por la deuda ya novada.
+
+\begin{norma}{Ley 24.522, art.\ 54 --- Honorarios}
+Los honorarios a cargo del deudor son exigibles a los NOVENTA (90) días contados a partir de la homologación, o simultáneamente con pago de la primera cuota a alguna de las categorías de acreedores que venciere antes de eso plazo.
+
+La falta de pago habilita a solicitar la declaración en quiebra.
+\end{norma}
+
+\begin{norma}{Ley 24.522, art.\ 55 --- Novación}
+En todos los casos, el acuerdo homologado importa la novación de todas las obligaciones con origen o causa anterior al concurso. Esta novación no causa la extinción de las obligaciones del fiador ni de los codeudores solidarios.
+\end{norma}
+
+\begin{norma}{Ley 24.522, art.\ 56 (extracto) --- Aplicación a todos los acreedores}
+El acuerdo homologado produce efectos respecto de todos los acreedores quirografarios cuyos créditos se hayan originado por causa anterior a la presentación, aunque no hayan participado en el procedimiento.
+
+También produce iguales efectos respecto de los acreedores privilegiados verificados, en la medida en que hayan renunciado al privilegio.
+
+Son absolutamente nulos los beneficios otorgados a los acreedores que excedan de lo establecido en el acuerdo para cada categoría.
+
+[\ldots]
+\end{norma}
+
+\begin{norma}{Ley 24.522, art.\ 59 (primeros párrafos) --- Conclusión del concurso}
+Una vez homologado el acuerdo, y tomadas y ejecutadas las medidas tendientes a su cumplimiento, el juez debe declarar finalizado el concurso, dando por concluida la intervención del síndico.
+
+Con carácter previo a la declaración de conclusión del concurso, se constituirán las garantías pertinentes, y se dispondrá mantener la inhibición general de bienes respecto del deudor por el plazo de cumplimiento del acuerdo, salvo conformidad expresa de los acreedores, las previsiones que el acuerdo previera al respecto, o las facultades que se hubieren otorgado al comité de acreedores como controlador del acuerdo.
+
+[\ldots]
+\end{norma}
+
+\begin{norma}{Ley 24.522, art.\ 63 (primer párrafo) --- Incumplimiento: pedido y trámite}
+Cuando el deudor no cumpla el acuerdo total o parcialmente, incluso en cuanto a las garantías, el juez debe declarar la quiebra a instancia de acreedor interesado, o de los controladores del acuerdo. Debe darse vista al deudor y a los controladores del acuerdo. La quiebra debe declararse también, sin necesidad de petición, cuando el deudor manifieste en el juicio su imposibilidad de cumplir el acuerdo, en lo futuro.
+\end{norma}
+
+\begin{important}
+La \textbf{homologación} convierte la propuesta en un acuerdo válido y exigible. Se \textbf{impone a todos} los acreedores comprendidos (hayan votado o no, hayan participado o no) y produce \textbf{novación}: lo que vale es lo pactado. Si el deudor incumple, el acreedor va a la quiebra solo por la deuda novada; \textbf{solo la nulidad} evita la novación.
+\end{important}
+
+\section{Cuadro Cornell del capítulo}
+
+\begin{longtable}{@{}P{0.26\textwidth}P{0.66\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\textbf{Impugnación (art.\ 50)} &
+\textbf{5 días} desde la notificación del art.\ 49. Cinco causales: error de cómputo, falta de representación, exageración fraudulenta del pasivo, ocultación o exageración del activo, inobservancia de formas esenciales (solo quien no dio conformidad). Si prospera: quiebra. \\[0.6em]
+\textbf{Nulidad (art.\ 60)} &
+\textbf{6 meses} desde la homologación. Solo por \textbf{dolo} descubierto después de vencido el plazo de impugnación. Si prospera: quiebra, y los acreedores recuperan sus derechos. \\[0.6em]
+\textbf{Homologación y efectos (arts.\ 52, 55, 56, 59)} &
+Aprobación judicial indispensable para que el acuerdo sea válido y exigible. Efectos: (1) \textbf{imposición} a todos los acreedores comprendidos; (2) \textbf{novación}; (3) cesa el síndico y se regulan honorarios; (4) concluye el concurso. \\[0.6em]
+\textbf{Novación: ejemplo del millón} &
+Si de un millón se pactan 100.000, tras la homologación solo se debe 100.000. Si el deudor incumple y cae en quiebra, se concurre por 100.000. \textbf{Solo la nulidad} evita la novación. \\[0.6em]
+\textbf{Facultades homologatorias (\emph{cram down power}, art.\ 52)} &
+El juez puede \textbf{no homologar} una propuesta abusiva, discriminatoria o fraudulenta, o \textbf{imponerla} sin todas las mayorías si hay aprobación de una categoría, 3/4 del capital quirografario, no discriminación y pago no inferior al de la quiebra. Nunca a privilegiados especiales. \\[0.6em]
+\textbf{El síndico} &
+Contador público nacional con al menos 5 años de matrícula, designado por \textbf{sorteo} (auxiliar de justicia); la empresa no lo elige. Si el concurso es grande, suele ser un estudio contable. \\[0.6em]
+\textbf{Incumplimiento del acuerdo (art.\ 63)} &
+El juez declara la quiebra a pedido de un acreedor o de los controladores, o de oficio si el deudor manifiesta que no podrá cumplir. \\
+\midrule
+\multicolumn{2}{@{}P{\dimexpr0.92\textwidth+2\tabcolsep\relax}@{}}{%
+\textbf{Resumen:} Obtenido el acuerdo, puede ser impugnado en cinco días por causales taxativas o anulado en seis meses por dolo; si supera esas instancias, el juez lo homologa (con facultad de no homologar si es abusivo, discriminatorio o fraudulento). La homologación se impone a todos los acreedores comprendidos, produce novación, hace cesar al síndico con regulación de honorarios y concluye el concurso.} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 5 ====================
+\chapter[Debate y cierre]{Debate, contexto y cierre}
+
+\section{Fraude, quiebra y proceso penal}
+
+El artículo 52 fija requisitos precisos; por ejemplo, la conformidad del 75\,\% del capital: no se trata de una situación en la que casi se llegó a conseguirlo. La herramienta que se da al juez es para que valore, intentando siempre evitar la quiebra, situación grave, y frente a la cual puede aparecer un posible fraude.
+
+Por eso es importante el informe general del artículo 39: si de él surge que el deudor no tenía activos, o que existían activos cuyo destino se ignora, puede haber fraude. En la quiebra existe un período en el que se analizan los actos que realizó el deudor (no de siempre, sino de un lapso determinado) para ver si cometió fraude: por ejemplo, haber donado todos sus bienes seis meses antes.
+
+Si el dinero figuraba en el informe del artículo 39 y luego fue sacado al extranjero, no hay una forma sencilla de saberlo: hay lugares adonde la justicia no puede llegar. Es un delito que se ve en sede penal; se señaló que allí no suele investigarse con mucha profundidad, que no hay mucha gente presa por este tema y que el fuero comercial no siempre deriva todo al fuero penal.
+% TODO: contenido incompleto o ambiguo en las notas originales (respuestas con fragmentos poco claros sobre la presunción en la quiebra y la viabilidad con quita del 90\,\%)
+
+Debe considerarse también la cesación de pagos: cuál fue su causal (un desequilibrio financiero del país, una causa de salud, una pandemia). Hay que valorar todo el panorama; los argumentos no son los mismos según se defienda al deudor o al acreedor, por lo que hay que conocer la ley.
+
+\section{Insolvencia y contexto económico}
+
+Se planteó que la ley protege a ambas partes, porque la insolvencia no siempre obedece a falta de voluntad de pago. Un ejemplo discutido fueron los cambios en el régimen de importaciones durante los últimos diez o quince años: de un día para otro puede cortarse el abastecimiento de una empresa que vende solo productos importados, o ser imposible competir con un producto terminado que ingresa a la mitad del precio. También se importan elementos de salud que no se fabrican localmente.
+
+Sobre si el proteccionismo funcionó, se respondió que depende del país y del momento (no es lo mismo la Argentina que Suiza, Noruega o Alemania); la cuestión se calificó de muy controvertida.
+
+\section{Derecho comparado, reformas y trabajo de investigación}
+
+Existen proyectos para modificar el régimen e implementar una \textbf{etapa preconcursal} como un trámite independiente, y abundante material de derecho comparado, que resulta interesante investigar.
+
+Respecto del trabajo de investigación de la materia, se evalúa en gran parte la \textbf{originalidad del tema} elegido; no se trata de copiar fallos o números de artículos. Es un trabajo de \textbf{investigación}, no práctico, que requiere un enfoque crítico (si puede mejorarse, qué se relaciona con la rama del derecho que se sigue) y una buena exposición oral. Los temas pueden relacionarse con algo que interesó o se trató; con frecuencia se los lleva al área laboral o, quienes siguen la rama penal, al fraude. Es válido basarse en otra parte de la rama del derecho que se sigue o recurrir a jurisprudencia, recurso útil en el derecho comparado.
+
+\begin{important}
+El trabajo es de \textbf{investigación}, no práctico: se evalúa la \textbf{originalidad del tema}, el enfoque crítico (¿se puede mejorar?) y la \textbf{exposición oral}. No alcanza con copiar fallos o listar artículos. El derecho comparado y los proyectos de reforma (etapa preconcursal) son fuentes para elegir un tema original.
+\end{important}
+
+% ==================== SÍNTESIS FINAL ====================
+\chapter{Síntesis final}
+
+Una vez cerrada la verificación de créditos, el concurso preventivo entra en su etapa más larga: el \textbf{período de exclusividad}, en el que el deudor clasifica a sus acreedores en categorías fundadas ---una decisión estratégica, porque de ella depende que se alcancen las mayorías---, se informa con la radiografía económico-financiera del síndico y negocia propuestas de \textbf{quita y espera} sin otro límite que la legalidad.
+
+El acuerdo exige una \textbf{doble mayoría} (mayoría absoluta de acreedores y dos tercios del capital) en \textbf{todas y cada una de las categorías}, para proteger sobre todo a los acreedores de menor capital. Si no se logra, la regla es la \textbf{quiebra indirecta}, salvo el \textbf{salvataje} (art.\ 48) y la \textbf{imposición del acuerdo} por el juez (art.\ 52).
+
+Obtenido el acuerdo, puede ser \textbf{impugnado} en cinco días por causales taxativas o \textbf{anulado} en seis meses por dolo; si supera esas instancias, el juez lo \textbf{homologa}, y se impone a todos los acreedores comprendidos, produce \textbf{novación}, hace cesar la intervención del síndico (con regulación de honorarios) y concluye el concurso. El incumplimiento posterior lleva a la quiebra, pero solo por la deuda ya novada.
+
+En todo el trayecto, la ley busca equilibrar la \textbf{continuidad de la empresa} con la \textbf{protección de los acreedores}, y el juez conserva un control de razonabilidad frente al abuso y al fraude.
+
+\end{document}
