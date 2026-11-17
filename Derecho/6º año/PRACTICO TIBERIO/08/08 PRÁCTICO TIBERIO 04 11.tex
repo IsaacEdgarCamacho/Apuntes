@@ -1,0 +1,759 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Práctica Profesional}
+\newcommand{\titulo}{La apelación civil: teoría de los recursos, recusaciones, trámite en la cámara y expresión de agravios}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Se evita babel en español porque no está instalado en este entorno;
+% esto permite compilar el archivo y generar el índice.
+\renewcommand{\contentsname}{Índice}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ==================== DOCUMENTO ====================
+\begin{document}
+
+% ==================== PORTADA ====================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Práctica Profesional'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ==================== ÍNDICE ====================
+\tableofcontents
+
+% ==================== CONTENIDO ====================
+
+% ---------------------------------------------------------
+\chapter[Teoría de los recursos]{Teoría de los recursos y disconformismo natural}
+% ---------------------------------------------------------
+
+\section{Identificación exacta de las personas}
+
+La identificación exacta de las personas (nombre de pila, segundo nombre y apellido) es un dato que importa desde el primer escrito. Ocurre que quien anuncia que iniciará una demanda proporciona un nombre y, al presentarla, resulta que la persona se llama de otra manera. Un error o una confusión de nombres puede dejar a alguien sin ser hallado o sin ser notificado.
+
+\section{El disconformismo natural y la teoría de los recursos}
+
+Resulta fundamental manejar la \textbf{teoría de los recursos}. El punto de partida es un \textbf{disconformismo natural}: se lee o se recibe algo que no gusta y surge la pregunta de cómo alzarse contra eso.
+
+Por ello hay que estar muy atento al \textbf{régimen de notificaciones}. La notificación puede traer una respuesta inesperada, de la que se piensa que no se estaba esperando.
+
+\section{El régimen de notificaciones y la «sorpresa»}
+
+El Código Civil y Comercial contiene, a diferencia del Código de Vélez, una mirada desfavorable hacia lo que significa la \textbf{sorpresa}. Cuando una persona destinataria del derecho se encuentra con una decisión o con una cláusula (los contratos también las tienen) \textbf{sorpresiva}, que razonablemente no tenía que existir o darse, el código la sanciona como contradictoria con la \textbf{buena fe}.
+
+Esto ocurre con frecuencia con los consumidores: casi todos los contratos son por adhesión. El articulado parece construido de manera razonable y de repente aparece una cláusula disruptiva o sorpresiva. El sistema tiene dos formas de sanción:
+
+\begin{itemize}
+    \item la cláusula se \textbf{tiene por no escrita}; o
+    \item los jueces están habilitados para \textbf{declarar la nulidad}.
+\end{itemize}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (no se cita el número de artículo del Código Civil y Comercial)
+\begin{note}
+Referencia normativa: Código Civil y Comercial (2015). Las notas originales no indican el número de artículo; se transcribe la referencia tal como fue expuesta.
+\end{note}
+
+\begin{important}
+La «sorpresa» es mal vista por el derecho: lo que razonablemente no tenía que darse (en un contrato por adhesión o en una decisión) contradice la buena fe y puede anularse o tenerse por no escrito.
+\end{important}
+
+\section{Qué hacer ante una resolución inesperada: el caso de los honorarios}
+
+Cuando la respuesta jurisdiccional no resulta consecuente con los antecedentes de la causa, existen dos opciones: \textbf{acatarla} o \textbf{disconformarse} contra ella. La forma de hacerlo es a través de los \textbf{recursos}. Por eso es necesario conocer la técnica recursiva, para poder acudir a la cámara y procurar que se remedie la situación.
+
+Un ejemplo cercano son los \textbf{honorarios}. Si se espera cobrar un honorario acorde a los antecedentes de la causa y se regula una suma o una cantidad de UMA que no guarda relación con ellos, se puede apelar. El problema más grave se presenta cuando es la cámara la que reduce el honorario por considerarlo elevado. Frente a ello:
+
+\begin{itemize}
+    \item se puede apelar «por bajo» la regulación;
+    \item frente a la decisión de la cámara, salvo que se discuta un honorario de mucha entidad, no queda mucha opción; si lo amerita, puede haber un \textbf{recurso extraordinario por honorarios}, porque afecta el \textbf{derecho de propiedad}: el abogado se considera acreedor de ese honorario.
+\end{itemize}
+
+La causa de estas situaciones es el margen de \textbf{discrecionalidad} de los jueces para fijar honorarios. Las normas de la ley de arancel procuran disminuirlo y existen mínimos y máximos, especialmente porque muchos juicios no tienen contenido patrimonial y entonces no hay un monto de referencia.
+
+La importancia de los honorarios radica en que, si no se logra vivir de la profesión, se termina siendo abogado \textit{part time}, que trabaja en otra actividad para vivir y lleva algún expediente sin «despegar».
+
+\begin{important}
+Frente a una resolución que no se corresponde con los antecedentes de la causa hay dos caminos: acatarla o disconformarse mediante los recursos. Los honorarios son el ejemplo más cercano: pueden dar lugar a apelación y, si son de mucha entidad, a recurso extraordinario por afectar el derecho de propiedad.
+\end{important}
+
+\section{Reposición o apelación: el plazo de tres días y dónde se funda}
+
+Dentro de los \textbf{3 días} hay que tener claro si corresponde interponer la \textbf{reposición}, según la naturaleza del decreto, de la resolución o de la sentencia, o directamente la \textbf{apelación}. El tema más desafiante es \textbf{dónde se funda} el recurso, porque en algunos fueros se apela y se funda en el mismo acto.
+
+\begin{example}{El abogado civilista y la apelación laboral}
+Un abogado que habitualmente trabajaba en materia civil tuvo que apelar una sentencia laboral. Presentó un escrito simple y el recurso fue declarado desierto: en el proceso laboral hay que apelar y fundar en el mismo acto. En el proceso civil, en cambio, se apela y recién después, cuando se resuelve sobre la concesión del recurso, se puede fundar. Si se deniega el recurso, se puede ir en \textbf{queja} a la cámara; hay que saber hacer también un recurso de queja, que no es una parte burocrática o sin importancia.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Apelar en el proceso civil y en el proceso laboral}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.2cm} Y Y}
+\toprule
+\textbf{Aspecto} & \textbf{Proceso civil} & \textbf{Proceso laboral} \\
+\midrule
+\textbf{Momento de fundar} & Se apela y recién después, cuando se resuelve sobre la concesión del recurso, se puede fundar. & Se debe apelar y fundar en el mismo acto. \\
+\textbf{Escrito simple} & El recurso se tiene por interpuesto y la fundamentación llega en la etapa siguiente. & El recurso se declara desierto. \\
+\textbf{Si se deniega el recurso} & Queda la vía del recurso de queja ante la cámara. & Queda la vía del recurso de queja ante la cámara. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Caducidad de la instancia en lo laboral e inconstitucionalidad}
+
+En el proceso laboral se plantea actualmente la \textbf{caducidad de la instancia}: procesos que venían de una etapa de prueba prolongada y en los que la parte demandada acusa la caducidad, se notifica a la otra parte y debe verse qué se resuelve. No se conocía, en unos cincuenta años de procedimiento laboral, una caducidad de la instancia en Capital. Hasta la sentencia el juzgado tenía el compromiso de llevar el proceso a sentencia (\textbf{impulso de oficio}); después de la sentencia, si el actor no ejecuta, el expediente se archiva. Esto quedó modificado por la normativa vigente (la «ley base», la «ley de modernización», etcétera).
+
+La discusión planteada es que, como el impulso es de oficio, no se podía imputar a la parte la inactividad. El impulso de oficio existe en algunos aspectos: también en el Código Procesal Civil, más allá del principio dispositivo, hay actos que incumben al tribunal o al juzgado. La inconstitucionalidad es otra cuestión, que sale por una tangente distinta.
+
+\begin{note}
+Referencia normativa: Constitución Nacional, artículo 14~bis, que contiene «normas categóricas». Se invoca el compromiso constitucional del Estado respecto de la protección del derecho laboral o del derecho a trabajar para plantear que la caducidad de la instancia se contrapone a esa obligación. Se trata de un planteo que, por el momento, no constituye doctrina consolidada: hay un cambio frente al cual es necesario posicionarse. La referencia fue mencionada sin lectura del texto.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (numeración de la ley mencionada como «ley base»/«ley de modernización» no distinguible; verificar la norma exacta antes de citarla)
+
+\subsection{Cuándo se plantea la inconstitucionalidad: una cuestión de oportunidad}
+
+Cuando hay una norma nueva, a partir de que existe la posibilidad de que se aplique en un proceso, hay que articular la inconstitucionalidad.
+
+\begin{table}[H]
+\centering
+\caption{Oportunidad para plantear la inconstitucionalidad}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.6cm} Y Y}
+\toprule
+\textbf{Situación} & \textbf{Cuándo se plantea} & \textbf{Riesgo de no hacerlo a tiempo} \\
+\midrule
+La norma agraviante ya está vigente al iniciar el juicio & De entrada: en la demanda. & Que se oponga que el interesado consintió la normativa vigente. \\
+La norma es sobreviniente y el proceso ya está en trámite & Durante el desarrollo del proceso, cuando se va a producir la situación que puede dar lugar a la aplicación de la norma agraviante del derecho constitucional o convencional. & Perder la oportunidad de articular el planteo. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Todo esto es un tema de tiempo: el ejercicio del derecho convoca permanentemente la \textbf{oportunidad}.
+
+% ---------- CORNELL CAPÍTULO 1 ----------
+\section*{Cuadro Cornell: teoría de los recursos}
+\addcontentsline{toc}{section}{Cuadro Cornell: teoría de los recursos}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\textbf{¿Qué es el «disconformismo natural» y por qué importa la teoría de los recursos?} &
+Es la reacción espontánea ante una decisión que no gusta. La teoría de los recursos aporta la técnica para canalizarla: acatar la resolución o disconformarse mediante los recursos, para que la cámara pueda remediarla. \\[0.8em]
+\textbf{¿Por qué el derecho rechaza lo «sorpresivo»?} &
+Porque lo que razonablemente no tenía que darse (en una decisión o en una cláusula de un contrato por adhesión) contradice la buena fe. Las formas de sanción son tener la cláusula por no escrita o declarar su nulidad. \\[0.8em]
+\textbf{¿Qué opciones hay si regulan mal los honorarios?} &
+Apelar, incluso «por bajo». Si lo decide la cámara y el monto es de mucha entidad, cabe recurso extraordinario por afectar el derecho de propiedad. Hay discrecionalidad judicial; la ley de arancel fija mínimos y máximos, especialmente para juicios sin contenido patrimonial. \\[0.8em]
+\textbf{¿Reposición o apelación? ¿Dónde se funda?} &
+Dentro de los 3 días se decide según la naturaleza de la resolución. En civil se apela y se funda después de la concesión; en laboral se apela y se funda en el mismo acto, pues de lo contrario el recurso se declara desierto. Si se deniega el recurso, queda la queja ante la cámara. \\[0.8em]
+\textbf{¿Cuándo se plantea la inconstitucionalidad?} &
+De entrada, en la demanda, si la norma agraviante ya está vigente (si no, se opone que se consintió). Si la norma es sobreviniente y el proceso está en trámite, en el momento en que puede producirse su aplicación. Es una cuestión de oportunidad. \\[0.8em]
+\textbf{Caducidad de la instancia en lo laboral} &
+Antes, el juzgado tenía el compromiso de llevar el proceso a sentencia (impulso de oficio). La normativa vigente modificó esa situación. Se discute la caducidad frente al art.~14~bis de la Constitución Nacional. \\
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{\textbf{Resumen:} Frente a una decisión inesperada hay que acatar o recurrir, y para recurrir hay que dominar la técnica: elegir entre reposición y apelación en 3 días, saber dónde se funda en cada fuero, y plantear la inconstitucionalidad en la oportunidad adecuada. Los honorarios son el ejemplo más cercano de por qué importa.} \\
+\bottomrule
+\end{longtable}
+
+% ---------------------------------------------------------
+\chapter[Caso del práctico y recusaciones]{El caso del práctico, radicación en la cámara y recusaciones}
+% ---------------------------------------------------------
+
+\section{La sentencia que rechazó la demanda y el recurso preparado}
+
+El caso del práctico es una sentencia que \textbf{rechazó la demanda, con costas al actor}, que no tenía beneficio de litigar sin gastos. Se produjo un debate en torno a la prueba. La pregunta es qué recurso amerita esa sentencia. Se cuenta con un recurso preparado, que se estima interpuesto dentro del plazo.
+
+El recurso civil se interpone. Antes se podía ir incluso al juzgado a interponerlo y se labraba un acta («se interpuso el recurso»); hoy en día no se va al juzgado, salvo para buscar alguna cédula en papel.
+
+\begin{important}
+Un escrito de recurso sin firma es un escrito inexistente: antes de presentarlo hay que verificar firma, plazo y forma. Hoy la interposición se hace por vía electrónica, ya no mediante acta en el juzgado.
+\end{important}
+
+\section{Radicación en la cámara}
+
+Una vez sorteado el expediente y radicado en la cámara, esta debe notificar \textbf{qué sala interviene}. Esto importa por las \textbf{recusaciones}, que siempre hay que tener presentes.
+
+\section{La recusación sin causa}
+
+La recusación sin causa es un derecho que tienen el actor y el demandado, pero debe usarse en la \textbf{primera oportunidad}. Puede presentarse en la demanda; el demandado también puede hacerlo, pero si hay litisconsorcio solamente puede hacerlo uno de los demandados. Se recusa a la persona del juez, no al juzgado.
+
+Esta recusación permite apartar a un juez sin «ventilar» el motivo. En la recusación sin causa se suele usar una fórmula del tipo: «sin que esto implique un demérito para el alto concepto que tengo del magistrado, pero ejerzo esta facultad que me acuerda el artículo 14».
+
+\section{La recusación con causa}
+
+La recusación con causa requiere una causal, previstas en el \textbf{artículo 17}. La más frecuente es el \textbf{prejuzgamiento}: el juez anticipa opinión, lo que resulta de algún acto intermedio del proceso. Debe ejercerse \textbf{inmediatamente} después de tomar conocimiento de la decisión que da lugar a la recusación, dentro de los plazos normativos: \textbf{5 días} en el proceso ordinario y \textbf{3 días} en el proceso sumarísimo (Código Procesal de la Nación).
+
+\begin{table}[H]
+\centering
+\caption{Recusación sin causa y recusación con causa}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm} Y Y}
+\toprule
+\textbf{Aspecto} & \textbf{Sin causa} & \textbf{Con causa} \\
+\midrule
+\textbf{Norma} & Artículo 14. & Artículo 17 (causales). \\
+\textbf{Quién} & El actor y el demandado; en caso de litisconsorcio, solo uno de los demandados. & Quien toma conocimiento del acto o decisión que da lugar a la recusación. \\
+\textbf{Oportunidad} & Primera oportunidad; en cámara, al día siguiente de la notificación de la primera providencia. & Inmediatamente, dentro de los plazos normativos: 5 días (ordinario) o 3 días (sumarísimo). \\
+\textbf{Motivo} & No se expresa; permite no «ventilar» el motivo. & Requiere una causal; la más frecuente es el prejuzgamiento. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+Recusar es un derecho que se pierde si no se ejerce en la oportunidad correcta. Por eso, al radicarse el expediente en la cámara hay que fijarse qué sala interviene y evaluar de inmediato si corresponde recusar.
+\end{important}
+
+\section{«Hágase saber el juez que va a conocer»: la integración de la sala}
+
+La providencia «hágase saber el juez que va a conocer» puede parecer un exceso ritual, pero no lo es: sirve para verificar si existen causales de recusación. Al radicarse en la cámara se informa la sala y su conformación. En materia laboral esto es frecuente, incluso durante el trámite, cuando hay vacantes y la sala se integra con otros jueces. En laboral el primer voto es clave, porque generalmente el segundo voto acompaña y, salvo en temas muy institucionales, no hay disidencia.
+
+En civil y comercial también se notifica la integración. Hay dos posibilidades, recusación sin causa y con causa, y hay que leer las normas específicas para verificar si el código tiene alguna particularidad en el plazo. Las normas sobre recusaciones y excusaciones comienzan en el artículo 14.
+
+\section{Artículo 14: la recusación sin expresión de causa}
+
+\begin{formula}{Art. 14 CPCCN --- Recusación sin expresión de causa}
+Los jueces de primera instancia podrán ser recusados sin expresión de causa. El actor podrá ejercer esta facultad al instaurar la demanda o en su primera presentación; el demandado, en su primera presentación, antes o al tiempo de contestarla o de oponer excepciones en el juicio ejecutivo, o de comparecer a la audiencia señalada como primer acto procesal. Si el demandado no cumpliere esos actos, no podrá ejercer en adelante la facultad que le confiere este artículo.
+
+También podrá ser recusado, sin expresión de causa, un juez de las cámaras de apelaciones, al día siguiente de la notificación de la primera providencia que se dicte.
+
+No procede la recusación sin expresión de causa en el proceso sumarísimo, ni en las tercerías, en el juicio de desalojo y en los procesos de ejecución.
+\end{formula}
+
+Hay que tener cuidado con la restricción: en el proceso sumarísimo no se puede recusar sin causa. Se mencionó el caso del demandado por alimentos: el juicio de alimentos arranca para el demandado con una audiencia y, aparentemente, puede ejercerla hasta ese acto, aunque pueda discutirse la temporaneidad o extemporaneidad.
+
+\begin{important}
+El artículo 14 fija dos reglas de oportunidad: en primera instancia, la primera presentación; en cámara, el día siguiente de la notificación de la primera providencia. Y excluye la recusación sin causa en el sumarísimo, las tercerías, el desalojo y los procesos de ejecución.
+\end{important}
+
+\section{Se recusa al juez, no al juzgado ni a la sala: el plazo de un día en la cámara}
+
+Según el artículo, se recusa a \textbf{un juez}, no a la sala. Tampoco se recusa al juzgado, sino a la persona del juez. La jurisprudencia de una sala la construyen los jueces que la integran. En los concursos, quien es designado lo es para una sala determinada (la vacante de tal sala), no como juez de cámara en general.
+
+El plazo en la cámara es de \textbf{un día}. Hay que tener cuidado, porque en primera instancia el plazo de recusación con causa es de 5 días en el proceso ordinario. La consecuencia es que, al recusar a un juez, la sala deberá integrarse con un juez de otra sala. Todo esto se refiere a la recusación sin causa; la recusación con causa es otra cosa.
+
+\begin{table}[H]
+\centering
+\caption{Recusación sin causa: primera instancia y cámara}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.2cm} Y Y}
+\toprule
+\textbf{Aspecto} & \textbf{Primera instancia} & \textbf{Cámara de apelaciones} \\
+\midrule
+\textbf{Plazo / oportunidad} & En la demanda o en la primera presentación (actor); en la primera presentación (demandado). & Al día siguiente de la notificación de la primera providencia: un día. \\
+\textbf{A quién se recusa} & Al juez (la persona), no al juzgado. & A un juez de la sala, no a la sala. \\
+\textbf{Efecto práctico} & Cambia el juzgado. & La sala debe integrarse con un juez de otra sala. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Caso real: prescripción adquisitiva, cosa juzgada y recusación anticipada}
+
+\begin{example}{Reivindicación, prescripción adquisitiva y cosa juzgada}
+Una persona usufructuaria de un inmueble demandó por \textbf{reivindicación} a unos ocupantes. Los ocupantes opusieron la excepción de \textbf{prescripción adquisitiva} y la de \textbf{falta de legitimación activa} del usufructuario. A pedido de la parte demandada, que no quiso seguir con la excepción de prescripción adquisitiva, el juez de primera instancia resolvió la falta de legitimación activa, hizo lugar a esa excepción y rechazó la demanda. La prescripción adquisitiva no se trató.
+
+La cámara revocó la sentencia y admitió la demanda, porque entendió que el usufructuario puede reivindicar. No trató la prescripción adquisitiva porque se había declarado la cuestión de puro derecho y no se había probado nada sobre ella, y ordenó a los ocupantes salir del inmueble.
+
+Posteriormente se inició un nuevo juicio de prescripción adquisitiva, con el argumento de que no hay cosa juzgada porque no hay identidad de hecho, de derecho ni de objeto. La parte contraria opuso la excepción de cosa juzgada, y la jueza la admitió por considerar que en el proceso anterior se había tratado la prescripción adquisitiva y no se había probado. La posición del apelante es que no se probó porque la parte que opuso la excepción desistió de la prueba para que la cuestión fuera de puro derecho, confiando en la falta de legitimación del reivindicante. Además, la parte dispositiva del fallo de cámara revoca la sentencia de primera instancia y hace lugar a la reivindicación, pero \textbf{no dice nada de la prescripción adquisitiva}: no hubo decisión jurisdiccional sobre ella, por lo que no habría cosa juzgada.
+\end{example}
+
+Se apeló la resolución que hizo lugar a la excepción de cosa juzgada. El expediente puede recaer en la misma sala que dictó la sentencia anterior, ya que el sistema informático detecta que hubo las mismas partes y lo asigna por conexidad automática (no por prevención, porque es otro proceso). En la provincia de Buenos Aires hay menos salas que en la Capital (por ejemplo, dos salas en Quilmes), de modo que el riesgo de que toque la misma sala es grande.
+
+Como \textbf{no se puede recusar en abstracto}, y se trata de una \textbf{apelación en relación} (no libre, en la que no se fundaría directamente en la cámara para conocer antes la integración), se incluyó en el recurso un breve capítulo en el que se reserva el derecho de recusar si interviene una sala integrada por camaristas que ya emitieron opinión en la causa precedente. La reserva no se desarrolla más, porque depende del sorteo. Una vez que la causa llegue a la cámara se decidirá si se refuerza o insiste con la recusación.
+
+\begin{important}
+Cuando una apelación revisa algo vinculado con una sentencia anterior, los jueces que ya opinaron pueden integrar la sala sorteada. Si la apelación es en relación y no se sabe aún qué sala interviene, no se puede recusar «en abstracto»: se deja una reserva expresa del derecho de recusar en el recurso y se decide cuando se conozca la integración. La cosa juzgada exige identidad de hecho, derecho y objeto, y el argumento se apoya en lo decidido en la parte dispositiva.
+\end{important}
+
+\section{La nueva integración de la sala y la resolución del último día antes de la feria}
+
+\begin{example}{Notificación de una nueva integración}
+Una causa en la que la sala no había dictado resolución recibió, uno o dos días antes de la feria, una notificación de que había sido designada una nueva vocal de la sala. Pasadas 24 horas se dictó la resolución, que ya estaba armada: se esperó a que se consintiera la designación. Contra ella se planteó recurso de inconstitucionalidad por el derecho de defensa del agraviado en juicio, que fue rechazado. Para recurrir en queja había dos alternativas: pagar el depósito, o promover un beneficio de litigar sin gastos, que requiere una situación particular, extrema. No se fue en queja porque el cliente dejó de comunicarse.
+\end{example}
+
+El plazo para recusar sin causa es de \textbf{un día}, y también es un tema de oportunidad. La recusación sin causa permite no ventilar un motivo, por ejemplo una cuestión personal con el juez.
+
+\begin{important}
+La notificación de una nueva integración de la sala abre un plazo para recusar: si se lo deja pasar, se consiente la designación. La recusación sin causa permite apartar a un juez sin «ventilar» el motivo, con una fórmula respetuosa, y el recurso extraordinario exige analizar costos (depósito o beneficio de litigar sin gastos) y la continuidad del cliente.
+\end{important}
+
+% ---------- CORNELL CAPÍTULO 2 ----------
+\section*{Cuadro Cornell: recusaciones y radicación en la cámara}
+\addcontentsline{toc}{section}{Cuadro Cornell: recusaciones y radicación en la cámara}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\textbf{¿Por qué importa saber qué sala interviene al radicarse en la cámara?} &
+Porque la cámara notifica qué sala interviene y cómo se integra, y es el momento para evaluar las recusaciones. Si se consiente la radicación o la integración, el derecho a recusar puede perderse. \\[0.8em]
+\textbf{Recusación sin causa vs. con causa} &
+Sin causa (art.~14): no se expresa motivo; se usa en la primera oportunidad; no procede en el sumarísimo, tercerías, desalojo ni ejecución. Con causa (art.~17): requiere una causal, como el prejuzgamiento; se ejerce inmediatamente, en 5 días (ordinario) o 3 (sumarísimo). \\[0.8em]
+\textbf{¿A quién se recusa en la cámara y en qué plazo?} &
+Al juez (no a la sala ni al juzgado), al día siguiente de la notificación de la primera providencia: un solo día. La sala se integra con un juez de otra sala. \\[0.8em]
+\textbf{¿Qué ocurre con el litisconsorcio?} &
+Solo uno de los demandados puede ejercer la recusación sin causa. \\[0.8em]
+\textbf{¿Por qué sirve la providencia «hágase saber el juez que va a conocer»?} &
+No es un exceso ritual: permite verificar si existen causales de recusación respecto del juez que va a conocer. \\[0.8em]
+\textbf{Caso: prescripción adquisitiva y cosa juzgada} &
+No se puede recusar «en abstracto»: se deja una reserva expresa en el recurso de recusar si el sorteo asigna la sala cuyos jueces ya opinaron. La cosa juzgada exige identidad de hecho, derecho y objeto, y el argumento se apoya en la parte dispositiva del fallo anterior. \\[0.8em]
+\textbf{¿Qué ocurre si se consiente una nueva integración de la sala?} &
+Se pierde la oportunidad de recusar; el plazo es de un día. La recusación sin causa evita ventilar el motivo. \\[0.8em]
+\textbf{¿Qué costos analizar antes de un recurso extraordinario?} &
+El depósito, o la alternativa del beneficio de litigar sin gastos (situación extrema), y la continuidad del cliente. \\
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{\textbf{Resumen:} Al radicarse el expediente en la cámara hay que revisar qué sala interviene y cómo se integra. La recusación sin causa (art.~14) se ejerce sobre el juez, no sobre la sala, y en la cámara dentro de un día; la recusación con causa (art.~17) exige causal y se ejerce de inmediato. Cuando puede intervenir una sala que ya opinó, se deja reserva expresa de recusar.} \\
+\bottomrule
+\end{longtable}
+
+% ---------------------------------------------------------
+\chapter[Trámite en la cámara]{Trámite en la cámara y apelaciones con efecto diferido}
+% ---------------------------------------------------------
+
+\section{Radicación consentida y artículo 259: trámite previo a la expresión de agravios}
+
+Es importante que esté \textbf{consentida la radicación}. Muchas veces las cámaras omiten esta notificación. Cuando se notifica que el expediente se pone a los fines del artículo 259, o que está radicado, se abre el trámite de la expresión de agravios. Algunos aplican el principio dispositivo y sostienen que la cámara no tiene que notificar: la parte interesada en la tramitación del recurso debe notificar a la otra que el expediente está a los fines del artículo 259.
+
+\begin{formula}{Art. 259 CPCCN --- Trámite previo a la expresión de agravios}
+Cuando el recurso se hubiese concedido respecto de sentencia definitiva dictada en proceso ordinario o sumario, en el día en que el expediente llegue a la cámara, el secretario dará cuenta y se ordenará que sea puesto en la oficina. Esta providencia se notificará a las partes personalmente o por cédula. El apelante deberá expresar agravios dentro del plazo de diez días o de cinco días, según se trate de juicio ordinario o sumario.
+\end{formula}
+
+La palabra «sumario» es un resabio del código. Los juicios de daños tramitan por ordinario o por sumarísimo, y para que tramiten por sumarísimo debe tratarse de derecho de los consumidores, lo que es muy excepcional. La recusación debe hacerse valer al día siguiente de la cédula que informa que el expediente está a los fines de expresar agravios.
+
+\begin{table}[H]
+\centering
+\caption{Plazo para expresar agravios (art. 259)}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{3.6cm} Y}
+\toprule
+\textbf{Tipo de juicio} & \textbf{Plazo del apelante} & \textbf{Observación} \\
+\midrule
+Proceso ordinario & 10 días & Es el proceso en que tramita el caso del práctico. \\
+Proceso sumario / sumarísimo & 5 días & El texto conserva la palabra «sumario»; el sumarísimo en daños requiere derecho del consumidor y es muy excepcional. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Artículo 260: fundamento de las apelaciones diferidas, actualización de cuestiones y apertura a prueba}
+
+\begin{formula}{Art. 260 CPCCN --- Fundamento de las apelaciones diferidas, actualización de cuestiones y pedido de apertura a prueba}
+Dentro del quinto día de notificada la providencia a que se refiere el artículo anterior, y en un solo escrito, las partes deberán:
+\begin{enumerate}
+    \item Fundar los recursos que se hubieren concedido en efecto diferido. Si no lo hicieren, quedarán firmes las respectivas resoluciones.
+    \item Indicar las medidas probatorias denegadas en primera instancia, o respecto de las cuales hubiese mediado declaración de negligencia, que tengan interés en replantear en los términos de los artículos 379 y 385 in fine. La petición será fundada y resuelta sin sustanciación alguna.
+    \item Presentar los documentos de que intenten valerse, de fecha posterior a la providencia de autos para sentencia de primera instancia, o anteriores, si afirmaren no haber tenido antes conocimiento de ellos.
+    \item Pedir que se les exija confesión judicial a la parte contraria sobre hechos que no hubiesen sido objeto de esa prueba en la instancia anterior.
+    \item Pedir que se abra la causa a prueba cuando se alegare un hecho nuevo posterior a la oportunidad prevista en el artículo 365, o se tratare del caso a que se refiere el segundo párrafo del artículo 366, o si se hubiese formulado el pedido a que se refiere el inciso 2 de este artículo.
+\end{enumerate}
+\end{formula}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la lectura del inciso 5 fue parcialmente inaudible y se reconstruyó según el sentido)
+
+Entre las apelaciones concedidas con efecto diferido se mencionó el caso de las medidas cautelares. Sin embargo, la cautelar se apela con \textbf{efecto devolutivo}, no suspensivo: la cautelar sigue rigiendo hasta que la cámara conoce y, en su caso, confirma o revoca.
+
+\begin{important}
+El artículo 260 concentra en un solo escrito, dentro del quinto día de notificada la providencia del 259: fundar las apelaciones diferidas (si no, quedan firmes), replantear prueba denegada o declarada negligente, presentar documentos, pedir confesión judicial y pedir apertura a prueba por hecho nuevo.
+\end{important}
+
+\section{Efecto devolutivo y el incidente de apelación del artículo 250}
+
+La cautelar en general va a la cámara y puede formarse un incidente conforme al artículo 250. Es lo habitual en la apelación de la sentencia de alimentos por el alimentante. Se trata de un \textbf{incidente de apelación}.
+
+\begin{formula}{Art. 250 CPCCN --- Efecto devolutivo}
+Si procediere el recurso en efecto devolutivo, se observarán las siguientes reglas:
+\begin{enumerate}
+    \item Si la sentencia fuere definitiva, se remitirá el expediente a la cámara y quedará en el juzgado copia de lo pertinente, la que deberá ser presentada por el apelante. La providencia que conceda el recurso señalará las piezas que han de copiarse.
+    \item Si la sentencia fuere interlocutoria, el apelante presentará copia de lo que señale del expediente y de lo que el juez estime necesario. Igual derecho asistirá al apelado. Dichas copias y los memoriales serán remitidos a la cámara, salvo que el juez considere más expeditivo retener los autos y remitir el expediente original.
+    \item Se declarará desierto el recurso si dentro del quinto día de concedido el apelante no presentare las copias que se indican en este artículo y que estuvieren a su cargo.
+\end{enumerate}
+\end{formula}
+
+Este circuito es \textbf{condición de procedibilidad del recurso}. La sentencia del juicio de alimentos no es una sentencia definitiva en sentido estricto, sino \textbf{interlocutoria}. Se funda en primera instancia, no en la cámara, porque solo para las sentencias definitivas rige el procedimiento de los artículos 259 y 260. El juicio de alimentos está regulado en los artículos 639 y siguientes (proceso especial), y debe leerse ese capítulo en coordinación con el artículo 250 para armar el incidente de apelación. El artículo 250 puede aplicarse también a la apelación de cautelares, porque se trata de resoluciones que se apelan con efecto devolutivo.
+
+Efecto devolutivo significa que la apelación no suspende la decisión: la sentencia de alimentos que ordena pagar la cuota debe cumplirse aunque se apele. Hoy el incidente se arma con \textbf{copias digitales}: hay que «abastecer» el recurso con las copias para garantizar su procedencia.
+
+\begin{table}[H]
+\centering
+\caption{Sentencia definitiva e interlocutoria al apelar}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm} Y Y}
+\toprule
+\textbf{Aspecto} & \textbf{Sentencia definitiva (proceso ordinario)} & \textbf{Sentencia interlocutoria (p.~ej., alimentos, cautelares)} \\
+\midrule
+\textbf{Normas} & Artículos 259 y 260. & Artículo 250 (efecto devolutivo), junto con el capítulo de alimentos. \\
+\textbf{Dónde se funda} & En la cámara (expresión de agravios). & En primera instancia. \\
+\textbf{Efecto} & Según se conceda. & Devolutivo: la decisión se cumple aunque se apele. \\
+\textbf{Carga del apelante} & Expresar agravios en 10 o 5 días. & Presentar las copias digitales dentro del quinto día de concedido el recurso; si no, se declara desierto. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Apelaciones con efecto diferido: honorarios y costas (artículo 69)}
+
+Pueden ser concedidas con efecto diferido las apelaciones por \textbf{regulación de honorarios}. Hay regulaciones intermedias: en un incidente, por una medida, o por renuncia del abogado, que puede pedir la regulación mínima según la ley de arancel, si bien puede resolverse que no están las pautas para regular. También la \textbf{imposición de costas}.
+
+\begin{formula}{Art. 69 CPCCN (parte leída)}
+Toda apelación sobre imposición de costas y regulación de honorarios se concederá en efecto diferido, salvo cuando el expediente deba ser remitido a la cámara como consecuencia del recurso deducido por alguna de las partes contra la resolución que decidió el incidente.
+\end{formula}
+
+\begin{example}{Citación de tercero «sin costas»}
+Se pidió la citación de un tercero, a lo que la parte actora se oponía. El juzgado hizo lugar a lo pedido y dispuso «sin costas, atento a la naturaleza de la cuestión». Se apeló y el recurso se concedió con efecto diferido (art.~69). «Sin costas» significa que no hay entidad para regular honorarios, a diferencia de «costas por su orden», en que cada parte paga a su abogado. Luego, al apelar la sentencia, se indica que se viene a fundar el recurso concedido con efecto diferido, alegando que las costas debían imponerse a la actora por haberse opuesto a la citación de tercero.
+\end{example}
+
+Si se apela la citación de tercero y llega a la cámara, hay que ver si es apelable; podría serlo si se rechaza, pero no si se ordena. En un juicio laboral, una citación de tercero apelada con fines dilatorios estuvo dos años en la cámara hasta que se confirmó lo resuelto.
+
+Estas apelaciones diferidas se refieren fundamentalmente a costas de incidencias que tramitaron en el proceso y quedaron en suspenso. Hay que llevar un \textbf{registro} de las apelaciones con efecto diferido, porque si no se sostienen \textbf{quedan desiertas}.
+
+\begin{important}
+Una apelación concedida con efecto diferido no se resuelve de inmediato: hay que llevar un registro de las que se interpusieron y fundarlas (en el escrito del art.~260) al apelar la sentencia definitiva. Si no se sostienen, quedan desiertas.
+\end{important}
+
+\section{Hecho nuevo y hecho sobreviniente (artículos 366 y 163)}
+
+\begin{formula}{Art. 366 CPCCN (parte leída) --- Hecho nuevo}
+La resolución que admitiere el hecho nuevo será inapelable; la que lo rechazare será apelable con efecto diferido.
+\end{formula}
+
+El artículo 163 alude a las posibilidades que tiene el juez, al dictar sentencia, de hacer mérito de los \textbf{hechos sobrevinientes}. Se planteó la diferencia entre hecho nuevo y hecho sobreviniente:
+
+\begin{table}[H]
+\centering
+\caption{Hecho nuevo y hecho sobreviniente}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm} Y Y}
+\toprule
+\textbf{Aspecto} & \textbf{Hecho nuevo} & \textbf{Hecho sobreviniente} \\
+\midrule
+\textbf{Cuándo ocurre} & Preexistía, pero no se había planteado. & Ocurrió después de trabada la litis. \\
+\textbf{Por qué no se planteó antes} & Por ignorancia o desconocimiento. & Porque todavía no había sucedido. \\
+\textbf{Conocimiento del juez} & Debe hacerlo valer la parte. & Puede ser un hecho notorio (trasciende el conocimiento de las partes y del tribunal), aunque no necesariamente; debe hacerse valer, porque el conocimiento del juez tiene que llegar de algún lado. \\
+\textbf{Régimen} & Art.~366: la resolución que lo admite es inapelable; la que lo rechaza es apelable con efecto diferido. & Art.~163: el juez puede hacer mérito de él al sentenciar. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Negligencia probatoria, replanteo de prueba y el proceso laboral}
+
+La omisión probatoria no puede salvarse en cámara: el recurso está delimitado por los planteos de primera instancia. Puede darse una hipótesis de negligencia y replanteo de prueba en la cámara, aunque es un escenario poco habitual; no se descarta, fundamentalmente por las apelaciones concedidas con efecto diferido.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el pasaje sobre la omisión probatoria es confuso en la grabación)
+
+\subsection{Las apelaciones diferidas en el proceso laboral}
+
+En el proceso laboral el único recurso que cabe durante el trámite es la reposición, pero se puede apelar. El juzgado dispone «téngase presente en los términos del 110», lo que significa efecto diferido: son cuestiones que se resuelven después. Hay que recordarlo al apelar la sentencia definitiva. En laboral, si las cosas no cambiaron, la expresión de agravios se hace al interponer el recurso, y es allí donde hay que sostener las apelaciones diferidas. Es habitual que los abogados digan «apelo» sin fundar en ese momento; la buena práctica es anotar todas las apelaciones intermedias para fundarlas al apelar la sentencia definitiva.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se mencionan la ley 27.812 y el artículo 110 de la ley del procedimiento laboral; el propio apunte indica que debe revisarse con más detalle)
+\begin{note}
+Se mencionó el impacto de la ley 27.812 en el procedimiento laboral y el artículo 110 de la ley del procedimiento laboral; en ambos casos se indicó que debe revisarse con más detalle. Se recomienda verificar las normas vigentes.
+\end{note}
+
+\begin{important}
+Tanto en civil como en laboral, las apelaciones intermedias se «apilan» como diferidas y hay que sostenerlas al fundar la apelación de la sentencia definitiva. La buena práctica es anotarlas todas desde que se interponen.
+\end{important}
+
+% ---------- CORNELL CAPÍTULO 3 ----------
+\section*{Cuadro Cornell: trámite en la cámara}
+\addcontentsline{toc}{section}{Cuadro Cornell: trámite en la cámara}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\textbf{Art.~259: ¿qué plazo hay para expresar agravios?} &
+Llegado el expediente a la cámara, se pone en la oficina y se notifica a las partes: el apelante expresa agravios en 10 días (ordinario) o 5 (sumario). \\[0.8em]
+\textbf{Art.~260: ¿qué se hace en el único escrito?} &
+Dentro del quinto día: fundar las apelaciones diferidas (si no, quedan firmes), replantear la prueba denegada o declarada negligente, presentar documentos, pedir confesión judicial y pedir apertura a prueba por hecho nuevo. \\[0.8em]
+\textbf{¿Qué significa efecto devolutivo y qué exige el art.~250?} &
+La apelación no suspende la decisión (cautelares, alimentos). Se arma un incidente de apelación con copias digitales dentro del quinto día de concedido el recurso; si no, se declara desierto. \\[0.8em]
+\textbf{¿Cuándo se funda la apelación de una sentencia interlocutoria como la de alimentos?} &
+En primera instancia: los arts.~259 y 260 rigen solo para sentencias definitivas. \\[0.8em]
+\textbf{Apelaciones con efecto diferido (arts.~69 y 366)} &
+Costas y honorarios se conceden con efecto diferido (salvo que el expediente vaya a la cámara por el recurso contra la resolución del incidente). También el rechazo del hecho nuevo. Hay que registrarlas y fundarlas al apelar la sentencia definitiva, o quedan desiertas. \\[0.8em]
+\textbf{Hecho nuevo vs. hecho sobreviniente} &
+Nuevo: preexistía pero no se planteó (ignorancia o desconocimiento). Sobreviniente: ocurre después de trabada la litis y puede ser notorio. En ambos, el conocimiento del juez debe llegar por la parte. \\[0.8em]
+\textbf{¿Puede salvarse en cámara una omisión probatoria?} &
+No: el recurso está delimitado por los planteos de primera instancia. Puede darse el replanteo de prueba denegada o declarada negligente (art.~260, inc.~2). \\
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{\textbf{Resumen:} Una vez en la cámara, el apelante cuenta con 10 o 5 días para expresar agravios (art.~259) y con un escrito único en 5 días para fundar las apelaciones diferidas y replantear prueba (art.~260). En las resoluciones interlocutorias con efecto devolutivo se arma el incidente con copias (art.~250). Las apelaciones diferidas deben registrarse y sostenerse al apelar la sentencia definitiva.} \\
+\bottomrule
+\end{longtable}
+
+% ---------------------------------------------------------
+\chapter[Expresión de agravios]{Expresión de agravios y cierre}
+% ---------------------------------------------------------
+
+\section{Artículo 265: la crítica concreta y razonada}
+
+\begin{formula}{Art. 265 CPCCN --- Contenido de la expresión de agravios. Traslado}
+El escrito de expresión de agravios deberá contener la crítica concreta y razonada de las partes del fallo que el apelante considere equivocadas. No bastará remitirse a presentaciones anteriores. De dicho escrito se dará traslado por diez o cinco días al apelado, según se trate de juicio ordinario o sumario.
+\end{formula}
+
+La «crítica concreta y razonada» constituye un desafío: hay abundante jurisprudencia que declara que determinada expresión de agravios no constituye una crítica concreta y razonada, y los apelados, al contestar el traslado, suelen pedir que se declare desierto el recurso por no haber crítica razonada.
+
+El punto está en contraponer la crítica a la generalidad: hay que formular la crítica sobre un \textbf{punto concreto} de lo que se pretende apelar y evitar generalidades, como decir que «la sentencia es un mamarracho». Se mencionó que existe jurisprudencia de la Corte según la cual una sentencia anómala no constituye un acto jurisdiccional en sentido estricto, y que hay que explicar el porqué de la crítica.
+
+\begin{important}
+La expresión de agravios debe criticar puntos concretos del fallo y explicar por qué son erróneos. Las generalidades y la remisión a presentaciones anteriores exponen al recurso a ser declarado desierto.
+\end{important}
+
+\section{Cómo ordenar los agravios: títulos, congruencia y revocación parcial}
+
+Se mencionó un memorial que tenía 16 puntos presentados como agravios («primer agravio», «segundo agravio», etcétera), algunos redundantes; hay que saber señalarlo al contestar el traslado.
+
+Conviene que cada agravio tenga un título o subtítulo que indique su contenido. Por ejemplo:
+
+\begin{itemize}
+    \item primer agravio: error en la valoración de la prueba para disponer la responsabilidad de la parte;
+    \item error en la apreciación de los hechos para hacer lugar a la indemnización por daño material;
+    \item un agravio también por los honorarios o por la imposición de costas.
+\end{itemize}
+
+Más allá de que se pida la revocación del fallo, a veces se pide la \textbf{revocación parcial} y no la absoluta, según las circunstancias del caso.
+
+Es uno de los escritos más difíciles, porque hay que \textbf{confrontar la sentencia} con lo actuado, es decir, evaluar si hay correlato entre ambos: la \textbf{congruencia}.
+
+\begin{important}
+Estructura sugerida de los agravios: un título por cada agravio, sin repeticiones redundantes; un agravio específico por honorarios o costas si corresponde; y la confrontación de la sentencia con lo actuado para evaluar su congruencia.
+\end{important}
+
+\section{Inteligencia artificial, confidencialidad y revisión profesional}
+
+Se señaló que existe la posibilidad de pedir a una inteligencia artificial que arme un recurso de apelación. Para ello habría que darle la totalidad del expediente, lo que plantea el problema de la \textbf{confidencialidad}: lo que se entrega queda como información en poder de un tercero, aunque eso no signifique que sea pública. Las normas éticas en la materia no se trataron.
+
+La alternativa planteada es no dar los datos de las partes y proporcionar solo lo genérico: por ejemplo, que se trata de una demanda de daños y perjuicios, qué se probó y qué no, y qué resolvió la sentencia. El resultado debe ser revisado: es una \textbf{base}.
+
+\begin{important}
+La inteligencia artificial puede dar una base de redacción, pero exige cuidar la confidencialidad (información genérica, sin datos de las partes) y revisar siempre el resultado. No reemplaza el análisis del expediente ni el criterio profesional.
+\end{important}
+
+\section{Apelaciones en relación, apelación libre y temas pendientes}
+
+Quedaron pendientes de desarrollo:
+
+\begin{itemize}
+    \item las \textbf{apelaciones en relación}, que son las más frecuentes, con sus \textbf{formas y efectos};
+    \item la \textbf{apelación libre} y la \textbf{reserva del caso};
+    \item la elaboración de la expresión de agravios del recurso del práctico, incorporando lo expuesto sobre los artículos 259 y 260.
+\end{itemize}
+
+% ---------- CORNELL CAPÍTULO 4 ----------
+\section*{Cuadro Cornell: expresión de agravios}
+\addcontentsline{toc}{section}{Cuadro Cornell: expresión de agravios}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.68\textwidth}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\textbf{Art.~265: ¿qué es una crítica concreta y razonada?} &
+Señalar puntos precisos del fallo y explicar por qué son erróneos, sin generalidades ni remisiones a escritos anteriores. El apelado puede pedir que se declare desierto el recurso si falta crítica razonada. \\[0.8em]
+\textbf{¿Cómo se organiza una expresión de agravios?} &
+Por agravios, cada uno con título (p.~ej., error en la valoración de la prueba), sin repeticiones redundantes; con un agravio específico por honorarios o costas si corresponde; confrontando la sentencia con lo actuado (congruencia). \\[0.8em]
+\textbf{¿Se pide siempre la revocación total?} &
+No: a veces se pide la revocación parcial, según las circunstancias del caso. \\[0.8em]
+\textbf{¿Puedo usar inteligencia artificial para armar el recurso?} &
+Como base de redacción, sí, pero con información genérica (sin datos de las partes), cuidando la confidencialidad y revisando siempre el resultado. \\[0.8em]
+\textbf{¿Qué quedó pendiente de desarrollar?} &
+Apelaciones en relación (formas y efectos), apelación libre y reserva del caso, y la elaboración de la expresión de agravios del recurso del práctico. \\
+\midrule
+\multicolumn{2}{@{}p{0.96\textwidth}@{}}{\textbf{Resumen:} El resultado de la apelación se juega en la expresión de agravios (art.~265): una crítica concreta y razonada, organizada por agravios con título y confrontada con lo actuado, que evite ser declarada desierta. La inteligencia artificial solo sirve como base, con confidencialidad y revisión profesional.} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

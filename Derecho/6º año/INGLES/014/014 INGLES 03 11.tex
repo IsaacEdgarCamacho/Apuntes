@@ -1,0 +1,884 @@
+%==============================================================
+% DOCUMENTCLASS
+%==============================================================
+\documentclass[12pt,oneside]{book}
+
+%==============================================================
+% METADATOS
+%==============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Lectocomprensión}
+\newcommand{\titulo}{Textos jurídicos en inglés: Unidad de Familia -- «Prenuptial Agreements»}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==============================================================
+% PAQUETES
+%==============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Babel no está disponible en esta instalación; se omite para evitar errores de compilación.
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==============================================================
+% CONFIGURACIÓN
+%==============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\renewcommand{\arraystretch}{1.25}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Anchos para el cuadro Cornell
+\newlength{\cornL}
+\newlength{\cornR}
+\newlength{\cornW}
+\AtBeginDocument{%
+    \setlength{\cornL}{0.27\textwidth}%
+    \setlength{\cornR}{\dimexpr 0.73\textwidth-4\tabcolsep-\arrayrulewidth\relax}%
+    \setlength{\cornW}{\dimexpr\cornL+\cornR+2\tabcolsep+\arrayrulewidth\relax}%
+}
+
+%==============================================================
+% COMANDOS
+%==============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%==============================================================
+% ENTORNOS / CAJAS
+%==============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%==============================================================
+% CONFIGURACIÓN FINAL
+%==============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================
+% DOCUMENTO
+%==============================================================
+\begin{document}
+
+%--------------------------------------------------------------
+% PORTADA
+%--------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Leer con atención y estudiar con constancia es el camino para comprender de verdad.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de «Lectocomprensión» no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%--------------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------------
+\tableofcontents
+
+%--------------------------------------------------------------
+% CONTENIDO
+%--------------------------------------------------------------
+
+%==============================================================
+\chapter[Encuadre del texto]{Encuadre del texto y consignas de lectura}
+%==============================================================
+
+\section{Presentación del texto}
+
+La unidad de \textbf{Familia} se abrió con la lectura del texto dos de la unidad: un texto publicado en Nueva York, es decir, proveniente de Estados Unidos, sobre los \textbf{prenuptial agreements} (acuerdos prenupciales). De manera informal, y por abreviación, se los denomina \textbf{prenups}; la «s» final corresponde al plural.
+
+Se trata de contratos que una persona celebra con su futuro cónyuge \textbf{antes} del matrimonio para decidir qué ocurrirá con el dinero, los bienes y otras obligaciones si el matrimonio termina por divorcio o fallecimiento.
+
+La lectura se realizó sin traducir palabra por palabra y se trabajó con cinco habilidades:
+
+\begin{enumerate}
+    \item anticipar el contenido a partir del título, la procedencia y los subtítulos;
+    \item marcar la terminología técnica del derecho de familia;
+    \item definir y caracterizar la figura;
+    \item identificar qué aspectos puede regular (bienes propios y comunes, alimentos, hijos);
+    \item detectar en qué casos el acuerdo puede no ser exigible.
+\end{enumerate}
+
+A lo largo del análisis se comparó de manera constante el sistema anglosajón con el sistema argentino.
+
+\section{Utilidad de la lectura de textos jurídicos en inglés}
+
+\begin{itemize}
+    \item \textbf{Evitar errores de traducción.} Palabras como \textit{maintenance}, \textit{support}, \textit{challenge} o \textit{deed} no equivalen de forma directa a un término argentino: asociarlas de entrada con algo propio puede llevar a error.
+    \item \textbf{Asesorar con vínculos internacionales.} Las parejas de distinta nacionalidad, los bienes en el exterior o los divorcios con elemento extranjero exigen saber qué es un prenup y cuándo puede hacerse valer.
+    \item \textbf{Pensar en derecho comparado.} Contrastar la libertad de contratación anglosajona con el orden público argentino ayuda a comprender el funcionamiento del sistema local.
+    \item \textbf{Ética y práctica profesional.} La idea de que cada parte tenga su propio abogado (\textit{separate attorneys}) ilustra el manejo de conflictos de intereses y la protección frente a los vicios de la voluntad.
+    \item \textbf{Leer estratégicamente.} Anticipar, extraer la información clave y seguir los conectores (\textit{however}, \textit{nevertheless}) resulta útil para cualquier texto técnico, también en español.
+\end{itemize}
+
+\section{Macroestructura del texto}
+
+La macroestructura permite anticipar el contenido antes de la lectura detallada. El título indica el tema (acuerdos prenupciales); la procedencia (Nueva York) indica que el texto responde al sistema jurídico de Estados Unidos; y los subtítulos revelan los ejes que el texto aborda.
+
+\begin{table}[H]
+\centering
+\caption{Subtítulos del texto y su significado}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}YY@{}}
+\toprule
+\textbf{Subtítulo o término} & \textbf{Equivalente en español} & \textbf{Qué aborda} \\
+\midrule
+\textbf{Separate property} & Bienes propios; régimen de bienes & Cómo se consideran los bienes de la pareja. \\
+\textbf{Custody and visitation} (según el texto) & Régimen de comunicación con los hijos o menores & Relación con los hijos en caso de separación. \\
+\textbf{Establishing maintenance} & Alimentos, cuota alimentaria, manutención & Sostenimiento económico entre cónyuges y de los hijos. \\
+\textbf{Separate attorneys} & Abogados separados & Asesoramiento independiente para cada parte. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Consignas de lectura}
+
+El trabajo se organizó en torno a cuatro consignas. No se pide traducir el texto, sino \textbf{ubicar dónde está la información y extraer la idea general}.
+
+\begin{table}[H]
+\centering
+\caption{Consignas de lectura}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.06\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}Y@{}}
+\toprule
+\textbf{N.º} & \textbf{Consigna} & \textbf{Qué hay que hacer} \\
+\midrule
+1 & Términos técnicos & Marcar los términos que tienen que ver concretamente con el derecho de familia. \\
+2 & Definir y caracterizar & Identificar cómo el texto describe, clasifica y caracteriza al prenup. \\
+3 & Aspectos que aborda & Determinar cómo se consideran los bienes de la pareja y qué ocurre con los menores en caso de separación. \\
+4 & Exigibilidad & Identificar en qué casos un prenup puede no ser exigible. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El mensaje final: consultar a un abogado separado}
+
+Los sitios de estudios jurídicos y de asociaciones de abogados suelen hacer, hacia el final, la misma recomendación: si bien el acuerdo puede realizarse sin asesoramiento, conviene consultar a un abogado. En el texto, esta parte final menciona \textbf{separate attorneys} y luego los términos \textbf{fraud}, \textbf{coercion}, \textbf{duress}, \textbf{unfair} y \textbf{unenforceable}.
+
+La recomendación no es solamente consultar a un abogado, sino hacerlo de manera \textbf{separada}: si ambas partes se asesoran con el mismo abogado, al evaluar el acuerdo ante el tribunal podría considerarse que resulta menos justo para una de ellas.
+
+\begin{example}{Un mismo abogado para las dos partes}
+Si un mismo abogado asesora a los dos integrantes del acuerdo, podría plantearse más adelante un conflicto: una de las partes podría alegar que el abogado era el de la otra, que la obligaron a firmar o que la convencieron. Habría entonces coacción o algún tipo de intimidación. Lo recomendable es que cada parte reciba su propio asesoramiento, de modo que se llegue a un acuerdo beneficioso para ambas.
+\end{example}
+
+\begin{important}
+Cada parte debe contar con su propio abogado: así el acuerdo es beneficioso para ambas y no puede cuestionarse más adelante alegando coacción o intimidación.
+\end{important}
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}p{\cornL}|p{\cornR}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué información brinda la macroestructura de un texto antes de leerlo en detalle?} &
+El título anticipa el tema (acuerdos prenupciales); la procedencia (Nueva York) indica que se trata del sistema jurídico de Estados Unidos; y los subtítulos muestran los ejes: \textbf{separate property} (régimen de bienes), régimen de comunicación con los hijos, \textbf{maintenance} (alimentos) y \textbf{separate attorneys}. \\[0.6em]
+
+\textbf{¿Cómo se trabaja el texto en clase?} &
+Se marcan los términos técnicos de familia, se define y caracteriza el prenup, se identifican los aspectos que puede abordar y se detectan los casos en que puede no ser exigible. \textbf{No se traduce palabra por palabra}: se ubica la información y se extrae la idea general. \\[0.6em]
+
+\textbf{¿Qué es un prenup?} &
+Es la forma abreviada e informal de \textbf{prenuptial agreement}: un contrato que una persona celebra con su futuro cónyuge antes del matrimonio para decidir qué pasará con el dinero, los bienes y otras obligaciones si el matrimonio termina por divorcio o fallecimiento. \\[0.6em]
+
+\textbf{¿Por qué se recomienda que cada parte tenga un abogado separado?} &
+Porque si un mismo abogado asesora a ambos, luego una parte puede alegar coacción o intimidación y el tribunal puede considerar el acuerdo menos justo. Con asesoramiento independiente, el acuerdo es beneficioso para ambos y más difícil de cuestionar. \\[0.6em]
+
+\midrule
+\multicolumn{2}{p{\cornW}}{%
+\textbf{Resumen:} El texto de Nueva York sobre los \textbf{prenuptial agreements} se aborda anticipando su contenido por título, procedencia y subtítulos, y extrayendo información sin traducir literalmente. Su mensaje final recomienda consultar a abogados \textbf{separados} para evitar alegaciones de coacción o intimidación.
+} \\
+\end{longtable}
+
+%==============================================================
+\chapter[Vocabulario jurídico de familia]{Vocabulario jurídico de familia}
+%==============================================================
+
+\section{Bienes propios y bienes gananciales}
+
+Entre los términos jurídicos relevantes del derecho de familia, el primero que se identifica en su forma coloquial es el de los bienes propios y los bienes gananciales.
+
+\begin{table}[H]
+\centering
+\caption{Bienes propios y bienes gananciales}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}Y@{}}
+\toprule
+\textbf{Forma coloquial en español} & \textbf{Término en inglés} & \textbf{Observación} \\
+\midrule
+Bienes propios & \textbf{Separate property} & Bienes que pertenecen a cada cónyuge por separado. \\
+Bienes gananciales (comunidad ganancial) & \textbf{Marital property} & Bienes que integran la comunidad de la pareja. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{El término «support» y los hijos de un matrimonio anterior}
+
+El término \textbf{support} suele conocerse en otros contextos como ayuda, soporte o apoyo (por ejemplo, \textbf{provide support} significa apoyar a alguien en una actividad o apoyarlo anímicamente). En el texto, sin embargo, se usa de otra manera: aparece en la expresión \textbf{Support for children of a prior marriage}.
+
+Esta expresión se refiere a la responsabilidad parental y de cuidado que una persona puede asumir respecto de hijos de un matrimonio distinto del que se está celebrando, aunque no sea el progenitor biológico y no conviva con ellos. Es una materia que puede ser objeto de pacto entre las partes, aunque no necesariamente debe serlo.
+
+\begin{example}{Hijos de un matrimonio previo}
+Una persona que ya tiene hijos de un matrimonio previo puede pactar con su futuro cónyuge, por ejemplo, que si ella se enferma, el cónyuge deberá hacerse cargo y velar por esos hijos, ya que se está formando una familia.
+\end{example}
+
+\section{Terminología de menores}
+
+La expresión \textbf{custody and visitation} corresponde a términos considerados controvertidos, tanto en inglés como en español. En español, la terminología cambió: antes se hablaba de \textbf{tenencia} y \textbf{régimen de visitas}; ahora se habla de \textbf{régimen de comunicación}.
+
+Esta modificación no ocurrió solo en el derecho argentino: cambió toda la terminología relativa al régimen de menores. Todavía persiste el uso del vocabulario anterior, porque hay jueces que, al adaptar un fallo, utilizan terminología vieja.
+
+\begin{table}[H]
+\centering
+\caption{Cambio de terminología sobre menores}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}p{0.27\textwidth}Y@{}}
+\toprule
+\textbf{Terminología anterior} & \textbf{Terminología actual} & \textbf{Observación} \\
+\midrule
+Tenencia & Responsabilidad parental y cuidado personal & Cambió la terminología; algunos jueces todavía usan la anterior. \\
+Régimen de visitas & Régimen de comunicación & En inglés: \textbf{custody and visitation}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{example}{Un texto del Reino Unido}
+Se mencionó un texto del Reino Unido que hablaba de \textbf{access to the child}. Esa expresión se consideró desafortunada porque, en un caso, trata al menor como algo que se «tiene» (como la «tenencia»), y en el otro presenta el régimen de comunicación no como un derecho del menor, sino como un derecho del adulto a tener acceso al menor. Se señaló que probablemente la terminología haya cambiado también allí.
+\end{example}
+
+\begin{note}
+Referencia normativa mencionada: se hizo referencia al cambio de terminología introducido por «nuestro código» en el régimen de menores, de \textbf{tenencia} y \textbf{régimen de visitas} a \textbf{régimen de comunicación}. No se citaron números de artículos. \textit{Referencia complementaria del editor del apunte original (no citada en clase):} Código Civil y Comercial de la Nación, Libro Segundo, Título VII, «Responsabilidad parental» (desde el art.~638). Debe verificarse el texto vigente antes de citarlo.
+\end{note}
+
+\section{Cónyuge, revelar, activos y escritura}
+
+\begin{description}[leftmargin=1.5em,style=nextline]
+    \item[\textbf{Spouse}] Es cualquiera de los dos: el \textbf{cónyuge}.
+    \item[\textbf{Disclose}] Significa informar, revelar: informar al otro lo que se tiene. No debe confundirse con otros usos de palabras similares, como «Discovery».
+    \item[\textbf{Assets}] Es un sinónimo de \textbf{property} (bienes). En lo financiero se habla de «activos», pero en este contexto se refiere a los bienes y al patrimonio.
+    \item[\textbf{Deed}] Es lo que en Argentina se denomina \textbf{escritura}: un documento notarial, con las salvedades de que la figura del escribano argentino y la figura equivalente en Estados Unidos son distintas. La función que cumple es la misma: instrumentar y documentar la transferencia o la titularidad de un bien (\textbf{property deed}).
+\end{description}
+
+\section{Glosario inglés--español}
+
+\begin{table}[H]
+\centering
+\caption{Glosario inglés--español de la clase}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth}YY@{}}
+\toprule
+\textbf{Término} & \textbf{Significado} & \textbf{Dónde se usa} \\
+\midrule
+\textbf{Spouse} & Cónyuge (cualquiera de los dos) & Definición del prenup \\
+\textbf{Disclose} & Informar, revelar al otro lo que se tiene & Obligación previa al matrimonio \\
+\textbf{Assets} & Activos; en este contexto, bienes y patrimonio & Validez: revelación plena y justa \\
+\textbf{Property deed} & Escritura: documento que instrumenta la transferencia o titularidad de un bien & Formalidades del acuerdo \\
+\textbf{Challenge} & Cuestionar, impugnar (no «recusar», como en otros textos) & Exigibilidad \\
+\textbf{However / nevertheless} & No obstante, sin embargo (conectores) & Bienes propios y ejemplo de la casa \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}p{\cornL}|p{\cornR}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Cómo se denominan en inglés los bienes propios y los bienes gananciales?} &
+Los bienes propios son \textbf{separate property}; los bienes gananciales (comunidad ganancial) son \textbf{marital property}. \\[0.6em]
+
+\textbf{¿Qué significa «support» en la expresión «Support for children of a prior marriage»?} &
+No se trata de apoyo anímico: se refiere a la responsabilidad parental y de cuidado respecto de hijos de un matrimonio anterior, aunque no sean propios. Puede ser materia de pacto entre las partes. \\[0.6em]
+
+\textbf{¿Cómo cambió la terminología sobre los hijos menores?} &
+Antes se hablaba de \textbf{tenencia} y \textbf{régimen de visitas}; ahora, de \textbf{régimen de comunicación} (en inglés, \textbf{custody and visitation}). Algunos jueces todavía usan la terminología anterior. \\[0.6em]
+
+\textbf{¿Qué significan «spouse», «disclose», «assets» y «deed»?} &
+\textbf{Spouse}: cónyuge. \textbf{Disclose}: informar, revelar. \textbf{Assets}: activos, bienes, patrimonio. \textbf{Deed}: escritura, documento que instrumenta la transferencia o titularidad de un bien. \\[0.6em]
+
+\textbf{¿Qué significa «challenge» y qué indican «however» y «nevertheless»?} &
+\textbf{Challenge}: cuestionar, impugnar. \textbf{However} y \textbf{nevertheless} son conectores que significan «no obstante» o «sin embargo». \\[0.6em]
+
+\midrule
+\multicolumn{2}{p{\cornW}}{%
+\textbf{Resumen:} El vocabulario central del texto incluye \textbf{separate property} y \textbf{marital property}, \textbf{support} (en sentido de responsabilidad hacia hijos de un matrimonio anterior), \textbf{spouse}, \textbf{disclose}, \textbf{assets}, \textbf{deed} y \textbf{challenge}. Varios términos no equivalen directamente a uno argentino y la terminología sobre menores cambió de «tenencia» y «visitas» a «régimen de comunicación».
+} \\
+\end{longtable}
+
+%==============================================================
+\chapter[El prenup: definición y validez]{El prenup: definición, caracteres y validez}
+%==============================================================
+
+\section{Definición del prenup}
+
+\begin{definition}{Acuerdo prenupcial (prenup)}
+Contrato entre una persona y su futuro cónyuge, celebrado \textbf{antes del matrimonio} (\textit{before marriage}), en el que ambos se informan lo que tienen y establecen qué ocurrirá con el dinero y los bienes de cada uno después del matrimonio.
+\end{definition}
+
+En este contrato se establecen \textbf{derechos y deberes}. Algunos de ellos están fijados por ley y las partes no pueden pactarlos; en otros, en cambio, las partes tienen libertad de contratación, es decir, libertad de acordar.
+
+El texto indica que los cónyuges deben revelarse mutuamente todo el dinero y los bienes que poseen (\textit{You and your spouse disclose to each other all the money and property owned}). Existe la obligación, antes de casarse, de informar al otro qué se tiene (por ejemplo, un auto, dos casas, o nada). De este modo se establece de antemano cómo se repartirán los bienes y qué régimen se aplicará.
+
+\section{Caracterización del prenup}
+
+\subsection{Un régimen conocido de antiguo en el sistema anglosajón}
+
+En el derecho argentino actual existe el régimen de separación de bienes en el matrimonio. Antes no existía: al casarse, los bienes eran de ambos. En el sistema anglosajón, en cambio, la posibilidad de casarse y establecer un sistema de bienes separados existía desde hace muchísimos años; en Argentina llegó mucho después y es bastante reciente. Por ello, el derecho internacional privado se ocupa con frecuencia de las personas que se encuentran en el exterior.
+
+Las \textbf{convenciones matrimoniales} (acuerdos previos al matrimonio) tampoco existían antes en el derecho argentino; los prenups eran algo que se conocía a través de las películas.
+
+\begin{note}
+Referencia normativa mencionada: se aludió a figuras del «código» argentino que antes no existían: las \textbf{convenciones matrimoniales} y la posibilidad de optar por el \textbf{régimen de separación de bienes}. También se mencionó que, sin herederos, los bienes de una sucesión vacante pasan al \textbf{Estado}. No se citaron números de artículos. \textit{Referencia complementaria del editor del apunte original (no citada en clase):} Código Civil y Comercial de la Nación, convenciones matrimoniales (arts.~446 y ss.) y régimen de separación de bienes (arts.~505 y ss.). Debe verificarse el texto vigente antes de citarlo.
+\end{note}
+
+\subsection{Justo y ejecutable}
+
+El texto caracteriza al prenup como \textbf{fair and enforceable}, en tanto proteja a ambos cónyuges por igual. Esto significa que debe ser equitativo, que pueda entenderse como justo y que no pretenda favorecer abiertamente a una de las partes. El texto se refiere puntualmente a Nueva York, aunque es previsible que en la mayoría de los estados existan regulaciones similares.
+
+\subsection{Divorcio, fallecimiento y sucesión}
+
+El texto contempla el caso en que el matrimonio termina por divorcio o por fallecimiento (\textit{if the marriage ends in divorce or death}), de modo que el acuerdo también alcanza la sucesión.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasaje inaudible en la grabación sobre otra característica del prenup)
+Se señaló que el acuerdo permite organizar los bienes como si formaran una comunidad patrimonial, con el fin de evitar que queden en manos del Estado. Como comparación, en el derecho argentino, cuando una sucesión queda vacante (no hay herederos), los bienes pasan al Estado. Para evitar ese tipo de situaciones y mantener los bienes en el ámbito privado, se establece lo pertinente en un convenio prenupcial.
+
+\subsection{Comparación entre ambos sistemas}
+
+\begin{table}[H]
+\centering
+\caption{Prenup y convenciones matrimoniales}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}YY@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Sistema anglosajón (EE.\,UU.)} & \textbf{Sistema argentino (según lo explicado en clase)} \\
+\midrule
+Acuerdos previos al matrimonio & Existen desde hace muchísimos años (\textbf{prenups}). & Antes no existían; hoy existen las convenciones matrimoniales. \\
+Régimen de bienes & Posibilidad antigua de bienes separados. & Antes todo era de ambos; hoy hay régimen de separación de bienes. \\
+Sucesión & El prenup contempla divorcio y fallecimiento; busca mantener los bienes en el ámbito privado. & Si la sucesión queda vacante, los bienes pasan al Estado. \\
+Equidad & El acuerdo debe ser justo y ejecutable para ambos cónyuges. & Hay derechos y deberes fijados por ley que las partes no pueden pactar. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Validez y formalidades}
+
+Respecto de la validez, el texto señala que el acuerdo debe proteger a ambas partes y exige una \textbf{revelación plena y justa de todos los bienes} (\textbf{full and fair disclosure of all assets}): no debe haber ocultamiento ni tergiversación, ni decirse una cosa cuando en realidad era otra.
+
+Además, el contrato debe cumplir las \textbf{formalidades} que correspondan. Si entra en juego, por ejemplo, un inmueble, el texto habla de \textbf{property deed} (escritura): para ciertos bienes probablemente haya alguna formalidad que cumplir.
+
+\begin{important}
+Requisitos de validez según el texto: \textbf{(1)} revelación plena y justa de todos los bienes, sin ocultamiento ni tergiversación; \textbf{(2)} cumplimiento de las formalidades que exija cada bien (por ejemplo, la escritura para un inmueble).
+\end{important}
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}p{\cornL}|p{\cornR}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué es un prenup?} &
+Es un contrato entre una persona y su futuro cónyuge, celebrado antes del matrimonio, en el que ambos se informan lo que tienen y establecen qué pasará con el dinero y los bienes de cada uno después del matrimonio. \\[0.6em]
+
+\textbf{¿Qué derechos y deberes pueden pactarse?} &
+Algunos derechos y deberes están establecidos por ley y las partes no pueden pactarlos; en otros hay libertad de contratación, es decir, libertad de acordar. \\[0.6em]
+
+\textbf{¿Qué significa que el prenup sea «fair and enforceable»?} &
+Que protege a ambos cónyuges por igual: es equitativo, no favorece abiertamente a una de las partes y puede hacerse cumplir. Contempla el caso de divorcio o de fallecimiento (sucesión). \\[0.6em]
+
+\textbf{¿Cómo se compara con el sistema argentino?} &
+En el sistema anglosajón la posibilidad de bienes separados y de acuerdos previos existe desde hace muchísimos años. En Argentina, las convenciones matrimoniales y el régimen de separación de bienes son recientes: antes todo era de ambos. \\[0.6em]
+
+\textbf{¿Qué se necesita para que un prenup sea válido?} &
+\textbf{Full and fair disclosure of all assets} (sin ocultamiento ni tergiversación) y cumplimiento de las formalidades que corresponda, como la escritura (\textbf{deed}) para un inmueble. \\[0.6em]
+
+\midrule
+\multicolumn{2}{p{\cornW}}{%
+\textbf{Resumen:} El \textbf{prenup} es un contrato previo al matrimonio por el que los futuros cónyuges se informan sus bienes y acuerdan su destino en caso de divorcio o fallecimiento. Debe ser justo y ejecutable, exige revelación plena y justa de los activos y el cumplimiento de formalidades. Existe desde hace mucho en el sistema anglosajón y es una figura reciente en el derecho argentino.
+} \\
+\end{longtable}
+
+%==============================================================
+\chapter[Aspectos que puede abordar]{Aspectos que puede abordar el prenup}
+%==============================================================
+
+\section{Bienes propios y bienes comunes en el acuerdo}
+
+El texto señala que el prenup puede definir los bienes propios (\textbf{defining separate property}) y los bienes comunes (\textbf{defining marital property}), lo cual se asemeja bastante al sistema argentino de bienes gananciales o comunidad ganancial y bienes propios.
+
+Al final de la parte dedicada a \textbf{separate property} aparece el conector \textbf{however} («no obstante», «sin embargo»): \textit{if you do not keep your separate property separate, despite the agreement, it may be considered marital property and divided equally between you in a divorce}. Es decir, los bienes propios se establecen, se pactan y se informan en el convenio, pero si por algún motivo no se los registra a nombre del titular, no puede hacerse valer el convenio y esos bienes pasan a formar parte de lo que se denomina bienes gananciales.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el intercambio sobre el momento de celebración de las convenciones matrimoniales quedó inconcluso)
+\begin{note}
+Durante la clase se planteó que las convenciones matrimoniales se celebran antes del matrimonio; el comentario de la docente al respecto quedó incompleto en la grabación.
+\end{note}
+
+\section{Ejemplos}
+
+\subsection{La casa}
+
+\begin{example}{Casa anterior al matrimonio}
+Una de las partes era dueña o titular de una casa antes del matrimonio y la pareja vive allí. El texto indica que un acuerdo prenupcial ayuda a mantenerla como bien propio (\textit{will help you do this}). Sin embargo, introduce otro conector, \textbf{nevertheless}: \textit{you should nevertheless keep title to the house unless you want to make a gift to your spouse}. Es decir, debe mantenerse la titularidad solo a nombre de esa persona, salvo que se quiera hacer un \textbf{gift}, que equivale a una \textbf{donación} (un instituto jurídico) o una cesión al cónyuge.
+\end{example}
+
+\subsection{La cuenta conjunta}
+
+Cuando el texto habla de cuentas, menciona la \textbf{joint account} (cuenta conjunta bancaria): los fondos en efectivo depositados en una cuenta conjunta se consideran \textbf{marital property}. Se indicó que esto resulta bastante obvio.
+
+\subsection{La herencia}
+
+\begin{example}{Gift or inheritance}
+El texto plantea el caso de la herencia (\textbf{a gift or inheritance}). La ley es bastante parecida a la argentina: la herencia es un bien propio y no integra la comunidad ganancial. De todos modos, el texto remarca la importancia de incluirla en el acuerdo prenupcial, incluso a futuro, es decir, lo que llegue a recibirse después del matrimonio sin saber si se recibirá.
+\end{example}
+
+En Argentina esto no se hace: la herencia es un bien propio, lo quieran o no las partes, porque se trata de una materia que fija el Estado por \textbf{orden público} y que no es susceptible de pacto privado. El titular puede después regalar el bien al cónyuge, pero eso es otra cuestión; nadie puede reclamar la herencia como bien común. En cambio, en el mundo anglosajón hay más libertad de contratación y de acuerdo, de modo que ciertas cosas deben establecerse específicamente; de lo contrario, no se sabe qué regulará el Estado en caso de conflicto.
+
+\begin{note}
+Referencia normativa mencionada: en el derecho argentino la herencia es un bien propio y no integra la comunidad ganancial; esto está establecido por el Estado, no puede ser objeto de pacto privado y se vincula con el orden público. No se citaron números de artículos. \textit{Referencia complementaria del editor del apunte original (no citada en clase):} Código Civil y Comercial de la Nación, bienes propios (art.~464) y orden público (art.~12). Debe verificarse el texto vigente antes de citarlo.
+\end{note}
+
+\subsection{Bienes propios que se quieren hacer comunes}
+
+El texto señala que, así como se identifican los bienes que son \textbf{separate property}, también pueden identificarse bienes que se desea considerar \textbf{marital property}, aunque en realidad sean propios (\textit{you can identify property you want to be considered as marital property even if it is actually separate property}).
+
+\begin{example}{La vivienda familiar}
+Una persona compró una casa cuando era soltera, pero, por ser la vivienda familiar, decide que figure a nombre de ambos y que forme parte de la comunidad ganancial.
+\end{example}
+
+\begin{important}
+Para conservar un bien como propio hay que \textbf{mantener su titularidad} a nombre de su dueño; y, al revés, el acuerdo permite declarar \textbf{comunes} bienes que en realidad son propios.
+\end{important}
+
+\section{Maintenance y alimony}
+
+El término \textbf{maintenance} se refiere a que puede acordarse una compensación o manutención a favor del cónyuge que decide sacrificar su carrera para criar a los hijos (\textit{during the marriage, particularly if one of you is giving up a career to raise the kids}). Esto ocurre \textbf{durante el matrimonio}.
+
+El derecho argentino incorporó en su código varias figuras que ya existían en el sistema anglosajón; antes era muy difícil traducir textos del exterior porque los conceptos no coincidían. Hay que distinguir dos figuras diferentes:
+
+\begin{itemize}
+    \item la \textbf{compensación económica}, que en Argentina es \textbf{posdivorcio} y se relaciona con quien abandona su profesión o carrera cuando hay un desequilibrio patrimonial en el matrimonio; entre los requisitos se mencionaron la posibilidad de trabajar y el perjuicio que causa el divorcio;
+    \item los \textbf{alimentos}, que se deben \textbf{durante el matrimonio}; se habla de alimentos provisorios y alimentos definitivos, y se establecen entre cónyuges.
+\end{itemize}
+
+\begin{example}{Quedarse en casa a cuidar a los hijos}
+Un cónyuge propone al otro que se quede en casa cuidando a los hijos mientras él trabaja y es el proveedor (o a la inversa). Esa situación tiene que ver con una cuota alimentaria o con una compensación posdivorcio.
+\end{example}
+
+\textbf{Maintenance} es un concepto amplio: abarca desde el período durante el matrimonio hasta después del divorcio; incluye pactos voluntarios de la pareja (por ejemplo, «no trabajes, quedate criando a los chicos») y cuestiones como la enfermedad. Por eso hay que prestar atención al traducir el término: asociarlo de entrada con algo propio puede llevar a error.
+
+Otro término que se usa en inglés para hablar de estos alimentos es \textbf{alimony}: alimentos entre cónyuges, no solo referidos a los hijos.
+
+\begin{example}{Demanda de divorcio y «alimony»}
+En una demanda de divorcio, la mujer que se quedó trabajando en la casa y abandonó su carrera puede reclamar un \textbf{alimony}: no solo la cuota alimentaria para los hijos, sino un \textbf{alimony} para ella, porque quedó desamparada y sin trabajo.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Términos sobre sostenimiento económico}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}YY@{}}
+\toprule
+\textbf{Término} & \textbf{Qué abarca} & \textbf{Equivalente aproximado} \\
+\midrule
+\textbf{Maintenance} & Concepto amplio: durante el matrimonio y después del divorcio; pactos voluntarios, enfermedad y otras cuestiones. & Alimentos y, en parte, compensación económica; no asociarlo de entrada con un término propio. \\
+\textbf{Alimony} & Alimentos entre cónyuges, separados de la cuota de los hijos. & Alimentos entre cónyuges. \\
+Alimentos & Se deben durante el matrimonio; pueden ser provisorios o definitivos. & \textbf{Maintenance} / \textbf{alimony} \\
+Compensación económica & Posdivorcio; compensa el desequilibrio patrimonial de quien abandonó su carrera. & Parecida a una parte de \textbf{maintenance} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+Referencia normativa mencionada: se afirmó que «nuestro código» incorporó figuras que ya existían en el sistema anglosajón: la \textbf{compensación económica} (posdivorcio, por desequilibrio patrimonial) y los \textbf{alimentos} entre cónyuges (durante el matrimonio; provisorios y definitivos). No se citaron números de artículos. \textit{Referencia complementaria del editor del apunte original (no citada en clase):} Código Civil y Comercial de la Nación, alimentos entre cónyuges (art.~432) y compensación económica (arts.~441 y 442). Debe verificarse el texto vigente antes de citarlo.
+\end{note}
+
+\section{Hijos: obligaciones y régimen de comunicación}
+
+\subsection{Hijos de un matrimonio anterior}
+
+El texto habla de \textbf{support for children of prior marriage}. Si hay adopción, el hijo adquiere la cualidad de hijo propio. La idea es establecer una obligación legal de \textbf{provide for}: cubrir las necesidades, no solo económicas sino también de responsabilidad parental, de ese hijo aunque no sea propio. Es parte de lo que puede impactar a las partes en un prenup; por ejemplo, cuando el padre falleció, no está, se fue o lo abandonó, o se encuentra en otro país.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el pasaje sobre la ejecutabilidad de estos acuerdos quedó incompleto)
+Se indicó, además, que estos acuerdos son ejecutables a menos que se cuestione la validez del acuerdo prenupcial, lo cual remite a la importancia de contar con un abogado separado.
+
+\subsection{Régimen de comunicación e hijos por nacer}
+
+El texto menciona también el régimen de comunicación, con la terminología ya vista, y hace referencia a los hijos que todavía no nacieron (por ejemplo, incluir lo que se hará cuando nazca un hijo). En el caso de los hijos a futuro, la materia no es objeto de contratación. Este aspecto se parece más al sistema argentino, donde hay más intervención estatal: el \textbf{interés superior del niño} implica un poco más de intervención del Estado.
+
+\begin{important}
+En materia de hijos, incluso en el sistema anglosajón hay \textbf{más intervención estatal}: lo relativo a hijos futuros no es objeto libre de contratación y prima el \textbf{interés superior del niño}.
+\end{important}
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}p{\cornL}|p{\cornR}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué ocurre si no se mantienen separados los bienes propios?} &
+Aunque exista el acuerdo, si no se mantiene la titularidad de los bienes propios (\textbf{however}), pueden considerarse \textbf{marital property} y dividirse por igual en un divorcio. \\[0.6em]
+
+\textbf{¿Qué ejemplos ofrece el texto sobre bienes?} &
+\textbf{Casa} anterior al matrimonio: mantener la titularidad, salvo que se quiera hacer una donación (\textbf{gift}) al cónyuge; también puede declararse bien común. \textbf{Cuenta conjunta}: los fondos son bienes comunes. \textbf{Herencia}: bien propio; conviene incluirla expresamente en el acuerdo, incluso a futuro. \\[0.6em]
+
+\textbf{¿Cómo se trata la herencia en Argentina y en el sistema anglosajón?} &
+En Argentina la herencia es un bien propio por disposición del Estado, por orden público, y no se pacta. En el sistema anglosajón hay más libertad de contratación, por lo que se debe establecer específicamente. \\[0.6em]
+
+\textbf{¿Qué abarca «maintenance» y en qué se diferencia de nuestros alimentos?} &
+Es un concepto amplio: durante el matrimonio y después del divorcio, pactos voluntarios y enfermedad. No debe asociarse de entrada con un término propio. En Argentina, los alimentos se deben durante el matrimonio y la compensación económica es posdivorcio. \\[0.6em]
+
+\textbf{¿Qué es «alimony»?} &
+Otro término en inglés para los alimentos entre cónyuges, separado de la cuota alimentaria de los hijos. \\[0.6em]
+
+\textbf{¿Qué puede pactarse sobre los hijos?} &
+Puede establecerse la obligación de cubrir las necesidades de hijos de un matrimonio anterior (\textbf{support}). Lo relativo a hijos futuros no es objeto libre de contratación y prima el interés superior del niño. \\[0.6em]
+
+\midrule
+\multicolumn{2}{p{\cornW}}{%
+\textbf{Resumen:} El prenup puede definir bienes propios y comunes, abordar el sostenimiento económico (\textbf{maintenance}, \textbf{alimony}) y obligaciones hacia los hijos. Para conservar un bien como propio hay que mantener su titularidad; el acuerdo también permite declarar comunes bienes propios. En materia de hijos hay más intervención estatal en ambos sistemas.
+} \\
+\end{longtable}
+
+%==============================================================
+\chapter[Exigibilidad y derecho comparado]{Exigibilidad y derecho comparado}
+%==============================================================
+
+\section{Cuándo un prenup puede no ser exigible}
+
+Ciertos vicios o circunstancias pueden afectar no la validez, sino la \textbf{ejecutabilidad} o \textbf{exigibilidad} del acuerdo. El texto dice que una parte puede \textbf{challenge} la validez del acuerdo (\textit{you or your spouse can challenge the validity}). El término \textbf{challenge} ya se había visto: significa cuestionar o impugnar; en otros textos aparece como «recusación» de una persona, pero aquí se trata de impugnar la validez del contrato por distintos motivos.
+
+\subsection{Falta de asesoramiento independiente}
+
+El texto indica que si las partes no tienen abogados separados (\textit{if you do not have separate attorneys}), el tribunal puede examinar el acuerdo con más detenimiento para ver si es justo y, de detectar algún vicio, no hacerlo cumplir.
+
+\begin{example}{Un acuerdo en que todo es de una parte}
+En un prenup en el que todos los bienes son de una sola parte, que cede y dona, puede haber existido algún vicio de la voluntad, y el tribunal puede considerar que el acuerdo no es ejecutable. Se señaló que estos casos son hoy poco frecuentes.
+\end{example}
+
+\subsection{Ocultamiento de bienes}
+
+El texto señala el caso en que el cónyuge no revela sus bienes honestamente (\textit{if your spouse fails to disclose his or her assets honestly}): por ejemplo, declara cierto monto en una cuenta cuando en realidad tenía mucho más. Si los oculta, no están dadas las condiciones para celebrar el acuerdo: hay un vicio.
+
+\subsection{Presión o falta de tiempo}
+
+Puede ocurrir que no se otorgue tiempo suficiente para analizar el acuerdo, evaluarlo y consultar a un abogado, o que se exija firmar ya, \textit{right now}. Esto se entiende como un vicio de la voluntad: coacción o intimidación.
+
+\subsection{Injusticia excesiva}
+
+Si el acuerdo favorece excesivamente a una parte y deja a la otra totalmente desamparada, el tribunal puede negarse a hacerlo cumplir.
+
+\begin{table}[H]
+\centering
+\caption{Causas por las que un prenup puede no ser exigible}
+\begin{tabularx}{\textwidth}{@{}YYY@{}}
+\toprule
+\textbf{Situación} & \textbf{Término en el texto} & \textbf{Explicación} \\
+\midrule
+Cada parte no tuvo su propio abogado & \textbf{Separate attorneys} & El tribunal lo mira con más detenimiento para ver si es justo y puede declararlo no exigible. \\
+Una parte oculta sus bienes & \textbf{Fails to disclose assets honestly} & No se cumplieron las condiciones para celebrarlo: es un vicio. \\
+No hubo tiempo para analizar ni consultar a un abogado & \textbf{Right now} (firmar «ya») & Vicio de la voluntad: coacción o intimidación. \\
+Favorece excesivamente a uno y desampara al otro & \textbf{Unfair} & El tribunal puede negarse a hacerlo cumplir. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+Se distingue la \textbf{validez} de la \textbf{ejecutabilidad (exigibilidad)}: aun existiendo el acuerdo, el tribunal puede no hacerlo cumplir si hubo vicios o injusticia. \textbf{Challenge} significa cuestionar, impugnar.
+\end{important}
+
+\section{Comparación con el sistema argentino}
+
+En Argentina ni siquiera se llegaría a la instancia de que un juez deba evaluar si una convención matrimonial de esa naturaleza es válida: directamente no se plantea, porque se sabe que no está permitido, y ningún abogado propondría algo así. El nivel de intervención o injerencia del \textbf{orden público} es mucho mayor.
+
+\begin{note}
+Referencia normativa mencionada: en Argentina el \textbf{orden público} limita lo que las partes pueden pactar en una convención matrimonial, por lo que un acuerdo que deje a una de las partes desamparada directamente no se plantea. No se citaron números de artículos. \textit{Referencia complementaria del editor del apunte original (no citada en clase):} Código Civil y Comercial de la Nación, límites a las convenciones matrimoniales (art.~447) y orden público (art.~12). Debe verificarse el texto vigente antes de citarlo.
+\end{note}
+
+\begin{table}[H]
+\centering
+\caption{Libertad contractual y orden público}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}YY@{}}
+\toprule
+\textbf{Tema} & \textbf{Sistema anglosajón (Nueva York)} & \textbf{Sistema argentino} \\
+\midrule
+Libertad de contratación & Más libertad de acuerdo; hay que establecer todo específicamente. & Muchas cosas no son susceptibles de pacto privado: las fija el Estado. \\
+Herencia & Conviene incluirla expresamente en el acuerdo, incluso a futuro. & Es bien propio por ley; no se pacta. \\
+Control judicial & El tribunal evalúa si el acuerdo es válido y exigible. & Un acuerdo abusivo ni siquiera se propone: lo impide el orden público. \\
+Hijos & También hay intervención estatal: interés superior del niño. & Mayor intervención estatal. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Aviso legal y cierre de la lectura}
+
+El final del texto incluye recomendaciones propias de la página, a modo de \textbf{disclaimer}: se invita a consultar a un abogado al elaborar un acuerdo, y se advierte que las normas y las pautas cambian, por lo que deben verificarse en el momento en que se realiza el acuerdo.
+
+\begin{important}
+El \textbf{disclaimer} de los sitios jurídicos recuerda que la información es general, que las normas y pautas cambian y que hay que \textbf{verificarlas} y consultar a un abogado antes de actuar.
+\end{important}
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell}
+
+\begin{longtable}{@{}p{\cornL}|p{\cornR}@{}}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{¿Qué significa «challenge» y qué se puede cuestionar?} &
+\textbf{Challenge} significa cuestionar, impugnar (no «recusar», como en otros textos). Una parte puede cuestionar la validez del acuerdo por distintos motivos. \\[0.6em]
+
+\textbf{¿Cuándo un prenup puede no ser exigible?} &
+Por falta de abogados separados (\textbf{separate attorneys}); por ocultamiento de bienes (\textbf{fails to disclose}); por presión o falta de tiempo para analizar y consultar (coacción o intimidación); y por injusticia excesiva (\textbf{unfair}). \\[0.6em]
+
+\textbf{¿En qué se diferencian validez y exigibilidad?} &
+Aun existiendo el acuerdo, el tribunal puede no hacerlo cumplir si hubo vicios o injusticia: se distingue la validez de la ejecutabilidad. \\[0.6em]
+
+\textbf{¿En qué se diferencia del sistema argentino?} &
+En Estados Unidos hay más libertad de contratación y el tribunal evalúa el acuerdo. En Argentina hay mayor intervención del orden público, por lo que un acuerdo abusivo ni siquiera se propone. \\[0.6em]
+
+\textbf{¿Para qué sirve el aviso (disclaimer) final?} &
+Es propio de las páginas jurídicas: la información es general, las normas y pautas cambian, y hay que verificarlas y consultar a un abogado. \\[0.6em]
+
+\midrule
+\multicolumn{2}{p{\cornW}}{%
+\textbf{Resumen:} Un prenup puede no ser exigible si faltó asesoramiento independiente, si hubo ocultamiento de bienes, presión o falta de tiempo, o injusticia excesiva. Se distingue la validez de la ejecutabilidad. En Argentina, el orden público limita lo que se puede pactar, de modo que estos conflictos casi no llegan al juez. El aviso legal final recuerda verificar las normas y consultar a un abogado.
+} \\
+\end{longtable}
+
+\end{document}

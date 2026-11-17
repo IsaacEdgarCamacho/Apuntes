@@ -1,0 +1,1080 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Inglés Jurídico}
+\newcommand{\titulo}{Lectocomprensión: Learn About Jury Service}
+\newcommand{\subtitulo}{El jurado en el sistema judicial de EE.~UU.}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Babel no se carga aquí para evitar errores de idioma en instalaciones mínimas de TeX.
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Capítulo sin numerar que aparece en el índice y en el encabezado
+\newcommand{\capsinnum}[1]{%
+    \chapter*{#1}%
+    \addcontentsline{toc}{chapter}{#1}%
+    \markboth{#1}{}%
+}
+
+% Columnas de tablas
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{Q}{>{\raggedright\arraybackslash}p{0.27\textwidth}}
+\newcolumntype{R}{>{\raggedright\arraybackslash}p{0.67\textwidth}}
+
+% Filas del cuadro Cornell
+\newcommand{\cq}[2]{\textbf{#1} & #2 \\ \addlinespace[0.5em]}
+\newcommand{\cresumen}[1]{%
+    \midrule
+    \multicolumn{2}{p{\dimexpr0.94\textwidth+2\tabcolsep\relax}}{\textbf{Resumen:} #1} \\
+    \bottomrule
+}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ==================== DOCUMENTO ====================
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.4cm}
+
+{\large \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es la mejor forma de construir conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Inglés Jurídico'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------- ÍNDICE ----------
+\frontmatter
+\tableofcontents
+\mainmatter
+
+% ---------- PRESENTACIÓN ----------
+\capsinnum{Presentación del tema}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.2\textwidth}Y@{}}
+\toprule
+Tema & Lectocomprensión: ``Learn About Jury Service'' --- el jurado en el sistema judicial de EE.~UU. \\
+Institución & Universidad de Buenos Aires \textperiodcentered{} Facultad de Derecho \\
+Fecha & Octubre de 2026 \\
+Modalidad & Clase presencial; lectura guiada de un texto en inglés \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section*{Contenido de la clase}
+
+La clase trabajó, en inglés, un texto sobre el \textbf{servicio de jurado federal en EE.~UU.}: cómo se arma la lista de posibles jurados (votantes registrados y titulares de licencia de conducir), cómo se los convoca (\textit{summons}), cómo se los filtra mediante \textit{excuses} y \textit{challenges}, y quiénes terminan en el \textit{jury box}.
+
+Se compararon el jurado penal y el civil (12 frente a 6 integrantes; \textit{beyond a reasonable doubt} frente a \textit{preponderance of the evidence}), los roles de juez (\textit{trier of law}) y jurado (\textit{trier of fact}), y los dos tipos de jurado: \textit{petit jury} (juicio) y \textit{grand jury} (acusación previa, equivalente a la instrucción en el sistema argentino). El tema se cerró con un debate sobre el juicio por jurados frente al juez técnico en la Argentina.
+
+\section*{Relevancia profesional y personal del tema}
+
+\textbf{Utilidad para la vida profesional.} Cada vez más abogados argentinos leen \textbf{jurisprudencia, contratos y doctrina en inglés}, y el sistema anglosajón usa términos que \textbf{no se traducen palabra por palabra} (\textit{qualified}, \textit{challenge}, \textit{indictment}, \textit{not guilty}). Dominar esos términos evita errores de traducción que, en un escrito o en una negociación, cambian el sentido jurídico. Además, comparar el jurado con el proceso argentino (instrucción, procesamiento, falta de mérito, elevación a juicio) obliga a comprender mejor el \textbf{propio sistema}, lo que resulta útil en Derecho Procesal y en Derecho Penal. Por último, el juicio por jurados ya existe en varias provincias argentinas, por lo que es un tema de actualidad profesional.
+
+\textbf{Utilidad general.} Primero, \textbf{leer en inglés de forma precisa} (falsos cognados como \textit{actually}, verbos modales como \textit{may}, conectores como \textit{nonetheless}) es una habilidad aplicable a cualquier trabajo, maestría o intercambio. Segundo, la discusión sobre quién debe juzgar (un ciudadano común o un especialista técnico) es una cuestión de \textbf{ciudadanía}: permite opinar con fundamentos como votante, como posible jurado y como futuro operador del derecho. Tercero, el ejercicio de armar un mapa conceptual a partir de un texto es una técnica de estudio reutilizable.
+
+\begin{example}{el recorrido de Marta, una vecina convocada como jurado}
+Para ver cómo se relacionan los temas, se sigue a \textbf{Marta}, una vecina cualquiera, desde que le llega una carta hasta que termina el juicio.
+\begin{enumerate}
+\item Antes de entrar al tribunal, Marta lee la información oficial y se hace una idea general de qué es ser jurado.
+\item Le llega la citación (\textit{summons}): fue sorteada de una lista de votantes y conductores. Completa el cuestionario, el juez la excusa de una causa porque conoce al acusado y los abogados evalúan si la dejan en el \textit{jury box}.
+\item Ya sentada, le explican que es una causa civil (seis jurados, \textit{preponderance of the evidence}) y que ella decide los hechos mientras el juez se ocupa de la ley. Su veredicto será \textit{not guilty} o \textit{guilty} según el caso.
+\item Otra vecina, Lucía, integra en cambio un \textit{grand jury}: solo decide si hay \textit{probable cause} para acusar.
+\item Ambas cumplen los requisitos, algunas personas pidieron una excusa por dificultad extrema y todas cobran un viático diario.
+\item Al terminar, Marta se pregunta si esto es más justo que dejar todo en manos de un juez. Ese es el debate de cierre.
+\end{enumerate}
+\end{example}
+
+% =====================================================================
+\chapter[Selección del jurado]{Primer contacto con el texto y selección del jurado}
+% =====================================================================
+
+\section{Lectura exploratoria: título y subtítulos}
+
+La clase se desarrolla en inglés jurídico y trabaja sobre un texto que el docente subió aparte, fuera de las unidades del programa: \textbf{``Learn About Jury Service''}. Antes de leerlo en detalle, se propone observarlo a simple vista y anticipar su contenido a partir de los títulos y subtítulos.
+
+Las primeras observaciones fueron las siguientes:
+\begin{itemize}
+\item El texto trata sobre el \textbf{proceso de selección de los miembros del jurado}.
+\item Los posibles jurados se extraen de una lista donde figuran las personas registradas para votar y las que tienen licencia de conducir, y se los selecciona de forma aleatoria.
+\item Luego completan un cuestionario para determinar si están capacitados para ser jurados.
+\item Los subtítulos mencionan \textit{the types of cases}, con \textit{criminal trial} y \textit{civil trial}: el texto distingue entre causas penales y civiles.
+\item Más adelante aparecen los subtítulos \textit{Grand Jury} y \textit{Petit Jury}. Sin haber leído aún su contenido, la hipótesis formulada fue ``jurado grande, jurado chico'', en función de la cantidad de integrantes.
+\end{itemize}
+
+\section{Consigna de trabajo: mapa conceptual}
+
+Se pide leer el texto hasta el subtítulo \textit{Grand Jury}, donde aparece por primera vez, y extraer conceptos para armar un \textbf{mapa conceptual} con el jurado en el centro.
+
+\begin{exercise}{mapa conceptual sobre el jurado}
+Leer el texto hasta el subtítulo ``Grand Jury''. Extraer conceptos y armar un esquema con el jurado en el centro que muestre: \textbf{cómo se eligen} los jurados, \textbf{quiénes pueden integrarlo} y \textbf{cuáles son los requisitos}. El trabajo se realiza en pequeños grupos (de a dos o de a tres).
+\end{exercise}
+
+\section{Origen de la lista de posibles jurados}
+
+El texto indica que los posibles jurados se seleccionan \textit{randomly}, es decir, \textbf{al azar} (por sorteo), a partir del padrón electoral (\textit{registered voters}) y de las personas que poseen licencia de conducir en el distrito. Esa primera selección es azarosa.
+
+Frente a esta descripción se planteó una objeción: el sistema parecería parcial respecto de quien nunca sacó el registro porque no maneja.
+
+\subsection{La licencia de conducir como documento de identidad}
+
+La objeción se responde considerando que, en Estados Unidos, la licencia de conducir funciona como un \textbf{documento de identidad}:
+\begin{itemize}
+\item No existe allí un DNI, y muchas personas no tienen pasaporte.
+\item El departamento de vehículos automotores emite un documento que acredita la identidad aunque la persona no conduzca. Para obtenerlo no hay que rendir examen alguno; solo presentar la documentación necesaria.
+\item Es la misma institución la que emite el registro de conducir propiamente dicho y este documento de identidad.
+\item A ambos se los denomina \textit{driver's license}, aunque en algunos estados el documento se usa como identidad sin que la persona conduzca de modo habitual; en otros, la denominación puede variar, pero la función es la misma.
+\item El \textit{social security number} se usa muchas veces como identificación, pero no tiene foto: es solamente un número vinculado a la persona y a su nombre.
+\item En cuanto a la comprobación de identidad, hasta hace unos años incluso se aceptaban algunas tarjetas de crédito (por ejemplo, de Citibank). En la Argentina una tarjeta de crédito no se acepta como documento de identidad; en Estados Unidos sí.
+\end{itemize}
+
+Como analogía tomada de películas y series: cuando la policía detiene un vehículo, dice ``licencia y registro''. La \textit{licencia} equivaldría a nuestro DNI y el \textit{registro} a nuestra licencia de conducir.
+
+\subsection{Dos listados que se combinan}
+
+Se combinan dos listados: el de \textbf{votantes registrados} y el de \textbf{titulares de licencia o documento de identidad} del organismo de vehículos. Esto es relevante porque:
+\begin{itemize}
+\item Hay personas que tienen licencia o ese documento pero no están registradas para votar. Así se amplía la cantidad de ciudadanos que pueden ser miembros del jurado.
+\item El padrón de votantes es distinto del argentino: allí el registro es \textbf{voluntario} y no está empadronada toda la población, mientras que en la Argentina están anotados todos desde una determinada edad y hasta una determinada edad.
+\end{itemize}
+
+Del conjunto de ambos listados se selecciona, por sorteo, quiénes pueden participar del jurado de ese distrito.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.2\textwidth}Y@{}}
+\toprule
+EE.~UU. & Listado de votantes registrados (registro voluntario) y listado de titulares de licencia o documento de identidad del organismo de vehículos; se combinan y se sortea. \\
+Argentina & Padrón electoral obligatorio para todos desde una edad determinada; el DNI es el documento de identidad. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Summons y garantía de no discriminación}
+
+En el texto aparece la palabra \textit{summons}, vinculada a la que se había visto al estudiar el proceso, aquí utilizada como verbo: \textit{chosen to be summoned to appear for jury duty}. Quien es elegido recibe una notificación que lo convoca a desempeñarse como jurado.
+
+\begin{definition}{Summons}
+Notificación o convocatoria (también \textbf{emplazamiento}) para que una persona se presente a cumplir el servicio de jurado. \textit{To summon} significa convocar.
+\end{definition}
+
+La elección aleatoria (\textit{random}) busca evitar las subjetividades y la discriminación. El texto lo expresa señalando que la selección se hace sin considerar ciertos factores:
+
+\begin{quote}
+\textit{``\ldots without regard to race, gender, national origin, age or political affiliation.''}
+\end{quote}
+
+\begin{definition}{Jury y juror}
+\textbf{Jury} es el órgano colectivo: el conjunto de miembros que integran el jurado. Está compuesto por \textbf{jurors}, término que designa a cada una de las personas que lo integran. En español se usa la misma palabra (``jurado'') para ambos conceptos; en inglés hay dos.
+\end{definition}
+
+\section{Qualified, excuses y challenges}
+
+\subsection{El cuestionario y el término \textit{qualified}}
+
+Cuando una persona es elegida, debe completar y firmar una aplicación (un cuestionario con preguntas) para verificar si es apta para ser jurado. El texto aclara que ser convocado no garantiza que la persona \textit{actually serve on a jury}.
+
+\begin{important}
+\textbf{Actually} no significa ``actualmente'', sino ``realmente'' o ``de verdad'': es un \textbf{falso cognado}. Una persona puede ser convocada y, por algún motivo, no terminar siendo jurado.
+\end{important}
+
+\begin{definition}{Qualified}
+En este contexto, estar \textit{qualified} significa encontrarse en las condiciones correctas: cumplir los requisitos (por ejemplo, la edad), haber sido convocado como corresponde y no tener ninguno de los impedimentos previstos. \textbf{No} se refiere a idoneidad, título ni formación, que es el sentido habitual de ``calificado'' en español (preparación, habilitación o acreditación para actuar en una profesión).
+\end{definition}
+
+El texto indica que, cuando se necesita un jurado para un juicio, el grupo de personas \textit{qualified} es llevado a la sala del tribunal (\textit{courtroom}, sala de audiencias):
+
+\begin{quote}
+\textit{``When a jury is needed for a trial, the group of qualified jurors is taken to the courtroom.''}
+\end{quote}
+
+\subsection{Excuse y challenge: excusación y recusación}
+
+El propósito del proceso de selección es evitar la participación de personas que no podrían decidir de manera imparcial y justa, para que los integrantes del panel (\textit{members of the panel}) actúen de la manera más efectiva posible. Ejemplos de situaciones problemáticas son: tener un vínculo personal con alguna de las partes (una amistad de muchos años, haber ido juntos al colegio), haber estado presente cuando ocurrieron los hechos o haber atravesado una situación similar. Esas personas, \textit{typically will be excused}.
+
+El juez analiza la identidad de las personas y puede decidir que alguien no participe en esa causa. Ello no implica necesariamente que la persona quede liberada: puede ser destinada a otra causa. Pero para ese proceso en particular queda excluida.
+
+El texto lo menciona de manera general, pero en el video que se verá luego se hace una diferenciación entre dos mecanismos:
+
+\begin{itemize}
+\item \textbf{Excuse}: la plantea la propia persona convocada, que alega que no puede desempeñarse como jurado en esa causa (por ejemplo, por conocer al acusado desde la infancia). Equivale a la \textit{excusación}.
+\item \textbf{Challenge}: la plantean los abogados (o el juez) respecto de los posibles jurados, con preguntas que buscan objetar su participación. Equivale a la \textit{recusación}. Aunque \textit{challenge} suele conocerse como ``desafío'', aquí se traduce como recusación.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.25\textwidth}YY@{}}
+\toprule
+Concepto & Quién lo plantea & Equivalente en español \\
+\midrule
+Excuse & La propia persona convocada & Excusación \\
+Challenge & Los abogados (o el juez) & Recusación \\
+Challenge for cause & Abogados; con motivo fundado; cantidad ilimitada & Recusación con causa \\
+Peremptory challenge (sin causa) & Abogados; sin explicar el motivo; normalmente 5 (en algunos estados, 3) & Recusación sin causa \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Challenges con causa y sin causa}
+
+Existen distintos tipos de \textit{challenges}:
+\begin{itemize}
+\item \textbf{Con causa}: hay un motivo fundado (por ejemplo, que los involucrados se conocen, que existe un vínculo personal o que la persona ya participó del hecho). La cantidad es \textbf{ilimitada}.
+\item \textbf{Sin causa}: normalmente son cinco (en algunos estados, tres). El abogado puede indicar, por ejemplo, que recusa al posible jurado número cuatro (todavía no son jurados) y \textbf{no necesita explicar por qué}.
+\end{itemize}
+
+\subsection{El problema de la discriminación}
+
+Las recusaciones sin causa pueden utilizarse por razones discriminatorias: por género (querer un jurado integrado por mujeres, o por hombres), por edad (preferir personas jóvenes o mayores), por afinidad personal con el candidato, entre otras. Esto genera una fisura respecto del principio de no discriminación que la selección pretende garantizar. Para impedirlo por completo habría que eliminar la posibilidad de las recusaciones sin causa, que hasta donde se sabe siguen vigentes.
+
+Existe, sin embargo, un control: si el juez detecta un \textbf{patrón} (por ejemplo, que siempre se recusa a mujeres o a personas de determinada religión), interviene; también puede hacerlo el abogado de la otra parte mediante un pedido al tribunal. Pero el patrón debe fundamentarse y demostrarse: no es automático.
+
+\begin{important}
+Hay un \textbf{conflicto entre dos principios}: la no discriminación y la facultad de los abogados de recusar a cinco miembros del jurado sin explicar los motivos.
+\end{important}
+
+\section{Estrategia del abogado y protección de la privacidad}
+
+En este sistema los abogados deben trabajar bastante más. Si se conoce más o menos quiénes pueden ser seleccionados, un estudio grande tiene la posibilidad de \textbf{investigar} a esas personas. La selección del jurado es comparable a la etapa de \textit{discovery}: lo que se muestra a la contraparte la anticipa, y lo que se reserva puede permitir sorprenderla después. Es un momento clave, porque el jurado queda conformado por quienes recibirán la prueba y dictarán el veredicto; cuanto más grande es el estudio, más recursos puede destinar a esta etapa.
+
+Existen límites: los abogados \textbf{no pueden interferir con los jurados}, es decir, no pueden hablarles ni perseguirlos. Hoy, sin embargo, internet permite averiguar mucha información.
+
+\begin{example}{la reconstrucción de la vida de ``Juan Pérez''}
+En una clase de Derecho Civil, previa a internet (fines de los años 90), un profesor que había publicado un libro sobre protección de datos personales dividió a los alumnos en grupos y entregó a cada uno fotocopias de distintos registros, con la consigna de extraer toda la información posible. Un grupo tenía el registro de aportes laborales de ``Juan Pérez'' (desde qué fecha aporta, cuántas veces cambió de trabajo); otro, el registro de la obra social (un accidente, estudios, una cirugía); otro, el legajo de recursos humanos. Nadie sabía qué tenían los demás grupos. Al compartir la información, el conjunto permitió reconstruir la vida de Juan Pérez: un accidente, tratamientos posteriores, una separación y detalles del divorcio, cuestiones muy personales. Todos eran registros fácilmente obtenibles.
+
+\textbf{Moraleja:} con documentación de organismos comunes se reconstruye una vida entera; hoy, con internet, aún más.
+\end{example}
+
+Por ello existen medidas de protección para los posibles jurados: apenas ingresan al tribunal se les asigna un \textbf{número}, para que no sean identificados por su nombre y estén menos expuestos. Se busca \textit{desindividualizarlos}.
+
+\section{Jury pool y jury box}
+
+\begin{definition}{Jury pool}
+Grupo amplio o panel de posibles jurados. Se lo convoca en mayor número que el necesario porque se sabe que se irá descartando a varios: por ejemplo, para una causa penal con 12 miembros pueden convocarse unos 24 posibles; en procesos complejos, más del doble.
+\end{definition}
+
+\begin{definition}{Jury box}
+Conjunto de jurados definitivos, es decir, quienes quedan luego de depurar quién sí y quién no. Se llama \textit{box} no porque se los coloque dentro de una caja, sino porque, como se ve en las películas, junto al estrado hay una tarima lateral donde se los sienta aparte. Los potenciales ya pasaron a ser jurados.
+\end{definition}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.18\textwidth}YY@{}}
+\toprule
+Término & Qué es & Ejemplo \\
+\midrule
+Jury pool & Grupo amplio de posibles jurados (panel) & Para un jurado de 12, se convocan unos 24; en causas complejas, más del doble \\
+Jury box & Los jurados definitivos, sentados en el estrado lateral & Los 12 que quedan tras excusas y recusaciones \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell: selección del jurado}
+
+\begingroup
+\small
+\begin{longtable}{QR}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cq{¿De dónde sale la lista de posibles jurados?}{Se combinan el listado de votantes registrados (registro voluntario) y el de titulares de licencia de conducir o documento de identidad del organismo de vehículos; luego se sortea al azar.}
+
+\cq{¿Por qué la licencia de conducir sirve como lista de ciudadanos?}{Porque en EE.~UU. el organismo de vehículos emite un documento de identidad (que también se llama \textit{driver's license}) aunque la persona no conduzca ni rinda examen. Así hay ciudadanos que no votan pero pueden ser jurados.}
+
+\cq{¿Qué es el \textit{summons}?}{La convocatoria o emplazamiento: la notificación que se recibe para presentarse como posible jurado. Ser convocado no garantiza servir realmente (\textit{actually} es un falso cognado: significa ``realmente'').}
+
+\cq{¿Qué garantiza el sorteo y cuál es la diferencia entre \textit{jury} y \textit{juror}?}{Busca evitar subjetividades y discriminación (por raza, género, origen nacional, edad o afiliación política). \textit{Jury} es el órgano colectivo; \textit{juror} es cada persona que lo integra.}
+
+\cq{¿Qué significa \textit{qualified} en este contexto?}{Que la persona cumple los requisitos y no tiene impedimentos. No implica idoneidad, título ni formación, a diferencia del uso de ``calificado'' en español.}
+
+\cq{¿Qué diferencia hay entre \textit{excuse} y \textit{challenge}?}{\textit{Excuse}: la plantea la propia persona convocada (excusación). \textit{Challenge}: la plantean los abogados o el juez (recusación). El \textit{challenge} puede ser con causa (cantidad ilimitada) o sin causa (normalmente 5; en algunos estados, 3).}
+
+\cq{¿Qué riesgo tienen las recusaciones sin causa?}{Pueden usarse con fines discriminatorios sin explicar el motivo. El juez interviene si detecta un patrón, pero debe fundamentarse y demostrarse. Hay un conflicto entre la no discriminación y la facultad de recusar sin causa.}
+
+\cq{¿Hasta dónde llega la estrategia del abogado y cómo se protege al jurado?}{El abogado puede investigar a los posibles jurados, pero no puede interferir con ellos (hablarles o perseguirlos). Para protegerlos se les asigna un número al ingresar al tribunal.}
+
+\cq{¿Qué diferencia hay entre \textit{jury pool} y \textit{jury box}?}{\textit{Jury pool}: grupo amplio de posibles jurados (por ejemplo, 24 para un jurado de 12). \textit{Jury box}: los jurados definitivos que quedan luego de la depuración y se sientan en el estrado lateral.}
+
+\cresumen{El jurado se forma a partir de un sorteo sobre listas de votantes y titulares de licencia, que busca evitar la discriminación. Quienes son convocados (\textit{summons}) completan un cuestionario para determinar si son \textit{qualified}, es decir, si cumplen los requisitos. Luego se los filtra mediante excusas (de la persona) y recusaciones (de los abogados o del juez, con o sin causa). Del \textit{jury pool} se pasa al \textit{jury box}, conformado por los jurados definitivos. Los abogados pueden investigar a los candidatos, pero no interferir con ellos, y estos son identificados por un número.}
+\end{longtable}
+\endgroup
+
+% =====================================================================
+\chapter[Causas, estándares y roles]{Causas, estándares de prueba y roles}
+% =====================================================================
+
+\section{Causas penales y civiles: integrantes y estándar probatorio}
+
+El texto menciona dos tipos de causas en las que puede intervenir el jurado: penales y civiles. La diferencia no es solo la cantidad de integrantes: en una causa \textbf{penal} interviene el Estado, que impulsa el proceso, mientras que en una causa \textbf{civil} se trata de una cuestión entre particulares.
+
+\begin{itemize}
+\item \textbf{Causa penal}: en general intervienen \textbf{12 personas} como miembros del jurado, más los \textit{alternates} (suplentes), previstos por si alguno se enferma o le sucede algo, para que el jurado no deba comenzar de cero ni volver a elegir gente.
+\item \textbf{Causa civil}: en general son \textbf{seis}.
+\end{itemize}
+
+\subsection{Estándar probatorio y unanimidad}
+
+En una causa penal el estándar es \textit{beyond a reasonable doubt} (``más allá de toda duda razonable''), un estándar muy exigente. Cuando los 12 miembros deliberan para emitir el veredicto, ninguno puede manifestar dudas: si alguno vota en sentido contrario, no hay unanimidad y deben volver a votar y a conversar entre ellos.
+
+En una causa civil, salvo que el juez indique otra cosa, no hace falta unanimidad (pueden resolver, por ejemplo, tantos votos contra tantos). Aun así, el estándar probatorio es \textit{preponderance of the evidence} (``preponderancia de la prueba''): de todas las pruebas presentadas, el jurado se inclina a pensar que sí, que la persona es responsable del daño que se le atribuye, antes que lo contrario, aunque pueda tener dudas. Se trata de estándares totalmente distintos en cuanto a su exigencia.
+
+\begin{quote}
+\textit{``The jury must come to a unanimous decision unless specified otherwise.''}
+
+\textit{``The standard of proof is a preponderance of the evidence.''}
+\end{quote}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.2\textwidth}YY@{}}
+\toprule
+ & \textbf{Causa penal (criminal)} & \textbf{Causa civil (civil)} \\
+\midrule
+Quién impulsa el proceso & El Estado (fiscal) & Particulares \\
+Integrantes & En general 12 más suplentes (\textit{alternates}) & En general 6 \\
+Unanimidad & Exigida: si uno duda, deliberan de nuevo & Exigida salvo que el juez indique otra cosa \\
+Estándar probatorio & \textit{Beyond a reasonable doubt} (más allá de toda duda razonable) & \textit{Preponderance of the evidence} (preponderancia de la prueba) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Los settlements}
+
+\begin{definition}{Settlement}
+Acuerdo al que llegan las partes y que puede evitar que el jurado tenga que decidir. Puede producirse en distintos momentos del proceso, y responde a la \textbf{economía procesal}: la idea es acortar las etapas del proceso.
+\end{definition}
+
+Incluso puede darse luego de producida la prueba y con el jurado ya presente, antes de que este pase a deliberar: las partes acuerdan, por ejemplo, el pago de una indemnización. En cualquier caso, recordar las cifras: en causas penales en general son 12 integrantes, en civiles en general seis, y en la selección se convoca a muchos más.
+
+\section{Juez y jurado: derecho y hechos}
+
+El texto se refiere al trabajo conjunto del juez y el jurado (\textit{working together: judge and jury}). El juez resuelve las cuestiones de \textbf{derecho} y el jurado las de \textbf{hecho}, y \textbf{ninguno puede invadir el ámbito del otro}:
+\begin{itemize}
+\item El juez no puede opinar sobre los hechos ni decirle al jurado cómo ocurrieron. Sí puede regular la forma en que se produce la prueba en el tribunal, resolver qué pruebas son admisibles y controlar el comportamiento en la sala: son cuestiones de derecho.
+\item El jurado no puede ocuparse de cuestiones legales, porque está integrado por ciudadanos comunes.
+\end{itemize}
+
+Ambos deben trabajar en conjunto, porque la cuestión se resuelve sobre la base de los hechos y del derecho. En el sistema argentino, todo ello lo hace el juez; en el caso penal, el fiscal y el juez.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.14\textwidth}>{\raggedright\arraybackslash}p{0.2\textwidth}Y@{}}
+\toprule
+Rol & Término en inglés & Función \\
+\midrule
+Juez & \textit{Trier of law} & Determina el derecho aplicable; regula la admisibilidad de la prueba y el comportamiento en la sala; instruye al jurado sobre la ley aplicable \\
+Jurado & \textit{Trier of fact} & Valora la prueba producida en el tribunal y determina cómo ocurrieron los hechos; emite el veredicto \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{definition}{Trier of law y trier of fact}
+El juez es el \textbf{trier of law}: determina cuál es la ley o el derecho aplicable (por ejemplo, la norma sobre quien ingresa a una propiedad privada o el precedente judicial que corresponde aplicar). El jurado es el \textbf{trier of fact}: hace lo mismo respecto de los hechos, en función de las pruebas presentadas en el tribunal, y establece cómo considera que ocurrieron. No existe un sustantivo equivalente en español; se puede decir que el jurado está a cargo de la determinación de los hechos y el juez, de la del derecho.
+\end{definition}
+
+Dado que el jurado recibe la prueba pero no conoce las normas, el juez le da instrucciones sobre el derecho aplicable (\textit{instructs on the applicable law}), para que pueda interpretar la prueba a la luz de las normas.
+
+\subsection{¿Pueden ser jurados los abogados?}
+
+Entre las razones para excluir a una persona del jurado está el \textbf{conocimiento del derecho}: un abogado, o alguien que pertenezca a la justicia, no debe formar parte de un jurado, porque su formación le impediría actuar con imparcialidad y analizar los hechos y la prueba sin evaluar estrategia. En el material consultado no se precisa qué ocurre con los estudiantes de derecho, pero la lógica general apunta a que quienes tienen formación jurídica suelen quedar apartados del jurado por la misma razón.
+
+La razón se vincula con las características del proceso: a diferencia del argentino, que es mayormente escrito, en ese sistema todo es oral y expositivo, con oratoria de los abogados y técnicas de persuasión. Si en el jurado hubiera personas de la misma formación, se verían ``los hilos de la marioneta''. Lo que se necesita es que los hechos los reciba un ciudadano común.
+
+\subsection{Jury of peers}
+
+\begin{definition}{Jury of peers}
+Jurado de \textbf{pares}: personas como cualquiera de nosotros en edad y nivel cultural, sin formación jurídica. Quien pertenece a la disciplina jurídica por su trabajo ya no es tan par de las dos personas en conflicto.
+\end{definition}
+
+\begin{important}
+El juez resuelve el \textbf{derecho} (\textit{trier of law}); el jurado resuelve los \textbf{hechos} (\textit{trier of fact}). Ninguno invade la función del otro, pero trabajan en conjunto. El jurado se compone de pares: ciudadanos comunes, sin formación jurídica.
+\end{important}
+
+\section{El veredicto: \textit{not guilty} no es \textit{innocent}}
+
+El resultado de las deliberaciones es el \textbf{veredicto} (\textit{verdict}), a favor o en contra de una u otra parte. En materia penal el veredicto no dice \textit{innocent} sino \textbf{not guilty} (culpable, no culpable), aunque la palabra \textit{innocent} exista en inglés.
+
+La razón se vincula con el estándar probatorio exigente del derecho penal (más allá de toda duda razonable) y con el hecho de que a veces se absuelve no porque la persona sea inocente, sino porque no se pudo probar bien la culpabilidad. Si, de las 12 personas que deliberan, una tiene dudas y deciden no condenar porque hay alguien en el límite, emiten un veredicto de \textbf{no culpabilidad}: no alcanzaron el estándar probatorio para declarar culpable. No pueden decir que es inocente: no se demostró la inocencia, lo que no se pudo demostrar fue la culpabilidad. Es un tecnicismo, pero tiene consecuencias prácticas. Se considera asimilable a nuestra \textbf{falta de mérito}.
+
+Interviene además otro principio: una persona declarada no culpable no puede ser procesada dos veces por el mismo hecho (\textit{non bis in idem}), por lo que hay principios que entran en conflicto.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.18\textwidth}YY@{}}
+\toprule
+Veredicto & Significado & Equivalente aproximado \\
+\midrule
+Guilty & Se alcanzó el estándar ``más allá de toda duda razonable'' & Culpable / condena \\
+Not guilty & No se alcanzó ese estándar; no equivale a declarar la inocencia & Absolución; asimilable a la falta de mérito \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell: causas, estándares y roles}
+
+\begingroup
+\small
+\begin{longtable}{QR}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cq{¿Qué cambia entre un jurado penal y uno civil?}{Penal: impulsa el Estado, en general 12 integrantes más suplentes (\textit{alternates}), unanimidad y estándar \textit{beyond a reasonable doubt}. Civil: cuestión entre particulares, en general 6 integrantes, unanimidad salvo que el juez indique otra cosa y estándar \textit{preponderance of the evidence}.}
+
+\cq{¿Qué significan los dos estándares probatorios?}{\textit{Beyond a reasonable doubt}: más allá de toda duda razonable (muy exigente). \textit{Preponderance of the evidence}: preponderancia de la prueba; el jurado se inclina a pensar que sí hay responsabilidad aunque tenga dudas.}
+
+\cq{¿Qué es un \textit{settlement} y por qué se da?}{Un acuerdo entre las partes que puede producirse en distintos momentos del proceso y evita que el jurado decida. Responde a la economía procesal: acortar las etapas.}
+
+\cq{¿Qué diferencia hay entre \textit{trier of law} y \textit{trier of fact}?}{El juez (\textit{trier of law}) determina el derecho aplicable, regula la prueba y el comportamiento en la sala e instruye al jurado. El jurado (\textit{trier of fact}) determina los hechos según la prueba. Ninguno invade la función del otro.}
+
+\cq{¿Qué es un \textit{jury of peers} y por qué se excluye a quienes trabajan en el derecho?}{Es un jurado de pares: ciudadanos comunes, sin formación jurídica. Quien tiene conocimiento del derecho no podría actuar con imparcialidad ni evaluar los hechos sin pensar en estrategia, y en un proceso oral y de persuasión se le ``verían los hilos de la marioneta''.}
+
+\cq{¿Por qué se dice \textit{not guilty} y no \textit{innocent}?}{Porque el veredicto indica que no se alcanzó el estándar para declarar la culpabilidad, no que se haya demostrado la inocencia. Es asimilable a la falta de mérito.}
+
+\cresumen{En una causa penal interviene el Estado y el jurado suele tener 12 integrantes más suplentes, con unanimidad y el estándar \textit{beyond a reasonable doubt}; en una causa civil son en general 6 y el estándar es \textit{preponderance of the evidence}. El proceso puede terminar antes mediante un \textit{settlement}. El juez es el \textit{trier of law} y el jurado, formado por pares, el \textit{trier of fact}; ninguno invade el ámbito del otro. El veredicto penal dice \textit{guilty} o \textit{not guilty}, y este último no equivale a declarar la inocencia.}
+\end{longtable}
+\endgroup
+
+% =====================================================================
+\chapter{Tipos de jurado}
+% =====================================================================
+
+\section{Trial jury (petit jury)}
+
+El texto distingue dos tipos de jurado, \textit{types of juries and their functions in the federal courts}: \textit{trial juries} y \textit{grand juries}. No se diferencian solo por la composición ni por la cantidad de miembros, sino también por su \textbf{función}: hacen cosas distintas. Aunque \textit{petit} (del francés) alude a un jurado pequeño, con menos gente, y \textit{grand} a uno más grande, la cantidad no es lo determinante.
+
+\textit{Trial jury} (o \textit{petit jury}) es el jurado de la \textbf{etapa probatoria}: el que interviene en el juicio, cuando efectivamente se produce la prueba.
+
+\begin{quote}
+\textit{``The jury decides whether the defendant committed the crime(s) as charged in a criminal case\ldots''}
+
+\textit{``\ldots[in a civil case] the jury decides whether the defendant injured the plaintiff.''}
+\end{quote}
+
+\begin{itemize}
+\item En el ámbito penal decide si el acusado cometió el delito; en el civil, si el demandado causó daño al demandante. En penal son en general 12 integrantes; en civil, en general seis (aunque puede variar en una causa compleja).
+\item Los juicios son, en general, \textbf{públicos}, pero las \textbf{deliberaciones} de los miembros del jurado son \textbf{privadas}.
+\item \textit{To appear} significa comparecer. El texto se refiere al \textit{defendant} (demandado o acusado), que tiene derecho a comparecer ante el tribunal, a que el proceso no se lleve adelante en su ausencia, a testificar y a llamar testigos, todo en presencia de los miembros del jurado.
+\end{itemize}
+
+\section{Grand jury}
+
+\begin{definition}{Grand jury}
+Jurado que analiza la evidencia, pero no en la etapa probatoria del proceso: interviene mucho antes. Solo actúa en materia penal. Está integrado por entre 16 y 23 personas, según la complejidad de la causa, y no está abierto al público. Hace las veces de la \textbf{instrucción} del sistema argentino y a veces se lo traduce como jurado de instrucción o de investigación.
+\end{definition}
+
+\begin{quote}
+\textit{``The grand jury is presented with evidence from the U.S. attorney.''}
+
+\textit{``The grand jury determines whether there is probable cause to believe the individual has committed the crime and should be put on trial.''}
+\end{quote}
+
+El \textit{U.S. attorney} es el fiscal, quien promueve el proceso penal y presenta determinadas pruebas a los integrantes del \textit{grand jury}. Estos deciden si existe \textit{probable cause}.
+
+\begin{definition}{Probable cause}
+Estándar que se traduce como ``causa probable'', pero que en realidad alude a \textbf{indicios probatorios}. Todavía no se está produciendo la prueba: se evalúa si hay pruebas preliminares de que el hecho existió y de que hay elementos contra la persona, es decir, si hay elementos para que el sospechoso atraviese efectivamente el proceso penal. Se relaciona con la acusación formal.
+\end{definition}
+
+\subsection{Comparación con el sistema argentino}
+
+En el sistema argentino, el paso de la sospecha a la imputación y al procesamiento ocurre en la etapa de \textbf{instrucción}, con un juez instructor asistido por el fiscal:
+\begin{enumerate}
+\item Juez y fiscal reúnen pruebas, material e indicios.
+\item Se cita a la persona a indagatoria, para que conteste preguntas o exponga su versión de los hechos.
+\item El juez tiene \textbf{diez días} para decidir si lo \textbf{procesa}, lo \textbf{sobresee} o dicta \textbf{falta de mérito}.
+\item Si decide procesarlo, puede hacerlo con o sin prisión preventiva, mediante un \textbf{auto de procesamiento}.
+\end{enumerate}
+
+En el sistema estadounidense, en cambio, esa función la puede cumplir el \textit{grand jury}; no siempre, pero puede hacerlo.
+
+\begin{example}{por qué puede caerse una causa en esta etapa}
+Pueden caerse las pruebas: se cuenta con testigos, pero al escucharlos resulta que su testimonio es \textbf{de oídas} (\textit{hearsay}); otra prueba es un documento obtenido ilícitamente; además la persona puede tener una \textbf{coartada} (por ejemplo, demostrar que estaba en otro país mediante un pasaje de avión o una reserva de hotel). Si todas las pruebas se caen, se cae la causa.
+\end{example}
+
+El acusado y su abogado \textbf{no tienen derecho a comparecer} ante el \textit{grand jury}, porque se está investigando. La denominación ``gran jurado'' no está mal, pero no se vincula tanto con la cantidad de integrantes, que sí es mayor, sino con la \textbf{función} que cumple: una tarea de investigación equivalente a nuestra instrucción.
+
+\begin{note}
+Se expuso una reflexión sobre los tiempos del proceso. El proceso de selección del jurado es engorroso: pasan semanas para convocar a la gente, hay excusas, certificados médicos y distintas fechas. Quizá sea más expeditivo que los juicios argentinos, pero se pierden semanas en dilaciones porque se maneja a mucha gente común con sus circunstancias. En los procesos nuevos de la Argentina, en cambio, intervienen el fiscal, el juez y los abogados (todos profesionales del derecho), con escritos y plazos. Para comparar los tiempos habría que considerar también la etapa de \textit{discovery}, un momento procesal propio del sistema anglosajón que en la Argentina no existe, ya que la prueba se ofrece directamente en la demanda. La comparación quedó planteada como una observación útil, pero no fue verificada con un abogado que ejerza en Estados Unidos.
+\end{note}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.2\textwidth}YY@{}}
+\toprule
+ & \textbf{Trial jury (petit jury)} & \textbf{Grand jury} \\
+\midrule
+Etapa & Probatoria / juicio; decide si hay responsabilidad o culpabilidad & Previa al juicio; decide si hay \textit{probable cause} para acusar \\
+Materia & Penal y civil & Solo penal \\
+Integrantes & Penal: 12 (más suplentes). Civil: 6 & Entre 16 y 23, según la complejidad \\
+Publicidad & Juicio público; deliberación privada & No abierto al público; sin comparecencia del acusado ni de su defensa \\
+Quién presenta la prueba & Las partes, en el juicio & El fiscal (\textit{U.S. attorney}) \\
+Resultado & Veredicto (\textit{verdict}) & \textit{Indictment} (acusación formal) \\
+Equivalente argentino & Juicio oral & Instrucción y auto de procesamiento \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Indictment e information}
+
+Si el \textit{grand jury} concluye que hay indicios probatorios suficientes para procesar a la persona, emite un \textbf{indictment}: la acusación formal, equivalente a nuestro auto de procesamiento (aunque no se lo llama ``auto'' porque no lo dicta una autoridad judicial, sino el procesamiento o acusación formal).
+
+Cuando no participa el \textit{grand jury} (porque no siempre está) y lo hace directamente el juez, el escrito se llama \textbf{information}. También es un escrito, y es comparable con el auto de elevación a juicio argentino.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.2\textwidth}YY@{}}
+\toprule
+Documento & Quién lo emite & Equivalente \\
+\midrule
+Indictment & El \textit{grand jury} & Auto de procesamiento / acusación formal \\
+Information & Directamente el juez (sin \textit{grand jury}) & Similar al auto de elevación a juicio \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{¿Cuándo procede el grand jury? Federalismo}
+
+El \textit{grand jury} \textbf{no siempre} interviene en los procesos judiciales: es una característica de ciertos sistemas de justicia penal. Procede en juicios penales en los que el delito presunto es muy grave (delitos aberrantes, delitos con posible pena de muerte). Es obligatorio a nivel federal para delitos graves; en general son los delitos para los que los estados prevén pena de muerte o una pena de prisión muy severa. No se usa para delitos menores.
+
+La razón es que, si bien el estándar probatorio posterior será el mismo (\textit{beyond a reasonable doubt}), lo que está en juego es mucho más importante. Se refuerza así la decisión de procesar o no a la persona, de modo que no recaiga solo en el fiscal sino que se traslade a un jurado de pares, considerado más justo, equitativo y representativo de la ciudadanía.
+
+Se mencionó, con carácter complementario, que en California se ha planteado el uso del \textit{grand jury} en funciones civiles de control y auditoría del gasto público, aunque este punto no fue desarrollado con detalle ni se verificó de forma concluyente en el material base.
+Aunque en principio el \textit{grand jury} procede solo en materia penal, se planteó la posibilidad de que la figura haya sido adaptada a otras funciones de control institucional, en un paralelo con mecanismos argentinos de participación o fiscalización ciudadana.
+
+\subsection{Federalismo: cada estado es una jurisdicción distinta}
+
+La gran diferencia de Estados Unidos con la Argentina es el \textbf{federalismo}, mucho más pronunciado: los estados pueden tener su propia normativa, sus propias pautas y sus propios procedimientos. En la Argentina, en cambio, todo está bastante unificado: puede haber procedimientos distintos, pero en general las pautas son las mismas y la normativa es nacional.
+
+\begin{important}
+En Estados Unidos lo federal es \textbf{orientativo}: no todo es obligatorio y los estados pueden apartarse. Lo federal fija un principio rector o base común, pero cada estado regula luego lo de fondo y lo de forma. Al investigar un tema o analizar un fallo se debe \textbf{identificar de qué estado se trata}, consultar la página del Poder Judicial de ese estado (si es un fallo) o su normativa o código, y tratar a los estados como entidades prácticamente distintas.
+\end{important}
+
+\section{Cuadro Cornell: tipos de jurado}
+
+\begingroup
+\small
+\begin{longtable}{QR}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cq{¿Qué hace el \textit{trial jury} (\textit{petit jury})?}{Interviene en la etapa probatoria: en lo penal decide si el acusado cometió el delito; en lo civil, si el demandado causó daño al demandante. El juicio es público y la deliberación, privada. El acusado o demandado puede comparecer, testificar y llamar testigos.}
+
+\cq{¿Qué es el \textit{grand jury}?}{Un jurado de entre 16 y 23 personas, solo penal y no abierto al público, que recibe la prueba del fiscal (\textit{U.S. attorney}) antes del juicio y decide si hay \textit{probable cause}. Cumple una función similar a la instrucción argentina.}
+
+\cq{¿Qué es \textit{probable cause}?}{Un estándar que equivale a indicios probatorios: pruebas preliminares de que el hecho existió y de que hay elementos contra la persona para que atraviese el proceso penal.}
+
+\cq{¿Cómo se compara con el sistema argentino?}{Acá el juez instructor, con ayuda del fiscal, reúne pruebas, cita a indagatoria y en diez días decide si procesa, sobresee o dicta falta de mérito (auto de procesamiento). En EE.~UU. esa función puede cumplirla el \textit{grand jury}.}
+
+\cq{¿Cómo se llama la acusación formal en cada caso?}{\textit{Indictment}, si la emite el \textit{grand jury} (auto de procesamiento); \textit{information}, si la emite directamente el juez sin \textit{grand jury} (similar a la elevación a juicio).}
+
+\cq{¿Siempre hay \textit{grand jury}?}{No. A nivel federal es obligatorio para delitos graves (penas severas o capitales); no se usa para delitos menores, porque en esos casos se busca que la decisión de procesar no recaiga solo en el fiscal.}
+
+\cq{¿Por qué importa el federalismo?}{Porque lo federal es orientativo y cada estado tiene su propia normativa y procedimientos. Hay que identificar el estado y consultar su Poder Judicial o su código.}
+
+\cresumen{El \textit{petit} o \textit{trial jury} decide en el juicio (12 integrantes en lo penal y 6 en lo civil), mientras que el \textit{grand jury} (entre 16 y 23 personas, solo penal y no público) decide antes del juicio si hay \textit{probable cause} para acusar, a partir de la prueba que presenta el fiscal. Su decisión es el \textit{indictment}; cuando interviene directamente el juez, el escrito se llama \textit{information}. La diferencia entre ambos jurados es de función, más que de cantidad. El \textit{grand jury} no siempre interviene y, por el federalismo, cada estado tiene sus propias reglas.}
+\end{longtable}
+\endgroup
+
+% =====================================================================
+\chapter[Requisitos, exenciones y compensación]{Requisitos, exenciones y compensación}
+% =====================================================================
+
+\section{Juror qualifications: requisitos para ser jurado}
+
+El texto se refiere a las \textit{juror qualifications}. Como en el caso anterior, no se trata de calificación en cuanto a idoneidad, sino de \textbf{requisitos}.
+
+\begin{important}
+Requisitos mencionados para ser jurado federal:
+\begin{itemize}
+\item Ser ciudadano estadounidense.
+\item Ser mayor de 18 años.
+\item Residir principalmente en el distrito judicial, por lo menos durante un año. (Quien se mudó hace dos meses, en teoría no puede desempeñarse como jurado.)
+\item Manejar el inglés (\textit{proficient}): toda la prueba se produce en inglés y la persona debe poder completar el formulario sin ayuda.
+\item No tener una discapacidad o condición física o mental que inhabilite.
+\item No tener cargos penales pendientes por un delito grave (\textit{felony}), esto es, punible (\textit{punishable}) con más de un año de prisión.
+\item No haber sido condenado por un delito grave, salvo que hayan sido legalmente restituidos sus derechos civiles (\textit{civil rights legally restored}).
+\end{itemize}
+\end{important}
+
+Respecto del último requisito, se mencionó que en la Argentina personas con condena se presentan a cargos públicos. Se aclaró que una persona puede haber sido condenada, haber cumplido su condena y haber recuperado sus derechos civiles; pero quien está cumpliendo una condena o tiene una condena penal vigente no puede integrar un jurado, por falta de lógica.
+
+\subsection{Exención del servicio federal}
+
+El texto menciona los grupos que pueden quedar exceptuados (\textit{exempt from federal service}). En Estados Unidos estas son pautas federales, y cada estado tendrá su propia normativa; en general siguen una línea más o menos uniforme, pero puede haber diferencias.
+
+Pueden eximirse:
+\begin{itemize}
+\item Los miembros de las \textbf{fuerzas armadas en servicio activo}.
+\item Los miembros de los \textbf{departamentos de policía y de bomberos profesionales}.
+\item Los \textbf{funcionarios públicos} de los tres niveles de gobierno que se desempeñen a tiempo completo (\textit{full time}). Por ejemplo, no se puede sacar a un ministro de sus funciones para que integre el jurado.
+\end{itemize}
+
+El ejercicio de una función pública puede ser, entonces, una causal de exclusión. En estos casos se \textbf{impide} (no se prohíbe) que la persona sea jurado: aun si quiere hacerlo, no se le permitirá. Son limitaciones, motivos para excluir.
+
+\section{Excuses: dificultad extrema y discrecionalidad judicial}
+
+Las \textit{excuses} son planteadas por la propia persona (``yo no puedo porque\ldots''). El problema es cómo diferenciar los casos en que hay un impedimento real de aquellos en que se alegan motivos que afectan a casi todos (tener hijos, tener que trabajar). Ahí interviene el juez: decide hasta dónde permite excusarse y si considera lógico el motivo.
+
+\begin{quote}
+\textit{``Each of the 94 federal district courts maintains its own jury procedures and policies regarding excuses from jury service.''}
+
+\textit{``Many courts offer excuses from service on individual request to designated groups of persons or occupational classes. Such classes include persons over 70 years of age\ldots''}
+
+\textit{``Excuses from jury service are granted at the discretion of the court.''}
+\end{quote}
+
+Esto depende de cada jurisdicción: son \textbf{94 tribunales de distrito federales}, y cada uno decide cuáles son las causales para excusarse.
+
+\begin{example}{el cirujano único de la zona}
+Una persona alega ser cirujano, estar de guardia tres veces por semana, 24 o 48 horas de corrido, y ser el único cirujano de la zona. Es poco común que los médicos entren en la categoría de exentos, porque si trabajan en el ámbito privado no son funcionarios públicos. Pero la persona puede alegar que, si se produce un accidente y alguien necesita una urgencia, ella es la única especialista. El juez debe evaluarlo.
+\end{example}
+
+Categorías que el texto menciona para excusarse:
+\begin{itemize}
+\item \textbf{Mayores de 70 años}. La lógica es similar a la de otras convocatorias públicas: las personas de mayor edad pueden quedar eximidas por la carga y la edad, y el sistema puede ofrecer incentivos o convocatorias voluntarias para evitar que la obligación resulte excesivamente gravosa. En la práctica, cada tribunal fija las reglas específicas.
+\item Personas que en los últimos dos años ya se hayan desempeñado como jurados en el ámbito federal.
+\item \textbf{Voluntarios} que sean miembros de bomberos o de cuerpos de rescate. Se diferencian de los profesionales, que quedan exceptuados directamente.
+\item Los casos de \textit{undue hardship or extreme inconvenience}.
+\end{itemize}
+
+\subsection{Undue hardship o extreme inconvenience}
+
+Se refiere a una dificultad o un contratiempo indebido, pero no es tan fácil de obtener. Algunos ejemplos: tener a un familiar enfermo o postrado a cargo y ser la única persona que puede ocuparse; tener un hijo discapacitado sin nadie más a quien acudir; o una cuestión laboral en la que, si la persona se ausenta, no tiene quién la cubra y le ocasiona un perjuicio. La solicitud debe hacerse \textbf{mediante fundamentación escrita}, y el juez resolverá si hace lugar o no. Lo que resuelve el juez queda firme.
+
+Todo esto forma parte del proceso de selección y explica por qué lleva tiempo: un posible jurado dice que no puede y el juez debe resolver; no es tan instantáneo como se cree.
+
+\begin{note}
+El video que se verá proviene de la página del Poder Judicial de New South Wales (Australia). Es un video informativo, muy actuado, para que la ciudadanía comprenda de qué se trata ser jurado. En un momento, una persona afirma que no puede ausentarse del trabajo porque tiene a su cargo un equipo; el juez le pregunta si no se toma vacaciones, la persona responde que sí, y que dejó a su equipo a cargo. Entonces, si se puede ausentar por vacaciones, también puede hacerlo para ser jurado. Las excusas empiezan a surgir, pero el juez debe analizar si realmente corresponden.
+\end{note}
+
+\section{Jury pay: compensación del jurado}
+
+El texto trata el \textit{jury pay}, distinguiendo entre \textit{petit jury} y \textit{grand jury}. No es una remuneración: no se remunera la función de jurado, sino que se entrega un monto para que pueda afrontar los gastos cotidianos.
+
+\begin{definition}{Allowance}
+Estipendio: suma de dinero determinada para cubrir los gastos diarios (viático de comidas, estacionamiento, etc.). También puede traducirse como ``mesada''. Se complementa con el \textbf{reembolso} del transporte razonable (\textit{reasonable transportation}).
+\end{definition}
+
+\begin{itemize}
+\item \textbf{Petit jury}: los jurados federales reciben $\$50$ por día (\textit{federal jurors get \$50 a day}), pudiendo llegar hasta $\$60$ si el servicio se prolonga (en el texto, diez días).
+\item \textbf{Grand jury}: también $\$50$ por día; pueden recibir hasta $\$60$ si el servicio supera los \textbf{45 días}. Además se les reembolsan gastos como el alojamiento. Cambian los montos y la cantidad de días, pero el esquema es el mismo.
+\item \textbf{Empleados del gobierno federal}: reciben su salario habitual en lugar del arancel (\textit{in lieu of}, ``en lugar de'').
+\end{itemize}
+
+\begin{quote}
+\textit{``Federal employees\ldots [receive] their regular salary in lieu of [the] fee.''}
+
+\textit{``\ldots The Jury Act forbids any employer from discharging, threatening, or intimidating any permanent employee because of federal jury service.''}
+\end{quote}
+
+\subsection{¿Y el empleador privado?}
+
+El texto usa el verbo modal \textit{may}: el empleador \textbf{puede} continuar pagando el sueldo mientras la persona se desempeña como jurado, pero la ley federal no se lo exige (\textit{nonetheless}, ``sin embargo'', introduce la contraposición). La ley de jurados le prohíbe, además, despedir, intimidar o presionar a un empleado permanente para que vuelva al trabajo. Entonces el empleador puede no pagar, pero no puede despedir.
+
+El texto no contempla al trabajador independiente o autónomo. En la práctica, la situación puede variar según el tipo de actividad y la normativa local, pero la regla general es que la ausencia por servicio de jurado puede afectar el funcionamiento del negocio o de la profesión, por lo que ese punto queda abierto a análisis específico.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{0.2\textwidth}YY@{}}
+\toprule
+ & \textbf{Petit (trial) jury} & \textbf{Grand jury} \\
+\midrule
+Pago diario & $\$50$ (hasta $\$60$ según días de servicio) & $\$50$ (hasta $\$60$ si superan 45 días) \\
+Umbral de aumento & Se prolonga el juicio (10 días en el texto) & 45 días de servicio \\
+Empleados federales & Reciben su salario habitual (\textit{in lieu of} el arancel) & Reciben su salario habitual; se reembolsan gastos como alojamiento \\
+Empleador privado & Puede seguir pagando, no está obligado; no puede despedir ni intimidar & Ídem \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cuadro Cornell: requisitos, exenciones y compensación}
+
+\begingroup
+\small
+\begin{longtable}{QR}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cq{¿Qué requisitos exige la ley federal para ser jurado?}{Ser ciudadano estadounidense; mayor de 18 años; residir en el distrito judicial al menos un año; manejar el inglés; no tener una discapacidad física o mental que inhabilite; no tener cargos pendientes por un delito grave (\textit{felony}, punible con más de un año de prisión) ni condena por uno, salvo que los derechos civiles hayan sido restituidos.}
+
+\cq{¿Quiénes pueden quedar exentos del servicio federal?}{Miembros de las fuerzas armadas en servicio activo, policía y bomberos profesionales, y funcionarios públicos de los tres niveles de gobierno que se desempeñen a tiempo completo. Se les impide ser jurados.}
+
+\cq{¿Cuándo el juez acepta una excusa?}{A su discreción. Cada uno de los 94 tribunales de distrito federales fija sus propias políticas. Las categorías incluyen mayores de 70 años, jurados de los últimos dos años y voluntarios de bomberos o rescate.}
+
+\cq{¿Qué es \textit{undue hardship or extreme inconvenience}?}{Una dificultad o inconveniente extremo (por ejemplo, ser el único cuidador de un familiar enfermo o no tener quién cubra el trabajo) que debe alegarse por escrito. El juez resuelve si hace lugar o no.}
+
+\cq{¿Cuánto cobra un jurado?}{Un estipendio (\textit{allowance}) de $\$50$ por día, hasta $\$60$ si el servicio se prolonga (10 días en \textit{petit jury}, 45 en \textit{grand jury}), más reembolso del transporte razonable y otros gastos. No es una remuneración.}
+
+\cq{¿Qué pasa con el trabajo del jurado?}{Los empleados federales reciben su salario habitual. El empleador privado puede seguir pagando pero no está obligado, y no puede despedir ni intimidar al empleado por su servicio como jurado.}
+
+\cresumen{Para ser jurado federal se exige ciudadanía estadounidense, ser mayor de 18 años, residir un año en el distrito, manejar el inglés, no tener impedimentos físicos o mentales ni cargos o condenas por delitos graves (salvo restitución de derechos). Algunas personas quedan exentas (fuerzas armadas, policía, bomberos y funcionarios a tiempo completo) y otras pueden pedir excusas, siempre a discreción del tribunal. El jurado cobra un estipendio diario de $\$50$ (hasta $\$60$) y el reembolso de gastos; los empleados federales cobran su salario y el empleador privado no puede despedirlos ni intimidarlos.}
+\end{longtable}
+\endgroup
+
+% =====================================================================
+\chapter[Debate: jurado de pares vs. juez técnico]{Debate: jurado de pares frente a juez técnico}
+% =====================================================================
+
+\section{La viñeta del juicio por jurados: \textit{disadvantages}}
+
+Se analiza una historieta que forma parte del material de la unidad penal. En ella aparece un \textit{jury box}, es decir, el estrado donde se encuentran los jurados ya elegidos. El título alude a las \textit{disadvantages} (desventajas, puntos en contra) del juicio por jurados.
+
+En la viñeta se ven seis jurados adelante y sombras detrás, lo que sugiere que son 12: por lo tanto, se trata de un juicio penal. Los jurados tienen en la cabeza la influencia de la televisión, el diario y la radio. Esto puede trasladarse a épocas posteriores (por ejemplo, lo que antes era Twitter, ahora X). En definitiva, los medios de comunicación, según la época, pueden impactar en las ideas, conceptos y preconceptos de personas que son \textit{peers}: ciudadanos comunes, sin ninguna formación jurídica, que deben resolver el destino de otra persona. Lo mismo ocurre en civil y en penal, pero en penal se hace más evidente porque la sanción es más grave.
+
+\subsection{Los pensamientos de los jurados en la viñeta}
+
+Los jurados tienen globos con ideas, como si pensaran en lugar de hablar:
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.38\textwidth}Y@{}}
+\toprule
+\textbf{Globo de pensamiento} & \textbf{Lo que ilustra} \\
+\midrule
+``Guilty, guilty, guilty'' & Prejuicio: la persona ya decidió, diga lo que diga la defensa \\
+``I wonder if the defense attorney is single'' & Distracción: está pensando en otra cosa \\
+``Reasonable doubt\ldots what's reasonable?'' & Reflexiona sobre el estándar: ¿qué es ``razonable''? Relativiza todo \\
+``I saw this on Matlock'' & Influencia de los medios: series de juicios \\
+``Guilt = evidence $\div$ alibi\ldots'' & Trata la culpabilidad como un cálculo matemático, con parámetros rígidos \\
+(Nota musical) & Otro jurado está cantando: desatención \\
+``What an honor to be an American citizen\ldots'' & Honra de servir como jurado (la visión positiva) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Individuos, medios y sesgos}
+
+La viñeta plantea la influencia de los medios y que los jurados son \textbf{individuos}. También el juez es un individuo, aunque se presume que está formado para la objetividad y que adquirió pautas para dejar de lado los sesgos. Pero esa visión también tiene su contracara: el juez mira todo desde arriba, y se produce un alejamiento de la cuestión humana, porque se vuelve un especialista técnico. Como ejemplo, se mencionó que los jueces regulan alimentos provisorios con montos muy bajos.
+
+La defensa del juicio por jurados es que quien resuelve el conflicto es alguien como cualquiera de nosotros, a quien le pasan las mismas cosas, y por eso la decisión será más justa. Pero ese jurado está también más sometido a distracciones, prejuicios e influencias externas (de los medios, de la familia, de los amigos).
+
+\begin{important}
+Conclusión del docente: \textbf{no hay un sistema perfecto}.
+\end{important}
+
+\section{¿Juicio por jurados en Argentina? Un debate abierto}
+
+Según el docente, la Argentina está ``en pañales'' respecto del juicio por jurados. Esta institución proviene de años de tradición en el sistema anglosajón, mientras que el sistema argentino fue tradicionalmente escrito. Se mencionó que el juicio por jurados está previsto en la Constitución, pero nunca se usó y no hay trayectoria. No se impuso porque la sociedad es más técnica y profesionalizante: se acude a la autoridad, a la idea de que el juez, el profesional especialista, es quien está preparado para decir cómo debe ser. Es otra idiosincrasia. Hasta ahora son relativamente pocas las jurisdicciones donde existe el juicio por jurados; el docente no sabe si terminará siendo la regla.
+
+La cuestión debe pensarse a la luz de la historia, como ocurre con el estudio del derecho constitucional: el sistema anglosajón se conformó a partir de la aplicación del precedente y de la norma no escrita (la Constitución no escrita ni codificada del Reino Unido), y tiende a un proceso más oral y con más participación de otras partes. El sistema argentino es más rígido: prima la norma, lo escrito y la autoridad que decide. Tiene que transcurrir un tiempo para que eso se flexibilice.
+
+\subsection{Posturas expresadas en clase}
+
+\begin{itemize}
+\item \textbf{Preferencia por el juez.} Un estudiante señaló que, pensando en todo lo expuesto, prefiere un juez. Pero planteó un caso en que preferiría un jurado de particulares: el del acusado adolescente o joven que cometió un delito con circunstancias atenuantes (la edad, un contexto social), que un juez podría no evaluar y limitarse a decir que ``cometió tal delito, tiene que ser condenado''. Un jurado sería más empático.
+\item \textbf{Sistema mixto.} Otro estudiante propuso un sistema más mixto, y señaló que los juzgados y las providencias están en mal estado y que se ha degradado la visión del Poder Judicial.
+\item \textbf{Dudas sobre la probidad de los jueces.} Un estudiante mencionó un fallo reciente de la Corte Suprema que sostuvo que la soberanía territorial no es un derecho de incidencia colectiva. La referencia se planteó como ejemplo de un debate más amplio sobre la confianza institucional y la posible conveniencia de un sistema mixto, sin que la discusión se cerrara sobre una conclusión definitiva.
+\end{itemize}
+
+El docente coincide en que el sistema profesionalizante puede llevar a un excesivo tecnicismo en el que los jueces pierden la visión (indemnizaciones sin sentido; un perito que no cobra durante diez años por un tecnicismo). Desde ese lugar, considera que ese sistema no está funcionando. Pero también tiene dudas sobre el juicio por jurados: se resuelve ese problema, pero aparecen otros peligrosos. Por ejemplo, personas que opinan, en relación con la pena de muerte o con determinadas penas (la reclusión perpetua, que en la Argentina no es perpetua), ``que lo maten'', sin saber que en la Argentina no existe la pena de muerte. Esas personas pueden integrar un jurado, dejarse llevar por la emocionalidad y lo visceral sin analizar, y no tienen por qué conocer pautas como las de una convención internacional. Son las dos caras de la misma moneda. El docente cree que no hay sistema perfecto y que, si se pasa a un sistema mixto, quizás sea la solución, porque ambos tienen fallas: uno ya se está experimentando en la Argentina y el otro hay que ver cómo prospera y se instala.
+
+\begin{important}
+\textbf{A favor del jurado de pares:} más empatía, más legitimidad ciudadana, decisión de alguien ``como cualquiera de nosotros''. \textbf{En contra:} vulnerabilidad a prejuicios, medios y emociones, y falta de formación jurídica.
+
+\textbf{A favor del juez técnico:} formación y objetividad. \textbf{En contra:} tecnicismo, distancia de la cuestión humana y demoras.
+
+\textbf{Conclusión del docente:} no hay un sistema perfecto; un sistema mixto podría ser una solución.
+\end{important}
+
+\section{Cierre y próxima actividad}
+
+La semana siguiente comienza el tema de \textbf{derecho penal}; se indica tener a mano la unidad de penal. Antes se realizará una clase asincrónica con el video de Australia, que profundiza en la selección del jurado vista en esta clase. El video tiene títulos en inglés, por lo que se recomienda pausar las veces que sea necesario. Se debe prestar atención a la terminología (por ejemplo, \textit{challenge} y \textit{excuse}) y a los nombres de los tribunales: al tratarse de un país monárquico que reconoce a la Corona del Reino Unido, aparecerán nombres como \textbf{King's Bench}. También hay más funcionarios dentro del juzgado además del juez. En cuanto a la dinámica de la selección, al principio es aleatoria (\textit{random}), pero luego se depura: no cualquiera integra el jurado.
+
+\begin{exercise}{video del Poder Judicial de New South Wales}
+Ver el video del Poder Judicial de New South Wales (Australia) sobre la selección del jurado, con subtítulos en inglés y pausas. Prestar atención a la terminología: \textit{challenge}, \textit{excuse} y los nombres de los tribunales (\textit{King's Bench}). Completar la actividad que se publica en el aula virtual (con una ventana amplia). Tener a mano la unidad de penal: la clase siguiente comienza con ese tema.
+\end{exercise}
+
+\section{Cuadro Cornell: debate y cierre}
+
+\begingroup
+\small
+\begin{longtable}{QR}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+
+\cq{¿Qué riesgos tiene un jurado de ciudadanos comunes?}{Está más expuesto a prejuicios, a la influencia de los medios, a distracciones y a la emotividad. La viñeta lo ilustra con globos de pensamiento que muestran prejuicio, distracción, influencia de series y cálculo rígido.}
+
+\cq{¿Qué se plantea a favor y en contra del juez técnico?}{Se presume que está formado para la objetividad, pero puede caer en el tecnicismo y alejarse de la cuestión humana. El jurado, en cambio, es alguien como cualquiera de nosotros, por lo que su decisión sería más justa y empática.}
+
+\cq{¿Por qué el juicio por jurados no se consolidó en la Argentina?}{Porque, aunque está previsto en la Constitución, nunca tuvo trayectoria: el sistema fue tradicionalmente escrito y profesionalizante, con confianza en el juez como especialista. El sistema anglosajón, en cambio, se desarrolló sobre el precedente, la norma no escrita y la oralidad.}
+
+\cq{¿Qué conclusión se extrae del debate?}{No hay un sistema perfecto. Un sistema mixto podría ser una solución, ya que ambos sistemas tienen fallas.}
+
+\cq{¿Qué hay que preparar para la próxima clase?}{Ver el video de New South Wales (Australia) con subtítulos en inglés, atender a la terminología (\textit{challenge}, \textit{excuse}, \textit{King's Bench}), completar la actividad del aula virtual y tener a mano la unidad de penal.}
+
+\cresumen{El jurado ofrece cercanía, empatía y legitimidad ciudadana, pero es vulnerable a prejuicios, medios y emociones; el juez técnico aporta formación y objetividad, pero puede caer en el tecnicismo y la distancia. Para el docente, no hay un sistema perfecto y un modelo mixto podría ser una vía razonable. En la Argentina el juicio por jurados está previsto pero tiene poca trayectoria, por la tradición escrita y profesionalizante del sistema.}
+\end{longtable}
+\endgroup
+
+% ---------- SÍNTESIS FINAL ----------
+\capsinnum{Síntesis final}
+
+El jurado es la forma en que un sistema judicial delega en ciudadanos comunes la decisión sobre los hechos. En EE.~UU., esa delegación empieza con un sorteo a partir de listas de votantes y conductores, sigue con un filtro de excusas, recusaciones con y sin causa y requisitos legales, y termina con un jurado definitivo que decide los hechos mientras el juez aplica el derecho.
+
+Existen dos jurados con funciones distintas: el \textit{petit jury}, que decide en el juicio (12 en penal, 6 en civil, con estándares de prueba diferentes: \textit{beyond a reasonable doubt} y \textit{preponderance of the evidence}), y el \textit{grand jury}, que decide en la etapa previa si hay \textit{probable cause} para acusar, y equivale funcionalmente a la instrucción argentina.
+
+De ahí surgen términos que no se traducen literalmente (\textit{qualified}, \textit{challenge}, \textit{not guilty}, \textit{indictment}), y el federalismo hace que cada estado tenga reglas propias. Frente al sistema argentino, escrito y profesionalizado, el jurado ofrece cercanía y legitimidad, pero también riesgo de prejuicios y de influencia mediática; por eso el docente concluye que no hay un sistema perfecto y que un modelo mixto podría ser una vía razonable.
+
+\end{document}

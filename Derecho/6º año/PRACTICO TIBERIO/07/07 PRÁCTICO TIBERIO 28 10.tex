@@ -1,0 +1,961 @@
+\documentclass[12pt,oneside]{book}
+
+%==================================================================
+% METADATOS
+%==================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\materia}{Derecho Procesal Civil y Comercial}
+\newcommand{\titulo}{Apuntes de Derecho Procesal Civil y Comercial}
+\newcommand{\subtitulo}{La sentencia de primera instancia: estructura, notificaci\'on y recursos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==================================================================
+% PAQUETES
+%==================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Se evita el paquete babel en español porque no está disponible en este entorno;
+% de ese modo el documento sigue compilando y genera el índice.
+\renewcommand{\contentsname}{Índice}
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==================================================================
+% CONFIGURACIÓN
+%==================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+
+%==================================================================
+% COMANDOS
+%==================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%==================================================================
+% ENTORNOS / CAJAS
+%==================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definici\'on: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={F\'ormula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%==================================================================
+% CONFIGURACIÓN FINAL
+%==================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==================================================================
+\begin{document}
+%==================================================================
+
+%------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil y Comercial'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------
+\frontmatter
+\tableofcontents
+\mainmatter
+
+%------------------------------------------------------------------
+% CONTENIDO
+%------------------------------------------------------------------
+
+\chapter[Presentaci\'on de la clase]{Presentaci\'on de la clase}
+
+\section{Tema y eje de la clase}
+
+Este material corresponde a una clase pr\'actica de \textbf{Derecho Procesal Civil y Comercial}, desarrollada el 28 de octubre de 2026. El eje de la clase es una \textbf{sentencia de da\~nos y perjuicios por obras linderas}: su lectura, su cr\'itica y los recursos que caben contra ella.
+
+La clase toma una sentencia de primera instancia, dictada en un juicio de da\~nos y perjuicios por obras en un inmueble lindero (ruidos, vibraciones y grietas), y la utiliza como material de trabajo para recorrer el ciclo completo de una resoluci\'on judicial:
+\begin{itemize}
+    \item c\'omo est\'a estructurada (vistos, considerandos y parte dispositiva);
+    \item c\'omo se notifica, con especial atenci\'on a la notificaci\'on al rebelde y a la comunicaci\'on entre jurisdicciones;
+    \item c\'omo razona el juez sobre la prueba y los presupuestos de la responsabilidad civil;
+    \item qu\'e puede hacer el abogado cuando el resultado es adverso: apelar, plantear nulidad, reservar el caso federal y discutir costas y honorarios.
+\end{itemize}
+
+\section{Utilidad profesional del tema}
+
+\begin{important}
+Un abogado litigante pasa m\'as tiempo leyendo resoluciones, notificando y recurriendo que alegando. Saber leer un fallo (qu\'e decidi\'o, qu\'e consider\'o probado y qu\'e no), cuidar una c\'edula para que no se la anulen, contar bien los plazos y elegir entre apelar o plantear una nulidad son decisiones diarias que impactan en dinero, honorarios y responsabilidad frente al cliente.
+\end{important}
+
+El caso del pr\'actico ense\~na que una demanda puede perderse no por falta de raz\'on sino por \textbf{falta de prueba}: los hechos exist\'ian, pero faltaron la pericia t\'ecnica y el nexo causal. La lecci\'on (tener raz\'on no alcanza; hay que poder demostrarla y hacerlo a tiempo) es aplicable a contratos, trabajo, alquileres y cualquier conflicto cotidiano.
+
+El derecho procesal es la herramienta que convierte un derecho en un resultado concreto. Sin conocer la estructura de la sentencia, los modos de notificaci\'on y los plazos de los recursos, un derecho bien fundado puede perderse por un error de forma.
+
+\section{Los cuatro bloques de la clase}
+
+\begin{example}{la nota de un examen}
+Para relacionar los cuatro bloques puede pensarse en la nota de un examen. Primero alguien corrige y emite la nota con sus fundamentos (\textbf{Bloque 1}: la sentencia y su notificaci\'on): importa c\'omo est\'a redactada y que llegue por un medio v\'alido. Despu\'es se lee la correcci\'on y se revisa si lo que dice el docente se apoya en lo que realmente se respondi\'o (\textbf{Bloque 2}: an\'alisis de la sentencia). Con los compa\~neros se discute si la correcci\'on fue justa y si hubo criterios arbitrarios (\textbf{Bloque 3}: debate cr\'itico). Por \'ultimo, si no se est\'a de acuerdo, se pide revisi\'on dentro del plazo y por la v\'ia correcta (\textbf{Bloque 4}: recursos).
+
+La sentencia es la nota; la notificaci\'on, el aviso que la hace conocer; el an\'alisis, la lectura de los fundamentos; y el recurso, el pedido de revisi\'on.
+\end{example}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{3.2cm}X@{}}
+\toprule
+\textbf{Bloque} & \textbf{Unidades} \\
+\midrule
+1. La sentencia y su notificaci\'on & Apertura (\'es consentir o recurrir?); estructura de la sentencia; notificaci\'on de la sentencia al rebelde. \\
+2. An\'alisis de la sentencia de da\~nos & Relaci\'on de causa; presupuestos de la responsabilidad y carga de la prueba; valoraci\'on de la prueba y rechazo de la demanda. \\
+3. Debate cr\'itico del fallo & Escrito de apelaci\'on; razonabilidad y arbitrariedad; costas y honorarios diferidos. \\
+4. Recursos y cierre & Apelaci\'on y plazos; reposici\'on, apelaci\'on subsidiaria y nulidad; admisibilidad por monto y arbitrariedad; organizaci\'on del trabajo. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+%==================================================================
+\chapter[La sentencia y su notificaci\'on]{Bloque 1 --- La sentencia y su notificaci\'on}
+%==================================================================
+
+\section{Apertura: \textquestiondown consentir o recurrir?}
+
+La clase parte de una sentencia ya definida, dictada en el marco del trabajo pr\'actico del cuatrimestre. Frente a ella corresponde decidir si se la va a \textbf{consentir} o si se la va a \textbf{recurrir}. Los casos que se eligen para trabajar suelen tener contenido da\~noso, por lo que se habla de indemnizaci\'on; la sentencia utilizada es, seg\'un se se\~nal\'o, una sentencia bastante directa.
+
+\begin{definition}{Recurrir y apelar}
+\textbf{Recurrir} es el \textbf{g\'enero}: abarca todas las v\'ias para impugnar una resoluci\'on (reposici\'on, apelaci\'on, nulidad, recursos extraordinarios). \textbf{Apelar} es una \textbf{especie} dentro de ese g\'enero.
+\end{definition}
+
+Esta distinci\'on ordena toda la clase.
+
+\section{Estructura de la sentencia}
+
+En la pr\'actica forense la f\'ormula ``autos y vistos'' se usa m\'as para las interlocutorias. Las sentencias suelen comenzar con ``vistos'' y, a continuaci\'on, algunos redactores usan ``resultando'', otros pasan directamente a ``considerando'' y de all\'i a la parte definitiva. En la sentencia del trabajo pr\'actico se empleó ``vistos'' seguido de ``considerando'', sin ``resultando''.
+
+\begin{definition}{Esquema de la sentencia de primera instancia}
+\begin{itemize}
+    \item \textbf{Vistos}: identifica los autos (``fulano contra mengano sobre\ldots'') y los pone ``en condiciones de resolver''.
+    \item \textbf{Considerando}: relaci\'on de lo actuado, an\'alisis de la prueba y del derecho, rubros indemnizatorios, intereses y costas.
+    \item \textbf{Parte dispositiva (fallo)}: es la decisi\'on, la parte que decide. Se llama \textbf{dispositiva} porque \emph{dispone}.
+\end{itemize}
+\end{definition}
+
+En la sentencia definitiva se comienza con la lectura de los vistos y luego se pasa al detalle; en las interlocutorias se pasa directamente a los considerandos.
+
+\section{Notificaci\'on de la sentencia al rebelde}
+
+\subsection{La c\'edula electr\'onica y sus limitaciones pr\'acticas}
+
+Con la c\'edula electr\'onica, en general, se env\'ia todo el contenido. Sin embargo, al notificar a un rebelde surge una dificultad: el sistema fue modificado y, en lugar de permitir adjuntar directamente el archivo, exige transcribir (copiar y pegar) un auto, de modo que no siempre es posible copiar la parte dispositiva completa.
+
+Estas dificultades se aprenden en la pr\'actica, fundamentalmente por ensayo y error.
+
+\subsection{\textquestiondown C\'omo se notifica la sentencia a un rebelde?}
+
+Al rebelde, es decir, a quien no particip\'o del proceso, hay que enviarle la \textbf{c\'edula en papel}. Para que la notificaci\'on sea v\'alida se plantea qu\'e consignar en ella: puede indicarse que se acompa\~na la sentencia adjunta, o copiarse parte de ella.
+
+Tradicionalmente se ense\~naba que bastaba con \textbf{transcribir la parte dispositiva}: se consignaba el lugar, la fecha, ``autos y vistos'', puntos suspensivos, ``resuelvo'' o ``fallo'', y la parte dispositiva completa, con todos sus puntos. De este modo el destinatario no pod\'ia alegar un vicio en la notificaci\'on, porque se le transmit\'ia la decisi\'on, que es lo importante.
+
+El conocimiento de la decisi\'on es importante para que el destinatario pueda posicionarse y defenderse. Algunos agregan, adem\'as de la transcripci\'on de la parte dispositiva, la copia de la sentencia, indicando en la c\'edula que se acompa\~na.
+
+\begin{formula}{CPCCN, art. 62 --- Notificaci\'on de la sentencia}
+\guillemotleft La sentencia se har\'a saber al rebelde en la forma prescripta para la notificaci\'on de la providencia que declara la rebeld\'ia.\guillemotright
+\end{formula}
+
+\begin{formula}{CPCCN, art. 59 --- Rebeld\'ia}
+\guillemotleft La parte con domicilio conocido, debidamente citada, que no compareciere durante el plazo de la citaci\'on o abandonare el juicio despu\'es de haber comparecido, ser\'a declarada en rebeld\'ia a pedido de la otra. Esta resoluci\'on se notificar\'a por c\'edula o, en su caso, por edictos durante DOS (2) d\'ias. Las sucesivas resoluciones se tendr\'an por notificadas por ministerio de la Ley. [\ldots]\guillemotright
+\end{formula}
+
+A quien se declara rebelde se le notifica la declaraci\'on de rebeld\'ia para que esta cumpla sus efectos. El efecto fundamental es que, en caso de duda, se presume la verdad de los hechos l\'icitos pertinentes. Se hace hincapi\'e en que la rebeld\'ia \textbf{no exime de probar al actor}, pero le da una suerte de ventaja adicional.
+
+\begin{formula}{CPCCN, art. 60 --- Efectos de la rebeld\'ia}
+\guillemotleft La rebeld\'ia no alterar\'a la secuela regular del proceso. [\ldots] La sentencia ser\'a pronunciada seg\'un el m\'erito de la causa y lo establecido en el art\'iculo 356, inciso 1. En caso de duda, la rebeld\'ia declarada y firme constituir\'a presunci\'on de verdad de los hechos l\'icitos afirmados por quien obtuvo la declaraci\'on. Ser\'an a cargo del rebelde las costas causadas por su rebeld\'ia.\guillemotright
+\end{formula}
+
+\begin{formula}{CPCCN, art. 137 --- Contenido de la c\'edula (norma complementaria)}
+La c\'edula debe contener, entre otros datos, el nombre y apellido de la persona a notificar y su domicilio; el juicio en que se practica; el juzgado y la secretar\'ia; la \guillemotleft transcripci\'on de la parte pertinente de la resoluci\'on\guillemotright{} y el objeto, claramente expresado, si no resultare de la resoluci\'on transcripta. Seg\'un el art. 136, la sentencia definitiva y las notificaciones con entrega de copias se efect\'uan \'unicamente por c\'edula o acta notarial.
+\end{formula}
+
+\subsection{C\'edula electr\'onica, c\'edula en papel y comunicaci\'on entre jurisdicciones}
+
+Si se trata de una parte que se present\'o en el proceso y constituy\'o domicilio electr\'onico, la c\'edula electr\'onica la notifica de un d\'ia para el otro. En cambio, para notificar al rebelde debe enviarse una c\'edula en papel, y puede ocurrir que el rebelde tenga domicilio en la provincia de Buenos Aires.
+
+\textbf{Bus Federal.} Es un sistema incorporado para notificar c\'edulas en \emph{extra\~na jurisdicci\'on}: se carga el domicilio y se evita la gestor\'ia. El docente cree que funciona de provincia a Capital o Ciudad, pero no tiene certeza de que funcione de Ciudad a provincia, porque las provincias tendr\'ian que tener el sistema implementado.
+
+\textbf{Dentro de la provincia de Buenos Aires.} Por ejemplo, si el juicio tramita en Mor\'on y hay que notificar a alguien en Lomas de Zamora, se consigna el dato de la oficina de notificaciones de Lomas de Zamora y ya no es necesario llevar la c\'edula f\'isicamente, como se hac\'ia antes. Mediante domicilios electr\'onicos la c\'edula se recibe, el juzgado la procesa, la verifica y la remite a la oficina correspondiente.
+
+\textbf{C\'edulas ley 22.172.} Entre la provincia de Buenos Aires y la Naci\'on, o cualquier otra provincia, debe usarse un procedimiento especial regido por la ley 22.172, que contiene recaudos de protecci\'on interjurisdiccional. Tambi\'en los tribunales nacionales cuentan con una direcci\'on que recibe las c\'edulas ley 22.172.
+
+\textbf{Exhorto.} Antes de la ley 22.172 se notificaba por exhorto (rogatoria): se rogaba, es decir, se ped\'ia, al juez de la otra jurisdicci\'on que ordenara la c\'edula. Antes de la 22.172 hubo otra ley, que el docente cree que era la 17.009. Estos mecanismos facilitan la tarea y, a veces, activan los tiempos, lo cual importa porque las partes quieren que sus procesos avancen.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}p{3.6cm}X@{}}
+\toprule
+\textbf{Medio} & \textbf{Cu\'ando se usa} & \textbf{Observaciones} \\
+\midrule
+C\'edula electr\'onica & Parte que se present\'o y constituy\'o domicilio electr\'onico & De un d\'ia para el otro queda notificada; se ``manda todo'', pero a veces el sistema obliga a copiar y pegar el auto. \\
+\addlinespace
+C\'edula en papel & Rebelde (no particip\'o del proceso) & Exige cuidar el contenido: conviene transcribir la parte dispositiva completa o acompa\~nar copia de la sentencia. \\
+\addlinespace
+Bus Federal & Notificar en ``extra\~na jurisdicci\'on'' & Se carga el domicilio y se evita la gestor\'ia; el docente cree que funciona de provincia a Ciudad, pero no tiene certeza de Ciudad a provincia. \\
+\addlinespace
+C\'edula ley 22.172 & Comunicaci\'on entre jurisdicciones distintas & Procedimiento especial con recaudos interjurisdiccionales; reemplaz\'o al antiguo exhorto (antes, ley 17.009, ``creo''). \\
+\addlinespace
+Exhorto / rogatoria & Sistema anterior & Se ``rogaba'' al juez de otra jurisdicci\'on que ordenara la c\'edula. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% TODO: la ley 17.009 fue mencionada con reserva ("creo") en las notas originales; no verificada
+
+\begin{note}
+El docente menciona la ley 22.172 (r\'egimen de comunicaciones entre tribunales de distinta jurisdicci\'on) y, con reserva (``creo''), la ley 17.009. Los n\'umeros de ley se consignan como fueron dichos.
+\end{note}
+
+\subsection{Por qu\'e cuidar la c\'edula: nulidad, tiempo y costas}
+
+Conviene confeccionar la c\'edula de la mejor manera posible, sobre todo cuando es en papel, para que no se pida la nulidad. Cuando se solicita la nulidad se pierde tiempo, hay costas y el proceso se alarga.
+
+\begin{formula}{CPCCN, art. 149 --- Nulidad de la notificaci\'on}
+\guillemotleft Ser\'a nula la notificaci\'on que se hiciere en contravenci\'on a lo dispuesto en los art\'iculos anteriores siempre que la irregularidad fuere grave e impidiere al interesado cumplir oportunamente los actos procesales vinculados a la resoluci\'on que se notifica. Cuando del expediente resultare que la parte ha tenido conocimiento de la resoluci\'on, la notificaci\'on surtir\'a sus efectos desde entonces. El pedido de nulidad tramitar\'a por incidente, aplic\'andose la norma de los art\'iculos 172 y 173. [\ldots]\guillemotright
+\end{formula}
+
+\subsection{Citaci\'on de testigos}
+
+Citar a un testigo en la etapa de prueba tambi\'en es un tema desafiante: se plantea si notificarlo por escrito o enviarle una carta documento. El docente refiere que, como apoderado, evita enviar cartas documento porque debe acreditar el poder.
+
+% TODO: el audio original sobre el costo y el tr\'amite de la carta documento es poco fiable; solo se conserva la idea general
+
+\subsection*{Cuadro Cornell del Bloque 1}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{\textquestiondown Qu\'e diferencia hay entre recurrir y apelar?} &
+Recurrir es el g\'enero (reposici\'on, apelaci\'on, nulidad, recursos extraordinarios); apelar es una especie. Ante una sentencia adversa se decide si consentirla o recurrirla. \\
+
+\textbf{\textquestiondown C\'omo se estructura una sentencia?} &
+Vistos (identifica los autos, ``en condiciones de resolver''), considerando (relaci\'on de lo actuado, prueba, derecho, rubros, intereses y costas) y parte dispositiva o fallo, llamada as\'i porque ``dispone''. \\
+
+\textbf{\textquestiondown C\'omo se notifica la sentencia a un rebelde?} &
+Del modo previsto para la notificaci\'on de la rebeld\'ia (art. 62 CPCCN), es decir, por c\'edula en papel. Conviene transcribir la parte dispositiva completa o acompa\~nar copia de la sentencia, para evitar una nulidad (art. 137: transcripci\'on de la parte pertinente). \\
+
+\textbf{\textquestiondown Qu\'e efecto tiene la rebeld\'ia?} &
+No altera el curso del proceso; en caso de duda, presume la verdad de los hechos l\'icitos afirmados por quien obtuvo la declaraci\'on (art. 60). No exime al actor de probar. \\
+
+\textbf{C\'edula electr\'onica, papel, Bus Federal, ley 22.172} &
+Electr\'onica: a quien constituy\'o domicilio electr\'onico. Papel: rebelde. Bus Federal: notificar en otra jurisdicci\'on. Ley 22.172: comunicaciones interjurisdiccionales, que reemplazaron al exhorto. Una c\'edula mal hecha expone a nulidad, p\'erdida de tiempo y costas (art. 149). \\
+
+\midrule
+\multicolumn{2}{>{\raggedright\arraybackslash}p{0.89\textwidth}}{
+\textbf{Resumen:} La sentencia se estructura en vistos, considerandos y parte dispositiva. Su notificaci\'on exige cuidado, sobre todo frente al rebelde: se usa c\'edula en papel y, entre jurisdicciones, Bus Federal o ley 22.172. Un defecto en la c\'edula invita a la nulidad, a perder tiempo y a pagar costas.
+} \\
+\end{longtable}
+
+%==================================================================
+\chapter[An\'alisis de la sentencia de da\~nos]{Bloque 2 --- An\'alisis de la sentencia de da\~nos}
+%==================================================================
+
+\section{La relaci\'on de causa: \emph{vistos} y primeros considerandos}
+
+\subsection{Qu\'e significa ``autos y vistos''}
+
+La f\'ormula ``autos y vistos'' remite a los autos caratulados ``fulano contra mengano sobre\ldots'', en condiciones de resolver. En las interlocutorias se pasa directamente a los considerandos; en la sentencia definitiva se comienza con la lectura de los vistos y luego se pasa al detalle.
+
+\subsection{Lectura de la sentencia de primera instancia (primera parte)}
+
+\begin{example}{sentencia le\'ida en clase --- ``vistos'' y considerandos primero a tercero}
+\textbf{Autos y vistos:} estos autos caratulados \guillemotleft Guti\'errez, Carlos Alberto c/ Bustos, Alfredo y otro s/ da\~nos y perjuicios\guillemotright, expediente n.\textordmasculine{} 14.998/2026, en tr\'amite ante el Juzgado Nacional de Primera Instancia en lo Civil n.\textordmasculine{} 33 de la Capital Federal.
+
+\textbf{Considerando. Primero.} Que a fojas 1 se present\'o el se\~nor Carlos Alberto Guti\'errez, por derecho propio, con el patrocinio letrado de la doctora Ail\'en Vega, e inici\'o formal demanda de da\~nos y perjuicios contra el se\~nor Alfredo Bustos, en su car\'acter de propietario del inmueble sito en la calle Humboldt 2003 de esta ciudad, y contra el Gobierno de la Ciudad Aut\'onoma de Buenos Aires, en su condici\'on de autoridad de aplicaci\'on y control en la materia, por la que reclama el pago de la suma total de veinti\'un millones de pesos, o lo que en m\'as o en menos resulte de la prueba, con m\'as sus intereses y costas.
+
+Manifiesta que es propietario y ocupante del inmueble lindero ubicado en la calle Humboldt 2004 y que, durante el a\~no 2024, el demandado emprendi\'o la ejecuci\'on de obras de construcci\'on en su finca lindera, en contravenci\'on de las normativas urban\'isticas vigentes. Refiere que dichos trabajos generaron ruidos insoportables y fuera de los l\'imites reglamentarios, as\'i como la aparici\'on de severas grietas en las paredes bajas en contacto con el terreno y desprendimientos en los pisos de cer\'amica de su vivienda.
+
+A\~nade que, a ra\'iz de la exposici\'on prolongada a ruidos intensos e inhabituales, comenz\'o a padecer ac\'ufenos, insomnio cr\'onico y severas alteraciones psicol\'ogicas, vi\'endose obligado a someterse a tratamientos m\'edicos y psicol\'ogicos. Indica que dicha situaci\'on le provoc\'o inasistencias laborales a su puesto de trabajo en una panader\'ia, sufriendo una merma en sus ingresos salariales durante los meses de abril, mayo y [\ldots].
+
+Cuantifica los rubros reclamados en: da\~no emergente, diez millones; desvalorizaci\'on del inmueble, cinco millones; da\~no moral extrapatrimonial, cinco millones; y lucro cesante, un mill\'on. Funda su pretensi\'on en las disposiciones del C\'odigo Civil y Comercial de la Naci\'on, art\'iculos 1716, 1717, 1721, 1737, 1738, 1740, 1741, 1753, 1757 y 1973 y concordantes.
+
+Conferido el traslado de la demanda, se presenta el demandado, por apoderado, solicitando su rechazo con costas, por negativa general y particular de los hechos invocados por la parte actora [\ldots]. Manifiesta haber contratado a la empresa constructora [\ldots]. Propone excepci\'on de defecto legal en el modo de proponer la demanda y alega que la planificaci\'on de la obra se inici\'o en 2012 y concluy\'o en 2022, por lo que el plazo de tres a\~nos se hallar\'ia vencido. Impugna la procedencia y la cantidad de los rubros solicitados, con la reserva del caso federal (art. 14, ley 48).
+
+\textbf{Segundo.} Que el codemandado Gobierno de la Ciudad [\ldots] no compareci\'o a estar a derecho dentro del plazo legal, tene\'indoselo por presentado [\ldots].
+
+\textbf{Tercero.} Que a fojas 272 se llev\'o a cabo la audiencia preliminar (art. 360). Fracasada la conciliaci\'on, se desestimaron las excepciones de previo y especial pronunciamiento planteadas, se fijaron los hechos controvertidos y se dispuso la apertura de la causa a prueba (art. 361). Se produjeron las pruebas autorizadas [\ldots] (documental y pericial de ingenier\'ia civil, entre otras). Se clausur\'o el per\'iodo probatorio, llev\'andose los autos para dictar sentencia. Encontr\'andose firme y consentida la providencia de autos, corresponde considerar [\ldots].
+\end{example}
+
+\begin{note}
+El audio presenta fallas en nombres propios, numeraci\'on de domicilios, fojas y montos, por lo que se aplic\'o un criterio de reconstrucci\'on: se unific\'o la direcci\'on como Humboldt 2003 (inmueble de las obras) y Humboldt 2004 (inmueble del actor); se adopt\'o ``Bustos'' como apellido del demandado seg\'un el escrito de apelaci\'on le\'ido luego; y los rubros suman \$21.000.000 (10 + 5 + 5 + 1 millones), cifra que se mantiene frente a los ``27 millones'' que el docente menciona de memoria al final de la clase. Los pasajes sobre la contestaci\'on de demanda, la excepci\'on y la participaci\'on del Gobierno de la Ciudad est\'an deteriorados y se marcan con [\ldots].
+\end{note}
+
+\subsection{\textquestiondown Es un requisito legal que la sentencia describa lo actuado?}
+
+S\'i. La \textbf{relaci\'on sucinta de las cuestiones que constituyen el objeto del juicio} es el inciso 3 del art\'iculo 163 del C\'odigo Procesal Civil y Comercial de la Naci\'on. La ley no exige que la relaci\'on sea pormenorizada: no hay que transcribir la demanda ni la contestaci\'on. Pero la sentencia comienza como una construcci\'on l\'ogica: es una historia que hay que contar, sin omitir lo que ocurri\'o.
+
+\begin{formula}{CPCCN, art. 163, inc. 3 --- Contenido de la sentencia definitiva (seg\'un lo le\'yo el docente)}
+\guillemotleft La relaci\'on sucinta de las cuestiones que constituyen el objeto del juicio.\guillemotright
+\end{formula}
+
+El docente enumera de viva voz los restantes requisitos del art\'iculo (ver Cap\'itulo 5). El texto completo del art. 163 no fue verificado en fuente oficial.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (texto completo del art. 163 no verificado)
+
+\begin{important}
+\textbf{Idea central: la sentencia como construcci\'on l\'ogica derivada.} La Corte ha dicho m\'as de una vez que la sentencia, como acto jur\'idico jurisdiccional, debe tener un devenir l\'ogico y ser una derivaci\'on razonada, no solo de las constancias de la causa, sino tambi\'en de la aplicaci\'on del derecho. Si la sentencia carece de la construcci\'on que manda la ley (por ejemplo, la relaci\'on de lo actuado), esto hace a la existencia y validez del acto y podr\'ia dar lugar a una nulidad, es decir, a una v\'ia recursiva determinada. La relaci\'on de lo actuado es ``la base de la pir\'amide''.
+\end{important}
+
+\section{Presupuestos de la responsabilidad y carga de la prueba}
+
+\subsection{Lectura de la sentencia (segunda parte): derecho aplicable}
+
+\begin{example}{sentencia le\'ida en clase --- los presupuestos de la responsabilidad civil}
+\textbf{Segundo} [numeraci\'on incierta en el audio]. Que, conforme resulta de los escritos constitutivos, las partes son contestes respecto de la existencia y realizaci\'on de obras por parte del accionado sobre el inmueble de su propiedad, lindero al inmueble del actor. Asimismo, si bien ambas partes reconocen la existencia y realizaci\'on de las obras referidas, la parte demandada niega la responsabilidad atribuida a su parte, los da\~nos que se reclaman y su extensi\'on.
+
+Que la responsabilidad civil exige para su configuraci\'on la concurrencia de los presupuestos previstos por el ordenamiento jur\'idico: la existencia de un da\~no resarcible, una relaci\'on de causalidad adecuada entre el hecho y el perjuicio, un factor de atribuci\'on y, cuando corresponda, la antijuridicidad de la conducta. En ese sentido, los art\'iculos 1716, 1717, 1721, 1724, 1726, 1737, 1738 y concordantes del C\'odigo Civil y Comercial de la Naci\'on establecen los principios generales en materia de responsabilidad civil, causalidad y reparaci\'on del da\~no.
+
+En particular, el art\'iculo 1726 dispone que son reparables las consecuencias da\~nosas que tengan nexo adecuado de causalidad con el hecho productor del da\~no. Por consiguiente, no basta con acreditar la existencia de un perjuicio: tambi\'en resulta necesario demostrar que este guarda una relaci\'on causal jur\'idicamente relevante con la conducta o actividad de los demandados.
+
+A su vez, el art\'iculo 377 del C\'odigo Procesal Civil y Comercial de la Naci\'on impone a cada parte la carga de probar los presupuestos de hecho de la norma que invocan como fundamento de su pretensi\'on, defensa o excepci\'on. Por su parte, el art\'iculo 386 impone al juzgador apreciar la prueba conforme a las reglas de la sana cr\'itica, sin perjuicio de lo que establezcan leyes especiales. En consecuencia, corresponde analizar los elementos probatorios incorporados al expediente a fin de determinar si se encuentran acreditados los da\~nos invocados y su relaci\'on con los hechos de la causa.
+\end{example}
+
+\subsection{Normas del C\'odigo Civil y Comercial citadas}
+
+\begin{formula}{CCyC, art. 1716 --- Deber de reparar}
+\guillemotleft La violaci\'on del deber de no da\~nar a otro, o el incumplimiento de una obligaci\'on, da lugar a la reparaci\'on del da\~no causado, conforme con las disposiciones de este C\'odigo.\guillemotright
+\end{formula}
+
+\begin{formula}{CCyC, art. 1721 --- Factor de atribuci\'on}
+\guillemotleft La atribuci\'on de un da\~no al responsable puede basarse en factores objetivos o subjetivos. En ausencia de normativa, el factor de atribuci\'on es la culpa.\guillemotright
+\end{formula}
+
+\begin{formula}{CCyC, art. 1726 --- Relaci\'on causal}
+\guillemotleft Son reparables las consecuencias da\~nosas que tienen nexo adecuado de causalidad con el hecho productor del da\~no. [\ldots]\guillemotright{} Regla general: solo se indemnizan las consecuencias inmediatas y las mediatas previsibles, sin perjuicio de excepciones legales.
+\end{formula}
+
+\begin{note}
+Los arts. 377 y 386 del CPCCN (carga de la prueba y sana cr\'itica) se transcriben \'unicamente en la formulaci\'on que les da la sentencia le\'ida en clase. Lo mismo vale para los arts. 1717, 1724, 1737, 1738, 1740, 1741, 1753 y 1757 del CCyC, que la sentencia invoca como ``principios generales''.
+\end{note}
+
+\section{Valoraci\'on de la prueba y rechazo de la demanda}
+
+\subsection{La prueba testimonial: los tres testigos}
+
+\begin{example}{sentencia le\'ida en clase --- considerandos tercero a quinto: prueba testimonial}
+\textbf{Tercero.} En cuanto a la prueba testimonial ofrecida por la parte actora, corresponde examinar las declaraciones de acuerdo con el conocimiento directo de cada testigo, la frecuencia de sus observaciones y la concordancia con los dem\'as elementos incorporados y con las reglas de la experiencia.
+
+El \textbf{primer testigo} manifest\'o conocer al actor por ser vecino de hace a\~nos. Refiri\'o haber percibido ruidos de m\'aquinas y de los trabajadores, incluso en horarios que, seg\'un indic\'o, se extend\'ian desde la ma\~nana hasta la noche y algunos fines de semana. Describi\'o los ruidos como fuertes y constantes y se\~nal\'o que sent\'ia vibraciones en su propia vivienda. Su declaraci\'on aporta un elemento de corroboraci\'on acerca de la existencia de actividad constructiva y de molestias percibidas desde un inmueble cercano. Sin embargo, no constituye una medici\'on objetiva de intensidad sonora ni permite determinar por s\'i sola que se hayan superado los l\'imites de tolerancia. En lo relativo a los da\~nos, se\~nal\'o que observ\'o las grietas en las paredes y que el actor le mostr\'o documentaci\'on m\'edica y personal.
+
+\textbf{Cuarto.} El \textbf{segundo testigo} declar\'o haber observado durante 2024 el ingreso de obreros y materiales al inmueble de Humboldt 2003. Dijo que desde su domicilio escuchaba los trabajos, que comenzaban por la ma\~nana y que en ocasiones continuaban fuera de los horarios de descanso; describi\'o el ruido como constante. Tambi\'en ingres\'o en algunas oportunidades a la vivienda del actor y observ\'o grietas en las paredes, que no hab\'ia advertido antes de la obra. Su relato es coincidente en cuanto a la existencia de trabajos, ruidos y da\~nos visibles. Sin embargo, no existi\'o una observaci\'on continua del inmueble ni conocimientos t\'ecnicos que le permitieran atribuir causalmente las fisuras a la construcci\'on. Agreg\'o que Guti\'errez le hab\'ia comentado que el ruido le generaba problemas de salud y que lo not\'o preocupado. Esta parte de su declaraci\'on da cuenta de lo que el actor le manifest\'o, pero no acredita por s\'i misma un diagn\'ostico m\'edico ni un nexo causal entre la obra y las dolencias. Indic\'o que no presenci\'o personalmente una notificaci\'on al demandado por parte del Gobierno de la Ciudad.
+
+\textbf{Quinto.} La \textbf{tercera testigo}, vecina del actor, declar\'o haber percibido desde su vivienda, durante 2024, trabajos de construcci\'on, obreros, materiales y movimientos de maquinaria. Se\~nal\'o que escuchaba ruidos intensos y constantes, perceptibles desde su domicilio y molestos para la tranquilidad. Tambi\'en manifest\'o haber ingresado algunas veces a la vivienda de Guti\'errez, donde observ\'o grietas en las paredes y otros da\~nos. Dijo no haber advertido tales defectos antes de la obra. No obstante, aclar\'o que no concurr\'ia habitualmente a la vivienda. En relaci\'on con la salud del actor, indic\'o que este le hab\'ia comentado que los ruidos le ocasionaban problemas y que lo not\'o preocupado. Tampoco refiri\'o haber presenciado una notificaci\'on administrativa al se\~nor Bustos.
+\end{example}
+
+\subsection{Valoraci\'on conjunta y alcance de los testimonios}
+
+\begin{example}{sentencia le\'ida en clase --- considerandos sexto a octavo}
+\textbf{Sexto.} La valoraci\'on conjunta de las declaraciones permite considerar corroborada la existencia de obras en el inmueble vecino, la percepci\'on de ruidos que los testigos describieron como intensos y la presencia de deterioros visibles en la vivienda. La coincidencia entre los relatos constituye un elemento probatorio atendible respecto de estas circunstancias.
+
+Sin embargo, las declaraciones deben valorarse dentro de sus alcances. Los testigos observaron los da\~nos en visitas ocasionales y no ten\'ian conocimientos t\'ecnicos que les permitieran determinar su antig\"uedad, el mecanismo de producci\'on o su causa. Por ello, la coincidencia testimonial constituye un indicio sobre la secuencia temporal relatada, pero no permite por s\'i sola tener por acreditado el nexo causal entre la obra y los deterioros.
+
+La valoraci\'on de la prueba debe efectuarse de manera integral, atendiendo a la concordancia de los elementos incorporados al proceso y a su aptitud para acreditar los hechos controvertidos. En materia de responsabilidad civil, no basta con demostrar la existencia de un hecho potencialmente da\~noso y la presencia de perjuicios, sino que resulta necesario establecer una relaci\'on de causalidad adecuada entre ambos, conforme el art\'iculo 1726 del C\'odigo Civil y Comercial. En el caso, las declaraciones testimoniales permiten tener por corroborada la realizaci\'on de trabajos de construcci\'on en el inmueble lindero, as\'i como la percepci\'on de ruidos y la existencia de deterioros visibles en la vivienda del actor; sin embargo, tales elementos, considerados en forma aislada, no permiten determinar con suficiente certeza que los da\~nos materiales hayan sido consecuencia directa de las obras ni que las molestias invocadas hayan provocado las lesiones de salud alegadas. En consecuencia, la ausencia de elementos t\'ecnicos y documentales suficientes para establecer tales extremos impide tener por acreditado, con el grado de convicci\'on necesario, el nexo causal entre la actividad cuestionada y la totalidad de los perjuicios reclamados, de conformidad con las reglas de la sana cr\'itica.
+
+\textbf{S\'eptimo (da\~nos materiales).} Las fotograf\'ias y las declaraciones testimoniales pueden ilustrar la presencia de deterioros visibles. Sin embargo, para atribuirlos a la obra se requiere una base probatoria suficiente sobre su origen. En cuanto a las grietas y rajaduras denunciadas, la actora, en su alegato, hace referencia a la producci\'on de una pericia de ingenier\'ia civil, se\~nalando que el experto habr\'ia inspeccionado el inmueble y vinculado el incremento de las grietas con la obra lindera. Sin embargo, el informe pericial al que alude no obra incorporado al expediente, por lo que no resulta posible examinar sus fundamentos ni verificar las conclusiones que se le atribuyen. En consecuencia, no se cuenta con una pericia t\'ecnica realizada por un ingeniero civil que permita examinar los da\~nos denunciados y determinar si estos fueron consecuencia de los trabajos en el inmueble lindero. Las fotograf\'ias y las declaraciones pueden dar cuenta de la existencia de los da\~nos alegados, pero no resultan suficientes por s\'i solas para establecer la causa de su origen y atribuirlos a la obra lindera.
+
+\textbf{Octavo (ruidos y vibraciones).} Los testimonios aportan corroboraci\'on sobre su percepci\'on y car\'acter molesto. No obstante, para determinar si excedieron la normal tolerancia, debe atenderse a las circunstancias del caso, conforme al art\'iculo del C\'odigo Civil y Comercial que contempla las molestias ocasionadas por actividades desarrolladas en inmuebles vecinos. A lo largo del proceso no se incorporaron mediciones objetivas que permitan determinar la intensidad y duraci\'on de los ruidos denunciados, ni establecer con precisi\'on si estos superaron los l\'imites de la normal tolerancia. Tampoco se encuentra acreditado, con la sola prueba testimonial, que los ruidos hayan causado los ac\'ufenos denunciados por el actor. Las referencias testimoniales sobre su estado de salud provienen principalmente de lo que este les relat\'o. Para establecer la existencia de una lesi\'on auditiva y su vinculaci\'on con la obra, resulta necesaria la correspondiente prueba m\'edica.
+\end{example}
+
+\begin{formula}{CCyC, art. 1973 --- Inmisiones (primer p\'arrafo)}
+\guillemotleft Las molestias que ocasionan el humo, calor, olores, luminosidad, ruidos, vibraciones o inmisiones similares por el ejercicio de actividades en inmuebles vecinos, no deben exceder la normal tolerancia teniendo en cuenta las condiciones del lugar y aunque medie autorizaci\'on administrativa para aqu\'ellas. [\ldots]\guillemotright
+\end{formula}
+
+La sentencia no cita el n\'umero del art\'iculo en esta parte de la lectura; el art. 1973 es el invocado por la actora en la demanda y el que regula las molestias de vecindad.
+
+\begin{formula}{CCyC, art. 2561 --- Prescripci\'on del reclamo de da\~nos (norma complementaria)}
+\guillemotleft El reclamo de la indemnizaci\'on de da\~nos derivados de la responsabilidad civil prescribe a los tres a\~nos.\guillemotright{} Es la regla a la que alude el pasaje de la contestaci\'on de demanda sobre el ``plazo de tres a\~nos''.
+\end{formula}
+
+\subsection{La responsabilidad del Gobierno de la Ciudad y los rubros reclamados}
+
+\begin{example}{sentencia le\'ida en clase --- considerandos noveno a und\'ecimo}
+\textbf{Noveno (Gobierno de la Ciudad).} La responsabilidad atribuida al Gobierno de la Ciudad por falta de inspecci\'on o control exige identificar el deber concreto incumplido, acreditar la omisi\'on y demostrar su relaci\'on causal adecuada con el da\~no. Las declaraciones analizadas no permiten establecer, por conocimiento directo, que se haya omitido una inspecci\'on debida ni que se haya formulado una notificaci\'on concreta al se\~nor Bustos. Asimismo, corresponde que la documental administrativa sea examinada atendiendo a su contenido y pertinencia respecto de los domicilios y hechos debatidos en estas actuaciones, sin atribuirle eficacia probatoria sobre circunstancias distintas de aquellas a las que efectivamente se refiere. Por consiguiente, la responsabilidad del Gobierno no puede tenerse por acreditada \'unicamente a partir de la existencia de la obra o de las molestias relatadas, sino que requiere prueba suficiente de una omisi\'on jur\'idicamente relevante y de su vinculaci\'on causal con los perjuicios reclamados.
+
+\textbf{Rubros.} El da\~no emergente requiere acreditar los gastos realizados o necesarios y su vinculaci\'on con el hecho. La desvalorizaci\'on del inmueble debe demostrar una p\'erdida de valor diferenciada de los costos de reparaci\'on, y el lucro cesante exige probar una p\'erdida cierta de ingresos y su relaci\'on con el hecho imputado. La prueba testimonial examinada no permite establecer la cuant\'ia de estos conceptos. Del mismo modo, las consecuencias no patrimoniales deben ponderarse seg\'un las afectaciones efectivamente acreditadas [\ldots] y las consecuencias invocadas deben guardar una relaci\'on causal adecuada con el hecho atribuido a los demandados, sin presumir la existencia de lesiones m\'edicas o p\'erdidas econ\'omicas que requieren respaldo probatorio espec\'ifico.
+
+Cabe destacar que el accionante pretende obtener una reparaci\'on por las consecuencias extrapatrimoniales que atribuye a los ruidos y vibraciones, como la dificultad para descansar y las afectaciones f\'isicas y psicol\'ogicas. Si bien el se\~nor Guti\'errez acredit\'o las molestias denunciadas mediante documentaci\'on m\'edica y prueba testimonial, los elementos probatorios no resultan suficientes, atento a que no se ha identificado una conclusi\'on pericial m\'edica que vincule las afecciones con los hechos, sin que corresponda inferir la causalidad de la mera coincidencia temporal entre la ejecuci\'on de la obra y la aparici\'on de los s\'intomas.
+\end{example}
+
+\subsection{Conclusi\'on probatoria, costas y fallo}
+
+\begin{example}{sentencia le\'ida en clase --- conclusi\'on, costas y parte dispositiva}
+En definitiva, la prueba testimonial ofrece elementos concordantes sobre la existencia de las obras, las molestias sonoras percibidas y la observaci\'on de da\~nos visibles en la vivienda del actor. Sin embargo, corresponde distinguir estas circunstancias de la acreditaci\'on de los restantes presupuestos necesarios para atribuir responsabilidad a los demandados. En particular, debe determinarse si la prueba producida permite establecer la causa de los deterioros, el eventual exceso de las molestias, la relaci\'on entre los ruidos y la lesi\'on auditiva denunciada, la existencia de p\'erdidas econ\'omicas y una omisi\'on estatal causalmente relevante.
+
+Conforme el art\'iculo 377 del C\'odigo Procesal, incum\'ia a la parte actora acreditar los presupuestos de hecho de su pretensi\'on. La valoraci\'on integral prevista por el art\'iculo 386 no autoriza a suplir la falta de prueba suficiente sobre los elementos esenciales de la responsabilidad civil. Por ello, en virtud de la prueba producida durante el proceso y siempre que las restantes constancias de autos no aporten elementos probatorios suficientes en sentido contrario, corresponde el rechazo de la demanda.
+
+\textbf{Costas.} Corresponde imponerlas a la parte actora en su condici\'on de vencida, de conformidad con el principio objetivo de la derrota establecido por el art\'iculo 68 del C\'odigo Procesal. La circunstancia de que se haya acreditado la realizaci\'on de obras en el inmueble y la existencia de deterioros en la vivienda del accionante no resulta suficiente para apartarse de esta regla. En efecto, el rechazo de la pretensi\'on obedece a la falta de acreditaci\'on de los presupuestos necesarios para atribuir responsabilidad a los demandados, particularmente la relaci\'on de causalidad adecuada entre los hechos invocados y los perjuicios reclamados. Por consiguiente, no se advierte que existan circunstancias que justifiquen la aplicaci\'on del segundo p\'arrafo del art\'iculo, por lo que las costas deber\'an ser soportadas por la actora.
+
+\textbf{Fallo.} Por todo lo expuesto, las disposiciones legales citadas y la prueba valorada conforme las reglas de la sana cr\'itica: (1) Rechazar \'integramente la demanda de da\~nos y perjuicios promovida por Guti\'errez contra Bustos y el Gobierno de la Ciudad. (2) Imponer las costas del proceso a la parte actora, en su condici\'on de vencida. (3) Diferir la regulaci\'on de los honorarios de los profesionales intervinientes hasta tanto se encuentren reunidos los elementos necesarios para su determinaci\'on. Reg\'istrese, notif\'iquese a las partes. [Firma del juez].
+\end{example}
+
+\begin{formula}{CPCCN, art. 68 --- Costas, principio general}
+\guillemotleft La parte vencida en el juicio deber\'a pagar todos los gastos de la contraria, a\'un cuando \'esta no lo hubiese solicitado. Sin embargo, el juez podr\'a eximir total o parcialmente de esta responsabilidad al litigante vencido, siempre que encontrare m\'erito para ello,Expres\'andolo en su pronunciamiento, bajo pena de nulidad.\guillemotright
+\end{formula}
+
+\subsection{Cuadro de apoyo: qu\'e se prob\'o y qu\'e no seg\'un la sentencia}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.9cm}XX@{}}
+\toprule
+\textbf{Presupuesto} & \textbf{Qu\'e se tuvo por acreditado} & \textbf{Qu\'e falt\'o seg\'un el juez} \\
+\midrule
+Hecho da\~noso (obras y molestias) & Existencia de obras en el inmueble lindero; ruidos intensos percibidos; deterioros visibles (testimonios concordantes). & Mediciones objetivas de intensidad y duraci\'on de los ruidos para evaluar el exceso de la normal tolerancia. \\
+\addlinespace
+Da\~nos materiales (grietas, pisos) & Presencia de grietas y deterioros (fotograf\'ias y testigos). & Pericia de ingenier\'ia civil incorporada al expediente que vincule los da\~nos con la obra. \\
+\addlinespace
+Da\~nos a la salud (ac\'ufenos, insomnio) & Documentaci\'on m\'edica y testimonios sobre molestias denunciadas. & Conclusi\'on pericial m\'edica que vincule las afecciones con los ruidos; no basta la coincidencia temporal. \\
+\addlinespace
+Responsabilidad del Gobierno de la Ciudad & Nada espec\'ifico m\'as all\'a de la existencia de la obra. & Deber concreto incumplido, omisi\'on de control y su nexo causal con el da\~no. \\
+\addlinespace
+Rubros econ\'omicos & Reclamo de \$21.000.000 (da\~no emergente, desvalorizaci\'on, da\~no moral, lucro cesante). & Prueba de gastos, p\'erdida de valor diferenciada, p\'erdida cierta de ingresos y cuant\'ia. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection*{Cuadro Cornell del Bloque 2}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{\textquestiondown Qu\'e debe contener la relaci\'on de causa?} &
+Una relaci\'on sucinta de las cuestiones del juicio (art. 163 inc. 3), sin transcribir demanda ni contestaci\'on. La sentencia debe ser una derivaci\'on l\'ogica de las constancias de la causa y del derecho aplicable. \\
+
+\textbf{\textquestiondown Qu\'e exige la responsabilidad civil?} &
+Da\~no resarcible, relaci\'on de causalidad adecuada (art. 1726 CCyC), factor de atribuci\'on y, en su caso, antijuridicidad. Cada parte debe probar los presupuestos de su pretensi\'on (art. 377 CPCCN); el juez aprecia la prueba seg\'un la sana cr\'itica (art. 386). \\
+
+\textbf{\textquestiondown Por qu\'e se rechaz\'o la demanda?} &
+Se probaron obras, ruidos y grietas visibles, pero no su causa: falt\'o la pericia de ingenier\'ia civil, las mediciones de ruido (art. 1973 CCyC) y la prueba m\'edica; tampoco se acredit\'o una omisi\'on de control del Gobierno de la Ciudad. Costas al actor vencido (art. 68). \\
+
+\midrule
+\multicolumn{2}{>{\raggedright\arraybackslash}p{0.89\textwidth}}{
+\textbf{Resumen:} El juez reconoci\'o las obras, los ruidos y las grietas, pero rechaz\'o la demanda porque falt\'o prueba t\'ecnica del nexo causal (pericia de ingenier\'ia y prueba m\'edica) y mediciones de ruido. Aplic\'o la carga de la prueba y la sana cr\'itica.
+} \\
+\end{longtable}
+
+%==================================================================
+\chapter[Debate cr\'itico del fallo]{Bloque 3 --- Debate cr\'itico del fallo}
+%==================================================================
+
+\section{Reacci\'on de las partes y escrito de apelaci\'on}
+
+\subsection{El escrito de apelaci\'on}
+
+La parte actora reaccion\'o con la apelaci\'on. Se ley\'o el escrito preparado en el trabajo pr\'actico.
+
+\begin{example}{escrito de apelaci\'on le\'ido en clase}
+\textbf{Interpone recurso de apelaci\'on. Reserva caso federal.} Autos \guillemotleft Guti\'errez, Carlos Alberto c/ Bustos, Alfredo y otros s/ da\~nos y perjuicios\guillemotright.
+
+Se\~nor Juez de primera instancia: Carlos Alberto Guti\'errez, por derecho propio, con el patrocinio letrado de la doctora Ail\'en Vega, constituyendo domicilio procesal y electr\'onico, a V.S. respetuosamente me presento y digo:
+
+\textbf{1. Objeto.} Que, en tiempo y de conformidad con el art\'iculo 244 del C\'odigo Procesal Civil y Comercial de la Naci\'on, vengo a interponer recurso de apelaci\'on contra la sentencia definitiva dictada por V.S. con fecha de hoy, 28 de octubre de 2026, en todo cuanto ha sido materia de agravio para esta parte, solicitando que oportunamente se eleven los autos a la Excelent\'isima C\'amara Nacional de Apelaciones en lo Civil para que revoque el decisorio en crisis, haciendo lugar a la demanda incoada, con expresa imposici\'on de costas.
+
+\textbf{2. Procedencia formal.} Que el presente recurso se deduce dentro del plazo de cinco d\'ias de notificada la respectiva sentencia definitiva (es decir, el 5 de noviembre), que caus\'o un gravamen irreparable a los leg\'itimos derechos de mi parte, encontr\'andose reunidos todos los recaudos de admisibilidad formal que hacen a su procedencia.
+
+\textbf{3. Reserva del caso federal.} Para el hipot\'etico caso de que la Excelent\'isima C\'amara de Apelaciones confirme el criterio del \emph{a quo}, dejo desde ya formalmente planteada la reserva del caso federal prevista en el art\'iculo 14 de la ley 48, por encontrarse en juego garant\'ias de orden constitucional: la defensa en juicio y la reparaci\'on integral de los da\~nos, que surgen de los art\'iculos 17 y 18 de la Constituci\'on Nacional, y tambi\'en los art\'iculos 1716 y concordantes del C\'odigo Civil y Comercial de la Naci\'on, los cuales resultan frontalmente vulnerados por el pronunciamiento recurrido.
+
+\textbf{4. Petitorio.} Por lo expuesto, solicito a V.S. que se tenga por interpuesto, en tiempo y forma, recurso de apelaci\'on contra la sentencia definitiva; que se conceda el recurso y se ordene la elevaci\'on de los autos a la Excelent\'isima C\'amara Nacional de Apelaciones en lo Civil. Oportunamente se proceder\'a a fundar los agravios en la instancia de alzada. Proveer de conformidad, que ser\'a justicia.
+\end{example}
+
+\begin{note}
+El art. 244 del CPCCN (plazo y forma de interposici\'on de la apelaci\'on) es invocado por el docente y por el escrito para el plazo de cinco d\'ias; su texto no fue verificado. La ley 48, art. 14, es la base de la reserva del caso federal (recurso extraordinario ante la Corte Suprema); los arts. 17 y 18 de la Constituci\'on Nacional se citan por propiedad y reparaci\'on integral, y por defensa en juicio, respectivamente. El escrito sit\'ua el vencimiento el 5 de noviembre, a cinco d\'ias de una sentencia dictada el 28 de octubre de 2026; el c\'omputo es compatible con una notificaci\'on electr\'onica tenida por practicada el d\'ia h\'abil siguiente, y conviene verificarlo siempre con el calendario judicial.
+\end{note}
+
+\subsection{La opini\'on de la parte actora}
+
+Un integrante de la parte actora expres\'o que hab\'ia contradicciones importantes y que comprende el fundamento del fallo en cuanto a la falta de prueba pericial: se trabaj\'o m\'as la prueba testimonial (hubo audiencia) que la pericial. Se podr\'ia haber agregado una pericia, que la parte demandada quiz\'as habr\'ia impugnado; contaban con un arquitecto, pero se enteraron tarde de su posible intervenci\'on. La sentencia fue muy estricta en el apego a las pruebas.
+
+Sobre c\'omo se enteran los abogados de una sentencia adversa, se observ\'o que primero se leen los autos y luego la parte final; y que algunos abogados ya tienen preparado el recurso por las dudas.
+
+\section{\textquestiondown Es razonable la sentencia? Prueba y arbitrariedad}
+
+\subsection{La ponderaci\'on de la prueba testimonial}
+
+Para el juzgado la \'unica prueba considerada fue la testimonial. Los testigos aportaron que exist\'ian ruidos de cierta entidad y que aparecieron grietas que antes no se ve\'ian. El fallo se apoya en que los testigos no iban con frecuencia a la casa; se plantea, sin embargo, que un testigo puede afirmar que ``le apareci\'o una grieta'' que antes no mir\'o porque no era visible. Se se\~nal\'o tambi\'en que los testimonios eran concordantes, aunque ninguno de los tres result\'o muy convincente para lo que planteaba la parte; lo que refirieron sobre la salud del actor era lo que este les hab\'ia dicho, de modo que ``no acreditan''.
+
+El tema es la \textbf{triple requisitoria} que debe tener la prueba: las declaraciones deben ser \emph{presenciales} y, adem\'as, \emph{personales, graves, precisas y concordantes}. Esta f\'ormula se usa muchas veces para apreciar la prueba. El testigo aporta una subjetividad, con cierta imprecisi\'on; no es la pericia, que da el dato t\'ecnico y objetivo. Siempre se compara la prueba subjetiva con la objetiva.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}XX@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Prueba subjetiva (testimonial)} & \textbf{Prueba objetiva (pericial)} \\
+\midrule
+Qu\'e aporta & Percepci\'on del testigo; relato de lo vivido. & Dato t\'ecnico objetivo. \\
+\addlinespace
+Precisi\'on & Cierta imprecisi\'on inevitable. & Mayor precisi\'on, basada en conocimientos especiales. \\
+\addlinespace
+En esta sentencia & Corrobora obras, ruidos y deterioros visibles, pero no su causa ni su intensidad. & Falt\'o: ni la pericia de ingenier\'ia civil ni la pericia m\'edica estaban en el expediente. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Desde la parte actora, el alegato aludi\'a a una pericia, pero el juzgado se\~nal\'o que esta no estaba incorporada a la causa. Esos temas de fondo ser\'an materia de posible cr\'itica en el recurso de apelaci\'on.
+
+\subsection{La estructura l\'ogica y la arbitrariedad}
+
+La sentencia parece cumplir los requisitos de construcci\'on l\'ogica y normativa que exige el C\'odigo: tiene la estructura vista (los vistos como base y los considerandos como razonamiento del juez), el juez aprecia la prueba y razona en torno a ella, y su razonamiento tiene l\'ogica por lo menos en una apreciaci\'on inicial. Es una apreciaci\'on razonable, \textbf{no arbitraria}.
+
+\begin{definition}{Arbitrariedad f\'actica y normativa}
+La Corte distingue dos parcelas fundamentales de la arbitrariedad. La \textbf{arbitrariedad f\'actica} se da cuando se distorsionan los hechos o la prueba. La \textbf{arbitrariedad normativa} se da cuando se aplic\'o mal el derecho.
+\end{definition}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}XX@{}}
+\toprule
+\textbf{Tipo} & \textbf{Qu\'e significa (seg\'un el docente)} & \textbf{Aplicada a este caso} \\
+\midrule
+F\'actica & Que se hayan distorsionado los hechos o la prueba. & La valoraci\'on de los testigos parece razonada: reconoce lo que prueban y lo que no. \\
+\addlinespace
+Normativa & Que se haya aplicado mal el derecho. & Los presupuestos de la responsabilidad civil del C\'odigo parecen llevar con l\'ogica a la conclusi\'on. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+La conclusi\'on guarda relaci\'on l\'ogica con los antecedentes evaluados y permite al juez concluir en el rechazo de la demanda. El docente aclara que se trata de un an\'alisis puramente l\'ogico, que busca explicitar la l\'ogica del fallo; el corolario es el rechazo de la demanda.
+
+\section{Costas y honorarios diferidos}
+
+\subsection{Repaso de la parte dispositiva}
+
+El fallo rechaza la demanda \emph{\'integramente} (el adverbio es relevante) e impone las costas a la vencida. Adem\'as, \textbf{difiere} la regulaci\'on de honorarios ``hasta tanto se encuentren reunidos los elementos necesarios para su determinaci\'on''. La sentencia no dice ``hasta que quede firme'' ni ``hasta que se clasifiquen las tareas''; seg\'un el docente, la formulaci\'on sugiere que faltar\'ia la base econ\'omica para regular.
+
+Un estudiante propuso que se difiere porque falta la sentencia de C\'amara, que primero deber\'a confirmar o revocar y luego se regular\'ia. El docente observ\'o que podr\'ian regularse en primera instancia, pero que generalmente se regulan en C\'amara.
+
+\subsection{\textquestiondown Pod\'ia regular el juez? La base regulatoria y la ley de aranceles}
+
+Desde la parte demandada, la falta de regulaci\'on podr\'ia ser un agravio, si exist\'ian elementos para regular. Se discute c\'omo atacar el diferimiento: no cabr\'ia la revocatoria, porque se ataca una sentencia, ni la aclaratoria. Existe jurisprudencia seg\'un la cual, al dictar sentencia, el juez agota su competencia: la decisi\'on rige hasta que la C\'amara, si hay recursos, resuelva y la sentencia quede firme; luego se ver\'a el tema (ejecuci\'on u otra v\'ia).
+
+Si se rechaza \'integramente la demanda, la parte demandada podr\'ia sostener que debi\'o regularse porque la ley de aranceles manda tomar el monto de la demanda actualizado por intereses, con una disminuci\'on del 30\,\%.
+
+\begin{formula}{Ley 27.423, art. 22, segundo p\'arrafo --- Demanda \'integramente rechazada}
+\guillemotleft Si fuere \'integramente desestimada la demanda o la reconvenci\'on, se tendr\'a como valor del pleito el importe de la misma, actualizado por intereses al momento de la sentencia, si ello correspondiere, disminuido en un treinta por ciento (30\,\%), o, en los procesos de monto indeterminado, seg\'un la pericia contable, si existiere.\guillemotright
+\end{formula}
+
+\begin{note}
+En el audio, el docente y un estudiante leen la norma y la ubican como ``art\'iculo 28''. La disposici\'on que contiene ese texto es el art. 22 de la ley 27.423 (ley de honorarios vigente para la justicia nacional y federal), por lo que se corrigi\'o la referencia.
+\end{note}
+
+Como no hay pericia contable, corresponde tomar los rubros de la demanda y agregarles intereses. El docente advierte que la parte actora hab\'ia pedido desvalorizaci\'on, no actualizaci\'on, sino \'unicamente intereses.
+
+\subsection{\textquestiondown Qu\'e intereses? Tasa activa, IPC y naturaleza del asunto}
+
+La ley habla de ``intereses al momento de la sentencia''. La parte actora no especific\'o qu\'e tipo de intereses pidi\'o. Habr\'ia que ver qu\'e inter\'es fija en general la C\'amara Civil; el docente plantea como hip\'otesis la tasa activa. Distingue la actualizaci\'on por IPC de la tasa de inter\'es. Para alimentos se usa la tasa activa, que es variable; el docente menciona que para alimentos se usa IPC como actualizaci\'on, pero esto es una creaci\'on pretoriana, de los jueces.
+
+\begin{note}
+El docente cita de memoria el art. 658 del C\'odigo Civil y Comercial, que regula la obligaci\'on alimentaria de los progenitores, y aclara que el criterio de actualizaci\'on por IPC en alimentos es de creaci\'on jurisprudencial (``pretoriana''), mencion\'andolo solo como referencia. No se verific\'o ninguna norma espec\'ifica sobre la tasa ``m\'as alta''.
+\end{note}
+
+\begin{important}
+Los intereses relativos a los honorarios se fijan, en general, seg\'un la tasa que corresponde a la \textbf{naturaleza del asunto}: en un juicio de alimentos se aplica la tasa de alimentos; en un juicio de da\~nos y perjuicios, la de da\~nos y perjuicios.
+\end{important}
+
+El docente insiste en la importancia de los honorarios para los abogados, por ser su medio de vida: si la sentencia los difiere de manera indeterminada, surge la pregunta de cu\'ando se cobra. No se cobra inmediatamente, porque la sentencia es susceptible de apelaci\'on.
+
+\subsection*{Cuadro Cornell del Bloque 3}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{Prueba subjetiva y objetiva} &
+Los testigos aportan percepci\'on, con cierta imprecisi\'on; la pericia da el dato t\'ecnico objetivo. Las declaraciones deben ser personales, graves, precisas y concordantes. Con testigos solos no se prueba la causalidad t\'ecnica. \\
+
+\textbf{Arbitrariedad f\'actica y normativa} &
+F\'actica: se distorsionaron los hechos o la prueba. Normativa: se aplic\'o mal el derecho. Esta sentencia parece razonada y no arbitraria. \\
+
+\textbf{Honorarios diferidos y ley de aranceles} &
+La sentencia difiere la regulaci\'on ``hasta tanto se reunan los elementos''. Si la demanda se rechaza \'integramente, el valor del pleito es el monto reclamado, actualizado por intereses, disminuido en 30\,\% (ley 27.423, art. 22). La tasa de inter\'es sigue la naturaleza del asunto. \\
+
+\midrule
+\multicolumn{2}{>{\raggedright\arraybackslash}p{0.89\textwidth}}{
+\textbf{Resumen:} Los testigos concordantes aportan prueba subjetiva que no reemplaza al dato objetivo. La sentencia no luce arbitraria en lo f\'actico ni en lo normativo. Qued\'o abierto un punto pr\'actico: la sentencia difiri\'o la regulaci\'on de honorarios, y la base regulatoria de una demanda rechazada es el monto reclamado con intereses, reducido en 30\,\%.
+} \\
+\end{longtable}
+
+%==================================================================
+\chapter[Recursos y cierre de la clase]{Bloque 4 --- Recursos y cierre de la clase}
+%==================================================================
+
+\section{C\'omo atacar la sentencia: apelaci\'on y plazos}
+
+La sentencia puede atacarse mediante apelaci\'on. Un estudiante mencion\'o los arts. 242 y 244; el art. 244 se relaciona con el plazo.
+
+\subsection{El plazo para apelar}
+
+Como la sentencia es del d\'ia de la clase, se plantea cu\'antos d\'ias hay para apelar. Un estudiante indic\'o cinco d\'ias en el proceso ordinario. Se discuti\'o tambi\'en el proceso sumar\'isimo: los estudiantes indicaron tres d\'ias para apelar y cinco para fundar; el docente no recordaba el plazo y propuso buscarlo en la parte del C\'odigo dedicada al proceso sumar\'isimo. Tambi\'en se anticip\'o que deber\'a verse c\'omo se conceden los recursos (forma y efectos).
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.4cm}p{4.6cm}X@{}}
+\toprule
+\textbf{Proceso} & \textbf{Plazo para apelar} & \textbf{Observaciones} \\
+\midrule
+Ordinario & Cinco d\'ias desde la notificaci\'on (art. 244, seg\'un lo citado en clase y en el escrito de apelaci\'on). & El escrito del trabajo pr\'actico sit\'ua el vencimiento el 5 de noviembre. \\
+\addlinespace
+Sumar\'isimo & Tres d\'ias para apelar y cinco para fundamentar (seg\'un los estudiantes). & El docente no recordaba el plazo; verificar antes de usar. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% TODO: plazo del proceso sumarísimo no verificado en las notas originales
+
+\subsection{El art. 242 como punto de partida: monto del asunto}
+
+El art. 242 es fundamental para comenzar a pensar en el recurso de apelaci\'on porque contempla el \textbf{monto del asunto}: no todas las sentencias son apelables. Antes de decir al cliente ``vamos a apelar'', hay que ver el monto de la demanda y si, aunque se haya rechazado la demanda, ese reclamo permite llegar al m\'inimo de admisibilidad del recurso.
+
+\begin{formula}{CPCCN, art. 242 --- Procedencia del recurso de apelaci\'on (texto seg\'un ley 26.536)}
+\guillemotleft El recurso de apelaci\'on, salvo disposici\'on en contrario, proceder\'a solamente respecto de: 1. Las sentencias definitivas. 2. Las sentencias interlocutorias. 3. Las providencias simples que causen gravamen que no pueda ser reparado por la sentencia definitiva.
+
+Ser\'an inapelables las sentencias definitivas y las dem\'as resoluciones cualquiera fuere su naturaleza, que se dicten en procesos en los que el monto cuestionado sea inferior a la suma de [\ldots]. Anualmente, la Corte Suprema de Justicia de la Naci\'on adecuar\'a, si correspondiere, el monto establecido en el p\'arrafo anterior. A los efectos de determinar la inapelabilidad de una sentencia o resoluci\'on, se estar\'a al monto que rija en la fecha de presentaci\'on de la demanda o de la reconvenci\'on. [\ldots]\guillemotright
+
+El texto original de la ley 26.536 fij\'o el monto en \$20.000, cifra que el docente recuerda (``habla de 20.000 pesos''). Ese valor fue actualizado por acordadas de la Corte.
+\end{formula}
+
+\begin{formula}{Acordada CSJN 20/2025 --- Monto del art. 242}
+La Corte Suprema adecu\'o el monto del segundo p\'arrafo del art. 242 a \$3.200.000, aplicable a las demandas o reconvenciones presentadas a partir del 1.\textordmasculine{} de agosto de 2025. Es el valor que un estudiante aporta en clase (``3,2 [millones]'') y que el docente toma como actualizado a 2025.
+\end{formula}
+
+\section{Reposici\'on, apelaci\'on subsidiaria y nulidad}
+
+\subsection{T\'ecnica de recursos: estar preparados para la adversidad}
+
+Una providencia simple puede agraviar y dar lugar a la \textbf{reposici\'on}; si causa un gravamen irreparable, a la \textbf{apelaci\'on}; o se pueden acompa\~nar la reposici\'on y la apelaci\'on en subsidio. Estas v\'ias deben conocerse y tenerse presentes continuamente, porque hay que estar \textbf{preparados para la adversidad}: se espera un despacho que debe salir de determinada manera y sale de otra. Si hay agravio, se usa el g\'enero (reposici\'on o apelaci\'on) y tambi\'en debe pensarse en la nulidad, que se usa menos: puede caber el recurso de nulidad.
+
+\subsection{Dos formas de articular la nulidad: incidente y recurso}
+
+La nulidad se articula de dos formas: por \textbf{incidente} y por \textbf{recurso}.
+
+El \textbf{incidente de nulidad} corresponde a un vicio del procedimiento: algo que se omiti\'o en el devenir del proceso. Las notificaciones son un cl\'asico: una notificaci\'on viciada que no permite un conocimiento adecuado al destinatario amerita el incidente (art. 149). El r\'egimen de nulidades comienza en el art. 169; el art. 172 exige demostrar el vicio y la lesi\'on al derecho de defensa. En general, el incidente de nulidad se fundamenta en un agravio al derecho de defensa.
+
+El \textbf{recurso de nulidad} se usa cuando la sentencia tiene un vicio propio del acto, es decir, se ataca el acto particular: debe atacarse por la v\'ia del recurso.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.8cm}p{4.4cm}X@{}}
+\toprule
+\textbf{V\'ia} & \textbf{Qu\'e ataca} & \textbf{Fundamento / ejemplo} \\
+\midrule
+Incidente de nulidad & Un vicio del procedimiento: algo que se omiti\'o en el devenir del proceso. & Arts. 169 y ss., en especial el 172 (demostrar el vicio y la lesi\'on al derecho de defensa). Ejemplo cl\'asico: la notificaci\'on viciada (art. 149). \\
+\addlinespace
+Recurso de nulidad & Un vicio propio del acto, en este caso de la sentencia (forma y construcci\'on). & Art. 253: el recurso de apelaci\'on comprende el de nulidad por defectos de la sentencia. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{note}
+Los arts. 169 a 173 del CPCCN (r\'egimen de nulidades procesales) se mencionan en la clase pero su texto no se verific\'o en fuente oficial; se reproduce solo lo dicho por el docente. El art. 149 s\'i fue verificado.
+\end{note}
+
+\subsection{Requisitos extr\'insecos de la sentencia}
+
+Por eso se insiste en la construcci\'on de la sentencia y en los aspectos de su forma, que son requisitos extr\'insecos relevantes. Seg\'un la enumeraci\'on del docente, la sentencia debe tener:
+
+\begin{enumerate}
+    \item Lugar y fecha.
+    \item Nombre de las partes.
+    \item Relaci\'on sucinta de las cuestiones (punto tres).
+    \item Consideraci\'on por separado de esas cuestiones.
+    \item Fundamentos y aplicaci\'on de la ley.
+    \item Decisi\'on expresa, positiva y precisa.
+    \item Plazo para el cumplimiento, si corresponde.
+    \item Pronunciamiento sobre costas y regulaci\'on de honorarios.
+    \item Firma del juez, que es el juez de la causa, el \textbf{juez natural}, principio constitucional.
+\end{enumerate}
+
+La numeraci\'on exacta de incisos debe contrastarse con el art. 163 vigente.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (numeración exacta de los incisos del art. 163)
+
+\section{Admisibilidad por monto y arbitrariedad}
+
+\subsection{La ``sentencia que no es sentencia'' y el recurso extraordinario}
+
+La Corte habla de la sentencia que ``no es sentencia'': aquella que no cumple con los requisitos que permiten nombrarla como sentencia, como acto jurisdiccional v\'alido. Esto ha dado lugar al \textbf{recurso extraordinario por la teor\'ia de la arbitrariedad de sentencia}. Es un recurso muy limitado, pero hay que saber administrarlo: la parte no debe blandirlo sino plantearlo adecuadamente. Una cosa es considerar que una sentencia es muy mala y otra es que sea nula: hay que decidir si cabe la nulidad o solo la apelaci\'on.
+
+\subsection{El art. 253: la apelaci\'on comprende la nulidad}
+
+\begin{formula}{CPCCN, art. 253 --- Nulidad (seg\'un lo ley\'o el docente en clase)}
+\guillemotleft El recurso de apelaci\'on comprende el de nulidad por defectos de la sentencia. Si el procedimiento estuviere ajustado a derecho y el tribunal de alzada declarare la nulidad de la sentencia por cualquier otra causa, resolver\'a tambi\'en sobre el fondo del litigio.\guillemotright
+\end{formula}
+
+La alzada tambi\'en puede abordar el fondo. La nulidad ya est\'a comprendida dentro de la apelaci\'on, pero podr\'ia tener autonom\'ia si hay un quebrantamiento formal en el dictado de la sentencia, es decir, en c\'omo se construy\'o.
+
+\subsection{Admisibilidad: \textquestiondown se llega al monto m\'inimo?}
+
+Para revisar la admisibilidad se calcula el monto de la demanda: eran veintiún millones. El art. 242 habla de \$20.000, pero ese monto fue modificado por acordadas; el docente recordaba, con duda, una acordada de \$2.500.000. Un estudiante aport\'o el valor actualizado a 2025: \$3.200.000. A priori no habr\'ia problema de admisibilidad.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{4.2cm}XX@{}}
+\toprule
+\textbf{Dato} & \textbf{Valor} & \textbf{Conclusi\'on del docente} \\
+\midrule
+Monto reclamado en la demanda & \$21.000.000 (el docente dijo ``27'' de memoria; la suma de los rubros da 21). & Es el monto cuestionado a considerar. \\
+\addlinespace
+M\'inimo de apelabilidad (art. 242) & \$3.200.000, seg\'un Acordada CSJN 20/2025 (el docente recordaba \$2.500.000 con duda). & A priori no habr\'ia problema de admisibilidad por monto. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Organizaci\'on del trabajo y cierre}
+
+Para la pr\'oxima reuni\'on se prev\'e trabajar los recursos por \textbf{forma y efectos}, sobre todo el de apelaci\'on, que es el m\'as usado. La reposici\'on ya fue trabajada en otras situaciones m\'as concretas.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{3.6cm}X@{}}
+\toprule
+\textbf{Tema asignado} & \textbf{Indicaciones del docente} \\
+\midrule
+Recurso de apelaci\'on: forma y efectos & Ayudar a pensar el recurso de apelaci\'on en cuanto a formas y efectos; puede trabajarse en conjunto con otra persona. \\
+\addlinespace
+Expresi\'on de agravios & Pensar c\'omo se arma la expresi\'on de agravios, otro tema a desarrollar. \\
+\addlinespace
+Fundamentos del recurso de apelaci\'on & Podr\'a recurrirse luego a quienes trabajaron como parte actora y parte demandada. \\
+\addlinespace
+Caso federal & Es ``indispensable'' plantearlo en la apelaci\'on ``para que despu\'es uno tenga la perspectiva de llegar a articularlo''; estudiar adem\'as la situaci\'on novedosa a partir del precedente ``Levinas'': la necesidad de ir primero ante el Tribunal Superior de la Ciudad y reci\'en despu\'es a la Corte, y si la Corte dict\'o alguna acordada al respecto. \\
+\addlinespace
+Memorial / expresi\'on de agravios (trabajo final) & Primero, un tema nominativo: \textquestiondown es memorial o expresi\'on de agravios? Debe estar listo antes de terminar el curso. Es un escrito ``bastante desafiante'': la parte actora debe buscar la revocaci\'on de una sentencia adversa. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{note}
+El audio dice ``Ferrari Levinas'' y menciona una fecha de entrega dif\'icil de reconocer; ambos datos se transcriben con reserva y no fueron verificados.
+\end{note}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (precedente "Levinas" y fecha de entrega)
+
+\subsection*{Cuadro Cornell del Bloque 4}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.27\textwidth}
+    >{\raggedright\arraybackslash}p{0.62\textwidth}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{\textquestiondown C\'omo y cu\'ando se apela?} &
+Por escrito, en cinco d\'ias en el ordinario (art. 244), con reserva del caso federal (art. 14, ley 48; CN arts. 17 y 18). La expresi\'on de agravios se presenta luego ante la alzada. En el sumar\'isimo, tres d\'ias para apelar y cinco para fundar (a verificar). \\
+
+\textbf{Incidente de nulidad vs. recurso de nulidad} &
+Incidente: vicio del procedimiento, como una notificaci\'on defectuosa (arts. 149, 169 y ss., 172), con lesi\'on al derecho de defensa. Recurso: vicio propio de la sentencia, comprendido en la apelaci\'on (art. 253). \\
+
+\textbf{\textquestiondown Es apelable por su monto?} &
+Art. 242: son inapelables las sentencias en procesos de monto inferior al fijado por la Corte (\$3.200.000, Acordada 20/2025). Aqu\'i se reclamaron \$21.000.000: a priori es apelable. \\
+
+\midrule
+\multicolumn{2}{>{\raggedright\arraybackslash}p{0.89\textwidth}}{
+\textbf{Resumen:} Frente al fallo, la parte actora puede apelar dentro de cinco d\'ias, reservar el caso federal y distinguir entre el incidente de nulidad (vicios del procedimiento) y el recurso de nulidad (vicios propios de la sentencia, art. 253), verificando siempre la admisibilidad por monto (art. 242; \$3.200.000 seg\'un la Acordada 20/2025, frente a \$21.000.000 reclamados). La lecci\'on general de la clase es que tener raz\'on no alcanza: hay que probarla, notificarla bien y recurrir a tiempo y por la v\'ia correcta.
+} \\
+\end{longtable}
+
+\end{document}

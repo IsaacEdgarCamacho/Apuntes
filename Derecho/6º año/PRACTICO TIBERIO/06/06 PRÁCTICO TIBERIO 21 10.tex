@@ -1,0 +1,992 @@
+\documentclass[12pt,oneside]{book}
+
+%==================================================================
+% METADATOS
+%==================================================================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Derecho Procesal Civil}
+\newcommand{\titulo}{Trabajo pr\'actico de simulaci\'on: del alegato a la sentencia}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+%==================================================================
+% PAQUETES
+%==================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Se evita depender del paquete de idioma 'babel' en este entorno para que el índice se genere y el documento compile correctamente.
+\renewcommand{\contentsname}{Índice}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%==================================================================
+% CONFIGURACIÓN
+%==================================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==================================================================
+% COMANDOS
+%==================================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Auxiliares para los cuadros Cornell
+\newcommand{\cornellhead}{%
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endhead
+}
+\newcommand{\cornellsummary}[1]{%
+    \midrule
+    \multicolumn{2}{p{\dimexpr0.92\textwidth+2\tabcolsep\relax}}{%
+        \textbf{Resumen:} #1} \\
+    \bottomrule
+}
+
+%==================================================================
+% ENTORNOS / CAJAS
+%==================================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definici\'on: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={F\'ormula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Caja adicional para textos normativos transcriptos en los apuntes
+\newtcolorbox{norma}[1]{
+    enhanced,
+    breakable,
+    title={Norma: #1},
+    fonttitle=\bfseries,
+    colback=yellow!4,
+    colframe=yellow!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+%==================================================================
+% DOCUMENTO
+%==================================================================
+\begin{document}
+
+%------------------------------------------------------------------
+% PORTADA
+%------------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender cada etapa del proceso es el primer paso para convertir el estudio en criterio profesional.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Derecho Procesal Civil'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%------------------------------------------------------------------
+% ÍNDICE
+%------------------------------------------------------------------
+\tableofcontents
+\clearpage
+
+%==================================================================
+% PRESENTACIÓN
+%==================================================================
+\chapter[Presentaci\'on del trabajo pr\'actico]{Presentaci\'on del trabajo pr\'actico de simulaci\'on}
+
+\section{Objeto y recorrido del trabajo pr\'actico}
+
+El trabajo pr\'actico consiste en la \textbf{simulaci\'on de un juicio de da\~nos entre vecinos}: una obra lindera habr\'ia provocado grietas, ruidos y afecciones auditivas. A partir de ese caso se recorren las etapas finales del proceso ordinario:
+
+\begin{itemize}
+    \item \textbf{Excepciones previas} (defecto legal, prescripci\'on, legitimaci\'on) y cu\'ando deben resolverse antes de la sentencia.
+    \item \textbf{Alegatos} de la actora y de la demandada: c\'omo se valora la prueba y se persuade al juzgado.
+    \item \textbf{Citaci\'on de terceros} (art.~94): por qu\'e la demandada debi\'o pensar en la constructora, el seguro o la ART.
+    \item \textbf{Cierre del proceso}: llamado de autos, audiencia conciliatoria, modos anticipados de terminaci\'on, recursos y medidas para mejor proveer.
+    \item \textbf{La sentencia}: clases de resoluciones, homologaci\'on de acuerdos de mediaci\'on y el contenido que exige el art.~163.
+\end{itemize}
+
+\section{Utilidad de los contenidos}
+
+Los contenidos de este trabajo pr\'actico ense\~nan \textbf{cu\'ando y c\'omo actuar}, y su utilidad se aprecia en tres planos.
+
+\textbf{En la pr\'actica profesional}, un error de oportunidad no tiene arreglo:
+\begin{itemize}
+    \item si no se cita al tercero al contestar la demanda, despu\'es su responsabilidad no le es oponible y la acci\'on contra \'el puede prescribir;
+    \item si se opone mal el defecto legal, el cliente pierde la chance de defenderse;
+    \item si el recurso se funda en el lugar equivocado, queda desierto.
+\end{itemize}
+Conocer estos plazos y consecuencias distingue a quien litiga de quien solo redacta.
+
+\textbf{En el oficio de argumentar}, el alegato es el escrito donde se convence con la prueba; practicarlo entrena a valorar evidencia, anticipar al adversario y pedir con precisi\'on, incluido lo subsidiario.
+
+\textbf{En la vida cotidiana}, las molestias entre vecinos (ruidos, obras), la firma de un convenio o de un acuerdo de mediaci\'on y la decisi\'on de <<arreglar o seguir>> (transacci\'on) aparecen fuera de los tribunales. Entender que un acuerdo entre personas capaces vale, que conviene certificar firmas y que una sentencia se funda en prueba protege a la persona como ciudadana, inquilina, propietaria o empleadora.
+
+\section{C\'omo se relacionan los temas: un partido de f\'utbol}
+
+El recorrido de la clase se entiende como un partido con \'arbitro:
+
+\begin{itemize}
+    \item \textbf{Bloque 1 (excepciones):} los reclamos al \'arbitro \emph{antes} de empezar (<<la cancha no est\'a en condiciones>>). Algunos se resuelven en el acto; otros se reservan para el final.
+    \item \textbf{Bloque 2 (alegatos):} terminado el partido, cada t\'ecnico le explica al \'arbitro, con las jugadas filmadas (la prueba), por qu\'e su equipo debe ganar.
+    \item \textbf{Bloque 3 (terceros):} si la lesi\'on la provoc\'o un tercero, hay que llamarlo \emph{durante} el partido; si no, despu\'es nadie puede reprocharle nada.
+    \item \textbf{Bloque 4 (cierre y recursos):} antes del pitazo final, el \'arbitro puede proponer un empate acordado y pedir revisar una jugada (medida para mejor proveer); los equipos pueden apelar, si lo hacen bien fundado.
+    \item \textbf{Bloque 5 (sentencia):} el acta del \'arbitro: qu\'e pas\'o, por qu\'e decidi\'o as\'i y cu\'al es el resultado.
+\end{itemize}
+
+%==================================================================
+% BLOQUE 1
+%==================================================================
+\chapter[Excepciones y cuestiones previas]{Excepciones y cuestiones previas}
+
+\section{Proceso principal, incidencias y costas}
+
+\subsection{Proceso principal e incidencias}
+
+Debe distinguirse el \textbf{proceso principal} de las \textbf{incidencias}, porque cada uno tiene su propio r\'egimen de costas: el art.~68 corresponde a las costas del proceso principal y el art.~69, a las de las incidencias. En el caso simulado, la regulaci\'on se hab\'ia considerado referida al proceso como un todo, cuando correspond\'ia a una etapa del proceso y, en realidad, hab\'ia una incidencia.
+
+\begin{norma}{Art.~68 CPCCN --- Costas del proceso principal (principio objetivo de la derrota)}
+La parte vencida en el juicio deber\'a pagar todos los gastos de la contraparte, aun cuando \'esta no lo hubiese solicitado. Sin embargo, el juez podr\'a eximir total o parcialmente de esta responsabilidad al vencido, siempre que encontrare m\'erito para ello, expres\'andolo en su pronunciamiento, bajo pena de nulidad.
+\end{norma}
+
+\begin{norma}{Art.~69 CPCCN --- Costas en los incidentes}
+Se menciona como la norma que rige las costas de las incidencias, a diferencia del art.~68, que rige las del proceso principal. Se remite a su lectura en el c\'odigo vigente.
+\end{norma}
+
+\subsection{Incidentes expl\'icitos e incidentes subsumidos}
+
+Hay incidentes que quedan \emph{subsumidos} en el proceso principal y no son expl\'icitos: no se presenta una demanda incidental, no se corre traslado, no se contesta ni se abre a prueba el incidente. Frente a ellos se encuentra el incidente cl\'asico, el \textbf{beneficio de litigar sin gastos}, que tramita en paralelo a la acci\'on principal y tiene incluso una autonom\'ia formal.
+
+El \textbf{incidente de nulidad} est\'a dentro del proceso principal pero recibe tratamiento incidental: la cuesti\'on tramita dentro del proceso, pero por separado. Tiene \textbf{efecto suspensivo} respecto de la cuesti\'on principal: hasta que no se dirime el incidente de nulidad no se puede continuar, porque lo que se pretende es la nulidad de alg\'un punto o de alguna controversia del proceso principal.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el desarrollo de esta unidad quedó fragmentado en la grabación)
+
+\section{Excepciones de previo y especial pronunciamiento}
+
+\subsection{Las excepciones opuestas en el caso}
+
+En el proceso simulado la parte demandada opuso dos excepciones: \textbf{defecto legal} y \textbf{prescripci\'on}. No hay constancia de que se hayan resuelto. Las excepciones que se resuelven antes de la sentencia son las de \textbf{previo y especial pronunciamiento}; su resoluci\'on adopta la forma de una \textbf{interlocutoria} que las admite o las rechaza, resoluci\'on que en el caso deb\'io dictarse y no se dict\'o.
+
+\subsection{El defecto legal: una excepci\'on de previo y especial pronunciamiento}
+
+El defecto legal en el modo de proponer la demanda es de previo y especial pronunciamiento porque, si no se subsana o no se trata, resulta afectado el \textbf{derecho de defensa en juicio}. Su motor es el planteo de quien dice estar desconcertado frente a la demanda y pide que se suspenda el plazo para contestar, porque no puede defenderse.
+
+Es una \textbf{excepci\'on de riesgo}: si el juez entiende que el demandado pod\'ia defenderse y \'este no contest\'o la demanda, despu\'es ya no podr\'a contestarla. Por eso, aunque la demanda pueda estar mal hecha o ser defectuosa, si el demandado puede defenderse, debe contestarla. Se trata de una excepci\'on que debe estudiarse con cuidado en la jurisprudencia y en la doctrina.
+
+Procede fundamentalmente en los juicios de da\~nos cuando no se determina el monto reclamado y ello afecta el derecho de defensa (por ejemplo, se reclama <<da\~no material>> sin indicar monto, o se demandan otras parcelas o conceptos sin determinarlos). Tambi\'en procede cuando la construcci\'on de la demanda es oscura: el \emph{oscuro libelo}, seg\'un la doctrina.
+
+\begin{definition}{Excepci\'on de defecto legal}
+Excepci\'on fundada en el defecto en el modo de proponer la demanda. Es de previo y especial pronunciamiento y \textbf{de riesgo}: procede cuando la falta de determinaci\'on del monto o de los conceptos reclamados, o la oscuridad de la demanda (\emph{oscuro libelo}), afectan el derecho de defensa. Si el juez entiende que el demandado pod\'ia defenderse y \'este no contest\'o, ya no podr\'a hacerlo despu\'es.
+\end{definition}
+
+\section{Prescripci\'on, excepciones diferidas y legitimaci\'on}
+
+\subsection{La prescripci\'on: oportunidad y tratamiento}
+
+Las excepciones previas del proceso ordinario se deben oponer dentro de los primeros \textbf{10 d\'ias}; la excepci\'on de prescripci\'on tiene la previsi\'on normativa de que puede oponerse \textbf{hasta la contestaci\'on de la demanda}.
+
+La prescripci\'on puede ser \textbf{de puro derecho} o depender de prueba. Cuando depende de prueba, aunque muchas veces las excepciones se acompa\~nen de la prueba espec\'ifica para producirse en ese acto, suele \textbf{diferirse}: a veces ni siquiera se opone como previa y queda diferida para la sentencia definitiva. Esto genera la dificultad de tener que tramitar todo el proceso para que se trate una excepci\'on que parec\'ia evidente. Como ejemplo se menciona el caso de un colega que interpuso la excepci\'on de cosa juzgada, con la sentencia del proceso anterior a la vista, y el juzgado difiri\'o todo para la sentencia definitiva.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Criterio} & \textbf{Prescripci\'on <<de puro derecho>>} & \textbf{Prescripci\'on que depende de prueba} \\
+\midrule
+\textbf{Cu\'ando ocurre} & Es categ\'orico que hay prescripci\'on: los elementos aportados permiten determinarlo inmediatamente. & Su procedencia depende de la producci\'on de prueba. \\
+\addlinespace
+\textbf{Tratamiento} & Puede resolverse como cuesti\'on previa. & Suele diferirse: queda para la sentencia definitiva (a veces ni siquiera se opone como previa). \\
+\addlinespace
+\textbf{Oportunidad} & Se puede oponer hasta la contestaci\'on de la demanda (las dem\'as excepciones previas del proceso ordinario, dentro de los primeros 10 d\'ias). & \'Idem: hasta la contestaci\'on de la demanda. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Falta de personer\'ia y falta de legitimaci\'on}
+
+La \textbf{falta de personer\'ia} tiene que ver con la representaci\'on: qu\'e poder se tiene. La \textbf{falta de legitimaci\'on}, en cambio, tiene que ver con el derecho sustancial: la titularidad, o la conexi\'on del reclamante, del reclamado o del demandado con el derecho controvertido.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+ & \textbf{Falta de personer\'ia} & \textbf{Falta de legitimaci\'on} \\
+\midrule
+\textbf{Tiene que ver con} & La representaci\'on: qu\'e poder se tiene. & El derecho sustancial: la titularidad, o la conexi\'on del reclamante, del reclamado o del demandado con el derecho controvertido. \\
+\addlinespace
+\textbf{Tratamiento habitual} & --- & En general se difiere para la definitiva; pero si es muy manifiesta, puede resolverse antes. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Respecto de la legitimaci\'on, lo habitual es que el juzgado la difiera para la sentencia definitiva, pero a veces puede ser tan manifiesta o clara que se resuelva antes. En el caso simulado hab\'ia puntos claros que no se abordaron y que quiz\'as merec\'ian un tratamiento m\'as espec\'ifico, lo que sirve para reflexionar sobre c\'omo se gestion\'o la causa.
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{p{0.26\textwidth}p{0.66\textwidth}}
+\cornellhead
+
+\textbf{\textquestiondown Qu\'e distingue al proceso principal de una incidencia y c\'omo se regulan las costas?} &
+Las costas del proceso principal se rigen por el art.~68 y las de las incidencias, por el art.~69. Hay incidentes con autonom\'ia formal (el beneficio de litigar sin gastos, que tramita en paralelo) e incidentes subsumidos en el principal, como el de nulidad: tramita por separado, con efecto suspensivo sobre la cuesti\'on principal hasta que se resuelva. \\
+\addlinespace
+
+\textbf{\textquestiondown Qu\'e excepciones se opusieron y cu\'al es el car\'acter de las que se resuelven antes de la sentencia?} &
+Defecto legal y prescripci\'on. Las que se resuelven antes de la sentencia son de \textbf{previo y especial pronunciamiento}, mediante una \textbf{interlocutoria} que las admite o rechaza (en el caso no se hab\'ia dictado). \\
+\addlinespace
+
+\textbf{Defecto legal: \textquestiondown por qu\'e es una <<excepci\'on de riesgo>> y cu\'ando procede?} &
+Protege el derecho de defensa cuando la demanda es oscura (\emph{oscuro libelo}) o no determina montos o conceptos (t\'ipico en juicios de da\~nos). Riesgo: si el juez entiende que el demandado pod\'ia defenderse y \'este no contest\'o, ya no podr\'a hacerlo. Regla pr\'actica: si puedo defenderme, contesto la demanda. \\
+\addlinespace
+
+\textbf{\textquestiondown Cu\'ando se opone la prescripci\'on y c\'omo se resuelve?} &
+Las excepciones previas del ordinario se oponen en los primeros 10 d\'ias; la prescripci\'on, hasta la contestaci\'on de la demanda. Puede ser \textbf{de puro derecho} (se resuelve ya) o depender de prueba (se \textbf{difiere} para la sentencia definitiva). Lo mismo ocurre a veces con la cosa juzgada. \\
+\addlinespace
+
+\textbf{Falta de personer\'ia vs.\ falta de legitimaci\'on} &
+Personer\'ia: representaci\'on (qu\'e poder se tiene). Legitimaci\'on: derecho sustancial (titularidad o conexi\'on con el derecho controvertido). La legitimaci\'on suele diferirse a la definitiva, salvo que sea manifiesta. \\
+
+\cornellsummary{Las excepciones de previo y especial pronunciamiento, como el defecto legal, deben resolverse antes de la sentencia porque afectan el derecho de defensa; otras, como la prescripci\'on que depende de prueba y la legitimaci\'on, suelen diferirse a la definitiva. Las costas del proceso principal (art.~68) se distinguen de las de las incidencias (art.~69).}
+\end{longtable}
+
+%==================================================================
+% BLOQUE 2
+%==================================================================
+\chapter[Los alegatos]{Los alegatos}
+
+\section{Alegato de la parte actora}
+
+El alegato de la actora se present\'o por escrito y fue le\'ido en la clase. Se resumen a continuaci\'on sus contenidos por punto.
+
+\subsection{Objeto}
+
+La actora presenta alegato sobre el m\'erito de la prueba producida, para exponer las razones por las cuales corresponde hacer lugar a la demanda. Sostiene que la valoraci\'on integral de los elementos probatorios permite afirmar la existencia de los da\~nos, su vinculaci\'on con la obra ejecutada en el inmueble lindero y la responsabilidad del demandado. Solicita sentencia que haga lugar a la demanda, con expresa imposici\'on de costas a la demandada.
+
+\subsection{Los hechos y los rubros reclamados}
+
+Durante el a\~no 2024 se llev\'o a cabo, en el inmueble de la calle Humboldt 2363, una obra de edificaci\'on por parte del demandado. Seg\'un la actora, la obra produjo importantes deterioros en la vivienda ubicada en Fitz Roy 2420 (agrietamiento de paredes y roturas de cer\'amicos). Los trabajadores habr\'ian generado ruidos y vibraciones intensos, incluso en horarios nocturnos, que afectaron el uso y disfrute de la vivienda, alteraron el descanso y repercutieron en la salud, particularmente a trav\'es de afecciones auditivas (\emph{tinnitus} o ac\'ufenos). Esto motiv\'o consultas y controles m\'edicos, ausencias laborales y molestias y gestiones. Se reclama la reparaci\'on de da\~nos patrimoniales y extrapatrimoniales, discriminados as\'i:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.15\textwidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Naturaleza} & \textbf{Rubro} & \textbf{Monto (seg\'un lectura)} & \textbf{Fundamento invocado} \\
+\midrule
+Extrapatrimonial & Da\~no moral & 5 millones & Angustia, padecimiento espiritual, afectaci\'on de la tranquilidad y de la intimidad, deterioro de la calidad de vida. \\
+\addlinespace
+Extrapatrimonial & Da\~no psicol\'ogico & 5 millones & Conforme a los alcances y fundamentos expuestos en la demanda. \\
+\addlinespace
+Patrimonial & Da\~no emergente & [monto no audible] & Gastos y erogaciones vinculados con consultas m\'edicas y actuaciones administrativas y judiciales. \\
+\addlinespace
+Patrimonial & Desvalorizaci\'on del inmueble & 5 millones & P\'erdida de valor atribuida a los deterioros sufridos por la propiedad. \\
+\addlinespace
+Patrimonial & Lucro cesante & 1 mill\'on & Ingresos dejados de percibir en la panader\'ia <<Medianos del Abuelo>>, por las ausencias relacionadas con la atenci\'on m\'edica. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (monto del daño emergente no audible)
+
+\subsection{La posici\'on de la demandada y la prueba producida}
+
+Al contestar la demanda, el accionado neg\'o en t\'erminos generales los da\~nos y molestias denunciados. Sostuvo que contrat\'o a la constructora Perg\"uen Sociedad An\'onima para ejecutar su obra, destinada a la construcci\'on de un quincho, e invoc\'o permisos, planos y cumplimiento de la normativa. Cuestion\'o los rubros y opuso las excepciones de defecto legal y prescripci\'on, esta \'ultima con fundamento en una supuesta ejecuci\'on de los trabajos entre los a\~nos 2012 y 2022.
+
+La actora enumera la prueba producida:
+
+\begin{itemize}
+    \item \textbf{Documental:} t\'itulo de propiedad, actas municipales, certificados m\'edicos emitidos por el especialista, recibos de sueldo, constancias salariales y fotograf\'ias de los deterioros.
+    \item \textbf{Testimonial de la actora:} declaraciones de los vecinos linderos Pablo Benveniste, Florencia Fortunato y Emilia Lucero, sobre el inmueble, el desarrollo de los trabajos y las molestias.
+    \item \textbf{Pericial:} informe del perito ingeniero civil designado de oficio, que examina t\'ecnicamente los deterioros y su relaci\'on con los trabajos.
+    \item \textbf{Prueba de la demandada:} permiso de obra, planos y contratos con la constructora; absoluci\'on de posiciones del actor; y declaraciones testimoniales de Alfonso Bonte, Bruno D\'iaz y Carlos Jim\'enez, profesionales vinculados con la ejecuci\'on de la obra.
+\end{itemize}
+
+El conjunto debe valorarse \textbf{de manera integral}, conforme a las reglas de la sana cr\'itica, evitando analizar cada medio probatorio de forma aislada.
+
+\subsection{Fundamentos de la responsabilidad y valoraci\'on de la prueba}
+
+De la valoraci\'on integral y arm\'onica de la prueba, conforme a las reglas de la sana cr\'itica (art.~386 CPCCN), surge para la actora que los hechos invocados encuentran sustento en los elementos incorporados. En particular, la prueba pericial, testimonial, confesional y documental permitir\'ia acreditar los da\~nos en el inmueble, las molestias derivadas de la obra lindera y la relaci\'on entre ambos y los perjuicios reclamados.
+
+\begin{norma}{Art.~386 CPCCN --- Apreciaci\'on de la prueba (sana cr\'itica)}
+Salvo disposici\'on legal en contrario, los jueces formar\'an su convicci\'on respecto de la prueba, de conformidad con las reglas de la sana cr\'itica. No tendr\'an el deber de expresar en la sentencia la valoraci\'on de todas las pruebas producidas, sino \'unicamente de las que fueren esenciales y decisivas para el fallo de la causa.
+\end{norma}
+
+\subsection{Sobre las excepciones de defecto legal y prescripci\'on}
+
+\textbf{Defecto legal.} La actora sostiene que la demanda individualiz\'o los hechos, identific\'o la obra cuestionada, describi\'o los da\~nos y precis\'o los rubros. Por ello la demandada tuvo elementos suficientes para conocer el objeto de la pretensi\'on, formular sus defensas y ofrecer prueba, como efectivamente lo hizo. No se advierte, entonces, afectaci\'on del derecho de defensa, por lo que corresponde rechazar la excepci\'on, si a\'un estuviera pendiente de resoluci\'on.
+
+\textbf{Prescripci\'on.} La defensa se apoya en una cronolog\'ia que debe confrontarse con las circunstancias de la causa: la fecha de inicio y finalizaci\'on de los trabajos, el momento en que se manifestaron los da\~nos y las circunstancias en que pudieron ser conocidos son relevantes para determinar el curso del plazo. La prueba pericial y las declaraciones testimoniales deben ponderarse para establecer si respaldan que los trabajos y deterioros se produjeron durante el a\~no 2024, como sostiene la actora.
+
+\subsection{La pericia de ingenier\'ia civil y los deterioros del inmueble}
+
+La actora otorga especial relevancia al dictamen del perito ingeniero civil designado de oficio, quien, tras inspeccionar el inmueble de Fitz Roy 2420, constat\'o agrietamientos y deterioros en las paredes y vincul\'o el incremento progresivo de las lesiones con las tareas de edificaci\'on ejecutadas en Humboldt 2363. Seg\'un la actora, la prueba t\'ecnica respalda su postura y permite controvertir la defensa de preexistencia de los deterioros o de su atribuci\'on exclusiva al desgaste natural: la existencia de da\~nos anteriores no puede presumirse ni invocarse de manera gen\'erica para excluir la responsabilidad.
+
+Las conclusiones periciales deben apreciarse junto con las fotograf\'ias, las actas de inspecci\'on municipales y las declaraciones de los vecinos linderos, cuya concordancia permite reconstruir c\'omo se desarroll\'o la obra y se manifestaron los deterioros. Adem\'as:
+
+\begin{itemize}
+    \item al absolver posiciones, el demandado Alfredo Bustos reconoci\'o su vinculaci\'on con la actividad constructiva y la realizaci\'on de la obra en el inmueble lindero;
+    \item las actas de inspecci\'on y las intimaciones de la autoridad administrativa son elementos relevantes para examinar las condiciones de los trabajos y el eventual incumplimiento de la normativa;
+    \item los testimonios de los vecinos pueden dar cuenta de las condiciones anteriores del inmueble, de la aparici\'on de grietas y de las caracter\'isticas de los trabajos, y resultan coincidentes con los dem\'as elementos;
+    \item las declaraciones de Bonte, D\'iaz y Jim\'enez deben valorarse cr\'iticamente y confrontarse con los elementos objetivos, ya que intervinieron profesionalmente en la obra.
+\end{itemize}
+
+\subsection{Ruidos, vibraciones y afectaci\'on del uso de la vivienda}
+
+Los hechos no se limitan a los da\~nos materiales: comprenden tambi\'en las molestias por ruidos y vibraciones, cuya intensidad, duraci\'on y horarios deben evaluarse a partir de la prueba. Seg\'un la actora, los testigos coinciden en:
+
+\begin{itemize}
+    \item la \textbf{intensidad} de los ruidos y vibraciones, con jornadas desde las primeras horas de la ma\~nana hasta las 21 o 22 horas e incluso en fines de semana;
+    \item que, antes de las obras, \textbf{no hab\'ian advertido grietas ni cer\'amicos rotos}, dado su conocimiento del inmueble por la relaci\'on de vecindad y las visitas previas;
+    \item las \textbf{consecuencias personales} sufridas por el se\~nor Guti\'errez: molestias, p\'erdida de tranquilidad y afectaciones durante el desarrollo de la obra.
+\end{itemize}
+
+La prueba testimonial, valorada con las actas de inspecci\'on municipales y las dem\'as constancias, permitir\'ia acreditar que las emisiones excedieron las molestias que razonablemente deben tolerarse. El ejercicio del derecho de construir no es absoluto: el art.~1973 del C\'odigo Civil y Comercial contempla las molestias que exceden la normal tolerancia entre vecinos, con independencia de que la actividad cuente con autorizaci\'on administrativa. Aunque el demandado haya obtenido permiso de obra, ello no lo exime de responder por las consecuencias da\~nosas que se acrediten y le sean jur\'idicamente atribuibles.
+
+\begin{norma}{Art.~1973 CCyC --- Inmisiones}
+Las molestias que ocasionan el humo, calor, olores, luminosidad, ruidos, vibraciones o inmisiones similares por el ejercicio de actividades en inmuebles vecinos, no deben exceder la normal tolerancia teniendo en cuenta las condiciones del lugar y aunque medie autorizaci\'on administrativa para aqu\'ellas. Seg\'un las circunstancias del caso, los jueces pueden disponer la remoci\'on de la causa de la molestia o su cesaci\'on y la indemnizaci\'on de los da\~nos. En la valoraci\'on de la normal tolerancia, los jueces deben ponderar especialmente el respeto debido al uso regular de la propiedad, la prioridad en el uso, el inter\'es general y las exigencias de la producci\'on.
+\end{norma}
+
+\begin{note}
+En la lectura del alegato de la actora la grabaci\'on consigna <<art\'iculo 1963>>; por el contenido (molestias entre vecinos que exceden la normal tolerancia) corresponde al art\'iculo 1973 del C\'odigo Civil y Comercial, que es el que cita luego el alegato de la demandada.
+\end{note}
+
+\subsection{La afectaci\'on de la salud}
+
+Respecto de las afecciones auditivas, la actora pide valorar los certificados m\'edicos del doctor Lucas Mariani y las dem\'as constancias cl\'inicas, en cuanto dan cuenta de consultas, s\'intomas y tratamientos o controles indicados. Deben examinarse junto con la prueba sobre las caracter\'isticas y la temporalidad de los ruidos, para establecer si existe una \textbf{relaci\'on causal jur\'idicamente relevante} entre las molestias y la afectaci\'on de la salud.
+
+La respuesta afirmativa del actor a la posici\'on n\'umero tres de la absoluci\'on de posiciones debe interpretarse conforme a su formulaci\'on concreta y en relaci\'on con el resto de la prueba. En particular, si esa posici\'on se refer\'ia a la inexistencia de afecciones auditivas con anterioridad a la obra, la respuesta no puede aislarse de su contenido ni utilizarse autom\'aticamente para desestimar el reclamo. La prueba relativa a la salud debe apreciarse integralmente, sin atribuir a una respuesta convencional un alcance mayor que el que razonablemente se desprenda de los t\'erminos de la posici\'on.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (se menciona una pericia médica en la clase, pero no se desarrolla)
+
+\subsection{Los perjuicios patrimoniales reclamados}
+
+La procedencia de cada rubro patrimonial debe analizarse individualmente, seg\'un su naturaleza y la prueba ofrecida:
+
+\begin{itemize}
+    \item \textbf{Da\~no emergente:} exige identificar las erogaciones efectivamente realizadas y su vinculaci\'on con los hechos; corresponde ponderar las constancias documentales que acrediten gastos m\'edicos, tr\'amites y dem\'as desembolsos, sin confundirlo con la mera realizaci\'on de gestiones administrativas o judiciales.
+    \item \textbf{Desvalorizaci\'on del inmueble:} la existencia de agrietamientos y roturas no conduce autom\'aticamente a una p\'erdida determinada del valor comercial; su reconocimiento y cuantificaci\'on deben apoyarse en la prueba t\'ecnica, en particular en las conclusiones periciales sobre el estado del inmueble, la entidad de los deterioros y su incidencia en el valor.
+    \item \textbf{Lucro cesante:} requiere acreditar el perjuicio econ\'omico y su relaci\'on causal con los hechos; los recibos de sueldo y las constancias de descuentos salariales deben valorarse junto con la prueba m\'edica para determinar si hubo p\'erdidas de ingresos atribuibles a las ausencias vinculadas con la atenci\'on de la salud.
+\end{itemize}
+
+\subsection{Los da\~nos extrapatrimoniales}
+
+La afectaci\'on de la tranquilidad, del descanso y del uso y disfrute de la propia vivienda es una dimensi\'on relevante del perjuicio invocado. Si la prueba permite tener por acreditadas las molestias por ruidos y vibraciones, los deterioros materiales y la afectaci\'on de la vida cotidiana, esas circunstancias deber\'an ponderarse para determinar la procedencia del da\~no extrapatrimonial. El reclamo no se sustenta solo en la existencia de una obra lindera, sino en las consecuencias concretas atribuidas a su ejecuci\'on.
+
+El \textbf{da\~no psicol\'ogico} debe distinguirse del da\~no moral, y requiere prueba espec\'ifica que establezca una afectaci\'on ps\'iquica susceptible de reparaci\'on y su relaci\'on causal con los hechos. La actora solicita que ambos rubros se examinen conforme a sus presupuestos y a la prueba producida, evitando tanto su rechazo infundado como la \textbf{duplicaci\'on indemnizatoria} de consecuencias ya comprendidas en otro rubro.
+
+\subsection{Conclusi\'on y petitorio}
+
+\textbf{Conclusi\'on.} Seg\'un la actora, de la prueba surge la necesidad de examinar conjuntamente las circunstancias de ejecuci\'on de la obra lindera, los deterioros, las molestias y las consecuencias personales y patrimoniales invocadas. La existencia de permisos administrativos y la contrataci\'on de una empresa constructora no excluyen por s\'i mismas la responsabilidad del demandado, y las negativas formuladas al contestar la demanda no bastan para desvirtuar hechos sustentados en prueba documental, pericial y testimonial.
+
+\textbf{Petitorio.} Se solicita: (1) que se tenga por presentado en tiempo y forma el alegato; (2) que se rechacen las excepciones de defecto legal y prescripci\'on, si estuvieran pendientes y correspondiera seg\'un las constancias; (3) que oportunamente se dicte sentencia definitiva haciendo lugar a la demanda, en la medida en que los da\~nos reclamados y sus presupuestos resulten acreditados, con expresa imposici\'on de costas a la demandada.
+
+La valoraci\'on del docente fue que se trata de un alegato s\'olido y convincente, que es lo que se busca; el juzgado, prudentemente, no adelanta opini\'on y se pronunciar\'a oportunamente.
+
+\section{Alegato de la parte demandada}
+
+\subsection{Objeto}
+
+La demandada alega sobre el m\'erito de la prueba para solicitar el \textbf{rechazo de la demanda}, con costas, por no haberse demostrado suficientemente todos los presupuestos de responsabilidad ni la procedencia de los rubros reclamados. Para el supuesto de admitirse alguna pretensi\'on, pide que su alcance se limite estrictamente a los perjuicios y nexos causales efectivamente acreditados.
+
+\begin{note}
+El escrito le\'ido cita el <<art\'iculo 452>>. En el C\'odigo Procesal Civil y Comercial de la Naci\'on, el alegato sobre el m\'erito de la prueba se regula en el art\'iculo 482. Se transcribe la cita tal como fue le\'ida en clase.
+\end{note}
+
+\subsection{Delimitaci\'on de la controversia}
+
+El actor atribuye a trabajos de construcci\'on en Humboldt 2363 da\~nos en la vivienda de Fitz Roy 2420, molestias por ruidos y vibraciones, afectaciones auditivas y consecuencias econ\'omicas. La demandada niega que esos extremos generen una obligaci\'on resarcitoria a cargo del se\~nor Bustos. Invoc\'o la contrataci\'on de la constructora Perg\"uen S.A. para construir un quincho y la existencia de documentaci\'on t\'ecnica, permisos y planos; estos antecedentes integran la posici\'on defensiva y deben ponderarse seg\'un su acreditaci\'on, no como \textbf{eximentes autom\'aticos} frente a da\~nos que eventualmente se prueben.
+
+La controversia exige diferenciar la \textbf{existencia de la obra} --que no basta para atribuir responsabilidad-- de la demostraci\'on de un da\~no cierto, de su origen causal y de la imputaci\'on jur\'idica al demandado. La proximidad f\'isica de dos inmuebles y la sucesi\'on temporal entre trabajos y deterioros no reemplazan por s\'i solas la demostraci\'on del nexo causal adecuado.
+
+\subsection{Valoraci\'on de la prueba documental y t\'ecnica}
+
+Seg\'un el art.~386, la prueba se valora en su conjunto y conforme a la sana cr\'itica. Las fotograf\'ias pueden ilustrar el estado de ciertos sectores, pero no determinan por s\'i solas la fecha de aparici\'on de cada lesi\'on ni su causa t\'ecnica: debe distinguirse la constataci\'on material de fisuras o rupturas de la atribuci\'on de su origen a una obra concreta.
+
+Se se\~nal\'o que la pericia de ingenier\'ia civil ofrecida no habr\'ia sido producida; de verificarse en el expediente, esa circunstancia limita la posibilidad de afirmar el nexo t\'ecnico entre la obra y los deterioros. En caso de existir dictamen, su valor deber\'a apreciarse con sus fundamentos, seg\'un los arts.~386 y 477 CPCCN, sin atribuirle conclusiones no comprobadas.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el alegato de la actora describe un dictamen pericial; el de la demandada afirma que la pericia no habría sido producida)
+
+\begin{norma}{Art.~477 CPCCN --- Eficacia probatoria del dictamen pericial}
+La fuerza probatoria del dictamen pericial ser\'a estimada por el juez teniendo en cuenta la competencia de los peritos, la uniformidad o disconformidad de sus conclusiones, los principios cient\'ificos en que se fundan, la concordancia de su aplicaci\'on con las reglas de la sana cr\'itica, las observaciones formuladas por los consultores t\'ecnicos o los letrados, conforme a los art\'iculos 473 y 474, y los dem\'as elementos de convicci\'on que la causa ofrezca.
+\end{norma}
+
+En cuanto a la documental administrativa, el alegato advierte que ciertas actas e intimaciones refieren a domicilios de la Municipalidad de San Isidro, mientras que el conflicto versa sobre Fitz Roy 2420 y Humboldt 2363, de la Ciudad Aut\'onoma de Buenos Aires. De confirmarse que corresponden a inmuebles ajenos, no servir\'ian para demostrar una infracci\'on edilicia en esta causa: la pertenencia de cada documento debe apreciarse por su contenido concreto y no por su sola incorporaci\'on al expediente.
+
+\subsection{El alcance de las declaraciones testimoniales}
+
+La demandada pide distinguir entre \textbf{percepci\'on directa}, \textbf{apreciaciones personales} y \textbf{referencias recibidas del propio reclamante}:
+
+\begin{itemize}
+    \item En la declaraci\'on atribuida a Pablo Benveniste aparecen menciones a grietas que el actor le mostr\'o y a comentarios del propio se\~nor Guti\'errez sobre su salud y ausencias laborales. Haber visto fisuras no demuestra por s\'i solo su causa, y reproducir lo que coment\'o el actor no constituye comprobaci\'on m\'edica y laboral independiente.
+    \item Las declaraciones de Florencia Fortunato y Emilia Lucero incluyen referencias a la percepci\'on de trabajos y molestias en sus viviendas. Su valor se circunscribe a lo efectivamente observado por cada declarante, seg\'un la frecuencia con que ingresaron al inmueble del actor y sus posibilidades reales de conocer el estado anterior a la construcci\'on. La percepci\'on de ruidos no acredita autom\'aticamente que se excediera la norma de tolerancia, ni una lesi\'on auditiva espec\'ifica.
+    \item Se invoc\'o que los testigos Alfonso Bonte, Bruno D\'iaz y Carlos Jim\'enez describieron trabajos dentro de los horarios habituales y signos anteriores de antig\"uedad o desgaste del inmueble del actor. Estas referencias solo podr\'an utilizarse como hechos probados en la medida en que coincidan con las actas testimoniales efectivamente incorporadas. Las respuestas relativas al desconocimiento de reclamos o ausencias del actor no constituyen prueba positiva de su existencia, pero tampoco acreditan por s\'i mismas la tesis causal de la demanda.
+\end{itemize}
+
+\subsection{Ruido, vibraciones y norma de tolerancia}
+
+La demandada no desconoce el est\'andar del art.~1973 CCyC; sostiene que su aplicaci\'on requiere establecer concretamente las caracter\'isticas, la duraci\'on y la intensidad de las molestias y su exceso respecto de lo razonablemente tolerable. No bastan la mera existencia de una construcci\'on ni la percepci\'on ordinaria de ruidos inherentes a su ejecuci\'on: corresponde distinguir entre las molestias propias de una actividad constructiva y aquellas que, por sus circunstancias probadas, pudieron constituir una inmisi\'on jur\'idicamente relevante. La documentaci\'on de permiso tampoco decide por s\'i sola la cuesti\'on, pero integra el contexto que debe apreciarse en el conjunto.
+
+\subsection{Afecciones auditivas y nexo causal}
+
+El actor invoc\'o ac\'ufenos o \emph{tinnitus}, con documentaci\'on m\'edica atribuida al doctor Lucas Mariani. Aun si esas constancias acreditaran consultas o s\'intomas, no se sigue necesariamente que la obra haya sido su causa: para reconocer una lesi\'on de salud indemnizable se requiere \textbf{prueba suficiente del nexo causal adecuado}, m\'as all\'a de la mera coincidencia temporal. Se pide diferenciar el registro de un s\'intoma de su atribuci\'on m\'edica a los trabajos del inmueble vecino.
+
+Respecto de la posici\'on n\'umero tres, no corresponde reproducirla como confesi\'on decisiva sin verificar el texto literal de la posici\'on, la identidad de quien absolvi\'o y su respuesta. Aun prescindiendo de esa afirmaci\'on, las constancias m\'edicas por s\'i solas no permiten identificar necesariamente a la obra como causa de los s\'intomas.
+
+\subsection{Improcedencia o limitaci\'on de los rubros reclamados}
+
+\begin{itemize}
+    \item \textbf{Da\~no emergente:} el reconocimiento del gasto exige verificar su existencia, necesidad y relaci\'on con el hecho atribuido; la descripci\'on general de gastos o gestiones no equivale a la acreditaci\'on de su importe y causalidad.
+    \item \textbf{Desvalorizaci\'on del inmueble:} la existencia de grietas no prueba, sin m\'as, una depreciaci\'on comercial aut\'onoma; de demostrarse t\'ecnicamente una p\'erdida de valor, deber\'a diferenci\'arsela del costo de reparaci\'on, para evitar una duplicaci\'on de resarcimiento.
+    \item \textbf{Lucro cesante:} las afirmaciones sobre descuentos salariales o ausencias laborales requieren constancias de ingreso y fechas, y una vinculaci\'on cierta con un perjuicio causado por la obra; la referencia testimonial a lo que el actor cont\'o sobre sus faltas no satisface por s\'i sola esos extremos.
+    \item \textbf{Consecuencias no patrimoniales y da\~no psicol\'ogico:} el reclamo debe guardar proporci\'on con las molestias efectivamente probadas; un eventual padecimiento no autoriza una versi\'on ps\'iquica aut\'onoma ni indemnizar dos veces la misma consecuencia, y corresponde un tratamiento separable entre la prueba espec\'ifica y la relaci\'on causal de cada concepto.
+\end{itemize}
+
+Adem\'as, la demandada advierte que, aunque la cifra de la pretensi\'on requiere especial cuidado en el escrito inicial, aparecen referencias no plenamente concordantes entre el monto general y la suma de los rubros indemnizables. El alegato no puede suplir esa diferencia introduciendo importes nuevos ni ampliar la demanda: cualquier cuantificaci\'on debe respetar los l\'imites de las pretensiones v\'alidamente deducidas y la prueba producida.
+
+\subsection{Excepciones opuestas}
+
+Se plantearon las defensas de defecto legal y prescripci\'on. Respecto de la primera, se sostuvo que la exposici\'on de la demanda no permitir\'ia identificar con la claridad exigible ciertos presupuestos de la pretensi\'on y sus importes. En cuanto a la prescripci\'on, la contestaci\'on invoc\'o una cronolog\'ia anterior a la que afirma el actor. La demandada mantiene sus planteos, si estuvieran pendientes, y pide que se resuelvan conforme a las constancias del expediente y a la fecha de producci\'on y conocimiento de cada da\~no efectivamente acreditado, sin presumir que el inicio de la obra y la aparici\'on de todos los perjuicios sean necesariamente simult\'aneos.
+
+\subsection{Conclusi\'on y petitorio}
+
+\textbf{Conclusi\'on.} La prueba debe permitir un juicio preciso sobre cada presupuesto de responsabilidad. La constataci\'on de una obra y de molestias o deterioros alegados no autoriza, sin demostraci\'on suficiente de su ilicitud y causalidad, a trasladar al se\~nor Bustos la totalidad de los perjuicios reclamados. Se solicita el rechazo de la demanda y, \textbf{subsidiariamente}, que se excluyan los rubros o importes no acreditados y se evite toda duplicaci\'on indemnizatoria.
+
+\textbf{Petitorio.} Se solicita: que se tenga presente en tiempo y forma el alegato; que se valoren las constancias conforme a la sana cr\'itica y con el alcance individual de cada medio probatorio; que se resuelvan, si correspondiera por su estado procesal, las defensas oportunamente expuestas; que se dicte sentencia rechazando la demanda respecto del se\~nor Alfredo Bustos, con costas; y, subsidiariamente, que se limite cualquier eventual condena a los da\~nos y montos efectivamente acreditados y jur\'idicamente atribuibles.
+
+\section{Valoraci\'on docente de los alegatos}
+
+La valoraci\'on del docente fue positiva respecto de ambos grupos: el alegato de la demandada est\'a bien construido y se advierte una elaboraci\'on cuidada de los argumentos y un esfuerzo en la redacci\'on. El valor de la actividad est\'a en ver c\'omo se redactan y se exponen los argumentos para tratar de convencer al juzgado de si se debe admitir la demanda, en qu\'e medida, o rechazarla, o rechazarla parcialmente, que es lo que plantea tambi\'en la demandada.
+
+\begin{definition}{Alegato}
+Escrito en el que cada parte, una vez producida la prueba, la valora y trata de convencer al juzgado: la actora, de que se haga lugar a la demanda (total o parcialmente); la demandada, de que se la rechace o, al menos, se limite la condena a lo efectivamente probado.
+\end{definition}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{p{0.26\textwidth}p{0.66\textwidth}}
+\cornellhead
+
+\textbf{\textquestiondown Qu\'e se reclam\'o en el caso y con qu\'e rubros?} &
+Una obra lindera (2024) habr\'ia causado grietas, roturas de cer\'amicos, ruidos y vibraciones, y afecciones auditivas (\emph{tinnitus}). Rubros: da\~no moral, da\~no psicol\'ogico, da\~no emergente, desvalorizaci\'on del inmueble y lucro cesante. \\
+\addlinespace
+
+\textbf{\textquestiondown C\'omo se estructura un alegato?} &
+Objeto; hechos y posici\'on de la contraria; prueba producida; valoraci\'on conforme a la sana cr\'itica (art.~386) y eficacia del dictamen pericial (art.~477); excepciones; rubros; conclusi\'on y petitorio (incluido lo subsidiario). \\
+\addlinespace
+
+\textbf{\textquestiondown Qu\'e argumentos centrales us\'o cada parte?} &
+\textbf{Actora:} valoraci\'on integral de la prueba; el art.~1973 CCyC protege contra molestias que exceden la normal tolerancia aunque haya permiso; la pericia, los testigos y las actas coinciden. \textbf{Demandada:} falta de nexo causal; distingue percepci\'on directa de lo referido por el actor; actas de otro municipio; pericia que no habr\'ia sido producida; subsidiariamente, limitar la condena y evitar duplicaciones. \\
+
+\cornellsummary{Cada parte valora la prueba conforme a la sana cr\'itica para persuadir sobre la responsabilidad y los rubros: la actora se apoya en el art.~1973 del C\'odigo Civil y Comercial, mientras la demandada discute el nexo causal y pide limitar la condena a lo probado.}
+\end{longtable}
+
+%==================================================================
+% BLOQUE 3
+%==================================================================
+\chapter[Citaci\'on de terceros y estrategia]{Citaci\'on de terceros y estrategia de defensa}
+
+\section{La citaci\'on de terceros}
+
+\subsection{Por qu\'e la demandada debi\'o pensar en un tercero}
+
+La citaci\'on de terceros es un tema muy importante en los juicios. En el escenario del caso, la demanda aludi\'o a que el demandado contrat\'o a una empresa para que hiciera la obra, de modo que ese tercero pod\'ia tener alguna responsabilidad. Esto es trascendente porque el demandado puede \textbf{derivar responsabilidad} en ese tercero; por eso siempre debe pensarse en esta posibilidad. En el caso no hubo reconvenci\'on.
+
+\subsection{El riesgo de citar mal y el riesgo de no citar}
+
+Citar a un tercero entra\~na un riesgo: si se lo cita mal, el demandado que lo convoca soporta las \textbf{costas}, porque el tercero debe presentarse de entrada con patrocinio y representaci\'on. Pero si no lo convoca, puede tener que responder por un hecho de un tercero. El hecho del tercero no lo exime totalmente de responsabilidad, pero lleva a conocimiento del juez la intervenci\'on que tuvo ese tercero en el conflicto.
+
+\subsection{El caso cl\'asico de las compa\~n\'ias de seguros}
+
+Cuando hay un seguro, puede citarlo tanto el actor como el demandado. La citaci\'on del seguro por el actor est\'a sujeta a que se notifique al demandado, porque el seguro no es demandado directo --la jurisprudencia lo ha trabajado mucho--: su intervenci\'on est\'a condicionada a que se demande al asegurado. Por eso el abogado de la actora debe tener claro c\'omo viene la relaci\'on jur\'idica: el conflicto es con el asegurado, no con el seguro. Despu\'es el seguro puede intervenir por el contrato que existe entre \'el y el asegurado.
+
+\begin{example}{Citaci\'on omitida de la ART}
+El docente relat\'o un caso an\'alogo en el que, al contestar la demanda por un accidente, plante\'o que exist\'ia una ART, pero el juzgado no resolvi\'o la citaci\'on: convoc\'o una audiencia conciliatoria y luego abri\'o la causa a prueba, designando perito m\'edico, perito psic\'ologo y otras pericias, con lo que la prueba se orientaba hacia la responsabilidad del cliente (la empleadora) sin considerar a la ART. El docente plante\'o la revocatoria y, el d\'ia de la clase, le notificaron que se hizo lugar al pedido de citaci\'on y se dio traslado a la actora, que no hab\'ia llegado a opinar. Lecci\'on: siempre hay que pensar en la citaci\'on de terceros.
+\end{example}
+
+\subsection{Formas de intervenci\'on de terceros}
+
+Las intervenciones de tercero tienen dos especies, reguladas tanto en el C\'odigo Civil y Comercial como en el C\'odigo Procesal: la \textbf{intervenci\'on voluntaria}, mucho m\'as infrecuente, y la \textbf{intervenci\'on obligada}, del art\'iculo 94. En el caso, si el demandado contrat\'o a la empresa constructora, en la contestaci\'on se la cita como tercero. El demandado puede buscar su cobertura en el accionar del tercero: si contrat\'o a una empresa para hacer la obra y la hizo mal, la empresa tendr\'a responsabilidad y por ah\'i excluye la del demandado.
+
+\begin{norma}{Art.~94 CPCCN --- Intervenci\'on obligada (citaci\'on de terceros)}
+El actor en el escrito de demanda, y el demandado dentro del plazo para oponer excepciones previas o para contestar la demanda, seg\'un la naturaleza del juicio, podr\'an solicitar la citaci\'on de aquel a cuyo respecto consideraren que la controversia es com\'un. La citaci\'on se har\'a en la forma establecida para la notificaci\'on de la demanda.
+\end{norma}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Situaci\'on} & \textbf{Qu\'e ocurre} & \textbf{Riesgo / consecuencia} \\
+\midrule
+\textbf{Intervenci\'on voluntaria} & El tercero se presenta por iniciativa propia. & Mucho m\'as infrecuente. \\
+\addlinespace
+\textbf{Intervenci\'on obligada (art.~94)} & El actor (en la demanda) o el demandado (en el plazo para contestar) piden citar a quien consideran que la controversia es com\'un. & Si se cita mal, el citante carga con costas: el tercero se presenta con patrocinio y representaci\'on. \\
+\addlinespace
+\textbf{Citaci\'on del seguro por el actor} & El seguro no es demandado directo: su intervenci\'on est\'a condicionada a que se demande al asegurado. & El actor debe tener claro que su conflicto es con el asegurado, no con el seguro. \\
+\addlinespace
+\textbf{Citaci\'on del seguro o de un tercero por el demandado} & El demandado busca su cobertura en el accionar del tercero (seguro, ART, empresa constructora). & Si no lo cita, responde por el hecho de un tercero; el hecho del tercero no lo exime totalmente, pero se informa al juez de su intervenci\'on. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Oportunidad y estrategia de defensa}
+
+\subsection{Ejercicio mental: la acci\'on aut\'onoma posterior}
+
+Si el demandado no cita al tercero y se limita a pedir, por ejemplo, un oficio a la empresa que hizo la obra para que informe c\'omo la hizo, y la pericia concluye que se hizo mal, la sentencia puede declarar responsable al demandado, se\~nalando que contrat\'o a un tercero que hizo mal la obra. El demandado podr\'ia luego iniciar una \textbf{acci\'on aut\'onoma} contra el tercero invocando lo dicho en esa sentencia. Pero la sentencia:
+
+\begin{itemize}
+    \item \textbf{no es oponible al tercero}, porque no fue citado;
+    \item el tercero \textbf{no pudo defenderse}: aun si hubo un informe suyo o una pericia, no fue parte del juicio m\'as que con una intervenci\'on sesgada o limitada a una prueba;
+    \item y con el paso del tiempo la acci\'on contra el tercero puede \textbf{prescribir}. Se cuestiona, adem\'as, si esa sentencia interrumpi\'o la prescripci\'on: juzg\'o la controversia entre actor y demandado, m\'as all\'a de que analizara la actuaci\'on del tercero.
+\end{itemize}
+
+\begin{important}
+Si el tercero no fue citado al juicio, lo que se diga sobre su actuaci\'on en la sentencia no le es oponible, porque no pudo defenderse; y la acci\'on aut\'onoma que el demandado inicie despu\'es contra \'el corre el riesgo de la prescripci\'on. La oportunidad para citarlo es la contestaci\'on de la demanda.
+\end{important}
+
+\subsection{Negligencia defensiva y principio dispositivo}
+
+La oportunidad deb\'io pasar por la defensa, convocando al tercero. De lo contrario puede configurarse una \textbf{negligente defensa} del demandado, por no haber citado a un tercero cuya obra tuvo un defecto y ocasion\'o el da\~no, o fue fuente de la responsabilidad que se le achaca.
+
+Al contestar la demanda se debe pensar c\'omo fue la relaci\'on jur\'idica, c\'omo se plantearon las relaciones, qui\'enes intervinieron y qui\'enes gravitaron, y tomar una decisi\'on, porque la citaci\'on de tercero debe hacerse \textbf{dentro del plazo para contestar la demanda}. Luego el juzgado la sustancia con el actor y resuelve si procede o no. Pero si el demandado no lo plantea, rige el \textbf{principio dispositivo}: el actor no demand\'o a la empresa; es el demandado quien, en tal caso, trae a la empresa constructora que pudo tener responsabilidad en la obra. En el caso simulado esta omisi\'on pas\'o inadvertida, y sirve para reflexionar sobre la oportunidad y las distintas alternativas de la defensa.
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{p{0.26\textwidth}p{0.66\textwidth}}
+\cornellhead
+
+\textbf{\textquestiondown Qu\'e es la citaci\'on de terceros y por qu\'e importa?} &
+Intervenci\'on obligada (art.~94): el actor en la demanda, el demandado dentro del plazo para contestar. Sirve para derivar o compartir responsabilidad (constructora, seguro, ART). Citar mal puede acarrear costas; no citar puede obligar a responder por el hecho de un tercero. \\
+\addlinespace
+
+\textbf{\textquestiondown Qu\'e ocurre si no se cita al tercero y luego se lo demanda por acci\'on aut\'onoma?} &
+La sentencia no le es oponible (no fue parte ni pudo defenderse) y la acci\'on puede prescribir. Puede configurarse una negligente defensa. Rige el principio dispositivo: el actor no demand\'o a la empresa; solo el demandado puede traerla. \\
+
+\cornellsummary{La citaci\'on de terceros debe hacerse al contestar la demanda; omitirla deja al demandado expuesto a responder solo y a perder, por prescripci\'on, su acci\'on posterior contra el tercero.}
+\end{longtable}
+
+%==================================================================
+% BLOQUE 4
+%==================================================================
+\chapter[Cierre de la prueba, conciliaci\'on y recursos]{Cierre de la etapa probatoria, conciliaci\'on y recursos}
+
+\section{Llamado de autos para sentencia y audiencia conciliatoria}
+
+\subsection{Qu\'e puede hacer el juzgado tras los alegatos}
+
+Presentados los alegatos, el juzgado puede \textbf{llamar autos para sentencia} o convocar una \textbf{audiencia conciliatoria}. La audiencia conciliatoria es normativa y requiere que haya juicio: no es previa a la demanda (no debe confundirse con la mediaci\'on). En la audiencia del art\'iculo 360, una de las posibilidades era la conciliaci\'on, pero cuando la litis ya estaba trabada, antes de abrir la prueba.
+
+\begin{norma}{Art.~360 CPCCN --- Audiencia preliminar}
+Se remite a esta audiencia, que se celebra una vez trabada la litis y antes de abrirse la causa a prueba, y una de cuyas finalidades es ofrecer a las partes una oportunidad de conciliaci\'on.
+\end{norma}
+
+Los juzgados, e incluso la C\'amara, convocan estas audiencias porque la autogesti\'on o \textbf{autocomposici\'on} es una opci\'on para las partes. Hay distintos momentos para reflexionar: durante la mediaci\'on, al cabo de las posiciones expuestas en la demanda y la contestaci\'on, y al cabo de la prueba. Las partes pueden tambi\'en ponerse de acuerdo extrajudicialmente y presentar un acuerdo.
+
+\subsection{Modos anticipados de terminaci\'on del proceso}
+
+El acuerdo extrajudicial en el que las partes resignan pretensiones rec\'iprocas no es de <<conciliaci\'on>> (que se da dentro del juicio) ni de mediaci\'on (que se da con el mediador): es una \textbf{transacci\'on}, que es un modo de terminaci\'on del proceso. Suele hablarse de modos <<anormales>> de terminaci\'on, pero el docente prefiere la redacci\'on del C\'odigo de la Ciudad, que habla de \textbf{<<modos anticipados de terminaci\'on del proceso>>}: expresi\'on m\'as positiva porque permite evitar la sentencia, que existe por el desacuerdo; si las partes se hubiesen puesto de acuerdo, la sentencia no ser\'ia necesaria.
+
+\section{Recursos: reposici\'on, apelaci\'on y deserci\'on}
+
+La \textbf{reposici\'on con apelaci\'on en subsidio} tiene una determinada confecci\'on, un <<armado>>. El recurso de \textbf{apelaci\'on aut\'onomo} es m\'as desafiante en cuanto a d\'onde se funda: incluso quienes ejercen la profesi\'on dudan si se funda en la C\'amara o en primera instancia. Esa duda puede ser fatal: si deb\'ia fundarse en primera instancia y no se hizo, la consecuencia de la omisi\'on de fundamento es la \textbf{deserci\'on}, t\'ecnicamente <<result\'o desierto>>.
+
+\begin{important}
+Reposici\'on con apelaci\'on en subsidio: tiene un <<armado>> determinado. Apelaci\'on aut\'onoma: es m\'as desafiante porque hay que saber d\'onde se funda (ante el juez de primera instancia o ante la C\'amara). La omisi\'on de fundamentar en el momento y lugar correctos tiene como consecuencia la deserci\'on del recurso (<<result\'o desierto>>).
+\end{important}
+
+\section{Medidas para mejor proveer y aclaratoria}
+
+\subsection{Cuando el juzgado tiene una duda insuperable sobre la prueba}
+
+La \textbf{aclaratoria} la piden las partes una vez dictada la sentencia; el juzgado, de oficio, puede hacer una rectificatoria. Distinta es la \textbf{medida para mejor proveer}: cuando el juzgado considera que est\'a toda la prueba pero queda algo sin desentra\~nar, puede ordenar prueba de oficio. Por ejemplo, los juzgados a veces piden a los peritos aclaraciones o agregan puntos de pericia, porque la pericia no es completa o no tiene el grado de convicci\'on o la eficacia t\'ecnico-cient\'ifica requerida.
+
+\subsection{L\'imites de la medida para mejor proveer}
+
+La medida no puede ir en pugna con el \textbf{derecho de defensa} de las partes. No es para suplir negligencias, omisiones o deficiencias de la parte que ten\'ia que probar y no prob\'o: a veces se le puede objetar al juez por qu\'e no lo vio antes y no lo se\~nal\'o. Si no hay medida para mejor proveer, el juzgado llama autos para sentencia.
+
+\begin{definition}{Medida para mejor proveer}
+Facultad del juzgado de ordenar prueba de oficio cuando le queda una duda sin desentra\~nar. L\'imite: no puede ir en pugna con el derecho de defensa de las partes ni servir para suplir la negligencia, omisi\'on o deficiencia de la parte que deb\'ia probar y no prob\'o.
+\end{definition}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{p{0.26\textwidth}p{0.66\textwidth}}
+\cornellhead
+
+\textbf{\textquestiondown Qu\'e puede hacer el juzgado tras los alegatos?} &
+Llamar autos para sentencia o convocar una audiencia conciliatoria (como la del art.~360). Las partes pueden tambi\'en transar extrajudicialmente: son <<modos anticipados de terminaci\'on del proceso>>, porque la sentencia existe por el desacuerdo. \\
+\addlinespace
+
+\textbf{\textquestiondown C\'omo se fundan la reposici\'on con apelaci\'on en subsidio y la apelaci\'on aut\'onoma?} &
+La reposici\'on con apelaci\'on en subsidio tiene un <<armado>> determinado. En la apelaci\'on aut\'onoma la duda es d\'onde se funda (primera instancia o C\'amara); omitir el fundamento en el lugar correcto lleva a la \textbf{deserci\'on} (<<result\'o desierto>>). \\
+\addlinespace
+
+\textbf{\textquestiondown Qu\'e son la medida para mejor proveer y la aclaratoria?} &
+Medida para mejor proveer: prueba de oficio ante una duda sin desentra\~nar; no puede ir contra el derecho de defensa ni suplir la negligencia de quien deb\'ia probar. Aclaratoria: la piden las partes una vez dictada la sentencia; el juzgado puede rectificar de oficio. \\
+
+\cornellsummary{El cierre del proceso comprende el llamado de autos, la audiencia conciliatoria, la transacci\'on, los recursos correctamente fundados y las medidas para mejor proveer con sus l\'imites. En el proceso, hacer lo correcto fuera de tiempo equivale, muchas veces, a no haberlo hecho.}
+\end{longtable}
+
+%==================================================================
+% BLOQUE 5
+%==================================================================
+\chapter[La sentencia y sus formas]{La sentencia y sus formas}
+
+\section{Clases de resoluciones judiciales}
+
+Las resoluciones pueden clasificarse en \textbf{providencias de mero tr\'amite}, \textbf{interlocutorias} y \textbf{sentencia definitiva}. Las providencias de mero tr\'amite son consideradas por algunos una especie de sentencia, o una decisi\'on, que tiende a hacer avanzar el proceso. Existen adem\'as muchas clasificaciones seg\'un el tipo de sentencia.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Clase} & \textbf{Qu\'e es} & \textbf{Funci\'on / ejemplo} \\
+\midrule
+\textbf{Providencia de mero tr\'amite} & Decisi\'on que tiende a hacer avanzar el proceso (algunos la consideran una especie de sentencia). & Impulso procesal. \\
+\addlinespace
+\textbf{Interlocutoria} & Resoluci\'on intermedia. & Admitir o rechazar una excepci\'on de previo y especial pronunciamiento. \\
+\addlinespace
+\textbf{Sentencia definitiva} & Pone fin al proceso decidiendo la controversia. & Se estructura seg\'un el art.~163 CPCCN. \\
+\addlinespace
+\textbf{Sentencia homologatoria} & Aprueba un acuerdo entre las partes (transacci\'on, convenio). & Verifica condiciones y orden p\'ublico; no analiza el derecho. Luego puede ejecutarse (p.~ej., cuota alimentaria). \\
+\addlinespace
+\textbf{Sentencia constitutiva} & Constituye el derecho de una de las partes (propuesta por un alumno). & El docente invita a mirar qu\'e se va a ejecutar despu\'es. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Sentencia homologatoria y acuerdos de mediaci\'on}
+
+\subsection{La sentencia homologatoria}
+
+La \textbf{sentencia homologatoria} aprueba un acuerdo, como una transacci\'on o un convenio regulador. Lo que vigila es que el acuerdo cumpla todas las condiciones y que haya acuerdo entre las partes; \textbf{no analiza el derecho}. Una vez homologado, si el acuerdo no se cumple, puede ejecutarse; por ejemplo, en los acuerdos de alimentos, las partes fijan la cuota y, si el alimentante no la paga, se ejecuta. Se homologa porque la homologaci\'on tiene que ver con el \textbf{orden p\'ublico}: se verifica que se cumpla.
+
+\begin{definition}{Sentencia homologatoria}
+Sentencia que aprueba un acuerdo entre las partes (transacci\'on, convenio). Verifica que el acuerdo cumpla las condiciones y el orden p\'ublico, sin analizar el derecho; una vez homologado, puede ejecutarse si se incumple.
+\end{definition}
+
+\subsection{\textquestiondown Hay que homologar el acuerdo de mediaci\'on?}
+
+La discusi\'on en clase plante\'o si el acuerdo de mediaci\'on debe homologarse o si tiene directamente fuerza ejecutoria. La respuesta del docente distingue: la homologaci\'on es para que el acuerdo tenga \textbf{fuerza ejecutoria}; el acuerdo puede no homologarse, pero si despu\'es se lo quiere ejecutar, ser\'a necesario que est\'e homologado. Los acuerdos entre personas capaces responden a la \textbf{autonom\'ia de la voluntad}, presente en el c\'odigo en distintos pasajes: las partes pueden ponerse de acuerdo sin necesidad de mediador, siempre que el acuerdo respete el \textbf{orden p\'ublico}. Como ejemplo, la partici\'on en la sucesi\'on entre personas capaces, donde cada uno se adjudica un inmueble y se procura que haya equilibrio.
+
+\subsection{Ley de Mediaci\'on y art\'iculo 500, inciso 4, del C\'odigo Procesal}
+
+\begin{norma}{Ley 26.589, art.~30 --- Ejecutoriedad del acuerdo instrumentado en el acta de mediaci\'on}
+El acuerdo instrumentado en acta suscripta por el mediador ser\'a ejecutable por el procedimiento de ejecuci\'on de sentencia, de conformidad con lo dispuesto en el art\'iculo 500, inciso 4, del C\'odigo Procesal Civil y Comercial de la Naci\'on.
+\end{norma}
+
+\begin{norma}{Art.~500, inc.~4 CPCCN --- T\'itulos que dan lugar a la ejecuci\'on de sentencia}
+Al acuerdo instrumentado en acta suscripta por el mediador, con la certificaci\'on de su firma, salvo en el supuesto en que se hayan controvertido derechos de menores e incapaces. En estos casos, el representante legal [\ldots] deber\'a requerir previamente la homologaci\'on del acuerdo [\ldots] para que sea ejecutable. Esas actuaciones ser\'an exentas de pago.
+\end{norma}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasaje del art. 500 inc. 4 no audible en la grabación)
+
+En los casos de derechos de menores e incapaces hay un orden p\'ublico implicado: el \textbf{orden p\'ublico familiar}. Fuera de ellos, cuando hay un acuerdo entre personas capaces, en principio se avanza.
+
+\subsection{Formas solemnes y v\'icios del consentimiento}
+
+M\'as all\'a de las formas de la mediaci\'on, en todo acto jur\'idico se mira que no est\'e afectado por v\'icios del consentimiento. Existen tambi\'en \textbf{formas solemnes}: por ejemplo, una escritura es un contrato formal con solemnidades que, si se omiten, pueden dar lugar a nulidad. Si no hay v\'icio, el acto es v\'alido; entre personas capaces, puede presentarse para su ejecuci\'on sin pedir un adicional al juez.
+
+\begin{note}
+En la grabaci\'on se enuncian <<discernimiento, intenciones y voluntad>> como el <<tr\'iptico>> de los v\'icios del consentimiento. La tr\'iada que enuncia el C\'odigo Civil y Comercial para el acto voluntario es discernimiento, intenci\'on y libertad.
+\end{note}
+
+\begin{example}{El convenio de desocupaci\'on y el reconocimiento de firma}
+El convenio de desocupaci\'on es un cl\'asico: se celebra cuando un contrato de locaci\'on venci\'o y, en lugar de un juicio de desalojo por vencimiento de contrato, las partes acuerdan un plazo adicional para que el locatario se vaya, a veces con pactos accesorios (por ejemplo, seguir pagando las expensas). Si la firma no est\'a certificada y se lo presenta en tribunales, el juez puede exigir que el demandado reconozca su firma, lo que implica un acto previo; por eso el docente recomienda que la firma est\'e certificada. En la mediaci\'on, el mediador verifica las identidades, por lo que el juez no necesita redundar sobre ello; hoy el sistema exige adem\'as validaci\'on de identidad con firma digital. Todo esto apunta a convalidar que hay un acuerdo de voluntad y que el acuerdo es directamente ejecutable; si se plantea un v\'icio de la voluntad, se resolver\'a en su momento.
+\end{example}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Situaci\'on} & \textbf{\textquestiondown Requiere homologaci\'on?} & \textbf{Fundamento} \\
+\midrule
+\textbf{Acuerdo privado entre personas capaces} & No es necesaria para su validez; s\'i se necesitar\'a si despu\'es se lo quiere ejecutar. & Autonom\'ia de la voluntad; respeto del orden p\'ublico; ausencia de v\'icios del consentimiento. \\
+\addlinespace
+\textbf{Acuerdo en acta suscripta por el mediador (firma certificada)} & No previa: es directamente ejecutable. & Ley 26.589, art.~30; art.~500, inc.~4, CPCCN. \\
+\addlinespace
+\textbf{Acuerdo de mediaci\'on con derechos de menores o incapaces} & S\'i: el representante legal debe pedir antes la homologaci\'on. & Orden p\'ublico familiar (art.~500, inc.~4, CPCCN). \\
+\addlinespace
+\textbf{Convenio de desocupaci\'on} & No, pero conviene la firma certificada. & Evita el reconocimiento previo de firma ante el juez. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Especies de sentencia y lenguaje de la sentencia}
+
+\subsection{Sentencia constitutiva y otras especies}
+
+En el caso simulado no hay acuerdo sino confrontaci\'on, de modo que el juez debe decidir. Un alumno propuso que ser\'a una \textbf{sentencia constitutiva}, porque constituye el derecho de una de las partes. El docente advirti\'o que habr\'ia que analizarlo, y que m\'as all\'a de la teor\'ia conviene pensar qu\'e se va a ejecutar luego.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la especie de sentencia aplicable al caso quedó planteada pero no resuelta)
+
+\subsection{<<Vistos>>, <<resultando>>, <<considerando>>, <<fallo>>}
+
+La pr\'actica forense inicia las sentencias con <<autos y vistos>> y contin\'ua con <<resultando>>, <<considerando>> y <<resuelvo>> o <<fallo>>; en las sentencias definitivas se usa <<fallo>>. Son f\'ormulas antiguas que se siguen reproduciendo. <<Fallo>> proviene del espa\~nol antiguo y significa <<esta es la decisi\'on>>. Existe, adem\'as, la preocupaci\'on por el \textbf{lenguaje claro} de la sentencia: a qui\'en se dirige, a la gente com\'un, etc. El lenguaje t\'ecnico est\'a para que se conozca la decisi\'on. Como ejemplo, en la sentencia de adopci\'on se le relata al ni\~no una historia, como t\'ecnica para que comprenda la decisi\'on.
+
+\begin{important}
+<<Vistos>>, <<resultando>>, <<considerando>> y <<fallo>> no los dice el c\'odigo: los dice la pr\'actica forense. <<Fallo>> proviene del espa\~nol antiguo y equivale a <<esta es la decisi\'on>>. Existe, adem\'as, una tendencia hacia el lenguaje claro de la sentencia, que busca que la decisi\'on sea comprendida por las personas a quienes se dirige.
+\end{important}
+
+\section{Contenido de la sentencia definitiva (art\'iculo 163)}
+
+\subsection{Lectura de los incisos del art\'iculo 163}
+
+La norma que indica qu\'e debe contener la sentencia definitiva en el proceso ordinario es el art.~163 (no el art.~64, que corresponde a un proceso especial).
+
+\begin{norma}{Art.~163 CPCCN --- Sentencia definitiva de primera instancia}
+La sentencia definitiva de primera instancia deber\'a contener:
+\begin{enumerate}[label=\arabic*)]
+    \item La menci\'on del lugar y fecha.
+    \item El nombre y apellido de las partes.
+    \item La relaci\'on sucinta de las cuestiones que constituyen el objeto del juicio.
+    \item La consideraci\'on, por separado, de las cuestiones a que se refiere el inciso anterior.
+    \item Los fundamentos y la aplicaci\'on de la ley. Las presunciones no establecidas por ley constituir\'an prueba cuando se funden en hechos reales y probados y cuando por su n\'umero, precisi\'on, gravedad y concordancia, produjeren convicci\'on seg\'un la naturaleza del juicio, de conformidad con las reglas de la sana cr\'itica. La conducta observada por las partes durante la sustanciaci\'on del proceso podr\'a constituir un elemento de convicci\'on corroborante de las pruebas para juzgar la procedencia de las respectivas pretensiones.
+    \item La decisi\'on expresa, positiva y precisa, de conformidad con las pretensiones deducidas en el juicio, calificadas seg\'un correspondiere por ley, declarando el derecho de los litigantes y condenando o absolviendo de la demanda y reconvenci\'on, en su caso, en todo o en parte. La sentencia podr\'a hacer m\'erito de los hechos constitutivos, modificativos o extintivos, producidos durante la sustanciaci\'on del juicio y debidamente probados, aunque no hubiesen sido invocados oportunamente como hechos nuevos.
+    \item El plazo que se otorgase para su cumplimiento, si fuere susceptible de ejecuci\'on.
+    \item El pronunciamiento sobre costas y la regulaci\'on de honorarios y, en su caso, la declaraci\'on de temeridad o malicia en los t\'erminos del art\'iculo 45.
+    \item La firma del juez.
+\end{enumerate}
+\end{norma}
+
+\begin{note}
+La grabaci\'on consigna <<art\'iculo 346>> en el inciso 8; la remisi\'on del art\'iculo 163, inciso 8, es al art\'iculo 45 del C\'odigo Procesal (temeridad o malicia).
+\end{note}
+
+\subsection{El <<resultando>> y el <<considerando>> en el art\'iculo 163}
+
+El <<resultando>> se ubica al principio (<<y vistos, resultando y considerando>>) y recoge la \textbf{relaci\'on sucinta} de las cuestiones objeto del juicio, un \emph{racconto} o recuento del relato (inciso~3). Si ello es mandatorio, depende: a veces se sigue ese esquema, y la sentencia definitiva puede acompa\~nar un modelo. El inciso~4 (consideraci\'on por separado de las cuestiones) corresponder\'ia al <<considerando>>, junto con el inciso~5 (fundamentos y aplicaci\'on de la ley).
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{F\'ormula de la pr\'actica forense} & \textbf{Incisos del art.~163} & \textbf{Contenido} \\
+\midrule
+\textbf{Autos y vistos} & 1 y 2 & Lugar y fecha; nombre y apellido de las partes. \\
+\addlinespace
+\textbf{Resultando} & 3 & Relaci\'on sucinta de las cuestiones objeto del juicio (un <<racconto>>). \\
+\addlinespace
+\textbf{Considerando} & 4 y 5 & Consideraci\'on por separado de las cuestiones; fundamentos y aplicaci\'on de la ley. \\
+\addlinespace
+\textbf{Fallo / Resuelvo} & 6, 7 y 8 & Decisi\'on expresa, positiva y precisa; plazo de cumplimiento; costas y honorarios. \\
+\addlinespace
+\textbf{Firma} & 9 & Firma del juez. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+El art\'iculo 163 CPCCN es la norma que, en el proceso ordinario, indica qu\'e debe contener la sentencia definitiva de primera instancia: desde la menci\'on de lugar y fecha hasta la firma del juez, pasando por la relaci\'on sucinta de las cuestiones, su consideraci\'on por separado, los fundamentos, la decisi\'on expresa, positiva y precisa, el plazo de cumplimiento y el pronunciamiento sobre costas y honorarios.
+\end{important}
+
+\section{Cuadro Cornell}
+
+\begin{longtable}{p{0.26\textwidth}p{0.66\textwidth}}
+\cornellhead
+
+\textbf{\textquestiondown Qu\'e clases de resoluciones y sentencias existen?} &
+Providencias de mero tr\'amite, interlocutorias y sentencia definitiva. Entre las sentencias: la \textbf{homologatoria} (aprueba un acuerdo, cuida el orden p\'ublico, no analiza el derecho) y la constitutiva (propuesta en clase). \\
+\addlinespace
+
+\textbf{\textquestiondown Hay que homologar un acuerdo de mediaci\'on?} &
+En principio no: el acta firmada por el mediador con firma certificada es directamente ejecutable (Ley 26.589, art.~30; art.~500, inc.~4, CPCCN). Excepci\'on: derechos de menores o incapaces (previa homologaci\'on, por el orden p\'ublico familiar). En acuerdos privados rige la autonom\'ia de la voluntad, sin v\'icios del consentimiento; conviene certificar firmas (p.~ej., convenio de desocupaci\'on). \\
+\addlinespace
+
+\textbf{\textquestiondown Qu\'e dice el art.~163 y c\'omo se relaciona con <<vistos>>, <<resultando>>, <<considerando>> y <<fallo>>?} &
+Enumera nueve contenidos de la sentencia definitiva de primera instancia (lugar y fecha, partes, relaci\'on sucinta, consideraci\'on por separado, fundamentos, decisi\'on expresa, plazo, costas y honorarios, firma). Las f\'ormulas forenses no est\'an en el c\'odigo; <<fallo>> viene del espa\~nol antiguo (<<esta es la decisi\'on>>) y hoy se promueve el lenguaje claro. \\
+
+\cornellsummary{La sentencia presenta distintas clases (mero tr\'amite, interlocutorias, definitiva, homologatoria); los acuerdos de mediaci\'on con firma certificada son ejecutables sin homologaci\'on previa, salvo derechos de menores e incapaces; y el art\'iculo 163 CPCCN fija el contenido de la sentencia definitiva de primera instancia.}
+\end{longtable}
+
+\end{document}

@@ -1,0 +1,795 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\materia}{Lectocomprensión}
+\newcommand{\submateria}{Inglés jurídico · Derecho de familia}
+\newcommand{\titulo}{Apuntes de Lectocomprensión}
+\newcommand{\subtitulo}{Análisis de un fallo sobre subrogación gestacional de la Court of Appeals of the State of California}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Babel no está disponible en esta instalación; se omite para evitar errores de compilación.
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={Apuntes de Lectocomprensión},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ==================== CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% ==================== CONFIGURACIÓN FINAL ====================
+\renewcommand{\arraystretch}{1.25}
+
+\begin{document}
+
+% ==================== PORTADA ====================
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{0.4cm}
+
+{\large \submateria}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.4cm}
+
+{\large \subtitulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender con método es el primer paso para convertir la lectura en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de «Lectocomprensión» no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ==================== ÍNDICE ====================
+\tableofcontents
+\clearpage
+
+% ==================== CONTENIDO ====================
+
+\chapter{Método de trabajo y guía de lectura}
+
+\section{Planteo de la práctica}
+
+La práctica consistió en la lectura guiada de un extracto breve de un fallo de derecho de familia: un contrato de subrogación gestacional resuelto por la \textit{Court of Appeals of the State of California}. El trabajo se realizó en grupos de tres personas, con una guía de preguntas, y luego se discutió en conjunto.
+
+\subsection{Modalidad de trabajo}
+
+El texto es corto, pero contiene abundante material jurídico para analizar. Las pautas de trabajo fueron las siguientes:
+
+\begin{itemize}
+    \item Se trabaja en grupos reducidos, procurando no recurrir al celular.
+    \item Se admite el uso del diccionario, pero únicamente para buscar palabras puntuales, no conceptos.
+    \item No se deben buscar los conceptos jurídicos en otras fuentes: las preguntas apuntan a definir conceptos jurídicos a partir del texto.
+    \item No hay que quedarse en la palabra puntual que no se conoce: se trata de razonar e interpretar el texto en su conjunto.
+\end{itemize}
+
+\subsection{Estructura de la guía: tres partes}
+
+\begin{enumerate}
+    \item \textbf{Terminología}: análisis conceptual de términos y frases a las que hay que entenderles el sentido.
+    \item \textbf{Estructura}: preguntas más amplias, de comprensión, sobre la organización del texto.
+    \item \textbf{Conclusiones}: a partir de la interpretación del texto, producir conclusiones y consecuencias.
+\end{enumerate}
+
+\section{Utilidad de la lectura de inglés jurídico}
+
+La práctica no enseña a traducir, sino a \textbf{leer como jurista en otro idioma}. Los apuntes señalan cuatro usos concretos en la profesión:
+
+\begin{itemize}
+    \item \textbf{Acceder a fuentes extranjeras.} La jurisprudencia estadounidense es una de las más citadas en derecho comparado y, en materia de familia internacional (por ejemplo, la subrogación realizada en el exterior), los documentos, contratos y sentencias llegan en inglés.
+    \item \textbf{Analizar cualquier sentencia con un método.} Saber dónde buscar partes, tribunal, hechos, fundamentos y resolución sirve igualmente para un fallo argentino.
+    \item \textbf{Razonar sin depender del traductor automático.} Entender qué implica jurídicamente una expresión (\textit{provided that}, \textit{rather than}) distingue a quien interpreta de quien solo traduce.
+    \item \textbf{Pensar críticamente un sistema legal.} Contrastar qué se puede pactar en Estados Unidos y qué no en Argentina entrena el criterio necesario para asesorar, litigar o proponer reformas ante vacíos legales.
+\end{itemize}
+
+El método (buscar estructura, identificar condiciones, distinguir lo literal de lo jurídico) se transfiere a cualquier texto denso, como un contrato de alquiler, los términos y condiciones de una aplicación o una cláusula bancaria.
+
+% ------------------------------------------------------------
+\chapter{Lectura general del fallo}
+
+\section{Dificultad del texto y términos transparentes}
+
+El texto es muy corto, pero tiene abundante contenido jurídico para analizar. Es un texto en el que \textbf{no hay tantos términos transparentes}, aun si se intentara marcarlos. Esto responde a una redacción que se aparta de lo más lineal: ya no es posible seleccionar términos transparentes para interpretar, porque el texto va más al fondo de la cuestión jurídica.
+
+\section{La expresión «In re»}
+
+\begin{definition}{In re}
+Expresión de origen latino que equivale a «\textbf{sobre}» (\textit{concerning}, \textit{in the matter of}). Se utiliza en causas o casos \textbf{no controvertidos} o \textbf{no adversariales}, y señala la materia o el asunto que dirime el fallo.
+\end{definition}
+
+Aparece, en general, en cuestiones no adversariales: causas de familia, de sucesiones y, eventualmente, de quiebras. En ellas no hay que sustanciar un proceso de partes enfrentadas, sino que la disputa es de otra naturaleza. Cuando la expresión «re» aparece en el nombre de una causa, es muy probable que se trate de familia o sucesiones. Se traduce como «sobre tal cosa»: sobre alimentos, sobre subrogación.
+
+\section{El encabezado de un fallo}
+
+El texto trabajado es una síntesis; el fallo completo es mucho más extenso. Al trabajar con un fallo conviene buscar en el encabezado, al principio:
+
+\begin{itemize}
+    \item las \textbf{partes};
+    \item el \textbf{tribunal interviniente};
+    \item el \textbf{asunto}, es decir, la materia o cuestión que debe dirimirse.
+\end{itemize}
+
+En el subtítulo del texto figura la \textit{Court of Appeals of the State of California}. La expresión «\textit{of Appeals}» indica que hubo apelación: el caso no se quedó en el fallo de primera instancia.
+
+\section{El tribunal de alzada y el voto de la mayoría}
+
+La expresión «\textit{Chief Justice} \ldots{} \textit{delivered the opinion of the Court}» alude al presidente del tribunal de alzada. En un tribunal colegiado votan todos sus integrantes. La «opinión de la mayoría» es el \textbf{voto mayoritario}: en español se habla de «voto» más que de «opinión», mientras que en inglés se habla de \textit{opinion}. Ese voto fue redactado, dado o expuesto por el presidente de la Corte.
+
+\begin{note}
+Dado que el texto es un extracto, no se pueden ver eventuales votos en disidencia ni otros tipos de fundamentación.
+\end{note}
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Por qué marcar términos transparentes sirve menos en este texto?} &
+Porque es un texto con mucho contenido jurídico, de redacción menos lineal, que va más al fondo de la cuestión jurídica y tiene pocos términos transparentes. \\
+
+\textbf{¿Qué es «In re» y cuándo se usa?} &
+Expresión latina equivalente a «sobre» (\textit{concerning}, \textit{in the matter of}). Se usa en causas no controvertidas o no adversariales (familia, sucesiones, a veces quiebras) e indica el asunto que dirime el fallo. \\
+
+\textbf{¿Qué hay que buscar en el encabezado de un fallo?} &
+Las partes, el tribunal interviniente y el asunto o materia. \textit{Court of Appeals} indica que hubo apelación. \\
+
+\textbf{¿Qué significa «delivered the opinion of the Court»?} &
+En un tribunal colegiado votan todos; el voto de la mayoría (en inglés, \textit{opinion}) lo redactó el presidente de la Corte. Un extracto no muestra los votos en disidencia. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:}
+Al leer un fallo se identifican primero partes, tribunal y asunto. «In re» señala una causa no adversarial y la materia que resuelve el fallo. El voto de la mayoría, llamado \textit{opinion} en inglés, fue redactado por el presidente del tribunal de alzada.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ------------------------------------------------------------
+\chapter{Terminología y proceso}
+
+\section{Subrogación gestacional y subrogación tradicional}
+
+La primera pregunta de la guía se refería al \textit{gestational surrogacy agreement}: cómo opera este tipo de contratos en el \textbf{common law} y en qué se diferencia de la subrogación tradicional.
+
+En la subrogación \textbf{gestacional}, la gestante no aporta material genético: «está la casita y nada más». El embrión es implantado, y el material genético proviene de los padres contratantes (y, en el caso comentado, también de una donante de óvulos). En la subrogación \textbf{tradicional}, la subrogante comparte material genético; por ejemplo, aporta su óvulo.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.24\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Criterio} & \textbf{Subrogación gestacional} & \textbf{Subrogación tradicional} \\
+\midrule
+Material genético de la gestante & No lo aporta. & Sí lo aporta. \\
+Personas involucradas & Tres. & Dos. \\
+Contratos & Un contrato tripartito, o distintos contratos entre las partes: con quien aporta material genético y con quien presta el vientre. & --- \\
+Efecto ante un conflicto contractual & La resolución depende de quién aportó el material genético. & Si la gestante, además de gestar, aportó material genético, «ahí la historia cambia». \\
+Situación en Argentina & Hay un vacío legal. & «Nosotros no tenemos la figura». \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+Según lo expuesto, la gran diferencia es la \textbf{cantidad de partes involucradas}: tres en la gestacional y dos en la tradicional. Importa porque el aporte genético de la gestante cambia la resolución en caso de conflicto.
+\end{important}
+
+\section{Best interest of the child}
+
+La expresión \textit{best interest of the child} corresponde al \textbf{interés superior del niño}, contemplado en las convenciones y conocido también en el derecho argentino. En el fallo, la gestante lo sostuvo invocando el \textbf{vínculo afectivo} (maternal) formado durante los nueve meses de gestación y más: sostuvo que lo mejor para el menor era afianzar ese vínculo con ella.
+
+El mismo principio puede interpretarse de distintas maneras según desde dónde se lo mire: están los padres que aportaron el material genético y la gestante que llevó el embarazo. Se trata de una cuestión muy compleja.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (no se citan números de artículos ni de convenciones)
+
+\section{Trial court y appellate court}
+
+\textit{Trial court} y \textit{appellate court} designan, desde su función procesal, el tribunal de \textbf{primera instancia} y el tribunal de \textbf{apelación}. En el texto, el \textit{trial court} se menciona en la última oración del primer párrafo, aunque no se indica cuál es: se infiere que es algún tribunal de California.
+
+\section{Affirm, reverse y remand}
+
+Estos términos designan las posibilidades del tribunal de alzada respecto de la sentencia de instancia.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.2\textwidth}
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Término} & \textbf{Traducción} & \textbf{Qué hace el tribunal de alzada} \\
+\midrule
+\textit{Affirm} & Confirmar & Mantiene la sentencia de la instancia inferior. \\
+\textit{Reverse} & Revocar & Deja sin efecto lo resuelto por la instancia inferior. \\
+\textit{Remand} & Reenviar / devolver & No confirma ni revoca: devuelve la causa al tribunal inferior para que subsane una cuestión particular (por ejemplo, procesal) y, en algunos casos, vuelva a enviarla. A veces basta con la corrección y la sentencia queda firme. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+En el \textit{remand}, el tribunal de alzada no se pronuncia porque hay una cuestión previa que resolver.
+
+\begin{example}{Fallo con \textit{remand}}
+Se recordó un fallo visto en una evaluación anterior, sobre discriminación de personas de color, en el que el tribunal de alzada no anuló ni confirmó, sino que lo devolvió a primera instancia para subsanar una cuestión procesal.
+\end{example}
+
+\section{Efecto de la confirmación: final and conclusive judgment}
+
+Al confirmarse una sentencia, esta se vuelve \textbf{ejecutable}, porque pasa a ser definitiva. Se habla de \textit{final and conclusive judgment}. Aunque sea definitiva, podría discutirse una eventual intervención de la Corte Suprema; para ello el caso debería tener alguna circunstancia excepcional que habilite la instancia federal (por ejemplo, una cuestión de orden público o una contradicción con la norma de otro estado). En este caso se consideró que allí terminaba el trámite.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.25\textwidth}
+    >{\raggedright\arraybackslash}p{0.15\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Español} & \textbf{Inglés} & \textbf{Significado} \\
+\midrule
+Sentencia definitiva & \textit{Final} & Resuelve el fondo del proceso; puede ser la de primera instancia. \\
+Sentencia firme & \textit{Conclusive} & Ya no hay más vías de apelación: es la última instancia. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿En qué se diferencia la subrogación gestacional de la tradicional?} &
+En la gestacional la gestante no aporta material genético y intervienen tres personas; en la tradicional la subrogante comparte material genético y son dos. El aporte genético cambia la resolución de los conflictos. \\
+
+\textbf{¿Cómo puede interpretarse el interés superior del niño?} &
+Es el \textit{best interest of the child}, contemplado en las convenciones. La gestante lo invocó por el vínculo afectivo de nueve meses; también pueden invocarlo quienes aportaron el material genético. Admite distintas lecturas. \\
+
+\textbf{¿Qué puede hacer un tribunal de alzada con la sentencia de instancia?} &
+Confirmar (\textit{affirm}), revocar (\textit{reverse}) o devolver para subsanar una cuestión (\textit{remand}), sin confirmar ni revocar. \\
+
+\textbf{¿En qué se distinguen \textit{final} y \textit{conclusive}?} &
+\textit{Final} es la sentencia definitiva, la que resuelve el proceso (puede ser de primera instancia). \textit{Conclusive} es la sentencia firme: ya no hay más vías de apelación. Al confirmarse, la sentencia se vuelve ejecutable. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:}
+La subrogación gestacional y la tradicional se distinguen por el aporte genético de la gestante y la cantidad de partes. El interés superior del niño admite lecturas distintas. El tribunal de alzada puede confirmar, revocar o devolver la causa, y la confirmación genera una sentencia definitiva, que será firme cuando no queden más vías de apelación.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ------------------------------------------------------------
+\chapter{Estructura formal del fallo}
+
+\section{Subtítulos y ubicación de la información}
+
+La segunda parte de la guía trata de identificar dónde está cada tipo de información. Un fallo completo es mucho más extenso, pero en el texto trabajado la información está diferenciada mediante subtítulos.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Subtítulo del texto} & \textbf{Qué contiene} \\
+\midrule
+Antecedentes fácticos & Los hechos del caso (\textit{factual background}, a veces solo \textit{background}, \textit{questions of fact} o \textit{facts}). \\
+Decisión de primera instancia & Lo resuelto por el tribunal inferior. \\
+Fundamentación jurídica & Las razones jurídicas por las que se decide. \\
+Resolución final del tribunal & La parte resolutiva del fallo. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{La parte resolutiva y los tipos de voto}
+
+La resolución final suele aparecer bajo los encabezados \textit{conclusion}, \textit{ruling} o \textit{decision}. En un tribunal colegiado pueden aparecer distintos votos, todos ellos \textit{opinions}:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Tipo de voto} & \textbf{Descripción} \\
+\midrule
+Voto mayoritario & Expresa la decisión del tribunal; en el texto lo dio el presidente de la Corte. \\
+Voto en disidencia & El de quien no comparte lo resuelto por la mayoría. \\
+Voto concurrente & Se vota como la mayoría pero con una fundamentación distinta («por su voto»). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+En el fallo completo de un tribunal colegiado cada juez hace su pronunciamiento, independientemente de la \textit{conclusion} o \textit{ruling}, que será el voto de la mayoría; pueden estar expresados también los demás votos.
+
+\section{Los antecedentes fácticos}
+
+Los hechos del caso refieren a un contrato de subrogación. Al intentar cumplirlo, la gestante se negó a cumplir, es decir, se negó a entregar al niño al nacer.
+
+\section{La fundamentación del tribunal}
+
+El tribunal fundó la filiación en la representación legal de las partes, porque no existía vicio en la voluntad de quienes celebraron el contrato.
+
+\begin{definition}{Statutory safeguards}
+Garantías establecidas por la ley escrita: cómo deben elaborarse estos contratos, hasta dónde pueden pactar las partes y qué cosas son objeto de acuerdo y cuáles deben quedar por fuera.
+\end{definition}
+
+Si se cumplieron esas garantías y no hubo coerción ni vicio de voluntad, el contrato es \textbf{válido} y \textbf{ejecutable} (\textit{enforceable}): se puede exigir su cumplimiento.
+
+\section{Physical custody y legal custody}
+
+Ambos términos designan las dos partes que conforman la responsabilidad parental.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Término} & \textbf{Se refiere a} \\
+\midrule
+\textit{Physical custody} & Con quién vive o convive el menor. \\
+\textit{Legal custody} & Las demás responsabilidades parentales: decisiones sobre el menor, colegio, tratamiento médico, etc. \\
+Ambas juntas & La tenencia completa del menor. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Declaration of parentage y terminología de las partes}
+
+La \textit{declaration of parentage based on the explicit terms of the agreement} es una declaración de \textbf{filiación}: quién es reconocido como padre o progenitor del menor. Esa condición la tenían los \textit{petitioners}, es decir, quienes aportaron el material genético y contrataron a la subrogante.
+
+El texto no habla de \textit{plaintiff} y \textit{defendant}, como en otras causas civiles, sino de \textit{petitioner} y \textit{respondent}. Así se identifica a las partes en procesos no adversariales, en los que lo que se pide al tribunal es una declaración de estado, un reconocimiento o un estatus jurídico. Algo similar ocurre en las demandas de divorcio.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.2\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+ & \textbf{Proceso adversarial común} & \textbf{Proceso no adversarial (este fallo)} \\
+\midrule
+Partes & \textit{Plaintiff} y \textit{defendant}. & \textit{Petitioner} y \textit{respondent}. \\
+Qué se pide & Resolver una disputa entre partes enfrentadas. & Una declaración de estado, un reconocimiento o un estatus jurídico. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Dónde está cada tipo de información dentro de un fallo?} &
+Antecedentes fácticos (hechos), decisión de primera instancia, fundamentación jurídica y resolución final (\textit{conclusion}, \textit{decision}, \textit{ruling}). En tribunales colegiados pueden aparecer votos mayoritario, en disidencia y concurrente. \\
+
+\textbf{¿Por qué el tribunal consideró válido y ejecutable el contrato?} &
+Porque se cumplieron las \textit{statutory safeguards} (garantías de la ley escrita), las partes tuvieron representación legal y no hubo coerción ni vicio de voluntad. Por eso es válido y \textit{enforceable}. \\
+
+\textbf{¿Qué son \textit{physical custody} y \textit{legal custody}?} &
+La primera es con quién convive el menor; la segunda, las demás responsabilidades parentales (colegio, salud, decisiones). Juntas forman la tenencia completa. \\
+
+\textbf{¿Qué significan \textit{parentage}, \textit{petitioner} y \textit{respondent}?} &
+\textit{Parentage} es la filiación. En procesos no adversariales se usa \textit{petitioner} y \textit{respondent}, no \textit{plaintiff} y \textit{defendant}; los \textit{petitioners} son quienes aportaron el material genético y contrataron. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:}
+El fallo se ordena en hechos, decisión de primera instancia, fundamentos y resolución. El contrato se consideró válido y ejecutable por haberse cumplido las garantías legales y no haber vicio de voluntad. En este proceso no adversarial las partes se denominan \textit{petitioner} y \textit{respondent}.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ------------------------------------------------------------
+\chapter{Intención contractual y vínculo biológico}
+
+\section{El criterio para determinar la filiación}
+
+Se debía explicar por qué el tribunal consideró que la \textbf{intención de los padres al momento de contratar} prevalece sobre el vínculo gestacional o biológico. Prevalece el acuerdo de voluntades, incluso frente al argumento del vínculo biológico y afectivo que alegaba la gestante y frente al interés del niño. El texto afirma que prevalece el criterio intencional sobre el criterio biológico.
+
+\begin{important}
+Cuando la gestante \textbf{también aporta material genético}, su rol es otro: ella interviene en la determinación de la filiación y el caso es distinto.
+\end{important}
+
+\section{Alcance del rol de la gestante}
+
+Se planteó la duda sobre el alcance del rol de quien celebra un contrato de subrogación. Si no se aporta material genético, se trata de una negociación contractual previa en la que se presta el cuerpo, básicamente un servicio. Si se aporta material genético, la situación es diferente. Se señaló también que resulta difícil discernir qué se puede aplicar o no según el incumplimiento del contrato, y que no debería significar necesariamente la entrega del niño. En palabras de la discusión, «es difícil definir».
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el alcance de la intervención de la gestante en la responsabilidad parental quedó planteado como duda)
+
+\section{Capacidad contractual y orden público}
+
+Un punto de conflicto es que la \textbf{capacidad contractual} en la legislación argentina es mucho más limitada que en el sistema estadounidense. En Argentina hay muchas cuestiones que regula y en las que interviene el Estado, y que no son susceptibles de contratación entre particulares.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+ & \textbf{Argentina} & \textbf{Estados Unidos} \\
+\midrule
+Capacidad contractual & Mucho más limitada: muchas cosas no están sujetas a pacto entre las partes. & Casi todo es materia de contratación. \\
+Rol del Estado & Regula e interviene. & Mayor libertad de pacto dentro de las garantías legales. \\
+Interés superior del niño & Principio inalterable e inmodificable. & Puede verse puesto por debajo del acuerdo de voluntades. \\
+Subrogación & Vacío legal que «deja abierta la puerta para un montón de cosas». & Contrato válido y ejecutable si se cumplen las garantías legales. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Se observó que en Argentina no se habla de contrato, sino de la voluntad de los padres de aportar material genético, y que el contrato oneroso puede tener un precio, lo que acá no se permite. Se anticipó que, cuando se regule la subrogación, habrá que estar muy atentos, porque muchos puntos pueden contradecir otros principios del ordenamiento argentino.
+
+\section{Onerosidad}
+
+Un acuerdo puede no implicar el pago de un precio, y en general se piensa en una actitud voluntaria con fines altruistas. Sin embargo, si no se paga a la gestante una suma a modo de precio, pero sí se pagan gastos relacionados con el embarazo, \textbf{también es oneroso}. No se trata solo de cubrir tratamiento médico o gastos.
+
+\begin{example}{Caso comentado}
+Se mencionó un caso en el que, según lo comentado, la gestante no habría recibido pago alguno, sino la cobertura de la clínica y un obsequio.
+\end{example}
+
+\section{Vulnerabilidad social y validez de la voluntad}
+
+Más allá de la onerosidad, debe analizarse bien la voluntad. Aunque no hubiera violencia o coacción, hay que ver en qué condiciones estaba la gestante al aceptar, de dónde provenía y cuáles eran las realidades de cada parte, considerando las vulnerabilidades y desigualdades sociales.
+
+\section{La adopción y el vínculo biológico en Argentina}
+
+En Argentina la subrogación no se practica en la medida en que \textbf{prevalece la adopción}. Existe un problema muy grande: hay bastantes personas inscriptas para adoptar, pero pocos niños declarados en situación de adoptabilidad. Lo que se preserva es el vínculo biológico, con la familia de origen, y también la identidad.
+
+El vínculo biológico es valorado, pero tiene costos cuando provoca que un niño permanezca años en una institución o con familias de acogida, pasando de una casa a otra. En ocasiones debería decidirse que el vínculo biológico no es recuperable ni viable, para darle al niño otra opción. Todo se dilata mientras el niño crece, y suele permanecer en hogares hasta los 18 años, sin que siquiera se declare la adoptabilidad.
+
+\begin{example}{Adopción de un niño de cinco años}
+Se relató el caso de una persona que adoptó a un niño de cuatro o cinco años que había pasado su infancia en un hogar. El niño presentaba problemas de conducta con sus hermanos: no sabía aceptar las pautas de los padres ni acatar la autoridad ni convivir en un núcleo cerrado, porque estaba acostumbrado a vivir en multitud y a defenderse. La familia se adaptó, pero el niño no estaba habituado a vivir en familia.
+\end{example}
+
+A la luz del sistema argentino, muchas de estas cuestiones no son susceptibles de contratación y ni siquiera podrían incluirse en un contrato, mientras que en el derecho angloamericano casi todo es materia de contratación.
+
+\section{Doble y triple filiación}
+
+En Argentina no se aceptan más de dos vínculos filiales. Recién ahora hay algún caso en el que se acepta un tercer vínculo.
+
+\begin{itemize}
+    \item \textbf{Caso de Córdoba (2024).} Se pidió la triple filiación, pero no por una subrogación: había un vínculo socioafectivo con tres adultos (los padres separados y la nueva pareja de la madre, a quien la niña sentía como padre). Un juez declaró inconstitucional el artículo del código que planteaba únicamente una doble filiación.
+    \item \textbf{Intento con la gestante.} Se mencionó un caso de triple filiación (los dos padres y la gestante) en el que la Corte sostuvo la doble filiación del código.
+\end{itemize}
+
+Se planteó que lo que habría que \textbf{redefinir es el concepto de filiación}: si es el vínculo biológico, o si empiezan a jugar lo afectivo, lo emocional y la crianza.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (el apunte no identifica el artículo del código ni el tribunal del segundo caso)
+
+\section{Casos prácticos de guarda y tutela}
+
+Se comentaron casos de la práctica profesional. El audio de este tramo es deficiente y solo se conserva lo recuperable.
+
+\begin{example}{Guarda a una bisabuela}
+Un niño de siete años, cuya madre y abuela biológica no se encontraban en condiciones de ocuparse de él, quedó con su bisabuela, para quien se pedía la guarda y luego la tutela. Se dio vista al defensor, que demora en expedirse. Se otorgó una guarda provisoria, pero vencido su plazo la bisabuela no pudo acreditar su situación ante la escuela, que le indicó que el documento ya no tenía validez. El problema señalado es que, en cualquier momento, la madre puede presentarse en la escuela. Se mencionó que la guarda se otorga por un año y que puede renovarse dos veces.
+\end{example}
+
+% TODO: contenido incompleto o ambiguo en las notas originales (los plazos de la guarda provisoria y de la guarda definitiva se mencionan de forma inconsistente)
+
+\begin{example}{Abuela con prisión domiciliaria}
+Una abuela con antecedentes penales y prisión domiciliaria por tráfico de drogas quería pedir la guarda de sus nietos porque la madre se había ido del país y los había dejado a su cargo. De lo contrario, los niños irían a un hogar. La guarda era requerida, en parte, por conveniencia, ya que el colegio solicitaba documentación. Se señaló la tensión entre que el niño no pueda estar al cuidado de una persona implicada en delitos graves y que sea el vínculo que tiene con su abuela, su única figura materna o paterna.
+\end{example}
+
+Se observó que en estos casos intervienen otras cuestiones, como las autoridades de la escuela, que pueden verse obligadas a negarse a entregar al niño a su madre.
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Por qué prevalece la intención de los padres sobre el vínculo biológico?} &
+Porque el tribunal da prioridad a la voluntad de las partes al contratar (\textit{legal intent rather than biological}), incluso frente al interés del niño y al vínculo afectivo que alegaba la gestante. Si la gestante aporta material genético, el caso es distinto. \\
+
+\textbf{¿Qué se puede pactar en Estados Unidos que en Argentina no?} &
+En Estados Unidos casi todo es materia de contratación. En Argentina la capacidad contractual es más limitada, el Estado regula e interviene, el interés superior del niño es inalterable y la subrogación tiene un vacío legal. \\
+
+\textbf{¿Cuándo un acuerdo gratuito puede ser oneroso y cuándo la voluntad es libre?} &
+Si no hay precio pero se pagan gastos relacionados con el embarazo, también es oneroso. Además, aunque no haya violencia ni coacción, hay que analizar las condiciones sociales de la gestante para verificar la validez de la voluntad. \\
+
+\textbf{¿Por qué en Argentina se prioriza la adopción y qué costos tiene?} &
+Se prioriza la adopción y se preserva el vínculo biológico y la identidad. El costo es que hay pocos niños declarados adoptables y muchos permanecen años en instituciones o familias de acogida, a veces hasta los 18 años. \\
+
+\textbf{¿Qué cambia si se redefine el concepto de filiación?} &
+En Argentina solo se admiten dos vínculos filiales. Un caso de Córdoba (2024) declaró inconstitucional ese límite por un vínculo socioafectivo; la Corte sostuvo la doble filiación en otro intento. La clave es definir si filiación es vínculo biológico, afectivo o de crianza. \\
+
+\textbf{¿Qué problemas generan los plazos de la guarda y la tutela?} &
+Si el plazo de la guarda provisoria vence antes de resolverse la tutela, queda un vacío en el que el adulto a cargo no puede acreditar su situación ante la escuela, y el menor queda expuesto a que otra persona con vínculo lo reclame. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:}
+El tribunal hizo prevalecer la intención de las partes al contratar sobre el vínculo biológico. El contraste con Argentina muestra una capacidad contractual más limitada, un Estado regulador, un interés superior del niño inalterable y un vacío legal sobre la subrogación. Aparecen además la onerosidad, la vulnerabilidad de la gestante, la prioridad de la adopción, la doble filiación y los problemas de guarda y tutela.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ------------------------------------------------------------
+\chapter{Interpretar sin traducir literalmente}
+
+La tercera parte de la guía consiste en explicar en español, sin traducir literalmente, la implicancia jurídica de cada fragmento.
+
+\section{«Provided that»: condición de validez del contrato}
+
+\begin{definition}{Provided that}
+Expresión que introduce una \textbf{condición}: «siempre y cuando» o «siempre que».
+\end{definition}
+
+Los contratos de subrogación gestacional son vinculantes \textbf{siempre que ambas partes hayan sido representadas por abogados diferentes}. Cada parte debe tener su patrocinio o representación legal por separado; de lo contrario, se puede entender que hay un vicio de la voluntad. Es un requisito de validez, indispensable para que no haya conflicto de intereses, no se pueda alegar coerción a futuro y se asegure la validez de la voluntad.
+
+\section{«Legal intent» y «rather than»}
+
+El tribunal define la paternidad o maternidad en los acuerdos de subrogación no genética a partir del \textit{legal intent}: la voluntad, es decir, la intención al contratar. La expresión \textit{rather than} significa «más que» o «en lugar de»: se considera una circunstancia en lugar de otra. Así, la voluntad de las partes prevalece, incluso por encima del vínculo biológico.
+
+\section{Derecho comparado}
+
+Se señaló que el tema es de interés para estudiar desde el derecho comparado y buscar antecedentes y fallos, porque Argentina no tiene legislada la subrogación. Convendría analizar hasta dónde llega lo susceptible de contratación o acuerdo entre partes y en qué cuestiones interviene el Estado, que no pueden ser objeto de contratación ni de debate entre particulares.
+
+\subsection*{Cuadro Cornell del capítulo}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.28\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Preguntas / palabras clave} &
+\textbf{Notas / respuestas} \\
+\midrule
+
+\textbf{¿Qué implica «provided that» en el texto?} &
+Introduce una condición: el contrato es vinculante siempre que cada parte haya tenido su propio abogado. Evita conflicto de intereses y alegaciones futuras de coerción, y asegura la validez de la voluntad. \\
+
+\textbf{¿Qué significan «legal intent» y «rather than»?} &
+\textit{Legal intent} es la voluntad o intención al contratar. \textit{Rather than} significa «en lugar de» o «más que»: la intención prevalece sobre el vínculo biológico. \\
+
+\textbf{¿Por qué conviene estudiar derecho comparado?} &
+Porque Argentina no tiene legislada la subrogación y es útil analizar antecedentes y fallos para ver qué es susceptible de contratación y en qué interviene el Estado. \\
+
+\midrule
+
+\multicolumn{2}{p{\textwidth}}{
+\textbf{Resumen:}
+El método de lectura exige interpretar la implicancia jurídica de cada expresión sin traducirla literalmente. \textit{Provided that} fija una condición de validez (representación legal separada) y \textit{legal intent rather than biological} indica que prevalece la voluntad de las partes sobre el vínculo biológico.
+} \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}

@@ -1,0 +1,831 @@
+% ============================================================
+% DOCUMENTCLASS
+% ============================================================
+\documentclass[12pt,oneside]{book}
+
+% ============================================================
+% METADATOS
+% ============================================================
+\newcommand{\universidad}{Universidad de Buenos Aires}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\carrera}{Cátedra de Concursos y Quiebras}
+\newcommand{\materia}{Concursos y Quiebras}
+\newcommand{\titulo}{El concurso preventivo de las personas humanas no empresarias: ¿herramienta de protección frente al sobreendeudamiento o mecanismo de abuso del derecho?}
+\newcommand{\subtitulo}{Análisis normativo, doctrinario, jurisprudencial y comparado de la Ley 24.522 en torno al presupuesto subjetivo, los pequeños concursos, la buena fe y el crédito responsable}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% La instalación de TeX disponible aquí no incluye babel con soporte de español,
+% por lo que se usa una configuración compatible para que el índice se genere.
+\usepackage[english]{babel}
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={El concurso preventivo de las personas humanas no empresarias},
+    pdfauthor={Isaac Edgar Camacho Ocampo},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ============================================================
+% CONFIGURACIÓN
+% ============================================================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% COMANDOS
+% ============================================================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% Fila de un cuadro Cornell (pregunta en negrita / respuesta)
+\newcommand{\cornellrow}[2]{\textbf{#1} & #2 \\ \addlinespace[0.8em]}
+
+% ============================================================
+% ENTORNOS / CAJAS
+% ============================================================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Cuadro Cornell: columna izquierda estrecha, derecha amplia, resumen a ancho completo
+\newenvironment{cornell}[1]{%
+    \par\medskip
+    \noindent{\large\bfseries Cuadro Cornell --- #1}\par\smallskip
+    \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}@{}}
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endhead
+}{%
+    \bottomrule
+    \end{longtable}
+}
+\newcommand{\cornellsummary}[1]{%
+    \midrule
+    \multicolumn{2}{@{}p{\dimexpr0.94\textwidth+2\tabcolsep\relax}@{}}{\textbf{Resumen:} #1} \\
+}
+
+% ============================================================
+% CONFIGURACIÓN FINAL
+% ============================================================
+\sloppy
+\emergencystretch=2em
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{0.2cm}
+
+{\large \carrera}
+
+\vspace{2.2cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+\begin{minipage}{0.9\textwidth}
+\centering
+{\Large \textbf{\titulo}}
+
+\vspace{0.4cm}
+
+{\normalsize \textit{\subtitulo}}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ÍNDICE
+% ------------------------------------------------------------
+\frontmatter
+\tableofcontents
+\mainmatter
+
+% ------------------------------------------------------------
+% CONTENIDO
+% ------------------------------------------------------------
+
+% ============================================================
+\chapter[Introducción y planteo del problema]{Introducción y planteo del problema}
+% ============================================================
+
+\section{El concurso preventivo de las personas humanas no empresarias}
+
+El tratamiento jurídico del concurso preventivo de las personas humanas que no desarrollan actividad empresarial ni comercial organizada constituye uno de los debates más complejos, actuales y dinámicos del \textbf{Derecho Concursal} contemporáneo.
+
+Históricamente, las instituciones concursales nacieron como herramientas de tutela y reorganización del crédito concebidas para la actividad comercial e industrial, articuladas en torno a la \textbf{conservación de la empresa} y a la \textbf{preservación del mercado}. Sin embargo, la sanción de la Ley 24.522 (en adelante, LCQ) modificó sustancialmente el \textbf{presupuesto subjetivo}, consagrando en su artículo 2° la \textbf{concursabilidad amplia} e incluyendo de manera expresa a todas las personas de existencia visible ---denominadas personas humanas tras la entrada en vigencia del Código Civil y Comercial de la Nación--- con independencia de si ejercen o no el comercio o una actividad económica organizada.
+
+\section{El sobreendeudamiento de las personas humanas}
+
+En la última década, el \textbf{sobreendeudamiento} de las personas humanas sin estructura empresarial ha cobrado una dimensión social masiva como consecuencia de transformaciones económicas y financieras profundas:
+
+\begin{itemize}
+    \item la expansión agresiva del crédito al consumo;
+    \item el auge de las plataformas digitales de financiamiento (\textit{fintech});
+    \item la bancarización acelerada;
+    \item los ciclos de deterioro del poder adquisitivo;
+    \item las contingencias vitales imprevisibles, tales como la pérdida del empleo, enfermedades graves en el grupo familiar o la necesidad de financiar consumos esenciales de subsistencia.
+\end{itemize}
+
+Frente a esta realidad, miles de trabajadores asalariados, jubilados y consumidores recurren a los tribunales comerciales solicitando la apertura de su concurso preventivo como única salida colectiva ante los embargos salariales y las ejecuciones individuales. Sin embargo, al ingresar al sistema de la Ley 24.522, encuentran un trámite diseñado a la medida de la organización empresaria, apenas atenuado por las escuetas disposiciones de los «pequeños concursos» (arts. 288 y 289 LCQ).
+
+\section{La pregunta de investigación}
+
+A partir de este escenario procesal y socioeconómico, la pregunta que constituye el hilo conductor del estudio es la siguiente:
+
+\begin{important}
+\textbf{¿El régimen del concurso preventivo regulado por la Ley 24.522 constituye un mecanismo procesal idóneo y efectivo de protección y reestructuración patrimonial para la persona humana de buena fe afectada por el sobreendeudamiento, o funciona en la práctica como un trámite inaccesible para el vulnerable y susceptible de ser instrumentalizado como una herramienta de abuso patrimonial en perjuicio de los acreedores?}
+\end{important}
+
+\section{Relevancia jurídica y social}
+
+La relevancia del interrogante radica en que impacta de manera directa en la \textbf{tutela judicial efectiva} y en el derecho de acceso a la justicia consagrados en el artículo 18 de la Constitución Nacional y en los tratados internacionales de derechos humanos con jerarquía constitucional (art. 75 inc. 22 CN), así como en la protección constitucional de los consumidores y usuarios (art. 42 CN).
+
+Someter al deudor persona humana golpeado por contingencias vitales a la rigidez procedimental del concurso preventivo general genera una \textbf{paradoja estructural}: los recaudos formales del artículo 11 y los elevados costos de inicio ---especialmente la publicación onerosa de edictos prevista en el artículo 27 LCQ--- terminan excluyendo del sistema justamente a quienes se encuentran en situación de mayor vulnerabilidad económica.
+
+\section{Tensión entre dos polos axiológicos}
+
+La normativa vigente suscita una aguda tensión entre dos perspectivas contrapuestas:
+
+\begin{itemize}
+    \item \textbf{Perspectiva tuitiva e integradora:} reclama la humanización del proceso concursal y la incorporación de un esquema de \textbf{segunda oportunidad} (\textit{fresh start}) que evite la muerte civil financiera del deudor de buena fe.
+    \item \textbf{Perspectiva del riesgo moral (\textit{moral hazard}) y de la prevención del abuso procesal:} advierte que la apertura indiscriminada de concursos preventivos de personas humanas sin activos liquidables ni controles tempranos de conducta puede ser utilizada para paralizar ejecuciones individuales (art. 21 LCQ) y licuar pasivos de consumo mediante quitas irrisorias, afectando la \textit{par condicio creditorum} y encareciendo el crédito para toda la comunidad.
+\end{itemize}
+
+\section{Hipótesis y plan de la investigación}
+
+La hipótesis que orienta la investigación sostiene que ambas disfunciones ---la \textbf{desprotección del deudor honesto} y la \textbf{falta de filtros eficaces frente al oportunismo procesal}--- comparten una misma causa estructural: la \textbf{ausencia de un régimen concursal nacional diferenciado para la persona humana no empresaria}.
+
+Para poner a prueba esta hipótesis, el desarrollo se organiza del siguiente modo:
+
+\begin{itemize}
+    \item análisis normativo integral de la Ley 24.522 y su diálogo con el derecho privado y comparado (Capítulo~2);
+    \item contraste de las principales corrientes doctrinarias argentinas, con toma de posición fundada (Capítulo~3);
+    \item examen de precedentes jurisprudenciales vinculados al acceso y al abuso en los concursos de personas humanas (Capítulo~4);
+    \item evaluación crítica de las fallas del sistema vigente (Capítulo~5);
+    \item conclusiones y propuestas de reforma legislativa (Capítulo~6).
+\end{itemize}
+
+\begin{cornell}{Introducción y planteo del problema}
+\cornellrow{¿Qué modificó la Ley 24.522 respecto del presupuesto subjetivo?}{Modificó sustancialmente el presupuesto subjetivo: su artículo 2° consagra la concursabilidad amplia e incluye a todas las personas de existencia visible (personas humanas), con independencia de que ejerzan o no el comercio o una actividad económica organizada.}
+\cornellrow{¿Para qué fueron concebidas históricamente las instituciones concursales?}{Como herramientas de tutela y reorganización del crédito para la actividad comercial e industrial, articuladas en torno a la conservación de la empresa y la preservación del mercado.}
+\cornellrow{¿Qué factores explican el sobreendeudamiento de las personas humanas?}{La expansión del crédito al consumo, las plataformas \textit{fintech}, la bancarización acelerada, el deterioro del poder adquisitivo y contingencias vitales como la pérdida del empleo, enfermedades graves o la necesidad de financiar consumos de subsistencia.}
+\cornellrow{¿Cuál es la pregunta de investigación?}{Si el concurso preventivo de la Ley 24.522 es un mecanismo idóneo de protección y reestructuración para la persona humana de buena fe sobreendeudada, o un trámite inaccesible para el vulnerable y susceptible de instrumentalizarse como herramienta de abuso patrimonial contra los acreedores.}
+\cornellrow{¿Por qué es relevante el problema?}{Impacta en la tutela judicial efectiva y el acceso a la justicia (art. 18 CN y art. 75 inc. 22 CN) y en la protección de consumidores y usuarios (art. 42 CN). Los recaudos del artículo 11 y los costos de inicio (edictos, art. 27) excluyen a quienes están en mayor vulnerabilidad.}
+\cornellrow{¿Qué dos polos axiológicos están en tensión?}{La perspectiva tuitiva (humanización del proceso y \textit{fresh start}) y la perspectiva del riesgo moral y la prevención del abuso procesal (suspensión de ejecuciones del art. 21, quitas irrisorias, afectación de la \textit{par condicio creditorum} y encarecimiento del crédito).}
+\cornellrow{¿Cuál es la hipótesis del trabajo?}{Que la desprotección del deudor honesto y la falta de filtros frente al oportunismo procesal comparten una misma causa estructural: la ausencia de un régimen concursal nacional diferenciado para la persona humana no empresaria.}
+\cornellsummary{La Ley 24.522 incluyó a toda persona humana como sujeto concursable, pero lo hizo con un procedimiento pensado para la empresa. Ello genera una paradoja: el deudor vulnerable queda excluido por costos y formalidades, y al mismo tiempo el sistema carece de filtros frente al abuso. La hipótesis atribuye ambas fallas a la falta de un régimen nacional específico.}
+\end{cornell}
+
+% ============================================================
+\chapter[Análisis normativo]{Análisis normativo}
+% ============================================================
+
+\section{Presupuestos de apertura del concurso}
+
+El análisis normativo del concurso preventivo de la persona humana requiere examinar en primer término los dos presupuestos esenciales de apertura establecidos en la Ley 24.522.
+
+\subsection{El presupuesto subjetivo amplio (art. 2° LCQ)}
+
+El artículo 2° de la LCQ dispone que pueden ser declaradas en concurso «las personas de existencia visible, las de existencia ideal de carácter privado y aquellas sociedades en las que el Estado Nacional, Provincial o municipal sea parte», excluyendo únicamente a los sujetos regidos por leyes especiales por razones de orden público y confianza sistémica:
+
+\begin{itemize}
+    \item entidades financieras de la Ley 21.526;
+    \item aseguradoras de la Ley 20.091;
+    \item mutuales de la Ley 20.321 en determinados supuestos;
+    \item las derogadas AFJP de la Ley 24.241.
+\end{itemize}
+
+Con ello, el legislador de 1995 superó el criterio restrictivo de la derogada Ley 19.551 ---que circunscribía el concurso preventivo a los comerciantes matriculados o de hecho---, habilitando plenamente al trabajador en relación de dependencia, al jubilado, al profesional liberal y al consumidor sin actividad económica organizada a solicitar su propio concurso preventivo (arts. 5° y 10 LCQ) ante el juez ordinario de su domicilio real (art. 3° inc. 1° LCQ).
+
+\subsection{El presupuesto objetivo (art. 1° LCQ)}
+
+El presupuesto objetivo se encuentra consagrado en el artículo 1° de la LCQ, que exige el estado de \textbf{cesación de pagos} ---cualquiera sea su causa y la naturaleza de las obligaciones a las que afecte--- como condición indispensable para la apertura del proceso (salvo las excepciones taxativas de los arts. 4°, 66 y 69).
+
+\begin{definition}{Cesación de pagos}
+Conforme a la evolución doctrinaria y jurisprudencial superadora de las antiguas teorías \textbf{restringida} (identificación con el incumplimiento aislado) e \textbf{intermedia} (pluralidad de incumplimientos), la cesación de pagos se concibe como un \textbf{estado patrimonial general y permanente de impotencia para afrontar obligaciones exigibles con medios regulares de pago}, exteriorizado mediante hechos reveladores enunciados de modo ejemplificativo en el artículo 79 de la LCQ.
+\end{definition}
+
+\subsection{Desajuste entre sobreendeudamiento y cesación de pagos}
+
+Aplicar este presupuesto objetivo clásico a la persona humana consumidora plantea un serio desajuste conceptual, pues \textbf{sobreendeudamiento y cesación de pagos son categorías relacionadas pero no idénticas}.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Categoría} & \textbf{Descripción} \\
+\midrule
+\textbf{Sobreendeudamiento} & Describe una acumulación de obligaciones que compromete o supera la capacidad económica del individuo. \\
+\addlinespace
+\textbf{Cesación de pagos} & Exige un estado consolidado de impotencia patrimonial. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+En las economías domésticas, la crisis suele gestarse de manera gradual mediante la toma sucesiva de préstamos o refinanciaciones de saldos mínimos de tarjetas de crédito para cubrir gastos corrientes (\textbf{«preinsolvencia»}). Exigir al consumidor que espere la consolidación de la cesación de pagos y la acumulación de incumplimientos para acceder a una herramienta de reestructuración fomenta el agravamiento irreversible de su pasivo.
+
+\section{Requisitos formales, costos de acceso y pequeños concursos}
+
+El desajuste entre el sujeto persona humana y el diseño normativo de la Ley 24.522 se profundiza al analizar los recaudos formales de presentación (art. 11), los costos de acceso (arts. 27 y 30) y las cargas procesales subsiguientes. La siguiente tabla sistematiza las principales normas aplicables y su impacto concreto sobre el deudor no empresario:
+
+{\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.40\textwidth}>{\raggedright\arraybackslash}p{0.33\textwidth}@{}}
+\toprule
+\textbf{Norma LCQ} & \textbf{Contenido de la disposición legal} & \textbf{Efecto práctico sobre la persona humana no empresaria} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Norma LCQ} & \textbf{Contenido de la disposición legal} & \textbf{Efecto práctico sobre la persona humana no empresaria} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\textbf{Art. 2° y art. 5°} & Incluye a todas las personas humanas como sujetos concursables sin exigir calidad de comerciante. & Reconoce legitimación activa amplia, pero sin crear un procedimiento adaptado a su realidad patrimonial. \\
+\addlinespace
+\textbf{Art. 11 (incs. 2, 3, 5, 6 y 8)} & Exige explicar causas y época de cesación de pagos, estado de activo y pasivo con dictamen contable, legajos individuales y libros rubricados. & Impone recaudos diseñados para organizaciones mercantiles con contabilidad regular, ajenos a la vida del consumidor. \\
+\addlinespace
+\textbf{Art. 13 (\textit{in fine})} & Enumera taxativamente las causales de rechazo \textit{in limine} (sujeto, competencia, art. 11 e inhibición del art. 59). & Controla únicamente aspectos formales de la presentación, sin prever un filtro temprano de buena fe o abuso del derecho. \\
+\addlinespace
+\textbf{Arts. 27, 28 y 30} & Ordena publicar edictos por 5 días en el Boletín Oficial y en un diario de amplia circulación a cargo del deudor, bajo sanción de desistimiento. & Convierte una carga de publicidad en una barrera económica expulsiva para el insolvente que carece de liquidez. \\
+\addlinespace
+\textbf{Art. 31} & Regula el desistimiento voluntario y establece que, tras el rechazo o desistimiento, no se admite nuevo pedido por un año si hay pedidos de quiebra. & Agrava las consecuencias de la imposibilidad económica de pagar los edictos, dejando al deudor expuesto a la quiebra. \\
+\addlinespace
+\textbf{Arts. 288 y 289 (Ley 27.170)} & Define pequeño concurso (pasivo $<$ 300 SMVM, $\leq$ 20 acreedores o $\leq$ 20 empleados) y exime de dictámenes del art. 11 incs. 3 y 5, comités y \textit{cramdown}. & Simplificación meramente cosmética: mantiene intactos los edictos, la verificación, la categorización y las mayorías del art. 45. \\
+\addlinespace
+\textbf{Art. 52, inc. 4°} & Establece que «en ningún caso el juez homologará una propuesta abusiva o en fraude a la ley». & Constituye el único control expreso frente al abuso en la LCQ, pero opera recién en la etapa final del proceso. \\
+\end{longtable}
+}
+
+La reforma introducida por la Ley 27.170 al artículo 288 de la LCQ establece tres parámetros cuantitativos alternativos: pasivo inferior a 300 salarios mínimos vitales y móviles, no más de veinte acreedores quirografarios o no más de veinte trabajadores. Ello permite que la mayoría de las personas humanas encuadren formalmente en la categoría de «pequeño concurso».
+
+No obstante, el artículo 289 demuestra que el legislador no diseñó un verdadero proceso abreviado para el pequeño deudor: más allá de dispensar los dictámenes contables del artículo 11 incisos 3° y 5°, la constitución de comités de acreedores y el salvataje del artículo 48, la persona humana debe atravesar la \textbf{misma estructura burocrática, los mismos plazos y los mismos costos} que una sociedad anónima.
+
+\section{Control judicial del abuso, diálogo de fuentes y tensión federal}
+
+\subsection{La prohibición de homologar propuestas abusivas}
+
+Ante la derogación de los pisos mínimos de pago para las propuestas de acuerdo preventivo (art. 43 LCQ, modificado por la Ley 25.563), la principal herramienta legal dentro de la Ley 24.522 para frenar el oportunismo del deudor es la prohibición de homologar propuestas abusivas o en fraude a la ley consagrada en el artículo 52, inciso 4°:
+
+\begin{formula}{Art. 52, inc. 4°, Ley 24.522}
+\textit{«En ningún caso el juez homologará una propuesta abusiva o en fraude a la ley.»}
+\end{formula}
+
+\subsection{Diálogo de fuentes}
+
+Dado que la LCQ carece de una definición propia de buena fe concursal o abuso procesal, resulta imprescindible acudir al \textbf{diálogo de fuentes} consagrado en los artículos 1° y 2° del Código Civil y Comercial de la Nación (CCyCN). En este marco cobran plena operatividad:
+
+\begin{itemize}
+    \item el principio general de \textbf{buena fe} (art. 9° CCyCN);
+    \item la prohibición del \textbf{ejercicio abusivo de los derechos} (art. 10° CCyCN), que facultan al magistrado a adoptar de oficio las medidas necesarias para evitar los efectos del ejercicio antifuncional de una prerrogativa legal.
+\end{itemize}
+
+Asimismo, cuando el sobreendeudamiento tiene origen en operaciones financieras o de crédito para el consumo, convergen el artículo 42 de la Constitución Nacional y el artículo 36 de la Ley 24.240 de Defensa del Consumidor, que imponen deberes agravados de información, transparencia y evaluación de solvencia a los proveedores de crédito.
+
+\subsection{Tensión federal}
+
+La omisión del Congreso Nacional en dictar una ley especial de insolvencia del consumidor generó una relevante tensión federal. Algunas jurisdicciones provinciales intentaron llenar ese vacío mediante normas procesales locales, como ocurrió en la Provincia de Mendoza con los artículos 359 y siguientes del Código Procesal Civil, Comercial y Tributario (Ley 9.001), que regularon un procedimiento específico para el consumidor sobreendeudado.
+
+Dicha iniciativa suscitó fuertes cuestionamientos constitucionales en torno al reparto de competencias del artículo 75 inciso 12 y artículo 126 de la Constitución Nacional ---siguiendo la doctrina de la Corte Suprema en «Sandoval» (Fallos 320:1344)---:
+
+\begin{itemize}
+    \item llegó a declararse su inconstitucionalidad en precedentes como «Rivas» (Cámara Civil 2.ª de Mendoza, 12/11/2019);
+    \item otros pronunciamientos y dictámenes fiscales («Ibarra, Héctor Germán s/ Concurso Consumidor», Fiscalía de Cámara de Mendoza, 16/10/2020) intentaron salvar su validez interpretándolo como una adecuación procesal del acuerdo preventivo extrajudicial (arts. 69 a 76 LCQ).
+\end{itemize}
+
+\section{Derecho comparado: la Exoneración del Pasivo Insatisfecho (EPI) en España}
+
+\subsection{Contraste con el régimen argentino}
+
+En el ordenamiento argentino, el fracaso del concurso preventivo conduce a la quiebra liquidatoria (art. 46 LCQ), y la rehabilitación del fallido persona humana al año (art. 236 LCQ) no extingue las deudas preconcursales impagas respecto de los bienes que adquiera con posterioridad al cese de la inhabilitación. A diferencia de ello, el derecho comparado ha consolidado mecanismos específicos de «\textbf{segunda oportunidad}» (\textit{fresh start}).
+
+\subsection{La reforma española (Ley 16/2022)}
+
+Un ejemplo paradigmático es la reforma del Texto Refundido de la Ley Concursal española operada por la Ley 16/2022 (BOE n.º 214, del 06/09/2022), que traspuso la Directiva (UE) 2019/1023 e instituyó un régimen detallado de \textbf{Exoneración del Pasivo Insatisfecho (EPI)} para la persona natural insolvente.
+
+El diseño normativo español resulta especialmente esclarecedor porque resuelve de manera expresa los dilemas que la Ley 24.522 deja librados a la discrecionalidad judicial:
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Dos vías alternativas de liberación de deudas:} la exoneración con liquidación de la masa activa o la exoneración mediante un plan de pagos de tres años (ampliable a cinco cuando no se enajena la vivienda habitual).
+    \item \textbf{Buena fe con criterios objetivos y taxativos:} se excluye a quienes hayan sido condenados por delitos patrimoniales, sancionados por infracciones tributarias o sociales graves, o hayan proporcionado información falsa o actuado con temeridad al endeudarse.
+    \item \textbf{Exclusión de créditos sensibles} por razones de orden público, como las deudas por alimentos, las derivadas de responsabilidad civil extracontractual o delito y las deudas con garantía real dentro del límite del privilegio.
+    \item \textbf{Revocación del beneficio} si dentro de los tres años siguientes se acredita ocultación de bienes, incumplimiento del plan o una mejora sustancial de fortuna derivada de herencia, legado, donación o juegos de azar.
+\end{enumerate}
+
+\begin{cornell}{Análisis normativo}
+\cornellrow{¿Qué establece el presupuesto subjetivo del art. 2° LCQ y qué sujetos excluye?}{Permite declarar en concurso a las personas de existencia visible, a las de existencia ideal de carácter privado y a las sociedades con participación estatal. Excluye a sujetos regidos por leyes especiales: entidades financieras (Ley 21.526), aseguradoras (Ley 20.091), mutuales (Ley 20.321 en ciertos supuestos) y las derogadas AFJP (Ley 24.241).}
+\cornellrow{¿Qué cambió respecto de la Ley 19.551?}{La derogada ley limitaba el concurso preventivo a los comerciantes matriculados o de hecho; la Ley 24.522 habilita también al trabajador dependiente, al jubilado, al profesional liberal y al consumidor sin actividad económica organizada, ante el juez ordinario de su domicilio real (art. 3° inc. 1°).}
+\cornellrow{¿Qué es la cesación de pagos y qué exige el art. 1° LCQ?}{Es un estado patrimonial general y permanente de impotencia para afrontar obligaciones exigibles con medios regulares de pago, exteriorizado por hechos reveladores enunciados ejemplificativamente en el art. 79. Es condición de apertura, salvo las excepciones de los arts. 4°, 66 y 69.}
+\cornellrow{¿En qué difieren sobreendeudamiento y cesación de pagos?}{El sobreendeudamiento es una acumulación de obligaciones que compromete o supera la capacidad económica; la cesación de pagos exige un estado consolidado de impotencia patrimonial. Exigir esperar dicha consolidación agrava el pasivo del consumidor («preinsolvencia»).}
+\cornellrow{¿Por qué los pequeños concursos (arts. 288 y 289) no resuelven el problema?}{Los parámetros son pasivo inferior a 300 SMVM, hasta 20 acreedores quirografarios o hasta 20 trabajadores. Sin embargo, solo se dispensan los dictámenes del art. 11 incs. 3 y 5, los comités y el salvataje del art. 48; se mantienen edictos, verificación, categorización y mayorías del art. 45, con la misma estructura, plazos y costos que una sociedad anónima.}
+\cornellrow{¿Qué barreras generan los arts. 11, 27 y 30?}{El art. 11 impone recaudos contables propios de organizaciones mercantiles. Los arts. 27 y 30 obligan al deudor a costear edictos bajo sanción de desistimiento, lo que opera como barrera económica expulsiva para el insolvente sin liquidez.}
+\cornellrow{¿Cuál es el principal control del abuso dentro de la LCQ y qué fuentes lo complementan?}{El art. 52 inc. 4° (no se homologa una propuesta abusiva o en fraude a la ley), que opera recién al final del proceso. Se complementa por diálogo de fuentes con los arts. 1°, 2°, 9° y 10° CCyCN, el art. 42 CN y el art. 36 de la Ley 24.240.}
+\cornellrow{¿Qué tensión federal se planteó y cómo se resolvió en Mendoza?}{Mendoza reguló un procedimiento para el consumidor sobreendeudado (arts. 359 y ss. CPCCyT, Ley 9.001), cuestionado por el reparto de competencias (arts. 75 inc. 12 y 126 CN; «Sandoval»). Fue declarado inconstitucional en «Rivas» (2019), mientras que un dictamen fiscal en «Ibarra» (2020) lo interpretó como adecuación del acuerdo preventivo extrajudicial (arts. 69 a 76 LCQ).}
+\cornellrow{¿Qué aporta el modelo español de EPI (Ley 16/2022)?}{Resuelve expresamente lo que la LCQ deja a la discrecionalidad judicial: dos vías de exoneración (con liquidación o plan de pagos de tres años, ampliable a cinco si no se enajena la vivienda habitual), buena fe con criterios objetivos y taxativos, exclusión de créditos sensibles y revocación dentro de los tres años ante ocultación de bienes, incumplimiento del plan o mejora sustancial de fortuna.}
+\cornellsummary{La LCQ admite como sujeto a toda persona humana (art. 2°) pero conserva un presupuesto objetivo (cesación de pagos), requisitos formales y costos pensados para la empresa; los pequeños concursos son una simplificación cosmética. El único control expreso del abuso está en el art. 52 inc. 4° y debe integrarse con el CCyCN y el derecho del consumidor. Ante el vacío nacional, Mendoza legisló con resultados controvertidos, y el modelo español de EPI muestra una alternativa con criterios objetivos de buena fe.}
+\end{cornell}
+
+% ============================================================
+\chapter[Doctrina]{Doctrina}
+% ============================================================
+
+La literatura jurídica argentina aborda la problemática del concurso preventivo de las personas humanas no empresarias desde \textbf{tres enfoques complementarios y en tensión}, que permiten comprender tanto la insuficiencia del molde empresarial de la Ley 24.522 como la necesidad de establecer límites precisos contra el abuso procesal.
+
+\section{La postura protectoria y la necesidad de un régimen propio con «fresh start»}
+
+Una primera corriente doctrinaria ---en la que se inscriben los aportes de Bresca y Cattelán (s.~f.), así como desarrollos de Lorente y Truffat (2018)--- sostiene que aplicar a las personas humanas no empresarias el mismo procedimiento concebido para sociedades comerciales produce en la práctica su \textbf{exclusión del sistema concursal}.
+
+Desde esta perspectiva, se enfatiza que el sobreendeudamiento personal responde mayoritariamente a factores estructurales y contingencias involuntarias (pérdida de ingresos, inflación, enfermedades familiares o acceso facilitado al crédito de consumo mediante algoritmos de \textit{scoring} y plataformas \textit{fintech}), por lo que el derecho de la insolvencia debe asumir una \textbf{función tuitiva} acorde con la dignidad de la persona humana.
+
+Bresca y Cattelán (s.~f.) propician la creación de un régimen voluntario, ágil y de bajo costo para la persona humana sobreendeudada, estructurado sobre:
+
+\begin{itemize}
+    \item moratorias;
+    \item planes de pago realistas ajustados a la capacidad de ingresos;
+    \item quitas parciales;
+    \item una verdadera segunda oportunidad (\textit{fresh start}) que evite la marginación económica permanente.
+\end{itemize}
+
+Asimismo, postulan limitar el rigor del control judicial en el umbral de apertura ---partiendo de la \textbf{presunción de buena fe} del deudor--- y critican aquellos criterios judiciales que rechazan pedidos concursales por considerarlos «inútiles» o abusivos ante la inexistencia de activos liquidables. Para esta postura, el eventual abuso debe detectarse durante el desarrollo del trámite, examinando la conducta procesal del deudor, la seriedad de la propuesta formulada y la regularidad en la obtención de las mayorías.
+
+\section{El procedimiento específico para el consumidor con cautela frente al abuso}
+
+Una segunda línea de análisis, representada por autores como Coll y González Masanés (s.~f.), junto con estudios de Rossi (2019) y Maffía sobre el régimen de pequeños concursos, coincide en diagnosticar que el sobreendeudamiento del consumidor constituye una \textbf{forma de insolvencia cualitativamente distinta de la crisis empresarial}, frente a la cual la Ley 24.522 resulta ineficaz, onerosa y tendiente a perpetuar la insolvencia.
+
+Con respaldo en datos empíricos judiciales ---como los relevamientos del Tercer Juzgado de Procesos Universales de Mendoza, donde cerca del 90\,\% de las 149 causas concursales iniciadas en 2014 correspondían a consumidores---, señalan que los artículos 288 y 289 de la LCQ se limitan a «bautizar» a los pequeños concursos sin crear un trámite diferenciado real.
+
+Sin embargo, esta corriente introduce una importante cautela en materia de prevención del fraude: advierte que el procedimiento protectorio del consumidor no puede convertirse en una vía para convalidar conductas abusivas o el sobreendeudamiento doloso. Por ello, proponen:
+
+\begin{itemize}
+    \item sustituir el presupuesto clásico de cesación de pagos por la acreditación de dificultades económicas o financieras generales;
+    \item eliminar la exigencia de balances certificados;
+    \item requerir como filtro de entrada que el deudor acompañe junto con su petición inicial el texto concreto de su propuesta de pago y una declaración completa de su pasivo, de modo que acceda al remedio preventivo únicamente quien posee una voluntad y capacidad real de cumplimiento.
+\end{itemize}
+
+En esta línea, denuncian maniobras fraudulentas detectadas en la práctica, tales como la conversión artificial de deudas de consumo en pagarés posdatados para sustraerlas del control concursal o el endeudamiento estratégico previo a la presentación.
+
+\section{La perspectiva clásica del crédito y el control judicial sustancial del abuso}
+
+La doctrina concursal clásica ---representada por autores como Rouillon (2021) y Rivera (2014), junto con los estándares elaborados por Junyent Bas (s.~f.) en torno al control de homologación--- pone el acento en la \textbf{preservación del crédito}, la \textbf{seguridad jurídica} y la \textit{par condicio creditorum}.
+
+Se advierte que si el concurso preventivo de la persona humana se transforma en un mecanismo sencillo para suspender ejecuciones individuales (art. 21 LCQ) y licuar pasivos sin activos realizables que respalden una eventual quiebra, se genera un severo \textbf{riesgo moral} (\textit{moral hazard}) que encarece las tasas de interés para toda la sociedad y perjudica a los deudores cumplidores.
+
+Aun cuando autores como Junyent Bas (s.~f.) han desarrollado su análisis principalmente respecto del concurso preventivo empresarial, los parámetros que establecen para aplicar el artículo 52, inciso 4° de la LCQ en concordancia con el artículo 10° del CCyCN resultan plenamente trasladables al ámbito de la persona humana:
+
+\begin{itemize}
+    \item el \textbf{abuso del derecho} es un concepto jurídico indeterminado que se configura cuando el ejercicio de una facultad concursal contraría los fines del ordenamiento o la buena fe;
+    \item el juez tiene el deber de examinar \textbf{de oficio} el carácter abusivo de la propuesta, incluso en ausencia de impugnaciones de los acreedores;
+    \item la obtención de las mayorías legales no sanea una propuesta confiscatoria, debiendo evaluarse caso por caso el sacrificio compartido entre deudor y acreedores.
+\end{itemize}
+
+\section{Comparación doctrinal y toma de posición fundamentada}
+
+\subsection{Comparación de las corrientes}
+
+Las tres vertientes doctrinarias coinciden en un diagnóstico medular: el procedimiento ordinario de la Ley 24.522 no está diseñado para resolver la insolvencia de la persona humana no empresaria. Sus diferencias radican en el diseño institucional propuesto y en el momento e intensidad del control frente al abuso.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Corriente / autores} & \textbf{Momento e intensidad del control frente al abuso} \\
+\midrule
+\textbf{Protectoria} (Bresca y Cattelán) & Presumir la buena fe y flexibilizar el acceso, reservando el control para etapas posteriores del trámite. \\
+\addlinespace
+\textbf{Procedimiento específico para el consumidor} (Coll y González Masanés) & Reclama filtros tempranos de seriedad en la presentación inicial. \\
+\addlinespace
+\textbf{Clásica del crédito} (Rouillon, Rivera, Junyent Bas) & Enfatiza el control judicial sustancial de oficio y la tutela del crédito. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Toma de posición}
+
+La toma de posición articula una \textbf{síntesis equilibrada} entre estas posturas:
+
+\begin{itemize}
+    \item Se coincide con Bresca y Cattelán (s.~f.) en la necesidad imperiosa de instaurar un régimen nacional específico con segunda oportunidad (\textit{fresh start}), pues el sobreendeudamiento familiar no puede resolverse bajo un molde procesal mercantil.
+    \item Se comparte con Coll y González Masanés (s.~f.) la conveniencia de adaptar el presupuesto objetivo a las dificultades económicas generales del consumidor y de exigir transparencia patrimonial desde el inicio para desalentar maniobras oportunistas.
+    \item Se hace propio el estándar de Junyent Bas (s.~f.) sobre el deber judicial de controlar sustancialmente el abuso del derecho.
+\end{itemize}
+
+Sin embargo, se discrepa en dejar la definición de la buena fe librada exclusivamente a la discrecionalidad judicial caso por caso y en delegar la regulación a códigos procesales provinciales: se considera preferible una \textbf{ley nacional uniforme} que fije criterios objetivos y taxativos de buena fe y exclusiones precisas ---siguiendo el modelo de la Ley 16/2022 española---, brindando así previsibilidad tanto al deudor honesto como a sus acreedores.
+
+\begin{cornell}{Doctrina}
+\cornellrow{¿Qué sostiene la postura protectoria?}{Que aplicar a la persona humana no empresaria el procedimiento pensado para sociedades comerciales la excluye del sistema concursal. El sobreendeudamiento obedece mayoritariamente a factores estructurales y contingencias involuntarias, por lo que el derecho de la insolvencia debe tener una función tuitiva acorde con la dignidad de la persona humana (Bresca y Cattelán; Lorente y Truffat).}
+\cornellrow{¿Qué régimen propician Bresca y Cattelán y cómo tratan el abuso?}{Un régimen voluntario, ágil y de bajo costo, con moratorias, planes de pago realistas, quitas parciales y \textit{fresh start}. Parten de la presunción de buena fe, limitan el rigor del control en el umbral y detectan el abuso durante el trámite (conducta procesal, seriedad de la propuesta, regularidad de las mayorías).}
+\cornellrow{¿Qué diagnóstico comparte la segunda corriente (Coll y González Masanés, Rossi, Maffía)?}{Que el sobreendeudamiento del consumidor es una insolvencia cualitativamente distinta de la crisis empresarial, frente a la cual la LCQ es ineficaz, onerosa y tiende a perpetuar la insolvencia. Los arts. 288 y 289 solo «bautizan» los pequeños concursos. Un dato citado: cerca del 90\,\% de las 149 causas concursales iniciadas en 2014 en el Tercer Juzgado de Procesos Universales de Mendoza correspondían a consumidores.}
+\cornellrow{¿Qué cautelas y propuestas introduce esta segunda corriente?}{Advierte que el procedimiento protectorio no debe convalidar abusos ni el sobreendeudamiento doloso. Propone sustituir la cesación de pagos por dificultades económicas o financieras generales, eliminar los balances certificados y exigir con la petición inicial la propuesta de pago y una declaración completa del pasivo. Denuncia la conversión de deudas de consumo en pagarés posdatados y el endeudamiento estratégico previo.}
+\cornellrow{¿Qué enfatiza la doctrina clásica del crédito?}{La preservación del crédito, la seguridad jurídica y la \textit{par condicio creditorum}. Advierte el riesgo moral si el concurso se vuelve un modo sencillo de suspender ejecuciones (art. 21) y licuar pasivos sin activos realizables, lo que encarece las tasas para toda la sociedad.}
+\cornellrow{¿Qué parámetros de Junyent Bas se consideran trasladables a la persona humana?}{El abuso del derecho es un concepto jurídico indeterminado que se configura cuando el ejercicio de una facultad concursal contraría los fines del ordenamiento o la buena fe; el juez debe examinar de oficio el carácter abusivo aun sin impugnaciones; y las mayorías legales no sanean una propuesta confiscatoria, debiendo evaluarse el sacrificio compartido entre deudor y acreedores (arts. 52 inc. 4° LCQ y 10° CCyCN).}
+\cornellrow{¿En qué coinciden y en qué se diferencian las tres corrientes?}{Coinciden en que el procedimiento ordinario de la LCQ no sirve para la persona humana no empresaria. Difieren en el diseño institucional y en el momento e intensidad del control: presumir la buena fe y controlar después (protectoria), filtros tempranos de seriedad (Coll y González Masanés) o control sustancial de oficio y tutela del crédito (clásica).}
+\cornellrow{¿Cuál es la toma de posición del trabajo?}{Una síntesis: régimen nacional específico con \textit{fresh start}, adaptación del presupuesto objetivo y transparencia patrimonial inicial, y control judicial sustancial del abuso. Se discrepa en dejar la buena fe a la discrecionalidad judicial o a códigos procesales provinciales, y se prefiere una ley nacional uniforme con criterios objetivos y taxativos, siguiendo el modelo español (Ley 16/2022).}
+\cornellsummary{La doctrina argentina converge en que el molde empresarial de la LCQ es inadecuado para la persona humana no empresaria, pero se divide en el modo de controlar el abuso: presunción de buena fe y control posterior, filtros tempranos de seriedad o control judicial sustancial de oficio. El trabajo adopta una síntesis y propone una ley nacional uniforme con criterios objetivos de buena fe.}
+\end{cornell}
+
+% ============================================================
+\chapter[Jurisprudencia]{Jurisprudencia}
+% ============================================================
+
+Para examinar cómo los tribunales argentinos resuelven en la práctica la tensión entre las barreras formales de la Ley 24.522 y la tutela del deudor persona humana sobreendeudado, se analiza el precedente «C., A. B. y otro/a s/ Concurso preventivo (pequeño)», dictado por la Sala II de la Cámara de Apelación en lo Civil y Comercial de Azul el 19 de junio de 2014 (publicado y comentado por Rossi, 2019), complementándolo con la línea jurisprudencial de la Cámara Nacional de Apelaciones en lo Comercial en torno al costo de los edictos y el acceso a la justicia.
+
+\section{Conflicto planteado en «C., A. B. y otro/a s/ Concurso preventivo (pequeño)»}
+
+\textit{(Cám. Civ. y Com. Azul, Sala II, 19/06/2014).}
+
+Un matrimonio de jubilados afectado por una grave situación de sobreendeudamiento ---originado principalmente en obligaciones de consumo contraídas para financiar gastos esenciales de subsistencia--- solicitó la apertura de su concurso preventivo bajo el régimen de pequeño concurso (arts. 288 y 289 LCQ). Su patrimonio se reducía al inmueble en el que habitaban, sus haberes previsionales y un pagaré a su favor.
+
+El juez de primera instancia rechazó \textit{in limine} la petición concursal e impuso las costas a los peticionantes, argumentando que:
+
+\begin{itemize}
+    \item la presentación no cumplía íntegramente con los recaudos formales exigidos por el artículo 11 de la LCQ;
+    \item no mediaba «causa debida y válidamente fundada» para conceder el plazo de gracia de diez días previsto en el último párrafo de dicha norma.
+\end{itemize}
+
+Frente a esta decisión, los jubilados interpusieron recurso de apelación solicitando la concesión de la prórroga legal y sosteniendo que, dada su condición de personas humanas pasivas y no comerciantes, la información patrimonial acompañada resultaba suficiente para dar curso al proceso.
+
+\section{Decisión del Tribunal y fundamentos principales}
+
+La Sala II de la Cámara de Apelación en lo Civil y Comercial de Azul \textbf{revocó} la sentencia de primera instancia por considerarla prematura en cuanto denegaba la apertura del concurso, imponía costas y regulaba honorarios, y concedió a los deudores el plazo improrrogable de diez días previsto en el artículo 11 \textit{in fine} de la LCQ para completar los requisitos formales omitidos, disponiendo que recién tras ello el magistrado de grado evaluara la procedencia sustancial de la apertura.
+
+Los fundamentos jurídicos medulares del pronunciamiento fueron los siguientes:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Distinción tipológica del sobreendeudamiento.} El tribunal distinguió conceptualmente entre el sobreendeudamiento \textbf{activo} (derivado del consumo irreflexivo o suntuario) y el sobreendeudamiento \textbf{pasivo o de sobrevivencia} (originado en la insuficiencia de ingresos frente al costo de vida y contingencias vitales), encuadrando la situación del matrimonio de jubilados en este segundo supuesto.
+    \item \textbf{Reconocimiento del vacío normativo e inadecuación de los pequeños concursos.} Con cita de doctrina especializada (Junyent Bas e Izquierdo; Maffía), la Cámara reconoció explícitamente que la Ley 24.522 carece de un remedio específico para la insolvencia del consumidor y que el régimen de los artículos 288 y 289 se limita a «bautizar» a los pequeños concursos sin instaurar un procedimiento verdaderamente adaptado a la persona humana no empresaria.
+    \item \textbf{Aplicación del orden público protectorio del consumidor.} Invocando el orden público protectorio consagrado en el artículo 42 de la Constitución Nacional y la doctrina de la Corte Suprema de Justicia de la Nación en el precedente «Rinaldi» (15/03/2007, voto conjunto de los Dres. Lorenzetti y Zaffaroni), el tribunal concluyó que la condición de vulnerabilidad de la clase pasiva configuraba una «causa debida y válidamente fundada» para otorgar la prórroga del artículo 11 \textit{in fine}, evitando que un rigorismo formal cerrara prematuramente el acceso a la jurisdicción.
+\end{enumerate}
+
+\section{Complemento jurisprudencial: el costo de los edictos y el acceso efectivo}
+
+\textit{(CNCom., 2023).}
+
+La misma tensión entre formalidad empresarial y vulnerabilidad de la persona humana se proyecta en la etapa inmediatamente posterior a la apertura, relativa a la carga de publicar edictos en el Boletín Oficial y en un diario de amplia circulación bajo apercibimiento de desistimiento sancionatorio (arts. 27 y 30 LCQ).
+
+Según la jurisprudencia reciente de la Cámara Nacional de Apelaciones en lo Comercial del año 2023 (voto de la Dra. Alejandra Tévez), cuando un juez de grado tiene por desistido el concurso preventivo de una persona humana insolvente por no haber podido afrontar las elevadas tarifas de publicación en un diario privado, se produce una \textbf{denegación de justicia} que vacía de contenido la tutela judicial efectiva. En esa línea, la alzada revocó el desistimiento sancionatorio y ordenó arbitrar medios alternativos y accesibles de publicidad que no impidan al deudor de buena fe reestructurar su pasivo.
+
+\section{Relevancia para la pregunta de investigación y valoración crítica}
+
+El fallo de la Cámara de Apelación de Azul resulta central para la pregunta de investigación porque exhibe de manera nítida tres dimensiones del problema:
+
+\begin{enumerate}
+    \item demuestra que los requisitos formales del artículo 11 LCQ operan como una \textbf{barrera de entrada} que puede excluir en el umbral a personas vulnerables (como un matrimonio de jubilados);
+    \item confirma, desde la propia magistratura, que los pequeños concursos (arts. 288 y 289 LCQ) son \textbf{insuficientes} para tratar el sobreendeudamiento de sobrevivencia;
+    \item evidencia que, ante la omisión legislativa, son los jueces quienes deben \textbf{flexibilizar pretorianamente} las exigencias formales para evitar una injusticia.
+\end{enumerate}
+
+Se comparte plenamente la solución adoptada por la Cámara de Azul en cuanto impide que el formalismo ritualista cierre las puertas del proceso a deudores en situación de vulnerabilidad social y económica. No obstante, desde una mirada crítica se advierten las limitaciones inherentes a esta respuesta judicial:
+
+\begin{itemize}
+    \item al no existir una regla legal clara, el acceso efectivo de la persona humana queda librado a la sensibilidad interpretativa de cada tribunal, pudiendo otro juzgado en idénticas circunstancias rechazar el pedido;
+    \item la decisión se limita a diferir el examen de procedencia sin establecer parámetros objetivos que permitan distinguir tempranamente al deudor honesto de aquel que pretende utilizar el concurso con fines meramente dilatorios.
+\end{itemize}
+
+\begin{cornell}{Jurisprudencia}
+\cornellrow{¿Cuáles fueron los hechos del caso «C., A. B. y otro/a s/ Concurso preventivo (pequeño)»?}{Un matrimonio de jubilados con grave sobreendeudamiento, originado en obligaciones de consumo para gastos esenciales de subsistencia, pidió su concurso bajo el régimen de pequeño concurso (arts. 288 y 289). Su patrimonio se reducía al inmueble en que vivían, sus haberes previsionales y un pagaré a su favor.}
+\cornellrow{¿Qué resolvió el juez de primera instancia y por qué?}{Rechazó \textit{in limine} la petición e impuso costas, porque no se cumplían íntegramente los recaudos del art. 11 LCQ y no mediaba «causa debida y válidamente fundada» para conceder el plazo de gracia de diez días del último párrafo de esa norma.}
+\cornellrow{¿Qué decidió la Sala II de la Cámara de Azul?}{Revocó la sentencia por prematura (en cuanto denegaba la apertura, imponía costas y regulaba honorarios) y concedió el plazo improrrogable de diez días del art. 11 \textit{in fine} para completar los requisitos, disponiendo que luego el juez de grado evaluara la procedencia sustancial de la apertura.}
+\cornellrow{¿Qué distinción tipológica del sobreendeudamiento realizó el tribunal?}{Entre sobreendeudamiento activo (consumo irreflexivo o suntuario) y pasivo o de sobrevivencia (insuficiencia de ingresos frente al costo de vida y contingencias vitales). Encuadró el caso en este segundo supuesto.}
+\cornellrow{¿Qué reconoció la Cámara sobre la LCQ y los pequeños concursos?}{Que la Ley 24.522 carece de un remedio específico para la insolvencia del consumidor y que los arts. 288 y 289 se limitan a «bautizar» los pequeños concursos sin un procedimiento realmente adaptado a la persona humana no empresaria.}
+\cornellrow{¿Qué fundamento constitucional y jurisprudencial invocó para otorgar la prórroga?}{El orden público protectorio del consumidor (art. 42 CN) y la doctrina de la CSJN en «Rinaldi» (15/03/2007, voto conjunto de Lorenzetti y Zaffaroni). La vulnerabilidad de la clase pasiva configuró la «causa debida y válidamente fundada» del art. 11 \textit{in fine}, evitando que un rigorismo formal cerrara el acceso a la jurisdicción.}
+\cornellrow{¿Qué sostuvo la CNCom. (2023, voto de la Dra. Tévez) sobre los edictos?}{Que tener por desistido el concurso de una persona humana insolvente por no poder pagar las tarifas de publicación en un diario privado es una denegación de justicia que vacía la tutela judicial efectiva. La alzada revocó el desistimiento y ordenó arbitrar medios alternativos y accesibles de publicidad.}
+\cornellrow{¿Qué valoración crítica se formula de la solución judicial?}{Se comparte la solución, pero se advierte que, sin regla legal clara, el acceso queda librado a la sensibilidad de cada tribunal, y que la decisión difiere el examen de procedencia sin parámetros objetivos para distinguir tempranamente al deudor honesto del que busca fines dilatorios.}
+\cornellsummary{La jurisprudencia analizada flexibiliza el rigor formal del art. 11 y de la publicidad edictal (arts. 27 y 30) para evitar la exclusión del deudor vulnerable, con base en el orden público protectorio del consumidor y la tutela judicial efectiva. Pero lo hace de modo pretoriano y caso por caso, sin criterios objetivos, lo que evidencia la omisión legislativa.}
+\end{cornell}
+
+% ============================================================
+\chapter[Análisis crítico]{Análisis crítico}
+% ============================================================
+
+La articulación del marco normativo, las posturas doctrinarias y la experiencia jurisprudencial permite formular una evaluación crítica integral sobre las deficiencias estructurales del régimen vigente en la Ley 24.522.
+
+\section{La paradoja del acceso formal frente a la exclusión material}
+
+El reconocimiento de la persona humana como sujeto concursable en el artículo 2° de la LCQ constituye una condición necesaria, pero manifiestamente insuficiente. Al mantener una estructura procedimental diseñada para la organización mercantil, la ley:
+
+\begin{itemize}
+    \item exige documentación contable (art. 11);
+    \item impone cargas de publicidad onerosas bajo sanción de desistimiento forzoso (arts. 27 y 30);
+    \item establece un sistema de negociación por categorías y dobles mayorías (art. 45) que resulta desproporcionado frente a pasivos atomizados de consumo.
+\end{itemize}
+
+Como señaló Rossi (2019), se configura una verdadera paradoja: los pequeños concursos de los artículos 288 y 289 ---definidos por parámetros cuantitativos de tamaño empresarial y no por la naturaleza del sujeto--- no sirven para los verdaderos pequeños concursos de las personas humanas.
+
+\section{Desprotección del vulnerable e insuficiencia de filtros tempranos frente al abuso}
+
+El sistema actual falla simultáneamente en dos direcciones opuestas:
+
+\begin{itemize}
+    \item \textbf{Respecto del deudor de buena fe:} lo expulsa o desincentiva mediante costos fijos elevados (edictos, aranceles de verificación, honorarios mínimos de sindicatura y letrados) y mediante la ausencia de un mecanismo de liberación del pasivo remanente en caso de quiebra, condenándolo a una insolvencia perpetua.
+    \item \textbf{Respecto del deudor oportunista o de mala fe:} la LCQ carece de filtros tempranos en el artículo 13; la sola apertura del concurso suspende las ejecuciones y remates individuales (art. 21), permitiendo ganar tiempo sin voluntad real de pago o forzar a los acreedores a aceptar quitas confiscatorias ante la perspectiva de un dividendo nulo en la quiebra.
+\end{itemize}
+
+\section{Corresponsabilidad financiera y crédito responsable}
+
+El análisis del sobreendeudamiento personal no puede reducirse a juzgar la conducta \textit{ex post} del deudor; exige examinar también el comportamiento \textit{ex ante} de los otorgantes de crédito. La concesión masiva de préstamos preaprobados por entidades financieras y plataformas \textit{fintech} mediante algoritmos automatizados, sin verificar la capacidad global de repago del consumidor ni coordinar información con registros que incluyan el crédito no bancario o informal, compromete múltiples porcentajes sobre un mismo salario o haber previsional.
+
+La prevención del sobreendeudamiento requiere articular las normas concursales con el \textbf{deber de crédito responsable} derivado del artículo 42 de la Constitución Nacional y el artículo 36 de la Ley 24.240.
+
+\section{Lecciones del derecho comparado y necesidad de uniformidad nacional}
+
+La experiencia comparada ---particularmente la reforma española de la Ley 16/2022 que consolidó la Exoneración del Pasivo Insatisfecho (EPI)--- demuestra que es técnicamente viable diseñar un procedimiento específico que equilibre la tutela del deudor honesto con la seguridad del crédito.
+
+En lugar de depender de interpretaciones judiciales caso por caso sobre conceptos indeterminados (como el abuso del derecho del art. 10° CCyCN) o de iniciativas procesales provinciales de dudosa constitucionalidad (como ocurrió en Mendoza con los casos «Rivas» e «Ibarra»), el ordenamiento argentino requiere una \textbf{regulación nacional uniforme} que fije presupuestos objetivos claros, criterios taxativos de buena fe, deudas no exonerables y causales de revocación.
+
+\begin{cornell}{Análisis crítico}
+\cornellrow{¿Por qué el acceso formal de la persona humana es insuficiente?}{Porque el art. 2° la reconoce como sujeto concursable, pero la ley mantiene un procedimiento para la organización mercantil: documentación contable (art. 11), edictos onerosos bajo sanción de desistimiento (arts. 27 y 30) y negociación por categorías y dobles mayorías (art. 45), desproporcionados frente a pasivos atomizados de consumo.}
+\cornellrow{¿Cuál es la paradoja señalada por Rossi (2019)?}{Los pequeños concursos de los arts. 288 y 289, definidos por parámetros cuantitativos de tamaño empresarial y no por la naturaleza del sujeto, no sirven para los verdaderos pequeños concursos de las personas humanas.}
+\cornellrow{¿Cómo falla el sistema respecto del deudor de buena fe?}{Lo expulsa o desincentiva por costos fijos elevados (edictos, aranceles de verificación, honorarios mínimos de sindicatura y letrados) y por la ausencia de liberación del pasivo remanente en la quiebra, condenándolo a una insolvencia perpetua.}
+\cornellrow{¿Cómo falla frente al deudor oportunista?}{El art. 13 carece de filtros tempranos; la sola apertura suspende ejecuciones y remates (art. 21), permitiendo ganar tiempo sin voluntad de pago o forzar quitas confiscatorias ante la perspectiva de un dividendo nulo en la quiebra.}
+\cornellrow{¿Qué papel tiene la conducta de los otorgantes de crédito?}{El sobreendeudamiento exige examinar también el comportamiento \textit{ex ante} de los acreedores: préstamos preaprobados masivos por entidades y plataformas \textit{fintech}, mediante algoritmos, sin verificar la capacidad global de repago ni coordinar información con registros que incluyan el crédito no bancario o informal. Debe articularse con el deber de crédito responsable (art. 42 CN y art. 36 Ley 24.240).}
+\cornellrow{¿Qué lecciones aporta el derecho comparado?}{La reforma española (Ley 16/2022, EPI) muestra que es técnicamente viable un procedimiento específico que equilibre tutela del deudor honesto y seguridad del crédito. Frente a la interpretación caso por caso y las iniciativas provinciales de dudosa constitucionalidad (Mendoza: «Rivas» e «Ibarra»), se requiere una regulación nacional uniforme con presupuestos objetivos, criterios taxativos de buena fe, deudas no exonerables y causales de revocación.}
+\cornellsummary{El régimen vigente falla en dos direcciones: excluye materialmente al deudor honesto y carece de filtros tempranos frente al oportunista. A ello se suma la ausencia de prevención mediante crédito responsable. La experiencia comparada y los problemas de la vía provincial justifican una regulación nacional uniforme.}
+\end{cornell}
+
+% ============================================================
+\chapter[Conclusiones]{Conclusiones}
+% ============================================================
+
+\section{Respuesta a la pregunta de investigación}
+
+En respuesta directa a la pregunta planteada al inicio, se concluye que el régimen de concurso preventivo vigente en la Ley 24.522 \textbf{no constituye hoy una herramienta eficaz de protección} para la persona humana no empresaria sobreendeudada, ni ofrece \textbf{mecanismos óptimos de prevención temprana} frente al uso abusivo del proceso. Ambos déficits reconocen una misma causa estructural: la aplicación casi inalterada de un procedimiento pensado para la reorganización de empresas a una realidad patrimonial, económica y social completamente distinta, como es la insolvencia familiar y del consumidor.
+
+Se confirma así la hipótesis inicial: la amplitud del presupuesto subjetivo del artículo 2° de la LCQ resulta insuficiente si no va acompañada de un diseño procesal proporcionado.
+
+\begin{itemize}
+    \item El deudor persona humana de buena fe ---golpeado por la pérdida del empleo, una contingencia de salud o el deterioro salarial--- enfrenta barreras formales y económicas de acceso (art. 11, cesación de pagos rígida, costo de edictos bajo sanción del art. 30) y carece de una salida definitiva que le permita recomponer su vida económica tras un esfuerzo razonable de pago.
+    \item Al mismo tiempo, la inexistencia de controles objetivos de conducta al momento de la apertura (art. 13) y la posibilidad de proponer acuerdos sin pisos mínimos (art. 43) permiten que deudores de mala fe utilicen el proceso como escudo dilatorio o mecanismo de licuación abusiva, obligando a los jueces a intervenir recién en la etapa final de homologación (art. 52 inc. 4° LCQ).
+\end{itemize}
+
+\section{Propuestas de reforma legislativa}
+
+La solución no pasa por elegir entre proteger al deudor o proteger al acreedor, sino por diseñar un \textbf{marco normativo nacional equilibrado} que haga posible la tutela del insolvente honesto sin renunciar a la seguridad jurídica del crédito. \textit{De lege ferenda}, se proponen cinco ejes concretos de reforma legislativa:
+
+\begin{enumerate}
+    \item \textbf{Creación de un régimen nacional específico para la persona humana no empresaria.} Sustituir la aplicación residual de los pequeños concursos (arts. 288 y 289 LCQ) por un procedimiento especial, sumarísimo, de bajo costo y predominantemente digital para la persona humana que no desarrolla actividad empresarial organizada.
+    \item \textbf{Adecuación del presupuesto objetivo al sobreendeudamiento.} Reemplazar la exigencia rígida de cesación de pagos comercial por un estado de sobreendeudamiento o dificultades económicas generales que comprometan la subsistencia digna del grupo familiar, habilitando una instancia previa de renegociación extrajudicial o judicial ágil.
+    \item \textbf{Simplificación formal y gratuidad de la publicidad procesal.} Reemplazar los recaudos contables del artículo 11 por una declaración jurada patrimonial simplificada y sustituir la onerosa publicación de edictos en diarios privados (art. 27) por la difusión gratuita en un portal digital oficial de insolvencia y notificaciones electrónicas a los acreedores denunciados, evitando el desistimiento sancionatorio por falta de recursos (art. 30).
+    \item \textbf{Consagración de criterios objetivos de buena fe y Exoneración del Pasivo Insatisfecho.} Incorporar criterios legales objetivos de buena fe desde la apertura ---exigiendo veracidad patrimonial y ausencia de actos fraudulentos--- junto con un instituto de Exoneración del Pasivo Insatisfecho (\textit{fresh start}) inspirado en el modelo español (Ley 16/2022), sujeto al cumplimiento de un plan de pagos de tres años acorde a los ingresos embargables del deudor o a la liquidación de sus bienes realizables, excluyendo créditos alimentarios y previendo la revocación ante ocultamiento de activos o mejora sustancial de fortuna.
+    \item \textbf{Tutela preventiva mediante el crédito responsable y un Registro Único de Créditos.} Implementar un Registro Único de Créditos (que integre préstamos bancarios, \textit{fintech} y financieros no bancarios) y establecer la subordinación o reducción de intereses de aquellos créditos otorgados de manera irresponsable sin evaluar la capacidad real de repago del consumidor.
+\end{enumerate}
+
+\section{Herramientas judiciales mientras no se concrete la reforma}
+
+Mientras dicha reforma legislativa no se concrete, los magistrados comerciales cuentan con herramientas hermenéuticas valiosas para alcanzar soluciones equitativas:
+
+\begin{itemize}
+    \item flexibilizar los rigorismos formales y los costos de acceso mediante la prórroga del artículo 11 \textit{in fine} y las facultades ordenatorias del artículo 274 de la LCQ (tal como hicieron la Cámara de Azul y la Cámara Nacional en lo Comercial);
+    \item ejercer con firmeza el control sustancial de oficio sobre la conducta del deudor y la razonabilidad del acuerdo a la luz del artículo 52 inciso 4° de la LCQ y de los artículos 9° y 10° del Código Civil y Comercial de la Nación.
+\end{itemize}
+
+\begin{cornell}{Conclusiones}
+\cornellrow{¿Cuál es la respuesta a la pregunta de investigación?}{El régimen vigente de la Ley 24.522 no es hoy una herramienta eficaz de protección para la persona humana no empresaria sobreendeudada, ni ofrece mecanismos óptimos de prevención temprana frente al uso abusivo. Ambos déficits tienen la misma causa: aplicar casi sin cambios un procedimiento pensado para empresas a la insolvencia familiar y del consumidor.}
+\cornellrow{¿Qué barreras enfrenta el deudor de buena fe?}{Barreras formales y económicas de acceso (art. 11, cesación de pagos rígida, costo de edictos bajo sanción del art. 30) y la falta de una salida definitiva que le permita recomponer su vida económica tras un esfuerzo razonable de pago.}
+\cornellrow{¿Qué permite el abuso por parte de deudores de mala fe?}{La inexistencia de controles objetivos de conducta en la apertura (art. 13) y la posibilidad de proponer acuerdos sin pisos mínimos (art. 43), lo que los usa como escudo dilatorio o mecanismo de licuación, obligando a los jueces a intervenir recién en la homologación (art. 52 inc. 4°).}
+\cornellrow{¿Cuáles son los cinco ejes de reforma propuestos?}{(1) Régimen nacional específico, sumarísimo, de bajo costo y predominantemente digital. (2) Presupuesto objetivo basado en sobreendeudamiento o dificultades económicas generales, con instancia previa de renegociación. (3) Declaración jurada patrimonial simplificada y publicidad gratuita en un portal oficial, sin desistimiento sancionatorio. (4) Criterios objetivos de buena fe y EPI inspirado en la Ley 16/2022, con plan de pagos de tres años, exclusión de créditos alimentarios y revocación. (5) Crédito responsable y Registro Único de Créditos, con subordinación o reducción de intereses de créditos otorgados irresponsablemente.}
+\cornellrow{¿Qué pueden hacer los jueces mientras no se reforme la ley?}{Flexibilizar rigorismos formales y costos de acceso mediante la prórroga del art. 11 \textit{in fine} y las facultades ordenatorias del art. 274 LCQ, y ejercer el control sustancial de oficio sobre la conducta del deudor y la razonabilidad del acuerdo (art. 52 inc. 4° LCQ y arts. 9° y 10° CCyCN).}
+\cornellsummary{La Ley 24.522 ni protege eficazmente al deudor honesto ni previene el abuso, por una misma causa estructural. La solución es un marco nacional equilibrado, con cinco ejes de reforma, y, hasta entonces, el uso de las herramientas judiciales de flexibilización formal y control sustancial del abuso.}
+\end{cornell}
+
+% ------------------------------------------------------------
+% BIBLIOGRAFÍA
+% ------------------------------------------------------------
+\chapter*{Bibliografía y fuentes consultadas}
+\addcontentsline{toc}{chapter}{Bibliografía y fuentes consultadas}
+\markboth{Bibliografía}{Bibliografía}
+
+{\small\raggedright
+\section*{Doctrina}
+
+\begin{itemize}[leftmargin=1.2em]
+    \item Barreiro, M. G., \& Lorente, J. A. (2010). \textit{Nuevo régimen de concursos y quiebras. Ley 24.522 (con las modificaciones de las leyes 25.563, 25.589 y 26.086)}. Astrea.
+    \item Bresca, A. K., \& Cattelán, P. C. (s.~f.). El camino hacia la reconfiguración de los presupuestos concursales. \textit{Revista Jurídica de la Universidad de San Andrés}, (20). \url{https://revistasdigitales.udesa.edu.ar/index.php/revistajuridica/en/article/download/314/290/962}
+    \item Coll, O. W., \& González Masanés, P. (s.~f.). Código Procesal Civil, Comercial y Tributario de Mendoza: Concurso de persona humana que no realiza actividad económica organizada. \textit{Estudios de Derecho Empresario}, 109-132. \url{https://jusmendoza.gob.ar/wp-content/uploads/2023/08/Articulo-Derecho-del-Consumidor-Dr.-Pablo-Gonzalez-Masanes.pdf}
+    \item Junyent Bas, F. (s.~f.). Una nueva mirada del concurso preventivo. \textit{Revista Deconomi}, Año I (N.º 2). Facultad de Derecho, Universidad de Buenos Aires. \url{https://www.derecho.uba.ar/publicaciones/revista-deconomi/articulos/Ed-0002-N03-JUNYENT-BAS.pdf}
+    \item Junyent Bas, F., \& Izquierdo, S. (2019). El sobreendeudamiento del consumidor y la necesidad de un régimen concursal específico. \textit{La Ley}, 2019-D, 1120.
+    \item Rivera, J. C. (2014). \textit{Instituciones de derecho concursal} (3.ª ed.). Rubinzal-Culzoni.
+    \item Rossi, J. O. (2019, 10 de enero). Paradoja: El régimen de «pequeños concursos» no sirve para los verdaderos «pequeños concursos». Colegio de Abogados de Morón. \url{https://camoron.org.ar/nuevas-normas/derecho-procesal/paradoja-el-regimen-de-pequenos-concursos-no-sirve-para-los-verdaderos-pequenos-concursos/}
+    \item Rouillon, A. A. N. (2021). \textit{Régimen de concursos y quiebras. Ley 24.522} (17.ª ed.). Astrea.
+    \item Truffat, E. D. (2018). Procedimientos concursales y tutela de la persona humana sobreendeudada. \textit{Revista de Derecho Comercial y de las Obligaciones (RDCO)}, (290), 45-68.
+\end{itemize}
+
+\section*{Legislación nacional, provincial y comparada}
+
+\begin{itemize}[leftmargin=1.2em]
+    \item Constitución de la Nación Argentina (1994), artículos 18, 42, 75 inciso 12, 75 inciso 22 y 126.
+    \item Ley N.° 24.522 de Concursos y Quiebras (B.O. 09/08/1995) y sus leyes modificatorias N.° 25.563, 25.589, 26.086, 26.684 y 27.170 (art. 3°, B.O. 08/09/2015).
+    \item Ley N.° 26.994, Código Civil y Comercial de la Nación (B.O. 08/10/2014), artículos 1°, 2°, 9° y 10°.
+    \item Ley N.° 24.240 de Defensa del Consumidor (B.O. 15/10/1993) y modificatorias, artículo 36.
+    \item Ley N.° 21.526 de Entidades Financieras (B.O. 21/02/1977).
+    \item Decreto N.° 484/1987 sobre inembargabilidad parcial de remuneraciones.
+    \item Provincia de Mendoza. Ley N.° 9.001, Código Procesal Civil, Comercial y Tributario, artículos 359 y siguientes.
+    \item Reino de España. Real Decreto Legislativo 1/2020, Texto Refundido de la Ley Concursal, reformado por la Ley 16/2022, de 5 de septiembre (BOE n.º 214, de 06/09/2022, BOE-A-2022-14580), transposición de la Directiva (UE) 2019/1023 sobre marcos de reestructuración preventiva y exoneración de deudas.
+\end{itemize}
+
+\section*{Jurisprudencia}
+
+\begin{itemize}[leftmargin=1.2em]
+    \item Cámara de Apelación en lo Civil y Comercial de Azul, Sala II (19/06/2014). «C., A. B. y otro/a s/ Concurso preventivo (pequeño)» (citado según transcripción publicada por Rossi, 2019).
+    \item Cámara Nacional de Apelaciones en lo Comercial (2023). Pronunciamiento sobre dispensa y alternativas a los costos de publicación de edictos en el concurso preventivo de persona humana, voto de la Dra. Alejandra N. Tévez (referido en apuntes de cátedra).
+    \item Corte Suprema de Justicia de la Nación (15/03/2007). «Rinaldi, Francisco Augusto y otro c/ Guzmán Toledo, Ronal Constante y otra s/ Ejecución hipotecaria», La Ley 2007-B, 413.
+    \item Corte Suprema de Justicia de la Nación (1997). «Sandoval, Héctor c/ Provincia del Neuquén», Fallos 320:1344.
+    \item Cámara Civil 2.ª de Mendoza (12/11/2019). «Rivas» (declaración de inconstitucionalidad de los arts. 359 y ss. del CPCCyT de Mendoza, citado según dictamen fiscal en «Ibarra»).
+    \item Fiscalía de Cámara de la Primera Circunscripción de Mendoza (16/10/2020). Dictamen en «Ibarra, Héctor Germán s/ Concurso Consumidor», CUIJ 13-05021675-0.
+\end{itemize}
+}
+
+\end{document}
