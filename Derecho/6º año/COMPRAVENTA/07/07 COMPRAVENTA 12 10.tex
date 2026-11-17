@@ -1,0 +1,926 @@
+\documentclass[12pt,oneside]{book}
+
+% ==================== METADATOS ====================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\facultad}{Facultad de Derecho}
+\newcommand{\materia}{Compraventa}
+\newcommand{\titulo}{Apuntes de Compraventa}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2026}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\addto\captionsenglish{\renewcommand{\contentsname}{Índice}}
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ==================== CONFIGURACIÓN ====================
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ==================== COMANDOS ====================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ==================== ENTORNOS / CAJAS ====================
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+% Ancho útil de las columnas de las tablas Cornell
+\newcommand{\cornellL}{0.27\textwidth}
+\newcommand{\cornellR}{\dimexpr0.73\textwidth-4\tabcolsep\relax}
+\newcommand{\cornellW}{\dimexpr\textwidth-2\tabcolsep\relax}
+
+% ==================== DOCUMENTO ====================
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \textsc{\facultad}}
+
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+
+\vspace{1cm}
+
+{\LARGE \titulo}
+
+\vspace{0.8cm}
+
+\textit{Comprender los conceptos es el primer paso para convertir el estudio en conocimiento.}
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``Compraventa'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+% ---------- ÍNDICE ----------
+\tableofcontents
+
+% ==================== INTRODUCCIÓN ====================
+\chapter*{Temas tratados}
+\addcontentsline{toc}{chapter}{Temas tratados}
+\markboth{Temas tratados}{Temas tratados}
+
+Estos apuntes corresponden a la clase del 12 de noviembre de 2026 sobre \textbf{compraventa}. Los contenidos abordados son los siguientes:
+
+\begin{itemize}
+    \item \textbf{Lectura de un plano}: la flecha del norte, la rosa de los vientos y la manera de escribir hacia dónde dan los lados de una parcela, con qué lindan y cuánto miden.
+    \item Qué datos de una consigna importan cuando se trata de un \textbf{lote} y cuáles cuando se trata de una \textbf{unidad funcional} (balcones, patios, PH).
+    \item El \textbf{precio en dinero}: criptomonedas, moneda de curso legal y moneda extranjera, y el cambio del régimen de los arts.~765 y 766 por decreto.
+    \item Criterios de redacción: qué se escribe en \textbf{letras} y qué datos son \textbf{esenciales}.
+    \item La \textbf{cláusula del precio} en distintos escenarios: pago anterior y en efectivo, pago en dos momentos y pago por depósito bancario, con la importancia del \textbf{recibo} y su relación con las leyes 25.345 y 25.413.
+\end{itemize}
+
+\begin{important}
+\textbf{Utilidad profesional y personal.} Un escribano o abogado inmobiliario redacta la cláusula del precio en casi cada compraventa: un recibo mal cerrado o un modo de pago omitido es un reclamo futuro. Saber describir un inmueble sin errores (lados, linderos, medidas, superficies) evita observaciones del registro y nulidades. Entender el dinero (dólares, criptomonedas, bancarización) permite proteger al cliente en operaciones reales. También en la vida personal: quien compra o vende una vivienda sabrá leer un plano, qué exigir como recibo, por qué conviene pagar por banco y qué riesgos tiene el efectivo. La precisión del lenguaje es lo que transforma un acuerdo verbal en un derecho que nadie puede desconocer después.
+\end{important}
+
+\textbf{Cómo se relacionan los temas.} Al comprar un departamento, primero se mira el \textbf{plano} para saber qué se compra y hacia dónde da. Luego se revisan los \textbf{datos} del inmueble y cómo se los describe. Después se discute \textbf{con qué se paga}: pesos, dólares o criptomonedas. Para dejarlo escrito hay que \textbf{redactar con precisión} qué va en letras y qué datos importan. Finalmente, todo se reúne en la \textbf{cláusula del precio}, donde se deja constancia de cuánto, cómo y cuándo se pagó, y de que el vendedor lo recibió.
+
+% ==================== CAPÍTULO 1 ====================
+\chapter[El inmueble: plano y descripción]{El inmueble: plano y descripción}
+
+\section{La parcela y las entrecalles}
+
+Cuando se representa una parcela en un plano, el dibujo es una pequeña parte de una manzana. Se la observa siempre mirando al norte. La parcela objeto del negocio jurídico tiene su frente sobre una calle y se ubican, a su lado, otros lotes.
+
+Cuando el plano consigna nombres de calles (por ejemplo, «calle uno» y «calle dos»), ello sirve para saber \textbf{entre qué calles} se encuentra la parcela (las \textbf{entrecalles}): no significa que el plano represente toda la manzana.
+
+Al costado del plano suele aparecer la parcela en un recuadro de tipo «zoom out»: un cuadradito que representa la parcela propia y que permite advertir que existen otras alrededor.
+
+\section{La rosa de los vientos y la orientación de los lados}
+
+\subsection{La flecha siempre indica el norte}
+
+La flecha que acompaña al plano es la \textbf{rosa de los vientos} y \textbf{siempre indica el norte}, sin importar cómo esté dibujada. Aunque el norte no esté en todos los vértices, la flecha siempre apunta al norte.
+
+Actualmente la rosa de los vientos se presenta completa: suelen aparecer dibujados el norte, el sur, el este y el oeste, y en algunos planos también los puntos intermedios. Aunque no tenga todos los vértices, la flecha indica siempre el norte. De esta manera se puede saber hacia dónde orientan los demás lados, porque necesariamente el lado opuesto al norte es el sur.
+
+\subsection{Flecha recta y flecha «cruzada»}
+
+\begin{itemize}
+    \item Si la flecha es \textbf{recta}, no hay mucho que pensar: solo se extienden los lados, si se quiere reconfirmar hacia dónde van.
+    \item Si la flecha está \textbf{cruzada}, el procedimiento es el mismo: se \textbf{extienden los vértices} (y la flecha). Así, un lindero va al norte, otro al sur, otro al este y otro al oeste. Si la flecha está en otra posición, el mismo ejercicio permite determinar, por ejemplo, que un lado va al noreste.
+\end{itemize}
+
+\subsection{Qué se escribe en la descripción}
+
+En la descripción \textbf{no} debe decirse dónde está el norte (por ejemplo, no se trata de elegir qué calle es el norte). Lo que debe escribirse es la parcela: \textbf{hacia dónde dan sus lados}. Se nombra, por ejemplo, «noroeste» con los datos disponibles. No importa dónde esté el norte: importa a los efectos de saber hacia dónde dan los lados. Si, por ejemplo, el frente da al noroeste, así se consigna.
+
+\begin{important}
+En la descripción del inmueble no se informa dónde está el norte: se informa \textbf{hacia dónde dan los lados de la parcela} (norte, sur, este, oeste, noreste, noroeste, etc.). La flecha es la herramienta para deducirlo.
+\end{important}
+
+\section{Cómo describir el lote}
+
+Al describir el lote pueden describirse, de cada lado, todos los datos de interés: \textbf{con quién linda} (lindero), \textbf{hacia dónde orienta} y \textbf{cuánto mide}. Estos datos pueden consignarse juntos, lado por lado, o por separado: primero las medidas y luego, en otro apartado, las orientaciones y los linderos. Ello depende de cada redactor.
+
+\begin{formula}{Datos de cada lado del lote}
+\begin{enumerate}
+    \item Con quién linda (lindero).
+    \item Hacia dónde orienta.
+    \item Cuánto mide.
+\end{enumerate}
+Pueden consignarse juntos, lado por lado, o por separado.
+\end{formula}
+
+% ---------- Cornell Cap. 1 ----------
+\section*{Cuadro Cornell: el inmueble, plano y descripción}
+\addcontentsline{toc}{section}{Cuadro Cornell: el inmueble, plano y descripción}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellL}
+    >{\raggedright\arraybackslash}p{\cornellR}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Cómo se ubica una parcela dentro de la manzana?} &
+La parcela es «una partecita de una manzana». Los nombres de calles del plano indican las \textbf{entrecalles}, no toda la manzana. Junto al plano aparece la parcela en un recuadro («zoom out») que muestra las parcelas vecinas. \\[0.8em]
+
+\textbf{¿Qué indica la flecha del plano?} &
+La flecha (\textbf{rosa de los vientos}) siempre indica el \textbf{norte}. El lado opuesto es el sur. Si la flecha está cruzada, se extienden los vértices y se deducen orientaciones como noreste o noroeste. \\[0.8em]
+
+\textbf{¿Hacia dónde dan los lados de mi parcela? ¿Qué se escribe?} &
+En la descripción no se informa dónde está el norte: solo se escribe \textbf{hacia dónde dan los lados} de la parcela. La flecha sirve para deducirlo. \\[0.8em]
+
+\textbf{¿Qué tres datos describen cada lado del lote?} &
+\textbf{Lindero} (con quién linda), \textbf{orientación} (hacia dónde da) y \textbf{medida} (cuánto mide). Pueden consignarse juntos por lado o por separado (primero medidas y luego orientaciones y linderos). \\
+
+\midrule
+\multicolumn{2}{p{\cornellW}}{%
+\textbf{Resumen:} la parcela se ubica en el plano entre calles, y la flecha del norte permite deducir hacia dónde dan sus lados. En la descripción solo se escribe hacia dónde da cada lado, con quién linda y cuánto mide.
+} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 2 ====================
+\chapter[Evaluación y consigna]{Evaluación y consigna: lote, unidad funcional y superficies}
+
+\section{Formato de la evaluación}
+
+El parcial puede presentar el ejercicio de describir el inmueble en alguno de estos formatos: el \textbf{planito}, la \textbf{grilla de unidades funcionales (UF)} o el \textbf{texto}. Además de describir el inmueble, el parcial incluye preguntas a desarrollar.
+
+\begin{note}
+Fechas informadas en la clase: \textbf{parcial}, 26 de noviembre; \textbf{recuperatorio}, 3 de diciembre. Quedan las clases del lunes y del jueves previas al parcial.
+\end{note}
+
+\section{Datos de la consigna: lote, unidad funcional y superficies}
+
+Hay que prestar atención a los datos que arroja la consigna. Los datos que la consigna \textbf{no da} se \textbf{inventan}; los datos que sí da se \textbf{respetan}.
+
+\begin{itemize}
+    \item Si la consigna dice que es un \textbf{departamento}, se trata de una \textbf{unidad funcional}.
+    \item Si la consigna dice que es un departamento con \textbf{balcón}, hay que considerar la superficie \textbf{cubierta y semicubierta}.
+    \item Si se trata de un \textbf{lote} y la consigna dice que es una casa que tiene cierta superficie cubierta, ese dato no importa: cuando es lote, lo que importa es el lote. Si en el lote que se vende la casa está en una parte y en otra hay parque o estacionamiento, y la consigna dice que el total es de 230~m$^2$, se trata de un dato accesorio, un dato para describir el lote. Lo que importa es la medida de cada lado.
+\end{itemize}
+
+\subsection{Balcones, patios y PH}
+
+Cuando se pregunta en qué caso una superficie sería descubierta, el ejemplo es el \textbf{patio}. Hay que ver si es propio de la unidad funcional o no. Los patios son comunes. Un \textbf{PH} sí sería unidad funcional: un PH con patio tiene superficie descubierta. En ese caso hay que leer el \textbf{reglamento} para ver si el patio es de la unidad funcional o no.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Dato de la consigna} & \textbf{Cómo se trata} \\
+\midrule
+Departamento & Es una \textbf{unidad funcional} (UF). \\
+Departamento con balcón & Se consideran superficie \textbf{cubierta y semicubierta}. \\
+Patio & En general es \textbf{común}; se verifica en el reglamento si es de la UF. \\
+PH con patio & El PH es \textbf{unidad funcional}; el patio es superficie \textbf{descubierta} (leer el reglamento). \\
+Lote con casa (m$^2$ cubiertos, parque, cochera) & Son \textbf{datos accesorios}: importa la \textbf{medida de los lados del lote}. \\
+Dato que la consigna no da & Se \textbf{inventa}; los datos dados se \textbf{respetan}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------- Cornell Cap. 2 ----------
+\section*{Cuadro Cornell: evaluación y consigna}
+\addcontentsline{toc}{section}{Cuadro Cornell: evaluación y consigna}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellL}
+    >{\raggedright\arraybackslash}p{\cornellR}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Cuándo son el parcial y el recuperatorio?} &
+Parcial: \textbf{26 de noviembre}. Recuperatorio: \textbf{3 de diciembre}. \\[0.8em]
+
+\textbf{¿En qué formatos puede aparecer el ejercicio?} &
+Como \textbf{plano}, como \textbf{grilla de UF} o como \textbf{texto}; además, hay preguntas a desarrollar. \\[0.8em]
+
+\textbf{¿Qué datos de la consigna importan y cuáles no?} &
+\textbf{Lote:} importan las medidas de los lados; casa, parque y m$^2$ cubiertos son datos accesorios. \textbf{UF:} superficies cubierta, semicubierta y descubierta; los patios suelen ser comunes (ver reglamento); un PH es UF. Los datos que no da la consigna se inventan; los dados se respetan. \\
+
+\midrule
+\multicolumn{2}{p{\cornellW}}{%
+\textbf{Resumen:} el ejercicio puede presentarse como plano, grilla de UF o texto. Si es lote, importan las medidas de sus lados; si es unidad funcional, importan las superficies (cubierta, semicubierta, descubierta). Los datos de la consigna se respetan y los que faltan se inventan.
+} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 3 ====================
+\chapter[El precio en dinero]{El precio en dinero}
+
+\section{Criptomonedas y criterio propio}
+
+\subsection{¿Puede una criptomoneda ser el precio?}
+
+La respuesta depende de la postura que se adopte. Según la \textbf{naturaleza jurídica} que se asigne a la criptomoneda, varía el encuadre jurídico que se da al contrato. Si se entiende que \textbf{no es una moneda}, entonces no habrá compraventa sino otro contrato: un \textbf{contrato innominado}.
+
+Existe también la postura que sostiene que la criptomoneda es una \textbf{cosa}. El docente observa que esto le llama la atención, porque una cosa es, por definición, un bien material; y señala que, aun así, esa postura existe. Se mencionan además otras teorías [pasaje poco audible en la clase].
+
+% TODO: contenido incompleto o ambiguo en las notas originales (pasaje poco audible sobre otras teorías)
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.32\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Naturaleza asignada a la criptomoneda} & \textbf{Consecuencia para el contrato} \\
+\midrule
+No es moneda (no es precio en dinero) & No hay compraventa: sería \textbf{otro contrato}, un \textbf{contrato innominado}. \\
+Es una cosa & Postura existente; el docente observa que, por definición, una cosa es un bien material. \\
+Otras teorías & [Pasaje poco audible] El encuadre depende de la naturaleza jurídica que se le asigne. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Criterio propio y fundamentación jurídica}
+
+Cada estudiante debe construir su \textbf{propio criterio}. En relación con temas como el boleto de compraventa u otros, hay argumentos de peso de ambos lados, y se puede opinar en contraposición a la opinión del docente siempre que se lo pueda \textbf{justificar jurídicamente}. Si la opinión es jurídicamente justificable, no hay problema. Pero no basta con decir «a mí me parece que es tal cosa»: hay que explicar por qué, porque se trata de derecho y no de filosofía.
+
+\subsection{¿Puede el escribano aceptar un pago en criptomonedas?}
+
+Sí. No está prohibido transferir un bien a cambio de criptomonedas: no es una contraprestación prohibida. Al estudiar qué cosas pueden ser objeto de los contratos, se vio que la prestación debe ser posible, lícita y no contraria a la ley [moral\ldots]. No está prohibido contratar con criptomonedas como contraprestación; por lo tanto, si no está prohibido, \textbf{no hay obstáculo jurídico} para transmitir el dominio de un inmueble a cambio de ellas.
+
+\section{Dinero, moneda de curso legal y moneda extranjera}
+
+El Código exige que el precio sea \textbf{en dinero}: no puede ser cualquier cosa.
+
+\begin{note}
+Según lo recordado en clase, el Código Civil y Comercial exige que el precio de la compraventa sea en dinero (el docente no dictó el número de artículo).
+\end{note}
+
+No existe una definición jurídica de lo que es dinero: yendo a la letra de la ley, ningún artículo define qué es dinero. Sin embargo, todos entienden lo que es dinero, y se puede distinguir entre moneda de curso legal y moneda extranjera.
+
+\begin{definition}{Moneda de curso legal}
+Es el peso argentino, emitido por la autoridad nacional. Quien compra algo debe ser aceptado con pesos porque son la moneda de curso legal.
+\end{definition}
+
+\begin{definition}{Moneda extranjera}
+Es dinero considerado una moneda emitida por otra autoridad monetaria; es moneda que no es de curso legal, pero no en el sentido de que esté prohibida. Comprar, por ejemplo, una computadora en dólares es un pacto entre las partes.
+\end{definition}
+
+\begin{important}
+«De curso legal» o «no de curso legal» \textbf{no significa prohibido o permitido}: significa emitido por la autoridad nacional (de curso legal en Argentina).
+\end{important}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.2\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Aspecto} & \textbf{Moneda de curso legal} & \textbf{Moneda extranjera} \\
+\midrule
+Quién la emite & La autoridad monetaria nacional. & Otra autoridad monetaria. \\
+Ejemplo & El peso argentino. & El dólar estadounidense. \\
+¿Está prohibida? & No. Debe ser aceptada como pago. & No. «De curso legal o no» no significa prohibido o permitido. \\
+Naturaleza & Dinero. & Dinero: obligación dineraria. \\
+Cómo se usa & Rige para las compras en general. & Se usa por pacto entre las partes (ejemplo: comprar la computadora en dólares). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Obligaciones en moneda extranjera: arts. 765 y 766 y el decreto}
+
+La situación de la moneda extranjera depende del momento histórico, y la visión jurídica puede modificarse. Al día de hoy, \textbf{por el decreto}, no hay duda de que la moneda extranjera es una \textbf{obligación dineraria}.
+
+El decreto es categórico: quien se obliga en moneda extranjera \textbf{debe entregar la moneda extranjera}. El Código Civil y Comercial, en su versión original, otorgaba la facultad (el permiso) de liberarse pagando en pesos argentinos.
+
+\begin{note}
+\textbf{Norma citada en clase: arts. 765 y 766 del Código Civil y Comercial.} El docente se refiere al «famoso 765 y 766». Extractos de su texto según la reforma por el DNU 70/2023:
+
+Art.~765: «El deudor solo se libera si entrega las cantidades comprometidas en la moneda pactada.»
+
+Art.~766: «El deudor debe entregar la cantidad correspondiente de la especie designada, tanto si la moneda tiene curso legal en la República como si no lo tiene.»
+
+El docente no los dictó en clase: se transcriben extractos para ubicar la norma; verificar el texto completo vigente.
+\end{note}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.34\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Régimen} & \textbf{Efecto para quien se obligó en moneda extranjera} \\
+\midrule
+Código Civil y Comercial en su versión original (art.~765) & El deudor tenía la facultad de \textbf{liberarse pagando en pesos argentinos}. \\
+Decreto (DNU) vigente & El deudor \textbf{debe entregar la moneda extranjera} pactada: la obligación es dineraria. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{¿Era una facultad renunciable?}
+
+Se planteó si esa facultad era «facultativa». Según el docente, depende de la posición que se adopte: quien sea más soberanista o constitucionalista sostendrá que se trataba de una norma de \textbf{orden público} y, por lo tanto, irrenunciable.
+
+\subsection{Las cláusulas «gigantes» de los escribanos}
+
+Los escribanos armaban cláusulas extensas en las que dejaban clara la \textbf{renuncia} a la facultad de liberarse pagando en pesos. Al vendedor no le resultaría grato que el comprador quisiera pagar en pesos. Como modo de protección del negocio jurídico, y por la discusión sobre si la norma era o no de orden público, se dejaba clara la renuncia al art.~765, diciendo que el pago en esa moneda era \textbf{condición esencial} del contrato, es decir, que si no se cumplía en esa moneda el contrato no se habría celebrado. También se renunciaba a la imprevisión y al caso fortuito.
+
+Esas cláusulas se siguen incluyendo. Según el docente pueden ser dos las razones: porque quedaron en los modelos, o porque, al haber sido modificado el código por un DNU, puede haber un tema jurídico: un DNU puede derogarse más fácilmente que una modificación del código. No se sabe, pero se siguen incluyendo.
+
+\begin{important}
+La cláusula tradicional de moneda extranjera incluía: (1) renuncia a la facultad del art.~765; (2) el pago en esa moneda como \textbf{condición esencial}; (3) renuncia a la imprevisión y al caso fortuito. Se sigue usando por costumbre de los modelos o por la posibilidad de que un DNU sea derogado.
+\end{important}
+
+% ---------- Cornell Cap. 3 ----------
+\section*{Cuadro Cornell: el precio en dinero}
+\addcontentsline{toc}{section}{Cuadro Cornell: el precio en dinero}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellL}
+    >{\raggedright\arraybackslash}p{\cornellR}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Puede una criptomoneda ser el precio?} &
+Depende de la naturaleza jurídica asignada: si no es moneda, no hay compraventa sino un \textbf{contrato innominado}. No está prohibido pagar con ellas, por lo que no hay obstáculo jurídico para transmitir el dominio de un inmueble a cambio de criptomonedas. Se acepta cualquier postura \textbf{justificada jurídicamente}. \\[0.8em]
+
+\textbf{¿Qué distingue a la moneda extranjera de la de curso legal?} &
+La moneda de curso legal es el peso argentino, emitido por la autoridad nacional; la moneda extranjera es dinero emitido por \textbf{otra autoridad monetaria}. «De curso legal» no significa permitido o prohibido. \\[0.8em]
+
+\textbf{¿Puede el deudor liberarse pagando en pesos?} &
+Antes (Código Civil y Comercial original, art.~765) podía liberarse pagando en pesos. Por el decreto, quien se obliga en moneda extranjera \textbf{debe entregarla}: es una obligación dineraria. \\[0.8em]
+
+\textbf{¿Qué incluían las cláusulas «gigantes» de los escribanos?} &
+Renuncia a la facultad del art.~765, pago en esa moneda como \textbf{condición esencial} y renuncia a la imprevisión y al caso fortuito. Se siguen usando por los modelos o por la posibilidad de que el DNU sea derogado. \\
+
+\midrule
+\multicolumn{2}{p{\cornellW}}{%
+\textbf{Resumen:} el precio debe ser en dinero. Las criptomonedas dependen de la naturaleza jurídica que se les asigne y de una postura justificada. La moneda extranjera es dinero emitido por otra autoridad monetaria y, por el decreto, debe entregarse la moneda pactada, aunque las cláusulas de renuncia aún se usan.
+} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 4 ====================
+\chapter[Redactar con precisión]{Redactar con precisión}
+
+\section{Qué se escribe en letras: lo «esencial»}
+
+No todos los números se escriben en letras: solo los \textbf{esenciales}. La ley (la 404) dice «lo esencial», pero ningún artículo establece qué es lo esencial. Son esenciales las medidas, los ceros, todo lo que hace a la \textbf{determinación del inmueble}.
+
+\begin{itemize}
+    \item La superficie \textbf{total} va en letras; las superficies \textbf{parciales} y la nomenclatura catastral van en números. Igualmente, todos agregan el número.
+    \item \textbf{Ante la duda, siempre en letras}. En un parcial, quien escribe de más en letras no recibe descuentos: para asegurarse, todo en letras.
+    \item La unidad funcional, el piso y la numeración de la calle (la dirección) van en letras.
+    \item Las fechas de las escrituras van en letras, porque son esenciales.
+    \item El porcentual va en letras; se lo encontrará también en números, pero lo esencial va en letras.
+    \item Las medidas de los lados de un lote van en números. La superficie va en letras y en números entre paréntesis. No es obligatorio poner en letras las medidas de los lados.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.38\textwidth}
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Dato} & \textbf{Cómo se escribe} \\
+\midrule
+Unidad funcional y piso & En \textbf{letras}. \\
+Numeración de la calle (dirección) & En \textbf{letras}. \\
+Fechas de las escrituras y épocas fijadas para el pago & En \textbf{letras} (ej.: «ocho de septiembre del corriente año»). \\
+Porcentual & En \textbf{letras} (puede aparecer también en números). \\
+Superficie total & En \textbf{letras y en números entre paréntesis}. \\
+Superficies parciales y nomenclatura catastral & En \textbf{números}. \\
+Medidas de los lados del lote & En \textbf{números} (no es obligatorio en letras). \\
+Ante la duda & En \textbf{letras}: en un parcial nadie descuenta por ponerlo de más. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Datos esenciales y no esenciales}
+
+Al describir el inmueble en una consigna, los datos que no se tienen se inventan; todos los datos que sí se tienen, se respetan.
+
+La matrícula o la valuación fiscal no forman parte de la descripción del inmueble y por eso no son esenciales. Son otra cosa, como lo sería el estado civil del vendedor. La valuación que el gobierno asigna al inmueble es un dato sobre el inmueble, pero no hace a su \textbf{identificación física}.
+
+A veces se consigna la partida municipal, la valuación fiscal y la valuación a efectos del impuesto al acto: todo eso se consigna, pero responde a otras cuestiones. En general va después de la inscripción del inmueble, aunque puede ubicarse en otra parte; muchos ponen una constancia. La matrícula del registro es igualmente otro dato.
+
+\begin{definition}{Datos esenciales y no esenciales}
+\textbf{Esencial} es lo que hace a la \textbf{identificación física} del inmueble. \textbf{No esencial} es lo que responde a otras cuestiones (registrales, fiscales): matrícula, partida municipal, valuación fiscal.
+\end{definition}
+
+% ---------- Cornell Cap. 4 ----------
+\section*{Cuadro Cornell: redactar con precisión}
+\addcontentsline{toc}{section}{Cuadro Cornell: redactar con precisión}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellL}
+    >{\raggedright\arraybackslash}p{\cornellR}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Qué números deben ir en letras?} &
+Lo \textbf{esencial}: unidad funcional, piso, numeración de calle, fechas, porcentual, superficie total (con números entre paréntesis) y épocas de pago. Las medidas de los lados y la nomenclatura catastral van en números. \textbf{Ante la duda, en letras.} \\[0.8em]
+
+\textbf{¿Qué hace a la identificación del inmueble? ¿Qué es un dato no esencial?} &
+Lo esencial es la \textbf{identificación física}. No es esencial lo que responde a otras cuestiones: matrícula, partida, valuación fiscal (y, como otro ejemplo de dato ajeno, el estado civil del vendedor). \\[0.8em]
+
+\textbf{¿Qué se hace con los datos de la consigna?} &
+Los datos que se tienen se respetan; los que no se tienen se inventan. \\
+
+\midrule
+\multicolumn{2}{p{\cornellW}}{%
+\textbf{Resumen:} los números esenciales van en letras (ante la duda, siempre en letras). Los datos fiscales o registrales no hacen a la identificación física del inmueble.
+} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 5 ====================
+\chapter[La cláusula del precio]{La cláusula del precio}
+
+Las cláusulas se ven de las más simples a las más complejas. No son casos de laboratorio inventados para hacer cosas raras, como pueden encontrarse en los exámenes: todo lo que se ve se da en la cotidianidad. El objetivo es poder redactarlas muy rápidamente.
+
+\section{Precio pagado antes, en efectivo, y el recibo}
+
+\begin{exercise}{Cláusula del precio pagado antes y en efectivo}
+El precio es de 50.000 y fue pagado antes, en efectivo: se llega a la escritura con el precio abonado y todo liquidado. Redactar la cláusula.
+\end{exercise}
+
+\subsection{Primera versión de alumna}
+
+\begin{example}{Versión de alumna}
+\textit{El precio total y convenido es de dólares estadounidenses billetes cincuenta mil, que la parte compradora manifiesta haberle abonado a la parte vendedora en efectivo con anterioridad. La parte vendedora presta conformidad sobre el pago realizado por la parte compradora.}
+\end{example}
+
+Ningún referencista observaría esta cláusula; sin embargo, algunos términos podrían ser más precisos:
+
+\begin{itemize}
+    \item Si se quiere omitir «total y convenido», «el precio es de\ldots» es correcto, porque es obvio que es convenido: si no, no se estaría firmando el contrato.
+    \item «Cincuenta mil billetes estadounidenses» está en letras, lo cual es correcto.
+    \item La cláusula dice que el comprador manifiesta haber pagado, pero lo más importante es que \textbf{el vendedor manifieste haberlo recibido}. Que después el vendedor preste conformidad cierra el circuito: no está mal, pero la cláusula podría ser más precisa e incluso más sencilla.
+\end{itemize}
+
+\subsection{La fecha del pago}
+
+Si se tiene la fecha en que se hizo el pago, se agrega: «en oportunidad de suscribirse el boleto de compraventa» o «el día tal».
+
+\subsection{El recibo y la acreditación del pago}
+
+Es importante que el vendedor otorgue \textbf{recibo} para cerrar el círculo y que él mismo diga que la contraprestación a su favor fue cumplida, de modo que no tenga nada que reclamar. El recibo \textbf{no es un documento aparte}, una factura: es la propia manifestación en la escritura, un renglón. «La parte vendedora declara haber recibido la totalidad del precio». Esa manifestación es el recibo.
+
+Con respecto al recibo, un cambio desde el Código Civil y Comercial es que entre las obligaciones del vendedor no figura la de recibir el precio; esa obligación no está enumerada. Aun así el recibo es importante, porque cierra el círculo: el mismo vendedor reconoce que la prestación a su favor fue cumplida.
+
+\subsection{¿Qué ocurre si se omitió la manifestación del recibo?}
+
+Si el recibo se olvidó y la escritura ya está hecha, hay varias respuestas.
+
+\paragraph{Primera respuesta: las leyes 25.345 y 25.413.}
+Los pagos superiores a mil pesos debían estar bancarizados; caso contrario, el acreedor de la obligación podía desconocer el pago y reclamarlo. La excepción es que el pago se efectuara \textbf{ante un escribano y con motivo de la transmisión de un derecho real sobre un inmueble}.
+
+\begin{note}
+\textbf{Norma citada en clase: leyes 25.345 y 25.413 (antievasión).} Recordado por el docente: los pagos superiores a mil pesos debían estar bancarizados; de lo contrario, el acreedor podía desconocer el pago y reclamarlo. Excepción: el pago efectuado ante un escribano y con motivo de la transmisión de un derecho real sobre un inmueble. El docente no dictó los artículos en clase; el texto vigente debe consultarse en el Boletín Oficial.
+\end{note}
+
+En el caso del pago realizado \textbf{antes}, no se está en la excepción del pago frente al escribano con motivo de la transferencia de un bien. El vendedor podría desconocer el pago, en base a estas leyes. Por eso es importante que esté el recibo: si no, pueden reclamar incumplimiento.
+
+\paragraph{Segunda respuesta: los terceros de buena fe.}
+Si el pago se cumplió efectivamente, la omisión de la manifestación del recibo \textbf{no afectaría a terceros interesados y de buena fe}. Los terceros interesados de buena fe pueden ser los \textbf{subadquirentes} (el comprador del comprador). No los afectaría porque no se trata de una acción reipersecutoria del bien: solo sería una \textbf{acción personal} contra el primer comprador, por la falta de cumplimiento del pago.
+
+Si no se cumple con el pago del precio, es una acción personal: se puede reclamar el cumplimiento de la obligación asumida, pero no es una acción con efecto reipersecutorio, con lo cual los terceros adquirentes de buena fe no estarían afectados. Si el tercero sabe, no habría buena fe.
+
+El docente recomendó la lectura de un artículo de Urbaneja, entre el material enviado, que se refiere al recibo y a la ausencia de acción reipersecutoria; solo interesa el tópico mencionado, no los demás temas del artículo.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.22\textwidth}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Situación del pago} & \textbf{¿Alcanza la excepción de la ley?} & \textbf{Consecuencia} \\
+\midrule
+Antes del acto, en efectivo & No: el pago no se hizo ante el escribano. & El vendedor podría desconocer el pago: el \textbf{recibo es primordial}. \\
+Antes del acto, bancarizado & Cumple la ley. & No se puede desconocer; es rastreable. Igual conviene el recibo. \\
+En el acto, ante escribano & Sí: pago ante escribano por transmisión de un derecho real sobre inmueble. & Queda dentro de la excepción. \\
+Se omitió el recibo, pero el pago se cumplió & --- & No afecta a terceros de buena fe (subadquirentes): acción \textbf{personal}, no reipersecutoria. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Otras versiones de alumnos}
+
+\begin{example}{Versión de alumno/a}
+\textit{Esta compraventa se celebró por el precio total y convenido de dólares estadounidenses cincuenta mil, suma que la parte vendedora manifiesta recibir con anterioridad a este acto, en efectivo y a su entera satisfacción, de la parte compradora, por lo que se le otorga el más suficiente recibo por la totalidad del precio.}
+\end{example}
+
+Observación: «de la parte compradora» iría más arriba, para no confundir, ya que viene hablando el vendedor, diciendo que recibió a su entera satisfacción de la compradora. Igualmente se entiende.
+
+\begin{example}{Versión de alumno/a}
+\textit{El precio total y convenido para la presente operación es de dólares estadounidenses billetes cincuenta mil (U\$S 50.000), suma que la parte compradora abonó íntegramente a la parte vendedora con anterioridad a este acto, en dinero efectivo, por lo que esta última otorga por la presente suficiente recibo y formal carta de pago, declarando encontrarse íntegramente satisfecha y sin tener nada más que reclamar por dicho concepto.}
+\end{example}
+
+Todas las versiones leídas están bien: cada uno adoptó su propia redacción y solo en algunas había detalles para pulir. La última agrega más adorno, que es solo adorno y está bien.
+
+\subsection{La versión simple}
+
+Lo simple es lo mejor en estas cosas, porque a veces, por hablar de más, se perjudica.
+
+\begin{example}{Versión simple (docente)}
+\textit{El precio es de dólares estadounidenses billetes cincuenta mil, que la parte compradora abonó a la vendedora antes de este acto, por lo que el vendedor otorga suficiente recibo por medio de la presente.}
+
+O más simple todavía: \textit{«El vendedor otorga recibo por medio de la presente escritura.»} Son dos renglones.
+\end{example}
+
+\section{Renuncia expresa a las acciones por el medio de pago}
+
+Muchos escribanos agregan, en las cláusulas de precio donde el pago se realizó antes, una \textbf{renuncia expresa de la parte vendedora a cualquier acción que pudiera corresponderle} con motivo de las leyes citadas, por el medio empleado para el pago. Algunos lo hacen cuando el pago se realiza antes y en efectivo, ya que no cumple con la ley 25.345.
+
+\begin{example}{Fórmula habitual (según el docente)}
+\textit{La parte vendedora conoce los términos y alcances de las leyes 25.345 y 25.413 y renuncia a cualquier acción que pudiera corresponderle por el modo o el medio empleado para el pago.}
+\end{example}
+
+Esta frase se ubica después del precio; puede ponerse ahí mismo o en la manifestación del vendedor. Algunos la ponen y otros no.
+
+Si el vendedor ya otorga recibo en la cláusula del precio, nada puede reclamar, porque está diciendo que lo recibió. Si se olvida esta frase, no hay problema, porque ya manifestó que lo recibió. Por eso no es necesaria. Lo primordial es que esté el \textbf{recibo} cuando el pago es \textbf{antes y en efectivo}: si el pago hubiera sido en el acto, está presente el escribano.
+
+\begin{important}
+Pago \textbf{antes y en efectivo}: lo primordial es el \textbf{recibo}. La renuncia a las acciones de las leyes 25.345 y 25.413 es \textbf{opcional}: algunos escribanos la incluyen, otros no. Pago \textbf{antes pero bancarizado}: se cumplió la ley y el vendedor no puede desconocerlo.
+\end{important}
+
+En el caso de transferencias bancarias, se entiende que se le muestra el comprobante.
+
+\section{Pago en dos momentos: 25.000 antes y 25.000 en el acto}
+
+\begin{exercise}{Pago en dos momentos}
+El precio de 50.000 se abona en efectivo: 25.000 antes y 25.000 ahora, en la escritura. Redactar la cláusula.
+\end{exercise}
+
+\subsection{Versión con incisos A y B}
+
+\begin{example}{Versión de alumno/a}
+\textit{El precio de dólares estadounidenses cincuenta mil que la parte compradora abona a la vendedora de la siguiente manera: A) la suma de dólares estadounidenses veinticinco mil fue abonada para la suscripción del boleto de compraventa de fecha X, en dinero en efectivo, habiendo otorgado el vendedor suficiente recibo en dicha oportunidad; y B) el saldo, es decir, la suma de dólares estadounidenses veinticinco mil, se abona en este acto en efectivo, suma por la que el vendedor otorga recibo.}
+\end{example}
+
+\begin{itemize}
+    \item \textbf{Fecha en letras.} La fecha del boleto debe escribirse en letras, porque la ley dice que las épocas fijadas para el pago van en letras: «ocho de septiembre del corriente año», no «8».
+    \item \textbf{Estructura.} Es una cuestión de redacción separar o no los pagos. Lo que hizo el alumno es muy clarificador: poner primero el qué (cuánto se debe, quién a quién) y después todas las condiciones, porque lo que no cambia es el monto total y quién le debe a quién: «el precio es de cincuenta mil dólares, que la parte compradora abona a la vendedora (o abonó, o se abona) de la siguiente manera:» A, B.
+    \item \textbf{Recibo.} El alumno otorgó recibo por cada ítem, lo que se reitera. Para simplificar: A, cómo se pagó; B, cómo se pagó; y al final, «el vendedor otorga recibo por la totalidad del precio». Si no, el recibo queda parcial.
+\end{itemize}
+
+\subsection{Versión con error de tiempo verbal}
+
+\begin{example}{Versión de alumno/a (con error)}
+\textit{El precio total es de dólares estadounidenses cincuenta mil, de los que la parte vendedora declara haber recibido el monto de veinticinco mil en billetes estadounidenses con anterioridad a este acto, y la parte compradora se compromete a abonar el monto restante en el acto acordado, en billetes de dicha moneda, otorgando por el presente suficiente recibo y carta de pago.}
+\end{example}
+
+Esta redacción no cumple con la consigna, porque dice que se va a pagar (futuro) cuando el pago se realiza ahora. «Se compromete a abonar el monto restante en el acto acordado» deja abierto el momento, como si no se recibiera ahora. Debe decirse: \textbf{«El saldo, es decir, la suma de veinticinco mil dólares, es abonado en este acto.»}
+
+\subsection{Versión en orden invertido}
+
+Una alumna redactó lo mismo en orden inverso: primero los veinticinco mil dólares abonados en este acto, en efectivo, ante el escribano, suma por la que el vendedor otorga recibo; y luego los veinticinco mil restantes, que la parte compradora abonó antes de este acto. Está invertido temporalmente, pero no es necesario el orden cronológico: es una cuestión de prolijidad. No es incorrecto, aunque resulta algo extraño.
+
+\subsection{Versiones que quedaron bien}
+
+\begin{example}{Versión de alumno/a}
+\textit{El precio total y convenido para la presente operación es de dólares estadounidenses cincuenta mil. La parte compradora abona de la siguiente manera: A) la suma de veinticinco mil dólares fue abonada en dinero en efectivo con anterioridad a este acto; B) los restantes veinticinco mil dólares son abonados en este acto, en dinero en efectivo, de manos de la parte compradora a la parte vendedora, quien los recibe a su entera satisfacción, otorgando por el total del precio suficiente recibo y formal carta de pago.}
+\end{example}
+
+Está bien. El único detalle: en la parte B se reitera quién abona a quién, lo que resulta redundante.
+
+\begin{example}{Versión de alumno/a}
+\textit{El precio es de cincuenta mil dólares estadounidenses, manifestando la parte vendedora que recibe veinticinco mil con anterioridad a este acto, en dinero en efectivo, de la parte compradora; por lo que se otorgó el recibo. Y los restantes veinticinco mil, la parte vendedora manifiesta recibirlos en este acto, en dinero en efectivo, de la parte compradora.}
+\end{example}
+
+No está mal: está bien («recibe en este acto»).
+
+\subsection{Versión impersonal con fecha}
+
+\begin{example}{Versión de alumno/a (con error)}
+\textit{El precio total y convenido es de dólares estadounidenses billetes cincuenta mil. Se manifiesta que la parte compradora abonó a la vendedora veinticinco mil dólares billetes estadounidenses, en dinero efectivo, antes de este acto, el día quince de marzo del corriente año, y serán pagados ante mí veinticinco mil dólares billetes estadounidenses, en dinero efectivo, por lo que la parte vendedora otorga suficiente recibo por medio de la presente escritura por la totalidad del precio.}
+\end{example}
+
+Observaciones: (1) en la parte de los 25.000 anteriores es el comprador quien manifiesta que los pagó, aunque no hay problema porque corre recibo; (2) la segunda parte, al decir «serán abonados», \textbf{no cumple con la consigna}: debe decir «abonado en este acto». La cláusula está mal.
+
+\subsection{Versión considerada perfecta por el docente}
+
+\begin{example}{Versión de alumno/a}
+\textit{El precio convenido por las partes es de dólares estadounidenses cincuenta mil y la parte compradora abona a la vendedora de la siguiente manera: A) El comprador entregó a la parte vendedora veinticinco mil dólares estadounidenses en efectivo el día X. B) El saldo restante de veinticinco mil dólares estadounidenses se entrega en este acto. El vendedor otorga recibo por la totalidad del monto.}
+\end{example}
+
+\subsection{Error frecuente: omitir el modo de pago}
+
+\begin{example}{Versión de alumno/a (con error)}
+\textit{El precio es de dólares estadounidenses billetes cincuenta mil, que la parte compradora abona a la parte vendedora de la siguiente manera: veinticinco mil dólares billetes estadounidenses abonó antes de este acto y veinticinco mil dólares billetes estadounidenses abona en este acto, por lo que la parte vendedora otorga suficiente recibo por la totalidad del precio convenido por medio de la presente escritura.}
+\end{example}
+
+\textbf{El modo de pago no está dicho}: no dice si es en efectivo, por depósito o por transferencia, ni en el pago anterior ni en el de hoy. En ambos momentos hay que poner lo que indique la consigna. Siempre hay que decir el modo de pago: no puede faltar.
+
+\begin{important}
+\textbf{Reglas de la cláusula del precio en dos pagos:}
+\begin{enumerate}
+    \item Primero el qué: cuánto, quién a quién.
+    \item Luego las condiciones: fecha y modo de pago de cada parte.
+    \item El saldo se redacta \textbf{en presente} («se abona en este acto»), no en futuro.
+    \item Las fechas, en letras.
+    \item \textbf{Siempre} el modo de pago.
+    \item Un solo recibo final por la totalidad del precio simplifica la redacción.
+\end{enumerate}
+\end{important}
+
+\section{Pago íntegro por depósito bancario}
+
+\begin{exercise}{Pago por depósito bancario}
+El precio sigue siendo 50.000 y se paga todo por depósito. Redactar la cláusula.
+\end{exercise}
+
+\begin{example}{Versión de alumno/a}
+\textit{El precio total y convenido es de dólares estadounidenses billetes cincuenta mil. La parte compradora abona mediante depósito bancario, en este acto, la suma de cincuenta mil dólares estadounidenses en la cuenta de la vendedora, caja de ahorro. Acto seguido, la parte vendedora, habiendo recibido el importe en su cuenta bancaria, presta conformidad al pago y otorga recibo en la presente.}
+\end{example}
+
+Comentario: \textbf{faltan los datos bancarios}. Solo se puso «caja de ahorro»: no se puso el banco ni el CBU.
+
+\subsection{Qué datos bancarios deben consignarse}
+
+Una cláusula más completa sería: «El precio total y convenido es de cincuenta mil dólares estadounidenses, que la parte compradora abona mediante depósito bancario, en este acto, en la cuenta de caja de ahorro del banco tal; y a su vez la parte vendedora manifiesta haberlo recibido en su cuenta bancaria, presta conformidad al pago y otorga suficiente recibo.» Para ser más simple: \textbf{número de cuenta, CBU y banco}.
+
+El CBU (22 números) se consigna \textbf{en números}, no el alias: el número.
+
+Respecto del recibo: siempre se recomienda que esté. Si falta, el pago queda acreditado por ser bancarizado y es rastreable. Pero conviene no recurrir a cosas externas: \textbf{siempre cerrar el circuito}.
+
+\section{Cláusula modelo básica}
+
+\begin{formula}{Cláusula modelo básica (docente)}
+\textit{El precio es de dólares estadounidenses billetes cincuenta mil, que la parte compradora abona a la vendedora en este acto, mediante depósito bancario, en la caja de ahorro en dólares número tal, CBU tal, del Banco Galicia; suma que el vendedor recibe de conformidad y otorga recibo.}
+\end{formula}
+
+Esta es la cláusula bien básica: tiene todo lo necesario y no mucho más. Puede llenarse de adorno para hacer más amena la lectura. Se analizará con mayor detalle en la clase siguiente.
+
+\begin{important}
+\textbf{Elementos de la cláusula básica:} monto (en letras y números) $\cdot$ moneda $\cdot$ quién abona a quién $\cdot$ momento (en este acto / antes) $\cdot$ modo de pago $\cdot$ datos bancarios (número de cuenta, CBU, banco) si es depósito $\cdot$ conformidad y recibo del vendedor.
+\end{important}
+
+% ---------- Cornell Cap. 5 ----------
+\section*{Cuadro Cornell: la cláusula del precio}
+\addcontentsline{toc}{section}{Cuadro Cornell: la cláusula del precio}
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{\cornellL}
+    >{\raggedright\arraybackslash}p{\cornellR}
+}
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\textbf{¿Por qué es esencial el recibo del vendedor en el pago anterior?} &
+Cierra el circuito: el vendedor declara haber recibido el precio (\textbf{un renglón}, no una factura). Con pago anterior en efectivo no rige la excepción de las leyes 25.345 y 25.413 (pago ante escribano), por lo que el vendedor podría desconocer el pago. Si se omite, no afecta a terceros de buena fe: acción personal, no reipersecutoria. \\[0.8em]
+
+\textbf{¿Hace falta que el vendedor renuncie a acciones por el medio de pago?} &
+Es \textbf{opcional}: algunos escribanos la incluyen, otros no. Si el vendedor ya otorgó recibo, nada puede reclamar. \\[0.8em]
+
+\textbf{¿Cómo se redacta un pago en dos tiempos?} &
+Primero el \textbf{qué} (monto, quién a quién) y luego las condiciones: A) lo pagado antes, con fecha en letras; B) el saldo \textbf{«en este acto»} (nunca en futuro). \textbf{Siempre} el modo de pago y un recibo final por la totalidad. \\[0.8em]
+
+\textbf{¿Qué datos bancarios debe contener la cláusula por depósito?} &
+Banco, tipo y número de cuenta, \textbf{CBU (22 números, no el alias)}, conformidad del vendedor y recibo. Al ser bancarizado, el pago es rastreable, pero conviene cerrar el circuito con el recibo. \\[0.8em]
+
+\textbf{¿Cuál es la cláusula básica que contiene todo lo necesario?} &
+Monto, moneda, quién abona a quién, momento, modo de pago, datos bancarios si es depósito, y conformidad y recibo del vendedor. \\
+
+\midrule
+\multicolumn{2}{p{\cornellW}}{%
+\textbf{Resumen:} la cláusula del precio debe indicar monto, quién paga a quién, momento, \textbf{modo de pago} y datos bancarios cuando hay depósito, y cerrar siempre con el \textbf{recibo} del vendedor, que protege frente a las leyes 25.345 y 25.413. Lo simple es lo mejor, pero nunca debe omitirse lo esencial.
+} \\
+\end{longtable}
+
+% ==================== CAPÍTULO 6: REPASO ====================
+\chapter[Síntesis final]{Síntesis final de la clase}
+
+La clase unió dos destrezas del escribano: \textbf{describir con exactitud el inmueble} y \textbf{documentar con precisión el pago del precio}.
+
+En la descripción, la flecha del plano permite deducir hacia dónde dan los lados; solo se escribe esa orientación, junto con linderos y medidas, y se distingue entre lote (importan las medidas) y unidad funcional (importan las superficies). Los números esenciales van en letras y los datos fiscales o registrales no hacen a la identificación física.
+
+En cuanto al precio, debe ser en dinero: las criptomonedas dependen de la naturaleza jurídica que se les asigne y de una postura justificada; la moneda extranjera es dinero y, por el decreto, debe entregarse la moneda pactada, aunque las cláusulas de renuncia aún se usan.
+
+Finalmente, la cláusula del precio debe indicar monto, quién paga a quién, momento, \textbf{modo de pago} y datos bancarios cuando hay depósito, y cerrar siempre con el \textbf{recibo} del vendedor, que protege frente a las leyes 25.345 y 25.413.
+
+\begin{important}
+Regla de oro: lo simple es lo mejor, pero nunca omitir lo esencial.
+\end{important}
+
+\end{document}
