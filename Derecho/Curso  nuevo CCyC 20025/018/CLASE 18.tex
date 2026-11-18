@@ -1,0 +1,1002 @@
+\documentclass[12pt,oneside]{book}
+
+% ======================= METADATOS =======================
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\carrera}{Curso de Perfeccionamiento \textperiodcentered{} C\'odigo Civil y Comercial de la Naci\'on}
+\newcommand{\materia}{Derecho Civil}
+\newcommand{\titulo}{Prescripci\'on y Caducidad}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2015}
+
+% ======================= PAQUETES =======================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[top=2.5cm,bottom=2.5cm,left=3cm,right=2.5cm,headheight=15pt]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+% ======================= CONFIGURACIÓN =======================
+\graphicspath{{./img/}{./graficos/}{./figuras/}}
+\setcounter{tocdepth}{2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlist[itemize]{topsep=0.3em,itemsep=0.2em}
+\setlist[enumerate]{topsep=0.3em,itemsep=0.2em}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ======================= COMANDOS =======================
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+% ======================= CAJAS =======================
+\newtcolorbox{definition}[1]{enhanced,breakable,title={Definici\'on: #1},fonttitle=\bfseries,colback=blue!3,colframe=blue!50!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{important}{enhanced,breakable,title={Importante},fonttitle=\bfseries,colback=yellow!8,colframe=orange!70!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{example}[1]{enhanced,breakable,title={Ejemplo: #1},fonttitle=\bfseries,colback=green!4,colframe=green!40!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{formula}[1]{enhanced,breakable,title={F\'ormula / Regla: #1},fonttitle=\bfseries,colback=purple!4,colframe=purple!50!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{exercise}[1]{enhanced,breakable,title={Ejercicio: #1},fonttitle=\bfseries,colback=gray!5,colframe=gray!60!black,boxrule=0.8pt,arc=2mm}
+\newtcolorbox{note}{enhanced,breakable,title={Nota},fonttitle=\bfseries,colback=white,colframe=gray!50,boxrule=0.6pt,arc=2mm}
+
+% ======================= CORNELL =======================
+% Tabla Cornell: columna izquierda estrecha (preguntas), derecha amplia (notas), resumen a todo el ancho.
+\newenvironment{cornell}{%
+  \par\medskip\noindent
+  \begin{longtable}{>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.69\textwidth}}
+  \toprule
+  \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+  \midrule
+  \endhead
+}{%
+  \bottomrule
+  \end{longtable}
+}
+\newcommand{\cq}[2]{\textbf{#1} & #2 \\ \addlinespace[0.5em]}
+\newcommand{\cresumen}[1]{\midrule \multicolumn{2}{p{0.94\textwidth}}{\textbf{Resumen:} #1} \\}
+
+\renewcommand{\arraystretch}{1.2}
+
+% ======================= DOCUMENTO =======================
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{1cm}
+{\large \textsc{\universidad}}
+\vspace{0.2cm}
+
+{\large \carrera}
+\vspace{3cm}
+
+{\Huge \textbf{\materia}}
+\vspace{1cm}
+
+{\LARGE \titulo}
+\vspace{0.8cm}
+
+\textit{Estudiar con constancia es el camino para convertir los apuntes en conocimiento.}
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+\vfill
+{\large \autor}
+\vspace{0.3cm}
+
+{\large \anio}
+\end{center}
+\vfill
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de <<\materia>> no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+\end{titlepage}
+
+% ---------- ÍNDICE ----------
+\tableofcontents
+
+% =====================================================
+\chapter{Presentaci\'on del tema}
+% =====================================================
+
+\section{De qu\'e trata el Libro Sexto}
+
+El Libro Sexto del C\'odigo Civil y Comercial de la Naci\'on (arts.\ 2532 a 2572) re\'une las disposiciones comunes a los derechos personales y reales relativas al paso del tiempo: cu\'anto tiempo tiene una persona para reclamar lo que se le debe y qu\'e ocurre si no lo hace. Regula dos instituciones:
+
+\begin{itemize}
+  \item la \textbf{prescripci\'on liberatoria}, por la cual se pierde la acci\'on por no reclamar a tiempo;
+  \item la \textbf{caducidad}, por la cual se extingue el derecho mismo, y que constituye una novedad del nuevo C\'odigo.
+\end{itemize}
+
+Los temas que se recorren son:
+
+\begin{itemize}
+  \item \textbf{Reglas generales:} a qui\'enes se aplican, por qu\'e las partes no pueden cambiar los plazos, qui\'en puede invocar la prescripci\'on, cu\'ando se puede renunciar y qu\'e sucede si se paga una deuda ya prescripta.
+  \item \textbf{Derecho transitorio (art.\ 2537):} qu\'e plazo rige cuando el hecho ocurri\'o antes del 1.\textordmasculine\ de agosto de 2015. El m\'etodo consiste en trazar dos l\'ineas de tiempo y aplicar el plazo menor.
+  \item \textbf{Suspensi\'on e interrupci\'on:} suspensi\'on (pausa) e interrupci\'on (vuelta a cero), con sus causas: carta documento, mediaci\'on, demanda, reconocimiento, arbitraje.
+  \item \textbf{En el proceso:} c\'omo y cu\'ando se opone la prescripci\'on, desde cu\'ando se cuenta el plazo y qu\'e ocurre con los honorarios.
+  \item \textbf{Plazos:} el gen\'erico de cinco a\~nos, los especiales (tres, dos, diez a\~nos, imprescriptibles) y la caducidad.
+\end{itemize}
+
+\section{Utilidad en la vida profesional}
+
+El manejo de estos plazos permite no perder derechos, ni los de los clientes ni los propios: un reclamo vencido es un caso perdido aunque el cliente tenga raz\'on, y contar mal un plazo es uno de los errores m\'as costosos y evitables de la profesi\'on.
+
+\begin{itemize}
+  \item \textbf{Estrategia:} saber cu\'ando conviene enviar una carta documento (suspende, una sola vez, hasta seis meses), pedir mediaci\'on, demandar u obtener que el deudor reconozca la deuda (el plazo vuelve a cero).
+  \item \textbf{Defensa:} si el cliente es el deudor, saber cu\'ando y c\'omo oponer la prescripci\'on (al contestar la demanda, nunca de oficio) y qu\'e efecto tiene pagar una deuda prescripta.
+  \item \textbf{Cambios de ley:} cada reforma obliga a trazar las <<dos l\'ineas de tiempo>>, habilidad que se utiliza durante toda la carrera.
+  \item \textbf{Transversalidad:} el tema aparece en da\~nos y accidentes, contratos, consumo, honorarios, alquileres, familia, sucesiones y derecho comercial.
+\end{itemize}
+
+\begin{important}
+Los plazos de prescripci\'on \textbf{no se pueden pactar en contrario} (art.\ 2533) y, en muchos casos, se acortaron. El tiempo es un factor silencioso: nadie avisa cuando un derecho vence. Conviene ordenar los hechos en una l\'inea de tiempo antes de decidir, saber cu\'ando actuar, c\'omo dejar constancia (interpelaci\'on fehaciente) y qu\'e documentaci\'on conservar.
+\end{important}
+
+\section{Mapa de la materia: un ejemplo cotidiano}
+
+\begin{example}{El pr\'estamo de Juan a Mariana}
+En agosto de 2014 \textbf{Juan} le presta \$100.000 a su amiga \textbf{Mariana}, sin papeles. Mariana no paga. Cada bloque del Libro Sexto responde preguntas sobre ese pr\'estamo:
+\begin{itemize}
+  \item \textbf{Marco:} qu\'e reglas consideran el tiempo transcurrido; son las del C\'odigo, que ni Juan ni Mariana pueden cambiar de com\'un acuerdo.
+  \item \textbf{Sujetos:} qui\'en puede decir <<ya prescribi\'o>>; si Mariana puede renunciar a ese beneficio; si, al pagar igual, puede pedir la devoluci\'on.
+  \item \textbf{Tr\'ansito entre leyes:} el pr\'estamo es de 2014 y el C\'odigo cambi\'o en 2015; se comparan las dos l\'ineas de tiempo para saber si rige el plazo viejo o el nuevo.
+  \item \textbf{Suspensi\'on e interrupci\'on:} Juan env\'ia una carta documento (pausa el reloj) o Mariana le escribe <<te pago en cuotas>> (el reloj vuelve a cero); si Juan demanda, tambi\'en se reinicia.
+  \item \textbf{Proceso y c\'omputo:} si Juan demanda tarde, Mariana debe oponer la prescripci\'on al contestar la demanda; el juez no puede hacerlo por ella. El reloj corre desde que la deuda era exigible.
+  \item \textbf{Plazos y caducidad:} en general Juan tiene cinco a\~nos. Distinto es un derecho que se extingue sin pausa posible, como la garant\'ia de una obra.
+  \item \textbf{Cierre:} una mirada cr\'itica sobre c\'omo el C\'odigo equilibra a Juan (acreedor) y a Mariana (deudora).
+\end{itemize}
+\end{example}
+
+% =====================================================
+\chapter[Marco general del Libro Sexto]{Marco general del Libro Sexto}
+% =====================================================
+
+\section{M\'etodo del nuevo C\'odigo}
+
+El C\'odigo de V\'elez trataba en forma conjunta cuestiones de derechos personales y reales: la prescripci\'on adquisitiva y la liberatoria. Esta situaci\'on hab\'ia sido criticada por la doctrina.
+
+\begin{definition}{Prescripci\'on liberatoria}
+P\'erdida del ejercicio de la acci\'on por la inactividad del interesado, del acreedor, propia de los derechos personales. Implica la liberaci\'on del ejercicio de la funci\'on jurisdiccional del Estado y beneficia al deudor, en el campo obligacional.
+\end{definition}
+
+\begin{definition}{Prescripci\'on adquisitiva}
+Modo de adquisici\'on de aquellos derechos reales que se ejercen a trav\'es de la posesi\'on.
+\end{definition}
+
+El nuevo C\'odigo, recogiendo el desarrollo doctrinal y jurisprudencial, trata la parte general de la prescripci\'on y luego regula la particularidad de la prescripci\'on liberatoria en el Libro Sexto (arts.\ 2532 a 2572). La prescripci\'on adquisitiva se reenv\'ia al Libro Cuarto.
+
+\begin{formula}{Art.\ 2565 -- Prescripci\'on adquisitiva. Regla general}
+Los derechos reales principales se pueden adquirir por la prescripci\'on en los t\'erminos de los art\'iculos 1897 y siguientes.
+\end{formula}
+
+\section{La caducidad como novedad}
+
+La \textbf{caducidad} no estaba en el C\'odigo de V\'elez y se incorpora en el Libro Sexto. Mediante ella el derecho se aniquila, de modo que ya no puede ejercerse. No hay una p\'erdida de la acci\'on (como en la prescripci\'on), sino una extinci\'on del derecho.
+
+\begin{important}
+El nuevo C\'odigo dedica un libro a las disposiciones comunes a derechos personales y reales: \textbf{prescripci\'on y caducidad}. Contiene las normas generales de la prescripci\'on y se dedica espec\'ificamente a la \textbf{prescripci\'on liberatoria}; la adquisitiva se regula en el Libro Cuarto (arts.\ 1897 y siguientes).
+\end{important}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+Aspecto & C\'odigo de V\'elez (hasta el 31/07/2015) & C\'odigo Civil y Comercial (desde el 01/08/2015) \\
+\midrule
+Tratamiento general & Prescripci\'on adquisitiva y liberatoria tratadas en forma conjunta (situaci\'on criticada por la doctrina). & Parte general com\'un a ambas y tratamiento particular de la liberatoria, recogiendo el desarrollo doctrinal y jurisprudencial. \\
+Prescripci\'on adquisitiva & Regulada junto con la liberatoria; propia de los derechos reales que se ejercen por posesi\'on. & Reenv\'io del art.\ 2565 al Libro Cuarto, arts.\ 1897 y siguientes. \\
+Prescripci\'on liberatoria & P\'erdida del ejercicio de la acci\'on por inactividad del acreedor; beneficia al deudor. & Libro Sexto, arts.\ 2532 a 2572. \\
+Caducidad & No ten\'ia tratamiento general. & Se incorpora en el Libro Sexto: extinci\'on del derecho, no solo de la acci\'on. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{\'Ambito de aplicaci\'on (art.\ 2532)}
+
+\subsection{Antecedentes y alcance}
+
+En el C\'odigo de V\'elez no hab\'ia norma sobre el \'ambito de aplicaci\'on. El C\'odigo de Comercio (art.\ 844, derogado) reenviaba al C\'odigo Civil. Por v\'ia jurisprudencial y doctrinaria se sosten\'ia que la prescripci\'on del C\'odigo Civil operaba, como todo el C\'odigo, como norma residual para todo el sistema jur\'idico. En algunas cuestiones hay dos normas antecedentes, por la unificaci\'on de los reg\'imenes civil y comercial.
+
+En la idea del nuevo C\'odigo, el C\'odigo Civil \textbf{deja de ser el centro}: es una fuente m\'as, un eslab\'on dentro de un conjunto normativo que tiene por encima la Constituci\'on Nacional, los tratados internacionales de derechos humanos con rango constitucional y el resto de los tratados a los que la Rep\'ublica Argentina adhiri\'o. Por ello el art.\ 2532 delimita el \'ambito de aplicaci\'on solo a este C\'odigo, y a otras materias \'unicamente en ausencia de disposiciones espec\'ificas.
+
+\begin{formula}{Art.\ 2532 -- \'Ambito de aplicaci\'on}
+En ausencia de disposiciones espec\'ificas, las normas de este Cap\'itulo son aplicables a la prescripci\'on adquisitiva y liberatoria. Las legislaciones locales podr\'an regular esta \'ultima en cuanto al plazo de tributos.
+\end{formula}
+
+\subsection{La cuesti\'on tributaria}
+
+Todo lo que es derecho p\'ublico fue extra\'ido y delimitado como ajeno al derecho privado. El art.\ 2532 se conecta con el art.\ 2560 (plazo gen\'erico): cada legislaci\'on local puede regular el plazo de prescripci\'on de los tributos, y no m\'as que eso.
+
+La Comisi\'on Bicameral hab\'ia propuesto un segundo p\'arrafo para el art.\ 2560, seg\'un el cual el plazo gen\'erico de cinco a\~nos se aplicar\'ia a la prescripci\'on de impuestos, tasas, contribuciones y otros tributos nacionales, provinciales y municipales. Esa modificaci\'on no lleg\'o a destino: el art.\ 2560 tiene un solo p\'arrafo (el docente advierte que alguna edici\'on del C\'odigo lo incluy\'o por error). Lo \'unico que qued\'o del tema impositivo es el reenv\'io del art.\ 2532 a la jurisdicci\'on local.
+
+Sigue, por tanto, la discusi\'on sobre si se aplica el plazo gen\'erico de cinco a\~nos o, por tratarse de derecho p\'ublico, debe estarse a lo que disponga la ley particular. El C\'odigo Civil se aplica como norma subsidiaria, salvo disposici\'on especial en contrario; ante una duda concreta habr\'a que acudir a la interpretaci\'on o a la legislaci\'on local.
+
+\begin{important}
+\textbf{Tributos:} el art.\ 2532 delega en la legislaci\'on local la fijaci\'on del plazo; subsiste la discusi\'on sobre si rige el gen\'erico de cinco a\~nos o lo que disponga la ley particular.
+\end{important}
+
+\section{Car\'acter imperativo de las normas (art.\ 2533)}
+
+Los arts.\ 2532 y 2533 fijan que las normas de prescripci\'on se aplican al derecho com\'un y que las partes no pueden hacer convenciones al respecto. El tema hab\'ia sido discutido en las Jornadas de Derecho Civil de C\'ordoba: si las partes pod\'ian modificar el plazo en ejercicio de la autonom\'ia de la voluntad. No hab\'ia duda, quiz\'as por principio, sobre la prescripci\'on cumplida y su dispensa. El art.\ 2533 termina con esa discusi\'on.
+
+\begin{formula}{Art.\ 2533 -- Car\'acter imperativo}
+Las normas relativas a la prescripci\'on no pueden ser modificadas por convenci\'on.
+\end{formula}
+
+En el campo negocial, la modificaci\'on podr\'ia ser provechosa (por ejemplo, en el \'ambito empresarial, para acortar el plazo de reclamo y dar mayor agilidad a los negocios), pero a partir del 1.\textordmasculine\ de agosto de 2015 no se puede hacer.
+
+\subsection{Responsabilidad del Estado (Ley 26.944)}
+
+La Ley 26.944 de responsabilidad del Estado establece un plazo espec\'ifico y normas espec\'ificas. No tiene aplicaci\'on subsidiaria ni directa de las normas del C\'odigo Civil: lo \'unico que regula, en materia de prescripci\'on, es el plazo. Por lo tanto, cualquier acci\'on de responsabilidad contra el Estado, contractual o extracontractual (distinci\'on que deja de existir desde el 1.\textordmasculine\ de agosto), tiene un plazo de \textbf{tres a\~nos}.
+
+Queda abierta la discusi\'on sobre suspensi\'on, interrupci\'on y dem\'as aspectos:
+\begin{itemize}
+  \item Algunos autores sostienen que, seg\'un la exposici\'on de motivos del proyecto de la Ley 26.944, no cabe la aplicaci\'on directa ni subsidiaria pero s\'i la \textbf{anal\'ogica}; por ello podr\'ia aplicarse, en lo no regulado por la ley especial, la imposibilidad de modificar convencionalmente los plazos.
+  \item Otros sostienen que el C\'odigo Civil no se aplica ni directa ni subsidiariamente a la responsabilidad del Estado, que se rige por derecho p\'ublico. Los administrativistas indican que debe aplicarse la Ley 19.549 para suspensi\'on e interrupci\'on.
+\end{itemize}
+
+\subsection{Derecho comparado}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{5cm}>{\raggedright\arraybackslash}X}
+\toprule
+Sistema & Modificaci\'on convencional del plazo de prescripci\'on \\
+\midrule
+Argentina (CCyC, art.\ 2533) & No se permite: las normas sobre prescripci\'on no pueden modificarse por convenci\'on. \\
+Paraguay, Per\'u, Brasil y Quebec & Los plazos son inmodificables. \\
+Alemania y Francia (reformas recientes) & Permiten cierta modificaci\'on de los plazos por las partes. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section*{Cuadro Cornell: Marco general del Libro Sexto}
+\addcontentsline{toc}{section}{Cuadro Cornell: Marco general del Libro Sexto}
+
+\begin{cornell}
+\cq{\textquestiondown C\'omo est\'a organizado el Libro Sexto?}{Arts.\ 2532 a 2572: disposiciones comunes a los derechos personales y reales. Contiene las normas generales de la prescripci\'on, las reglas propias de la liberatoria y la caducidad. La adquisitiva se reenv\'ia al Libro Cuarto (art.\ 2565; arts.\ 1897 y ss.).}
+\cq{\textquestiondown Qu\'e distingue a la prescripci\'on liberatoria de la caducidad?}{Prescripci\'on: se pierde el ejercicio de la acci\'on por la inactividad del acreedor; beneficia al deudor. Caducidad: se extingue el derecho no ejercido; es una novedad respecto del C\'odigo de V\'elez.}
+\cq{\textquestiondown Cu\'al es el \'ambito de aplicaci\'on (art.\ 2532)?}{Aplicaci\'on subsidiaria, en ausencia de disposiciones espec\'ificas: el C\'odigo deja de ser <<el centro>> del sistema. En tributos, la legislaci\'on local puede fijar el plazo. En responsabilidad del Estado, la Ley 26.944 regula su propio plazo (tres a\~nos); se discute la analog\'ia con el C\'odigo y la aplicaci\'on de la Ley 19.549.}
+\cq{\textquestiondown Pueden las partes modificar los plazos (art.\ 2533)?}{No: las normas sobre prescripci\'on no pueden ser modificadas por convenci\'on. Igual soluci\'on en Paraguay, Per\'u, Brasil y Quebec; Alemania y Francia permiten cierta modificaci\'on.}
+\cresumen{El Libro Sexto regula la prescripci\'on liberatoria y la caducidad; la adquisitiva se reenv\'ia al Libro Cuarto. El C\'odigo se aplica de manera subsidiaria, ya no es el centro del sistema y sus normas de prescripci\'on son imperativas: los plazos no pueden modificarse por convenci\'on.}
+\end{cornell}
+
+% =====================================================
+\chapter[Sujetos, renuncia e invocaci\'on]{Sujetos, renuncia e invocaci\'on de la prescripci\'on}
+% =====================================================
+
+\section{Sujetos alcanzados (art.\ 2534)}
+
+La prescripci\'on se aplica a todas las personas: humanas, jur\'idicas, p\'ublicas o privadas. En el r\'egimen de V\'elez estaba regulado en los arts.\ 3950 y 3963, que se refunden en un solo art\'iculo (2534) con la misma soluci\'on.
+
+Tambi\'en est\'a legitimado cualquier interesado, lo que conecta con la figura del \textbf{tercero interesado}: el sujeto que, sin ser parte de la obligaci\'on, puede sufrir un menoscabo en su patrimonio y puede oponer la prescripci\'on liberatoria.
+
+\begin{formula}{Art.\ 2534 -- Sujetos}
+La prescripci\'on opera a favor y en contra de todas las personas, excepto disposici\'on legal en contrario.
+
+Los acreedores y cualquier interesado pueden oponer la prescripci\'on, aunque el obligado o propietario no la invoque o la renuncie.
+\end{formula}
+
+\section{Renuncia a la prescripci\'on (art.\ 2535)}
+
+En el r\'egimen actual el tema est\'a regulado en el art.\ 3965 de V\'elez; el nuevo C\'odigo lo regula de forma sistem\'atica y an\'aloga en el art.\ 2535.
+
+\begin{itemize}
+  \item \textbf{Qu\'e se puede renunciar:} la prescripci\'on ya cumplida. Como no puede modificarse antes (art.\ 2533), solo cabe renunciar a la prescripci\'on ya ganada.
+  \item \textbf{Capacidad exigida:} la de otorgar actos de disposici\'on.
+  \item \textbf{Codeudores:} en las obligaciones solidarias, la renuncia es propia del renunciante y no puede trasladarse a otro; el renunciante no puede repetir ni ejercer la acci\'on de regreso contra los dem\'as.
+\end{itemize}
+
+\begin{formula}{Art.\ 2535 -- Renuncia}
+La prescripci\'on ya ganada puede ser renunciada por las personas que pueden otorgar actos de disposici\'on. La renuncia a la prescripci\'on por uno de los codeudores o coposeedores no surte efectos respecto de los dem\'as. No procede la acci\'on de regreso del codeudor renunciante contra sus codeudores liberados por la prescripci\'on.
+\end{formula}
+
+\section{Invocaci\'on de la prescripci\'on e imprescriptibilidad (art.\ 2536)}
+
+\subsection{La palabra <<expresamente>>}
+
+En el texto que sali\'o de la Comisi\'on, la prescripci\'on pod\'ia invocarse en todos los casos, con excepci\'on de los supuestos \emph{expresamente} previstos por la ley. Parellada observ\'o (en unas jornadas preparadas hacia 2011) que la palabra <<expresamente>> estaba de m\'as y generar\'ia problemas, porque en algunas circunstancias los supuestos no est\'an previstos expresamente por una ley. La observaci\'on surti\'o efecto: el adverbio fue borrado. As\'i, entran los supuestos expresados en la ley o que, por analog\'ia, puedan llevarse a ella.
+
+\begin{formula}{Art.\ 2536 -- Invocaci\'on de la prescripci\'on}
+La prescripci\'on puede ser invocada en todos los casos, con excepci\'on de los supuestos previstos por la ley.
+\end{formula}
+
+\subsection{De V\'elez a los supuestos dispersos}
+
+El art.\ 4019 de V\'elez enumeraba los casos en que no pod\'ia invocarse la prescripci\'on (acciones de reclamaci\'on de estado, divisi\'on de condominio, etc.). El nuevo C\'odigo no tiene una enunciaci\'on espec\'ifica de las acciones imprescriptibles, aunque s\'i art\'iculos dispersos que hablan de imprescriptibilidad. El art.\ 4019 puede servir como herramienta de comparaci\'on. Los supuestos mencionados por el docente son:
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{5cm}}
+\toprule
+\textbf{Acci\'on imprescriptible (seg\'un el docente)} & \textbf{Art\'iculo citado} \\
+\midrule
+Acciones civiles derivadas de delitos de lesa humanidad & Art.\ 2561 (texto sancionado en 2015) \\
+Nulidad absoluta de los actos jur\'idicos & Art.\ 387 \\
+Acci\'on de filiaci\'on & Art.\ 576 \\
+Acciones de estado de familia & Art.\ 712 \\
+Partici\'on de condominio & Art.\ 1997 \\
+Acciones reales & Art.\ 2247 \\
+Petici\'on de herencia & Art.\ 2311 \\
+Partici\'on de herencia & Art.\ 2368 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Estas acciones, y cualquier otra de legislaci\'on especial en que no corra plazo alguno, configuran supuestos de excepci\'on del art.\ 2536.
+
+\begin{formula}{Art.\ 387 -- Consecuencias de la nulidad absoluta}
+La nulidad absoluta puede declararse por el juez, aun sin mediar petici\'on de parte, si es manifiesta en el momento de dictar sentencia. Puede alegarse por el Ministerio P\'ublico y por cualquier interesado, excepto por la parte que invoc\'o la nulidad plena sabiendo o debiendo saber el vicio que lo invalidaba. No puede sanearse por la confirmaci\'on del acto ni por la prescripci\'on.
+\end{formula}
+
+\begin{note}
+El texto del art.\ 2561 reproducido en estos apuntes es el sancionado por la Ley 26.994 y vigente al momento de la clase. Posteriormente, la Ley 27.586 (2020) traslad\'o la imprescriptibilidad de las acciones civiles por delitos de lesa humanidad al art.\ 2560.
+\end{note}
+
+\section{Pago espont\'aneo de una obligaci\'on prescripta (art.\ 2538)}
+
+El pago espont\'aneo refleja lo que era el art.\ 515, inciso 2.\textordmasculine, sobre obligaciones naturales. El nuevo C\'odigo no regula esas obligaciones como tales, pero el efecto pr\'actico es an\'alogo: el pago de una obligaci\'on prescripta es \textbf{irrepetible}.
+
+\begin{formula}{Art.\ 2538 -- Pago espont\'aneo}
+El pago espont\'aneo de una obligaci\'on prescripta no es repetible.
+\end{formula}
+
+\section*{Cuadro Cornell: Sujetos, renuncia e invocaci\'on}
+\addcontentsline{toc}{section}{Cuadro Cornell: Sujetos, renuncia e invocaci\'on}
+
+\begin{cornell}
+\cq{\textquestiondown Qui\'enes pueden oponer la prescripci\'on (art.\ 2534)?}{Opera a favor y en contra de todas las personas (humanas, jur\'idicas, p\'ublicas o privadas). Los acreedores y cualquier interesado, es decir, el tercero interesado, pueden oponerla aunque el obligado no lo haga.}
+\cq{\textquestiondown Qu\'e puede renunciarse y qui\'en puede hacerlo (art.\ 2535)?}{Solo la prescripci\'on ya ganada, por quien puede otorgar actos de disposici\'on. La renuncia de un codeudor no afecta a los dem\'as y no da acci\'on de regreso contra los codeudores liberados.}
+\cq{\textquestiondown Cu\'ando no puede invocarse la prescripci\'on (art.\ 2536)?}{Se puede invocar siempre, salvo los supuestos previstos por la ley (se borr\'o el <<expresamente>>, por observaci\'on de Parellada). Imprescriptibles: lesa humanidad (2561), nulidad absoluta (387), filiaci\'on (576), estado de familia (712), partici\'on de condominio (1997), acciones reales (2247), petici\'on y partici\'on de herencia (2311, 2368).}
+\cq{\textquestiondown Se puede repetir el pago de una deuda prescripta (art.\ 2538)?}{No: el pago espont\'aneo de una obligaci\'on prescripta no es repetible, efecto an\'alogo al de las antiguas obligaciones naturales (art.\ 515, inc.\ 2.\textordmasculine, de V\'elez).}
+\cresumen{La prescripci\'on alcanza a todas las personas y puede ser opuesta por cualquier interesado. Solo se renuncia a la ya ganada; la renuncia de un codeudor es personal. Se invoca siempre, salvo los supuestos previstos por la ley (acciones imprescriptibles), y lo pagado espont\'aneamente por una deuda prescripta no se repite.}
+\end{cornell}
+
+% =====================================================
+\chapter[Tr\'ansito entre leyes: art.\ 2537]{Tr\'ansito entre leyes: los plazos en curso (art.\ 2537)}
+% =====================================================
+
+\section{El principio y las excepciones}
+
+Este es un tema de especial inter\'es para el ejercicio de la profesi\'on: la \textbf{modificaci\'on de los plazos por ley posterior}. El nuevo C\'odigo, con vigencia a partir del 1.\textordmasculine\ de agosto de 2015, fija plazos distintos de los del C\'odigo anterior (por ejemplo, un plazo gen\'erico de cinco a\~nos contra uno de diez; un plazo de responsabilidad civil contractual de tres). Para determinar qu\'e ocurre con la prescripci\'on en curso se utiliza el art.\ 2537 y, en algunos casos, el art.\ 7 del T\'itulo Preliminar.
+
+El art\'iculo sali\'o de la Comisi\'on solo con un primer p\'arrafo (los plazos en curso se rigen por la ley anterior). Luego se incorporaron, con modificaciones de la Bicameral, la excepci\'on y la <<excepci\'on de la excepci\'on>>.
+
+\begin{formula}{Art.\ 2537 -- Modificaci\'on de los plazos por ley posterior}
+Los plazos de prescripci\'on en curso al momento de entrada en vigencia de una nueva ley se rigen por la ley anterior.
+
+Sin embargo, si por esa ley se requiere mayor tiempo que el que fijan las nuevas, quedan cumplidos una vez que transcurra el tiempo designado por las nuevas leyes, contado desde el d\'ia de su vigencia, excepto que el plazo fijado por la ley antigua finalice antes que el nuevo plazo contado a partir de la vigencia de la nueva ley, en cuyo caso se mantiene el de la ley anterior.
+\end{formula}
+
+\begin{note}
+Texto seg\'un Ley 26.994, vigente a la fecha de la clase. La Ley 27.586 (2020) agreg\'o luego un p\'arrafo final sobre las acciones civiles derivadas de delitos de lesa humanidad.
+\end{note}
+
+\begin{formula}{Art.\ 7 -- Eficacia temporal (T\'itulo Preliminar)}
+A partir de su entrada en vigencia, las leyes se aplican a las consecuencias de las relaciones y situaciones jur\'idicas existentes. Las leyes no tienen efecto retroactivo, sean o no de orden p\'ublico, excepto disposici\'on en contrario. La retroactividad establecida por la ley en ning\'un caso puede afectar derechos amparados por garant\'ias constitucionales. Las nuevas leyes supletorias no son aplicables a los contratos en curso de ejecuci\'on, con excepci\'on de las normas m\'as favorables al consumidor en las relaciones de consumo.
+\end{formula}
+
+\begin{important}
+\textbf{Principio:} el plazo en curso se rige por la ley anterior. \textbf{Excepci\'on:} si la ley anterior exig\'ia m\'as tiempo que la nueva, el plazo se cumple cuando transcurre el de la nueva ley, contado desde su vigencia (1.\textordmasculine\ de agosto de 2015). \textbf{Excepci\'on de la excepci\'on:} si el plazo de la ley antigua vence antes que el nuevo contado desde la vigencia, se mantiene la ley anterior.
+\end{important}
+
+\section{M\'etodo pr\'actico: dos l\'ineas de tiempo}
+
+La conclusi\'on del docente es que, en definitiva, \textbf{siempre se aplica el plazo menor}.
+
+\begin{example}{Plazo decenal contra plazo nuevo (contrato del 1.\textordmasculine\ de agosto de 2014)}
+Seg\'un la ley anterior, el plazo decenal vencer\'ia en agosto de 2024. Seg\'un la nueva ley, contando desde su vigencia (1.\textordmasculine\ de agosto de 2015), y tomando como hip\'otesis un plazo de cinco a\~nos, vencer\'ia en agosto de 2020. Se compara 2024 contra 2020: la ley antigua exig\'ia mayor tiempo y no finaliza antes que el nuevo plazo, de modo que el plazo cumple en 2020. El docente aclara que adopta cinco a\~nos como hip\'otesis, y que para \'el, por tratarse de responsabilidad contractual, podr\'ian ser tres.
+\end{example}
+% TODO: contenido incompleto o ambiguo en las notas originales (el docente duda entre cinco y tres a\~nos y hay un pasaje poco claro en la grabaci\'on)
+
+\begin{example}{Accidente de tr\'ansito de marzo de 2015}
+Con el C\'odigo anterior, el plazo es de dos a\~nos: marzo de 2017. Con el nuevo, tres a\~nos desde el 1.\textordmasculine\ de agosto de 2015: 2018. Se aplica el m\'as corto: 2017.
+\end{example}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+Caso & Ley anterior & Ley nueva (desde el 01/08/2015) & Resultado: plazo menor \\
+\midrule
+Contrato del 01/08/2014 & 10 a\~nos (art.\ 4023): agosto de 2024 & 5 a\~nos: agosto de 2020 (hip\'otesis del docente; para \'el podr\'ian ser tres) & Prevalece el nuevo plazo: 2020 \\
+Accidente de marzo de 2015 & 2 a\~nos (art.\ 4037): marzo de 2017 & 3 a\~nos: agosto de 2018 & Prevalece el plazo anterior: 2017 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+El docente enuncia los a\~nos de manera oral y con algunas vacilaciones; las fechas se ordenaron para que las cuentas cierren con el razonamiento que expone (<<siempre se aplica el plazo menor>>).
+\end{note}
+
+\subsection{El procedimiento}
+
+Para aplicarlo al caso concreto se trazan dos l\'ineas de tiempo (ley nueva y ley anterior):
+\begin{enumerate}
+  \item Se ubica el hecho antecedente.
+  \item Se marca el plazo de la ley anterior, contado desde el hecho.
+  \item Se marca el plazo de la ley nueva, contado desde la vigencia del C\'odigo.
+  \item Queda el m\'as corto en el tiempo.
+\end{enumerate}
+
+El docente se\~nala que en este esquema prevalece el plazo m\'as corto, a favor del deudor, aunque no est\'a seguro de estar de acuerdo, porque en la acci\'on de da\~nos el m\'as d\'ebil no es el deudor sino el acreedor; es necesario ver qu\'e planteo se hace. Todo ello sin perjuicio de la aplicaci\'on retroactiva de la ley (art.\ 7).
+
+\begin{important}
+\textbf{Lo que ya prescribi\'o no renace:} la acci\'on que feneci\'o el 31 de julio de 2015 no revive el 1.\textordmasculine\ de agosto. Los plazos deben contarse con la ley vigente; si el plazo atraviesa el 1.\textordmasculine\ de agosto, debe aplicarse el art.\ 2537, sin perjuicio de los planteos relativos a derechos afectados (secuela del art.\ 7: no derechos adquiridos, sino agotamiento de los derechos).
+\end{important}
+
+\subsection{Sectores vulnerables y v\'ictimas}
+
+Puede plantearse una cuesti\'on constitucional o de ordenaci\'on de normas cuando la modificaci\'on del plazo afecte a un sujeto que entienda que su derecho se cercena. Es el caso de la reparaci\'on del da\~no injusto: en una acci\'on de responsabilidad, el deudor en cuyo favor opera la prescripci\'on es quien caus\'o el da\~no.
+
+\subsection{Plazos de V\'elez m\'as conocidos}
+
+\begin{itemize}
+  \item Art.\ 4037: dos a\~nos, responsabilidad extracontractual.
+  \item Art.\ 4023: diez a\~nos, plazo ordinario (gen\'erico).
+  \item Ahora se pasa al art.\ 2560 (cinco a\~nos, gen\'erico) y al art.\ 2561.
+\end{itemize}
+
+\begin{note}
+El docente atribuye el art.\ 4023 al plazo <<extracontractual>>; por el contexto (diez a\~nos, plazo ordinario) se consigna como plazo gen\'erico u ordinario, en contraste con el art.\ 4037 (dos a\~nos, responsabilidad extracontractual).
+\end{note}
+
+\subsection{Jurisprudencia y doctrina que el docente recomienda}
+
+Sobre los efectos de los nuevos plazos y la retroactividad de la ley, el docente cita:
+\begin{itemize}
+  \item el caso \textit{Ambrosio B\'aez contra Pablino B\'aez} (Corte, 8 de junio de 1982), sobre la aplicaci\'on de la Ley 17.711, citado por Parellada;
+  \item un fallo de la doctora Kemelmajer de Carlucci en la Suprema Corte de Mendoza, sobre un tema del Banco de Mendoza;
+  \item un libro cuyo autor es ilegible en la grabaci\'on y art\'iculos publicados en La Ley.
+\end{itemize}
+
+\section*{Cuadro Cornell: Tr\'ansito entre leyes (art.\ 2537)}
+\addcontentsline{toc}{section}{Cuadro Cornell: Tr\'ansito entre leyes (art.\ 2537)}
+
+\begin{cornell}
+\cq{\textquestiondown Qu\'e plazo rige si el hecho es anterior al 1/8/2015?}{Principio: ley anterior. Excepci\'on: si exig\'ia m\'as tiempo, se cumple al transcurrir el plazo nuevo contado desde el 1/8/2015. Excepci\'on de la excepci\'on: si el plazo antiguo vence antes, se mantiene. En la pr\'actica, se aplica el plazo menor.}
+\cq{\textquestiondown C\'omo se calcula?}{Mediante dos l\'ineas de tiempo: el plazo de la ley anterior desde el hecho y el de la ley nueva desde el 1/8/2015; se elige el que vence antes.}
+\cq{\textquestiondown Qu\'e ocurre con lo ya prescripto?}{Lo vencido hasta el 31/7/2015 no revive.}
+\cq{\textquestiondown Qu\'e otras cuestiones se plantean?}{La retroactividad (art.\ 7) y los planteos constitucionales, en particular cuando la reducci\'on del plazo afecta a v\'ictimas o sectores vulnerables en la reparaci\'on del da\~no injusto.}
+\cresumen{Los plazos en curso se rigen por la ley anterior, salvo que esta exija m\'as tiempo que la nueva contado desde el 1.\textordmasculine\ de agosto de 2015, en cuyo caso se aplica el menor. Lo ya vencido no revive. El m\'etodo pr\'actico consiste en trazar dos l\'ineas de tiempo y quedarse con el plazo que vence antes.}
+\end{cornell}
+
+% =====================================================
+\chapter[Suspensi\'on e interrupci\'on]{Suspensi\'on e interrupci\'on de la prescripci\'on}
+% =====================================================
+
+\section{La idea central}
+
+La \textbf{suspensi\'on} genera un estado en el cual el plazo no corre ni aprovecha mientras dura la causal suspensiva; luego contin\'ua, y se aprovecha el lapso ya transcurrido. La \textbf{interrupci\'on} opera, por la causal interruptiva, el reinicio del plazo, que vuelve a cero y empieza a correr nuevamente, salvo que la causal interruptiva sufra un <<accidente>> que la haga desaparecer (por ejemplo, una demanda que termina por caducidad de instancia o es desistida): el acto interruptivo se borra y es como si nunca hubiera existido.
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+& Suspensi\'on & Interrupci\'on \\
+\midrule
+Met\'afora del docente & Bot\'on de <<pausa>> de la videocasetera. & <<Stop y rebobinar>>. \\
+Qu\'e ocurre con el plazo & No corre mientras dura la causal; luego contin\'ua. & Se vuelve a cero y empieza a correr un plazo nuevo. \\
+Tiempo ya transcurrido & Se aprovecha: se suma al que corra despu\'es. & Se pierde: se tiene por no sucedido. \\
+Riesgo & Que cese la causal y el plazo siga corriendo. & Que el acto interruptivo <<se borre>> (desistimiento o caducidad de instancia). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Suspensi\'on: efectos y alcance subjetivo}
+
+El art.\ 2539 es el correlato del art.\ 3983 de V\'elez y mantiene la idea tradicional: la prescripci\'on se detiene y el deudor o propietario (la parte general abarca tambi\'en la adquisitiva) puede aprovechar el plazo corrido hasta la causal.
+
+\begin{formula}{Art.\ 2539 -- Efectos de la suspensi\'on}
+La suspensi\'on de la prescripci\'on detiene el c\'omputo del tiempo por el lapso que dura pero aprovecha el per\'iodo transcurrido hasta que ella comenz\'o.
+\end{formula}
+
+El efecto de la suspensi\'on es \textbf{personal}, como dec\'ia el art.\ 3981 de V\'elez: aprovecha a quien la ha generado y, en principio, no alcanza a los dem\'as. Se extiende en las obligaciones solidarias o indivisibles (por los <<vasos comunicantes>> entre ellas). No se extiende a las obligaciones concurrentes: cada una tiene su causa, y solo comparten el mismo acreedor, por lo que la suspensi\'on alcanza a cada obligaci\'on concurrente en singular.
+
+\begin{formula}{Art.\ 2540 -- Alcance subjetivo}
+La suspensi\'on de la prescripci\'on no se extiende a favor ni en contra de los interesados, excepto que se trate de obligaciones solidarias o indivisibles.
+\end{formula}
+
+\section{Suspensi\'on por interpelaci\'on fehaciente (art.\ 2541)}
+
+En el r\'egimen anterior (art.\ 3986) surg\'ia la duda de c\'omo interpelar para suspender si el art.\ 509 ya preve\'ia la mora autom\'atica. El art.\ 2541 la resuelve: se suspende la prescripci\'on en curso por interpelaci\'on fehaciente, sin que ello implique constituci\'on en mora. No requiere la forma espec\'ifica de la interpelaci\'on para constituir en mora; es una interpelaci\'on a los efectos de suspender.
+
+\begin{formula}{Art.\ 2541 -- Suspensi\'on por interpelaci\'on fehaciente}
+El curso de la prescripci\'on se suspende, por una sola vez, por la interpelaci\'on fehaciente hecha por el titular del derecho contra el deudor o el poseedor. Esta suspensi\'on s\'olo tiene efecto durante seis meses o el plazo menor que corresponda a la prescripci\'on de la acci\'on.
+\end{formula}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+Aspecto & R\'egimen anterior (art.\ 3986) & R\'egimen nuevo (art.\ 2541) \\
+\midrule
+Efecto & Suspensi\'on por interpelaci\'on. & Suspensi\'on por interpelaci\'on fehaciente, sin importar constituci\'on en mora. \\
+Frecuencia & Por una vez. & Por una sola vez. \\
+Duraci\'on & Un a\~no. & Seis meses (o el plazo menor de la acci\'on). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Suspensi\'on por pedido de mediaci\'on (art.\ 2542)}
+
+Como novedad se incorpora la mediaci\'on, en l\'inea con la Ley 26.589 de mediaci\'on, que rige en el fuero nacional. Es una norma procedimental incorporada al C\'odigo. En jurisdicciones sin mediaci\'on, o con una mediaci\'on regulada de otro modo, no ser\'a aplicable; por ejemplo, en C\'ordoba la mediaci\'on es posterior al inicio de la demanda, cuando la prescripci\'on ya est\'a interrumpida y no tiene sentido hablar de suspensi\'on.
+
+\begin{formula}{Art.\ 2542 -- Suspensi\'on por pedido de mediaci\'on}
+El curso de la prescripci\'on se suspende desde la expedici\'on por medio fehaciente de la comunicaci\'on de la fecha de la audiencia de mediaci\'on o desde su celebraci\'on, lo que ocurra primero.
+
+El plazo de prescripci\'on se reanuda a partir de los veinte d\'ias contados desde el momento en que el acta de cierre del procedimiento de mediaci\'on se encuentre a disposici\'on de las partes.
+\end{formula}
+
+Aspectos a considerar:
+\begin{itemize}
+  \item Se trata de la \textbf{expedici\'on}, no de la recepci\'on, del medio fehaciente.
+  \item Para la reanudaci\'on hay que acreditar el momento en que el acta de cierre queda a disposici\'on de las partes, con la intervenci\'on del mediador, que da fe de los actos de la mediaci\'on.
+  \item Los veinte d\'ias son \textbf{corridos}: aunque se trate de una norma procedimental, es derecho de fondo; no cabe discusi\'on sobre d\'ias h\'abiles (como en la Ley 26.589).
+\end{itemize}
+
+\begin{important}
+Conviene acreditar ambos momentos: la expedici\'on del medio fehaciente (o la celebraci\'on de la audiencia) y la puesta a disposici\'on del acta de cierre.
+\end{important}
+
+\section{Casos especiales de suspensi\'on (art.\ 2543)}
+
+Es el correlato del art.\ 3966 de V\'elez. La referencia a incapaces y personas con capacidad restringida y sus apoyos fue incorporada en el Congreso. El heredero con responsabilidad limitada es lo que hasta ahora se conoc\'ia como beneficio de inventario.
+
+\begin{formula}{Art.\ 2543 -- Casos especiales}
+El curso de la prescripci\'on se suspende:
+\begin{enumerate}[label=\alph*),leftmargin=2em]
+  \item entre c\'onyuges, durante el matrimonio;
+  \item entre convivientes, durante la uni\'on convivencial;
+  \item entre las personas incapaces y con capacidad restringida y sus padres, tutores, curadores o apoyos, durante la responsabilidad parental, la tutela, la curatela o la medida de apoyo;
+  \item entre las personas jur\'idicas y sus administradores o integrantes de sus \'organos de fiscalizaci\'on, mientras contin\'uan en el ejercicio del cargo;
+  \item a favor y en contra del heredero con responsabilidad limitada, respecto de los reclamos que tienen por causa la defensa de derechos sobre bienes del acervo hereditario.
+\end{enumerate}
+\end{formula}
+
+\subsection{La causal que desaparece: la querella penal}
+
+Desaparece la suspensi\'on del art.\ 3982 bis de V\'elez, por haberse constituido como querellante el afectado o la v\'ictima en sede penal. Quien tenga una acci\'on civil suspendida por esa causal debe saber que, a partir del 1.\textordmasculine\ de agosto de 2015, la causal no existe y el plazo se reanuda. La Comisi\'on explic\'o en la exposici\'on de motivos que, al existir la posibilidad de constituirse como actor civil en sede penal, no tiene sentido mantener esa suspensi\'on: si se quiere ejercer la acci\'on, est\'a expedita la v\'ia penal.
+
+\begin{important}
+Quien tenga hoy una acci\'on civil suspendida por haberse constituido como querellante en sede penal (art.\ 3982 bis) debe saber que, a partir del 1.\textordmasculine\ de agosto de 2015, esa causal desaparece y el plazo se reanuda.
+\end{important}
+
+\section{Interrupci\'on: efectos y reconocimiento}
+
+\subsection{Efectos (art.\ 2544)}
+
+El art.\ 2544 corresponde al art.\ 3998 de V\'elez. Se refiere a la prescripci\'on liberatoria y adquisitiva, con iguales efectos: el plazo corrido no tiene incidencia y comienza a contarse desde cero desde la ocurrencia de la causal.
+
+\begin{formula}{Art.\ 2544 -- Efectos de la interrupci\'on}
+El efecto de la interrupci\'on de la prescripci\'on es tener por no sucedido el lapso que la precede e iniciar un nuevo plazo.
+\end{formula}
+
+\subsection{Reconocimiento (art.\ 2545)}
+
+El reconocimiento, regulado en el art.\ 3989 de V\'elez, se mantiene en el art.\ 2545. No aclara si es expreso o t\'acito. El C\'odigo regula el reconocimiento en el art.\ 733, al que hay que acudir para interpretarlo. Adem\'as, el art.\ 2592, inciso e) (derecho de retenci\'on), admite el reconocimiento t\'acito que interrumpe. Por lo tanto, el reconocimiento interrumpe, sea expreso o t\'acito.
+
+\begin{formula}{Art.\ 2545 -- Interrupci\'on por reconocimiento}
+El curso de la prescripci\'on se interrumpe por el reconocimiento que el deudor o poseedor efect\'ua del derecho de aquel contra quien prescribe.
+\end{formula}
+
+\section{Petici\'on judicial, reclamo administrativo y arbitraje}
+
+\subsection{De la <<demanda>> a la <<petici\'on judicial>> (arts.\ 2546 y 2547)}
+
+En el C\'odigo de V\'elez (arts.\ 3986 y 3987) hubo discusi\'on sobre qu\'e era <<demanda>>: solo la demanda en sentido procesal, o tambi\'en cualquier pretensi\'on o petici\'on judicial que importara el ejercicio de la acci\'on o el reconocimiento del derecho. La jurisprudencia otorg\'o efecto interruptivo a un incidente de beneficio de litigar sin gastos, a una prueba anticipada, a diligencias preliminares y a medidas cautelares. El nuevo C\'odigo recoge esa idea y habla de \textbf{petici\'on judicial}.
+
+\begin{formula}{Art.\ 2546 -- Interrupci\'on por petici\'on judicial}
+El curso de la prescripci\'on se interrumpe por toda petici\'on del titular del derecho ante autoridad judicial que traduce la intenci\'on de no abandonarlo, contra el poseedor, su representante en la posesi\'on, o el deudor, aunque sea defectuosa, realizada por persona incapaz, ante tribunal incompetente, o en el plazo de gracia previsto en el ordenamiento procesal aplicable.
+\end{formula}
+
+La petici\'on interrumpe sea cual fuere el juez ante el que se interponga (competente o incompetente), tenga o no defectos de forma, sea realizada por persona capaz, incapaz o por representante. La expresi\'on de voluntad de exigir el reconocimiento del derecho, o de preparar ese reconocimiento, implica interrupci\'on.
+
+\subsubsection{El plazo de gracia}
+
+La petici\'on tambi\'en interrumpe si se realiza en el \textbf{plazo de gracia}: en el derecho procesal de la Ciudad son las dos primeras horas; en otras jurisdicciones pueden ser tres o cuatro. Una petici\'on judicial de cualquier car\'acter (demanda, medida precautoria, beneficio, prueba anticipada), ante juez competente o incompetente, por persona capaz o incapaz, por gestor procesal, aun en el plazo de gracia, interrumpe la prescripci\'on. Interrumpe aunque luego se complete, y aunque en el escrito se diga <<al solo efecto de interrumpir la prescripci\'on>> y se identifique al demandado, siempre que la pretensi\'on se exteriorice y se concrete: ese acto de voluntad de ejercer la acci\'on interrumpe, aun con dos p\'arrafos escritos a mano en el plazo de gracia.
+
+\subsubsection{Duraci\'on de los efectos}
+
+El efecto interruptivo dura mientras no se desista del proceso, no termine por caducidad de instancia y no concluya con una resoluci\'on que adquiera autoridad de cosa juzgada. Es la traducci\'on del art.\ 3987 de V\'elez.
+
+\begin{formula}{Art.\ 2547 -- Duraci\'on de los efectos}
+Los efectos interruptivos del curso de la prescripci\'on permanecen hasta que deviene firme la resoluci\'on que pone fin a la cuesti\'on, con autoridad de cosa juzgada formal.
+
+La interrupci\'on del curso de la prescripci\'on se tiene por no sucedida si se desiste del proceso o caduca la instancia.
+\end{formula}
+
+\begin{example}{La carrera por presentar la demanda}
+El docente advierte con una imagen: quien corre para llegar dentro de las dos primeras horas (el plazo de gracia) y ve luego terminar el proceso por caducidad de instancia pierde el efecto interruptivo y, con \'el, la acci\'on. De ah\'i que deba cuidarse la acci\'on iniciada <<como un tesoro inhallable>>.
+\end{example}
+
+\subsection{El reclamo administrativo (lo que no lleg\'o)}
+
+Se hab\'ia proyectado un art\'iculo (que era el 2548) que daba efecto interruptivo a la reclamaci\'on administrativa; fue eliminado en la Bicameral. El efecto de cualquier reclamo administrativo sigue los efectos de la ley de procedimiento administrativo (Ley 19.549), que dispone que solo los \textbf{recursos} interrumpen. Hay que verificar si la acci\'on de derecho com\'un depende de un reclamo administrativo previo. El C\'odigo no dice nada.
+
+\subsection{Interrupci\'on por arbitraje (art.\ 2548)}
+
+En el lugar del art\'iculo eliminado aparece la interrupci\'on por arbitraje: la convocatoria a arbitraje o el compromiso de someter la cuesti\'on a juicio de \'arbitros o amigables componedores.
+
+\begin{formula}{Art.\ 2548 -- Interrupci\'on por solicitud de arbitraje}
+El curso de la prescripci\'on se interrumpe por la solicitud de arbitraje. Los efectos de esta causal se rigen por lo dispuesto para la interrupci\'on de la prescripci\'on por petici\'on judicial, en cuanto sea aplicable.
+\end{formula}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+Causa de interrupci\'on & R\'egimen anterior & R\'egimen nuevo \\
+\midrule
+Reconocimiento & Art.\ 3989. & Art.\ 2545 (expreso o t\'acito; ver art.\ 733). \\
+Demanda / petici\'on judicial & Arts.\ 3986 y 3987: discusi\'on sobre qu\'e se entend\'ia por <<demanda>>. & Arts.\ 2546 y 2547: toda petici\'on judicial, aun defectuosa, ante juez incompetente o en el plazo de gracia. \\
+Reclamo administrativo & Sin regla en el C\'odigo de V\'elez. & Proyectado como art.\ 2548 y eliminado en la Bicameral: rige la Ley 19.549 (solo los recursos interrumpen). \\
+Arbitraje & --- & Art.\ 2548: solicitud de arbitraje o compromiso arbitral. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section*{Cuadro Cornell: Suspensi\'on e interrupci\'on}
+\addcontentsline{toc}{section}{Cuadro Cornell: Suspensi\'on e interrupci\'on}
+
+\begin{cornell}
+\cq{\textquestiondown En qu\'e se diferencian suspensi\'on e interrupci\'on?}{Suspensi\'on: pausa; se aprovecha el tiempo ya transcurrido (art.\ 2539). Interrupci\'on: el lapso anterior se tiene por no sucedido y empieza un plazo nuevo (art.\ 2544). La interrupci\'on <<se borra>> si se desiste del proceso o caduca la instancia (art.\ 2547).}
+\cq{\textquestiondown A qui\'en alcanza la suspensi\'on (art.\ 2540)?}{Es personal. Se extiende solo en obligaciones solidarias o indivisibles; no en las concurrentes.}
+\cq{\textquestiondown Qu\'e efectos tiene la interpelaci\'on fehaciente (art.\ 2541)?}{Suspende por una sola vez, hasta seis meses (o el plazo menor de la acci\'on), sin importar constituci\'on en mora. Antes (art.\ 3986): un a\~no.}
+\cq{\textquestiondown C\'omo opera la mediaci\'on (art.\ 2542)?}{Suspende desde la expedici\'on del medio fehaciente que comunica la audiencia o su celebraci\'on (lo que ocurra primero). Reanuda a los veinte d\'ias corridos de estar el acta de cierre a disposici\'on de las partes. Depende de la regulaci\'on de cada jurisdicci\'on (Ley 26.589).}
+\cq{\textquestiondown Qu\'e casos especiales de suspensi\'on hay (art.\ 2543)?}{Entre c\'onyuges y convivientes; incapaces o con capacidad restringida y sus representantes o apoyos; personas jur\'idicas y sus administradores; heredero con responsabilidad limitada. Desaparece la suspensi\'on por constituirse en querellante en sede penal (art.\ 3982 bis).}
+\cq{\textquestiondown Cu\'ales son las causas de interrupci\'on (arts.\ 2545 a 2548)?}{Reconocimiento (expreso o t\'acito; ver art.\ 733); petici\'on judicial (aunque sea defectuosa, ante juez incompetente, por persona incapaz o en el plazo de gracia); solicitud de arbitraje. El reclamo administrativo no interrumpe por el C\'odigo: rige la Ley 19.549 (solo los recursos).}
+\cresumen{La suspensi\'on pausa el reloj y se aprovecha el tiempo ya corrido; la interrupci\'on lo reinicia. Suspenden la interpelaci\'on fehaciente (una vez, seis meses), la mediaci\'on y los casos especiales del art.\ 2543; interrumpen el reconocimiento, la petici\'on judicial y el arbitraje. El efecto interruptivo se pierde por desistimiento o caducidad de instancia, y desaparece la suspensi\'on por querella penal.}
+\end{cornell}
+
+% =====================================================
+\chapter[Aspectos procesales y c\'omputo]{Aspectos procesales y comienzo del c\'omputo}
+% =====================================================
+
+\section{V\'ias procesales, facultades del juez y oportunidad}
+
+Se incorporan disposiciones procesales sobre la prescripci\'on. El art.\ 2551 establece que la prescripci\'on puede ejercerse por v\'ia de \textbf{acci\'on} o de \textbf{excepci\'on}; hasta ahora solo se conoc\'ia la excepci\'on. La v\'ia de acci\'on permite, en aras de la seguridad jur\'idica, saber si el derecho a ejercer la acci\'on sigue vigente, mediante la acci\'on de prescripci\'on liberatoria cumplida para eximirse; tambi\'en puede hacerlo el tercero interesado.
+
+\begin{formula}{Art.\ 2551 -- V\'ias procesales}
+La prescripci\'on puede ser articulada por v\'ia de acci\'on o de excepci\'on.
+\end{formula}
+
+El juez no puede declarar de oficio la prescripci\'on, igual que en el art.\ 3964 de V\'elez: es siempre a pedido de parte interesada.
+
+\begin{formula}{Art.\ 2552 -- Facultades judiciales}
+El juez no puede declarar de oficio la prescripci\'on.
+\end{formula}
+
+Sobre la oportunidad (art.\ 3962 de V\'elez), el art.\ 2553 dispone que debe oponerse dentro del plazo para contestar la demanda en los procesos de conocimiento, o para oponer excepciones en los de ejecuci\'on. Los terceros interesados deben hacerlo en la primera oportunidad en que comparecen a juicio; si son citados en una etapa posterior a la contestaci\'on de la demanda o de las excepciones, deben oponerla en esa primera presentaci\'on.
+
+\begin{formula}{Art.\ 2553 -- Oportunidad procesal para oponerla}
+La prescripci\'on debe oponerse dentro del plazo para contestar la demanda en los procesos de conocimiento, y para oponer excepciones en los procesos de ejecuci\'on.
+
+Los terceros interesados que comparecen al juicio vencidos los t\'erminos aplicables a las partes, deben hacerlo en su primera presentaci\'on.
+\end{formula}
+
+% TODO: en la grabaci\'on el docente menciona <<2563>> al referirse a la oportunidad procesal; por el contenido corresponde al art. 2553
+
+\begin{important}
+La prescripci\'on puede articularse por acci\'on (novedad) o por excepci\'on; el juez nunca puede declararla de oficio; debe oponerse al contestar la demanda (conocimiento) o al oponer excepciones (ejecuci\'on); el tercero interesado, en su primera presentaci\'on.
+\end{important}
+
+\section{Comienzo del c\'omputo del plazo}
+
+La regla general es el art.\ 2554: el plazo comienza el d\'ia en que la prestaci\'on es exigible. El C\'odigo prev\'e reglas especiales para la rendici\'on de cuentas y las prestaciones peri\'odicas.
+
+\begin{formula}{Art.\ 2554 -- Regla general}
+El transcurso del plazo de prescripci\'on comienza el d\'ia en que la prestaci\'on es exigible.
+\end{formula}
+
+\begin{formula}{Art.\ 2555 -- Rendici\'on de cuentas}
+El transcurso del plazo de prescripci\'on para reclamar la rendici\'on de cuentas comienza el d\'ia que el obligado debe rendirlas o, en su defecto, cuando cesa en la funci\'on respectiva. Para demandar el cobro del resultado l\'iquido de la cuenta, el plazo comienza el d\'ia que hubo conformidad de parte o decisi\'on pasada en autoridad de cosa juzgada.
+\end{formula}
+
+\begin{formula}{Art.\ 2556 -- Prestaciones peri\'odicas}
+El transcurso del plazo de prescripci\'on para reclamar la contraprestaci\'on por servicios o suministros peri\'odicos comienza a partir de que cada retribuci\'on se torna exigible.
+\end{formula}
+
+\begin{note}
+El docente alude a la rendici\'on de cuentas y a las prestaciones peri\'odicas sin leer los art\'iculos; se reproducen para completar la referencia.
+\end{note}
+
+\section{Honorarios por servicios prestados en procedimientos (art.\ 2558)}
+
+El art.\ 2558 se refiere a los honorarios de abogados, peritos y todos quienes intervienen en procedimientos. El art.\ 4032 de V\'elez, vigente a la fecha de la clase, hab\'ia sido interpretado por jueces y doctrina. Se distinguen dos situaciones: el plazo de prescripci\'on para pedir la regulaci\'on y el plazo para cobrar el cr\'edito por honorarios.
+
+\begin{formula}{Art.\ 2558 -- Honorarios por servicios prestados en procedimientos}
+El transcurso del plazo de prescripci\'on para reclamar honorarios por servicios que han sido prestados en procedimientos judiciales, arbitrales o de mediaci\'on, comienza a correr desde que vence el plazo fijado en resoluci\'on firme que los regula; si no fija plazo, desde que adquiere firmeza.
+
+Si los honorarios no son regulados, el plazo comienza a correr desde que queda firme la resoluci\'on que pone fin al proceso; si la prestaci\'on del servicio profesional concluye antes, desde que el acreedor tiene conocimiento de esa circunstancia.
+\end{formula}
+
+El docente recuerda, aunque el C\'odigo no lo dice, que si el juez no fija plazo para el pago de los honorarios, la ley de aranceles prev\'e treinta d\'ias por defecto, lo cual debe tenerse en cuenta para el comienzo de la prescripci\'on liberatoria respecto del cliente o del condenado en costas.
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}X}
+\toprule
+Situaci\'on & Comienzo del plazo (art.\ 2558) \\
+\midrule
+Honorarios regulados con plazo de pago & Desde que vence el plazo fijado en la resoluci\'on firme que los regula. \\
+Honorarios regulados sin plazo & Desde que la resoluci\'on adquiere firmeza (la ley de aranceles prev\'e treinta d\'ias si el juez nada dice). \\
+Honorarios no regulados & Desde que queda firme la resoluci\'on que pone fin al proceso o, si la actuaci\'on del profesional concluye antes, desde que el acreedor toma conocimiento de ello. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section*{Cuadro Cornell: Aspectos procesales y c\'omputo}
+\addcontentsline{toc}{section}{Cuadro Cornell: Aspectos procesales y c\'omputo}
+
+\begin{cornell}
+\cq{\textquestiondown C\'omo y cu\'ando se opone la prescripci\'on (arts.\ 2551 a 2553)?}{Por acci\'on o excepci\'on. El juez no puede declararla de oficio. Debe oponerse al contestar la demanda (conocimiento) o al oponer excepciones (ejecuci\'on); el tercero interesado, en su primera presentaci\'on.}
+\cq{\textquestiondown Desde cu\'ando se cuenta el plazo (arts.\ 2554 a 2556)?}{Regla general: el d\'ia en que la prestaci\'on es exigible. Reglas especiales para rendici\'on de cuentas y prestaciones peri\'odicas (cada retribuci\'on, desde que se torna exigible).}
+\cq{\textquestiondown Desde cu\'ando prescriben los honorarios (art.\ 2558)?}{Desde que vence el plazo fijado en la resoluci\'on firme que los regula; si no hay plazo, desde la firmeza (la ley de aranceles prev\'e treinta d\'ias por defecto). Si no est\'an regulados, desde la firmeza de la resoluci\'on que cierra el proceso o desde que el acreedor conoce la conclusi\'on de su actuaci\'on.}
+\cresumen{La prescripci\'on se articula por acci\'on o excepci\'on, nunca de oficio, en una oportunidad precisa. El plazo comienza, en general, cuando la prestaci\'on es exigible, con reglas propias para rendici\'on de cuentas, prestaciones peri\'odicas y honorarios.}
+\end{cornell}
+
+% =====================================================
+\chapter[Plazos de prescripci\'on y caducidad]{Plazos de prescripci\'on y caducidad de los derechos}
+% =====================================================
+
+\section{El plazo gen\'erico de cinco a\~nos (art.\ 2560)}
+
+El C\'odigo de V\'elez ten\'ia diversos plazos: tres meses para la acci\'on por vicios redhibitorios (art.\ 4041); seis meses para la acci\'on de reivindicaci\'on de inmuebles perdidos [sic]; un a\~no por responsabilidad por ruina; dos a\~nos por nulidad de actos jur\'idicos por vicios de la voluntad; tres a\~nos por la ley de defensa del consumidor; y plazos de cuatro, cinco y diez a\~nos, siendo el ordinario el del art.\ 4023 y el art.\ 846 del C\'odigo de Comercio. El plazo gen\'erico se reduce ahora a cinco a\~nos, sin perjuicio de los plazos especiales.
+
+\begin{formula}{Art.\ 2560 -- Plazo gen\'erico}
+El plazo de la prescripci\'on es de cinco a\~nos, excepto que est\'e previsto uno diferente en la legislaci\'on local.
+\end{formula}
+
+\begin{note}
+Texto seg\'un Ley 26.994, vigente a la fecha de la clase (ver la nota sobre la Ley 27.586 en el cap\'itulo sobre sujetos, renuncia e invocaci\'on).
+\end{note}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{5cm}>{\raggedright\arraybackslash}X}
+\toprule
+Ordenamiento & Plazo gen\'erico (seg\'un el docente) \\
+\midrule
+C\'odigo de V\'elez (r\'egimen anterior) & Diez a\~nos (ordinario, art.\ 4023; C\'odigo de Comercio, art.\ 846), junto con m\'ultiples plazos especiales. \\
+Proyecto de 1998 & Cuatro a\~nos. \\
+C\'odigo Civil y Comercial (art.\ 2560) & Cinco a\~nos. \\
+Bolivia, Chile y Cuba & Cinco a\~nos. \\
+Colombia & Diez a\~nos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{3cm}>{\raggedright\arraybackslash}X}
+\toprule
+Plazo & Supuestos del C\'odigo de V\'elez mencionados por el docente \\
+\midrule
+3 meses & Acci\'on por vicios redhibitorios (art.\ 4041). \\
+6 meses & Acci\'on de reivindicaci\'on de inmuebles perdidos [sic]. \\
+1 a\~no & Responsabilidad por ruina. \\
+2 a\~nos & Nulidad de actos jur\'idicos por vicios de la voluntad; responsabilidad extracontractual (art.\ 4037). \\
+3 a\~nos & Ley de defensa del consumidor. \\
+4, 5 y 10 a\~nos & Otros plazos; el ordinario es de diez a\~nos (art.\ 4023 del C\'odigo Civil y art.\ 846 del C\'odigo de Comercio). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Plazos especiales (arts.\ 2561 y 2562)}
+
+El art.\ 2561 regula la responsabilidad civil sin distinguir entre contractual y extracontractual: parece que toda responsabilidad civil derivada del incumplimiento contractual prescribe a los tres a\~nos. Para los da\~nos por agresiones sexuales a personas incapaces el plazo es de diez a\~nos desde el cese de la incapacidad. Se incorpor\'o, en el Congreso (Bicameral), la imprescriptibilidad de los da\~nos derivados de delitos de lesa humanidad.
+
+\begin{formula}{Art.\ 2561 -- Plazos especiales}
+El reclamo del resarcimiento de da\~nos por agresiones sexuales infligidas a personas incapaces prescribe a los diez a\~nos. El c\'omputo del plazo de prescripci\'on comienza a partir del cese de la incapacidad.
+
+El reclamo de la indemnizaci\'on de da\~nos derivados de la responsabilidad civil prescribe a los tres a\~nos.
+
+Las acciones civiles derivadas de delitos de lesa humanidad son imprescriptibles.
+\end{formula}
+
+\begin{note}
+Texto seg\'un Ley 26.994, vigente a la fecha de la clase. La Ley 27.586 (2020) deroga el \'ultimo p\'arrafo y traslada la regla al art.\ 2560.
+\end{note}
+
+El art.\ 2562 establece plazos de dos a\~nos. En el contrato de transporte, el art.\ 855 del C\'odigo de Comercio fijaba un a\~no, el art.\ 4037 dos a\~nos y un plenario <<Samudio>> de la C\'amara Civil tres; el inciso d) del art.\ 2562 lo fija en dos a\~nos, distinto de la responsabilidad civil gen\'erica.
+
+\begin{formula}{Art.\ 2562 -- Plazo de prescripci\'on de dos a\~nos}
+Prescriben a los dos a\~nos:
+\begin{enumerate}[label=\alph*),leftmargin=2em]
+  \item el pedido de declaraci\'on de nulidad relativa y de revisi\'on de actos jur\'idicos;
+  \item el reclamo de derecho com\'un de da\~nos derivados de accidentes y enfermedades del trabajo;
+  \item el reclamo de todo lo que se devenga por a\~nos o plazos peri\'odicos m\'as cortos, excepto que se trate del reintegro de un capital en cuotas;
+  \item el reclamo de los da\~nos derivados del contrato de transporte de personas o cosas;
+  \item el pedido de revocaci\'on de la donaci\'on por ingratitud o del legado por indignidad;
+  \item el pedido de declaraci\'on de inoponibilidad nacido del fraude.
+\end{enumerate}
+\end{formula}
+
+\begin{note}
+El docente refiere al <<inciso e)>> para el contrato de transporte; en el texto sancionado corresponde al inciso d). La referencia al plenario <<Samudio>> se reconstruy\'o a partir de la grabaci\'on (<<plenario Sam>>).
+\end{note}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}X}
+\toprule
+Supuesto & Plazo & Observaciones del docente \\
+\midrule
+Responsabilidad civil (art.\ 2561) & 3 a\~nos & Sin distinguir contractual de extracontractual; hay que ver c\'omo juega con el incumplimiento contractual. \\
+Da\~nos por agresiones sexuales a personas incapaces (art.\ 2561) & 10 a\~nos & Se cuenta desde que cesa la incapacidad. \\
+Da\~nos derivados de delitos de lesa humanidad (art.\ 2561) & Imprescriptible & Incorporado en el Congreso. \\
+Transporte de personas o cosas (art.\ 2562) & 2 a\~nos & Antes: C\'odigo de Comercio art.\ 855 (1 a\~no), art.\ 4037 (2 a\~nos) y plenario de la C\'amara Civil (3 a\~nos). \\
+Otros supuestos del art.\ 2562 & 2 a\~nos & Nulidad relativa, accidentes de trabajo (derecho com\'un) y dem\'as incisos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{important}
+El docente no insiste en el n\'umero del plazo, porque este se encuentra en el texto; lo central es c\'omo se hace jugar: plazo anterior, plazo nuevo, aplicaci\'on del art.\ 2537, y causas de suspensi\'on en curso y las que desaparecen. Hay que estar atentos a los cambios (de diez a cinco o a tres; en el contrato de transporte, de tres a dos): lo que feneci\'o el 31 de julio no revive y lo que atraviesa el 1.\textordmasculine\ de agosto debe analizarse conforme al art.\ 2537.
+\end{important}
+
+\begin{note}
+El docente dice <<31 de agosto>>; por el contexto (fecha de entrada en vigencia del C\'odigo) se consigna 1.\textordmasculine\ de agosto.
+\end{note}
+
+\section{Caducidad de los derechos (arts.\ 2566 y 2567)}
+
+La caducidad est\'a regulada espec\'ificamente. No se suspende ni se interrumpe: el derecho se extingue.
+
+\begin{formula}{Art.\ 2566 -- Efectos de la caducidad}
+La caducidad extingue el derecho no ejercido.
+\end{formula}
+
+\begin{formula}{Art.\ 2567 -- Suspensi\'on e interrupci\'on}
+Los plazos de caducidad no se suspenden ni se interrumpen, excepto disposici\'on legal en contrario.
+\end{formula}
+
+Ejemplos de caducidad mencionados:
+\begin{itemize}
+  \item \textbf{Garant\'ia por ruina:} el constructor otorga una garant\'ia; por la ley actual, el art.\ 1646, que pasa al art.\ 1275, el plazo es de diez a\~nos y es de caducidad: no se extiende ni se ve afectado por suspensi\'on o interrupci\'on.
+  \item \textbf{Defectos ocultos} (antes, vicios redhibitorios): tres a\~nos (art.\ 1055), para inmuebles.
+  \item \textbf{Acciones de impugnaci\'on}, por ejemplo de maternidad: un a\~no.
+  \item \textbf{Compensaciones econ\'omicas en el matrimonio:} seis meses.
+\end{itemize}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+& Prescripci\'on & Caducidad \\
+\midrule
+Qu\'e se extingue & La acci\'on (p\'erdida del ejercicio por inactividad). & El derecho no ejercido. \\
+Suspensi\'on e interrupci\'on & S\'i: el plazo puede pausarse o volver a cero. & No, salvo disposici\'on legal en contrario (art.\ 2567). \\
+Antecedente en V\'elez & S\'i, regulada (aunque junto con la adquisitiva). & No ten\'ia tratamiento general. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{4.6cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}X}
+\toprule
+Ejemplo de caducidad (seg\'un el docente) & Plazo & Referencia \\
+\midrule
+Garant\'ia por ruina (constructor) & 10 a\~nos & Art.\ 1275 (antes, art.\ 1646 de V\'elez). \\
+Defectos ocultos en inmuebles (antes, redhibitorios) & 3 a\~nos & Art.\ 1055. \\
+Impugnaci\'on de la maternidad & 1 a\~no & Acciones de impugnaci\'on. \\
+Compensaciones econ\'omicas en el matrimonio & 6 meses & Efectos del divorcio (art.\ 442). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{note}
+La referencia al art.\ 442 se agreg\'o en el apunte original para completar la menci\'on del docente, que habla de <<seis meses para todo el tema de compensaciones econ\'omicas en el matrimonio>>.
+\end{note}
+
+\section*{Cuadro Cornell: Plazos y caducidad}
+\addcontentsline{toc}{section}{Cuadro Cornell: Plazos y caducidad}
+
+\begin{cornell}
+\cq{\textquestiondown Cu\'al es el plazo gen\'erico (art.\ 2560)?}{Cinco a\~nos, excepto que la legislaci\'on local prevea uno diferente. Antes, el ordinario era de diez a\~nos (art.\ 4023).}
+\cq{\textquestiondown Qu\'e plazos especiales trae el art.\ 2561?}{Responsabilidad civil: tres a\~nos. Agresiones sexuales a incapaces: diez a\~nos desde el cese de la incapacidad. Lesa humanidad: imprescriptible.}
+\cq{\textquestiondown Qu\'e prescribe a los dos a\~nos (art.\ 2562)?}{Nulidad relativa, accidentes de trabajo (derecho com\'un), transporte de personas o cosas, entre otros.}
+\cq{\textquestiondown En qu\'e se diferencia la caducidad (arts.\ 2566 y 2567)?}{Extingue el derecho no ejercido y los plazos no se suspenden ni se interrumpen, salvo disposici\'on legal en contrario. Ejemplos: garant\'ia por ruina, 10 a\~nos (art.\ 1275); defectos ocultos en inmuebles, 3 a\~nos (art.\ 1055); impugnaci\'on de la maternidad, 1 a\~no; compensaciones econ\'omicas, 6 meses.}
+\cresumen{El plazo gen\'erico baja a cinco a\~nos y existen plazos especiales de tres, dos y diez a\~nos, adem\'as de acciones imprescriptibles. La caducidad extingue el derecho, sin posibilidad de suspensi\'on ni interrupci\'on salvo disposici\'on legal, y lo decisivo es combinar los plazos con el art.\ 2537.}
+\end{cornell}
+
+% =====================================================
+\chapter{Cierre del curso: reflexiones finales}
+% =====================================================
+
+Tras la exposici\'on sobre prescripci\'on y caducidad, un segundo docente cierra el curso con algunas reflexiones.
+
+\section{La preocupaci\'on por el acortamiento de los plazos}
+
+El segundo docente se\~nala que se modifican todos los plazos, que se reducen o se aumentan, a veces con fundamento y a veces sin \'el. Le preocupa especialmente el acortamiento de los plazos para ejercer un derecho: cuando se afirma que el C\'odigo est\'a en beneficio de la persona, puede ocurrir que, al pretender accionar, la persona se encuentre sin acci\'on, y la obligaci\'on quede como obligaci\'on natural, si se sigue creyendo en ellas, ya que el nuevo C\'odigo habla de deberes morales y no de obligaciones naturales.
+
+\begin{important}
+El acortamiento de los plazos para reclamar puede dejar a la persona sin acci\'on y con una obligaci\'on que quedar\'ia como <<natural>>, categor\'ia que el nuevo C\'odigo no regula como tal (habla de deberes morales).
+\end{important}
+
+\section{Luces y sombras del C\'odigo}
+
+El curso parti\'o de obligaciones en adelante (teor\'ia general de las obligaciones, responsabilidad civil, teor\'ia general del contrato y derecho del consumidor). Seg\'un el docente, algunas situaciones se habr\'an aclarado y otras no, porque hay contradicciones y no hay una idea se\~nera en el C\'odigo: <<tiene luces, pero tiene sombras>>. Observa que hay quienes sostienen el C\'odigo como verdad revelada y quienes lo ponen en duda.
+
+\section{El debate doctrinario}
+
+El docente considera poco conveniente que se haya puesto en vigencia el C\'odigo sin que las universidades del pa\'is tuvieran injerencia y sin que se sometiera al debate de la doctrina. Ese debate deber\'ia hacerse en las Jornadas Nacionales de Derecho Civil (septiembre o principios de octubre, en Bah\'ia Blanca), pero indica que fueron seleccionadas las personas que integraban las comisiones como autoridades y desechadas otras de trayectoria reconocida; no ser\'ia raro que no hubiera independencia doctrinaria. Recuerda que las objeciones formuladas en las jornadas anteriores (Buenos Aires) no fueron atendidas por los integrantes de la comisi\'on, y que modificar el C\'odigo <<no es legislar y levantar la mano>>.
+
+% TODO: contenido incompleto o ambiguo en las notas originales (la grabaci\'on dice <<era muy conveniente>>; se consign\'o [poco] por coherencia con lo que afirma a continuaci\'on)
+
+\section{El papel de la abogac\'ia}
+
+El C\'odigo entrar\'a en vigencia y subsistir\'a; la doctrina de los autores y la jurisprudencia de los tribunales tratar\'an de aclararlo, pero la abogac\'ia tiene un papel fundamental: los abogados son quienes marcan rumbos, no el juez, que por su sensibilidad va a la seguridad y a la ley, y no hay jueces que arriesguen opini\'on. El docente expresa el deseo de encontrar m\'as luz que sombra y evitar posiciones tajantes. Cita como ejemplo de retroceso, en la teor\'ia general del contrato, la caducidad de la oferta (que ya en el proyecto de 1998 no exist\'ia) y la caducidad de la aceptaci\'on.
+
+\begin{important}
+Seg\'un el cierre del curso, los abogados son quienes marcan rumbos; el juez tiende a la seguridad y a la letra de la ley, y son la doctrina, la jurisprudencia y la abogac\'ia quienes deber\'an aclarar y orientar la interpretaci\'on del nuevo C\'odigo.
+\end{important}
+
+\section{Deseos finales}
+
+El docente expresa el deseo de que el curso haya sido \'util; que se haya entendido que no todos saben todo, que cada vez hay que saber m\'as y que la ciencia jur\'idica no acaba y admite distintas posturas. Menciona tambi\'en que el C\'odigo presenta incongruencias: se lo califica de liberal o de conservador y se afirma que favorece a los consumidores, aunque (dice) se vio que no es as\'i.
+
+\section*{Cuadro Cornell: Repaso general y cierre}
+\addcontentsline{toc}{section}{Cuadro Cornell: Repaso general y cierre}
+
+\begin{cornell}
+\cq{\textquestiondown Qu\'e recorri\'o la exposici\'on?}{El Libro Sexto (arts.\ 2532 a 2572): reglas comunes (aplicaci\'on subsidiaria, car\'acter imperativo, sujetos, renuncia, invocaci\'on, pago espont\'aneo), tr\'ansito entre leyes (art.\ 2537), suspensi\'on e interrupci\'on, aspectos procesales y c\'omputo, plazos y caducidad.}
+\cq{\textquestiondown Qu\'e advierte el cierre del curso?}{Que el C\'odigo <<tiene luces y sombras>>, que preocupa el acortamiento de los plazos para reclamar y que los abogados <<marcan rumbos>>: doctrina, jurisprudencia y abogac\'ia deber\'an aclarar el nuevo r\'egimen.}
+\cq{\textquestiondown Cu\'al es el m\'etodo central para trabajar los plazos?}{Trazar las dos l\'ineas de tiempo (ley anterior desde el hecho; ley nueva desde el 1/8/2015) y aplicar el plazo menor, sin que revivan los ya vencidos.}
+\cresumen{La clase recorre el Libro Sexto del C\'odigo Civil y Comercial (arts.\ 2532 a 2572) y explica que el tiempo extingue acciones (prescripci\'on liberatoria) o derechos (caducidad). Primero fija las reglas comunes: el C\'odigo se aplica de manera subsidiaria, sus normas son imperativas, la prescripci\'on opera para todas las personas y puede ser invocada por cualquier interesado; solo se renuncia a la ya ganada y el pago de una deuda prescripta no se repite. Luego resuelve el problema pr\'actico de los plazos en curso al 1.\textordmasculine\ de agosto de 2015: se comparan dos l\'ineas de tiempo y prevalece el plazo menor, sin que revivan los ya vencidos. Despu\'es explica c\'omo se controla el reloj: la suspensi\'on lo pausa (interpelaci\'on fehaciente, mediaci\'on, casos especiales) y la interrupci\'on lo reinicia (reconocimiento, petici\'on judicial, arbitraje), con atenci\'on a causales que desaparecen, como la querella penal. En el proceso, la prescripci\'on se articula por acci\'on o excepci\'on, nunca de oficio, y en una oportunidad precisa. Finalmente, el plazo gen\'erico baja a cinco a\~nos, aparecen plazos especiales de tres, dos y diez a\~nos, y la caducidad extingue el derecho sin posibilidad de suspensi\'on ni interrupci\'on. El cierre advierte que el acortamiento de los plazos exige que los abogados cuenten con rigor, act\'uen a tiempo y orienten la interpretaci\'on de un C\'odigo con luces y sombras.}
+\end{cornell}
+
+\end{document}

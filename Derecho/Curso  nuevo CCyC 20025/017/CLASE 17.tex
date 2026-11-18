@@ -1,0 +1,1542 @@
+%==============================================================
+% APUNTES DE DERECHO DE SUCESIONES
+% Indivisión hereditaria, partición y testamentos
+% Documento autónomo: no requiere plantillas ni archivos externos
+%==============================================================
+\documentclass[12pt,oneside]{book}
+
+%--------------------------------------------------------------
+% METADATOS
+%--------------------------------------------------------------
+\newcommand{\universidad}{Universidad de Buenos Aires (UBA)}
+\newcommand{\curso}{Curso de Perfeccionamiento · Código Civil y Comercial}
+\newcommand{\materia}{Derecho de Sucesiones}
+\newcommand{\titulo}{Apuntes de Derecho de Sucesiones}
+\newcommand{\subtitulo}{Indivisión hereditaria, partición y testamentos}
+\newcommand{\autor}{Isaac Edgar Camacho Ocampo}
+\newcommand{\anio}{2015}
+\newcommand{\reflexion}{Estudiar con constancia es transformar la información en comprensión.}
+
+%--------------------------------------------------------------
+% PAQUETES
+%--------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    citecolor=green!40!black,
+    urlcolor=blue!60!black,
+    pdftitle={\titulo},
+    pdfauthor={\autor},
+    pdfsubject={Apuntes universitarios},
+    bookmarks=true
+]{hyperref}
+
+%--------------------------------------------------------------
+% CONFIGURACIÓN
+%--------------------------------------------------------------
+\graphicspath{
+    {./img/}
+    {./graficos/}
+    {./figuras/}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\setlist[itemize]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\setlist[enumerate]{
+    topsep=0.3em,
+    itemsep=0.2em
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\renewcommand{\arraystretch}{1.15}
+
+%--------------------------------------------------------------
+% COMANDOS
+%--------------------------------------------------------------
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\deriv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+
+%--------------------------------------------------------------
+% ENTORNOS / CAJAS ACADÉMICAS
+%--------------------------------------------------------------
+\newtcolorbox{definition}[1]{
+    enhanced,
+    breakable,
+    title={Definición: #1},
+    fonttitle=\bfseries,
+    colback=blue!3,
+    colframe=blue!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{important}{
+    enhanced,
+    breakable,
+    title={Importante},
+    fonttitle=\bfseries,
+    colback=yellow!8,
+    colframe=orange!70!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{example}[1]{
+    enhanced,
+    breakable,
+    title={Ejemplo: #1},
+    fonttitle=\bfseries,
+    colback=green!4,
+    colframe=green!40!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{formula}[1]{
+    enhanced,
+    breakable,
+    title={Fórmula / Regla: #1},
+    fonttitle=\bfseries,
+    colback=purple!4,
+    colframe=purple!50!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{exercise}[1]{
+    enhanced,
+    breakable,
+    title={Ejercicio: #1},
+    fonttitle=\bfseries,
+    colback=gray!5,
+    colframe=gray!60!black,
+    boxrule=0.8pt,
+    arc=2mm
+}
+
+\newtcolorbox{note}{
+    enhanced,
+    breakable,
+    title={Nota},
+    fonttitle=\bfseries,
+    colback=white,
+    colframe=gray!50,
+    boxrule=0.6pt,
+    arc=2mm
+}
+
+%--------------------------------------------------------------
+% CUADRO CORNELL (tabla real, con corte de página)
+%--------------------------------------------------------------
+\newenvironment{cornell}{%
+    \begin{longtable}{>{\raggedright\arraybackslash}p{0.27\textwidth}
+                      >{\raggedright\arraybackslash}p{0.66\textwidth}}
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Preguntas / palabras clave} & \textbf{Notas / respuestas} \\
+    \midrule
+    \endhead
+    \midrule[0.3pt]
+    \multicolumn{2}{r}{\footnotesize\textit{Continúa en la página siguiente}} \\
+    \endfoot
+    \endlastfoot
+}{%
+    \end{longtable}
+}
+
+\newcommand{\cornellrow}[2]{%
+    \textbf{#1} & #2 \\
+    \midrule[0.3pt]
+}
+
+\newcommand{\cornellsummary}[1]{%
+    \midrule
+    \multicolumn{2}{p{\dimexpr0.93\textwidth+2\tabcolsep\relax}}{%
+        \textbf{Resumen:} #1} \\
+    \bottomrule
+}
+
+%--------------------------------------------------------------
+% CONFIGURACIÓN FINAL (encabezados y pies)
+%--------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\materia}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+%==============================================================
+\begin{document}
+%==============================================================
+
+%--------------------------------------------------------------
+% PORTADA
+%--------------------------------------------------------------
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{1cm}
+
+{\large \textsc{\universidad}}
+
+\vspace{0.2cm}
+
+{\large \curso}
+
+\vspace{3cm}
+
+{\Huge \textbf{\titulo}}
+
+\vspace{1cm}
+
+{\LARGE \subtitulo}
+
+\vspace{0.8cm}
+
+\small\textit{\reflexion}\normalsize
+
+\vspace{1.2cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vspace{0.5cm}
+
+{\large Apuntes de estudio}
+
+\vspace{0.5cm}
+
+\rule{0.70\textwidth}{0.5pt}
+
+\vfill
+
+{\large \autor}
+
+\vspace{0.3cm}
+
+{\large \anio}
+
+\end{center}
+
+\vfill
+
+\begin{flushleft}
+\textit{Este es un modesto aporte a los estudiantes de ``\materia'' no pretende sustituir el material oficial de la materia.}
+\end{flushleft}
+
+\end{titlepage}
+
+%--------------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------------
+\pagenumbering{roman}
+\tableofcontents
+
+%--------------------------------------------------------------
+% PRESENTACIÓN
+%--------------------------------------------------------------
+\chapter*{Presentación}
+\addcontentsline{toc}{chapter}{Presentación}
+\markboth{Presentación}{Presentación}
+
+Estos apuntes reúnen el último tramo del derecho sucesorio según el Código Civil y Comercial de la Nación (en adelante, CCyC), con comparaciones constantes con el régimen del Código de Vélez. El material fue expuesto por dos docentes en un curso de perfeccionamiento del año 2015, previo a la entrada en vigencia del nuevo Código (1.º de agosto de 2015). Por ese motivo, cuando el texto habla del régimen «actual» o «hoy» en referencia a lo anterior, se alude al Código Civil de Vélez.
+
+Los contenidos se organizan en cinco bloques temáticos:
+
+\begin{itemize}
+    \item \textbf{Indivisión hereditaria:} estado de comunidad entre coherederos desde la muerte hasta la partición. Comprende quién administra, quién usa los bienes, qué ocurre con los frutos, las deudas y las cargas, y cómo pueden imponerse plazos de no división.
+    \item \textbf{Partición:} quién puede pedirla, cuándo, cómo se reparten los bienes (en especie, venta o licitación) y qué formas tiene (privada, judicial o mixta), incluida la atribución preferencial de un negocio o de la vivienda.
+    \item \textbf{Testamentos (reformas y formas):} capacidad y nulidades, interpretación, formas testamentarias e incapacidades para recibir.
+    \item \textbf{Herederos, acrecimiento, sustituciones y legados:} institución de herederos y de cuota, derecho de acrecer, sustituciones y régimen de los legados.
+    \item \textbf{Revocación y cierre:} revocación de testamentos y de legados, y temas que quedaron pendientes.
+\end{itemize}
+
+\begin{example}{Relación entre los bloques temáticos}
+Si Roberto muere y deja el local de su pizzería y su casa a sus tres hijos, hasta que se decida qué hacer los bienes no son de nadie en particular: los hijos están en \textbf{indivisión}, necesitan quien administre, deben definir quién usa el horno y cómo se reparten las ganancias; Roberto incluso pudo haber dejado dicho «no vendan por diez años». Cuando quieren terminar con ese estado, la \textbf{partición} reparte los bienes: si dos hijos quieren el local se licita, y la hija que trabajó en la pizzería puede pedir que se le adjudique pagando la diferencia. Antes de dividir hay que saber qué quiso Roberto: si su \textbf{testamento} es válido, quiénes son herederos y qué dejó a su socio como legado. Y si Roberto cambió de idea o volvió a casarse, el testamento puede quedar sin efecto total o parcialmente.
+\end{example}
+
+\textbf{En síntesis:} el testamento define qué se reparte, la indivisión regula el tiempo de espera y la partición cierra el proceso.
+
+\begin{note}
+Los números de artículos que resultaban ilegibles en la grabación original fueron reconstruidos por contexto en las notas de partida; conviene verificarlos con el texto oficial antes de citarlos. Las citas de normas reproducen la lectura que hizo el expositor y no deben tomarse como transcripción literal del texto legal.
+\end{note}
+
+\clearpage
+\pagenumbering{arabic}
+%==============================================================
+% CAPÍTULO 1
+%==============================================================
+\chapter[Indivisión hereditaria]{Indivisión hereditaria}
+
+La indivisión hereditaria se constituye a partir de la muerte del causante en la medida en que exista más de un heredero. Si sobrevive un solo heredero, no hay estado de indivisión.
+
+%--------------------------------------------------------------
+\section{Concepto y duración de la indivisión hereditaria}
+
+\subsection{Artículo 2323: ámbito de aplicación}
+
+\begin{quote}
+\textbf{Art.~2323 CCyC.} Las disposiciones del título de la indivisión hereditaria se aplican en toda sucesión en la que hay más de un heredero, desde la muerte del causante y hasta la partición.
+\end{quote}
+% TODO: contenido incompleto o ambiguo en las notas originales (el expositor agrega la cláusula «si no hay administrador designado» sin que quede claro su lugar exacto en el texto del artículo)
+
+\subsection{La declaratoria de herederos no pone fin a la indivisión}
+
+El artículo resuelve expresamente una cuestión que estaba debatida en el régimen del Código Civil: cuándo culmina la indivisión hereditaria. Una tesis sostenía que la inscripción de la declaratoria de herederos (por ejemplo, respecto de inmuebles ante el registro de la propiedad, o de bienes registrables en los registros respectivos) implicaba el cese de la indivisión. Para algunos autores y algún precedente, ese hecho ponía fin a la comunidad. La opinión de Borda sostenía que, si había transcurrido determinado tiempo desde la inscripción de la declaratoria, esto implicaba el cese de la indivisión.
+
+Sin embargo, la mayoría de la doctrina interpretó que la inscripción no producía ese efecto y que el único acto que ponía fin a la comunidad entre los coherederos era exclusivamente la \textbf{partición}.
+
+La cuestión incidía sobre el tipo de acción para terminar con el estado de comunidad: si se entendía que la indivisión cesaba con la inscripción, había que interponer una acción de \textbf{división de condominio}; en cambio, si la declaratoria no ponía fin a ese estado, la acción era de \textbf{partición}.
+
+\begin{important}
+El artículo establece ahora expresamente que la indivisión va desde la muerte del causante hasta la partición, lo que disipa toda duda: la inscripción de la declaratoria de herederos no pone fin a la comunidad ni al estado de indivisión hereditaria.
+\end{important}
+
+\subsection{¿Qué significa «si no hay administrador designado»?}
+
+La designación de un administrador no incide en la duración de la indivisión: con administrador designado o sin él, la \textbf{partición siempre pone fin a la indivisión hereditaria}.
+
+La referencia al administrador se explica por la forma en que cada Código regula la administración de la herencia:
+
+\begin{itemize}
+    \item \textbf{Código de Vélez:} regula la administración de la comunidad indivisa en un solo artículo, el art.~3451. Según este, ninguno de los herederos puede realizar actos sin la conformidad del otro (\emph{ius prohibendi}): la oposición de un heredero impide el acto de administración de los restantes y debe ser objeto de resolución judicial.
+    \item \textbf{CCyC:} distingue entre la \textbf{administración extrajudicial} (cuando no hay proceso judicial y la herencia es administrada por los herederos, por todos o por algunos con mandato de otros) y la \textbf{administración judicial} (cuando en el proceso sucesorio se designa un administrador provisional o definitivo).
+\end{itemize}
+
+Por eso, la expresión «si no hay administrador designado» admite tanto la administración judicial como la extrajudicial. En todos los casos, el estado de indivisión subsiste hasta que ocurra la partición.
+
+\subsection{La cuota ideal y el efecto de la partición}
+
+Desde el momento mismo de la muerte del causante, ningún heredero es cotitular de cada uno de los bienes que integran el activo o acervo sucesorio.
+
+\begin{important}
+Lo que cada heredero tiene es una \textbf{cuota ideal}, en función de su porción viril en la herencia, sobre el conjunto de bienes que la conforman. La partición lo único que hace es \textbf{llenar esa cuota ideal con bienes singulares}: concreta la cuota del heredero durante la indivisión en bienes individualizados, que se adjudican en la cuenta particionaria o en el convenio de partición.
+\end{important}
+
+%--------------------------------------------------------------
+\section{Naturaleza jurídica y administración de la herencia}
+
+Con el Código Civil actual hay diversas tesis sobre la naturaleza jurídica de la comunidad hereditaria: para algunos es una especie de \textbf{universalidad jurídica}; para otros, una especie de \textbf{condominio}, con la diferencia de que el condominio recae sobre bienes singulares, mientras que en la herencia se tiene una cuota de la universalidad.
+
+Más allá de esa discusión, resulta importante el art.~1984 del CCyC:
+
+\begin{quote}
+\textbf{Art.~1984 CCyC.} Las normas del título del condominio se aplican, en subsidio de disposiciones legales o convencionales, a todo supuesto de comunidad de derechos reales o de otros bienes.
+\end{quote}
+
+Por lo tanto, si en materia de indivisión hereditaria hay que llenar una laguna o falta de regulación, esta puede completarse por la \textbf{aplicación supletoria de las reglas del condominio}.
+
+\subsection{Administración extrajudicial: mandato expreso, tácito y gestión de negocios}
+
+El Código permite que, si hay acuerdo entre los herederos, la administración se haga extrajudicialmente. Puede haber mandatos de unos herederos a otros para que ejerzan la administración, y el mandato puede ser \textbf{expreso} o \textbf{tácito}: si el heredero realiza actos de administración con conocimiento del resto de los coherederos, que guardan silencio frente a esos actos, se interpreta que existe un mandato aceptado tácitamente.
+
+Incluso podría darse el supuesto de que un heredero gestione sin mandato expreso ni tácito, es decir, sin conocimiento del resto de los coherederos. En ese caso se pueden aplicar analógicamente las reglas de la \textbf{gestión de negocios}.
+
+\subsection{Los dos problemas de la comunidad hereditaria}
+
+Más allá de la administración, la indivisión hereditaria plantea básicamente dos tipos de problemas:
+
+\begin{enumerate}
+    \item cómo se usan y gozan los bienes por parte de los copartícipes durante el estado de indivisión;
+    \item qué facultades tienen los copartícipes o coherederos frente a terceros para reivindicar la totalidad del bien y no solamente en función de su parte indivisa.
+\end{enumerate}
+
+%--------------------------------------------------------------
+\section{Uso y goce de la cosa indivisa}
+
+El primer problema no está resuelto hoy en el Código Civil: se aplican analógicamente las reglas del condominio sobre uso y goce de la cosa entre condóminos. En materia de \textbf{uso exclusivo} de un bien por un coheredero en desmedro del resto, existe una construcción jurisprudencial por la cual los herederos que se ven privados del uso pueden reclamar una \textbf{compensación}. Esta generalmente implica cuantificar el valor locativo del bien, deducida la porción del propio coheredero que lo habita, y fijar la compensación en función de ese valor locativo, que resultará de una tasación o de una prueba pericial a sustanciarse en el expediente.
+
+\subsection{Artículo 2328: la regla del Código Civil y Comercial}
+
+Esta situación tiene ahora regulación expresa:
+
+\begin{quote}
+\textbf{Art.~2328 CCyC (uso y goce).} El heredero puede usar y disfrutar de la cosa indivisa conforme a su destino, en la medida compatible con el derecho de los otros copartícipes.
+\end{quote}
+
+En principio, si la cosa puede ser usada por todos los coherederos, esa será la solución y cada uno la usará y gozará. Cuando ello no es compatible con el bien (por ejemplo, si hay un solo inmueble y más de un coheredero, lo que probablemente sea imposible salvo que acuerden convivir y dividirse el uso), y cada uno pretende el uso exclusivo sin que haya acuerdo, el mismo artículo permite que sea el \textbf{juez} quien regule de manera provisional el ejercicio del uso y goce.
+
+La segunda parte del artículo incorpora lo que hoy es doctrina y jurisprudencia mayoritaria:
+
+\begin{quote}
+\textbf{Art.~2328 CCyC (indemnización por uso privativo).} El copartícipe que usa privativamente de la cosa indivisa está obligado, excepto pacto en contrario, a satisfacer una indemnización desde que le es requerida.
+\end{quote}
+
+La jurisprudencia admite que la compensación por el uso exclusivo de un inmueble solo procede desde que el coheredero intimó fehacientemente al ocupante a que no consentía más la ocupación gratuita y a que le pagara una compensación. El artículo se hace eco de esa jurisprudencia. La indemnización consiste en justipreciar el canon locativo del bien y es \textbf{individual} de cada coheredero que la reclama.
+
+\begin{important}
+Como el reclamo es divisible, si un heredero ocupa el bien y hay otros dos coherederos, y uno no consiente la ocupación gratuita y el otro sí, la compensación se establece sobre la base de la porción del heredero que la reclama, y no sobre la del que no la reclamó. El reclamo rige desde que el ocupante es requerido. El Código no impone ninguna forma especial para el requerimiento: sirve cualquier medio fehaciente de notificación de que el coheredero reclamante no consiente más el uso gratuito.
+\end{important}
+
+\subsection{La compensación en la indivisión postcomunitaria}
+
+El mismo procedimiento de compensación se aplica entre cónyuges en materia de \textbf{indivisión postcomunitaria}: cuando un cónyuge utiliza en forma exclusiva un inmueble desde la disolución de la comunidad hasta que se haga la partición, el otro puede requerirle una compensación económica por ese uso exclusivo. Entre cónyuges habrá que ver si se trata o no de la vivienda y cuáles son las posibilidades de recursos, para decidir si el juez fija o no el canon locativo.
+
+%--------------------------------------------------------------
+\section{Frutos, beneficios, deudas y cargas de la herencia}
+
+El art.~2329 establece un principio hoy aceptado sin disputas por la doctrina y la jurisprudencia:
+
+\begin{quote}
+\textbf{Art.~2329 CCyC (frutos).} Los frutos de los bienes indivisos acrecen a la indivisión, excepto que medie partición provisional.
+\end{quote}
+
+Todos los frutos de los bienes indivisos, en tanto accesorios de la cosa principal, acrecen a la indivisión: las rentas de los alquileres de los inmuebles, los dividendos de las acciones y los frutos naturales siguen engrosando el activo de la indivisión, que se partirá conjuntamente con los bienes entre todos los coherederos. Si los coherederos acuerdan una partición provisional, pueden pactar que los frutos se distribuyan en función de la porción viril; si no hay acuerdo, los frutos siguen aumentando el activo de la indivisión, sujeto a la partición hereditaria.
+
+\begin{quote}
+\textbf{Art.~2329 CCyC (beneficios y pérdidas).} Cada uno de los herederos tiene derecho a los beneficios y soporta las pérdidas proporcionalmente a su parte en la indivisión.
+\end{quote}
+
+Esta segunda parte puede parecer una redundancia. Las deudas del causante y las cargas de la herencia, es decir, las que nacen a partir de la muerte del causante, deben ser soportadas exclusivamente con los bienes indivisos. Sin perjuicio de ello, no se contribuye de la misma manera a las deudas de la herencia que a las cargas de la herencia.
+
+\subsection{Deudas y cargas: cómo se contribuye a cada una}
+
+\begin{important}
+\textbf{Deudas:} son aquellas de las que era titular el causante e integran, con el activo, la universalidad que se transmite. Cada heredero contribuye a ellas en proporción a su \textbf{cuota hereditaria}.
+
+\textbf{Cargas:} son las que nacen a partir de la muerte del causante y con motivo de la apertura de la sucesión (honorarios de abogados, de peritos tasadores y de peritos partidores). Se contribuye a ellas en proporción a la \textbf{masa hereditaria}, que no debe necesariamente coincidir con la cuota hereditaria.
+\end{important}
+
+\begin{example}{Heredero que colaciona}
+Si hay bienes colacionables y un heredero recibió en vida, mediante una donación, su cuota hereditaria, y fue obligado a colacionar a pedido de un coheredero, puede ocurrir que su cuota coincida con el bien donado. En ese caso no toma nada de la herencia. Por lo tanto, no tiene interés en la masa y no soporta las cargas (honorarios). En cambio, participa en las deudas de acuerdo con la cuota hereditaria que le corresponda.
+\end{example}
+
+\begin{table}[H]
+\centering
+\caption{Deudas y cargas de la herencia}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Deudas de la herencia} & \textbf{Cargas de la herencia} \\
+\midrule
+\textbf{Origen} & Eran de titularidad del causante; integran, con el activo, la universalidad que se transmite. & Nacen a partir de la muerte del causante y con motivo de la apertura de la sucesión. \\
+\textbf{Ejemplos} & Obligaciones del causante. & Honorarios de abogados, peritos tasadores y peritos partidores. \\
+\textbf{Cómo se contribuye} & Cada heredero, en proporción a su cuota hereditaria. & En proporción a la masa hereditaria, que no coincide necesariamente con la cuota. \\
+\textbf{Caso del heredero que colaciona} & Contribuye según su cuota. & Si su cuota queda cubierta por un bien donado colacionado, no toma nada de la masa y no soporta cargas. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Posesión y acciones reales frente a terceros}
+
+El otro problema es la posesión que cada heredero tenga de las cosas hereditarias y la posibilidad de reivindicar frente a terceros que detenten bienes de la herencia. En el Código Civil actual era sumamente dudoso si el coheredero podía reivindicar la totalidad de la cosa en poder del tercero o solo la parte que le correspondiera en virtud de su cuota en la herencia.
+
+El CCyC da una solución expresa, que no se encuentra en materia sucesoria ni de condominio, sino en las \textbf{acciones reales}.
+
+\subsection{Artículos 2245 y 2251}
+
+\begin{quote}
+\textbf{Art.~2245 CCyC (acciones posesorias).} Corresponden las acciones posesorias a los poseedores de cosas, universalidades de hecho o partes materiales de una cosa. Cualquiera de los coposeedores puede ejercer acciones posesorias contra terceros sin el concurso de los otros y también contra estos.
+\end{quote}
+
+La norma regula tanto la relación entre los coposeedores como la relación frente a terceros. Esto significa que el heredero que posee, \textbf{posee para la comunidad}, salvo que intervierta el título y quiera poseer a título personal, desplazando al resto de los copartícipes.
+
+\begin{quote}
+\textbf{Art.~2251 CCyC (acciones reales).} Las acciones reales competen a cada uno de los cotitulares contra terceros o contra los restantes cotitulares. Cuando la acción se dirige contra los cotitulares, siempre lo es en la medida de la parte indivisa. Contra terceros puede tener por objeto la totalidad o una parte material de la cosa, o puede reducirse a la medida de su parte indivisa.
+\end{quote}
+
+\begin{itemize}
+    \item \textbf{Frente a los restantes coherederos:} si el coheredero pretende defender su derecho real, solo actúa en la medida de su interés (su parte indivisa).
+    \item \textbf{Frente a terceros:} el copartícipe puede reivindicar para la comunidad toda la cosa, o solo una parte material que coincida con su cuota indivisa.
+\end{itemize}
+
+Esto elimina los márgenes de duda del Código Civil actual: la acción de reivindicación contra terceros puede hacerse por toda la cosa. Resulta razonable porque se trata de un acto meramente \textbf{conservatorio}: el coheredero está integrando el acervo hereditario con un bien que un tercero ostenta sin derecho.
+
+%--------------------------------------------------------------
+\section[Indivisiones impuestas: excepciones a la partición]{Excepciones al principio de partición en todo tiempo: las indivisiones impuestas}
+
+El principio general es que el copartícipe puede pedir la partición en todo tiempo; el CCyC lo mantiene, aunque algo atenuado, como se verá en el capítulo siguiente. Hay excepciones a ese principio. El Código Civil actual las contiene básicamente en la \textbf{Ley 14.394}, arts.~51, 52 y 53, y el art.~54 sobre oponibilidad: son las llamadas \textbf{indivisiones impuestas} por el causante, por el cónyuge o acordadas por los coherederos. Estas indivisiones tienen ahora recepción expresa en el CCyC, en los arts.~2330, 2331 y 2332.
+
+%--------------------------------------------------------------
+\section{Indivisión impuesta por el testador (art.~2330)}
+
+El art.~2330 mantiene, con ligeras variantes, el espíritu del art.~51 de la Ley 14.394.
+
+\begin{quote}
+\textbf{Art.~2330 CCyC.} El testador puede imponer a sus herederos, aun legitimarios, la indivisión de la herencia por un plazo no mayor de 10 años.
+\end{quote}
+
+El plazo coincide con el de la Ley 14.394.
+
+\subsection{Una excepción a la intangibilidad de la legítima}
+
+Esta indivisión no solo es una excepción al principio de la partición, sino también al principio de \textbf{intangibilidad de la legítima}. En general no se pueden poner condicionamientos a la legítima, pero la imposición por un plazo de 10 años de la indivisión puede dilatar el ejercicio de la legítima. Se trata de una excepción válida a su afectación: el coheredero debe aceptar la indivisión impuesta por el causante, aunque importe cierta restricción inmediata al ejercicio de la legítima hereditaria.
+
+La indivisión impuesta por el causante debe establecerse mediante \textbf{disposición testamentaria}: el propio testamento debe contener la disposición que la imponga.
+
+\subsection{Bienes alcanzados: herencia, bien determinado, unidad económica y partes sociales}
+
+El artículo permite imponer la indivisión sobre:
+
+\begin{itemize}
+    \item \textbf{La herencia en general:} esto puede importar cierta afectación de la legítima, pero es una excepción válida a ella.
+    \item \textbf{Un bien determinado:} un bien perfectamente individualizado, por ejemplo, un inmueble. Si hay herederos menores, el plazo puede ser mayor: la indivisión puede extenderse hasta la mayoría de edad de estos herederos.
+    \item \textbf{Un establecimiento comercial, industrial, agrícola, minero o cualquier otro que constituya una unidad económica.}
+    \item \textbf{Partes sociales, cuotas o acciones de la sociedad de la cual el causante es el principal socio o accionista} (inciso c).
+\end{itemize}
+
+\begin{definition}{Unidad económica}
+Conjunto de bienes y servicios, de cualquier tipo, afectados a una actividad productiva, que puede ser de cualquier naturaleza. La mención del Código a unidades agrícolas, mineras, ganaderas, etcétera, es meramente ejemplificativa y no taxativa.
+\end{definition}
+
+La innovación del CCyC respecto del Código Civil es que incorpora las \textbf{partes o cuotas sociales}: la unidad económica puede explotarse bajo forma societaria, y se permite imponer la indivisión a las cuotas y a las acciones. Esto apunta a evitar la disgregación de la unidad económica por efecto de la partición y a mantenerla, lo cual desde el punto de vista social implica también salarios: hay un interés social en que no se disgregue.
+
+\subsection{Plazo máximo y acuerdo unánime de los herederos}
+
+Si el causante impuso la indivisión por un plazo superior a 10 años, la disposición no es inválida, sino que se entiende \textbf{reducida al plazo máximo de 10 años}. Si impone menos de 10, rige el plazo que impuso.
+
+Se plantea qué ocurre si, no obstante la indivisión impuesta por el causante, todos los herederos están de acuerdo en que no rija. Si el planteo lo hacen solo algunos, no cabe duda de que rige la indivisión impuesta. Pero si todos los herederos estuvieran plenamente de acuerdo en hacerla cesar, el expositor opina, igual que cierta doctrina respecto del art.~51 de la Ley 14.394, que el juez debería aceptar el criterio de la unanimidad de los coherederos por sobre la voluntad del causante: la indivisión se imponía para evitar la disgregación y la disputa entre los coherederos, y no se vería afectado ningún interés si los propios interesados concuerdan en hacerla cesar.
+
+\subsection{El «principal» socio o accionista}
+
+Para imponer la indivisión sobre partes sociales, el causante debe ser el \textbf{principal} socio o accionista. El texto no dice «mayoritario»: puede haber más de un socio y el causante tener la parte principal de las acciones aunque no llegue a la mayoría. Esto puede perjudicar a los herederos si el causante no tenía la mayoría: si la mayoría la tienen terceros, imponer la indivisión a los coherederos, que no serán mayoritarios ni controlarán la voluntad social, puede producirles un perjuicio antes que un beneficio.
+
+%--------------------------------------------------------------
+\section{Indivisión convenida por los herederos (art.~2331)}
+
+La indivisión acordada por los herederos, contemplada en el art.~52 de la Ley 14.394, es recogida en el art.~2331.
+
+\begin{quote}
+\textbf{Art.~2331 CCyC.} Los herederos pueden convenir que la indivisión entre ellos perdure total o parcialmente por un plazo que no exceda de 10 años, sin perjuicio de la partición provisional de uso y goce de los bienes entre los copartícipes.
+\end{quote}
+
+Aunque el Código no lo diga expresamente, debe entenderse que se requiere \textbf{unanimidad}: si un heredero no está de acuerdo, es quien puede pedir la partición y el resto no puede impedirla. El plazo tampoco puede exceder de 10 años. Si los herederos hicieron una división de uso y goce (no de propiedad), hay que estar a esa partición de uso y goce. Si no, pueden convenir la indivisión sujeta a toda la herencia.
+
+\subsection{Incapaces y personas con capacidad restringida}
+
+\begin{quote}
+\textbf{Art.~2331 CCyC (segundo párrafo).} Si hay herederos incapaces o con capacidad restringida, el convenio concluido por sus representantes legales o con la participación de las personas que los asistan requiere aprobación judicial.
+\end{quote}
+
+El CCyC trata las restricciones a la capacidad de manera más estricta, evitando en lo posible que la persona tenga restricciones a su capacidad, por lo que la incapacidad absoluta es excepcional. En los supuestos de capacidad restringida, lo que la persona puede o no puede hacer surge, como hoy surge del art.~152 ter, del \textbf{informe interdisciplinario}.
+
+Estos convenios implican actuar sobre el capital de la persona incapaz o con capacidad restringida. Por eso el convenio debe ser aprobado no solo por el juez del sucesorio, sino también por el juez que interviene en el proceso de incapacidad, con la opinión del defensor de incapaces y la del curador o sistema de apoyo que lo asista; deben requerirse ambas aprobaciones. Por un orden lógico, el expositor entiende que debería requerirse primero la aprobación del juez de la incapacidad y luego someterla al juez del proceso sucesorio.
+
+\subsection{Renovación y cese anticipado}
+
+Estos convenios pueden ser \textbf{renovados por igual plazo}, es decir, siempre por el plazo máximo de 10 años. Como en el régimen de la Ley 14.394, el artículo trae una «válvula de escape»: cualquier coheredero puede pedir la división antes del vencimiento del plazo, siempre que medie una \textbf{causa debidamente justificada} y esta sea \textbf{posterior} (sobreviniente) a la celebración del convenio de indivisión.
+
+%--------------------------------------------------------------
+\section{Indivisión a pedido del cónyuge supérstite (art.~2332)}
+
+El siguiente caso es la indivisión impuesta por el cónyuge, también prevista en la Ley 14.394. El Código la denomina \textbf{oposición del cónyuge}, pero se trata de una indivisión impuesta por el cónyuge.
+
+\begin{quote}
+\textbf{Art.~2332 CCyC (oposición del cónyuge).} Si en el acervo hereditario existe un establecimiento comercial, industrial, agrícola, ganadero o de otra índole, siempre que constituya una unidad económica, o partes sociales o cuotas de sociedades, el cónyuge supérstite que ha adquirido o constituido en todo o en parte el establecimiento, o que es el principal socio o accionista de la sociedad, puede oponerse a que se incluya en la partición, excepto que pueda ser adjudicado en su lote. El mismo derecho tiene el cónyuge que ni adquirió ni constituyó el establecimiento, pero participó activamente en su explotación.
+\end{quote}
+
+El artículo exige que el cónyuge haya sido el principal accionista o haya adquirido o formado la unidad económica; pero aunque no la haya formado ni adquirido, si participó activamente en la explotación puede igualmente pedir la indivisión.
+
+\subsection{Choque con el administrador designado por el testador}
+
+Esto da la administración de la unidad económica (sea sociedad o unidad económica sin forma societaria) al propio cónyuge supérstite. El problema es que el CCyC admite que el causante designe en su testamento al administrador, algo novedoso: en el sistema actual, el administrador judicial es designado siempre por el juez, a propuesta de los coherederos. Con una especie de voluntad ultractiva, el causante podrá designar al administrador, lo que puede chocar con este artículo.
+
+El expositor adelanta, como criterio posible de interpretación, que parecería razonable:
+
+\begin{itemize}
+    \item si el cónyuge es quien creó o formó la unidad económica, hacer prevalecer la norma específica por sobre la voluntad del testador respecto de la designación del administrador;
+    \item si el cónyuge solo participó en la explotación, parecería más razonable mantener la designación efectuada por el testador.
+\end{itemize}
+
+\subsection{Prórroga hasta el fallecimiento y ejercicio abusivo}
+
+La disposición puede resultar sumamente abusiva, porque hoy la indivisión impuesta por el cónyuge dura 10 años, pero el tercer párrafo de la norma dispone:
+
+\begin{quote}
+\textbf{Art.~2332 CCyC (plazo y prórroga).} En todos los casos, la indivisión se mantiene hasta 10 años a partir de la muerte del causante, pero puede ser prorrogada judicialmente a pedido del cónyuge sobreviviente hasta su fallecimiento.
+\end{quote}
+
+Si el juez hiciera lugar indefinidamente a la renovación, se sacrificaría el derecho de los restantes coherederos a recibir su parte en la herencia. Esto se relaciona con la \textbf{atribución preferencial}, novedad absoluta del CCyC en materia de partición: derecho que tiene el cónyuge o el heredero que formó una unidad económica a pedir que se le atribuya en su hijuela, aun cuando exceda su cuota hereditaria, con cargo de compensar al resto de los coherederos.
+
+\begin{important}
+Si el cónyuge, eludiendo esa facultad (y ahorrándose pagar la diferencia), pide renovar la indivisión cada 10 años y sigue explotando la unidad económica, habría un \textbf{ejercicio abusivo} del derecho de indivisión impuesto por el cónyuge supérstite: pudiendo utilizar la atribución preferencial, la elude a través de la renovación periódica.
+\end{important}
+
+\subsection{Cese anticipado}
+
+\begin{quote}
+\textbf{Art.~2332 CCyC (cese anticipado).} A instancia de cualquiera de los herederos, el juez puede autorizar el cese de la indivisión antes del plazo fijado si concurren causas graves o de manifiesta utilidad económica que justifiquen la decisión.
+\end{quote}
+
+La renovación por 10 años \textbf{no es automática}: se sustanciará con el resto de los coherederos. Si se puede pedir el cese anticipado, con mayor razón podrá oponerse el resto de los coherederos a la prórroga del plazo de indivisión por parte del cónyuge.
+
+\subsection{La vivienda familiar y el derecho real de habitación}
+
+La última parte del artículo permite al cónyuge supérstite imponer la indivisión sobre un bien determinado, además de la unidad económica:
+
+\begin{quote}
+\textbf{Art.~2332 CCyC (vivienda familiar).} El cónyuge supérstite puede oponerse a que la vivienda que ha sido residencia habitual de los cónyuges al tiempo de fallecer el causante, y que ha sido adquirida o construida total o parcialmente con fondos gananciales, con sus muebles, sea excluida de la partición mientras él sobreviva, excepto que pueda ser adjudicada en su lote.
+\end{quote}
+
+Para ejercer este derecho, la vivienda debe haber sido adquirida o construida con \textbf{fondos gananciales}. En consecuencia, el artículo se aplica solamente si los cónyuges optaron por el régimen de comunidad: no habla de bien de propiedad del causante, sino de bien construido con fondos gananciales. Si el bien fuera propio de uno pero se hicieron mejoras con fondos gananciales, como hay una recompensa, también se otorga este derecho.
+
+Si los cónyuges están casados por el régimen de separación de bienes (que hoy el CCyC permite por convención matrimonial), a juicio del expositor la norma es taxativa y no sería admisible el pedido de exclusión de la partición si el bien es personal o está sujeto a separación de bienes. Esto no impide que el cónyuge ejerza el \textbf{derecho real de habitación}, que es un derecho de habitación «encubierto»: el derecho real de habitación está regulado específicamente, no exige que el bien se haya construido con fondos gananciales y puede ejercerse incluso sobre un bien de propiedad del causante.
+
+%--------------------------------------------------------------
+\section[Indivisión a pedido del heredero y oponibilidad (arts.~2333 y 2334)]{Indivisión a pedido del heredero y oponibilidad a terceros (arts.~2333 y 2334)}
+
+\begin{quote}
+\textbf{Art.~2333 CCyC (oposición del heredero).} Un heredero puede oponerse a la inclusión en la partición del establecimiento que constituye una unidad económica si antes de la muerte del causante ha participado activamente en la explotación de la empresa.
+\end{quote}
+
+Se otorga al coheredero que participó en la unidad económica el mismo derecho que al cónyuge, con todas las condiciones del artículo anterior: si el establecimiento puede ser adjudicado en su lote, no podrá ejercer esta indivisión.
+
+\subsection{Artículo 2334: oponibilidad a terceros}
+
+El art.~2334 equivale al art.~54 de la Ley 14.394 y determina a quién es oponible esta indivisión y desde qué momento.
+
+\begin{quote}
+\textbf{Art.~2334 CCyC (oponibilidad).} Las indivisiones de los arts.~2330 a 2333 que incluyan bienes registrables deben ser inscriptas en los registros respectivos.
+\end{quote}
+
+Si se trata de inmuebles, la inscripción se hace en el registro de la propiedad inmueble; si se trata de unidades económicas o sociedades, en el registro de comercio.
+
+\begin{quote}
+\textbf{Art.~2334 CCyC (acreedores de los herederos).} Durante la indivisión, los acreedores de los coherederos no pueden ejecutar el bien.
+\end{quote}
+
+A partir de la publicidad de la inscripción, los \textbf{acreedores personales de los herederos} no pueden ejecutar el bien: la ley lo sustrae del principio general de que el patrimonio del deudor es la prenda común de los acreedores. Pueden cobrarse sobre las utilidades que dé la explotación, pero no sobre el bien mismo. En cambio, para los \textbf{acreedores del causante} esta indivisión inscripta es absolutamente inoponible, lo cual es razonable: de otro modo los herederos, imponiendo la indivisión, sustraerían los bienes de la acción de los acreedores del causante.
+
+\begin{table}[H]
+\centering
+\caption{Las indivisiones impuestas}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Tipo} & \textbf{Plazo} & \textbf{Quién y requisitos} & \textbf{Particularidad} \\
+\midrule
+\textbf{Del testador} (art.~2330; antes art.~51, Ley 14.394) & Hasta 10 años; si es mayor se reduce. Bien determinado: hasta la mayoría de edad de herederos menores. & Se impone por testamento sobre la herencia, un bien, una unidad económica o partes sociales (el causante debe ser el principal socio). & Excepción a la intangibilidad de la legítima. \\
+\addlinespace
+\textbf{De los herederos} (art.~2331; antes art.~52) & Hasta 10 años, renovable por igual plazo. & Unanimidad de los coherederos; con incapaces, aprobación judicial. & Cese anticipado por causa justificada posterior al convenio. \\
+\addlinespace
+\textbf{Del cónyuge supérstite} (art.~2332; antes art.~53) & 10 años desde la muerte; prórroga judicial hasta su fallecimiento. & Cónyuge que adquirió, formó, era principal socio o participó activamente; vivienda con fondos gananciales. & Cese por causas graves o utilidad económica; no procede si puede adjudicársele en su lote. \\
+\addlinespace
+\textbf{Del heredero} (art.~2333) & Las mismas condiciones del artículo anterior. & Heredero que participó activamente en la explotación antes de la muerte. & No procede si el bien puede adjudicársele en su lote. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell: indivisión hereditaria}
+
+\begin{cornell}
+\cornellrow{¿Cuándo existe indivisión y cuándo cesa?}{Existe desde la muerte del causante si hay más de un heredero; cesa solo con la partición (art.~2323). Inscribir la declaratoria de herederos no la termina, y tampoco influye que haya o no administrador. Cada heredero tiene una cuota ideal; la partición la llena con bienes singulares.}
+\cornellrow{¿Quién administra y qué normas completan los vacíos?}{La administración puede ser extrajudicial (herederos, con mandato expreso o tácito, o gestión de negocios) o judicial (administrador provisional o definitivo). Las reglas del condominio se aplican en subsidio (art.~1984).}
+\cornellrow{¿Qué ocurre si un coheredero usa en exclusiva un bien?}{Art.~2328: cada heredero usa y disfruta conforme al destino y sin afectar a los demás; el juez puede regular el uso. Quien usa en forma privativa debe una indemnización desde que se la requieren; el reclamo es individual y sin forma especial. Rige también entre cónyuges en la indivisión postcomunitaria.}
+\cornellrow{¿Qué pasa con los frutos? ¿Deudas y cargas se pagan igual?}{Los frutos acrecen a la indivisión, salvo partición provisional (art.~2329). Las deudas se soportan según la cuota hereditaria; las cargas (honorarios, peritos), según la masa hereditaria, que puede no coincidir con la cuota.}
+\cornellrow{¿Puede un coheredero reivindicar toda la cosa?}{Arts.~2245 y 2251: contra terceros, el copartícipe puede reclamar la totalidad o una parte material; contra los restantes cotitulares, solo en la medida de su parte indivisa. Es razonable porque es un acto conservatorio.}
+\cornellrow{¿Cuál es la regla general y cuáles las excepciones?}{Regla: la partición puede pedirse en todo tiempo. Excepciones: las indivisiones impuestas por el causante, por los herederos o por el cónyuge (antes arts.~51 a 54 de la Ley 14.394; hoy arts.~2330 a 2334).}
+\cornellrow{¿Qué puede imponer el testador y por cuánto tiempo?}{Hasta 10 años, aun a legitimarios, sobre la herencia, un bien determinado, una unidad económica o partes sociales (si el causante era el principal socio). Un plazo mayor se reduce a 10. Es una excepción a la intangibilidad de la legítima.}
+\cornellrow{¿Cómo se convienen la indivisión y su cese?}{Pueden convenirla hasta 10 años, renovables, con unanimidad. Si hay incapaces o personas con capacidad restringida, se exige aprobación judicial. Cualquiera puede pedir el cese anticipado por causa justificada posterior al convenio (art.~2331).}
+\cornellrow{¿Qué derechos tiene el cónyuge supérstite?}{Puede oponerse a que se incluya en la partición el establecimiento o las partes sociales (si los adquirió, formó, era principal socio o participó activamente) y la vivienda adquirida con fondos gananciales, salvo que pueda adjudicársele. Plazo de 10 años, prorrogable; la prórroga indefinida puede ser abusiva (art.~2332).}
+\cornellrow{¿Qué efectos tiene la indivisión frente a terceros?}{El heredero que participó activamente en la explotación tiene el mismo derecho (art.~2333). Inscripta en el registro, la indivisión impide que los acreedores de los herederos ejecuten el bien; es inoponible a los acreedores del causante (art.~2334).}
+\cornellsummary{La indivisión nace con la muerte del causante cuando hay más de un heredero y solo termina con la partición. Mientras dura, la herencia se administra judicial o extrajudicialmente, el uso exclusivo genera compensación desde el requerimiento, los frutos acrecen a la masa, las deudas se pagan según la cuota y las cargas según la masa, y cada coheredero puede reivindicar frente a terceros. El principio de partición en todo tiempo admite excepciones: la indivisión impuesta por el testador, la convenida por los herederos y la que pide el cónyuge o un heredero que participó en una unidad económica, todas con plazo y requisitos propios.}
+\end{cornell}
+%==============================================================
+% CAPÍTULO 2
+%==============================================================
+\chapter[Partición de la herencia]{Partición de la herencia}
+
+%--------------------------------------------------------------
+\section[Cese de la indivisión y legitimados (arts.~2363 y 2364)]{Cese de la indivisión y legitimados para pedir la partición (arts.~2363 y 2364)}
+
+El art.~2363, coherente con lo expuesto en materia de indivisión, dispone:
+
+\begin{quote}
+\textbf{Art.~2363 CCyC (conclusión de la indivisión).} La indivisión hereditaria solo cesa con la partición. Si la partición incluye bienes registrables, es oponible a terceros desde su inscripción en los registros respectivos.
+\end{quote}
+
+Esta es también la solución actual, aun sin norma expresa: la partición hecha por los coherederos no es oponible a los terceros, que no la conocen, sino desde que adquiere publicidad; tratándose de bienes registrables, la publicidad se alcanza mediante la registración en los registros respectivos.
+
+\subsection{Legitimados activos}
+
+El artículo siguiente indica quiénes son los legitimados activos para pedir la partición. No hay diferencia con el Código Civil, aunque el CCyC es más prolijo y detallista. En primer lugar, los legitimados son los propios copropietarios de la masa indivisa, es decir, los coherederos.
+
+\begin{itemize}
+    \item \textbf{Los cesionarios de sus derechos} (art.~2364): el cesionario, parcial o total, ocupa el lugar del cedente y está facultado para instar la acción de partición, para que la cuota hereditaria cedida sea llenada con los bienes singulares que le correspondan en la partición.
+    \item \textbf{Los acreedores del heredero, por vía subrogatoria:} se trata exclusivamente de los acreedores del heredero. Los acreedores del causante no tienen interés en que se haga o no la partición: pueden ejecutar sus créditos sobre los bienes que estaban en cabeza del causante y que los herederos continúan. En cambio, el acreedor del heredero tiene interés en que su deudor incorpore bienes a su patrimonio mediante la partición, para poder ejecutar su crédito sobre ellos.
+    \item \textbf{Los beneficiarios delegados o de cargos que pesan sobre el heredero.}
+\end{itemize}
+
+Para el acreedor del heredero, esto demora a veces la posibilidad de cobrar: implica generar gastos, impulsar el proceso sucesorio y pagar, si el heredero no lo hace, todos los gastos para lograr la inscripción. El expositor opina que esto podría solucionarse admitiendo la \textbf{subasta de derechos hereditarios}, en lugar de esperar que el acreedor inscriba los bienes a nombre de su heredero y recién entonces subaste los bienes adjudicados en su hijuela.
+
+\subsection{Legatarios y beneficiarios de cargos}
+
+Curiosamente, aparecen los legatarios como facultados para pedir la partición. En el régimen actual, en principio, los legatarios no tendrían interés en la partición, porque el legatario es propietario del bien legado y tiene que pedirlo al heredero.
+
+\begin{important}
+En el CCyC \textbf{no existe más el legatario de cuota}: se lo ha reemplazado por el heredero. Si se denominara «legado de cuota», se estaría ante un heredero de cuota, que no es lo mismo.
+\end{important}
+
+Si el legado pesa sobre toda la masa, es decir, sobre todos los herederos, el legatario no tiene interés en la partición: tiene que pedir la cosa legada. La facultad que el artículo concede al legatario rige cuando el legado pesa \textbf{exclusivamente sobre un heredero}: entonces tiene interés en promover la partición, porque debe procurar que se adjudique al heredero la cosa legada para poder exigirle su entrega. Lo mismo ocurre con los beneficiarios de un cargo impuesto al heredero; si el cargo se impone a la masa, no tienen por qué pedir la partición.
+
+%--------------------------------------------------------------
+\section{Oportunidad, partición parcial y prescripción}
+
+\subsection{Oportunidad para pedir la partición (art.~2365)}
+
+Hoy el Código Civil dispone que la partición se puede pedir en todo tiempo, desde la apertura de la sucesión. El CCyC marca una diferencia:
+
+\begin{quote}
+\textbf{Art.~2365 CCyC (oportunidad).} La partición puede ser solicitada en todo tiempo después de aprobado el inventario y el avalúo [\ldots].
+\end{quote}
+
+Por lo tanto, para iniciar la acción de partición bajo el CCyC será necesario \textbf{abrir el proceso sucesorio}: el inventario y el avalúo son requisitos que se tratan dentro de ese proceso y sin ellos no se puede instar la acción de partición.
+
+\subsection{Postergación y partición parcial}
+
+El segundo párrafo del art.~2365 atempera el principio de partición en todo tiempo, permitiendo al juez, en algunos casos, no hacer lugar a la partición inmediata si ello afecta los bienes hereditarios:
+
+\begin{quote}
+\textbf{Art.~2365 CCyC (postergación).} Cualquiera de los copartícipes puede pedir que la partición se postergue total o parcialmente por el tiempo que fije el juez, si su realización inmediata puede redundar en perjuicio del valor de los bienes indivisos.
+\end{quote}
+
+En el CCyC la partición puede ser también \textbf{parcial}: los propios coherederos pueden decidir hacer una partición parcial y no total de todos los bienes hereditarios. La autonomía de la voluntad los faculta a partir una parte y dejar indiviso el resto.
+
+\subsection{Herederos condicionales}
+
+Si hay un heredero sujeto a una condición resolutoria, la partición deberá contemplar qué ocurre si se cumple la condición. Lo mismo si la condición es suspensiva: el heredero que quiera adelantar la partición deberá garantizar que, si pierde el derecho por el cumplimiento de la condición, el resto de los coherederos tenga garantía de poder resarcirse de esa partición.
+
+\subsection{Imprescriptibilidad de la acción (art.~2368)}
+
+La prescripción de la acción de partición tampoco cambia: tanto el Código Civil actual como el CCyC mantienen la \textbf{imprescriptibilidad} de la acción de partición. La excepción que contiene no es, en rigor, un supuesto de prescripción de la acción de partición, sino el supuesto del heredero que intervierte el título y prescribe individualmente cada uno de los bienes (usucapión); no es estrictamente un límite a la imprescriptibilidad. El art.~2368, de modo similar al art.~3460 del Código Civil actual, dispone:
+
+\begin{quote}
+\textbf{Art.~2368 CCyC.} La acción de partición de la herencia es imprescriptible mientras de hecho continúe la indivisión. Pero hay prescripción adquisitiva (no liberatoria), larga, de 20 años, de los bienes individuales cuando la indivisión ha cesado de hecho porque alguno de los copartícipes ha intervertido su título, poseyéndolos como único propietario durante el lapso que establece la ley.
+\end{quote}
+
+El coheredero que alega poseer a título propio, y no como coheredero, deberá \textbf{probar que ha intervertido el título}; de lo contrario la posesión se juzga como ejercida en calidad de coheredero para el resto. Es un problema de prueba: debe demostrar, mediante actos materiales, que a partir de cierta fecha quiso actuar como único dueño y comenzó a prescribir largamente (20 años) los bienes singulares.
+
+%--------------------------------------------------------------
+\section[Modos de hacer la partición: especie, venta y licitación]{Modos de hacer la partición: en especie, venta y licitación}
+
+\subsection{Partición en especie y venta (art.~2374)}
+
+El art.~3475 del Código Civil actual establece que la división debe ser, en principio, en especie si es posible. El CCyC mantiene el principio en el art.~2374:
+
+\begin{quote}
+\textbf{Art.~2374 CCyC (partición en especie).} Al dividir y adjudicar los bienes en especie, ninguno de los copartícipes puede exigir su venta. En caso contrario, se debe proceder a la venta de los bienes y a la distribución del producto que se obtiene. También puede venderse parte de los bienes si es necesario para la formación de los lotes.
+\end{quote}
+
+La novedad es que, si no se puede hacer la partición en especie, se puede vender algún bien (no todos) para equilibrar las hijuelas. Esto hoy no se admitiría: con el Código Civil, o la partición en especie es posible o hay que subastar todo. Ahora el partidor, en la partición judicial, podría disponer que se venda un bien, adjudicar otro de menor valor a un heredero y otro a otro, y equilibrar mediante créditos dinerarios la igualdad de los herederos con lo producido.
+
+\subsection{La licitación (art.~2372)}
+
+El CCyC incorpora la \textbf{licitación}, que estaba en el Código de Vélez y había sido abrogada por la Ley 17.711; ha renacido con el CCyC.
+
+\begin{definition}{Licitación}
+Mecanismo mediante el cual, cuando todos los herederos quieren el mismo bien de la herencia y eso impide la partición, el bien se somete a licitación y se lo lleva el heredero que oferta mayor precio. El bien se adjudica por el valor ofertado, y no por el valor tasado, modificándose así el avalúo.
+\end{definition}
+
+\begin{quote}
+\textbf{Art.~2372 CCyC.} Cualquiera de los copartícipes puede pedir la licitación de alguno de los bienes de la herencia para que se le adjudique dentro de su hijuela por un valor superior al del avalúo, si los demás copartícipes no superan su oferta. Efectuada la licitación entre los herederos, el bien licitado debe ser imputado a la hijuela del adquirente por el valor obtenido en la licitación, quedando de ese modo modificado el avalúo de ese bien. La oferta puede hacerse por dos o más copartícipes, caso en el cual se adjudica en copropiedad a los licitantes y se imputa proporcionalmente a la hijuela de ambos. No puede pedirse la licitación después de pasados 30 días de la aprobación de la tasación.
+\end{quote}
+
+\begin{important}
+Una vez incorporada la tasación al expediente judicial, hay que estar atento al plazo de \textbf{30 días} desde su aprobación, si algún heredero quiere plantear la licitación.
+\end{important}
+
+%--------------------------------------------------------------
+\section{Formas de la partición: privada, judicial y mixta}
+
+Hay básicamente tres formas de hacer la partición: por escritura pública (art.~1184, inciso segundo, del Código Civil); por convenio presentado al juez del sucesorio; o la llamada partición judicial. Los supuestos en que procede la partición privada o la judicial tampoco han variado.
+
+\begin{itemize}
+    \item \textbf{Partición privada:} solo es posible si todos los herederos son mayores, están presentes, son capaces, hay unanimidad y no hay terceros que se opongan.
+    \item \textbf{Partición judicial:} si alguno de esos requisitos no se cumple, hay que ir a la partición judicial, con todo lo que implica: designación de tasadores y del partidor, formulación de la cuenta particionaria, formación de los lotes, sorteo de los lotes y aprobación final por parte del juez.
+\end{itemize}
+
+\subsection{La controversia sobre la escritura pública (art.~1017)}
+
+El CCyC no reprodujo el equivalente del art.~1184, que hablaba de la escritura pública o del convenio privado presentado al juez de la sucesión. Esto ha llevado a algunos autores a sostener que ya no es posible hacer la partición por un convenio presentado al juez, de modo que la única opción sería la partición por escritura pública, o la judicial. Esta tesis es defendida desde el sector notarial.
+
+Se apoya en el art.~1017, equivalente al inciso segundo del art.~1184:
+
+\begin{quote}
+\textbf{Art.~1017 CCyC (escritura pública).} Deben ser otorgados por escritura pública, entre otros, los contratos que tienen por objeto la adquisición, modificación o extinción de derechos reales sobre inmuebles. Quedan exceptuados los casos en que el acto es realizado mediante subasta proveniente de ejecución judicial o administrativa.
+\end{quote}
+% TODO: contenido incompleto o ambiguo en las notas originales (el expositor se pregunta qué ocurre con los muebles registrados y deja la cuestión sin resolver)
+
+Según el expositor, quienes sostienen que se requiere exclusivamente escritura pública para la partición solo podrían fundarlo en el caso de que incluya inmuebles, que es a lo único que se refiere el inciso. Los otros incisos (por ejemplo, contratos que tengan por objeto derechos dudosos o litigiosos) no tocan el problema de la partición judicial.
+
+\subsection{La opinión del expositor: la partición es declarativa}
+
+El expositor entiende que la partición, en el Código Civil y en el CCyC, es \textbf{declarativa} y no constitutiva de derechos, y que así lo dice expresamente el CCyC:
+
+\begin{quote}
+\textbf{Art.~2403 CCyC (efecto declarativo).} La partición es declarativa y no traslativa de derechos.
+\end{quote}
+
+Esto significa que, por una ficción legal, se reputa que cada heredero sucedió directa e inmediatamente al causante en los bienes adjudicados y no por el convenio de partición.
+
+\begin{important}
+Si esto es así, la partición no modifica ni extingue derechos reales: lo que modificó el derecho real fue la muerte, que es un hecho natural.
+\end{important}
+
+Por lo tanto, interpreta que el convenio privado sigue siendo posible en virtud de la libertad de formas que establece el art.~2369, y que la falta de regulación expresa no implica que lo no permitido esté prohibido:
+
+\begin{quote}
+\textbf{Art.~2369 CCyC (partición privada).} Si todos los copartícipes están presentes y son plenamente capaces, la partición puede hacerse en la forma y por el acto que por unanimidad juzguen convenientes.
+\end{quote}
+
+Dentro de ello se integraría el convenio presentado al juez de la sucesión. Esta llamada \textbf{partición mixta} es privada en cuanto es la propia convención de los coherederos la que hace posible el acuerdo, pero es mixta porque interviene el juez, que ordenará las inscripciones en los registros pertinentes.
+
+\begin{important}
+Opinión del expositor: la partición mediante convenio presentado al juez sigue vigente, pese a la no reproducción del inciso segundo del art.~1184 del Código Civil.
+\end{important}
+
+\begin{table}[H]
+\centering
+\caption{Partición privada y judicial}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Partición privada (art.~2369)} & \textbf{Partición judicial} \\
+\midrule
+\textbf{Cuándo procede} & Herederos mayores, presentes, capaces, unánimes y sin terceros que se opongan. & Si falta alguno de esos requisitos. \\
+\textbf{Cómo se hace} & En la forma y por el acto que unánimemente juzguen convenientes: escritura pública o convenio presentado al juez (partición mixta). & Tasadores, partidor, cuenta particionaria, formación y sorteo de lotes y aprobación judicial. \\
+\textbf{Controversia} & Algunos autores exigen escritura pública (art.~1017); para el expositor sigue vigente el convenio presentado al juez. & --- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Atribución preferencial (arts.~2380 y 2381)}
+
+La atribución preferencial es una novedad regulada en los arts.~2380 y siguientes del CCyC.
+
+\begin{definition}{Atribución preferencial}
+Derecho del cónyuge sobreviviente o de un heredero a pedir, en la partición, que se le atribuya un establecimiento que constituye una unidad económica, con cargo de pagar el saldo (si lo hay) al resto de los coherederos, aun cuando exceda su cuota hereditaria.
+\end{definition}
+
+\begin{quote}
+\textbf{Art.~2380 CCyC.} El cónyuge sobreviviente o un heredero puede pedir la atribución preferencial en la partición, con cargo de pagar el saldo, si lo hay, del establecimiento agrícola, comercial, industrial, artesanal o de servicios, en la medida en que constituya una unidad económica (enumeración que sigue siendo ejemplificativa). En caso de explotación bajo forma social, puede pedirse la atribución preferencial de los derechos sociales si ello no afecta las disposiciones legales o cláusulas estatutarias sobre la continuación de la sociedad con el cónyuge sobreviviente o con uno o varios herederos. El saldo debe ser pagado al contado, excepto acuerdo en contrario.
+\end{quote}
+
+Es muy importante porque permite que el cónyuge (o heredero) que participó en la formación de esa unidad económica pida que se le atribuya, aunque deba pagar en dinero en efectivo la diferencia al resto de los coherederos. Si hay acuerdo, puede pagarlo en cuotas; si no hay acuerdo, debe pagarlo de contado.
+
+\subsection{Sociedades y muerte del socio}
+
+La referencia a que las disposiciones estatutarias lo permitan se relaciona con los arts.~90 y 155 de la Ley de Sociedades, que regulan en qué casos la muerte del socio provoca la resolución parcial del contrato plurilateral de sociedad.
+
+\begin{itemize}
+    \item \textbf{Sociedades colectivas, en comandita simple, de capital e industria y accidentales o en participación:} el principio general es que la muerte del socio resuelve parcialmente el contrato. Si no hay previsión de continuidad con los herederos, no se podría aplicar la atribución preferencial, porque se resolvió el contrato; se desinteresa a los restantes coherederos mediante un balance real. Si el contrato admite la continuidad, se aplica la atribución preferencial en la medida en que lo admitan las normas societarias.
+    \item \textbf{Sociedades anónimas:} son sociedades de capital y la muerte nunca provoca la resolución del contrato, por lo que no hay problema para ejercer el derecho de atribución preferencial.
+\end{itemize}
+
+El Código exige que el cónyuge haya \textbf{participado en la formación}, es decir, que de alguna manera haya intervenido personalmente en ella, pero nada dice sobre si sigue vinculado actualmente. Parecería que tendría igualmente este derecho si participó, aunque luego se haya desvinculado.
+
+\subsection{Artículo 2381: otros bienes}
+
+El art.~2381 permite la atribución preferencial de bienes que no sean la unidad económica:
+
+\begin{quote}
+\textbf{Art.~2381 CCyC (atribución de otros bienes).} El cónyuge sobreviviente o un heredero puede pedir también la atribución preferencial de la locación de un inmueble que le sirve de habitación, del local de uso profesional donde ejercía su actividad o del conjunto de cosas necesarias para una explotación rural, si era una locación.
+\end{quote}
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell: partición de la herencia}
+
+\begin{cornell}
+\cornellrow{¿Quiénes pueden pedir la partición?}{Los copropietarios de la masa, los cesionarios, los acreedores del heredero por vía subrogatoria y los beneficiarios de cargos o legados que pesan sobre un heredero. No existe más el legatario de cuota (art.~2364).}
+\cornellrow{¿Cuándo se puede pedir y prescribe la acción?}{Después de aprobados el inventario y el avalúo (art.~2365); el juez puede postergarla si perjudica el valor de los bienes; puede ser parcial. La acción es imprescriptible mientras siga la indivisión; lo que prescribe es cada bien si un heredero invierte el título (art.~2368).}
+\cornellrow{¿Cómo se dividen los bienes?}{Principio de partición en especie (art.~2374); si no es posible, se vende, incluso solo una parte para formar los lotes. Licitación (art.~2372): el heredero que ofrece más se lleva el bien por ese valor; no puede pedirse pasados 30 días de aprobada la tasación.}
+\cornellrow{¿Qué formas tiene la partición y qué se discute?}{Privada si todos son mayores, presentes, capaces y unánimes y sin oposición de terceros; si no, judicial. Se discute si subsiste el convenio presentado al juez (partición mixta). Para el expositor sí, porque la partición es declarativa (art.~2403).}
+\cornellrow{¿Qué es la atribución preferencial?}{El cónyuge o heredero que formó la unidad económica puede pedir que se le adjudique con cargo de pagar el saldo al contado, salvo acuerdo (art.~2380). En sociedades, depende de la ley societaria y los estatutos. También puede alcanzar la locación de la vivienda o del local (art.~2381).}
+\cornellsummary{La partición exige inventario y avalúo, es imprescriptible mientras subsista la indivisión de hecho, se hace en especie o con venta y licitación, y puede ser privada, judicial o mixta. La atribución preferencial permite adjudicarse la unidad económica pagando el saldo.}
+\end{cornell}
+%==============================================================
+% CAPÍTULO 3
+%==============================================================
+\chapter[Testamentos: reformas y formas]{Testamentos: reformas y formas}
+
+%--------------------------------------------------------------
+\section{Panorama de las principales reformas en materia de testamentos}
+
+A partir del 1.º de agosto de 2015 la sucesión testamentaria tendrá mayor aplicación. Entre los objetivos del CCyC está asignar mayor libertad y autonomía a la voluntad. Se señalan las siguientes razones por las que el testamento, acto jurídico que no había tenido mucha aplicación hasta el presente, merece ser repasado:
+
+\begin{itemize}
+    \item La prohibición de pactos sobre la herencia futura reconoce nuevas excepciones, como la explotación productiva o de participaciones societarias, con miras a la conservación de la unidad de gestión empresaria o a la prevención y solución de conflictos.
+    \item La reducción de las cuotas de legítima y, sobre todo, la mejora del tercio de la legítima en los supuestos de descendientes y ascendientes con discapacidad, pese a la omisión del cónyuge.
+    \item La difusión del fideicomiso y las posibilidades que se asignan en funciones de administración en materia de albaceazgo.
+    \item El divorcio y la facilidad para obtenerlo, la proliferación de familias ensambladas y la regulación de las uniones de hecho.
+\end{itemize}
+
+El expositor enumera primero las que considera principales reformas (alrededor de veinte) y luego las desarrolla.
+
+\subsection{Capacidad, sano juicio y carga de la prueba}
+
+El CCyC regula la cuestión de la «perfecta razón» y de la «completa razón», que hoy traen los arts.~3615 y 3616 del Código Civil, dentro de un artículo dedicado a la \textbf{nulidad del testamento}. Se anula el testamento otorgado por una persona privada de la razón en el momento de testar. Se mantiene el criterio de distinguir entre las limitaciones o restricciones a la capacidad y el sano juicio: es la \textbf{falta de sano juicio} lo que permite anular un testamento.
+
+La novedad es que la falta de razón debe ser demostrada, en todos los supuestos, por \textbf{quien impugna} el acto testamentario. Esto parece lógico en los supuestos de incapaces declarados, dado el nuevo régimen de restricciones a la capacidad del art.~32 del CCyC: la declaración de incapacidad será excepcional, habrá sistemas de apoyo y, en supuestos como las adicciones o la falta de completa razón, puede haber una disminución de facultades o una restricción a la capacidad. La inhabilitación queda limitada, por otro artículo (el art.~48), a los casos de inhabilitación por prodigalidad, hoy art.~152 bis.
+% TODO: contenido incompleto o ambiguo en las notas originales (el expositor cita «el 48» y «el artículo 152 bis» de manera aproximada)
+
+Había una controversia sobre la carga de la prueba, a partir de un caso muy comentado de la Suprema Corte de Buenos Aires. En él, salvo la disidencia de Pettigiani, se siguió la tesis del doctor Zannoni: se trataba del testamento de un inhabilitado, disminuido en sus facultades, inhabilitado en los términos del art.~152, inciso segundo. La Corte entendió que en ese supuesto no cabía la presunción de sano juicio y ordenó, de acuerdo con el art.~3616, la \textbf{inversión de la carga de la prueba}: el beneficiario del testamento debía demostrar que lo había otorgado en un intervalo lúcido.
+
+En el nuevo sistema, la falta de razón debe ser demostrada por quien impugna el acto. Se prevé también la nulidad del testamento otorgado por personas judicialmente declaradas incapaces; como las declaraciones de incapacidad serán excepcionales y habrá muchas más restricciones a la capacidad, en este caso no habrá inversión de la carga de la prueba.
+
+\subsection{Modalidades prohibidas e interpretación}
+
+\begin{itemize}
+    \item \textbf{Modalidades prohibidas:} en el Código de Vélez, la condición prohibida anula la disposición en que se encuentra. En el CCyC, las modalidades prohibidas \textbf{se tienen por no escritas} y la disposición es válida. En la discusión inicial entre proculeyanos y sabinianos se pasa de los primeros a los segundos.
+    \item \textbf{Interpretación:} se incorporan al Código principios de interpretación de las disposiciones testamentarias, que habían sido plasmados por fallos jurisprudenciales. Se intenta demostrar la voluntad real, la intención más que la declaración. El art.~2470 fija pautas: atender al contexto y al sentido corriente de las palabras empleadas. Remite también a la interpretación de los contratos de la parte general de contratos; algunas de esas pautas se basan en la confianza entre las partes, pero en el testamento no hay dos partes sino una sola, por lo que la remisión tiene limitaciones.
+    \item \textbf{Cumplimiento del testamento viciado:} en el Código de Vélez se discutía si era una obligación natural; ahora impide la acción de nulidad.
+\end{itemize}
+
+\subsection{Formas y formalidades}
+
+Se reducen las formalidades testamentarias, es decir, los requisitos de validez propios de cada forma. En cuanto a las formas, se autorizan exclusivamente el \textbf{testamento ológrafo} y el \textbf{testamento por acto público}; se derogan el testamento cerrado y los testamentos especiales militar y marítimo, así como aquellos recogidos en disposiciones anacrónicas, como el testamento en campaña, en tiempos de peste o en lugares donde no había escribanos. Subsiste, además, el testamento consular.
+
+\subsection{Testamento ológrafo}
+
+El art.~2339 impone, en el trámite de protocolización, que necesariamente se confeccione una \textbf{pericia caligráfica} para demostrar la autenticidad de la firma y de la manuscritura. Al expositor le parece un gasto superfluo en los supuestos en que no hay problemas ni otros interesados. En el Código de Vélez los dos testigos reconocían la manuscritura y firma, y la prueba pericial caligráfica se ofrecía cuando eso no era suficiente o cuando el juez lo estimaba necesario. Aun si la pericial caligráfica es impugnada por otros consultores técnicos, no se impide que declaren testigos sobre las preferencias, el sentido y las causas y motivaciones de ese testamento.
+
+Una novedad muy importante: el \textbf{contenido del testamento ológrafo no puede seguir a la firma}. Se supone que es para darle mayor seguridad al acto: la firma debe ir después del contenido. La fecha, en cambio, puede ir antes o después.
+
+\subsection{Testamento por acto público}
+
+Disminuye la exigencia actual de tres testigos a \textbf{dos}. Tampoco se impone, como en el Código de Vélez, que el notario consigne el modo en que el testador ordenó las disposiciones (si las dio todas por escrito o dio instrucciones escritas o verbales para que el notario las reproduzca): el modo está regulado, pero no es una exigencia incorporarlo a la escritura pública.
+
+En materia de \textbf{firma a ruego}, el expositor considera que pudo haberse mejorado el tratamiento de los supuestos jurisprudenciales que dieron lugar a divergencias y sentencias contradictorias. Se autoriza la firma a ruego cuando el testador no sabe o no puede firmar, y se mantiene la garantía de anular el testamento si el testador dice falsamente que no sabe firmar. Si no puede firmar, el texto legal dice que el escribano debe explicar la causa, pero no dice que deba recoger la declaración del testador sobre la causa informada. Esa causa puede ser verdadera o falsa, pero no da lugar a nulidad siempre que sea expresión directa del testador, que es lo que sostiene la jurisprudencia mayoritaria y que no viene a regularse en el CCyC.
+
+\subsection{Herederos a los parientes y heredero de cuota}
+
+Hay modificaciones en la institución de herederos a los parientes. Por la utilización del plural, se entiende que la institución remite a los parientes de la sucesión legítima o intestada, y que si hay un solo pariente de grado más cercano, se llama también, en la misma calidad, a los de grado siguiente: la institución a los parientes llamará al menos a dos coherederos.
+
+El \textbf{heredero de cuota} reemplaza al legatario de cuota. No tiene vocación expansiva: tiene derecho a una fracción o parte alícuota fijada por el testador. Hay supuestos de excepción:
+
+\begin{itemize}
+    \item debe entenderse que el testador quiso conferirle un llamado universal para el supuesto de que no puedan cumplirse las demás disposiciones; en ese caso el heredero de cuota acrece;
+    \item si la suma de las fracciones asignadas por el testador excede la unidad, se reducen proporcionalmente todas las cuotas; si no cubren toda la unidad y no hay herederos testamentarios, se llama a los legítimos, y si no los hay, los herederos de cuota crecen en proporción a sus cuotas, para evitar que la sucesión quede vacante y que existan derechos del Estado a título de sucesión vacante.
+\end{itemize}
+
+\subsection{Derecho de acrecer}
+
+El CCyC engloba en una sola disposición todos los casos de conjunciones del derecho romano en materia de derecho de acrecer. Hay una importante derogación: la de los arts.~3814 y 3815 del Código de Vélez, que establecían el principio de las conjunciones \emph{verbis tantum}, por el cual el testador asignaba fracciones que no daban lugar al derecho de acrecer, salvo cuando la asignación obedecía a pura ejecución de la disposición testamentaria o a fracciones asignadas en la partición. Esto no está contemplado en el nuevo Código.
+
+\subsection{Legados particulares}
+
+Se señalan las siguientes reformas en materia de legados particulares:
+
+\begin{itemize}
+    \item \textbf{Determinación:} no pueden dejarse al arbitrio de un tercero ni del heredero (art.~2495). Se modifica el criterio del Código de Vélez, según el cual el importe y la oportunidad de entrega del legado podían quedar a criterio del heredero.
+    \item \textbf{Entrega:} tradicionalmente había que pedirla al heredero, obligado al cumplimiento, o al albacea, que podía entregar contando con la conformidad de los herederos. Ahora puede pedirse al heredero, al administrador de la herencia indivisa (art.~2038) o al albacea, quien debe pedir la conformidad previa de los herederos (art.~2526).
+    \item \textbf{Simples asociaciones:} se incorpora el legado a favor de simples asociaciones, que no estaba en el Código de Vélez; se cumple a favor de las autoridades superiores, de acuerdo con la finalidad o destino dado por el testador.
+    \item \textbf{Inmuebles:} el inmueble se entrega en el estado en que se encuentre al momento de la muerte, con las mejoras incorporadas que benefician al legatario, con todos sus accesorios. Si se adquieren predios después de otorgado el testamento, también se entregan al legatario, salvo que admitan una explotación independiente: se modifica el criterio de la separabilidad por el de la explotación.
+    \item \textbf{Cosa ajena:} el art.~3752 del Código de Vélez prohíbe el legado de cosa ajena. En el CCyC queda convalidado con la adquisición ulterior de la cosa por el testador antes de su muerte (art.~2507).
+    \item \textbf{Cosa gravada:} en el Código de Vélez el legado de cosa gravada (por ejemplo, hipotecada) daba lugar a discusión sobre quién debía pagar la deuda y quién liberar la carga: el Código hablaba de liberar la carga, pero no de pagar la deuda. La doctrina y la jurisprudencia señalaban que el legatario podía cancelar la hipoteca pagando al acreedor y subrogarse en sus derechos para perseguir al heredero, que como continuador del causante debía hacerse cargo de esa deuda hereditaria. Ahora el legatario recibe la cosa gravada y debe responder por las obligaciones a cuya satisfacción se afectó la cosa, hasta el valor del legado, salvo disposición expresa del testador. En el ejemplo de la hipoteca, debe liberarla y pagar también el saldo insoluto del crédito hipotecario.
+    \item \textbf{Alimentos:} hay una regulación más precisa. Se detallan los rubros que componen el legado de alimentos y se señala hasta cuándo se aplica: hasta la mayoría de edad o hasta que se recupera la capacidad. Alcanzada la mayoría de edad, si persiste la imposibilidad de procurarse alimentos, se extiende la obligación del heredero de pagar al legatario la cuota fijada hasta que esté en condiciones de procurárselos. Si el legado de alimentos es a favor de una persona capaz, se asimila a los legados de prestaciones periódicas.
+\end{itemize}
+% TODO: contenido incompleto o ambiguo en las notas originales (la numeración «art.~2038» del administrador de la herencia indivisa figura de forma dudosa en la grabación)
+
+\subsection{Revocación de testamentos y legados}
+
+El CCyC vuelve al sistema originario de Vélez respecto de la revocación por testamento ulterior. En el Código de Vélez, el testamento ulterior revocaba al anterior salvo confirmación expresa; con la Ley 17.711, el art.~3828 quedó redactado en el sentido de que el testamento ulterior revocaba al anterior solo en la medida de la incompatibilidad, lo que generó discusiones sobre incompatibilidades materiales y jurídicas. Ahora el testamento posterior revoca el anterior, salvo confirmación, que puede ser expresa o tácita. La crítica es aplicable en uno u otro sentido: es una cuestión de prueba verificar si hay o no voluntad revocatoria del testador.
+
+\subsection{Albaceazgo}
+
+Hay mayores facultades conferidas al albacea testamentario, como ya se vio al tratar la administración de la herencia indivisa. Tenía una función secundaria, de control de las mandas testamentarias, sobre todo cuando había herederos instituidos o forzosos; ahora se le da mayor injerencia en la administración, el pago de deudas, el pago de legados, etcétera.
+
+\begin{table}[H]
+\centering
+\caption{Código de Vélez y Código Civil y Comercial en materia de testamentos}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Tema} & \textbf{Código de Vélez} & \textbf{Código Civil y Comercial} \\
+\midrule
+\textbf{Formas} & Ológrafo, acto público, cerrado y especiales (militar, marítimo, campaña, peste). & Ológrafo, acto público y consular (y aeronáutico por ley especial); se derogan el cerrado y los especiales. \\
+\textbf{Testigos en acto público} & Tres. & Dos. \\
+\textbf{Ológrafo} & --- & El contenido no puede seguir a la firma; la fecha puede ir antes o después. \\
+\textbf{Falta de razón} & Controversia sobre la inversión de la carga de la prueba. & La prueba corresponde a quien impugna, salvo el declarado incapaz. \\
+\textbf{Modalidades prohibidas} & Anulan la disposición. & Se tienen por no escritas. \\
+\textbf{Testamento viciado cumplido} & Se discutía si era obligación natural. & Impide la acción de nulidad. \\
+\textbf{Revocación por testamento ulterior} & Tras la Ley 17.711, solo en la medida de la incompatibilidad. & Revoca el anterior, salvo confirmación expresa o tácita. \\
+\textbf{Legado de cosa ajena} & Prohibido (art.~3752). & Válido si el testador la adquiere antes de morir (art.~2507). \\
+\textbf{Legado de cosa gravada} & El legatario liberaba la carga. & El legatario responde por la obligación hasta el valor del legado. \\
+\textbf{Importe y oportunidad del legado} & Podían quedar a criterio del heredero. & No pueden dejarse al arbitrio de un tercero ni del heredero (art.~2495). \\
+\textbf{Legado de cuota} & Legatario de cuota. & Heredero de cuota. \\
+\textbf{Albacea} & Función secundaria, de control. & Mayores facultades: administración, pago de deudas y legados. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Concepto de testamento, contenido y disposiciones extrapatrimoniales}
+
+El CCyC recoge el criterio de la definición del art.~2607 del Código de Vélez, pero apuntando a la función de este acto jurídico.
+% TODO: contenido incompleto o ambiguo en las notas originales (la numeración «art.~2607» del Código de Vélez figura así en la grabación)
+
+\begin{definition}{Testamento}
+Acto jurídico escrito, solemne y de última voluntad, que tiene por fin inmediato la previsión de la disposición patrimonial de bienes del testador para después de la muerte.
+\end{definition}
+
+\begin{quote}
+\textbf{Art.~2462 CCyC (concepto).} Pueden disponer libremente de sus bienes para después de la muerte, respetando las porciones legítimas establecidas en el título 10, mediante testamento otorgado con las solemnidades legales.
+\end{quote}
+
+El testamento debe respetar las porciones de legítima. Testan las personas humanas, no las personas jurídicas.
+
+\subsection{Disposiciones extrapatrimoniales}
+
+El acto puede también incluir disposiciones extrapatrimoniales. Algunas están expresamente previstas en el CCyC:
+
+\begin{itemize}
+    \item el reconocimiento de hijos extramatrimoniales (art.~571);
+    \item la designación de tutores (art.~106);
+    \item la designación de curadores (art.~139).
+\end{itemize}
+
+%--------------------------------------------------------------
+\section{Capacidad, ley aplicable y causales de nulidad}
+
+Los supuestos de nulidad del testamento por falta de sanidad mental del disponente están contemplados en el art.~2467, incisos c, d y e, con la novedad del inciso e.
+
+\begin{quote}
+\textbf{Art.~2467, inc.~e, CCyC (limitaciones de comunicación).} Es nulo el testamento otorgado por una persona que padece limitaciones en la aptitud para comunicarse en forma oral y además no sabe leer ni escribir, excepto que lo haga por escritura pública con la participación de un intérprete en el acto.
+\end{quote}
+
+Según los fundamentos del anteproyecto, no se han previsto inhabilidades especiales para las distintas formas de testar. Este artículo recoge, de alguna manera, las incapacidades de los sordomudos que no saben darse a entender por escrito y las limitaciones que se preveían en materia de testamento por acto público para el sordo, el mudo y el sordomudo, que no podían testar por esa forma. Ahora pueden hacerlo siempre que intervenga un intérprete.
+
+Debe tenerse en cuenta la nueva regulación de los sistemas de capacidad. No se distingue entre incapacidad declarada y restricciones a la capacidad declaradas: lo único que se prevé es la nulidad del testamento otorgado por una persona judicialmente declarada incapaz, que es la excepción a la regla del art.~32. Se impone en todos los supuestos la carga de demostrar la falta de sano juicio a quien pretenda impugnar el testamento, salvo el caso del incapaz declarado.
+
+\begin{quote}
+\textbf{Art.~2467, inc.~d, CCyC (intervalos lúcidos).} Se autoriza el testamento otorgado en intervalos lúcidos suficientemente ciertos como para asegurar que la enfermedad ha cesado por entonces.
+\end{quote}
+
+\subsection{Ley aplicable}
+
+No hay mayores modificaciones respecto del Código Civil actual:
+
+\begin{itemize}
+    \item la \textbf{capacidad} se rige por la ley del domicilio del testador al tiempo de hacer el testamento;
+    \item el \textbf{contenido} se rige por la ley vigente al momento de la muerte del testador;
+    \item la \textbf{forma} se rige por la ley vigente al momento de otorgarlo;
+    \item el testamento \textbf{otorgado en el extranjero} es válido si cumple las formas y formalidades del lugar de otorgamiento, del domicilio o de la nacionalidad;
+    \item la \textbf{sucesión} se rige por la ley del último domicilio del causante.
+\end{itemize}
+
+\subsection{Otras causales de nulidad y acción de nulidad}
+
+Además de la falta de sano juicio, la declaración judicial de incapacidad y las limitaciones en la aptitud de comunicación, el art.~2467 menciona como causales de nulidad:
+
+\begin{itemize}
+    \item la violación de una prohibición legal;
+    \item los defectos de forma;
+    \item los vicios del consentimiento (error, dolo, violencia);
+    \item favorecer a personas inciertas, a menos que por alguna circunstancia puedan llegar a ser ciertas.
+\end{itemize}
+
+También se regula la \textbf{acción de nulidad}. Se amplía la legitimación activa a \textbf{cualquier interesado}, lo que incluye al heredero sustituto, al heredero de grado ulterior, al acreedor del heredero y al albacea. El albacea es parte necesaria en los juicios de nulidad, lo cual no implica que deba optar por la nulidad o por defender la validez.
+
+%--------------------------------------------------------------
+\section{Interpretación del testamento y obligación de comunicarlo}
+
+En materia de interpretación hay una norma expresa con remisión a los contratos. Lo importante es desentrañar la voluntad del testador, lo querido por él más allá de lo declarado, de acuerdo con principios de buena fe y atendiendo al contexto; la referencia a la confianza es propia más de los contratos que del acto de última voluntad.
+
+Se prevé una \textbf{obligación de comunicar la existencia de un testamento} a quien participó del otorgamiento. Esto va sobre todo para los escribanos en los testamentos por acto público. Es una norma que no trae sanción, y está suplida de alguna manera por las obligaciones que genera la inscripción de los testamentos otorgados en los registros de los colegios de escribanos, que pueden solicitarse por vía de informes dentro del proceso sucesorio.
+
+%--------------------------------------------------------------
+\section{Formas y formalidades comunes a todos los testamentos}
+
+Solamente se puede otorgar testamento por las formas previstas en el Código.
+
+\begin{itemize}
+    \item \textbf{Forma escrita.} Es una de las formalidades comunes a todas las formas. Podría haberse acudido a medios más modernos, como videograbaciones, pero se mantiene el criterio tradicional del testamento escrito, sin admitir el testamento oral.
+    \item \textbf{Testamento individual.} Tampoco se admite el testamento mancomunado o conjunto.
+    \item \textbf{Formalidades propias de cada forma.} Los requisitos de validez propios de cada forma testamentaria no pueden extenderse a otra. Por ejemplo, la firma a ruego, válida en el testamento por acto público, no es aplicable al testamento ológrafo.
+    \item \textbf{La observancia de las formalidades debe surgir del mismo testamento,} sin que se pueda suplir por prueba externa. Esto se refiere solo al cumplimiento de las formalidades, no a su incumplimiento, que necesariamente se demostrará por prueba externa.
+    \item \textbf{Formas no previstas.} La falta de las formas testamentarias nulifica todo el testamento.
+    \item \textbf{Firma.} Se mantiene como formalidad propia de todas las formas testamentarias. Se admite el uso del pseudónimo.
+\end{itemize}
+
+\begin{example}{Observancia e inobservancia de las formalidades}
+Si en un testamento por acto público el escribano omite consignar que dio lectura al testamento, este cae por falta de cumplimiento de la formalidad de la lectura previa a la firma. En el supuesto inverso, si el testamento indica que se dio lectura pero en realidad el escribano no la dio en presencia de los testigos, será necesaria una querella de falsedad y habrá que acudir a prueba externa. Hay que distinguir, entonces, la observancia de la inobservancia de las formalidades.
+\end{example}
+
+\textbf{Formas derogadas y subsistentes.} Se derogaron el testamento cerrado, los testamentos especiales, el testamento en campaña y el testamento en tiempos de peste. Se mantienen el testamento consular, que también trae el Código Civil, y el testamento aeronáutico, previsto en el código de la materia.
+
+%--------------------------------------------------------------
+\section{Testamento ológrafo}
+
+No hay modificaciones de las formalidades esenciales del testamento ológrafo: \textbf{manuscritura, fecha y firma}. Su ventaja era que resultaba más sencillo y menos oneroso. Aunque esto no le importa al testador, sí importa a los herederos el trámite de protocolización, que exige necesariamente la pericia caligráfica por el art.~2339.
+
+Se admite otorgar un testamento ológrafo con los caracteres propios de cada idioma (el testamento en chino está permitido). No puede hacerse un testamento mecanografiado ni en braille, por ejemplo. Se deben firmar todas las hojas del testamento ológrafo, salvo que exista alguna posibilidad de unión, es decir, alguna disposición incompleta.
+
+\subsection{La fecha: errada, falsa, incompleta y ausente}
+
+Se mantienen las distinciones que ha fijado la doctrina en el Código actual: fecha errada, falsa, incompleta y carencia de fecha. La fecha puede consignarse antes o después de la firma; en cambio, la firma tiene que ir luego del contenido, y no son válidas las disposiciones insertadas después de la firma.
+
+\begin{itemize}
+    \item \textbf{Fecha errada:} no anula si puede establecerse por otra vía consignada en el testamento.
+    \item \textbf{Fecha falsa:} anula el acto en la medida del interés del impugnante. Que el testamento sea antedatado o posdatado por el testador no tendría incidencia por sí mismo, salvo que por esa vía se pretendiese vulnerar alguna cuestión de capacidad civil (restricción o pérdida), la ley aplicable al contenido o la revocación por matrimonio. La falsedad no anula por sí misma, sino que permite la anulación en función del interés, apreciando las razones por las que el testador falseó la fecha.
+    \item \textbf{Fecha incompleta:} no anula si otros elementos de juicio permiten demostrar el cumplimiento de la formalidad.
+    \item \textbf{Falta total de fecha:} invalida el testamento.
+\end{itemize}
+
+Se había discutido si la falta del día no implicaba la anulación (el testamento habría sido hecho en alguno de los 28, 29, 30 o 31 días del mes, y si no hubo modificaciones en el contenido, en la ley aplicable, en la capacidad o en las revocaciones, no habría razón para anular), y lo mismo respecto del mes. Por ese camino se omitía el recaudo de la fecha.
+
+\begin{important}
+El plenario \emph{Marcos de Masini} de la Cámara Civil (1980) expresó claramente que el testamento carente de fecha es inválido.
+\end{important}
+
+\begin{table}[H]
+\centering
+\caption{Efectos de los defectos de fecha en el testamento ológrafo}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Fecha} & \textbf{Efecto} \\
+\midrule
+\textbf{Errada} & No anula si puede establecerse por otra vía consignada en el testamento. \\
+\textbf{Falsa} & Anula en la medida del interés del impugnante; la antedata o posdata no anula por sí sola. \\
+\textbf{Incompleta} & No anula si otros elementos de juicio demuestran la formalidad. \\
+\textbf{Ausente} & Invalida el testamento (plenario de la Cámara Civil, 1980). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Agregados de mano extraña y pluralidad de ejemplares}
+
+Los agregados al testamento ológrafo por mano extraña invalidan el acto de última voluntad si han sido hechos por orden o con consentimiento del testador. Si son incorporaciones o agregados de un tercero que pueden suprimirse y reconstruirse, el testamento ológrafo no será anulado.
+
+Si hay varios ejemplares, en los supuestos de revocación habrá que destruir todos los otorgados antes de la muerte para que, después de la muerte, no haya otras disposiciones.
+
+%--------------------------------------------------------------
+\section{Testamento por acto público, testigos y testamento consular}
+
+Al testamento por acto público se aplican los principios y normas de las escrituras públicas. Se otorga ante un escribano público en presencia de \textbf{dos testigos hábiles}, cuyo nombre completo y domicilio deben figurar en la escritura. El escribano sigue siendo el juez de la habilidad del testigo. Es un instrumento público que hace plena fe de los hechos pasados o cumplidos por el oficial público en su presencia.
+
+\subsection{Ventajas e inconvenientes frente al ológrafo}
+
+Mantiene las mismas ventajas e inconvenientes que frente al ológrafo:
+
+\begin{itemize}
+    \item \textbf{Ventajas:} la intervención del fedatario, que puede aportar mayor técnica; la conservación en el protocolo notarial (el testamento ológrafo es más fácil de destruir); la registración.
+    \item \textbf{Inconvenientes:} el conocimiento que puedan tener terceros del testamento otorgado (en el ológrafo, el secreto es una de sus principales ventajas) y la onerosidad propia del acto que autoriza el escribano.
+\end{itemize}
+
+No hay previsiones de incapacidad para otorgar esta forma testamentaria, salvo los supuestos de limitaciones de comunicación que exigen la presencia de un intérprete. Sigue exigiéndose la habilidad del escribano.
+
+El modo de ordenar las disposiciones también está previsto: puede darse por escrito o mediante instrucciones escritas o verbales. La novedad es que no hay que consignar en la escritura el modo en que se ordenaron. La norma, en forma sobreabundante a juicio del expositor, dice que las instrucciones escritas no podrán invocarse contra lo que diga la escritura, que además es leída y ratificada por el testador en el acto de la firma.
+
+\subsection{Orden de las firmas y firma a ruego}
+
+El orden de la firma está modificado: se prevé la lectura y la firma de los testigos y del testador. Antes, en el Código Civil, firmaban el testador, los testigos y el escribano, en ese orden. Se recuerda el caso que menciona la nota del Código de Vélez del testador que fallecía después de firmar, sin que hubieran firmado los testigos ni el escribano. La firma del autorizante debe constar según los principios de las escrituras públicas.
+
+En cuanto a la \textbf{firma a ruego} se autorizan los dos supuestos tradicionales: si el testador no sabe o no puede firmar, puede firmar un tercero o uno de los dos testigos, pero los dos testigos deben saber firmar el testamento por acto público. Si sabe firmar y dice falsamente que no sabe, el testamento se anula. Si no puede firmar, el escribano debe explicitar la causa por la que no firma, sin que se aclare si es el escribano por sí quien la indica o si es la declaración del testador recogida por el escribano, que es a lo que apuntan la nota del Código de Vélez y la jurisprudencia mayoritaria.
+
+\subsection{Testigos}
+
+La norma remite al art.~295, general sobre inhabilidades de testigos en los instrumentos públicos y escrituras públicas. No pueden ser testigos, además de los indicados en el art.~295:
+
+\begin{itemize}
+    \item los incapaces de ejercicio;
+    \item las personas a quienes una sentencia les impide ser testigo en los instrumentos públicos;
+    \item los que no sepan firmar;
+    \item los dependientes del oficial público, el cónyuge, el conviviente y los parientes del oficial público en el cuarto grado o en el segundo de afinidad;
+    \item los descendientes, ascendientes, cónyuge y conviviente, el albacea, el tutor y el curador, o el beneficiado por las disposiciones.
+\end{itemize}
+
+\subsection{Testamento consular}
+
+El testamento consular está previsto en el art.~2646: se considera válido el testamento hecho en otro país. Tiene la regulación, autenticación y remisión previstas por vía de cancillería para presentarlo al juez o ante un escribano protocolizante.
+
+\begin{table}[H]
+\centering
+\caption{Testamento ológrafo y testamento por acto público}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Ológrafo} & \textbf{Acto público} \\
+\midrule
+\textbf{Ventajas} & Secreto, sencillez, menor costo. & Intervención del fedatario, mayor técnica, conservación del protocolo, registración. \\
+\textbf{Inconvenientes} & Más fácil de destruir; protocolización con pericia caligráfica (art.~2339). & Conocimiento por terceros y onerosidad. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Incapacidades para recibir por testamento}
+
+Las incapacidades para recibir por testamento están contempladas en tres supuestos:
+
+\begin{enumerate}
+    \item los tutores y curadores, antes de ser aprobadas las cuentas definitivas de su administración;
+    \item el escribano y los testigos;
+    \item los ministros de cualquier culto o líderes o conductores espirituales.
+\end{enumerate}
+% TODO: contenido incompleto o ambiguo en las notas originales (en el primer supuesto se menciona «los supuestos que los pupilos fallezcan antes», sin que la frase quede completa)
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell: testamentos, reformas y formas}
+
+\begin{cornell}
+\cornellrow{¿Por qué el testamento cobrará mayor aplicación?}{Por la mayor autonomía de la voluntad, nuevas excepciones a los pactos sobre herencia futura, menor legítima, fideicomiso, divorcio más simple, familias ensambladas y uniones convivenciales. El expositor enumera las principales reformas antes de desarrollarlas.}
+\cornellrow{¿Qué es un testamento?}{Acto escrito, solemne y de última voluntad (art.~2462) para disponer de los bienes para después de la muerte, respetando la legítima. Puede contener disposiciones extrapatrimoniales: reconocimiento de hijos, designación de tutores o curadores.}
+\cornellrow{¿Cuándo es nulo y quién prueba?}{Es nulo si falta sano juicio, por declaración de incapacidad, por limitaciones de comunicación sin intérprete, por violación de prohibición legal, defectos de forma, vicios del consentimiento o por favorecer a personas inciertas (art.~2467). Quien impugna debe probar la falta de razón, salvo el declarado incapaz.}
+\cornellrow{¿Cómo se interpreta y qué se debe comunicar?}{Se busca la voluntad real más que lo declarado, con buena fe y contexto (art.~2470), con remisión a los contratos, que tiene límites porque no hay dos partes. Existe la obligación, sin sanción, de comunicar la existencia del testamento.}
+\cornellrow{¿Qué formas de testar admite el Código?}{Solo por escrito; no hay testamento oral ni conjunto. Se derogan el cerrado y los especiales; subsisten ológrafo, acto público y consular (y el aeronáutico). La firma es formalidad común; se admite el pseudónimo.}
+\cornellrow{¿Qué exige el testamento ológrafo?}{Manuscrito, fechado y firmado, con la firma luego del contenido; la fecha puede ir antes o después. Fecha errada, falsa o incompleta no anulan por sí solas; la ausencia total de fecha invalida (plenario de la Cámara Civil, 1980).}
+\cornellrow{¿Qué cambia en el acto público?}{Se pasa de tres a dos testigos; no hace falta consignar cómo se ordenaron las disposiciones; firman primero los testigos y luego el testador. Hay firma a ruego si no sabe o no puede firmar; si dice falsamente no saber, se anula. Rigen reglas de inhabilidad de testigos.}
+\cornellrow{¿Quiénes son incapaces de recibir?}{Tutores y curadores antes de aprobar cuentas definitivas, el escribano y los testigos, y los ministros de cualquier culto o líderes espirituales.}
+\cornellsummary{Las reformas en testamentos incluyen nuevas reglas de capacidad y de prueba (quien impugna prueba la falta de razón), interpretación de la voluntad real, formas reducidas (ológrafo, acto público y consular), reducción de formalidades y causales de nulidad ampliadas. Se persigue una mayor autonomía de la voluntad con límites claros que protegen la legítima, a los terceros y la seguridad jurídica.}
+\end{cornell}
+%==============================================================
+% CAPÍTULO 4
+%==============================================================
+\chapter[Herederos, acrecimiento, sustituciones y legados]{Herederos, acrecimiento, sustituciones y legados}
+
+%--------------------------------------------------------------
+\section{Institución de herederos}
+
+El art.~2278, al comienzo de la regulación sucesoria, define los términos:
+
+\begin{definition}{Heredero y legatario (art.~2278 CCyC)}
+Se denomina \textbf{heredero} a la persona a quien se transmite la universalidad o una parte indivisa de la herencia. Se denomina \textbf{legatario} al que recibe un bien particular o un conjunto de ellos.
+\end{definition}
+
+Este artículo menciona uno de los elementos de la condición hereditaria (la recepción de la universalidad, de una parte alícuota o de una fracción), pero no menciona el \textbf{derecho de acrecer} implícito en la condición hereditaria, al que sí se refiere un artículo posterior, el art.~2486:
+
+\begin{quote}
+\textbf{Art.~2486 CCyC (herederos sin asignación de partes).} Los herederos instituidos sin asignación de partes suceden por partes iguales y tienen vocación a todos los bienes de la herencia a los que el testador no les haya dado un destino diferente.
+\end{quote}
+
+Los dos presupuestos que permiten reconocer a un heredero instituido son los que mencionó el doctor Bargalló en su voto en el plenario \emph{Cambó} de 1953:
+
+\begin{enumerate}
+    \item el llamamiento en la universalidad y a la universalidad: no en bienes determinados, sino al todo o a una fracción;
+    \item el derecho de acrecer implícito, esa potencialidad propia de la condición de heredero.
+\end{enumerate}
+
+Los requisitos se mantienen: el heredero debe estar instituido en el testamento, por la forma testamentaria, y designado por el testador con una determinación inequívoca. Se admite la institución de herederos en \textbf{partes desiguales}, siempre que tengan esa potencialidad implícita sobre el todo de la herencia.
+
+\subsection{Instituciones indirectas y herederos universales (art.~2487)}
+
+Se mantienen las llamadas instituciones indirectas hereditarias, que en el Código de Vélez eran los casos de los arts.~3720, 3717 y 3718. Ahora están previstos en un solo artículo, el art.~2487, como casos de institución de herederos universales:
+
+\begin{itemize}
+    \item \textbf{Legado del remanente:} después de haber otorgado uno o varios legados particulares, se lega el remanente de los bienes a otra persona; esta última es considerada heredero.
+    \item \textbf{Legado de la nuda propiedad:} el legado en la universalidad de la nuda propiedad, aunque se haya dejado el usufructo a otra persona, por su condición permanente del dominio, asigna la condición de heredero.
+    \item \textbf{Legados que agotan todos los bienes de la herencia} y tienen entre sí una conjunción que da lugar al derecho de acrecer.
+\end{itemize}
+
+La institución en una cosa cierta solamente tiene el carácter de legado (estaba prevista en el art.~3716 del Código de Vélez y ahora hay norma expresa en el art.~2487).
+
+\begin{example}{Institución en cosa cierta y su inversa}
+«Instituyo a Juan en la casa de Mar del Plata» es una institución en una cosa cierta (\emph{in re certa} en el derecho romano) y vale solo como legado. En cambio, «instituyo a Juan en todos mis bienes, excepto la casa de Mar del Plata» (institución \emph{ex re certa}) no está legislada.
+\end{example}
+% TODO: contenido incompleto o ambiguo en las notas originales (en la exposición los términos «ex re certa» e «in re certa» aparecen confundidos; y se agrega que para ese supuesto habrá que recurrir al derecho comparado)
+
+\subsection{Herederos a los parientes, asociaciones y «pobres»}
+
+\begin{itemize}
+    \item \textbf{Institución a los parientes:} por el uso del plural, no solo remite a la sucesión intestada, sino al pariente de grado más próximo y también a los restantes si hay uno solo en el grado más próximo.
+    \item \textbf{Legado a las simples asociaciones:} novedad prevista en beneficio de las autoridades superiores de estas simples asociaciones del último domicilio del testador, con aplicación a los fines indicados por el testador en el testamento.
+    \item \textbf{Institución a los «pobres»:} está mejor regulada. Es una institución a los estados municipales del último domicilio del testador, o a la Ciudad Autónoma de Buenos Aires, para fines de asistencia social.
+    \item \textbf{Institución «al alma»:} es la institución a las autoridades superiores de la religión del testador con cargo de sufragios y limosnas. Se mantiene, como otras disposiciones anacrónicas.
+\end{itemize}
+
+\subsection{Investidura y legitimario omitido}
+
+Hay supuestos de \textbf{investidura} automática para los casos de descendientes, ascendientes y cónyuge, o de investidura judicialmente otorgada con la aprobación del testamento. No está regulada la coexistencia de herederos forzosos instituidos, de modo que se mantiene el mismo criterio.
+
+En cambio, si se \textbf{omite a un heredero forzoso} y se instituye a otros herederos en el testamento, existe una acción de entrega de la legítima prevista en el art.~2450. Ese legitimario solo tendrá derecho a reclamar la legítima a título de \textbf{heredero de cuota}, como el actual legatario de cuota, es decir, sin derecho de acrecer por principio. Se trata del legitimario «no heredero» de la \emph{pars bonorum}.
+
+%--------------------------------------------------------------
+\section{Heredero de cuota}
+
+Los herederos de cuota, como se dijo, no tienen vocación expansiva: reciben una fracción. Sí tienen una mayor posibilidad de intervención. Responden en la medida de su cuota por el pago de deudas y otros legados. Se los autoriza a iniciar el proceso sucesorio, a intervenir en la administración de la herencia y a solicitar la partición. Pueden también plantear la acción de petición de herencia. Estas facultades, ampliadas por la jurisprudencia, están ahora previstas a partir del art.~2488.
+
+Los casos en que puede haber acrecimiento, pese al principio general de no acrecimiento del heredero de cuota, son:
+
+\begin{itemize}
+    \item cuando debe entenderse que el testador quiso conferirles un llamado universal si no podían cumplirse las demás disposiciones testamentarias; en realidad se desentraña la voluntad del testador y no se está ante un heredero de cuota, sino ante un heredero universal;
+    \item cuando la suma de las fracciones consignadas en el testamento excede la unidad: las cuotas se reducen proporcionalmente hasta el límite de la unidad; y si no cubren todo el patrimonio, el remanente corresponde en primer lugar a los herederos legítimos (partiendo de que no hay herederos testamentarios) y, a falta de ellos, a los herederos de cuota en proporción a sus cuotas, para evitar que la sucesión quede vacante y pase al Estado.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Heredero, heredero de cuota y legatario}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Heredero} & \textbf{Heredero de cuota} & \textbf{Legatario} \\
+\midrule
+\textbf{Qué recibe} & La universalidad o una parte indivisa. & Una fracción fijada por el testador. & Un bien particular o un conjunto de ellos. \\
+\textbf{Derecho de crecer} & Implícito. & No tiene vocación expansiva (con excepciones). & No hay acrecimiento sobre objetos singulares. \\
+\textbf{Facultades} & Las propias de la condición hereditaria. & Iniciar el sucesorio, administrar, pedir la partición y la petición de herencia. & Propietario desde la muerte; pide la entrega. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%--------------------------------------------------------------
+\section{Derecho de acrecer (art.~2489)}
+
+El CCyC regula en una sola norma el derecho de acrecer:
+
+\begin{quote}
+\textbf{Art.~2489 CCyC.} Cuando el testador instituye varios herederos en una misma cuota o atribuye un bien conjuntamente a varios legatarios, cada beneficiario aprovecha proporcionalmente de la parte perteneciente al heredero o legatario cuyo derecho se frustra o caduca. Los favorecidos por el acrecimiento quedan sujetos a las obligaciones y cargas que pesaban sobre la parte acrecida, excepto que sean de carácter personal. El derecho de acrecer se transmite a los herederos.
+\end{quote}
+
+La norma es aplicable, sobre todo, al llamamiento conjunto en una misma cosa o en una misma cuota: la conjunción \emph{re et verbis} del derecho romano, o la conjunción \emph{re tantum} en los supuestos de llamamientos en diversas disposiciones del mismo testamento o de testamentos sucesivos compatibles.
+
+En caso de frustrarse el derecho de uno de los beneficiarios (por ejemplo, por caducidad debida a premoriencia de uno de los instituidos herederos o legatarios), el restante aprovecha la porción vacante y crece sobre ella.
+
+\begin{example}{Fracciones asignadas en el Código de Vélez}
+En el Código Civil actual, si el testador asigna fracciones sobre la cosa legada, no hay acrecimiento, salvo (principio del art.~3814) cuando la asignación de fracciones ha sido por pura ejecución o para partir. Por ejemplo, «quiero que reciba el doble Juan que Pedro»: esa expresión no los priva del derecho de acrecer. Esto no está reproducido en el Código nuevo, por lo que habrá que estar atentos a las interpretaciones jurisprudenciales.
+\end{example}
+
+En el \textbf{legado de usufructo}, la caducidad de un legatario no permite acrecer al restante, salvo que el testador imponga lo contrario.
+
+%--------------------------------------------------------------
+\section{Sustituciones (arts.~2491 y 2492)}
+
+La sustitución es, junto con el acrecimiento, otra de las posibilidades que se dan al testador para la transmisión íntegra del patrimonio. Es el testador quien regula su sucesión y, por vía de sustituciones o de acrecimiento, puede evitar que queden bienes vacantes. La sustitución se da cuando alguno de los llamados no quiere o no puede aceptar la herencia o el legado.
+
+La única sustitución admitida, tanto en el Código de Vélez como en el CCyC, es la \textbf{sustitución vulgar}: se llama a uno o más legatarios o herederos en sustitución, o para el supuesto en que el primer llamado no pueda o no quiera aceptar la herencia o el legado. El art.~2491 prevé, desde el principio, la imposibilidad o prohibición de establecer otras sustituciones, como la fideicomisaria.
+
+\begin{definition}{Sustitución fideicomisaria}
+Se da cuando se impone al primer llamado la conservación de los bienes para transmitirlos, a su muerte, a aquel que llamó el testador. De este modo se inmovilizan los bienes y se establece un orden sucesorio por distintas generaciones, que el Código no admite.
+\end{definition}
+
+\begin{important}
+La sustitución fideicomisaria sigue estando prohibida en el Código de Vélez y en el CCyC. Otros códigos, como el alemán, la admiten por 30 años; en el nuestro no está permitida.
+\end{important}
+
+\begin{quote}
+\textbf{Art.~2491 CCyC (sustitución).} La facultad de instituir herederos o legatarios no importa el derecho de imponer un sucesor a los instituidos. La disposición que viola esta prohibición no afecta la validez de la institución.
+\end{quote}
+
+Se tiene por no escrito al sustituto fideicomisario y por válido al primer instituido.
+
+\begin{quote}
+\textbf{Art.~2491 CCyC (sustitución vulgar).} El testador puede subrogar al instituido en el supuesto de que este no quiera o no pueda aceptar la herencia. La sustitución establecida para uno de esos casos vale para el otro. El heredero o legatario sustituto queda sujeto a las mismas cargas y condiciones impuestas al sustituido, si no aparece claramente que el testador quiso limitarlas al llamado en primer término.
+\end{quote}
+
+No hay modificaciones: se mantiene el criterio de permitir la sustitución vulgar y de prohibir la fideicomisaria. No debe confundirse con el \textbf{fideicomiso testamentario}, que se refiere a bienes determinados, está regulado por una ley especial y está permitido en el art.~1699, siempre que no afecte la legítima de los legitimarios.
+
+\subsection{Sustitución del residuo (art.~2492)}
+
+La sustitución del residuo, es decir, la sustitución en el resto, también está prohibida:
+
+\begin{quote}
+\textbf{Art.~2492 CCyC.} Es nula la disposición del testador por la que llame a un tercero a recibir lo que reste de la herencia al morir el heredero o legatario instituido. La nulidad de esta disposición no perjudica los derechos de los instituidos.
+\end{quote}
+% TODO: contenido incompleto o ambiguo en las notas originales (el texto del art.~2492 se leyó de manera fragmentaria en la exposición)
+
+Los llamados en primer lugar mantienen la validez; los sustitutos prohibidos se tienen por no escritos y no anulan las disposiciones. Según los fundamentos del anteproyecto, esto se debe a que el beneficiario en primer lugar no tiene por qué sufrir las consecuencias de las prohibiciones del llamado en último lugar ni de las condiciones prohibidas.
+
+%--------------------------------------------------------------
+\section{Legados particulares: régimen general}
+
+El legado particular es siempre una disposición testamentaria a título de liberalidad, sin acrecimiento sobre objetos singulares. El sujeto gravado es siempre el heredero.
+
+\begin{itemize}
+    \item \textbf{Determinación:} no puede dejarse la determinación del legado al arbitrio de un tercero ni del heredero. En el Código de Vélez sí podía dejarse la elección del importe y de la oportunidad de pago.
+    \item \textbf{Entrega:} se remite a la regulación de las obligaciones.
+    \item \textbf{Propiedad:} el legatario es propietario del derecho al legado desde la muerte, aunque tenga que pedir su entrega. Es el mismo criterio del Código Civil, aunque varían los destinatarios del pedido de entrega.
+    \item \textbf{Objeto:} el legado puede otorgarse sobre cosas que estén en el comercio, aunque no existan pero existirán después.
+    \item \textbf{Cosa ajena:} el legado de cosa ajena es válido siempre que se convalide con la adquisición ulterior por el testador, posterior al testamento y anterior a la muerte.
+\end{itemize}
+
+\subsection{Adquisición del legado, entrega y acciones del legatario}
+
+El legatario adquiere el derecho al legado, de acuerdo con los principios generales sucesorios, desde el momento de la muerte del testador: es propietario desde ese día y, como tal, puede ejercer las acciones del titular dominial, por ejemplo, la reivindicación frente a terceros.
+
+En cambio, si es un legado de cosa cierta, el art.~2498 le impone pedir su entrega al heredero, al administrador o al albacea. El albacea no puede entregar el legado si no cuenta con la citación y conformidad de los herederos, que son los sujetos gravados: son quienes primero deben verificar, por ejemplo, el cálculo de sus legítimas, si fueran forzosos, y si los legados son inoficiosos.
+
+\subsection{Legado de inmuebles y gastos de entrega}
+
+Las mejoras incorporadas por el testador después de otorgado el testamento benefician al legatario, y lo mismo las incorporaciones de terrenos ulteriores, salvo que esos terrenos puedan explotarse en forma independiente. Se cambia el criterio actual del Código Civil sobre incorporación de predios, que habla de separabilidad y otorga al legatario la menor porción del inmueble, para ampliarlo a los predios adquiridos ulteriormente, salvo que admitan explotación independiente.
+
+\begin{itemize}
+    \item \textbf{Lugar de entrega:} el de ubicación de la cosa cierta.
+    \item \textbf{Gastos de entrega:} a cargo de la sucesión (por ejemplo, los honorarios del abogado que interviene por el legatario y los gastos de transporte de la cosa), salvo que el testador disponga lo contrario.
+    \item \textbf{Legados de crédito:} se cumplen en el lugar del domicilio del deudor, de acuerdo con los criterios de las obligaciones.
+\end{itemize}
+
+%--------------------------------------------------------------
+\section[Legados especiales]{Legados especiales: cosa gravada, dinero, lugar, error, condominio y alimentos}
+
+\subsection{Cosa gravada}
+
+\begin{important}
+El legado de cosa gravada tiene una modificación sustancial: ahora el legatario no solamente tiene que levantar el gravamen, sino también pagar la obligación que garantizaba la cosa, hasta el límite del valor de su legado.
+\end{important}
+
+Si el objeto legado no alcanzara para cancelar la obligación garantizada (por ejemplo, con prenda o hipoteca), el heredero deberá hacerse cargo del remanente. El legatario responde únicamente en la medida del valor de su legado.
+
+\subsection{Dinero, moneda extranjera y legado alternativo}
+
+No se han regulado los legados de cosas fungibles, ni los alternativos, ni los de dinero, ni los de moneda extranjera, quizás por la remisión a las obligaciones. Esto genera dificultades interpretativas, sobre todo a partir del art.~765, que autoriza al deudor a liberarse de una obligación en moneda extranjera pagando en moneda nacional. Habrá que desentrañar la voluntad del testador y verificar la fecha del testamento: si es anterior o posterior a la ley de emergencia, o aun a la entrada en vigor de la Ley 26.994 (CCyC).
+
+El legado alternativo («lego mi casa a A o a B») no está regulado; elige el heredero. Los arts.~781 y 782 dan distintas alternativas cuando la elección corresponde al deudor y cuando corresponde al acreedor.
+
+\subsection{Legado con determinación de lugar, de crédito y por error}
+
+\begin{itemize}
+    \item \textbf{Determinación de lugar:} aparece una regulación novedosa en el art.~2504. Estos legados se cumplen con la cantidad existente en ese lugar, aunque sea menor a la designada, hasta la cantidad indicada por el testador.
+    \item \textbf{Legados de crédito y de liberación:} mantienen el criterio tradicional. Un legado efectuado a un acreedor del causante no se imputa al pago de la deuda, salvo disposición expresa.
+    \item \textbf{Legado por error:} es una novedad del art.~2506, en su última parte.
+\end{itemize}
+
+\begin{quote}
+\textbf{Art.~2506 CCyC (legado por error).} Si el testador manda pagar lo que erróneamente cree deber, la disposición se tiene por no escrita. Si manda pagar más de lo que debe, el exceso no se considera legado.
+\end{quote}
+
+\subsection{Cosa ajena, condominio y masa común (art.~2508)}
+
+El legado de cosa ajena queda convalidado con la adquisición por el testador. Si el legado fuera con cargo al heredero de adquirir la cosa legada para entregarla al legatario, se mantiene el criterio actual: debe pagar el justo precio. Si no puede adquirir la cosa que debe entregar y el legatario la adquirió a título gratuito, el legado queda sin efecto, porque el beneficiario ya es el mismo legatario.
+
+En cuanto al legado de cosa en condominio, hoy previsto en el art.~3753 del Código Civil, se modifica la segunda parte, con la excepción del legado de gananciales y la posible recompensa en el trámite de liquidación de la sociedad conyugal, con todos los problemas que ha generado. Está regulado en el art.~2508:
+
+\begin{quote}
+\textbf{Art.~2508 CCyC (bien en condominio).} El legado de un bien cuya propiedad es común a varias personas transmite los derechos que corresponden al testador al tiempo de la muerte.
+\end{quote}
+
+Esto es correcto porque, si ha habido una división de condominio y partición previa, los efectos declarativos de la partición pueden modificar o anular incluso el legado: si la cosa adquirida en condominio fue entregada al otro comunero en la división de condominio. El criterio del art.~3753, primera parte, es el mismo.
+
+\begin{quote}
+\textbf{Art.~2508 CCyC (masa patrimonial común).} El legado de un bien comprendido en una masa patrimonial común a varias personas es válido si el bien resulta adjudicado al testador antes de la muerte. En caso contrario, vale como legado de cantidad por el valor que tenía el bien al momento de la muerte del testador.
+\end{quote}
+
+Esto mejora la cuestión del legado de bien ganancial, que generaba disquisiciones sobre si la disolución de la sociedad conyugal había sido por muerte del testador o en vida, o si había sido disuelta, liquidada y no partida. Todos estos supuestos están ahora adecuadamente regulados en el art.~2508.
+
+\subsection{Legado de alimentos}
+
+Sobre el legado de alimentos véase lo señalado en el panorama de reformas (rubros que lo componen, duración hasta la mayoría de edad o recuperación de la capacidad, y asimilación a los legados de prestaciones periódicas si el beneficiario es capaz).
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell: herederos, acrecimiento, sustituciones y legados}
+
+\begin{cornell}
+\cornellrow{¿Cómo se reconoce a un heredero instituido?}{Heredero es quien recibe la universalidad o una parte indivisa; legatario, un bien particular (art.~2278). Se admiten partes desiguales. Hay instituciones indirectas (art.~2487), herederos a los parientes, asociaciones, «pobres» y «alma».}
+\cornellrow{¿Qué es el heredero de cuota?}{Reemplaza al legatario de cuota: recibe una fracción sin derecho a crecer. Puede iniciar el sucesorio, administrar, pedir la partición y la petición de herencia. Crece si se interpreta llamamiento universal o si las cuotas no cubren la unidad.}
+\cornellrow{¿Cómo funciona el derecho de acrecer?}{Cuando varios son instituidos en la misma cuota o cosa, la parte vacante aprovecha a los restantes con sus cargas (art.~2489). No se reproduce la regla de las fracciones asignadas. En el usufructo no hay acrecimiento salvo disposición contraria.}
+\cornellrow{¿Qué sustituciones se admiten?}{Solo la vulgar (si el llamado no quiere o no puede). Están prohibidas la fideicomisaria (art.~2491) y la del residuo (art.~2492); la cláusula prohibida se tiene por no escrita y no anula la institución.}
+\cornellrow{¿Cómo se adquiere y se pide el legado?}{El legatario es propietario desde la muerte, pero pide la entrega al heredero, administrador o albacea (con conformidad de herederos). No se deja al arbitrio de terceros ni del heredero. Inmuebles: con mejoras y predios posteriores, salvo explotación independiente.}
+\cornellrow{¿Qué reglas especiales tienen ciertos legados?}{Cosa gravada: el legatario libera el gravamen y paga la deuda hasta el valor del legado. Cosa ajena: válido si el testador la adquiere antes de morir. Hay reglas sobre lugar, error, condominio, masa común (art.~2508) y alimentos; no se regulan dinero, moneda extranjera ni alternativos.}
+\cornellsummary{El heredero recibe la universalidad o una parte indivisa y tiene derecho implícito a crecer; el heredero de cuota reemplaza al legatario de cuota y solo excepcionalmente acrece. El derecho de acrecer se regula en una sola norma (art.~2489). Solo se admite la sustitución vulgar. Los legados particulares se rigen por un régimen general (propiedad desde la muerte, pedido de entrega) y por reglas especiales: cosa gravada, cosa ajena, lugar, error, condominio y alimentos.}
+\end{cornell}
+%==============================================================
+% CAPÍTULO 5
+%==============================================================
+\chapter[Revocación y cierre]{Revocación y cierre}
+
+%--------------------------------------------------------------
+\section{Revocación de testamentos y legados}
+
+El testador mantiene su voluntad hasta la muerte si no la revoca, es decir, si no la deja sin efecto: se entiende que persevera en la manifestación de voluntad hasta su muerte. La revocación puede ser \textbf{expresa}, \textbf{presunta} o \textbf{legal}.
+
+\subsection{Revocación expresa}
+
+La revocación expresa debe ajustarse a las formas de los testamentos. Si es por testamento ulterior, este revoca el anterior salvo confirmación expresa, con lo cual se vuelve al Código originario.
+
+Se mantiene el criterio de la revocación por cancelación o destrucción de todos los ejemplares del testamento ológrafo.
+
+\subsection{Revocación por matrimonio: el caso Risolía}
+
+La revocación presunta por matrimonio se produce por el \textbf{matrimonio ulterior}, cualquiera sea el estado civil del testador, salvo que se instituya al cónyuge o que de las disposiciones resulte la voluntad de mantenerlas después del matrimonio.
+
+\begin{example}{Caso Risolía}
+En el testamento se había dejado un legado a las hermanas, pero en el mismo testamento se había consignado que esto estaba en conocimiento de la que sería su esposa. Después, la viuda pretendió anular el legado por el matrimonio ulterior. La sentencia no hizo lugar a la revocación por matrimonio, por considerar que la mejor prueba de la expresión de la voluntad del testador resultaba del propio testamento, donde había ultraactividad.
+\end{example}
+
+\subsection{Revocación de legados}
+
+También se mantiene el criterio en materia de revocación del legado, con algunas modificaciones:
+
+\begin{itemize}
+    \item \textbf{Transmisión:} se modifica un poco la transmisión. Cuando se habla de transmisión, no se indica que la transmisión posterior al legado otorgada por el testador deba ser dominial; esto se presume.
+    \item \textbf{Boleto de compraventa:} se incorpora específicamente como supuesto de revocación.
+    \item \textbf{Alquiler:} el alquiler de la cosa legada no revoca.
+    \item \textbf{Donación:} la donación a un tercero revoca, aunque sea un acto gratuito u oneroso, salvo que el donatario sea el mismo legatario, en cuyo caso se presume que anticipó la voluntad testamentaria.
+\end{itemize}
+
+%--------------------------------------------------------------
+\section{Temas pendientes}
+
+Quedaron sin desarrollar en la exposición la \textbf{caducidad} de las disposiciones testamentarias y el \textbf{albaceazgo}, que se dejaron para estudio personal o consulta posterior. Sobre el albaceazgo, véanse las referencias generales del panorama de reformas en materia de testamentos (mayores facultades del albacea testamentario en la administración, el pago de deudas y el pago de legados).
+
+%--------------------------------------------------------------
+\section{Cuadro Cornell: revocación y cierre}
+
+\begin{cornell}
+\cornellrow{¿Cómo se revoca un testamento?}{La revocación puede ser expresa (con las formas testamentarias), presunta o legal. El testamento posterior revoca el anterior, salvo confirmación expresa o tácita. El matrimonio posterior revoca, salvo que se instituya al cónyuge o resulte la voluntad de mantener las disposiciones (caso Risolía). En el ológrafo, se revoca por cancelación o destrucción de todos los ejemplares.}
+\cornellrow{¿Cómo se revocan los legados?}{Por transmisión de la cosa legada (se presume que es dominial), por boleto de compraventa y por donación a un tercero; el alquiler no revoca. Si el donatario es el mismo legatario, se presume que anticipó la voluntad testamentaria.}
+\cornellrow{¿Qué quedó pendiente?}{La caducidad de las disposiciones y el albaceazgo quedaron para estudio personal o consulta.}
+\cornellsummary{La voluntad del testador persevera hasta la muerte si no la revoca. La revocación puede ser expresa, presunta o legal; el testamento ulterior revoca al anterior salvo confirmación, el matrimonio posterior revoca salvo voluntad de mantener las disposiciones, y los legados se revocan por transmisión, boleto o donación. La caducidad y el albaceazgo quedaron como temas de estudio pendiente.}
+\end{cornell}
+
+\vspace{1em}
+\begin{important}
+\textbf{Síntesis final de los contenidos.} El estado de indivisión nace con la muerte del causante cuando hay más de un heredero y solo termina con la partición. El principio de partición en todo tiempo admite excepciones (indivisiones impuestas por el testador, convenidas por los herederos o pedidas por el cónyuge o un heredero que participó en una unidad económica). La partición exige inventario y avalúo, es imprescriptible, se hace en especie o con venta y licitación, y puede ser privada, judicial o mixta; la atribución preferencial permite adjudicarse la unidad económica pagando el saldo. En materia de testamentos, las reformas comprenden las reglas de capacidad y de prueba, la interpretación de la voluntad real, las formas reducidas (ológrafo, acto público y consular), el heredero de cuota, el acrecimiento, la sustitución vulgar, el régimen de legados y la revocación. El hilo común es una mayor autonomía de la voluntad, con límites claros que protegen la legítima, a los terceros y la seguridad jurídica.
+\end{important}
+
+\end{document}
